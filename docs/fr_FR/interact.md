@@ -82,10 +82,14 @@ Général
 
 -   **Demande** : la phrase modèle génératrice (obligatoire).
 
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
+
 -   **Synonyme** : permet de définir des synonymes sur les noms
     des commandes.
 
 -   **Réponse** : la réponse à fournir.
+
+-   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
 
 -   **Conversion binaire** : permet de convertir les valeurs binaires en
     ouvert/fermé par exemple (uniquement pour les commandes de type

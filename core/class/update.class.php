@@ -66,7 +66,7 @@ class update {
 				}
 			}
 		}
-		if (!$findCore) {
+		if (!$findCore && ($_filter == '' || $_filter == 'core')) {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
@@ -94,6 +94,7 @@ class update {
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
+				'class' => $class,
 				'configuration' => $class::$_configuration,
 				'scope' => $class::$_scope,
 			);
@@ -106,6 +107,7 @@ class update {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
+			'class' => $class,
 			'configuration' => $class::$_configuration,
 			'scope' => $class::$_scope,
 		);
@@ -321,6 +323,16 @@ class update {
 						}
 						$zip->close();
 						unlink($tmp);
+						try {
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc');
+							}
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs');
+							}
+						} catch (Exception $e) {
+
+						}
 						if (!file_exists($cibDir . '/plugin_info')) {
 							$files = ls($cibDir, '*');
 							if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
@@ -455,7 +467,7 @@ class update {
 
 	public static function getLastAvailableVersion() {
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/stable/core/config/version';
+			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch','core','master') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec());
 		} catch (Exception $e) {

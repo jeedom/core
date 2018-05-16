@@ -130,6 +130,7 @@ try {
 			$update = new update();
 			$new = true;
 		}
+		$old_update = $update;
 		utils::a2o($update, $update_json);
 		$update->save();
 		try {
@@ -137,6 +138,9 @@ try {
 		} catch (Exception $e) {
 			if ($new) {
 				throw $e;
+			} else {
+				$update = $old_update;
+				$update->save();
 			}
 		}
 		ajax::success(utils::o2a($update));
@@ -171,5 +175,5 @@ try {
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }

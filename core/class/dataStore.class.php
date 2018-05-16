@@ -50,7 +50,8 @@ class dataStore {
                 FROM dataStore
                 WHERE `type`=:type
                     AND `link_id`=:link_id
-                    AND `key`=:key';
+                    AND `key`=:key
+                ORDER BY `key`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -120,7 +121,7 @@ class dataStore {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
-		if ($_drill == null) {
+		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::dataStore::drill');
 		}
 		if (isset($_data['node']['dataStore' . $this->getId()])) {

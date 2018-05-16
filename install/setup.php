@@ -3,11 +3,9 @@ require_once dirname(__FILE__) . '/../core/class/system.class.php';
 
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
-		$cache[$_name] = $_GET[$_name];
 		return $_GET[$_name];
 	}
 	if (isset($_POST[$_name])) {
-		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {

@@ -52,7 +52,18 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(object::buildTree()));
+		$objects = jeeObject::buildTree();
+		if (init('onlyHasEqLogic') != '') {
+			$return = array();
+			foreach ($objects as $object) {
+				if (count($object->getEqLogic(true, false, init('onlyHasEqLogic'), null, init('searchOnchild', true))) == 0) {
+					continue;
+				}
+				$return[] = $object;
+			}
+			$objects = $return;
+		}
+		ajax::success(utils::o2a($objects));
 	}
 
 	if (init('action') == 'save') {
@@ -204,5 +215,5 @@ try {
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }

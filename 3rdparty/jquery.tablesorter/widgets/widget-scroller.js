@@ -1,4 +1,4 @@
-/*! Widget: scroller - updated 7/31/2016 (v2.27.0) *//*
+/*! Widget: scroller - updated 12/13/2017 (v2.29.1) *//*
 	Copyright (C) 2011 T. Connell & Associates, Inc.
 
 	Dual-licensed under the MIT and GPL licenses
@@ -113,7 +113,7 @@
 			when height < max height (filtering) */
 			'.' + tscss.scrollerTable + ' { position: relative; overflow: auto; }' +
 			'.' + tscss.scrollerTable + ' table.' + tscss.table +
-				' { border-top: 0; margin-top: 0; margin-bottom: 0; overflow: hidden; }' +
+				' { border-top: 0; margin-top: 0; margin-bottom: 0; overflow: hidden; max-width: initial; }' +
 			/* hide footer in original table */
 			'.' + tscss.scrollerTable + ' tfoot, .' + tscss.scrollerHideElement + ', .' + tscss.scrollerHideColumn +
 				' { display: none; }' +
@@ -139,7 +139,7 @@
 			'.' + tscss.scrollerWrap + ' .' + tscss.scrollerFixedPanel +
 				' { position: absolute; top: 0; bottom: 0; z-index: 2; left: 0; right: 0; } ' +
 			'</style>';
-		$( style ).appendTo( 'body' );
+		$( 'head' ).append( style );
 	});
 
 	ts.scroller = {
@@ -273,6 +273,9 @@
 			$tableWrap
 				.off( 'scroll' + namespace )
 				.on( 'scroll' + namespace, function() {
+					// Save position
+					wo.scroller_saved[0] = $tableWrap.scrollLeft();
+					wo.scroller_saved[1] = $tableWrap.scrollTop();
 					if ( wo.scroller_jumpToHeader ) {
 						var pos = $win.scrollTop() - $hdr.offset().top;
 						if ( $( this ).scrollTop() !== 0 && pos < tbHt && pos > 0 ) {
@@ -286,8 +289,10 @@
 				});
 
 			// resize/update events - filterEnd fires after "tablesorter-initialized" and "updateComplete"
-			events = ( ( ts.hasWidget( c.table, 'filter' ) ? 'filterEnd' : 'tablesorter-initialized updateComplete' ) +
-					' sortEnd pagerComplete columnUpdate ' ).split( ' ' ).join( namespace + ' ' );
+			tmp = ts.hasWidget( c.table, 'filter' ) ?
+				'filterEnd filterInit' :
+				'tablesorter-initialized updateComplete';
+			events = ( tmp + ' sortEnd pagerComplete columnUpdate ' ).split( ' ' ).join( namespace + ' ' );
 
 			$table
 				.off( namespace )
@@ -365,7 +370,7 @@
 
 		resize : function( c, wo ) {
 			if ( wo.scroller_isBusy ) { return; }
-			var index, borderWidth, setWidth, $headers, $this, temp,
+			var index, borderWidth, setWidth, $headers, $this,
 				tsScroller = ts.scroller,
 				$container = wo.scroller_$container,
 				$table = c.$table,
@@ -378,7 +383,9 @@
 				// Hide other scrollers so we can resize
 				$div = $( 'div.' + tscss.scrollerWrap + '[id!="' + id + '"]' )
 					.addClass( tscss.scrollerHideElement ),
-				row = '<tr class="' + tscss.scrollerSpacerRow + ' ' + c.selectorRemove.slice(1) + '">';
+				temp = 'padding:0;margin:0;border:0;height:0;max-height:0;min-height:0;',
+				row = '<tr class="' + tscss.scrollerSpacerRow + ' ' + c.selectorRemove.slice(1) +
+					'" style="' + temp + '">';
 
 			wo.scroller_calcWidths = [];
 
@@ -417,22 +424,22 @@
 						setWidth = $this.width();
 					}
 				}
-				row += '<td data-column="' + index + '" style="padding:0;margin:0;border:0;height:0;max-height:0;' +
-					'min-height:0;width:' + setWidth + 'px;min-width:' + setWidth + 'px;max-width:' + setWidth + 'px"></td>';
+				row += '<td data-column="' + index + '" style="' + temp + 'width:' + setWidth +
+					'px;min-width:' + setWidth + 'px;max-width:' + setWidth + 'px"></td>';
 
 				// save current widths
 				wo.scroller_calcWidths[ index ] = setWidth;
 			}
 			row += '</tr>';
-			c.$tbodies.eq(0).prepend( row ); // tbody
+			c.$tbodies.eq(0).append( row ); // tbody
 			$hdr.children( 'thead' ).append( row );
 			$foot.children( 'tfoot' ).append( row );
 
 			// include colgroup or alignment is off
 			ts.fixColumnWidth( c.table );
 			row = c.$table.children( 'colgroup' )[0].outerHTML;
-			$hdr.prepend( row );
-			$foot.prepend( row );
+			$hdr.append( row );
+			$foot.append( row );
 
 			temp = $tableWrap.parent().innerWidth() -
 				( tsScroller.hasScrollBar( $tableWrap ) ? wo.scroller_barSetWidth : 0 );
@@ -469,6 +476,7 @@
 			// update resizable widget handles
 			setTimeout( function() {
 				c.$table.triggerHandler( 'resizableUpdate' );
+				c.$table.triggerHandler( 'scrollerComplete' );
 			}, 100 );
 
 		},
@@ -737,12 +745,18 @@
 				tsScroller = ts.scroller,
 				fixedColumns = wo.scroller_fixedColumns,
 				// get dimensions
+				getDim = function ($el, name, deflt) {
+					return parseInt( $el.css(name) || '', 10 ) || deflt || 0;
+				},
 				$temp = $table.find( 'tbody td' ),
-				borderRightWidth = parseInt( $temp.css( 'border-right-width' ), 10 ) || 1,
-				borderSpacing = parseInt( ( $temp.css( 'border-spacing' ) || '' ).split( /\s/ )[ 0 ], 10 ) / 2 || 0,
-				totalWidth = parseInt( $table.css( 'padding-left' ), 10 ) +
-					parseInt( $table.css( 'padding-right' ), 10 ) -
-					borderRightWidth,
+				borderRightWidth = getDim( $temp, 'border-right-width', 1 ),
+				borderSpacing = getDim( $temp, 'border-spacing', 0 ),
+				totalWidth = getDim( $table, 'padding-left' ) +
+					getDim( $table, 'padding-right' ) +
+					// include table left & row left border
+					getDim( $table, 'border-left-width', 1 ) * 2 +
+					getDim( $table, 'border-right-width', 1 ) -
+					borderRightWidth + borderSpacing / 2,
 				widths = wo.scroller_calcWidths;
 
 			ts.scroller.removeFixed( c, wo, false );
@@ -753,7 +767,7 @@
 			}
 
 			// set fixed column width
-			totalWidth = totalWidth + borderRightWidth * 2 - borderSpacing;
+			totalWidth = totalWidth + borderRightWidth * 2;
 			tsScroller.setWidth( $fixedColumn.add( $fixedColumn.children() ), totalWidth );
 			tsScroller.setWidth( $fixedColumn.children().children( 'table' ), totalWidth );
 
@@ -791,7 +805,6 @@
 					.css( 'width', totalWidth + adj );
 			}
 
-			$fixedColumn.removeClass( tscss.scrollerHideElement );
 			for ( index = 0; index < fixedColumns; index++ ) {
 				temp = ':nth-child(' + ( index + 1 ) + ')';
 				$wrapper
@@ -800,6 +813,14 @@
 					.find( 'th' + temp + ', td' + temp + ', col' + temp )
 					.addClass( tscss.scrollerHideColumn );
 			}
+			$fixedColumn
+				.removeClass( tscss.scrollerHideElement )
+				.find('colgroup')
+				.each(function() {
+					$(this)
+						.find('col:gt(' + (fixedColumns - 1) + ')')
+						.addClass( tscss.scrollerHideElement );
+				});
 
 			totalWidth = totalWidth - borderRightWidth;
 			temp = $tableWrap.parent().innerWidth() - totalWidth;
@@ -838,6 +859,7 @@
 			// adjust caption height, see #1202
 			$fixedColumn.find('caption').height( wo.scroller_$header.find( 'caption' ).height() );
 
+			$tableWrap.scroll();
 			wo.scroller_isBusy = false;
 
 		},

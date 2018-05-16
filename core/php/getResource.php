@@ -52,7 +52,7 @@ if (file_exists($file)) {
 		} else {
 			echo translate::exec(file_get_contents($file), init('file'), true);
 		}
-	} else if ($pathinfo['extension'] == 'css') {
+	} elseif ($pathinfo['extension'] == 'css') {
 		echo file_get_contents($file);
 	}
 	exit;

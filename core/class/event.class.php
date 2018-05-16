@@ -51,10 +51,6 @@ class event {
 	}
 
 	public static function adds($_event, $_values = array()) {
-		$value = array();
-		foreach ($_values as $option) {
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
-		}
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
@@ -63,13 +59,17 @@ class event {
 			if (!is_array($value_src)) {
 				$value_src = array();
 			}
+			$value = array();
+			foreach ($_values as $option) {
+				$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
+			}
 			cache::set('event', json_encode(array_slice(array_merge($value_src, $value), -self::$limit, self::$limit)));
 			flock($fd, LOCK_UN);
 		}
 	}
 
-	public static function changes($_datetime, $_longPolling = null) {
-		$return = self::changesSince($_datetime);
+	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
+		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
 		}
@@ -83,14 +83,32 @@ class event {
 				sleep(round($waitTime));
 			}
 			sleep(1);
-			$return = self::changesSince($_datetime);
+			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
 		return $return;
 	}
 
+	private static function filterEvent($_data = array(), $_filter = null) {
+		if ($_filter === null) {
+			return $_data;
+		}
+		$filters = cache::byKey($_filter . '::event')->getValue(array());
+		$return = array('datetime' => $_data['datetime'], 'result' => array());
+		foreach ($_data['result'] as $value) {
+			if (isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
+				continue;
+			}
+			if (count($filters) != 0 && $value['name'] == 'cmd::update' && !in_array($value['option']['cmd_id'], $filters)) {
+				continue;
+			}
+			$return['result'][] = $value;
+		}
+		return $return;
+	}
+
 	private static function changesSince($_datetime) {
-		$return = array('datetime' => getmicrotime(), 'result' => array());
+		$return = array('datetime' => $_datetime, 'result' => array());
 		$cache = cache::byKey('event');
 		$events = json_decode($cache->getValue('[]'), true);
 		if (!is_array($events)) {
@@ -98,6 +116,7 @@ class event {
 		}
 		$values = array_reverse($events);
 		if (count($values) > 0) {
+			$return['datetime'] = $values[0]['datetime'];
 			foreach ($values as $value) {
 				if ($value['datetime'] <= $_datetime) {
 					break;
@@ -113,5 +132,3 @@ class event {
 
 	/*     * **********************Getteur Setteur*************************** */
 }
-
-

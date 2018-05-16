@@ -257,7 +257,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+          <select class="cmdAttr form-control" data-l1key="generic_type">
             <option value="">{{Aucun}}</option>
             <?php
 $groups = array();
@@ -504,16 +504,14 @@ foreach ($groups as $group) {
 	?>
   <div role="tabpanel" class="tab-pane" id="cmd_html">
     <br/>
+    <a class="btn btn-warning btn-sm pull-right" id="bt_reinitHtmlCode" style="position:relative;top:-3px;"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
     <div class="form-group">
       <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personnalisation du widget}}</label>
       <div class="col-xs-2">
         <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
       </div>
-      <div class="col-xs-3">
-        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
-      </div>
     </div>
-    <legend><i class="fa fa-code"></i> {{Code}}</legend>
+    <br/>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">

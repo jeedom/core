@@ -12,7 +12,7 @@ ping
 
 Retourne pong, permet de tester la communication avec Jeedom
 
-version 
+Version 
 -------
 
 Retourne la version de Jeedom
@@ -30,7 +30,7 @@ config::byKey
 
 Retourne une valeur de configuration.
 
-Paramètres :
+Parameter :
 
 -   string key : clef de la valeur de configuration à retourner
 
@@ -44,7 +44,7 @@ config::save
 
 Enregistre une valeur de configuration
 
-Paramètres :
+Parameter :
 
 -   string value : valeur à enregistrer
 

@@ -380,11 +380,6 @@ class scenario {
 	public static function consystencyCheck($_needsReturn = false) {
 		$return = array();
 		foreach (self::all() as $scenario) {
-			if ($scenario->getGroup() == '') {
-				$group = 'aucun';
-			} else {
-				$group = $scenario->getGroup();
-			}
 			if ($scenario->getIsActive() != 1) {
 				if (!$_needsReturn) {
 					continue;
@@ -393,13 +388,12 @@ class scenario {
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
 				foreach ($scenario->getTrigger() as $trigger) {
-					$trigger_list .= cmd::cmdToHumanReadable($trigger);
+					$trigger_list .= cmd::cmdToHumanReadable($trigger) . '_';
 				}
-				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
-				foreach ($matches[1] as $cmd_id) {
+				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
-							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
+							$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
@@ -408,22 +402,13 @@ class scenario {
 			}
 			$expression_list = '';
 			foreach ($scenario->getElement() as $element) {
-				foreach ($element->getSubElement() as $subElement) {
-					foreach ($subElement->getExpression() as $expression) {
-						$expression_list .= cmd::cmdToHumanReadable($expression->getExpression()) . ' _ ';
-						if (is_array($expression->getOptions())) {
-							foreach ($expression->getOptions() as $key => $value) {
-								$expression_list .= cmd::cmdToHumanReadable($value) . ' _ ';
-							}
-						}
-					}
-				}
+				$expression_list .= cmd::cmdToHumanReadable(json_encode($element->getAjaxElement()));
 			}
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn) {
-						$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
+						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
@@ -776,9 +761,9 @@ class scenario {
 			}
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog('Start : ' . $_message . '.');
+			$this->setLog('Start : ' . trim($_message, "'") . '.');
 		} else {
-			$this->setLog('Start : ' . $_message . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog('Start : ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
@@ -1387,7 +1372,7 @@ class scenario {
 	 * @return boolean
 	 */
 	public function hasRight($_right, $_user = null) {
-		if ($_user != null) {
+		if ($_user !== null) {
 			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
 			}

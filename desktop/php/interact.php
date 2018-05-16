@@ -187,7 +187,7 @@ if (count($totalInteract) == 0) {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 col-xs-2 control-label">{{Mot(s) obligatoire(s)}}</label>
+          <label class="col-sm-2 col-xs-2 control-label">{{Regexp de correspondance obligatoire}}</label>
           <div class="col-sm-9 col-xs-9">
             <input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain"/>
           </div>
@@ -205,6 +205,12 @@ if (count($totalInteract) == 0) {
           </div>
           <div class="col-sm-1">
             <a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fa fa-list-alt "></i></a>
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-sm-2 col-xs-2 control-label">{{Attendre avant de répondre (s)}}</label>
+          <div class="col-sm-1 col-xs-9">
+            <input type="number" class="form-control interactAttr" type="text" data-l1key="options" data-l2key="waitBeforeReply" placeholder="" title="{{Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple}}"/>
           </div>
         </div>
         <div class="form-group">

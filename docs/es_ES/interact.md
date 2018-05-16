@@ -1,91 +1,95 @@
-Le système d’interaction dans Jeedom permet de réaliser des actions à
-partir de commandes textes ou vocales.
+El sistema de interacción en Jeedom permite acciones
+desde los comandos de voz o texto.
 
-Ces commandes peuvent être obtenues par :
+Estos comandos se pueden obtener por:
 
--   SMS : envoyer un SMS pour lancer des commandes (action) ou poser une
-    question (info).
+-   SMS: enviar un SMS para ejecutar comandos (acción) o pedir una
+    tema (información).
 
--   Chat : Telegram, Slack, etc.
+-   Chat: Telegrama, Slack, etc.
 
--   Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc. Pour
-    lancer des commandes (action) ou poser une question (info).
+-   Vocal: dictar una sentencia con Siri, Google Now, Sarah, etc. Para
+    los comandos de marcha (acción) o hacer una pregunta (información).
 
--   HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack)
-    pour lancer des commandes (action) ou poser une question (info).
+-   HTTP: lanzar una URL HTTP que contiene el texto (por ejemplo, Tasker, Slack).
+    para ejecutar comandos (acción) o hacer una pregunta (información).
 
-L’intérêt des interactions réside dans l’intégration simplifiée dans
-d’autres systèmes comme smartphone, tablette, autre box domotique, etc.
+El interés de la interacción reside en la integración simplificada en
+otros sistemas, tales como teléfonos inteligentes, tabletas, otro cuadro de automatización del hogar, etc.
 
-Pour accéder à la page d’interaction il faut aller sur Outils →
-Interactions :
+Para acceder a la página interactiva se encuentra en Herramientas →
+interacciones:
 
-En haut de page, on trouve 3 boutons :
+En la parte superior, hay 3 botones:
 
--   **Ajouter** : qui permet de créer de nouvelles interactions.
+-   ** ** Añadir a la creación de nuevas interacciones.
 
--   **Régénérer** : qui va recréer toutes les interactions (peut être
-    très long &gt; 5mn).
+-   Regenerar ** **: que se vuelva a crear todas las interacciones (puede ser
+    5mn a largo &gt;).
 
--   **Tester** : qui permet d’ouvrir un boîte de dialogue pour écrire et
-    tester une phrase.
+-   ** ** Prueba de la que se abre un cuadro de diálogo para escribir y
+    probar una frase.
 
 > **Tip**
 >
-> Si vous avez une interaction qui génère les phrases pour les lumières
-> par exemple et que vous ajoutez un nouveau module de commande de
-> lumière, il vous faudra soit régénérer toutes les interactions, soit
-> aller dans l’interaction en question et la sauvegarder de nouveau pour
-> créer les phrases de ce nouveau module.
+> Si usted tiene una interacción que genera las sentencias por las luces
+> Por ejemplo, y se añade un nuevo módulo de control
+> Luz, es necesario o bien regenerar todas las interacciones, o
+> Ir a la interacción que se trate y de regreso a
+> Crear frases de este nuevo módulo.
 
-Principe 
+principio
 ========
 
-Le principe de création est assez simple, on va définir une phrase
-modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs
-centaines d’autres phrases qui seront des combinaisons possibles du
-modèle.
+El principio de la creación es muy sencillo, vamos a definir una sentencia
+modelo de generación que permitirá Jeedom para crear uno o más
+cientos de otras frases que serán las posibles combinaciones de
+modelo.
 
-On va définir de la même façon des réponses avec un modèle (ça permet à
-Jeedom d’avoir plusieurs réponses pour une seule et même question).
+Definiremos la misma manera que las respuestas con un modelo (que permite
+Jeedom tener varias respuestas a una sola pregunta).
 
-On peut aussi définir une commande à exécuter si par exemple
-l’interaction n’est pas liée à une action mais une information ou si on
-souhaite réaliser une action particulière après celle-ci (il est aussi
-possible d’exécuter un scénario, de contrôler plusieurs commandes…​).
+También podemos definir un comando para ejecutar si tal
+la interacción no está relacionado con una acción o información pero si
+quiere llevar a cabo una acción en particular después de él (que es también
+posible ejecutar una secuencia de comandos para controlar múltiples órdenes ...).
 
-Configuration 
+configuración
 =============
 
-La page de configuration est constituée de plusieurs onglets et de
-boutons :
+La página de configuración consta de varias pestañas y
+botones:
 
--   **Phrases** : Affiche le nombre de phrases de l’interaction (un clic
-    dessus vous les montre)
+-   ** ** frases: Muestra el número de sentencias de la interacción (un clic
+    se muestra)
 
--   **Enregistrer** : enregistre l’interaction courante
+-   ** ** Guardar: guarda la interacción actual
 
--   **Supprimer** : supprime l’interaction courante
+-   ** ** Eliminar: Eliminar la interacción actual
 
--   **Dupliquer** : duplique l’interaction courrante
+-   **Duplicar**: duplica la interacción Courrante
 
-Général 
+general
 =======
 
--   **Nom** : nom de l’interaction (peut être vide, le nom remplace le
-    texte de la demande dans la liste des interactions).
+-   ** ** Nombre: nombre de la interacción (puede estar vacío, el nombre reemplaza
+    texto de la aplicación en la lista de interacciones).
 
--   **Groupe** : groupe de l’interaction, cela permet de les organiser
-    (peut être vide, sera donc dans le groupe "aucun").
+-   ** ** Grupo: la interacción del grupo, que ayuda a organizar
+    (Puede estar vacío, estará en el grupo "no").
 
--   **Actif** : permet d’activer ou désactiver l’interaction.
+-   **activo**: Habilitar o deshabilitar la interacción.
 
--   **Demande** : la phrase modèle génératrice (obligatoire).
+-   ** ** Solicitud generador de frases (obligatorio).
+
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
 
 -   **Synonyme** : permet de définir des synonymes sur les noms
     des commandes.
 
 -   **Réponse** : la réponse à fournir.
+
+-   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
 
 -   **Conversion binaire** : permet de convertir les valeurs binaires en
     ouvert/fermé par exemple (uniquement pour les commandes de type
@@ -179,7 +183,7 @@ phrases pour tout un groupe de commandes.
 
 On va reprendre ce qui a été fait plus haut, supprimer les actions que
 l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande",
-nous allons utiliser les tags **\#commande\#** et **\#equipement\#**.
+nous allons utiliser les tags **\#commande\#**et**\#equipement\#**.
 Jeedom va donc remplacer ces tags par le nom des commandes et le nom de
 l’équipement (on peut voir l’importance d’avoir des noms de
 commande/équipement cohérents).

@@ -116,6 +116,10 @@ try {
 	$excludes = array(
 		'tmp',
 		'log',
+		'docs',
+		'doc',
+		'tests',
+		'support',
 		'backup',
 		'.git',
 		'.log',
@@ -123,11 +127,15 @@ try {
 		config::byKey('backup::path'),
 	);
 
+	if (config::byKey('recordDir', 'camera') != '') {
+		$excludes[] = config::byKey('recordDir', 'camera');
+	}
+
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' * > /dev/null');
+	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
@@ -214,6 +222,14 @@ try {
 		}
 	}
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
+	
+	try {
+		echo 'Vérifiez les droits sur les fichiers...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
 
 	try {
 		echo 'Envoi l\'événement de fin de sauvegarde...';

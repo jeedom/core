@@ -42,6 +42,9 @@ foreach ($allObject as $object) {
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		$title = '';
+		if (!is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
+			continue;
+		}
 		foreach ($object->getConfiguration('summary')[$key] as $summary) {
 			if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
 				$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();

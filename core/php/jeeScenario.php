@@ -42,7 +42,7 @@ if (init('scenarioElement_id') != '') {
 		die(__('Scénario non trouvé. Vérifiez ID : ', __FILE__) . init('scenario_id'));
 	}
 	if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
-		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 1) * 60));
+		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 'core', 1) * 60));
 	}
 	try {
 		if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
@@ -61,4 +61,4 @@ if (init('scenarioElement_id') != '') {
 		die();
 	}
 }
-?>
+ 

@@ -662,10 +662,14 @@ function saveWidgetDisplay(_params){
          eqLogic.display = {};
          eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
          eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
-         eqLogic.order = order;
-         eqLogics.push(eqLogic);
-         order++;
-     });
+         if($(this).attr('data-order') != undefined){
+            eqLogic.order = $(this).attr('data-order');
+        }else{
+            eqLogic.order = order;
+        }
+        eqLogics.push(eqLogic);
+        order++;
+    });
     });
        jeedom.eqLogic.setOrder({
         eqLogics: eqLogics,
@@ -884,4 +888,13 @@ removeTableLine: {
 }
 });
 }
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }

@@ -1,4 +1,4 @@
-Description 
+Beschreibung 
 ===========
 
 Cette page permet de rassembler sur une seule page les différents
@@ -9,13 +9,13 @@ d’affichage.
 
 Cette page est accessible par **Outils → Résumé domotique**.
 
-Le haut de la page 
+Oben auf der Seite 
 ------------------
 
 Sur le haut de la page, on retrouve : \* **Nombre d’objets** : Nombre
 total d’objets configurés dans notre Jeedom, en comptant les éléments
 inactifs. \* **Nombre d’équipements** : Idem pour les équipements. \*
-**Nombre de commandes** : Idem pour les commandes. \* **Inactif** :
+**Nombre de commandes**: Idem pour les commandes. \***Inactif** :
 Cochez cette case si vous voulez que les éléments inactifs soient bien
 affichés sur cette page. \* **Rechercher** : Permet de rechercher un
 élément particulier. Ce peut être le nom d’un équipement, d’une commande
@@ -122,7 +122,7 @@ l’équipement ainsi que ses commandes :
 
 -   **ID** : Identifiant unique dans la base de données de Jeedom.
 
--   **Nom** : Nom de l’équipement.
+-   **Name** : Gerätename
 
 -   **ID logique** : Identifiant logique de l’équipement (peut
     être vide).
@@ -246,7 +246,7 @@ Cet onglet permet d’avoir les informations sur la batterie de
 l’équipement et de définir des alertes par rapport à celle-ci. Voici les
 types d’informations que l’on peut trouver :
 
--   **Type de pile**,
+-   **Batterietyp**,
 
 -   **Dernière remontée de l’information**,
 
@@ -314,7 +314,7 @@ commande :
 -   **ID logique** : Identifiant logique de la commande (peut
     être vide).
 
--   **Nom** : Nom de la commande.
+-   **Name** : Name des Befehls.
 
 -   **Type** : Type de la commande (action ou info).
 
@@ -322,7 +322,7 @@ commande :
 
 -   **URL directe** : Fournit l’URL pour accéder à cet équipement. (clic
     droit, copier l’adresse du lien) L’URL lancera la commande pour une
-    **action** et retournera l’information pour une **info**.
+    **action**et retournera l’information pour une**info**.
 
 -   **Unité** : Unité de la commande.
 
@@ -394,7 +394,7 @@ Onglet Configuration
     -   **Historiser** : Cochez la case pour que les valeurs de cette
         commande soient historisées. (Voir **Analyse→Historique**)
 
-    -   **Mode de lissage** : Mode de **lissage** ou d'**archivage**
+    -   **Mode de lissage**: Mode de**lissage** ou d'**archivage**
         permet de choisir la manière d’archiver la donnée. Par défaut,
         c’est une **moyenne**. Il est aussi possible de choisir le
         **maximum**, le **minimum**, ou **aucun**. **aucun** permet de
@@ -459,7 +459,7 @@ Onglet Configuration
 Onglet Alertes 
 --------------
 
-Permet de définir un niveau d’alerte (**warning** ou **danger**) en
+Permet de définir un niveau d’alerte (**warning**ou**danger**) en
 fonction de certaines conditions. Par exemple, si `value > 8` pendant 30
 minutes alors l’équipement peut passer en alerte **warning**.
 
@@ -488,8 +488,8 @@ mobile.
 -   **Afficher le nom et l’icône** : Cochez pour rendre visible l’icône
     en plus du nom de la commande.
 
--   **Retour à la ligne forcé avant le widget** : Cochez **avant le
-    widget** ou **après le widget** pour ajouter un retour à la ligne
+-   **Retour à la ligne forcé avant le widget**: Cochez**avant le
+    widget**ou**après le widget** pour ajouter un retour à la ligne
     avant ou après le widget (pour forcer par exemple un affichage en
     colonne des différentes commandes de l’équipement au lieu de lignes
     par défaut)

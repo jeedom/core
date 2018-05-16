@@ -13,7 +13,7 @@ d’historisation ou que vous voulez modifier les réglages de
 l’historisation. Les réglages par défaut conviennent dans la plupart des
 cas.
 
-Archivage 
+Archivierung 
 ---------
 
 L’archivage de données permet à Jeedom de réduire la quantité de données

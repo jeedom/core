@@ -212,10 +212,10 @@ class history {
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
 					'oldest' => $oldest['oldest'],
-					'archivePackage' => $archivePackage,
+					'archivePackage' => '-' . $archivePackage,
 				);
 				$sql = 'DELETE FROM history
-						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
+						WHERE addtime(`datetime`,:archivePackage)<:oldest
 						AND cmd_id=:cmd_id';
 				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
@@ -450,7 +450,7 @@ class history {
 		} else {
 			$values['value'] = $_value;
 		}
-		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+		$sql = 'SELECT `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -461,18 +461,18 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` =:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$lastDatetime = $result['datetime'];
-		if ($lastDatetime == '' || strtotime($lastDatetime) == false) {
+		if ($lastDatetime == '' || strtotime($lastDatetime) === false) {
 			return -1;
 		}
 		if ($values['value'] == $cValue) {
 			return strtotime('now') - strtotime($lastDatetime);
 		}
-		$sql = 'SELECT  ' . DB::buildField(__CLASS__) . '
+		$sql = 'SELECT  `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -483,11 +483,11 @@ class history {
 					FROM  `historyArch`
 					WHERE  `cmd_id`=:cmd_id
 					AND  `value` <>:value
-					) as dt
+					) as `datetime`
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) == false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
+		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
 			return -1;
 		}
 		return strtotime($result['datetime']) - strtotime($lastDatetime);
@@ -555,20 +555,19 @@ class history {
 			'cmd_id' => $_cmd_id,
 			'value' => $_value,
 		);
-
 		$sql = 'select max(`datetime`) as lastCmdDuration
-                from (
-                        select min(`datetime`) as datetime
-                        from `history`
-                        where `cmd_id`=:cmd_id and `value`=:value and
-                        `datetime` > (select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value)) and
-                        `datetime` <= COALESCE((select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value),now())
-                        union all
-                        select min(`datetime`) as datetime from `historyArch`
-                        where `cmd_id`=:cmd_id and `value`=:value and
-                        `datetime` > COALESCE((select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)),1) and
-                        `datetime` <= COALESCE((select max(`datetime`) from `historyArch` where `cmd_id`=:cmd_id and `value`=:value),now())
-                        ) as t';
+		from (
+			select min(`datetime`) as datetime
+			from `history`
+			where `cmd_id`=:cmd_id and `value`=:value and
+			`datetime` > COALESCE((select max(`datetime`) from `history` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value)),1) and
+			`datetime` <= COALESCE((select max(`datetime`) from history where `cmd_id`=:cmd_id and `value` =:value),now())
+			union all
+			select min(`datetime`) as datetime from `historyArch`
+			where `cmd_id`=:cmd_id and `value`=:value and
+			`datetime` > COALESCE((select max(`datetime`) from `historyArch` where `value`!=:value and `cmd_id`=:cmd_id and `datetime` < (select max(`datetime`) from historyArch where `cmd_id`=:cmd_id and `value` =:value)),1) and
+			`datetime` <= COALESCE((select max(`datetime`) from `historyArch` where `cmd_id`=:cmd_id and `value`=:value),now())
+			) as t';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return strtotime('now') - strtotime($result['lastCmdDuration']);
 	}
@@ -648,7 +647,7 @@ class history {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
-	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null) {
+	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false) {
 		$now = strtotime('now');
 		$archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600 + 86400;
 		$packetTime = (config::byKey('historyArchivePackage')) * 3600;
@@ -698,6 +697,10 @@ class history {
 				}
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
+				if ($_noCalcul) {
+					$value[$datetime] = $calcul;
+					continue;
+				}
 				try {
 					$result = floatval(jeedom::evaluateExpression($calcul));
 					$value[$datetime] = $result;

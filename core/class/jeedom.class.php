@@ -170,7 +170,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://github.com/jeedom/documentation/blob/master/compatibility/fr_FR/software.asciidoc" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -256,6 +256,24 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
+		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
+		$return[] = array(
+			'name' => __('Apache private tmp', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+		);
+		
+		foreach (update::listRepo() as $repo) {
+			if (!$repo['enable']) {
+				continue;
+			}
+			$class = $repo['class'];
+			if (!class_exists($class) || !method_exists($class, 'health')) {
+				continue;
+			}
+			$return += array_merge($return, $class::health());
+		}
 		return $return;
 	}
 
@@ -698,6 +716,18 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
+					$class::cron5();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+		try {
 			eqLogic::checkAlive();
 		} catch (Exception $e) {
 
@@ -945,9 +975,8 @@ class jeedom {
 		return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
 	}
 
-	public static function evaluateExpression($_input) {
+	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			$_scenario = null;
 			$_input = scenarioExpression::setTags($_input, $_scenario, true);
 			$result = evaluate($_input);
 			if (is_bool($result) || is_numeric($result)) {
@@ -1136,14 +1165,17 @@ class jeedom {
 		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
-		$result = 'DIY';
+		$result = 'diy';
 		$uname = shell_exec('uname -a');
 		if (file_exists('/.dockerinit')) {
-			$result = 'Docker';
+			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
-			$result = 'RPI/RPI2';
+			$result = 'rpi';
 		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
-			$result = 'Jeedomboard';
+			$result = 'miniplus';
+		}
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			$result = 'smart';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');

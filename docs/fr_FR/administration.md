@@ -599,10 +599,9 @@ Messages
     automatiquement un message dans le centre des messages (au moins
     vous êtes sûr de ne pas le manquer).
 
--   **Commande d’information utilisateur** : Permet de sélectionner une
-    ou plusieurs commandes (à séparer par des **&&** ) de type
-    **message** qui seront utilisées lors de l’émission de
-    nouveaux messages.
+-   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre de message. Vous avez 2 tags pour ces actions : 
+        - #message# : message en question
+        - #plugin# : plugin qui a déclenché le message
 
 Alertes 
 -------
@@ -762,6 +761,19 @@ un partage Samba (ex : NAS Synology).
 >
 > Il vous faudra peut-être installer le package smbclient pour que le
 > dépôt fonctionne.
+
+> **Important**
+>
+> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau 
+> sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2
+> ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
+> failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
+> la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom
+> le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
+> client max protocol = SMB3
+> client min protocol = SMB2
+> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement
+> SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
 
 > **Important**
 >

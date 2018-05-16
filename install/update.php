@@ -42,17 +42,17 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
-		echo "Mise à jour en cour. J'attendrai 10s avant de recommencer\n";
+		echo "Update in progress. I will wait 10s\n";
 		sleep(10);
 		if (count(system::ps('install/update.php', 'sudo')) > 1) {
-			echo "Mise à jour en cours. Vous devez attendre jusqu'à ce qu'elle finisse avant de redémarrer une nouvelle mise à jour\n";
+			echo "Update in progress. You need to wait before update\n";
 			print_r(system::ps('install/update.php', 'sudo'));
 			echo "[END UPDATE]\n";
 			die();
 		}
 	}
-	echo "****Mise à jour de jeedom depuis " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Paramètres : " . print_r($_GET, true);
+	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "Paramters : " . print_r($_GET, true);
 	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
@@ -112,13 +112,6 @@ try {
 		}
 		jeedom::stop();
 		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
-			try {
-				echo 'Clean temporary file (tmp)...';
-				shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
-				echo "OK\n";
-			} catch (Exception $e) {
-				echo '***ERROR*** ' . $e->getMessage() . "\n";
-			}
 			$tmp_dir = jeedom::getTmpFolder('install');
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
@@ -150,7 +143,7 @@ try {
 					throw new Exception('Download failed please retry later');
 				}
 				echo "OK\n";
-				echo "Cleaning folder...";
+				echo "Cleaning folders...";
 				$cibDir = jeedom::getTmpFolder('install/unzip');
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
@@ -184,7 +177,7 @@ try {
 					echo "Update updater...";
 					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
 					echo "OK\n";
-					echo "Remove temporary file...";
+					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
 					echo "OK\n";
 					echo "Wait 10s before relaunch update\n";
@@ -193,13 +186,29 @@ try {
 					jeedom::update($_GET);
 					die();
 				}
-
-				echo "Moving file...";
+				try {
+					echo 'Clean temporary files (tmp)...';
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../doc');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../docs');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../support');
+					echo "OK\n";
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
+				echo "Moving files...";
 				$update_begin = true;
 				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
 				echo "OK\n";
-				echo "Remove temporary file...";
+				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
+				try {
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tests');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../.travis.yml');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../phpunit.xml.dist');
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
 				echo "OK\n";
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 			} catch (Exception $e) {

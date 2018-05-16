@@ -2,47 +2,13 @@ Voici la partie la plus importante dans la domotique : les scénarios.
 Véritable cerveau de la domotique, c’est ce qui permet d’interagir avec
 le monde réel de manière "intelligente".
 
--   [La page de gestion des scénarios](#gestions)
-
-    -   [Gestion](#gestion) : La gestion globale des scénarios.
-
-    -   [Mes scénarios](#messcenarios) : La liste des scénarios créés.
-
--   [Edition d’un scénario](#edition)
-
-    -   [Onglet Général](#ongletgeneral) : Les paramètres généraux
-        d’un scénario.
-
-    -   [Onglet Scénario](#ongletscenario) : La page de confection d’un
-        scénario, avec la présentation des différents blocs.
-
--   [Les substitutions](#substitutions)
-
-    -   [déclencheurs](#declencheurs) : Des déclencheurs propres
-        à Jeedom.
-
-    -   [Opérateurs](#operateurs) : Ce qui permet de comparer
-        des valeurs.
-
-    -   [tags](#tags) : Les tags inclus dans Jeedom.
-
-    -   [fonctions de calculs](#calculs) : Les fonctions de calcul
-        de valeurs.
-
-    -   [fonctions mathématiques](#maths) : Les opérations
-        mathématiques disponibles.
-
--   [Les commandes spécifiques](#commandes)
-
--   [Template de scénario](#template)
-
 La page de gestion des Scénarios 
 ================================
 
 Gestion 
 -------
 
-Pour y accéder rien de plus simple, il suffit d’aller sur Outils →
+Pour y accéder rien de plus simple, il suffit d’aller sur Outils ->
 Scénarios. Vous y trouverez la liste des scénarios de votre Jeedom ainsi
 que des fonctions pour les gérer au mieux :
 
@@ -143,8 +109,7 @@ notre scénario :
 -   **Multi lancement** : Cochez cette case si vous souhaitez que le
     scénario puisse être lancé plusieurs fois en même temps.
 
--   **Mode synchrone** : Attention, cela peut rendre le
-    système instable.
+-   **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
 
 -   **Log** : Le type de log souhaité pour le scénario.
 
@@ -169,6 +134,10 @@ Onglet Scénario
 C’est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
 créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
+
+> **Tip**
+>
+> Dans les condition et action il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 
 ### Les blocs 
 
@@ -253,89 +222,44 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 >
 > Attention les tags ne sont pas disponibles dans un bloc de type code.
 
-Commandes (capteurs et actionneurs)
+Commandes (capteurs et actionneurs):
+-   cmd::byString($string); : Retourne l’objet commande correspondant.
+  -   $string : Lien vers la commande voulue : #[objet][equipement][commande]# (ex : #[Appartement][Alarme][Actif]#)
+-   cmd::byId($id); : Retourne l’objet commande correspondant.
+  -   $id : ID de la commande voulue
+-   $cmd->execCmd($options = null); : Exécute la commande et retourne le résultat.
+  -   $options : Options pour l’exécution de la commande (peut être spécifique au plugin), option de base (sous-type de la commande) :
+    -   message : $option = array('title' => 'titre du message , 'message' => 'Mon message');
+    -   color : $option = array('color' => 'couleur en hexadécimal');
+    -   slider : $option = array('slider' => 'valeur voulue de 0 à 100');
 
-:   -   `cmd::byString($string);` : Retourne l’objet
-        commande correspondant.
+Log :
+-   log::add('filename','level','message');
+  -   filename : Nom du fichier de log.
+  -   level : [debug], [info], [error], [event].
+  -   message : Message à écrire dans les logs.
 
-        -   `$string` : Lien vers la commande voulue :
-            `#[objet][equipement][commande]#` (ex :
-            `#[Appartement][Alarme][Actif]#`)
-
-    -   `cmd::byId($id);` : Retourne l’objet commande correspondant.
-
-        -   `$id` : ID de la commande voulue
-
-    -   `$cmd→execCmd($options = null);` : Exécute la commande et
-        retourne le résultat.
-
-        -   `$options` : Options pour l’exécution de la commande (peut
-            être spécifique au plugin), option de base (sous-type de
-            la commande) :
-
-            -   `message` :
-                `$option = array('title' ⇒ 'titre du message , 'message' ⇒ 'Mon message');`
-
-            -   `color` :
-                `$option = array('color' ⇒ 'couleur en hexadécimal');`
-
-            -   `slider` :
-                `$option = array('slider' ⇒ 'valeur voulue de 0 à 100');`
-
-Log
-
-:   -   `log::add('filename','level','message');`
-
-        -   `filename` : Nom du fichier de log.
-
-        -   `level` : `[debug]`, `[info]`, `[error]`, `[event]`.
-
-        -   `message` : Message à écrire dans les logs.
-
-Scénario
-
-:   -   `$scenario->getName();` : Retourne le nom du scénario courant.
-
-    -   `$scenario->getGroup();` : Retourne le groupe du scénario.
-
-    -   `$scenario->getIsActive();` : Retourne l’état du scénario.
-
-    -   `$scenario->setIsActive($active);` : Permet d’activer ou non
-        le scénario.
-
-        -   `$active` : 1 actif , 0 non actif.
-
-    -   `$scenario->setOnGoing($onGoing);` : Permet de dire si le
-        scénario est en cours ou non.
-
-        -   `$onGoing` ⇒ 1 en cours , 0 arrêté.
-
-    -   `$scenario->save();` : Sauvegarde les modifications.
-
-    -   `$scenario->setData($key, $value);` : Sauvegarde une
-        donnée (variable).
-
-        -   `$key` : clé de la valeur (int ou string).
-
-        -   `$value` : valeur à stocker (int, string, array ou object).
-
-    -   `$scenario->getData($key);` : Récupère une donnée (variable).
-
-        -   `$key` ⇒ clé de la valeur (int ou string).
-
-    -   `$scenario->removeData($key);` : Supprime une donnée.
-
-    -   `$scenario->setLog($message);` : Ecris un message dans le log
-        du scénario.
-
-    -   `$scenario->persistLog();` : Force l’écriture du log (sinon il
-        est écrit seulement à la fin du scénario). Attention ceci peut
-        un peu ralentir le scénario.
+Scénario :
+-   $scenario->getName(); : Retourne le nom du scénario courant.
+-   $scenario->getGroup(); : Retourne le groupe du scénario.
+-   $scenario->getIsActive(); : Retourne l’état du scénario.
+-   $scenario->setIsActive($active); : Permet d’activer ou non le scénario.
+  -   $active : 1 actif , 0 non actif.
+-   $scenario->setOnGoing($onGoing); : Permet de dire si le scénario est en cours ou non.
+  -   $onGoing => 1 en cours , 0 arrêté.
+-   $scenario->save(); : Sauvegarde les modifications.
+-   $scenario->setData($key, $value); : Sauvegarde une donnée (variable).
+  -   $key : clé de la valeur (int ou string).
+  -   $value : valeur à stocker (int, string, array ou object).
+-   $scenario->getData($key); : Récupère une donnée (variable).
+  -   $key => clé de la valeur (int ou string).
+-   $scenario->removeData($key); : Supprime une donnée.
+-   $scenario->setLog($message); : Ecris un message dans le log du scénario.
+-   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario.
 
 ### Les Actions 
 
-Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre
-:
+Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
 
 -   Une case **parallèle** pour que cette commande se lance en parallèle
     des autres commandes également sélectionnées.
@@ -367,22 +291,22 @@ Les déclencheurs
 Il existe des déclencheurs spécifiques (autre que ceux fournis par les
 commandes) :
 
--   `#start#` : déclenché au (re)démarrage de Jeedom,
+-   #start# : déclenché au (re)démarrage de Jeedom,
 
--   `#begin_backup#` : événement envoyé au début d’une sauvegarde.
+-   #begin_backup# : événement envoyé au début d’une sauvegarde.
 
--   `#end_backup#` : événement envoyé à la fin d’une sauvegarde.
+-   #end_backup# : événement envoyé à la fin d’une sauvegarde.
 
--   `#begin_update#` : événement envoyé au début d’une mise à jour.
+-   #begin_update# : événement envoyé au début d’une mise à jour.
 
--   `#end_update#` : événement envoyé à la fin d’une mise à jour.
+-   #end_update# : événement envoyé à la fin d’une mise à jour.
 
--   `#begin_restore#` : événement envoyé au début d’une restauration.
+-   #begin_restore# : événement envoyé au début d’une restauration.
 
--   `#end_restore#` : événement envoyé à la fin d’une restauration.
+-   #end_restore# : événement envoyé à la fin d’une restauration.
 
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
-jour en mettant : `#variable(nom_variable)#` ou en utilisant l’API HTTP
+jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
 [ici](https://github.com/jeedom/core/blob/master/doc/fr_FR/api_http.asciidoc).
 
@@ -392,32 +316,32 @@ Opérateurs de comparaison et liens entre les conditions
 Vous pouvez utiliser n’importe lequel des symboles suivant pour les
 comparaisons dans les conditions :
 
--   `==` : égal à,
+-   == : égal à,
 
--   `>` : strictement supérieur à,
+-   \> : strictement supérieur à,
 
--   `>=` : supérieur ou égal à,
+-   \>= : supérieur ou égal à,
 
--   `<` : strictement inférieur à,
+-   < : strictement inférieur à,
 
--   `<=` : inférieur ou égal à,
+-   <= : inférieur ou égal à,
 
--   `!=` : différent de, n’est pas égal à,
+-   != : différent de, n’est pas égal à,
 
--   `matches` : contient (ex :
-    `[Salle de bain][Hydrometrie][etat] matches "/humide/"` ),
+-   matches : contient (ex :
+    [Salle de bain][Hydrometrie][etat] matches "/humide/" ),
 
--   `not ( …​ matches …​)` : ne contient pas (ex :
-    `not([Salle de bain][Hydrometrie][etat] matches "/humide/")`),
+-   not ( …​ matches …​) : ne contient pas (ex :
+    not([Salle de bain][Hydrometrie][etat] matches "/humide/")),
 
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs
 suivants :
 
--   `&&` / `ET` / `et` / `AND` / `and` : et,
+-   && / ET / et / AND / and : et,
 
--   `||` / `OU` / `ou` / `OR` / `or` : ou,
+-   \|| / OU / ou / OR / or : ou,
 
--   `|^` / `XOR` / `xor` : ou exclusif.
+-   \|^ / XOR / xor : ou exclusif.
 
 Les tags 
 --------
@@ -431,53 +355,53 @@ pouvez utiliser les tags suivants :
 > fonction Date(). Voir
 > [ici](http://php.net/manual/fr/function.date.php).
 
--   `#seconde#` : Seconde courante (sans les zéros initiaux, ex : 6 pour
+-   #seconde# : Seconde courante (sans les zéros initiaux, ex : 6 pour
     08:07:06),
 
--   `#heure#` : Heure courante au format 24h (sans les zéros initiaux,
+-   #heure# : Heure courante au format 24h (sans les zéros initiaux,
     ex : 8 pour 08:07:06 ou 17 pour 17:15),
 
--   `#heure12#` : Heure courante au format 12h (sans les zéros initiaux,
+-   #heure12# : Heure courante au format 12h (sans les zéros initiaux,
     ex : 8 pour 08:07:06),
 
--   `#minute#` : Minute courante (sans les zéros initiaux, ex : 7 pour
+-   #minute# : Minute courante (sans les zéros initiaux, ex : 7 pour
     08:07:06),
 
--   `#jour#` : Jour courant (sans les zéros initiaux, ex : 6 pour
+-   #jour# : Jour courant (sans les zéros initiaux, ex : 6 pour
     06/07/2017),
 
--   `#mois#` : Mois courant (sans les zéros initiaux, ex : 7 pour
+-   #mois# : Mois courant (sans les zéros initiaux, ex : 7 pour
     06/07/2017),
 
--   `#annee#` : Année courante,
+-   #annee# : Année courante,
 
--   `#time#` : Heure et minute courante (ex : 1715 pour 17h15),
+-   #time# : Heure et minute courante (ex : 1715 pour 17h15),
 
--   `#timestamp#` : Nombre de secondes depuis le 1er janvier 1970,
+-   #timestamp# : Nombre de secondes depuis le 1er janvier 1970,
 
--   `#date#` : Jour et mois. Attention, le premier nombre est le mois.
+-   #date# : Jour et mois. Attention, le premier nombre est le mois.
     (ex : 1215 pour le 15 décembre),
 
--   `#semaine#` : Numéro de la semaine (ex : 51),
+-   #semaine# : Numéro de la semaine (ex : 51),
 
--   `#sjour#` : Nom du jour de la semaine (ex : Samedi),
+-   #sjour# : Nom du jour de la semaine (ex : Samedi),
 
--   `#njour#` : Numéro du jour de 0 (dimanche) à 6 (samedi),
+-   #njour# : Numéro du jour de 0 (dimanche) à 6 (samedi),
 
--   `#smois#` : Nom du mois (ex : Janvier),
+-   #smois# : Nom du mois (ex : Janvier),
 
--   `#IP#` : IP interne de jeedom,
+-   #IP# : IP interne de jeedom,
 
--   `#hostname#` : Nom de la machine Jeedom,
+-   #hostname# : Nom de la machine Jeedom,
 
--   `#trigger#` : Nom de la commande qui a déclenché le scénario.
+-   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement ou 'interact' si il a été lancé depuis une interaction
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :
 
--   `#query#` : interaction ayant déclenché le scénario,
+-   #query# : interaction ayant déclenché le scénario,
 
--   `#profil#` : profil de l’utilisateur ayant déclenché le scénario
+-   #profil# : profil de l’utilisateur ayant déclenché le scénario
     (peut être vide).
 
 > **Important**
@@ -490,133 +414,133 @@ Les fonctions de calcul
 
 Plusieurs fonctions sont disponibles pour les équipements :
 
--   `average(commande,période)` et `averageBetween(commande,start,end)`
+-   average(commande,période) et averageBetween(commande,start,end)
     : Donnent la moyenne de la commande sur la période
-    (`period=[month,day,hour,min]` ou [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
-    entre les 2 bornes demandées (sous la forme `Y-m-d H:i:s` ou
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
-
--   `min(commande,période)` et `minBetween(commande,start,end)` :
-    Donnent le minimum de la commande sur la période
-    (`period=[month,day,hour,min]` ou [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
-    entre les 2 bornes demandées (sous la forme `Y-m-d H:i:s` ou
-    [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
-
--   `max(commande,période)` et `maxBetween(commande,start,end)` :
-    Donnent le maximum de la commande sur la période
-    (`period=[month,day,hour,min]` ou [expression
+    (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `duration(commande, valeur, période)` et
-    `durationbetween(commande,valeur,start,end)` : Donnent la durée en
+-   min(commande,période) et minBetween(commande,start,end) :
+    Donnent le minimum de la commande sur la période
+    (period=[month,day,hour,min] ou [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
+    entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
+    [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+
+-   max(commande,période) et maxBetween(commande,start,end) :
+    Donnent le maximum de la commande sur la période
+    (period=[month,day,hour,min] ou [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
+    entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
+    [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+
+-   duration(commande, valeur, période) et
+    durationbetween(commande,valeur,start,end) : Donnent la durée en
     minutes pendant laquelle l’équipement avait la valeur choisie sur la
-    période (`period=[month,day,hour,min]` ou [expression
+    période (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
-    entre les 2 bornes demandées (sous la forme `Y-m-d H:i:s` ou
+    entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `statistics(commande,calcul,période)` et
-    `statisticsBetween(commande,calcul,start,end)` : Donnent le résultat
-    de différents calculs statistiques (`sum`, `count`, `std`,
-    `variance`, `avg`, `min`, `max`) sur la période
-    (`period=[month,day,hour,min]` ou [expression
+-   statistics(commande,calcul,période) et
+    statisticsBetween(commande,calcul,start,end) : Donnent le résultat
+    de différents calculs statistiques (sum, count, std,
+    variance, avg, min, max) sur la période
+    (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
-    entre les 2 bornes demandées (sous la forme `Y-m-d H:i:s` ou
+    entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `tendance(commande,période,seuil)` : Donne la tendance de la
-    commande sur la période (`period=[month,day,hour,min]` ou
+-   tendance(commande,période,seuil) : Donne la tendance de la
+    commande sur la période (period=[month,day,hour,min] ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `stateDuration(commande,[valeur])` : Donne la durée en secondes
+-   stateDuration(commande,[valeur]) : Donne la durée en secondes
     depuis le dernier changement de valeur. Retourne -1 si aucun
     historique n’existe ou si la valeur n’existe pas dans l’historique.
     Return -2 si la commande n’est pas historisée :
 
--   `lastChangeStateDuration(commande,valeur)` : Donne la durée en
+-   lastChangeStateDuration(commande,valeur) : Donne la durée en
     secondes depuis le dernier changement d’état à la valeur passée
     en paramètre. Attention, la valeur de l’équipement doit
     être historisée.
 
--   `lastStateDuration(commande,valeur)` : Donne la durée en secondes
+-   lastStateDuration(commande,valeur) : Donne la durée en secondes
     pendant laquelle l’équipement a dernièrement eu la valeur choisie.
     Attention, la valeur de l’équipement doit être historisée.
 
--   `stateChanges(commande,[valeur], période)` et
-    `stateChangesBetween(commande, [valeur], start, end)` : Donnent le
+-   stateChanges(commande,[valeur], période) et
+    stateChangesBetween(commande, [valeur], start, end) : Donnent le
     nombre de changements d’état (vers une certaine valeur si indiquée,
-    ou au total sinon) sur la période (`period=[month,day,hour,min]` ou
+    ou au total sinon) sur la période (period=[month,day,hour,min] ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
-    entre les 2 bornes demandées (sous la forme `Y-m-d H:i:s` ou
+    entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `lastBetween(commande,start,end)` : Donne la dernière valeur
+-   lastBetween(commande,start,end) : Donne la dernière valeur
     enregistrée pour l’équipement entre les 2 bornes demandées (sous la
-    forme `Y-m-d H:i:s` ou [expression
+    forme Y-m-d H:i:s ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   `variable(mavariable,valeur par défaut)` : Récupère la valeur d’une
+-   variable(mavariable,valeur par défaut) : Récupère la valeur d’une
     variable ou de la valeur souhaitée par défaut :
 
--   `scenario(scenario)` : Renvoie le statut du scénario. 1 en cours, 0
+-   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
     si l’état n’est pas cohérent.
 
--   `lastScenarioExecution(scenario)` : Donne la durée en secondes
+-   lastScenarioExecution(scenario) : Donne la durée en secondes
     depuis le dernier lancement du scénario :
 
--   `collectDate(cmd,[format])` : Renvoie la date de la dernière donnée
+-   collectDate(cmd,[format]) : Renvoie la date de la dernière donnée
     pour la commande donnée en paramètre, le 2ème paramètre optionel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
     pas de type info :
 
--   `valueDate(cmd,[format])` : Renvoie la date de la dernière donnée
+-   valueDate(cmd,[format]) : Renvoie la date de la dernière donnée
     pour la commande donnée en paramètre, le 2ème paramètre optionel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
     pas de type info :
 
--   `eqEnable(equipement)` : Renvoie l’état de l’équipement. -2 si
+-   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
     est inactif
 
--   `tag(montag,[defaut])` : Permet de récuperer la valeur d’un tag ou
+-   tag(montag,[defaut]) : Permet de récuperer la valeur d’un tag ou
     la valeur par défaut si il n’existe pas :
 
--   `name(type,commande)` : Permet de récuperer le nom de la commande,
-    de l’équipement ou de l’objet. `Type` vaut soit `cmd`, `eqLogic` ou
-    `object` :
+-   name(type,commande) : Permet de récuperer le nom de la commande,
+    de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
+    object :
 
 Les périodes et intervalles de ces fonctions peuvent également
 s’utiliser avec [des expressions
 PHP](http://php.net/manual/fr/datetime.formats.relative.php) comme par
 exemple :
 
--   `Now` : maintenant
+-   Now : maintenant
 
--   `Today` : 00:00 aujourd’hui (permet par exemple d’obtenir des
+-   Today : 00:00 aujourd’hui (permet par exemple d’obtenir des
     résultats de la journée si entre 'Today' et 'Now')
 
--   `Last Monday` : lundi dernier à 00:00
+-   Last Monday : lundi dernier à 00:00
 
--   `5 days ago` : il y a 5 jours
+-   5 days ago : il y a 5 jours
 
--   `Yesterday noon` : hier midi
+-   Yesterday noon : hier midi
 
 -   Etc.
 
@@ -625,36 +549,36 @@ ces différentes fonctions :
 
 | Prise ayant pour valeurs :           | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
 |--------------------------------------|--------------------------------------|
-| `average(prise,période)`             | Renvoie la moyenne des 0 et 1 (peut  |
+| average(prise,période)             | Renvoie la moyenne des 0 et 1 (peut  |
 |                                      | être influencée par le polling)      |
-| `averageBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| `min(prise,période)`                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
-| `minBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| `max(prise,période)`                 | Renvoie 1 : la prise a bien été allumée dans la période              |
-| `maxBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00)` | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| `duration(prise,1,période)`          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
-| `durationBetween([Salon][Prise][Etat],0,Last Monday,Now)`   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
-| `statistics(prise,count,période)`    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
-| `tendance(prise,période,0.1)`        | Renvoie -1 : tendance à la baisse    |
-| `stateDuration(prise)`               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| `stateDuration(prise,0)`             | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)                             |
-| `stateDuration(prise,1)`             | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n’est pas dans cet état                             |
-| `lastChangeStateDuration(prise,0)`   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
-| `lastChangeStateDuration(prise,1)`   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
-| `lastStateDuration(prise,0)`         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
-| `lastStateDuration(prise,1)`         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
-| `stateChanges(prise,période)`        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
-| `stateChanges(prise,0,période)`      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
-| `stateChanges(prise,1,période)`      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
-| `lastBetween([Salle de bain][Hydrometrie][Humidité],Yesterday,Today)` | Renvoie la dernière température enregistrée hier.                    |
-| `variable(plop,10)`                  | Renvoie la valeur de la variable plop ou 10 si elle est vide ou n’existe pas                         |
-| `scenario([Salle de bain][Lumière][Auto])` | Renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n’existe pas et -3 si l’état n’est pas cohérent                         |
-| `lastScenarioExecution([Salle de bain][Lumière][Auto])`   | Renvoie 300 si le scénario s’est lancé pour la dernière fois il y a 5 min                                  |
-| `collectDate([Salle de bain][Hydrometrie][Humidité])`     | Renvoie 2015-01-01 17:45:12          |
-| `valueDate([Salle de bain][Hydrometrie][Humidité])` | Renvoie 2015-01-01 17:50:12          |
-| `eqEnable([Aucun][Basilique])`       | Renvoie -2 si l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il est inactif          |
-| `tag(montag,toto)`                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
-| `name(eqLogic,[Salle de bain][Hydrometrie][Humidité])`     | Renvoie Hydrometrie                  |
+| averageBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
+| minBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| max(prise,période)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
+| maxBetween([Salle de bain][Hydrometrie][Humidité],2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
+| duration(prise,1,période)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
+| durationBetween([Salon][Prise][Etat],0,Last Monday,Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
+| statistics(prise,count,période)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
+| tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
+| stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
+| stateDuration(prise,0)             | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)                             |
+| stateDuration(prise,1)             | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n’est pas dans cet état                             |
+| lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
+| lastChangeStateDuration(prise,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
+| lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
+| lastStateDuration(prise,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
+| stateChanges(prise,période)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
+| stateChanges(prise,0,période)      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
+| stateChanges(prise,1,période)      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
+| lastBetween([Salle de bain][Hydrometrie][Humidité],Yesterday,Today) | Renvoie la dernière température enregistrée hier.                    |
+| variable(plop,10)                  | Renvoie la valeur de la variable plop ou 10 si elle est vide ou n’existe pas                         |
+| scenario([Salle de bain][Lumière][Auto]) | Renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n’existe pas et -3 si l’état n’est pas cohérent                         |
+| lastScenarioExecution([Salle de bain][Lumière][Auto])   | Renvoie 300 si le scénario s’est lancé pour la dernière fois il y a 5 min                                  |
+| collectDate([Salle de bain][Hydrometrie][Humidité])     | Renvoie 2015-01-01 17:45:12          |
+| valueDate([Salle de bain][Hydrometrie][Humidité]) | Renvoie 2015-01-01 17:50:12          |
+| eqEnable([Aucun][Basilique])       | Renvoie -2 si l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il est inactif          |
+| tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
+| name(eqLogic,[Salle de bain][Hydrometrie][Humidité])     | Renvoie Hydrometrie                  |
 
 Les fonctions mathématiques 
 ---------------------------
@@ -662,40 +586,47 @@ Les fonctions mathématiques
 Une boîte à outils de fonctions génériques peut également servir à
 effectuer des conversions ou des calculs :
 
--   `rand(1,10)` : Donne un nombre aléatoire de 1 à 10.
+-   rand(1,10) : Donne un nombre aléatoire de 1 à 10.
 
--   `randText(texte1;texte2;texte…​..)` : Permet de retourner un des
-    textes aléatoirement (séparer les texte par un `;` ). Il n’y a pas
+-   randText(texte1;texte2;texte…​..) : Permet de retourner un des
+    textes aléatoirement (séparer les texte par un ; ). Il n’y a pas
     de limite dans le nombre de texte.
 
--   `randomColor(min,max)` : Donne une couleur aléatoire compris entre 2
-    bornes ( 0 ⇒ rouge, 50 ⇒ vert, 100 ⇒ bleu).
+-   randomColor(min,max) : Donne une couleur aléatoire compris entre 2
+    bornes ( 0 => rouge, 50 => vert, 100 => bleu).
 
--   `trigger(commande)` : Permet de connaître le déclencheur du scénario
+-   trigger(commande) : Permet de connaître le déclencheur du scénario
     ou de savoir si c’est bien la commande passée en paramètre qui a
     déclenché le scénario.
 
--   `triggerValue(commande)` : Permet de connaître la valeur du
+-   triggerValue(commande) : Permet de connaître la valeur du
     déclencheur du scénario.
 
--   `round(valeur,[decimal])` : Donne un arrondi au-dessus, `[decimal]`
+-   round(valeur,[decimal]) : Donne un arrondi au-dessus, [decimal]
     nombre de décimales après la virgule.
 
--   `odd(valeur)` : Permet de savoir si un nombre est impair ou non.
+-   odd(valeur) : Permet de savoir si un nombre est impair ou non.
     Renvoie 1 si impair 0 sinon.
 
--   `median(commande1,commande2…​.commandeN)` : Renvoie la médiane
+-   median(commande1,commande2…​.commandeN) : Renvoie la médiane
     des valeurs.
 
--   `time_op(time,value)` : Permet de faire des opérations sur le temps,
-    avec `time=temps` (ex : 1530) et `value=valeur` à ajouter ou à
+-   time_op(time,value) : Permet de faire des opérations sur le temps,
+    avec time=temps (ex : 1530) et value=valeur à ajouter ou à
     soustraire en minutes.
+
+-   `time_between(time,start,end)` : Permet de tester si un temps est
+    entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
+    Les valeurs start et end peuvent être à cheval sur minuit.
+
+-   `time_diff(date1,date1[,format])` : Permet de connaître la différence entre 2 dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS).
+    Par défaut (si vous ne mettez rien pour format) la méthode retourne le nombre total de jours. Vous pouvez lui demander en secondes (s), minutes (m), heures (h). Exemple en secondes `time_diff(2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
 
 -   `formatTime(time)` : Permet de formater le retour d’une chaine
     `#time#`.
 
--   `floor(time/60)` : Permet de convertir des secondes en minutes, ou
-    des minutes en heures (`floor(time/3600)` pour des secondes
+-   floor(time/60) : Permet de convertir des secondes en minutes, ou
+    des minutes en heures (floor(time/3600) pour des secondes
     en heures)
 
 Et les exemples pratiques :
@@ -703,77 +634,77 @@ Et les exemples pratiques :
 
 | Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
-| `randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
-| `randomColor(40,60)`                 | Retourne une couleur aléatoire  proche du vert.   
-| `trigger(#[Salle de bain][Hydrometrie][Humidité]#)`   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
-| `triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)` | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
-| `round(#[Salle de bain][Hydrometrie][Humidité]# / 10)` | Renvoie 9 si le pourcentage d’humidité et 85                     |
-| `odd(3)`                             | Renvoie 1                            |
-| `median(15,25,20)`                   | Renvoie 20                           |
-| `time_op(#time#, -90)`               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
-| `formatTime(1650)`                   | Renvoie 16h50                        |
-| `floor(130/60)`                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
+| randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#) | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
+| randomColor(40,60)                 | Retourne une couleur aléatoire  proche du vert.   
+| trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
+| triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
+| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
+| odd(3)                             | Renvoie 1                            |
+| median(15,25,20)                   | Renvoie 20                           |
+| time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
+| formatTime(1650)                   | Renvoie 16h50                        |
+| floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
 
 Les commandes spécifiques 
 =========================
 
 En plus des commandes domotiques vous avez accès aux actions suivantes :
 
--   **Pause** : Pause de x seconde(s).
+-   **Pause** (sleep) : Pause de x seconde(s).
 
--   **variable** : Création/modification d’une variable ou de la valeur
+-   **variable** (variable) : Création/modification d’une variable ou de la valeur
     d’une variable.
 
--   **Scénario** : Permet de contrôler des scénarios. La partie tags
-    permet d’envoyer des tags au scénario, ex : `montag=2` (attention il
+-   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
+    permet d’envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
     d’accent et pas de caractères spéciaux). On récupere le tag dans le
-    scénario cible avec la fonction `tag(montag)`.
+    scénario cible avec la fonction tag(montag).
 
--   **stop** : Arrête le scénario.
+-   **Stop** (stop) : Arrête le scénario.
 
--   **Attendre** : Attend jusqu’à ce que la condition soit valide
+-   **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide
     (maximum 2h), le timeout est en seconde(s).
 
--   **Aller au design** : Change le design affiché sur tous les
+-   **Aller au design** (gotodesign) : Change le design affiché sur tous les
     navigateurs par le design demandé.
 
--   **Ajouter un log** : Permet de rajouter un message dans les logs.
+-   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
--   **Créer un message** : Permet d’ajouter un message dans le centre
+-   **Créer un message** (message) : Permet d’ajouter un message dans le centre
     de message.
 
--   **Activer/Désactiver Masquer/afficher un équipement** : Permet de
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
     visible/invisible, actif/inactif.
 
--   **Faire une demande** : Permet d’indiquer à Jeedom qu’il faut poser
+-   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
     une question à l’utilisateur. La réponse est stockée dans une
     variable, il suffit ensuite de tester sa valeur. Pour le moment
     seuls les plugins sms et slack sont compatibles. Attention, cette
     fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le
     timeout n’est pas atteint le scénario attend.
 
--   **Arrêter Jeedom** : Demande à Jeedom de s’éteindre.
+-   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
--   **Retourner un texte/une donnée** : Retourne un texte ou une valeur
+-   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
     pour une interaction par exemple.
 
--   **Icône** : Permet de changer l’icône de représentation du scénario.
+-   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 
--   **Alerte** : Permet d’afficher un petit message d’alerte sur tous
+-   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
     les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
     plus, choisir 4 niveaux d’alerte.
 
--   **Pop-up** : Permet d’afficher un pop-up qui doit absolument être
+-   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
     validé sur tous les navigateurs qui ont une page jeedom ouverte.
 
--   **Rapport** : Permet d’exporter une vue au format (PDF,PNG, JPEG
+-   **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG
     ou SVG) et de l’envoyer par le biais d’une commande de type message.
     Attention si votre accès Internet est en HTTPS non-signé, cette
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
--   **Supprimer bloc DANS/A programmé** : Permet de supprimer la
+-   **Supprimer bloc DANS/A programmé** (remove_intat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
 Template de scénario 
@@ -823,3 +754,22 @@ les commandes peuvent être différentes, Jeedom vous demande la
 correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
 correspondance des commandes puis de faire appliquer.
+
+Ajout de fonction php 
+====================
+
+> **IMPORTANT**
+>
+> L'ajout de fonction PHP est reservé aux utilisateurs avancé. La moindre erreur peut faire planter votre Jeedom
+
+## Mise en place
+
+Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
+
+Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
+
+C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique. 
+
+> **IMPORTANT**
+>
+> Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php

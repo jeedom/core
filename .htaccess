@@ -34,18 +34,6 @@ Options -Indexes
 	php_value error_log  log/http.error
 </IfModule>
 
-<IfModule mod_headers.c>
-	<FilesMatch "\.(css|js|png|jpeg|jpg|ttf|woff)$">
-		Header set Cache-Control "max-age=7200"
-	</FilesMatch>
-	<FilesMatch ".*(getResources.php)">
-		Header set Cache-Control "max-age=7200"
-	</FilesMatch>
-	<FilesMatch ".*(getJS.php)">
-		Header set Cache-Control "max-age=7200"
-	</FilesMatch>
-</IfModule>
-
 <IfModule mod_mime.c>
   AddType image/svg+xml svg svgz
   AddEncoding gzip svgz

@@ -25,7 +25,7 @@ class plugin {
 	private $id;
 	private $name;
 	private $description;
-	private $licence;
+	private $license;
 	private $installation;
 	private $author;
 	private $require;
@@ -49,7 +49,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id, $_translate = true) {
+	public static function byId($_id) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
@@ -68,7 +68,8 @@ class plugin {
 		$plugin->id = $data['id'];
 		$plugin->name = $data['name'];
 		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
-		$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['license'])) ? $data['license'] : $plugin->license;
 		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
@@ -148,7 +149,7 @@ class plugin {
 			}
 			foreach ($results as $result) {
 				try {
-					$listPlugin[] = plugin::byId($result['plugin'], $_translate);
+					$listPlugin[] = plugin::byId($result['plugin']);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				} catch (Error $e) {
@@ -164,7 +165,7 @@ class plugin {
 						continue;
 					}
 					try {
-						$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+						$listPlugin[] = plugin::byId($pathInfoPlugin);
 					} catch (Exception $e) {
 						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 					} catch (Error $e) {
@@ -587,15 +588,15 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
-					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
-					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
-					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
-						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon', __FILE__));
+					$inprogress = cache::byKey('deamonStart' . $this->getId() . 'inprogress');
+					$info = $inprogress->getValue(array('datetime' => strtotime('now')-60));
+					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now')-60;
+					if (abs(strtotime('now') - $info['datetime']) < 45) {
+						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ' .date("Y-m-d H:i:s",$info['datetime']), __FILE__));
 					}
-					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
+					cache::set('deamonStart' . $this->getId() . 'inprogress', array('datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start();
-					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 0));
 				}
 			}
 		} catch (Exception $e) {
@@ -844,8 +845,8 @@ class plugin {
 		return $this->category;
 	}
 
-	public function getLicence() {
-		return $this->licence;
+	public function getLicense() {
+		return $this->license;
 	}
 
 	public function getFilepath() {

@@ -57,7 +57,7 @@ class log {
 				$handler = new SyslogHandler(self::getLogLevel($_log));
 				break;
 			case 'SyslogUdp':
-				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'));
+				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'), 'user', self::getLogLevel($_log));
 				break;
 			case 'StreamHandler':
 			default:
@@ -157,6 +157,15 @@ class log {
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, system::get('www-uid'));
 		@chgrp($_path, system::get('www-gid'));
+		if (filesize($_path) > (1024 * 1024 * 10)) {
+			com_shell::execute(system::getCmdSudo() . 'truncate -s 0 ' . $_path);
+		}
+		if (filesize($_path) > (1024 * 1024 * 10)) {
+			com_shell::execute(system::getCmdSudo() . 'cat /dev/null > ' . $_path);
+		}
+		if (filesize($_path) > (1024 * 1024 * 10)) {
+			com_shell::execute(system::getCmdSudo() . ' rm -f ' . $_path);
+		}
 	}
 
 	public static function getPathToLog($_log = 'core') {

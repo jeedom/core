@@ -1,8 +1,63 @@
-Changelog 
+Changelog
 =========
 
-3.2.0 
+3.2.7
 =====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
+- Correction du bugs des catégories market pour les widgets/scripts/scénarios...
+
+3.2.6
+=====
+
+- Correction de bugs
+- Mise à jour de la docs
+- Uniformisation des noms de certaine commande dans les scénarios
+- Optimisation des performances
+
+3.2.5
+=====
+
+- Correction de bugs
+- Réactivation des interactions (inactive a cause de la mise à jour)
+
+3.2.4
+=====
+
+- Correction de bugs
+- Correction d'un bugs sur certaine modale en Espagnol
+- Correction d'une erreur de calcul sur timee_diff
+- Préparation pour le futur système d'alerting
+
+3.2.3
+=====
+
+-   Bugfix sur les fonctions min/max....
+-   Amélioration de l'export des graphiques et de l'affichage en mode table
+
+3.2.2
+=====
+
+-   Suppression de l'ancien systeme de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau systeme il y a des risques de dysfonctionnement (dédoublement de celui-ci en l’occurrence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
+-   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
+
+-   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
+
+-   JEED-417 : ajout d'une fonction time_diff dans les scénarios
+
+-   Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
+
+-   JEED-365 : Suppression de "Commande d’information utilisateur" pour etre remplacé par des actions sur message. Permet de lancer plusieurs commande differentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
+
+-   Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
+
+-   Correction d'un bug de droits suite à une restoration d'un backup
+
+-   Mise à jour des traductions
+
+-   Mise à jour des librairies (jquery et highcharts)
 
 -   Possibilité d’interdire une commande dans les interactions
     automatique
@@ -63,7 +118,7 @@ Changelog
 -   JEED-77 : Ajout de la gestion des variables dans l’API http
 
 -   JEED-78 : ajout de la fonction tag pour les scénarios. Attention il
-    faut dans les scénarios utilisant les tags passer de *montag*
+    faut dans les scénarios utilisant les tags passer de #montag#
     à tag(montag)
 
 -   JEED-124 : Corriger la gestion des timeouts des scénarios

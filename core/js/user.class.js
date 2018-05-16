@@ -250,7 +250,7 @@ jeedom.user.removeBanIp = function(_params) {
 };
 
 jeedom.user.removeRegisterDevice = function(_params) {
-    var paramsRequired = ['key'];
+    var paramsRequired = [];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -284,6 +284,25 @@ jeedom.user.deleteSession = function(_params) {
     paramsAJAX.data = {
         action: 'deleteSession',
         id: _params.id
+    };
+    $.ajax(paramsAJAX);
+};
+
+jeedom.user.supportAccess = function(_params) {
+    var paramsRequired = ['enable'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/user.ajax.php';
+    paramsAJAX.data = {
+        action: 'supportAccess',
+        enable: _params.enable
     };
     $.ajax(paramsAJAX);
 };

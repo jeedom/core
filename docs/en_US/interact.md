@@ -1,34 +1,34 @@
-Le système d’interaction dans Jeedom permet de réaliser des actions à
-partir de commandes textes ou vocales.
+The interaction system in Jeedom allows actions to be
+from text or voice commands.
 
-Ces commandes peuvent être obtenues par :
+These orders can be obtained by:
 
--   SMS : envoyer un SMS pour lancer des commandes (action) ou poser une
+-   SMS: send an SMS to launch commands (action) or ask a
     question (info).
 
--   Chat : Telegram, Slack, etc.
+-   Chat: Telegram, Slack, etc.
 
--   Vocal : dicter une phrase avec Siri, Google Now, SARAH, etc. Pour
-    lancer des commandes (action) ou poser une question (info).
+-   Vocal: dictate a sentence with Siri, Google Now, SARAH, etc. For
+    launch commands (action) or ask a question (info).
 
--   HTTP : lancer une URL HTTP contenant le texte (ex. Tasker, Slack)
-    pour lancer des commandes (action) ou poser une question (info).
+-   HTTP: launch an HTTP URL containing the text (eg Tasker, Slack)
+    to launch commands (action) or ask a question (info).
 
-L’intérêt des interactions réside dans l’intégration simplifiée dans
-d’autres systèmes comme smartphone, tablette, autre box domotique, etc.
+The interest of interactions lies in the simplified integration into
+other systems like smartphone, tablet, other home automation box, etc.
 
-Pour accéder à la page d’interaction il faut aller sur Outils →
-Interactions :
+To access the interaction page, go to Tools →
+Interactions:
 
-En haut de page, on trouve 3 boutons :
+At the top of the page, there are 3 buttons:
 
--   **Ajouter** : qui permet de créer de nouvelles interactions.
+-   **Add**: which allows to create new interactions.
 
--   **Régénérer** : qui va recréer toutes les interactions (peut être
-    très long &gt; 5mn).
+-   **Regenerate**: who will recreate all interactions (can be
+    very long &gt; 5mn).
 
--   **Tester** : qui permet d’ouvrir un boîte de dialogue pour écrire et
-    tester une phrase.
+-   **Test**: which opens a dialog box for writing and
+    test a sentence.
 
 > **Tip**
 >
@@ -38,54 +38,58 @@ En haut de page, on trouve 3 boutons :
 > aller dans l’interaction en question et la sauvegarder de nouveau pour
 > créer les phrases de ce nouveau module.
 
-Principe 
+Principle
 ========
 
-Le principe de création est assez simple, on va définir une phrase
-modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs
-centaines d’autres phrases qui seront des combinaisons possibles du
-modèle.
+The creation principle is quite simple, we will define a sentence
+generator model that will allow Jeedom to create one or more
+hundreds of other phrases that will be possible combinations of the
+model.
 
-On va définir de la même façon des réponses avec un modèle (ça permet à
-Jeedom d’avoir plusieurs réponses pour une seule et même question).
+We will define answers in the same way with a model (this allows
+Jeedom to have several answers for one and the same question).
 
-On peut aussi définir une commande à exécuter si par exemple
-l’interaction n’est pas liée à une action mais une information ou si on
-souhaite réaliser une action particulière après celle-ci (il est aussi
-possible d’exécuter un scénario, de contrôler plusieurs commandes…​).
+We can also define a command to execute if for example
+the interaction is not linked to an action but information or if
+wish to perform a particular action after this one (it is also
+possible to run a scenario, to control several commands ...).
 
-Configuration 
+Configuration
 =============
 
-La page de configuration est constituée de plusieurs onglets et de
-boutons :
+The configuration page consists of several tabs and
+buttons:
 
--   **Phrases** : Affiche le nombre de phrases de l’interaction (un clic
-    dessus vous les montre)
+-   **Phrases**: Displays the number of phrases in the interaction (one click
+    above you shows them)
 
--   **Enregistrer** : enregistre l’interaction courante
+-   **Save**: saves the current interaction
 
--   **Supprimer** : supprime l’interaction courante
+-   **Delete**: delete the current interaction
 
--   **Dupliquer** : duplique l’interaction courrante
+-   **Duplicate**: Duplicate the current interaction
 
-Général 
+General
 =======
 
--   **Nom** : nom de l’interaction (peut être vide, le nom remplace le
-    texte de la demande dans la liste des interactions).
+-   **Name**: name of the interaction (may be empty, the name replaces the
+    text of the request in the list of interactions).
 
--   **Groupe** : groupe de l’interaction, cela permet de les organiser
-    (peut être vide, sera donc dans le groupe "aucun").
+-   **Group**: Interaction group, this allows to organize them
+    (may be empty, so will be in the "none" group).
 
--   **Actif** : permet d’activer ou désactiver l’interaction.
+-   **Active**: Enable or disable the interaction.
 
--   **Demande** : la phrase modèle génératrice (obligatoire).
+-   **Request**: the generating model sentence (required).
+
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
 
 -   **Synonyme** : permet de définir des synonymes sur les noms
     des commandes.
 
 -   **Réponse** : la réponse à fournir.
+
+-   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
 
 -   **Conversion binaire** : permet de convertir les valeurs binaires en
     ouvert/fermé par exemple (uniquement pour les commandes de type
@@ -179,7 +183,7 @@ phrases pour tout un groupe de commandes.
 
 On va reprendre ce qui a été fait plus haut, supprimer les actions que
 l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande",
-nous allons utiliser les tags **\#commande\#** et **\#equipement\#**.
+nous allons utiliser les tags **\#commande\#**et**\#equipement\#**.
 Jeedom va donc remplacer ces tags par le nom des commandes et le nom de
 l’équipement (on peut voir l’importance d’avoir des noms de
 commande/équipement cohérents).

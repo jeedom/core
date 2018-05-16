@@ -4,7 +4,7 @@ Scripte oder JS hinzuzufügen, das auf jeder Seite ausgeführt wird.
 Erreichbar unter **Einstellungen → Erweiterte Anpassung**
 
 Sie können auf dieser Seite JS und CSS Skripte hinzufügen, die im ganzen
-Jeedom ausgeführt werden, jeweils für die Desktop-Version und die 
+Jeedom ausgeführt werden, jeweils für die Desktop-Version und die
 Mobile-Version.
 
 Für die nicht informierten Personen, die CSS lernen wollen

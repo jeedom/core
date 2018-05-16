@@ -31,23 +31,23 @@ class message {
 
 	/*     * ***********************Methode static*************************** */
 	/**
-         * 
-         * @param type $_type
-         * @param type $_message
-         * @param type $_action
-         * @param type $_logicalId
-         * @param type $_writeMessage
-         */
+	 *
+	 * @param type $_type
+	 * @param type $_message
+	 * @param type $_action
+	 * @param type $_logicalId
+	 * @param type $_writeMessage
+	 */
 	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
 		$message = (new message())
-                        ->setPlugin(secureXSS($_type))
-                        ->setMessage(secureXSS($_message))
-                        ->setAction(secureXSS($_action))
-                        ->setDate(date('Y-m-d H:i:s'))
-                        ->setLogicalId(secureXSS($_logicalId));
+			->setPlugin(secureXSS($_type))
+			->setMessage(secureXSS($_message))
+			->setAction(secureXSS($_action))
+			->setDate(date('Y-m-d H:i:s'))
+			->setLogicalId(secureXSS($_logicalId));
 		$message->save($_writeMessage);
 	}
-	
+
 	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
 		$values = array();
 		$sql = 'DELETE FROM message';
@@ -157,16 +157,21 @@ class message {
 		event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 		if ($_writeMessage) {
 			DB::save($this);
-			$cmds = explode(('&&'), config::byKey('emailAdmin'));
-			if (count($cmds) > 0 && trim(config::byKey('emailAdmin')) != '') {
-				foreach ($cmds as $id) {
-					$cmd = cmd::byId(str_replace('#', '', $id));
-					if (is_object($cmd)) {
-						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] Message de ', __FILE__) . $this->getPlugin(),
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $this->getMessage(),
-						));
+			$params = array(
+				'#plugin#' => $this->getPlugin(),
+				'#message#' => $this->getMessage(),
+			);
+			$actions = config::byKey('actionOnMessage');
+			if (is_array($actions) && count($actions) > 0) {
+				foreach ($actions as $action) {
+					$options = array();
+					if (isset($action['options'])) {
+						$options = $action['options'];
 					}
+					foreach ($options as &$value) {
+						$value = str_replace(array_keys($params), $params, $value);
+					}
+					scenarioExpression::createAndExec('action', $action['cmd'], $options);
 				}
 			}
 			event::add('message::refreshMessageNumber');

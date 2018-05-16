@@ -6,7 +6,7 @@ aussi de changer votre mot de passe.
 Vous la retrouvez en haut à droite en cliquant sur le l’icône bonhomme
 puis Profil (suivi de votre identifiant).
 
-Thèmes 
+Themen 
 ======
 
 Le panneau thèmes vous permet de régler des paramètres d’interface :

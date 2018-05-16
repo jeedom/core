@@ -159,7 +159,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
@@ -234,9 +234,6 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
 		try {
 			$plugin = plugin::byId('openvpn');
 			if (!is_object($plugin)) {
@@ -263,11 +260,12 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
-		if (!$plugin->isActive()) {
-			$plugin->setIsEnable(1);
-		}
 		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
+		}
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+			$plugin->dependancy_install();
 		}
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
@@ -292,7 +290,14 @@ class network {
 		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
 		}
-		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt');
+		$path_ca = dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
+		if (file_exists($path_ca)) {
+			unlink($path_ca);
+		}
+		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', $path_ca);
+		if (!file_exists($path_ca)) {
+			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
+		}
 		return $openvpn;
 	}
 
@@ -337,9 +342,6 @@ class network {
 
 	public static function dns_stop() {
 		if (config::byKey('dns::token') == '') {
-			return;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
 		$openvpn = self::dns_create();

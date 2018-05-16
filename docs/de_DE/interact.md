@@ -82,10 +82,14 @@ Général
 
 -   **Demande** : la phrase modèle génératrice (obligatoire).
 
+-   **Regexp de correspondance obligatoire** : Expression reguliere qui si remplis doit absolument valider la phrase de la demande
+
 -   **Synonyme** : permet de définir des synonymes sur les noms
     des commandes.
 
 -   **Réponse** : la réponse à fournir.
+
+-   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
 
 -   **Conversion binaire** : permet de convertir les valeurs binaires en
     ouvert/fermé par exemple (uniquement pour les commandes de type
@@ -179,7 +183,7 @@ phrases pour tout un groupe de commandes.
 
 On va reprendre ce qui a été fait plus haut, supprimer les actions que
 l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande",
-nous allons utiliser les tags **\#commande\#** et **\#equipement\#**.
+nous allons utiliser les tags **\#commande\#**et**\#equipement\#**.
 Jeedom va donc remplacer ces tags par le nom des commandes et le nom de
 l’équipement (on peut voir l’importance d’avoir des noms de
 commande/équipement cohérents).
