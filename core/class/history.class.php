@@ -672,22 +672,8 @@ class history {
 							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()])) {
 								$cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
 							}
-							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'])) {
-								if ($prevDatetime !== null) {
-									$datetime = strtotime($histories_cmd[$i]->getDatetime());
-									while (($now - strtotime($prevDatetime)) > $archiveTime && strtotime($prevDatetime) < $datetime) {
-										$prevDatetime = date('Y-m-d H:00:00', strtotime($prevDatetime) + $packetTime);
-										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-									}
-									while (($now - strtotime($prevDatetime)) < $archiveTime && strtotime($prevDatetime) < $datetime) {
-										$prevDatetime = date('Y-m-d H:i:00', strtotime($prevDatetime) + 300);
-										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-									}
-								}
-								$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
-							}
-							$prevDatetime = $histories_cmd[$i]->getDatetime();
-							$prevValue = $histories_cmd[$i]->getValue();
+							$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
+
 						}
 					}
 					while (strtotime($prevDatetime) < strtotime($_dateEnd)) {
@@ -696,15 +682,28 @@ class history {
 					}
 				}
 			}
-
-			foreach ($cmd_histories as $datetime => $cmd_history) {
+			ksort($cmd_histories);
+			$prevData = null;
+			foreach ($cmd_histories as $datetime => &$cmd_history) {
+				if (count($matches[1]) != count($cmd_history)) {
+					if ($prevData == null) {
+						$prevData = $cmd_history;
+						continue;
+					}
+					foreach ($matches[1] as $cmd_id) {
+						if (!isset($cmd_history['#' . $cmd_id . '#']) && isset($prevData['#' . $cmd_id . '#'])) {
+							$cmd_history['#' . $cmd_id . '#'] = $prevData['#' . $cmd_id . '#'];
+						}
+					}
+				}
+				$prevData = $cmd_history;
 				if (count($matches[1]) != count($cmd_history)) {
 					continue;
 				}
 				$datetime = floatval(strtotime($datetime . " UTC"));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				if ($_noCalcul) {
-					$value[$datetime] = $calcul;
+					$value[date('Y-m-d H:i:s', $datetime)] = $calcul;
 					continue;
 				}
 				try {
