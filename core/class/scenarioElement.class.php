@@ -206,7 +206,6 @@ class scenarioElement {
 				$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
-				$cmd .= ' tags=' . escapeshellarg(json_encode($_scenario->getTags()));
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
 				system::php($cmd);
