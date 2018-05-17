@@ -7,7 +7,7 @@ Website (French):  [https://jeedom.com/site/](https://jeedom.com/site/)
 # Installation #
 
 ## Pre-requis
-- MySQL installé (en local ou sur une machine distance)
+- MySQL installé (en local ou sur une machine distance) 
 - un serveur web installé (apache ou nginx)
 - php (5.6 minimum) installé avec les extensions : curl, json, gd et mysql
 - ntp et crontab installés
