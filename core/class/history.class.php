@@ -403,7 +403,13 @@ class history {
 		if (!is_array($result2)) {
 			$result2 = array();
 		}
-		return array_merge($result, $result2);
+		$return = array_merge($result, $result2);
+		foreach ($return as $key => &$value) {
+			if ($value === '') {
+				$value = 0;
+			}
+		}
+		return $return;
 	}
 
 	public static function getTendance($_cmd_id, $_startTime, $_endTime) {
