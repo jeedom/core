@@ -64,10 +64,19 @@ recommandé de modifier ces identifiants pour plus de sécurité.
 Peut-on mettre Jeedom en https ? 
 ================================
 
-Oui : \* Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le DNS Jeedom. \* Soit avez un DNS et vous savez
-mettre en place un certificat valide, dans ce cas c’est une installation
-standard d’un certificat.
+Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
+suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+
+Comment se connecter en SSH ?
+=============================
+
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
+
+- Username : "root", password : "Mjeedom96"
+- Username : "jeedom", password : "Mjeedom96"
+- Ou ce que vous avez mis à l'installation si vous êtes en DIY
+
+A noter que lorsque vous ecrirez le mot de passe vous ne verrez rien s'ecrire à l'écran c'est normal.
 
 Comment remettre à plat les droits ? 
 ====================================
@@ -100,8 +109,7 @@ chown -R www-data:www-data /var/www/html
 La Webapp est-elle compatible Symbian ? 
 =======================================
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle
-n’est donc malheureusement pas compatible Symbian.
+La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
 
 Sur quelles plateformes Jeedom peut-il fonctionner ? 
 ====================================================
@@ -119,6 +127,7 @@ Cela peut etre du à plusieurs chose, il faut :
 - Vérifier que le compte market à bien acheté le plugin en question
 - Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
 - Vérifier que votre version de Jeedom est bien compatible avec le plugin
+- Vérifiez que votre Jeedom est toujours correctement connecté au market (Dans la configuration de Jeedom, onglet mise à jour)
 
 J’ai une page blanche 
 =====================
@@ -152,7 +161,7 @@ sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
 sudo chown www-data:www-data core/config/common.config.php
 ```
 
-J’ai des {{…​}} partout 
+J’ai des \{\{…​\}\} partout 
 =======================
 
 La cause la plus fréquente est l’utilisation d’un plugin en version beta
@@ -170,7 +179,7 @@ Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
 Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware.
+voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
 
 Mon scénario ne s’arrête plus/pas 
 =================================
