@@ -961,6 +961,9 @@ class eqLogic {
 	}
 
 	public function getLinkToConfiguration() {
+		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
+			return '#';
+		}
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();
 	}
 
