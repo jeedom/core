@@ -17,7 +17,7 @@
  */
 
 /* * ***************************Includes********************************* */
-require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class history {
 	/*     * *************************Attributs****************************** */
@@ -116,6 +116,9 @@ class history {
 				$archivePackage = '0' . $archivePackage;
 			}
 		}
+		if ($archiveDatetime === false) {
+			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
+		}
 		$values = array(
 			'archiveDatetime' => $archiveDatetime,
 		);
@@ -130,12 +133,14 @@ class history {
 			}
 			if ($cmd->getConfiguration('historyPurge', '') != '') {
 				$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-				$values = array(
-					'cmd_id' => $cmd->getId(),
-					'datetime' => $purgeTime,
-				);
-				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				if ($purgeTime !== false) {
+					$values = array(
+						'cmd_id' => $cmd->getId(),
+						'datetime' => $purgeTime,
+					);
+					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				}
 			}
 			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
@@ -192,13 +197,13 @@ class history {
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
 					'oldest' => $oldest['oldest'],
-					'archivePackage' => $archivePackage,
+					'archivePackage' => '-' . $archivePackage,
 				);
 
 				$sql = 'SELECT ' . $mode . '(CAST(value AS DECIMAL(12,2))) as value,
 						FROM_UNIXTIME(AVG(UNIX_TIMESTAMP(`datetime`))) as datetime
 						FROM history
-						WHERE TIMEDIFF(`datetime`,:oldest)<:archivePackage
+						WHERE addtime(`datetime`,:archivePackage)<:oldest
 						AND cmd_id=:cmd_id';
 				$avg = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 
@@ -472,13 +477,13 @@ class history {
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$lastDatetime = $result['datetime'];
-		if ($lastDatetime == '' || strtotime($lastDatetime) === false) {
+		if ($lastDatetime == '' || strtotime($lastDatetime) == false) {
 			return -1;
 		}
 		if ($values['value'] == $cValue) {
 			return strtotime('now') - strtotime($lastDatetime);
 		}
-		$sql = 'SELECT  `datetime`
+		$sql = 'SELECT `datetime`
 				FROM (
 					SELECT `datetime`
 					FROM  `history`
@@ -493,7 +498,7 @@ class history {
 			ORDER BY  `datetime` DESC
 			LIMIT 1';
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($result['datetime'] == '' || strtotime($result['datetime']) === false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
+		if ($result['datetime'] == '' || strtotime($result['datetime']) == false || strtotime($result['datetime']) < strtotime($lastDatetime)) {
 			return -1;
 		}
 		return strtotime($result['datetime']) - strtotime($lastDatetime);
@@ -518,7 +523,7 @@ class history {
 			UNION ALL
 			SELECT *
 			FROM  historyArch
-			WHERE  cmd_id=:cmd_id
+			WHERE cmd_id=:cmd_id
 		) as dt
 		ORDER BY  `datetime` DESC';
 		$histories = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
@@ -673,22 +678,8 @@ class history {
 							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()])) {
 								$cmd_histories[$histories_cmd[$i]->getDatetime()] = array();
 							}
-							if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'])) {
-								if ($prevDatetime !== null) {
-									$datetime = strtotime($histories_cmd[$i]->getDatetime());
-									while (($now - strtotime($prevDatetime)) > $archiveTime && strtotime($prevDatetime) < $datetime) {
-										$prevDatetime = date('Y-m-d H:00:00', strtotime($prevDatetime) + $packetTime);
-										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-									}
-									while (($now - strtotime($prevDatetime)) < $archiveTime && strtotime($prevDatetime) < $datetime) {
-										$prevDatetime = date('Y-m-d H:i:00', strtotime($prevDatetime) + 300);
-										$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-									}
-								}
-								$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
-							}
-							$prevDatetime = $histories_cmd[$i]->getDatetime();
-							$prevValue = $histories_cmd[$i]->getValue();
+							$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
+
 						}
 					}
 					while (strtotime($prevDatetime) < strtotime($_dateEnd)) {
@@ -697,7 +688,21 @@ class history {
 					}
 				}
 			}
-			foreach ($cmd_histories as $datetime => $cmd_history) {
+			ksort($cmd_histories);
+			$prevData = null;
+			foreach ($cmd_histories as $datetime => &$cmd_history) {
+				if (count($matches[1]) != count($cmd_history)) {
+					if ($prevData == null) {
+						$prevData = $cmd_history;
+						continue;
+					}
+					foreach ($matches[1] as $cmd_id) {
+						if (!isset($cmd_history['#' . $cmd_id . '#']) && isset($prevData['#' . $cmd_id . '#'])) {
+							$cmd_history['#' . $cmd_id . '#'] = $prevData['#' . $cmd_id . '#'];
+						}
+					}
+				}
+				$prevData = $cmd_history;
 				if (count($matches[1]) != count($cmd_history)) {
 					continue;
 				}
