@@ -64,10 +64,19 @@ recommandé de modifier ces identifiants pour plus de sécurité.
 Peut-on mettre Jeedom en https ? 
 ================================
 
-Oui : \* Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le DNS Jeedom. \* Soit avez un DNS et vous savez
-mettre en place un certificat valide, dans ce cas c’est une installation
-standard d’un certificat.
+Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
+suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+
+Comment se connecter en SSH ?
+=============================
+
+Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
+
+- Username : "root", password : "Mjeedom96"
+- Username : "jeedom", password : "Mjeedom96"
+- Ou ce que vous avez mis à l'installation si vous êtes en DIY
+
+A noter que lorsque vous ecrirez le mot de passe vous ne verrez rien s'ecrire à l'écran c'est normal.
 
 Comment remettre à plat les droits ? 
 ====================================
@@ -100,8 +109,7 @@ chown -R www-data:www-data /var/www/html
 La Webapp est-elle compatible Symbian ? 
 =======================================
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle
-n’est donc malheureusement pas compatible Symbian.
+La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
 
 Sur quelles plateformes Jeedom peut-il fonctionner ? 
 ====================================================
@@ -119,6 +127,7 @@ Cela peut etre du à plusieurs chose, il faut :
 - Vérifier que le compte market à bien acheté le plugin en question
 - Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
 - Vérifier que votre version de Jeedom est bien compatible avec le plugin
+- Vérifiez que votre Jeedom est toujours correctement connecté au market (Dans la configuration de Jeedom, onglet mise à jour)
 
 J’ai une page blanche 
 =====================
@@ -152,7 +161,7 @@ sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
 sudo chown www-data:www-data core/config/common.config.php
 ```
 
-J’ai des {{…​}} partout 
+J’ai des \{\{…​\}\} partout 
 =======================
 
 La cause la plus fréquente est l’utilisation d’un plugin en version beta
@@ -170,7 +179,7 @@ Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
 Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware.
+voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
 
 Mon scénario ne s’arrête plus/pas 
 =================================
@@ -248,7 +257,7 @@ Si vous etes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une m
 mkdir /etc/systemd/system/apache2.service.d
 echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
-```
+``` 
 
 J'ai un soucis d'heure sur mes historiques
 =========================================
@@ -267,14 +276,20 @@ Ca veut dire que Jeedom n'arrive pas a backuper la base de donnée ce qu'i peut 
 - une table de la base corrompu => la c'est mal partie il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous etês sur garde SD c'est le bon moment pour la changer)
 - pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
 
+
 Je n'arrive plus a me connecter a mon Jeedom
 =========================================
 Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raison evidente de sécurité. Les identifiants admin/admin ne marche plus que en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par defaut seul les ip sur 192.168.*.* ou 127.0.0.1 sont reconnu comme local. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procedure de remise à zéro de mot de passe (voir dans les tuto/how to)
 
-J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent etre manquant
+J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent etre manquant ou j'ai une page blanche
 =========================================
 C'est une erreur assez grave le plus simple est de faire 
-mkdir -p /root/tmp/cd /root/tmp;wget https://github.com/jeedom/core/archive/master.zip
+
+``` 
+mkdir -p /root/tmp/
+cd /root/tmp
+wget https://github.com/jeedom/core/archive/master.zip
 unzip master.zip
-ensuite aller dans le dossier extrait
-puis copier tous les fichier dans /var/www/html
+cp -R /root/tmp/core-master/* /var/www/html
+rm -rf /root/tmp/core-master
+```

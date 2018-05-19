@@ -1,6 +1,11 @@
 cambios
 =========
 
+3.2.8
+=====
+
+- Correction de bugs
+
 3.2.7
 =====
 

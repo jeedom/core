@@ -20,7 +20,7 @@ try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
-	if (!isConnect('admin')) {
+	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
@@ -28,6 +28,10 @@ try {
 
 	if (init('action') == 'nbUpdate') {
 		ajax::success(update::nbNeedUpdate());
+	}
+	
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
 	if (init('action') == 'all') {
