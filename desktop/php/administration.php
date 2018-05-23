@@ -612,6 +612,12 @@ foreach (network::getInterfaces() as $interface) {
 									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
+								</div>
+							</div>
 						</div>
 						<div class="col-sm-6">
 							<?php
