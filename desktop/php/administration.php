@@ -376,74 +376,74 @@ echo $CONFIG['db']['password'];
 				<fieldset>
 					<legend>{{LDAP}}</legend>
 					<?php if (function_exists('ldap_connect')) {?>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
-						<div class="col-sm-1">
-							<input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
-						</div>
-					</div>
-					<div id="div_config_ldap">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
+							<div class="col-sm-1">
+								<input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+						<div id="div_config_ldap">
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
+								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
-							</div>
-						</div>
-						<div class="form-group has-error">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
-							</div>
-						</div>
-					</div>
 					<?php } else {
 	echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 }?>
@@ -608,6 +608,12 @@ foreach (network::getInterfaces() as $interface) {
 								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
 								<div class="col-xs-4">
 									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 								</div>
 							</div>
 						</div>
@@ -810,11 +816,11 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 							<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
 								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
 								<?php if (class_exists('memcached')) {?>
-								<option value="MemcachedCache">{{Memcached}}</option>
+									<option value="MemcachedCache">{{Memcached}}</option>
 								<?php }
 ?>
 								<?php if (class_exists('redis')) {?>
-								<option value="RedisCache">{{Redis}}</option>
+									<option value="RedisCache">{{Redis}}</option>
 								<?php }
 ?>
 							</select>

@@ -15,6 +15,12 @@ Changelog
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l'éxecution d'un scénario
 -   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)
 
+3.2.8
+=====
+
+- Correction de bugs
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+
 3.2.7
 =====
 

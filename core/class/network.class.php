@@ -31,6 +31,9 @@ class network {
 		if (count($jeedom_ips) != 4) {
 			return 'external';
 		}
+		if (config::byKey('network::localip') != '' && netMatch(config::byKey('network::localip'), $client_ip)) {
+			return 'internal';
+		}
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
