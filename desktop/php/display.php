@@ -82,7 +82,7 @@ foreach ($eqLogics[-1] as $eqLogic) {
 	}
 	echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
 	echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link"></i></a>';
+	echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 
 	echo '<ul class="cmdSortable" style="display:none;" >';
 	foreach ($cmds[$eqLogic->getId()] as $cmd) {
