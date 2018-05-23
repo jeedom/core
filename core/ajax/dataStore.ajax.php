@@ -73,6 +73,9 @@ try {
 				foreach ($usedBy['cmd'] as $cmd) {
 					$info_datastore['usedBy']['cmd'][] = $cmd->getHumanName();
 				}
+				foreach ($usedBy['interactDef'] as $interactDef) {
+					$info_datastore['usedBy']['interactDef'][] = $interactDef->getHumanName();
+				}
 				$return[] = $info_datastore;
 			}
 		} else {
