@@ -105,10 +105,10 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
              for (var i in data) {
                 tr += '<tr data-dataStore_id="' + data[i].id + '">';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
+                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" style="width:400px" value="' + data[i].key + '" disabled />';
                 tr += '</td>';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';
+                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" style="width:400px" value="' + data[i].value + '" />';
                 tr += '</td>';
                 tr += '<td>';
                 for(var j in data[i].usedBy.scenario){
