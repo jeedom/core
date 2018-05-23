@@ -120,6 +120,9 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 for(var j in data[i].usedBy.cmd){
                     tr += '<span class="label label-primary">'+data[i].usedBy.cmd[j]+'</span> ';
                 }
+		for(var j in data[i].usedBy.interactDef){
+                    tr += '<span class="label label-primary">'+data[i].usedBy.interactDef[j]+'</span> ';
+                }
                 tr += '</td>';
                 tr += '<td>';
                 tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fa fa-check"></i></a>';
