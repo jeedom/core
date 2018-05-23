@@ -152,8 +152,21 @@ class dataStore {
 
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
-		$return['cmd'] = cmd::searchConfiguration('variable(' . $this->getKey() . ')');
-		$return['eqLogic'] = eqLogic::searchConfiguration('variable(' . $this->getKey() . ')');
+		$return['cmd'] = array_merge(
+			cmd::searchConfiguration('"cmd":"variable"%"name":"' . $this->getKey() . '"'),
+			cmd::searchConfiguration('variable(' . $this->getKey() . ')'),
+			cmd::searchConfiguration('"name":"' . $this->getKey() . '"%"cmd":"variable"')
+		);
+		$return['eqLogic'] = array_merge(
+			eqLogic::searchConfiguration('"cmd":"variable"%"name":"' . $this->getKey() . '"'),
+			eqLogic::searchConfiguration('variable(' . $this->getKey() . ')'),
+			eqLogic::searchConfiguration('"name":"' . $this->getKey() . '"%"cmd":"variable"')
+		);
+		$return['interactDef'] = array_merge(
+			interactDef::searchByUse('"cmd":"variable"%"name":"' . $this->getKey() . '"'),
+			interactDef::searchByUse('variable(' . $this->getKey() . ')'),
+			interactDef::searchByUse('"name":"' . $this->getKey() . '"%"cmd":"variable"')
+		);
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'variable(' . $this->getKey() . ')', 'option' => 'variable(' . $this->getKey() . ')'),
 			array('action' => 'variable', 'option' => $this->getKey(), 'and' => true),
