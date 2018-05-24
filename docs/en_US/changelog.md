@@ -5,6 +5,8 @@ Changelog
 =====
 
 - Correction de bugs
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+- Correction d'un bug sur le calcul d'utilisation des variables
 
 3.2.7
 =====
