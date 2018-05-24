@@ -12,7 +12,9 @@ if (!isConnect('admin')) {
 		<span class="input-group-addon" style="width: 100px"><i class="fa fa-random"></i>  {{Test}}</span>
 		<input class="form-control" id="in_testExpression">
 		<span class="input-group-btn">
-			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fa fa-list-alt"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></a>
 			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
@@ -32,6 +34,20 @@ if (!isConnect('admin')) {
 	$('#bt_searchInfoCmd').on('click', function() {
 		var el = $(this);
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+			$('#in_testExpression').atCaret('insert', result.human);
+		});
+	});
+	
+	$('#bt_searchScenario').on('click', function() {
+		var el = $(this);
+		jeedom.scenario.getSelectModal({}, function(result) {
+			$('#in_testExpression').atCaret('insert', result.human);
+		});
+	});
+
+	$('#bt_searchEqLogic').on('click', function() {
+		var el = $(this);
+		jeedom.eqLogic.getSelectModal({}, function(result) {
 			$('#in_testExpression').atCaret('insert', result.human);
 		});
 	});
