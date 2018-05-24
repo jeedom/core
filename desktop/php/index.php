@@ -211,6 +211,7 @@ if (!isConnect()) {
 } else {
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
+	sendVarToJS('user_isAdmin', isConnect('admin'));
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
 	if (count($eventjs_plugin) > 0) {
