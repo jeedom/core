@@ -494,7 +494,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   variable(mavariable,valeur par défaut) : Récupère la valeur d’une
     variable ou de la valeur souhaitée par défaut :
 
--   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
+-   scenario(scenarioId) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
     si l’état n’est pas cohérent.
 
