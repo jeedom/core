@@ -264,6 +264,27 @@ jeedom.cmd.test = function(_params) {
                         }
                     });
                     break;
+                      case 'select':
+                    jeedom.cmd.execute({
+                        id: _params.id,
+                        value: {
+                            select: result.configuration.listValue.split(';')[0].split('|')[0]
+                        },
+                        cache: 0,
+                        error: function(error) {
+                            $('#div_alert').showAlert({
+                                message: error.message,
+                                level: 'danger'
+                            });
+                        },
+                        success: function() {
+                            $('#div_alert').showAlert({
+                                message: '{{Action exécutée avec succès}}',
+                                level: 'success'
+                            });
+                        }
+                    });
+                    break;
                     case 'message':
                     jeedom.cmd.execute({
                         id: _params.id,
