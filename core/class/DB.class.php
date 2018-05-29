@@ -49,7 +49,8 @@ class DB {
 			self::$sharedInstance = new self();
 		} else if (self::$sharedInstance->lastConnection + 120 < strtotime('now')) {
 			try {
-				if (!self::$sharedInstance->connection->query('select 1;')) {
+				$result = @self::$sharedInstance->connection->query('select 1;');
+				if (!$result) {
 					self::$sharedInstance = new self();
 				}
 			} catch (Exception $e) {
