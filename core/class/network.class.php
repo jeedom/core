@@ -279,6 +279,11 @@ class network {
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
+		try {
+			repo_market::test();
+		} catch (Exception $e) {
+
+		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
 		if (!is_object($openvpn)) {
 			$openvpn = new openvpn();
