@@ -1045,20 +1045,25 @@ class cmd {
 			'#hideCmdName#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
-			$listOption = '<option value="">Aucun</option>';
+			$listOption = '';
 			$elements = explode(';', $this->getConfiguration('listValue', ''));
+			$foundSelect = false;
 			foreach ($elements as $element) {
 				$coupleArray = explode('|', $element);
 				$cmdValue = $this->getCmdValue();
 				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
 					if ($cmdValue->execCmd() == $coupleArray[0]) {
 						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
+						$foundSelect = true;
 					} else {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 					}
 				} else {
 					$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 				}
+			}
+			if (!$foundSelect) {
+				$listOption = '<option value="">Aucun</option>' . $listOption;
 			}
 			$replace['#listValue#'] = $listOption;
 		}
