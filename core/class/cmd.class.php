@@ -119,12 +119,7 @@ class cmd {
 		if (is_array($_eqLogic_id)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
-		WHERE ';
-			if (count($_eqLogic_id) > 0) {
-				$sql .= ' eqLogic_id IN (' . implode(',', $_eqLogic_id) . ') ';
-			} else {
-				$sql .= ' 1=1 ';
-			}
+		WHERE eqLogic_id IN (' . implode(',', $_eqLogic_id) . ')';
 		} else {
 			$values = array(
 				'eqLogic_id' => $_eqLogic_id,
