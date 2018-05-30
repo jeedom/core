@@ -123,7 +123,7 @@ class cmd {
 			if (count($_eqLogic_id) > 0) {
 				$sql .= ' eqLogic_id IN (' . implode(',', $_eqLogic_id) . ') ';
 			} else {
-				$sql .= ' 1 =1 ';
+				$sql .= ' 1=1 ';
 			}
 		} else {
 			$values = array(
