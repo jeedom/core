@@ -4,23 +4,23 @@
 3.2.8
 =====
 
-- Correction de bugs
-- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
-- Correction d'un bug sur le calcul d'utilisation des variables
+- Fehlerkorrekturen
+- In der Jeeedom-Administration wurde eine Option hinzugefügt, um den lokalen IP-Bereich anzugeben (nützlich bei Docker-Installationen)
+- Ein Fehler bei der Berechnung der Variablennutzung wurde behoben
 
 3.2.7
 =====
 
-- Correction de bugs
-- Mise à jour de la docs
+- Fehlerkorrekturen
+- Aktualisierung der Dokumentation
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
-- Correction du bugs des catégories market pour les widgets/scripts/scénarios...
+- Fehlerkorrekturen der Kategorien auf dem Markt für Widgets/Scripts/Scenarien...
 
 3.2.6
 =====
 
-- Correction de bugs
-- Mise à jour de la docs
+- Fehlerkorrekturen
+- Aktualisierung der Dokumentation
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
@@ -33,7 +33,7 @@
 3.2.4
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur timee_diff
 - Préparation pour le futur système d'alerting
@@ -48,127 +48,127 @@
 =====
 
 -   Suppression de l'ancien systeme de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau systeme il y a des risques de dysfonctionnement (dédoublement de celui-ci en l’occurrence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
--   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
+-   Die Möglichkeit, Diagramme als Tabelle anzuzeigen oder sie als csv oder xls zu exportieren
 
--   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
+-   Benutzer können nun ihre eigene PHP-Funktion für Szenarien hinzufügen. Siehe Szenario-Dokumentation für die Einrichtung
 
 -   JEED-417 : ajout d'une fonction time_diff dans les scénarios
 
 -   Ajout d'un délai configurable avant réponse sur les intéractions (permet d'attendre que le retour d'état se fasse par exemple)
 
--   JEED-365 : Suppression de "Commande d’information utilisateur" pour etre remplacé par des actions sur message. Permet de lancer plusieurs commande differentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
+-   JEED-365 : Löschen des "Benutzerinformationsbefehls", der durch Nachrichtenaktionen ersetzt werden soll. Das ermöglicht Ihnen, mehrere verschiedene Befehle zu starten, um ein Szenario zu starten ... Achtung, wenn Sie einen "Benutzerinformationsbefehls" haben, muss er neu konfiguriert werden.
 
--   Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
+-   Option hinzugefügt, um den Zugang zum Support zu erleichtern (auf der Benutzerseite und beim Öffnen eines Tickets)
 
--   Correction d'un bug de droits suite à une restoration d'un backup
+-   Es wurde ein Fehler der Rechte nach einer Wiederherstellung einer Sicherung behoben
 
--   Mise à jour des traductions
+-   Aktualisierte Übersetzungen
 
--   Mise à jour des librairies (jquery et highcharts)
+-   Aktualisierte Bibliotheken (jquery und highcharts)
 
--   Possibilité d’interdire une commande dans les interactions
-    automatique
+-   Die Möglichkeit, einen Befehl in den automatischen Interaktionen
+    zu verbieten
 
--   Amélioration des interactions automatique
+-   Verbesserte automatische Interaktionen
 
--   Correction de bug sur la gestion des synonyme des interactions
+-   Fehler bei der Verwaltung von Interaktionen Synonyme behoben
 
--   Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD
-    (permet de rendre Jeedom compatible AD)
+-   Ein Benutzersuchfelds für LDAP/AD-Verbindungen hinzugefügt
+    (ermöglicht Jeedom AD kompatibel zu machen)
 
--   Corrections d’orthographe (merci à dab0u pour son énorme travail)
+-   Rechtschreibkorrekturen (Dank an dab0u für seine enorme Arbeit)
 
--   JEED-290 : On ne peut plus se connecter avec les identifiants par
-    défaut (admin/admin) à distance, seul le réseau local est autorisé
+-   JEED-290 : Sie können sich nicht mehr mit den Standard Anmeldedaten 
+    (admin/admin) aus der Entfernung verbinden, nur das lokale Netzwerk ist erlaubt
 
--   JEED-186 : On peut maintenant choisir la couleur de fond dans les
-    designs
+-   JEED-186 : Man kann jetzt die Grundfarbe in den Designs wählen
+    wählen
 
--   Pour le bloc A, possibilité de mettre une heure entre 00h01 et 00h59
-    en mettant simplement les minutes (ex 30 pour 00h30)
+-   Für Block A, die Möglichkeit, eine Zeit zwischen 00:01 und 00:59 
+    einzustellen, indem man einfach die Minuten eingibt (ex 30 für 00:30)
 
--   Ajout des sessions actives et des péripheriques enregistrés sur la
-    page de profil de l’utilisateur et la page de gestion des
-    utilisateurs
+-   Hinzufügen aktiver Sitzungen und Geräte, die auf der Profilseite 
+    des Benutzers und der Benutzerverwaltungsseite
+    registriert sind
 
--   JEED-284 : la connexion permanente dépend maintenant d’une clef
-    unique utilisateur et péripherique (et non plus que utilisateur)
+-   JEED-284 : Die permanente Verbindung hängt nun von einem eindeutigen 
+    Benutzer und einem peripheren Schlüssel ab (und nicht nur vom Benutzer)
 
--   JEED-283 : ajout d’un mode rescue à jeedom en rajoutant &rescue=1
-    dans l’url
+-   JEED-283 : Hinzufügen eines Rettungsmodus zu Jeedom durch Hinzufügen 
+    von &rescue=1 in der URL
 
--   JEED-8 : ajout du nom du scénario sur le titre de la page lors de
-    l’édition
+-   JEED-8: Hinzufügen des Namens des Szenarios zum Titel der Seite während der Ausgabe
+    der Ausgabe
 
--   Optimisation des modifications d’organisation (taille des widgets,
-    position des équipements, position des commandes) sur le dashboard
-    et les vue. Attention maintenant les modifications ne sont
-    sauvegardées que lorsque l’on quitte le mode édition.
+-   Optimierung organisatorischer Änderungen (Widgets-Größe, Geräteposition, 
+    Befehlsposition) auf dem Armaturenbrett und den Ansichten.
+    Achtung, Änderungen werden nur gespeichert, wenn Sie den 
+    Bearbeitungsmodus verlassen.
 
--   JEED-18 : Ajout des logs lors de l’ouverture d’un ticket au support
+-   JEED-18 : Hinzufügen von Protokollen beim Öffnen eines zu unterstützenden Tickets
 
--   JEED-181 : ajout d’une commande name dans les scénarios pour avoir
-    le nom de la commande ou de l’équipement ou de l’objet
+-   JEED-181 : Hinzufügen eines Namensbefehls in den Szenarien, um den 
+    Namen des Befehls oder des Geräts oder Objekts abzurufen
 
--   JEED-15 : Ajout des batterie et alerte sur la webapp
+-   JEED-15 :  Batterie und Warnung auf der Webapp hinzugefügt
 
--   Correction du bugs de déplacement des objets du design sous Firefox
+-   Fehler im Firefox Behoben, beim Verschieben von Objekten im Design 
 
--   JEED-19 : Lors d’une mise à jour il est maintenant possible de
-    mettre à jour le script d’update avant la mise à jour
+-   JEED-19 : Bei einem Update ist es jetzt möglich, das Update Skript vor 
+    der Aktualisierung auf den neuesten Stand zu bringen
 
--   JEED-125 : ajout d’un lien vers la documentation de réinitialisation
-    de mot de passe
+-   JEED-125 : einen Link zur Dokumentation, zum Zurücksetzen 
+    des Passworts, hinzugefügt
 
--   JEED-2 : Amélioration de la gestion de l’heure lors d’un redémarrage
+-   JEED-2 : Verbesserte Zeitverwaltung während eines Neustarts
 
--   JEED-77 : Ajout de la gestion des variables dans l’API http
+-   JEED-77 :  Verwaltung der Variablen in der http-API hinzugefügt
 
--   JEED-78 : ajout de la fonction tag pour les scénarios. Attention il
-    faut dans les scénarios utilisant les tags passer de #montag#
-    à tag(montag)
+-   JEED-78 : Hinzufügen der Tag-Funktion für die Szenarien. Beachten Sie, 
+    dass es in den Szenarien mit den Tags notwendig ist, von #Montag# zu 
+    Tag (Montag) zu wechseln
 
--   JEED-124 : Corriger la gestion des timeouts des scénarios
+-   JEED-124 : Die Verwaltung der Timeouts in den Szenarien korrigiert
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
--   Possibilité de désactiver une intéraction
+-   Möglichkeit, eine Interaktion zu deaktivieren
 
--   Ajout d’un éditeur de fichiers (réservé aux
-    utilisateurs expérimentés)
+-   Einen Dateieditors hinzugefügt (nur für 
+    erfahrene Benutzer)
 
--   Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière
-    Température Couleur" (Info), "Lumière Température Couleur" (Action)
+-   Die Generischen Typen "Licht Zustand" (Binär), "Licht 
+    Farbtemperatur" (Info), "Licht Licht Farbtemperatur" (Aktion) hinzugefügt
 
--   Possibilité de rendre des mots obligatoires dans une interaction
+-    Die Möglichkeit obligatorische Wörter in einer Interaktion zurückzugeben
 
 3.1.7 
 =====
 
--   Correction de bugs (en particulier sur les historiques et
-    fonctions statistiques)
+-   Fehler Korrekturen (besonders bei historischen und 
+    statistischen Funktionen)
 
--   Amélioration du système de mises à jour avec une page de notes de
-    version (que vous devez vérifier vous même avant chaque mise à
-    jour !!!!)
+-   Verbesserung des Updatesystems mit einer Seite mit
+     Versionshinweisen (die Sie vor jedem Update selbst überprüfen
+    müssen !!!!)
 
--   Correction d’un bug qui récuperait les logs lors des restaurations
+-   Es wurde ein Fehler behoben, durch den Protokolle während der Wiederherstellung wiederhergestellt wurden
 
 3.1 
 ===
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
--   Optimisation globale de Jeedom (sur le chargement des classes de
-    plugins, temps presque divisé par 3)
+-   globale Jeedom Optimierung (beim Laden von Plugin Klassen, 
+    Zeit fast durch 3 geteilt)
 
--   Support de Debian 9
+-   Support für Debian 9
 
--   Mode onepage (changement de page sans recharger toute la page, juste
-    la partie qui change)
+-   Modus eine Seite (Seitenwechsel, ohne die gesamte Seite neu zu laden, nur 
+    der Teil, der sich ändert)
 
--   Ajout d’une option pour masquer les objets sur le dashboard mais qui
-    permet de toujours les avoir dans la liste
+-   Es wurde eine Option hinzugefügt, um die Objekte im Armaturenbrett 
+    auszublenden, sie aber immer in der Liste zu haben
 
 -   Un double-clic sur un noeud sur le graphique de lien (sauf pour
     les variables) amène sur sa page de configuration
