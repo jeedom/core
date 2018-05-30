@@ -24,7 +24,7 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 }
 $datetime = date('Y-m-d H:i:s');
 echo "Watchdog Jeedom at " . $datetime . "\n";
-$wathdog_in_progress = exec('ps ax | grep "core/php/watchdog.php" | grep -v grep |  wc -l');
+$wathdog_in_progress = exec('ps ax | grep "core/php/watchdog.php" | grep -v grep | grep -v  "sh -c" |  wc -l');
 if ($wathdog_in_progress > 1) {
 	echo 'Watchdog in progress, cancel watchdog (' . $wathdog_in_progress . ')';
 	die();
