@@ -23,7 +23,7 @@ foreach (cmd::all() as $cmd) {
 	if (!is_object($eqLogic)) {
 		continue;
 	}
-	if ($eqLogic->getIsVisible() == 1 && $cmd->getIsHistorized() == 1) {
+	if ($cmd->getIsHistorized() == 1) {
 		$object = $cmd->getEqLogic()->getObject();
 		echo '<tr data-link_id="' . $cmd->getId() . '" data-type="graph" data-viewDataType="cmd">';
 		echo '<td>';
