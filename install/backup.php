@@ -46,6 +46,14 @@ try {
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
+	
+	try {
+		echo 'Vérifiez les droits sur les fichiers...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
 
 	global $CONFIG;
 	$jeedom_dir = realpath(dirname(__FILE__) . '/..');
