@@ -28,9 +28,11 @@ foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
 
 	<div class="col-lg-8">
 		<legend><i class="fa fa-pencil"></i> {{Edition}}
-			<a class="btn btn-success btn-xs pull-right" id="bt_saveFile" style="position: relative;top:4px;"><i class="fa fa-check"></i> {{Sauvegarder}}</a>
-			<a class="btn btn-danger btn-xs pull-right" id="bt_deleteFile" style="position: relative;top:4px;"><i class="fa fa-times"></i> {{Supprimer}}</a>
-			<a class="btn btn-default btn-xs pull-right" id="bt_createFile" style="position: relative;top:4px;"><i class="fa fa-file"></i> {{Nouveau}}</a>
+			<span style="position: fixed;top:59px;right:25px;">
+				<a class="btn btn-success btn-xs pull-right" id="bt_saveFile"><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+				<a class="btn btn-danger btn-xs pull-right" id="bt_deleteFile"><i class="fas fa-times"></i> {{Supprimer}}</a>
+				<a class="btn btn-default btn-xs pull-right" id="bt_createFile"><i class="far fa-file"></i> {{Nouveau}}</a>
+			</span>
 		</legend>
 		<textarea class="form-control ta_autosize" id="ta_fileContent"></textarea>
 	</div>
