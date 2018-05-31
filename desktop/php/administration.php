@@ -520,15 +520,7 @@ if (count($values) != 0) {
 				<fieldset>
 					<legend>{{Accès interne}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('internal')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="internalProtocol">
@@ -551,15 +543,7 @@ if (network::test('internal')) {
 				<fieldset>
 					<legend>{{Accès externe}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('external')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="externalProtocol">
