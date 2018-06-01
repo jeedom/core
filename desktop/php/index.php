@@ -260,7 +260,7 @@ foreach (jeeObject::buildTree(null, false) as $object_li) {
 									</li>
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoView"><i class="fas fa-picture-o"></i> {{Vue}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (view::all() as $view_menu) {
 			echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
@@ -270,7 +270,7 @@ foreach (view::all() as $view_menu) {
 									</li>
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (planHeader::all() as $plan_menu) {
 			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
@@ -280,7 +280,7 @@ foreach (planHeader::all() as $plan_menu) {
 									</li>
 																		<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (plan3dHeader::all() as $plan3d_menu) {
 			echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
@@ -333,7 +333,7 @@ if (isConnect('admin')) {
 								</li>
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
-									<ul class="dropdown-menu" role="menu">
+									<ul class="dropdown-menu  scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php
