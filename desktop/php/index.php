@@ -333,7 +333,7 @@ if (isConnect('admin')) {
 								</li>
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
-									<ul class="dropdown-menu  scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
+									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php
