@@ -104,6 +104,9 @@ $(function () {
         if($(this).hasClass('noOnePageLoad')){
             return;
         }
+         if($(this).hasClass('fancybox-nav')){
+            return;
+        }
         if($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#'){
             return;
         }
