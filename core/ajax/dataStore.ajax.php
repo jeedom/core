@@ -62,6 +62,7 @@ try {
 					'scenario' => array(),
 					'eqLogic' => array(),
 					'cmd' => array(),
+					'interactDef' => array(),
 				);
 				$usedBy = $datastore->getUsedBy();
 				foreach ($usedBy['scenario'] as $scenario) {
