@@ -496,7 +496,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
-    si l’état n’est pas cohérent.
+    si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario vous pouvez utilisé le bouton dédié à droite de recherche de scénario.
 
 -   lastScenarioExecution(scenario) : Donne la durée en secondes
     depuis le dernier lancement du scénario :
@@ -513,13 +513,13 @@ Plusieurs fonctions sont disponibles pour les équipements :
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
-    pas de type info
-
--   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)
+    pas de type info :
 
 -   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
     est inactif
+
+-   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)    
 
 -   tag(montag,[defaut]) : Permet de récuperer la valeur d’un tag ou
     la valeur par défaut si il n’existe pas :

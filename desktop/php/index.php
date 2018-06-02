@@ -86,12 +86,14 @@ if (init('rescue', 0) == 0) {
 		var serverDatetime = <?php echo getmicrotime(); ?>;
 	</script>
 	<?php
-if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
+if (!isConnect()) {
 	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
 } else {
 	try {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
 			include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.css');
+		} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
 		} else {
 			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
 		}
@@ -212,6 +214,7 @@ if (!isConnect()) {
 } else {
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
+	sendVarToJS('user_isAdmin', isConnect('admin'));
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
 	if (count($eventjs_plugin) > 0) {
@@ -257,7 +260,7 @@ foreach (jeeObject::buildTree(null, false) as $object_li) {
 									</li>
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoView"><i class="fas fa-picture-o"></i> {{Vue}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (view::all() as $view_menu) {
 			echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
@@ -267,7 +270,7 @@ foreach (view::all() as $view_menu) {
 									</li>
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (planHeader::all() as $plan_menu) {
 			echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
@@ -277,7 +280,7 @@ foreach (planHeader::all() as $plan_menu) {
 									</li>
 																		<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (plan3dHeader::all() as $plan3d_menu) {
 			echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
