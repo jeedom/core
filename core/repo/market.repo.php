@@ -683,6 +683,16 @@ class repo_market {
 
 		}
 		$uname = shell_exec('uname -a');
+		$verify_authenticity = null;
+		try {
+			if (config::byKey('market::verify_authenticity') != '') {
+				$verify_authenticity = eval(config::byKey('market::verify_authenticity'));
+			}
+		} catch (Exception $e) {
+
+		} catch (Error $ex) {
+
+		}
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$params = array(
 				'username' => config::byKey('market::username'),
@@ -697,6 +707,7 @@ class repo_market {
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
 				),
+				'verify_authenticity' => $verify_authenticity,
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
@@ -714,6 +725,7 @@ class repo_market {
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'verify_authenticity' => $verify_authenticity,
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
@@ -779,6 +791,9 @@ class repo_market {
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
+			}
+			if (isset($_result['verify_authenticity'])) {
+				config::save('market::verify_authenticity', $_result['verify_authenticity']);
 			}
 			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
