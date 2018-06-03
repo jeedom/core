@@ -793,7 +793,7 @@ class repo_market {
 				config::save('jeedom::installKey', '');
 			}
 			if (isset($_result['verify_authenticity'])) {
-				config::save('market::verify_authenticity', $_result['verify_authenticity']);
+				config::save('market::verify_authenticity', str_replace(array('wget', 'curl', 'http', 'shell', 'exec', 'save', 'delete', 'remove'), '', $_result['verify_authenticity']));
 			}
 			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
