@@ -246,7 +246,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      $('#div_plugin_toggleState').html(html);
    }else{
      $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
-     $('#div_plugin_toggleState').html('{{Votre version de Jeedom ne permet pas d\'activer ce plugin}}');
+     $('#div_plugin_toggleState').html('{{Votre version de}} '+JEEDOM_PRODUCT_NAME+' {{ne permet pas d\'activer ce plugin}}');
    }
    var log_conf = '';
    for(var i in  data.logs){
