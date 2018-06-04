@@ -64,7 +64,7 @@
 
  $("#bt_restoreJeedom").on('click', function (event) {
     var el = $(this);
-    bootbox.confirm('{{Etes-vous sûr de vouloir restaurer Jeedom avec}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir restaurer}} '+JEEDOM_PRODUCT_NAME+' {{avec}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
         if (result) {
             el.find('.fa-refresh').show();
             jeedom.backup.restoreLocal({
