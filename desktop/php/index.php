@@ -1,5 +1,5 @@
 <?php
-if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
+if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system', 'product_name', 'product_icon', 'product_image'))) {
 	$_GET['p'] = 'system';
 }
 include_file('core', 'authentification', 'php');
