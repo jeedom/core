@@ -74,7 +74,7 @@ if (init('rescue', 0) == 0) {
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<link rel="shortcut icon" href="core/img/logo-jeedom-sans-nom-couleur-25x25.png">
+	<link rel="shortcut icon" href="<?php echo config::byKey('product_icon') ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -88,7 +88,11 @@ if (init('rescue', 0) == 0) {
 	</script>
 	<?php
 if (!isConnect()) {
-	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
+	if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+		include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+	} else {
+		include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
+	}
 } else {
 	try {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
@@ -112,6 +116,7 @@ include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
+		JEEDOM_PRODUCT_NAME='<?php echo config::byKey('product_name') ?>';
 		JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
 		$.ajaxSetup({
 			type: "POST",
@@ -232,7 +237,7 @@ if (!isConnect()) {
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-							<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
+							<img src="<?php echo config::byKey('product_image') ?>" height="30" style="position: relative; top:-5px;"/>
 						</a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>

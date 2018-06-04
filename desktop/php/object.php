@@ -153,7 +153,7 @@ foreach ($allObject as $object) {
 <div role="tabpanel" class="tab-pane" id="summarytab">
   <?php
 if (count(config::byKey('object:summary')) == 0) {
-	echo '<div class="alert alert-danger>{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de Jeedom -> Configuration -> onglet Résumés.}}</div>';
+	echo '<div class="alert alert-danger>{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 } else {
 
 	?>
