@@ -217,7 +217,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
     la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
     gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau)
+    aucun réseau). Vous pouvez aussi y préciser la plage d'ip local sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker)
 
 -   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
     besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box

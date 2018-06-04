@@ -146,7 +146,7 @@ if (!isConnect()) {
 
 				$('.bt_summaryGotoScenario').off().on('click',function(){
 					var tr = $(this).closest('tr');
-					window.location.href = 'index.php?v=d&p=scenarioAssist&id='+tr.attr('data-id');
+					window.location.href = 'index.php?v=d&p=scenario&id='+tr.attr('data-id');
 				});
 			}
 		});

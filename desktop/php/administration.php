@@ -520,15 +520,7 @@ if (count($values) != 0) {
 				<fieldset>
 					<legend>{{Accès interne}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('internal')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="internalProtocol">
@@ -551,15 +543,7 @@ if (network::test('internal')) {
 				<fieldset>
 					<legend>{{Accès externe}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('external')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="externalProtocol">
@@ -610,6 +594,12 @@ foreach (network::getInterfaces() as $interface) {
 								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
 								<div class="col-xs-4">
 									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 								</div>
 							</div>
 						</div>

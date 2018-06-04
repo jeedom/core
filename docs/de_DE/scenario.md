@@ -496,7 +496,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
-    si l’état n’est pas cohérent.
+    si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario vous pouvez utilisé le bouton dédié à droite de recherche de scénario.
 
 -   lastScenarioExecution(scenario) : Donne la durée en secondes
     depuis le dernier lancement du scénario :

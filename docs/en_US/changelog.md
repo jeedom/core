@@ -1,6 +1,15 @@
 Changelog
 =========
 
+3.2.8
+=====
+
+- Correction de bugs
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+- Correction d'un bug sur le calcul d'utilisation des variables
+- Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
+- Amélioration de l'éditeur de fichier
+
 3.2.7
 =====
 

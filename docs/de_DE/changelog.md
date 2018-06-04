@@ -1,6 +1,15 @@
 Änderungsprotokoll 
 =========
 
+3.2.8
+=====
+
+- Fehlerkorrekturen
+- In der Jeeedom-Administration wurde eine Option hinzugefügt, um den lokalen IP-Bereich anzugeben (nützlich bei Docker-Installationen)
+- Ein Fehler bei der Berechnung der Variablennutzung wurde behoben
+- Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
+- Amélioration de l'éditeur de fichier
+
 3.2.7
 =====
 

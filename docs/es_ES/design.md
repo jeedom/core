@@ -45,7 +45,7 @@ siguientes :
 -   **Agregar imagen/cámara** : Le permite agregar una imagen o video
     de una cámara
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
+-   **Agregar zona** : Le permite agregar un área transparente seleccionable
     que será capaz de ejecutar una serie de acciones al hacer clic (según
     o no del status de otra comando)
 
@@ -54,169 +54,169 @@ siguientes :
 
 -   **Visualizar**
 
-    -   **Aucune** : N’affiche aucune grille
+    -   **Ninguno**: No muestra ninguna grilla
 
-    -   **10x10** : Affiche une grille de 10 par 10
+    -   **10x10** : Muestra una cuadrícula de 10 por 10
 
-    -   **15x15** : Affiche une grille de 15 par 15
+    -   **15x15**: Muestra una cuadrícula de 15 por 15
 
-    -   **20x20** : Affiche une grille de 20 par 20
+    -   **20x20**: Muestra una cuadrícula de 20 por 20
 
-    -   **Aimanter les éléments** : Ajoute une aimantation entre les
-        éléments pour permettre de les coller plus facilement
+    -   **Magnetizar elementos**: Agrega magnetización entre 
+        elementos para que sea más fácil colocarlos
 
-    -   **Aimanter à la grille** : Ajoute une aimantation des éléments à
-        la grille (attention : en fonction du zoom de l’élément cette
-        fonctionalité peut plus ou moins fonctionner)
+    -   **Imán en la cuadrícula**: Agrega una magnetización de los elementos a
+        la cuadrícula (atención: dependiendo del zoom del elemento, esta
+        característica puede funcionar mejor o peor)
 
-    -   **Masquer la surbrillance des éléments** : Masque la
-        surbrillance autour des éléments
+    -   **Ocultar resaltados**: Ocultar el
+        resaltado alrededor de los elementos
 
--   **Supprimer le design** : supprime le design
+-   **Eliminar diseño**: Elimina el diseño
 
--   **Créer un design** : permet d’ajouter un design
+-   **Crear un diseño**: Agregar un diseño
 
--   **Dupliquer le design** : duplique le design courant
+-   **Duplicar design**: Duplica el diseño actual
 
--   **Configurer le design** : accès à la configuration du design
+-   **Configurar el diseño**: Acceso a la configuración del diseño
 
--   **Sauvegarder** : permet de sauvegarder le design (attention il y a
-    aussi des sauvegardes automatiques lors de certaines actions)
+-   **Guardar**: Guarde el diseño (tenga en cuenta que algunas
+    acciones se guardan automáticamente)
 
-> **Important**
+> **Importante**
 >
-> La configuration des éléments du désign se fait par un clic sur
-> ceux-ci.
+> La configuración de los elementos de diseño se realiza haciendo clic en
+> estos.
 
-Configuration du design 
+Configuración del diseño
 =======================
 
-On retrouve ici :
+Encontrará aquí:
 
--   **Général**
+-   **General**
 
-    -   **Nom** : Le nom de votre design
+    -   **Nombre**: El nombre de su diseño
 
-    -   **Fond transparent** : rend le fond transparent. Attention si la
-        case est coché la couleur de fond n’est pas utilisée
+    -   **Fondo transparente**: Hace que el fondo sea transparente. Si la casilla
+        de verificación está marcada, el color de fondo no se utilizará
 
-    -   **Couleur de fond** : couleur de fond du design (blanc
-        par défaut)
+    -   **Color de fondo**: Color de fondo del diseño (blanco
+        por defecto)
 
-    -   **Code** : Code d’accès à votre design (si vide aucun code
-        n’est demandé)
+    -   **Código**: Código de acceso a su diseño (si está vacío, no se pedirá
+        ningún codigo)
 
-    -   **Icône** : Une icône pour celui-ci (apparait dans le menu de
-        choix de design)
+    -   **Icono**: Icono del diseño (aparece en el menú de
+        elección de diseño)
 
-    -   **Image**
+    -   **Imagen**
 
-        -   **Envoyer** : permet d’ajouter une image de fond au design
+        -   **Enviar**: Agrega una imagen de fondo al diseño
 
-        -   **Supprimer l’image** : permet de supprimer l’image
+        -   **Eliminar imagen**: Borrar la imagen
 
--   **Tailles**
+-   **Tamaños**
 
-    -   **Taille (LxH)** : Permet de fixer la taille de votre design
-        (cadre gris en mode édition)
+    -   **Tamaño (An x Al)**: Le permite configurar el tamaño de su diseño
+        (marco gris en modo de edición)
 
-Configuration générale des éléments 
+Configuración general de elementos
 ===================================
 
-> **Note**
+> **Nota**
 >
-> En fonction du type de l’élément, les options peuvent changer.
+> Según el tipo de artículo, las opciones pueden cambiar.
 
-> **Note**
+> **Nota**
 >
-> L’élément sélectionné apparait en surbrillance rouge (au lieu de vert
-> pour tous les autres).
+> El elemento seleccionado se resalta en rojo (todos los demás
+> en verde).
 
-Paramètre d’affichage 
+Configuración de pantalla
 ---------------------
 
--   **Profondeur** : permet de choisir le niveau de la profondeur
+-   **Profundidad**: Permite elegir el nivel de profundidad
 
--   **Position X (%)** :
+-   **Posición X (%)**:
 
--   **Position Y (%)** :
+-   **Posición Y (%)**:
 
--   **Largeur (px)** :
+-   **Ancho (px)**:
 
--   **Hauteur (px)** :
+-   **Alto (px)**:
 
-Supprimer 
+Eliminar
 ---------
 
-Permet de supprimer l’élément
+Eliminar el elemento
 
-Dupliquer 
+Duplicar
 ---------
 
-Permet de dupliquer l’élément
+Duplicar el elemento
 
-Verrouiller 
+Bloquear
 -----------
 
-Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
-redimmensionnable.
+Bloquea el elemento para que ya no se pueda mover o
+redimensionar.
 
-Graphique 
+Gráfico
 =========
 
-Paramètre d’affichage 
+Configuración de muestra
 ---------------------
 
--   **Période** : permet de choisir la période d’affichage
+-   **Período**: Le permite elegir el período de muestra
 
--   **Afficher la légende** : affiche la légende
+-   **Mostrar leyenda**: Muestra la leyenda
 
--   **Afficher le navigateur** : affiche le navigateur (deuxième graph
-    plus léger en dessous du premier)
+-   **Mostrar navegador**: Muestra el navegador (segundo gráfico
+    más ligero debajo del primero)
 
--   **Afficher le sélecteur de période** : affiche le sélecteur de
-    période en haut à gauche
+-   **Mostrar selector de período**: Muestra el
+    período en la esquina superior izquierda
 
--   **Afficher la barre de défilement** : affiche la barre de défilement
+-   **Mostrar barra de desplazamiento**: Muestra barra de desplazamiento
 
--   **Fond transparent** : rend le fond transparent
+-   **Fondo transparente**: Hace que el fondo sea transparente
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
+-   **Borde**: Permite agregar un borde, tenga cuidado, la sintaxis es
+    HTML (debe usar una sintaxis CSS, por ejemplo:
     solid 1px black)
 
-Configuration avancée 
+Configuración avanzada
 ---------------------
 
-Permet de choisir les commandes à grapher
+Le permite elegir los comandos a mostrar
 
-Text/html 
+Texto / html
 =========
 
--   **Icone** : Icone à afficher devant
+-   **Icono**: Icono para mostrar en frente
 
--   **Couleur de fond** : permet de changer la couleur de fond ou de le
-    mettre transparent, ne pas oublier de passer "Défaut" sur NON
+-   **Color de fondo**: Le permite cambiar el color de fondo o
+    dejarlo transparente, no olvide dejar "Predeterminado" en NO
 
--   **Couleur du texte** : permet de changer la couleur des icônes et
-    des textes (attention à bien passer Défaut sur Non)
+-   **Color del texto**: Cambie el color de los iconos y
+    los textos (debe dejar el valor predeterminado en No)
 
--   **Arrondir les angles** : permet d’arrondir les angles (ne pas
-    oublier de mettre %, ex 50%)
+-   **Redondeo de esquinas**: Redondear las esquinas (no
+    olvide poner %, ej: 50%)
 
--   **Bordure** : permet d’ajouter une bordure, attention la syntaxe est
-    HTML (il faut utiliser une syntaxe CSS, par exemple : solid
+-   **Borde**: Permite agregar un borde, tenga cuidado, la sintaxis es
+    HTML (debe usar una sintaxis CSS, por ejemplo: solid
     1px black)
 
--   **Taille de la police** : permet de modifier la taille de la police
-    (ex 50%, il faut bien mettre le signe %)
+-   **Tamaño de fuente**: Le permite cambiar el tamaño de la fuente
+    (es necesario poner el signo %, ej: 50%)
 
--   **Alignement du texte** : permet de choisir l’alignement du
-    texte (gauche/droit/centré)
+-   **Alineación de texto**: Permite elegir la alineación del
+    texto (izquierda / derecha / centrado)
 
--   **Gras** : met le texte en gras
+-   **Negrita**: Pone el texto en negrita
 
--   **Texte** : Texte au code HTML qui sera dans l’élément
+-   **Texto**: Texto en código HTML que estará en el elemento
 
 > **Important**
 >
@@ -225,10 +225,10 @@ Text/html
 > ou si il écrase un composant Jeedom planter completement le design et
 > il ne restera plus qu’a le supprimer directement base de données
 
-Scénario 
+Escenario
 ========
 
-Paramètre d’affichage 
+Configuración de pantalla
 ---------------------
 
 Aucun paramètre spécifique d’affichage
