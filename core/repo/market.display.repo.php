@@ -105,10 +105,10 @@ echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market
 if (is_object($update)) {
 	?>
   <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-  <?php }
+<?php }
 ?>
-  <br/><br/>
-  <?php
+<br/><br/>
+<?php
 if ($market->getCost() > 0) {
 	if ($market->getCost() != $market->getRealCost()) {
 		echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
@@ -146,22 +146,22 @@ foreach ($market->getImg('screenshot') as $screenshot) {
 	?>
     </div>
   </div>
-  <?php }
+<?php }
 ?>
 
-  <br/>
-  <div class='row'>
-    <div class='col-sm-6'>
-      <legend>{{Description}}
-        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fa fa-book"></i> {{Documentation}}</a>
-        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fa fa-book"></i> {{Changelog}}</a>
-        <br/>
-      </legend>
-      <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-    </div>
-    <div class='col-sm-6'>
-      <legend>{{Compatibilité plateforme}}</legend>
-      <?php
+<br/>
+<div class='row'>
+  <div class='col-sm-6'>
+    <legend>{{Description}}
+      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fa fa-book"></i> {{Documentation}}</a>
+      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fa fa-book"></i> {{Changelog}}</a>
+      <br/>
+    </legend>
+    <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+  </div>
+  <div class='col-sm-6'>
+    <legend>{{Compatibilité plateforme}}</legend>
+    <?php
 if ($market->getHardwareCompatibility('diy') == 1) {
 	echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
 }
@@ -175,10 +175,10 @@ if ($market->getHardwareCompatibility('miniplus') == 1) {
 	echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
 }
 ?>
-   </div>
  </div>
- <br/>
- <div class='row'>
+</div>
+<br/>
+<div class='row'>
   <div class='col-sm-6'>
     <legend>Avis</legend>
     <div class='row'>
@@ -195,42 +195,47 @@ if ($market->getHardwareCompatibility('miniplus') == 1) {
               <span><input style="display:none;" type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
             </div>
           </div><br/>
-          <?php }
+        <?php }
 ?>
-        </div>
       </div>
     </div>
-    <div class='col-sm-6'>
-      <legend>{{Utilisation}}</legend>
-      <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
-    </div>
   </div>
-  <br/>
-  <legend>{{Informations complementaires}}</legend>
-  <div class="form-group">
-    <div class='row'>
-      <div class='col-sm-2'>
-       <label class="control-label">{{Taille}}</label><br/>
-       <span><?php echo $market->getParameters('size'); ?></span>
-     </div>
-     <div class='col-sm-2'>
-       <label class="control-label">{{Lien}}</label><br/>
-       <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
-       <?php }
-?>
-       <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
-       <?php }
-?>
-     </div>
-     <div class='col-sm-1'>
-      <label class="control-label">{{Type}}</label><br/>
-      <span class="marketAttr" data-l1key="type"></span>
-    </div>
+  <div class='col-sm-6'>
+    <legend>{{Utilisation}}</legend>
+    <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+  </div>
+</div>
+<br/>
+<legend>{{Informations complementaires}}</legend>
+<div class="form-group">
+  <div class='row'>
     <div class='col-sm-2'>
-      <label class="control-label">{{Langue disponible}}</label><br/>
-      <?php
+     <label class="control-label">{{Taille}}</label><br/>
+     <span><?php echo $market->getParameters('size'); ?></span>
+   </div>
+   <div class='col-sm-2'>
+     <label class="control-label">{{Lien}}</label><br/>
+     <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+     <?php }
+?>
+     <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
+       <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+     <?php }
+?>
+   </div>
+   <div class='col-sm-2'>
+    <label class="control-label">{{Installation}}</label>
+    <span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
+  </div>
+
+  <div class='col-sm-1'>
+    <label class="control-label">{{Type}}</label><br/>
+    <span class="marketAttr" data-l1key="type"></span>
+  </div>
+  <div class='col-sm-2'>
+    <label class="control-label">{{Langue disponible}}</label><br/>
+    <?php
 echo '<img src="core/img/francais.png" width="30" />';
 if ($market->getLanguage('en_US') == 1) {
 	echo '<img src="core/img/anglais.png" width="30" />';
@@ -251,12 +256,12 @@ if ($market->getLanguage('it_IT') == 1) {
 	echo '<img src="core/img/italien.png" width="30" />';
 }
 ?>
-   </div>
-   <div class='col-sm-3'>
-     <label class="control-label">{{Dernière mise à jour le}}</label><br/>
-     <?php echo $market->getDatetime('stable') ?>
-   </div>
  </div>
+ <div class='col-sm-3'>
+   <label class="control-label">{{Dernière mise à jour le}}</label><br/>
+   <?php echo $market->getDatetime('stable') ?>
+ </div>
+</div>
 
 </div>
 

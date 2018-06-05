@@ -820,6 +820,9 @@ class repo_market {
 		if (isset($_arrayMarket['allowVersion'])) {
 			$market->setAllowVersion($_arrayMarket['allowVersion']);
 		}
+		if (isset($_arrayMarket['nbInstall'])) {
+			$market->setNbInstall($_arrayMarket['nbInstall']);
+		}
 		$market->setPurchase($_arrayMarket['purchase'])
 			->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
@@ -1242,6 +1245,15 @@ class repo_market {
 
 	public function setChangelog($changelog) {
 		$this->changelog = $changelog;
+		return $this;
+	}
+
+	public function getNbInstall() {
+		return $this->nbInstall;
+	}
+
+	public function setNbInstall($nbInstall) {
+		$this->nbInstall = $nbInstall;
 		return $this;
 	}
 
