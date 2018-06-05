@@ -14,7 +14,7 @@ if (!isConnect('admin')) {
 		<span class="input-group-btn">
 			<a type="button" class="btn btn-default cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
 			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></a>
-			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher d'un équipement}}"><i class="fas fa-cube"></i></a>
 			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
