@@ -450,7 +450,7 @@ class repo_market {
 		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - 24 * 3600)) {
 			return;
 		}
-		sleep(rand(0, 900));
+		sleep(rand(0, 1800));
 		try {
 			self::test();
 		} catch (Exception $e) {
@@ -729,6 +729,7 @@ class repo_market {
 	}
 
 	public static function postJsonRpc(&$_result) {
+		config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		if (is_array($_result)) {
 			$restart_dns = false;
 			$restart_monitoring = false;
@@ -780,7 +781,6 @@ class repo_market {
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
 			}
-			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
 	}
 	/**
