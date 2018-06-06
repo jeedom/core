@@ -121,7 +121,7 @@ notre scénario :
 
 -   **Mode du scénario** : Le scénario peut être programmé, déclenché ou
     les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s)
-    déclencheur(s) et la/les programmation(s).
+    déclencheur(s) (attention il y a une limite au nombre de déclencheur possible par scénario de 15) et la/les programmation(s).
 
 > **Tip**
 >
