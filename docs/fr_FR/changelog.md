@@ -5,6 +5,7 @@ Changelog
 =====
 
 - Correction de bugs
+- Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
 
 3.2.8
 =====
