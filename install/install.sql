@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `scenario` (
   `mode` VARCHAR(127) NULL,
   `schedule` TEXT NULL DEFAULT NULL,
   `scenarioElement` TEXT NULL,
-  `trigger` VARCHAR(511) NULL DEFAULT NULL,
+  `trigger` VARCHAR(255) NULL DEFAULT NULL,
   `timeout` INT(11) NULL DEFAULT NULL,
   `isVisible` TINYINT(1) NULL DEFAULT '1',
   `object_id` INT(11) NULL DEFAULT NULL,

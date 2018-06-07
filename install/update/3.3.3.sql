@@ -1,1 +1,0 @@
-ALTER TABLE `scenario` MODIFY `trigger` VARCHAR(511);
