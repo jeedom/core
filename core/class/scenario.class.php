@@ -1360,7 +1360,7 @@ class scenario {
 		}
 		if (!$_withoutScenarioName) {
 			if ($_tag) {
-				$name .= ' <span class="name scenarioHumanName" data-id="' . $this->getId() . '">' . $this->getName() . '</span>';
+				$name .= ' ' . $this->getName();
 			} else {
 				$name .= '[' . $this->getName() . ']';
 			}

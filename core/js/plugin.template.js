@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
- var changeLeftMenuObjectName = false;
+ var changeLeftMenuObjectOrEqLogicName = false;
 
 
  if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch && $('.eqLogicThumbnailDisplay').html() != undefined){
@@ -120,7 +120,7 @@ $(".li_eqLogic").on('click', function () {
             $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
                 jeedom.cmd.changeSubType($(this).closest('.cmd'));
             });
-            changeLeftMenuObjectName = false;
+            changeLeftMenuObjectOrEqLogicName = false;
             $.hideLoading();
         }
     });
@@ -201,8 +201,7 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
         },
         success: function (data) {
             modifyWithoutSave = false;
-            if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0 && !changeLeftMenuObjectName) {
-                
+            if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0 && !changeLeftMenuObjectOrEqLogicName) {
                 $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').click();
                 $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
             } else {
@@ -222,11 +221,11 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
 });
 
 $('.eqLogicAttr[data-l1key=name]').on('change', function () {
-    changeLeftMenuObjectName = true;
+    changeLeftMenuObjectOrEqLogicName = true;
 });
 
 $('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
-    changeLeftMenuObjectName = true;
+    changeLeftMenuObjectOrEqLogicName = true;
 });
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
