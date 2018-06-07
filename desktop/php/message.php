@@ -11,6 +11,7 @@ if ($selectPlugin != '') {
 }
 ?>
 <a class="btn btn-danger pull-right" id="bt_clearMessage"><i class="far fa-trash-alt icon-white"></i> {{Vider}}</a>
+<a class="btn btn-default pull-right" id="bt_refreshMessage"><i class="fas fa-sync icon-white"></i> {{Rafraichir}}</a>
 <select id="sel_plugin" class="form-control" style="width: 200px;">
     <option value="" selected>{{Tout}}</option>
     <?php

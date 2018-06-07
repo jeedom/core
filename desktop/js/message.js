@@ -16,11 +16,11 @@
  */
 
 
-$("#sel_plugin").on('change', function() {
+ $("#sel_plugin").on('change', function() {
     loadPage('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value());
 });
 
-$("#bt_clearMessage").on('click', function(event) {
+ $("#bt_clearMessage").on('click', function(event) {
     jeedom.message.clear({
         plugin: $('#sel_plugin').value(),
         error: function(error) {
@@ -33,7 +33,12 @@ $("#bt_clearMessage").on('click', function(event) {
     });
 });
 
-$("#table_message").delegate(".removeMessage", 'click', function(event) {
+ $('#bt_refreshMessage').on('click', function(event) {
+    $('#md_modal').dialog({title: "{{Message Jeedom}}"});
+    $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
+});
+
+ $("#table_message").delegate(".removeMessage", 'click', function(event) {
     var tr = $(this).closest('tr');
     jeedom.message.remove({
         id: tr.attr('data-message_id'),
