@@ -15,6 +15,7 @@ Changelog
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l'éxecution d'un scénario
 -   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)
 -   Ajout d'un bouton pour rafraichir les messages du centre message
+-   Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scenario, pause....)
 
 3.2.8
 =====
