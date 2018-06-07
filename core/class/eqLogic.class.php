@@ -972,6 +972,7 @@ class eqLogic {
 		$object = $this->getObject();
 		if (is_object($object)) {
 			if ($_tag) {
+				$name .= '<span class="eqLogicHumanName" data-id="' . $this->getId() . '">';
 				if ($object->getDisplay('tagColor') != '') {
 					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
 				} else {
@@ -997,6 +998,9 @@ class eqLogic {
 		}
 		if ($_prettify) {
 			$name .= '</strong>';
+		}
+		if ($_tag) {
+			$name .= '</span>';
 		}
 		return $name;
 	}
