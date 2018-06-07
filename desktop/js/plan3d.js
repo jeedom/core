@@ -78,7 +78,7 @@
  					$('#div_alert').showAlert({message: error.message, level: 'danger'});
  				},
  				success: function (data) {
- 					loadPage('index.php?v=d&p=plan3d&plan3d_id=' + data.id);
+ 					window.location = 'index.php?v=d&p=plan3d&plan3d_id=' + data.id;
  				}
  			});
  		}
