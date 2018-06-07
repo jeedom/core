@@ -948,8 +948,7 @@ function saveScenario() {
     },
     success: function (data) {
       modifyWithoutSave = false;
-      $('#div_alert').showAlert({message: '{{Sauvegarde du scénario réussi}}', level: 'success'});
-      printScenario(scenario.id);
+      loadPage('index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1');
     }
   });
 }
@@ -1115,7 +1114,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 50px;vertical-align: top;">';
     retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}';
-     retour += ' </legend>';
+    retour += ' </legend>';
     retour += '  </div>';
 
     retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';

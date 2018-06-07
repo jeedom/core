@@ -136,9 +136,10 @@ $('#bt_duplicate').on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
-       }
-     });
+          modifyWithoutSave = false;
+          loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
+        }
+      });
     }
   });
 });
@@ -283,14 +284,14 @@ $("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', fu
 
 $("body").undelegate(".listCmdAction", 'click').delegate(".listCmdAction", 'click', function () {
  var type = $(this).attr('data-type');
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
-  jeedom.cmd.getSelectModal({cmd:{type:'action'}}, function (result) {
-    el.value(result.human);
-    jeedom.cmd.displayActionOption(el.value(), '', function (html) {
-      el.closest('.' + type).find('.actionOptions').html(html);
-      taAutosize();
-    });
+ var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+ jeedom.cmd.getSelectModal({cmd:{type:'action'}}, function (result) {
+  el.value(result.human);
+  jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+    el.closest('.' + type).find('.actionOptions').html(html);
+    taAutosize();
   });
+});
 });
 
 $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {

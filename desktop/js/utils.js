@@ -64,6 +64,9 @@ if ($("#mod_insertScenarioValue").length != 0) {
 if(!isset(_noPushHistory) || _noPushHistory == false){
     window.history.pushState('','', _url);
 }
+if(isset(bootbox)){
+    bootbox.hideAll();
+}
 jeedom.cmd.update = Array();
 jeedom.scenario.update = Array();
 $('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');

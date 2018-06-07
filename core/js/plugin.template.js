@@ -148,20 +148,16 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
                     },
                     success: function (data) {
                         modifyWithoutSave = false;
-                        if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').length != 0) {
-                            $('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + data.id + ']').click();
-                        } else {
-                            var vars = getUrlVars();
-                            var url = 'index.php?';
-                            for (var i in vars) {
-                                if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-                                    url += i + '=' + vars[i].replace('#', '') + '&';
-                                }
+                        var vars = getUrlVars();
+                        var url = 'index.php?';
+                        for (var i in vars) {
+                            if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
+                                url += i + '=' + vars[i].replace('#', '') + '&';
                             }
-                            url += 'id=' + data.id + '&saveSuccessFull=1';
-                            loadPage(url);
-                            bootbox.hideAll();
                         }
+                        url += 'id=' + data.id + '&saveSuccessFull=1';
+                        loadPage(url);
+                        bootbox.hideAll();
                     }
                 });
                 return false;
@@ -295,48 +291,48 @@ $('#in_searchEqlogic').off('keyup').keyup(function () {
     $('.eqLogicDisplayCard').show();
     $('.eqLogicThumbnailContainer').packery();
     return;
-  }
-  $('.eqLogicDisplayCard').hide();
-  $('.eqLogicDisplayCard .name').each(function(){
+}
+$('.eqLogicDisplayCard').hide();
+$('.eqLogicDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     if(text.indexOf(search.toLowerCase()) >= 0){
       $(this)
       $(this).closest('.eqLogicDisplayCard').show();
-    }
-  });
-  $('.eqLogicThumbnailContainer').packery();
+  }
+});
+$('.eqLogicThumbnailContainer').packery();
 });
 
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
- modifyWithoutSave = true;
- addCmdToTable();
- $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
+   modifyWithoutSave = true;
+   addCmdToTable();
+   $('.cmd:last .cmdAttr[data-l1key=type]').trigger('change');
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-l1key=chooseIcon]',function () {
- modifyWithoutSave = true;
- var cmd = $(this).closest('.cmd');
- chooseIcon(function (_icon) {
+   modifyWithoutSave = true;
+   var cmd = $(this).closest('.cmd');
+   chooseIcon(function (_icon) {
     cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
 });
 });
 
 $('#div_pageContainer').on( 'click','.cmd .cmdAttr[data-l1key=display][data-l2key=icon]', function () {
- modifyWithoutSave = true;
- $(this).empty();
+   modifyWithoutSave = true;
+   $(this).empty();
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=remove]',function () {
- modifyWithoutSave = true;
- $(this).closest('tr').remove();
+   modifyWithoutSave = true;
+   $(this).closest('tr').remove();
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=copy]',function () {
- modifyWithoutSave = true;
- var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
- cmd.id= '';
- addCmdToTable(cmd);
+   modifyWithoutSave = true;
+   var cmd = $(this).closest('.cmd').getValues('.cmdAttr')[0];
+   cmd.id= '';
+   addCmdToTable(cmd);
 });
 
 $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function (event) {
@@ -351,12 +347,12 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
-   event.stopPropagation();
+ event.stopPropagation();
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd', function () {
-   $('#md_modal').dialog({title: "{{Configuration commande}}"});
-   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
+ $('#md_modal').dialog({title: "{{Configuration commande}}"});
+ $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open');
 });
 
 $('#div_pageContainer').on( 'click', '.cmd .cmdAction[data-action=configure]',function () {
