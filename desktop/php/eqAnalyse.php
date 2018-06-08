@@ -20,7 +20,7 @@ usort($list, function ($a, $b) {
 	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-gears"></i> {{Actions définies}}</a></li>
 	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
-	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
+	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fa fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 </ul>
 
 <div class="tab-content">
