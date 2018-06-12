@@ -15,48 +15,58 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
- editor = [];
+ tab = null;
+ var url = document.location.toString();
+ if (url.match('#')) {
+  $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+  tab = e.target.hash;
+})
 
- listColor = ['#16a085', '#27ae60', '#2980b9', '#745cb0', '#f39c12', '#d35400', '#c0392b', '#2c3e50', '#7f8c8d'];
- listColorStrong = ['#12846D', '#229351', '#246F9E', '#634F96', '#D88811', '#B74600', '#A53026', '#1D2935', '#687272'];
- pColor = 0;
+editor = [];
 
- autoCompleteCondition = [
- {val: 'rand(MIN,MAX)'},
- {val: '#heure#'},
- {val: '#jour#'},
- {val: '#mois#'},
- {val: '#annee#'},
- {val: '#date#'},
- {val: '#time#'},
- {val: '#timestamp#'},
- {val: '#semaine#'},
- {val: '#sjour#'},
- {val: '#minute#'},
- {val: '#IP#'},
- {val: '#hostname#'},
- {val: 'variable(mavariable,defaut)'},
- {val: 'tendance(commande,periode)'},
- {val: 'average(commande,periode)'},
- {val: 'max(commande,periode)'},
- {val: 'min(commande,periode)'},
- {val: 'round(valeur)'},
- {val: 'trigger(commande)'},
- {val: 'randomColor(debut,fin)'},
- {val: 'lastScenarioExecution(scenario)'},
- {val: 'stateDuration(commande)'},
- {val: 'lastChangeStateDuration(commande,value)'},
- {val: 'median(commande1,commande2)'},
- {val: 'time(value)'},
- {val: 'collectDate(cmd)'},
- {val: 'valueDate(cmd)'},
- {val: 'eqEnable(equipement)'},
- {val: 'name(type,commande)'},
- {val: 'value(commande)'}
- ];
- autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
+listColor = ['#16a085', '#27ae60', '#2980b9', '#745cb0', '#f39c12', '#d35400', '#c0392b', '#2c3e50', '#7f8c8d'];
+listColorStrong = ['#12846D', '#229351', '#246F9E', '#634F96', '#D88811', '#B74600', '#A53026', '#1D2935', '#687272'];
+pColor = 0;
 
- if (getUrlVars('saveSuccessFull') == 1) {
+autoCompleteCondition = [
+{val: 'rand(MIN,MAX)'},
+{val: '#heure#'},
+{val: '#jour#'},
+{val: '#mois#'},
+{val: '#annee#'},
+{val: '#date#'},
+{val: '#time#'},
+{val: '#timestamp#'},
+{val: '#semaine#'},
+{val: '#sjour#'},
+{val: '#minute#'},
+{val: '#IP#'},
+{val: '#hostname#'},
+{val: 'variable(mavariable,defaut)'},
+{val: 'tendance(commande,periode)'},
+{val: 'average(commande,periode)'},
+{val: 'max(commande,periode)'},
+{val: 'min(commande,periode)'},
+{val: 'round(valeur)'},
+{val: 'trigger(commande)'},
+{val: 'randomColor(debut,fin)'},
+{val: 'lastScenarioExecution(scenario)'},
+{val: 'stateDuration(commande)'},
+{val: 'lastChangeStateDuration(commande,value)'},
+{val: 'median(commande1,commande2)'},
+{val: 'time(value)'},
+{val: 'collectDate(cmd)'},
+{val: 'valueDate(cmd)'},
+{val: 'eqEnable(equipement)'},
+{val: 'name(type,commande)'},
+{val: 'value(commande)'}
+];
+autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
+
+if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
@@ -232,6 +242,9 @@ $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) 
                 }
               }
               url += 'id=' + data.id + '&saveSuccessFull=1';
+              if(tab !== null){
+                url += tab;
+              }
               modifyWithoutSave = false;
               loadPage(url);
             }
@@ -948,7 +961,11 @@ function saveScenario() {
     },
     success: function (data) {
       modifyWithoutSave = false;
-      loadPage('index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1');
+      url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
+      if(tab !== null){
+        url += tab;
+      }
+      loadPage(url);
     }
   });
 }
