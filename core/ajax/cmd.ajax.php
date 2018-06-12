@@ -95,7 +95,7 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 		}
-		ajax::success(utils::o2a($cmd));
+		ajax::success(jeedom::toHumanReadable(utils::o2a($cmd)));
 	}
 
 	if (init('action') == 'copyHistoryToCmd') {
@@ -189,7 +189,7 @@ try {
 		}
 		utils::a2o($cmd, $cmd_ajax);
 		$cmd->save();
-		ajax::success();
+		ajax::success(utils::o2a($cmd));
 	}
 
 	if (init('action') == 'multiSave') {
