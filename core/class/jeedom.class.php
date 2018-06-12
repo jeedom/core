@@ -203,7 +203,7 @@ class jeedom {
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
 			'result' => $value,
-			'comment' => __('Nombre de processus tué par le noyaux pour manque de mémoire', __FILE__),
+			'comment' => ($value == 0) ? '' : __('Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios', __FILE__),
 		);
 
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
