@@ -37,31 +37,25 @@ function initEquipment(_object_id) {
   });
   if (isset(_object_id)) {
     summary = '';
-	initObject = '';
+	var childList = [_object_id];
+	var initObject = '';
     if(_object_id.indexOf(':') != -1){
       temp = _object_id.split(':');
       _object_id = temp[0];
       summary = temp[1];
     }
-	if (_object_id in objectMapping){
-		var initObject = _object_id;
-		var childList = [_object_id];
-		for (var children in objectMapping[_object_id]){
-			var childId1 = parseInt(objectMapping[_object_id][children]);
-			if (childId1 in objectMapping) {
-				for (var littlechildren in objectMapping[childId1]){
-					var childId2 = parseInt(objectMapping[childId1][littlechildren]);
-					if (childId2 in objectMapping) {
-						for (var littlechildren2 in objectMapping[childId2]){
-							var childId3 = parseInt(objectMapping[childId2][littlechildren2]);
-							childList.push(childId3);
-						}
-					}
-					childList.push(childId2);
-				}
+	function findChildren(_object_id) {
+		if (_object_id in objectMapping){
+			initObject = _object_id;
+			for (var children in objectMapping[_object_id]){
+				var childId1 = parseInt(objectMapping[_object_id][children]);
+				childList.push(childId1);
+				findChildren(childId1);
 			}
-			childList.push(childId1);
 		}
+	}
+	if (_object_id in objectMapping){
+		findChildren(_object_id);
 		_object_id = JSON.stringify(childList);
 	}
     jeedom.object.toHtml({
