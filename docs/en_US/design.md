@@ -2,7 +2,7 @@ Cette page permet de configurer l’affichage de toute votre domotique de
 manière très fine. Celle-ci demande du temps mais sa seule limite est
 votre imagination.
 
-Elle est accessible par Acceuil → Dashboard
+Elle est accessible par Acceuil → Design
 
 > **Tip**
 >

@@ -1,21 +1,20 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+Auf dieser Seite können sie die Anzeige der gesamten Haustechnik ganz
+genau konfigurieren. Dies braucht Zeit, aber die einzige Grenze ist Ihre
+Vorstellungskraft.
 
-Elle est accessible par Acceuil → Dashboard
+Elle est accessible par Acceuil → Design
 
-> **Tip**
+> **Tipp**
 >
-> Il est possible d’aller directement sur un design grâce au sous-menu.
+> Über das Untermenü kann direkt zu einem Design gesprungen werden.
 
-> **Important**
+> **Wichtig**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d’être sur le design).
+> Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf
+> diese Seite klicken, achten Sie darauf, dass Sie es richtig im Design machen.
+> Beim Erstellen müssen Sie es in der Mitte der Seite tun (um sicher zu sein, dass es auf dem Design ist).
 
-Dans le menu nous retrouvons (clic droit donc) nous retrouvons les
-actions suivantes :
+Im Menü (rechts klicken), sind folgende Aktionen verfügbar :
 
 -   **Designs** : Affiche la liste de vos designs et d’y accéder
 

@@ -2,7 +2,7 @@ Esta página le permite configurar la visualización de todo su sistema domótic
 manera más personal. Esto lleva tiempo pero su único límite es
 su imaginación.
 
-Es accesible a través de Inicio→ Dashboard
+Elle est accessible par Acceuil → Design
 
 > **Consejo**
 >
