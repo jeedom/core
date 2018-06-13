@@ -66,7 +66,7 @@ foreach (view::all() as $view) {
                 <form class="form-horizontal" onsubmit="return false;">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{Nom}}</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-10">
                             <input id="in_addEditviewZoneName" class="form-control" placeholder="{{Nom}}" />
                         </div>
                     </div>

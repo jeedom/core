@@ -262,7 +262,7 @@ function updateRepoListBackup(_repo) {
         success: function (data) {
             var options = '';
             for (var i in data) {
-                options += '<option value="' + i + '">' + data[i] + '</option>';
+                options += '<option value="' + data[i] + '">' + data[i] + '</option>';
             }
             $('.sel_restoreCloudBackup[data-repo='+_repo+']').empty().html(options);
         }

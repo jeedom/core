@@ -369,6 +369,7 @@ class repo_market {
 			}
 			throw new Exception('[restore cloud] ' . $e->getMessage());
 		}
+		return;
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
