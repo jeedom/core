@@ -154,7 +154,7 @@ class listener {
 			$this->execute($_event, $_value);
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
-			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' value=' . $_value;
+			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' "value=' . escapeshellarg($_value) . '"';
 			system::php($cmd . ' >> ' . log::getPathToLog('listener_execution') . ' 2>&1 &');
 		}
 	}

@@ -90,6 +90,7 @@
  }
 
  function displayFile(_path){
+ 	$.hideAlert();
  	$('#bt_saveFile').attr('data-path',_path);
  	$('#bt_deleteFile').attr('data-path',_path);
  	jeedom.getFileContent({
