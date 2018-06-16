@@ -457,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `listener` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `class` VARCHAR(127) NULL,
   `function` VARCHAR(127) NULL,
-  `event` VARCHAR(255) NULL,
+  `event` VARCHAR(511) NULL,
   `option` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `event` (`event` ASC))
