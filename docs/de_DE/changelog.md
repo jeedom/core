@@ -6,6 +6,7 @@
 
 - Fehlerkorrekturen
 - Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
+- Correction de bugs sur les listenners
 
 3.2.8
 =====
