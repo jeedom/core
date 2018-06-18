@@ -409,69 +409,74 @@ function addGraphService(_viewData){
     tr += '<span class="viewDataAttr" data-l1key="name"></span>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphColor" style="background-color:#4572A7;color:white;">'
-    tr += '<option value="#4572A7" style="background-color:#4572A7;color:white;">{{Bleu}}</option>'
-    tr += '<option value="#AA4643" style="background-color:#AA4643;color:white;">{{Rouge}}</option>'
-    tr += '<option value="#89A54E" style="background-color:#89A54E;color:white;">{{Vert}}</option>'
-    tr += '<option value="#80699B" style="background-color:#80699B;color:white;">{{Violet}}</option>'
-    tr += '<option value="#00FFFF" style="background-color:#00FFFF;color:white;">{{Bleu ciel}}</option>'
-    tr += '<option value="#DB843D" style="background-color:#DB843D;color:white;">{{Orange}}</option>'
-    tr += '<option value="#FFFF00" style="background-color:#FFFF00;color:white;">{{Jaune}}</option>'
-    tr += '<option value="#FE2E9A" style="background-color:#FE2E9A;color:white;">{{Rose}}</option>'
-    tr += '<option value="#000000" style="background-color:#000000;color:white;">{{Noir}}</option>'
-    tr += '<option value="#3D96AE" style="background-color:#3D96AE;color:white;">{{Vert/Bleu}}</option>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphColor" style="background-color:#4572A7;color:white;">';
+    tr += '<option value="#4572A7" style="background-color:#4572A7;color:white;">{{Bleu}}</option>';
+    tr += '<option value="#AA4643" style="background-color:#AA4643;color:white;">{{Rouge}}</option>';
+    tr += '<option value="#89A54E" style="background-color:#89A54E;color:white;">{{Vert}}</option>';
+    tr += '<option value="#80699B" style="background-color:#80699B;color:white;">{{Violet}}</option>';
+    tr += '<option value="#00FFFF" style="background-color:#00FFFF;color:white;">{{Bleu ciel}}</option>';
+    tr += '<option value="#DB843D" style="background-color:#DB843D;color:white;">{{Orange}}</option>';
+    tr += '<option value="#FFFF00" style="background-color:#FFFF00;color:white;">{{Jaune}}</option>';
+    tr += '<option value="#FE2E9A" style="background-color:#FE2E9A;color:white;">{{Rose}}</option>';
+    tr += '<option value="#000000" style="background-color:#000000;color:white;">{{Noir}}</option>';
+    tr += '<option value="#3D96AE" style="background-color:#3D96AE;color:white;">{{Vert/Bleu}}</option>';
     tr += '</select>'
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphType">'
-    tr +=  '<option value="line">{{Ligne}}</option>'
-    tr +=  '<option value="area">{{Aire}}</option>'
-    tr +=  '<option value="column">{{Colonne}}</option>'
-    tr +=  '<option value="pie">{{Camembert}}</option>'
-    tr +=  '</select>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphType">';
+    tr +=  '<option value="line">{{Ligne}}</option>';
+    tr +=  '<option value="area">{{Aire}}</option>';
+    tr +=  '<option value="column">{{Colonne}}</option>';
+    tr +=  '<option value="pie">{{Camembert}}</option>';
+    tr +=  '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="groupingType">'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="groupingType">';
     tr += '<option value="">{{Aucun groupement}}</option>'
-    tr += '<option value="sum::day">{{Somme par jour}}</option>'
-    tr += '<option value="average::day">{{Moyenne par jour}}</option>'
-    tr += '<option value="low::day">{{Minimum par jour}}</option>'
-    tr += '<option value="high::day">{{Maximum par jour}}</option>'
-    tr += '<option value="sum::week">{{Somme par semaine}}</option>'
-    tr += '<option value="average::week">{{Moyenne par semaine}}</option>'
-    tr += '<option value="low::week">{{Minimum par semaine}}</option>'
-    tr += '<option value="high::week">{{Maximum par semaine}}</option>'
-    tr += '<option value="sum::month">{{Somme par mois}}</option>'
-    tr += '<option value="average::month">{{Moyenne par mois}}</option>'
-    tr += '<option value="low::month">{{Minimum par mois}}</option>'
-    tr += '<option value="high::month">{{Maximum par mois}}</option>'
-    tr += '<option value="average::year">{{Moyenne par année}}</option>'
-    tr += '<option value="low::year">{{Minimum par année}}</option>'
-    tr += '<option value="high::year">{{Maximum par année}}</option>'
-    tr +=  '</select>'
+    tr += '<option value="sum::hour">{{Somme par heure}}</option>';
+    tr += '<option value="average::hour">{{Moyenne par heure}}</option>';
+    tr += '<option value="low::hour">{{Minimum par heure}}</option>';
+    tr += '<option value="high::hour">{{Maximum par heure}}</option>';
+    tr += '<option value="sum::day">{{Somme par jour}}</option>';
+    tr += '<option value="average::day">{{Moyenne par jour}}</option>';
+    tr += '<option value="low::day">{{Minimum par jour}}</option>';
+    tr += '<option value="high::day">{{Maximum par jour}}</option>';
+    tr += '<option value="sum::week">{{Somme par semaine}}</option>';
+    tr += '<option value="average::week">{{Moyenne par semaine}}</option>';
+    tr += '<option value="low::week">{{Minimum par semaine}}</option>';
+    tr += '<option value="high::week">{{Maximum par semaine}}</option>';
+    tr += '<option value="sum::month">{{Somme par mois}}</option>';
+    tr += '<option value="average::month">{{Moyenne par mois}}</option>';
+    tr += '<option value="low::month">{{Minimum par mois}}</option>';
+    tr += '<option value="high::month">{{Maximum par mois}}</option>';
+    tr += '<option value="sum::year">{{Somme par année}}</option>';
+    tr += '<option value="average::year">{{Moyenne par année}}</option>';
+    tr += '<option value="low::year">{{Minimum par année}}</option>';
+    tr += '<option value="high::year">{{Maximum par année}}</option>';
+    tr +=  '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">'
-    tr += '<option value="0">{{Droite}}</option>'
-    tr += '<option value="1">{{Gauche}}</option>'
-    tr += '</select>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">';
+    tr += '<option value="0">{{Droite}}</option>';
+    tr += '<option value="1">{{Gauche}}</option>';
+    tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStep" style="width : 90px;">'
-    tr += '<option value="0">{{Non}}</option>'
-    tr += '<option value="1">{{Oui}}</option>'
-    tr += '</select>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStep" style="width : 90px;">';
+    tr += '<option value="0">{{Non}}</option>';
+    tr += '<option value="1">{{Oui}}</option>';
+    tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStack" style="width : 90px;">'
-    tr += '<option value="0">{{Non}}</option>'
-    tr += '<option value="1">{{Oui}}</option>'
-    tr += '</select>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStack" style="width : 90px;">';
+    tr += '<option value="0">{{Non}}</option>';
+    tr += '<option value="1">{{Oui}}</option>';
+    tr += '</select>';
     tr += '</td>';
     tr += '<td>';
-    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="derive" style="width : 90px;">'
-    tr += '<option value="0">{{Non}}</option>'
-    tr += '<option value="1">{{Oui}}</option>'
+    tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="derive" style="width : 90px;">';
+    tr += '<option value="0">{{Non}}</option>';
+    tr += '<option value="1">{{Oui}}</option>';
     tr += '</select>'
     tr += '</td>';
     tr += '</tr>';

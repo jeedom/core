@@ -13,6 +13,10 @@ $date = array(
         <a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
         <select class="form-control pull-right sel_groupingType" style="width: 200px;">
             <option value="">{{Aucun groupement}}</option>
+            <option value="sum::hour">{{Somme par heure}}</option>
+            <option value="average::hour">{{Moyenne par heure}}</option>
+            <option value="low::hour">{{Minimum par heure}}</option>
+            <option value="high::hour">{{Maximum par heure}}</option>
             <option value="sum::day">{{Somme par jour}}</option>
             <option value="average::day">{{Moyenne par jour}}</option>
             <option value="low::day">{{Minimum par jour}}</option>
