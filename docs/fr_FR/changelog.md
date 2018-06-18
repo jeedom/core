@@ -17,6 +17,14 @@ Changelog
 -   Ajout d'un bouton pour rafraichir les messages du centre message
 -   Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scenario, pause....)
 
+3.2.9
+=====
+
+- Correction de bugs
+- Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
+- Correction de bugs sur les listenners
+- Ajout d'une alerte si un plugin bloque les crons
+
 3.2.8
 =====
 
