@@ -7,6 +7,7 @@ Changelog
 - Correction de bugs
 - Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
+- Ajout d'une alerte si un plugin bloque les crons
 
 3.2.8
 =====
@@ -16,6 +17,7 @@ Changelog
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
 - Amélioration de l'éditeur de fichier
+- Uniformisation des regroupements de valeurs pour les graphique (merci @apevrier)
 
 3.2.7
 =====
