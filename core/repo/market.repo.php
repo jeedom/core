@@ -483,7 +483,7 @@ class repo_market {
 				'name' => __('Cloud monitoring actif', __FILE__),
 				'state' => $monitoring_state,
 				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'comment' => __('Attention 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
+				'comment' => ($monitoring_state) ? '' : __('Attendez 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
 			);
 		}
 		return $return;
