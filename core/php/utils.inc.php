@@ -849,53 +849,19 @@ function getIpFromString($_string) {
 	return $_string;
 }
 
-function evaluate2($_string) {
-	$_origString = $_string;
-	$strings = array();
-	$c = 0;
-	if (stripos($_string, '"') || stripos($_string, '\'')) {
-		try {
-			$thisStr = '';
-			$starter = Null;
-			$l = strlen($_string);
-			for ($i = 0; $i < $l; $i++) {
-				if ($_string[$i] == '"') {
-					if ($i > 0 && $_string[$i - 1] == '\\') {
-						continue;
-					}
-					if ($starter == Null) {
-						$starter = '"';
-					} elseif ($starter == '"') {
-						array_push($strings, substr($thisStr, 1));
-						$thisStr = '';
-						$starter = Null;
-					}
-				}
-				if ($_string[$i] == '\'') {
-					if ($i > 0 && $_string[$i - 1] == '\\') {
-						continue;
-					}
-
-					if ($starter == Null) {
-						$starter = '\'';
-					} elseif ($starter == '\'') {
-						array_push($strings, substr($thisStr, 1));
-						$thisStr = '';
-						$starter = Null;
-					}
-				}
-				if ($starter != Null) {
-					$thisStr .= $_string[$i];
-				}
-			}
-			$c = count($strings);
-			for ($i = 0; $i < $c; $i++) {
-				$str = '/' . preg_quote($strings[$i], '/') . '/';
-				$_string = preg_replace($str, '--preparsed' . $i . '--', $_string, 1);
-			}
-		} catch (Exception $e) {
-			$_string = $_origString;
+function evaluate($_string) {
+	if (!isset($GLOBALS['ExpressionLanguage'])) {
+		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
+	}
+	if (stripos($_string, '"') !== false || stripos($_string, '\'') !== false) {
+		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
+		$r = preg_match_all($regex, $_string, $matches);
+		$c = count($matches[0]);
+		for ($i = 0; $i < $c; $i++) {
+			$_string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $_string);
 		}
+	} else {
+		$c = 0;
 	}
 	$expr = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
 	$expr = str_replace('==', '=', $expr);
@@ -905,7 +871,6 @@ function evaluate2($_string) {
 	$expr = str_replace('!==', '!=', $expr);
 	$expr = str_replace('!===', '!==', $expr);
 	$expr = str_replace('====', '===', $expr);
-
 	if ($c >= 1) {
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $strings[$i], $expr);
@@ -925,7 +890,7 @@ function evaluate2($_string) {
 	return $_string;
 }
 
-function evaluate($_string) {
+function evaluate_old($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
