@@ -853,7 +853,7 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	if (stripos($_string, '"') !== false || stripos($_string, '\'') !== false) {
+	if (strpos($_string, '"') !== false || strpos($_string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
 		$r = preg_match_all($regex, $_string, $matches);
 		$c = count($matches[0]);
