@@ -871,9 +871,9 @@ function evaluate($_string) {
 	$expr = str_replace('!==', '!=', $expr);
 	$expr = str_replace('!===', '!==', $expr);
 	$expr = str_replace('====', '===', $expr);
-	if ($c >= 1) {
+	if ($c > 0) {
 		for ($i = 0; $i < $c; $i++) {
-			$expr = str_replace('--preparsed' . $i . '--', $strings[$i], $expr);
+			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
 		}
 	}
 	try {
