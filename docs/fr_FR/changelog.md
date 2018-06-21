@@ -8,6 +8,7 @@ Changelog
 - Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
+- Correction d'un bug dans le systeme de monitoring cloud si la version de l'agent est inférieure à 3.X.X
 
 3.2.8
 =====
