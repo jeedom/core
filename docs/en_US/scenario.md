@@ -121,7 +121,7 @@ notre scénario :
 
 -   **Mode du scénario** : Le scénario peut être programmé, déclenché ou
     les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s)
-    déclencheur(s) et la/les programmation(s).
+    déclencheur(s) (attention il y a une limite au nombre de déclencheur possible par scénario de 15) et la/les programmation(s).
 
 > **Tip**
 >
@@ -394,7 +394,7 @@ pouvez utiliser les tags suivants :
 
 -   #hostname# : Nom de la machine Jeedom,
 
--   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement ou 'interact' si il a été lancé depuis une interaction
+-   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :

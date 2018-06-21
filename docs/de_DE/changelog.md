@@ -1,14 +1,23 @@
 Änderungsprotokoll 
 =========
 
-3.2.8
+3.2.9
 =====
 
 - Fehlerkorrekturen
-- In der Jeeedom-Administration wurde eine Option hinzugefügt, um den lokalen IP-Bereich anzugeben (nützlich bei Docker-Installationen)
-- Ein Fehler bei der Berechnung der Variablennutzung wurde behoben
+- Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
+- Correction de bugs sur les listenners
+- Ajout d'une alerte si un plugin bloque les crons
+
+3.2.8
+=====
+
+- Correction de bugs
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+- Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
 - Amélioration de l'éditeur de fichier
+- Uniformisation des regroupements de valeurs pour les graphique (merci @apevrier)
 
 3.2.7
 =====

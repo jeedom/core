@@ -1,0 +1,1 @@
+ALTER TABLE listener MODIFY `event` VARCHAR(511);

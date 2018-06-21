@@ -224,6 +224,10 @@ if ($market->getHardwareCompatibility('miniplus') == 1) {
        <?php }
 ?>
      </div>
+<div class='col-sm-2'>
+    <label class="control-label">{{Installation}}</label>
+    <span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
+  </div>
      <div class='col-sm-1'>
       <label class="control-label">{{Type}}</label><br/>
       <span class="marketAttr" data-l1key="type"></span>
