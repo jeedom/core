@@ -392,9 +392,9 @@ class repo_market {
 				} else {
 					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
 				}
-				shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
 			}
 		}
+		shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
 		shell_exec('sudo apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
 	}
 
