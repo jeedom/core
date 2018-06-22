@@ -698,7 +698,6 @@ class repo_market {
 				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'addrComplement' => config::byKey('externalComplement'),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
@@ -710,10 +709,8 @@ class repo_market {
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
 			);
-			if (config::byKey('market::allowDNS') != 1) {
-				$params['addr'] = config::byKey('externalAddr');
-				$params['addrProtocol'] = config::byKey('externalProtocol');
-				$params['addrPort'] = config::byKey('externalPort');
+			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+				$params['url'] = network::getNetworkAccess('external');
 			}
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		} else {
