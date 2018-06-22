@@ -223,8 +223,8 @@ class plugin {
 				if (config::byKey('functionality::cron::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cron::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron::last', $plugin_id);
 				try {
 					$plugin_id::cron();
 				} catch (Exception $e) {
@@ -248,8 +248,8 @@ class plugin {
 				if (config::byKey('functionality::cron5::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cron5::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron5::last', $plugin_id);
 				try {
 					$plugin_id::cron5();
 				} catch (Exception $e) {
@@ -273,8 +273,8 @@ class plugin {
 				if (config::byKey('functionality::cron15::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cron15::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron15::last', $plugin_id);
 				try {
 					$plugin_id::cron15();
 				} catch (Exception $e) {
@@ -298,8 +298,8 @@ class plugin {
 				if (config::byKey('functionality::cron30::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cron30::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron30::last', $plugin_id);
 				try {
 					$plugin_id::cron30();
 				} catch (Exception $e) {
@@ -323,8 +323,8 @@ class plugin {
 				if (config::byKey('functionality::cronDaily::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cronDaily::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronDaily::last', $plugin_id);
 				try {
 					$plugin_id::cronDaily();
 				} catch (Exception $e) {
@@ -348,8 +348,8 @@ class plugin {
 				if (config::byKey('functionality::cronHourly::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
-				cache::set('plugin::cronHourly::last', $plugin_id);
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronHourly::last', $plugin_id);
 				try {
 					$plugin_id::cronHourly();
 				} catch (Exception $e) {

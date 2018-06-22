@@ -705,7 +705,7 @@ class repo_market {
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
 				),
-				'market_api_key' => jeedom::getApiKey('market'),
+				'market_api_key' => jeedom::getApiKey('apimarket'),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),

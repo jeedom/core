@@ -314,6 +314,12 @@ class jeedom {
 			}
 			return config::byKey('apipro');
 		}
+		if ($_plugin == 'apimarket') {
+			if (config::byKey('apimarket') == '') {
+				config::save('apimarket', config::genKey());
+			}
+			return config::byKey('apimarket');
+		}
 		if (config::byKey('api', $_plugin) == '') {
 			config::save('api', config::genKey(), $_plugin);
 		}

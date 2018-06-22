@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 
 $repos = update::listRepo();
 
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable');
+$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
@@ -290,6 +290,25 @@ $lastKnowDate = $cache->getValue();
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
+						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+							<div class="input-group">
+								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
+								<span class="input-group-btn">
+									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+								</span>
+							</div>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+							<select class="form-control configKey" data-l1key="api::core::market::mode">
+								<option value="enable">{{Activé}}</option>
+								<option value="disable">{{Désactivé}}</option>
+							</select>
+						</div>
+					</div>
+					<hr/>
 					<?php
 if (init('rescue', 0) == 0) {
 	foreach (plugin::listPlugin(true) as $plugin) {
