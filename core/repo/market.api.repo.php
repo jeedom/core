@@ -26,7 +26,7 @@ if (user::isBan() && false) {
 	die();
 }
 try {
-	if (!jeedom::apiAccess(init('apikey'), 'market')) {
+	if (!jeedom::apiAccess(init('apikey'), 'apimarket')) {
 		user::failedLogin();
 		sleep(5);
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1, IP : ', __FILE__) . getClientIp());
