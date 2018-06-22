@@ -17,7 +17,7 @@
  */
 header('Access-Control-Allow-Origin: *');
 require_once __DIR__ . "/../php/core.inc.php";
-if (user::isBan() && false) {
+if (user::isBan()) {
 	header("Status: 404 Not Found");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
