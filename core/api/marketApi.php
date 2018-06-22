@@ -37,8 +37,9 @@ try {
 		}
 		$cron = new cron();
 		$cron->setClass('repo_market');
-		$cron->setFunction(init('test'));
+		$cron->setFunction('test');
 		$cron->setOnce(1);
+		$cron->setSchedule(cron::convertDateToCron(strtotime('now')));
 		$cron->save();
 		$cron->start();
 	}
