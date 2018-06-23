@@ -1,6 +1,12 @@
 Changelog
 =========
 
+3.2.10
+=====
+
+- Correction de bugs
+- Amélioration de la synchronisation avec le market
+
 3.2.9
 =====
 
