@@ -305,6 +305,8 @@ commandes) :
 
 -   #end_restore# : événement envoyé à la fin d’une restauration.
 
+-   #user_connect# : connection d'un utilisateur
+
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
 jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
