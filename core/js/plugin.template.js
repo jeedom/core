@@ -277,6 +277,9 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
                     }
                     modifyWithoutSave = false;
                     url += 'id=' + _data.id + '&saveSuccessFull=1';
+                    if (document.location.toString().match('#')) {
+                        url += '#' + document.location.toString().split('#')[1];
+                    }
                     loadPage(url);
                 }
             });
