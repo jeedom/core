@@ -450,11 +450,12 @@ class history {
 		if ($cmd->getIsHistorized() != 1) return -2;
 
 		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) return -1;
 		$currentValue = $histories[0]->getValue();
 		$dateTo = date('Y-m-d H:i:s');
 		$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
 
-		$c = count($histories);
 		for ($i=0; $i<$c-1; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
@@ -475,8 +476,11 @@ class history {
 		if (!is_object($cmd)) throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		if ($cmd->getIsHistorized() != 1) return -2;
 		$_value = str_replace(',', '.', $_value);
+		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
 
 		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) return -1;
 		$currentValue = $histories[0]->getValue();
 		$duration = 0;
 		$dateTo = date('Y-m-d H:i:s');
@@ -486,10 +490,10 @@ class history {
 		}
 
 		$started = 0;
-		$c = count($histories);
 		for ($i=0; $i<$c; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
+			$value = round($value, $_decimal);
 			$date = $history->getDatetime();
 
 			//same state as current:
@@ -526,8 +530,11 @@ class history {
 		if (!is_object($cmd)) throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		if ($cmd->getIsHistorized() != 1) return -2;
 		$_value = str_replace(',', '.', $_value);
+		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
 
 		$histories = array_reverse(history::all($_cmd_id));
+		$c = count($histories);
+		if ($c == 0) return -1;
 		$currentValue = $histories[0]->getValue();
 		$dateTo = date('Y-m-d H:i:s');
 		$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
@@ -535,10 +542,11 @@ class history {
 			$_value = $histories[0]->getValue();
 		}
 
-		$c = count($histories);
+
 		for ($i=0; $i<$c-1; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
+			$value = round($value, $_decimal);
 			$date = $history->getDatetime();
 
 			//same state as current:
