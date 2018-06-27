@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -89,7 +88,7 @@
 
  $("#table_cron").delegate(".display", 'click', function () {
     $('#md_modal').dialog({title: "{{Détails du cron}}"});
-    $("#md_modal").load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open');
+    $("#md_modal").load('index.php?v=d&modal=cron.details&id='+$(this).closest('tr').attr('id')).dialog('open');
 });
 
  $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
