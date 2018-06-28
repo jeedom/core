@@ -447,7 +447,7 @@ function removeCR($_string) {
 	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
-function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_log = false) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -554,7 +554,14 @@ function rrmdir($dir) {
 			return false;
 		}
 	} else if (file_exists($dir)) {
-		return unlink($dir);
+		if (!unlink($dir)) {
+			$output = array();
+			$retval = 0;
+			exec('sudo rm ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
+		}
 	}
 	return true;
 }
