@@ -16,44 +16,70 @@
  */
 
 if (!isConnect('admin')) {
-	throw new Exception('401 Unauthorized');
+  throw new Exception('401 Unauthorized');
 }
 $class = init('class');
 if ($class == '' || !class_exists($class)) {
-	throw new Exception(__('La classe demandée n\'existe pas : ', __FILE__) . $class);
+  throw new Exception(__('La classe demandée n\'existe pas : ', __FILE__) . $class);
 }
 if (!method_exists($class, 'byId')) {
-	throw new Exception(__('La classe demandée n\'a pas de méthode byId : ', __FILE__) . $class);
+  throw new Exception(__('La classe demandée n\'a pas de méthode byId : ', __FILE__) . $class);
 }
 
 $object = $class::byId(init('id'));
 if (!is_object($object)) {
-	throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $class);
+  throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $class);
 }
 
 $array = utils::o2a($object);
 if (count($array) == 0) {
-	throw new Exception(__('L\'objet n\'a aucun élément : ', __FILE__) . print_r($array, true));
+  throw new Exception(__('L\'objet n\'a aucun élément : ', __FILE__) . print_r($array, true));
 }
+
+
+//custom display per class:
+if ($class == 'cron') {
+  $cron = $object->toArray();
+
+  if ($cron['function'] == 'doIn') {
+    $optionAr = $cron['option'];
+    $scenario_id = $optionAr['scenario_id'];
+    $scenarioElement_id = $optionAr['scenarioElement_id'];
+    $scName = scenario::byId($scenario_id)->getName();
+    $scenarioElement = scenarioElement::byId($scenarioElement_id)->export();
+    echo'<form class="form-horizontal">';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-2 control-label">doIn</label>';
+    echo '<div class="col-sm-10">';
+    echo '<pre style="font-family:noto">'.$scenarioElement.'</pre>';
+    echo '</div>';
+    echo '</div>';
+    echo '</form>';
+
+    $array = array('doIn scenario_name'=>$scName) + $array;
+  }
+}
+
+
 ?>
 
 <form class="form-horizontal">
-	<fieldset>
-		<?php
-foreach ($array as $key => $value) {
-	echo '<div class="form-group">';
-	echo '<label class="col-sm-2 control-label">' . $key . '</label>';
-	echo '<div class="col-sm-10">';
-	if (is_array($value)) {
-		echo '<textarea class="form-control" rows="3" disabled>';
-		echo json_encode($value);
-		echo '</textarea>';
-	} else {
-		echo '<input class="form-control" disabled value="' . $value . '" />';
-	}
-	echo '</div>';
-	echo '</div>';
-}
-?>
-	</fieldset>
+  <fieldset>
+    <?php
+      foreach ($array as $key => $value) {
+          echo '<div class="form-group">';
+          echo '<label class="col-sm-2 control-label">' . $key . '</label>';
+          echo '<div class="col-sm-10">';
+          if (is_array($value)) {
+              echo '<textarea class="form-control" rows="3" disabled>';
+              echo json_encode($value);
+              echo '</textarea>';
+          } else {
+              echo '<input class="form-control" disabled value="' . $value . '" />';
+          }
+          echo '</div>';
+          echo '</div>';
+      }
+    ?>
+  </fieldset>
 </form>
