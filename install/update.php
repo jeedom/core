@@ -198,7 +198,7 @@ try {
 				}
 				echo "Moving files...";
 				$update_begin = true;
-				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true,true);
 				echo "OK\n";
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
