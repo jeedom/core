@@ -37,32 +37,28 @@ if (count($array) == 0) {
 }
 
 
-//custom display per class:
-if ($class == 'cron') {
-	$cron = $object->toArray();
+if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == 'doIn') {
+    $optionAr = $array['option'];
+    $scenario_id = $optionAr['scenario_id'];
+    $scenarioElement_id = $optionAr['scenarioElement_id'];
+    $scName = scenario::byId($scenario_id)->getHumanName();
+    $scenarioElement = scenarioElement::byId($scenarioElement_id)->export();
+    echo '<form class="form-horizontal">';
+    echo '<div class="form-group">';
+    echo '<label class="col-sm-2 control-label">doIn</label>';
+    echo '<div class="col-sm-10">';
+    echo '<pre style="font-family:noto">'.$scenarioElement.'</pre>';
+    echo '</div>';
 
-	if ($cron['function'] == 'doIn') {
-	  $optionAr = $cron['option'];
-	  $scenario_id = $optionAr['scenario_id'];
-	  $scenarioElement_id = $optionAr['scenarioElement_id'];
-	  $scName = scenario::byId($scenario_id)->getHumanName();
-	  $scenarioElement = scenarioElement::byId($scenarioElement_id)->export();
-      echo '<form class="form-horizontal">';
-      echo '<div class="form-group">';
-      echo '<label class="col-sm-2 control-label">doIn</label>';
-      echo '<div class="col-sm-10">';
-      echo '<pre style="font-family:noto">'.$scenarioElement.'</pre>';
-      echo '</div>';
-      
-      echo '<label class="col-sm-2 control-label">doIn scenario</label>';
-      echo '<div class="col-sm-10">';
-      echo '<span class="label label-default cursor">';
-      echo '<a href="index.php?v=d&amp;p=scenario&amp;id='.$scenario_id.'" style="color : white;">'.$scName.'</a></span>';
-      echo '</div>';
-      
-      echo '</div>';
-      echo '</form>';
-	}
+    echo '<label class="col-sm-2 control-label">doIn scenario</label>';
+    echo '<div class="col-sm-10">';
+    echo '<span class="label label-default cursor">';
+    echo '<a href="index.php?v=d&amp;p=scenario&amp;id='.$scenario_id.'" style="color : white;">'.$scName.'</a></span>';
+    echo '</div>';
+
+    echo '</div>';
+    echo '</form>';
+    echo '<hr>';
 }
 
 ?>
