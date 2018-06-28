@@ -551,13 +551,18 @@ function rrmdir($dir) {
 			}
 		}
 		if (!rmdir($dir)) {
-			return false;
+			$output = array();
+			$retval = 0;
+			exec('sudo rm -rf ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
 		}
 	} else if (file_exists($dir)) {
 		if (!unlink($dir)) {
 			$output = array();
 			$retval = 0;
-			exec('sudo rm ' . $dir, $output, $retval);
+			exec('sudo rm -rf ' . $dir, $output, $retval);
 			if ($retval != 0) {
 				return false;
 			}
