@@ -464,19 +464,21 @@ Plusieurs fonctions sont disponibles pour les équipements :
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   stateDuration(commande,[valeur]) : Donne la durée en secondes
+-   stateDuration(commande) : Donne la durée en secondes
     depuis le dernier changement de valeur. Retourne -1 si aucun
     historique n’existe ou si la valeur n’existe pas dans l’historique.
-    Return -2 si la commande n’est pas historisée :
+    Retourne -2 si la commande n’est pas historisée.
 
 -   lastChangeStateDuration(commande,valeur) : Donne la durée en
     secondes depuis le dernier changement d’état à la valeur passée
-    en paramètre. Attention, la valeur de l’équipement doit
-    être historisée.
+    en paramètre. Retourne -1 si aucun
+    historique n’existe ou si la valeur n’existe pas dans l’historique.
+    Retourne -2 si la commande n’est pas historisée
 
 -   lastStateDuration(commande,valeur) : Donne la durée en secondes
     pendant laquelle l’équipement a dernièrement eu la valeur choisie.
-    Attention, la valeur de l’équipement doit être historisée.
+    Retourne -1 si aucun historique n’existe ou si la valeur n’existe pas dans l’historique.
+    Retourne -2 si la commande n’est pas historisée
 
 -   stateChanges(commande,[valeur], période) et
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
@@ -563,8 +565,6 @@ ces différentes fonctions :
 | statistics(prise,count,période)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
 | tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
 | stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| stateDuration(prise,0)             | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)                             |
-| stateDuration(prise,1)             | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n’est pas dans cet état                             |
 | lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
 | lastChangeStateDuration(prise,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
