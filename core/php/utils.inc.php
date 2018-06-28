@@ -468,13 +468,27 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		}
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
-			if (!$_noError) {
-				return copy($src, $dst);
-			} else {
-				@copy($src, $dst);
-				return true;
+			$srcSize = filesize($src);
+			if (!copy($src, $dst)) {
+				$output = array();
+				$retval = 0;
+				exec('sudo cp ' . $src . ' ' . $dst, $output, $retval);
+				if ($retval != 0) {
+					if (!$_noError) {
+						return false;
+					} else if ($_log) {
+						echo 'Error on move ' . $src . ' to ' . $dst;
+					}
+				}
 			}
-
+			if ($srcSize != filesize($dst)) {
+				if (!$_noError) {
+					return false;
+				} else if ($_log) {
+					echo 'Error on move ' . $src . ' to ' . $dst;
+				}
+			}
+			return true;
 		}
 	}
 	return true;
