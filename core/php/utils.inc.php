@@ -447,7 +447,7 @@ function removeCR($_string) {
 	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
-function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_log = false) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -468,19 +468,33 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		}
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
-			if (!$_noError) {
-				return copy($src, $dst);
-			} else {
-				@copy($src, $dst);
-				return true;
+			$srcSize = filesize($src);
+			if (!copy($src, $dst)) {
+				$output = array();
+				$retval = 0;
+				exec('sudo cp ' . $src . ' ' . $dst, $output, $retval);
+				if ($retval != 0) {
+					if (!$_noError) {
+						return false;
+					} else if ($_log) {
+						echo 'Error on move ' . $src . ' to ' . $dst;
+					}
+				}
 			}
-
+			if ($srcSize != filesize($dst)) {
+				if (!$_noError) {
+					return false;
+				} else if ($_log) {
+					echo 'Error on move ' . $src . ' to ' . $dst;
+				}
+			}
+			return true;
 		}
 	}
 	return true;
 }
 
-function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_log = false) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -501,13 +515,27 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		}
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
-			if (!$_noError) {
-				return rename($src, $dst);
-			} else {
-				@rename($src, $dst);
-				return true;
+			$srcSize = filesize($src);
+			if (!rename($src, $dst)) {
+				$output = array();
+				$retval = 0;
+				exec('sudo mv ' . $src . ' ' . $dst, $output, $retval);
+				if ($retval != 0) {
+					if (!$_noError) {
+						return false;
+					} else if ($_log) {
+						echo 'Error on move ' . $src . ' to ' . $dst;
+					}
+				}
 			}
-
+			if ($srcSize != filesize($dst)) {
+				if (!$_noError) {
+					return false;
+				} else if ($_log) {
+					echo 'Error on move ' . $src . ' to ' . $dst;
+				}
+			}
+			return true;
 		}
 	}
 	return true;
@@ -523,10 +551,22 @@ function rrmdir($dir) {
 			}
 		}
 		if (!rmdir($dir)) {
-			return false;
+			$output = array();
+			$retval = 0;
+			exec('sudo rm -rf ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
 		}
 	} else if (file_exists($dir)) {
-		return unlink($dir);
+		if (!unlink($dir)) {
+			$output = array();
+			$retval = 0;
+			exec('sudo rm -rf ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
+		}
 	}
 	return true;
 }
