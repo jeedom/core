@@ -6,6 +6,8 @@
 
 - Fehlerkorrekturen
 - Amélioration de la synchronisation avec le market
+- Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui verifie maintenant la taille du fichier copié
+- Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost)
 
 3.2.9
 =====
