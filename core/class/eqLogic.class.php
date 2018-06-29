@@ -203,12 +203,25 @@ class eqLogic {
 	}
 
 	public static function searchConfiguration($_configuration, $_type = null) {
-		$values = array(
-			'configuration' => '%' . $_configuration . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM eqLogic
-        WHERE configuration LIKE :configuration';
+		if (!is_array($_configuration)) {
+			$values = array(
+				'configuration' => '%' . $_configuration . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM eqLogic
+			        WHERE configuration LIKE :configuration';
+		} else {
+			$values = array(
+				'configuration' => '%' . $_configuration[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM eqLogic
+			        WHERE configuration LIKE :configuration';
+			for ($i = 1; $i < count($_configuration); $i++) {
+				$values['configuration' . $i] = '%' . $_configuration[$i] . '%';
+				$sql .= ' OR configuration LIKE :configuration' . $i;
+			}
+		}
 		if ($_type !== null) {
 			$values['eqType_name'] = $_type;
 			$sql .= ' AND eqType_name=:eqType_name ';
@@ -1390,10 +1403,8 @@ class eqLogic {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"eqLogic":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse('#eqLogic' . $this->getId() . '#');
-		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"eqLogic":"' . $this->getId()));
+		$return['eqLogic'] = eqLogic::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
+		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#eqLogic' . $this->getId() . '#'),

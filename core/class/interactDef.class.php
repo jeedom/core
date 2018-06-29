@@ -190,13 +190,28 @@ class interactDef {
 
 	public static function searchByUse($_search) {
 		$return = array();
-		$values = array(
-			'search' => '%' . $_search . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM interactDef
-        WHERE actions LIKE :search
-        	OR reply LIKE :search';
+		if (!is_array($_search)) {
+			$values = array(
+				'search' => '%' . $_search . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM interactDef
+			        WHERE actions LIKE :search
+			        	OR reply LIKE :search';
+		} else {
+			$values = array(
+				'search' => '%' . $_search[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM interactDef
+			        WHERE actions LIKE :search
+			        	OR reply LIKE :search';
+			for ($i = 1; $i < count($_search); $i++) {
+				$values['search' . $i] = '%' . $_search[$i] . '%';
+				$sql .= ' OR actions LIKE :search' . $i . '
+			        	  OR reply LIKE :search' . $i;
+			}
+		}
 		$interactDefs = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		$interactQueries = interactQuery::searchActions($_search);
 		foreach ($interactQueries as $interactQuery) {
