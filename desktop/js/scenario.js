@@ -1164,8 +1164,8 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
@@ -1190,8 +1190,8 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
@@ -1283,8 +1283,8 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
@@ -1356,8 +1356,8 @@ function addSubElement(_subElement, _pColor) {
     retour += '         <span class="caret"></span>';
     retour += '       </button>';
     retour += '       <ul class="dropdown-menu">';
-    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" href="#" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '         <li><a class="bt_addAction" href="#">{{Action}}</a></li>';
+    retour += '         <li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+    retour += '         <li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '       </ul>';
     retour += '     </div><p> </p>';
     retour += '   </div>';
