@@ -9,6 +9,7 @@ Changelog
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui verifie maintenant la taille du fichier copié
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost)
 - Optimisation du calcul du graphique de liens et de l'utilisation des variables
+- Amélioration de la fenêtre de détails des taches cron qui affiche maintenant pour les taches doIn le scénario ainsi que l'action qui sera faite (merci @kiboost) 
 
 3.2.9
 =====
