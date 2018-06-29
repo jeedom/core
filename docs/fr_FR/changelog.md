@@ -8,6 +8,7 @@ Changelog
 - Amélioration de la synchronisation avec le market
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui verifie maintenant la taille du fichier copié
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost)
+- Optimisation du calcul du graphique de liens et de l'utilisation des variables
 
 3.2.9
 =====
