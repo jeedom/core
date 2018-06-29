@@ -187,12 +187,25 @@ class cmd {
 	}
 
 	public static function searchConfiguration($_configuration, $_eqType = null) {
-		$values = array(
-			'configuration' => '%' . $_configuration . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE configuration LIKE :configuration';
+		if (!is_array($_configuration)) {
+			$values = array(
+				'configuration' => '%' . $_configuration . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM cmd
+					WHERE configuration LIKE :configuration';
+		} else {
+			$values = array(
+				'configuration' => '%' . $_configuration[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM cmd
+			        WHERE configuration LIKE :configuration';
+			for ($i = 1; $i < count($_configuration); $i++) {
+				$values['configuration' . $i] = '%' . $_configuration[$i] . '%';
+				$sql .= ' OR configuration LIKE :configuration' . $i;
+			}
+		}
 		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
