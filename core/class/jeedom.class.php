@@ -346,7 +346,8 @@ class jeedom {
 				}
 				break;
 			case 'localhost':
-				if (getClientIp() != '127.0.0.1') {
+                $ip = getClientIp();
+                if (($ip != '127.0.0.1') && ($ip != '::1')) {
 					return false;
 				}
 				break;
