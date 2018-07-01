@@ -175,7 +175,7 @@ try {
 
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
-					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
+					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
 					echo "OK\n";
 					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
@@ -198,7 +198,7 @@ try {
 				}
 				echo "Moving files...";
 				$update_begin = true;
-				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true,true);
+				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1));
 				echo "OK\n";
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
