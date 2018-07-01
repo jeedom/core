@@ -470,7 +470,9 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
-				echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				if (isset($_params['log']) && $_params['log']) {
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				}
 				return true;
 			}
 			if (!copy($src, $dst)) {
@@ -521,7 +523,9 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
-				echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				if (isset($_params['log']) && $_params['log']) {
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				}
 				return true;
 			}
 			if (!rename($src, $dst)) {
