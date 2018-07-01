@@ -447,7 +447,7 @@ function removeCR($_string) {
 	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
-function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_log = false) {
+function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array()) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -469,6 +469,10 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
+			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				return true;
+			}
 			if (!copy($src, $dst)) {
 				$output = array();
 				$retval = 0;
@@ -476,16 +480,16 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				if ($retval != 0) {
 					if (!$_noError) {
 						return false;
-					} else if ($_log) {
-						echo 'Error on move ' . $src . ' to ' . $dst;
+					} else if (isset($_params['log']) && $_params['log']) {
+						echo 'Error on copy ' . $src . ' to ' . $dst;
 					}
 				}
 			}
 			if ($srcSize != filesize($dst)) {
 				if (!$_noError) {
 					return false;
-				} else if ($_log) {
-					echo 'Error on move ' . $src . ' to ' . $dst;
+				} else if (isset($_params['log']) && $_params['log']) {
+					echo 'Error on copy ' . $src . ' to ' . $dst;
 				}
 			}
 			return true;
@@ -494,7 +498,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	return true;
 }
 
-function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_log = false) {
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array()) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -516,6 +520,10 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
+			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+				return true;
+			}
 			if (!rename($src, $dst)) {
 				$output = array();
 				$retval = 0;
@@ -523,7 +531,7 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				if ($retval != 0) {
 					if (!$_noError) {
 						return false;
-					} else if ($_log) {
+					} else if (isset($_params['log']) && $_params['log']) {
 						echo 'Error on move ' . $src . ' to ' . $dst;
 					}
 				}
@@ -531,7 +539,7 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 			if ($srcSize != filesize($dst)) {
 				if (!$_noError) {
 					return false;
-				} else if ($_log) {
+				} else if (isset($_params['log']) && $_params['log']) {
 					echo 'Error on move ' . $src . ' to ' . $dst;
 				}
 			}
