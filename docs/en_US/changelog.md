@@ -1,10 +1,34 @@
 Changelog
 =========
 
+3.2.10
+=====
+
+- Correction de bugs
+- Amélioration de la synchronisation avec le market
+- Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui verifie maintenant la taille du fichier copié
+- Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost)
+- Optimisation du calcul du graphique de liens et de l'utilisation des variables
+- Amélioration de la fenêtre de détails des taches cron qui affiche maintenant pour les taches doIn le scénario ainsi que l'action qui sera faite (merci @kiboost) 
+
+3.2.9
+=====
+
+- Correction de bugs
+- Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
+- Correction de bugs sur les listenners
+- Ajout d'une alerte si un plugin bloque les crons
+- Correction d'un bug dans le systeme de monitoring cloud si la version de l'agent est inférieure à 3.X.X
+
 3.2.8
 =====
 
 - Correction de bugs
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+- Correction d'un bug sur le calcul d'utilisation des variables
+- Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
+- Amélioration de l'éditeur de fichier
+- Uniformisation des regroupements de valeurs pour les graphique (merci @apevrier)
 
 3.2.7
 =====

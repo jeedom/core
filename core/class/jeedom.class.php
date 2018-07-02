@@ -197,6 +197,14 @@ class jeedom {
 			'result' => $value . ' %',
 			'comment' => '',
 		);
+		
+		$value = shell_exec('sudo dmesg | grep oom | wc -l');
+		$return[] = array(
+			'name' => __('Mémoire suffisante', __FILE__),
+			'state' => ($value == 0),
+			'result' => $value,
+			'comment' => ($value == 0) ? '' : __('Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios', __FILE__),
+		);
 
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);

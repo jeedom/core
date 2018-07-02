@@ -52,6 +52,14 @@
   });
 }
 
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+
 $('.eqLogicDisplayCard').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
@@ -277,6 +285,9 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
                     }
                     modifyWithoutSave = false;
                     url += 'id=' + _data.id + '&saveSuccessFull=1';
+                    if (document.location.toString().match('#')) {
+                        url += '#' + document.location.toString().split('#')[1];
+                    }
                     loadPage(url);
                 }
             });

@@ -187,12 +187,25 @@ class cmd {
 	}
 
 	public static function searchConfiguration($_configuration, $_eqType = null) {
-		$values = array(
-			'configuration' => '%' . $_configuration . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE configuration LIKE :configuration';
+		if (!is_array($_configuration)) {
+			$values = array(
+				'configuration' => '%' . $_configuration . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+					FROM cmd
+					WHERE configuration LIKE :configuration';
+		} else {
+			$values = array(
+				'configuration' => '%' . $_configuration[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM cmd
+			        WHERE configuration LIKE :configuration';
+			for ($i = 1; $i < count($_configuration); $i++) {
+				$values['configuration' . $i] = '%' . $_configuration[$i] . '%';
+				$sql .= ' OR configuration LIKE :configuration' . $i;
+			}
+		}
 		if ($_eqType !== null) {
 			$values['eqType'] = $_eqType;
 			$sql .= ' AND eqType=:eqType ';
@@ -1045,20 +1058,25 @@ class cmd {
 			'#hideCmdName#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
-			$listOption = '<option value="">Aucun</option>';
+			$listOption = '';
 			$elements = explode(';', $this->getConfiguration('listValue', ''));
+			$foundSelect = false;
 			foreach ($elements as $element) {
 				$coupleArray = explode('|', $element);
 				$cmdValue = $this->getCmdValue();
 				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
 					if ($cmdValue->execCmd() == $coupleArray[0]) {
 						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
+						$foundSelect = true;
 					} else {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 					}
 				} else {
 					$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 				}
+			}
+			if (!$foundSelect) {
+				$listOption = '<option value="">Aucun</option>' . $listOption;
 			}
 			$replace['#listValue#'] = $listOption;
 		}

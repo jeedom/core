@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 
 $repos = update::listRepo();
 
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable');
+$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable', 'apimarket');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
@@ -40,7 +40,7 @@ user::isBan();
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Nom de votre Jeedom (utilisé notamment par le market)}}">{{Nom de votre Jeedom}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Nom de votre  <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}">{{Nom de votre}} <?php echo config::byKey('product_name'); ?></label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="name" />
 						</div>
@@ -55,7 +55,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
@@ -64,7 +64,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre Jeedom}}">{{Langue}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<select class="configKey form-control" data-l1key="language">
 								<option value="fr_FR">French</option>
@@ -82,12 +82,12 @@ user::isBan();
 						<div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
+								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
 						</div>
@@ -107,7 +107,7 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre Jeedom}}">{{Date et heure}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<select class="configKey form-control" data-l1key="timezone">
 								<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -210,13 +210,13 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 						</div>
@@ -261,7 +261,7 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['api']; ?></span>
@@ -273,7 +273,7 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
@@ -290,6 +290,25 @@ $lastKnowDate = $cache->getValue();
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
+						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+							<div class="input-group">
+								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
+								<span class="input-group-btn">
+									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+								</span>
+							</div>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+							<select class="form-control configKey" data-l1key="api::core::market::mode">
+								<option value="enable">{{Activé}}</option>
+								<option value="disable">{{Désactivé}}</option>
+							</select>
+						</div>
+					</div>
+					<hr/>
 					<?php
 if (init('rescue', 0) == 0) {
 	foreach (plugin::listPlugin(true) as $plugin) {
@@ -327,7 +346,7 @@ if (init('rescue', 0) == 0) {
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<legend><i class="fa fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
@@ -515,20 +534,12 @@ if (count($values) != 0) {
 		</div>
 		<div role="tabpanel" class="tab-pane" id="networktab">
 			<br/>
-			<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
+			<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?></div>
 			<form class="form-horizontal">
 				<fieldset>
 					<legend>{{Accès interne}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('internal')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="internalProtocol">
@@ -551,15 +562,7 @@ if (network::test('internal')) {
 				<fieldset>
 					<legend>{{Accès externe}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('external')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="externalProtocol">
@@ -607,9 +610,15 @@ foreach (network::getInterfaces() as $interface) {
 								</tbody>
 							</table>
 							<div class="form-group has-error">
-								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
+								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
 								<div class="col-xs-4">
 									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 								</div>
 							</div>
 						</div>
@@ -628,7 +637,7 @@ foreach ($repos as $key => $value) {
 		continue;
 	}
 	echo '<div class="form-group">';
-	echo '<label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>';
+	echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
 	echo '<div class="col-xs-8">';
 	echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
 	echo '</div>';
@@ -639,7 +648,7 @@ foreach ($repos as $key => $value) {
 	if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
 		echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 	} else {
-		echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+		echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 	}
 	echo '</div>';
 	echo '</div>';
@@ -792,7 +801,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-info">
-						{{Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
+						{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo config::byKey('product_name'); ?>
 					</div>
 
 					<?php
@@ -1302,7 +1311,7 @@ if (init('rescue', 0) == 0) {
 				<div class="col-sm-6">
 					<form class="form-horizontal">
 						<fieldset>
-							<legend>{{Mise à jour de jeedom}}</legend>
+							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

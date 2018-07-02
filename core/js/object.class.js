@@ -122,6 +122,9 @@ jeedom.object.remove = function(_params) {
             if (isset(jeedom.object.cache.getEqLogic[_params.id])) {
                 delete jeedom.object.cache.getEqLogic[_params.id];
             }
+            if(isset(jeedom.object.cache.byId[_params.id])){
+                delete jeedom.object.cache.byId[_params.id];
+            }
             return data;
         }
     };
@@ -148,8 +151,11 @@ jeedom.object.save = function(_params) {
             if (isset(jeedom.object.cache.all)) {
                 delete jeedom.object.cache.all;
             }
-            if (isset(jeedom.object.cache.getEqLogic[_params.id])) {
-                delete jeedom.object.cache.getEqLogic[_params.id];
+            if (isset(jeedom.object.cache.getEqLogic[data.result.id])) {
+                delete jeedom.object.cache.getEqLogic[data.result.id];
+            }
+            if(isset(jeedom.object.cache.byId[data.result.id])){
+                delete jeedom.object.cache.byId[data.result.id];
             }
             return data;
         }

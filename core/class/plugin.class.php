@@ -213,12 +213,18 @@ class plugin {
 	}
 
 	public static function cron() {
+		$cache = cache::byKey('plugin::cron::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
 				if (config::byKey('functionality::cron::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron::last', $plugin_id);
 				try {
 					$plugin_id::cron();
 				} catch (Exception $e) {
@@ -228,15 +234,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron::inprogress', 0);
 	}
 
 	public static function cron5() {
+		$cache = cache::byKey('plugin::cron5::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron5 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron5::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron5::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron5')) {
 				if (config::byKey('functionality::cron5::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron5::last', $plugin_id);
 				try {
 					$plugin_id::cron5();
 				} catch (Exception $e) {
@@ -246,15 +259,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron5::inprogress', 0);
 	}
 
 	public static function cron15() {
+		$cache = cache::byKey('plugin::cron15::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron15 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron15::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron15::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {
 				if (config::byKey('functionality::cron15::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron15::last', $plugin_id);
 				try {
 					$plugin_id::cron15();
 				} catch (Exception $e) {
@@ -264,15 +284,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron15::inprogress', 0);
 	}
 
 	public static function cron30() {
+		$cache = cache::byKey('plugin::cron30::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron30 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron30::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron30::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron30')) {
 				if (config::byKey('functionality::cron30::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron30::last', $plugin_id);
 				try {
 					$plugin_id::cron30();
 				} catch (Exception $e) {
@@ -282,15 +309,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron30::inprogress', 0);
 	}
 
 	public static function cronDaily() {
+		$cache = cache::byKey('plugin::cronDaily::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cronDaily n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronDaily::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cronDaily::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
 				if (config::byKey('functionality::cronDaily::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronDaily::last', $plugin_id);
 				try {
 					$plugin_id::cronDaily();
 				} catch (Exception $e) {
@@ -300,15 +334,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cronDaily::inprogress', 0);
 	}
 
 	public static function cronHourly() {
+		$cache = cache::byKey('plugin::cronHourly::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cronHourly n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronHourly::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cronHourly::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
 				if (config::byKey('functionality::cronHourly::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronHourly::last', $plugin_id);
 				try {
 					$plugin_id::cronHourly();
 				} catch (Exception $e) {
@@ -318,6 +359,7 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cronHourly::inprogress', 0);
 	}
 
 	public static function start() {

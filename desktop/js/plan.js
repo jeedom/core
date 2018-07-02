@@ -37,7 +37,7 @@ for(var i in planHeader){
         }
     }
 }
-if(deviceInfo.type == 'desktop'){
+if(deviceInfo.type == 'desktop'  && user_isAdmin == 1){
     $.contextMenu({
         selector: '#div_pageContainer',
         zIndex: 9999,
