@@ -126,6 +126,9 @@ function addCron(_cron) {
     var tr = '<tr id="' + init(_cron.id) + '">';
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
+    if(init(_cron.id) != ''){
+        tr += '<a class="btn btn-default btn-xs display"><i class="fa fa-file"></i></a>';
+    }
     if(init(_cron.deamon) == 0){
         if (init(_cron.state) == 'run') {
             tr += '<a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fa fa-stop"></i></a>';
