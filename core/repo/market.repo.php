@@ -545,7 +545,7 @@ class repo_market {
 	public static function supportAccess($_enable = true, $_key = '') {
 		$jsonrpc = self::getJsonRpc();
 		$url = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
-		if (!$jsonrpc->sendRequest('register::supportAccess', array('enable' => $_enable, 'url' => $url))) {
+		if (!$jsonrpc->sendRequest('register::supportAccess', array('enable' => $_enable, 'urlSupport' => $url))) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 	}
