@@ -542,7 +542,6 @@ class history {
 			$_value = $histories[0]->getValue();
 		}
 
-
 		for ($i=0; $i<$c-1; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
@@ -562,10 +561,11 @@ class history {
 				$prevValue = $histories[$i-1]->getValue();
 				$nextValue = $histories[$i+1]->getValue();
 				if ($_value == $value && $_value != $nextValue) {
+					$duration += strtotime($histories[$i-1]->getDatetime()) - strtotime($date);
 					return $duration;
 				}
 			}
-				if ($i > 0) $duration += strtotime($histories[$i-1]->getDatetime()) - strtotime($date);
+			if ($i > 0) $duration += strtotime($histories[$i-1]->getDatetime()) - strtotime($date);
 		}
 		return -1;
 	}
