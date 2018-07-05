@@ -559,7 +559,7 @@ class eqLogic {
 			return false;
 		}
 		if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
-			$cmd->event($_value);
+			$cmd->event($_value, $_updateTime);
 			return true;
 		}
 		$oldValue = $cmd->execCmd();
@@ -572,7 +572,6 @@ class eqLogic {
 				$cmd->event($_value, $_updateTime);
 				return true;
 			}
-			$cmd->setCache('collectDate', $_updateTime);
 			return false;
 		}
 		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
