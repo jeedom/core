@@ -558,6 +558,10 @@ class eqLogic {
 		if (!is_object($cmd)) {
 			return false;
 		}
+		if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
+			$cmd->event($_value);
+			return true;
+		}
 		$oldValue = $cmd->execCmd();
 		if (($oldValue != $cmd->formatValue($_value)) || $oldValue === '') {
 			$cmd->event($_value, $_updateTime);
@@ -568,9 +572,8 @@ class eqLogic {
 				$cmd->event($_value, $_updateTime);
 				return true;
 			}
-		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
-			$cmd->event($_value);
-			return true;
+			$cmd->setCache('collectDate', $_updateTime);
+			return false;
 		}
 		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
 		return false;
