@@ -328,9 +328,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
                 </thead>
                 <tbody>
                     <?php
-cleanSession();
-$cache = cache::byKey('current_sessions');
-$sessions = $cache->getValue(array());
+$sessions = listSession();
 foreach ($sessions as $id => $session) {
 	if ($session['user_id'] != $_SESSION['user']->getId()) {
 		continue;

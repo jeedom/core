@@ -51,9 +51,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
       </thead>
       <tbody>
         <?php
-cleanSession();
-$cache = cache::byKey('current_sessions');
-$sessions = $cache->getValue(array());
+$sessions = listSession();
 if (is_array($sessions) && count($sessions) > 0) {
 	foreach ($sessions as $id => $session) {
 		if (!isset($session['ip'])) {

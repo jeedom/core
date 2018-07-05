@@ -1256,26 +1256,48 @@ function makeZipSupport() {
 	return realpath($outputfile);
 }
 
-function cleanSession() {
-	$saveSession = $_SESSION;
-	$cSsid = session_id();
-	$cache = cache::byKey('current_sessions');
-	$sessions = $cache->getValue(array());
-	foreach ($cache->getValue(array()) as $id => $session) {
-		session_id($id);
-		@session_start();
-		if (!isset($_SESSION['user'])) {
-			@session_write_close();
-			unset($sessions[$id]);
-			continue;
+function decodeSessionData($_data) {
+	$return_data = array();
+	$offset = 0;
+	while ($offset < strlen($_data)) {
+		if (!strstr(substr($_data, $offset), "|")) {
+			throw new Exception("invalid data, remaining: " . substr($_data, $offset));
 		}
-		@session_write_close();
+		$pos = strpos($_data, "|", $offset);
+		$num = $pos - $offset;
+		$varname = substr($_data, $offset, $num);
+		$offset += $num + 1;
+		$data = unserialize(substr($_data, $offset));
+		$return_data[$varname] = $data;
+		$offset += strlen(serialize($data));
 	}
-	session_id($cSsid);
-	@session_start();
-	$_SESSION = $saveSession;
-	@session_write_close();
-	cache::set('current_sessions', $sessions);
+	return $return_data;
+}
+
+function listSession() {
+	$return = array();
+	try {
+		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
+		foreach ($sessions as $session) {
+			$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
+			if ($data == '') {
+				continue;
+			}
+			$data_session = decodeSessionData($data);
+			$session_id = str_replace('sess_', '', $session);
+			$return[$session_id] = array(
+				'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
+			);
+			if (isset($data_session['user'])) {
+				$return[$session_id]['login'] = $data_session['user']->getLogin();
+				$return[$session_id]['user_id'] = $data_session['user']->getId();
+			}
+			$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
+		}
+	} catch (Exception $e) {
+
+	}
+	return $return;
 }
 
 function deleteSession($_id) {

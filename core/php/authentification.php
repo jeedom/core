@@ -31,20 +31,7 @@ if (isset($_COOKIE['sess_id'])) {
 	session_id($_COOKIE['sess_id']);
 }
 @session_start();
-if (!isset($_SESSION['alreadyRegister'])) {
-	$cache = cache::byKey('current_sessions');
-	$sessions = $cache->getValue(array());
-	if (!is_array($sessions)) {
-		$sessions = array();
-	}
-	if (!isset($sessions[session_id()]) || !is_array($sessions[session_id()])) {
-		$sessions[session_id()] = array();
-	}
-	$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
-	$sessions[session_id()]['ip'] = getClientIp();
-	cache::set('current_sessions', $sessions);
-	$_SESSION['alreadyRegister'] = 1;
-}
+$_SESSION['ip'] = getClientIp();
 if (!headers_sent()) {
 	setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
 }
@@ -115,14 +102,6 @@ function login($_login, $_password, $_twoFactor = null) {
 			return false;
 		}
 	}
-	$cache = cache::byKey('current_sessions');
-	$sessions = $cache->getValue(array());
-	if (!isset($sessions[session_id()])) {
-		$sessions[session_id()] = array();
-	}
-	$sessions[session_id()]['login'] = $user->getLogin();
-	$sessions[session_id()]['user_id'] = $user->getId();
-	cache::set('current_sessions', $sessions);
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
@@ -154,14 +133,6 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
-	$cache = cache::byKey('current_sessions');
-	$sessions = $cache->getValue(array());
-	if (!isset($sessions[session_id()])) {
-		$sessions[session_id()] = array();
-	}
-	$sessions[session_id()]['login'] = $user->getLogin();
-	$sessions[session_id()]['user_id'] = $user->getId();
-	cache::set('current_sessions', $sessions);
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
