@@ -34,6 +34,9 @@ if (isset($_COOKIE['sess_id'])) {
 if (!isset($_SESSION['alreadyRegister'])) {
 	$cache = cache::byKey('current_sessions');
 	$sessions = $cache->getValue(array());
+	if (!is_array($sessions)) {
+		$sessions = array();
+	}
 	if (!isset($sessions[session_id()]) || !is_array($sessions[session_id()])) {
 		$sessions[session_id()] = array();
 	}
