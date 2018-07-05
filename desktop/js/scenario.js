@@ -46,6 +46,7 @@ autoCompleteCondition = [
 {val: '#IP#'},
 {val: '#hostname#'},
 {val: 'variable(mavariable,defaut)'},
+{val: 'delete_variable(mavariable)'},
 {val: 'tendance(commande,periode)'},
 {val: 'average(commande,periode)'},
 {val: 'max(commande,periode)'},
@@ -64,7 +65,7 @@ autoCompleteCondition = [
 {val: 'name(type,commande)'},
 {val: 'value(commande)'}
 ];
-autoCompleteAction = ['report','sleep', 'variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
+autoCompleteAction = ['report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
 if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
