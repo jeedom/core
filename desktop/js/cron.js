@@ -87,7 +87,12 @@
     });
 });
 
- $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
+ $("#table_cron").delegate(".display", 'click', function () {
+    $('#md_modal').dialog({title: "{{Détails du cron}}"});
+    $("#md_modal").load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open');
+});
+
+$('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () {
     if ($(this).value() == 1) {
         $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show();
     } else {
@@ -127,7 +132,7 @@ function addCron(_cron) {
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
     if(init(_cron.id) != ''){
-        tr += '<a class="btn btn-default btn-xs display"><i class="fa fa-file"></i></a>';
+        tr += '<a class="btn btn-default btn-xs display"><i class="fa fa-file"></i></a>&nbsp;';
     }
     if(init(_cron.deamon) == 0){
         if (init(_cron.state) == 'run') {
