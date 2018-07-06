@@ -1332,6 +1332,10 @@ class scenarioExpression {
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					return;
+				} elseif ($this->getExpression() == 'delete_variable') {
+                  			scenario::removeData($options['name']);
+                  			$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $this->getOptions('name'));
+					return;
 				} elseif ($this->getExpression() == 'ask') {
 					$dataStore = new dataStore();
 					$dataStore->setType('scenario');
