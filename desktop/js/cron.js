@@ -132,7 +132,7 @@ function addCron(_cron) {
     tr += '<td class="option"><span class="cronAttr" data-l1key="id"></span></td>';
     tr += '<td>';
     if(init(_cron.id) != ''){
-         tr += '<a class="btn btn-default btn-xs display"><i class="fas fa-file"></i></a>';
+         tr += '<a class="btn btn-default btn-xs display"><i class="fas fa-file"></i></a> ';
     }
     if(init(_cron.deamon) == 0){
         if (init(_cron.state) == 'run') {
