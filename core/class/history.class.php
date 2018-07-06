@@ -449,101 +449,80 @@ class history {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
 		}
-
 		$histories = array_reverse(history::all($_cmd_id));
 		$c = count($histories);
 		if ($c == 0) {
 			return -1;
 		}
-
 		$currentValue = $histories[0]->getValue();
 		$dateTo = date('Y-m-d H:i:s');
 		$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
-
 		for ($i = 0; $i < $c - 1; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
 			$date = $history->getDatetime();
-
 			$nextValue = $histories[$i + 1]->getValue();
 			if ($currentValue != $nextValue) {
 				return $duration;
 			}
-
 			if ($i > 0) {
 				$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 			}
-
 		}
 		return -1;
 	}
-
 	public static function lastStateDuration($_cmd_id, $_value = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
 		}
-
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
-
 		$histories = array_reverse(history::all($_cmd_id));
 		$c = count($histories);
 		if ($c == 0) {
 			return -1;
 		}
-
 		$currentValue = $histories[0]->getValue();
 		$duration = 0;
 		$dateTo = date('Y-m-d H:i:s');
-		if ($_value === null || $_value == $histories[0]->getValue()) {
+		if ($_value === null || $_value == $currentValue) {
 			$_value = $histories[0]->getValue();
 			$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
 		}
-
 		$started = 0;
 		for ($i = 0; $i < $c; $i++) {
 			$history = $histories[$i];
 			$value = $history->getValue();
 			$value = round($value, $_decimal);
 			$date = $history->getDatetime();
-
 			//same state as current:
 			if ($_value == $currentValue && $_value != $value) {
 				return $duration;
 			}
-
 			//different state as current:
 			if ($_value != $currentValue && $i > 0) {
-				$prevValue = $histories[$i - 1]->getValue();
+				$prevValue = round($histories[$i - 1]->getValue(), $_decimal);
 				if ($_value == $value && $_value != $prevValue) {
 					$started = 1;
 					$duration = 0;
 				}
-
-				if ($i + 1 < $c) {
-					$nextValue = $histories[$i + 1]->getValue();
-					if ($_value != $value && $_value == $nextValue && $started == 1) {
-						return $duration;
-					}
+				if ($_value != $value && $started == 1) {
+					return $duration;
 				}
 			}
 			if ($i > 0) {
 				$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 			}
-
 		}
 		return -1;
 	}
-
 	/**
 	 * Fonction renvoie la durée depuis le dernier changement d'état
 	 * à la valeur passée en paramètre
@@ -553,11 +532,9 @@ class history {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
-
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
 		}
-
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, '.'), 1));
 		$histories = array_reverse(history::all($_cmd_id));
@@ -565,11 +542,10 @@ class history {
 		if ($c == 0) {
 			return -1;
 		}
-
 		$currentValue = $histories[0]->getValue();
 		$dateTo = date('Y-m-d H:i:s');
 		$duration = strtotime($dateTo) - strtotime($histories[0]->getDatetime());
-		if ($_value === null || $_value == $histories[0]->getValue()) {
+		if ($_value === null || $_value == $currentValue) {
 			$_value = $histories[0]->getValue();
 		}
 		for ($i = 0; $i < $c - 1; $i++) {
@@ -579,15 +555,15 @@ class history {
 			$date = $history->getDatetime();
 			//same state as current:
 			if ($_value == $currentValue) {
-				$nextValue = $histories[$i + 1]->getValue();
+				$nextValue = round($histories[$i + 1]->getValue(), $_decimal);
 				if ($_value != $nextValue) {
 					return $duration;
 				}
 			}
 			//different state as current:
 			if ($_value != $currentValue && $i > 0) {
-				$prevValue = $histories[$i - 1]->getValue();
-				$nextValue = $histories[$i + 1]->getValue();
+				$prevValue = round($histories[$i - 1]->getValue(), $_decimal);
+				$nextValue = round($histories[$i + 1]->getValue(), $_decimal);
 				if ($_value == $value && $_value != $nextValue) {
 					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 					return $duration;
@@ -596,7 +572,6 @@ class history {
 			if ($i > 0) {
 				$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 			}
-
 		}
 		return -1;
 	}
