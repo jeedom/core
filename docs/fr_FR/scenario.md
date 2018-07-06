@@ -659,6 +659,8 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
     d’une variable.
 
+-   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
+
 -   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
