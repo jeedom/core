@@ -5,7 +5,7 @@
 =====
 
 - Fehlerkorrekturen
-- Amélioration de la synchronisation avec le market
+-  Verbesserte Synchronisation mit dem Markt
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui verifie maintenant la taille du fichier copié
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost)
 - Optimisation du calcul du graphique de liens et de l'utilisation des variables
@@ -14,7 +14,7 @@
 3.2.9
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Correction d'un bug sur les icones de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -23,7 +23,7 @@
 3.2.8
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
@@ -41,21 +41,21 @@
 3.2.6
 =====
 
-- Correction de bugs
-- Mise à jour de la docs
+- Fehlerkorrekturen
+- Aktualisierung der Dokumentation
 - Uniformisation des noms de certaine commande dans les scénarios
-- Optimisation des performances
+- Leistungsoptimierung
 
 3.2.5
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Réactivation des interactions (inactive a cause de la mise à jour)
 
 3.2.4
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur timee_diff
 - Préparation pour le futur système d'alerting
@@ -179,12 +179,12 @@
 3.1 
 ===
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Optimisation globale de Jeedom (sur le chargement des classes de
     plugins, temps presque divisé par 3)
 
--   Support de Debian 9
+-   Support für Debian 9
 
 -   Mode onepage (changement de page sans recharger toute la page, juste
     la partie qui change)
@@ -555,14 +555,14 @@
 2.4.5 
 =====
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Optimisation de la vérification des mises à jour
 
 2.4 
 ---
 
--   Optimisation générale
+-   Allgemeine Optimierung
 
     -   Regroupement de requêtes SQL
 
@@ -681,7 +681,7 @@
 -   Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom
     du jeedom)
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Déplacement de tous les fichiers temporaire dans /tmp
 
@@ -785,7 +785,7 @@
 2.2 
 ---
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Simplification de l’accès aux configurations des plugins à partir de
     la page santé
@@ -985,22 +985,22 @@
 
 -   Refonte de la page de gestion des plugins
 
--   Ajout des adresses mac des différentes interfaces
+-   Mac-Adressen mit verschiedener Schnittstellen hinzugefügt
 
--   Ajout de la connexion en double authentification
+-   Verbindung mit doppelten Authentifizierung hinzugefügt
 
--   Suppression de la connexion par hash (pour des raisons de sécurité)
+-   Löschen der Hash-Verbindung (aus Sicherheitsgründen)
 
--   Ajout d’un système d’administration OS
+-   Ein OS-Verwaltungssystem hinzugefügt
 
--   Ajout de widgets standards Jeedom
+-   * Jeedom Standard-Widgets hinzugefügt
 
--   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
-    (il faut connecter Jeedom sur le réseau, puis aller sur le market et
-    cliquer sur « Mes Jeedoms » dans votre profil)
+-   Es wurde ein Beta-System hinzugefügt, um die Jeedom IP im Netzwerk zu finden 
+    (Sie müssen Jeedom mit dem Netzwerk verbinden, dann auf den Markt gehen und
+    auf « Meine Jeedoms » in Ihrem Profil klicken)
 
--   Ajout sur la page des scénarios d’un testeur d’expression
+-   Auf der Szenario-Seite einen Ausdrucks Tester hinzugefügt
 
--   Revue du système de partage de scénario
+-   Systemrückblick der geteilten Szenarien
 
 
