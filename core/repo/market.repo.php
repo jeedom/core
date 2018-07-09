@@ -1010,14 +1010,7 @@ class repo_market {
 
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
-		$opts = array(
-			"ssl" => array(
-				"verify_peer" => false,
-				"verify_peer_name" => false,
-			),
-		);
-		file_put_contents($tmp, fopen($url, 'r', false, stream_context_create($opts)));
-
+		exec('wget --no-check-certificate "' . $url . '" -O ' . $tmp . ' 2>&1 > /dev/null');
 		switch ($this->getType()) {
 			case 'plugin':
 				return $tmp;
