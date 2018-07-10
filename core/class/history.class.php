@@ -676,10 +676,6 @@ class history {
 
 						}
 					}
-					while (strtotime($prevDatetime) < strtotime($_dateEnd)) {
-						$prevDatetime = date('Y-m-d H:i:00', strtotime($prevDatetime) + 300);
-						$cmd_histories[$prevDatetime]['#' . $cmd_id . '#'] = $prevValue;
-					}
 				}
 			}
 			ksort($cmd_histories);
