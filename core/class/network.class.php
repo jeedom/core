@@ -331,6 +331,15 @@ class network {
 		$interface = $openvpn->getInterfaceName();
 		if ($interface !== null && $interface != '' && $interface !== false) {
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
+			if (config::byKey('dns::openport') != '') {
+				foreach (explode(',', config::byKey('dns::openport')) as $port) {
+					try {
+						shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port ' . $port . ' -j ACCEPT');
+					} catch (Exception $e) {
+
+					}
+				}
+			}
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -j DROP');
 		}
 	}
