@@ -897,6 +897,9 @@ class Broker {
                         if ($key === 'INTERVAL' && $val == 1) {
                             continue;
                         }
+                        if (is_array($val)) {
+                            $val = implode(',', $val);
+                        }
                         $rrule[] = "$key=$val";
                     }
                 }
@@ -936,9 +939,9 @@ class Broker {
 
                     if (isset($attendees[$attendee->getNormalizedValue()])) {
                         $attendees[$attendee->getNormalizedValue()]['instances'][$recurId] = [
-                            'id'         => $recurId,
-                            'partstat'   => $partStat,
-                            'force-send' => $forceSend,
+                            'id'        => $recurId,
+                            'partstat'  => $partStat,
+                            'forceSend' => $forceSend,
                         ];
                     } else {
                         $attendees[$attendee->getNormalizedValue()] = [
