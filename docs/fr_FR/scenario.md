@@ -665,7 +665,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
     d’accent et pas de caractères spéciaux). On récupere le tag dans le
-    scénario cible avec la fonction tag(montag).
+    scénario cible avec la fonction tag(montag). La commande "Remise à zero des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2eme fois consecutive dedans)
 
 -   **Stop** (stop) : Arrête le scénario.
 

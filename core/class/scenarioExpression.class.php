@@ -1310,6 +1310,10 @@ class scenarioExpression {
 							$actionScenario->setIsActive(1);
 							$actionScenario->save();
 							break;
+						case 'resetRepeatIfStatus':
+							$this->setLog($scenario, __('Remise à zero des status du status des SI du scénario : ', __FILE__) . $actionScenario->getName());
+							$actionScenario->resetRepeatIfStatus();
+							break;
 					}
 					return;
 				} elseif ($this->getExpression() == 'variable') {
@@ -1333,8 +1337,8 @@ class scenarioExpression {
 					$dataStore->save();
 					return;
 				} elseif ($this->getExpression() == 'delete_variable') {
-                  			scenario::removeData($options['name']);
-                  			$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $this->getOptions('name'));
+					scenario::removeData($options['name']);
+					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $this->getOptions('name'));
 					return;
 				} elseif ($this->getExpression() == 'ask') {
 					$dataStore = new dataStore();
@@ -1547,6 +1551,16 @@ class scenarioExpression {
 
 	public function emptyOptions() {
 		$this->options = '';
+	}
+
+	public function resetRepeatIfStatus() {
+		if ($this->getType() != 'element') {
+			return;
+		}
+		$element = scenarioElement::byId($this->getExpression());
+		if (is_object($element)) {
+			$element->resetRepeatIfStatus();
+		}
 	}
 
 	public function export() {

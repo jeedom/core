@@ -379,6 +379,18 @@ class scenarioElement {
 		return $return;
 	}
 
+	public function resetRepeatIfStatus() {
+		foreach ($this->getSubElement() as $subElement) {
+			if ($subElement->getType() == 'if') {
+				$subElement->setOptions('previousState', -1);
+				$subElement->save();
+			}
+			foreach ($subElement->getExpression() as $expression) {
+				$expression->resetRepeatIfStatus();
+			}
+		}
+	}
+
 	public function export() {
 		$return = '';
 		foreach ($this->getSubElement() as $subElement) {
