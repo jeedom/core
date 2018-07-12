@@ -439,7 +439,7 @@ Onglet Configuration
         suivant : `#value#` pour la valeur de la commande, `#cmd_name#`
         pour le nom de la commande, `#cmd_id#` pour l’identifiant unique
         de la commande, `#humanname#` pour le nom complet de la commande
-        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`)
+        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement
 
 ### Pour une commande action : 
 

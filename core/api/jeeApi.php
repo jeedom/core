@@ -292,18 +292,7 @@ try {
 			session_id($params['sess_id']);
 		}
 		@session_start();
-		$cache = cache::byKey('current_sessions');
-		$sessions = $cache->getValue(array());
-		if (!isset($sessions[session_id()])) {
-			$sessions[session_id()] = array();
-		}
-		$sessions[session_id()]['datetime'] = date('Y-m-d H:i:s');
-		$sessions[session_id()]['ip'] = getClientIp();
-		if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-			$sessions[session_id()]['login'] = $_SESSION['user']->getLogin();
-			$sessions[session_id()]['user_id'] = $_SESSION['user']->getId();
-		}
-		cache::set('current_sessions', $sessions);
+		$_SESSION['ip'] = getClientIp();
 		@session_write_close();
 		$jsonrpc->setAdditionnalParams('sess_id', session_id());
 		if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {

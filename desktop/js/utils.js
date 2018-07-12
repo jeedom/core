@@ -395,6 +395,14 @@ function initPage(){
     initRowOverflow();
     initHelp();
     initTextArea();
+    $('.nav-tabs a').on('click',function (e) {
+        var scrollHeight = $(document).scrollTop();
+        $(this).tab('show');
+        $(window).scrollTop(scrollHeight);
+        setTimeout(function() {
+            $(window).scrollTop(scrollHeight);
+        }, 0);
+    });
 }
 
 function linkify(inputText) {

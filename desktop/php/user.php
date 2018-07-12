@@ -51,11 +51,15 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
       </thead>
       <tbody>
         <?php
-cleanSession();
-$cache = cache::byKey('current_sessions');
-$sessions = $cache->getValue(array());
+$sessions = listSession();
 if (is_array($sessions) && count($sessions) > 0) {
 	foreach ($sessions as $id => $session) {
+		if (!isset($session['ip'])) {
+			$session['ip'] = '';
+		}
+		if (!isset($session['datetime'])) {
+			$session['datetime'] = '';
+		}
 		echo '<tr data-id="' . $id . '">';
 		echo '<td>' . $id . '</td>';
 		echo '<td>' . $session['login'] . '</td>';

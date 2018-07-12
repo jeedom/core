@@ -7,6 +7,7 @@ if (!isConnect()) {
     <select id="mod_actionValue_sel" class="form-control">
         <option value="sleep">{{Pause}}</option>
         <option value="variable">{{Variable}}</option>
+	<option value="delete_variable">{{Supprimer une variable}}</option>
         <option value="scenario">{{Scénario}}</option>
         <option value="stop" class="scenarioOnly">{{Stop}}</option>
         <option value="wait">{{Attendre}}</option>
@@ -36,6 +37,10 @@ if (!isConnect()) {
 
 <div class="alert alert-info mod_actionValue_selDescription variable" style="display:none;">
     {{Création/modification d’une variable ou de la valeur d’une variable}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription delete_variable" style="display:none;">
+    {{Suppression d’une variable}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription scenario" style="display:none;">

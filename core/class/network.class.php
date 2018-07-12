@@ -56,11 +56,12 @@ class network {
 		return '';
 	}
 
-    /**
-     ** @details
-     ** 1. proto:127.0.0.1:port:comp and http:127.0.0.1:port:comp are deprecated. The two cases are here
-     **    for backward compatibility and both return *localhost* constructed urls.
-     */
+
+  /**
+   ** @details
+   ** 1. proto:127.0.0.1:port:comp and http:127.0.0.1:port:comp are deprecated. The two cases are here
+   **    for backward compatibility and both return *localhost* constructed urls.
+   */
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
 		if ($_mode == 'auto') {
 			$_mode = self::getUserLocation();
@@ -99,40 +100,40 @@ class network {
                                config::byKey('internalPort', 'core', 80));
 			}
 
-            // 1.
-            if ($_protocol == 'proto:127.0.0.1:port:comp') {
+      // 1.
+      if ($_protocol == 'proto:127.0.0.1:port:comp') {
                 return trim(sprintf("%slocalhost:%s/%s",
                                     config::byKey('internalProtocol'),
                                     config::byKey('internalPort', 'core', 80),
                                     trim(config::byKey('internalComplement'), '/')),
                             '/');
-            }
-            if ($_protocol == 'http:127.0.0.1:port:comp') {
+       }
+       if ($_protocol == 'http:127.0.0.1:port:comp') {
                 return trim(sprintf("http://localhost:%s/%s",
                                     config::byKey('internalPort', 'core', 80),
                                     trim(config::byKey('internalComplement'), '/')),
                             '/');
-            }
-            if ($_protocol == 'proto:localhost:port:comp') {
+       }
+       if ($_protocol == 'proto:localhost:port:comp') {
                 return trim(sprintf("%slocalhost:%s/%s",
                                     config::byKey('internalProtocol'),
                                     config::byKey('internalPort', 'core', 80),
                                     trim(config::byKey('internalComplement'), '/')),
                             '/');
-            }
-            if ($_protocol == 'http:localhost:port:comp') {
+       }
+       if ($_protocol == 'http:localhost:port:comp') {
                 return trim(sprintf("http://localhost:%s/%s",
                                     config::byKey('internalPort', 'core', 80),
                                     trim(config::byKey('internalComplement'), '/')),
                             '/');
-            }
+       }
 
-            return trim(sprintf("%s%s:%s/%s",
-                                config::byKey('internalProtocol'),
-                                config::byKey('internalAddr'),
-                                config::byKey('internalPort', 'core', 80),
-                                trim(config::byKey('internalComplement'), '/')),
-                        '/');
+       return trim(sprintf("%s%s:%s/%s",
+                           config::byKey('internalProtocol'),
+                           config::byKey('internalAddr'),
+                           config::byKey('internalPort', 'core', 80),
+                           trim(config::byKey('internalComplement'), '/')),
+                   '/');
 		}
 		if ($_mode == 'dnsjeedom') {
 			return config::byKey('jeedom::url');

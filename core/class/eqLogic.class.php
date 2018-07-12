@@ -569,10 +569,9 @@ class eqLogic {
 				return true;
 			}
 		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
-			$cmd->event($_value);
+			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
 		return false;
 	}
 

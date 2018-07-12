@@ -394,14 +394,6 @@ class user {
 		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
 		}
-		cleanSession();
-		$cache = cache::byKey('current_sessions');
-		$sessions = $cache->getValue(array());
-		foreach ($sessions as $id => $session) {
-			if ($session['login'] == $this->getLogin()) {
-				deleteSession($id);
-			}
-		}
 	}
 
 	public function remove() {

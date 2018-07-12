@@ -331,7 +331,7 @@ mise à jour d’une commande. Vous pouvez utiliser les tags suivants :
 **\#value\#** pour la valeur de la commande, **\#cmd\_name\#** pour le
 nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
 commande, **\#humanname\#** pour le nom complet de la commande (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#)
+\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#` pour le nom de l'équipement
 
 Cache 
 =====

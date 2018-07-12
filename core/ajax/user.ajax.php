@@ -258,9 +258,7 @@ try {
 
 	if (init('action') == 'deleteSession') {
 		unautorizedInDemo();
-		deleteSession(init('id'));
-		$cache = cache::byKey('current_sessions');
-		$sessions = $cache->getValue(array());
+		$sessions = listSession();
 		if (isset($sessions[init('id')])) {
 			$user = user::byId($sessions[init('id')]['user_id']);
 			if (is_object($user)) {
@@ -274,6 +272,7 @@ try {
 				$user->save();
 			}
 		}
+		deleteSession(init('id'));
 		ajax::success();
 	}
 
