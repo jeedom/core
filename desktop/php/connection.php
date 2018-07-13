@@ -1,85 +1,65 @@
 <div id="wrap">
-    <!--<div class="container">
-        <div style="display: none;width : 100%" id="div_alert"></div>
-        <img style="display:block; margin-left:auto; margin-right:auto;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
-	    <div style="text-align:center; display : block; margin-left:auto; margin-right:auto; width:300px">
-            <div class="form-group">
-		        <input  class="form-control" type="text" id="in_login_username" placeholder="{{Nom d'utilisateur}}">
-            </div>
-            <div class="form-group">
-		        <input  class="form-control" type="password" id="in_login_password" placeholder="{{Mot de passe}}">
-            </div>
-	        <div class = "form-group" id="div_twoFactorCode" style="display:none;">
-	            <input class="form-control" type="text" id="in_twoFactorCode" placeholder="{{Code à 2 facteurs}}">
-            </div>
-            <div class="checkbox">
-		        <label><input type="checkbox" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
-            </div>
-		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fa fa-sign-in"></i> {{Connexion}}</button>
-            <a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-        </div> 
-    </div>-->
-    
     <div style="display: none;width : 100%" id="div_alert"></div>
-    <div class="body">
+    <div class="bodyLogin">
 		<div class="veen">
 			<div class="login-btn splits">
-				<p>Ou vous avez un autre utilisateur ?</p>
-				<button class="active">Connection</button>
+				<h3 id="titre_login_btn"></h3>
+				<p id="phrase_login_btn"></p>
 			</div>
 			<div class="rgstr-btn splits">
-				<img style="display:block; margin-left:auto; margin-right:5%;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
+				<img style="display:block; margin-left:auto; margin-right:5%; width:45%;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="500" class="form-group">
 					<h3>Login</h3>
 					<div class="mail">
-						<input type="text" id="in_login_username" class="form-control">
+						<input type="text" id="in_login_username">
 						<label>{{Nom d'utilisateur}}</label>
 					</div>
 					<div class="passwd">
-						<input type="password" id="in_login_password" class="form-control">
+						<input type="password" id="in_login_password">
 						<label>{{Mot de passe}}</label>
 					</div>
-					<div class="passwd" id="div_twoFactorCode" style="display:none;" class="form-control">
+					<div class="passwd" id="div_twoFactorCode" style="display:none;">
 						<input type="text" id="in_twoFactorCode">
 						<label>{{Code à 2 facteurs}}</label>
 					</div>
 					<div class="checkbox">
-						<input type="checkbox" id="cb_storeConnection" class="form-control">
-						<label>{{Enregistrer cet ordinateur}}</label>
-					</div>
-					<div class="resetPassword">
-					<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+						<label> <input type="checkbox" style="top: -11px;" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
 					</div>
 					<div class="submit">
 						<button class="dark btn-lg" id="bt_login_validate"><i class="fa fa-sign-in" ></i> {{Connexion}}</button>
-					</div>				
+					</div>	
+					<div class="resetPassword">
+					<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+					</div>			
 				</div>
 				<div id="register" tabindex="502" class="form-group">
 					<h3>CHANGER VOTRE MOT DE PASSE</h3>
 					<div class="passwd">
-						<input type="password" name="">
+						<input type="password" id="in_change_password">
 						<label>Mot de passe</label>
 					</div>
 					<div class="passwd">
-						<input type="password" name="">
+						<input type="password" id="in_change_passwordToo">
 						<label>Mot de passe</label>
 					</div>
 					<div class="submit">
-						<button class="dark">C'est parti !</button>
+						<button class="dark btn-lg" id="bt_change_validate">C'est parti !</button>
 					</div>
 				</div>
 			</div>
 		</div>	
 	</div>
 	<style type="text/css">
-		.body{
-			/*background: #93cc01;*/
-			/*background: rgba(147,204,1,0.6);*/
+		/*.bodyLogin{
 			background: linear-gradient(180deg, rgba(147,204,1,0.6), rgba(147,204,1,1));
 			transition: all .5s;
 			padding: 1px;
+		}*/
+		body{
+			background: linear-gradient(180deg, rgba(147,204,1,0.6), rgba(147,204,1,1));
+			transition: all .5s;
 		}
 		.veen{
 			width: 70%;
@@ -118,7 +98,7 @@
 			background: #e0b722;
 		}
 		.veen .splits p{
-			font-size: 18px;
+			font-size: 15px;
 		}
 		.veen button:active{
 			box-shadow: none;			
@@ -143,7 +123,6 @@
 			width: 100%;
 			transition: all .5s;
 			background: #fff;
-			width: 100%; 
 		}
 .veen .wrapper > .form-group:focus{
   outline: none;
@@ -163,6 +142,10 @@
 		.veen .wrapper.move #login{
 			transform: translateX(-100%);
       visibility: hidden;
+		}
+		.veen .wrapper .checkbox{
+			width: 100%;
+			height: 10px;
 		}
 		.veen .wrapper > .form-group > div {
 			position: relative;
@@ -290,6 +273,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
             },
             success: function (data) {
             	if($('#in_login_username').val() == $('#in_login_password').val()){
+            		$('#phrase_login_btn').html('{{Votre mot de passe doit être changé.<br/>Pour plus de sécurité.}}');
+            		$('#titre_login_btn').html('{{Information importante :}}');
 	            	$('.veen .wrapper').addClass('move');
 					$('.body').css('background','linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))');
 					$('.login-btn').css('color','#000000');
@@ -301,6 +286,32 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
             }
         });
     });
+    
+    $('#bt_change_validate').on('click', function() {
+    	if($('#in_change_password').val() == $('#in_change_passwordToo').val()){
+    		jeedom.user.get({
+	    		error: function (data) {
+		    		$('#div_alert').showAlert({message: error.message, level: 'danger'});
+	    		},
+	    		success: function (data){
+		    		var user = data;
+		    		user.password = $('#in_change_password').val();
+					jeedom.user.saveProfils({
+						profils: user,
+						error: function (error) {
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success : function (){
+							window.location.href = 'index.php?v=d';
+						}
+					})
+	    		}
+    		});
+    	}else{
+	    	$('#div_alert').showAlert({message: 'Les deux mots de passe ne sont pas identiques', level: 'danger'});
+    	}
+    });
+
 
     $('#in_login_password').keypress(function(e) {
       	if(e.which == 13) {
@@ -313,6 +324,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
         $('#bt_login_validate').trigger('click');
 	  }
 	});
+	$('#in_change_passwordToo').keypress(function(e) {
+      if(e.which == 13) {
+        $('#bt_change_validate').trigger('click');
+	  }
+	 });
+
 
 // ADD //
 
