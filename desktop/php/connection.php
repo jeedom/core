@@ -52,5 +52,6 @@
 		</div>
 	</div>
 </div>
+<?php
 include_file('desktop', 'connection', 'css');
 include_file('desktop', 'connection', 'js');
