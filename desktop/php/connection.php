@@ -25,14 +25,14 @@
 						<label>{{Code à 2 facteurs}}</label>
 					</div>
 					<div class="checkbox">
-						<label> <input type="checkbox" style="top: -11px;" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
+						<input type="checkbox" style="top: -11px;" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
 					</div>
 					<div class="submit">
 						<button class="dark btn-lg" id="bt_login_validate"><i class="fa fa-sign-in" ></i> {{Connexion}}</button>
-					</div>	
+					</div>
 					<div class="resetPassword">
 					<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-					</div>			
+					</div>
 				</div>
 				<div id="register" tabindex="502" class="form-group">
 					<h3>CHANGER VOTRE MOT DE PASSE</h3>
@@ -49,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 	<style type="text/css">
 		/*.bodyLogin{
@@ -101,10 +101,10 @@
 			font-size: 15px;
 		}
 		.veen button:active{
-			box-shadow: none;			
+			box-shadow: none;
 		}
 		.veen button:focus{
-			outline: none;			
+			outline: none;
 		}
 		.veen > .wrapper {
 			position: absolute;
@@ -166,7 +166,7 @@
 		.veen .wrapper h3{
 			margin-bottom: 25px;
 		}
-		.veen .wrapper input{
+		.veen .wrapper input:not([type='checkbox']){
 			height: 40px;
 			padding: 5px 15px;
 			width: 100%;
@@ -213,7 +213,7 @@
 			.splits button{
 				width: 100%;
 				border-radius: 0;
-				background: #505050; 
+				background: #505050;
 				border: 0;
 				opacity: .7;
 			}
@@ -239,11 +239,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
   box-shadow: inset 0 0 0 50px #fff
 }
 	</style>
-    
-    
-    
-    
-    
+
+
+
+
+
 </div>
 <script>
     $('#in_login_username').on('focusout change keypress',function(){
@@ -286,7 +286,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
             }
         });
     });
-    
+
     $('#bt_change_validate').on('click', function() {
     	if($('#in_change_password').val() == $('#in_change_passwordToo').val()){
     		jeedom.user.get({
