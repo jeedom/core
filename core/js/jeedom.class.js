@@ -182,8 +182,9 @@ jeedom.init = function () {
     $('body').on('notify', function (_event,_options) {
         notify(_options.title, _options.message, _options.theme);
     });
-
-    jeedom.changes();
+    if (typeof user_id !== 'undefined') {
+       jeedom.changes();
+    }
 }
 
 jeedom.getConfiguration = function (_params) {
