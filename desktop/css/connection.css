@@ -5,7 +5,7 @@ body{
 		.veen{
 			width: 70%;
 			margin: 100px auto;
-			background: rgba(250,250,250,1);
+			background: rgba(245,245,245,1);
 			min-height: 400px;
 			display:table;
 			position: relative;
@@ -23,7 +23,7 @@ body{
 			display: inline-block;
 			padding: 10px 30px;
 			border: 3px solid #fff;
-			border-radius: 50px;
+			//border-radius: 0px;
 			background-clip: padding-box;
 			position: relative;
 			color: #FFF;
@@ -175,6 +175,27 @@ body{
 				left: 0%;
 			}
 		}
+		
+.btn_help{
+	right: 3%; 
+	bottom: 5%; 
+	width: 50px; 
+	height:50px; 
+	color: rgba(147,204,1,1); 
+	font-size:20px; 
+	position: fixed; 
+	background: #FB8C00; 
+	border: 1px solid #FB8C00; 
+	border-radius:25px; 
+	text-align:center; 
+	line-height:45px; 
+	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);	
+}
+.btn_help:hover{
+	background: #FFFFFF;
+	border: 1px solid rgba(147,204,1,1);
+}
+
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
   box-shadow: inset 0 0 0 50px #fff
 }
