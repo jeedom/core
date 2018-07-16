@@ -21,6 +21,7 @@ $('#in_login_username').on('focusout change keypress',function(){
             storeConnection: $('#cb_storeConnection').value(),
             error: function (error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                $('.veen').animateCss('shake');
             },
             success: function (data) {
             	if($('#in_login_username').val() == $('#in_login_password').val()){
@@ -32,7 +33,10 @@ $('#in_login_username').on('focusout change keypress',function(){
 					$(".veen .login-btn button").removeClass('active');
 					$(this).addClass('active');
             	}else{
-                	window.location.href = 'index.php?v=d';
+            		$('.veen').animateCss('bounceOut', function(){
+            			$('.veen').hide();
+	            		window.location.href = 'index.php?v=d';
+            		});
                 }
             }
         });
@@ -50,9 +54,13 @@ $('#in_login_username').on('focusout change keypress',function(){
 						profils: user,
 						error: function (error) {
 							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+							$('.veen').animateCss('shake');
 						},
 						success : function (){
+							$('.veen').animateCss('bounceOut', function(){
+							$('.veen').hide();
 							window.location.href = 'index.php?v=d';
+						});
 						}
 					})
 	    		}
@@ -84,4 +92,14 @@ $(document).ready(function(){
 		$(".veen .rgstr-btn button").removeClass('active');
 		$(this).addClass('active');
 	});
+	window.setTimeout(function(){
+		//$('.veen').removeClass('animated');
+		$('.veen').removeClass('zoomIn');
+		//$('.btn_help').removeClass('animated');
+		$('.btn_help').removeClass('bounceInUp');
+	}, 5000);
+	window.setTimeout(function(){
+		$('.btn_help').animateCss('shake');
+	}, 10000);
+
 });
