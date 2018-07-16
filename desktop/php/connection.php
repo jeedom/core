@@ -1,7 +1,7 @@
 <div id="wrap">
     <div style="display: none;width : 100%" id="div_alert"></div>
     <div class="bodyLogin">
-		<div class="veen">
+		<div class="veen animated zoomIn">
 			<div class="login-btn splits">
 				<h3 id="titre_login_btn"></h3>
 				<p id="phrase_login_btn"></p>
@@ -51,7 +51,12 @@
 			</div>
 		</div>
 	</div>
+	<button class="btn_help animated bounceInUp" onclick="window.open('https://jeedom.github.io/documentation/premiers-pas/fr_FR/index#tocAnchor-1-3-1')">
+		?
+	</button>
 </div>
 <?php
+include_file('3rdparty', 'animate/animate', 'css');
+include_file('3rdparty', 'animate/animate', 'js');
 include_file('desktop', 'connection', 'css');
 include_file('desktop', 'connection', 'js');
