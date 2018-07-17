@@ -99,7 +99,12 @@ $(document).ready(function(){
 		$('.btn_help').removeClass('bounceInUp');
 	}, 5000);
 	window.setTimeout(function(){
-		$('.btn_help').animateCss('shake');
+		window.setInterval(function(){
+			$('.btn_help').animateCss('shake');
+			window.setTimeout(function(){
+				$('.btn_help').removeClass('shake');
+			},3000);
+			},5000);
 	}, 10000);
-
+	
 });
