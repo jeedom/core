@@ -249,7 +249,7 @@ if (!isConnect()) {
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
+								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 
 									<li class="dropdown-submenu">
@@ -298,7 +298,7 @@ echo $panel_menu;
 								</ul>
 							</li>
 							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
+								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
 									<?php
@@ -327,7 +327,7 @@ if (isConnect('admin')) {
 if (isConnect('admin')) {
 			?>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
@@ -336,7 +336,7 @@ if (isConnect('admin')) {
 									</ul>
 								</li>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
