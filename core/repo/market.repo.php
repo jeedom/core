@@ -421,6 +421,10 @@ class repo_market {
 			$cmd .= 'sudo mkdir /var/log/zabbix;';
 			$cmd .= 'sudo chmod 777 -R /var/log/zabbix;';
 		}
+		if (!file_exists('/etc/zabbix/zabbix_agentd.conf.d')) {
+			$cmd .= 'sudo mkdir /etc/zabbix/zabbix_agentd.conf.d;';
+			$cmd .= 'sudo chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
+		}
 		$cmd .= 'sudo systemctl restart zabbix-agent;';
 		$cmd .= 'sudo systemctl enable zabbix-agent;';
 		shell_exec($cmd);
