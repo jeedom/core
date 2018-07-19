@@ -26,9 +26,9 @@ natcasesort($list_logfile);
 				<?php
 foreach ($list_logfile as $file) {
 	if ($file == $logfile) {
-		echo '<li class="cursor li_log active" data-log="' . $file . '" ><a>' . $file . '</a></li>';
+		echo '<li class="cursor li_log active" data-log="' . $file . '" ><a>' . $file .' (' . round(filesize('log/'.$file)/1024) . ' Ko)</a></li>';
 	} else {
-		echo '<li class="cursor li_log" data-log="' . $file . '"><a>' . $file . '</a></li>';
+		echo '<li class="cursor li_log" data-log="' . $file . '"><a>' . $file . ' (' . round(filesize('log/'.$file)/1024) . ' Ko)</a></li>';
 	}
 }
 ?>
