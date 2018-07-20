@@ -1284,14 +1284,15 @@ function listSession() {
 				continue;
 			}
 			$data_session = decodeSessionData($data);
+			if (!isset($data_session['user']) || !is_object($data_session['user'])) {
+				continue;
+			}
 			$session_id = str_replace('sess_', '', $session);
 			$return[$session_id] = array(
 				'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
 			);
-			if (isset($data_session['user'])) {
-				$return[$session_id]['login'] = $data_session['user']->getLogin();
-				$return[$session_id]['user_id'] = $data_session['user']->getId();
-			}
+			$return[$session_id]['login'] = $data_session['user']->getLogin();
+			$return[$session_id]['user_id'] = $data_session['user']->getId();
 			$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
 		}
 	} catch (Exception $e) {
