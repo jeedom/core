@@ -637,14 +637,14 @@ class eqLogic {
 			}
 		}
 		$tagsValue = '';
-		if($this->getTags() != null){
-		    $tagsArray = explode(',',$this->getTags());
-		    foreach ($tagsArray as $tags) {
-		        if($tags == null){
-		            continue;
-		        }
-		        $tagsValue .= 'tag-'.$tags.' ';
-		    }
+		if ($this->getTags() != null) {
+			$tagsArray = explode(',', $this->getTags());
+			foreach ($tagsArray as $tags) {
+				if ($tags == null) {
+					continue;
+				}
+				$tagsValue .= 'tag-' . $tags . ' ';
+			}
 		}
 		$tagsValue = trim($tagsValue);
 		$replace = array(
@@ -670,7 +670,7 @@ class eqLogic {
 			'#alert_icon#' => '',
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
-			'#data-tags#' =>  $this->getTags(),
+			'#data-tags#' => $this->getTags(),
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
