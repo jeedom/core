@@ -181,9 +181,9 @@ function getObjectHtml(_object_id){
                 });
                 var itemElems =  container.find('.eqLogic-widget').draggable();
                 container.packery( 'bindUIDraggableEvents', itemElems );
-                //container.packery( 'on', 'dragItemPositioned',function(){
-                    //$('.div_displayEquipement').packery();
-                //});
+                container.packery( 'on', 'dragItemPositioned',function(){
+                    $('.div_displayEquipement').packery();
+                });
                 function orderItems() {
                   var itemElems = container.packery('getItemElements');
                   $( itemElems ).each( function( i, itemElem ) {
