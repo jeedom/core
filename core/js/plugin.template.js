@@ -95,6 +95,7 @@ $(".li_eqLogic").on('click', function () {
     }
     $('.li_eqLogic').removeClass('active');
     $(this).addClass('active');
+    $('.nav-tabs a[href="#eqlogictab"]').click();
     $.showLoading();
 
     jeedom.eqLogic.print({
