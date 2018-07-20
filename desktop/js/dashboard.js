@@ -227,8 +227,8 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
 				if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
 					if($(element).hasClass('allowResize')){
 						$( element ).height(heightObjectex);
+						heightObject = heightObjectex;
 					}
-			    	heightObject = heightObjectex;
 			    }
 				heightObjectex = heightObject;
 			}); 
