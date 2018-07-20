@@ -37,14 +37,21 @@ GLOBAL $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 if (init('type') != '') {
 	try {
+		$plugin = init('plugin', 'core');
+		if ($plugin == 'core' && !in_array(init('type'), array('ask', 'cmd', 'interact', 'scenario', 'message', 'object', 'eqLogic', 'command', 'fullData', 'variable'))) {
+			$plugin = init('type');
+		}
 		$type = init('type');
-		if ((!jeedom::apiAccess(init('apikey', init('api')), init('plugin', 'core')) &&
-			!jeedom::apiAccess(init('apikey', init('api')), init('type', 'core'))) ||
-			(!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('plugin', 'core'), 'enable')) &&
-				!jeedom::apiModeResult(config::byKey('api::core::http::mode', init('type', 'core'), 'enable')))) {
+		if (!jeedom::apiAccess(init('apikey', init('api')), $plugin)) {
 			user::failedLogin();
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1, IP : ', __FILE__) . getClientIp());
+		}
+		if ($plugin != 'core' && !jeedom::apiModeResult(config::byKey('api::' . $plugin . '::mode', 'core', 'enable'))) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (API ' . $plugin . '), IP : ', __FILE__) . getClientIp());
+		}
+		if (!jeedom::apiModeResult(config::byKey('api::core::http::mode', 'core', 'enable'))) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ', __FILE__) . getClientIp());
 		}
 		if ($type == 'ask') {
 			$cmd = cmd::byId(init('cmd_id'));
