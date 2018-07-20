@@ -26,15 +26,15 @@ natcasesort($list_logfile);
 				<?php
 foreach ($list_logfile as $file) {
 	$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
-	if( strpos(file_get_contents('log/'.$file),'[WARNING]') !== false) {
+	if (strpos(file_get_contents('log/' . $file), '[WARNING]') !== false) {
 		$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
-	} else if  ( strpos(file_get_contents('log/'.$file),'[ERROR]') !== false) {
+	} else if (strpos(file_get_contents('log/' . $file), '[ERROR]') !== false) {
 		$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
 	}
 	if ($file == $logfile) {
-		echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag .'<a>' . $file .' (' . round(filesize('log/'.$file)/1024) . ' Ko)</a></li>';
+		echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
 	} else {
-		echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag .'<a>' . $file . ' (' . round(filesize('log/'.$file)/1024) . ' Ko)</a></li>';
+		echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
 	}
 }
 ?>
