@@ -656,7 +656,7 @@ class eqLogic {
 			'#category#' => $this->getPrimaryCategory(),
 			'#color#' => '#ffffff',
 			'#border#' => 'none',
-			'#border-radius#' => '4px',
+			'#border-radius#' => '0px',
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
@@ -695,7 +695,7 @@ class eqLogic {
 			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
 		}
 		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
-			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
+			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '0') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		if (!is_object($refresh_cmd)) {

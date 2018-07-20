@@ -323,12 +323,13 @@ try {
 	if (file_exists(__DIR__ . '/../script/ngrok')) {
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
-	try {
-		foreach (eqLogic::all() as $eqLogic) {
-			$eqLogic->emptyCacheWidget();
-		}
-	} catch (Exception $e) {
 
+	foreach (eqLogic::all() as $eqLogic) {
+		try {
+			$eqLogic->emptyCacheWidget();
+		} catch (Exception $e) {
+
+		}
 	}
 
 	try {
