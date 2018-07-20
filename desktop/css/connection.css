@@ -186,7 +186,7 @@ body{
 	position: fixed; 
 	background: #FB8C00; 
 	border: 1px solid #FB8C00; 
-	border-radius:25px; 
+	border-radius:25px !important; 
 	text-align:center; 
 	line-height:45px; 
 	box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);	
