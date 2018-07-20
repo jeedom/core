@@ -211,7 +211,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
        $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
        $(this).attr('data-mode',1);
        $('.bt_editDashboardWidgetAutoResize').show();
-       $('.bt_editDashboardWidgetAutoResize').on('click', function(){
+       $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function(){
 		   var id_object = $(this).attr('id');
 		   id_object = id_object.replace('edit_object_','');
 		   var heightObjectex = 0;
