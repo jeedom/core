@@ -570,6 +570,7 @@ code {
 	background-color: transparent;
 	color: inherit;
 	border: 0px;
+	border-radius: 0px;
 	text-shadow: none !important;
 	-webkit-transition: background 0.4s;
 	-moz-transition: background 0.4s;
