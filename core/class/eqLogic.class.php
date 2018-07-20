@@ -636,6 +636,17 @@ class eqLogic {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
+		$tagsValue = '';
+		if($this->getTags() != null){
+		    $tagsArray = explode(',',$this->getTags());
+		    foreach ($tagsArray as $tags) {
+		        if($tags == null){
+		            continue;
+		        }
+		        $tagsValue .= 'tag-'.$tags.' ';
+		    }
+		}
+		$tagsValue = trim($tagsValue);
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -658,6 +669,8 @@ class eqLogic {
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
+			'#tag#' => $tagsValue,
+			'#data-tags#' =>  $this->getTags(),
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {

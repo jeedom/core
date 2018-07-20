@@ -1,3 +1,7 @@
+* {
+	border-radius: 0px !important;
+}
+
 html {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
@@ -69,7 +73,7 @@ body {
   display: inline-block;
   vertical-align: top;
   color : white;
-  border-radius: 4px;
+  /*border-radius: 4px;*/
 }
 
 .eqLogic-widget .btn:not(.btn-circle){
@@ -141,13 +145,13 @@ body {
 }
 .form-signin input[type="text"] {
   margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  /*border-bottom-left-radius: 0;*/
+  /*border-bottom-right-radius: 0;*/
 }
 .form-signin input[type="password"] {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  /*border-top-left-radius: 0;*/
+  /*border-top-right-radius: 0;*/
 }
 
 ::-webkit-scrollbar{
@@ -211,17 +215,17 @@ body {
   padding: 5px 5px;
   font-size: 12px;
   line-height: 1.5;
-  border-radius: 3px;
+  /*border-radius: 3px;*/
 }
 
 
 .marginBottom-0 {margin-bottom:0;}
 
 .dropdown-submenu{position:relative;}
-.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;/*-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;*/}
 .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
 .dropdown-submenu:hover>a:after{border-left-color:#555;}
-.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;/*-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;*/}
 
 
 .btn-circle {
@@ -231,7 +235,7 @@ body {
   padding: 6px 0 !important;
   font-size: 12px !important;
   line-height: 1.428571429 !important;
-  border-radius: 15px !important;
+  /*border-radius: 15px !important;*/
   color : white !important;
   background-color: transparent !important;
 }
@@ -241,7 +245,7 @@ body {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33;
-  border-radius: 25px;
+  /*border-radius: 25px;*/
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -249,7 +253,7 @@ body {
   padding: 10px 16px;
   font-size: 24px;
   line-height: 1.33;
-  border-radius: 35px;
+  /*border-radius: 35px;*/
 }
 
 .btn-file {

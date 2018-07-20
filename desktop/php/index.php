@@ -170,6 +170,8 @@ include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 include_file('3rdparty', 'autosize/autosize.min', 'js');
+include_file('3rdparty', 'animate/animate', 'css');
+include_file('3rdparty', 'animate/animate', 'js');
 if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 	if (file_exists(__DIR__ . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');

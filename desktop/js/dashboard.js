@@ -18,25 +18,41 @@
 
 $('#sel_eqLogicCategory').on('change',function(){
     SEL_CATEGORY = $(this).value();
+    SEL_TAG = $('#sel_eqLogicTags').value();
     gotoFilterDashboardPage();
 });
 
 $('#sel_eqLogicTags').on('change',function(){
+	SEL_CATEGORY = $('#sel_eqLogicCategory').value();
     SEL_TAG = $(this).value();
     gotoFilterDashboardPage();
 });
 
 function gotoFilterDashboardPage(){
-    var url = 'index.php?v=d&p=dashboard';
-    url += '&category='+SEL_CATEGORY;
-    url += '&tag='+SEL_TAG;
-    if(SEL_OBJECT_ID != ''){
-        url += '&object_id='+SEL_OBJECT_ID;
+	var category = SEL_CATEGORY;
+	var tag = SEL_TAG;
+	var filterValue = '';
+    if(category == 'all' && tag == 'all'){
+	     filterValue = '*';
+    }else{
+	    if(category == 'all'){
+		    filterValue = '.tag-'+tag;
+	    }else{
+			if(tag == 'all'){
+				filterValue = '.'+category;
+			}else{
+				filterValue = '.'+category+'.tag-'+tag;
+			}
+	    }
     }
-     if(SEL_SUMMARY != ''){
-        url += '&summary='+SEL_SUMMARY;
-    }
-    loadPage(url);
+    var $grid = $('.div_displayEquipement').isotope({
+		itemSelector: '.eqLogic-widget',
+		layoutMode: 'fitRows'
+	});
+	$grid.isotope({ filter: filterValue });
+	setTimeout(function(){
+		$('.div_displayEquipement').packery();
+	},500);
 }
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
@@ -110,9 +126,10 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
      $('.div_displayEquipement .eqLogic-widget').draggable('disable');
  }
+ $('.div_displayEquipement .eqLogic-widget').css('box-shadow',''); 
 }else{
+   $('.div_displayEquipement .eqLogic-widget').css('box-shadow','0 0 4px rgba(147,204,1,.14), 0 10px 16px rgba(147,204,1,.30)');
    $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-
    $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
       grid: [ 2, 2 ],
       resize: function( event, ui ) {
@@ -149,23 +166,24 @@ function getObjectHtml(_object_id){
         }catch(err) {
             console.log(err);
         }
+        $('#div_ob'+_object_id).animateCss('slideInLeft');
         setTimeout(function(){
             positionEqLogic();
             $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
             $("input").click(function() { $(this).focus(); });
             $("textarea").click(function() { $(this).focus(); });
             $("select").click(function() { $(this).focus(); });
+            
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
                     gutter : 2
                 });
-                var itemElems =  container.find('.eqLogic-widget');
-                itemElems.draggable();
+                var itemElems =  container.find('.eqLogic-widget').draggable();
                 container.packery( 'bindUIDraggableEvents', itemElems );
-                container.packery( 'on', 'dragItemPositioned',function(){
-                    $('.div_displayEquipement').packery();
-                });
+                //container.packery( 'on', 'dragItemPositioned',function(){
+                    //$('.div_displayEquipement').packery();
+                //});
                 function orderItems() {
                   var itemElems = container.packery('getItemElements');
                   $( itemElems ).each( function( i, itemElem ) {
@@ -188,9 +206,33 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         $(this).attr('data-mode',0);
         editWidgetMode(0);
         $(this).css('color','black');
+        $('.bt_editDashboardWidgetAutoResize').hide();
     }else{
        $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
        $(this).attr('data-mode',1);
+       $('.bt_editDashboardWidgetAutoResize').show();
+       $('.bt_editDashboardWidgetAutoResize').on('click', function(){
+		   var id_object = $(this).attr('id');
+		   id_object = id_object.replace('edit_object_','');
+		   var heightObjectex = 0;
+		   $('#div_ob'+id_object+'.div_displayEquipement .eqLogic-widget').each(function(index, element){
+				var heightObject = this.style.height;
+				heightObject = eval(heightObject.replace('px',''));
+				
+				var valueAdd = eval(heightObject * 0.20);
+				var valueRemove = eval(heightObject * 0.05);
+				var heightObjectadd = eval(heightObject + valueAdd);
+				var heightObjectremove = eval(heightObject - valueRemove);
+				
+				if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
+					if($(element).hasClass('allowResize')){
+						$( element ).height(heightObjectex);
+					}
+			    	heightObject = heightObjectex;
+			    }
+				heightObjectex = heightObject;
+			}); 
+	   });
        editWidgetMode(1);
        $(this).css('color','rgb(46, 176, 75)');
    }

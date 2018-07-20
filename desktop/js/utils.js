@@ -601,8 +601,8 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id,_preResize) {
-    var width_step = 2;
-    var height_step = 2;
+    var width_step = 25;
+    var height_step = 5;
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
@@ -619,6 +619,7 @@ function positionEqLogic(_id,_preResize) {
      eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step);
      eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step);
      eqLogic.trigger('resize');
+     eqlogic.addClass(eqlogic.getAttribute('data-category'));
  }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -631,6 +632,7 @@ function positionEqLogic(_id,_preResize) {
         $(this).width(Math.ceil($(this).width() / width_step) * width_step);
         $(this).height(Math.ceil($(this).height() / height_step) * height_step);
         $(this).trigger('resize');
+        $(this).addClass(this.getAttribute('data-category'));
     });
     $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
 }
