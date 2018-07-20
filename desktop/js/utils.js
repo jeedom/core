@@ -619,7 +619,7 @@ function positionEqLogic(_id,_preResize) {
      eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step);
      eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step);
      eqLogic.trigger('resize');
-     eqlogic.addClass(eqlogic.getAttribute('data-category'));
+     eqLogic.addClass(eqLogic.getAttribute('data-category'));
  }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
