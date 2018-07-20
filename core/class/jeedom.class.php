@@ -136,14 +136,6 @@ class jeedom {
 			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
 		);
 
-		$state = !user::hasDefaultIdentification();
-		$return[] = array(
-			'name' => __('Authentification par défaut', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Attention : vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
-		);
-
 		$state = self::isCapable('sudo', true);
 		$return[] = array(
 			'name' => __('Droits sudo', __FILE__),
