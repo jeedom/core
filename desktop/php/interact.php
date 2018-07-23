@@ -60,19 +60,19 @@ foreach ($interactListGroup as $group) {
 <div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-   <div class="cursor" id="bt_addInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
+   <div class="cursor" id="bt_addInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
      <center>
       <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
     </center>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
   </div>
-  <div class="cursor" id="bt_regenerateInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
+  <div class="cursor" id="bt_regenerateInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
    <center>
      <i class="fas fa-refresh" style="font-size : 6em;color:#f0ad4e;"></i>
    </center>
    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
  </div>
- <div class="cursor" id="bt_testInteract2" style="background-color : #ffffff; height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
+ <div class="cursor" id="bt_testInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
    <center>
     <i class="fas fa-comment" style="font-size : 6em;color:#337ab7;"></i>
   </center>
@@ -99,7 +99,7 @@ if (count($totalInteract) == 0) {
 		echo '<div class="interactListContainer">';
 		foreach ($interacts[-1] as $interact) {
 			$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center;  min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/interaction.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
@@ -124,7 +124,7 @@ if (count($totalInteract) == 0) {
 			echo '<div class="interactListContainer">';
 			foreach ($interacts[$group['group']] as $interact) {
 				$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+				echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="text-align: center;  min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 				echo '<img src="core/img/interaction.png" height="90" width="85" />';
 				echo "<br>";
 				echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $interact->getHumanName(true, true, true, true) . '</span>';
