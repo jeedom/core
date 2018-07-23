@@ -414,7 +414,6 @@ function initBackgroundImg(){
     }
     if(jeedomBackgroundImg != null){
         $('.backgroundforJeedom').css('background-image','url("'+jeedomBackgroundImg+'")');
-        $('.backgroundforJeedom').css('opacity','0.5');
     }else{
         $('.backgroundforJeedom').css('background-image','');
     }
