@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+//sendVarToJs('jeedomBackgroundImg', 'core/img/background/scenario.jpg');
 $scenarios = array();
 $totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
