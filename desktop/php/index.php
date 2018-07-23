@@ -236,6 +236,7 @@ if (!isConnect()) {
 		<?php if (init('rescue', 0) == 0) {
 		?>
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+				<div class="TopBarCharge" style="top:0px; witdh:100%; height:5px; background-color:rgba(147,204,1,0.7);"></div>
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
