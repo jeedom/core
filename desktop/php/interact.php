@@ -2,6 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+sendVarToJs('jeedomBackgroundImg', 'core/img/background/scenario.png');
 $interacts = array();
 $totalInteract = interactDef::all();
 $interacts[-1] = interactDef::all(null);
@@ -13,9 +14,9 @@ if (is_array($interactListGroup)) {
 }
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
+<!--<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>-->
 <div class="row row-overflow">
-  <div class="col-xs-2" id="div_listInteract" style="z-index:999">
+  <!--<div class="col-xs-2" id="div_listInteract" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter interaction}}</a>
       <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
@@ -56,8 +57,8 @@ foreach ($interactListGroup as $group) {
  </ul>
 </div>
 </div>
-</div>
-<div id="interactThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
+</div>-->
+<div id="interactThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
