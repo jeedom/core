@@ -410,9 +410,9 @@ function initPage(){
 
 function initBackgroundImg(){
     if(jeedomBackgroundImg != null){
-        $('#div_pageContainer').css('background-image','url("'+jeedomBackgroundImg+'")');
+        $('body').css('background-image','url("'+jeedomBackgroundImg+'")');
     }else{
-        $('#div_pageContainer').css('background-image','');
+        $('body').css('background-image','');
     }
 }
 

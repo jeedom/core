@@ -12,6 +12,9 @@ body {
   font-size: 1.42em;
   padding-top: 50px;
   height: 100%;
+  background-repeat : no-repeat;
+  background-size:cover;
+  background-position: center center; 
 }
 
 .btn:hover { 

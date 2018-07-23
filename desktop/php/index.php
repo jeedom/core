@@ -473,7 +473,7 @@ $nbMessage = message::nbMessage();
 								<?php }?>
 								<main class="container-fluid" id="div_mainContainer">
 									<div style="display: none;width : 100%" id="div_alert"></div>
-									<div id="div_pageContainer" style="background-repeat : no-repeat;background-size:cover;background-position: center center;   ">
+									<div id="div_pageContainer">
 										<?php
 try {
 		if (!jeedom::isStarted()) {
