@@ -409,6 +409,9 @@ function initPage(){
 }
 
 function initBackgroundImg(){
+    if(jeedom_allowBackground != undefined && jeedom_allowBackground == 0){
+        return;
+    }
     if(jeedomBackgroundImg != null){
         $('body').css('background-image','url("'+jeedomBackgroundImg+'")');
     }else{
