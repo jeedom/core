@@ -413,9 +413,10 @@ function initBackgroundImg(){
         return;
     }
     if(jeedomBackgroundImg != null){
-        $('body').css('background-image','url("'+jeedomBackgroundImg+'")');
+        $('.backgroundforJeedom').css('background-image','url("'+jeedomBackgroundImg+'")');
+        $('.backgroundforJeedom').css('opacity','0.5');
     }else{
-        $('body').css('background-image','');
+        $('.backgroundforJeedom').css('background-image','');
     }
 }
 
