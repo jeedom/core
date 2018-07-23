@@ -222,6 +222,7 @@ try {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
+	<div class="backgroundforJeedom" style="width:100%; height:100%; z-index : -1; position: absolute;"> </div>
 	<?php
 sendVarToJS('jeedom_langage', $configs['language']);
 if (!isConnect()) {
