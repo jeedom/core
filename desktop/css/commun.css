@@ -367,3 +367,7 @@ input[type=checkbox] {
 .highcharts-table-caption{
   display: none;
 }
+
+.panel{
+  background-color : transparent !important;
+}

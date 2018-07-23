@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-//sendVarToJs('jeedomBackgroundImg', 'core/img/background/scenario.jpg');
+sendVarToJs('jeedomBackgroundImg', 'core/img/background/scenario.jpg');
 $scenarios = array();
 $totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
@@ -65,19 +65,19 @@ foreach ($scenarioListGroup as $group) {
 <div id="scenarioThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-   <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_addScenario2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
   </div>
   <?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+    <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
      <i class="fas fa-check" style="font-size : 6em;color:#5cb85c;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
    </div>
    <?php } else {?>
-   <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
      <i class="fas fa-times" style="font-size : 6em;color:#d9534f;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
@@ -85,19 +85,19 @@ foreach ($scenarioListGroup as $group) {
    <?php }
 ?>
 
-   <div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-eye" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
   </div>
 
-  <div class="cursor bt_showScenarioSummary" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+  <div class="cursor bt_showScenarioSummary" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-list" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
   </div>
 
-  <div class="cursor bt_showExpressionTest" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+  <div class="cursor bt_showExpressionTest" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-check" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Testeur d'expression}}</span>
@@ -123,7 +123,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -150,7 +150,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
