@@ -119,9 +119,9 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
 });
 
 $('.scenarioDisplayCard').off('click').on('click', function () {
-  $('#div_tree').jstree('open_all');
-  $('#div_tree').jstree('deselect_all');
-  $('#div_tree').jstree('select_node', 'scenario' + $(this).attr('data-scenario_id'));
+  $.hideAlert();
+  $('#scenarioThumbnailDisplay').hide();
+  printScenario($(this).attr('data-scenario_id'));
 });
 
 $('.accordion-toggle').off('click').on('click', function () {

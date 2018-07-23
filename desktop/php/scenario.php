@@ -167,7 +167,7 @@ if (count($totalScenario) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
+<div id="div_editScenario" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>
