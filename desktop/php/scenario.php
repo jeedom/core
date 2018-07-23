@@ -18,10 +18,10 @@ if (is_array($scenarioListGroup)) {
   background-color: #94CA02;
 }
 </style>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
+<!-- <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div> -->
 
 <div class="row row-overflow">
-  <div class="col-xs-2" id="div_listScenario" style="z-index:999">
+ <!-- <div class="col-xs-2" id="div_listScenario" style="z-index:999">
     <div class="bs-sidebar nav nav-list bs-sidenav" >
       <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
       <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
@@ -60,9 +60,9 @@ foreach ($scenarioListGroup as $group) {
    </ul>
  </div>
 </div>
-</div>
+</div> -->
 
-<div id="scenarioThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="cursor" id="bt_addScenario2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >

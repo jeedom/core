@@ -71,7 +71,7 @@ if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
+/*if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
   $('#div_listScenario').hide();
   $('#scenarioThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
   $('#div_editScenario').removeClass('col-xs-10').addClass('col-xs-12');
@@ -101,7 +101,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 }).on("mouseenter", function(){
   clearTimeout($(this).data('timerMouseleave'));
 });
-}
+}*/
 
 setTimeout(function(){
   $('.scenarioListContainer').packery();
