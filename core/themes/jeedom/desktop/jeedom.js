@@ -19,12 +19,12 @@
  		$('.backgroundforJeedom').css('background-image','');
  		$('.backgroundforJeedom').css('background-position','');
  		$('.backgroundforJeedom').css('background-repeat','no-repeat');
- 		if(jeedomBackgroundImg != null){
+ 		if(jeedomBackgroundImg != undefined && jeedomBackgroundImg != null){
  			$('.backgroundforJeedom').css('background-image','url("'+jeedomBackgroundImg+'")');
- 			if(jeedomBackgroundPosition != null){
+ 			if(jeedomBackgroundPosition != undefined && jeedomBackgroundPosition != null){
 	 			$('.backgroundforJeedom').css('background-position',''+jeedomBackgroundPosition+'');
  			}
- 			if(jeedomBackgroundRepeat != null){
+ 			if(jeedomBackgroundRepeat != undefined && jeedomBackgroundRepeat != null){
 	 			$('.backgroundforJeedom').css('background-repeat',''+jeedomBackgroundRepeat+'');
  			}
  		}else{
