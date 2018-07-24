@@ -17,12 +17,32 @@
  $(function(){
  	$('body').on('jeedom_page_load',function(){
  		$('.backgroundforJeedom').css('background-image','');
+ 		$('.backgroundforJeedom').css('background-position','');
+ 		$('.backgroundforJeedom').css('background-repeat','no-repeat');
  		if(jeedomBackgroundImg != null){
  			$('.backgroundforJeedom').css('background-image','url("'+jeedomBackgroundImg+'")');
+ 			if(jeedomBackgroundPosition != null){
+	 			$('.backgroundforJeedom').css('background-position',''+jeedomBackgroundPosition+'');
+ 			}
+ 			if(jeedomBackgroundRepeat != null){
+	 			$('.backgroundforJeedom').css('background-repeat',''+jeedomBackgroundRepeat+'');
+ 			}
  		}else{
- 			switch (getUrlVars('p')) {
+ 			switch (getUrlVars('p')){
  				case 'scenario':
  					$('.backgroundforJeedom').css('background-image','url("core/themes/jeedom/desktop/background/scenario.png")');
+ 					$('.backgroundforJeedom').css('background-position','bottom right');
+ 					$('.backgroundforJeedom').css('background-repeat','no-repeat');
+ 				break;
+ 				case 'interact':
+ 					$('.backgroundforJeedom').css('background-image','url("core/themes/jeedom/desktop/background/interact.png")');
+ 					$('.backgroundforJeedom').css('background-position','bottom right');
+ 					$('.backgroundforJeedom').css('background-repeat','no-repeat');
+ 				break;
+ 				case 'object':
+ 					$('.backgroundforJeedom').css('background-image','url("core/themes/jeedom/desktop/background/object.png")');
+ 					$('.backgroundforJeedom').css('background-position','bottom right');
+ 					$('.backgroundforJeedom').css('background-repeat','no-repeat');
  				break;
  			}
  		}
