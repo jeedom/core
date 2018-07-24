@@ -174,15 +174,26 @@ function getObjectHtml(_object_id){
             $("textarea").click(function() { $(this).focus(); });
             $("select").click(function() { $(this).focus(); });
             
+            $('.eqLogic-widget').each( function( i, eqLogic ) {
+            	var backgroundColor = $( eqLogic ).css('background-color');
+            	if(backgroundColor.substr(0, 3) == 'rgb'){
+	            	backgroundColor = backgroundColor.replace(')',', 0.4)');
+            	}else{
+	            	backgroundColor = backgroundColor+'80';
+            	}
+                $( eqLogic ).css('border', '1px solid '+backgroundColor+'' );
+            });
+            
             $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
                 var container = $(this).packery({
                     itemSelector: ".eqLogic-widget",
-                    gutter : 2
+                    gutter : 0,
+                    columnWidth: 25
                 });
                 var itemElems =  container.find('.eqLogic-widget').draggable();
                 container.packery( 'bindUIDraggableEvents', itemElems );
                 container.packery( 'on', 'dragItemPositioned',function(){
-                    $('.div_displayEquipement').packery();
+                    //$('.div_displayEquipement').packery();
                 });
                 function orderItems() {
                   var itemElems = container.packery('getItemElements');
