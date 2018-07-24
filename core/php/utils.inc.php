@@ -471,7 +471,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
 				if (isset($_params['log']) && $_params['log']) {
-					echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
 				}
 				return true;
 			}
@@ -483,7 +483,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 					if (!$_noError) {
 						return false;
 					} else if (isset($_params['log']) && $_params['log']) {
-						echo 'Error on copy ' . $src . ' to ' . $dst;
+						echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
 					}
 				}
 			}
@@ -491,7 +491,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				if (!$_noError) {
 					return false;
 				} else if (isset($_params['log']) && $_params['log']) {
-					echo 'Error on copy ' . $src . ' to ' . $dst;
+					echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
 				}
 			}
 			return true;
