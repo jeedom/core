@@ -44,6 +44,11 @@
  					$('.backgroundforJeedom').css('background-position','bottom right');
  					$('.backgroundforJeedom').css('background-repeat','no-repeat');
  				break;
+ 				case 'display':
+ 					$('.backgroundforJeedom').css('background-image','url("core/themes/jeedom/desktop/background/display.png")');
+ 					$('.backgroundforJeedom').css('background-position','bottom right');
+ 					$('.backgroundforJeedom').css('background-repeat','no-repeat');
+ 				break;
  			}
  		}
  	});
