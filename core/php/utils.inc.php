@@ -470,6 +470,18 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
 				if (isset($_params['log']) && $_params['log']) {
 					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
 				}
@@ -523,6 +535,18 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
 				if (isset($_params['log']) && $_params['log']) {
 					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
 				}
