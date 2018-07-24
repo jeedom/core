@@ -218,6 +218,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
         editWidgetMode(0);
         $(this).css('color','black');
         $('.bt_editDashboardWidgetAutoResize').hide();
+		$('.div_displayEquipement').packery();
     }else{
        $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
        $(this).attr('data-mode',1);
