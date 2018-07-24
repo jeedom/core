@@ -89,29 +89,20 @@ if (init('rescue', 0) == 0) {
 if (!isConnect()) {
 	if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
 		include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
-		sendVarToJS('jeedom_allowBackground', 0);
 	} else {
 		include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-		include_file('desktop', 'jeedom', 'css');
-		sendVarToJS('jeedom_allowBackground', 1);
 	}
 } else {
 	try {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
 			include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.css');
-			sendVarToJS('jeedom_allowBackground', 0);
 		} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
 			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
-			sendVarToJS('jeedom_allowBackground', 0);
 		} else {
 			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-			include_file('desktop', 'jeedom', 'css');
-			sendVarToJS('jeedom_allowBackground', 1);
 		}
 	} catch (Exception $e) {
 		include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-		include_file('desktop', 'jeedom', 'css');
-		sendVarToJS('jeedom_allowBackground', 1);
 	}
 }
 include_file('core', 'icon.inc', 'php');
