@@ -71,38 +71,6 @@ if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
 
-/*if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-  $('#div_listScenario').hide();
-  $('#scenarioThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
-  $('#div_editScenario').removeClass('col-xs-10').addClass('col-xs-12');
-
-  $('#bt_displayScenarioList').on('mouseenter',function(){
-   var timer = setTimeout(function(){
-    $('#bt_displayScenarioList').find('i').hide();
-    $('#scenarioThumbnailDisplay').addClass('col-xs-10').removeClass('col-xs-12');
-    $('#div_editScenario').addClass('col-xs-10').removeClass('col-xs-12');
-    $('#div_listScenario').show();
-    $('.scenarioListContainer').packery();
-  }, 100);
-   $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
-
- $('#div_listScenario').on('mouseleave',function(){
-  var timer = setTimeout(function(){
-   $('#div_listScenario').hide();
-   $('#bt_displayScenarioList').find('i').show();
-   $('#scenarioThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
-   $('#div_editScenario').removeClass('col-xs-10').addClass('col-xs-12');
-   $('.scenarioListContainer').packery();
- }, 300);
-  $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
-}*/
-
 setTimeout(function(){
   $('.scenarioListContainer').packery();
 },100);
@@ -114,7 +82,6 @@ $('.scenarioListContainer').packery();
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
-  $('.li_scenario').removeClass('active');
   $('.scenarioListContainer').packery();
 });
 
@@ -128,16 +95,6 @@ $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){
     $('.scenarioListContainer').packery();
   },100);
-});
-
-$('#div_tree').off('click').on('select_node.jstree', function (node, selected) {
-  if (selected.node.a_attr.class == 'li_scenario') {
-    $.hideAlert();
-    $(".li_scenario").removeClass('active');
-    $(this).addClass('active');
-    $('#scenarioThumbnailDisplay').hide();
-    printScenario(selected.node.a_attr['data-scenario_id']);
-  }
 });
 
 $("#div_tree").jstree({

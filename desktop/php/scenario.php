@@ -17,50 +17,8 @@ if (is_array($scenarioListGroup)) {
   background-color: #94CA02;
 }
 </style>
-<!-- <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div> -->
 
 <div class="row row-overflow">
- <!-- <div class="col-xs-2" id="div_listScenario" style="z-index:999">
-    <div class="bs-sidebar nav nav-list bs-sidenav" >
-      <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
-      <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
-      <div id="div_tree">
-        <ul id="ul_scenario" >
-          <?php if (count($scenarios[-1]) > 0) {
-	?>
-           <li data-jstree='{"opened":true}'>
-            <?php
-echo '<a>Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
-	echo '<ul>';
-	foreach ($scenarios[-1] as $scenario) {
-		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
-		echo '</li>';
-	}
-	?>
-          </ul>
-          <?php
-}
-foreach ($scenarioListGroup as $group) {
-	if ($group['group'] != '') {
-		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
-		echo '<ul>';
-		foreach ($scenarios[$group['group']] as $scenario) {
-			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
-			echo '</li>';
-		}
-		echo '</ul>';
-		echo '</li>';
-	}
-}
-?>
-   </ul>
- </div>
-</div>
-</div> -->
-
 <div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
@@ -166,7 +124,7 @@ if (count($totalScenario) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
+<div id="div_editScenario" class="col-xs-12" style="display: none;" >
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>

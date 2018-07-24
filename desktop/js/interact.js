@@ -22,42 +22,9 @@
   $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
 });
 
- if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-  $('#div_listInteract').hide();
-  $('#interactThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
-  $('#div_conf').removeClass('col-xs-10').addClass('col-xs-12');
-
-  $('#bt_displayInteractList').on('mouseenter',function(){
-   var timer = setTimeout(function(){
-    $('#bt_displayInteractList').find('i').hide();
-    $('#interactThumbnailDisplay').addClass('col-xs-10').removeClass('col-xs-12');
-    $('#div_conf').addClass('col-xs-10').removeClass('col-xs-12');
-    $('#div_listInteract').show();
-    $('.interactListContainer').packery();
-  }, 100);
-   $(this).data('timerMouseleave', timer)
- }).on("mouseleave", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
-
- $('#div_listInteract').on('mouseleave',function(){
-  var timer = setTimeout(function(){
-   $('#div_listInteract').hide();
-   $('#bt_displayInteractList').find('i').show();
-   $('#interactThumbnailDisplay').removeClass('col-xs-10').addClass('col-xs-12');
-   $('#div_conf').removeClass('col-xs-10').addClass('col-xs-12');
-   $('.interactListContainer').packery();
- }, 300);
-  $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
-}
-
 setTimeout(function(){
   $('.interactListContainer').packery();
 },100);
-
 
 $('#in_searchInteract').keyup(function () {
   var search = $(this).value();
@@ -86,23 +53,12 @@ $('.interactListContainer').packery();
 $('#bt_interactThumbnailDisplay').on('click', function () {
   $('#div_conf').hide();
   $('#interactThumbnailDisplay').show();
-  $('.li_interact').removeClass('active');
   $('.interactListContainer').packery();
 });
 
 $('.interactDisplayCard').on('click', function () {
   $('#div_tree').jstree('deselect_all');
   $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'));
-});
-
-$('#div_tree').on('select_node.jstree', function (node, selected) {
-  if (selected.node.a_attr.class == 'li_interact') {
-    $.hideAlert();
-    $(".li_interact").removeClass('active');
-    $(this).addClass('active');
-    $('#interactThumbnailDisplay').hide();
-    displayInteract(selected.node.a_attr['data-interact_id']);
-  }
 });
 
 $("#div_tree").jstree({
@@ -145,8 +101,8 @@ $('#bt_duplicate').on('click', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
-  if ($('.li_interact[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
-    $('.li_interact[data-interact_id=' + getUrlVars('id') + ']').click();
+  if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
+    $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click();
   }
 }
 
@@ -184,7 +140,7 @@ $("#bt_saveInteract").on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-     $('.li_interact[data-interact_id=' + data.id + ']').click();
+     $('.interactDisplayCard[data-interact_id=' + data.id + ']').click();
      $('#div_alert').showAlert({message: '{{Sauvegarde réussie avec succès}}', level: 'success'});
    }
  });
@@ -224,12 +180,11 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
 });
 
 $("#bt_removeInteract").on('click', function () {
-  if ($('.li_interact.active').attr('data-interact_id') != undefined) {
     $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.li_interact.active a').text() + '</span> ?', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function (result) {
       if (result) {
         jeedom.interact.remove({
-          id: $('.li_interact.active').attr('data-interact_id'),
+          id: $('.interactDisplayCard.active').attr('data-interact_id'),
           error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
           },
@@ -239,9 +194,6 @@ $("#bt_removeInteract").on('click', function () {
        });
       }
     });
-  } else {
-    $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
-  }
 });
 
 $('#bt_addAction').off('click').on('click',function(){
@@ -302,8 +254,8 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
 function displayInteract(_id){
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
-  $('.li_interact').removeClass('active');
-  $('.li_interact[data-interact_id='+_id+']').addClass('active');
+  $('.interactDisplayCard').removeClass('active');
+  $('.interactDisplayCard[data-interact_id='+_id+']').addClass('active');
   jeedom.interact.get({
     id: _id,
     success: function (data) {

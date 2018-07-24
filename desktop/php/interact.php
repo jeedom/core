@@ -12,54 +12,10 @@ if (is_array($interactListGroup)) {
 	}
 }
 ?>
-
-<!--<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayInteractList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>-->
 <div class="row row-overflow">
-  <!--<div class="col-xs-2" id="div_listInteract" style="z-index:999">
-    <div class="bs-sidebar nav nav-list bs-sidenav" >
-      <a id="bt_addInteract" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter interaction}}</a>
-      <a id="bt_regenerateInteract" class="btn btn-warning" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
-      <a id="bt_testInteract" class="btn btn-primary" style="width : 100%;margin-top : 5px;margin-bottom: 5px;text-shadow : none;"><i class="fas fa-comment"></i> {{Tester}}</a>
-      <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
-      <div id="div_tree">
-       <ul id="ul_interact" >
-        <?php if (count($interacts[-1]) > 0) {
-	?>
-         <li data-jstree='{"opened":true}'>
-          <?php
-echo '<a>Aucune - ' . count($interacts[-1]) . ' interaction(s)</a>';
-	echo '<ul>';
-	foreach ($interacts[-1] as $interact) {
-		echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-		echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
-		echo '</li>';
-	}
-	?>
-        </ul>
-        <?php
-}
-foreach ($interactListGroup as $group) {
-	if ($group['group'] != '') {
-		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . ' - ' . count($interacts[$group['group']]) . ' interaction(s)</a>';
-		echo '<ul>';
-		foreach ($interacts[$group['group']] as $interact) {
-			echo '<li data-jstree=\'{"opened":true,"icon":""}\'>';
-			echo ' <a class="li_interact" id="interact' . $interact->getId() . '" data-interact_id="' . $interact->getId() . '" title="{{Interaction ID :}} ' . $interact->getId() . '">' . $interact->getHumanName(false, true) . '</a>';
-			echo '</li>';
-		}
-		echo '</ul>';
-		echo '</li>';
-	}
-}
-?>
- </ul>
-</div>
-</div>
-</div>-->
 <div id="interactThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="interactListContainer">
-   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+   <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
    <div class="cursor" id="bt_addInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
      <center>
       <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
@@ -80,7 +36,7 @@ foreach ($interactListGroup as $group) {
 </div>
 </div>
 
-<legend><i class="far fa-comments"></i>  {{Mes interactions}}</legend>
+<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
 <?php
 if (count($totalInteract) == 0) {
 	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
@@ -142,7 +98,7 @@ if (count($totalInteract) == 0) {
 ?>
 </div>
 
-<div class="interact col-xs-10" style="display: none;" id="div_conf">
+<div class="interact col-xs-12" style="display: none;" id="div_conf">
   <a class="btn btn-default pull-right" id="bt_duplicate"><i class="far fa-files-o"></i> {{Dupliquer}}</a>
   <a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
   <a class="btn btn-success pull-right" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>

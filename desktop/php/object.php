@@ -3,33 +3,12 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('select_id', init('id', '-1'));
+$allObject = jeeObject::buildTree(null, false);
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayObject"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
-  <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:999">
-    <div class="bs-sidebar">
-      <ul id="ul_object" class="nav nav-list bs-sidenav">
-        <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter objet}}</a>
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <?php
-$allObject = jeeObject::buildTree(null, false);
-foreach ($allObject as $object) {
-	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
-	echo '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
-	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
-	echo $object->getHumanName(true, true);
-	echo '</span></a>';
-	echo '</li>';
-}
-?>
-     </ul>
-   </div>
- </div>
-
- <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+ <div class="col-xs-12" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="objectListContainer">
      <div class="cursor" id="bt_addObject2" style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
@@ -67,7 +46,7 @@ foreach ($allObject as $object) {
  </div>
 </div>
 
-<div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
+<div class="col-xs-12 object" style="display: none;" id="div_conf">
  <a class="btn btn-success pull-right" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
@@ -104,6 +83,12 @@ foreach ($allObject as $object) {
          </div>
        </div>
        <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Position}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <input type="number" class="objectAttr form-control" data-l1key="position" />
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
         <div class="col-sm-1">
           <input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
@@ -142,7 +127,7 @@ foreach ($allObject as $object) {
         <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="desktop::summaryTextColor" />
       </div>
     </div>
-     <div class="form-group">
+    <div class="form-group">
       <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Taille sur le dashboard (1 à 12)}}</label>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <input type="number" class="objectAttr form-control" data-l1key="display" data-l2key="dashboard::size" />
