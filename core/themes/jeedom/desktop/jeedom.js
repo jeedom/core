@@ -19,12 +19,12 @@
  		$('.backgroundforJeedom').css('background-image','');
  		$('.backgroundforJeedom').css('background-position','');
  		$('.backgroundforJeedom').css('background-repeat','no-repeat');
- 		if(typeof(jeedomBackgroundImg) !== 'undefined' && jeedomBackgroundImg != null){
+ 		if(typeof jeedomBackgroundImg !== 'undefined' && jeedomBackgroundImg != null){
  			$('.backgroundforJeedom').css('background-image','url("'+jeedomBackgroundImg+'")');
- 			if(typeof(jeedomBackgroundPosition) !== 'undefined' && jeedomBackgroundPosition != null){
+ 			if(typeof jeedomBackgroundPosition !== 'undefined' && jeedomBackgroundPosition != null){
 	 			$('.backgroundforJeedom').css('background-position',''+jeedomBackgroundPosition+'');
  			}
- 			if(typeof(jeedomBackgroundRepeat) !== 'undefined' && jeedomBackgroundRepeat != null){
+ 			if(typeof jeedomBackgroundRepeat !== 'undefined' && jeedomBackgroundRepeat != null){
 	 			$('.backgroundforJeedom').css('background-repeat',''+jeedomBackgroundRepeat+'');
  			}
  		}else{
