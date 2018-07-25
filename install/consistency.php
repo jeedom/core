@@ -119,14 +119,14 @@ try {
 	if (!is_object($cron)) {
 		echo "Create jeedom::backup\n";
 		$cron = new cron();
+		$cron->setClass('jeedom');
+		$cron->setFunction('backup');
+		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
+		$cron->setEnable(1);
+		$cron->setDeamon(0);
+		$cron->setTimeout(60);
+		$cron->save();
 	}
-	$cron->setClass('jeedom');
-	$cron->setFunction('backup');
-	$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
-	$cron->setEnable(1);
-	$cron->setDeamon(0);
-	$cron->setTimeout(60);
-	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
@@ -323,12 +323,13 @@ try {
 	if (file_exists(__DIR__ . '/../script/ngrok')) {
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
-	try {
-		foreach (eqLogic::all() as $eqLogic) {
-			$eqLogic->emptyCacheWidget();
-		}
-	} catch (Exception $e) {
 
+	foreach (eqLogic::all() as $eqLogic) {
+		try {
+			$eqLogic->emptyCacheWidget();
+		} catch (Exception $e) {
+
+		}
 	}
 
 	try {

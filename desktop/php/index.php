@@ -170,6 +170,8 @@ include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 include_file('3rdparty', 'autosize/autosize.min', 'js');
+include_file('3rdparty', 'animate/animate', 'css');
+include_file('3rdparty', 'animate/animate', 'js');
 if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 	if (file_exists(__DIR__ . '/../custom/custom.css')) {
 		include_file('desktop', '', 'custom.css');
@@ -211,6 +213,7 @@ try {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
+	<div class="backgroundforJeedom"> </div>
 	<?php
 sendVarToJS('jeedom_langage', $configs['language']);
 if (!isConnect()) {
@@ -234,6 +237,7 @@ if (!isConnect()) {
 		<?php if (init('rescue', 0) == 0) {
 		?>
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+				<div class="TopBarCharge" style="top:0px; witdh:100%; height:5px; background-color:rgba(147,204,1,0.7);"></div>
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -249,7 +253,7 @@ if (!isConnect()) {
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-xs hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
+								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 
 									<li class="dropdown-submenu">
@@ -298,7 +302,7 @@ echo $panel_menu;
 								</ul>
 							</li>
 							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-xs hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
+								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
 									<?php
@@ -327,7 +331,7 @@ if (isConnect('admin')) {
 if (isConnect('admin')) {
 			?>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-xs hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
@@ -336,7 +340,7 @@ if (isConnect('admin')) {
 									</ul>
 								</li>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-xs hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
+									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>

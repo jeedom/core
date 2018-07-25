@@ -77,7 +77,7 @@ function initHome() {
                  if (isset(plan3dHeader[i].configuration) && isset(plan3dHeader[i].configuration.icon)) {
                     icon = plan3dHeader[i].configuration.icon;
                 }
-                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '" data-ajax="false">' +icon+' '+ plan3dHeader[i].name + '</a>'
+                li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '&fullscreen=1" data-ajax="false">' +icon+' '+ plan3dHeader[i].name + '</a>'
             }
         $('#bottompanel_plan3dList').empty().append(li);
     }

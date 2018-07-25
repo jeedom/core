@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 $scenarios = array();
 $totalScenario = scenario::all();
 $scenarios[-1] = scenario::all(null);
@@ -18,66 +17,24 @@ if (is_array($scenarioListGroup)) {
   background-color: #94CA02;
 }
 </style>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayScenarioList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
-  <div class="col-xs-2" id="div_listScenario" style="z-index:999">
-    <div class="bs-sidebar nav nav-list bs-sidenav" >
-      <a class="btn btn-default" id="bt_addScenario" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle cursor" ></i> {{Nouveau scénario}}</a>
-      <input id='in_treeSearch' class='form-control' placeholder="{{Rechercher}}" />
-      <div id="div_tree">
-        <ul id="ul_scenario" >
-          <?php if (count($scenarios[-1]) > 0) {
-	?>
-           <li data-jstree='{"opened":true}'>
-            <?php
-echo '<a>Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
-	echo '<ul>';
-	foreach ($scenarios[-1] as $scenario) {
-		echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-		echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
-		echo '</li>';
-	}
-	?>
-          </ul>
-          <?php
-}
-foreach ($scenarioListGroup as $group) {
-	if ($group['group'] != '') {
-		echo '<li data-jstree=\'{"opened":true}\'>';
-		echo '<a>' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
-		echo '<ul>';
-		foreach ($scenarios[$group['group']] as $scenario) {
-			echo '<li data-jstree=\'{"opened":true,"icon":"' . $scenario->getIcon(true) . '"}\'>';
-			echo ' <a class="li_scenario" id="scenario' . $scenario->getId() . '" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(false, true) . '</a>';
-			echo '</li>';
-		}
-		echo '</ul>';
-		echo '</li>';
-	}
-}
-?>
-   </ul>
- </div>
-</div>
-</div>
-
-<div id="scenarioThumbnailDisplay" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;">
+<div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
  <div class="scenarioListContainer">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-   <div class="cursor" id="bt_addScenario2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_addScenario2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
   </div>
   <?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+    <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
      <i class="fas fa-check" style="font-size : 6em;color:#5cb85c;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
    </div>
    <?php } else {?>
-   <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
      <i class="fas fa-times" style="font-size : 6em;color:#d9534f;"></i>
      <br>
      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
@@ -85,19 +42,19 @@ foreach ($scenarioListGroup as $group) {
    <?php }
 ?>
 
-   <div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+   <div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-eye" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Voir variables}}</span>
   </div>
 
-  <div class="cursor bt_showScenarioSummary" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+  <div class="cursor bt_showScenarioSummary" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-list" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
   </div>
 
-  <div class="cursor bt_showExpressionTest" style="text-align: center; background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+  <div class="cursor bt_showExpressionTest" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
     <i class="fas fa-check" style="font-size : 6em;color:#337ab7;"></i>
     <br>
     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Testeur d'expression}}</span>
@@ -123,7 +80,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[-1] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -150,7 +107,7 @@ if (count($totalScenario) == 0) {
 		echo '<div class="scenarioListContainer">';
 		foreach ($scenarios[$group['group']] as $scenario) {
 			$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; background-color : #ffffff; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+			echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
 			echo '<img src="core/img/scenario.png" height="90" width="85" />';
 			echo "<br>";
 			echo '<span class="name" style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -167,7 +124,7 @@ if (count($totalScenario) == 0) {
 ?>
 </div>
 
-<div id="div_editScenario" class="col-xs-10" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;" >
+<div id="div_editScenario" class="col-xs-12" style="display: none;" >
  <a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
  <a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>

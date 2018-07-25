@@ -135,16 +135,6 @@ try {
 			$defaut = 0;
 			$result = 'OK';
 			$advice = '';
-			if (user::hasDefaultIdentification() == 1) {
-				$defaut = 1;
-				$result = 'NOK';
-				$advice = __('Attention : vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __file);
-			}
-			$health[] = array('plugin' => 'core', 'type' => 'Authentification par défaut', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
-
-			$defaut = 0;
-			$result = 'OK';
-			$advice = '';
 			if (!jeedom::isCapable('sudo')) {
 				$defaut = 1;
 				$result = 'NOK';

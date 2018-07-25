@@ -3,43 +3,22 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 sendVarToJS('select_id', init('id', '-1'));
+$allObject = jeeObject::buildTree(null, false);
 ?>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayObject"><i class="fas fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
-  <div class="col-md-2 col-sm-3" id="sd_objectList" style="z-index:999">
-    <div class="bs-sidebar">
-      <ul id="ul_object" class="nav nav-list bs-sidenav">
-        <a id="bt_addObject" class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter objet}}</a>
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <?php
-$allObject = jeeObject::buildTree(null, false);
-foreach ($allObject as $object) {
-	$margin = 15 * $object->getConfiguration('parentNumber');
-	echo '<li class="cursor li_object bt_sortable" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
-	echo '<i class="fas fa-arrows-alt-v pull-left cursor"></i>';
-	echo '<a><span style="position:relative;left:' . $margin . 'px;">';
-	echo $object->getHumanName(true, true);
-	echo '</span></a>';
-	echo '</li>';
-}
-?>
-     </ul>
-   </div>
- </div>
-
- <div class="col-lg-10 col-md-10 col-sm-9" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+ <div class="col-xs-12" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
    <div class="objectListContainer">
-     <div class="cursor" id="bt_addObject2" style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <div class="cursor" id="bt_addObject2" style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
        <br/>
        <center style='margin-top:-14px;'>
          <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
        </center>
        <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
      </div>
-     <div class="cursor bt_showObjectSummary" style="text-align: center; background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+     <div class="cursor bt_showObjectSummary" style="text-align: center;  height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
       <br/>
       <center style='margin-top:-14px;'>
         <i class="fas fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
@@ -49,14 +28,15 @@ foreach ($allObject as $object) {
   </div>
 
   <legend><i class="fas fa-picture-o"></i>  {{Mes objets}}</legend>
+  <input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchObject" />
   <div class="objectListContainer">
    <?php
 foreach ($allObject as $object) {
-	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\' style="background-color : #ffffff; height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+	echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\' style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 	echo "<center style='margin-top:10px;'>";
 	echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>'));
 	echo "</center>";
-	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $object->getName() . '</center></span><br/>';
+	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center class="name">' . $object->getName() . '</center></span><br/>';
 	echo '<center style="font-size :0.7em">';
 	echo $object->getHtmlSummary();
 	echo "</center>";
@@ -66,7 +46,7 @@ foreach ($allObject as $object) {
  </div>
 </div>
 
-<div class="col-md-10 col-sm-9 object" style="display: none;" id="div_conf">
+<div class="col-xs-12 object" style="display: none;" id="div_conf">
  <a class="btn btn-success pull-right" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
@@ -103,6 +83,12 @@ foreach ($allObject as $object) {
          </div>
        </div>
        <div class="form-group">
+        <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Position}}</label>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <input type="number" class="objectAttr form-control" data-l1key="position" />
+        </div>
+      </div>
+      <div class="form-group">
         <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
         <div class="col-sm-1">
           <input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
@@ -141,14 +127,22 @@ foreach ($allObject as $object) {
         <input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="desktop::summaryTextColor" />
       </div>
     </div>
-     <div class="form-group">
+    <div class="form-group">
       <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Taille sur le dashboard (1 à 12)}}</label>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <input type="number" class="objectAttr form-control" data-l1key="display" data-l2key="dashboard::size" />
       </div>
     </div>
-  </fieldset>
-</form>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Image}}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+        <span class="btn btn-default btn-file">
+          <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+        </span>
+        <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+      </div>
+    </fieldset>
+  </form>
 </div>
 <div role="tabpanel" class="tab-pane" id="summarytab">
   <?php

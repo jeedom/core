@@ -262,7 +262,7 @@ $lastKnowDate = $cache->getValue();
 
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['api']; ?></span>
 								<span class="input-group-btn">
@@ -274,7 +274,7 @@ $lastKnowDate = $cache->getValue();
 
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 								<span class="input-group-btn">
@@ -292,7 +292,7 @@ $lastKnowDate = $cache->getValue();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
-						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
 								<span class="input-group-btn">
@@ -317,7 +317,7 @@ if (init('rescue', 0) == 0) {
 		}
 		echo '<div class="form-group">';
 		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
-		echo '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">';
+		echo '<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">';
 		echo '<div class="input-group">';
 		echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
 		echo '<span class="input-group-btn">';

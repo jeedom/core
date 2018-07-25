@@ -17,6 +17,7 @@
  uniqId_count = 0;
  modifyWithoutSave = false;
  nbActiveAjaxRequest = 0;
+ jeedomBackgroundImg = null; 
  utid = Date.now();
 
  $(document).ajaxStart(function () {
@@ -80,6 +81,7 @@ if(_url.indexOf('#') == -1){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
 }
+jeedomBackgroundImg = null;
 $('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     var title = getUrlVars('p');
@@ -87,6 +89,7 @@ $('#div_pageContainer').empty().load(url,function(){
        document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
    }
    initPage();
+   $('body').trigger('jeedom_page_load');
 });
 return;
 }
@@ -96,7 +99,6 @@ function removeContextualFunction(){
 }
 
 $(function () {
-
     $.alertTrigger = function(){
         initRowOverflow();
     }
@@ -374,8 +376,10 @@ if (isset(jeedom_langage)) {
     $('body').on('click','.objectSummaryParent',function(){
        loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
    });
-
     initPage();
+    setTimeout(function(){
+        $('body').trigger('jeedom_page_load');
+    }, 1);
 });
 
 function initTextArea(){
@@ -601,8 +605,8 @@ function chooseIcon(_callback) {
 
 
 function positionEqLogic(_id,_preResize) {
-    var width_step = 2;
-    var height_step = 2;
+    var width_step = 25;
+    var height_step = 5;
     if(_id != undefined){
         var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
         eqLogic.css('margin','0px').css('padding','0px');
@@ -619,6 +623,7 @@ function positionEqLogic(_id,_preResize) {
      eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step);
      eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step);
      eqLogic.trigger('resize');
+     eqlogic.addClass($(eqlogic).attr('data-category'));
  }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -631,6 +636,7 @@ function positionEqLogic(_id,_preResize) {
         $(this).width(Math.ceil($(this).width() / width_step) * width_step);
         $(this).height(Math.ceil($(this).height() / height_step) * height_step);
         $(this).trigger('resize');
+        $(this).addClass($(this).attr('data-category'));
     });
     $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
 }

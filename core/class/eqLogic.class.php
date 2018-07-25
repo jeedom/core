@@ -636,6 +636,17 @@ class eqLogic {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
+		$tagsValue = '';
+		if ($this->getTags() != null) {
+			$tagsArray = explode(',', $this->getTags());
+			foreach ($tagsArray as $tags) {
+				if ($tags == null) {
+					continue;
+				}
+				$tagsValue .= 'tag-' . $tags . ' ';
+			}
+		}
+		$tagsValue = trim($tagsValue);
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -645,7 +656,7 @@ class eqLogic {
 			'#category#' => $this->getPrimaryCategory(),
 			'#color#' => '#ffffff',
 			'#border#' => 'none',
-			'#border-radius#' => '4px',
+			'#border-radius#' => '0px',
 			'#style#' => '',
 			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
@@ -658,6 +669,8 @@ class eqLogic {
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
+			'#tag#' => $tagsValue,
+			'#data-tags#' => $this->getTags(),
 		);
 
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
@@ -682,7 +695,7 @@ class eqLogic {
 			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
 		}
 		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
-			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '4') . 'px';
+			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '0') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		if (!is_object($refresh_cmd)) {

@@ -114,7 +114,7 @@ try {
 			return ($a->getStatus('battery') < $b->getStatus('battery')) ? -1 : (($a->getStatus('battery') > $b->getStatus('battery')) ? 1 : 0);
 		});
 		foreach ($list as $eqLogic) {
-			$return[$eqLogic->getId()] = array(
+			$return[] = array(
 				'html' => $eqLogic->batteryWidget(init('version')),
 				'id' => $eqLogic->getId(),
 				'type' => $eqLogic->getEqType_name(),

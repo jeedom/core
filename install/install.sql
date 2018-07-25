@@ -279,6 +279,8 @@ CREATE TABLE IF NOT EXISTS `view` (
   `name` VARCHAR(127) NULL,
   `display` text NULL,
   `order` INT NULL,
+  `image` MEDIUMTEXT NULL,
+  `configuration` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB

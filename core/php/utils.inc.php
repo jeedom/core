@@ -461,7 +461,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
-				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError, $_params) && !$_noError) {
 					return false;
 				}
 			}
@@ -470,8 +470,20 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
 				if (isset($_params['log']) && $_params['log']) {
-					echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
 				}
 				return true;
 			}
@@ -483,7 +495,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 					if (!$_noError) {
 						return false;
 					} else if (isset($_params['log']) && $_params['log']) {
-						echo 'Error on copy ' . $src . ' to ' . $dst;
+						echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
 					}
 				}
 			}
@@ -491,7 +503,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				if (!$_noError) {
 					return false;
 				} else if (isset($_params['log']) && $_params['log']) {
-					echo 'Error on copy ' . $src . ' to ' . $dst;
+					echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
 				}
 			}
 			return true;
@@ -514,7 +526,7 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
-				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError, $_params) && !$_noError) {
 					return false;
 				}
 			}
@@ -523,8 +535,20 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
 			$srcSize = filesize($src);
 			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
 				if (isset($_params['log']) && $_params['log']) {
-					echo 'Ignore file ' . $src . ' because size is ' . $srcSize;
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
 				}
 				return true;
 			}
@@ -536,7 +560,7 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 					if (!$_noError) {
 						return false;
 					} else if (isset($_params['log']) && $_params['log']) {
-						echo 'Error on move ' . $src . ' to ' . $dst;
+						echo 'Error on move ' . $src . ' to ' . $dst . "\n";
 					}
 				}
 			}
@@ -544,7 +568,7 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 				if (!$_noError) {
 					return false;
 				} else if (isset($_params['log']) && $_params['log']) {
-					echo 'Error on move ' . $src . ' to ' . $dst;
+					echo 'Error on move ' . $src . ' to ' . $dst . "\n";
 				}
 			}
 			return true;
@@ -1284,14 +1308,15 @@ function listSession() {
 				continue;
 			}
 			$data_session = decodeSessionData($data);
+			if (!isset($data_session['user']) || !is_object($data_session['user'])) {
+				continue;
+			}
 			$session_id = str_replace('sess_', '', $session);
 			$return[$session_id] = array(
 				'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
 			);
-			if (isset($data_session['user'])) {
-				$return[$session_id]['login'] = $data_session['user']->getLogin();
-				$return[$session_id]['user_id'] = $data_session['user']->getId();
-			}
+			$return[$session_id]['login'] = $data_session['user']->getLogin();
+			$return[$session_id]['user_id'] = $data_session['user']->getId();
 			$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
 		}
 	} catch (Exception $e) {

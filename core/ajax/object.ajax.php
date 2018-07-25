@@ -84,29 +84,6 @@ try {
 		ajax::success(utils::o2a($object));
 	}
 
-	if (init('action') == 'uploadImage') {
-		unautorizedInDemo();
-		$object = jeeObject::byId(init('id'));
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
-		}
-		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
-		}
-		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
-		}
-		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
-		}
-		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('size', getimagesize($_FILES['file']['tmp_name']));
-		$object->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
-		$object->save();
-		ajax::success();
-	}
-
 	if (init('action') == 'getChild') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -221,6 +198,49 @@ try {
 			$info_object['html'] = $object->getHtmlSummary(init('version'));
 			ajax::success($info_object);
 		}
+	}
+
+	if (init('action') == 'removeImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$object = object::byId(init('id'));
+		if (!is_object($object)) {
+			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+		}
+		$object->setImage('data', '');
+		$object->setImage('sha1', '');
+		$object->save();
+		@rrmdir(__DIR__ . '/../../core/img/object');
+		ajax::success();
+	}
+
+	if (init('action') == 'uploadImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$object = object::byId(init('id'));
+		if (!is_object($object)) {
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.png'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+		}
+		$object->setImage('type', str_replace('.', '', $extension));
+		$object->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
+		$object->setImage('sha512', sha512($object->getImage('data')));
+		$object->save();
+		@rrmdir(__DIR__ . '/../../core/img/object');
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

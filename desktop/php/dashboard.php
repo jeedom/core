@@ -18,6 +18,7 @@ if (!is_object($object)) {
 	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire ou que c\'est la première fois que vous utilisez Jeedom, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
 $child_object = jeeObject::buildTree($object);
+sendVarToJs('rootObjectId', $object->getId());
 ?>
 
 <div class="row row-overflow">
@@ -108,6 +109,8 @@ foreach ($knowTags as $tag) {
 	</form>
 </div>
 <?php include_file('desktop', 'dashboard', 'js');?>
+<?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <div class="row" >
 	<?php
 if (init('object_id') != '') {
@@ -116,7 +119,7 @@ if (init('object_id') != '') {
 	echo '<div class="col-md-' . $object->getDisplay('dashboard::size', 12) . '">';
 }
 echo '<div data-object_id="' . $object->getId() . '" class="div_object">';
-echo '<legend style="margin-bottom : 0px;"><a class="div_object" style="text-decoration:none" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $object->getHtmlSummary() . '</span></legend>';
+echo '<legend style="margin-bottom : 0px;"><a class="div_object" style="text-decoration:none" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . $object->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $object->getHtmlSummary() . '</span> <i class="fas fa-compress pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" data-mode="0" style="margin-right : 10px; display: none;"></i> </legend>';
 echo '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 echo '<script>getObjectHtml(' . $object->getId() . ')</script>';
 echo '</div>';
@@ -128,7 +131,7 @@ foreach ($child_object as $child) {
 	}
 	echo '<div class="col-md-' . $child->getDisplay('dashboard::size', 12) . '">';
 	echo '<div data-object_id="' . $child->getId() . '" style="margin-bottom : 3px;" class="div_object">';
-	echo '<legend style="margin-bottom : 0px;"><a style="text-decoration:none" href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span></legend>';
+	echo '<legend style="margin-bottom : 0px;"><a style="text-decoration:none" href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span style="font-size : 0.6em;margin-left:10px;">' . $child->getHtmlSummary() . '</span> <i class="fas fa-compress pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" data-mode="0" style="margin-right : 10px; display: none;"></i></legend>';
 	echo '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '" style="width: 100%;padding-top:3px;margin-bottom : 3px;">';
 	echo '<script>getObjectHtml(' . $child->getId() . ')</script>';
 	echo '</div>';
@@ -158,6 +161,34 @@ foreach (scenario::all() as $scenario) {
 </div>
 </div>
 <style>
+.eqLogic-widget {
+  float: left !important;
+}
+.grid:after {
+  content: '' !important;
+  display: block !important;
+  clear: both !important;
+}
+.eqLogic-widget:hover {
+  border-color: hsla(0, 0%, 100%, 0.5) !important;
+  cursor: move !important;
+}
+.eqLogic-widget.is-dragging,
+.eqLogic-widget.is-positioning-post-drag {
+  background: #EA0 !important;
+  z-index: 2 !important; /* keep dragged item on top */
+}
+.eqLogic-widget.ui-draggable-dragging,
+.eqLogic-widget.is-positioning-post-drag {
+  background: #C90 !important;
+  z-index: 2 !important;
+}
+.packery-drop-placeholder {
+  outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
+  outline-offset: -6px !important;
+  -webkit-transition: -webkit-transform 0.2s !important;
+          transition: transform 0.2s !important;
+}
 .scenario-widget{
 	margin-top: 2px !important;
 }

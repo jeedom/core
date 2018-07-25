@@ -196,20 +196,22 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         config_panel_html += '<div class="form-group">';
         config_panel_html += '<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">'+i+'</label>';
         config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
-        if(data.functionality[i]){
+        if(data.functionality[i].exists){
           config_panel_html += '<span class="label label-success">{{Oui}}</span>';
           config_panel_html += '</div>';
-          config_panel_html += '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>';
-          config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
-          config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="functionality::'+i+'::enable" checked/>';
-          config_panel_html += '</div>';
+          if(data.functionality[i].controlable){
+            config_panel_html += '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>';
+            config_panel_html += '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
+            config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="functionality::'+i+'::enable" checked/>';
+            config_panel_html += '</div>';
+          }
         }else{
           config_panel_html += '<span class="label label-danger">{{Non}}</span>';
           config_panel_html += '</div>';
         }
         config_panel_html += '</div>';
         count++;
-        if(count == 4){
+        if(count == 5){
          config_panel_html += '</div>';
          config_panel_html += '<div class="col-sm-6">';
        }

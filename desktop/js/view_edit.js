@@ -67,16 +67,16 @@
                 for (var j in viewZone.viewData) {
                     var viewData = viewZone.viewData[j];
                     if (init(viewZone.type, 'widget') == 'graph') {
-                     $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
-                 }else if(init(viewZone.type, 'widget') == 'table'){
+                       $('#div_viewZones .viewZone:last .div_viewData').append(addGraphService(viewData));
+                   }else if(init(viewZone.type, 'widget') == 'table'){
                     $('#div_viewZones .viewZone:last .viewData').setValues(viewData, '.viewDataAttr');
                 }else{
-                 $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
-             }
-         }
-     }
-     modifyWithoutSave = false;
- }
+                   $('#div_viewZones .viewZone:last .div_viewData tbody').append(addWidgetService(viewData));
+               }
+           }
+       }
+       modifyWithoutSave = false;
+   }
 });
     return false;
 });
@@ -88,35 +88,23 @@
  $("#bt_addView").on('click', function(event) {
     bootbox.prompt("{{Nom de la vue ?}}", function(result) {
         if (result !== null) {
-           jeedom.view.save({
+         jeedom.view.save({
             id: '',
             view: {name:result},
             error: function(error) {
                 $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
             success: function(data) {
-             loadPage('index.php?v=d&p=view_edit&view_id=' + data.id);
-         }
-     });
-       }
-   });
+               loadPage('index.php?v=d&p=view_edit&view_id=' + data.id);
+           }
+       });
+     }
+ });
 });
 
  $("#bt_editView").on('click', function(event) {
-    bootbox.prompt("Nom de la vue ?", function(result) {
-        if (result !== null) {
-           jeedom.view.save({
-            id: $('.li_view.active').attr('data-view_id'),
-            view: {name:result},
-            error: function(error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function(data) {
-                $('.li_view.active a').text(result);
-            }
-        });
-       }
-   });
+    $('#md_modal').dialog({title: "{{Configuration de la vue}}"});
+    $('#md_modal').load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open');
 });
 
  jwerty.key('ctrl+s', function (e) {
@@ -125,55 +113,55 @@
 });
 
  $('#bt_saveView').on('click', function(event) {
-   saveView();
-});
+     saveView();
+ });
 
  function saveView(_viewResult){
-     $.hideAlert();
-     var view = $('#div_view').getValues('.viewAttr')[0];
-     view.zones = [];
-     $('.viewZone').each(function() {
-        viewZoneInfo = {};
-        var viewZoneInfo = $(this).getValues('.viewZoneAttr')[0];
-        if(viewZoneInfo.type == 'table'){
-            viewZoneInfo.viewData = [{'configuration' : {}}];
-            var line = 0;
-            var col = 0;
-            $(this).find('table tbody tr').each(function(){
-                viewZoneInfo.viewData[0]['configuration'][line] = {};
-                col = 0;
-                $(this).find('td input').each(function(){
-                    viewZoneInfo.viewData[0]['configuration'][line][col] = $(this).value();
-                    col++;
-                });
-                line++;
+   $.hideAlert();
+   var view = $('#div_view').getValues('.viewAttr')[0];
+   view.zones = [];
+   $('.viewZone').each(function() {
+    viewZoneInfo = {};
+    var viewZoneInfo = $(this).getValues('.viewZoneAttr')[0];
+    if(viewZoneInfo.type == 'table'){
+        viewZoneInfo.viewData = [{'configuration' : {}}];
+        var line = 0;
+        var col = 0;
+        $(this).find('table tbody tr').each(function(){
+            viewZoneInfo.viewData[0]['configuration'][line] = {};
+            col = 0;
+            $(this).find('td input').each(function(){
+                viewZoneInfo.viewData[0]['configuration'][line][col] = $(this).value();
+                col++;
             });
-            viewZoneInfo.configuration.nbcol = col;
-            viewZoneInfo.configuration.nbline = line;
-        }else{
-           viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
-       }
-       view.zones.push(viewZoneInfo);
-   });
-     jeedom.view.save({
-        id: $(".li_view.active").attr('data-view_id'),
-        view: view,
-        error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function() {
-            $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
-            modifyWithoutSave = false;
-            if(isset(_viewResult) && _viewResult){
-                window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
-            }else{
-                window.location.reload();
-            }
-        }
-    });
+            line++;
+        });
+        viewZoneInfo.configuration.nbcol = col;
+        viewZoneInfo.configuration.nbline = line;
+    }else{
+     viewZoneInfo.viewData = $(this).find('.viewData').getValues('.viewDataAttr');
  }
+ view.zones.push(viewZoneInfo);
+});
+   jeedom.view.save({
+    id: $(".li_view.active").attr('data-view_id'),
+    view: view,
+    error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function() {
+        $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'});
+        modifyWithoutSave = false;
+        if(isset(_viewResult) && _viewResult){
+            window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id');
+        }else{
+            window.location.reload();
+        }
+    }
+});
+}
 
- $("#bt_removeView").on('click', function(event) {
+$("#bt_removeView").on('click', function(event) {
     $.hideAlert();
     bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
         if (result) {
@@ -191,7 +179,7 @@
     });
 });
 
- if (is_numeric(getUrlVars('view_id'))) {
+if (is_numeric(getUrlVars('view_id'))) {
     if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
         $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
@@ -268,28 +256,28 @@ function addEditviewZone(_viewZone) {
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="far fa-trash-alt"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fas fa-pencil-alt"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
-           div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fas fa-plus-circle"></i> Ajouter courbe</a>';
-       }else  if (init(_viewZone.type, 'widget') == 'table') {
+         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewGraph"><i class="fas fa-plus-circle"></i> Ajouter courbe</a>';
+     }else  if (init(_viewZone.type, 'widget') == 'table') {
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="line"><i class="fas fa-plus-circle"></i> Ajouter ligne</a>';
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> Ajouter colonne</a>';
     }else{
-       div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fas fa-plus-circle"></i> Ajouter Widget</a>';
-   }
-   div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
-   div += '<option value="12">{{Largeur}} 12</option>';
-   div += '<option value="11">{{Largeur}} 11</option>';
-   div += '<option value="10">{{Largeur}} 10</option>';
-   div += '<option value="9">{{Largeur}} 9</option>';
-   div += '<option value="8">{{Largeur}} 8</option>';
-   div += '<option value="7">{{Largeur}} 7</option>';
-   div += '<option value="6">{{Largeur}} 6</option>';
-   div += '<option value="5">{{Largeur}} 5</option>';
-   div += '<option value="4">{{Largeur}} 4</option>';
-   div += '<option value="3">{{Largeur}} 3</option>';
-   div += '<option value="2">{{Largeur}} 2</option>';
-   div += '<option value="1">{{Largeur}} 1</option>';
-   div += '</select>';
-   if (init(_viewZone.type, 'widget') == 'graph') {
+     div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fas fa-plus-circle"></i> Ajouter Widget</a>';
+ }
+ div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
+ div += '<option value="12">{{Largeur}} 12</option>';
+ div += '<option value="11">{{Largeur}} 11</option>';
+ div += '<option value="10">{{Largeur}} 10</option>';
+ div += '<option value="9">{{Largeur}} 9</option>';
+ div += '<option value="8">{{Largeur}} 8</option>';
+ div += '<option value="7">{{Largeur}} 7</option>';
+ div += '<option value="6">{{Largeur}} 6</option>';
+ div += '<option value="5">{{Largeur}} 5</option>';
+ div += '<option value="4">{{Largeur}} 4</option>';
+ div += '<option value="3">{{Largeur}} 3</option>';
+ div += '<option value="2">{{Largeur}} 2</option>';
+ div += '<option value="1">{{Largeur}} 1</option>';
+ div += '</select>';
+ if (init(_viewZone.type, 'widget') == 'graph') {
     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
     div += '<option value="30 min">{{30 min}}</option>';
     div += '<option value="1 hour">{{1 heure}}</option>';
@@ -360,25 +348,25 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
         var line = '<tr class="viewData">';
         line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
         for(i=0;i<table.find('tbody tr:first td').length - 1;i++){
-           line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
-       }
-       line += '</tr>';
-       table.find('tbody').append(line);
+         line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
+     }
+     line += '</tr>';
+     table.find('tbody').append(line);
 
-   }else if($(this).attr('data-type') == 'col'){
+ }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){
-       $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>')
-   });
+     $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>')
+ });
 }
 });
 
 $('#div_viewZones').on('click','.bt_removeAddViewTable',function(){
- if($(this).attr('data-type') == 'line'){
-   $(this).closest('tr').remove();
-}else if($(this).attr('data-type') == 'col'){
-   $(this).closest('table').find('td:nth-child(' + ($(this).closest('td').index() + 1) + ')').remove();
-}
+   if($(this).attr('data-type') == 'line'){
+     $(this).closest('tr').remove();
+ }else if($(this).attr('data-type') == 'col'){
+     $(this).closest('table').find('td:nth-child(' + ($(this).closest('td').index() + 1) + ')').remove();
+ }
 });
 
 $('#div_viewZones').on('click','.bt_listEquipementInfo',function(){
@@ -391,8 +379,8 @@ $('#div_viewZones').on('click','.bt_listEquipementInfo',function(){
 $('#div_viewZones').delegate('.bt_addViewGraph','click',function(){
     var el = $(this);
     jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function (result) {
-     el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}));
- });
+       el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}));
+   });
 });
 
 $('#div_viewZones').delegate('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]','change',function(){
@@ -486,8 +474,8 @@ function addGraphService(_viewData){
 $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     var el = $(this);
     jeedom.eqLogic.getSelectModal({}, function (result) {
-     el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
- });
+       el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
+   });
 });
 
 

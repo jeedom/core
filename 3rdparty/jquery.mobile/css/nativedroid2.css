@@ -570,9 +570,8 @@ code {
 	background-color: transparent;
 	color: inherit;
 	border: 0px;
+	border-radius: 0px;
 	text-shadow: none !important;
-	border-radius: 4px;
-
 	-webkit-transition: background 0.4s;
 	-moz-transition: background 0.4s;
 	-ms-transition: background 0.4s;
@@ -1295,7 +1294,6 @@ html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child 
 
 .nd2-card {
 	display: block;
-	border-radius: 4px;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 	margin: 15px auto;
 	max-width: 450px;

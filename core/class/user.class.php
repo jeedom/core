@@ -222,19 +222,6 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function hasDefaultIdentification() {
-		$values = array(
-			'password' => sha512('admin'),
-		);
-		$sql = 'SELECT count(id) as nb
-        FROM user
-        WHERE login="admin"
-        AND password=:password
-        AND `enable` = 1';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		return $result['nb'];
-	}
-
 	public static function failedLogin() {
 		@session_start();
 		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;

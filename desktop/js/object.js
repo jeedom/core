@@ -23,38 +23,6 @@ if (getUrlVars('removeSuccessFull') == 1) {
     $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
 }
 
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
-    $('#sd_objectList').hide();
-    $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-    $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-
-    $('#bt_displayObject').on('mouseenter',function(){
-       var timer = setTimeout(function(){
-        $('#bt_displayObject').find('i').hide();
-        $('#div_resumeObjectList').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-        $('#div_conf').addClass('col-lg-10 col-md-10 col-sm-9').removeClass('col-lg-12');
-        $('#sd_objectList').show();
-        $('.objectListContainer').packery();
-    }, 100);
-       $(this).data('timerMouseleave', timer)
-   }).on("mouseleave", function(){
-      clearTimeout($(this).data('timerMouseleave'));
-  });
-
-   $('#sd_objectList').on('mouseleave',function(){
-    var timer = setTimeout(function(){
-       $('#sd_objectList').hide();
-       $('#bt_displayObject').find('i').show();
-       $('#div_resumeObjectList').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-       $('#div_conf').removeClass('col-lg-10 col-md-10 col-sm-9').addClass('col-lg-12');
-       $('.objectListContainer').packery();
-   }, 300);
-    $(this).data('timerMouseleave', timer);
-}).on("mouseenter", function(){
-  clearTimeout($(this).data('timerMouseleave'));
-});
-}
-
 $('#bt_graphObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"});
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
@@ -70,18 +38,71 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
     $('.objectListContainer').packery();
 });
 
-$(".li_object,.objectDisplayCard").on('click', function (event) {
-   loadObjectConfiguration($(this).attr('data-object_id'));
-   $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
-   return false;
+$(".objectDisplayCard").on('click', function (event) {
+    loadObjectConfiguration($(this).attr('data-object_id'));
+    $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
+    if(document.location.toString().split('#')[1] == ''){
+        $('.nav-tabs a[href="#objecttab"]').click();
+    }
+    return false;
+});
+
+$('#in_searchObject').keyup(function () {
+   var search = $(this).value();
+   if(search == ''){
+    $('.objectDisplayCard').show();
+    $('.objectListContainer').packery();
+    return;
+}
+$('.objectDisplayCard').hide();
+$('.objectDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this)
+      $(this).closest('.objectDisplayCard').show();
+  }
+});
+$('.objectListContainer').packery();
+});
+
+
+
+$('#bt_removeBackgroundImage').off('click').on('click', function () {
+  jeedom.object.removeImage({
+    view: $('.objectAttr[data-l1key=id]').value(),
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+        $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'});
+    },
+});
 });
 
 function loadObjectConfiguration(_id){
+    try {
+        $('#bt_uploadImage').fileupload('destroy');
+        $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
+    }catch(error) {
+
+    }
+    $('#bt_uploadImage').fileupload({
+        replaceFileInput: false,
+        url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id +'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+        dataType: 'json',
+        done: function (e, data) {
+            if (data.result.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+                return;
+            }
+            $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'});
+        }
+    });
+    $(".objectDisplayCard").removeClass('active');
+    $('.objectDisplayCard[data-object_id='+_id+']').addClass('active');
     $('#div_conf').show();
     $('#div_resumeObjectList').hide();
-    $('.li_object').removeClass('active');
     $(this).addClass('active');
-    $('.li_object[data-object_id='+_id+']').addClass('active');
     jeedom.object.byId({
         id: _id,
         cache: false,
@@ -147,84 +168,53 @@ $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 });
 
 $("#bt_saveObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-object_id') != undefined) {
-        var object = $('.object').getValues('.objectAttr')[0];
-        if (!isset(object.configuration)) {
-            object.configuration = {};
-        }
-        if (!isset(object.configuration.summary)) {
-            object.configuration.summary = {};
-        }
-        $('.object .div_summary').each(function () {
-            var type = $(this).attr('data-type');
-            object.configuration.summary[type] = [];
-            summaries = {};
-            $(this).find('.summary').each(function () {
-                var summary = $(this).getValues('.summaryAttr')[0];
-                object.configuration.summary[type].push(summary);
-            });
-        });
-        jeedom.object.save({
-            object: object,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                modifyWithoutSave = false;
-                window.location = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1';
-            }
-        });
-    } else {
-        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
+    var object = $('.object').getValues('.objectAttr')[0];
+    if (!isset(object.configuration)) {
+        object.configuration = {};
     }
+    if (!isset(object.configuration.summary)) {
+        object.configuration.summary = {};
+    }
+    $('.object .div_summary').each(function () {
+        var type = $(this).attr('data-type');
+        object.configuration.summary[type] = [];
+        summaries = {};
+        $(this).find('.summary').each(function () {
+            var summary = $(this).getValues('.summaryAttr')[0];
+            object.configuration.summary[type].push(summary);
+        });
+    });
+    jeedom.object.save({
+        object: object,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1';
+        }
+    });
     return false;
 });
 
 $("#bt_removeObject").on('click', function (event) {
-    if ($('.li_object.active').attr('data-object_id') != undefined) {
-        $.hideAlert();
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.li_object.active a').text() + '</span> ?', function (result) {
-            if (result) {
-                jeedom.object.remove({
-                    id: $('.li_object.active').attr('data-object_id'),
-                    error: function (error) {
-                        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                    },
-                    success: function () {
-                        modifyWithoutSave = false;
-                        loadPage('index.php?v=d&p=object&removeSuccessFull=1');
-                    }
-                });
-            }
-        });
-    } else {
-        $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un objet}}', level: 'danger'});
-    }
+    $.hideAlert();
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text() + '</span> ?', function (result) {
+        if (result) {
+            jeedom.object.remove({
+                id: $('.objectDisplayCard.active').attr('data-object_id'),
+                error: function (error) {
+                    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function () {
+                    modifyWithoutSave = false;
+                    loadPage('index.php?v=d&p=object&removeSuccessFull=1');
+                }
+            });
+        }
+    });
     return false;
 });
-
-$("#ul_object").sortable({
-    axis: "y",
-    cursor: "move",
-    items: ".li_object",
-    placeholder: "ui-state-highlight",
-    tolerance: "intersect",
-    forcePlaceholderSize: true,
-    dropOnEmpty: true,
-    stop: function (event, ui) {
-        var objects = [];
-        $('#ul_object .li_object').each(function () {
-            objects.push($(this).attr('data-object_id'));
-        });
-        jeedom.object.setOrder({
-            objects: objects,
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            }
-        });
-    }
-});
-$("#ul_object").sortable("enable");
 
 
 $('#bt_chooseIcon').on('click', function () {
@@ -234,10 +224,10 @@ $('#bt_chooseIcon').on('click', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
-    if ($('#ul_object .li_object[data-object_id=' + getUrlVars('id') + ']').length != 0) {
-        $('#ul_object .li_object[data-object_id=' + getUrlVars('id') + ']').click();
+    if ($('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').length != 0) {
+        $('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').click();
     } else {
-        $('#ul_object .li_object:first').click();
+        $('.objectDisplayCard:first').click();
     }
 } 
 

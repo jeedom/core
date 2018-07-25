@@ -99,13 +99,15 @@ class plugin {
 				'type' => 'class',
 			);
 		}
-		$plugin->functionality['interact'] = method_exists($plugin->getId(), 'interact');
-		$plugin->functionality['cron'] = method_exists($plugin->getId(), 'cron');
-		$plugin->functionality['cron5'] = method_exists($plugin->getId(), 'cron5');
-		$plugin->functionality['cron15'] = method_exists($plugin->getId(), 'cron15');
-		$plugin->functionality['cron30'] = method_exists($plugin->getId(), 'cron30');
-		$plugin->functionality['cronHourly'] = method_exists($plugin->getId(), 'cronHourly');
-		$plugin->functionality['cronDaily'] = method_exists($plugin->getId(), 'cronDaily');
+		$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
+		$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
+		$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
+		$plugin->functionality['cron15'] = array('exists' => method_exists($plugin->getId(), 'cron15'), 'controlable' => 1);
+		$plugin->functionality['cron30'] = array('exists' => method_exists($plugin->getId(), 'cron30'), 'controlable' => 1);
+		$plugin->functionality['cronHourly'] = array('exists' => method_exists($plugin->getId(), 'cronHourly'), 'controlable' => 1);
+		$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
+		$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
+		$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
 		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
 				if (!isset($value['alias'])) {

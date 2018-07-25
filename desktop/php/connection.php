@@ -1,66 +1,60 @@
 <div id="wrap">
-    <div class="container">
-        <div style="display: none;width : 100%" id="div_alert"></div>
-        <img style="display:block; margin-left:auto; margin-right:auto;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
-	    <div style="text-align:center; display : block; margin-left:auto; margin-right:auto; width:300px">
-            <div class="form-group">
-		        <input  class="form-control" type="text" id="in_login_username" placeholder="{{Nom d'utilisateur}}">
-            </div>
-            <div class="form-group">
-		        <input  class="form-control" type="password" id="in_login_password" placeholder="{{Mot de passe}}">
-            </div>
-	        <div class = "form-group" id="div_twoFactorCode" style="display:none;">
-	            <input class="form-control" type="text" id="in_twoFactorCode" placeholder="{{Code à 2 facteurs}}">
-            </div>
-            <div class="checkbox">
-		        <label><input type="checkbox" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
-            </div>
-		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
-            <a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-        </div>
-    </div>
+    <div style="display: none;width : 100%" id="div_alert"></div>
+    <div class="bodyLogin">
+		<div class="veen animated zoomIn">
+			<div class="login-btn splits">
+				<h3 id="titre_login_btn"></h3>
+				<p id="phrase_login_btn"></p>
+			</div>
+			<div class="rgstr-btn splits">
+				<img style="display:block; margin-left:auto; margin-right:5%; width:45%;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
+			</div>
+			<div class="wrapper">
+				<div id="login" tabindex="500" class="form-group">
+					<h3>Login</h3>
+					<div class="mail">
+						<input type="text" id="in_login_username">
+						<label>{{Nom d'utilisateur}}</label>
+					</div>
+					<div class="passwd">
+						<input type="password" id="in_login_password">
+						<label>{{Mot de passe}}</label>
+					</div>
+					<div class="passwd" id="div_twoFactorCode" style="display:none;">
+						<input type="text" id="in_twoFactorCode">
+						<label>{{Code à 2 facteurs}}</label>
+					</div>
+					<div class="checkbox">
+						<input type="checkbox" style="top: -11px;" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
+					</div>
+					<div class="submit">
+						<button class="dark btn-lg" id="bt_login_validate"><i class="fa fa-sign-in" ></i> {{Connexion}}</button>
+					</div>
+					<div class="resetPassword">
+					<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+					</div>
+				</div>
+				<div id="register" tabindex="502" class="form-group">
+					<h3>CHANGER VOTRE MOT DE PASSE</h3>
+					<div class="passwd">
+						<input type="password" id="in_change_password">
+						<label>Mot de passe</label>
+					</div>
+					<div class="passwd">
+						<input type="password" id="in_change_passwordToo">
+						<label>Mot de passe</label>
+					</div>
+					<div class="submit">
+						<button class="dark btn-lg" id="bt_change_validate">C'est parti !</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button class="btn_help animated bounceInUp" onclick="window.open('https://jeedom.github.io/documentation/premiers-pas/fr_FR/index#tocAnchor-1-3-1')">
+		?
+	</button>
 </div>
-<script>
-    $('#in_login_username').on('focusout change keypress',function(){
-        jeedom.user.useTwoFactorAuthentification({
-            login: $('#in_login_username').value(),
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                if(data == 1){
-                    $('#div_twoFactorCode').show();
-                }else{
-                    $('#div_twoFactorCode').hide();
-                }
-            }
-        });
-    });
-
-    $('#bt_login_validate').on('click', function() {
-        jeedom.user.login({
-            username: $('#in_login_username').val(),
-            password: $('#in_login_password').val(),
-            twoFactorCode: $('#in_twoFactorCode').val(),
-            storeConnection: $('#cb_storeConnection').value(),
-            error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-                window.location.href = 'index.php?v=d';
-            }
-        });
-    });
-
-    $('#in_login_password').keypress(function(e) {
-      if(e.which == 13) {
-         $('#bt_login_validate').trigger('click');
-     }
- });
-
-    $('#in_twoFactorCode').keypress(function(e) {
-      if(e.which == 13) {
-        $('#bt_login_validate').trigger('click');
-    }
-});
-</script>
+<?php
+include_file('desktop', 'connection', 'css');
+include_file('desktop', 'connection', 'js');

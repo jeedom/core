@@ -107,7 +107,7 @@ foreach ($objects as $object) {
 	echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
 	echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 	echo '<i style="position:relative;top : 3px;" class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link"></i></a>';
+	echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
 
 	echo '</legend>';
 	echo '<ul class="eqLogicSortable">';
