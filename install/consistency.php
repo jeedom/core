@@ -119,14 +119,14 @@ try {
 	if (!is_object($cron)) {
 		echo "Create jeedom::backup\n";
 		$cron = new cron();
+		$cron->setClass('jeedom');
+		$cron->setFunction('backup');
+		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
+		$cron->setEnable(1);
+		$cron->setDeamon(0);
+		$cron->setTimeout(60);
+		$cron->save();
 	}
-	$cron->setClass('jeedom');
-	$cron->setFunction('backup');
-	$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
-	$cron->setEnable(1);
-	$cron->setDeamon(0);
-	$cron->setTimeout(60);
-	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
