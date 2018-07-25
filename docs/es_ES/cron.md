@@ -31,7 +31,7 @@ página). En esta tabla son:
     proceso en ejecución y lo que realmente hace
 
 -   **Acción:** un botón para iniciar o detener la tarea basada
-    su estatus
+    de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
 -   ** ** activo: si la tarea está activa (se puede lanzar
     por Jeedom) o no

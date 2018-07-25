@@ -14,7 +14,7 @@ Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein
 bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu
 löschen.
 
-> **Tip**
+> **Tipp**
 >
 > Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie
 > zunächst die Nachricht zu entfernen und sehen dann ob der Fehler

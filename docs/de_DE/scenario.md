@@ -90,7 +90,7 @@ Registerkarte Allgemein
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
 notre scénario :
 
--   **Nom du scénario** : Le nom de votre scénario.
+-   **Szenariorname** : Der Name Ihres Szenarios.
 
 -   **Nom à afficher** : Le nom utilisé pour son affichage.
 
@@ -121,7 +121,7 @@ notre scénario :
 
 -   **Mode du scénario** : Le scénario peut être programmé, déclenché ou
     les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s)
-    déclencheur(s) et la/les programmation(s).
+    déclencheur(s) (attention il y a une limite au nombre de déclencheur possible par scénario de 15) et la/les programmation(s).
 
 > **Tip**
 >
@@ -134,6 +134,10 @@ Onglet Scénario
 C’est ici que vous allez construire votre scénario. Il faut commencer
 par **ajouter un bloc**, avec le bouton situé à droite. Une fois un bloc
 créé, vous pourrez y ajouter un autre **bloc**ou une**action**.
+
+> **Tip**
+>
+> Dans les condition et action il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 
 ### Les blocs 
 
@@ -301,6 +305,8 @@ commandes) :
 
 -   #end_restore# : événement envoyé à la fin d’une restauration.
 
+-   #user_connect# : connection d'un utilisateur
+
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
 jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
@@ -390,7 +396,7 @@ pouvez utiliser les tags suivants :
 
 -   #hostname# : Nom de la machine Jeedom,
 
--   #trigger# : Nom de la commande qui a déclenché le scénario.
+-   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :
@@ -458,19 +464,21 @@ Plusieurs fonctions sont disponibles pour les équipements :
     [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   stateDuration(commande,[valeur]) : Donne la durée en secondes
+-   stateDuration(commande) : Donne la durée en secondes
     depuis le dernier changement de valeur. Retourne -1 si aucun
     historique n’existe ou si la valeur n’existe pas dans l’historique.
-    Return -2 si la commande n’est pas historisée :
+    Retourne -2 si la commande n’est pas historisée.
 
 -   lastChangeStateDuration(commande,valeur) : Donne la durée en
     secondes depuis le dernier changement d’état à la valeur passée
-    en paramètre. Attention, la valeur de l’équipement doit
-    être historisée.
+    en paramètre. Retourne -1 si aucun
+    historique n’existe ou si la valeur n’existe pas dans l’historique.
+    Retourne -2 si la commande n’est pas historisée
 
 -   lastStateDuration(commande,valeur) : Donne la durée en secondes
     pendant laquelle l’équipement a dernièrement eu la valeur choisie.
-    Attention, la valeur de l’équipement doit être historisée.
+    Retourne -1 si aucun historique n’existe ou si la valeur n’existe pas dans l’historique.
+    Retourne -2 si la commande n’est pas historisée
 
 -   stateChanges(commande,[valeur], période) et
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
@@ -492,7 +500,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
-    si l’état n’est pas cohérent.
+    si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario vous pouvez utilisé le bouton dédié à droite de recherche de scénario.
 
 -   lastScenarioExecution(scenario) : Donne la durée en secondes
     depuis le dernier lancement du scénario :
@@ -514,6 +522,8 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
     est inactif
+
+-   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)    
 
 -   tag(montag,[defaut]) : Permet de récuperer la valeur d’un tag ou
     la valeur par défaut si il n’existe pas :
@@ -557,8 +567,6 @@ ces différentes fonctions :
 | statistics(prise,count,période)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
 | tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
 | stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| stateDuration(prise,0)             | Renvoie 600 : la prise est éteinte (à 0) depuis 600 secondes (10 minutes)                             |
-| stateDuration(prise,1)             | Renvoie une valeur comprise entre 0 et stateDuration(prise) (selon votre polling) : la prise n’est pas dans cet état                             |
 | lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
 | lastChangeStateDuration(prise,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
@@ -651,6 +659,8 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
     d’une variable.
 
+-   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
+
 -   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
     ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
@@ -670,7 +680,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
     de message.
 
--   **Activer/Désactiver Masquer/afficher un équipement** (equipment) : Permet de
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
     visible/invisible, actif/inactif.
 

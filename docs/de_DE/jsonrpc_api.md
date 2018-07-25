@@ -184,6 +184,10 @@ eqLogic::fullById
 Retourne un équipement et ses commandes ainsi que les états de celles-ci
 (pour les commandes de type info)
 
+Paramètres:
+
+-   int id
+
 eqLogic::byId 
 -------------
 

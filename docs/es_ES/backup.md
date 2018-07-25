@@ -87,32 +87,32 @@ Las copias de seguridad Samba ** **
 -   ** ** Restaurar copia de seguridad: Se inicia la restauración de la copia de seguridad
     samba seleccionado anteriormente.
 
-> **Tip**
+> **Sugerencia**
 >
-> Selon ce qui sera activé, dans la page
-> Administration→Configuration→Onglet Mises à jour, vous pouvez voir
-> plus ou moins de sections.
+> Según lo que se active, en la página
+> Administración → Configuración → pestaña Actualizaciones, puedes ver
+> más o menos secciones.
 
-> **Tip**
+> **Sugerencia**
 >
-> Lors d’une réinstallation de Jeedom et en ayant pris l’abonnement de
-> sauvegarde vers le cloud du market, vous devez renseigner votre compte
-> Market sur votre nouveau Jeedom (Administration→Configuration→Onglet
-> Mises à jour) puis venir ici pour lancer la restauration.
+> Al reinstalar Jeedom y suscribirse a la
+> copia de seguridad en la nube del market, debe registrar su cuenta
+> Market en su nueva Jeedom (Administración → Configuración → Pestaña
+> Actualizaciones) luego venir aquí para comenzar la restauración.
 
-> **Tip**
+> **Sugerencia**
 >
-> Il est possible, en cas de soucis, de faire une sauvegarde en ligne de
-> commande : `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
-> ou `sudo php /var/www/html/install/backup.php` selon votre système.
+> Es posible, en caso de problemas, hacer una copia de seguridad en línea de
+> comandos: `sudo php / usr / share / nginx / www / jeedom / install / backup.php`
+> o `sudo php / var / www / html / install / backup.php` según su sistema.
 
-> **Tip**
+> **Sugerencia**
 >
-> Il est possible aussi de restaurer une sauvegarde en ligne de
-> commandes (par défaut, Jeedom restaure la sauvegarde la plus récente
-> présente dans le répertoire de sauvegarde) :
-> `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou
-> `sudo php /var/www/html/install/restore.php`.
+> También es posible restablecer una copia de seguridad en línea de
+> comandos (de forma predeterminada, Jeedom restaura la copia de seguridad más reciente
+> en el directorio de respaldo):
+> `sudo php / usr / share / nginx / www / jeedom / install / restore.php` o
+> `sudo php / var / www / html / install / restore.php`.
 
 Lo que se ahorra?
 ==============================

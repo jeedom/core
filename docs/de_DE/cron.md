@@ -28,7 +28,7 @@ Im Folgenden finden Sie die Tabelle aller vorhandenen Aufgaben
     laufenden Prozess herzustellen und was er wirklich macht
 
 -   **Aktion** : eine Schaltfläche zum Starten oder Stoppen eines Tasks 
-    basierend auf seinen Status
+    de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
 -   **Aktiv** : zeigt an ob der Task aktiv ist (kann durch Jeedom
     gestartet werden) oder nicht

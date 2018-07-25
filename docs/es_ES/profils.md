@@ -81,7 +81,7 @@ seguridad
 -   Autenticación ** ** 2 pasos: Configurar
     la autenticación en dos pasos (como un recordatorio, este es un cambio de código
     cada X segundos que se muestra en un tipo de aplicación móvil
-    Google Authenticator)
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé.
 
 -   ** ** Contraseña: Cambiar la contraseña (no hacer
     se olvide de volver a escribir a continuación)
