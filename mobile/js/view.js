@@ -46,6 +46,11 @@ function initView(_view_id) {
 }
 
 function displayView(html) {
+    if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+        setBackgroundImage(html.raw.img);
+    }else{
+        setBackgroundImage('');
+    }
     try{
         $('#div_displayView').empty().html(html.html).trigger('create');
     }catch(err) {
