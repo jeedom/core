@@ -18,8 +18,8 @@ Changelog
 -   Ajout d'un bouton pour rafraichir les messages du centre message.
 -   Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scenario, pause....).
 -   Ajout d'un action "Remise à zero des SI" sur les scénarios
--   Possibilité d'ajouter des images en fond sur les vues (marche uniquement sur le theme jeedom)
-
+-   Possibilité d'ajouter des images en fond sur les vues
+-   Possibilité d'ajouter des images en fond sur les objets
 
 
 3.2.11

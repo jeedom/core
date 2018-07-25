@@ -28,13 +28,13 @@
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (html) {
-      if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
-        jeedomBackgroundImg = html.raw.img;
-        $('body').trigger('jeedom_page_load');
+      setTimeout(function(){
+       if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+        $('.backgroundforJeedom').css('background-image','url("'+ html.raw.img+'")');
       }else{
-        jeedomBackgroundImg = '';
-        $('body').trigger('jeedom_page_load');
-      }
+       $('.backgroundforJeedom').css('background-image','url("")');
+     }
+   },1);
       try {
         var summary = '';
         for(var i in html.raw.viewZone){
