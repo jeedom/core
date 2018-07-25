@@ -28,64 +28,71 @@
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (html) {
-     try {
-      var summary = '';
-      for(var i in html.raw.viewZone){
-        summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="'+html.raw.viewZone[i].id+'">'+html.raw.viewZone[i].name+'</a></li>';
+      if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+        jeedomBackgroundImg = html.raw.img;
+        $('body').trigger('jeedom_page_load');
+      }else{
+        jeedomBackgroundImg = '';
+        $('body').trigger('jeedom_page_load');
       }
-      $('#ul_viewSummary').empty().append(summary);
-    }catch(err) {
-      console.log(err);
-    }
-
-    try {
-      $('.div_displayView:last').empty().html(html.html);
-    }catch(err) {
-      console.log(err);
-    }
-    setTimeout(function () {
-      initReportMode();
-      positionEqLogic();
-      $('.eqLogicZone').disableSelection();
-      $( "input").click(function() { $(this).focus(); });
-      $( "textarea").click(function() { $(this).focus(); });
-      $('.eqLogicZone').each(function () {
-        var container = $(this).packery({
-          gutter : 2
-        });
-        var itemElems =  container.find('.eqLogic-widget');
-        itemElems.draggable();
-        container.packery( 'bindUIDraggableEvents', itemElems );
-        container.packery( 'on', 'dragItemPositioned',function(){
-          $('.div_displayEquipement').packery();
-        });
-        function orderItems() {
-          var itemElems = container.packery('getItemElements');
-          $( itemElems ).each( function( i, itemElem ) {
-            $( itemElem ).attr('data-order', i + 1 );
-          });
+      try {
+        var summary = '';
+        for(var i in html.raw.viewZone){
+          summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="'+html.raw.viewZone[i].id+'">'+html.raw.viewZone[i].name+'</a></li>';
         }
-        container.on( 'layoutComplete', orderItems );
-        container.on( 'dragItemPositioned', orderItems );
-      });
+        $('#ul_viewSummary').empty().append(summary);
+      }catch(err) {
+        console.log(err);
+      }
 
-      $('.eqLogicZone .eqLogic-widget').draggable('disable');
-      $('#bt_editViewWidgetOrder').off('click').on('click',function(){
-        if($(this).attr('data-mode') == 1){
-          $.hideAlert();
-          $(this).attr('data-mode',0);
-          editWidgetMode(0);
-          $(this).css('color','black');
-        }else{
-         $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
-         $(this).attr('data-mode',1);
-         editWidgetMode(1);
-         $(this).css('color','rgb(46, 176, 75)');
-       }
-     });
-    }, 10);
-  }
-});
+      try {
+        $('.div_displayView:last').empty().html(html.html);
+      }catch(err) {
+        console.log(err);
+      }
+      setTimeout(function () {
+        initReportMode();
+        positionEqLogic();
+        $('.eqLogicZone').disableSelection();
+        $( "input").click(function() { $(this).focus(); });
+        $( "textarea").click(function() { $(this).focus(); });
+        $('.eqLogicZone').each(function () {
+          var container = $(this).packery({
+            gutter : 2
+          });
+          var itemElems =  container.find('.eqLogic-widget');
+          itemElems.draggable();
+          container.packery( 'bindUIDraggableEvents', itemElems );
+          container.packery( 'on', 'dragItemPositioned',function(){
+            $('.div_displayEquipement').packery();
+          });
+          function orderItems() {
+            var itemElems = container.packery('getItemElements');
+            $( itemElems ).each( function( i, itemElem ) {
+              $( itemElem ).attr('data-order', i + 1 );
+            });
+          }
+          container.on( 'layoutComplete', orderItems );
+          container.on( 'dragItemPositioned', orderItems );
+        });
+
+        $('.eqLogicZone .eqLogic-widget').draggable('disable');
+        $('#bt_editViewWidgetOrder').off('click').on('click',function(){
+          if($(this).attr('data-mode') == 1){
+            $.hideAlert();
+            $(this).attr('data-mode',0);
+            editWidgetMode(0);
+            $(this).css('color','black');
+          }else{
+           $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
+           $(this).attr('data-mode',1);
+           editWidgetMode(1);
+           $(this).css('color','rgb(46, 176, 75)');
+         }
+       });
+      }, 10);
+    }
+  });
 }
 
 $('#div_pageContainer').delegate('.cmd-widget.history', 'click', function () {

@@ -39,9 +39,7 @@ foreach (view::all() as $view) {
 
    <div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
     <legend style="height: 35px;">
-        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Renommer}}</a>
-        <a class="btn btn-default btn-xs" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Icone}}</a>
-        <span class="viewAttr cursor" data-l1key="display" data-l2key="icon"></span>
+        <a class="btn btn-default btn-xs" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Configuration}}</a>
         <a class="btn btn-danger btn-xs pull-right" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
         <a class="btn btn-success btn-xs pull-right" id="bt_saveView"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
         <a class="btn btn-primary btn-xs pull-right" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}</a>

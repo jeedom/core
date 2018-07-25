@@ -26,6 +26,8 @@ class view {
 	private $name;
 	private $display;
 	private $order;
+	private $image;
+	private $configuration;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -94,8 +96,30 @@ class view {
 		return viewZone::removeByViewId($this->getId());
 	}
 
+	public function getImgLink() {
+		if ($this->getImage('data') == '') {
+			return '';
+		}
+		$dir = __DIR__ . '/../../core/img/view';
+		if (!file_exists($dir)) {
+			mkdir($dir);
+		}
+		if ($this->getImage('sha512') == '') {
+			$this->setImage('sha512', sha512($this->getImage('data')));
+			$this->save();
+		}
+		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
+		$filepath = $dir . '/' . $filename;
+		if (!file_exists($filepath)) {
+			file_put_contents($filepath, base64_decode($this->getImage('data')));
+		}
+		return 'core/img/view/' . $filename;
+	}
+
 	public function toAjax($_version = 'dview') {
 		$return = utils::o2a($this);
+		unset($return['image']);
+		$return['img'] = $this->getImgLink();
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
@@ -232,6 +256,29 @@ class view {
 
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		return $this;
+	}
+
+	public function getImage($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->image, $_key, $_default);
+	}
+
+	public function setImage($_key, $_value) {
+		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
+		return $this;
+	}
+
+	public function getConfiguration($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->configuration, $_key, $_default);
+	}
+
+	public function setConfiguration($_key, $_value) {
+		if ($_key == 'accessCode' && $_value != '') {
+			if (!is_sha512($_value)) {
+				$_value = sha512($_value);
+			}
+		}
+		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
 

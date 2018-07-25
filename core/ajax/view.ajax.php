@@ -160,6 +160,49 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'removeImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$view = view::byId(init('id'));
+		if (!is_object($view)) {
+			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+		}
+		$view->setImage('data', '');
+		$view->setImage('sha1', '');
+		$view->save();
+		@rrmdir(__DIR__ . '/../../core/img/view');
+		ajax::success();
+	}
+
+	if (init('action') == 'uploadImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$view = view::byId(init('id'));
+		if (!is_object($view)) {
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.png'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+		}
+		$view->setImage('type', str_replace('.', '', $extension));
+		$view->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
+		$view->setImage('sha512', sha512($view->getImage('data')));
+		$view->save();
+		@rrmdir(__DIR__ . '/../../core/img/view');
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
