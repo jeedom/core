@@ -727,8 +727,9 @@ $('#div_pageContainer').on('change', '.subElementAttr', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
-  $('#div_tree').jstree('deselect_all');
-  $('#div_tree').jstree('select_node', 'scenario' + getUrlVars('id'));
+ if ($('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').length != 0) {
+  $('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').click();
+}
 }
 
 function updateSortable() {
