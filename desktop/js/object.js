@@ -41,12 +41,15 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 $(".objectDisplayCard").on('click', function (event) {
     loadObjectConfiguration($(this).attr('data-object_id'));
     $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
+    if(document.location.toString().split('#')[1] == ''){
+        $('.nav-tabs a[href="#objecttab"]').click();
+    }
     return false;
 });
 
 $('#in_searchObject').keyup(function () {
- var search = $(this).value();
- if(search == ''){
+   var search = $(this).value();
+   if(search == ''){
     $('.objectDisplayCard').show();
     $('.objectListContainer').packery();
     return;
@@ -95,7 +98,6 @@ function loadObjectConfiguration(_id){
             $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'});
         }
     });
-
     $(".objectDisplayCard").removeClass('active');
     $('.objectDisplayCard[data-object_id='+_id+']').addClass('active');
     $('#div_conf').show();

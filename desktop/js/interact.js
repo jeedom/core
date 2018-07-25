@@ -22,11 +22,11 @@
   $('#md_modal').load('index.php?v=d&modal=interact.query.display&interactDef_id=' + $('.interactAttr[data-l1key=id]').value()).dialog('open');
 });
 
-setTimeout(function(){
+ setTimeout(function(){
   $('.interactListContainer').packery();
 },100);
 
-$('#in_searchInteract').keyup(function () {
+ $('#in_searchInteract').keyup(function () {
   var search = $(this).value();
   if(search == ''){
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
@@ -46,39 +46,42 @@ $('#in_searchInteract').keyup(function () {
   $('.interactListContainer').packery();
 });
 
-$("#div_listInteract").trigger('resize');
+ $("#div_listInteract").trigger('resize');
 
-$('.interactListContainer').packery();
+ $('.interactListContainer').packery();
 
-$('#bt_interactThumbnailDisplay').on('click', function () {
+ $('#bt_interactThumbnailDisplay').on('click', function () {
   $('#div_conf').hide();
   $('#interactThumbnailDisplay').show();
   $('.interactListContainer').packery();
 });
 
-$('.interactDisplayCard').on('click', function () {
+ $('.interactDisplayCard').on('click', function () {
   $('#div_tree').jstree('deselect_all');
   $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'));
 });
 
-$("#div_tree").jstree({
+ $("#div_tree").jstree({
   "plugins": ["search"]
 });
-$('#in_treeSearch').keyup(function () {
+ $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearcxh').val());
 });
 
-$('.interactDisplayCard').on('click',function(){
+ $('.interactDisplayCard').on('click',function(){
   displayInteract($(this).attr('data-interact_id'));
+  if(document.location.toString().split('#')[1] == ''){
+    $('.nav-tabs a[href="#generaltab"]').click();
+  }
 });
 
-$('.accordion-toggle').off('click').on('click', function () {
+ $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){
     $('.interactListContainer').packery();
   },100);
 });
 
-$('#bt_duplicate').on('click', function () {
+ $('#bt_duplicate').on('click', function () {
   bootbox.prompt("Nom ?", function (result) {
     if (result !== null) {
       var interact = $('.interact').getValues('.interactAttr')[0];
@@ -100,7 +103,7 @@ $('#bt_duplicate').on('click', function () {
   });
 });
 
-if (is_numeric(getUrlVars('id'))) {
+ if (is_numeric(getUrlVars('id'))) {
   if ($('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').length != 0) {
     $('.interactDisplayCard[data-interact_id=' + getUrlVars('id') + ']').click();
   }
@@ -180,20 +183,20 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
 });
 
 $("#bt_removeInteract").on('click', function () {
-    $.hideAlert();
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function (result) {
-      if (result) {
-        jeedom.interact.remove({
-          id: $('.interactDisplayCard.active').attr('data-interact_id'),
-          error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function () {
-           loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
-         }
-       });
-      }
-    });
+  $.hideAlert();
+  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function (result) {
+    if (result) {
+      jeedom.interact.remove({
+        id: $('.interactDisplayCard.active').attr('data-interact_id'),
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+         loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
+       }
+     });
+    }
+  });
 });
 
 $('#bt_addAction').off('click').on('click',function(){
