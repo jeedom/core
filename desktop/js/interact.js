@@ -70,7 +70,7 @@
 
  $('.interactDisplayCard').on('click',function(){
   displayInteract($(this).attr('data-interact_id'));
-  if(document.location.toString().split('#')[1] == ''){
+  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
     $('.nav-tabs a[href="#generaltab"]').click();
   }
 });

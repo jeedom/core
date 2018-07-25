@@ -89,7 +89,7 @@ $('.scenarioDisplayCard').off('click').on('click', function () {
   $.hideAlert();
   $('#scenarioThumbnailDisplay').hide();
   printScenario($(this).attr('data-scenario_id'));
-  if(document.location.toString().split('#')[1] == ''){
+  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
     $('.nav-tabs a[href="#generaltab"]').click();
   }
 });

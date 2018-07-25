@@ -41,7 +41,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
 $(".objectDisplayCard").on('click', function (event) {
     loadObjectConfiguration($(this).attr('data-object_id'));
     $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
-    if(document.location.toString().split('#')[1] == ''){
+    if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
         $('.nav-tabs a[href="#objecttab"]').click();
     }
     return false;
