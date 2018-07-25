@@ -29,6 +29,7 @@ class jeeObject {
 	private $position;
 	private $configuration;
 	private $display;
+	private $image;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -677,6 +678,33 @@ class jeeObject {
 		return jeedom::getTypeUse($json);
 	}
 
+	public function getImgLink() {
+		if ($this->getImage('data') == '') {
+			return '';
+		}
+		$dir = __DIR__ . '/../../core/img/object';
+		if (!file_exists($dir)) {
+			mkdir($dir);
+		}
+		if ($this->getImage('sha512') == '') {
+			$this->setImage('sha512', sha512($this->getImage('data')));
+			$this->save();
+		}
+		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
+		$filepath = $dir . '/' . $filename;
+		if (!file_exists($filepath)) {
+			file_put_contents($filepath, base64_decode($this->getImage('data')));
+		}
+		return 'core/img/object/' . $filename;
+	}
+
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		unset($return['image']);
+		$return['img'] = $this->getImgLink();
+		return $return;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {
@@ -758,6 +786,15 @@ class jeeObject {
 
 	public function setCache($_key, $_value = null) {
 		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+	}
+
+	public function getImage($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->image, $_key, $_default);
+	}
+
+	public function setImage($_key, $_value) {
+		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
+		return $this;
 	}
 
 }

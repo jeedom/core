@@ -212,6 +212,7 @@ function initApplication(_reinit) {
 }
 
 function page(_page, _title, _option, _plugin,_dialog) {
+    setBackgroundImage('');
     $.showLoading();
     try {
        $('#bottompanel').panel('close');

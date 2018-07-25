@@ -9,6 +9,16 @@ body {
   height: 100%;
 }
 
+.backgroundforJeedom{
+  width:100%; 
+  height:calc(100% - 55px); 
+  z-index : -1; 
+  position: absolute;
+  opacity : 0.35;
+  top : 55px;
+  background-size:cover;
+}
+
 .btn:hover { 
  opacity: 0.7;
 }

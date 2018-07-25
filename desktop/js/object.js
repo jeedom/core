@@ -45,8 +45,8 @@ $(".objectDisplayCard").on('click', function (event) {
 });
 
 $('#in_searchObject').keyup(function () {
-   var search = $(this).value();
-   if(search == ''){
+ var search = $(this).value();
+ if(search == ''){
     $('.objectDisplayCard').show();
     $('.objectListContainer').packery();
     return;
@@ -62,7 +62,40 @@ $('.objectDisplayCard .name').each(function(){
 $('.objectListContainer').packery();
 });
 
+
+
+$('#bt_removeBackgroundImage').off('click').on('click', function () {
+  jeedom.object.removeImage({
+    view: $('.objectAttr[data-l1key=id]').value(),
+    error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function () {
+        $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'});
+    },
+});
+});
+
 function loadObjectConfiguration(_id){
+    try {
+        $('#bt_uploadImage').fileupload('destroy');
+        $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
+    }catch(error) {
+
+    }
+    $('#bt_uploadImage').fileupload({
+        replaceFileInput: false,
+        url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id +'&jeedom_token='+JEEDOM_AJAX_TOKEN,
+        dataType: 'json',
+        done: function (e, data) {
+            if (data.result.state != 'ok') {
+                $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+                return;
+            }
+            $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'});
+        }
+    });
+
     $(".objectDisplayCard").removeClass('active');
     $('.objectDisplayCard[data-object_id='+_id+']').addClass('active');
     $('#div_conf').show();

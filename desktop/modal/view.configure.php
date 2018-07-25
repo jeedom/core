@@ -69,7 +69,7 @@ sendVarToJS('view', utils::o2a($view));
         }
     });
 
-    $('#bt_removeBackgroundImage').on('click', function () {
+    $('#bt_removeBackgroundImage').off('click').on('click', function () {
       jeedom.view.removeImage({
         view: view.id,
         error: function (error) {

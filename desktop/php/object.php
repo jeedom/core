@@ -133,8 +133,16 @@ foreach ($allObject as $object) {
         <input type="number" class="objectAttr form-control" data-l1key="display" data-l2key="dashboard::size" />
       </div>
     </div>
-  </fieldset>
-</form>
+    <div class="form-group">
+      <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Image}}</label>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+        <span class="btn btn-default btn-file">
+          <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+        </span>
+        <a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+      </div>
+    </fieldset>
+  </form>
 </div>
 <div role="tabpanel" class="tab-pane" id="summarytab">
   <?php
