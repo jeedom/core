@@ -116,10 +116,15 @@ class view {
 		return 'core/img/view/' . $filename;
 	}
 
-	public function toAjax($_version = 'dview') {
-		$return = utils::o2a($this);
+	public function toArray() {
+		$return = utils::o2a($this, true);
 		unset($return['image']);
 		$return['img'] = $this->getImgLink();
+		return $return;
+	}
+
+	public function toAjax($_version = 'dview') {
+		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
