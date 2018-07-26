@@ -1,108 +1,109 @@
-Cette page permet de creer une vue 3d de votre maison/appartement qui pourra réagir en fonction de l'état des différents information de votre domotique.
+Esta página le permite crear una vista 3D de su casa/apartamento que podrá reaccionar en función del estado de las diferentes informaciones de su domótica.
 
-Elle est accessible par Acceuil → Dashboard
-
-> **Tip**
->
-> Il est possible d’aller directement sur un design 3D grâce au sous-menu.
-
-# Importation du model 3d
-
-> **IMPORTANT**
->
-> Vous ne pouvez creer votre model 3d directement dans Jeedom, il faut le faire en passant par un logiciel tierce. Nous recommandons le très bon bon SweetHome3d
-
-Une fois votre model 3d creer il faut l'exporter en OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3d" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générer et les mettres dans un zip (il peut avoir beaucoup de fichier du aux textures)
-
-> **ATTENTION**
->
-> Un model 3d est assez imposant (ca peut aller à plusieurs 100mo). Plus il est gros plus long sera le temps de rendu dans Jeedom
-
-Une fois votre model 3d exporter il faut dans Jeedom creer un nouveau design 3d. Pour cela il faut passer en mode édition en cliquant que le petit crayon à droit, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
-
-Jeedom va automatiquement passer sur le nouveau design 3d, il faut repasser en mode edition et cliquer sur les petite roues crantées.
-
-Vous pouvez à partir de cette écran envoyer : 
-
-- Changer le nom de votre design
-- Ajouter un code d'accès
-- Choisir une icone
-- Importer votre model 3d
-
-Cliquez sur le bouton "envoyer" au niveau de "Model 3D" et selectionner votre zip
-
-> **ATTENTION**
->
-> Jeedom autorise au maximum l'importe d'un fichier de 150mo
-
-> **ATTENTION**
->
-> Il faut obligatoirement un fichier zip
+Es accesible a través de Inicio → Dashboard
 
 > **Tip**
 >
-> Une fois l'import du fichier fait (ca peut etre assez long en fonction de la taille de celui-ci), il vous faut rafraichir la page pour voir le résultat
+> Es posible ir directamente a un diseño 3D a través del submenú.
 
+# Importación del modelo 3D
 
-# Configuration des éléments
-
-> **IMPORTANT**
+> **IMPORTANTE**
 >
-> La configuration ne peut se faire que en mode édition
+> No puedes crear tu modelo 3D directamente en Jeedom, tienes que hacerlo a través de un software de terceros. Recomendamos el software SweetHome3d
 
-Pour configurer un element sur le design 3d il vous faire un double clic sur l'élement que vous voulez configurer. Cela va amener une fenetre ou vous pourrez : 
+Una vez que haya creado su modelo 3D, debe exportarlo a OBJ. Si utiliza SweetHome3d esto se hace desde el menú "Ver 3d" y luego "Exportar a formato OBJ". Luego tienes que tomar todos los archivos generados y ponerlos en un zip (puede tener muchos archivos debido a las texturas)
 
-- Indiquer un type de lien (actuellement seul Equipement existe)
-- Le lien vers l'element en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre 
-- La spécitificité, la il en existe plusieurs que l'on va voir juste après, ca permet spécifier le type d'équipement et donc l'affichage d'information
 
-## Lumière
+> **ATENCIÓN**
+>
+> Un modelo 3d es bastante imponente (puede llegar a varios 100mo). Cuanto mayor sea el tamaño, mayor será el tiempo de renderizado en Jeedom.
 
-- Statut : Commande d'état de la lumiere peut etre un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
-- Puissance : puissance de l'ampoule (attention cela peut ne pas refleter la réaliter)
+Una vez exportado tu modelo 3d es necesario en Jeedom crear un nuevo diseño 3d. Para hacer esto, cambie al modo de edición haciendo clic sólo en el lápiz pequeño a la derecha, luego haga clic en el +, dé un nombre a este nuevo diseño 3D y valide.
 
-## Texte
+Jeedom cambiará automáticamente al nuevo diseño 3d, tienes que volver al modo de edición y hacer clic en las pequeñas ruedas de estrella.
 
-- Texte : texte à afficher (vous pouvez mettre des commandes dedans, le texte sera automatiquement remis à jour sur changement de celle-ci)
-- Taille du texte
-- Couleur du texte
-- Transparence du texte : de 0 (invisible) à 1 (visible)
-- Couleur de fond
-- Transparence du fond : de 0 (invisible) à 1 (visible)
-- Couleur de la bordure
-- Transparence de la bordure : de 0 (invisible) à 1 (visible)
-- Espacement au dessus de l'objet : permet d'indiquer l'espacement du texte par rapport à l'élément
+Desde esta pantalla puede enviar : 
 
-## Porte/Fenêtre
+- Cambiar el nombre de su diseño
+- Añadir un código de acceso
+- Seleccione un icono
+- Importe su modelo 3D
 
-### Porte/Fenêtre
+Haga clic en el botón "enviar" en "Modelo 3D" y seleccione su zip
 
-- Etat : état de la Porte/Fenêtre, 1 fermé et 0 ouvert
-- Rotation
-    - Activer : active la rotation de la Porte/Fenêtre lors de l'ouverture
-    - Ouverture : le mieux la c'est de tester pour que ca correspond au mieux à votre Porte/Fenêtre
-- Translation
-    - Activer : active la translation lors de l'ouverture (type Porte/Fenêtre coulissante)
-    - Sens : sens dans lequel la Porte/Fenêtre doit bouger (vous avez haut/bas/droite/gauche)
-    - Répéter : par defaut la Porte/Fenêtre bouge de 1 fois sa dimension dans le sens donner mais vous pouvez augmenter cette valeur
-- Masquer quand la Porte/Fenêtre est ouverte    
-    - Activer : Masque l'élément si la Porte/Fenêtre est ouverte
-- Couleur
-    - Couleur ouverte : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est ouverte
-    - Couleur fermée : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est fermée
+> **ATENCIÓN**
+>
+> Jeedom autoriza como máximo la importación de un archivo de 150mo
 
-### Volet
-
-- Etat : état du volet, 0 ouvert autre valeur fermé
-- Masquer quand le volet est ouvert
-    -  Activer : masque l'élément si le volet est ouvert
-- Couleur
-    - Couleur fermé : si cocher l'élément prendra cette couleur si le volet est fermée
-
-## Couleur conditionnel
-
-Permet de donner la couleur choisis à l'élement si la condition est valide. Vous pouvez mettre autant de couleur/condition que vous voulez. 
+> **ATENCIÓN**
+>
+> Debe tener un archivo zip
 
 > **Tip**
 >
-> Les conditions sont évaluées dans l'ordre, la premiere qui est vrai sera prise, les suivantes ne seront donc pas évaluées
+> Una vez realizada la importación del archivo (puede ser bastante largo dependiendo del tamaño del mismo), es necesario actualizar la página para ver el resultado.
+
+
+# Configuración de elementos
+
+> **IMPORTANTE**
+>
+> La configuración sólo se puede realizar en modo edición
+
+Para configurar un elemento en el diseño 3D se hace doble clic sobre el elemento que se desea configurar. Esto le traerá una ventana donde pueda :
+
+- Indique un tipo de enlace (actualmente sólo existe Dispositivo)
+- El enlace al elemento en cuestión. Aquí sólo puede poner un enlace a un equipo por el momento. Esto permite al hacer clic en el elemento hacer que aparezca 
+- La especificidad, hay varias que veremos a continuación, permite especificar el tipo de equipo y por lo tanto la visualización de la información.
+
+## Iluminación
+
+- Estado : El comando del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o en color.
+- Potencia : potencia de la bombilla (tenga cuidado, esta puede no reflejarla)
+
+## Texto
+
+- Texto: texto a mostrar (puede poner comandos en él, el texto se actualizará automáticamente cuando cambie)
+- Tamaño del texto
+- Color del texto
+- Transparencia del texto: de 0 (invisible) a 1 (visible)
+- Color de fondo
+- Transparencia del fondo: de 0 (invisible) a 1 (visible)
+- Color del borde
+- Transparencia del borde: 0 (invisible) a 1 (visible)
+- Espaciado encima del objeto: permite especificar el espaciado del texto con respecto al elemento.
+
+## Puerta/Ventana
+
+### Puerta/Ventana
+
+- Estado: Estado de puerta/ventana, 1 cerrado y 0 abierto
+- Rotación
+    - Habilitar: activa la rotación puerta/ventana al abrir
+    - Apertura: la mejor manera es probarlo para asegurarse de que coincide con su puerta/ventana.
+- Traslación
+    - Activar: activa la traslación al abrir (tipo Puerta/Ventana corredera)
+    - Dirección: dirección en la que debe moverse la puerta/ventana (usted tiene arriba/abajo/derecha/izquierda)
+    - Repetir: por defecto la puerta/ventana se mueve 1 vez su dimensión en la dirección indicada, pero se puede aumentar este valor.
+- Ocultar cuando la puerta/ventana está abierta
+    - Habilitar: Oculta el elemento si la puerta/ventana está abierta.
+- Color
+    - Color apertura: si la casilla está marcada, el elemento tomará este color si la puerta/ventana está abierta.
+    - Color cerrado: si selecciona esta opción, el elemento tomará este color si la puerta/ventana está cerrada.
+
+### Persiana
+
+- Estado: estado de la compuerta, 0 abierto otro valor cerrado
+- Ocultar cuando la persiana está abierta
+    -  Habilitar: oculta el elemento si la persiana está abierta
+- Color
+    - Color cerrado: si se selecciona esta opción, el elemento tomará este color si el obturador está cerrado.
+
+## Color Condicional
+
+Se usa para dar el color seleccionado al elemento si la condición es válida. Puedes poner tanto color/condición como quieras.
+
+> **Tip**
+>
+> Las condiciones son evaluadas en orden, la primera que es verdadera será tomada, así que lo siguiente no será evaluada
