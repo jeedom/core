@@ -275,7 +275,7 @@ $('.li_object').on('click',function(){
   });
    $('.li_object').removeClass('active');
    $(this).addClass('active');
-   displayChildObject(object_id);
+   displayChildObject(object_id,false);
  }else{
   loadPage($(this).find('a').attr('data-href'));
 }
@@ -283,12 +283,12 @@ $('.li_object').on('click',function(){
 
 
 function displayChildObject(_object_id,_recursion){
-  if(!isset(_recursion) || _recursion === false){
-   $('.div_object').hide();
- }
- $('.div_object[data-object_id='+_object_id+']').show();
- $('.div_object[data-father_id='+_object_id+']').each(function(){
-  $(this).show();
-  displayChildObject($(this).attr('data-object_id'),true);
-});
+  if(_recursion === false){
+    $('.div_object').hide();
+  }
+  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false});
+  $('.div_object[data-father_id='+_object_id+']').each(function(){
+   $(this).show({effect : 'drop',queue : false});
+   displayChildObject($(this).attr('data-object_id'),true);
+ });
 }
