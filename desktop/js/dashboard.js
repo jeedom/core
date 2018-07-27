@@ -188,7 +188,6 @@ function getObjectHtml(_object_id){
       }catch(err) {
         console.log(err);
       }
-      $('#div_ob'+_object_id).animateCss('slideInLeft');
       setTimeout(function(){
         positionEqLogic();
         $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
@@ -204,17 +203,21 @@ function getObjectHtml(_object_id){
           });
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery( 'bindUIDraggableEvents', itemElems );
-          container.packery( 'on', 'dragItemPositioned',function(){
-                    //$('.div_displayEquipement').packery();
-                  });
           function orderItems() {
             var itemElems = container.packery('getItemElements');
             $( itemElems ).each( function( i, itemElem ) {
               $( itemElem ).attr('data-order', i + 1 );
+			  value = i + 1;
+			  if ($( itemElem).find(".counterReorderJeedom").length) {
+				  $( itemElem).find(".counterReorderJeedom").text( value );
+			  } else {
+				$( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+			  }
             });
           }
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
+		  
           borderWidget();
         });
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
@@ -223,7 +226,6 @@ function getObjectHtml(_object_id){
   });
 }
 
-
 $('#bt_editDashboardWidgetOrder').on('click',function(){
   if($(this).attr('data-mode') == 1){
     $.hideAlert();
@@ -231,6 +233,8 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     editWidgetMode(0);
     $(this).css('color','black');
     $('.bt_editDashboardWidgetAutoResize').hide();
+    $('.counterReorderJeedom').hide();
+	$('.div_displayEquipement').packery();
   }else{
    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
    $(this).attr('data-mode',1);
