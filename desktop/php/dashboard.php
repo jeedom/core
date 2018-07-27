@@ -114,7 +114,7 @@ foreach ($knowTags as $tag) {
 <?php include_file('desktop', 'dashboard', 'js');?>
 <?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
 <?php include_file('desktop', 'dashboard', 'css');?>
-<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select.js', 'js');?>
+<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');?>
 <div class="row" >
 	<?php
 if (init('object_id') != '') {
