@@ -20,6 +20,7 @@ cambios
 -   Ajout d'un action "Remise à zero des SI" sur les scénarios
 -   Possibilité d'ajouter des images en fond sur les vues
 -   Possibilité d'ajouter des images en fond sur les objets
+-   Ajout d'un theme Jeedom
 
 
 3.2.11
