@@ -62,6 +62,7 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 }
 ?>
 <i class='fa fa-picture-o cursor pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
+<i class='fa fa-sort-amount-desc pull-left cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
 <i class='fa fa-cogs pull-right cursor' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault') ?>' title="{{Afficher/Masquer les scénarios}}"></i>
 <?php if (init('category', 'all') == 'all') {?>
 <i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
@@ -70,7 +71,6 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <div style="witdh:100%; display: none;" class="categorieHidden">
 		<div style="witdh:45%; float:left;">
 		<div class="demo">
-			<!--<label>{{Catégorie}}</label>-->
 			<select id="sel_eqLogicCategory">
 				<?php
 if (init('category', 'all') == 'all') {
