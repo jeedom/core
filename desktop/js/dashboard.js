@@ -164,18 +164,8 @@ editWidgetCmdMode(_mode);
 
 function borderWidget(){
 	$('.eqLogic-widget').each( function( i, eqLogic ) {
-   var backgroundColor = $( eqLogic ).css('background-color');
-   if(backgroundColor.substr(0, 3) == 'rgb'){
-     backgroundColor = backgroundColor.replace(')',', 0.4)');
-   }else{
-     backgroundColor = backgroundColor+'80';
-   }
-    	//backgroundColor = 'transparent';
-        //$( eqLogic ).css('border', '1px solid '+backgroundColor+'' );
-        
-        $( eqLogic ).css('cssText', $( eqLogic ).attr('style')+'border: 1px solid '+backgroundColor+' !important;' );
-        //css('cssText', inputObj.attr('style')+'padding-left: ' + (width + 5) + 'px !IMPORTANT;');
-      });
+       $( eqLogic ).css('cssText', $( eqLogic ).attr('style')+'margin: 1px !important;' );
+    });
 }
 
 function getObjectHtml(_object_id){
