@@ -30,6 +30,13 @@
   },1);
 });
 
+$('#bt_categorieHidden').on( 'click',function () {
+  if($('.categorieHidden').css('display') == 'none'){
+	  $('.categorieHidden').show();
+  }else{
+	  $('.categorieHidden').hide();
+  }
+});
 
  $(document).ready(function(){
   $('.demo').MultiColumnSelect({

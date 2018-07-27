@@ -67,7 +67,7 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <?php }
 ?>
-<div style="witdh:100%;">
+<div style="witdh:100%; display: none;" class="categorieHidden">
 		<div style="witdh:45%; float:left;">
 		<div class="demo">
 			<!--<label>{{Catégorie}}</label>-->

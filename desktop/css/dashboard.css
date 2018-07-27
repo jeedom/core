@@ -38,14 +38,10 @@
 		overflow:hidden;
         background: rgba(245,245,245,1);
         box-sizing: border-box;
-        display:none;
-        position: absolute;
+        position: relative;
         padding:10px;
         clear:both;
-        border:1px solid #111;
         margin-left: 5px;
-        top: 75px;
-        z-index: 40;
 }
 
 /*The menu items (options)*/
@@ -53,8 +49,8 @@
 .mcs-item{
 	box-sizing: border-box;
 	background: rgba(147,204,1,1);
-	color:#FFF;    
-	text-decoration: none;
+	color:#000;    
+	text-decoration: none !important;
 	width:25%;
 	float:left;
 	height: 50px;
@@ -79,19 +75,18 @@
     color:#111;
 }
 .mcs-open.open:hover{
-    background:#00ada9;
     color:#FFF;
 }
 
 .mcs-item.active{
-	background:#e8e8e8;
+	background:rgba(147,204,1,1);
 	color:#222;
 	border:1px solid #222;
 }
 
 .mcs-item:hover,
 .mcs-open:hover{
-background:#00ada9;
+background:rgba(147,204,1,1);
 cursor:pointer;
 }
 
@@ -145,9 +140,9 @@ h2{
         transition: all 300ms ease;
         -webkit-border-radius: 3px 3px 3px 3px;
         border-radius: 3px 3px 3px 3px;
-        text-shadow: -1px 1px 1px #141314;
         -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
         box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
+        background-color: #FFF;
 }
 .mcs-item:hover{
         -moz-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
