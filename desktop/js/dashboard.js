@@ -279,12 +279,14 @@ function getObjectHtml(_object_id){
             $( itemElems ).each( function( i, itemElem ) {
               $( itemElem ).attr('data-order', i + 1 );
 			  value = i + 1;
-			  if ($( itemElem).find(".counterReorderJeedom").length) {
-				  $( itemElem).find(".counterReorderJeedom").text( value );
-			  } else {
-				$( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+			  if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
+				if ($( itemElem).find(".counterReorderJeedom").length) {
+					$( itemElem).find(".counterReorderJeedom").text( value );
+				} else {
+					$( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+				}
 			  }
-            });
+			});
           }
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
@@ -304,7 +306,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     editWidgetMode(0);
     $(this).css('color','black');
     $('.bt_editDashboardWidgetAutoResize').hide();
-    $('.counterReorderJeedom').hide();
+    $('.counterReorderJeedom').remove();
 	$('.div_displayEquipement').packery();
   }else{
    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
