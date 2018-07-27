@@ -30,7 +30,77 @@
   },1);
 });
 
+$('#bt_categorieHidden').on( 'click',function () {
+  if($('.categorieHidden').css('display') == 'none'){
+	  $('.categorieHidden').show();
+  }else{
+	  $('.categorieHidden').hide();
+  }
+});
 
+ $(document).ready(function(){
+  $('.demo').MultiColumnSelect({
+  // Single or Multiple Select
+  multiple: false, 
+  // Use text from option. Use false if you plan to use images
+  useOptionText: true, 
+  // Hide Original Select Control
+  hideselect: true, 
+  // Toggle Open Button Class
+  openmenuClass: 'mcs-open', 
+  // Text for button
+  openmenuText: 'Catégories', 
+  // Class added to Toggle button on open
+  openclass: 'open', 
+  // Class of parent container
+  containerClass: 'mcs-container', 
+  // Class of menu items
+  itemClass: 'mcs-item', 
+  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
+  idprefix: 'categorie-', 
+  // Toggle Height duration
+  duration: 200, 
+  // Callbacks
+  onOpen: null,
+  onClose: null,
+  onItemSelect: function(){
+	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+	  SEL_TAG = $('#sel_eqLogicTags').value();
+	  gotoFilterDashboardPage();
+  }
+  });
+  $('.demo2').MultiColumnSelect({
+  // Single or Multiple Select
+  multiple: false, 
+  // Use text from option. Use false if you plan to use images
+  useOptionText: true, 
+  // Hide Original Select Control
+  hideselect: true, 
+  // Toggle Open Button Class
+  openmenuClass: 'mcs-open', 
+  // Text for button
+  openmenuText: 'Tags', 
+  // Class added to Toggle button on open
+  openclass: 'open', 
+  // Class of parent container
+  containerClass: 'mcs-container', 
+  // Class of menu items
+  itemClass: 'mcs-item', 
+  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
+  idprefix: 'tags-', 
+  // Toggle Height duration
+  duration: 200, 
+  // Callbacks
+  onOpen: null,
+  onClose: null,
+  onItemSelect: function(){
+	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+	  SEL_TAG = $('#sel_eqLogicTags').value();
+	  gotoFilterDashboardPage();
+  }
+  });
+}); 
+/*
  $('#sel_eqLogicCategory').on('change',function(){
   SEL_CATEGORY = $(this).value();
   SEL_TAG = $('#sel_eqLogicTags').value();
@@ -42,6 +112,7 @@
    SEL_TAG = $(this).value();
    gotoFilterDashboardPage();
  });
+ */
 
  function gotoFilterDashboardPage(){
    var category = SEL_CATEGORY;
