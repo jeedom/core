@@ -67,11 +67,11 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 <i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <?php }
 ?>
-<div style="text-align : center;">
-	<form class="form-inline">
-		<div class="form-group">
-			<label>{{Catégorie}}</label>
-			<select id="sel_eqLogicCategory" class="form-control input-sm form-inline">
+<div style="witdh:100%;">
+		<div style="witdh:45%; float:left;">
+		<div class="demo">
+			<!--<label>{{Catégorie}}</label>-->
+			<select id="sel_eqLogicCategory">
 				<?php
 if (init('category', 'all') == 'all') {
 	echo '<option value="all" selected> {{Toute}}</option>';
@@ -88,8 +88,10 @@ foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
 ?>
 			</select>
 		</div>
-		<label>{{Tags}}</label>
-		<select id="sel_eqLogicTags" class="form-control input-sm form-inline">
+		</div>
+		<div style="witdh:45%; float:left;">
+		<div class="demo2">
+		<select id="sel_eqLogicTags">
 			<?php
 if (init('tag', 'all') == 'all') {
 	echo '<option value="all" selected> {{Tous}}</option>';
@@ -106,11 +108,13 @@ foreach ($knowTags as $tag) {
 }
 ?>
 		</select>
-	</form>
+		</div>
+		</div>
 </div>
 <?php include_file('desktop', 'dashboard', 'js');?>
 <?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<?php include_file('desktop', 'dashboard', 'css');?>
+<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select.js', 'js');?>
 <div class="row" >
 	<?php
 if (init('object_id') != '') {
@@ -160,36 +164,3 @@ foreach (scenario::all() as $scenario) {
 ?>
 </div>
 </div>
-<style>
-.eqLogic-widget {
-  float: left !important;
-}
-.grid:after {
-  content: '' !important;
-  display: block !important;
-  clear: both !important;
-}
-.eqLogic-widget:hover {
-  border-color: hsla(0, 0%, 100%, 0.5) !important;
-  cursor: move !important;
-}
-.eqLogic-widget.is-dragging,
-.eqLogic-widget.is-positioning-post-drag {
-  background: #EA0 !important;
-  z-index: 2 !important; /* keep dragged item on top */
-}
-.eqLogic-widget.ui-draggable-dragging,
-.eqLogic-widget.is-positioning-post-drag {
-  background: #C90 !important;
-  z-index: 2 !important;
-}
-.packery-drop-placeholder {
-  outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
-  outline-offset: -6px !important;
-  -webkit-transition: -webkit-transform 0.2s !important;
-          transition: transform 0.2s !important;
-}
-.scenario-widget{
-	margin-top: 2px !important;
-}
-</style>
