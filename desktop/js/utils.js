@@ -617,11 +617,11 @@ function positionEqLogic(_id,_preResize) {
             $(this).height('auto');
         }
         if(init(_preResize,true)){
-         eqLogic.width(Math.floor(eqLogic.width() / width_step) * width_step);
-         eqLogic.height(Math.floor(eqLogic.height() / height_step) * height_step);
+         eqLogic.width(Math.floor(eqLogic.width() / width_step) * width_step - 2);
+         eqLogic.height(Math.floor(eqLogic.height() / height_step) * height_step - 2);
      }
-     eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step);
-     eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step);
+     eqLogic.width(Math.ceil(eqLogic.width() / width_step) * width_step - 2);
+     eqLogic.height(Math.ceil(eqLogic.height() / height_step) * height_step -2);
      eqLogic.trigger('resize');
      eqlogic.addClass($(eqlogic).attr('data-category'));
  }else{
@@ -633,8 +633,8 @@ function positionEqLogic(_id,_preResize) {
         if($(this).height() == 0){
             $(this).height('auto');
         }
-        $(this).width(Math.ceil($(this).width() / width_step) * width_step);
-        $(this).height(Math.ceil($(this).height() / height_step) * height_step);
+        $(this).width(Math.ceil($(this).width() / width_step) * width_step- 2);
+        $(this).height(Math.ceil($(this).height() / height_step) * height_step -2);
         $(this).trigger('resize');
         $(this).addClass($(this).attr('data-category'));
     });

@@ -14,6 +14,7 @@ body{
     opacity : 0.35;
     top : 65px;
     background-size:cover;
+    background-position: center center; 
 }
 
 #pagecontainer{
