@@ -232,11 +232,12 @@ $('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
 });
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
+    var _eqType = isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType;
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.li_eqLogic.active a:first').text() + '</b> ?', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + _eqType + ' <b>' + $('.li_eqLogic.active a:first').text() + '</b> ?', function (result) {
             if (result) {
                 jeedom.eqLogic.remove({
-                    type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+                    type: _eqType,
                     id: $('.li_eqLogic.active').attr('data-eqLogic_id'),
                     error: function (error) {
                         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -262,10 +263,11 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
 });
 
 $('.eqLogicAction[data-action=add]').on('click', function () {
+    var _eqType = isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType;
     bootbox.prompt("{{Nom de l'équipement ?}}", function (result) {
         if (result !== null) {
             jeedom.eqLogic.save({
-                type: eqType,
+                type: _eqType,
                 eqLogics: [{name: result}],
                 error: function (error) {
                     $('#div_alert').showAlert({message: error.message, level: 'danger'});
