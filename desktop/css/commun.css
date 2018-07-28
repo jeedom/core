@@ -5,18 +5,19 @@ html {
 body {
   font-family: 'noto', sans-serif !important;
   font-size: 1.42em;
-  padding-top: 55px;
+  padding-top: 50px;
   height: 100%;
 }
 
 .backgroundforJeedom{
   width:100%; 
-  height:calc(100% - 55px); 
+  height:calc(100% - 50px); 
   z-index : -1; 
   position: absolute;
   opacity : 0.35;
-  top : 55px;
+  top : 50;
   background-size:cover;
+  background-position: center center; 
 }
 
 .btn:hover { 

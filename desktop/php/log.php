@@ -26,10 +26,10 @@ natcasesort($list_logfile);
 				<?php
 foreach ($list_logfile as $file) {
 	$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
-	if (strpos(file_get_contents('log/' . $file), '[WARNING]') !== false) {
-		$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
-	} else if (strpos(file_get_contents('log/' . $file), '[ERROR]') !== false) {
+	if (@shell_exec('grep [ERROR] ' . __DIR__ . '../../log/' . $file . ' | wc -l ') != 0) {
 		$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
+	} else if (@shell_exec('grep [WARNING] ' . __DIR__ . '../../log/' . $file . ' | wc -l ') != 0) {
+		$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
 	}
 	if ($file == $logfile) {
 		echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';

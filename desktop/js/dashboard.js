@@ -16,6 +16,91 @@
  */
 
 
+ $(function(){
+  setTimeout(function(){
+    if(typeof rootObjectId != 'undefined'){
+      jeedom.object.getImgPath({
+        id : rootObjectId,
+        success : function(_path){
+          $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
+        }
+      });
+    }
+
+  },1);
+});
+
+$('#bt_categorieHidden').on( 'click',function () {
+  if($('.categorieHidden').css('display') == 'none'){
+	  $('.categorieHidden').show();
+  }else{
+	  $('.categorieHidden').hide();
+  }
+});
+
+ $(document).ready(function(){
+  $('.demo').MultiColumnSelect({
+  // Single or Multiple Select
+  multiple: false, 
+  // Use text from option. Use false if you plan to use images
+  useOptionText: true, 
+  // Hide Original Select Control
+  hideselect: true, 
+  // Toggle Open Button Class
+  openmenuClass: 'mcs-open', 
+  // Text for button
+  openmenuText: 'Catégories', 
+  // Class added to Toggle button on open
+  openclass: 'open', 
+  // Class of parent container
+  containerClass: 'mcs-container', 
+  // Class of menu items
+  itemClass: 'mcs-item', 
+  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
+  idprefix: 'categorie-', 
+  // Toggle Height duration
+  duration: 200, 
+  // Callbacks
+  onOpen: null,
+  onClose: null,
+  onItemSelect: function(){
+	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+	  SEL_TAG = $('#sel_eqLogicTags').value();
+	  gotoFilterDashboardPage();
+  }
+  });
+  $('.demo2').MultiColumnSelect({
+  // Single or Multiple Select
+  multiple: false, 
+  // Use text from option. Use false if you plan to use images
+  useOptionText: true, 
+  // Hide Original Select Control
+  hideselect: true, 
+  // Toggle Open Button Class
+  openmenuClass: 'mcs-open', 
+  // Text for button
+  openmenuText: 'Tags', 
+  // Class added to Toggle button on open
+  openclass: 'open', 
+  // Class of parent container
+  containerClass: 'mcs-container', 
+  // Class of menu items
+  itemClass: 'mcs-item', 
+  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
+  idprefix: 'tags-', 
+  // Toggle Height duration
+  duration: 200, 
+  // Callbacks
+  onOpen: null,
+  onClose: null,
+  onItemSelect: function(){
+	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+	  SEL_TAG = $('#sel_eqLogicTags').value();
+	  gotoFilterDashboardPage();
+  }
+  });
+}); 
+/*
  $('#sel_eqLogicCategory').on('change',function(){
   SEL_CATEGORY = $(this).value();
   SEL_TAG = $('#sel_eqLogicTags').value();
@@ -27,6 +112,7 @@
    SEL_TAG = $(this).value();
    gotoFilterDashboardPage();
  });
+ */
 
  function gotoFilterDashboardPage(){
    var category = SEL_CATEGORY;
@@ -120,6 +206,7 @@ function editWidgetMode(_mode,_save){
     if(!isset(_save) || _save){
      saveWidgetDisplay({dashboard : 1});
    }
+   borderWidget();
    if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
     $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
   }
@@ -145,19 +232,12 @@ function editWidgetMode(_mode,_save){
 }
 editWidgetCmdMode(_mode);
 }
-$(function(){
-  setTimeout(function(){
-    if(typeof rootObjectId != 'undefined'){
-      jeedom.object.getImgPath({
-        id : rootObjectId,
-        success : function(_path){
-          $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
-        }
-      });
-    }
 
-  },1);
-});
+function borderWidget(){
+	$('.eqLogic-widget').each( function( i, eqLogic ) {
+       $( eqLogic ).css('cssText', $( eqLogic ).attr('style')+'margin: 1px !important;' );
+    });
+}
 
 function getObjectHtml(_object_id){
   jeedom.object.toHtml({
@@ -179,23 +259,12 @@ function getObjectHtml(_object_id){
       }catch(err) {
         console.log(err);
       }
-      $('#div_ob'+_object_id).animateCss('slideInLeft');
       setTimeout(function(){
         positionEqLogic();
         $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-        
-        $('.eqLogic-widget').each( function( i, eqLogic ) {
-         var backgroundColor = $( eqLogic ).css('background-color');
-         if(backgroundColor.substr(0, 3) == 'rgb'){
-          backgroundColor = backgroundColor.replace(')',', 0.4)');
-        }else{
-          backgroundColor = backgroundColor+'80';
-        }
-        $( eqLogic ).css('border', '1px solid '+backgroundColor+'' );
-      });
         
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery({
@@ -205,24 +274,28 @@ function getObjectHtml(_object_id){
           });
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery( 'bindUIDraggableEvents', itemElems );
-          container.packery( 'on', 'dragItemPositioned',function(){
-                    //$('.div_displayEquipement').packery();
-                  });
           function orderItems() {
             var itemElems = container.packery('getItemElements');
             $( itemElems ).each( function( i, itemElem ) {
               $( itemElem ).attr('data-order', i + 1 );
+			  value = i + 1;
+			  if ($( itemElem).find(".counterReorderJeedom").length) {
+				  $( itemElem).find(".counterReorderJeedom").text( value );
+			  } else {
+				$( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+			  }
             });
           }
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
+		  
+          borderWidget();
         });
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
       },10);
     }
   });
 }
-
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
   if($(this).attr('data-mode') == 1){
@@ -231,7 +304,8 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     editWidgetMode(0);
     $(this).css('color','black');
     $('.bt_editDashboardWidgetAutoResize').hide();
-    $('.div_displayEquipement').packery();
+    $('.counterReorderJeedom').hide();
+	$('.div_displayEquipement').packery();
   }else{
    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
    $(this).attr('data-mode',1);
@@ -243,12 +317,12 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
      $('#div_ob'+id_object+'.div_displayEquipement .eqLogic-widget').each(function(index, element){
       var heightObject = this.style.height;
       heightObject = eval(heightObject.replace('px',''));
-
+      
       var valueAdd = eval(heightObject * 0.20);
       var valueRemove = eval(heightObject * 0.05);
       var heightObjectadd = eval(heightObject + valueAdd);
       var heightObjectremove = eval(heightObject - valueRemove);
-
+      
       if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
        if($(element).hasClass('allowResize')){
         $( element ).height(heightObjectex);
@@ -275,7 +349,7 @@ $('.li_object').on('click',function(){
   });
    $('.li_object').removeClass('active');
    $(this).addClass('active');
-   displayChildObject(object_id);
+   displayChildObject(object_id,false);
  }else{
   loadPage($(this).find('a').attr('data-href'));
 }
@@ -283,12 +357,12 @@ $('.li_object').on('click',function(){
 
 
 function displayChildObject(_object_id,_recursion){
-  if(!isset(_recursion) || _recursion === false){
-   $('.div_object').hide();
- }
- $('.div_object[data-object_id='+_object_id+']').show();
- $('.div_object[data-father_id='+_object_id+']').each(function(){
-  $(this).show();
-  displayChildObject($(this).attr('data-object_id'),true);
-});
+  if(_recursion === false){
+    $('.div_object').hide();
+  }
+  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false});
+  $('.div_object[data-father_id='+_object_id+']').each(function(){
+   $(this).show({effect : 'drop',queue : false});
+   displayChildObject($(this).attr('data-object_id'),true);
+ });
 }

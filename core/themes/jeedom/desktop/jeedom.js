@@ -17,7 +17,7 @@
  $(function(){
  	$('body').on('jeedom_page_load',function(){
  		$('.backgroundforJeedom').css('background-image','');
- 		$('.backgroundforJeedom').css('background-position','');
+ 		$('.backgroundforJeedom').css('background-position','center center');
  		$('.backgroundforJeedom').css('background-repeat','no-repeat');
  		$('.backgroundforJeedom').css('background-size','cover');
  		if(typeof jeedomBackgroundImg !== 'undefined' && jeedomBackgroundImg != null){
