@@ -182,11 +182,9 @@ function editWidgetMode(_mode,_save){
  $('.div_displayEquipement .eqLogic-widget').css('box-shadow','0 0 4px rgba(147,204,1,.14), 0 10px 16px rgba(147,204,1,.30)');
  $('.div_displayEquipement .eqLogic-widget').draggable('enable');
  $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
-  grid: [ 2, 2 ],
   resize: function( event, ui ) {
    positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
    ui.element.closest('.div_displayEquipement').packery();
-
  },
  stop: function( event, ui ) {
   positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
@@ -228,7 +226,7 @@ function getObjectHtml(_object_id){
           var container = $(this).packery({
             itemSelector: ".eqLogic-widget",
             gutter : 0,
-            columnWidth: 25
+            columnWidth: parseInt(widget_width_step)
           });
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);
