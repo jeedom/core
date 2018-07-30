@@ -4,7 +4,7 @@ if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cr
 }
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse'));
+$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'widget::step::width', 'widget::step::height', 'widget::margin'));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -224,6 +224,9 @@ if (!isConnect()) {
 	sendVarToJS('user_isAdmin', isConnect('admin'));
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
+	sendVarToJS('widget_width_step', $configs['widget::step::width']);
+	sendVarToJS('widget_height_step', $configs['widget::step::height']);
+	sendVarToJS('widget_margin', $configs['widget::margin']);
 	if (count($eventjs_plugin) > 0) {
 		foreach ($eventjs_plugin as $value) {
 			try {

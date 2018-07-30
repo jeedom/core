@@ -184,14 +184,13 @@ function editWidgetMode(_mode,_save){
  $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
   grid: [ 2, 2 ],
   resize: function( event, ui ) {
-   var el = ui.element;
-   el.closest('.div_displayEquipement').packery();
-   positionEqLogic(el.attr('data-eqlogic_id'),false);
+   positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+   ui.element.closest('.div_displayEquipement').packery();
+
  },
  stop: function( event, ui ) {
-  var el = ui.element;
-  positionEqLogic(el.attr('data-eqlogic_id'),false);
-  el.closest('.div_displayEquipement').packery();
+  positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+  ui.element.closest('.div_displayEquipement').packery();
 }
 });
 }

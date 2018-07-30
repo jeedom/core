@@ -23,7 +23,7 @@ user::isBan();
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
-		<li role="presentation"><a href="#colortab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Couleurs}}</a></li>
+		<li role="presentation"><a href="#widgettab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Widgets}}</a></li>
 		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
 		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
 		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
@@ -662,12 +662,11 @@ foreach ($repos as $key => $value) {
 ?>
 						</div>
 					</div>
-
 				</fieldset>
 			</form>
 		</div>
 
-		<div role="tabpanel" class="tab-pane" id="colortab">
+		<div role="tabpanel" class="tab-pane" id="widgettab">
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
@@ -675,6 +674,24 @@ foreach ($repos as $key => $value) {
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Opacité par défaut des widgets}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pas horizontal}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::step::width" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pas vertical}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::step::height" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Marge}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
 					<div  style="margin-left:10px;">
