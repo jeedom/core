@@ -30,89 +30,54 @@
   },1);
 });
 
-$('#bt_categorieHidden').on( 'click',function () {
+ $('#bt_categorieHidden').on( 'click',function () {
   if($('.categorieHidden').css('display') == 'none'){
-	  $('.categorieHidden').show();
-  }else{
-	  $('.categorieHidden').hide();
-  }
+   $('.categorieHidden').show();
+ }else{
+   $('.categorieHidden').hide();
+ }
 });
 
  $(document).ready(function(){
   $('.demo').MultiColumnSelect({
-  // Single or Multiple Select
-  multiple: false, 
-  // Use text from option. Use false if you plan to use images
-  useOptionText: true, 
-  // Hide Original Select Control
-  hideselect: true, 
-  // Toggle Open Button Class
-  openmenuClass: 'mcs-open', 
-  // Text for button
-  openmenuText: 'Catégories', 
-  // Class added to Toggle button on open
-  openclass: 'open', 
-  // Class of parent container
-  containerClass: 'mcs-container', 
-  // Class of menu items
-  itemClass: 'mcs-item', 
-  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
-  idprefix: 'categorie-', 
-  // Toggle Height duration
-  duration: 200, 
-  // Callbacks
-  onOpen: null,
-  onClose: null,
-  onItemSelect: function(){
-	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
-	  SEL_TAG = $('#sel_eqLogicTags').value();
-	  gotoFilterDashboardPage();
-  }
-  });
-  $('.demo2').MultiColumnSelect({
-  // Single or Multiple Select
-  multiple: false, 
-  // Use text from option. Use false if you plan to use images
-  useOptionText: true, 
-  // Hide Original Select Control
-  hideselect: true, 
-  // Toggle Open Button Class
-  openmenuClass: 'mcs-open', 
-  // Text for button
-  openmenuText: 'Tags', 
-  // Class added to Toggle button on open
-  openclass: 'open', 
-  // Class of parent container
-  containerClass: 'mcs-container', 
-  // Class of menu items
-  itemClass: 'mcs-item', 
-  // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
-  idprefix: 'tags-', 
-  // Toggle Height duration
-  duration: 200, 
-  // Callbacks
-  onOpen: null,
-  onClose: null,
-  onItemSelect: function(){
-	  SEL_CATEGORY = $('#sel_eqLogicCategory').value();
-	  SEL_TAG = $('#sel_eqLogicTags').value();
-	  gotoFilterDashboardPage();
-  }
-  });
-}); 
-/*
- $('#sel_eqLogicCategory').on('change',function(){
-  SEL_CATEGORY = $(this).value();
-  SEL_TAG = $('#sel_eqLogicTags').value();
-  gotoFilterDashboardPage();
-});
-
- $('#sel_eqLogicTags').on('change',function(){
-   SEL_CATEGORY = $('#sel_eqLogicCategory').value();
-   SEL_TAG = $(this).value();
-   gotoFilterDashboardPage();
+    multiple: false, 
+    useOptionText: true, 
+    hideselect: true, 
+    openmenuClass: 'mcs-open', 
+    openmenuText: 'Catégories', 
+    openclass: 'open', 
+    containerClass: 'mcs-container', 
+    itemClass: 'mcs-item', 
+    idprefix: 'categorie-', 
+    duration: 200, 
+    onOpen: null,
+    onClose: null,
+    onItemSelect: function(){
+     SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+     SEL_TAG = $('#sel_eqLogicTags').value();
+     gotoFilterDashboardPage();
+   }
  });
- */
+  $('.demo2').MultiColumnSelect({
+    multiple: false, 
+    useOptionText: true, 
+    hideselect: true, 
+    openmenuClass: 'mcs-open', 
+    openmenuText: 'Tags', 
+    openclass: 'open', 
+    containerClass: 'mcs-container', 
+    itemClass: 'mcs-item', 
+    idprefix: 'tags-', 
+    duration: 200, 
+    onOpen: null,
+    onClose: null,
+    onItemSelect: function(){
+     SEL_CATEGORY = $('#sel_eqLogicCategory').value();
+     SEL_TAG = $('#sel_eqLogicTags').value();
+     gotoFilterDashboardPage();
+   }
+ });
+}); 
 
  function gotoFilterDashboardPage(){
    var category = SEL_CATEGORY;
@@ -206,7 +171,6 @@ function editWidgetMode(_mode,_save){
     if(!isset(_save) || _save){
      saveWidgetDisplay({dashboard : 1});
    }
-   borderWidget();
    if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
     $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
   }
@@ -231,12 +195,6 @@ function editWidgetMode(_mode,_save){
 });
 }
 editWidgetCmdMode(_mode);
-}
-
-function borderWidget(){
-	$('.eqLogic-widget').each( function( i, eqLogic ) {
-       $( eqLogic ).css('cssText', $( eqLogic ).attr('style')+'margin: 1px !important;' );
-    });
 }
 
 function getObjectHtml(_object_id){
@@ -278,20 +236,18 @@ function getObjectHtml(_object_id){
             var itemElems = container.packery('getItemElements');
             $( itemElems ).each( function( i, itemElem ) {
               $( itemElem ).attr('data-order', i + 1 );
-			  value = i + 1;
-			  if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
-				if ($( itemElem).find(".counterReorderJeedom").length) {
-					$( itemElem).find(".counterReorderJeedom").text( value );
-				} else {
-					$( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
-				}
-			  }
-			});
+              value = i + 1;
+              if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
+                if ($( itemElem).find(".counterReorderJeedom").length) {
+                 $( itemElem).find(".counterReorderJeedom").text( value );
+               } else {
+                 $( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+               }
+             }
+           });
           }
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
-		  
-          borderWidget();
         });
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
       },10);
@@ -307,7 +263,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     $(this).css('color','black');
     $('.bt_editDashboardWidgetAutoResize').hide();
     $('.counterReorderJeedom').remove();
-	$('.div_displayEquipement').packery();
+    $('.div_displayEquipement').packery();
   }else{
    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
    $(this).attr('data-mode',1);
@@ -319,12 +275,10 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
      $('#div_ob'+id_object+'.div_displayEquipement .eqLogic-widget').each(function(index, element){
       var heightObject = this.style.height;
       heightObject = eval(heightObject.replace('px',''));
-      
       var valueAdd = eval(heightObject * 0.20);
       var valueRemove = eval(heightObject * 0.05);
       var heightObjectadd = eval(heightObject + valueAdd);
       var heightObjectremove = eval(heightObject - valueRemove);
-      
       if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
        if($(element).hasClass('allowResize')){
         $( element ).height(heightObjectex);
