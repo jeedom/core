@@ -315,8 +315,10 @@ try {
 		if (!isset($params['apikey']) && !isset($params['api'])) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
-
-		if ((isset($params['apikey']) && !jeedom::apiAccess($params['apikey'])) || (isset($params['api']) && !jeedom::apiAccess($params['api']))) {
+		$apikey = isset($params['apikey']) ? $params['apikey'] : $params['api'];
+		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core' && !jeedom::apiAccess($apikey, $params['plugin'])) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+		} else if (!jeedom::apiAccess($apikey)) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 		}
 		if (is_object($_USER_GLOBAL) && isset($params['session']) && $params['session']) {
