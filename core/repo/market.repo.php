@@ -251,7 +251,7 @@ class repo_market {
 		foreach ($excludes as $exclude) {
 			$cmd .= ' --exclude "' . $exclude . '"';
 		}
-		$cmd .= ' --num-retries 1';
+		$cmd .= ' --num-retries 2';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' ' . $base_dir . '  webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name');
