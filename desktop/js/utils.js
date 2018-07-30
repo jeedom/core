@@ -621,7 +621,7 @@ function positionEqLogic(_id,_preResize) {
        eqLogic.width(Math.ceil(eqLogic.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
        eqLogic.height(Math.ceil(eqLogic.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
        eqLogic.trigger('resize');
-       eqLogic.addClass($(eqlogic).attr('data-category'));
+       eqLogic.addClass(eqLogic.attr('data-category'));
        eqLogic.css('margin',widget_margin+'px');
    }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
