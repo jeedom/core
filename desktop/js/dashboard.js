@@ -186,10 +186,11 @@ function editWidgetMode(_mode,_save){
   resize: function( event, ui ) {
    var el = ui.element;
    el.closest('.div_displayEquipement').packery();
+   positionEqLogic(el.attr('data-eqlogic_id'),false);
  },
  stop: function( event, ui ) {
   var el = ui.element;
-  positionEqLogic(el.attr('data-eqlogic_id'));
+  positionEqLogic(el.attr('data-eqlogic_id'),false);
   el.closest('.div_displayEquipement').packery();
 }
 });
@@ -231,23 +232,25 @@ function getObjectHtml(_object_id){
             columnWidth: 25
           });
           var itemElems =  container.find('.eqLogic-widget').draggable();
-          container.packery( 'bindUIDraggableEvents', itemElems );
+          container.packery('bindUIDraggableEvents',itemElems);
           function orderItems() {
+            setTimeout(function(){
+             $('.div_displayEquipement').packery(); 
+           },1);
             var itemElems = container.packery('getItemElements');
-            $( itemElems ).each( function( i, itemElem ) {
-              $( itemElem ).attr('data-order', i + 1 );
+            $(itemElems).each( function( i, itemElem ) {
+              $(itemElem).attr('data-order', i + 1 );
               value = i + 1;
               if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
-                if ($( itemElem).find(".counterReorderJeedom").length) {
-                 $( itemElem).find(".counterReorderJeedom").text( value );
+                if ($(itemElem).find(".counterReorderJeedom").length) {
+                 $(itemElem).find(".counterReorderJeedom").text(value);
                } else {
-                 $( itemElem ).prepend( '<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+                 $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
                }
              }
            });
           }
-          container.on( 'layoutComplete', orderItems );
-          container.on( 'dragItemPositioned', orderItems );
+          container.on('dragItemPositioned',orderItems);
         });
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
       },10);
