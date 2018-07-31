@@ -317,9 +317,9 @@ try {
 		}
 		$apikey = isset($params['apikey']) ? $params['apikey'] : $params['api'];
 		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core' && !jeedom::apiAccess($apikey, $params['plugin'])) {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1', __FILE__), -32001);
 		} else if (!jeedom::apiAccess($apikey)) {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__), -32001);
 		}
 		if (is_object($_USER_GLOBAL) && isset($params['session']) && $params['session']) {
 			@session_start();
@@ -361,7 +361,7 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeedom::halt') {
 			if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 			}
 			jeedom::haltSystem();
 			$jsonrpc->makeSuccess('ok');
@@ -369,7 +369,7 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeedom::reboot') {
 			if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 			}
 			jeedom::rebootSystem();
 			$jsonrpc->makeSuccess('ok');
@@ -377,7 +377,7 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeedom::update') {
 			if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 			}
 			jeedom::update('', 0);
 			$jsonrpc->makeSuccess('ok');
@@ -385,7 +385,7 @@ try {
 
 		if ($jsonrpc->getMethod() == 'jeedom::backup') {
 			if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 			}
 			jeedom::backup(true);
 			$jsonrpc->makeSuccess('ok');
@@ -556,7 +556,7 @@ try {
 				$eqLogic->setEqType_name($params['eqType_name']);
 			}
 			if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 			}
 			utils::a2o($eqLogic, jeedom::fromHumanReadable($params));
 			$eqLogic->save();
