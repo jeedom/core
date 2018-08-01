@@ -675,7 +675,7 @@ class scenarioExpression {
 		return strtotime('now') - strtotime($scenario->getLastLaunch());
 	}
 
-	public static function collectDate($_cmd, $_format = 'Y-m-d H:i:s') {
+	public static function collectDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
 		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
 			return -1;
