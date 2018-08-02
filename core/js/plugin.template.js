@@ -84,9 +84,6 @@ $(".li_eqLogic").on('click', function () {
     }
 
     $('.eqLogic').hide();
-    if ('function' == typeof (prePrintEqLogic)) {
-        prePrintEqLogic();
-    }
 
     if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
         $('.' + $(this).attr('data-eqLogic_type')).show();
@@ -97,6 +94,10 @@ $(".li_eqLogic").on('click', function () {
     $(this).addClass('active');
     $('.nav-tabs a[href="#eqlogictab"]').click();
     $.showLoading();
+
+    if ('function' == typeof (prePrintEqLogic)) {
+        prePrintEqLogic($(this).attr('data-eqLogic_id'));
+    }
 
     jeedom.eqLogic.print({
         type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
