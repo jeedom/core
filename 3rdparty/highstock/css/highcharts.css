@@ -91,7 +91,7 @@
 }
 
 .highcharts-xaxis-grid .highcharts-grid-line {
-  stroke-width: 0;
+  stroke-width: 0px;
 }
 
 .highcharts-tick {
@@ -389,6 +389,7 @@ g.highcharts-series,
 .highcharts-legend-item text {
   fill: #333333;
   font-weight: bold;
+  font-size: 1em;
   cursor: pointer;
   stroke-width: 0;
 }
@@ -598,21 +599,30 @@ g.highcharts-series,
 .highcharts-button-hover {
   transition: fill 0ms;
   fill: #e6e6e6;
-  stroke: #333333;
+  stroke: #cccccc;
+}
+
+.highcharts-button-hover text {
+  fill: #333333;
 }
 
 .highcharts-button-pressed {
   font-weight: bold;
   fill: #e6ebf5;
-  stroke: #335cad;
+  stroke: #cccccc;
+}
+
+.highcharts-button-pressed text {
+  fill: #333333;
+  font-weight: bold;
 }
 
 .highcharts-button-disabled text {
-  fill: #cccccc;
+  fill: #333333;
 }
 
 .highcharts-range-selector-buttons .highcharts-button {
-  stroke-width: 0;
+  stroke-width: 0px;
 }
 
 .highcharts-range-label rect {
@@ -629,6 +639,11 @@ g.highcharts-series,
 
 .highcharts-range-input text {
   fill: #333333;
+}
+
+.highcharts-range-input {
+  stroke-width: 1px;
+  stroke: #cccccc;
 }
 
 input.highcharts-range-selector {

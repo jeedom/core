@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.0.7 (2018-02-16)
+ * @license  Highcharts JS v6.1.1 (2018-06-27)
  * Highcharts variwide module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -7,282 +7,336 @@
  * License: www.highcharts.com/license
  */
 'use strict';
-(function(factory) {
-    if (typeof module === 'object' && module.exports) {
-        module.exports = factory;
-    } else {
-        factory(Highcharts);
-    }
-}(function(Highcharts) {
-    (function(H) {
-        /**
-         * Highcharts variwide module
-         *
-         * (c) 2010-2017 Torstein Honsi
-         *
-         * License: www.highcharts.com/license
-         */
+(function (factory) {
+	if (typeof module === 'object' && module.exports) {
+		module.exports = factory;
+	} else {
+		factory(Highcharts);
+	}
+}(function (Highcharts) {
+	(function (H) {
+		/**
+		 * Highcharts variwide module
+		 *
+		 * (c) 2010-2017 Torstein Honsi
+		 *
+		 * License: www.highcharts.com/license
+		 */
 
-        /**
-         * To do:
-         * - When X axis is not categorized, the scale should reflect how the z values
-         *   increase, like a horizontal stack. But then the actual X values aren't
-         *   reflected the the axis.. Should we introduce a Z axis too?
-         */
+		/**
+		 * To do:
+		 * - When X axis is not categorized, the scale should reflect how the z values
+		 *   increase, like a horizontal stack. But then the actual X values aren't
+		 *   reflected the the axis.. Should we introduce a Z axis too?
+		 */
 
-        var seriesType = H.seriesType,
-            seriesTypes = H.seriesTypes,
-            each = H.each,
-            pick = H.pick;
+		var addEvent = H.addEvent,
+		    seriesType = H.seriesType,
+		    seriesTypes = H.seriesTypes,
+		    each = H.each,
+		    pick = H.pick;
 
-        /**
-         * A variwide chart (related to marimekko chart) is a column chart with a
-         * variable width expressing a third dimension.
-         * 
-         * @extends {plotOptions.column}
-         * @excluding boostThreshold,crisp,depth,edgeColor,edgeWidth,groupZPadding
-         * @product highcharts
-         * @sample {highcharts} highcharts/demo/variwide/
-         *         Variwide chart
-         * @since 6.0.0
-         * @optionparent plotOptions.variwide
-         */
-        seriesType('variwide', 'column', {
-            /**
-             * In a variwide chart, the point padding is 0 in order to express the 
-             * horizontal stacking of items.
-             */
-            pointPadding: 0,
-            /**
-             * In a variwide chart, the group padding is 0 in order to express the 
-             * horizontal stacking of items.
-             */
-            groupPadding: 0
-        }, {
-            pointArrayMap: ['y', 'z'],
-            parallelArrays: ['x', 'y', 'z'],
-            processData: function() {
-                var series = this;
-                this.totalZ = 0;
-                this.relZ = [];
-                seriesTypes.column.prototype.processData.call(this);
+		/**
+		 * A variwide chart (related to marimekko chart) is a column chart with a
+		 * variable width expressing a third dimension.
+		 *
+		 * @extends {plotOptions.column}
+		 * @excluding boostThreshold,crisp,depth,edgeColor,edgeWidth,groupZPadding
+		 * @product highcharts
+		 * @sample {highcharts} highcharts/demo/variwide/
+		 *         Variwide chart
+		 * @sample {highcharts} highcharts/series-variwide/inverted/
+		 *         Inverted variwide chart
+		 * @since 6.0.0
+		 * @optionparent plotOptions.variwide
+		 */
+		seriesType('variwide', 'column', {
+		    /**
+		     * In a variwide chart, the point padding is 0 in order to express the
+		     * horizontal stacking of items.
+		     */
+		    pointPadding: 0,
+		    /**
+		     * In a variwide chart, the group padding is 0 in order to express the
+		     * horizontal stacking of items.
+		     */
+		    groupPadding: 0
+		}, {
+		    pointArrayMap: ['y', 'z'],
+		    parallelArrays: ['x', 'y', 'z'],
+		    processData: function () {
+		        this.totalZ = 0;
+		        this.relZ = [];
+		        seriesTypes.column.prototype.processData.call(this);
 
-                each(this.zData, function(z, i) {
-                    series.relZ[i] = series.totalZ;
-                    series.totalZ += z;
-                });
+		        each(
+		            this.xAxis.reversed ?
+		                this.zData.slice().reverse() :
+		                this.zData,
+		            function (z, i) {
+		                this.relZ[i] = this.totalZ;
+		                this.totalZ += z;
+		            },
+		            this
+		        );
 
-                if (this.xAxis.categories) {
-                    this.xAxis.variwide = true;
-                }
-            },
+		        if (this.xAxis.categories) {
+		            this.xAxis.variwide = true;
+		            this.xAxis.zData = this.zData; // Used for label rank
+		        }
+		    },
 
-            /**
-             * Translate an x value inside a given category index into the distorted
-             * axis translation.
-             * @param  {Number} index The category index
-             * @param  {Number} x The X pixel position in undistorted axis pixels
-             * @return {Number}   Distorted X position
-             */
-            postTranslate: function(index, x) {
+		    /**
+		     * Translate an x value inside a given category index into the distorted
+		     * axis translation.
+		     * @param  {Number} index The category index
+		     * @param  {Number} x The X pixel position in undistorted axis pixels
+		     * @return {Number}   Distorted X position
+		     */
+		    postTranslate: function (index, x, point) {
 
-                var axis = this.xAxis,
-                    relZ = this.relZ,
-                    i = index,
-                    len = axis.len,
-                    totalZ = this.totalZ,
-                    linearSlotLeft = i / relZ.length * len,
-                    linearSlotRight = (i + 1) / relZ.length * len,
-                    slotLeft = (pick(relZ[i], totalZ) / totalZ) * len,
-                    slotRight = (pick(relZ[i + 1], totalZ) / totalZ) * len,
-                    xInsideLinearSlot = x - linearSlotLeft,
-                    ret;
+		        var axis = this.xAxis,
+		            relZ = this.relZ,
+		            i = axis.reversed ? relZ.length - index : index,
+		            goRight = axis.reversed ? -1 : 1,
+		            len = axis.len,
+		            totalZ = this.totalZ,
+		            linearSlotLeft = i / relZ.length * len,
+		            linearSlotRight = (i + goRight) / relZ.length * len,
+		            slotLeft = (pick(relZ[i], totalZ) / totalZ) * len,
+		            slotRight = (pick(relZ[i + goRight], totalZ) / totalZ) * len,
+		            xInsideLinearSlot = x - linearSlotLeft,
+		            ret;
 
-                ret = slotLeft +
-                    xInsideLinearSlot * (slotRight - slotLeft) /
-                    (linearSlotRight - linearSlotLeft);
+		        // Set crosshairWidth for every point (#8173)
+		        if (point) {
+		            point.crosshairWidth = slotRight - slotLeft;
+		        }
 
-                return ret;
-            },
+		        ret = slotLeft +
+		            xInsideLinearSlot * (slotRight - slotLeft) /
+		            (linearSlotRight - linearSlotLeft);
 
-            /**
-             * Extend translation by distoring X position based on Z.
-             */
-            translate: function() {
+		        return ret;
+		    },
 
-                // Temporarily disable crisping when computing original shapeArgs
-                var crispOption = this.options.crisp;
-                this.options.crisp = false;
+		    /**
+		     * Extend translation by distoring X position based on Z.
+		     */
+		    translate: function () {
 
-                seriesTypes.column.prototype.translate.call(this);
+		        // Temporarily disable crisping when computing original shapeArgs
+		        var crispOption = this.options.crisp;
+		        this.options.crisp = false;
 
-                // Reset option
-                this.options.crisp = crispOption;
+		        seriesTypes.column.prototype.translate.call(this);
 
-                var inverted = this.chart.inverted,
-                    crisp = this.borderWidth % 2 / 2;
+		        // Reset option
+		        this.options.crisp = crispOption;
 
-                // Distort the points to reflect z dimension
-                each(this.points, function(point, i) {
-                    var left = this.postTranslate(
-                            i,
-                            point.shapeArgs.x
-                        ),
-                        right = this.postTranslate(
-                            i,
-                            point.shapeArgs.x + point.shapeArgs.width
-                        );
+		        var inverted = this.chart.inverted,
+		            crisp = this.borderWidth % 2 / 2;
 
-                    if (this.options.crisp) {
-                        left = Math.round(left) - crisp;
-                        right = Math.round(right) - crisp;
-                    }
+		        // Distort the points to reflect z dimension
+		        each(this.points, function (point, i) {
+		            var left = this.postTranslate(
+		                    i,
+		                    point.shapeArgs.x,
+		                    point
+		                ),
+		                right = this.postTranslate(
+		                    i,
+		                    point.shapeArgs.x + point.shapeArgs.width
+		                );
 
-                    point.shapeArgs.x = left;
-                    point.shapeArgs.width = right - left;
+		            if (this.options.crisp) {
+		                left = Math.round(left) - crisp;
+		                right = Math.round(right) - crisp;
+		            }
 
-                    point.tooltipPos[inverted ? 1 : 0] = this.postTranslate(
-                        i,
-                        point.tooltipPos[inverted ? 1 : 0]
-                    );
-                }, this);
-            }
+		            point.shapeArgs.x = left;
+		            point.shapeArgs.width = right - left;
 
-            // Point functions
-        }, {
-            isValid: function() {
-                return H.isNumber(this.y, true) && H.isNumber(this.z, true);
-            }
-        });
+		            // Crosshair position (#8083)
+		            point.plotX = (left + right) / 2;
 
-        H.Tick.prototype.postTranslate = function(xy, xOrY, index) {
-            xy[xOrY] = this.axis.pos +
-                this.axis.series[0].postTranslate(index, xy[xOrY] - this.axis.pos);
-        };
+		            if (!inverted) {
+		                point.tooltipPos[0] = this.postTranslate(
+		                    i,
+		                    point.tooltipPos[0]
+		                );
+		            } else {
+		                point.tooltipPos[1] = this.xAxis.len - this.postTranslate(
+		                    i,
+		                    this.xAxis.len - point.tooltipPos[1]
+		                );
+		            }
+		        }, this);
+		    }
 
-        H.wrap(H.Tick.prototype, 'getPosition', function(proceed, horiz, pos) {
-            var axis = this.axis,
-                xy = proceed.apply(this, Array.prototype.slice.call(arguments, 1)),
-                xOrY = horiz ? 'x' : 'y';
+		// Point functions
+		}, {
+		    isValid: function () {
+		        return H.isNumber(this.y, true) && H.isNumber(this.z, true);
+		    }
+		});
 
-            if (axis.categories && axis.variwide) {
-                this[xOrY + 'Orig'] = xy[xOrY];
-                this.postTranslate(xy, xOrY, pos);
-            }
-            return xy;
-        });
+		H.Tick.prototype.postTranslate = function (xy, xOrY, index) {
+		    var axis = this.axis,
+		        pos = xy[xOrY] - axis.pos;
 
-        H.wrap(H.Tick.prototype, 'getLabelPosition', function(
-            proceed,
-            x,
-            y,
-            label,
-            horiz,
-            labelOptions,
-            tickmarkOffset,
-            index
-        ) {
-            var args = Array.prototype.slice.call(arguments, 1),
-                xy,
-                xOrY = horiz ? 'x' : 'y';
+		    if (!axis.horiz) {
+		        pos = axis.len - pos;
+		    }
+		    pos = axis.series[0].postTranslate(index, pos);
 
-            // Replace the x with the original x
-            if (this.axis.variwide && typeof this[xOrY + 'Orig'] === 'number') {
-                args[horiz ? 0 : 1] = this[xOrY + 'Orig'];
-            }
+		    if (!axis.horiz) {
+		        pos = axis.len - pos;
+		    }
+		    xy[xOrY] = axis.pos + pos;
+		};
 
-            xy = proceed.apply(this, args);
+		// Same width as the category (#8083)
+		addEvent(H.Axis, 'afterDrawCrosshair', function (e) {
+		    if (this.variwide && this.cross) {
+		        this.cross.attr('stroke-width', e.point && e.point.crosshairWidth);
+		    }
+		});
 
-            // Post-translate
-            if (this.axis.variwide && this.axis.categories) {
-                this.postTranslate(xy, xOrY, index);
-            }
-            return xy;
-        });
+		// On a vertical axis, apply anti-collision logic to the labels.
+		addEvent(H.Axis, 'afterRender', function () {
+		    var axis = this;
+		    if (!this.horiz && this.variwide) {
+		        this.chart.labelCollectors.push(function () {
+		            return H.map(axis.tickPositions, function (pos, i) {
+		                var label = axis.ticks[pos].label;
+		                label.labelrank = axis.zData[i];
+		                return label;
+		            });
+		        });
+		    }
+		});
+
+		addEvent(H.Tick, 'afterGetPosition', function (e) {
+		    var axis = this.axis,
+		        xOrY = axis.horiz ? 'x' : 'y';
+
+		    if (axis.categories && axis.variwide) {
+		        this[xOrY + 'Orig'] = e.pos[xOrY];
+		        this.postTranslate(e.pos, xOrY, this.pos);
+		    }
+		});
+
+		H.wrap(H.Tick.prototype, 'getLabelPosition', function (
+		    proceed,
+		    x,
+		    y,
+		    label,
+		    horiz,
+		    labelOptions,
+		    tickmarkOffset,
+		    index
+		) {
+		    var args = Array.prototype.slice.call(arguments, 1),
+		        xy,
+		        xOrY = horiz ? 'x' : 'y';
+
+		    // Replace the x with the original x
+		    if (this.axis.variwide && typeof this[xOrY + 'Orig'] === 'number') {
+		        args[horiz ? 0 : 1] = this[xOrY + 'Orig'];
+		    }
+
+		    xy = proceed.apply(this, args);
+
+		    // Post-translate
+		    if (this.axis.variwide && this.axis.categories) {
+		        this.postTranslate(xy, xOrY, index);
+		    }
+		    return xy;
+		});
 
 
 
-        /**
-         * A `variwide` series. If the [type](#series.variwide.type) option is
-         * not specified, it is inherited from [chart.type](#chart.type).
-         * 
-         * For options that apply to multiple series, it is recommended to add
-         * them to the [plotOptions.series](#plotOptions.series) options structure.
-         * To apply to all series of this specific type, apply it to [plotOptions.
-         * variwide](#plotOptions.variwide).
-         * 
-         * @type {Object}
-         * @extends series,plotOptions.variwide
-         * @product highcharts
-         * @apioption series.variwide
-         */
+		/**
+		 * A `variwide` series. If the [type](#series.variwide.type) option is
+		 * not specified, it is inherited from [chart.type](#chart.type).
+		 *
+		 * @type {Object}
+		 * @extends series,plotOptions.variwide
+		 * @product highcharts
+		 * @apioption series.variwide
+		 */
 
-        /**
-         * An array of data points for the series. For the `variwide` series type,
-         * points can be given in the following ways:
-         * 
-         * 1.  An array of arrays with 3 or 2 values. In this case, the values
-         * correspond to `x,y,z`. If the first value is a string, it is applied
-         * as the name of the point, and the `x` value is inferred. The `x`
-         * value can also be omitted, in which case the inner arrays should
-         * be of length 2\. Then the `x` value is automatically calculated,
-         * either starting at 0 and incremented by 1, or from `pointStart` and
-         * `pointInterval` given in the series options.
-         * 
-         *  ```js
-         *     data: [
-         *         [0, 1, 2],
-         *         [1, 5, 5],
-         *         [2, 0, 2]
-         *     ]
-         *  ```
-         * 
-         * 2.  An array of objects with named values. The objects are point
-         * configuration objects as seen below. If the total number of data
-         * points exceeds the series' [turboThreshold](#series.variwide.turboThreshold),
-         * this option is not available.
-         * 
-         *  ```js
-         *     data: [{
-         *         x: 1,
-         *         y: 1,
-         *         z: 1,
-         *         name: "Point2",
-         *         color: "#00FF00"
-         *     }, {
-         *         x: 1,
-         *         y: 5,
-         *         z: 4,
-         *         name: "Point1",
-         *         color: "#FF00FF"
-         *     }]
-         *  ```
-         * 
-         * @type {Array<Object|Array>}
-         * @extends series.line.data
-         * @excluding marker
-         * @sample {highcharts} highcharts/chart/reflow-true/
-         *         Numerical values
-         * @sample {highcharts} highcharts/series/data-array-of-arrays/
-         *         Arrays of numeric x and y
-         * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
-         *         Arrays of datetime x and y
-         * @sample {highcharts} highcharts/series/data-array-of-name-value/
-         *         Arrays of point.name and y
-         * @sample {highcharts} highcharts/series/data-array-of-objects/
-         *         Config objects    
-         * @product highcharts
-         * @apioption series.variwide.data
-         */
+		/**
+		 * An array of data points for the series. For the `variwide` series type,
+		 * points can be given in the following ways:
+		 *
+		 * 1.  An array of arrays with 3 or 2 values. In this case, the values
+		 * correspond to `x,y,z`. If the first value is a string, it is applied
+		 * as the name of the point, and the `x` value is inferred. The `x`
+		 * value can also be omitted, in which case the inner arrays should
+		 * be of length 2\. Then the `x` value is automatically calculated,
+		 * either starting at 0 and incremented by 1, or from `pointStart` and
+		 * `pointInterval` given in the series options.
+		 *
+		 *  ```js
+		 *     data: [
+		 *         [0, 1, 2],
+		 *         [1, 5, 5],
+		 *         [2, 0, 2]
+		 *     ]
+		 *  ```
+		 *
+		 * 2.  An array of objects with named values. The objects are point
+		 * configuration objects as seen below. If the total number of data
+		 * points exceeds the series' [turboThreshold](#series.variwide.turboThreshold),
+		 * this option is not available.
+		 *
+		 *  ```js
+		 *     data: [{
+		 *         x: 1,
+		 *         y: 1,
+		 *         z: 1,
+		 *         name: "Point2",
+		 *         color: "#00FF00"
+		 *     }, {
+		 *         x: 1,
+		 *         y: 5,
+		 *         z: 4,
+		 *         name: "Point1",
+		 *         color: "#FF00FF"
+		 *     }]
+		 *  ```
+		 *
+		 * @type {Array<Object|Array>}
+		 * @extends series.line.data
+		 * @excluding marker
+		 * @sample {highcharts} highcharts/chart/reflow-true/
+		 *         Numerical values
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
+		 *         Arrays of numeric x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+		 *         Arrays of datetime x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-name-value/
+		 *         Arrays of point.name and y
+		 * @sample {highcharts} highcharts/series/data-array-of-objects/
+		 *         Config objects
+		 * @product highcharts
+		 * @apioption series.variwide.data
+		 */
 
-        /**
-         * The relative width for each column. The widths are distributed so they sum 
-         * up to the X axis length.
-         * 
-         * @type {Number}
-         * @product highcharts
-         * @apioption series.variwide.data.z
-         */
+		/**
+		 * The relative width for each column. The widths are distributed so they sum
+		 * up to the X axis length.
+		 *
+		 * @type {Number}
+		 * @product highcharts
+		 * @apioption series.variwide.data.z
+		 */
 
-    }(Highcharts));
+	}(Highcharts));
+	return (function () {
+
+
+	}());
 }));

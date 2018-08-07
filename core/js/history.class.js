@@ -114,8 +114,8 @@ jeedom.history.drawChart = function (_params) {
             _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
             if(isset(data.result.cmd)){
                 if (init(_params.option.graphStep) == '') {
-                   _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
-                   if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
+                 _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+                 if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
                     _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
                 }
             }
@@ -273,7 +273,6 @@ jeedom.history.drawChart = function (_params) {
                     title : data.result.data[i][1] 
                 });
             }
-
         }else{
             var series = {
                 dataGrouping: dataGrouping,
@@ -451,11 +450,11 @@ jeedom.history.drawChart = function (_params) {
     var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
     var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
     for(var i in plotband){
-       jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
-   }
+     jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
+ }
 
-   $.hideLoading();
-   if (typeof (init(_params.success)) == 'function') {
+ $.hideLoading();
+ if (typeof (init(_params.success)) == 'function') {
     _params.success(data.result);
 }
 }
