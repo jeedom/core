@@ -654,8 +654,6 @@ class history {
 
 	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false) {
 		$now = strtotime('now');
-		$archiveTime = (config::byKey('historyArchiveTime') + 1) * 3600 + 86400;
-		$packetTime = (config::byKey('historyArchivePackage')) * 3600;
 		$value = array();
 		$cmd_histories = array();
 		preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
