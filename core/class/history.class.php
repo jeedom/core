@@ -694,7 +694,7 @@ class history {
 				if (count($matches[1]) != count($cmd_history)) {
 					continue;
 				}
-				$datetime = floatval(strtotime($datetime . " UTC"));
+				$datetime = floatval(strtotime($datetime));
 				$calcul = template_replace($cmd_history, $_strcalcul);
 				if ($_noCalcul) {
 					$value[$datetime] = $calcul;
