@@ -256,7 +256,6 @@ class history {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM history
 			WHERE cmd_id=:cmd_id ';
-
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
@@ -278,7 +277,7 @@ class history {
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
 
-		return $result2 + $result1;
+		return array_merge($result2, $result1);
 	}
 
 	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
