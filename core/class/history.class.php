@@ -22,10 +22,10 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class history {
 	/*     * *************************Attributs****************************** */
 
-	private $cmd_id;
-	private $value;
-	private $datetime;
-	private $_tableName = 'history';
+	protected $cmd_id;
+	protected $value;
+	protected $datetime;
+	protected $_tableName = 'history';
 
 	/*     * ***********************Methode static*************************** */
 
@@ -254,8 +254,6 @@ class history {
 		}
 
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM (
-			SELECT ' . DB::buildField(__CLASS__) . '
 			FROM history
 			WHERE cmd_id=:cmd_id ';
 
@@ -265,19 +263,22 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
-		$sql .= ' UNION ALL
-			SELECT ' . DB::buildField(__CLASS__) . '
+		$sql .= ' ORDER BY `datetime` ASC';
+		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM historyArch
-			WHERE cmd_id=:cmd_id';
+			WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
 		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
-		$sql .= ' ) as dt
-				ORDER BY `datetime` ASC';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		$sql .= ' ORDER BY `datetime` ASC';
+		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
+
+		return $result2 + $result1;
 	}
 
 	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
