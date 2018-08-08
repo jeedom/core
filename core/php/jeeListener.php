@@ -58,5 +58,5 @@ if (init('listener_id') == '') {
 		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
 		die($e->getMessage());
 	}
-	$listener->execute(init('event_id'), trim(init('value'), "'"));
+	$listener->execute(init('event_id'), trim(init('value'), "'"), trim(init('datetime'), "'"));
 }
