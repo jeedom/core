@@ -146,10 +146,6 @@ class scenarioExpression {
 
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 
-	public static function rand($_min, $_max) {
-		return rand($_min, $_max);
-	}
-
 	public static function randText($_sValue) {
 		$_sValue = self::setTags($_sValue);
 		$_aValue = explode(";", $_sValue);
