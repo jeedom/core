@@ -81,7 +81,7 @@ security
 -   **2-step authentication**: allows you to configure
     2-step authentication (as a reminder, it's a changing code
     every X seconds that appears on a mobile app, type
-    google authenticator)
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé.
 
 -   **Password**: allows you to change your password (do not
     forget to retype it below)

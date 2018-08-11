@@ -31,7 +31,7 @@ page). In this table we find:
     process that turns and what it really does
 
 -   **Action**: a button to start or stop the task based
-    of its status
+    de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
 -   **Active**: indicates if the task is active (can be started
     by Jeedom) or not
