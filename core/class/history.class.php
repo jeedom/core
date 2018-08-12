@@ -81,7 +81,7 @@ class history {
 			FROM historyArch
 			WHERE cmd_id=:cmd_id
 			AND `datetime`=:datetime';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
 			if (is_object($result)) {
 				$result->setTableName('historyArch');
 			}
