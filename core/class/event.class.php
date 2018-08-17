@@ -82,7 +82,6 @@ class event {
 			} else {
 				sleep(round($waitTime));
 			}
-			sleep(1);
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
