@@ -216,7 +216,7 @@ try {
 		unautorizedInDemo();
 		$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), null, init('oldValue'));
 		if (!is_object($history)) {
-			$history = history::byCmdIdDatetime(init('cmd_id'), date('Y-m-d H:i:s', init('datetime'), strtotime(init('datetime') . ' +1 hour')), init('oldValue'));
+			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 hour')), init('oldValue'));
 		}
 		if (!is_object($history)) {
 			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 day')), init('oldValue'));
