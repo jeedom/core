@@ -81,7 +81,7 @@ class history {
 			FROM historyArch
 			WHERE cmd_id=:cmd_id
 			AND `datetime`=:datetime';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
 			if (is_object($result)) {
 				$result->setTableName('historyArch');
 			}
@@ -278,6 +278,41 @@ class history {
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
 
 		return array_merge($result2, $result1);
+	}
+
+	public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_startTime !== null) {
+			$values['startTime'] = $_startTime;
+		}
+		if ($_endTime !== null) {
+			$values['endTime'] = $_endTime;
+		}
+
+		$sql = 'DELETE FROM history
+			WHERE cmd_id=:cmd_id ';
+		if ($_startTime !== null) {
+			$sql .= ' AND datetime>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND datetime<=:endTime';
+		}
+		$sql .= ' ORDER BY `datetime` ASC';
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+
+		$sql = 'DELETE FROM historyArch
+			WHERE cmd_id=:cmd_id ';
+		if ($_startTime !== null) {
+			$sql .= ' AND `datetime`>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND `datetime`<=:endTime';
+		}
+		$sql .= ' ORDER BY `datetime` ASC';
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return true;
 	}
 
 	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
@@ -575,7 +610,7 @@ class history {
 				if (is_numeric($_value)) {
 					$nextValue = round($nextValue, $_decimal);
 				}
-				if ($_value != $nextValue) {
+				if ($_value != $nextValue && isset($histories[$i - 1])) {
 					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 					return $duration;
 				}
@@ -588,7 +623,7 @@ class history {
 					$prevValue = round($prevValue, $_decimal);
 					$nextValue = round($nextValue, $_decimal);
 				}
-				if ($_value == $value && $_value != $nextValue) {
+				if ($_value == $value && $_value != $nextValue && isset($histories[$i - 1])) {
 					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 					return $duration;
 				}
