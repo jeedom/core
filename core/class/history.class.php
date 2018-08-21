@@ -610,7 +610,7 @@ class history {
 				if (is_numeric($_value)) {
 					$nextValue = round($nextValue, $_decimal);
 				}
-				if ($_value != $nextValue) {
+				if ($_value != $nextValue && isset($histories[$i - 1])) {
 					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 					return $duration;
 				}
@@ -623,7 +623,7 @@ class history {
 					$prevValue = round($prevValue, $_decimal);
 					$nextValue = round($nextValue, $_decimal);
 				}
-				if ($_value == $value && $_value != $nextValue) {
+				if ($_value == $value && $_value != $nextValue && isset($histories[$i - 1])) {
 					$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 					return $duration;
 				}
