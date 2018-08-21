@@ -66,21 +66,36 @@ class history {
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
-	public static function byCmdIdDatetime($_cmd_id, $_datetime) {
+	public static function byCmdIdDatetime($_cmd_id, $_startTime, $_endTime = null, $_oldValue = null) {
+		if ($_endTime == null) {
+			$_endTime = $_startTime;
+		}
 		$values = array(
 			'cmd_id' => $_cmd_id,
-			'datetime' => $_datetime,
+			'startTime' => $_startTime,
+			'endTime' => $_endTime,
 		);
+		if ($_oldValue != null) {
+			$values['oldValue'] = $_oldValue;
+		}
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM history
 		WHERE cmd_id=:cmd_id
-		AND `datetime`=:datetime';
+		AND `datetime`>=:startTime
+		AND `datetime`<=:endTime';
+		if ($_oldValue != null) {
+			$sql .= ' AND `value`=:oldValue';
+		}
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (!is_object($result)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM historyArch
 			WHERE cmd_id=:cmd_id
-			AND `datetime`=:datetime';
+			AND `datetime`>=:startTime
+			AND `datetime`<=:endTime';
+			if ($_oldValue != null) {
+				$sql .= ' AND `value`=:oldValue';
+			}
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'historyArch');
 			if (is_object($result)) {
 				$result->setTableName('historyArch');
