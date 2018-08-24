@@ -2444,9 +2444,9 @@
     },
     "desktop/php/eqAnalyse.php": {
         "Batteries": "Baterías",
-        "Modules en alerte": "módulos de advertencia",
-        "Actions définies": "Las acciones de",
-        "Alertes définies": "alertas definidas",
+        "Modules en alerte": "Módulos en alerta",
+        "Actions définies": "Acciones definidas",
+        "Alertes définies": "Alertas definidas",
         "Commandes orphelines": "Controles huérfanos",
         "Equipement": "Dispositivos",
         "Commande": "Comando",
