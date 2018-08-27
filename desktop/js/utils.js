@@ -81,6 +81,7 @@ if(_url.indexOf('#') == -1){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
 }
+$('.backgroundforJeedom').css('background-image','');
 jeedomBackgroundImg = null;
 $('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
@@ -420,7 +421,7 @@ function linkify(inputText) {
 }
 
 function initRowOverflow() {
-    var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight()-4;
+    var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight()-5;
     if($('#div_alert').outerHeight() > 0){
         hWindow -= 10;
     }
