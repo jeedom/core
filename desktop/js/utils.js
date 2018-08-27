@@ -428,7 +428,7 @@ function initRowOverflow() {
     if($('.row-overflow').attr('data-offset') != undefined){
      hWindow -= $('.row-overflow').attr('data-offset');
  }
- $('.row-overflow > div').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
+ $('.row-overflow > div').css('padding-top','0px').height(hWindow).css('overflow-y', 'auto').css('overflow-x', 'hidden').css('padding-top','5px');
 }
 
 function initReportMode() {
