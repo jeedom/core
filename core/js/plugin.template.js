@@ -121,7 +121,6 @@ $(".li_eqLogic").on('click', function () {
                     addCmdToTable(data.cmd[i]);
                 }
             }
-            modifyWithoutSave = false;
             $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
                 jeedom.cmd.changeType($(this).closest('.cmd'));
             });
@@ -131,6 +130,7 @@ $(".li_eqLogic").on('click', function () {
             });
             changeLeftMenuObjectOrEqLogicName = false;
             $.hideLoading();
+            modifyWithoutSave = false;
         }
     });
     return false;
@@ -218,6 +218,7 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
                 url += '#' + document.location.toString().split('#')[1];
             } 
             loadPage(url);
+            modifyWithoutSave = false;
         }
     });
     return false;
