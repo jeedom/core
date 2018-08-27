@@ -101,7 +101,7 @@ class cmd {
 		INNER JOIN object ob ON el.object_id=ob.id
 		WHERE isHistorized=1
 		AND type=\'info\'';
-		$sql .= ' ORDER BY ob.name,el.name,c.name';
+		$sql .= ' ORDER BY ob.position,ob.name,el.name,c.name';
 		$result1 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c

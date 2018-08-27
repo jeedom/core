@@ -260,7 +260,7 @@ jeedom.history.drawChart = function (_params) {
                             var value = this.y;
                             bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
                                 if (result !== null) {
-                                    jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
+                                    jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result});
                                 }
                             });
                         }
@@ -307,7 +307,7 @@ jeedom.history.drawChart = function (_params) {
                             var value = this.y;
                             bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function (result) {
                                 if (result !== null) {
-                                    jeedom.history.changePoint({cmd_id: id, datetime: datetime, value: result});
+                                    jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result});
                                 }
                             });
                         }
@@ -481,7 +481,7 @@ jeedom.history.generatePlotBand = function (_startTime, _endTime) {
 }
 
 jeedom.history.changePoint = function (_params) {
-    var paramsRequired = ['cmd_id'];
+    var paramsRequired = ['cmd_id','datetime','value','oldValue'];
     var paramsSpecifics = {
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -517,7 +517,8 @@ jeedom.history.changePoint = function (_params) {
         action: 'changeHistoryPoint',
         cmd_id: _params.cmd_id,
         datetime: _params.datetime,
-        value: _params.value
+        value: _params.value,
+        oldValue : _params.oldValue
     };
     $.ajax(paramsAJAX);
 }
