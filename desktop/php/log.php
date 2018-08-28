@@ -37,10 +37,12 @@ foreach ($list_logfile as $file) {
 			break;
 		}
 	}
-	foreach ($warningArray as $warningEl) {
-		if (shell_exec('grep -F ' . $warningEl . ' ' . __DIR__ . '/../../log/' . $file . ' | wc -l ') != 0 && $hasErr == 0) {
-			$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
-			break;
+	if ($hasErr == 0) {
+		foreach ($warningArray as $warningEl) {
+			if (shell_exec('grep -F ' . $warningEl . ' ' . __DIR__ . '/../../log/' . $file . ' | wc -l ') != 0) {
+				$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
+				break;
+			}
 		}
 	}
 	if ($file == $logfile) {
