@@ -24,14 +24,13 @@ natcasesort($list_logfile);
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-$errorArray = array('"[ERROR]"','"[:error]"');
+$errorArray = array('"[ERROR]"', '"[:error]"');
 $warningArray = array('"[WARNING]"');
 foreach ($list_logfile as $file) {
 	$hasErr = 0;
 	$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
 	foreach ($errorArray as $errorEl) {
 		if (shell_exec('grep -F ' . $errorEl . ' ' . __DIR__ . '/../../log/' . $file . ' | wc -l ') != 0) {
-			
 			$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
 			$hasErr = 1;
 			break;
