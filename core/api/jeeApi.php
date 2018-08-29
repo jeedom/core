@@ -965,6 +965,10 @@ try {
 		$jsonrpc->makeSuccess(utils::o2a(update::all()));
 	}
 
+	if ($jsonrpc->getMethod() == 'update::nbNeedUpdate') {
+		$jsonrpc->makeSuccess(update::nbNeedUpdate());
+	}
+
 	if ($jsonrpc->getMethod() == 'update::update') {
 		jeedom::update('', 0);
 		$jsonrpc->makeSuccess('ok');

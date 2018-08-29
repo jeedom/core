@@ -214,9 +214,21 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'));
+		$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), null, init('oldValue'));
 		if (!is_object($history)) {
-			throw new Exception(__('Aucun point ne correspond pour l\'historique : ', __FILE__) . init('cmd_id') . ' - ' . init('datetime'));
+			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 hour')), init('oldValue'));
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 day')), init('oldValue'));
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 week')), init('oldValue'));
+		}
+		if (!is_object($history)) {
+			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 month')), init('oldValue'));
+		}
+		if (!is_object($history)) {
+			throw new Exception(__('Aucun point ne correspond pour l\'historique : ', __FILE__) . init('cmd_id') . ' - ' . init('datetime'), init('oldValue'));
 		}
 		$history->setValue(init('value', null));
 		$history->save(null, true);
