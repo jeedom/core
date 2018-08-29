@@ -87,7 +87,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
     } else {
         $('.eqLogic').show();
     }
-    if($('.li_eqLogic').length() != 0){
+    if($('.li_eqLogic').length != 0){
         $('.li_eqLogic').removeClass('active');
     }
     $(this).addClass('active');
