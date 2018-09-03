@@ -129,6 +129,9 @@ class scenarioElement {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
 		}
+		if (!is_object($this->getSubElement($this->getType()))) {
+			return;
+		}
 		if ($this->getType() == 'if') {
 			if ($this->getSubElement('if')->getOptions('enable', 1) == 0) {
 				return true;
