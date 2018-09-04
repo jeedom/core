@@ -231,7 +231,7 @@ $('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
     if ($('.eqLogicAttr[data-l1key=id]').value() != undefined) {
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value().text() + '</b> ?', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?', function (result) {
             if (result) {
                 jeedom.eqLogic.remove({
                     type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
