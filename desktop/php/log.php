@@ -25,10 +25,11 @@ natcasesort($list_logfile);
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 foreach ($list_logfile as $file) {
+	$hasErr = 0;
 	$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
-	if (shell_exec('grep ERROR ' . __DIR__ . '/../../log/' . $file . ' | wc -l ') != 0) {
+	if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 		$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
-	} else if (shell_exec('grep WARNING ' . __DIR__ . '/../../log/' . $file . ' | wc -l ') != 0) {
+	} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 		$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
 	}
 	if ($file == $logfile) {

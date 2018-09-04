@@ -1326,7 +1326,7 @@ class scenario {
 	 */
 	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
 		$name = '';
-		if (is_numeric($this->getObject_id())) {
+		if (is_numeric($this->getObject_id()) && is_object($this->getObject())) {
 			$object = $this->getObject();
 			if ($_tag) {
 				if ($object->getDisplay('tagColor') != '') {

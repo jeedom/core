@@ -10,7 +10,7 @@
 				<img style="display:block; margin-left:auto; margin-right:5%; width:45%;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
 			</div>
 			<div class="wrapper">
-				<div id="login" tabindex="500" class="form-group">
+				<div id="login" tabindex="503" class="form-group">
 					<h3>Login</h3>
 					<div class="mail">
 						<input type="text" id="in_login_username">
@@ -34,7 +34,27 @@
 					<a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 					</div>
 				</div>
-				<div id="register" tabindex="502" class="form-group">
+				<div id="market" tabindex="502" class="form-group" style="display:none;">
+					<h3>Je n'ai pas de compte Market</h3>
+					<button class="dark btn-lg" id="bt_compte_market"><i class="fa fa-sign-in" ></i> {{En créer un !}}</button>
+					<hr align=center size=2 width="70%">
+					<h3>J'ai un compte market</h3>
+					<div class="mail">
+						<input type="text" id="in_login_username_market">
+						<label>{{Nom d'utilisateur}}</label>
+					</div>
+					<div class="passwd">
+						<input type="password" id="in_login_password_market">
+						<label>{{Mot de passe}}</label>
+					</div>
+					<div class="submit">
+						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fa fa-sign-in" ></i> {{Connecter Jeedom au Market}}</button>
+					</div>
+					<div class="resetPassword">
+					<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+					</div>
+				</div>
+				<div id="register" tabindex="500" class="form-group">
 					<h3>CHANGER VOTRE MOT DE PASSE</h3>
 					<div class="passwd">
 						<input type="password" id="in_change_password">

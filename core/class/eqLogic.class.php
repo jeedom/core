@@ -571,8 +571,9 @@ class eqLogic {
 		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
 			$cmd->event($_value, $_updateTime);
 			return true;
+		} else {
+			$cmd->setCollectDate(date('Y-m-d H:i:s'));
 		}
-
 		return false;
 	}
 

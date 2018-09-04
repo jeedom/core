@@ -70,15 +70,19 @@ body{
 }
 		.veen .wrapper #login{
 			padding-top: 20%;
-      visibility: visible;
+			visibility: visible;
+		}
+		.veen .wrapper #market{
+			padding-top: 10%;
 		}
 		.veen .wrapper #register{
 			transform: translateY(-80%) translateX(100%);
-      visibility: hidden;
+			visibility: hidden;
+			
 		}
 		.veen .wrapper.move #register{
 			transform: translateY(-80%) translateX(0%);
-      visibility: visible;
+			visibility: visible;
 		}
 		.veen .wrapper.move #login{
 			transform: translateX(-100%);

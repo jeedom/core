@@ -32,11 +32,11 @@ $('#in_login_username').on('focusout change keypress',function(){
 					$('.login-btn').css('color','#000000');
 					$(".veen .login-btn button").removeClass('active');
 					$(this).addClass('active');
-            	}else{
-            		$('.veen').animateCss('bounceOut', function(){
-            			$('.veen').hide();
-	            		window.location.href = 'index.php?v=d';
-            		});
+                }else{
+	                $('.veen').animateCss('bounceOut', function(){
+						$('.veen').hide();
+						window.location.href = 'index.php?v=d';
+					});
                 }
             }
         });
@@ -57,17 +57,65 @@ $('#in_login_username').on('focusout change keypress',function(){
 							$('.veen').animateCss('shake');
 						},
 						success : function (){
-							$('.veen').animateCss('bounceOut', function(){
-							$('.veen').hide();
-							window.location.href = 'index.php?v=d';
-						});
+							jeedom.config.load({
+								configuration: 'market::username',
+								error: function (error) {
+									$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								},
+								success: function (data) {
+									if(data == '' || data == null){
+										marketdemande();
+									}else{
+										goToIndex();
+									}
+								}
+							});
 						}
-					})
+					});
 	    		}
     		});
     	}else{
 	    	$('#div_alert').showAlert({message: 'Les deux mots de passe ne sont pas identiques', level: 'danger'});
     	}
+    });
+    
+    $('#bt_login_validate_market').on('click', function() {
+    	var username = $('#in_login_username_market').val();
+        var password = $('#in_login_password_market').val();
+        var adress = 'https://jeedom.com/market';
+    	jeedom.config.save({
+	    	configuration: {'market::username': username},
+	    	error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (data) {
+				jeedom.config.save({
+			    	configuration: {'market::password': password},
+			    	error: function (error) {
+						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						$('.veen').animateCss('shake');
+					},
+					success: function (data) {
+						jeedom.repo.test({
+							repo: 'market',
+							error: function (error) {
+								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								$('.veen').animateCss('shake');
+							},
+							success: function (data) {
+								goToIndex();
+							}
+						});
+					}
+		    	});
+			}
+    	});
+    });
+    $('#bt_compte_market').on('click', function() {
+    	window.open(
+			'https://www.jeedom.com/market/index.php?v=d&p=register',
+			'_blank'
+		);
     });
     $('#in_login_password').keypress(function(e) {
       	if(e.which == 13) {
@@ -108,3 +156,20 @@ $(document).ready(function(){
 	}, 10000);
 	
 });
+
+// Function //
+
+var marketdemande = function(){
+	$('.veen .wrapper').removeClass('move');
+	$('#login').hide();
+	$('#market').show();
+	$('.img-responsive').attr('src', 'https://www.jeedom.com/market/core/img/logo-MARKET.svg');
+	$('.img-responsive').width('100%');
+}
+
+var goToIndex = function(){
+	$('.veen').animateCss('bounceOut', function(){
+		$('.veen').hide();
+		window.location.href = 'index.php?v=d';
+	});
+}
