@@ -214,7 +214,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), null, init('oldValue'));
+		$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'));
 		if (!is_object($history)) {
 			$history = history::byCmdIdDatetime(init('cmd_id'), init('datetime'), date('Y-m-d H:i:s', strtotime(init('datetime') . ' +1 hour')), init('oldValue'));
 		}
