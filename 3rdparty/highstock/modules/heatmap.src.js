@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  *
  * (c) 2009-2017 Torstein Honsi
  *
@@ -9,6 +9,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -52,7 +56,7 @@
 		         * classes.
 		         *
 		         * For supported color formats, see the
-		         * [docs article about colors](http://www.highcharts.com/docs/chart-design-and-style/colors).
+		         * [docs article about colors](https://www.highcharts.com/docs/chart-design-and-style/colors).
 		         *
 		         * A scalar color axis is represented by a gradient. The colors either
 		         * range between the [minColor](#colorAxis.minColor) and the
@@ -73,7 +77,7 @@
 		         * See [the Axis object](/class-reference/Highcharts.Axis) for
 		         * programmatic access to the axis.
 		         *
-		         * @extends {xAxis}
+		         * @extends xAxis
 		         * @excluding allowDecimals,alternateGridColor,breaks,categories,
 		         *            crosshair,dateTimeLabelFormats,lineWidth,linkedTo,maxZoom,
 		         *            minRange,minTickInterval,offset,opposite,plotBands,
@@ -302,7 +306,7 @@
 		                 * Animation for the marker as it moves between values. Set to
 		                 * `false` to disable animation. Defaults to `{ duration: 50 }`.
 		                 *
-		                 * @type {Object|Boolean}
+		                 * @type {AnimationOptions|Boolean}
 		                 * @product highcharts highmaps
 		                 */
 		                animation: {

@@ -339,8 +339,7 @@ H.seriesType('solidgauge', 'gauge', solidGaugeOptions, {
                     shapeArgs.d = d; // animate alters it
                 }
             } else {
-                point.graphic = renderer.arc(shapeArgs)
-                    .addClass(point.getClassName(), true)
+                point.graphic = graphic = renderer.arc(shapeArgs)
                     .attr({
                         fill: toColor,
                         'sweep-flag': 0
@@ -348,6 +347,10 @@ H.seriesType('solidgauge', 'gauge', solidGaugeOptions, {
                     .add(series.group);
 
                 
+            }
+
+            if (graphic) {
+                graphic.addClass(point.getClassName(), true);
             }
         });
     },

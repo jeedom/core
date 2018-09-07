@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  * Accessibility module
  *
  * (c) 2010-2017 Highsoft AS
@@ -11,6 +11,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -1499,6 +1503,7 @@
 		             * navigation behavior with/without screen readers enabled.
 		             *
 		             * @type      {String}
+		             * @validvalue ["normal", "serialize"]
 		             * @default   normal
 		             * @since     6.0.4
 		             * @apioption accessibility.keyboardNavigation.mode
@@ -2409,10 +2414,12 @@
 		            }],
 		            // Enter/Spacebar
 		            [[13, 32], function () {
-		                fakeClickEvent(
-		                    chart.legend.allItems[
+		                var legendElement = chart.legend.allItems[
 		                        chart.highlightedLegendItemIx
-		                    ].legendItem.element.parentNode
+		                    ].legendItem.element;
+		                fakeClickEvent(
+		                     !chart.legend.options.useHTML ? // #8561
+		                        legendElement.parentNode : legendElement
 		                );
 		            }]
 		        ], {

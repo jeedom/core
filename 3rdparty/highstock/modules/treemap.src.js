@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  *
  * (c) 2014 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -267,6 +271,7 @@
 		    getColor = mixinTreeSeries.getColor,
 		    getLevelOptions = mixinTreeSeries.getLevelOptions,
 		    grep = H.grep,
+		    isArray = H.isArray,
 		    isBoolean = function (x) {
 		        return typeof x === 'boolean';
 		    },
@@ -302,7 +307,7 @@
 		 *
 		 * @sample highcharts/demo/treemap-large-dataset/ Treemap
 		 *
-		 * @extends {plotOptions.scatter}
+		 * @extends plotOptions.scatter
 		 * @excluding marker
 		 * @product highcharts
 		 * @optionparent plotOptions.treemap
@@ -444,7 +449,7 @@
 		     * @validvalue ["sliceAndDice", "stripes", "squarified", "strip"]
 		     * @type {String}
 		     * @see [How to write your own algorithm](
-		     * http://www.highcharts.com/docs/chart-and-series-types/treemap).
+		     * https://www.highcharts.com/docs/chart-and-series-types/treemap).
 		     *
 		     * @sample  {highcharts}
 		     *          highcharts/plotoptions/treemap-layoutalgorithm-sliceanddice/
@@ -728,7 +733,7 @@
 
 		            /**
 		             * Brightness for the hovered point. Defaults to 0 if the heatmap
-		             * series is loaded, otherwise 0.1.
+		             * series is loaded first, otherwise 0.1.
 		             *
 		             * @default null
 		             * @type {Number}
@@ -762,39 +767,32 @@
 		// Prototype members
 		}, {
 		    pointArrayMap: ['value'],
-		    axisTypes: seriesTypes.heatmap ?
-		        ['xAxis', 'yAxis', 'colorAxis'] :
-		        ['xAxis', 'yAxis'],
 		    directTouch: true,
 		    optionalAxis: 'colorAxis',
 		    getSymbol: noop,
 		    parallelArrays: ['x', 'y', 'value', 'colorValue'],
 		    colorKey: 'colorValue', // Point color option key
-		    translateColors: (
-		        seriesTypes.heatmap &&
-		        seriesTypes.heatmap.prototype.translateColors
-		    ),
-		    colorAttribs: (
-		        seriesTypes.heatmap &&
-		        seriesTypes.heatmap.prototype.colorAttribs
-		    ),
 		    trackerGroups: ['group', 'dataLabelsGroup'],
 		    /**
 		     * Creates an object map from parent id to childrens index.
 		     * @param {Array} data List of points set in options.
 		     * @param {string} data[].parent Parent id of point.
-		     * @param {Array} ids List of all point ids.
+		     * @param {Array} existingIds List of all point ids.
 		     * @return {Object} Map from parent id to children index in data.
 		     */
-		    getListOfParents: function (data, ids) {
-		        var listOfParents = reduce(data || [], function (prev, curr, i) {
-		            var parent = pick(curr.parent, '');
-		            if (prev[parent] === undefined) {
-		                prev[parent] = [];
-		            }
-		            prev[parent].push(i);
-		            return prev;
-		        }, {});
+		    getListOfParents: function (data, existingIds) {
+		        var arr = isArray(data) ? data : [],
+		            ids = isArray(existingIds) ? existingIds : [],
+		            listOfParents = reduce(arr, function (prev, curr, i) {
+		                var parent = pick(curr.parent, '');
+		                if (prev[parent] === undefined) {
+		                    prev[parent] = [];
+		                }
+		                prev[parent].push(i);
+		                return prev;
+		            }, {
+		                '': [] // Root of tree
+		            });
 
 		        // If parent does not exist, hoist parent to root of tree.
 		        eachObject(listOfParents, function (children, parent, list) {
@@ -821,7 +819,16 @@
 		        return series.buildNode('', -1, 0, parentList, null);
 		    },
 		    init: function (chart, options) {
-		        var series = this;
+		        var series = this,
+		            colorSeriesMixin = H.colorSeriesMixin;
+
+		        // If color series logic is loaded, add some properties
+		        if (H.colorSeriesMixin) {
+		            this.translateColors = colorSeriesMixin.translateColors;
+		            this.colorAttribs = colorSeriesMixin.colorAttribs;
+		            this.axisTypes = colorSeriesMixin.axisTypes;
+		        }
+
 		        Series.prototype.init.call(series, chart, options);
 		        if (series.options.allowDrillToNode) {
 		            H.addEvent(series, 'click', series.onClickDrillToNode);

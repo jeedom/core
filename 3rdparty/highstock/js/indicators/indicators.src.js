@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  *
  * Indicator series type for Highstock
  *
@@ -11,6 +11,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -36,7 +40,7 @@
 		     * Simple moving average indicator (SMA). This series requires `linkedTo`
 		     * option to be set.
 		     *
-		     * @extends {plotOptions.line}
+		     * @extends plotOptions.line
 		     * @product highstock
 		     * @sample {highstock} stock/indicators/sma Simple moving average indicator
 		     * @since 6.0.0
@@ -122,21 +126,35 @@
 		            indicator.dataEventsToUnbind = [];
 
 		            function recalculateValues() {
-		                var processedData = indicator.getValues(
-		                    indicator.linkedParent,
-		                    indicator.options.params
-		                ) || {
-		                    values: [],
-		                    xData: [],
-		                    yData: []
-		                };
+		                var oldDataLength = (indicator.xData || []).length,
+		                    processedData = indicator.getValues(
+		                        indicator.linkedParent,
+		                        indicator.options.params
+		                    ) || {
+		                        values: [],
+		                        xData: [],
+		                        yData: []
+		                    };
 
-		                indicator.xData = processedData.xData;
-		                indicator.yData = processedData.yData;
-		                indicator.options.data = processedData.values;
+		                // If number of points is the same, we need to update points to
+		                // reflect changes in all, x and y's, values. However, do it
+		                // only for non-grouped data - grouping does it for us (#8572)
+		                if (
+		                    oldDataLength &&
+		                    oldDataLength === processedData.xData.length &&
+		                    !indicator.hasGroupedData &&
+		                    indicator.visible &&
+		                    indicator.points
+		                ) {
+		                    indicator.updateData(processedData.values);
+		                } else {
+		                    indicator.xData = processedData.xData;
+		                    indicator.yData = processedData.yData;
+		                    indicator.options.data = processedData.values;
+		                }
 
-		                //    Removal of processedXData property is required because on
-		                //    first translate processedXData array is empty
+		                // Removal of processedXData property is required because on
+		                // first translate processedXData array is empty
 		                if (indicator.bindTo.series === false) {
 		                    delete indicator.processedXData;
 

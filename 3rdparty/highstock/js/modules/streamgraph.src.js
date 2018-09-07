@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  * Streamgraph module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -29,7 +33,7 @@
 		 * A streamgraph is a type of stacked area graph which is displaced around a
 		 * central axis, resulting in a flowing, organic shape.
 		 *
-		 * @extends {plotOptions.areaspline}
+		 * @extends plotOptions.areaspline
 		 * @product highcharts highstock
 		 * @sample {highcharts|highstock} highcharts/demo/streamgraph/
 		 *         Streamgraph

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  * Sankey diagram module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -70,7 +74,7 @@
 		        backgroundColor: 'none', // enable padding
 		        crop: false,
 		        /**
-		         * The [format string](http://www.highcharts.com/docs/chart-
+		         * The [format string](https://www.highcharts.com/docs/chart-
 		         * concepts/labels-and-string-formatting) specifying what to show
 		         * for _nodes_ in the sankey diagram. By default the
 		         * `nodeFormatter` returns `{point.name}`.
@@ -90,7 +94,7 @@
 		            return this.point.name;
 		        },
 		        /**
-		         * The [format string](http://www.highcharts.com/docs/chart-
+		         * The [format string](https://www.highcharts.com/docs/chart-
 		         * concepts/labels-and-string-formatting) specifying what to show for
 		         * _links_ in the sankey diagram. Defaults to an empty string returned
 		         * from the `formatter`, in effect disabling the labels.
@@ -154,7 +158,7 @@
         
 		        pointFormat: '{point.fromNode.name} \u2192 {point.toNode.name}: <b>{point.weight}</b><br/>',
 		        /**
-		         * The [format string](http://www.highcharts.com/docs/chart-
+		         * The [format string](https://www.highcharts.com/docs/chart-
 		         * concepts/labels-and-string-formatting) specifying what to
 		         * show for _nodes_ in tooltip
 		         * of a sankey diagram series, as opposed to links.
@@ -326,22 +330,25 @@
 		        return columns;
 		    },
 
+
     
 		    /**
 		     * Return the presentational attributes.
 		     */
 		    pointAttribs: function (point, state) {
 
-		        var opacity = this.options.linkOpacity;
+		        var opacity = this.options.linkOpacity,
+		            color = point.color;
 
 		        if (state) {
 		            opacity = this.options.states[state].linkOpacity || opacity;
+		            color = this.options.states[state].color || point.color;
 		        }
 
 		        return {
 		            fill: point.isNode ?
-		                point.color :
-		                H.color(point.color).setOpacity(opacity).get()
+		                color :
+		                H.color(color).setOpacity(opacity).get()
 		        };
 		    },
     
@@ -601,7 +608,14 @@
 		        H.seriesTypes.column.prototype.render.call(this);
 		        this.points = points;
 		    },
-		    animate: H.Series.prototype.animate
+		    animate: H.Series.prototype.animate,
+
+
+		    destroy: function () {
+		        // Nodes must also be destroyed (#8682)
+		        this.data = this.points.concat(this.nodes);
+		        H.Series.prototype.destroy.call(this);
+		    }
 		}, {
 		    getClassName: function () {
 		        return 'highcharts-link ' + Point.prototype.getClassName.call(this);

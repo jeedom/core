@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  *
  * (c) 2009-2016 Torstein Honsi
  *
@@ -9,6 +9,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -219,7 +223,7 @@
 		         */
 
 		        /**
-		         * Tha shape of the pane background. When `solid`, the background
+		         * The shape of the pane background. When `solid`, the background
 		         * is circular. When `arc`, the background extends only from the min
 		         * to the max of the value axis.
 		         *
@@ -3349,7 +3353,9 @@
 		 * measurement.
 		 *
 		 * @sample       highcharts/demo/error-bar/
-		 *               Error bars
+		 *               Error bars on a column series
+		 * @sample       highcharts/series-errorbar/on-scatter/
+		 *               Error bars on a scatter series
 		 * @extends      {plotOptions.boxplot}
 		 * @product      highcharts highstock
 		 * @optionparent plotOptions.errorbar
@@ -3735,6 +3741,8 @@
 		                previousY += stack && stack[point.x] ?
 		                    stack[point.x].total :
 		                    yValue;
+
+		                point.below = previousY < pick(threshold, 0);
 		            }
 
 		            // #3952 Negative sum or intermediate sum not rendered correctly
@@ -3759,6 +3767,9 @@
 		                    point.minPointLengthOffset = halfMinPointLength;
 		                }
 		            } else {
+		                if (point.isNull) {
+		                    shapeArgs.width = 0;
+		                }
 		                point.minPointLengthOffset = 0;
 		            }
 
@@ -3915,7 +3926,7 @@
 		    },
 
 		    /**
-		     * The graph is initally drawn with an empty definition, then updated with
+		     * The graph is initially drawn with an empty definition, then updated with
 		     * crisp rendering.
 		     */
 		    drawGraph: function () {

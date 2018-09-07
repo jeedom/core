@@ -597,8 +597,8 @@ H.SVGRenderer.prototype.arc3d = function (attribs) {
 
     attribs = merge(attribs);
 
-    attribs.alpha *= deg2rad;
-    attribs.beta *= deg2rad;
+    attribs.alpha = (attribs.alpha || 0) * deg2rad;
+    attribs.beta = (attribs.beta || 0) * deg2rad;
 
     // Create the different sub sections of the shape
     wrapper.top = renderer.path();
@@ -716,7 +716,8 @@ H.SVGRenderer.prototype.arc3d = function (attribs) {
         var ca,
             from = this.attribs,
             to,
-            anim;
+            anim,
+            randomProp = 'data-' + Math.random().toString(26).substring(2, 9);
 
         // Attribute-line properties connected to 3D. These shouldn't have been
         // in the attribs collection in the first place.
@@ -731,8 +732,10 @@ H.SVGRenderer.prototype.arc3d = function (attribs) {
         if (anim.duration) {
             ca = suckOutCustom(params);
             // Params need to have a property in order for the step to run
-            // (#5765, #7437)
-            params.dummy = wrapper.dummy++;
+            // (#5765, #7097, #7437)
+            wrapper[randomProp] = 0;
+            params[randomProp] = 1;
+            wrapper[randomProp + 'Setter'] = H.noop;
 
             if (ca) {
                 to = ca;
@@ -742,7 +745,7 @@ H.SVGRenderer.prototype.arc3d = function (attribs) {
                             (pick(to[key], from[key]) - from[key]) * fx.pos;
                     }
 
-                    if (fx.prop === 'dummy') {
+                    if (fx.prop === randomProp) {
                         fx.elem.setPaths(merge(from, {
                             x: interpolate('x'),
                             y: interpolate('y'),
@@ -758,7 +761,6 @@ H.SVGRenderer.prototype.arc3d = function (attribs) {
         }
         return proceed.call(this, params, animation, complete);
     });
-    wrapper.dummy = 0;
 
     // destroy all children
     wrapper.destroy = function () {
@@ -797,8 +799,8 @@ SVGRenderer.prototype.arc3dPath = function (shapeArgs) {
         start = shapeArgs.start, // start angle
         end = shapeArgs.end - 0.00001, // end angle
         r = shapeArgs.r, // radius
-        ir = shapeArgs.innerR, // inner radius
-        d = shapeArgs.depth, // depth
+        ir = shapeArgs.innerR || 0, // inner radius
+        d = shapeArgs.depth || 0, // depth
         alpha = shapeArgs.alpha, // alpha rotation of the chart
         beta = shapeArgs.beta; // beta rotation of the chart
 
@@ -822,6 +824,7 @@ SVGRenderer.prototype.arc3dPath = function (shapeArgs) {
     ]);
     top = top.concat(curveTo(cx, cy, irx, iry, end, start, 0, 0));
     top = top.concat(['Z']);
+
     // OUTSIDE
     var b = (beta > 0 ? Math.PI / 2 : 0),
         a = (alpha > 0 ? 0 : Math.PI / 2);
