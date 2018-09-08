@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  * Solid angular gauge module
  *
  * (c) 2010-2017 Torstein Honsi
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -351,8 +355,7 @@
 		                    shapeArgs.d = d; // animate alters it
 		                }
 		            } else {
-		                point.graphic = renderer.arc(shapeArgs)
-		                    .addClass(point.getClassName(), true)
+		                point.graphic = graphic = renderer.arc(shapeArgs)
 		                    .attr({
 		                        fill: toColor,
 		                        'sweep-flag': 0
@@ -360,6 +363,10 @@
 		                    .add(series.group);
 
                 
+		            }
+
+		            if (graphic) {
+		                graphic.addClass(point.getClassName(), true);
 		            }
 		        });
 		    },

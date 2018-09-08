@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  *
  * Indicator series type for Highstock
  *
@@ -11,6 +11,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -46,7 +50,7 @@
 		     * Bollinger bands (BB). This series requires the `linkedTo` option to be
 		     * set and should be loaded after the `stock/indicators/indicators.js` file.
 		     *
-		     * @extends {plotOptions.sma}
+		     * @extends plotOptions.sma
 		     * @product highstock
 		     * @sample {highstock} stock/indicators/bollinger-bands
 		     *                     Bollinger bands
@@ -103,7 +107,7 @@
 		        /**
 		         * Top line options.
 		         *
-		         * @extends {plotOptions.bb.bottomLine}
+		         * @extends plotOptions.bb.bottomLine
 		         * @since 6.0.0
 		         * @product highstock
 		         */

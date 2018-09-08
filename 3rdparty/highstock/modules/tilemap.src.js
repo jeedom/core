@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  * Tilemap module
  *
  * (c) 2010-2017 Highsoft AS
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -957,7 +961,7 @@
 		/**
 		 * A tilemap series is a type of heatmap where the tile shapes are configurable.
 		 *
-		 * @extends {plotOptions.heatmap}
+		 * @extends plotOptions.heatmap
 		 * @product highcharts highmaps
 		 * @sample highcharts/demo/honeycomb-usa/
 		 *         Honeycomb tilemap, USA

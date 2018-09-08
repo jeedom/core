@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v6.1.1 (2018-06-27)
+  Highcharts JS v6.1.2 (2018-08-31)
 
  Indicator series type for Highstock
 
@@ -7,5 +7,5 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?module.exports=b:b(Highcharts)})(function(b){(function(b){var f=b.seriesType,m=b.isArray;f("roc","sma",{params:{index:3,period:9}},{nameBase:"Rate of Change",getValues:function(d,c){var b=c.period,g=d.xData,f=(d=d.yData)?d.length:0,h=[],k=[],l=[],e=-1,a;if(g.length<=b)return!1;m(d[0])&&(e=c.index);for(c=b;c<f;c++)a=0>e?(a=d[c-b])?(d[c]-a)/a*100:null:(a=d[c-b][e])?(d[c][e]-a)/a*100:null,a=[g[c],a],h.push(a),k.push(a[0]),l.push(a[1]);return{values:h,
-xData:k,yData:l}}})})(b)});
+(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a(Highcharts)})(function(a){(function(a){var f=a.seriesType,m=a.isArray;f("roc","sma",{params:{index:3,period:9}},{nameBase:"Rate of Change",getValues:function(d,c){var a=c.period,g=d.xData,f=(d=d.yData)?d.length:0,h=[],k=[],l=[],e=-1,b;if(g.length<=a)return!1;m(d[0])&&(e=c.index);for(c=a;c<f;c++)b=0>e?(b=d[c-a])?(d[c]-b)/b*100:null:(b=d[c-a][e])?(d[c][e]-b)/b*
+100:null,b=[g[c],b],h.push(b),k.push(b[0]),l.push(b[1]);return{values:h,xData:k,yData:l}}})})(a)});

@@ -321,7 +321,13 @@ Series.prototype.drawDataLabels = function () {
                 if (!dataLabel) {
                     dataLabel = point.dataLabel = rotation ?
 
-                        renderer.text(str, 0, -9999) // labels don't rotate
+                        renderer
+                            .text( // labels don't rotate
+                                str,
+                                0,
+                                -9999,
+                                options.useHTML
+                            )
                             .addClass('highcharts-data-label') :
 
                         renderer.label(
@@ -463,7 +469,7 @@ Series.prototype.alignDataLabel = function (
         }
 
         // Handle justify or crop
-        if (justify) {
+        if (justify && alignTo.height >= 0) { // #8830
             point.isLabelJustified = this.justifyDataLabel(
                 dataLabel,
                 options,
@@ -937,7 +943,8 @@ if (seriesTypes.pie) {
                         dataLabel.css({
                             width: dataLabel._attr.width + 'px',
                             textOverflow: (
-                                this.options.dataLabels.style.textOverflow ||
+                                (this.options.dataLabels.style || {})
+                                    .textOverflow ||
                                 'ellipsis'
                             )
                         });

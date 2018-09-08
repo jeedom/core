@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  * Boost module
  *
  * (c) 2010-2017 Highsoft AS
@@ -11,6 +11,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -261,7 +265,7 @@
 		                maxVal,
 		                minI,
 		                maxI,
-		                kdIndex,
+		                index,
 		                sdata = isStacked ? series.data : (xData || rawData),
 		                fillColor = series.fillOpacity ?
 		                        new Color(series.color).setOpacity(
@@ -339,15 +343,25 @@
 		                    };
 		                },
 
-		                addKDPoint = function (clientX, plotY, i) {
-		                    // Avoid more string concatination than required
-		                    kdIndex = clientX + ',' + plotY;
+		                compareX = options.findNearestPointBy === 'x',
 
-		                    // The k-d tree requires series points. Reduce the amount of
-		                    // points, since the time to build the tree increases
-		                    // exponentially.
-		                    if (enableMouseTracking && !pointTaken[kdIndex]) {
-		                        pointTaken[kdIndex] = true;
+		                xDataFull = (
+		                    this.xData ||
+		                    this.options.xData ||
+		                    this.processedXData ||
+		                    false
+		                ),
+
+
+		                addKDPoint = function (clientX, plotY, i) {
+		                    // Shaves off about 60ms compared to repeated concatenation
+		                    index = compareX ? clientX : clientX + ',' + plotY;
+
+		                    // The k-d tree requires series points.
+		                    // Reduce the amount of points, since the time to build the
+		                    // tree increases exponentially.
+		                    if (enableMouseTracking && !pointTaken[index]) {
+		                        pointTaken[index] = true;
 
 		                        if (chart.inverted) {
 		                            clientX = xAxis.len - clientX;
@@ -355,6 +369,7 @@
 		                        }
 
 		                        points.push({
+		                            x: xDataFull ? xDataFull[cropStart + i] : false,
 		                            clientX: clientX,
 		                            plotX: clientX,
 		                            plotY: plotY,

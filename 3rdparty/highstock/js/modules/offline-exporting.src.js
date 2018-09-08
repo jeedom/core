@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  * Client side exporting module
  *
  * (c) 2015 Torstein Honsi / Oystein Moseng
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -673,7 +677,7 @@
 
 		// Extend the default options to use the local exporter logic
 		merge(true, Highcharts.getOptions().exporting, {
-		    libURL: 'https://code.highcharts.com/6.1.1/lib/',
+		    libURL: 'https://code.highcharts.com/6.1.2/lib/',
 
 		    // When offline-exporting is loaded, redefine the menu item definitions
 		    // related to download.
