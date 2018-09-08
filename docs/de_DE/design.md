@@ -140,11 +140,11 @@ Paramètre d’affichage
 
 -   **Position Y (%)** :
 
--   **Largeur (px)** :
+-   **Breite (px)** :
 
--   **Hauteur (px)** :
+-   **Höhe (px)** :
 
-Supprimer 
+Löschen 
 ---------
 
 Permet de supprimer l’élément
@@ -160,7 +160,7 @@ Verrouiller
 Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
 redimmensionnable.
 
-Graphique 
+Grafik
 =========
 
 Paramètre d’affichage 

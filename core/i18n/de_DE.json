@@ -217,8 +217,8 @@
         "Démarrage de jeedom fini avec succès": "Jeedom Start erfolgreich durchgeführt",
         "Connexion par API de l'utilisateur : ": "Verbindung durch Benutzer API: ",
         "Arrêt des crons": "Arrêt des crons",
-        "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
-        "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
+        "Démarrage des processus Internet de Jeedom": "Starten von Jeedom Internet-Prozessen",
+        "Envoi de l'événement de démarrage": "Senden des Startereignisses",
         "Apache private tmp": "Apache private tmp"
     },
     "core/class/message.class.php": {
@@ -259,7 +259,7 @@
         "Autre": "Andere",
         "Scénarios": "Szenarien",
         "Catégorie": "Kategorie",
-        "Toute": "Toute",
+        "Toute": "Alle",
         "Tags": "Stichworte"
     },
     "desktop/php/index.php": {
@@ -319,7 +319,7 @@
         "Plan 3d inconnu. Verifier l'id": "Unbekannter 3D-Plan. Überprüfen Sie die ID",
         "Design 3D": "3D Design",
         "Note": "Hinweis",
-        "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
+        "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom wird gestartet, bitte warten Sie. Die Seite wird automatisch nach Abschluss der Inbetriebnahme neu geladen."
     },
     "desktop/php/message.php": {
         "Vider": "leeren",
@@ -707,15 +707,15 @@
         "Port syslog UDP": "Syslog-UDP-Port",
         "Synonyme commande slider maximum": "Maximale Schieberegler Synonym",
         "Synonyme commande slider minimum": "Mindestschieberegler Synonym",
-        "Editeur de fichiers": "Editeur de fichiers",
+        "Editeur de fichiers": "Datei-Editor",
         "DNS (proxy)": "DNS (proxy)",
-        "Action sur message": "Action sur message",
+        "Action sur message": "Aktion auf Nachricht",
         "Ajouter": "Hinzufügen",
-        "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
-        "Nom de votre": "Nom de votre",
-        "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
-        "quand il communique avec le market": "quand il communique avec le market",
-        "Langue de votre": "Langue de votre",
+        "Nom de votre Jeedom2 (utilisé notamment par le market)": "Namen von Ihrem Jeedom2 (verwendet von dem Markt)",
+        "Nom de votre": "Name Ihres",
+        "Clef d'installation qui permet d'identifier votre": "Installationsschlüssel, der Ihre Identität identifiziert",
+        "quand il communique avec le market": " wenn er mit dem Markt kommuniziert",
+        "Langue de votre": "Ihre Sprache",
         "Option pour les développeurs permettant à": "Option pour les développeurs permettant à",
         "de générer les phrases à traduire": "de générer les phrases à traduire",
         "Durée de vie de votre connexion à": "Durée de vie de votre connexion à",
@@ -766,7 +766,7 @@
         "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Achtung, diese Operation ist riskant.",
-        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
+        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "nicht mehr funktioniert wird kein Support Anfrage akzeptiert werden? (der Zugangsversuch wird aufgezeichnet) ",
         "Opération réalisée avec succès": "Vorgang erfolgreich durchgeführt"
     },
     "desktop/php/interact.php": {
@@ -819,8 +819,8 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Benutzerliste (Anmeldedaten) durch | getrennt",
         "Limiter aux commandes appartenant aux objets": "Beschränken auf Befehle die zum Objekt gehören",
         "Limiter aux catégories": "Beschränken auf Kategorien",
-        "Regexp de correspondance obligatoire": "Regexp de correspondance obligatoire",
-        "Attendre avant de répondre (s)": "Attendre avant de répondre (s)",
+        "Regexp de correspondance obligatoire": "Regexp, obligatorische Übereinstimmung",
+        "Attendre avant de répondre (s)": "Warten Sie, bevor Sie antworten (s)",
         "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Sie können warten, dass beispielsweise der Zustand einer Lampe aktualisiert wird"
     },
     "desktop/js/interact.js": {
@@ -892,7 +892,7 @@
         "Date": "Datum",
         "Actions": "Aktion",
         "Déconnecter": "Abmelden",
-        "Couleur sur mobile": "Couleur sur mobile",
+        "Couleur sur mobile": "Farbe für Mobil",
         "Périphériques enregistrés": "Registrierte Peripheriegeräte",
         "Date dernière utilisation": "Letztes Nutzungsdatum"
     },
@@ -1524,9 +1524,9 @@
         "Payant": "Gebührenpflichtig",
         "Officiel": "Offizielle",
         "Conseillé": "Empfohlen",
-        "Installé": "Installé",
-        "Non installé": "Non installé",
-        "Top et nouveautés": "Top et nouveautés",
+        "Installé": "Installiert",
+        "Non installé": "Nicht installiert",
+        "Top et nouveautés": "Besten und Neuheiten",
         "Aucune": "Ohne",
         "par": "Von"
     },
@@ -2125,7 +2125,7 @@
         "Réinitialiser la personnalisation": "Reset Personalisierung",
         "Interdire dans les interactions automatique": "Verbieten automatische Interaktion in",
         "Calcul et arrondi": "Berechnung und Runden",
-        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Valeurs interdites (séparées par \";\")": "Verbotene Werte (durch \";\" trennen)",
         "Pendant plus de (en min, laisser vide pour immédiat)": "Für mehr als (in min, leer lassen für sofort)"
     },
     "desktop/php/object.php": {
@@ -2248,7 +2248,7 @@
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Wollen sie auf die Konfigurationsseite Ihres neuen Plugins gehen?",
         "Taille": "Größe",
         "Utilisation": "Einsatz",
-        "Informations complementaires": "Informations complementaires",
+        "Informations complementaires": "Weitere Informationen",
         "Langue disponible": "Verfügbare Sprachen",
         "Market": "Markt",
         "Conseillé": "Empfohlen",
@@ -2348,10 +2348,10 @@
     "core/api/jeeApi.php": {
         "Appels de ": "Anrufe von",
         "Requête invalide. Version Jsonrpc invalide : ": "Ungültige Anfrage. Ungültige Jsonrpc-Version :",
-        "Demande pour le plugin : ": "Demande pour le plugin :",
-        "Demande API pour les scénarios": "Demande API pour les scénarios",
-        "Démarrage scénario de : ": "Démarrage scénario de :",
-        "Exécution provoquée par un appel API ": "Exécution provoquée par un appel API"
+        "Demande pour le plugin : ": " Anfrage für das Plugin :",
+        "Demande API pour les scénarios": "API Anfrage für die Szenarien",
+        "Démarrage scénario de : ": "Szenario Start von :",
+        "Exécution provoquée par un appel API ": "Ausführung durch einen API-Aufruf"
     },
     "mobile/js/message.js": {
         "Vider": "Leeren"
@@ -2541,9 +2541,9 @@
         "Voir les bugs": "Die Fehler sehen",
         "Voir les propositions d'amélioration": "Sehen Sie Verbesserungsvorschläge",
         "Rapport": "Bericht",
-        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
-        "Ouvrir un accès au support": "Ouvrir un accès au support",
-        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Sie können Verbesserungsvorschläge senden, die auf unserer öffentlichen Seite veröffentlicht werden und in unsere Roadmap integriert werden können.",
+        "Ouvrir un accès au support": " Öffnen Sie den Support-Zugriff",
+        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Sie haben gerade einen Fehler gemeldet, der auf unserem öffentlichen Bug Tracker veröffentlicht wird.<br/>Sie können ihm folgen"
     },
     "core/ajax/cmd.ajax.php": {
         "Commande inconnu verifié l'id :": "Unbekannter Befehl  ID überprüfen :",
@@ -2645,7 +2645,7 @@
         "Ajouter": "Hinzufügen",
         "Couleur": "Farbe",
         "Etat": "Zustand",
-        "Rotation": "Rotation",
+        "Rotation": "Drehung",
         "Activer": "aktivieren",
         "Ouverture": "Öffnung",
         "Gauche": "links",
@@ -2653,17 +2653,17 @@
         "Devant": "Devant",
         "Derriere": "Derriere",
         "Normal": "Normal",
-        "Inversé": "Inversé",
-        "Translation": "Translation",
+        "Inversé": "Umgekehrt",
+        "Translation": "Übersetzung",
         "Sens": "Sens",
         "Haut": "oben",
         "Bas": "niedrig",
-        "Répeter": "Répeter",
-        "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
-        "Couleur ouverte": "Couleur ouverte",
-        "Couleur fermée": "Couleur fermée",
-        "Masquer quand le volet est ouvert": "Masquer quand le volet est ouvert",
-        "Couleur fermé": "Couleur fermé"
+        "Répeter": "Wiederholung",
+        "Masquer quand la porte/fenêtre est ouverte": "Verstecken, wenn Tür/Fenster geöffnet ist",
+        "Couleur ouverte": "Farbe, offen",
+        "Couleur fermée": "Farbe, geschlossen",
+        "Masquer quand le volet est ouvert": "Verstecken, wenn Jalousie geöffnet ist",
+        "Couleur fermé": "Farbe, geschlossen"
     },
     "core/ajax/plan3d.ajax.php": {
         "plan3d header inconnu verifiez l'id : ": "plan3d unbekannt Kopf Überprüfen Sie die ID:"
@@ -2768,11 +2768,11 @@
         "Supprimer": "Löschen",
         "Sauvegarder": "Speichern",
         "Ajouter": "Hinzufügen",
-        "Note crée avec succès": "Note crée avec succès",
-        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
-        "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note :",
-        "Note supprimée avec succès": "Note supprimée avec succès",
-        "Note créée avec succès": "Note créée avec succès"
+        "Note crée avec succès": "Hinweis erfolgreich erstellt",
+        "Note sauvegardée avec succès": "Hinweis wurde erfolgreich gespeichert",
+        "Etês vous sur de vouloir supprimer la note : ": "Möchten Sie den Hinweis wirklich löschen? :",
+        "Note supprimée avec succès": "Hinweis wurde erfolgreich gelöscht",
+        "Note créée avec succès": "Hinweis erfolgreich erstellt"
     },
     "desktop/modal/cmd.selectMultiple.php": {
         "Basculer": "Schalter",
@@ -2781,12 +2781,12 @@
     },
     "desktop/modal/cmd.configureHistory.php": {
         "Valider": "Prüfen",
-        "Historisé": "Historisé",
+        "Historisé": "Archiviert",
         "Timeline": "Timeline",
         "Nom": "Name",
         "Plugin": "Plugin",
         "Mode de lissage": "Modus Glättung",
-        "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
+        "Purge de l'historique si plus vieux": "Die Chronik löschen, die älter ist wie",
         "Action": "Aktion",
         "Moyenne": "Durchschnitt",
         "Minimum": "Minimum",
@@ -2800,21 +2800,21 @@
         "6 mois": "6 Monate",
         "1 an": "1 an",
         "Configuration de la commande": "Befehl Konfiguration",
-        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
+        "Modifications sauvegardées avec succès": "Änderungen wurden erfolgreich gespeichert",
         "Type": "Typ",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :"
     },
     "desktop/modal/user.rights.php": {
-        "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
+        "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Achtung : Das Benutzerkonto hat für \"Eingeschränkte Benutzer\" kein Profil, daher können hier vorgenommene Einschränkungen nicht angewendet werden",
         "Sauvegarder": "Speichern",
         "Equipements": "Geräte",
         "Scénarios": "Szenarien",
         "Equipement": "Gerät",
         "Droits": "Rechte",
         "Aucun": "Ohne",
-        "Visualisation": "Visualisation",
-        "Visualisation et exécution": "Visualisation et exécution",
+        "Visualisation": "Visualisierung",
+        "Visualisation et exécution": "Visualisierung und Ausführung",
         "Scénario": "Szenario",
         "Sauvegarde effectuée": "Sicherungskopie hergestellt"
     },
@@ -2823,10 +2823,10 @@
         "Objet": "Objekt",
         "Père": "Vater",
         "Visible": "Sichtbar",
-        "Masqué": "Masqué",
-        "Résumé Défini": "Résumé Défini",
-        "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
-        "Résumé Mobile Masqué": "Résumé Mobile Masqué",
+        "Masqué": "Versteckt",
+        "Résumé Défini": "Zusammenfassung definiert",
+        "Résumé Dashboard Masqué": "Armaturenbrett Zusammenfassung, veresteckte",
+        "Résumé Mobile Masqué": "Mobil Zusammenfassung, versteckte",
         "Oui": "Ja",
         "Non": "Nein"
     },
