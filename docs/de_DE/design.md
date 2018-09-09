@@ -2,7 +2,7 @@ Auf dieser Seite können sie die Anzeige der gesamten Haustechnik ganz
 genau konfigurieren. Dies braucht Zeit, aber die einzige Grenze ist Ihre
 Vorstellungskraft.
 
-Elle est accessible par Acceuil → Design
+Er ist erreichbar über Mein Haus → Design
 
 > **Tipp**
 >
@@ -16,37 +16,37 @@ Elle est accessible par Acceuil → Design
 
 Im Menü (rechts klicken), sind folgende Aktionen verfügbar :
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   **Designs** : Zeigt eine Liste Ihrer Designs und den Zugang
 
--   **Edition** : Permet de passer en mode édition
+-   **Bearbeiten** : Ermöglicht den Wechsel in den Bearbeitungsmodus
 
--   **Plein ecran** : Permet d’utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite,
+    indem das Jeedom-Menü oben entfernt wird
 
--   **Ajouter graphique** : Permet d’ajouter un graphique
+-   **Diagramm hinzufügen** : Ermöglicht das hinzufügen eines Diagramms
 
--   **Ajouter texte/html** : Permet d’ajouter du texte ou du code
-    html/javascript
+-   **Text/html** : Ermöglicht das hinzufügen eines Textes oder eines Codes
+    html/javascript Codes
 
--   **Ajouter scénario** : Permet d’ajouter un scénario
+-   **Szenario hinzufügen** : Ermöglicht das hinzufügen eines Szenarios
 
--   **Ajouter lien**
+-   **Link hinzufügen**
 
-    -   **Vers une vue** : Permet d’ajouter un lien vers une vue
+    -   **Von einer Ansicht** : Fügt einen Link zu einer Ansicht hinzu
 
-    -   **Vers un design** : Permet d’ajouter un lien vers un autre
-        design
+    -   **Zu einem Design** : Fügt einen Link zu einem anderen Design
+        hinzu
 
--   **Ajouter équipement** : Permet d’ajouter un équipement
+-   **Gerät hinzufügen** : Ermöglicht das hinzufügen eines Gerätes
 
--   **Ajouter commande** : Permet d’ajouter une commande
+-   **Befehl hinzufügen** : Ermöglicht das hinzufügen eines Befehls
 
--   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
-    d’une caméra
+-   **Bild/Kamera hinzufügen** : Ermöglicht das hinzufügen von einem Bild oder den Stream
+    von einer Kamera
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
-    qui pourra executer une série d’actions lors d’un clic (en fonction
-    ou non de l’état d’une autre commande)
+-   **Bereich hinzufügen** : Ermöglicht das Hinzufügen eines anklickbaren transparenten Bereichs,
+    der zum Zeitpunkt eines Klicks eine Reihe von Aktionen ausführen kann (je 
+    nach Zustand eines anderen Befehls)
 
 -   **Ajouter résumé** : Ajoute les informations d’un résumé d’objet ou
     général
@@ -149,18 +149,18 @@ Löschen
 
 Permet de supprimer l’élément
 
-Dupliquer 
+Kopieren 
 ---------
 
 Permet de dupliquer l’élément
 
-Verrouiller 
+Sperren 
 -----------
 
 Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
 redimmensionnable.
 
-Grafik
+Diagramm
 =========
 
 Paramètre d’affichage 
@@ -304,7 +304,7 @@ Paramètre d’affichage
 
 -   **Caméra** : caméra à afficher (si vous avez choisi caméra)
 
-Zone 
+Bereich 
 ====
 
 Paramètre d’affichage 

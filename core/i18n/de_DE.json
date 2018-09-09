@@ -1343,7 +1343,7 @@
     },
     "desktop/js/plan.js": {
         "Designs": "Designs",
-        "Edition": "Ausgabe",
+        "Edition": "Bearbeiten",
         "Plein écran": "Vollbild",
         "Ajouter Graphique": "Grafik hinzufügen",
         "Ajouter texte/html": "Text/html hinzufügen",
@@ -2594,7 +2594,7 @@
     },
     "desktop/js/3d.js": {
         "Designs": "Designs",
-        "Edition": "Ausgabe",
+        "Edition": "Bearbeiten",
         "Configuration de l\\'objet": "Objekt Konfiguration",
         "Widget": "Widget",
         "Configuration du plan 3D": "3D Plan Konfiguration"
@@ -2605,7 +2605,7 @@
         "Equipement liée": "zugehörige Ausrüstung",
         "Informations": "Information ",
         "Equipement": "Gerät",
-        "Edition": "Ausgabe",
+        "Edition": "Bearbeiten",
         "Sauvegarder": "Speichern"
     },
     "desktop/modal/plan3d.configure.php": {
