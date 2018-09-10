@@ -1432,13 +1432,13 @@ class cmd {
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
-			if ($currentLevel == 'none') {
-				$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
-				if (is_object($cron)) {
-					$cron->remove(false);
-				}
-			}
 			return 'none';
+		}
+		if ($currentLevel == 'none') {
+			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
+			if (is_object($cron)) {
+				$cron->remove(false);
+			}
 		}
 		return $currentLevel;
 	}
