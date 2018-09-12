@@ -1199,6 +1199,7 @@ class scenarioExpression {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
 					}
 					$cmd->event(jeedom::evaluateExpression($options['value']));
+					$this->setLog($scenario, __('Changement de ', __FILE__) . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
 					return;
 				} elseif ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
