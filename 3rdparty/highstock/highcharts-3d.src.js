@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.1 (2018-06-27)
+ * @license Highcharts JS v6.1.2 (2018-08-31)
  *
  * 3D features for Highcharts JS
  *
@@ -9,6 +9,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -745,8 +749,8 @@
 
 		    attribs = merge(attribs);
 
-		    attribs.alpha *= deg2rad;
-		    attribs.beta *= deg2rad;
+		    attribs.alpha = (attribs.alpha || 0) * deg2rad;
+		    attribs.beta = (attribs.beta || 0) * deg2rad;
 
 		    // Create the different sub sections of the shape
 		    wrapper.top = renderer.path();
@@ -864,7 +868,8 @@
 		        var ca,
 		            from = this.attribs,
 		            to,
-		            anim;
+		            anim,
+		            randomProp = 'data-' + Math.random().toString(26).substring(2, 9);
 
 		        // Attribute-line properties connected to 3D. These shouldn't have been
 		        // in the attribs collection in the first place.
@@ -879,8 +884,10 @@
 		        if (anim.duration) {
 		            ca = suckOutCustom(params);
 		            // Params need to have a property in order for the step to run
-		            // (#5765, #7437)
-		            params.dummy = wrapper.dummy++;
+		            // (#5765, #7097, #7437)
+		            wrapper[randomProp] = 0;
+		            params[randomProp] = 1;
+		            wrapper[randomProp + 'Setter'] = H.noop;
 
 		            if (ca) {
 		                to = ca;
@@ -890,7 +897,7 @@
 		                            (pick(to[key], from[key]) - from[key]) * fx.pos;
 		                    }
 
-		                    if (fx.prop === 'dummy') {
+		                    if (fx.prop === randomProp) {
 		                        fx.elem.setPaths(merge(from, {
 		                            x: interpolate('x'),
 		                            y: interpolate('y'),
@@ -906,7 +913,6 @@
 		        }
 		        return proceed.call(this, params, animation, complete);
 		    });
-		    wrapper.dummy = 0;
 
 		    // destroy all children
 		    wrapper.destroy = function () {
@@ -945,8 +951,8 @@
 		        start = shapeArgs.start, // start angle
 		        end = shapeArgs.end - 0.00001, // end angle
 		        r = shapeArgs.r, // radius
-		        ir = shapeArgs.innerR, // inner radius
-		        d = shapeArgs.depth, // depth
+		        ir = shapeArgs.innerR || 0, // inner radius
+		        d = shapeArgs.depth || 0, // depth
 		        alpha = shapeArgs.alpha, // alpha rotation of the chart
 		        beta = shapeArgs.beta; // beta rotation of the chart
 
@@ -970,6 +976,7 @@
 		    ]);
 		    top = top.concat(curveTo(cx, cy, irx, iry, end, start, 0, 0));
 		    top = top.concat(['Z']);
+
 		    // OUTSIDE
 		    var b = (beta > 0 ? Math.PI / 2 : 0),
 		        a = (alpha > 0 ? 0 : Math.PI / 2);
@@ -1155,7 +1162,7 @@
 		    var options = this.options;
 
 		    if (this.is3d()) {
-		        each(options.series, function (s) {
+		        each(options.series || [], function (s) {
 		            var type = s.type ||
 		                options.chart.type ||
 		                options.chart.defaultSeriesType;
@@ -1383,11 +1390,10 @@
 		             *
 		             * @validvalue [null, "auto"]
 		             * @type {String}
-		             * @default null
 		             * @since 5.0.12
 		             * @product highcharts
 		             */
-		            axisLabelPosition: 'default',
+		            axisLabelPosition: null,
 
 		            /**
 		             * Provides the option to draw a frame around the charts by defining
@@ -1458,35 +1464,35 @@
 		                /**
 		                 * The top of the frame around a 3D chart.
 		                 *
-		                 * @extends {chart.options3d.frame.bottom}
+		                 * @extends chart.options3d.frame.bottom
 		                 */
 		                top: {},
 
 		                /**
 		                 * The left side of the frame around a 3D chart.
 		                 *
-		                 * @extends {chart.options3d.frame.bottom}
+		                 * @extends chart.options3d.frame.bottom
 		                 */
 		                left: {},
 
 		                /**
 		                 * The right of the frame around a 3D chart.
 		                 *
-		                 * @extends {chart.options3d.frame.bottom}
+		                 * @extends chart.options3d.frame.bottom
 		                 */
 		                right: {},
 
 		                /**
 		                 * The back side of the frame around a 3D chart.
 		                 *
-		                 * @extends {chart.options3d.frame.bottom}
+		                 * @extends chart.options3d.frame.bottom
 		                 */
 		                back: {},
 
 		                /**
 		                 * The front of the frame around a 3D chart.
 		                 *
-		                 * @extends {chart.options3d.frame.bottom}
+		                 * @extends chart.options3d.frame.bottom
 		                 */
 		                front: {}
 		            }
@@ -3400,7 +3406,8 @@
 		    if (this.chart.is3d() &&
 		        tick &&
 		        tick.label &&
-		        this.categories
+		        this.categories &&
+		        this.chart.frameShapes
 		    ) {
 		        var chart = this.chart,
 		            ticks = this.ticks,
@@ -3424,7 +3431,7 @@
 
 		        // Check whether the tick is not the first one and previous tick exists,
 		        // then calculate position of previous label.
-		        if (tickId !== 0 && prevTick) {
+		        if (tickId !== 0 && prevTick && prevTick.label.xy) { // #8621
 		            prevLabelPos = perspective3D({
 		                x: prevTick.label.xy.x,
 		                y: prevTick.label.xy.y,
@@ -4209,7 +4216,7 @@
 		 * @sample {highcharts} highcharts/demo/3d-scatter-draggable
 		 *         Draggable 3d scatter
 		 *
-		 * @extends {plotOptions.scatter}
+		 * @extends plotOptions.scatter
 		 * @product highcharts
 		 * @optionparent plotOptions.scatter3d
 		 */

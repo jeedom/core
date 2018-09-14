@@ -84,7 +84,7 @@ extend(SVGElement.prototype, /** @lends Highcharts.SVGElement.prototype */ {
      */
     textProps: ['direction', 'fontSize', 'fontWeight', 'fontFamily',
         'fontStyle', 'color', 'lineHeight', 'width', 'textAlign',
-        'textDecoration', 'textOverflow', 'textOutline'],
+        'textDecoration', 'textOverflow', 'textOutline', 'cursor'],
 
     /**
      * Initialize the SVG element. This function only exists to make the
@@ -328,7 +328,7 @@ extend(SVGElement.prototype, /** @lends Highcharts.SVGElement.prototype */ {
     /**
      * Apply a text outline through a custom CSS property, by copying the text
      * element and apply stroke to the copy. Used internally. Contrast checks
-     * at http://jsfiddle.net/highcharts/43soe9m1/2/ .
+     * at https://jsfiddle.net/highcharts/43soe9m1/2/ .
      *
      * @private
      * @param {String} textOutline A custom CSS `text-outline` setting, defined
@@ -1287,7 +1287,7 @@ extend(SVGElement.prototype, /** @lends Highcharts.SVGElement.prototype */ {
                 // stands uncorrected, it results in more padding added below
                 // the text than above when adding a label border or background.
                 // Also vertical positioning is affected.
-                // http://jsfiddle.net/highcharts/em37nvuj/
+                // https://jsfiddle.net/highcharts/em37nvuj/
                 // (#1101, #1505, #1669, #2568, #6213).
                 if (
                     styles &&
@@ -1968,23 +1968,25 @@ extend(SVGRenderer.prototype, /** @lends Highcharts.SVGRenderer.prototype */ {
 
         /**
          * The root `svg` node of the renderer.
-         * @name box
-         * @memberof SVGRenderer
-         * @type {SVGDOMElement}
+         *
+         * @name Highcharts.SVGRenderer#box
+         * @type {Highcharts.SVGDOMElement}
          */
         this.box = element;
         /**
          * The wrapper for the root `svg` node of the renderer.
          *
-         * @name boxWrapper
-         * @memberof SVGRenderer
-         * @type {SVGElement}
+         * @name Highcharts.SVGRenderer#boxWrapper
+         * @type {Highcharts.SVGElement}
          */
         this.boxWrapper = boxWrapper;
         renderer.alignedObjects = [];
 
         /**
          * Page url used for internal references.
+         *
+         * @private
+         * @name Highcharts.SVGRenderer#url
          * @type {string}
          */
         // #24, #672, #1070
@@ -1993,7 +1995,7 @@ extend(SVGRenderer.prototype, /** @lends Highcharts.SVGRenderer.prototype */ {
                 doc.getElementsByTagName('base').length
             ) ?
                 win.location.href
-                    .replace(/#.*?$/, '') // remove the hash
+                    .split('#')[0] // remove the hash
                     .replace(/<[^>]*>/g, '') // wing cut HTML
                     // escape parantheses and quotes
                     .replace(/([\('\)])/g, '\\$1')
@@ -2009,9 +2011,9 @@ extend(SVGRenderer.prototype, /** @lends Highcharts.SVGRenderer.prototype */ {
 
         /**
          * A pointer to the `defs` node of the root SVG.
+         *
+         * @name Highcharts.SVGRenderer#defs
          * @type {SVGElement}
-         * @name defs
-         * @memberof SVGRenderer
          */
         renderer.defs = this.createElement('defs').add();
         renderer.allowHTML = allowHTML;
@@ -2683,13 +2685,11 @@ extend(SVGRenderer.prototype, /** @lends Highcharts.SVGRenderer.prototype */ {
 
         // The threshold may be discussed. Here's a proposal for adding
         // different weight to the color channels (#6216)
-        /*
         rgba[0] *= 1; // red
         rgba[1] *= 1.2; // green
-        rgba[2] *= 0.7; // blue
-        */
+        rgba[2] *= 0.5; // blue
 
-        return rgba[0] + rgba[1] + rgba[2] > 2 * 255 ? '#000000' : '#FFFFFF';
+        return rgba[0] + rgba[1] + rgba[2] > 1.8 * 255 ? '#000000' : '#FFFFFF';
     },
 
     /**
@@ -3728,7 +3728,7 @@ extend(SVGRenderer.prototype, /** @lends Highcharts.SVGRenderer.prototype */ {
 
         // Empirical values found by comparing font size and bounding box
         // height. Applies to the default font family.
-        // http://jsfiddle.net/highcharts/7xvn7/
+        // https://jsfiddle.net/highcharts/7xvn7/
         lineHeight = fontSize < 24 ? fontSize + 3 : Math.round(fontSize * 1.2);
         baseline = Math.round(lineHeight * 0.8);
 

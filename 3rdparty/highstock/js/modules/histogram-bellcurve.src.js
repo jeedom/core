@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v6.1.1 (2018-06-27)
+ * @license  Highcharts JS v6.1.2 (2018-08-31)
  *
  * (c) 2010-2017 Highsoft AS
  * Author: Sebastian Domas
@@ -10,6 +10,10 @@
 (function (factory) {
 	if (typeof module === 'object' && module.exports) {
 		module.exports = factory;
+	} else if (typeof define === 'function' && define.amd) {
+		define(function () {
+			return factory;
+		});
 	} else {
 		factory(Highcharts);
 	}
@@ -165,7 +169,9 @@
 		    isNumber = H.isNumber,
 		    arrayMax = H.arrayMax,
 		    arrayMin = H.arrayMin,
-		    merge = H.merge;
+		    merge = H.merge,
+		    keys = H.keys,
+		    map = H.map;
 
 		/* ***************************************************************************
 		 *
@@ -197,21 +203,14 @@
 		 * @param {number} binWidth - width of the bin
 		 * @returns {function}
 		 **/
-		function fitToBinLeftClosed(binWidth) {
+		function fitToBinLeftClosed(bins) {
 		    return function (y) {
-		        return Math.floor(y / binWidth) * binWidth;
+		        var i = 1;
+		        while (bins[i] <= y) {
+		            i++;
+		        }
+		        return bins[--i];
 		    };
-		}
-
-		/**
-		 * Identity function - takes a param and returns that param
-		 * It is used to grouping data with the same values
-		 *
-		 * @param {number} y - value
-		 * @returns {number}
-		 **/
-		function identity(y) {
-		    return y;
 		}
 
 		/**
@@ -286,21 +285,29 @@
 		            x,
 		            fitToBin;
 
-		        binWidth = this.binWidth = isNumber(binWidth) ?
-		            binWidth :
-		            (max - min) / binsNumber;
-
-		        fitToBin = binWidth ? fitToBinLeftClosed(binWidth) : identity;
+		        binWidth = this.binWidth = correctFloat(
+		            isNumber(binWidth) ?
+		                (binWidth || 1) :
+		                (max - min) / binsNumber
+		        );
 
 		        // If binWidth is 0 then max and min are equaled,
 		        // increment the x with some positive value to quit the loop
-		        for (
-		            x = fitToBin(min);
-		            x <= max;
-		            x = correctFloat(x + (binWidth || 1))
-		        ) {
-		            frequencies[correctFloat(fitToBin((x)))] = 0;
+		        for (x = min; x < max; x = correctFloat(x + binWidth)) {
+		            frequencies[x] = 0;
 		        }
+
+		        if (frequencies[min] !== 0) {
+		            frequencies[correctFloat(min)] = 0;
+		        }
+
+		        fitToBin = fitToBinLeftClosed(
+		            // Sorting the array of keys from frequencies is needed,
+		            // because of the discrepancy in ordering the numerable keys inside
+		            // the objects, when there are integers and floats simultanously.
+		            map(keys(frequencies).sort(), function (elem) {
+		                return parseFloat(elem);
+		            }));
 
 		        each(baseData, function (y) {
 		            var x = correctFloat(fitToBin(y));

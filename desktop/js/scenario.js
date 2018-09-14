@@ -22,7 +22,6 @@
 } 
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
-  tab = e.target.hash;
 })
 
 editor = [];
@@ -924,12 +923,12 @@ function saveScenario() {
     success: function (data) {
       modifyWithoutSave = false;
       url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
-      if(tab !== null){
-        url += tab;
-      }
-      loadPage(url);
-    }
-  });
+      if (document.location.toString().match('#')) {
+       url += '#' + document.location.toString().split('#')[1];
+     } 
+     loadPage(url);
+   }
+ });
 }
 
 function addTrigger(_trigger) {

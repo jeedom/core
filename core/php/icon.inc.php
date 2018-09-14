@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 require_once __DIR__ . '/utils.inc.php';
-echo '<link rel="stylesheet" href="3rdparty/font-awesome5/css/fontawesome-all.min.css">' . "\n";
+echo '<link rel="stylesheet" href="3rdparty/font-awesome5/css/all.min.css">' . "\n";
 echo '<link rel="stylesheet" href="3rdparty/font-awesome/css/font-awesome.min.css">' . "\n";
 
 $root_dir = __DIR__ . '/../../core/css/icon/';
