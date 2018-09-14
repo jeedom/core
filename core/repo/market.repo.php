@@ -190,7 +190,7 @@ class repo_market {
 		return array(
 			'doc' => $url,
 			'changelog' => $url . '#_changelog',
-			'display' => 'https://market.jeedom.fr/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
+			'display' => 'https://jeedom.com/market/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
 		);
 	}
 
