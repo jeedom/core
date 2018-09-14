@@ -1014,7 +1014,7 @@ class scenarioExpression {
 						}
 					}
 					$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
-					if ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
+					while ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
 						$arguments = substr($arguments, 1, -1);
 					}
 					$result = str_replace($match[2], $arguments, $_expression);
