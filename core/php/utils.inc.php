@@ -963,6 +963,11 @@ function evaluate($_string) {
 	} catch (Exception $e) {
 		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
+	if ($c > 0) {
+		for ($i = 0; $i < $c; $i++) {
+			$_string = str_replace('--preparsed' . $i . '--', $matches[0][$i], $_string);
+		}
+	}
 	return $_string;
 }
 

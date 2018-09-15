@@ -1014,6 +1014,9 @@ class scenarioExpression {
 						}
 					}
 					$arguments = self::setTags($match[2], $_scenario, $_quote, $_nbCall++);
+					while ($arguments[0] == '(' && $arguments[strlen($arguments) - 1] == ')') {
+						$arguments = substr($arguments, 1, -1);
+					}
 					$result = str_replace($match[2], $arguments, $_expression);
 					while (substr_count($result, '(') > substr_count($result, ')')) {
 						$result .= ')';
@@ -1199,6 +1202,7 @@ class scenarioExpression {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
 					}
 					$cmd->event(jeedom::evaluateExpression($options['value']));
+					$this->setLog($scenario, __('Changement de ', __FILE__) . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
 					return;
 				} elseif ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
