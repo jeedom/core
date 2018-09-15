@@ -547,6 +547,7 @@ class eqLogic {
 	}
 
 	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTime = null) {
+
 		if ($this->getIsEnable() == 0) {
 			return false;
 		}
@@ -571,9 +572,8 @@ class eqLogic {
 		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
 			$cmd->event($_value, $_updateTime);
 			return true;
-		} else {
-			$cmd->setCollectDate(date('Y-m-d H:i:s'));
 		}
+		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
 		return false;
 	}
 
