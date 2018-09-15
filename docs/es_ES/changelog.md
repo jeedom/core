@@ -22,6 +22,7 @@ cambios
 -   Possibilité d'ajouter des images en fond sur les objets
 -   Ajout d'un theme Jeedom
 -   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
+-   Amélioration du support des () dans le calcul d'expressions
 
 
 3.2.11
