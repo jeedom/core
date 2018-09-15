@@ -286,6 +286,11 @@ $("#bt_stopScenario").off('click').on('click', function () {
   });
 });
 
+$('#bt_editJsonScenario').on('click',function(){
+ $('#md_modal').dialog({title: "{{Edition texte scénarios}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.jsonEdit&id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+});
+
 $('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Variables des scénarios}}"});
   $("#md_modal").load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
@@ -307,7 +312,6 @@ $('#in_addElementType').off('change').on('change',function(){
 });
 
 $('#bt_scenarioTab').on('click',function(){
-
   setTimeout(function(){ 
     setEditor(); 
     taAutosize();
