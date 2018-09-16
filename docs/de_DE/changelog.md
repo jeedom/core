@@ -23,6 +23,7 @@
 -   Ajout d'un theme Jeedom
 -   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 -   Amélioration du support des () dans le calcul d'expressions
+-   Possibilité d'éditer les scénarios en mode text/json
 
 
 3.2.11
