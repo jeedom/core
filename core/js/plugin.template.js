@@ -80,7 +80,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
     }
     $('.eqLogic').hide();
     if ('function' == typeof (prePrintEqLogic)) {
-        prePrintEqLogic();
+        prePrintEqLogic($(this).attr('data-eqLogic_id'));
     }
     if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
         $('.' + $(this).attr('data-eqLogic_type')).show();
