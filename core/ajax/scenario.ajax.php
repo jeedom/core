@@ -307,6 +307,9 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		if (!is_json(init('scenario'))) {
+			throw new Exception(__('Champs json invalide', __FILE__));
+		}
 		unautorizedInDemo();
 		$time_dependance = 0;
 		foreach (array('#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#') as $keyword) {
@@ -330,13 +333,15 @@ try {
 		}
 		if (!isset($scenario_db) || !is_object($scenario_db)) {
 			$scenario_db = new scenario();
-		} else {
-			if (!$scenario_db->hasRight('w')) {
-				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
-			}
+		} elseif (!$scenario_db->hasRight('w')) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
-		$scenario_db->setTrigger(array());
-		$scenario_db->setSchedule(array());
+		if (isset($scenario_ajax['trigger'])) {
+			$scenario_db->setTrigger(array());
+		}
+		if (isset($scenario_ajax['schedule'])) {
+			$scenario_db->setSchedule(array());
+		}
 		utils::a2o($scenario_db, $scenario_ajax);
 		$scenario_db->setConfiguration('timeDependency', $time_dependance);
 		$scenario_db->setConfiguration('has_return', $has_return);

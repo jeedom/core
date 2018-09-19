@@ -19,26 +19,26 @@ if (is_array($scenarioListGroup)) {
 </style>
 
 <div class="row row-overflow">
-<div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
- <div class="scenarioListContainer">
-   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-   <div class="cursor" id="bt_addScenario2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-    <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
-    <br>
-    <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
-  </div>
-  <?php if (config::byKey('enableScenario') == 0) {?>
-    <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-     <i class="fas fa-check" style="font-size : 6em;color:#5cb85c;"></i>
-     <br>
-     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
-   </div>
+  <div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
+   <div class="scenarioListContainer">
+     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+     <div class="cursor" id="bt_addScenario2" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+      <i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+      <br>
+      <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02">{{Ajouter}}</span>
+    </div>
+    <?php if (config::byKey('enableScenario') == 0) {?>
+      <div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+       <i class="fas fa-check" style="font-size : 6em;color:#5cb85c;"></i>
+       <br>
+       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c">{{Activer scénarios}}</span>
+     </div>
    <?php } else {?>
-   <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-     <i class="fas fa-times" style="font-size : 6em;color:#d9534f;"></i>
-     <br>
-     <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
-   </div>
+     <div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
+       <i class="fas fa-times" style="font-size : 6em;color:#d9534f;"></i>
+       <br>
+       <span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f">{{Désactiver scénarios}}</span>
+     </div>
    <?php }
 ?>
 
@@ -131,6 +131,7 @@ if (count($totalScenario) == 0) {
  <a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i></a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}</a>
  <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+ <a class="btn btn-default btn-sm pull-right" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i></a>
  <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
  <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}</a>
@@ -203,7 +204,7 @@ foreach (jeeObject::all() as $object) {
           <div class="col-xs-1">
             <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
           </div>
-           <label class="col-xs-4 control-label">{{Mode synchrone}}</label>
+          <label class="col-xs-4 control-label">{{Mode synchrone}}</label>
           <div class="col-xs-1">
             <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
           </div>
@@ -230,7 +231,7 @@ foreach (jeeObject::all() as $object) {
   <div class="col-sm-6">
     <form class="form-horizontal">
      <div class="form-group">
-     <div class="col-md-12">
+       <div class="col-md-12">
         <textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
       </div>
     </div>
