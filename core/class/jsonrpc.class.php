@@ -61,7 +61,6 @@ class jsonrpc {
 			),
 		);
 		$return = array_merge($return, $this->getAdditionnalParams());
-		log::add('api', 'info', 'Return error :' . json_encode($return));
 		if (init('callback') != '') {
 			echo init('callback') . '(' . json_encode($return) . ')';
 		} else {
@@ -77,7 +76,6 @@ class jsonrpc {
 			'result' => $_result,
 		);
 		$return = array_merge($return, $this->getAdditionnalParams());
-		log::add('api', 'info', 'Return success :' . json_encode($return));
 		if (init('callback') != '') {
 			echo init('callback') . '(' . json_encode($return) . ')';
 		} else {
