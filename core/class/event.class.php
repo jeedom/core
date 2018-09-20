@@ -45,7 +45,7 @@ class event {
 				$value = array();
 			}
 			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
-			cache::set('event', json_encode(array_slice($value, -self::$limit, self::$limit)));
+			cache::set('event', json_encode(self::cleanEvent($value)));
 			flock($fd, LOCK_UN);
 		}
 	}
@@ -63,9 +63,42 @@ class event {
 			foreach ($_values as $option) {
 				$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
 			}
-			cache::set('event', json_encode(array_slice(array_merge($value_src, $value), -self::$limit, self::$limit)));
+			cache::set('event', json_encode(self::cleanEvent(array_merge($value_src, $value))));
 			flock($fd, LOCK_UN);
 		}
+	}
+
+	public static function cleanEvent($_events) {
+		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
+		$manage_event = array('eqLogic::update', 'cmd::update', 'scenario::update', 'jeeObject::summary::update');
+		$return = array();
+		foreach ($_events as $event) {
+			if (!in_array($event['name'], $manage_event)) {
+				$return[] = $event;
+				continue;
+			}
+			if ($event['name'] == 'eqLogic::update') {
+				$return[$event['name'] . '::' . $event['option']['eqLogic_id']] = $event;
+			}
+			if ($event['name'] == 'cmd::update') {
+				$return[$event['name'] . '::' . $event['option']['cmd_id']] = $event;
+			}
+			if ($event['name'] == 'scenario::update') {
+				$return[$event['name'] . '::' . $event['option']['scenario_id']] = $event;
+			}
+			if ($event['name'] == 'jeeObject::summary::update') {
+				$return[$event['name'] . '::' . $event['option']['object_id']] = $event;
+			}
+		}
+		usort($return, 'self::orderEvent');
+		return $return;
+	}
+
+	public static function orderEvent($a, $b) {
+		if ($a['datetime'] == $b['datetime']) {
+			return 0;
+		}
+		return ($a['datetime'] < $b['datetime']) ? -1 : 1;
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
