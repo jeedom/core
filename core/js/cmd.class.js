@@ -40,11 +40,11 @@ jeedom.cmd.execute = function(_params) {
             if (data.state != 'ok') {
                 if(data.code == -32005){
                     if ($.mobile) {
-                     var result = prompt("{{Veuillez indiquer le code ?}}", "")
-                     if(result != null){
-                         _params.codeAccess = result;
-                         jeedom.cmd.execute(_params);
-                     }else{
+                       var result = prompt("{{Veuillez indiquer le code ?}}", "")
+                       if(result != null){
+                           _params.codeAccess = result;
+                           jeedom.cmd.execute(_params);
+                       }else{
                         jeedom.cmd.refreshValue({id:_params.id});
                         if ('function' != typeof(_params.error)) {
                             $('#div_alert').showAlert({
@@ -61,11 +61,11 @@ jeedom.cmd.execute = function(_params) {
                         return data;
                     }
                 }else{
-                 bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
+                   bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
                     if(result != null){
-                     _params.codeAccess = result;
-                     jeedom.cmd.execute(_params);
-                 }else{
+                       _params.codeAccess = result;
+                       jeedom.cmd.execute(_params);
+                   }else{
                     jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
@@ -83,11 +83,11 @@ jeedom.cmd.execute = function(_params) {
                 }
 
             });
-             }
-         }else if(data.code == -32006){
-             if ($.mobile) {
-                 var result = confirm("{{Etes-vous sûr de vouloir faire cette action ?}}")
-                 if(result){
+               }
+           }else if(data.code == -32006){
+               if ($.mobile) {
+                   var result = confirm("{{Etes-vous sûr de vouloir faire cette action ?}}")
+                   if(result){
                     _params.confirmAction = 1;
                     jeedom.cmd.execute(_params);
                 }else{
@@ -109,9 +109,9 @@ jeedom.cmd.execute = function(_params) {
             }else{
                 bootbox.confirm("{{Etes-vous sûr de vouloir faire cette action ?}}", function (result) {
                     if(result){
-                     _params.confirmAction = 1;
-                     jeedom.cmd.execute(_params);
-                 }else{
+                       _params.confirmAction = 1;
+                       jeedom.cmd.execute(_params);
+                   }else{
                     jeedom.cmd.refreshValue({id:_params.id});
                     if ('function' != typeof(_params.error)) {
                         $('#div_alert').showAlert({
@@ -264,7 +264,7 @@ jeedom.cmd.test = function(_params) {
                         }
                     });
                     break;
-                      case 'select':
+                    case 'select':
                     jeedom.cmd.execute({
                         id: _params.id,
                         value: {
@@ -327,6 +327,25 @@ jeedom.cmd.test = function(_params) {
     };
     $.ajax(paramsAJAX);
 };
+
+jeedom.cmd.refreshByEqLogic = function(_params) {
+    var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
+    if(cmds.length > 0){
+        $(cmds).each(function(){
+            if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+             return true;
+         }
+         jeedom.cmd.toHtml({
+            global : false,
+            id : $(this).attr('data-cmd_id'),
+            version : $(this).attr('data-version'),
+            success : function(data){
+                $('.cmd[data-cmd_id=' + data.id + ']').replaceWith(data.html);
+            }
+        })
+     });
+    }
+}
 
 jeedom.cmd.refreshValue = function(_params) {
     for(var i in _params){
@@ -551,30 +570,71 @@ jeedom.cmd.changeSubType = function(_cmd) {
                         el = el.parent();
                     }
                     if (subtype[i].visible) {
-                     if(el.hasClass('bootstrapSwitch')){
-                         el.parent().parent().show();
-                         el.parent().parent().removeClass('hide');
+                       if(el.hasClass('bootstrapSwitch')){
+                           el.parent().parent().show();
+                           el.parent().parent().removeClass('hide');
+                       }
+                       if( el.attr('type') == 'checkbox'){
+                         el.parent().show();
+                         el.parent().removeClass('hide');
                      }
-                     if( el.attr('type') == 'checkbox'){
-                       el.parent().show();
-                       el.parent().removeClass('hide');
+                     el.show();
+                     el.removeClass('hide');
+                 } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                     el.parent().parent().hide();
+                     el.parent().parent().addClass('hide');
+                 }
+                 if( el.attr('type') == 'checkbox'){
+                     el.parent().hide();
+                     el.parent().addClass('hide');
+                 }
+                 el.hide();
+                 el.addClass('hide');
+             }
+             if (isset(subtype[i].parentVisible)) {
+                if (subtype[i].parentVisible) {
+                    el.parent().show();
+                    el.parent().removeClass('hide');
+                } else {
+                    el.parent().hide();
+                    el.parent().addClass('hide');
+                }
+            }
+        } else {
+            for (var j in subtype[i]) {
+                var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
+                if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
+                    el = el.parent();
+                }
+
+                if (isset(subtype[i][j].visible)) {
+                    if (subtype[i][j].visible) {
+                        if(el.hasClass('bootstrapSwitch')){
+                          el.parent().parent().parent().show();
+                          el.parent().parent().parent().removeClass('hide');
+                      }
+                      if( el.attr('type') == 'checkbox'){
+                         el.parent().show();
+                         el.parent().removeClass('hide');
+                     }
+                     el.show();
+                     el.removeClass('hide');
+                 } else {
+                    if(el.hasClass('bootstrapSwitch')){
+                       el.parent().parent().parent().hide();
+                       el.parent().parent().parent().addClass('hide');
                    }
-                   el.show();
-                   el.removeClass('hide');
-               } else {
-                if(el.hasClass('bootstrapSwitch')){
-                   el.parent().parent().hide();
-                   el.parent().parent().addClass('hide');
-               }
-               if( el.attr('type') == 'checkbox'){
-                   el.parent().hide();
-                   el.parent().addClass('hide');
-               }
-               el.hide();
-               el.addClass('hide');
-           }
-           if (isset(subtype[i].parentVisible)) {
-            if (subtype[i].parentVisible) {
+                   if( el.attr('type') == 'checkbox'){
+                     el.parent().hide();
+                     el.parent().addClass('hide');
+                 }
+                 el.hide();
+                 el.addClass('hide');
+             }
+         }
+         if (isset(subtype[i][j].parentVisible)) {
+            if (subtype[i][j].parentVisible) {
                 el.parent().show();
                 el.parent().removeClass('hide');
             } else {
@@ -582,48 +642,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
                 el.parent().addClass('hide');
             }
         }
-    } else {
-        for (var j in subtype[i]) {
-            var el = _cmd.find('.cmdAttr[data-l1key=' + i + '][data-l2key=' + j + ']');
-            if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
-                el = el.parent();
-            }
-
-            if (isset(subtype[i][j].visible)) {
-                if (subtype[i][j].visible) {
-                    if(el.hasClass('bootstrapSwitch')){
-                      el.parent().parent().parent().show();
-                      el.parent().parent().parent().removeClass('hide');
-                  }
-                  if( el.attr('type') == 'checkbox'){
-                   el.parent().show();
-                   el.parent().removeClass('hide');
-               }
-               el.show();
-               el.removeClass('hide');
-           } else {
-            if(el.hasClass('bootstrapSwitch')){
-             el.parent().parent().parent().hide();
-             el.parent().parent().parent().addClass('hide');
-         }
-         if( el.attr('type') == 'checkbox'){
-           el.parent().hide();
-           el.parent().addClass('hide');
-       }
-       el.hide();
-       el.addClass('hide');
-   }
-}
-if (isset(subtype[i][j].parentVisible)) {
-    if (subtype[i][j].parentVisible) {
-        el.parent().show();
-        el.parent().removeClass('hide');
-    } else {
-        el.parent().hide();
-        el.parent().addClass('hide');
     }
-}
-}
 }
 }
 
@@ -634,11 +653,11 @@ if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
     _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
     _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
 }else{
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
- _cmd.find('.cmdAttr[data-l1key=value]').hide();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
- _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
+   _cmd.find('.cmdAttr[data-l1key=value]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').hide();
+   _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').hide();
 }
 modifyWithoutSave = false;
 }
@@ -733,9 +752,9 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
 };
 
 jeedom.cmd.displayActionsOption = function(_params) {
-   var paramsRequired = ['params'];
-   var paramsSpecifics = {};
-   try {
+ var paramsRequired = ['params'];
+ var paramsSpecifics = {};
+ try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
 } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -820,35 +839,35 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
     _el.attr('data-time',timeInMillis);
     if(_el.attr('data-interval') != undefined){
-       clearInterval(_el.attr('data-interval'));
-   }
-   if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-     var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-     var j = Math.floor(d / 86400);
-     var h = Math.floor(d % 86400 / 3600);
-     var m = Math.floor(d % 3600 / 60);
-     _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-     var myinterval = setInterval(function(){ 
+     clearInterval(_el.attr('data-interval'));
+ }
+ if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
+   var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+   var j = Math.floor(d / 86400);
+   var h = Math.floor(d % 86400 / 3600);
+   var m = Math.floor(d % 3600 / 60);
+   _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+   var myinterval = setInterval(function(){ 
+    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+    var j = Math.floor(d / 86400);
+    var h = Math.floor(d % 86400 / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+}, 60000);
+   _el.attr('data-interval',myinterval);
+}else{
+   _el.empty().append("0 min");
+   var myinterval = setInterval(function(){
+       if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
         _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    }, 60000);
-     _el.attr('data-interval',myinterval);
- }else{
-     _el.empty().append("0 min");
-     var myinterval = setInterval(function(){
-         if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-            var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-            var j = Math.floor(d / 86400);
-            var h = Math.floor(d % 86400 / 3600);
-            var m = Math.floor(d % 3600 / 60);
-            _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-        }else{
-         _el.empty().append("0 min");
-     }
- }, 60000);
-     _el.attr('data-interval',myinterval);
- }
+    }else{
+       _el.empty().append("0 min");
+   }
+}, 60000);
+   _el.attr('data-interval',myinterval);
+}
 };
