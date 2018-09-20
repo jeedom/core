@@ -1572,11 +1572,17 @@ class eqLogic {
 	}
 
 	public function setIsVisible($_isVisible) {
+		if ($this->isVisible != $_isVisible) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->isVisible = $_isVisible;
 		return $this;
 	}
 
 	public function setIsEnable($_isEnable) {
+		if ($this->isEnable != $_isEnable) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->isEnable = $_isEnable;
 		return $this;
 	}
@@ -1600,8 +1606,10 @@ class eqLogic {
 	}
 
 	public function setDisplay($_key, $_value) {
+		if ($this->getDisplay($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getTimeout($_default = null) {

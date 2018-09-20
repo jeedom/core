@@ -831,6 +831,7 @@ class cmd {
 		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
+			$this->_needRefreshWidget = false;
 			$this->getEqLogic()->refreshWidget();
 		}
 		if ($this->_needRefreshAlert && $this->getType() == 'info') {
@@ -1931,8 +1932,10 @@ class cmd {
 		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
 			$_value = '';
 		}
+		if ($this->geHtml($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
@@ -1940,8 +1943,10 @@ class cmd {
 	}
 
 	public function setTemplate($_key, $_value) {
+		if ($this->getTemplate($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1962,8 +1967,10 @@ class cmd {
 	}
 
 	public function setDisplay($_key, $_value) {
+		if ($this->getDisplay($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getAlert($_key = '', $_default = '') {
@@ -2020,8 +2027,10 @@ class cmd {
 	}
 
 	public function setOrder($order) {
+		if ($this->order != $order) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->order = $order;
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getLogicalId() {
