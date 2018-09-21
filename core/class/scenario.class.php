@@ -942,6 +942,7 @@ class scenario {
 		DB::save($this);
 		$this->emptyCacheWidget();
 		if ($this->_changeState) {
+			$this->_changeState = false;
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 		}
 	}

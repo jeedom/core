@@ -300,10 +300,11 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
 };
 
 jeedom.eqLogic.refreshValue = function (_params) {
- var paramsRequired = [];
- var eqLogics = {};
- var sends = {};
- for(var i in _params){
+   var paramsRequired = [];
+   var eqLogics = {};
+   var sends = {};
+   for(var i in _params){
+    jeedom.cmd.refreshByEqLogic({eqLogic_id : _params[i].eqLogic_id});
     var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
         continue;
@@ -322,42 +323,42 @@ var paramsSpecifics = {
             var eqLogic = eqLogics[i].eqLogic;
             var uid = html.attr('data-eqLogic_uid');
             if(uid != 'undefined'){
-               eqLogic.attr('data-eqLogic_uid',uid);
-           }
-           eqLogic.empty().html(html.children());
-           eqLogic.attr("class", html.attr("class"));
-           var top =  eqLogic.css('top');
-           var left =  eqLogic.css('left');
-           var width =  eqLogic.css('width');
-           var height =  eqLogic.css('height');
-           var margin =  eqLogic.css('margin');
-           var padding =  eqLogic.css('padding');
-           var position =  eqLogic.css('position');
-           var transform_origin =  eqLogic.css('transform-origin');
-           var transform =  eqLogic.css('transform');
-           var zindex =  eqLogic.css('z-index');
-           eqLogic.attr("style", html.attr("style"));
-           eqLogic.css('top',top);
-           eqLogic.css('left',left);
-           eqLogic.css('width',width);
-           eqLogic.css('height',height);
-           eqLogic.css('margin',margin);
-           eqLogic.css('padding',padding);
-           eqLogic.css('position',position);
-           eqLogic.css('transform-origin',transform_origin);
-           eqLogic.css('transform',transform);
-           eqLogic.css('z-index',zindex);
-           eqLogic.trigger('change');
-           if ($.mobile) {
+             eqLogic.attr('data-eqLogic_uid',uid);
+         }
+         eqLogic.empty().html(html.children());
+         eqLogic.attr("class", html.attr("class"));
+         var top =  eqLogic.css('top');
+         var left =  eqLogic.css('left');
+         var width =  eqLogic.css('width');
+         var height =  eqLogic.css('height');
+         var margin =  eqLogic.css('margin');
+         var padding =  eqLogic.css('padding');
+         var position =  eqLogic.css('position');
+         var transform_origin =  eqLogic.css('transform-origin');
+         var transform =  eqLogic.css('transform');
+         var zindex =  eqLogic.css('z-index');
+         eqLogic.attr("style", html.attr("style"));
+         eqLogic.css('top',top);
+         eqLogic.css('left',left);
+         eqLogic.css('width',width);
+         eqLogic.css('height',height);
+         eqLogic.css('margin',margin);
+         eqLogic.css('padding',padding);
+         eqLogic.css('position',position);
+         eqLogic.css('transform-origin',transform_origin);
+         eqLogic.css('transform',transform);
+         eqLogic.css('z-index',zindex);
+         eqLogic.trigger('change');
+         if ($.mobile) {
             $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
             setTileSize('.eqLogic');
         }
     }
     if (!$.mobile) {
         if (typeof editWidgetMode == 'function') {
-           editWidgetMode(); 
-       }
-   }
+         editWidgetMode(); 
+     }
+ }
 }
 };
 try {

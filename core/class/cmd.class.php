@@ -831,6 +831,7 @@ class cmd {
 		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
+			$this->_needRefreshWidget = false;
 			$this->getEqLogic()->refreshWidget();
 		}
 		if ($this->_needRefreshAlert && $this->getType() == 'info') {
@@ -1056,6 +1057,7 @@ class cmd {
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 			'#version#' => $_version,
+			'#eqLogic_id#' => $this->getEqLogic()->getId(),
 			'#hideCmdName#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
@@ -1104,21 +1106,27 @@ class cmd {
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
-			$replace['#state#'] = $this->execCmd();
-			if (strpos($replace['#state#'], 'error::') !== false) {
+			if ($this->getEqLogic()->getIsEnable() == 0) {
 				$template = getTemplate('core', $version, 'cmd.error');
-				$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
+				$replace['#state#'] = 'N/A';
 			} else {
-				if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
-					$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+				$replace['#state#'] = $this->execCmd();
+				if (strpos($replace['#state#'], 'error::') !== false) {
+					$template = getTemplate('core', $version, 'cmd.error');
+					$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
+				} else {
+					if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
+						$replace['#state#'] = ($replace['#state#'] == 1) ? 0 : 1;
+					}
+					if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
+						$replace['#state#'] = 0;
+					}
 				}
-				if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
-					$replace['#state#'] = 0;
+				if (method_exists($this, 'formatValueWidget')) {
+					$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
 				}
 			}
-			if (method_exists($this, 'formatValueWidget')) {
-				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
-			}
+
 			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
@@ -1924,8 +1932,10 @@ class cmd {
 		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
 			$_value = '';
 		}
+		if ($this->getHtml($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
@@ -1933,8 +1943,10 @@ class cmd {
 	}
 
 	public function setTemplate($_key, $_value) {
+		if ($this->getTemplate($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1955,8 +1967,10 @@ class cmd {
 	}
 
 	public function setDisplay($_key, $_value) {
+		if ($this->getDisplay($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getAlert($_key = '', $_default = '') {
@@ -2001,6 +2015,9 @@ class cmd {
 	}
 
 	public function setIsVisible($isVisible) {
+		if ($this->isVisible != $isVisible) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->isVisible = $isVisible;
 		return $this;
 	}
@@ -2013,8 +2030,10 @@ class cmd {
 	}
 
 	public function setOrder($order) {
+		if ($this->order != $order) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->order = $order;
-		$this->_needRefreshWidget = true;
 	}
 
 	public function getLogicalId() {

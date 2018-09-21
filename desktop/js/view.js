@@ -138,13 +138,12 @@ function editWidgetMode(_mode,_save){
  $( ".eqLogicZone .eqLogic-widget.allowResize").resizable({
   grid: [ 2, 2 ],
   resize: function( event, ui ) {
-   var el = ui.element;
-   el.closest('.eqLogicZone').packery();
+   positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+   ui.element.closest('.eqLogicZone').packery();
  },
  stop: function( event, ui ) {
-  var el = ui.element;
-  positionEqLogic(el.attr('data-eqlogic_id'));
-  el.closest('.eqLogicZone').packery();
+  positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+  ui.element.closest('.eqLogicZone').packery();
 }
 });
 }
