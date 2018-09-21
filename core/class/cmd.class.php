@@ -1932,7 +1932,7 @@ class cmd {
 		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
 			$_value = '';
 		}
-		if ($this->geHtml($_key) != $_value) {
+		if ($this->getHtml($_key) != $_value) {
 			$this->_needRefreshWidget = true;
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
@@ -2015,6 +2015,9 @@ class cmd {
 	}
 
 	public function setIsVisible($isVisible) {
+		if ($this->isVisible != $isVisible) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->isVisible = $isVisible;
 		return $this;
 	}

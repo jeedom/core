@@ -1638,6 +1638,9 @@ class eqLogic {
 	}
 
 	public function setCategory($_key, $_value) {
+		if ($this->getCategory($_key) != $_value) {
+			$this->_needRefreshWidget = true;
+		}
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
 		return $this;
 	}
