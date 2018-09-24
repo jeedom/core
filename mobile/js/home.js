@@ -6,7 +6,7 @@ function initHome() {
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs" ></i> {{Crons}}</a>');
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a>');
     $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="eqAnalyse" data-title="{{Analyse équipement}}"><i class="fas fa-battery-full" ></i> {{Analyse équipement}}</a>');
-    $('#bottompanel_otherActionList').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}"><i class="fas fa-cogs"></i> {{Scénario}}</a>');
+    $('#bottompanel_otherActionList').append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>');
 
 
     jeedom.object.all({
