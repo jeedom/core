@@ -121,7 +121,7 @@ try {
 		$cron = new cron();
 		$cron->setClass('jeedom');
 		$cron->setFunction('backup');
-		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
+		$cron->setSchedule(mt_rand(10, 59) . ' 0' . mt_rand(0, 7) . ' * * *');
 		$cron->setEnable(1);
 		$cron->setDeamon(0);
 		$cron->setTimeout(60);
