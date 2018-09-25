@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `cron` (
   `timeout` INT NULL,
   `deamon` INT NULL DEFAULT 0,
   `deamonSleepTime` INT NULL,
-  `option` VARCHAR(511) NULL DEFAULT NULL,
+  `option` VARCHAR(255) NULL DEFAULT NULL,
   `once` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `class_function_option` (`class` ASC, `function` ASC, `option` ASC),
