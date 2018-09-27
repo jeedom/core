@@ -21,82 +21,82 @@ que aparece en esta página. \ * ** ** Buscar: Buscar una
 tema en particular. Este puede ser el nombre de un dispositivo, un control
 o el nombre del plugin mediante el cual se creó el equipo.
 
-Vous avez aussi un bouton "Historique des suppressions" qui vous permettra d'afficher l'historique des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur supprimés.
+También dispone de un botón "Borrar Historico" que le permitirá visualizar el historial de las órdenes, equipos, objetos, vista, diseño, diseño, diseño 3d, escenario y usuario borrados.
 
-Les cadres objet 
+Marcos de objetos 
 ----------------
 
-En dessous on retrouve un cadre par objet. Dans chaque cadre, on trouve
-la liste des équipements (en bleu) qui ont pour parent cet objet. Le
-premier cadre **Aucun** représente les équipements qui n’ont pas de
-parent affecté. Pour chaque objet, à côté de son libellé, trois boutons
-sont disponibles. De gauche à droite :
+Abajo hay un marco por objeto. En cada cuadro, encontramos
+la lista del dispositivo (en azul) que es padre de este objeto. El
+primer cuadro **Ninguno** representa un equipo que no tiene
+padre asociado. Para cada objeto, junto a su etiqueta, tres botones
+están disponibles. De izquierda a derecha:
 
--   Le premier sert à ouvrir la page de configuration de l’objet dans un
-    nouvel onglet,
+-   El primero se utiliza para abrir la página de configuración del objeto en una
+    nueva pestaña,
 
--   le deuxième apporte quelques informations sur l’objet,
+-   el segundo proporciona información sobre el objeto,
 
--   le dernier permet d’afficher ou de masquer la liste des équipements
-    qui lui sont attribués.
-
-> **Tip**
->
-> La couleur de fond des cadres objets dépend de la couleur choisie dans
-> la configuration de l’objet.
+-   el último permite mostrar u ocultar la lista de dispositivos
+    que le son atribuidos. 
 
 > **Tip**
 >
-> En cliquant/déposant sur les équipements, vous pouvez changer leur
-> ordre ou même les affecter à un autre objet. C’est à partir de l’ordre
-> établi dans cette page que l’affichage du dashboard est calculé.
+> El color de fondo de los marcos de los objetos depende del color elegido en
+>la configuración del objeto.
 
-Les équipements 
+> **Tip**
+>
+>Haciendo clic y soltando sobre el dispositivo, usted puede cambiarlos
+>o incluso asignarlos a otro objeto. Es de la orden
+>establecida en esta página, como se calcula la visualización del Dashborad.
+
+Los dipositivos 
 ---------------
 
-Sur chaque équipement on retrouve :
+En cada dispositivo que encontramos :
 
--   Une **case à cocher** pour sélectionner l’équipement (vous pouvez en
-    sélectionner plusieurs). Si au moins un équipement est sélectionné
-    vous avez des boutons d’action qui apparaissent en haut à gauche
-    pour **supprimer**, rendre **visible**/**invisible**,
-    **actif**/**inactif** les équipements sélectionnés.
+-   Una **casilla de verificación** para seleccionar el dispositivo (puede
+    seleccionar varios). Si se selecciona al menos un equipo
+    tienes botones de acción que aparecen en la parte superior izquierda
+    para **eliminar**, hacer **visible**/**invisible**,
+    **activo**/**inactivo** el dispositivo seleccionado.
 
--   Le **nom** de l’équipement.
+-   El **nombre** del dispositivo
 
 -   Le **type** d’équipement : Identifiant du plugin auquel
-    il appartient.
+    pertenece.
 
--   **Inactif** (petite croix) : Signifie que l’équipement est inactif
-    (si elle n’y est pas, l’équipement est actif).
+-   **Inactivo** (pequeña cruz) : Significa que el equipo está inactivo.
+    (si no aparece, el dispositivo está activo).
 
--   **Invisible** (oeil barré) : Signifie que l’équipement est invisible
-    (s’il n’y est pas, l’équipement est visible).
+-   **Invisible** (ojo cruzado): Significa que el dispositivo es invisible.
+    (si no aparece, el dispositivo es visible).
 
--   **Lien externe** (carré avec une flèche) : Permet d’ouvrir dans un
-    nouvel onglet la page de configuration de l’équipement.
+-   **Enlace externo** (cuadrado con una flecha): Le permite abrir en una
+    nueva pestaña la página de configuración del dispositivo.
 
--   **Configuration avancée** (roue crantée) : permet d’ouvrir la
-    fenêtre de configuration avancée de l’équipement.
+-   **Configuración avanzada** (rueda dentada): permite abrir la
+    ventana de configuración avanzada del dispositivo.
 
--   **Liste des commandes** (la flèche) : permet de déplier la liste des
-    commandes (sur fond orange).
+-   **Lista de comandos** (flecha): permite desplegar la lista de
+    comandos (sobre fondo naranja).
 
-Si vous dépliez la liste des commandes, chaque bloc orange correspond à
-une commande de votre équipement (un nouveau clic sur la petite flèche
-de l’équipement permet de les masquer).
+Si despliega la lista de comandos, cada bloque naranja corresponde a
+un comando para su dispositivo (un nuevo clic en la flecha pequeña
+del dispositivo permite enmascararlas).
 
-Si vous double-cliquez sur la commande ou que vous cliquez sur la petite
-roue crantée cela fera apparaitre sa fenêtre de configuration.
+Si hace doble clic sobre el comando o en el pequeña
+rueda dentada se abrirá la ventana de configuración.
 
-Configuration avancée d’un équipement 
-=====================================
+Configuración avanzada de dispositivos
+ =====================================
 
 > **Tip**
 >
-> Il est possible d’accéder (si le plugin le supporte) directement à
-> cette fenêtre à partir de la page de configuration de l’équipement en
-> cliquant sur le bouton configuration avancée
+>Es posible acceder (si el plugin lo soporta) directamente a
+>esta ventana desde la página de configuración del dispositivo en
+>Haga clic en el botón de configuración avanzada
 
 La fenêtre de **configuration avancée d’un équipement** permet de la
 modifier. En premier lieu, en haut à droite, quelques boutons
