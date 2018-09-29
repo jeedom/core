@@ -29,7 +29,7 @@ class com_http {
 	private $ping = false;
 	private $noSslCheck = true;
 	private $sleepTime = 500000;
-	private $post = '';
+	private $post = false;
 	private $put = '';
 	private $header = array('Connection: close');
 	private $cookiesession = false;
@@ -47,9 +47,9 @@ class com_http {
 	}
 
 	/*     * ************* Fonctions ************************************ */
-        
+
         /**
-         * 
+         *
          * @param int $_timeout
          * @param int $_maxRetry
          * @return string
@@ -84,9 +84,14 @@ class com_http {
 					curl_setopt($ch, CURLOPT_HTTPAUTH, $this->getCURLOPT_HTTPAUTH());
 				}
 			}
-			if ($this->getPost() != '') {
+			if ($this->getPost() !== false) {
 				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Expect: '));
+				if (!$this->getPost() === true) {
+				    curl_setopt($ch, CURLOPT_POSTFIELDS, array());
+				} else {
+				    curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPost());
+				}
 			}
 			if ($this->getPut() != '') {
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -115,10 +120,10 @@ class com_http {
 					return $response;
 				}
 				if ($this->getNoReportError() === false && $this->getLogError()) {
-					log::add('http.com', 'error', __('Erreur curl : ', __FILE__) . $curl_error . __(' sur la commande ', __FILE__) . $this->url . __(' après ', __FILE__) . $nbRetry . __(' relance(s)', __FILE__));
+					log::add('http.com', 'error', __('Erreur cURL : ', __FILE__) . $curl_error . __(' sur la commande ', __FILE__) . $this->url . __(' après ', __FILE__) . $nbRetry . __(' relance(s)', __FILE__));
 				}
 				if ($this->getNoReportError() === false) {
-					throw new Exception(__('Echec de la requête http : ', __FILE__) . $this->url . ' Curl error : ' . $curl_error, 404);
+					throw new Exception(__('Echec de la requête HTTP : ', __FILE__) . $this->url . ' cURL error : ' . $curl_error, 404);
 				}
 			} else {
 				curl_close($ch);
