@@ -2,11 +2,11 @@ Cette page permet de creer une vue 3d de votre maison/appartement qui pourra ré
 
 Elle est accessible par Acceuil → Dashboard
 
-> **Tip**
+> **Tipp**
 >
-> Il est possible d’aller directement sur un design 3D grâce au sous-menu.
+> Über das Untermenü kann direkt zu einem 3D-Design gesprungen werden.
 
-# Importation du model 3d
+# Importieren Sie das 3d Modell 
 
 > **IMPORTANT**
 >
@@ -20,14 +20,14 @@ Une fois votre model 3d creer il faut l'exporter en OBJ. Si vous utilisez SweetH
 
 Une fois votre model 3d exporter il faut dans Jeedom creer un nouveau design 3d. Pour cela il faut passer en mode édition en cliquant que le petit crayon à droit, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
 
-Jeedom va automatiquement passer sur le nouveau design 3d, il faut repasser en mode edition et cliquer sur les petite roues crantées.
+Jeedom schaltet automatisch auf das neue 3D-Design um, Sie müssen in den Editiermodus zurück gehen und auf die kleinen Zahnräder klicken.
 
 Vous pouvez à partir de cette écran envoyer : 
 
-- Changer le nom de votre design
-- Ajouter un code d'accès
+- Ändern Sie den Namen Ihres Designs
+- Fügen Sie einen Zugriffscode hinzu
 - Choisir une icone
-- Importer votre model 3d
+- Importieren Sie Ihr 3D-Modell
 
 Cliquez sur le bouton "envoyer" au niveau de "Model 3D" et selectionner votre zip
 
