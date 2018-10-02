@@ -56,38 +56,38 @@ Pour configurer un element sur le design 3d il vous faire un double clic sur l'�
 - Le lien vers l'element en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre 
 - La spécitificité, la il en existe plusieurs que l'on va voir juste après, ca permet spécifier le type d'équipement et donc l'affichage d'information
 
-## Lumière
+## Beleuchtung
 
 - Statut : Commande d'état de la lumiere peut etre un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
 - Puissance : puissance de l'ampoule (attention cela peut ne pas refleter la réaliter)
 
-## Texte
+## Text
 
 - Texte : texte à afficher (vous pouvez mettre des commandes dedans, le texte sera automatiquement remis à jour sur changement de celle-ci)
-- Taille du texte
-- Couleur du texte
+- Textgröße
+- Textfarbe
 - Transparence du texte : de 0 (invisible) à 1 (visible)
-- Couleur de fond
+- Hintergrundfarbe
 - Transparence du fond : de 0 (invisible) à 1 (visible)
-- Couleur de la bordure
+- Rahmenfarbe
 - Transparence de la bordure : de 0 (invisible) à 1 (visible)
 - Espacement au dessus de l'objet : permet d'indiquer l'espacement du texte par rapport à l'élément
 
-## Porte/Fenêtre
+## Tür/Fenster
 
-### Porte/Fenêtre
+### Tür/Fenster
 
 - Etat : état de la Porte/Fenêtre, 1 fermé et 0 ouvert
 - Rotation
     - Activer : active la rotation de la Porte/Fenêtre lors de l'ouverture
     - Ouverture : le mieux la c'est de tester pour que ca correspond au mieux à votre Porte/Fenêtre
-- Translation
+- Übersetzung
     - Activer : active la translation lors de l'ouverture (type Porte/Fenêtre coulissante)
     - Sens : sens dans lequel la Porte/Fenêtre doit bouger (vous avez haut/bas/droite/gauche)
     - Répéter : par defaut la Porte/Fenêtre bouge de 1 fois sa dimension dans le sens donner mais vous pouvez augmenter cette valeur
 - Masquer quand la Porte/Fenêtre est ouverte    
     - Activer : Masque l'élément si la Porte/Fenêtre est ouverte
-- Couleur
+- Farbe
     - Couleur ouverte : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est ouverte
     - Couleur fermée : si cocher l'élément prendra cette couleur si la Porte/Fenêtre est fermée
 
@@ -96,7 +96,7 @@ Pour configurer un element sur le design 3d il vous faire un double clic sur l'�
 - Etat : état du volet, 0 ouvert autre valeur fermé
 - Masquer quand le volet est ouvert
     -  Activer : masque l'élément si le volet est ouvert
-- Couleur
+- Farbe
     - Couleur fermé : si cocher l'élément prendra cette couleur si le volet est fermée
 
 ## Couleur conditionnel
