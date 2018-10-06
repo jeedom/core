@@ -143,10 +143,16 @@ step_7_jeedom_customization() {
 	cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
 	rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
+	echo "Update apache security file"
+	sed -i "s|ErrorLog .*|ErrorLog ${WEBSERVER_HOME}/log/http.error|g" /etc/apache2/conf-available/security.conf > /dev/null 2>&1
+	sed -i "s|<Directory .*>|<Directory ${WEBSERVER_HOME}>|g"  /etc/apache2/conf-available/security.conf > /dev/null 2>&1
 
 	cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
 	rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
 	ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/
+	echo "Update apache site file"
+	sed -i "s|ErrorLog .*|ErrorLog ${WEBSERVER_HOME}/log/http.error|g" /etc/apache2/sites-available/000-default.conf > /dev/null 2>&1
+	sed -i "s|DocumentRoot .*|DocumentRoot ${WEBSERVER_HOME}|g" /etc/apache2/sites-available/000-default.conf > /dev/null 2>&1
 
 	rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
 	rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
