@@ -17,7 +17,7 @@ user::isBan();
 <br/>
 <div id="config">
 	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-	<ul class="nav nav-tabs" role="tablist">
+	<ul class="nav nav-tabs nav-primary" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-key"></i> {{API}}</a></li>
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
@@ -1181,10 +1181,18 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
-			<form class="form-horizontal">
-				<fieldset>
-					<legend>{{Alertes}}</legend>
-					<?php
+
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
+				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Log}}</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="log_alertes">
+					<form class="form-horizontal">
+						<fieldset>
+							<br/>
+							<?php
 foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
@@ -1203,61 +1211,65 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
+	echo '<hr/>';
 }
 ?>
-				</fieldset>
-			</form>
-			<form class="form-horizontal">
-				<fieldset>
-					<legend>{{Log}}</legend>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de log}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select class="configKey form-control" data-l1key="log::engine">
-								<option value="StreamHandler">{{Defaut}}</option>
-								<option value="SyslogHandler">{{Syslog}}</option>
-								<option value="SyslogUdp">{{SyslogUdp}}</option>
-							</select>
-						</div>
-					</div>
-					<div class="logEngine SyslogUdp">
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog UDP}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+						</fieldset>
+					</form>
+				</div>
+
+				<div role="tabpanel" class="tab-pane" id="log_log">
+					<form class="form-horizontal">
+						<fieldset>
+							<br/>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de log}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<select class="configKey form-control" data-l1key="log::engine">
+										<option value="StreamHandler">{{Defaut}}</option>
+										<option value="SyslogHandler">{{Syslog}}</option>
+										<option value="SyslogUdp">{{SyslogUdp}}</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog UDP}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+							<div class="logEngine SyslogUdp">
+								<div class="form-group">
+									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog UDP}}</label>
+									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+										<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog UDP}}</label>
+									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+										<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Format des logs}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="log::formatter" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de log par défaut}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select class="configKey form-control" data-l1key="log::level">
-								<option value="100">{{Debug}}</option>
-								<option value="200">{{Info}}</option>
-								<option value="300">{{Warning}}</option>
-								<option value="400">{{Erreur}}</option>
-							</select>
-						</div>
-					</div>
-					<?php
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Format des logs}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text" class="configKey form-control" data-l1key="log::formatter" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Niveau de log par défaut}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+									<select class="configKey form-control" data-l1key="log::level">
+										<option value="100">{{Debug}}</option>
+										<option value="200">{{Info}}</option>
+										<option value="300">{{Warning}}</option>
+										<option value="400">{{Erreur}}</option>
+									</select>
+								</div>
+							</div>
+							<?php
 
 $other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 foreach ($other_log as $name) {
@@ -1291,8 +1303,10 @@ if (init('rescue', 0) == 0) {
 	}
 }
 ?>
-				</fieldset>
-			</form>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="eqlogictab">
 			<br/>
