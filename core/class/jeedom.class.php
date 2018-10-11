@@ -195,6 +195,14 @@ class jeedom {
 			'comment' => '',
 		);
 
+		$value = self::checkSpaceLeft(self::getTmpFolder());
+		$return[] = array(
+			'name' => __('Espace disque libre tmp', __FILE__),
+			'state' => ($value > 10),
+			'result' => $value . ' %',
+			'comment' => __('Si en erreur essayez de redemarrer, si le probleme se poursuit il faut tester en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
+		);
+
 		$values = getSystemMemInfo();
 		$value = round(($values['MemAvailable'] / $values['MemTotal']) * 100);
 		$return[] = array(
@@ -1165,8 +1173,12 @@ class jeedom {
 		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
-	public static function checkSpaceLeft() {
-		$path = __DIR__ . '/../../';
+	public static function checkSpaceLeft($_dir = null) {
+		if ($_dir == null) {
+			$path = __DIR__ . '/../../';
+		} else {
+			$path = $_dir;
+		}
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 

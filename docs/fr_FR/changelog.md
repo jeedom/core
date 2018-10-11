@@ -24,6 +24,7 @@ Changelog
 -   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 -   Amélioration du support des () dans le calcul d'expressions
 -   Possibilité d'éditer les scénarios en mode text/json
+-   Ajout sur la page santé d'une verification de l'espace libre pour le tmp Jeedom
 
 
 3.2.11
