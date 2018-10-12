@@ -286,6 +286,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
+		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		if ($_nb == null) {
 			$_nb = 0;
 			$lists = self::backup_list();
@@ -296,7 +297,7 @@ class repo_market {
 			}
 			$_nb = ($_nb - 2 < 1) ? 1 : $_nb - 2;
 		}
-		$cmd = system::getCmdSudo();
+		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 1';
