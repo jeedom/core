@@ -1,7 +1,7 @@
 Le centre des messages regroupe tous les messages importants que vous
-devez regarder. Il se retrouve à côté de l’heure en haut a droite.
+devez regarder. Il se trouve à côté de l’heure en haut à droite.
 
-Il n’est accessible que lorsqu’il y a des messages en cliquant sur le
+Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
 nombre de messages.
 
 Il est assez simple. Il vous montre la date et l’heure du message, le
