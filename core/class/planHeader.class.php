@@ -67,6 +67,9 @@ class planHeader {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=plan';
 		$url .= '&plan_id=' . $this->getId();
 		$url .= '&report=1';
+		if (isset($_parameters['arg']) && trim($_parameters['arg']) != '') {
+			$url .= '&' . $_parameters['arg'];
+		}
 		return report::generate($url, 'plan', $this->getId(), $_format, $_parameters);
 	}
 
