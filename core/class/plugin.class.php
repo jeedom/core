@@ -432,6 +432,9 @@ class plugin {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
 		$url .= '&m=' . $this->getId();
 		$url .= '&report=1';
+		if (isset($_parameters['arg'])) {
+			$url .= '&' . $_parameters['arg'];
+		}
 		return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
 	}
 
