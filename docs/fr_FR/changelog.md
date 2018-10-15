@@ -25,6 +25,7 @@ Changelog
 -   Amélioration du support des () dans le calcul d'expressions
 -   Possibilité d'éditer les scénarios en mode text/json
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
+-   Possibilitée d'ajouter des options dans les rapports
 
 
 3.2.11
