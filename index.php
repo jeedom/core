@@ -59,6 +59,24 @@ try {
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
 		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
 			try {
+				$title = 'Jeedom';
+				if (init('m') != '') {
+					try {
+						$plugin = plugin::byId(init('m'));
+						if (is_object($plugin)) {
+							$title = $plugin->getName() . ' - Jeedom';
+						}
+					} catch (Exception $e) {
+
+					} catch (Error $e) {
+
+					}
+				} else if (init('p') != '') {
+					$title = ucfirst(init('p')) . ' - Jeedom';
+				}
+				echo '<script>';
+				echo 'document.title = "' . $title . '"';
+				echo '</script>';
 				include_file('core', 'authentification', 'php');
 				include_file('desktop', init('p'), 'php', init('m'));
 			} catch (Exception $e) {

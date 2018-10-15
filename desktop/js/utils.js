@@ -87,7 +87,7 @@ $('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     var title = getUrlVars('p');
     if(title !== false){
-     document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
+     //document.title = title[0].toUpperCase() + title.slice(1) +' - Jeedom';
  }
  initPage();
  $('body').trigger('jeedom_page_load');
