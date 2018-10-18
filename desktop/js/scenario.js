@@ -288,7 +288,7 @@ $("#bt_stopScenario").off('click').on('click', function () {
 
 $('#bt_editJsonScenario').on('click',function(){
  $('#md_modal').dialog({title: "{{Edition texte scénarios}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.jsonEdit&id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+ $("#md_modal").load('index.php?v=d&modal=scenario.jsonEdit&id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
 $('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').off('click').on('click', function () {
@@ -1029,8 +1029,8 @@ function addExpression(_expression) {
     retour += '</span>';
     retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression).replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
     retour += '<span class="input-group-btn">';
-    retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
     retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';
+    retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
     retour += '</span>';
     retour += '</div></div>';
     var actionOption_id = uniqId();
