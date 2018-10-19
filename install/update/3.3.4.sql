@@ -1,0 +1,1 @@
+Select * from cmd where id=999999
