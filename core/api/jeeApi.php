@@ -1029,6 +1029,6 @@ try {
 	$message = $e->getMessage();
 	$jsonrpc = new jsonrpc(init('request'));
 	$errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
-	log::add('api', 'Error code ' . $errorCode . ' : ' . $message);
+	log::add('api', 'info', 'Error code ' . $errorCode . ' : ' . $message);
 	$jsonrpc->makeError($errorCode, $message);
 }
