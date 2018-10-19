@@ -1340,8 +1340,17 @@ function deleteSession($_id) {
 	@session_write_close();
 }
 
-function unautorizedInDemo() {
-	if ($_SESSION['user']->getLogin() == 'demo') {
+function unautorizedInDemo($_user = null) {
+	if ($_user === null) {
+		if (!isset($_SESSION) || !isset($_SESSION['user'])) {
+			return;
+		}
+		$_user = $_SESSION['user'];
+	}
+	if (!is_object($_user)) {
+		return;
+	}
+	if ($_user->getLogin() == 'demo') {
 		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 	}
 }
