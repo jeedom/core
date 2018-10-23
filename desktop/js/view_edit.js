@@ -435,6 +435,7 @@ function addGraphService(_viewData){
     tr += '<option value="average::month">{{Moyenne par mois}}</option>'
     tr += '<option value="low::month">{{Minimum par mois}}</option>'
     tr += '<option value="high::month">{{Maximum par mois}}</option>'
+     tr += '<option value="sum::year">{{Somme par année}}</option>'
     tr += '<option value="average::year">{{Moyenne par année}}</option>'
     tr += '<option value="low::year">{{Minimum par année}}</option>'
     tr += '<option value="high::year">{{Maximum par année}}</option>'
