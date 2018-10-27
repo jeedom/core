@@ -1,26 +1,26 @@
-Voici une documentation sur les méthodes de l’API. Tout d’abord voici
-les spécifications (JSON RPC 2.0) :
+Das ist eine Dokumentation der API-Methoden. Zuallererst, sind hier die
+(JSON RPC 2.0) Spezifizierungen :
 <http://www.jsonrpc.org/specification>
 
-L’accès à l’API se fait par l’url : *URL\_JEEDOM*/core/api/jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
-Divers 
+Verschiedene
 ======
 
 ping 
 ----
 
-Retourne pong, permet de tester la communication avec Jeedom
+Gib Ping zurück, um die Kommunikation mit Jeedom zu testen
 
-Version 
+version 
 -------
 
-Retourne la version de Jeedom
+Gibt die Jeedom Version zurück
 
 datetime 
 --------
 
-Retourne le datetime de Jeedom en microsecondes
+Gibt das Jeedom-Datum in Mikrosekunden zurück
 
 API config 
 ==========
@@ -28,30 +28,30 @@ API config
 config::byKey 
 -------------
 
-Retourne une valeur de configuration.
+Gibt einen Konfigurationswert zurück.
 
 Parameter :
 
--   string key : clef de la valeur de configuration à retourner
+-   string key : Schlüssel des Konfigurationswerts, der zurückgegeben werden soll
 
--   string plugin : (optionnel), plugin de la valeur de configuration
+-   string plugin : (optional), Plugin Konfigurationswert
 
--   string default : (optionnel), valeur à retourner si la clef n’existe
-    pas
+-   string default : (optional), Rückgabewert, wenn der Schlüssel nicht
+    existiert
 
 config::save 
 ------------
 
-Enregistre une valeur de configuration
+Speichert einen Konfigurationswert
 
 Parameter :
 
--   string value : valeur à enregistrer
+-   string value : Wert zum Speichern
 
--   string key : clef de la valeur de configuration à enregistrer
+-   string key : Schlüssel, des zu speichernden Konfigurationswertes
 
--   string plugin : (optionnel), plugin de la valeur de configuration à
-    enregistrer
+-   string plugin : Plugin, des zu speichernden 
+    Konfigurationswertes
 
 API JSON Event 
 ==============
@@ -59,11 +59,9 @@ API JSON Event
 event::changes 
 --------------
 
-Retourne la liste des changements depuis le datetime passé en paramètre
-(doit être en microsecondes). Vous aurez aussi dans la réponse le
-datetime courant de Jeedom (à réutiliser pour l’interrogation suivante)
+Gibt eine Liste der Änderungen aus, die als Parameter in datetime übergeben wurde, (muss in Mikrosekunden sein). Sie werden in der Antwort auch das aktuelle Jeedom Datum zurück bekommen (um für die nächste Abfrage wiederverwendet zu werden).
 
-Paramètres :
+Parameter :
 
 -   int datetime
 
@@ -73,14 +71,14 @@ API JSON Plugin
 plugin::listPlugin 
 ------------------
 
-Retourne la liste de tous les plugins
+Gibt die Liste aller Plugins zurück
 
-Paramètres :
+Parameter :
 
--   int activateOnly = 0 (ne retourne que la liste des plugins activés)
+-   int activateOnly = 0 (liefert nur die Liste der aktivierten Plugins)
 
--   int orderByCaterogy = 0 (retourne la liste des plugins triés
-    par catégorie)
+-   int orderByCaterogy = 0 (liefert die Liste der Plugins nach 
+    Kategorie geordnet)
 
 API JSON Objet 
 ==============
@@ -88,14 +86,14 @@ API JSON Objet
 object::all 
 -----------
 
-Retourne la liste de tous les objets
+Gibt die Liste aller Objekte zurück 
 
 object::full 
 ------------
 
-Retourne la liste de tous les objets, avec pour chaque objet tous ses
-équipements et pour chaque équipement toutes ses commandes ainsi que les
-états de celles-ci (pour les commandes de type info)
+Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle
+Befehle von jedem Gerät, sowie die Zustände von diesem
+(für Befehle des Info Typs)
 
 object::fullById 
 ----------------
@@ -104,7 +102,7 @@ Retourne un objet avec tous ses équipements et pour chaque équipement
 toutes ses commandes ainsi que les états de celles-ci (pour les
 commandes de type info)
 
-Paramètres :
+Parameter :
 
 -   int id
 
@@ -113,7 +111,7 @@ object::byId
 
 Retourne l’objet spécifié
 
-Paramètres:
+Parameter :
 
 -   int id
 
