@@ -221,7 +221,7 @@ class plugin {
 				if ($heartbeat == 0 || is_nan($heartbeat)) {
 					continue;
 				}
-				$eqLogics = eqLogic::byType($plugin->getId());
+				$eqLogics = eqLogic::byType($plugin->getId(), true);
 				if (count($eqLogics) == 0) {
 					continue;
 				}
