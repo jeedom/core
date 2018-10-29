@@ -302,13 +302,13 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
-	$cron = cron::byClassAndFunction('plugin', 'hearbeat');
+	$cron = cron::byClassAndFunction('plugin', 'heartbeat');
 	if (!is_object($cron)) {
-		echo "Create plugin::hearbeat\n";
+		echo "Create plugin::heartbeat\n";
 		$cron = new cron();
 	}
 	$cron->setClass('plugin');
-	$cron->setFunction('hearbeat');
+	$cron->setFunction('heartbeat');
 	$cron->setSchedule('*/5 * * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
