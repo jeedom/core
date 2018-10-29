@@ -26,6 +26,7 @@ Changelog
 -   Possibilité d'éditer les scénarios en mode text/json
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
 -   Possibilitée d'ajouter des options dans les rapports
+-   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 
 
 3.2.11

@@ -302,6 +302,19 @@ try {
 	$cron->setDeamon(0);
 	$cron->save();
 
+	$cron = cron::byClassAndFunction('plugin', 'hearbeat');
+	if (!is_object($cron)) {
+		echo "Create plugin::hearbeat\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('hearbeat');
+	$cron->setSchedule('*/5 * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
+	$cron->save();
+
 	if (!file_exists(__DIR__ . '/../plugins')) {
 		mkdir(__DIR__ . '/../plugins');
 	}

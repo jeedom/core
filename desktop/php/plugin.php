@@ -120,7 +120,7 @@ foreach (plugin::listPlugin() as $plugin) {
 </div>
 <div class="col-md-6 col-sm-12">
   <div class="panel panel-primary" id="div_configLog">
-    <div class="panel-heading"><h3 class="panel-title"><i class="far fa-file"></i> {{Log}}
+    <div class="panel-heading"><h3 class="panel-title"><i class="far fa-file"></i> {{Log et surveillance}}
       <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
     </h3></div>
     <div class="panel-body">

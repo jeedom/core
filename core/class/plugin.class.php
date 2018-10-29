@@ -214,6 +214,39 @@ class plugin {
 		return ($al > $bl) ? +1 : -1;
 	}
 
+	public static function hearbeat() {
+		foreach (self::listPlugin(true) as $plugin) {
+			try {
+				$heartbeat = config::byKey('heartbeat::delay::' . $plugin->getId(), 'core', 0);
+				if ($heartbeat == 0 || is_nan($heartbeat)) {
+					continue;
+				}
+				$eqLogics = eqLogic::byType($plugin->getId());
+				if (count($eqLogics) == 0) {
+					continue;
+				}
+				$ok = false;
+				foreach ($eqLogics as $eqLogic) {
+					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $heartbeat . ' minutes' . date('Y-m-d H:i:s')))) {
+						$ok = true;
+						break;
+					}
+				}
+				if (!$ok) {
+					$message = __('Attention le plugin ', __FILE__) . ' ' . $plugin->getName();
+					$message .= __(' n\'a recu de message depuis ', __FILE__) . $heartbeat . __(' min', __FILE__);
+					$logicalId = 'heartbeat' . $plugin->getId();
+					message::add($plugin->getId(), $message, '', $logicalId);
+					if ($plugin->getHasOwnDeamon() && config::byKey('heartbeat::restartDeamon::' . $plugin->getId(), 'core', 0) == 1) {
+						$plugin->deamon_start(true);
+					}
+				}
+			} catch (Exception $e) {
+
+			}
+		}
+	}
+
 	public static function cron() {
 		$cache = cache::byKey('plugin::cron::inprogress');
 		if ($cache->getValue(0) > 3) {
