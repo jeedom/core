@@ -214,7 +214,7 @@ class plugin {
 		return ($al > $bl) ? +1 : -1;
 	}
 
-	public static function hearbeat() {
+	public static function heartbeat() {
 		foreach (self::listPlugin(true) as $plugin) {
 			try {
 				$heartbeat = config::byKey('heartbeat::delay::' . $plugin->getId(), 'core', 0);
