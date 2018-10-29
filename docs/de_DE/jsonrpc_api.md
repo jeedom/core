@@ -53,7 +53,7 @@ Parameter :
 -   string plugin : Plugin, des zu speichernden 
     Konfigurationswertes
 
-API JSON Event 
+JSON API Event 
 ==============
 
 event::changes 
@@ -65,7 +65,7 @@ Parameter :
 
 -   int datetime
 
-API JSON Plugin 
+JSON API Plugin 
 ===============
 
 plugin::listPlugin 
@@ -80,7 +80,7 @@ Parameter :
 -   int orderByCaterogy = 0 (liefert die Liste der Plugins nach 
     Kategorie geordnet)
 
-API JSON Objet 
+JSON API  Object 
 ==============
 
 object::all 
@@ -93,14 +93,13 @@ object::full
 
 Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle
 Befehle von jedem Gerät, sowie die Zustände von diesem
-(für Befehle des Info Typs)
+(für Befehle des Typs Info)
 
 object::fullById 
 ----------------
 
-Retourne un objet avec tous ses équipements et pour chaque équipement
-toutes ses commandes ainsi que les états de celles-ci (pour les
-commandes de type info)
+Gibt ein Objekt mit allen seinen Geräten und für jedes Gerät alle seine
+Befehle sowie deren Zustände zurück (für Befehle des Typs Info)
 
 Parameter :
 
@@ -109,7 +108,7 @@ Parameter :
 object::byId 
 ------------
 
-Retourne l’objet spécifié
+Gibt das angegebenen Objekt zurück
 
 Parameter :
 
@@ -118,18 +117,17 @@ Parameter :
 object::fullById 
 ----------------
 
-Retourne un objet, ses équipements et pour chaque équipement toutes ses
-commandes ainsi que les états de cellse-ci (pour les commandes de type
-info)
+Gibt ein Objekt, seine Ausrüstung und für jedes Gerät alle seine Befehle
+sowie die Zustände dieses Objekts zurück (für Befehle des Typs Info)
 
 object::save 
 ------------
 
-Retourne l’objet spécifié
+Gibt das angegebenen Objekt zurück
 
-Paramètres:
+Parameter :
 
--   int id (vide si c’est une création)
+-   int id (leer, wenn es geschaffen wurde)
 
 -   string name
 
@@ -143,90 +141,89 @@ Paramètres:
 
 -   array display
 
-API JSON Summary 
+JSON API Summary 
 ================
 
 summary::global 
 ---------------
 
-Retour le résumé global pour la clef passée en paramètre
+Gibt eine gesamt Zusammenfassung der Parameter des übergebenen Schlüssels zurück
 
-Paramètres:
+Parameter :
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
-    vous renvoi le résumé pour toute les clefs
+-   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann gibt Jeedom
+    die Zusammenfassung für alle Schlüssel zurück
 
 summary::byId 
 -------------
 
-Retourne le résumé pour l’objet id
+Gibt die Zusammenfassung für das ID-Objekt zurück
 
-Paramètres:
+Parameter :
 
--   int id : id de l’objet
+-   int id : ID vom Objekt
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
-    vous renvoi le résumé pour toute les clefs
+-   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer dann Jeedom
+    die Zusammenfassung für alle Schlüssel zurück
 
-API JSON EqLogic 
+JSON API EqLogic 
 ================
 
 eqLogic::all 
 ------------
 
-Retourne la liste de tous les équipements
+Gibt die Liste aller Geräte zurück
 
 eqLogic::fullById 
 -----------------
 
-Retourne un équipement et ses commandes ainsi que les états de celles-ci
-(pour les commandes de type info)
+Gibt ein Gerät sowie dessen Befehle und die Zustände zurück
+(für Befehle des Typs Info)
 
-Paramètres:
+Parameter :
 
 -   int id
 
 eqLogic::byId 
 -------------
 
-Retourne l’équipement spécifié
+Liefert das angegebene Gerät zurück
 
-Paramètres:
+Parameter :
 
 -   int id
 
 eqLogic::byType 
 ---------------
 
-Retourne tous les équipements appartenant au type (plugin) spécifié
+Gibt alle Geräte zurück, die zum angegebenen Typ (Plugin) gehören
 
-Paramètres:
+Parameter :
 
 -   string type
 
 eqLogic::byObjectId 
 -------------------
 
-Retourne tous les équipements appartenant à l’objet spécifié
+Gibt alle zum angegebenen Objekt gehörenden Geräte zurück
 
-Paramètres:
+Parameter :
 
 -   int object\_id
 
 eqLogic::byTypeAndId 
 --------------------
 
-Renvoi un tableau d’équipement en fonction des paramètres. Le retour
-sera de la forme array('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
+Giebt eine Tabelle von Geräten gemäß den Parametern zurück. Die Rückgabe erfolgt in Form von Arrays ('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
 array(…​.)),'eqType2' ⇒array( 'id'⇒…​,'cmds' ⇒ array(…​.))…​.,id1 ⇒
 array( 'id'⇒…​,'cmds' ⇒ array(…​.)),id2 ⇒ array( 'id'⇒…​,'cmds' ⇒
 array(…​.))..)
 
-Paramètres:
+Parameter :
 
--   string\[\] eqType = tableau des types d’équipements voulus
+-   string\[\] eqType = Tabelle der gewünschten Gerätetypen
 
--   int\[\] id = tableau des ID d’équipements personnalisés voulus
+-   int\[\] id = benutzerdefinierte Tabelle der gewünschten Geräte-IDs
 
 eqLogic::save 
 -------------
