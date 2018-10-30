@@ -27,6 +27,7 @@ Changelog
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
 -   Possibilitée d'ajouter des options dans les rapports
 -   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
+-   Ajout des listeners sur la page de moteur de tâche
 
 
 3.2.11

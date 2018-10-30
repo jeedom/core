@@ -10,6 +10,8 @@ demande du support technique.
 Pour y accéder il faut aller dans **Administration → Moteur de tâches**
 :
 
+# Cron
+
 En haut, à droite, vous avez :
 
 -   **Désactiver le système cron** : un bouton pour désactiver ou
@@ -70,3 +72,6 @@ page). Dans ce tableau on retrouve :
 -   **Suppression** : permet de supprimer la tâche
 
 
+# Listener
+
+Les listeners sont juste visible en lecture et permettent de voir les fonctions appellées sur un évenement (mise à jour d'une commande...)
