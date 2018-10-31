@@ -63,10 +63,21 @@ class system {
 	}
 
 	public static function get($_key = '') {
-		if (!isset(self::$_command[self::getDistrib()][$_key])) {
-			return '';
+		$return = '';
+		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
+			$return = self::$_command[self::getDistrib()][$_key];
 		}
-		return self::$_command[self::getDistrib()][$_key];
+		if ($return == '') {
+			if ($_key == 'www-uid') {
+				$processUser = posix_getpwuid(posix_geteuid());
+				$return = $processUser['name'];
+			}
+			if ($_key == 'www-gid') {
+				$processGroup = posix_getgrgid(posix_getegid());
+				$return = $processGroup['name'];
+			}
+		}
+		return $return;
 	}
 
 	public static function getCmdSudo() {

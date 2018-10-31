@@ -1159,18 +1159,11 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$processUser = system::get('www-uid');
-		$processGroup = system::get('www-gid');
-		if ($processUser == '') {
-			$processUser = posix_getpwuid(posix_geteuid());
-			$processUser = $processUser['name'];
-		}
-		if ($processGroup == '') {
-			$processGroup = posix_getgrgid(posix_getegid());
-			$processGroup = $processGroup['name'];
-		}
-		$path = __DIR__ . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;' . system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +');
+		$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
+		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../*;';
+		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +';
+		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;';
+		exec($cmd);
 	}
 
 	public static function checkSpaceLeft($_dir = null) {
@@ -1188,7 +1181,9 @@ class jeedom {
 			$return .= '/' . $_plugin;
 		}
 		if (!file_exists($return)) {
-			mkdir($return, 0777, true);
+			mkdir($return, 0774, true);
+			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
+			com_shell::execute($cmd);
 		}
 		return $return;
 	}
