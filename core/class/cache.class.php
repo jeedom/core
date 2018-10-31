@@ -178,7 +178,7 @@ class cache {
 				return;
 		}
 		try {
-			com_shell::execute('rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 775 ' . __DIR__ . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
+			com_shell::execute('rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;chmod 774 ' . __DIR__ . '/../../cache.tar.gz;chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;chmod 777 -R ' . $cache_dir . ' 2>&1 > /dev/null');
 		} catch (Exception $e) {
 
 		}

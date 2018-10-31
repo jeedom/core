@@ -1170,7 +1170,7 @@ class jeedom {
 			$processGroup = $processGroup['name'];
 		}
 		$path = __DIR__ . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;' . system::getCmdSudo() . 'chmod 666 -R ' . __DIR__ . '/../../log/*');
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;' . system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +');
 	}
 
 	public static function checkSpaceLeft($_dir = null) {
