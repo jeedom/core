@@ -154,7 +154,7 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		@chown($_path, system::get('www-uid'));
 		@chgrp($_path, system::get('www-gid'));
 		if (filesize($_path) > (1024 * 1024 * 10)) {
@@ -188,7 +188,7 @@ class log {
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . '> /dev/null 2>&1;cat /dev/null > ' . $path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . '> /dev/null 2>&1;cat /dev/null > ' . $path);
 			return true;
 		}
 		return;
@@ -204,7 +204,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1; rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1; rm ' . $path . ' 2>&1 > /dev/null');
 			return true;
 		}
 	}

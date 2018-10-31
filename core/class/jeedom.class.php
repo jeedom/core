@@ -35,7 +35,7 @@ class jeedom {
 		if (!file_exists($path)) {
 			return array();
 		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
+		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
 		$lines = explode("\n", trim(file_get_contents($path)));
 		$result = array();
 		foreach ($lines as $line) {
@@ -46,7 +46,7 @@ class jeedom {
 
 	public static function removeTimelineEvent() {
 		$path = __DIR__ . '/../../data/timeline.json';
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
 		unlink($path);
 	}
 
@@ -1170,7 +1170,7 @@ class jeedom {
 			$processGroup = $processGroup['name'];
 		}
 		$path = __DIR__ . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . $path . ';' . system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;' . system::getCmdSudo() . 'chmod 666 -R ' . __DIR__ . '/../../log/*');
 	}
 
 	public static function checkSpaceLeft($_dir = null) {
