@@ -1583,9 +1583,9 @@ class eqLogic {
 	public function setIsEnable($_isEnable) {
 		if ($this->isEnable != $_isEnable) {
 			$this->_needRefreshWidget = true;
-		}
-		if ($_isEnable) {
-			$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+			if ($_isEnable) {
+				$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+			}
 		}
 		$this->isEnable = $_isEnable;
 		return $this;
