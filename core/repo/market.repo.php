@@ -389,49 +389,49 @@ class repo_market {
 			if (file_exists('/etc/debian_version')) {
 				$deb_version = file_get_contents('/etc/debian_version');
 				if (version_compare($deb_version, '9', '>=')) {
-					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
 				} else {
-					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
 				}
 			}
 		}
-		shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
-		shell_exec('sudo apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
+		shell_exec(system::getCmdSudo() . ' apt-get update  >> ' . $logfile . ' 2>&1');
+		shell_exec(system::getCmdSudo() . ' apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
 	}
 
 	public static function monitoring_start() {
-		preg_match_all('/(\d\.\d\.\d)/m', shell_exec('sudo zabbix_agentd -V'), $matches);
+		preg_match_all('/(\d\.\d\.\d)/m', shell_exec(system::getCmdSudo() . ' zabbix_agentd -V'), $matches);
 		self::monitoring_install();
-		$cmd = "sudo chmod -R 777 /etc/zabbix;";
-		$cmd .= "sudo sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= "sudo sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= "sudo sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= "sudo sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= "sudo sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= "sudo sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= 'sudo echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-		$cmd .= 'sudo echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd = system::getCmdSudo() . " chmod -R 777 /etc/zabbix;";
+		$cmd .= system::getCmdSudo() . " sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . " sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . " sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . " sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= system::getCmdSudo() . ' echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= system::getCmdSudo() . ' echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
 		if (!isset($matches[0]) || !isset($matches[0][0]) || version_compare($matches[0][0], '3.0.0') >= 0) {
-			$cmd .= 'sudo echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= 'sudo echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= 'sudo echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= 'sudo echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= 'sudo echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
+			$cmd .= system::getCmdSudo() . ' echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= system::getCmdSudo() . ' echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= system::getCmdSudo() . ' echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= system::getCmdSudo() . ' echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= system::getCmdSudo() . ' echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
 		}
 		if (!file_exists('/var/log/zabbix')) {
-			$cmd .= 'sudo mkdir /var/log/zabbix;';
+			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix;';
 		}
-		$cmd .= 'sudo chmod 777 -R /var/log/zabbix;';
+		$cmd .= system::getCmdSudo() . ' chmod 777 -R /var/log/zabbix;';
 		if (!file_exists('/var/log/zabbix-agent')) {
-			$cmd .= 'sudo mkdir /var/log/zabbix-agent;';
+			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix-agent;';
 		}
-		$cmd .= 'sudo chmod 777 -R /var/log/zabbix-agent;';
+		$cmd .= system::getCmdSudo() . ' chmod 777 -R /var/log/zabbix-agent;';
 		if (!file_exists('/etc/zabbix/zabbix_agentd.conf.d')) {
-			$cmd .= 'sudo mkdir /etc/zabbix/zabbix_agentd.conf.d;';
-			$cmd .= 'sudo chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
+			$cmd .= system::getCmdSudo() . ' mkdir /etc/zabbix/zabbix_agentd.conf.d;';
+			$cmd .= system::getCmdSudo() . ' chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
 		}
-		$cmd .= 'sudo systemctl restart zabbix-agent;';
-		$cmd .= 'sudo systemctl enable zabbix-agent;';
+		$cmd .= system::getCmdSudo() . ' systemctl restart zabbix-agent;';
+		$cmd .= system::getCmdSudo() . ' systemctl enable zabbix-agent;';
 		shell_exec($cmd);
 	}
 
@@ -440,8 +440,8 @@ class repo_market {
 	}
 
 	public static function monitoring_stop() {
-		$cmd = 'sudo systemctl stop zabbix-agent;';
-		$cmd .= 'sudo systemctl disable zabbix-agent;';
+		$cmd = system::getCmdSudo() . ' systemctl stop zabbix-agent;';
+		$cmd .= system::getCmdSudo() . ' systemctl disable zabbix-agent;';
 		shell_exec($cmd);
 	}
 
