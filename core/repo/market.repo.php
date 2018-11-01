@@ -420,8 +420,12 @@ class repo_market {
 		}
 		if (!file_exists('/var/log/zabbix')) {
 			$cmd .= 'sudo mkdir /var/log/zabbix;';
-			$cmd .= 'sudo chmod 777 -R /var/log/zabbix;';
 		}
+		$cmd .= 'sudo chmod 777 -R /var/log/zabbix;';
+		if (!file_exists('/var/log/zabbix-agent')) {
+			$cmd .= 'sudo mkdir /var/log/zabbix-agent;';
+		}
+		$cmd .= 'sudo chmod 777 -R /var/log/zabbix-agent;';
 		if (!file_exists('/etc/zabbix/zabbix_agentd.conf.d')) {
 			$cmd .= 'sudo mkdir /etc/zabbix/zabbix_agentd.conf.d;';
 			$cmd .= 'sudo chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
