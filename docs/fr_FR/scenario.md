@@ -706,7 +706,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
     Attention si votre accès Internet est en HTTPS non-signé, cette
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
--   **Supprimer bloc DANS/A programmé** (remove_intat) : Permet de supprimer la
+-   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
 Template de scénario 
