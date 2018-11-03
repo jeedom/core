@@ -253,8 +253,8 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
    for(var i in  data.logs){
      log_conf = '<form class="form-horizontal">';
      log_conf += '<div class="form-group">';
-     log_conf += '<label class="col-sm-2 control-label">{{Niveau de log local}}</label>';
-     log_conf += '<div class="col-sm-6">';
+     log_conf += '<label class="col-sm-3 control-label">{{Niveau log}}</label>';
+     log_conf += '<div class="col-sm-9">';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="1000" /> {{Aucun}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="default" /> {{Defaut}}</label>';
      log_conf += '<label class="radio-inline"><input type="radio" name="rd_logupdate' + data.id + '" class="configKey" data-l1key="log::level::' + data.id + '" data-l2key="100" /> {{Debug}}</label>';
@@ -264,15 +264,31 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
      log_conf += '</div>';
      log_conf += '</div>';
      log_conf += '<div class="form-group">';
-     log_conf += '<label class="col-sm-2 control-label">{{Logs}}</label>';
-     log_conf += '<div class="col-sm-10">';
+     log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>';
+     log_conf += '<div class="col-sm-9">';
      for(j in data.logs[i].log){
       log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="'+data.logs[i].id+'" data-log="'+data.logs[i].log[j]+'"><i class="fas fa-paperclip"></i>  '+data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1)+'</a> ';
     }
     log_conf += '</div>';
     log_conf += '</div>';
+    log_conf += '</form>';
   }
+
+  log_conf += '<form class="form-horizontal">';
+  log_conf += '<div class="form-group">';
+  log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>';
+  log_conf += '<div class="col-sm-2">';
+  log_conf += '<input class="configKey form-control" data-l1key="heartbeat::delay::' + data.id + '" />';
+  log_conf += '</div>';
+  if(data.hasOwnDeamon){
+    log_conf += '<label class="col-sm-3 control-label">{{Redemarrer démon}}</label>';
+    log_conf += '<div class="col-sm-2">';
+    log_conf += '<input type="checkbox" class="configKey" data-l1key="heartbeat::restartDeamon::' + data.id + '" />';
+    log_conf += '</div>';
+  }
+  log_conf += '</div>';
   log_conf += '</form>';
+
   $('#div_plugin_log').empty().append(log_conf);
   $('#div_plugin_configuration').empty();
   if (data.checkVersion != -1) {

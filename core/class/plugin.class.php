@@ -214,6 +214,39 @@ class plugin {
 		return ($al > $bl) ? +1 : -1;
 	}
 
+	public static function heartbeat() {
+		foreach (self::listPlugin(true) as $plugin) {
+			try {
+				$heartbeat = config::byKey('heartbeat::delay::' . $plugin->getId(), 'core', 0);
+				if ($heartbeat == 0 || is_nan($heartbeat)) {
+					continue;
+				}
+				$eqLogics = eqLogic::byType($plugin->getId(), true);
+				if (count($eqLogics) == 0) {
+					continue;
+				}
+				$ok = false;
+				foreach ($eqLogics as $eqLogic) {
+					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $heartbeat . ' minutes' . date('Y-m-d H:i:s')))) {
+						$ok = true;
+						break;
+					}
+				}
+				if (!$ok) {
+					$message = __('Attention le plugin ', __FILE__) . ' ' . $plugin->getName();
+					$message .= __(' n\'a recu de message depuis ', __FILE__) . $heartbeat . __(' min', __FILE__);
+					$logicalId = 'heartbeat' . $plugin->getId();
+					message::add($plugin->getId(), $message, '', $logicalId);
+					if ($plugin->getHasOwnDeamon() && config::byKey('heartbeat::restartDeamon::' . $plugin->getId(), 'core', 0) == 1) {
+						$plugin->deamon_start(true);
+					}
+				}
+			} catch (Exception $e) {
+
+			}
+		}
+	}
+
 	public static function cron() {
 		$cache = cache::byKey('plugin::cron::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -432,6 +465,9 @@ class plugin {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
 		$url .= '&m=' . $this->getId();
 		$url .= '&report=1';
+		if (isset($_parameters['arg']) && trim($_parameters['arg']) != '') {
+			$url .= '&' . $_parameters['arg'];
+		}
 		return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
 	}
 
@@ -627,6 +663,9 @@ class plugin {
 		try {
 			if ($this->getHasOwnDeamon() == 1 && method_exists($plugin_id, 'deamon_info')) {
 				$deamon_info = $this->deamon_info();
+				if ($deamon_info['state'] == 'ok' && config::byKey('deamonRestartNumber', $plugin_id, 0) != 0) {
+					config::save('deamonRestartNumber', 0, $plugin_id);
+				}
 				if ($_auto && $deamon_info['auto'] == 0) {
 					return;
 				}
@@ -636,6 +675,12 @@ class plugin {
 					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now') - 60;
 					if (abs(strtotime('now') - $info['datetime']) < 45) {
 						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ', __FILE__) . date("Y-m-d H:i:s", $info['datetime']));
+					}
+					if (config::byKey('deamonRestartNumber', $plugin_id, 0) > 3) {
+						log::add($plugin_id, 'error', __('Attention je pense qu\'il y a un soucis avec le démon que j\'ai relancé plus de 3 fois consecutivement', __FILE__));
+					}
+					if (!$_forceRestart) {
+						config::save('deamonRestartNumber', config::byKey('deamonRestartNumber', $plugin_id, 0) + 1, $plugin_id);
 					}
 					cache::set('deamonStart' . $this->getId() . 'inprogress', array('datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);

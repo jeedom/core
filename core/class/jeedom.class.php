@@ -35,7 +35,7 @@ class jeedom {
 		if (!file_exists($path)) {
 			return array();
 		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
+		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
 		$lines = explode("\n", trim(file_get_contents($path)));
 		$result = array();
 		foreach ($lines as $line) {
@@ -46,7 +46,7 @@ class jeedom {
 
 	public static function removeTimelineEvent() {
 		$path = __DIR__ . '/../../data/timeline.json';
-		com_shell::execute(system::getCmdSudo() . 'chmod 777 ' . $path . ' > /dev/null 2>&1;');
+		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
 		unlink($path);
 	}
 
@@ -193,6 +193,14 @@ class jeedom {
 			'state' => ($value > 10),
 			'result' => $value . ' %',
 			'comment' => '',
+		);
+
+		$value = self::checkSpaceLeft(self::getTmpFolder());
+		$return[] = array(
+			'name' => __('Espace disque libre tmp', __FILE__),
+			'state' => ($value > 10),
+			'result' => $value . ' %',
+			'comment' => __('Si en erreur essayez de redemarrer, si le probleme se poursuit il faut tester en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
 		);
 
 		$values = getSystemMemInfo();
@@ -1151,22 +1159,19 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$processUser = system::get('www-uid');
-		$processGroup = system::get('www-gid');
-		if ($processUser == '') {
-			$processUser = posix_getpwuid(posix_geteuid());
-			$processUser = $processUser['name'];
-		}
-		if ($processGroup == '') {
-			$processGroup = posix_getgrgid(posix_getegid());
-			$processGroup = $processGroup['name'];
-		}
-		$path = __DIR__ . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
+		$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
+		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../*;';
+		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +';
+		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;';
+		exec($cmd);
 	}
 
-	public static function checkSpaceLeft() {
-		$path = __DIR__ . '/../../';
+	public static function checkSpaceLeft($_dir = null) {
+		if ($_dir == null) {
+			$path = __DIR__ . '/../../';
+		} else {
+			$path = $_dir;
+		}
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 
@@ -1176,7 +1181,9 @@ class jeedom {
 			$return .= '/' . $_plugin;
 		}
 		if (!file_exists($return)) {
-			mkdir($return, 0777, true);
+			mkdir($return, 0774, true);
+			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
+			com_shell::execute($cmd);
 		}
 		return $return;
 	}

@@ -133,7 +133,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<tbody>
 							<?php
 foreach ($eqLogic->getCmd() as $cmd) {
-	echo '<tr>';
+	echo '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
 	echo '<td>' . $cmd->getHumanName() . '</td>';
 	echo '<td>';
 	echo '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
@@ -704,6 +704,11 @@ for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
 										});
 
 										$('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function () {
+											$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+											$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
+										});
+
+										$('.advanceCmdConfigurationCmdConfigure').off('dblclick').on('dblclick', function () {
 											$('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
 											$('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
 										});

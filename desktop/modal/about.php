@@ -6,43 +6,43 @@ if (!isConnect()) {
 <div class="row">
   <div class="col-lg-2">
     <h3>{{Auteur(s)}}</h3>
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-2">
     <h3>{{Développeurs principaux}}</h3>
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
       <li>Ludovic</li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-2">
     <h3>{{Traducteur(s)}}</h3>
-    <lu>
+    <ul>
       <li>All amazing people who help us on <a class="cursor" href="https://www.transifex.com/jeedom/public/" style="color:blue;" target="_blank">Transifex</a></li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-2">
     <h3>{{Designer}}</h3>
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://jeedom.com/" style="color:blue;" target="_blank">Loïc</a></li>
       <li>Marie</li>
       <li><a class="cursor" href="http://ma-maison-domotique.blogspot.com/" style="color:blue;" target="_blank">Mathieu (alias Algeroth)</a></li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-2">
     <h3>{{Beta-testeur(s)}}</h3>
-    <lu>
+    <ul>
       <li>Awesome people</li>
-    </lu>
+    </ul>
   </div>
 </div>
 
 <h3>{{Remerciements}}</h3>
 <div class="row">
   <div class="col-lg-4">
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://bootboxjs.com/" style="color:blue;" target="_blank">bootbox</a></li>
       <li><a class="cursor" href="http://getbootstrap.com/" style="color:blue;" target="_blank">bootstrap</a></li>
       <li><a class="cursor" href="http://codemirror.net/" style="color:blue;" target="_blank">codemirror</a></li>
@@ -51,25 +51,25 @@ if (!isConnect()) {
       <li><a class="cursor" href="http://www.highcharts.com/" style="color:blue;" target="_blank">hightstock</a></li>
       <li><a class="cursor" href="http://jquery.com/" style="color:blue;" target="_blank">jquery</a></li>
       <li>jquery.alert - Loïc</li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-4">
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://www.abeautifulsite.net/blog/2008/03/jquery-file-tree/" style="color:blue;" target="_blank">jquery.fileTree</a></li>
       <li>jquery.loading - Loïc</li>
       <li><a class="cursor" href="http://jquerymobile.com/" style="color:blue;" target="_blank">jquery.mobile</a></li>
       <li><a class="cursor" href="https://github.com/tactivos/jquery-sew" style="color:blue;" target="_blank">jquery.sew</a></li>
-    </lu>
+    </ul>
   </div>
   <div class="col-lg-4">
-    <lu>
+    <ul>
       <li><a class="cursor" href="http://tablesorter.com/docs/" style="color:blue;" target="_blank">jquery.tablesorter</a></li>
       <li><a class="cursor" href="http://www.jstree.com/" style="color:blue;" target="_blank">jquery.tree</a></li>
       <li><a class="cursor" href="http://jqueryui.com/" style="color:blue;" target="_blank">jquery.ui</a></li>
       <li>jquery.value - Loïc</li>
       <li><a class="cursor" href="http://phpjs.org/" style="color:blue;" target="_blank">php.js</a></li>
       <li><a class="cursor" href="https://github.com/PHPMailer/PHPMailer" style="color:blue;" target="_blank">PHPMailer</a></li>
-    </lu>
+    </ul>
   </div>
 </div>
 

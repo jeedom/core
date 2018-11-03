@@ -43,3 +43,4 @@ include_file('core', 'dataStore', 'class.js');
 include_file('core', 'cache', 'class.js');
 include_file('core', 'report', 'class.js');
 include_file('core', 'note', 'class.js');
+include_file('core', 'listener', 'class.js');

@@ -455,7 +455,9 @@ var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
 for(var i in plotband){
    jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
 }
-
+jeedom.history.chart[_params.el].chart.xAxis[0].update({
+    max: extremes.max
+}); 
 $.hideLoading();
 if (typeof (init(_params.success)) == 'function') {
     _params.success(data.result);
