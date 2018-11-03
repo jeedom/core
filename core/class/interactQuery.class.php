@@ -104,7 +104,7 @@ class interactQuery {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function recognize($_query) {
+		public static function recognize($_query) {
 		$_query = interactDef::sanitizeQuery($_query);
 		if (trim($_query) == '') {
 			return null;
@@ -117,6 +117,11 @@ class interactQuery {
 		WHERE LOWER(query)=LOWER(:query)';
 		$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		if (is_object($query)) {
+			$interactDef = $query->getInteractDef();
+			if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
+				log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+				return null;
+			}
 			log::add('interact', 'debug', 'Je prends : ' . $query->getQuery());
 			return $query;
 		}
@@ -130,8 +135,13 @@ class interactQuery {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM interactQuery
 			WHERE query=:query';
-			$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-			if (is_object($queries)) {
+			$query = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			if (is_object($query)) {
+				$interactDef = $query->getInteractDef();
+				if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
+					log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+					return null;
+				}
 				return $queries;
 			}
 			$queries = self::all();
@@ -194,7 +204,7 @@ class interactQuery {
 		}
 		$interactDef = $closest->getInteractDef();
 		if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
-			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $closest->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 			return null;
 		}
 		log::add('interact', 'debug', __('J\'ai une correspondance  : ', __FILE__) . $closest->getQuery() . __(' avec ', __FILE__) . $shortest);
