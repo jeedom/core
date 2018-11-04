@@ -8,62 +8,68 @@ Es informiert über alle auf dem Server laufenden Jeedom-Anwendungsaufgaben. Die
 Um dorthin zu gelangen muss man auf **Einstellungen → Task Engine**
 gehen :
 
-Oben rechts haben Sie :
+# Cron
 
--   **Cron-System deaktivieren** : eine Schaltfläche zum Deaktivieren oder 
-    Reaktivieren aller Aufgaben (wenn Sie sie alle deaktivieren, wird 
-    nichts auf Ihrem Jeedom funktionieren)
+En haut, à droite, vous avez :
 
--   **Aktualisieren** : eine Schaltfläche zum Aktualisieren der Task-Tabelle
+-   **Désactiver le système cron** : un bouton pour désactiver ou
+    réactiver toutes les tâches (si vous les désactivez toutes, plus
+    rien ne sera fonctionnel sur votre Jeedom)
 
--   **Hinzufügen** : eine Schaltfläche zum Hinzufügen eines Cron-Jobs
+-   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
 
--   **Speichern** : eine Schaltfläche zum Speichern Ihrer Änderungen.
+-   **Ajouter** : un bouton pour ajouter une tâche cron
 
-Im Folgenden finden Sie die Tabelle aller vorhandenen Aufgaben
-(Achtung, einige Tasks können Unter-Tasks starten, es wird daher dringend empfohlen, dass Sie niemals Informationen auf dieser Seite 
-ändern). Diese Tabelle enthält :
+-   **Enregistrer** : un bouton pour enregistrer vos modifications.
 
--   **\#** : die Task ID, kann nützlich sein, um die Verbindung zwischen einem
-    laufenden Prozess herzustellen und was er wirklich macht
+En-dessous vous avez le tableau de toutes les tâches existantes
+(attention certaines tâches peuvent lancer des sous-tâches, il est donc
+vivement recommandé de ne jamais modifier d’informations sur cette
+page). Dans ce tableau on retrouve :
 
--   **Aktion** : eine Schaltfläche zum Starten oder Stoppen eines Tasks 
+-   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
+    processus qui tourne et ce qu’il fait vraiment
+
+-   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
     de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
--   **Aktiv** : zeigt an ob der Task aktiv ist (kann durch Jeedom
-    gestartet werden) oder nicht
+-   **Actif** : indique si la tâche est active (peut être lancée
+    par Jeedom) ou non
 
--   **PID** : zeigt die aktuelle Prozess-ID
+-   **PID** : indique le process ID actuel
 
--   **Daemon** : wenn dieses Feld "Ja" ist, sollte die Aufgabe immer
-    laufen. Daneben finden Sie die Frequenz des Dämons wieder, es wird 
-    empfohlen, diesen Wert niemals zu ändern und vor allem, ihn niemals
-    zu verringern
+-   **Démon** : si cette case est à "oui" alors la tâche doit toujours
+    être en cours. A coté vous retrouvez la fréquence du démon, il est
+    conseillé de ne jamais toucher cette valeur et surtout de ne jamais
+    la diminuer
 
--   **Unique** : Wenn es "Ja" ist, wird der Task einmal ausgeführt und 
-    dann selbst gelöscht
+-   **Unique** : si c’est à "oui" alors la tâche se lancera une fois
+    puis se supprimera
 
--   **Klasse** : PHP Klasse aufgerufen, um den Task auszuführen (kann
-    leer sein)
+-   **Classe** : classe PHP appelée pour exécuter la tâche (peut
+    être vide)
 
--   **Funktion** : genannt PHP-Funktion in der genannten Klasse (oder auch
-    nicht, wenn die Klasse leer ist)
+-   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
+    si la classe est vide)
 
--   **Programmierung** : die Task Programmierung im CRON-Format
+-   **Programmation** : la programmation de la tâche au format CRON
 
--   **Zeitüberschreitung** : maximale Dauer des Funktionierens des Tasks. Wenn
-     der Task ein Daemon ist, wird er am Ende der Zeitüberschreitung
-    automatisch gestoppt und neu gestartet
+-   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
+    tâche est un démon alors elle sera automatiquement arrêtée et
+    redémarrée à la fin du timeout
 
--   **Letzter Start** : Zeit des letzten Task Starts   
+-   **Dernier lancement** : date de dernier lancement de la tâche
 
--   **Letzte Dauer** : letzte Dauer, um die Aufgabe zu erfüllen (ein Dämon wird immer bei 0s sein,
-    Dämon wird immer 0s haben, man darf sich nicht über andere Tasks 
-    sorgen machen, sie können 0s haben)
+-   **Dernière durée** : dernière durée pour accomplir la tâche (un
+    démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
+    peuvent être à 0s)
 
--   **Status** : aktueller Status des Tasks (zur Erinnerung, ein Dämons Task
-    ist immer auf "run")
+-   **Statut** : état actuel de la tâche (pour rappel une tâche démon
+    est toujours à "run")
 
--   **Löschen** : löscht den Task
+-   **Suppression** : permet de supprimer la tâche
 
 
+# Listener
+
+Les listeners sont juste visible en lecture et permettent de voir les fonctions appellées sur un évenement (mise à jour d'une commande...)

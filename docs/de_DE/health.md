@@ -1,6 +1,6 @@
-Die Jeedom Gesundheits Seite gibt Ihnen einen schnellen Überblick über
-Ihre Jeedom Gesundheit. Sie zeigt auch (wenn Plugins verwendet werden),
-den Gesundheitszustand von Plugins.
+La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
+l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
+l’utilisent) l’état de santé par plugin.
 
 Die Seite ist über Analyse → Gesundheit erreichbar.
 
@@ -9,14 +9,14 @@ Die Seite ist über Analyse → Gesundheit erreichbar.
 > Das klicken auf das Symbol oben rechts, ermöglicht einen Benchmark
 > Ihres Jeedom zu starten. 
 
-Die Jeedom Gesundheitsseite hat die Form einer Tabelle. Die 1. Spalte gibt
-Ihnen eine Beschreibung dessen, was Jeedom überprüft und dessen Status
-wird in der2. Spalte angezeigt. Schließlich kann die letzte Spalte Ihnen
-einige Lösungstipps geben, wenn die Prüfung nicht OK ist.
+La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
+colonne vous donne une description de ce que Jeedom vérifie et dont le statut
+est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
+donner des conseils de résolution si la vérification n’est pas OK.
 
-Unten finden Sie die Gesundheit für jedes Plugin, ein Klick auf den Namen
-des Plugins Zeigt die Gesundheitsdetails davon an. Auf der rechten Seite
-finden Sie die Symbole :
+En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
+nom du plugin donne le détail de santé de celui-ci. A droite vous
+retrouvez les icônes :
 
 -   Hardware Zugangsport des Plugins (Zwave-Schlüsseltyp)
 
@@ -28,11 +28,11 @@ finden Sie die Symbole :
 
 -   Gesamtzustand des Plugins
 
-> **Hinweis**
+> **Note**
 >
-> Die Symbole können je nach Plugin variieren
+> Les icônes peuvent varier en fonction du plugin
 
-> **Hinweis**
+> **Note**
 >
-> Im Allgemeinen, wenn die Zeile grün ist, es ist alles in Ordnung und wenn
-> sie rot ist, giebt es ein Problem.
+> De manière générale quand la ligne est verte c’est que tout va bien
+> et quand c’est rouge, c’est qu’il y a un souci.

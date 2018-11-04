@@ -1,6 +1,6 @@
-The Jeedom health page gives you a quick overview of
-the state of health of your Jeedom. It also indicates (if the plugins
-use it) health status by plugin.
+La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
+l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
+l’utilisent) l’état de santé par plugin.
 
 The page is accessible by Analysis → Health
 
@@ -9,14 +9,14 @@ The page is accessible by Analysis → Health
 > Click on the icon on the right to access the benchmark of your
 > Jeedom.
 
-The health page of Jeedom is in the form of a table. The 1st
-gives you a description of what Jeedom checks and whose status
-is displayed in the 2nd column. Finally the last column can you
-give resolution advice if the check is not OK.
+La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
+colonne vous donne une description de ce que Jeedom vérifie et dont le statut
+est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
+donner des conseils de résolution si la vérification n’est pas OK.
 
-Below you find health for each plugin, a click on the
-plugin name gives the health detail of it. On the right
-find the icons:
+En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
+nom du plugin donne le détail de santé de celui-ci. A droite vous
+retrouvez les icônes :
 
 -   Plugin hardware access port (Zwave key type)
 
@@ -30,9 +30,9 @@ find the icons:
 
 > **Note**
 >
-> Icons may vary depending on the plugin
+> Les icônes peuvent varier en fonction du plugin
 
 > **Note**
 >
-> Generally, when the line is green, it's all right,
-> and when it's red, it's because there is a problem.
+> De manière générale quand la ligne est verte c’est que tout va bien
+> et quand c’est rouge, c’est qu’il y a un souci.

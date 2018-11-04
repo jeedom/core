@@ -1,8 +1,8 @@
-El Centro de mensajes incluye todos los mensajes importantes que usted
-debe ver. Se encuentra junto a la hora en la parte superior derecha.
+Le centre des messages regroupe tous les messages importants que vous
+devez regarder. Il se trouve à côté de l’heure en haut à droite.
 
-Está disponible sólo cuando hay mensajes haciendo clic en el
-número de mensajes.
+Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
+nombre de messages.
 
 Es muy sencillo. Se le muestra la fecha y la hora del mensaje, el
 plugin que lo haya expedido, el mensaje en cuestión. Se puede, pulsando

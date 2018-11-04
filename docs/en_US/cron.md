@@ -10,63 +10,68 @@ request technical support.
 To access it, go to **Administration → Task Engine**
 :
 
-At the top, on the right, you have:
+# Cron
 
--   **Disable the cron system**: a button to disable or
-    reactivate all tasks (if you disable them all, more
-    nothing will be functional on your Jeedom)
+En haut, à droite, vous avez :
 
--   **Refresh**: a button to refresh the task board
+-   **Désactiver le système cron** : un bouton pour désactiver ou
+    réactiver toutes les tâches (si vous les désactivez toutes, plus
+    rien ne sera fonctionnel sur votre Jeedom)
 
--   **Add**: a button to add a cron job
+-   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
 
--   **Save**: a button to save your changes.
+-   **Ajouter** : un bouton pour ajouter une tâche cron
 
-Below you have the table of all the existing tasks
-(be careful some tasks can launch subtasks, so it is
-strongly recommended never to change information about this
-page). In this table we find:
+-   **Enregistrer** : un bouton pour enregistrer vos modifications.
 
--   **\ #**: ID of the task, can be useful to make the link between a
-    process that turns and what it really does
+En-dessous vous avez le tableau de toutes les tâches existantes
+(attention certaines tâches peuvent lancer des sous-tâches, il est donc
+vivement recommandé de ne jamais modifier d’informations sur cette
+page). Dans ce tableau on retrouve :
 
--   **Action**: a button to start or stop the task based
+-   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
+    processus qui tourne et ce qu’il fait vraiment
+
+-   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
     de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
 
--   **Active**: indicates if the task is active (can be started
-    by Jeedom) or not
+-   **Actif** : indique si la tâche est active (peut être lancée
+    par Jeedom) ou non
 
--   **PID**: indicates the current process ID
+-   **PID** : indique le process ID actuel
 
--   **Demon**: if this box is "yes" then the task must always
-    to be in lessons. Beside you find the frequency of the demon, it is
-    advised never to touch this value and especially never
-    decrease it
+-   **Démon** : si cette case est à "oui" alors la tâche doit toujours
+    être en cours. A coté vous retrouvez la fréquence du démon, il est
+    conseillé de ne jamais toucher cette valeur et surtout de ne jamais
+    la diminuer
 
--   **Unique**: if it's "yes" then the task will run once
-    then will be deleted
+-   **Unique** : si c’est à "oui" alors la tâche se lancera une fois
+    puis se supprimera
 
--   **Class**: PHP class called to execute the task (can
-    to be empty)
+-   **Classe** : classe PHP appelée pour exécuter la tâche (peut
+    être vide)
 
--   **Function**: PHP function called in the called class (or not
-    if the class is empty)
+-   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
+    si la classe est vide)
 
--   **Programming**: programming the task in CRON format
+-   **Programmation** : la programmation de la tâche au format CRON
 
--   **Timeout**: maximum duration of operation of the task. If the
-    task is a daemon so it will automatically be stopped and
-    restarted at the end of the timeout
+-   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
+    tâche est un démon alors elle sera automatiquement arrêtée et
+    redémarrée à la fin du timeout
 
--   **Last launch**: last task launch date
+-   **Dernier lancement** : date de dernier lancement de la tâche
 
--   **Last duration**: last time to complete the task (a
-    demon will always be at 0s, do not worry about other tasks
-    can be at 0s)
+-   **Dernière durée** : dernière durée pour accomplir la tâche (un
+    démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
+    peuvent être à 0s)
 
--   **Status**: current status of the task (to recall a daemon task
-    is still at "run")
+-   **Statut** : état actuel de la tâche (pour rappel une tâche démon
+    est toujours à "run")
 
--   **Deletion**: delete the task
+-   **Suppression** : permet de supprimer la tâche
 
 
+# Listener
+
+Les listeners sont juste visible en lecture et permettent de voir les fonctions appellées sur un évenement (mise à jour d'une commande...)

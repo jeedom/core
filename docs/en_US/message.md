@@ -1,8 +1,8 @@
-The message center contains all the important messages that you
-must watch. He finds himself next to the time at the top right.
+Le centre des messages regroupe tous les messages importants que vous
+devez regarder. Il se trouve à côté de l’heure en haut à droite.
 
-It is accessible only when there are messages by clicking on the
-number of messages.
+Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
+nombre de messages.
 
 It is quite simple. It shows you the date and time of the message, the
 plugin that issued it and the message in question. You can, by pressing

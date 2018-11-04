@@ -1,4 +1,4 @@
-Cette page permet de creer une vue 3d de votre maison/appartement qui pourra réagir en fonction de l'état des différents information de votre domotique.
+Cette page permet de créer une vue 3D de votre habitation qui pourra réagir en fonction de l'état des différentes informations de votre domotique.
 
 Elle est accessible par Acceuil → Dashboard
 
@@ -6,64 +6,64 @@ Elle est accessible par Acceuil → Dashboard
 >
 > Über das Untermenü kann direkt zu einem 3D-Design gesprungen werden.
 
-# Importieren Sie das 3d Modell 
+# Importation du modèle 3D
 
 > **IMPORTANT**
 >
-> Vous ne pouvez creer votre model 3d directement dans Jeedom, il faut le faire en passant par un logiciel tierce. Nous recommandons le très bon bon SweetHome3d
+> Vous ne pouvez pas créer votre modèle 3D directement dans Jeedom, il faut le faire en passant par un logiciel tiers. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Une fois votre model 3d creer il faut l'exporter en OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3d" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générer et les mettres dans un zip (il peut avoir beaucoup de fichier du aux textures)
+Une fois votre model 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
 
 > **ATTENTION**
 >
-> Un model 3d est assez imposant (ca peut aller à plusieurs 100mo). Plus il est gros plus long sera le temps de rendu dans Jeedom
+> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est gros plus long sera le temps de rendu dans Jeedom.
 
-Une fois votre model 3d exporter il faut dans Jeedom creer un nouveau design 3d. Pour cela il faut passer en mode édition en cliquant que le petit crayon à droit, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
+Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 3D. Pour cela il faut passer en mode édition en cliquant sur le petit crayon à droite, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
 
-Jeedom schaltet automatisch auf das neue 3D-Design um, Sie müssen in den Editiermodus zurück gehen und auf die kleinen Zahnräder klicken.
+Jeedom va automatiquement passer sur le nouveau design 3D, il faut repasser en mode édition et cliquer sur les petites roues crantées.
 
-Vous pouvez à partir de cette écran envoyer : 
+Vous pouvez à partir de cette écran : 
 
 - Ändern Sie den Namen Ihres Designs
 - Fügen Sie einen Zugriffscode hinzu
 - Choisir une icone
-- Importieren Sie Ihr 3D-Modell
+- Importer votre modèle 3D
 
-Cliquez sur le bouton "envoyer" au niveau de "Model 3D" et selectionner votre zip
-
-> **ATTENTION**
->
-> Jeedom autorise au maximum l'importe d'un fichier de 150mo
+Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre fichier zip
 
 > **ATTENTION**
 >
-> Il faut obligatoirement un fichier zip
+> Jeedom autorise l'import d'un fichier de 150mo maximum ! 
+
+> **ATTENTION**
+>
+> Il faut obligatoirement un fichier au format zip
 
 > **Tip**
 >
-> Une fois l'import du fichier fait (ca peut etre assez long en fonction de la taille de celui-ci), il vous faut rafraichir la page pour voir le résultat
+> Une fois l'import du fichier effectué (cela peut être assez long en fonction de la taille de celui-ci), il vous faut rafraichir la page pour voir le résultat (F5)
 
 
 # Configuration des éléments
 
 > **IMPORTANT**
 >
-> La configuration ne peut se faire que en mode édition
+> La configuration ne peut se faire qu'en mode édition
 
-Pour configurer un element sur le design 3d il vous faire un double clic sur l'élement que vous voulez configurer. Cela va amener une fenetre ou vous pourrez : 
+Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va amener une fenêtre où vous pourrez : 
 
 - Indiquer un type de lien (actuellement seul Equipement existe)
-- Le lien vers l'element en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre 
-- La spécitificité, la il en existe plusieurs que l'on va voir juste après, ca permet spécifier le type d'équipement et donc l'affichage d'information
+- Le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre l'équipment
+- La spécitificité, là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
 
 ## Beleuchtung
 
-- Statut : Commande d'état de la lumiere peut etre un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
-- Puissance : puissance de l'ampoule (attention cela peut ne pas refleter la réaliter)
+- Statut : Commande d'état de la lumiere peut être un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
+- Puissance : puissance de l'ampoule (attention cela peut ne pas refléter la réalité)
 
 ## Text
 
-- Texte : texte à afficher (vous pouvez mettre des commandes dedans, le texte sera automatiquement remis à jour sur changement de celle-ci)
+- Texte : texte à afficher (vous pouvez y mettre des commandes, le texte sera automatiquement remis à jour sur changement de celle-ci)
 - Textgröße
 - Textfarbe
 - Transparence du texte : de 0 (invisible) à 1 (visible)
@@ -71,7 +71,7 @@ Pour configurer un element sur le design 3d il vous faire un double clic sur l'�
 - Transparence du fond : de 0 (invisible) à 1 (visible)
 - Rahmenfarbe
 - Transparence de la bordure : de 0 (invisible) à 1 (visible)
-- Espacement au dessus de l'objet : permet d'indiquer l'espacement du texte par rapport à l'élément
+- Espacement au-dessus de l'objet : permet d'indiquer l'espacement du texte par rapport à l'élément
 
 ## Tür/Fenster
 
@@ -80,11 +80,11 @@ Pour configurer un element sur le design 3d il vous faire un double clic sur l'�
 - Etat : état de la Porte/Fenêtre, 1 fermé et 0 ouvert
 - Rotation
     - Activer : active la rotation de la Porte/Fenêtre lors de l'ouverture
-    - Ouverture : le mieux la c'est de tester pour que ca correspond au mieux à votre Porte/Fenêtre
+    - Ouverture : le mieux est de tester pour que cela corresponde à votre Porte/Fenêtre
 - Übersetzung
     - Activer : active la translation lors de l'ouverture (type Porte/Fenêtre coulissante)
     - Sens : sens dans lequel la Porte/Fenêtre doit bouger (vous avez haut/bas/droite/gauche)
-    - Répéter : par defaut la Porte/Fenêtre bouge de 1 fois sa dimension dans le sens donner mais vous pouvez augmenter cette valeur
+    - Répéter : par défaut la Porte/Fenêtre bouge d'une fois sa dimension dans le sens donné mais vous pouvez augmenter cette valeur
 - Masquer quand la Porte/Fenêtre est ouverte    
     - Activer : Masque l'élément si la Porte/Fenêtre est ouverte
 - Farbe
@@ -95,14 +95,14 @@ Pour configurer un element sur le design 3d il vous faire un double clic sur l'�
 
 - Etat : état du volet, 0 ouvert autre valeur fermé
 - Masquer quand le volet est ouvert
-    -  Activer : masque l'élément si le volet est ouvert
+    - Activer : masque l'élément si le volet est ouvert
 - Farbe
-    - Couleur fermé : si cocher l'élément prendra cette couleur si le volet est fermée
+    - Couleur fermé : si cocher l'élément prendra cette couleur si le volet est fermé
 
-## Couleur conditionnel
+## Couleur conditionnelle
 
-Permet de donner la couleur choisis à l'élement si la condition est valide. Vous pouvez mettre autant de couleur/condition que vous voulez. 
+Permet de donner la couleur choisie à l'élément si la condition est valide. Vous pouvez mettre autant de couleurs/conditions que vous voulez. 
 
 > **Tip**
 >
-> Les conditions sont évaluées dans l'ordre, la premiere qui est vrai sera prise, les suivantes ne seront donc pas évaluées
+> Les conditions sont évaluées dans l'ordre, la première qui est vraie sera prise, les suivantes ne seront donc pas évaluées
