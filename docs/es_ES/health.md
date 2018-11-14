@@ -1,22 +1,22 @@
-La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
-l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l’utilisent) l’état de santé par plugin.
+La página de Salud de Jeedom le permite obtener una rápida visión general de
+la salud de tu Jeedom. También indica (si los plugins
+lo usan) el estado de salud por plugin.
 
-La página es accesible por análisis de salud →
+La página es accesible desde Análisis  → Salud
 
 > **Nota**
 >
 > Un clic en el icono a la derecha proporciona acceso a su punto de referencia
 > Jeedom.
 
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ere
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
+La página de salud de Jeedom se presenta en forma de tabla. La 1ra
+columna te da una descripción de lo que Jeedom comprueba y su estado
+se visualiza en la 2da columna. Finalmente, la última columna puede ser usada para
+proporcionar asesoramiento de resolución si la verificación no es correcta.
 
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le détail de santé de celui-ci. A droite vous
-retrouvez les icônes :
+A continuación encontrará el estado de salud de cada plugin, haga clic en el botón
+da los detalles de salud del plugin. A la derecha encontrará
+encontrar los iconos:
 
 -   equipos plugin de puerto de acceso (tipo llave Zwave)
 
@@ -28,11 +28,11 @@ retrouvez les icônes :
 
 -   estado general del plugin
 
-> **Note**
+> **Nota**
 >
-> Les icônes peuvent varier en fonction du plugin
+> Los iconos pueden variar dependiendo del plugin
 
-> **Note**
+> **Nota**
 >
-> De manière générale quand la ligne est verte c’est que tout va bien
-> et quand c’est rouge, c’est qu’il y a un souci.
+> En general, cuando la línea es verde, todo está bien
+> y cuando está rojo, es porque hay un problema.
