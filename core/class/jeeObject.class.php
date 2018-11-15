@@ -31,6 +31,7 @@ class jeeObject {
 	private $display;
 	private $image;
 	private $_cache = null;
+	private $_childs = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -461,17 +462,20 @@ class jeeObject {
 	}
 
 	public function getChild($_visible = true) {
-		$values = array(
-			'id' => $this->id,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		if ($this->_childs[$_visible] === null) {
+			$values = array(
+				'id' => $this->id,
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
                 FROM object
                 WHERE father_id=:id';
-		if ($_visible) {
-			$sql .= ' AND isVisible=1 ';
+			if ($_visible) {
+				$sql .= ' AND isVisible=1 ';
+			}
+			$sql .= ' ORDER BY position';
+			$this->_childs[$_visible] = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
-		$sql .= ' ORDER BY position';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		return $this->_childs[$_visible];
 	}
 
 	public function getChilds() {
@@ -616,7 +620,8 @@ class jeeObject {
 
 	public function getHtmlSummary($_version = 'desktop') {
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
-		foreach (config::byKey('object:summary') as $key => $value) {
+		$def = config::byKey('object:summary');
+		foreach ($def as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}

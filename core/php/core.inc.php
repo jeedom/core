@@ -61,6 +61,9 @@ function jeedomCoreAutoload($classname) {
 }
 
 function jeedomPluginAutoload($_classname) {
+	if (strpos($_classname, '\\') !== false || strpos($_classname, 'com_') !== false || strpos($_classname, 'repo_') !== false || strpos($_classname, '/') !== false) {
+		return;
+	}
 	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
 	$plugin_active = config::byKey('active', $classname, null);
 	if ($plugin_active === null || $plugin_active == '') {
