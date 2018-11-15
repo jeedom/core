@@ -616,7 +616,8 @@ class jeeObject {
 
 	public function getHtmlSummary($_version = 'desktop') {
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
-		foreach (config::byKey('object:summary') as $key => $value) {
+		$def = config::byKey('object:summary');
+		foreach ($def as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
 				continue;
 			}
