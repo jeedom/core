@@ -925,6 +925,7 @@ class cmd {
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
+		$this->_cache = null;
 		if ($this->getType() == 'info') {
 			$this->setCollectDate($this->getCache('collectDate', date('Y-m-d H:i:s'), true));
 			$this->setValueDate($this->getCache('valueDate', date('Y-m-d H:i:s'), true));
