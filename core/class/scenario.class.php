@@ -1959,7 +1959,8 @@ class scenario {
 	 * @param type $_value
 	 */
 	public function setCache($_key, $_value = null) {
-		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('scenarioCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }

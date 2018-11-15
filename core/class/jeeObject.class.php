@@ -789,7 +789,8 @@ class jeeObject {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('objectCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 	public function getImage($_key = '', $_default = '') {

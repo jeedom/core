@@ -562,7 +562,8 @@ class cron {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('cronCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('cronCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }
