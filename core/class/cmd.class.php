@@ -530,10 +530,11 @@ class cmd {
 				continue;
 			}
 			$mc = cache::byKey('cmdCacheAttr' . $cmd_id);
-			if (utils::getJsonAttr($mc->getValue(), 'value', null) !== null) {
-				$collectDate = utils::getJsonAttr($mc->getValue(), 'collectDate', date('Y-m-d H:i:s'));
-				$valueDate = utils::getJsonAttr($mc->getValue(), 'valueDate', date('Y-m-d H:i:s'));
-				$cmd_value = utils::getJsonAttr($mc->getValue(), 'value', '');
+			$cache = $mc->getValue();
+			if (utils::getJsonAttr($cache, 'value', null) !== null) {
+				$collectDate = utils::getJsonAttr($cache, 'collectDate', date('Y-m-d H:i:s'));
+				$valueDate = utils::getJsonAttr($cache, 'valueDate', date('Y-m-d H:i:s'));
+				$cmd_value = utils::getJsonAttr($cache, 'value', '');
 			} else {
 				$cmd = self::byId($cmd_id);
 				if (!is_object($cmd) || $cmd->getType() != 'info') {
@@ -2055,7 +2056,8 @@ class cmd {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+		$cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {

@@ -140,38 +140,46 @@ class utils {
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if ($_attr != '' && is_json($_attr)) {
-				$attr = json_decode($_attr, true);
-				unset($attr[$_key]);
-				$_attr = json_encode($attr, JSON_UNESCAPED_UNICODE);
+				if (!is_array($_attr)) {
+					$_attr = json_decode($_attr, true);
+				}
+				unset($_attr[$_key]);
 			}
 		} else {
-			if ($_attr == '' || !is_json($_attr)) {
-				$attr = array();
-			} else {
-				$attr = json_decode($_attr, true);
+			if (!is_array($_attr)) {
+				if ($_attr == '' || !is_json($_attr)) {
+					$_attr = array();
+				} else {
+					$_attr = json_decode($_attr, true);
+				}
 			}
 			if (is_array($_key)) {
-				$attr = array_merge($attr, $_key);
+				$_attr = array_merge($_attr, $_key);
 			} else {
-				$attr[$_key] = $_value;
+				$_attr[$_key] = $_value;
 			}
-			$_attr = json_encode($attr, JSON_UNESCAPED_UNICODE);
 		}
 		return $_attr;
 	}
 
-	public static function getJsonAttr($_attr, $_key = '', $_default = '') {
-		if ($_key == '') {
-			if ($_attr == '' || !is_json($_attr)) {
+	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
+		if (is_array($_attr)) {
+			if ($_key == '') {
 				return $_attr;
 			}
-			return json_decode($_attr, true);
+		} else {
+			if ($_key == '') {
+				if ($_attr == '' || !is_json($_attr)) {
+					return $_attr;
+				}
+				return json_decode($_attr, true);
+			}
+			if ($_attr === '') {
+				return $_default;
+			}
+			$_attr = json_decode($_attr, true);
 		}
-		if ($_attr === '') {
-			return $_default;
-		}
-		$attr = json_decode($_attr, true);
-		return (isset($attr[$_key]) && $attr[$_key] !== '') ? $attr[$_key] : $_default;
+		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
 
 	/*     * *********************Methode d'instance************************* */

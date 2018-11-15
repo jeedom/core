@@ -200,7 +200,7 @@ class jeedom {
 			'name' => __('Espace disque libre tmp', __FILE__),
 			'state' => ($value > 10),
 			'result' => $value . ' %',
-			'comment' => __('Si en erreur essayez de redemarrer, si le probleme se poursuit il faut tester en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
+			'comment' => __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
 		);
 
 		$values = getSystemMemInfo();

@@ -781,7 +781,8 @@ class jeeObject {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		return utils::getJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_default);
+		$cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
