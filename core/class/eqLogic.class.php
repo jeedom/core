@@ -1709,7 +1709,8 @@ class eqLogic {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 	public function getStatus($_key = '', $_default = '') {
@@ -1720,7 +1721,8 @@ class eqLogic {
 	}
 
 	public function setStatus($_key, $_value = null) {
-		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_status = utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('eqLogicStatusAttr' . $this->getId(), $this->_cache);
 	}
 
 }

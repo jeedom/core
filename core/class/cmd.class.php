@@ -2064,7 +2064,8 @@ class cmd {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		$this->_cache = utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value);
+		cache::set('cmdCacheAttr' . $this->getId(), $this->_cache);
 	}
 
 }
