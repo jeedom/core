@@ -186,7 +186,6 @@ try {
 					'id' => $object->getId(),
 				);
 			}
-
 			ajax::success($return);
 		} else {
 			$object = jeeObject::byId(init('id'));
