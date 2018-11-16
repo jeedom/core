@@ -183,7 +183,8 @@ class jeeObject {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					if ($object->getConfiguration('summary_virtual_id') == '') {
+					$value['object']->setCache('summaryHtml', '');
+					if ($value['object']->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
 					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
@@ -203,6 +204,7 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
+			cache::set('globalSummaryHtml', '');
 			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
@@ -258,6 +260,10 @@ class jeeObject {
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
+		$cache = cache::byKey('globalSummaryHtml');
+		if ($cache->getValue() != '') {
+			return $cache->getValue();
+		}
 		$objects = self::all();
 		$def = config::byKey('object:summary');
 		$values = array();
@@ -299,7 +305,9 @@ class jeeObject {
 			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
 			$return .= '</span>';
 		}
-		return trim($return) . '</span>';
+		$return = trim($return) . '</span>';
+		cache::set('globalSummaryHtml', $return);
+		return $return;
 	}
 
 	public static function createSummaryToVirtual($_key = '') {
@@ -618,6 +626,9 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
+		if (trim($this->getCache('summaryHtml')) != '') {
+			return $this->getCache('summaryHtml');
+		}
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => $value) {
@@ -640,7 +651,9 @@ class jeeObject {
 				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
-		return trim($return) . '</span>';
+		$return = trim($return) . '</span>';
+		$this->setCache('summaryHtml', $return);
+		return $return;
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
