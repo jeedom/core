@@ -30,7 +30,7 @@ class jeeObject {
 	private $configuration;
 	private $display;
 	private $image;
-	private $_childs = array();
+	private $_child = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -469,7 +469,7 @@ class jeeObject {
 	}
 
 	public function getChild($_visible = true) {
-		if ($this->_childs[$_visible] === null) {
+		if (!isset($this->_child[$_visible])) {
 			$values = array(
 				'id' => $this->id,
 			);
@@ -480,9 +480,9 @@ class jeeObject {
 				$sql .= ' AND isVisible=1 ';
 			}
 			$sql .= ' ORDER BY position';
-			$this->_childs[$_visible] = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			$this->_child[$_visible] = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
-		return $this->_childs[$_visible];
+		return $this->_child[$_visible];
 	}
 
 	public function getChilds() {
