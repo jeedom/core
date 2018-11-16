@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class event {
 	/*     * *************************Attributs****************************** */
 
-	private static $limit = 250;
+	private static $limit = 150;
 	private static $_fd = null;
 
 	/*     * ***********************Methode static*************************** */
@@ -70,23 +70,19 @@ class event {
 
 	public static function cleanEvent($_events) {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
-		$manage_event = array('eqLogic::update', 'cmd::update', 'scenario::update', 'jeeObject::summary::update');
 		$return = array();
 		foreach ($_events as $event) {
-			if (!in_array($event['name'], $manage_event)) {
+			if (!in_array($event['name'], array('eqLogic::update', 'cmd::update', 'scenario::update', 'jeeObject::summary::update'))) {
 				$return[] = $event;
 				continue;
 			}
 			if ($event['name'] == 'eqLogic::update') {
 				$return[$event['name'] . '::' . $event['option']['eqLogic_id']] = $event;
-			}
-			if ($event['name'] == 'cmd::update') {
+			} else if ($event['name'] == 'cmd::update') {
 				$return[$event['name'] . '::' . $event['option']['cmd_id']] = $event;
-			}
-			if ($event['name'] == 'scenario::update') {
+			} else if ($event['name'] == 'scenario::update') {
 				$return[$event['name'] . '::' . $event['option']['scenario_id']] = $event;
-			}
-			if ($event['name'] == 'jeeObject::summary::update') {
+			} else if ($event['name'] == 'jeeObject::summary::update') {
 				$return[$event['name'] . '::' . $event['option']['object_id']] = $event;
 			}
 		}
@@ -95,10 +91,7 @@ class event {
 	}
 
 	public static function orderEvent($a, $b) {
-		if ($a['datetime'] == $b['datetime']) {
-			return 0;
-		}
-		return ($a['datetime'] < $b['datetime']) ? -1 : 1;
+		return ($a['datetime'] - $b['datetime']) ? -1 : 1;
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
