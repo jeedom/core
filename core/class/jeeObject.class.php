@@ -30,7 +30,6 @@ class jeeObject {
 	private $configuration;
 	private $display;
 	private $image;
-	private $_cache = null;
 	private $_childs = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -787,15 +786,12 @@ class jeeObject {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		if ($this->_cache == null) {
-			$this->_cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+		$cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
-		$this->_cache = utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value);
-		cache::set('objectCacheAttr' . $this->getId(), $this->_cache);
+		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 	public function getImage($_key = '', $_default = '') {

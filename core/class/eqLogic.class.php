@@ -45,8 +45,6 @@ class eqLogic {
 	protected $_timeoutUpdated = false;
 	protected $_batteryUpdated = false;
 	protected $_cmds = array();
-	protected $_cache = null;
-	protected $_status = null;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -1702,27 +1700,21 @@ class eqLogic {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		if ($this->_cache == null) {
-			$this->_cache = cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
-		$this->_cache = utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value);
-		cache::set('eqLogicCacheAttr' . $this->getId(), $this->_cache);
+		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 	public function getStatus($_key = '', $_default = '') {
-		if ($this->_status == null) {
-			$this->_status = cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_status, $_key, $_default);
+		$status = cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($status, $_key, $_default);
 	}
 
 	public function setStatus($_key, $_value = null) {
-		$this->_status = utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value);
-		cache::set('eqLogicStatusAttr' . $this->getId(), $this->_cache);
+		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }
