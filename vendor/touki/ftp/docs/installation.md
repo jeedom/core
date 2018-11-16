@@ -1,20 +1,10 @@
 # Installation with composer
 
-Using [composer](http://getcomposer.org) is the easiest way to use this library.  
-Just add the following lines in your `composer.json`
-
-```json
-{
-    "require": {
-        "touki/ftp": "1.1.*"
-    }
-}
-```
-
-Then run
+Using [composer](http://getcomposer.org) is the easiest way to use this library.
+Just run the following command :
 
 ```sh
-$ composer install touki/ftp
+$ composer require touki/ftp
 ```
 
 # Installation with git

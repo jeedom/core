@@ -33,11 +33,7 @@ class cache {
 	/*     * ***********************Methode static*************************** */
 
 	public static function getFolder() {
-		$return = jeedom::getTmpFolder('cache');
-		if (!file_exists($return)) {
-			mkdir($return, 0777);
-		}
-		return $return;
+		return jeedom::getTmpFolder('cache');
 	}
 
 	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {

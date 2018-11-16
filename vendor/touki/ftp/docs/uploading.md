@@ -35,7 +35,7 @@ $options = array(
     FTP::TRANSFER_MODE => FTP_BINARY // Transfer Mode
 );
 
-$ftp->download('/path/to/upload/file1.txt', $file, $options);
+$ftp->upload('/path/to/upload/file1.txt', $file, $options);
 
 ?>
 ```

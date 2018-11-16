@@ -35,7 +35,7 @@ Options -Indexes
 
 
 	#php_value xdebug.profiler_enable 1
-	php_value xdebug.profiler_output_name xdebug.out.%t
+	php_value xdebug.profiler_output_name callgrind.%t.%s
 	php_value xdebug.profiler_output_dir /tmp
 	php_value xdebug.profiler_enable_trigger 1	
 </IfModule>

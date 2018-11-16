@@ -79,14 +79,11 @@ class event {
 			}
 			if ($event['name'] == 'eqLogic::update') {
 				$return[$event['name'] . '::' . $event['option']['eqLogic_id']] = $event;
-			}
-			if ($event['name'] == 'cmd::update') {
+			} elseif ($event['name'] == 'cmd::update') {
 				$return[$event['name'] . '::' . $event['option']['cmd_id']] = $event;
-			}
-			if ($event['name'] == 'scenario::update') {
+			} elseif ($event['name'] == 'scenario::update') {
 				$return[$event['name'] . '::' . $event['option']['scenario_id']] = $event;
-			}
-			if ($event['name'] == 'jeeObject::summary::update') {
+			} elseif ($event['name'] == 'jeeObject::summary::update') {
 				$return[$event['name'] . '::' . $event['option']['object_id']] = $event;
 			}
 		}
@@ -95,10 +92,7 @@ class event {
 	}
 
 	public static function orderEvent($a, $b) {
-		if ($a['datetime'] == $b['datetime']) {
-			return 0;
-		}
-		return ($a['datetime'] < $b['datetime']) ? -1 : 1;
+		return ($a['datetime'] - $b['datetime']);
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
