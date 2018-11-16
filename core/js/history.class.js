@@ -101,13 +101,15 @@ jeedom.history.drawChart = function (_params) {
               if(_params.option.displayAlert == false){
                 return;
             }
-            var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
-            if (init(data.result.dateStart) != '') {
-                message += (init(data.result.dateEnd) != '') ?  ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd : ' {{à partir de}} ' + data.result.dateStart;
-            } else {
-                message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
+            if(!_params.noError){
+                var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name;
+                if (init(data.result.dateStart) != '') {
+                    message += (init(data.result.dateEnd) != '') ?  ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd : ' {{à partir de}} ' + data.result.dateStart;
+                } else {
+                    message += (init(data.result.dateEnd) != '') ? ' {{jusqu\'au}} ' + data.result.dateEnd:'';
+                }
+                $('#div_alert').showAlert({message: message, level: 'danger'});
             }
-            $('#div_alert').showAlert({message: message, level: 'danger'});
             return;
         }
         if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
@@ -117,8 +119,8 @@ jeedom.history.drawChart = function (_params) {
         _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
         if(isset(data.result.cmd)){
             if (init(_params.option.graphStep) == '') {
-               _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
-               if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
+             _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+             if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
                 _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
             }
         }
@@ -453,7 +455,7 @@ if (jeedom.history.chart[_params.el].color > 9) {
 var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
 var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
 for(var i in plotband){
-   jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
+ jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
 }
 jeedom.history.chart[_params.el].chart.xAxis[0].update({
     max: extremes.max

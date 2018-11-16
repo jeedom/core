@@ -82,6 +82,17 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function byIds($_ids) {
+		if (!is_array($_ids) || count($_ids) == 0) {
+			return;
+		}
+		$in = implode(',', $_ids);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE id IN (' . $in . ')';
+		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
@@ -420,23 +431,19 @@ class cmd {
 			return $_input;
 		}
 		if (is_array($_input)) {
-			foreach ($_input as $key => $value) {
-				$_input[$key] = self::cmdToHumanReadable($value);
-			}
-			return $_input;
+			return json_decode(self::cmdToHumanReadable(json_encode($_input)), true);
 		}
 		$replace = array();
 		preg_match_all("/#([0-9]*)#/", $_input, $matches);
-		foreach ($matches[1] as $cmd_id) {
-			if (isset($replace['#' . $cmd_id . '#'])) {
+		if (count($matches[1]) == 0) {
+			return $_input;
+		}
+		$cmds = self::byIds($matches[1]);
+		foreach ($cmds as $cmd) {
+			if (isset($replace['#' . $cmd->getId() . '#'])) {
 				continue;
 			}
-			if (is_numeric($cmd_id)) {
-				$cmd = self::byId($cmd_id);
-				if (is_object($cmd)) {
-					$replace['#' . $cmd_id . '#'] = '#' . $cmd->getHumanName() . '#';
-				}
-			}
+			$replace['#' . $cmd->getId() . '#'] = '#' . $cmd->getHumanName() . '#';
 		}
 		return str_replace(array_keys($replace), $replace, $_input);
 	}

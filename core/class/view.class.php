@@ -126,12 +126,11 @@ class view {
 		return $return;
 	}
 
-	public function toAjax($_version = 'dview') {
+	public function toAjax($_version = 'dview', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
-
 			$viewZone_info['viewData'] = array();
 			foreach ($viewZone->getViewData() as $viewData) {
 				$viewData_info = utils::o2a($viewData);
@@ -141,34 +140,42 @@ class view {
 						$cmd = $viewData->getLinkObject();
 						if (is_object($cmd)) {
 							$viewData_info['type'] = 'cmd';
-							$viewData_info['name'] = $cmd->getHumanName();
-							$viewData_info['id'] = $cmd->getId();
-							$viewData_info['html'] = $cmd->toHtml($_version);
+							if ($_html) {
+								$viewData_info['html'] = $cmd->toHtml($_version);
+							} else {
+								$viewData_info['name'] = $cmd->getHumanName();
+								$viewData_info['id'] = $cmd->getId();
+							}
 						}
 						break;
 					case 'eqLogic':
 						$eqLogic = $viewData->getLinkObject();
 						if (is_object($eqLogic)) {
 							$viewData_info['type'] = 'eqLogic';
-							$viewData_info['name'] = $eqLogic->getHumanName();
-							$viewData_info['id'] = $eqLogic->getId();
-							$viewData_info['html'] = $eqLogic->toHtml($_version);
+							if ($_html) {
+								$viewData_info['html'] = $eqLogic->toHtml($_version);
+							} else {
+								$viewData_info['name'] = $eqLogic->getHumanName();
+								$viewData_info['id'] = $eqLogic->getId();
+							}
 						}
 						break;
 					case 'scenario':
 						$scenario = $viewData->getLinkObject();
 						if (is_object($scenario)) {
 							$viewData_info['type'] = 'scenario';
-							$viewData_info['name'] = $scenario->getHumanName();
-							$viewData_info['id'] = $scenario->getId();
-							$viewData_info['html'] = $scenario->toHtml($_version);
+							if ($_html) {
+								$viewData_info['html'] = $scenario->toHtml($_version);
+							} else {
+								$viewData_info['name'] = $scenario->getHumanName();
+								$viewData_info['id'] = $scenario->getId();
+							}
 						}
 						break;
 				}
 				$viewZone_info['viewData'][] = $viewData_info;
-				if ($viewZone->getType() == 'table') {
+				if ($_html && $viewZone->getType() == 'table') {
 					$viewZone_info['html'] = '<table class="table table-condensed ui-responsive table-stroke" data-role="table" data-mode="columntoggle">';
-
 					if (count($viewZone_info['viewData']) != 1) {
 						continue;
 					}
@@ -199,6 +206,9 @@ class view {
 				}
 			}
 			$return['viewZone'][] = $viewZone_info;
+		}
+		if ($_html) {
+			return $return;
 		}
 		return jeedom::toHumanReadable($return);
 	}
