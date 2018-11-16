@@ -179,6 +179,13 @@ class utils {
 			}
 			$_attr = json_decode($_attr, true);
 		}
+		if (is_array($_key)) {
+			$return = array();
+			foreach ($_key as $key) {
+				$return[$key] = (isset($_attr[$key]) && $_attr[$key] !== '') ? $_attr[$key] : $_default;
+			}
+			return $return;
+		}
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
 
