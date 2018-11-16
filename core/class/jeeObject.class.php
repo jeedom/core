@@ -30,8 +30,7 @@ class jeeObject {
 	private $configuration;
 	private $display;
 	private $image;
-	private $_cache = null;
-	private $_childs = array();
+	private $_child = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -184,7 +183,8 @@ class jeeObject {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					if ($object->getConfiguration('summary_virtual_id') == '') {
+					$value['object']->setCache('summaryHtml', '');
+					if ($value['object']->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
 					$virtual = eqLogic::byId($value['object']->getConfiguration('summary_virtual_id'));
@@ -204,6 +204,7 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
+			cache::set('globalSummaryHtml', '');
 			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
@@ -259,6 +260,10 @@ class jeeObject {
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
+		$cache = cache::byKey('globalSummaryHtml');
+		if ($cache->getValue() != '') {
+			return $cache->getValue();
+		}
 		$objects = self::all();
 		$def = config::byKey('object:summary');
 		$values = array();
@@ -300,7 +305,9 @@ class jeeObject {
 			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
 			$return .= '</span>';
 		}
-		return trim($return) . '</span>';
+		$return = trim($return) . '</span>';
+		cache::set('globalSummaryHtml', $return);
+		return $return;
 	}
 
 	public static function createSummaryToVirtual($_key = '') {
@@ -462,7 +469,7 @@ class jeeObject {
 	}
 
 	public function getChild($_visible = true) {
-		if ($this->_childs[$_visible] === null) {
+		if (!isset($this->_child[$_visible])) {
 			$values = array(
 				'id' => $this->id,
 			);
@@ -473,9 +480,9 @@ class jeeObject {
 				$sql .= ' AND isVisible=1 ';
 			}
 			$sql .= ' ORDER BY position';
-			$this->_childs[$_visible] = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			$this->_child[$_visible] = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
-		return $this->_childs[$_visible];
+		return $this->_child[$_visible];
 	}
 
 	public function getChilds() {
@@ -619,6 +626,9 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
+		if (trim($this->getCache('summaryHtml')) != '') {
+			return $this->getCache('summaryHtml');
+		}
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => $value) {
@@ -641,7 +651,9 @@ class jeeObject {
 				$return .= '<span style="margin-right:5px;' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
-		return trim($return) . '</span>';
+		$return = trim($return) . '</span>';
+		$this->setCache('summaryHtml', $return);
+		return $return;
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
@@ -787,15 +799,12 @@ class jeeObject {
 	}
 
 	public function getCache($_key = '', $_default = '') {
-		if ($this->_cache == null) {
-			$this->_cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
-		}
-		return utils::getJsonAttr($this->_cache, $_key, $_default);
+		$cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
 	public function setCache($_key, $_value = null) {
-		$this->_cache = utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value);
-		cache::set('objectCacheAttr' . $this->getId(), $this->_cache);
+		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 	public function getImage($_key = '', $_default = '') {
