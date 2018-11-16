@@ -183,7 +183,8 @@ class jeeObject {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					$value['object']->setCache('summaryHtml', '');
+					$value['object']->setCache('summaryHtmldesktop', '');
+					$value['object']->setCache('summaryHtmlmobile', '');
 					if ($value['object']->getConfiguration('summary_virtual_id') == '') {
 						continue;
 					}
@@ -204,7 +205,8 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
-			cache::set('globalSummaryHtml', '');
+			cache::set('globalSummaryHtmldesktop', '');
+			cache::set('globalSummaryHtmlmobile', '');
 			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
 				try {
@@ -260,7 +262,7 @@ class jeeObject {
 	}
 
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
-		$cache = cache::byKey('globalSummaryHtml');
+		$cache = cache::byKey('globalSummaryHtml' . $_version);
 		if ($cache->getValue() != '') {
 			return $cache->getValue();
 		}
@@ -306,7 +308,7 @@ class jeeObject {
 			$return .= '</span>';
 		}
 		$return = trim($return) . '</span>';
-		cache::set('globalSummaryHtml', $return);
+		cache::set('globalSummaryHtml' . $_version, $return);
 		return $return;
 	}
 
@@ -626,8 +628,8 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version = 'desktop') {
-		if (trim($this->getCache('summaryHtml')) != '') {
-			return $this->getCache('summaryHtml');
+		if (trim($this->getCache('summaryHtml' . $_version)) != '') {
+			return $this->getCache('summaryHtml' . $_version);
 		}
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
@@ -652,7 +654,7 @@ class jeeObject {
 			}
 		}
 		$return = trim($return) . '</span>';
-		$this->setCache('summaryHtml', $return);
+		$this->setCache('summaryHtml' . $_version, $return);
 		return $return;
 	}
 
