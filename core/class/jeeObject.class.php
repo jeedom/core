@@ -606,7 +606,7 @@ class jeeObject {
 			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
-			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));
+			$value = cmd::cmdToValue($infos['cmd']);
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
 			}

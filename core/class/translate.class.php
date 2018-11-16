@@ -22,7 +22,7 @@ require_once __DIR__ . '/../php/core.inc.php';
 class translate {
 	/*     * *************************Attributs****************************** */
 
-	protected static $translation;
+	protected static $translation = array();
 	protected static $language = null;
 	private static $config = null;
 
@@ -39,10 +39,8 @@ class translate {
 	}
 
 	public static function getTranslation() {
-		if (!isset(self::$translation) || !isset(self::$translation[self::getLanguage()])) {
-			self::$translation = array(
-				self::getLanguage() => self::loadTranslation(),
-			);
+		if (!isset(self::$translation[self::getLanguage()])) {
+			self::$translation[self::getLanguage()] = self::loadTranslation();
 		}
 		return self::$translation[self::getLanguage()];
 	}
@@ -119,8 +117,8 @@ class translate {
 		if (file_exists($filename)) {
 			$return = file_get_contents($filename);
 			$return = is_json($return) ? json_decode($return, true) : array();
-			foreach (plugin::listPlugin(false, false, false) as $plugin) {
-				$return = array_merge($return, $plugin->getTranslation(self::getLanguage()));
+			foreach (plugin::listPlugin(true, false, false, true) as $plugin) {
+				$return = array_merge($return, plugin::getTranslation($plugin, self::getLanguage()));
 			}
 		}
 		return $return;

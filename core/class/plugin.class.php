@@ -205,6 +205,25 @@ class plugin {
 		}
 	}
 
+	public static function getTranslation($_plugin, $_language) {
+		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
+		if (!file_exists($dir)) {
+			@mkdir($dir, 0775, true);
+		}
+		if (!file_exists($dir)) {
+			return array();
+		}
+		if (file_exists($dir . '/' . $_language . '.json')) {
+			$return = file_get_contents($dir . '/' . $_language . '.json');
+			if (is_json($return)) {
+				return json_decode($return, true);
+			} else {
+				return array();
+			}
+		}
+		return array();
+	}
+
 	public static function orderPlugin($a, $b) {
 		$al = strtolower($a->name);
 		$bl = strtolower($b->name);
@@ -825,26 +844,6 @@ class plugin {
 			system::php($cmd . ' >> /dev/null 2>&1 &');
 		}
 		return true;
-	}
-
-	public function getTranslation($_language) {
-		$dir = __DIR__ . '/../../plugins/' . $this->getId() . '/core/i18n';
-		if (!file_exists($dir)) {
-			@mkdir($dir, 0775, true);
-		}
-		if (!file_exists($dir)) {
-			return array();
-		}
-		if (file_exists($dir . '/' . $_language . '.json')) {
-			$return = file_get_contents($dir . '/' . $_language . '.json');
-
-			if (is_json($return)) {
-				return json_decode($return, true);
-			} else {
-				return array();
-			}
-		}
-		return array();
 	}
 
 	public function saveTranslation($_language, $_translation) {
