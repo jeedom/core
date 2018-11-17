@@ -28,27 +28,28 @@
 -   Possibilitée d'ajouter des options dans les rapports
 -   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 -   Ajout des listeners sur la page de moteur de tâche
+-   Optimisations
 
 
 3.2.11
 =====
 
-- Fehlerkorrekturen.
+- Correction de bugs.
 
 3.2.10
 =====
 
-- Fehlerkorrekturen.
-- Verbesserte Synchronisation mit dem Markt.
-- Verbesserung des Aktualisierungsprozesses, insbesondere auf der Ebene von Dateienkopien, die nur die Größe der kopierten Datei überprüft.
-- Fehlerbehebungen bei den Funktionen stateDuration, lastStateDuration und lastChangeStateDuration (Danke @kiboost).
+- Correction de bugs.
+- Amélioration de la synchronisation avec le market.
+- Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
+- Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
 - Optimisation du calcul du graphique de liens et de l'utilisation des variables.
 - Amélioration de la fenêtre de détails des taches cron qui affiche maintenant pour les taches doIn le scénario ainsi que l'action qui sera faite (merci @kiboost).
 
 3.2.9
 =====
 
-- Fehlerkorrekturen
+- Correction de bugs
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -57,7 +58,7 @@
 3.2.8
 =====
 
-- Fehlerkorrekturen
+- Correction de bugs
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
@@ -66,29 +67,29 @@
 3.2.7
 =====
 
-- Fehlerkorrekturen
-- Aktualisierung der Dokumentation
+- Correction de bugs
+- Mise à jour de la docs
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
 
-- Fehlerkorrekturen
-- Aktualisierung der Dokumentation
-- Vereinheitlichung der Namen, bestimmter Befehle in den Szenarien
-- Leistungsoptimierung
+- Correction de bugs
+- Mise à jour de la docs
+- Uniformisation des noms de certaine commande dans les scénarios
+- Optimisation des performances
 
 3.2.5
 =====
 
-- Fehlerkorrekturen
+- Correction de bugs
 - Réactivation des interactions (inactive a cause de la mise à jour)
 
 3.2.4
 =====
 
-- Fehlerkorrekturen
+- Correction de bugs
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
@@ -222,8 +223,8 @@
 -   Mode onepage (changement de page sans recharger toute la page, juste
     la partie qui change)
 
--   Es wurde eine Option hinzugefügt, um die Objekte im Armaturenbrett 
-    auszublenden, sie aber immer in der Liste zu haben
+-   Ajout d’une option pour masquer les objets sur le dashboard mais qui
+    permet de toujours les avoir dans la liste
 
 -   Un double-clic sur un nœud sur le graphique de lien (sauf pour
     les variables) amène sur sa page de configuration

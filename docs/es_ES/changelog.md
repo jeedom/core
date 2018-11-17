@@ -28,6 +28,7 @@ cambios
 -   Possibilitée d'ajouter des options dans les rapports
 -   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 -   Ajout des listeners sur la page de moteur de tâche
+-   Optimisations
 
 
 3.2.11
