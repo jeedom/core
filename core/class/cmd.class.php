@@ -97,12 +97,7 @@ class cmd {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		ORDER BY id';
-		$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		$return = array();
-		foreach ($results as $result) {
-			$return[] = self::byId($result['id']);
-		}
-		return $return;
+		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
 	public static function allHistoryCmd() {
