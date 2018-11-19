@@ -170,7 +170,7 @@ class utils {
 		} else {
 			if ($_key == '') {
 				if ($_attr == '' || !is_json($_attr)) {
-					return $_attr;
+					return array();
 				}
 				return json_decode($_attr, true);
 			}
