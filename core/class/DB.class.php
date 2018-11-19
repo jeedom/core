@@ -29,6 +29,7 @@ class DB {
 	private $connection;
 	private $lastConnection;
 	private static $sharedInstance;
+	private static $fields = array();
 
 	/*     * **************  Fonctions statiques  ***************** */
 
@@ -368,24 +369,23 @@ class DB {
 	 * @throws RuntimeException
 	 */
 	private static function getFields($object) {
-		if (is_object($object)) {
-			$reflection = self::getReflectionClass($object);
-		} else {
-			$reflection = new ReflectionClass($object);
+		$table = is_string($object) ? $object : self::getTableName($object);
+		if (isset(self::$fields[$table])) {
+			return self::$fields[$table];
 		}
+		$reflection = is_object($object) ? self::getReflectionClass($object) : new ReflectionClass($object);
 		$properties = $reflection->getProperties();
-		$fields = array();
+		self::$fields[$table] = array();
 		foreach ($properties as $property) {
 			$name = $property->getName();
 			if ('_' !== $name[0]) {
-				$fields[] = $name;
+				self::$fields[$table][] = $name;
 			}
 		}
-		if (empty($fields)) {
-			//Edge case that can be critical in some cases.
+		if (empty(self::$fields[$table])) {
 			throw new RuntimeException('No fields found for class ' . get_class($object));
 		}
-		return $fields;
+		return self::$fields[$table];
 	}
 
 	/**

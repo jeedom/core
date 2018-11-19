@@ -22,6 +22,8 @@ require_once __DIR__ . '/../php/core.inc.php';
 class utils {
 	/*     * *************************Attributs****************************** */
 
+	private static $properties = array();
+
 	/*     * ***********************Methode static*************************** */
 
 	public static function o2a($_object, $_noToArray = false) {
@@ -39,17 +41,11 @@ class utils {
 		if (!$_noToArray && method_exists($_object, 'toArray')) {
 			return $_object->toArray();
 		}
-		$reflections = array();
-		$uuid = spl_object_hash($_object);
-		if (!class_exists(get_class($_object))) {
-			return array();
+		if (!isset(self::$properties[get_class($_object)])) {
+			$reflection = new ReflectionClass($_object);
+			self::$properties[get_class($_object)] = $reflection->getProperties();
 		}
-		if (!isset($reflections[$uuid])) {
-			$reflections[$uuid] = new ReflectionClass($_object);
-		}
-		$reflection = $reflections[$uuid];
-		$properties = $reflection->getProperties();
-		foreach ($properties as $property) {
+		foreach (self::$properties[get_class($_object)] as $property) {
 			$name = $property->getName();
 			if ('_' !== $name[0]) {
 				$method = 'get' . ucfirst($name);
@@ -60,11 +56,7 @@ class utils {
 					$value = $property->getValue($_object);
 					$property->setAccessible(false);
 				}
-				if (is_json($value)) {
-					$array[$name] = json_decode($value, true);
-				} else {
-					$array[$name] = $value;
-				}
+				$array[$name] = is_json($value, $value);
 			}
 		}
 		return $array;
@@ -139,19 +131,13 @@ class utils {
 
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
-			if ($_attr != '' && is_json($_attr)) {
-				if (!is_array($_attr)) {
-					$_attr = json_decode($_attr, true);
-				}
-				unset($_attr[$_key]);
+			if (!is_array($_attr)) {
+				$_attr = is_json($_attr, array());
 			}
+			unset($_attr[$_key]);
 		} else {
 			if (!is_array($_attr)) {
-				if ($_attr == '' || !is_json($_attr)) {
-					$_attr = array();
-				} else {
-					$_attr = json_decode($_attr, true);
-				}
+				$_attr = is_json($_attr, array());
 			}
 			if (is_array($_key)) {
 				$_attr = array_merge($_attr, $_key);
@@ -169,10 +155,8 @@ class utils {
 			}
 		} else {
 			if ($_key == '') {
-				if ($_attr == '' || !is_json($_attr)) {
-					return array();
-				}
-				return json_decode($_attr, true);
+				$_attr = is_json($_attr, array());
+				return $_attr;
 			}
 			if ($_attr === '') {
 				return $_default;
