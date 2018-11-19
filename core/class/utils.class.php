@@ -39,15 +39,7 @@ class utils {
 		if (!$_noToArray && method_exists($_object, 'toArray')) {
 			return $_object->toArray();
 		}
-		$reflections = array();
-		$uuid = spl_object_hash($_object);
-		if (!class_exists(get_class($_object))) {
-			return array();
-		}
-		if (!isset($reflections[$uuid])) {
-			$reflections[$uuid] = new ReflectionClass($_object);
-		}
-		$reflection = $reflections[$uuid];
+		$reflection = new ReflectionClass($_object);
 		$properties = $reflection->getProperties();
 		foreach ($properties as $property) {
 			$name = $property->getName();
