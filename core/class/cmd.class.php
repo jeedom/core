@@ -1200,9 +1200,7 @@ class cmd {
 			}
 			if ($_options != '') {
 				$options = jeedom::toHumanReadable($_options);
-				if (is_json($options)) {
-					$options = json_decode($options, true);
-				}
+				$options = is_json($options, $options);
 				if (is_array($options)) {
 					foreach ($options as $key => $value) {
 						$replace['#' . $key . '#'] = $value;

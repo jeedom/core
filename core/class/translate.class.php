@@ -41,11 +41,11 @@ class translate {
 
 	public static function getTranslation($_plugin) {
 		if (!isset(self::$translation[self::getLanguage()])) {
-			if (!isset(self::$pluginLoad[$_plugin])) {
-				self::$pluginLoad[$_plugin] = true;
-				self::$translation[self::getLanguage()] = array_merge(self::$translation[self::getLanguage()], self::loadTranslation($_plugin));
-			}
-
+			self::$translation[self::getLanguage()] = array();
+		}
+		if (!isset(self::$pluginLoad[$_plugin])) {
+			self::$pluginLoad[$_plugin] = true;
+			self::$translation[self::getLanguage()] = array_merge(self::$translation[self::getLanguage()], self::loadTranslation($_plugin));
 		}
 		return self::$translation[self::getLanguage()];
 	}
@@ -59,6 +59,9 @@ class translate {
 			return 'core';
 		}
 		preg_match_all('/plugins\/(.*?)\//m', $_name, $matches, PREG_SET_ORDER, 0);
+		if (!isset($matches[1])) {
+			return 'core';
+		}
 		return $matches[1];
 	}
 
@@ -130,7 +133,7 @@ class translate {
 			$filename = self::getPathTranslationFile(self::getLanguage());
 			if (file_exists($filename)) {
 				$content = file_get_contents($filename);
-				$return = is_json($content) ? json_decode($content, true) : array();
+				$return = is_json($content, array());
 			}
 		}
 		if ($_plugin == null) {
