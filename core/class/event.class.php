@@ -70,26 +70,26 @@ class event {
 
 	public static function cleanEvent($_events) {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
-		$manage_event = array('eqLogic::update', 'cmd::update', 'scenario::update', 'jeeObject::summary::update');
-		$events = array();
-		$return = array();
-		foreach ($_events as $event) {
-			if (!in_array($event['name'], $manage_event)) {
-				$events[] = $event;
+		$find = array();
+		foreach (array_values($_events) as $key => $event) {
+			if ($event['name'] == 'eqLogic::update') {
+				$id = $event['name'] . '::' . $event['option']['eqLogic_id'];
+			} elseif ($event['name'] == 'cmd::update') {
+				$id = $event['name'] . '::' . $event['option']['cmd_id'];
+			} elseif ($event['name'] == 'scenario::update') {
+				$id = $event['name'] . '::' . $event['option']['scenario_id'];
+			} elseif ($event['name'] == 'jeeObject::summary::update') {
+				$id = $event['name'] . '::' . $event['option']['object_id'];
+			} else {
 				continue;
 			}
-			if ($event['name'] == 'eqLogic::update') {
-				$events[$event['name'] . '::' . $event['option']['eqLogic_id']] = $event;
-			} elseif ($event['name'] == 'cmd::update') {
-				$events[$event['name'] . '::' . $event['option']['cmd_id']] = $event;
-			} elseif ($event['name'] == 'scenario::update') {
-				$events[$event['name'] . '::' . $event['option']['scenario_id']] = $event;
-			} elseif ($event['name'] == 'jeeObject::summary::update') {
-				$events[$event['name'] . '::' . $event['option']['object_id']] = $event;
+			if ($id != '' && isset($find[$id]) && $find[$id] > $event['datetime']) {
+				unset($_events[$key]);
+				continue;
 			}
+			$find[$id] = $event['datetime'];
 		}
-		usort($events, 'self::orderEvent');
-		return array_values($events);
+		return array_values($_events);
 	}
 
 	public static function orderEvent($a, $b) {
