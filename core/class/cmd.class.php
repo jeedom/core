@@ -1909,6 +1909,7 @@ class cmd {
 
 	public function setEqLogic_id($eqLogic_id) {
 		$this->eqLogic_id = $eqLogic_id;
+		return $this;
 	}
 
 	public function setIsHistorized($isHistorized) {
@@ -1937,6 +1938,7 @@ class cmd {
 			$this->_needRefreshWidget = true;
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
+		return $this;
 	}
 
 	public function getTemplate($_key = '', $_default = '') {
@@ -1948,6 +1950,7 @@ class cmd {
 			$this->_needRefreshWidget = true;
 		}
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
+		return $this;
 	}
 
 	public function getConfiguration($_key = '', $_default = '') {
@@ -1961,6 +1964,7 @@ class cmd {
 			}
 		}
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		return $this;
 	}
 
 	public function getDisplay($_key = '', $_default = '') {
@@ -1972,6 +1976,7 @@ class cmd {
 			$this->_needRefreshWidget = true;
 		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		return $this;
 	}
 
 	public function getAlert($_key = '', $_default = '') {
@@ -2035,6 +2040,7 @@ class cmd {
 			$this->_needRefreshWidget = true;
 		}
 		$this->order = $order;
+		return $this;
 	}
 
 	public function getLogicalId() {
@@ -2062,6 +2068,7 @@ class cmd {
 
 	public function setCache($_key, $_value = null) {
 		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		return $this;
 	}
 
 }
