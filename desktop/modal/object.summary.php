@@ -42,7 +42,7 @@ foreach ($allObject as $object) {
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		$title = '';
-		if (!is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
+		if (!isset($object->getConfiguration('summary')[$key]) || !is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
 			continue;
 		}
 		foreach ($object->getConfiguration('summary')[$key] as $summary) {
