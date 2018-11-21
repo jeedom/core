@@ -52,9 +52,6 @@ try {
 			$keys = json_decode($keys, true);
 			$configs = config::byKeys(array_keys($keys), init('plugin', 'core'));
 			$return = array();
-			foreach ($keys as $key => $value) {
-				$return[$key] = jeedom::toHumanReadable($configs[$key]);
-			}
 			if (init('convertToHumanReadable', 0)) {
 				$return = jeedom::toHumanReadable($return);
 			}
