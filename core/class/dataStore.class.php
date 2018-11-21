@@ -210,10 +210,7 @@ class dataStore {
 		if ($this->value === '') {
 			return $_default;
 		}
-		if (is_json($this->value)) {
-			return json_decode($this->value, true);
-		}
-		return $this->value;
+		return is_json($this->value, $this->value);
 	}
 
 	public function setValue($value) {

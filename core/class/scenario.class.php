@@ -1663,10 +1663,7 @@ class scenario {
 	 * @return string/object
 	 */
 	public function getSchedule() {
-		if (is_json($this->schedule)) {
-			return json_decode($this->schedule, true);
-		}
-		return $this->schedule;
+		return is_json($this->schedule, $this->schedule);
 	}
 	/**
 	 *
@@ -1699,10 +1696,7 @@ class scenario {
 	 * @return type
 	 */
 	public function getScenarioElement() {
-		if (is_json($this->scenarioElement)) {
-			return json_decode($this->scenarioElement, true);
-		}
-		return $this->scenarioElement;
+		return is_json($this->scenarioElement, $this->scenarioElement);
 	}
 	/**
 	 *
@@ -1721,10 +1715,7 @@ class scenario {
 	 * @return type
 	 */
 	public function getTrigger() {
-		if (is_json($this->trigger)) {
-			return json_decode($this->trigger, true);
-		}
-		return array($this->trigger);
+		return is_json($this->trigger, array($this->trigger));
 	}
 	/**
 	 *

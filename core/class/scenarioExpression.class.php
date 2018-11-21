@@ -99,9 +99,7 @@ class scenarioExpression {
 			return $return;
 		}
 		$return['template'] = getTemplate('core', 'scenario', $_expression . '.default');
-		if (is_json($_options)) {
-			$_options = json_decode($_options, true);
-		}
+		$_options = is_json($_options, $_options);
 		if (is_array($_options) && count($_options) > 0) {
 			foreach ($_options as $key => $value) {
 				$replace['#' . $key . '#'] = str_replace('"', '&quot;', $value);
