@@ -152,10 +152,7 @@ class config {
 				}
 			}
 		} else {
-			if (is_json($value['value'])) {
-				$value['value'] = json_decode($value['value'], true);
-			}
-			self::$cache[$_plugin . '::' . $_key] = $value['value'];
+			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
 		}
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
@@ -180,9 +177,7 @@ class config {
 		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 		foreach ($_keys as $key) {
 			if (isset($return[$key])) {
-				if (is_json($return[$key])) {
-					$return[$key] = json_decode($return[$key], true);
-				}
+				$return[$key] = is_json($return[$key], $return[$key]);
 			} elseif (isset($defaultConfiguration[$_plugin][$key])) {
 				$return[$key] = $defaultConfiguration[$_plugin][$key];
 			} else {
@@ -212,9 +207,7 @@ class config {
                     AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
-			if (is_json($result['value'])) {
-				$result['value'] = json_decode($result['value'], true);
-			}
+			$result['value'] = is_json($result['value'], $result['value']);
 		}
 		return $results;
 	}
@@ -251,11 +244,7 @@ class config {
 		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			if (is_json($value['value'])) {
-				$return[$value['key']] = json_decode($value['value'], true);
-			} else {
-				$return[$value['key']] = $value['value'];
-			}
+			$return[$value['key']] = is_json($value['value'], $value['value']);
 		}
 		return $return;
 	}

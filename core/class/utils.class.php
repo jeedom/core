@@ -22,6 +22,8 @@ require_once __DIR__ . '/../php/core.inc.php';
 class utils {
 	/*     * *************************Attributs****************************** */
 
+	private static $properties = array();
+
 	/*     * ***********************Methode static*************************** */
 
 	public static function o2a($_object, $_noToArray = false) {
@@ -39,9 +41,11 @@ class utils {
 		if (!$_noToArray && method_exists($_object, 'toArray')) {
 			return $_object->toArray();
 		}
-		$reflection = new ReflectionClass($_object);
-		$properties = $reflection->getProperties();
-		foreach ($properties as $property) {
+		$class = get_class($_object);
+		if (!isset(self::$properties[$class])) {
+			self::$properties[$class] = (new ReflectionClass($class))->getProperties();
+		}
+		foreach (self::$properties[$class] as $property) {
 			$name = $property->getName();
 			if ('_' !== $name[0]) {
 				$method = 'get' . ucfirst($name);
@@ -64,9 +68,7 @@ class utils {
 				$method = 'set' . ucfirst($key);
 				if (method_exists($_object, $method)) {
 					$function = new ReflectionMethod($_object, $method);
-					if (is_json($value)) {
-						$value = json_decode($value, true);
-					}
+					$value = is_json($value, $value);
 					if (is_array($value)) {
 						if ($function->getNumberOfRequiredParameters() == 2) {
 							foreach ($value as $arrayKey => $arrayValue) {
