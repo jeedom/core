@@ -736,8 +736,9 @@ class scenario {
 	 * @return type
 	 */
 	public function execute($_trigger = '', $_message = '') {
-		if ($this->getCache('tags') != '') {
-			$this->setTags($this->getCache('tags'));
+		$tags = $this->getCache('tags');
+		if ($tags != '') {
+			$this->setTags($tags);
 			$this->setCache('tags', '');
 		}
 		if ($this->getIsActive() != 1) {
@@ -1423,8 +1424,9 @@ class scenario {
 	 */
 	public function toArray() {
 		$return = utils::o2a($this, true);
-		$return['state'] = $this->getCache('state');
-		$return['lastLaunch'] = $this->getCache('lastLaunch');
+		$cache = $this->getCache(array('state', 'lastLaunch'));
+		$return['state'] = $cache['state'];
+		$return['lastLaunch'] = $cache['lastLaunch'];
 		return $return;
 	}
 	/**
