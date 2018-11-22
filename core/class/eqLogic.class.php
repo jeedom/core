@@ -507,8 +507,8 @@ class eqLogic {
 		$battery = $this->getConfiguration('battery_type', 'none');
 		$batteryTime = $this->getConfiguration('batterytime', 'NA');
 		$batterySince = 'NA';
-		if ($batteryTime != 'NA'){
-			$batterySince = ((strtotime(date("Y-m-d"))- strtotime(date("Y-m-d",strtotime($batteryTime))))/86400);
+		if ($batteryTime != 'NA') {
+			$batterySince = ((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400);
 		}
 		if (strpos($battery, ' ') !== false) {
 			$battery = substr(strrchr($battery, " "), 1);
@@ -547,8 +547,8 @@ class eqLogic {
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
 			$html .= '<i class="icon techno-fingerprint41 pull-right" style="position:absolute;bottom: 3px;right: 3px;cursor:default;" title="Seuil manuel défini"></i>';
 		}
-		if ($batteryTime != 'NA'){
-			$html .= '<i class="icon divers-calendar2 pull-right" style="position:absolute;bottom: 3px;left: 3px;cursor:default;" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) ('.$batteryTime.')"></i>';
+		if ($batteryTime != 'NA') {
+			$html .= '<i class="icon divers-calendar2 pull-right" style="position:absolute;bottom: 3px;left: 3px;cursor:default;" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) (' . $batteryTime . ')"></i>';
 		} else {
 			$html .= '<i class="icon divers-calendar2 pull-right" style="position:absolute;bottom: 3px;left: 3px;cursor:default;" title="Pas de date de changement de pile(s) renseignée"></i>';
 		}

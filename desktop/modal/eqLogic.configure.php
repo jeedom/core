@@ -723,7 +723,7 @@ for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
 											$('#md_modal2').dialog({title: "{{Logs}}"});
 											$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
 										});
-										
+
 										$('#bt_resetbattery').on('click',function(){
 											bootbox.confirm('{{Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\'hui}}', function (result) {
 												if (result) {
@@ -732,9 +732,9 @@ for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
 													eqLogic['configuration']={};
 													var today = new Date();
 													var dd = today.getDate();
-													var mm = today.getMonth()+1; 
-													var hh = today.getHours(); 
-													var MM = today.getMinutes(); 
+													var mm = today.getMonth()+1;
+													var hh = today.getHours();
+													var MM = today.getMinutes();
 													var ss = today.getSeconds();
 													var yyyy = today.getFullYear();
 													eqLogic['configuration']['batterytime'] = yyyy+'-'+mm+'-'+dd+' '+hh+':'+MM+':'+ss;
