@@ -50,8 +50,7 @@ try {
 		}
 		if (is_json($keys)) {
 			$keys = json_decode($keys, true);
-			$configs = config::byKeys(array_keys($keys), init('plugin', 'core'));
-			$return = array();
+			$return = config::byKeys(array_keys($keys), init('plugin', 'core'));
 			if (init('convertToHumanReadable', 0)) {
 				$return = jeedom::toHumanReadable($return);
 			}
