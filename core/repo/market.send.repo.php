@@ -239,7 +239,7 @@ if (is_object($market)) {
 
   $('body').setValues(market_display_info, '.marketAttr');
   if(market_display_info.id != ''){
-    $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="https://market.jeedom.fr/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
+    $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="https://jeedom.fr/market/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
   }else{
     $('#span_directLinkWidget').value('');
   }
