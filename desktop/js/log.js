@@ -42,32 +42,22 @@
   jeedom.log.remove({
     log : $('.li_log.active').attr('data-log'),
     success: function(data) {
-       loadPage('index.php?v=d&p=log');
-    }
-  });
+     loadPage('index.php?v=d&p=log');
+   }
+ });
 });
 
  $("#bt_removeAllLog").on('click', function(event) {
   bootbox.confirm("{{Etes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
    if (result) {
-    $.ajax({
-      type: "POST", 
-      url: "core/ajax/log.ajax.php", 
-      data: {
-       action: "removeAll",
-     },
-     dataType: 'json',
-     error: function(request, status, error) {
-       handleAjaxError(request, status, error);
+    jeedom.log.removeAll({
+      error: function (error) {
+       $('#div_alertError').showAlert({message: error.message, level: 'danger'});
      },
      success: function(data) {
-      if (data.state != 'ok') {
-       $('#div_alertError').showAlert({message: data.result, level: 'danger'});
-       return;
-     }
-     loadPage('index.php?v=d&p=log');
-   }
- });
+      loadPage('index.php?v=d&p=log');
+    }
+  });
   }
 });
 });

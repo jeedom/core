@@ -38,6 +38,10 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'list') {
+		ajax::success(log::liste());
+	}
+
 	if (init('action') == 'removeAll') {
 		unautorizedInDemo();
 		log::removeAll();

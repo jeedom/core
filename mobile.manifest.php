@@ -24,6 +24,7 @@ $js_file = array(
 	'core/js/private.class.js',
 	'core/js/core.js',
 	'core/js/eqLogic.class.js',
+	'core/js/log.class.js',
 	'core/js/user.class.js',
 	'core/js/history.class.js',
 	'core/js/config.class.js',
