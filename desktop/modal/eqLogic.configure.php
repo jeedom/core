@@ -70,6 +70,12 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 									<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime" style="font-size : 1em;"></span>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">{{Date de changement de pile(s)}}</label>
+								<div class="col-sm-4">
+									<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime" style="font-size : 1em;"></span>
+								</div>
+							</div>
 						</fieldset>
 					</form>
 				</div>
@@ -404,7 +410,7 @@ if ($eqLogic->getDisplay('parameters') != '') {
 																	<div class="form-group">
 																		<label class="col-sm-4 control-label">{{Type de batterie}}</label>
 																		<div class="col-sm-6">
-																			<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
+																			<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input><a class="btn btn-success btn-xs pull-right" id="bt_resetbattery"><i class="fas fa-refresh"></i> Pile(s) changée(s)</a>
 																		</div>
 																	</div>
 																</fieldset>
@@ -718,6 +724,33 @@ for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
 											$('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + eqLogicInfoSearchString).dialog('open');
 										});
 
+										$('#bt_resetbattery').on('click',function(){
+											bootbox.confirm('{{Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\'hui}}', function (result) {
+												if (result) {
+													var eqLogic = {};
+													eqLogic['id']=eqLogicInfo.id
+													eqLogic['configuration']={};
+													var today = new Date();
+													var dd = today.getDate();
+													var mm = today.getMonth()+1;
+													var hh = today.getHours();
+													var MM = today.getMinutes();
+													var ss = today.getSeconds();
+													var yyyy = today.getFullYear();
+													eqLogic['configuration']['batterytime'] = yyyy+'-'+mm+'-'+dd+' '+hh+':'+MM+':'+ss;
+													console.log(eqLogic);
+													jeedom.eqLogic.simpleSave({
+														eqLogic : eqLogic,
+														error: function (error) {
+															$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
+														},
+														success: function (data) {
+															$('#md_displayEqLogicConfigure').showAlert({message: '{{Changement de pile(s) pris en compte}}', level: 'success'});
+														}
+													});
+												}
+											});
+										});
 
 
 									</script>

@@ -24,6 +24,7 @@ if (!isConnect()) {
         <option value="popup">{{Pop-up}}</option>
         <option value="report">{{Rapport}}</option>
         <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
+         <option value="event">{{Evènement}}</option>
     </select>
 </center>
 <br/>
@@ -101,6 +102,10 @@ if (!isConnect()) {
 
 <div class="alert alert-info mod_actionValue_selDescription remove_inat" style="display:none;">
     {{Permet de supprimer la programmation de tous les blocs DANS et A du scénario}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription event">
+    {{Permet de pousser une valeur dans une commande de type information de maniere arbitraire}}
 </div>
 <script>
     $('#mod_actionValue_sel').on('change',function(){

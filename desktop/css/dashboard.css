@@ -9,7 +9,6 @@
 }
 .eqLogic-widget:hover {
   border-color: hsla(0, 0%, 100%, 0.5) !important;
-  cursor: move !important;
 }
 .eqLogic-widget.is-dragging,
 .eqLogic-widget.is-positioning-post-drag {

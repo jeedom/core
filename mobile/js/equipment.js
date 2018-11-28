@@ -21,7 +21,6 @@ function initEquipment(_object_id) {
             objectMapping[objects[i].father_id].push(parseInt(objects[i].id));
           } else {
             objectMapping[objects[i].father_id] = [parseInt(objects[i].id)];
-
           }
         }
         li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:right;font-size:0.6em;color:#787c84;"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>';
@@ -31,7 +30,6 @@ function initEquipment(_object_id) {
     li += '</ul>';
     panel(li);
     jeedom.object.summaryUpdate(summaries);
-
   }
 });
   if (isset(_object_id)) {

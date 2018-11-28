@@ -103,53 +103,55 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                 </div>
               </div>
             <?php }?>
-            <?php if ($cmd->getType() == 'info') {?>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Valeur}}</label>
-                <div class="col-xs-4">
-                  <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('value') ?></span>
-                </div>
+            <?php if ($cmd->getType() == 'info') {
+	$cache = $cmd->getCache(array('value', 'collectDate', 'valueDate'));
+	?>
+             <div class="form-group">
+              <label class="col-xs-4 control-label">{{Valeur}}</label>
+              <div class="col-xs-4">
+                <span class="label label-primary" style="font-size : 1em;"><?php echo $cache['value'] ?></span>
               </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Date collecte}}</label>
-                <div class="col-xs-4">
-                  <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('collectDate') ?></span>
-                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-4 control-label">{{Date collecte}}</label>
+              <div class="col-xs-4">
+                <span class="label label-primary" style="font-size : 1em;"><?php echo $cache['collectDate'] ?></span>
               </div>
-              <div class="form-group">
-                <label class="col-xs-4 control-label">{{Date valeur}}</label>
-                <div class="col-xs-4">
-                  <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('valueDate') ?></span>
-                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-4 control-label">{{Date valeur}}</label>
+              <div class="col-xs-4">
+                <span class="label label-primary" style="font-size : 1em;"><?php echo $cache['valueDate'] ?></span>
               </div>
-            <?php }?>
-          </fieldset>
-        </form>
-      </div>
-      <div class="col-sm-6" >
-        <form class="form-horizontal">
-          <fieldset>
-           <div class="form-group">
-            <label class="col-xs-4 control-label">{{URL directe}}</label>
-            <div class="col-xs-8">
-              <?php
+            </div>
+          <?php }?>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-sm-6" >
+      <form class="form-horizontal">
+        <fieldset>
+         <div class="form-group">
+          <label class="col-xs-4 control-label">{{URL directe}}</label>
+          <div class="col-xs-8">
+            <?php
 echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas fa-external-link-alt"></i> URL</a>';
 ?>
-            </div>
           </div>
-          <div class="form-group">
-            <label class="col-xs-4 control-label">{{Unité}}</label>
-            <div class="col-xs-4">
-              <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
-            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 control-label">{{Unité}}</label>
+          <div class="col-xs-4">
+            <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
           </div>
-          <div class="form-group">
-            <label class="col-xs-4 control-label">{{Visible}}</label>
-            <div class="col-xs-4">
-              <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
-            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 control-label">{{Visible}}</label>
+          <div class="col-xs-4">
+            <input type="checkbox" class="cmdAttr" data-l1key="isVisible" />
           </div>
-          <?php if ($cmd->getType() == 'info' && $cmd->getSubtype() == 'numeric') {?>
+        </div>
+        <?php if ($cmd->getType() == 'info' && $cmd->getSubtype() == 'numeric') {?>
           <div class="form-group">
             <label class="col-xs-4 control-label">{{Valeur minimum (défaut : 0)}}</label>
             <div class="col-xs-2">
@@ -163,28 +165,28 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fas
             </div>
           </div>
         <?php }?>
-          <div class="form-group">
-            <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
-            <div class="col-xs-4">
-              <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
-            <div class="col-xs-4">
-              <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
-            </div>
-          </div>
-          <div class="iconeGeneric">
-           <label class="col-xs-4 control-label">{{Icône}}</label>
-           <div class="col-xs-4">
-            <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
-            <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
+        <div class="form-group">
+          <label class="col-xs-4 control-label">{{Suivre dans la timeline}}</label>
+          <div class="col-xs-4">
+            <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
           </div>
         </div>
-      </fieldset>
-    </form>
-  </div>
+        <div class="form-group">
+          <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
+          <div class="col-xs-4">
+            <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
+          </div>
+        </div>
+        <div class="iconeGeneric">
+         <label class="col-xs-4 control-label">{{Icône}}</label>
+         <div class="col-xs-4">
+          <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
+          <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
 </div>
 
 <legend><i class="fas fa-search"></i> {{Utilisé par}}
