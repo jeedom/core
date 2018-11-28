@@ -119,8 +119,8 @@ jeedom.history.drawChart = function (_params) {
         _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
         if(isset(data.result.cmd)){
             if (init(_params.option.graphStep) == '') {
-             _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
-             if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
+               _params.option.graphStep = (data.result.cmd.subType == 'binary') ? true : false;
+               if (isset(data.result.cmd.display) && init(data.result.cmd.display.graphStep) != '') {
                 _params.option.graphStep = (data.result.cmd.display.graphStep == "0") ? false : true;
             }
         }
@@ -455,7 +455,7 @@ if (jeedom.history.chart[_params.el].color > 9) {
 var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
 var plotband = jeedom.history.generatePlotBand(extremes.min,extremes.max);
 for(var i in plotband){
- jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
+   jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);   
 } 
 $.hideLoading();
 if (typeof (init(_params.success)) == 'function') {
@@ -478,10 +478,13 @@ jeedom.history.generatePlotBand = function (_startTime, _endTime) {
         plotBand.color = '#F8F8F8';
         plotBand.from = _startTime;
         plotBand.to = _startTime + pas;
-        plotBands.push(plotBand);
-        _startTime += 2 * pas;
-    }
-    return plotBands;
+        if(plotBand.to > _endTime){
+         plotBand.to = _endTime;
+     }
+     plotBands.push(plotBand);
+     _startTime += 2 * pas;
+ }
+ return plotBands;
 }
 
 jeedom.history.changePoint = function (_params) {
