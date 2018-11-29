@@ -29,6 +29,7 @@ cambios
 -   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 -   Ajout des listeners sur la page de moteur de tâche
 -   Optimisations
+-   Possibilité de consulter les logs en version mobile (wepapp)
 
 
 3.2.11
