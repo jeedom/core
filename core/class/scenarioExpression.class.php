@@ -1458,6 +1458,11 @@ class scenarioExpression {
 						$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
 						$cmd->execCmd($cmd_parameters);
 					}
+				} elseif ($this->getExpression() == 'tag') {
+					$tags = $scenario->getTags();
+					$tags['#' . $options['name'] . '#'] = $options['value'];
+					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $options['value']);
+					$scenario->setTags($tags);
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {

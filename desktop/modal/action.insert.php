@@ -24,7 +24,8 @@ if (!isConnect()) {
         <option value="popup">{{Pop-up}}</option>
         <option value="report">{{Rapport}}</option>
         <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
-         <option value="event">{{Evènement}}</option>
+        <option value="event">{{Evènement}}</option>
+        <option value="tag">{{Tag}}</option>
     </select>
 </center>
 <br/>
@@ -107,6 +108,11 @@ if (!isConnect()) {
 <div class="alert alert-info mod_actionValue_selDescription event">
     {{Permet de pousser une valeur dans une commande de type information de maniere arbitraire}}
 </div>
+
+<div class="alert alert-info mod_actionValue_selDescription tag">
+    {{Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
+</div>
+
 <script>
     $('#mod_actionValue_sel').on('change',function(){
       var value = $(this).value();
