@@ -30,6 +30,7 @@ Changelog
 -   Ajout des listeners sur la page de moteur de tâche
 -   Optimisations
 -   Possibilité de consulter les logs en version mobile (wepapp)
+-   Ajout d'une action tag dans les scénarios (voir documentation)
 
 
 3.2.11
