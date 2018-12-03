@@ -35,6 +35,11 @@
  $("#bt_clearLog").on('click', function(event) {
   jeedom.log.clear({
     log : $('.li_log.active').attr('data-log'),
+    success: function(data) {
+      if($('#bt_globalLogStopStart').attr('data-state') == 0){
+        $('#bt_globalLogStopStart').click();
+      }
+    }
   });
 });
 

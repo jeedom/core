@@ -86,7 +86,7 @@ class cmd {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
 		}
-		$in = implode(',', $_ids);
+		$in = trim(implode(',', $_ids), ',');
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE id IN (' . $in . ')';

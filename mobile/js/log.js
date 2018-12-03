@@ -31,6 +31,11 @@ function initLog(_log) {
 				error: function (error) {
 					$('#div_alert').showAlert({message: error.message, level: 'danger'});
 				},
+				success: function(data) {
+					if($('#bt_globalLogStopStart').attr('data-state') == 0){
+						$('#bt_globalLogStopStart').click();
+					}
+				}
 			});
 		});
 

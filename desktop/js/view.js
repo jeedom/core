@@ -19,7 +19,30 @@
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500);
 });
 
- if (view_id != '') {
+
+ function fullScreen(_mode) {
+  if(_mode){
+    $('header').hide();
+    $('footer').hide();
+    $('#div_mainContainer').css('margin-top', '-50px');
+    $('.backgroundforJeedom').css('margin-top', '-50px').css('height','100%');
+    $('#wrap').css('margin-bottom', '0px');
+    $('.div_displayView').height($('html').height() - 5);
+    $('.div_displayViewContainer').height($('html').height() - 5);
+    $('.bt_hideFullScreen').hide();
+  }else{
+    $('header').show();
+    $('footer').show();
+    $('#div_mainContainer').css('margin-top', '0px');
+    $('.backgroundforJeedom').css('margin-top', '0px').css('height','calc(100% - 50px)');
+    $('#wrap').css('margin-bottom', '15px');
+    $('.div_displayView').height($('body').height());
+    $('.div_displayViewContainer').height($('body').height());
+    $('.bt_hideFullScreen').show();
+  }
+}
+
+if (view_id != '') {
   jeedom.view.toHtml({
     id: view_id,
     version: 'dview',
@@ -90,6 +113,9 @@
            $(this).css('color','rgb(46, 176, 75)');
          }
        });
+        if (getUrlVars('fullscreen') == 1) {
+          fullScreen(true);
+        }
       }, 10);
     }
   });

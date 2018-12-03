@@ -37,7 +37,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 	<div class="bs-sidebar">
 		<ul id="ul_view" class="nav nav-list bs-sidenav">
 			<?php if (isConnect('admin')) {?>
-			<a class="btn btn-default" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fas fa-plus-circle"></i> {{Ajouter une vue}}</a>
+			<a class="btn btn-default bt_hideFullScreen" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fas fa-plus-circle"></i> {{Ajouter une vue}}</a>
 			<?php }
 ?>
 			<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
@@ -68,10 +68,10 @@ echo $view->getName();
 	<?php
 if (init('noControl') == '') {
 	if (isConnect('admin')) {
-		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }
+		?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }
 	?>
 
-			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden" id="bt_editViewWidgetOrder" data-mode="0"></i>
+			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen" id="bt_editViewWidgetOrder" data-mode="0"></i>
 			<?php }
 ?>
 		</legend>
