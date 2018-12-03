@@ -31,6 +31,7 @@ Changelog
 -   Optimisations
 -   Possibilité de consulter les logs en version mobile (wepapp)
 -   Ajout d'une action tag dans les scénarios (voir documentation)
+-   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscree=1" dans l'url
 
 
 3.2.11
