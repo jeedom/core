@@ -713,6 +713,10 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
+-   **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de maniere arbitraire
+
+-   **Tag** (tag) : Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)
+
 Template de scénario 
 ====================
 
