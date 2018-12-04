@@ -19,21 +19,25 @@
 try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-	}
-
+	
 	ajax::init(false);
 
 	if (init('action') == 'getInfoApplication') {
+		$return = array();
+		$return['product_name'] = config::byKey('product_name');
+		$return['product_icon'] = config::byKey('product_icon');
+		$return['product_image'] = config::byKey('product_image');
+		$return['serverDatetime'] = getmicrotime();
+		if (!isConnect()) {
+			$return['connected'] = false;
+			ajax::success($return);
+		}
+		
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
-		$return = array();
 		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
@@ -64,6 +68,10 @@ try {
 			$return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
 		}
 		ajax::success($return);
+	}
+	
+	if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
 	ajax::init(true);
