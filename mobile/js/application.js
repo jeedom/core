@@ -1,5 +1,7 @@
 /***************Fonction d'initialisation*********************/
 
+var JEEDOM_DATA;
+
 $(document).ajaxStart(function () {
     nbActiveAjaxRequest++;
     $.showLoading();
@@ -121,15 +123,11 @@ function initApplication(_reinit) {
             confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
         },
         success: function (data) {
-            if (data.state != 'ok') {
+            JEEDOM_DATA= data.result;
+            if (data.state != 'ok' || !isset(data.result.connected) || data.result.connected == false) {
                 modal(false);
                 panel(false);
-                if (data.code == -1234) {
-                    page('connection', 'Connexion');
-                    return;
-                } else {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                }
+                page('connection', 'Connexion');
                 return;
             }
             if (init(_reinit, false) == false) {
