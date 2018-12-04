@@ -23,7 +23,7 @@ if (isConnect()) {
 if (init('rescue', 0) == 1) {
 	$homeLink = 'index.php?v=d&p=system&rescue=1';
 }
-$title = 'Jeedom';
+$title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
