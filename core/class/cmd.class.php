@@ -87,10 +87,13 @@ class cmd {
 			return;
 		}
 		$in = trim(implode(',', $_ids), ',');
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE id IN (' . $in . ')';
-		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		if (!empty($in))
+		{
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM cmd
+			WHERE id IN (' . $in . ')';
+			return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+		}
 	}
 
 	public static function all() {
