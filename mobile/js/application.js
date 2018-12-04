@@ -114,7 +114,7 @@ function initApplication(_reinit) {
         },
         success: function (data) {
          JEEDOM_DATA= data.result;
-            if (data.state != 'ok' || !isset(data.result.connected) || data.result.connected == false) {
+            if (data.state != 'ok' || (isset(data.result.connected) && data.result.connected == false)) {
                 modal(false);
                 panel(false);
                 page('connection', 'Connexion');
