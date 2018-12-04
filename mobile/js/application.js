@@ -1,5 +1,7 @@
 /***************Fonction d'initialisation*********************/
 
+var JEEDOM_DATA;
+
 $(document).ajaxStart(function () {
     nbActiveAjaxRequest++;
     $.showLoading();
@@ -34,10 +36,10 @@ $(function () {
 
 
     $('body').on('click','.objectSummaryParent',function(){
-     modal(false);
-     panel(false);
-     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
- });
+       modal(false);
+       panel(false);
+       page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
+   });
 
     $('body').on('taphold','.cmd[data-type=info]',function(){
         $('#bottompanel_mainoption').empty();
@@ -62,10 +64,10 @@ $(function () {
             window.location.reload();
         }
         if (e.type == 'progress') {
-         var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
-         $('#span_updateAdvancement').text(progress);
-     }
-     if (e.type == 'error') {
+           var progress = Math.round((e.loaded/e.total)*100 * 100) / 100
+           $('#span_updateAdvancement').text(progress);
+       }
+       if (e.type == 'error') {
         $('#div_updateInProgress').html('<p>{{Erreur lors de la mise à jour}}<br/>{{Nouvelle tentative dans 5s}}</p>');
         setTimeout(function(){ webappCache.update(); }, 5000);
     }
@@ -93,8 +95,8 @@ function setBackgroundImage(_image){
     $('.backgroundforJeedom').css('background-position','');
     $('.backgroundforJeedom').css('background-repeat','no-repeat');
     if(_image != ''){
-       $('.backgroundforJeedom').css('background-image','url("'+_image+'")');
-   }
+     $('.backgroundforJeedom').css('background-image','url("'+_image+'")');
+ }
 }
 
 function isset() {
@@ -121,15 +123,11 @@ function initApplication(_reinit) {
             confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
         },
         success: function (data) {
-            if (data.state != 'ok') {
+            JEEDOM_DATA= data.result;
+            if (data.state != 'ok' || !isset(data.result.connected) || data.result.connected == false) {
                 modal(false);
                 panel(false);
-                if (data.code == -1234) {
-                    page('connection', 'Connexion');
-                    return;
-                } else {
-                    $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                }
+                page('connection', 'Connexion');
                 return;
             }
             if (init(_reinit, false) == false) {
@@ -182,8 +180,8 @@ function initApplication(_reinit) {
                         deviceInfo = getDeviceType();
                         jeedom.object.summaryUpdate([{object_id:'global'}])
                         if(getUrlVars('p') == 'view'){
-                         page('view', 'Vue',getUrlVars('view_id'));
-                     }else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
+                           page('view', 'Vue',getUrlVars('view_id'));
+                       }else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home' && getUrlVars('p') != 'home') {
                         var res = userProfils.homePageMobile.split("::");
                         if (res[0] == 'core') {
                             switch (res[1]) {
@@ -215,18 +213,18 @@ function page(_page, _title, _option, _plugin,_dialog) {
     setBackgroundImage('');
     $.showLoading();
     try {
-       $('#bottompanel').panel('close');
-       $('#bottompanel_mainoption').panel('close');
-       $('.ui-popup').popup('close');
-   } catch (e) {
+     $('#bottompanel').panel('close');
+     $('#bottompanel_mainoption').panel('close');
+     $('.ui-popup').popup('close');
+ } catch (e) {
 
-   }
-   if (isset(_title)) {
-    if(!isset(_dialog) || !_dialog){
-       $('#pageTitle').empty().append(_title);
-   }else{
-     $('#popupDialog .nd-title').text(_title);
  }
+ if (isset(_title)) {
+    if(!isset(_dialog) || !_dialog){
+     $('#pageTitle').empty().append(_title);
+ }else{
+   $('#popupDialog .nd-title').text(_title);
+}
 }
 if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page;
@@ -239,7 +237,7 @@ if (_page == 'connection') {
 }
 var page = 'index.php?v=m&ajax=1'
 if(isset(_dialog) && _dialog){
- page += '&modal='+_page;
+   page += '&modal='+_page;
 }else{
     page += '&p=' + _page;
 }
@@ -247,9 +245,9 @@ if (init(_plugin) != '') {
     page += '&m=' + _plugin;
 }
 if(isset(_dialog) && _dialog){
-   $('#popupDialog .content').load(page, function () {
-       var functionName = '';
-       if (init(_plugin) != '') {
+ $('#popupDialog .content').load(page, function () {
+     var functionName = '';
+     if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
     } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
@@ -276,10 +274,10 @@ if(isset(_dialog) && _dialog){
 });
 }else{
     $('#page').hide().load(page, function () {
-       window.history.pushState('','','index.php?v=m&p=' +_page);
-       $('#page').trigger('create');
-       var functionName = '';
-       if (init(_plugin) != '') {
+     window.history.pushState('','','index.php?v=m&p=' +_page);
+     $('#page').trigger('create');
+     var functionName = '';
+     if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();
     } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase();

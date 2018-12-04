@@ -72,7 +72,7 @@ try {
 
 					}
 				} else if (init('p') != '') {
-					$title = ucfirst(init('p')) . ' - Jeedom';
+					$title = ucfirst(init('p')) . ' - ' . config::byKey('product_name');
 				}
 				echo '<script>';
 				echo 'document.title = "' . $title . '"';
