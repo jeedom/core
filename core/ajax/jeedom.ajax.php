@@ -354,3 +354,19 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
 }
+ droits', __FILE__));
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'emptyRemoveHistory') {
+		unautorizedInDemo();
+		unlink(__DIR__ . '/../../data/remove_history.json');
+		ajax::success();
+	}
+
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayException($e), $e->getCode());
+}
