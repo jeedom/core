@@ -12,6 +12,7 @@ return array(
     '2b9d0f43f9552984cfa82fee95491826' => $vendorDir . '/sabre/event/lib/coroutine.php',
     'd81bab31d3feb45bfe2f283ea3c8fdf7' => $vendorDir . '/sabre/event/lib/Loop/functions.php',
     'a1cce3d26cc15c00fcd0b3354bd72c88' => $vendorDir . '/sabre/event/lib/Promise/functions.php',
+    '7b11c4dc42b3b3023073cb14e519683c' => $vendorDir . '/ralouphie/getallheaders/src/getallheaders.php',
     'ebdb698ed4152ae445614b69b5e4bb6a' => $vendorDir . '/sabre/http/lib/functions.php',
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     'c964ee0ededf28c96ebd9db5099ef910' => $vendorDir . '/guzzlehttp/promises/src/functions_include.php',

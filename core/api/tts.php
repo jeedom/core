@@ -33,7 +33,14 @@ if ($text == '') {
 }
 $text = str_replace(array('[', ']', '#', '{', '}'), '', $text);
 $md5 = md5($text);
-$filename = jeedom::getTmpFolder('tts') . '/' . $md5 . '.mp3';
+$tts_dir = jeedom::getTmpFolder('tts');
+$filename = $tts_dir . '/' . $md5 . '.mp3';
+if (file_exists($filename)) {
+	header('Content-Type: application/octet-stream');
+	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	readfile($filename);
+	die();
+}
 switch ($engine) {
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
@@ -49,8 +56,23 @@ switch ($engine) {
 		die();
 		break;
 }
-
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 readfile($filename);
-shell_exec('rm ' . $filename . ' > /dev/null 2>&1');
+try {
+	while (getDirectorySize($tts_dir) > (10 * 1024 * 1024)) {
+		$older = array('file' => null, 'datetime' => null);
+		foreach (ls($tts_dir . '/', '*') as $file) {
+			if ($older['datetime'] == null || $older['datetime'] > filemtime($tts_dir . '/' . $file)) {
+				$older['file'] = $tts_dir . '/' . $file;
+				$older['datetime'] = filemtime($tts_dir . '/' . $file);
+			}
+		}
+		if ($older['file'] == null) {
+			log::add('tts', 'error', __('Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ', __FILE__) . getDirectorySize($tts_dir));
+		}
+		unlink($older['file']);
+	}
+} catch (Exception $e) {
+	log::add('tts', 'error', $e->getMessage());
+}
