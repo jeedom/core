@@ -43,6 +43,10 @@ $md5 = md5($text);
 $tts_dir = jeedom::getTmpFolder('tts');
 $filename = $tts_dir . '/' . $md5 . '.mp3';
 if (file_exists($filename)) {
+	if (init('path') == 1) {
+		echo $filename;
+		die();
+	}
 	header('Content-Type: application/octet-stream');
 	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
 	readfile($filename);
@@ -66,9 +70,13 @@ switch ($engine) {
 		die();
 		break;
 }
-header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
-readfile($filename);
+if (init('path') == 1) {
+	echo $filename;
+} else {
+	header('Content-Type: application/octet-stream');
+	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	readfile($filename);
+}
 try {
 	while (getDirectorySize($tts_dir) > (10 * 1024 * 1024)) {
 		$older = array('file' => null, 'datetime' => null);
