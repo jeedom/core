@@ -25,7 +25,14 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-$engine = init('engine', 'pico');
+if (class_exists('gcp')) {
+	$engine = 'gcp';
+} else {
+	$engine = init('engine', 'pico');
+	if ($engine == 'gcp') {
+		$engine = 'pico';
+	}
+}
 $text = init('text');
 if ($text == '') {
 	echo __('Aucun texte à dire', __FILE__);
@@ -42,6 +49,9 @@ if (file_exists($filename)) {
 	die();
 }
 switch ($engine) {
+	case 'gcp':
+		gcp::tts($text);
+		break;
 	case 'espeak':
 		$voice = init('voice', 'fr+f4');
 		shell_exec('espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
