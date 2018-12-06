@@ -209,7 +209,17 @@ function displayException($e) {
 	return $message;
 }
 
-function is_json($_string) {
+function is_json($_string, $_default = null) {
+	if ($_default !== null) {
+		if (!is_string($_string)) {
+			return $_default;
+		}
+		$return = json_decode($_string, true, 512, JSON_BIGINT_AS_STRING);
+		if (!is_array($return)) {
+			return $_default;
+		}
+		return $return;
+	}
 	return ((is_string($_string) && is_array(json_decode($_string, true, 512, JSON_BIGINT_AS_STRING)))) ? true : false;
 }
 
