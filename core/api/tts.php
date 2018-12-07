@@ -43,6 +43,7 @@ $md5 = md5($text);
 $tts_dir = jeedom::getTmpFolder('tts');
 $filename = $tts_dir . '/' . $md5 . '.mp3';
 if (file_exists($filename)) {
+	log::add('tts', 'debug', 'Use cache for ' . $filename . ' (' . $text . ')');
 	if (init('path') == 1) {
 		echo $filename;
 		die();
@@ -52,6 +53,7 @@ if (file_exists($filename)) {
 	readfile($filename);
 	die();
 }
+log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ')');
 try {
 	switch ($engine) {
 		case 'gcp':
