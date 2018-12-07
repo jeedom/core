@@ -24,4 +24,4 @@ foreach (ls($root_dir, '*') as $dir) {
 		echo '<link rel="stylesheet" href="core/css/icon/' . $dir . 'style.css?md5=' . md5($root_dir . $dir . '/style.css') . '">' . "\n";
 	}
 }
-?>
+ 

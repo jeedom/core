@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
-	throw new Exception('Commande non trouvé : ' . init('cmd_id'));
+	throw new Exception('Commande non trouvée : ' . init('cmd_id'));
 }
 ?>
 

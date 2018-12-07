@@ -24,7 +24,6 @@ class interactDef {
 
 	private $id;
 	private $name;
-	private $position;
 	private $filtres;
 	private $query;
 	private $reply;
@@ -51,18 +50,18 @@ class interactDef {
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
-        ORDER BY position';
+        ORDER BY name,query';
 		} else if ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE (`group` IS NULL OR `group` = "")
-        ORDER BY position';
+        ORDER BY name,query';
 		} else {
 			$values['group'] = $_group;
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM interactDef
         WHERE `group`=:group
-        ORDER BY position';
+        ORDER BY name,query';
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -154,19 +153,23 @@ class interactDef {
 	public static function deadCmd() {
 		$return = array();
 		foreach (interactDef::all() as $interact) {
-			preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (is_numeric($cmd_id)) {
-					if (!cmd::byId(str_replace('#', '', $actions['cmd']))) {
-						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => $actions['cmd']);
+			if (is_string($interact->getActions('cmd')) && $interact->getActions('cmd') != '') {
+				preg_match_all("/#([0-9]*)#/", $interact->getActions('cmd'), $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+						}
 					}
 				}
 			}
-			preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
-			foreach ($matches[1] as $cmd_id) {
-				if (is_numeric($cmd_id)) {
-					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
-						$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+			if (is_string($interact->getReply()) && $interact->getReply() != '') {
+				preg_match_all("/#([0-9]*)#/", $interact->getReply(), $matches);
+				foreach ($matches[1] as $cmd_id) {
+					if (is_numeric($cmd_id)) {
+						if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+							$return[] = array('detail' => 'Interaction ' . $interact->getName() . ' du groupe ' . $interact->getGroup(), 'help' => 'Réponse', 'who' => '#' . $cmd_id . '#');
+						}
 					}
 				}
 			}
@@ -187,13 +190,28 @@ class interactDef {
 
 	public static function searchByUse($_search) {
 		$return = array();
-		$values = array(
-			'search' => '%' . $_search . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM interactDef
-        WHERE actions LIKE :search
-        	OR reply LIKE :search';
+		if (!is_array($_search)) {
+			$values = array(
+				'search' => '%' . $_search . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM interactDef
+			        WHERE actions LIKE :search
+			        	OR reply LIKE :search';
+		} else {
+			$values = array(
+				'search' => '%' . $_search[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM interactDef
+			        WHERE actions LIKE :search
+			        	OR reply LIKE :search';
+			for ($i = 1; $i < count($_search); $i++) {
+				$values['search' . $i] = '%' . $_search[$i] . '%';
+				$sql .= ' OR actions LIKE :search' . $i . '
+			        	  OR reply LIKE :search' . $i;
+			}
+		}
 		$interactDefs = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		$interactQueries = interactQuery::searchActions($_search);
 		foreach ($interactQueries as $interactQuery) {
@@ -211,7 +229,7 @@ class interactDef {
 
 	public function checkQuery($_query) {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
-			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n)|( |^)la (a|e|y|u|i|o)|( |^)le (a|e|y|u|i|o)|( |^)du (a|e|y|u|i|o)/i";
+			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n|y| )|( |^)la (a|e|u|i|o)|( |^)le (a|e|u|i|o)|( |^)du (a|e|u|i|o)/i";
 			if (preg_match($exclude_regexp, $_query)) {
 				return false;
 			}
@@ -328,6 +346,12 @@ class interactDef {
 				'le buanderie',
 				'du buanderie',
 				'la bureau',
+				'de salon',
+				'de maison',
+				'de chambre',
+				'de cuisine',
+				'de espace',
+				'de salle de bain',
 				'(dans|quelqu\'un) entr(é|e)e',
 			);
 			if (preg_match('/( |^)' . implode('( |$)|( |^)', $disallow) . '( |$)/i', $_query)) {
@@ -353,11 +377,15 @@ class interactDef {
 		if ($this->getReply() == '') {
 			$this->setReply('#valeur#');
 		}
+		$this->setEnable(1);
 	}
 
 	public function preSave() {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
+		}
+		if ($this->getFiltres('eqLogic_id') == '') {
+			$this->setFiltres('eqLogic_id', 'all');
 		}
 	}
 
@@ -375,6 +403,9 @@ class interactDef {
 			DB::beginTransaction();
 			foreach ($queries as $query) {
 				$query['query'] = self::sanitizeQuery($query['query']);
+				if (trim($query['query']) == '') {
+					continue;
+				}
 				if (!$this->checkQuery($query['query'])) {
 					continue;
 				}
@@ -411,11 +442,10 @@ class interactDef {
 		$plugin_filter = $this->getFiltres('plugin');
 		$visible_filter = $this->getFiltres('visible');
 		$category_filter = $this->getFiltres('category');
-
 		foreach ($inputs as $input) {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
-			if (in_array('commande', $matches) && (in_array('objet', $matches) || in_array('equipement', $matches))) {
+			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
 				foreach (object::all() as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
@@ -512,43 +542,49 @@ class interactDef {
 			}
 		}
 		if ($this->getOptions('synonymes') != '') {
-			$queries = $return;
 			$synonymes = array();
 			foreach (explode('|', $this->getOptions('synonymes')) as $value) {
 				$values = explode('=', $value);
+				if (count($values) != 2) {
+					continue;
+				}
 				$synonymes[strtolower($values[0])] = explode(',', $values[1]);
 			}
-			$return = array();
-			foreach ($queries as $query) {
-				foreach (self::generateSynonymeVariante($query['query'], $synonymes) as $synonyme) {
+			$result = array();
+			foreach ($return as $query) {
+				$results = self::generateSynonymeVariante(self::sanitizeQuery($query['query']), $synonymes);
+				if (count($results) == 0) {
+					continue;
+				}
+				foreach ($results as $result) {
 					$query_info = $query;
-					$query_info['query'] = $synonyme;
-					$return[$synonyme] = $query_info;
+					$query_info['query'] = $result;
+					$return[$result] = $query_info;
 				}
 			}
 		}
 		return $return;
 	}
 
-	public static function generateSynonymeVariante($_text, $_synonymes) {
+	public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0) {
 		$return = array();
-		if (count($_synonymes) > 0) {
-			foreach ($_synonymes as $replace => $values) {
-				if (stripos($_text, $replace) !== false &&
-					(substr($_text, stripos($_text, $replace) - 1, 1) == ' ' || stripos($_text, $replace) - 1 < 0) &&
-					(substr($_text, stripos($_text, $replace) + strlen($replace), 1) == ' ' || stripos($_text, $replace) + strlen($replace) + 1 > strlen($_text))) {
-					$start = stripos($_text, $replace);
-					foreach (self::generateSynonymeVariante(substr($_text, $start + strlen($replace)), $_synonymes) as $endSentence) {
-						foreach ($values as $value) {
-							$return[] = substr($_text, 0, $start) . $value . $endSentence;
-						}
-					}
-				} else {
-					$return[] = $_text;
+		if (count($_synonymes) == 0) {
+			return $return;
+		}
+		if ($_deep > 10) {
+			return $return;
+		}
+		$_deep++;
+		foreach ($_synonymes as $replace => $values) {
+			foreach ($values as $value) {
+				$result = @preg_replace('/\b' . self::sanitizeQuery($replace) . '\b/iu', self::sanitizeQuery($value), $_text);
+				if ($result != $_text) {
+					$synonymes = $_synonymes;
+					unset($synonymes[$replace]);
+					$return = array_merge($return, self::generateSynonymeVariante($result, $synonymes, $_deep));
+					$return[] = $result;
 				}
 			}
-		} else {
-			$return[] = $_text;
 		}
 		return $return;
 	}
@@ -640,15 +676,6 @@ class interactDef {
 
 	public function setFiltres($_key, $_value) {
 		$this->filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
-		return $this;
-	}
-
-	public function getPosition() {
-		return $this->position;
-	}
-
-	public function setPosition($position) {
-		$this->position = $position;
 		return $this;
 	}
 

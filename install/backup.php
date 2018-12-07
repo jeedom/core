@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 echo "[START BACKUP]\n";
@@ -40,11 +40,19 @@ try {
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Send begin backup event...";
+		echo "Envoie l'événement de début de sauvegarde...";
 		jeedom::event('begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
+	}
+	
+	try {
+		echo 'Vérifiez les droits sur les fichiers...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
 	}
 
 	global $CONFIG;
@@ -54,7 +62,7 @@ try {
 		mkdir($backup_dir, 0770, true);
 	}
 	if (!is_writable($backup_dir)) {
-		throw new Exception('Cannot acces backup folder, please check right : ' . $backup_dir);
+		throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
 	}
 	$replace_name = array(
 		'&' => '',
@@ -80,14 +88,26 @@ try {
 		}
 	}
 
-	echo "Check database...";
+	echo "Vérifie la base de données...";
 	system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 	echo "OK" . "\n";
 
-	echo 'Backup database...';
+	echo 'Sauvegarde la base de données...';
+	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+		unlink($jeedom_dir . "/DB_backup.sql");
+		if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+			system("sudo rm " . $jeedom_dir . "/DB_backup.sql");
+		}
+	}
+	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
+		throw new Exception('Impossible de supprimer la sauvegarde de la base de données. Vérifiez les droits');
+	}
 	system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	if ($rc != 0) {
-		throw new Exception('Failed to save the BDD, verify that mysqldump is present. Return Code : ' . $rc);
+		throw new Exception('Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent. Code retourné : ' . $rc);
+	}
+	if (filemtime($jeedom_dir . "/DB_backup.sql") < (strtotime('now') - 1200)) {
+		throw new Exception('Echec durant la sauvegarde de la base de données. Date du fichier de sauvegarde de la base trop vieux. Vérifiez les droits');
 	}
 	echo "OK" . "\n";
 
@@ -99,11 +119,15 @@ try {
 		echo $e->getMessage();
 	}
 
-	echo 'Create archive...';
+	echo 'Créer l\'archive...';
 
 	$excludes = array(
 		'tmp',
 		'log',
+		'docs',
+		'doc',
+		'tests',
+		'support',
 		'backup',
 		'.git',
 		'.log',
@@ -111,22 +135,26 @@ try {
 		config::byKey('backup::path'),
 	);
 
+	if (config::byKey('recordDir', 'camera') != '') {
+		$excludes[] = config::byKey('recordDir', 'camera');
+	}
+
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' * > /dev/null');
+	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
 
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
-		throw new Exception('Backup failed.Cannot find : ' . $backup_dir . '/' . $backup_name);
+		throw new Exception('Echec du backup. Impossible de trouver : ' . $backup_dir . '/' . $backup_name);
 	}
 
-	echo 'Clean old backup...';
+	echo 'Nettoyage l\'ancienne sauvegarde...';
 	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 
-	echo 'Limit the total size of backups to ' . config::byKey('backup::maxSize') . " Mo...\n";
+	echo 'Limite la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
@@ -161,15 +189,15 @@ try {
 			}
 		}
 		if ($older['file'] === null) {
-			echo 'Error no files to delete when the folder does : ' . getDirectorySize($backup_dir) . "\n";
+			echo 'Erreur : aucun fichier à supprimer quand le dossier fait : ' . getDirectorySize($backup_dir) . "\n";
 		}
-		echo "Remove : " . $older['file'] . "\n";
+		echo "Supprime : " . $older['file'] . "\n";
 		if (!unlink($older['file'])) {
 			$i = 50;
 		}
 		$i++;
 		if ($i > 50) {
-			echo "More than 50 backups deleted. I stop.\n";
+			echo "Plus de 50 sauvegardes supprimées. J'arrête.\n";
 			break;
 		}
 	}
@@ -201,21 +229,29 @@ try {
 			echo "OK" . "\n";
 		}
 	}
-	echo "Name of backup : " . $backup_dir . '/' . $backup_name . "\n";
+	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
+	
+	try {
+		echo 'Vérifiez les droits sur les fichiers...';
+		jeedom::cleanFileSytemRight();
+		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
 
 	try {
-		echo 'Send end backup event...';
+		echo 'Envoi l\'événement de fin de sauvegarde...';
 		jeedom::event('end_backup');
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
-	echo "Backup duration : " . (strtotime('now') - $starttime) . "s\n";
+	echo "Durée de la sauvegarde : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Fin de la sauvegarde de Jeedom***************\n";
 	echo "[END BACKUP SUCCESS]\n";
 } catch (Exception $e) {
-	echo 'Error during backup : ' . br2nl($e->getMessage());
-	echo 'Details : ' . print_r($e->getTrace(), true);
+	echo 'Erreur durant la sauvegarde : ' . br2nl($e->getMessage());
+	echo 'Détails : ' . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
 }

@@ -23,7 +23,7 @@ if (isConnect()) {
 if (init('rescue', 0) == 1) {
 	$homeLink = 'index.php?v=d&p=system&rescue=1';
 }
-$title = 'Jeedom';
+$title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
@@ -74,7 +74,7 @@ if (init('rescue', 0) == 0) {
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<link rel="shortcut icon" href="core/img/logo-jeedom-sans-nom-couleur-25x25.png">
+	<link rel="shortcut icon" href="<?php echo config::byKey('product_icon') ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -87,12 +87,18 @@ if (init('rescue', 0) == 0) {
 		var io = null;
 	</script>
 	<?php
-if (!isConnect() || $_SESSION['user']->getOptions('bootstrap_theme') == '') {
-	include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
+if (!isConnect()) {
+	if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+		include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+	} else {
+		include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
+	}
 } else {
 	try {
-		if (init('rescue', 0) == 0 && is_dir(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(dirname(__FILE__) . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
 			include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.css');
+		} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
 		} else {
 			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
 		}
@@ -110,6 +116,7 @@ include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
+		JEEDOM_PRODUCT_NAME='<?php echo config::byKey('product_name') ?>';
 		JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
 		$.ajaxSetup({
 			type: "POST",
@@ -131,6 +138,7 @@ include_file('3rdparty', 'highstock/highstock', 'js');
 include_file('3rdparty', 'highstock/highcharts-more', 'js');
 include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 include_file('3rdparty', 'highstock/modules/exporting', 'js');
+include_file('3rdparty', 'highstock/modules/export-data', 'js');
 include_file('desktop', 'utils', 'js');
 include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
@@ -210,6 +218,7 @@ if (!isConnect()) {
 } else {
 	sendVarToJS('userProfils', $_SESSION['user']->getOptions());
 	sendVarToJS('user_id', $_SESSION['user']->getId());
+	sendVarToJS('user_isAdmin', isConnect('admin'));
 	sendVarToJS('user_login', $_SESSION['user']->getLogin());
 	sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
 	if (count($eventjs_plugin) > 0) {
@@ -228,7 +237,7 @@ if (!isConnect()) {
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-							<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
+							<img src="<?php echo config::byKey('product_image') ?>" height="30" style="position: relative; top:-5px;"/>
 						</a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
@@ -245,7 +254,7 @@ if (!isConnect()) {
 
 									<li class="dropdown-submenu">
 										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fa fa-dashboard"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu">
+										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php
 foreach (object::buildTree(null, false) as $object_li) {
 			echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
@@ -435,12 +444,12 @@ $nbMessage = message::nbMessage();
 										</div>
 										<nav class="navbar-collapse collapse">
 											<ul class="nav navbar-nav">
-												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fa fa-terminal"></i> {{Systeme}}</a></li>
+												<li><a href="index.php?v=d&p=system&rescue=1"><i class="fa fa-terminal"></i> {{Système}}</a></li>
 												<li><a href="index.php?v=d&p=database&rescue=1"><i class="fa fa-database"></i> {{Database}}</a></li>
 												<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fa fa-indent"></i> {{Editeur}}</a></li>
-												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fa fa-pencil-square-o"></i> {{Personalisation}}</a></li>
+												<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fa fa-pencil-square-o"></i> {{Personnalisation}}</a></li>
 												<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fa fa-floppy-o"></i> {{Sauvegarde}}</a></li>
-												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fa fa-tasks"></i> {{Moteur de tâche}}</a></li>
+												<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fa fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=log&rescue=1"><i class="fa fa-file-o"></i> {{Log}}</a></li>
 											</ul>
 
@@ -455,7 +464,7 @@ $nbMessage = message::nbMessage();
 										<?php
 try {
 		if (!jeedom::isStarted()) {
-			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé}}</div>';
+			echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			include_file('desktop', $page, 'php', $plugin->getId());
@@ -465,12 +474,12 @@ try {
 	} catch (Exception $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	} catch (Error $e) {
 		ob_end_clean();
 		echo '<div class="alert alert-danger div_alert">';
-		echo displayExeption($e);
+		echo displayException($e);
 		echo '</div>';
 	}
 	?>

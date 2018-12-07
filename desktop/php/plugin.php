@@ -112,9 +112,9 @@ foreach (plugin::listPlugin() as $plugin) {
             <div class="col-sm-4">
               <span id="span_plugin_author" style="position:relative;top:9px;"></span>
             </div>
-            <label class="col-sm-2 control-label">{{Licence}}</label>
+            <label class="col-sm-2 control-label">{{License}}</label>
             <div class="col-sm-4">
-              <span id="span_plugin_licence" style="position:relative;top:9px;"></span>
+              <span id="span_plugin_license" style="position:relative;top:9px;"></span>
             </div>
           </div>
         </fieldset>

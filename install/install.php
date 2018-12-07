@@ -17,15 +17,15 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 set_time_limit(1800);
-echo "[START UPDATE]\n";
+echo "[START INSTALL]\n";
 $starttime = strtotime('now');
 if (isset($argv)) {
 	foreach ($argv as $arg) {
@@ -39,7 +39,7 @@ if (isset($argv)) {
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
-		echo "Une mise a jour/installation est deja en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		echo "Une mise à jour/installation est déjà en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
 		print_r(system::ps('install/install.php', 'sudo'));
 		echo "[END INSTALL]\n";
 		die();
@@ -47,17 +47,17 @@ try {
 	echo "****Install jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	/*         * ***************************INSTALLATION************************** */
 	if (version_compare(PHP_VERSION, '5.6.0', '<')) {
-		throw new Exception('Jeedom need php 5.6 or upper (current : ' . PHP_VERSION . ')');
+		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
 	}
-	echo "\nInstall of Jeedom " . jeedom::version() . "\n";
+	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
 	$sql = file_get_contents(dirname(__FILE__) . '/install.sql');
-	echo "Install of database...";
+	echo "Installation de la base de données...";
 	DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	echo "OK\n";
-	echo "Post install...\n";
+	echo "Post installation...\n";
 	config::save('api', config::genKey());
 	require_once dirname(__FILE__) . '/consistency.php';
-	echo "Add user (admin,admin)\n";
+	echo "Ajout de l'utilisateur (admin,admin)\n";
 	$user = new user();
 	$user->setLogin('admin');
 	$user->setPassword(sha512('admin'));
@@ -67,11 +67,11 @@ try {
 	echo "OK\n";
 	config::save('version', jeedom::version());
 } catch (Exception $e) {
-	echo 'Error during install : ' . $e->getMessage();
-	echo 'Details : ' . print_r($e->getTrace(), true);
+	echo 'Erreur durant l\'installation : ' . $e->getMessage();
+	echo 'Détails : ' . print_r($e->getTrace(), true);
 	echo "[END INSTALL ERROR]\n";
 	throw $e;
 }
 
-echo "Install duration : " . (strtotime('now') - $starttime) . "s\n";
+echo "Temps d'installation : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END INSTALL SUCCESS]\n";

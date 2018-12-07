@@ -61,6 +61,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `eqLogic` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(127) NOT NULL,
+  `generic_type` VARCHAR(255) NULL,
   `logicalId` VARCHAR(127) NULL,
   `object_id` INT NULL,
   `eqType_name` VARCHAR(127) NOT NULL,
@@ -79,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   INDEX `eqTypeName` (`eqType_name` ASC),
   INDEX `name` (`name` ASC),
   INDEX `logical_id` (`logicalId` ASC),
+  INDEX `generic_type` (`generic_type` ASC),
   INDEX `logica_id_eqTypeName` (`logicalId` ASC, `eqType_name` ASC),
   INDEX `object_id` (`object_id` ASC),
   INDEX `timeout` (`timeout` ASC),
@@ -104,6 +106,7 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   `eqLogic_id` INT NOT NULL,
   `eqType` VARCHAR(127) NULL,
   `logicalId` VARCHAR(127) NULL,
+  `generic_type` VARCHAR(255) NULL,
   `order` INT NULL,
   `name` VARCHAR(45) NULL,
   `configuration` TEXT BINARY NULL,
@@ -128,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `cmd` (
   INDEX `order` (`order` ASC),
   INDEX `logicalID` (`logicalId` ASC),
   INDEX `logicalId_eqLogicID` (`eqLogic_id` ASC, `logicalId` ASC),
+  INDEX `genericType_eqLogicID` (`eqLogic_id` ASC, `generic_type` ASC),
   CONSTRAINT `fk_cmd_eqLogic1`
     FOREIGN KEY (`eqLogic_id`)
     REFERENCES `eqLogic` (`id`)
@@ -351,7 +355,6 @@ CREATE TABLE IF NOT EXISTS `interactDef` (
   `person` VARCHAR(255) NULL,
   `options` TEXT NULL,
   `filtres` TEXT NULL,
-  `position` INT NULL,
   `group` VARCHAR(127) NULL DEFAULT NULL,
   `actions` TEXT NULL,
   PRIMARY KEY (`id`))

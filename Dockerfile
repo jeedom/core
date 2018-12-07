@@ -3,6 +3,9 @@ FROM debian:latest
 MAINTAINER info@jeedom.com
 
 ENV SHELL_ROOT_PASSWORD Mjeedom96
+ENV APACHE_PORT 80
+ENV SSH_PORT 22
+ENV MODE_HOST 0
 
 RUN apt-get update && apt-get install -y wget openssh-server supervisor mysql-client
 
@@ -25,9 +28,9 @@ RUN /root/install_docker.sh -s 4;exit 0
 RUN /root/install_docker.sh -s 5;exit 0
 RUN /root/install_docker.sh -s 7;exit 0
 RUN /root/install_docker.sh -s 10;exit 0
+RUN systemctl disable apache2;exit 0
+RUN systemctl disable sshd;exit 0
 
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
-
-EXPOSE 22 80

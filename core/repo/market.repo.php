@@ -53,7 +53,7 @@ class repo_market {
 		),
 		'parameters_for_add' => array(
 			'version' => array(
-				'name' => 'Version : beta,release, stable',
+				'name' => 'Version : beta, release, stable',
 				'type' => 'input',
 			),
 		),
@@ -86,8 +86,10 @@ class repo_market {
 	private $language;
 	private $private;
 	private $updateBy;
+	private $parameters;
 	private $hardwareCompatibility;
 	private $nbInstall;
+	private $allowVersion = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -110,6 +112,9 @@ class repo_market {
 					$update->setStatus($market_info['status']);
 					$update->setConfiguration('market', $market_info['market']);
 					$update->setRemoteVersion($market_info['datetime']);
+					if ($update->getConfiguration('version') == '') {
+						$update->setConfiguration('version', 'stable');
+					}
 					$update->save();
 				}
 			}
@@ -206,18 +211,18 @@ class repo_market {
 		return $status;
 	}
 
-	public static function sendBackupCloud($_path, $_chunksize = 1024000) {
+	public static function sendBackupCloud($_path, $_chunksize = 4096000) {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('backup::create', array('filename' => pathinfo($_path, PATHINFO_BASENAME), 'filesize' => filesize($_path), 'chunksize' => $_chunksize, 'checksum' => md5_file($_path)))) {
 			throw new Exception($market->getError());
 		}
 		$backup = $market->getResult();
 		if (isset($backup["completed_at"]) && $backup["completed_at"]) {
-			log::add('backupCloud', 'info', 'le backup est déjà sur le cloud');
+			log::add('backupCloud', 'info', 'la sauvegarde est déjà sur le cloud');
 			return false;
 		}
 		if (isset($backup["retry"]) && $backup["retry"] > 5) {
-			log::add('backupCloud', 'info', 'Upload impossible, nombre d\'essais : 5');
+			log::add('backupCloud', 'info', 'Téléversement impossible, nombre d\'essais : 5');
 			return false;
 		}
 		$fileSize = filesize($_path);
@@ -232,7 +237,7 @@ class repo_market {
 
 		}
 		if ($backup["completed_at"] != "") {
-			log::add('backupCloud', 'info', 'le backup a fini l upload');
+			log::add('backupCloud', 'info', 'la sauvegarde a fini le téléversement');
 			return true;
 		}
 	}
@@ -271,19 +276,128 @@ class repo_market {
 		}
 		jeedom::restore('backup/' . $_backup, true);
 	}
+	
+	/******************************MONITORING********************************/
+
+	public static function monitoring_install() {
+		if (file_exists('/etc/zabbix')) {
+			return;
+		}
+		$logfile = log::getPathToLog('market_zabbix_installation');
+		if (strpos(php_uname(), 'x86_64') !== false) {
+			if (file_exists('/etc/debian_version')) {
+				$deb_version = file_get_contents('/etc/debian_version');
+				if (version_compare($deb_version, '9', '>=')) {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
+				} else {
+					shell_exec('cd /tmp/;sudo wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;sudo rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
+				}
+			}
+		}
+		shell_exec('sudo apt-get update  >> ' . $logfile . ' 2>&1');
+		shell_exec('sudo apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
+	}
+
+	public static function monitoring_start() {
+		preg_match_all('/(\d\.\d\.\d)/m', shell_exec('sudo zabbix_agentd -V'), $matches);
+		self::monitoring_install();
+		$cmd = "sudo chmod -R 777 /etc/zabbix;";
+		$cmd .= "sudo sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= "sudo sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
+		$cmd .= 'sudo echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		$cmd .= 'sudo echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+		if (!isset($matches[0]) || !isset($matches[0][0]) || version_compare($matches[0][0], '3.0.0') >= 0) {
+			$cmd .= 'sudo echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= 'sudo echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= 'sudo echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= 'sudo echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
+			$cmd .= 'sudo echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
+		}
+		if (!file_exists('/var/log/zabbix')) {
+			$cmd .= 'sudo mkdir /var/log/zabbix;';
+			$cmd .= 'sudo chmod 777 -R /var/log/zabbix;';
+		}
+		if (!file_exists('/etc/zabbix/zabbix_agentd.conf.d')) {
+			$cmd .= 'sudo mkdir /etc/zabbix/zabbix_agentd.conf.d;';
+			$cmd .= 'sudo chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
+		}
+		$cmd .= 'sudo systemctl restart zabbix-agent;';
+		$cmd .= 'sudo systemctl enable zabbix-agent;';
+		shell_exec($cmd);
+	}
+
+	public static function monitoring_status() {
+		return (count(system::ps('zabbix')) > 0);
+	}
+
+	public static function monitoring_stop() {
+		$cmd = 'sudo systemctl stop zabbix-agent;';
+		$cmd .= 'sudo systemctl disable zabbix-agent;';
+		shell_exec($cmd);
+	}
+
+	public static function monitoring_allow() {
+		if (config::byKey('market::monitoringServer') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringName') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPskIdentity') == '') {
+			return false;
+		}
+		if (config::byKey('market::monitoringPsk') == '') {
+			return false;
+		}
+		return true;
+	}
 
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
-		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - 24 * 3600)) {
+		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
 			return;
 		}
-		sleep(rand(0, 900));
+		sleep(rand(0, 1800));
 		try {
 			self::test();
 		} catch (Exception $e) {
 
 		}
+	}
+	
+	public static function cron5() {
+		try {
+			$monitoring_state = self::monitoring_status();
+			if (self::monitoring_allow() && !$monitoring_state) {
+				self::monitoring_start();
+			}
+			if (!self::monitoring_allow() && $monitoring_state) {
+				self::monitoring_stop();
+			}
+		} catch (Exception $e) {
+
+		}
+	}
+	
+	/*******************************health********************************/
+
+	public static function health() {
+		$return = array();
+		if (config::byKey('market::monitoringServer') != '') {
+			$monitoring_state = self::monitoring_status();
+			$return[] = array(
+				'name' => __('Cloud monitoring actif', __FILE__),
+				'state' => $monitoring_state,
+				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+				'comment' => ($monitoring_state) ? '' : __('Attendez 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
+			);
+		}
+		return $return;
 	}
 
 	/*     * ***********************INFO*************************** */
@@ -413,7 +527,7 @@ class repo_market {
 			$_ticket['user_plugin'] .= $plugin->getId();
 			$update = $plugin->getUpdate();
 			if (is_object($update)) {
-				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getLocalVersion() . ']';
+				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable'). ',' . $update->getSource() . ',' . $update->getLocalVersion() . ']';
 			}
 			$_ticket['user_plugin'] .= ',';
 		}
@@ -423,11 +537,21 @@ class repo_market {
 		}
 		$_ticket['options']['jeedom_version'] = jeedom::version();
 		$_ticket['options']['uname'] = shell_exec('uname -a');
-		$support_file = makeZipSupport();
-		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300, array('file' => '@' . $support_file))) {
+		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300)) {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
+		if ($_ticket['openSupport'] == 1) {
+			user::supportAccess(true);
+		}
 		return $jsonrpc->getResult();
+	}
+
+	public static function supportAccess($_enable = true, $_key = '') {
+		$jsonrpc = self::getJsonRpc();
+		$url = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
+		if (!$jsonrpc->sendRequest('register::supportAccess', array('enable' => $_enable, 'urlSupport' => $url))) {
+			throw new Exception($jsonrpc->getErrorMessage());
+		}
 	}
 
 	public static function getPassword() {
@@ -478,21 +602,19 @@ class repo_market {
 				'password_type' => 'sha1',
 				'jeedomversion' => jeedom::version(),
 				'hwkey' => jeedom::getHardwareKey(),
-				'addrComplement' => config::byKey('externalComplement'),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
 					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 					'uname' => $uname,
 				),
+				'market_api_key' => jeedom::getApiKey('apimarket'),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
 				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
 			);
-			if (config::byKey('market::allowDNS') != 1) {
-				$params['addr'] = config::byKey('externalAddr');
-				$params['addrProtocol'] = config::byKey('externalProtocol');
-				$params['addrPort'] = config::byKey('externalPort');
+			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+				$params['url'] = network::getNetworkAccess('external');
 			}
 			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		} else {
@@ -517,8 +639,10 @@ class repo_market {
 	}
 
 	public static function postJsonRpc(&$_result) {
+		config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		if (is_array($_result)) {
 			$restart_dns = false;
+			$restart_monitoring = false;
 			if (isset($_result['register::dnsToken']) && config::byKey('dns::token') != $_result['register::dnsToken']) {
 				config::save('dns::token', $_result['register::dnsToken']);
 				$restart_dns = true;
@@ -526,6 +650,35 @@ class repo_market {
 			if (isset($_result['register::dnsNumber']) && config::byKey('dns::number') != $_result['register::dnsNumber']) {
 				config::save('dns::number', $_result['register::dnsNumber']);
 				$restart_dns = true;
+			}
+			if (isset($_result['register::vpnPort']) && config::byKey('vpn::port') != $_result['register::vpnPort']) {
+				config::save('vpn::port', $_result['register::vpnPort']);
+				$restart_dns = true;
+			}
+			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
+				config::save('market::backupServer', $_result['user::backupServer']);
+			}
+			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
+				config::save('market::backupPassword', $_result['user::backupPassword']);
+			}
+			if (isset($_result['user::monitoringServer']) && config::byKey('market::monitoringServer') != $_result['user::monitoringServer']) {
+				config::save('market::monitoringServer', $_result['user::monitoringServer']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringPsk']) && config::byKey('market::monitoringPsk') != $_result['register::monitoringPsk']) {
+				config::save('market::monitoringPsk', $_result['register::monitoringPsk']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringPskIdentity']) && config::byKey('market::monitoringPskIdentity') != $_result['register::monitoringPskIdentity']) {
+				config::save('market::monitoringPskIdentity', $_result['register::monitoringPskIdentity']);
+				$restart_monitoring = true;
+			}
+			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
+				config::save('market::monitoringName', $_result['register::monitoringName']);
+				$restart_monitoring = true;
+			}
+			if ($restart_monitoring) {
+				self::monitoring_stop();
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
@@ -544,38 +697,54 @@ class repo_market {
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
 			}
-			config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		}
 	}
-
-	public static function construct($_arrayMarket) {
+	/**
+	 *
+	 * @param array $_arrayMarket
+	 * @return \self
+	 */
+	public static function construct(array $_arrayMarket) {
 		$market = new self();
 		if (!isset($_arrayMarket['id'])) {
 			return;
 		}
-		$market->setId($_arrayMarket['id']);
-		$market->setName($_arrayMarket['name']);
-		$market->setType($_arrayMarket['type']);
+		$market->setId($_arrayMarket['id'])
+			->setName($_arrayMarket['name'])
+			->setType($_arrayMarket['type']);
 		$market->datetime = json_encode($_arrayMarket['datetime'], JSON_UNESCAPED_UNICODE);
-		$market->setDescription($_arrayMarket['description']);
-		$market->setDownloaded($_arrayMarket['downloaded']);
-		$market->setUser_id($_arrayMarket['user_id']);
-		$market->setVersion($_arrayMarket['version']);
-		$market->setCategorie($_arrayMarket['categorie']);
+		$market->setDescription($_arrayMarket['description'])
+			->setDownloaded($_arrayMarket['downloaded'])
+			->setUser_id($_arrayMarket['user_id'])
+			->setVersion($_arrayMarket['version'])
+			->setCategorie($_arrayMarket['categorie']);
 		$market->status = json_encode($_arrayMarket['status'], JSON_UNESCAPED_UNICODE);
 		$market->setAuthor($_arrayMarket['author']);
-		@$market->setChangelog($_arrayMarket['changelog']);
-		@$market->setDoc($_arrayMarket['doc']);
+		if (isset($_arrayMarket['changelog'])) {
+			$market->setChangelog($_arrayMarket['changelog']);
+		}
+		if (isset($_arrayMarket['doc'])) {
+			$market->setDoc($_arrayMarket['doc']);
+		}
 		$market->setLogicalId($_arrayMarket['logicalId']);
-		@$market->setUtilization($_arrayMarket['utilization']);
-		@$market->setCertification($_arrayMarket['certification']);
-		$market->setPurchase($_arrayMarket['purchase']);
-		$market->setCost($_arrayMarket['cost']);
+		if (isset($_arrayMarket['utilization'])) {
+			$market->setUtilization($_arrayMarket['utilization']);
+		}
+		if (isset($_arrayMarket['certification'])) {
+			$market->setCertification($_arrayMarket['certification']);
+		}
+		if (isset($_arrayMarket['allowVersion'])) {
+			$market->setAllowVersion($_arrayMarket['allowVersion']);
+		}
+		if (isset($_arrayMarket['nbInstall'])) {
+			$market->setNbInstall($_arrayMarket['nbInstall']);
+		}
+		$market->setPurchase($_arrayMarket['purchase'])
+			->setCost($_arrayMarket['cost']);
 		$market->rating = ($_arrayMarket['rating']);
-		$market->setBuyer($_arrayMarket['buyer']);
-		$market->setUpdateBy($_arrayMarket['updateBy']);
-		$market->setPrivate($_arrayMarket['private']);
-		$market->setNbInstall($_arrayMarket['nbInstall']);
+		$market->setBuyer($_arrayMarket['buyer'])
+			->setUpdateBy($_arrayMarket['updateBy'])
+			->setPrivate($_arrayMarket['private']);
 		$market->img = json_encode($_arrayMarket['img'], JSON_UNESCAPED_UNICODE);
 		$market->link = json_encode($_arrayMarket['link'], JSON_UNESCAPED_UNICODE);
 		$market->language = json_encode($_arrayMarket['language'], JSON_UNESCAPED_UNICODE);
@@ -589,6 +758,11 @@ class repo_market {
 		}
 		$market->setIsAuthor($_arrayMarket['isAuthor']);
 
+		if (isset($_arrayMarket['parameters']) && is_array($_arrayMarket['parameters'])) {
+			foreach ($_arrayMarket['parameters'] as $key => $value) {
+				$market->setParameters($key, $value);
+			}
+		}
 		return $market;
 	}
 
@@ -746,20 +920,14 @@ class repo_market {
 
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
-		$opts = array(
-			"ssl" => array(
-				"verify_peer" => false,
-				"verify_peer_name" => false,
-			),
-		);
-		file_put_contents($tmp, fopen($url, 'r', false, stream_context_create($opts)));
+		exec('wget --no-check-certificate "' . $url . '" -O ' . $tmp . ' 2>&1 >> ' . log::getPathToLog('update'));
 
 		switch ($this->getType()) {
 			case 'plugin':
 				return $tmp;
 				break;
 			default:
-				log::add('update', 'alert', __('Installation de du plugin,widget,scénario...', __FILE__));
+				log::add('update', 'alert', __('Installation des plugin, widget, scénario...', __FILE__));
 				$type = $this->getType();
 				if (class_exists($type) && method_exists($type, 'getFromMarket')) {
 					$type::getFromMarket($this, $tmp);
@@ -1093,13 +1261,13 @@ class repo_market {
 		return $this;
 	}
 
-	public function getNbInstall() {
-		return $this->nbInstall;
+	public function getAllowVersion() {
+		return $this->allowVersion;
 	}
 
-	public function setNbInstall($nbInstall) {
-		$this->nbInstall = $nbInstall;
-		return $this;
+	public function setAllowVersion($allowVersion) {
+		$this->allowVersion = $allowVersion;
+		return $allowVersion;
 	}
 
 	public function getHardwareCompatibility($_key = '', $_default = '') {
@@ -1108,6 +1276,24 @@ class repo_market {
 
 	public function setHardwareCompatibility($_key, $_value) {
 		$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
+		return $this;
+	}
+
+	public function getParameters($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->parameters, $_key, $_default);
+	}
+
+	public function setParameters($_key, $_value) {
+		$this->parameters = utils::setJsonAttr($this->parameters, $_key, $_value);
+		return $this;
+	}
+	
+	public function getNbInstall() {
+		return $this->nbInstall;
+	}
+
+	public function setNbInstall($nbInstall) {
+		$this->nbInstall = $nbInstall;
 		return $this;
 	}
 

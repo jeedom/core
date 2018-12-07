@@ -11,11 +11,11 @@ sendVarToJS('id', $planHeader->getId());
 sendVarToJS('planHeader', utils::o2a($planHeader));
 ?>
 <div id="div_alertPlanHeaderConfigure"></div>
-<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a>
+
 <div id="div_planHeaderConfigure">
     <form class="form-horizontal">
         <fieldset>
-            <legend><i class="fa fa-cog"></i> {{Général}}</legend>
+            <legend><i class="fa fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fa fa-check"></i> {{Sauvegarder}}</a></legend>
             <input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
             <div class="form-group">
                 <label class="col-lg-4 control-label">{{Nom}}</label>

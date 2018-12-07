@@ -1,11 +1,11 @@
 <?php
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 echo "==================================================\n";
@@ -17,44 +17,44 @@ echo "*                 VARIABLES                      *";
 echo "\n**************************************************\n";
 $install_dir = dirname(__FILE__);
 $processUser = posix_getpwuid(posix_geteuid());
-echo "Install dir : " . $install_dir . "\n";
+echo "Dossier d'installation : " . $install_dir . "\n";
 echo "User : " . $processUser['name'] . "\n";
 if (trim(exec('sudo cat /etc/sudoers')) != "") {
-	echo "Sudo : YES\n";
+	echo "Sudo : OUI\n";
 } else {
-	echo "Sudo : NO\n";
+	echo "Sudo : NON\n";
 }
 
 echo "\n**************************************************\n";
-echo "*               DIRECTORIES                      *";
+echo "*               DOSSIERS                         *";
 echo "\n**************************************************\n";
-echo "Load Jeedom environement...";
+echo "Charge l'environnement de Jeedom...";
 try {
 	require_once dirname(__FILE__) . "/core/php/core.inc.php";
 	echo "OK\n";
 } catch (Exeption $e) {
 	echo "ERREUR\n";
-	echo "Unable to load jeedom environement : " . $e->getMessage();
+	echo "Impossible de charger l'environnement de Jeedom : " . $e->getMessage();
 	echo "\n";
 	die();
 }
 
 /* Check log dir */
-echo "Check if log is wirtable...";
+echo "Vérifie si les log sont en écriture...";
 if (!file_exists($install_dir . '/log')) {
-	echo "not found\n";
-	echo "Do : mkdir " . $install_dir . "/log\n";
+	echo "introuvable\n";
+	echo "Faites : mkdir " . $install_dir . "/log\n";
 	die();
 }
 if (!is_writable($install_dir . '/log')) {
-	echo "not writable\n";
-	echo "Do : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/log\n";
+	echo "Impossible d'écrire\n";
+	echo "Faites : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/log\n";
 	die();
 }
 echo "OK\n";
 
 echo "\n**************************************************\n";
-echo "*                 USERS                          *";
+echo "*              UTILISATEURS                      *";
 echo "\n**************************************************\n";
 try {
 	$foundAdmin = false;
@@ -70,11 +70,11 @@ try {
 	}
 
 	if (!$foundAdmin) {
-		echo "No admin user found, create it...";
+		echo "Aucun utilisateur admin trouvé, veuillez en créer un...";
 		$user = (new \user())
 			->setLogin('admin')
 			->setPassword(sha512('admin'))
-			->setRights('admin', 1);
+			->setProfils('admin', 1);
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
@@ -88,13 +88,13 @@ try {
 echo "\n**************************************************\n";
 echo "*                 CRON                           *";
 echo "\n**************************************************\n";
-echo "Check if cron is enable...";
+echo "Vérifie si cron est actif...";
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
 	echo "NOK\n";
 } else {
 	echo "OK\n";
 }
-echo "Check if scenario is enable...";
+echo "Vérifie si scenario est actif...";
 if (config::byKey('enableScenario') == 0) {
 	echo "NOK\n";
 } else {
@@ -120,7 +120,7 @@ foreach (cron::all() as $cron) {
 echo "\n**************************************************\n";
 echo "*                 DATE                           *";
 echo "\n**************************************************\n";
-echo "Check if Jeedom date's is good...";
+echo "Vérifie si la date de Jeedom est bonne...";
 if (jeedom::isDateOk()) {
 	echo "OK";
 } else {
@@ -169,5 +169,5 @@ foreach (plugin::listPlugin() as $plugin) {
 
 echo "\n\n";
 echo "\n==================================================\n";
-echo "|               ALL CHECKS COMPLET               |";
+echo "|         TOUTES LES VERIFICATIONS SONT FAITES    |";
 echo "\n==================================================\n";

@@ -117,18 +117,25 @@ if (!isConnect()) {
 		html += '<td>';
 		html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="groupingType" style="width : 190px;">'
 		html += '<option value="">{{Aucun groupement}}</option>'
-		html += '<option value="sum::day">{{Sommes par jour}}</option>'
-		html += '<option value="average::day">{{Moyenne par jour}}</option>'
-		html += '<option value="low::day">{{Minimum par jour}}</option>'
-		html += '<option value="high::day">{{Maximum par jour}}</option>'
-		html += '<option value="sum::week">{{Sommes par semaine}}</option>'
-		html += '<option value="average::week">{{Moyenne par semaine}}</option>'
-		html += '<option value="low::week">{{Minimum par semaine}}</option>'
-		html += '<option value="high::week">{{Maximum par semaine}}</option>'
-		html += '<option value="sum::month">{{Sommes par mois}}</option>'
-		html += '<option value="average::month">{{Moyenne par mois}}</option>'
-		html += '<option value="low::month">{{Minimum par mois}}</option>'
-		html += '<option value="high::month">{{Maximum par mois}}</option>'
+		html += '<option value="sum::hour">{{Somme par heure}}</option>';
+		html += '<option value="average::hour">{{Moyenne par heure}}</option>';
+		html += '<option value="low::hour">{{Minimum par heure}}</option>';
+		html += '<option value="sum::day">{{Somme par jour}}</option>';
+		html += '<option value="high::hour">{{Maximum par heure}}</option>';
+		html += '<option value="average::day">{{Moyenne par jour}}</option>';
+		html += '<option value="low::day">{{Minimum par jour}}</option>';
+		html += '<option value="high::day">{{Maximum par jour}}</option>';
+		html += '<option value="sum::week">{{Somme par semaine}}</option>';
+		html += '<option value="average::week">{{Moyenne par semaine}}</option>';
+		html += '<option value="low::week">{{Minimum par semaine}}</option>';
+		html += '<option value="high::week">{{Maximum par semaine}}</option>';
+		html += '<option value="sum::month">{{Somme par mois}}</option>';
+		html += '<option value="average::month">{{Moyenne par mois}}</option>';
+		html += '<option value="low::month">{{Minimum par mois}}</option>';
+		html += '<option value="high::month">{{Maximum par mois}}</option>';
+		html += '<option value="average::year">{{Moyenne par année}}</option>';
+		html += '<option value="low::year">{{Minimum par année}}</option>';
+		html += '<option value="high::year">{{Maximum par année}}</option>';
 		html +=  '</select>'
 		html += '</td>';
 		html += '<td>';

@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 set_time_limit(1800);
@@ -42,17 +42,17 @@ $update_begin = false;
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
-		echo "Update in progress. I will wait 10s then retry\n";
+		echo "Update in progress. I will wait 10s\n";
 		sleep(10);
 		if (count(system::ps('install/update.php', 'sudo')) > 1) {
-			echo "Update in progress. You must wait until it is finished before restarting new update\n";
+			echo "Update in progress. You need to wait before update\n";
 			print_r(system::ps('install/update.php', 'sudo'));
 			echo "[END UPDATE]\n";
 			die();
 		}
 	}
-	echo "****Update jeedom from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
-	echo "Parameters : " . print_r($_GET, true);
+	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
+	echo "Paramters : " . print_r($_GET, true);
 	$curentVersion = config::byKey('version');
 
 	/*         * ************************MISE A JOUR********************************** */
@@ -112,13 +112,6 @@ try {
 		}
 		jeedom::stop();
 		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
-			try {
-				echo 'Clean temporary file (tmp)...';
-				shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
-				echo "OK\n";
-			} catch (Exception $e) {
-				echo '***ERROR*** ' . $e->getMessage() . "\n";
-			}
 			$tmp_dir = jeedom::getTmpFolder('install');
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
@@ -150,8 +143,8 @@ try {
 					throw new Exception('Download failed please retry later');
 				}
 				echo "OK\n";
-				echo "Cleaning folder...";
-				$cibDir = jeedom::getTmpFolder('install/unzip');
+				echo "Cleaning folders...";
+				$cibDir = '/tmp/jeedom_unzip';
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
@@ -182,9 +175,9 @@ try {
 
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
-					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), true);
+					rmove($cibDir . '/install/update.php', dirname(__FILE__) . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
 					echo "OK\n";
-					echo "Remove temporary file...";
+					echo "Remove temporary files...";
 					rrmdir($tmp_dir);
 					echo "OK\n";
 					echo "Wait 10s before relaunch update\n";
@@ -193,13 +186,29 @@ try {
 					jeedom::update($_GET);
 					die();
 				}
-
-				echo "Moving file...";
+				try {
+					echo 'Clean temporary files (tmp)...';
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../install/update/*');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../doc');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../docs');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../support');
+					echo "OK\n";
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
+				echo "Moving files...";
 				$update_begin = true;
-				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true);
+				rmove($cibDir . '/', dirname(__FILE__) . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1));
 				echo "OK\n";
-				echo "Remove temporary file...";
+				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
+				try {
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../tests');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../.travis.yml');
+					shell_exec('rm -rf ' . dirname(__FILE__) . '/../phpunit.xml.dist');
+				} catch (Exception $e) {
+					echo '***ERROR*** ' . $e->getMessage() . "\n";
+				}
 				echo "OK\n";
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 			} catch (Exception $e) {

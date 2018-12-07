@@ -35,7 +35,7 @@ class repo_github {
 	public static $_configuration = array(
 		'parameters_for_add' => array(
 			'user' => array(
-				'name' => 'Utilisateur ou organisation du dépot',
+				'name' => 'Utilisateur ou organisation du dépôt',
 				'type' => 'input',
 			),
 			'repository' => array(
@@ -54,7 +54,7 @@ class repo_github {
 				'type' => 'input',
 			),
 			'core::user' => array(
-				'name' => 'Utilisateur ou organisation du dépot pour le core Jeedom',
+				'name' => 'Utilisateur ou organisation du dépôt pour le core Jeedom',
 				'type' => 'input',
 				'default' => 'jeedom',
 			),

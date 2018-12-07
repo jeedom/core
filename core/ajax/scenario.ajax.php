@@ -32,14 +32,14 @@ try {
 			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
 		}
 		if (!$scenario->hasRight('x')) {
-			throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		switch (init('state')) {
 			case 'start':
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
-				$scenario->launch('user', 'Scenario lance manuellement', 0);
+				$scenario->launch('user', 'Scénario lancé manuellement', 0);
 				break;
 			case 'stop':
 				$scenario->stop();
@@ -97,7 +97,7 @@ try {
 		$name = init('template');
 		file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		if (!file_exists($path . '/' . $name)) {
-			throw new Exception(__('Impossible de creer le template, vérifiez les droits : ', __FILE__) . $path . '/' . $name);
+			throw new Exception(__('Impossible de créer le template, vérifiez les droits : ', __FILE__) . $path . '/' . $name);
 		}
 		ajax::success();
 	}
@@ -120,7 +120,14 @@ try {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
-					$return[$match[0]] = $match[0];
+					$cmd = null;
+					try {
+						$cmd = cmd::byString($match[0]);
+						$return[$match[0]] = '#' . $cmd->getHumanName() . '#';
+					} catch (Exception $e) {
+						$return[$match[0]] = '';
+					}
+
 				}
 			}
 		}
@@ -134,7 +141,7 @@ try {
 		}
 		foreach (json_decode(init('convert'), true) as $value) {
 			if (trim($value['end']) == '') {
-				throw new Exception(__('La convertion suivante ne peut être vide : ', __FILE__) . $value['begin']);
+				throw new Exception(__('La conversion suivante ne peut être vide : ', __FILE__) . $value['begin']);
 			}
 			$converts[$value['begin']] = $value['end'];
 		}
@@ -151,7 +158,7 @@ try {
 			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
 		}
 		if (!$scenario_db->hasRight('w')) {
-			throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$scenario_db->setTrigger(array());
 		$scenario_db->setSchedule(array());
@@ -241,7 +248,7 @@ try {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
 		}
 		if (!$scenario->hasRight('w')) {
-			throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$scenario->remove();
 		ajax::success();
@@ -256,7 +263,7 @@ try {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
 		}
 		if (!$scenario->hasRight('w')) {
-			throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		if (file_exists(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
 			unlink(dirname(__FILE__) . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
@@ -319,7 +326,7 @@ try {
 			$scenario_db = new scenario();
 		} else {
 			if (!$scenario_db->hasRight('w')) {
-				throw new Exception(__('Vous n\'etês pas autorisé à faire cette action', __FILE__));
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 			}
 		}
 		$scenario_db->setTrigger(array());
@@ -363,31 +370,31 @@ try {
 			mkdir($uploaddir);
 		}
 		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.json'))) {
 			throw new Exception('Extension du fichier non valide (autorisé .json) : ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 10000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 10mo)', __FILE__));
+			throw new Exception(__('Le fichier est trop gros (maximum 10Mo)', __FILE__));
 		}
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
 		}
 		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
-			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
+			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
 
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
-?>
+

@@ -119,7 +119,7 @@ class jeedom {
 			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')' : date('Y-m-d H:i:s'),
-			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
+			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
 		);
 
 		$state = !user::hasDefaultIdentification();
@@ -127,7 +127,7 @@ class jeedom {
 			'name' => __('Authentification par défaut', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
+			'comment' => ($state) ? '' : __('Attention : vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __FILE__),
 		);
 
 		$state = self::isCapable('sudo', true);
@@ -135,7 +135,7 @@ class jeedom {
 			'name' => __('Droits sudo', __FILE__),
 			'state' => ($state) ? 1 : 2,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation', __FILE__),
+			'comment' => ($state) ? '' : __('Appliquez les droits root à Jeedom', __FILE__),
 		);
 
 		$return[] = array(
@@ -170,7 +170,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://github.com/jeedom/documentation/blob/master/compatibility/fr_FR/software.asciidoc" target="_blank">ici</a>)', __FILE__),
+			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -197,8 +197,16 @@ class jeedom {
 			'result' => $value . ' %',
 			'comment' => '',
 		);
+		
+		$value = shell_exec('sudo dmesg | grep oom | wc -l');
+		$return[] = array(
+			'name' => __('Mémoire suffisante', __FILE__),
+			'state' => ($value == 0),
+			'result' => $value,
+			'comment' => ($value == 0) ? '' : __('Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios', __FILE__),
+		);
 
-		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] != null) {
+		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
@@ -228,7 +236,7 @@ class jeedom {
 			'name' => __('Configuration réseau interne', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 
 		$state = network::test('external');
@@ -236,7 +244,7 @@ class jeedom {
 			'name' => __('Configuration réseau externe', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
@@ -256,6 +264,24 @@ class jeedom {
 			$state = network::test('external');
 		}
 		$return[] = $cache_health;
+		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
+		$return[] = array(
+			'name' => __('Apache private tmp', __FILE__),
+			'state' => $state,
+			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+		);
+		
+		foreach (update::listRepo() as $repo) {
+			if (!$repo['enable']) {
+				continue;
+			}
+			$class = $repo['class'];
+			if (!class_exists($class) || !method_exists($class, 'health')) {
+				continue;
+			}
+			$return += array_merge($return, $class::health());
+		}
 		return $return;
 	}
 
@@ -314,7 +340,6 @@ class jeedom {
 			return false;
 		}
 		$apikey = self::getApiKey($_plugin);
-
 		if (trim($apikey) != '' && $apikey == $_apikey) {
 			return true;
 		}
@@ -323,9 +348,8 @@ class jeedom {
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				return false;
 			}
-			@session_start();
-			$_SESSION['user'] = $user;
-			@session_write_close();
+			GLOBAL $_USER_GLOBAL;
+			$_USER_GLOBAL = $user;
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}
@@ -596,7 +620,7 @@ class jeedom {
 		}
 		echo " OK\n";
 
-		/*         * **********Arret des crons********************* */
+		/*         * **********arrêt des crons********************* */
 
 		if (cron::jeeCronRun()) {
 			echo "Stop cron master...";
@@ -674,7 +698,6 @@ class jeedom {
 		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
 		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
-
 		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
 			self::forceSyncHour();
 			sleep(3);
@@ -701,6 +724,18 @@ class jeedom {
 			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
 		}
 		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
+					$class::cron5();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+		try {
 			eqLogic::checkAlive();
 		} catch (Exception $e) {
 
@@ -714,31 +749,31 @@ class jeedom {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
 			try {
-				log::add('starting', 'debug', __('Arret des crons', __FILE__));
+				log::add('starting', 'debug', __('Arrêt des crons', __FILE__));
 				foreach (cron::all() as $cron) {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
 						} catch (Exception $e) {
-							log::add('starting', 'error', __('Erreur sur l\'arret d\'une tâche cron : ', __FILE__) . log::exception($e));
+							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron : ', __FILE__) . log::exception($e));
 						} catch (Error $e) {
-							log::add('starting', 'error', __('Erreur sur l\'arret d\'une tâche cron : ', __FILE__) . log::exception($e));
+							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron : ', __FILE__) . log::exception($e));
 						}
 					}
 				}
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur l\'arret des tâches crons : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur l\'arret des tâches crons : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons : ', __FILE__) . log::exception($e));
 			}
 
 			try {
 				log::add('starting', 'debug', __('Restauration du cache', __FILE__));
 				cache::restore();
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur la restoration du cache : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la restauration du cache : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur la restoration du cache : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la restauration du cache : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -762,12 +797,12 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Démarrage des processus internet de jeedom', __FILE__));
+				log::add('starting', 'debug', __('Démarrage des processus Internet de Jeedom', __FILE__));
 				self::start();
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage interne de jeedom : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -798,12 +833,12 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Envoi de l\'evenement de démarrage', __FILE__));
+				log::add('starting', 'debug', __('Envoi de l\'événement de démarrage', __FILE__));
 				self::event('start');
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'evenement de démarrage : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'evenement de démarrage : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage : ', __FILE__) . log::exception($e));
 			}
 
 			try {
@@ -829,37 +864,6 @@ class jeedom {
 			event::add('refresh');
 		}
 		self::isDateOk();
-		if (config::byKey('update::autocheck', 'core', 1) == 1) {
-			$isDue = true;
-			try {
-				if (config::byKey('update::check') != '') {
-					$c = new Cron\CronExpression(config::byKey('update::check'), new Cron\FieldFactory);
-					$isDue = $c->isDue();
-					if ($isDue) {
-						if (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > 3600) {
-							update::checkAllUpdate();
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								$toUpdate = '';
-								foreach ($updates as $update) {
-									$toUpdate .= $update->getLogicalId() . ',';
-								}
-							}
-							$updates = update::byStatus('update');
-							if (count($updates) > 0) {
-								message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
-							}
-							config::save('update::check', rand(1, 59) . ' ' . rand(6, 7) . ' * * *');
-						}
-					}
-				}
-
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
-		}
 	}
 
 	public static function cronDaily() {
@@ -881,6 +885,26 @@ class jeedom {
 	public static function cronHourly() {
 		try {
 			cache::set('hour', date('Y-m-d H:i:s'));
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+		try {
+			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600))) {
+				update::checkAllUpdate();
+				$updates = update::byStatus('update');
+				if (count($updates) > 0) {
+					$toUpdate = '';
+					foreach ($updates as $update) {
+						$toUpdate .= $update->getLogicalId() . ',';
+					}
+				}
+				$updates = update::byStatus('update');
+				if (count($updates) > 0) {
+					message::add('update', __('De nouvelles mises à jour sont disponibles : ', __FILE__) . trim($toUpdate, ','), '', 'newUpdate');
+				}
+			}
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -959,9 +983,8 @@ class jeedom {
 		return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
 	}
 
-	public static function evaluateExpression($_input) {
+	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			$_scenario = null;
 			$_input = scenarioExpression::setTags($_input, $_scenario, true);
 			$result = evaluate($_input);
 			if (is_bool($result) || is_numeric($result)) {
@@ -1086,7 +1109,7 @@ class jeedom {
 		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'shutdown -h now');
 		} else {
-			throw new Exception(__('Vous pouvez arreter le système', __FILE__));
+			throw new Exception(__('Vous pouvez arrêter le système', __FILE__));
 		}
 	}
 
@@ -1096,7 +1119,7 @@ class jeedom {
 		if (self::isCapable('sudo')) {
 			exec(system::getCmdSudo() . 'reboot');
 		} else {
-			throw new Exception(__('Vous pouvez lancer le reboot du système', __FILE__));
+			throw new Exception(__('Vous pouvez lancer le redémarrage du système', __FILE__));
 		}
 	}
 
@@ -1105,10 +1128,18 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$processUser = posix_getpwuid(posix_geteuid());
-		$processGroup = posix_getgrgid(posix_getegid());
+		$processUser = system::get('www-uid');
+		$processGroup = system::get('www-gid');
+		if ($processUser == '') {
+			$processUser = posix_getpwuid(posix_geteuid());
+			$processUser = $processUser['name'];
+		}
+		if ($processGroup == '') {
+			$processGroup = posix_getgrgid(posix_getegid());
+			$processGroup = $processGroup['name'];
+		}
 		$path = dirname(__FILE__) . '/../../*';
-		exec(system::getCmdSudo() . 'chown -R ' . $processUser['name'] . ':' . $processGroup['name'] . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
+		exec(system::getCmdSudo() . 'chown -R ' . $processUser . ':' . $processGroup . ' ' . $path . ';' . system::getCmdSudo() . 'chmod 775 -R ' . $path);
 	}
 
 	public static function checkSpaceLeft() {
@@ -1142,14 +1173,17 @@ class jeedom {
 		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
-		$result = 'DIY';
+		$result = 'diy';
 		$uname = shell_exec('uname -a');
 		if (file_exists('/.dockerinit')) {
-			$result = 'Docker';
+			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
-			$result = 'RPI/RPI2';
+			$result = 'rpi';
 		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
-			$result = 'Jeedomboard';
+			$result = 'miniplus';
+		}
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			$result = 'smart';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');

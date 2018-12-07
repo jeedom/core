@@ -25,7 +25,7 @@ class plugin {
 	private $id;
 	private $name;
 	private $description;
-	private $licence;
+	private $license;
 	private $installation;
 	private $author;
 	private $require;
@@ -49,7 +49,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id, $_translate = true) {
+	public static function byId($_id) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
 			return self::$_cache[$_id];
@@ -68,7 +68,8 @@ class plugin {
 		$plugin->id = $data['id'];
 		$plugin->name = $data['name'];
 		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
-		$plugin->licence = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['licence'])) ? $data['licence'] : '';
+		$plugin->license = (isset($data['license'])) ? $data['license'] : $plugin->license;
 		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
 		$plugin->installation = (isset($data['installation'])) ? $data['installation'] : '';
 		$plugin->hasDependency = (isset($data['hasDependency'])) ? $data['hasDependency'] : 0;
@@ -148,7 +149,7 @@ class plugin {
 			}
 			foreach ($results as $result) {
 				try {
-					$listPlugin[] = plugin::byId($result['plugin'], $_translate);
+					$listPlugin[] = plugin::byId($result['plugin']);
 				} catch (Exception $e) {
 					log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $result['plugin']);
 				} catch (Error $e) {
@@ -164,7 +165,7 @@ class plugin {
 						continue;
 					}
 					try {
-						$listPlugin[] = plugin::byId($pathInfoPlugin, $_translate);
+						$listPlugin[] = plugin::byId($pathInfoPlugin);
 					} catch (Exception $e) {
 						log::add('plugin', 'error', $e->getMessage(), 'pluginNotFound::' . $pathInfoPlugin);
 					} catch (Error $e) {
@@ -212,12 +213,18 @@ class plugin {
 	}
 
 	public static function cron() {
+		$cache = cache::byKey('plugin::cron::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron')) {
 				if (config::byKey('functionality::cron::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron::last', $plugin_id);
 				try {
 					$plugin_id::cron();
 				} catch (Exception $e) {
@@ -227,33 +234,47 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron::inprogress', 0);
 	}
 
 	public static function cron5() {
+		$cache = cache::byKey('plugin::cron5::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron5 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron5::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron5::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron5')) {
 				if (config::byKey('functionality::cron5::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron5::last', $plugin_id);
 				try {
 					$plugin_id::cron5();
 				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin : ', __FILE__) . $e->getMessage());
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}
+		cache::set('plugin::cron5::inprogress', 0);
 	}
 
 	public static function cron15() {
+		$cache = cache::byKey('plugin::cron15::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron15 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron15::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron15::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron15')) {
 				if (config::byKey('functionality::cron15::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron15::last', $plugin_id);
 				try {
 					$plugin_id::cron15();
 				} catch (Exception $e) {
@@ -263,15 +284,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron15::inprogress', 0);
 	}
 
 	public static function cron30() {
+		$cache = cache::byKey('plugin::cron30::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron30 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron30::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron30::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cron30')) {
 				if (config::byKey('functionality::cron30::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron30::last', $plugin_id);
 				try {
 					$plugin_id::cron30();
 				} catch (Exception $e) {
@@ -281,15 +309,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cron30::inprogress', 0);
 	}
 
 	public static function cronDaily() {
+		$cache = cache::byKey('plugin::cronDaily::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cronDaily n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronDaily::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cronDaily::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronDaily')) {
 				if (config::byKey('functionality::cronDaily::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronDaily::last', $plugin_id);
 				try {
 					$plugin_id::cronDaily();
 				} catch (Exception $e) {
@@ -299,15 +334,22 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cronDaily::inprogress', 0);
 	}
 
 	public static function cronHourly() {
+		$cache = cache::byKey('plugin::cronHourly::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cronHourly n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronHourly::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cronHourly::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
 			if (method_exists($plugin->getId(), 'cronHourly')) {
 				if (config::byKey('functionality::cronHourly::enable', $plugin->getId(), 1) == 0) {
 					continue;
 				}
 				$plugin_id = $plugin->getId();
+				cache::set('plugin::cronHourly::last', $plugin_id);
 				try {
 					$plugin_id::cronHourly();
 				} catch (Exception $e) {
@@ -317,6 +359,7 @@ class plugin {
 				}
 			}
 		}
+		cache::set('plugin::cronHourly::inprogress', 0);
 	}
 
 	public static function start() {
@@ -364,11 +407,11 @@ class plugin {
 
 				}
 			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
-				if (isset($return['progress_file']) && file_exists($return['progress_file'])) {
-					shell_exec('rm ' . $return['progress_file']);
+				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
+					shell_exec('rm ' . $dependancy_info['progress_file']);
 				}
 				config::save('deamonAutoMode', 0, $plugin->getId());
-				log::add($plugin->getId(), 'error', __('Attention l\'installation des dépendances ont dépassées le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
+				log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé : ', __FILE__) . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
 			try {
 				$plugin->deamon_start(false, true);
@@ -382,22 +425,12 @@ class plugin {
 
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if ($this->getDisplay() == '') {
-			throw new Exception(__('Vous ne pouvez faire un report sur un plugin sans panel', __FILE__));
-		}
-		if (!isset($_parameters['user'])) {
-			$users = user::byProfils('admin');
-			if (count($users) == 0) {
-				throw new Exception(__('Aucun utilisateur admin trouvé pour la génération du rapport', __FILE__));
-			}
-			$user = $users[0];
-		} else {
-			$user = user::byId($_parameters['user']);
+			throw new Exception(__('Vous ne pouvez pas faire de rapport sur un plugin sans panneau', __FILE__));
 		}
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=' . $this->getDisplay();
 		$url .= '&m=' . $this->getId();
 		$url .= '&report=1';
-		$url .= '&auth=' . $user->getHash();
-		return report::generate($url, 'plugin', $this->getId(), $_format);
+		return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
 	}
 
 	public function isActive() {
@@ -496,11 +529,11 @@ class plugin {
 		if ((strtotime('now') - 60) <= strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) {
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
-			throw new Exception(__('Vous devez attendre au moins 60s entre 2 lancements d\'installation de dépendances', __FILE__));
+			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
 		}
 		$dependancy_info = $this->dependancy_info(true);
 		if ($dependancy_info['state'] == 'in_progress') {
-			throw new Exception(__('Les dépendances sont déja en cours d\'installation', __FILE__));
+			throw new Exception(__('Les dépendances sont déjà en cours d\'installation', __FILE__));
 		}
 		foreach (self::listPlugin(true) as $plugin) {
 			if ($plugin->getId() == $this->getId()) {
@@ -518,15 +551,15 @@ class plugin {
 			if (file_exists($script_array[0])) {
 				if (jeedom::isCapable('sudo')) {
 					$this->deamon_stop();
-					message::add($plugin_id, __('Attention, installation des dépendances lancée', __FILE__));
+					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
 					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					sleep(1);
 				} else {
-					log::add($plugin_id, 'error', __('Veuillez executer le script : ', __FILE__) . '/bin/bash ' . $script);
+					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
 				}
 			} else {
-				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
+				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux : ', __FILE__) . $cmd['script'] . __(' avec #stype# : ', __FILE__) . system::get('type'));
 			}
 		}
 		$cache = cache::byKey('dependancy' . $this->getID());
@@ -597,15 +630,15 @@ class plugin {
 					return;
 				}
 				if ($deamon_info['launchable'] == 'ok' && $deamon_info['state'] == 'nok' && method_exists($plugin_id, 'deamon_start')) {
-					$inprogress = cache::bykey('deamonStart' . $this->getId() . 'inprogress');
-					$info = $inprogress->getValue(array('state' => 0, 'datetime' => strtotime('now')));
-					if ($info['state'] == 1 && (strtotime('now') - 45) <= $info['datetime']) {
-						throw new Exception(__('Vous devez attendre au moins 45s entre 2 lancements du démon', __FILE__));
+					$inprogress = cache::byKey('deamonStart' . $this->getId() . 'inprogress');
+					$info = $inprogress->getValue(array('datetime' => strtotime('now')-60));
+					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now')-60;
+					if (abs(strtotime('now') - $info['datetime']) < 45) {
+						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ' .date("Y-m-d H:i:s",$info['datetime']), __FILE__));
 					}
-					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 1, 'datetime' => strtotime('now')));
+					cache::set('deamonStart' . $this->getId() . 'inprogress', array('datetime' => strtotime('now')));
 					config::save('lastDeamonLaunchTime', date('Y-m-d H:i:s'), $plugin_id);
 					$plugin_id::deamon_start();
-					cache::set('deamonStart' . $this->getId() . 'inprogress', array('state' => 0));
 				}
 			}
 		} catch (Exception $e) {
@@ -633,7 +666,7 @@ class plugin {
 
 	public function setIsEnable($_state) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
-			throw new Exception(__('Votre version de jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
+			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
@@ -854,8 +887,8 @@ class plugin {
 		return $this->category;
 	}
 
-	public function getLicence() {
-		return $this->licence;
+	public function getLicense() {
+		return $this->license;
 	}
 
 	public function getFilepath() {

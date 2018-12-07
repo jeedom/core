@@ -43,7 +43,7 @@ try {
 		} else {
 			$cmd = cmd::byId(init('id'));
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd inconnu - Vérifiez l\'id', __FILE__));
+				throw new Exception(__('Commande inconnue - Vérifiez l\'id', __FILE__));
 			}
 			$info_cmd = array();
 			$info_cmd['id'] = $cmd->getId();
@@ -55,7 +55,7 @@ try {
 	if (init('action') == 'execCmd') {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Commande ID inconnu : ', __FILE__) . init('id'));
 		}
 		$eqLogic = $cmd->getEqLogic();
 		if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
@@ -93,7 +93,7 @@ try {
 	if (init('action') == 'byId') {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('id'), 9999);
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 		}
 		ajax::success(utils::o2a($cmd));
 	}
@@ -110,7 +110,7 @@ try {
 		$cmd_id = cmd::humanReadableToCmd(init('humanName'));
 		$cmd = cmd::byId(str_replace('#', '', $cmd_id));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('humanName'), 9999);
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('humanName'), 9999);
 		}
 		ajax::success(utils::o2a($cmd));
 	}
@@ -118,7 +118,7 @@ try {
 	if (init('action') == 'usedBy') {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu : ', __FILE__) . init('id'), 9999);
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 		}
 		$result = $cmd->getUsedBy();
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
@@ -154,7 +154,7 @@ try {
 	if (init('action') == 'getCmd') {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'));
 		}
 		$return = jeedom::toHumanReadable(utils::o2a($cmd));
 		$eqLogic = $cmd->getEqLogic();
@@ -257,7 +257,7 @@ try {
 		if (is_numeric(init('id'))) {
 			$cmd = cmd::byId(init('id'));
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
+				throw new Exception(__('Commande ID inconnu : ', __FILE__) . init('id'));
 			}
 			$eqLogic = $cmd->getEqLogic();
 			if (!$eqLogic->hasRight('r')) {
@@ -336,7 +336,7 @@ try {
 		}
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Commande ID inconnu : ', __FILE__) . init('id'));
 		}
 		$cmd->emptyHistory(init('date'));
 		ajax::success();
@@ -367,5 +367,5 @@ try {
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }

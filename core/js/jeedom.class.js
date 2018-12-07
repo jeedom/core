@@ -51,25 +51,25 @@ jeedom.changes = function(){
             continue;
         }
         if(isset(data.result[i].option)){
-           $('body').trigger(data.result[i].name,data.result[i].option);   
+           $('body').trigger(data.result[i].name,data.result[i].option);
        }else{
         $('body').trigger(data.result[i].name);
     }
 }
 if(cmd_update.length > 0){
-   $('body').trigger('cmd::update',[cmd_update]); 
+   $('body').trigger('cmd::update',[cmd_update]);
 }
 if(eqLogic_update.length > 0){
-   $('body').trigger('eqLogic::update',[eqLogic_update]); 
+   $('body').trigger('eqLogic::update',[eqLogic_update]);
 }
 if(object_summary_update.length > 0){
-    $('body').trigger('object::summary::update',[object_summary_update]); 
+    $('body').trigger('object::summary::update',[object_summary_update]);
 }
 setTimeout(jeedom.changes, 1);
 },
 error: function(_error){
     if(typeof(user_id) != "undefined" && jeedom.connect == 100){
-        notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à jeedom}} : '+_error.message);
+        notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
     }
     jeedom.connect++;
     setTimeout(jeedom.changes, 1);
@@ -182,8 +182,9 @@ jeedom.init = function () {
     $('body').on('notify', function (_event,_options) {
         notify(_options.title, _options.message, _options.theme);
     });
-
-    jeedom.changes();
+    if (typeof user_id !== 'undefined') {
+       jeedom.changes();
+    }
 }
 
 jeedom.getConfiguration = function (_params) {

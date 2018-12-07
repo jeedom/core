@@ -31,4 +31,4 @@ $CONFIG = array(
 		'password' => '#PASSWORD#',
 	),
 );
-?>
+ 

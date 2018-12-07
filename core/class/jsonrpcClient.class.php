@@ -85,12 +85,12 @@ class jsonrpcClient {
 				$callback_class = $this->getCb_class();
 				$callback_function = $this->getCb_function();
 				if (method_exists($callback_class, $callback_function)) {
-					$callback_class::$callback_function($this->result);
+					$callback_class::$callback_function($result);
 				}
 			} elseif ($this->getCb_function() != '') {
 				$callback_function = $this->getCb_function();
 				if (function_exists($callback_function)) {
-					$callback_function($this->result);
+					$callback_function($result);
 				}
 			}
 			return true;

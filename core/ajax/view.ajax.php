@@ -29,7 +29,7 @@ try {
 	if (init('action') == 'remove') {
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
-			throw new Exception(__('Vue non trouvé. Vérifier l\'id', __FILE__));
+			throw new Exception(__('Vue non trouvée. Vérifiez l\'iD', __FILE__));
 		}
 		$view->remove();
 		ajax::success();
@@ -58,7 +58,7 @@ try {
 		} else {
 			$view = view::byId(init('id'));
 			if (!is_object($view)) {
-				throw new Exception(__('Vue non trouvé. Vérifier l\'id', __FILE__));
+				throw new Exception(__('Vue non trouvée. Vérifiez l\'ID', __FILE__));
 			}
 			ajax::success($view->toAjax(init('version', 'dview')));
 		}
@@ -98,7 +98,7 @@ try {
 	if (init('action') == 'getEqLogicviewZone') {
 		$viewZone = viewZone::byId(init('viewZone_id'));
 		if (!is_object($viewZone)) {
-			throw new Exception(__('Vue non trouvé. Vérifier l\'id', __FILE__));
+			throw new Exception(__('Vue non trouvée. Vérifiez l\'ID', __FILE__));
 		}
 		$return = utils::o2a($viewZone);
 		$return['eqLogic'] = array();
@@ -147,9 +147,9 @@ try {
 		ajax::success();
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
-?>
+

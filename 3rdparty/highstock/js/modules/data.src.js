@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.10 (2017-03-31)
+ * @license Highcharts JS v6.0.4 (2017-12-15)
  * Data module
  *
  * (c) 2012-2017 Torstein Honsi
@@ -29,11 +29,315 @@
         var win = Highcharts.win,
             doc = win.document,
             each = Highcharts.each,
+            objectEach = Highcharts.objectEach,
             pick = Highcharts.pick,
             inArray = Highcharts.inArray,
             isNumber = Highcharts.isNumber,
             splat = Highcharts.splat,
+            fireEvent = Highcharts.fireEvent,
+            some,
             SeriesBuilder;
+
+        // `some` function
+        if (!Array.prototype.some) {
+            some = function(arr, fn, ctx) { // legacy
+                var i = 0,
+                    len = arr.length;
+
+                for (; i < len; i++) {
+                    if (fn.call(ctx, arr[i], i, arr) === true) {
+                        return;
+                    }
+                }
+            };
+        } else {
+            some = function(arr, fn, ctx) {
+                Array.prototype.some.call(arr, fn, ctx);
+            };
+        }
+
+        /**
+         * The Data module provides a simplified interface for adding data to
+         * a chart from sources like CVS, HTML tables or grid views. See also
+         * the [tutorial article on the Data module](http://www.highcharts.com/docs/working-
+         * with-data/data-module).
+         *
+         * It requires the `modules/data.js` file to be loaded.
+         *
+         * Please note that the default way of adding data in Highcharts, without
+         * the need of a module, is through the [series.data](#series.data)
+         * option.
+         *
+         * @sample {highcharts} highcharts/demo/column-parsed/ HTML table
+         * @sample {highcharts} highcharts/data/csv/ CSV
+         * @since 4.0
+         * @product highcharts
+         * @apioption data
+         */
+
+        /**
+         * A two-dimensional array representing the input data on tabular form.
+         * This input can be used when the data is already parsed, for example
+         * from a grid view component. Each cell can be a string or number.
+         * If not switchRowsAndColumns is set, the columns are interpreted as
+         * series.
+         *
+         * @type {Array<Array<Mixed>>}
+         * @see [data.rows](#data.rows)
+         * @sample {highcharts} highcharts/data/columns/ Columns
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.columns
+         */
+
+        /**
+         * The callback that is evaluated when the data is finished loading,
+         * optionally from an external source, and parsed. The first argument
+         * passed is a finished chart options object, containing the series.
+         * These options can be extended with additional options and passed
+         * directly to the chart constructor.
+         *
+         * @type {Function}
+         * @see [data.parsed](#data.parsed)
+         * @sample {highcharts} highcharts/data/complete/ Modify data on complete
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.complete
+         */
+
+        /**
+         * A comma delimited string to be parsed. Related options are [startRow](#data.
+         * startRow), [endRow](#data.endRow), [startColumn](#data.startColumn)
+         * and [endColumn](#data.endColumn) to delimit what part of the table
+         * is used. The [lineDelimiter](#data.lineDelimiter) and [itemDelimiter](#data.
+         * itemDelimiter) options define the CSV delimiter formats.
+         *
+         * The built-in CSV parser doesn't support all flavours of CSV, so in
+         * some cases it may be necessary to use an external CSV parser. See
+         * [this example](http://jsfiddle.net/highcharts/u59176h4/) of parsing
+         * CSV through the MIT licensed [Papa Parse](http://papaparse.com/)
+         * library.
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/csv/ Data from CSV
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.csv
+         */
+
+        /**
+         * Which of the predefined date formats in Date.prototype.dateFormats
+         * to use to parse date values. Defaults to a best guess based on what
+         * format gives valid and ordered dates.
+         *
+         * Valid options include:
+         *
+         * *   `YYYY/mm/dd`
+         * *   `dd/mm/YYYY`
+         * *   `mm/dd/YYYY`
+         * *   `dd/mm/YY`
+         * *   `mm/dd/YY`
+         *
+         * @validvalue [undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY", "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
+         * @type {String}
+         * @see [data.parseDate](#data.parseDate)
+         * @sample {highcharts} highcharts/data/dateformat-auto/ Best guess date format
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.dateFormat
+         */
+
+        /**
+         * The decimal point used for parsing numbers in the CSV.
+         *
+         * If both this and data.delimiter is set to false, the parser will
+         * attempt to deduce the decimal point automatically.
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/delimiters/ Comma as decimal point
+         * @default .
+         * @since 4.1.0
+         * @product highcharts
+         * @apioption data.decimalPoint
+         */
+
+        /**
+         * In tabular input data, the last column (indexed by 0) to use. Defaults
+         * to the last column containing data.
+         *
+         * @type {Number}
+         * @sample {highcharts} highcharts/data/start-end/ Limited data
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.endColumn
+         */
+
+        /**
+         * In tabular input data, the last row (indexed by 0) to use. Defaults
+         * to the last row containing data.
+         *
+         * @type {Number}
+         * @sample {highcharts} highcharts/data/start-end/ Limited data
+         * @since 4.0.4
+         * @product highcharts
+         * @apioption data.endRow
+         */
+
+        /**
+         * Whether to use the first row in the data set as series names.
+         *
+         * @type {Boolean}
+         * @sample {highcharts} highcharts/data/start-end/ Don't get series names from the CSV
+         * @sample {highstock} highcharts/data/start-end/ Don't get series names from the CSV
+         * @default true
+         * @since 4.1.0
+         * @product highcharts highstock
+         * @apioption data.firstRowAsNames
+         */
+
+        /**
+         * The key for a Google Spreadsheet to load. See [general information
+         * on GS](https://developers.google.com/gdata/samples/spreadsheet_sample).
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/google-spreadsheet/ Load a Google Spreadsheet
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.googleSpreadsheetKey
+         */
+
+        /**
+         * The Google Spreadsheet worksheet to use in combination with [googleSpreadsheetKey](#data.
+         * googleSpreadsheetKey). The available id's from your sheet can be
+         * read from `https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic`
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/google-spreadsheet/ Load a Google Spreadsheet
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.googleSpreadsheetWorksheet
+         */
+
+        /**
+         * Item or cell delimiter for parsing CSV. Defaults to the tab character
+         * `\t` if a tab character is found in the CSV string, if not it defaults
+         * to `,`.
+         *
+         * If this is set to false or undefined, the parser will attempt to deduce
+         * the delimiter automatically.
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/delimiters/ Delimiters
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.itemDelimiter
+         */
+
+        /**
+         * Line delimiter for parsing CSV.
+         *
+         * @type {String}
+         * @sample {highcharts} highcharts/data/delimiters/ Delimiters
+         * @default \n
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.lineDelimiter
+         */
+
+        /**
+         * A callback function to parse string representations of dates into
+         * JavaScript timestamps. Should return an integer timestamp on success.
+         *
+         * @type {Function}
+         * @see [dateFormat](#data.dateFormat)
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.parseDate
+         */
+
+        /**
+         * A callback function to access the parsed columns, the two-dimentional
+         * input data array directly, before they are interpreted into series
+         * data and categories. Return `false` to stop completion, or call `this.
+         * complete()` to continue async.
+         *
+         * @type {Function}
+         * @see [data.complete](#data.complete)
+         * @sample {highcharts} highcharts/data/parsed/ Modify data after parse
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.parsed
+         */
+
+        /**
+         * The same as the columns input option, but defining rows intead of
+         * columns.
+         *
+         * @type {Array<Array<Mixed>>}
+         * @see [data.columns](#data.columns)
+         * @sample {highcharts} highcharts/data/rows/ Data in rows
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.rows
+         */
+
+        /**
+         * An array containing object with Point property names along with what
+         * column id the property should be taken from.
+         *
+         * @type {Array<Object>}
+         * @sample {highcharts} highcharts/data/seriesmapping-label/ Label from data set
+         * @since 4.0.4
+         * @product highcharts
+         * @apioption data.seriesMapping
+         */
+
+        /**
+         * In tabular input data, the first column (indexed by 0) to use.
+         *
+         * @type {Number}
+         * @sample {highcharts} highcharts/data/start-end/ Limited data
+         * @default 0
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.startColumn
+         */
+
+        /**
+         * In tabular input data, the first row (indexed by 0) to use.
+         *
+         * @type {Number}
+         * @sample {highcharts} highcharts/data/start-end/ Limited data
+         * @default 0
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.startRow
+         */
+
+        /**
+         * Switch rows and columns of the input data, so that `this.columns`
+         * effectively becomes the rows of the data set, and the rows are interpreted
+         * as series.
+         *
+         * @type {Boolean}
+         * @sample {highcharts} highcharts/data/switchrowsandcolumns/ Switch rows and columns
+         * @default false
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.switchRowsAndColumns
+         */
+
+        /**
+         * A HTML table or the id of such to be parsed as input data. Related
+         * options are `startRow`, `endRow`, `startColumn` and `endColumn` to
+         * delimit what part of the table is used.
+         *
+         * @type {String|HTMLElement}
+         * @sample {highcharts} highcharts/demo/column-parsed/ Parsed table
+         * @since 4.0
+         * @product highcharts
+         * @apioption data.table
+         */
 
 
         // The Data constructor
@@ -73,14 +377,14 @@
                     // Parse a HTML table if options.table is given
                     this.parseTable();
 
-                    // Parse a Google Spreadsheet 
+                    // Parse a Google Spreadsheet
                     this.parseGoogleSpreadsheet();
                 }
 
             },
 
             /**
-             * Get the column distribution. For example, a line series takes a single column for 
+             * Get the column distribution. For example, a line series takes a single column for
              * Y values. A range series takes two columns for low and high values respectively,
              * and an OHLC series takes four columns.
              */
@@ -118,7 +422,6 @@
                 // the mapping options.
                 each((options && options.seriesMapping) || [], function(mapping) {
                     var builder = new SeriesBuilder(),
-                        name,
                         numberOfValueColumnsNeeded = individualCounts[seriesIndex] || getValueCount(globalType),
                         seriesArr = (chartOptions && chartOptions.series) || [],
                         series = seriesArr[seriesIndex] || {},
@@ -129,16 +432,16 @@
                     builder.addColumnReader(mapping.x, 'x');
 
                     // Add all column mappings
-                    for (name in mapping) {
-                        if (mapping.hasOwnProperty(name) && name !== 'x') {
-                            builder.addColumnReader(mapping[name], name);
+                    objectEach(mapping, function(val, name) {
+                        if (name !== 'x') {
+                            builder.addColumnReader(val, name);
                         }
-                    }
+                    });
 
                     // Add missing columns
                     for (i = 0; i < numberOfValueColumnsNeeded; i++) {
                         if (!builder.hasReader(pointArrayMap[i])) {
-                            //builder.addNextColumnReader(pointArrayMap[i]);
+                            // builder.addNextColumnReader(pointArrayMap[i]);
                             // Create and add a column reader for the next free column index
                             builder.addColumnReader(undefined, pointArrayMap[i]);
                         }
@@ -190,18 +493,405 @@
             /**
              * Parse a CSV input string
              */
-            parseCSV: function() {
+            parseCSV: function(inOptions) {
                 var self = this,
-                    options = this.options,
+                    options = inOptions || this.options,
                     csv = options.csv,
-                    columns = this.columns,
-                    startRow = options.startRow || 0,
+                    columns,
+                    startRow = typeof options.startRow !== 'undefined' && options.startRow ? options.startRow : 0,
                     endRow = options.endRow || Number.MAX_VALUE,
-                    startColumn = options.startColumn || 0,
+                    startColumn = typeof options.startColumn !== 'undefined' && options.startColumn ? options.startColumn : 0,
                     endColumn = options.endColumn || Number.MAX_VALUE,
                     itemDelimiter,
                     lines,
-                    activeRowNo = 0;
+                    rowIt = 0,
+                    // activeRowNo = 0,
+                    dataTypes = [],
+                    // We count potential delimiters in the prepass, and use the
+                    // result as the basis of half-intelligent guesses.
+                    potDelimiters = {
+                        ',': 0,
+                        ';': 0,
+                        '\t': 0
+                    };
+
+                columns = this.columns = [];
+
+                /*
+                	This implementation is quite verbose. It will be shortened once
+                	it's stable and passes all the test.
+
+                	It's also not written with speed in mind, instead everything is
+                	very seggregated, and there a several redundant loops.
+                	This is to make it easier to stabilize the code initially.
+
+                	We do a pre-pass on the first 4 rows to make some intelligent
+                	guesses on the set. Guessed delimiters are in this pass counted.
+
+                	Auto detecting delimiters
+                		- If we meet a quoted string, the next symbol afterwards
+                		  (that's not \s, \t) is the delimiter
+                		- If we meet a date, the next symbol afterwards is the delimiter
+
+                	Date formats
+                		- If we meet a column with date formats, check all of them to
+                		  see if one of the potential months crossing 12. If it does,
+                		  we now know the format
+
+                	It would make things easier to guess the delimiter before
+                	doing the actual parsing.
+
+                	General rules:
+                		- Quoting is allowed, e.g: "Col 1",123,321
+                		- Quoting is optional, e.g.: Col1,123,321
+                		- Doubble quoting is escaping, e.g. "Col ""Hello world""",123
+                		- Spaces are considered part of the data: Col1 ,123
+                		- New line is always the row delimiter
+                		- Potential column delimiters are , ; \t
+                		- First row may optionally contain headers
+                		- The last row may or may not have a row delimiter
+                		- Comments are optionally supported, in which case the comment
+                		  must start at the first column, and the rest of the line will
+                		  be ignored
+                */
+
+                // Parse a single row
+                function parseRow(columnStr, rowNumber, noAdd, callbacks) {
+                    var i = 0,
+                        c = '',
+                        cl = '',
+                        cn = '',
+                        token = '',
+                        actualColumn = 0,
+                        column = 0;
+
+                    function read(j) {
+                        c = columnStr[j];
+                        cl = columnStr[j - 1];
+                        cn = columnStr[j + 1];
+                    }
+
+                    function pushType(type) {
+                        if (dataTypes.length < column + 1) {
+                            dataTypes.push([type]);
+                        }
+                        if (dataTypes[column][dataTypes[column].length - 1] !== type) {
+                            dataTypes[column].push(type);
+                        }
+                    }
+
+                    function push() {
+                        if (startColumn > actualColumn || actualColumn > endColumn) {
+                            // Skip this column, but increment the column count (#7272)
+                            ++actualColumn;
+                            token = '';
+                            return;
+                        }
+
+                        if (!isNaN(parseFloat(token)) && isFinite(token)) {
+                            token = parseFloat(token);
+                            pushType('number');
+                        } else if (!isNaN(Date.parse(token))) {
+                            token = token.replace(/\//g, '-');
+                            pushType('date');
+                        } else {
+                            pushType('string');
+                        }
+
+
+                        if (columns.length < column + 1) {
+                            columns.push([]);
+                        }
+
+                        if (!noAdd) {
+                            // Don't push - if there's a varrying amount of columns
+                            // for each row, pushing will skew everything down n slots
+                            columns[column][rowNumber] = token;
+                        }
+
+                        token = '';
+                        ++column;
+                        ++actualColumn;
+                    }
+
+                    if (!columnStr.trim().length) {
+                        return;
+                    }
+
+                    if (columnStr.trim()[0] === '#') {
+                        return;
+                    }
+
+                    for (; i < columnStr.length; i++) {
+                        read(i);
+
+                        // Quoted string
+                        if (c === '#') {
+                            // The rest of the row is a comment
+                            push();
+                            return;
+                        } else if (c === '"') {
+                            read(++i);
+
+                            while (i < columnStr.length) {
+                                if (c === '"' && cl !== '"' && cn !== '"') {
+                                    break;
+                                }
+
+                                if (c !== '"' || (c === '"' && cl !== '"')) {
+                                    token += c;
+                                }
+
+                                read(++i);
+                            }
+
+                            // Perform "plugin" handling
+                        } else if (callbacks && callbacks[c]) {
+                            if (callbacks[c](c, token)) {
+                                push();
+                            }
+
+                            // Delimiter - push current token
+                        } else if (c === itemDelimiter) {
+                            push();
+
+                            // Actual column data
+                        } else {
+                            token += c;
+                        }
+                    }
+
+                    push();
+
+                }
+
+                // Attempt to guess the delimiter
+                // We do a separate parse pass here because we need
+                // to count potential delimiters softly without making any assumptions.
+                function guessDelimiter(lines) {
+                    var points = 0,
+                        commas = 0,
+                        guessed = false;
+
+                    some(lines, function(columnStr, i) {
+                        var inStr = false,
+                            c,
+                            cn,
+                            cl,
+                            token = '';
+
+
+                        // We should be able to detect dateformats within 13 rows
+                        if (i > 13) {
+                            return true;
+                        }
+
+                        for (var j = 0; j < columnStr.length; j++) {
+                            c = columnStr[j];
+                            cn = columnStr[j + 1];
+                            cl = columnStr[j - 1];
+
+                            if (c === '#') {
+                                // Skip the rest of the line - it's a comment
+                                return;
+                            } else if (c === '"') {
+                                if (inStr) {
+                                    if (cl !== '"' && cn !== '"') {
+                                        while (cn === ' ' && j < columnStr.length) {
+                                            cn = columnStr[++j];
+                                        }
+
+                                        // After parsing a string, the next non-blank
+                                        // should be a delimiter if the CSV is properly
+                                        // formed.
+
+                                        if (typeof potDelimiters[cn] !== 'undefined') {
+                                            potDelimiters[cn]++;
+                                        }
+
+                                        inStr = false;
+                                    }
+                                } else {
+                                    inStr = true;
+                                }
+                            } else if (typeof potDelimiters[c] !== 'undefined') {
+
+                                token = token.trim();
+
+                                if (!isNaN(Date.parse(token))) {
+                                    potDelimiters[c]++;
+                                } else if (isNaN(token) || !isFinite(token)) {
+                                    potDelimiters[c]++;
+                                }
+
+                                token = '';
+
+                            } else {
+                                token += c;
+                            }
+
+                            if (c === ',') {
+                                commas++;
+                            }
+
+                            if (c === '.') {
+                                points++;
+                            }
+                        }
+                    });
+
+                    // Count the potential delimiters.
+                    // This could be improved by checking if the number of delimiters
+                    // equals the number of columns - 1
+
+                    if (potDelimiters[';'] > potDelimiters[',']) {
+                        guessed = ';';
+                    } else if (potDelimiters[','] > potDelimiters[';']) {
+                        guessed = ',';
+                    } else {
+                        // No good guess could be made..
+                        guessed = ',';
+                    }
+
+                    // Try to deduce the decimal point if it's not explicitly set.
+                    // If both commas or points is > 0 there is likely an issue
+                    if (!options.decimalPoint) {
+                        if (points > commas) {
+                            options.decimalPoint = '.';
+                        } else {
+                            options.decimalPoint = ',';
+                        }
+
+                        // Apply a new decimal regex based on the pressumed decimal sep.
+                        self.decimalRegex = new RegExp(
+                            '^(-?[0-9]+)' +
+                            options.decimalPoint +
+                            '([0-9]+)$'
+                        );
+                    }
+
+                    return guessed;
+                }
+
+                /* Tries to guess the date format
+                 *	- Check if either month candidate exceeds 12
+                 *  - Check if year is missing (use current year)
+                 *  - Check if a shortened year format is used (e.g. 1/1/99)
+                 *  - If no guess can be made, the user must be prompted
+                 * data is the data to deduce a format based on
+                 */
+                function deduceDateFormat(data, limit) {
+                    var format = 'YYYY/mm/dd',
+                        thing,
+                        guessedFormat,
+                        calculatedFormat,
+                        i = 0,
+                        madeDeduction = false,
+                        // candidates = {},
+                        stable = [],
+                        max = [],
+                        j;
+
+                    if (!limit || limit > data.length) {
+                        limit = data.length;
+                    }
+
+                    for (; i < limit; i++) {
+                        if (typeof data[i] !== 'undefined' && data[i] && data[i].length) {
+                            thing = data[i]
+                                .trim()
+                                .replace(/\//g, ' ')
+                                .replace(/\-/g, ' ')
+                                .split(' ');
+
+                            guessedFormat = [
+                                '',
+                                '',
+                                ''
+                            ];
+
+
+                            for (j = 0; j < thing.length; j++) {
+                                if (j < guessedFormat.length) {
+                                    thing[j] = parseInt(thing[j], 10);
+
+                                    if (thing[j]) {
+
+                                        max[j] = (!max[j] || max[j] < thing[j]) ? thing[j] : max[j];
+
+                                        if (typeof stable[j] !== 'undefined') {
+                                            if (stable[j] !== thing[j]) {
+                                                stable[j] = false;
+                                            }
+                                        } else {
+                                            stable[j] = thing[j];
+                                        }
+
+                                        if (thing[j] > 31) {
+                                            if (thing[j] < 100) {
+                                                guessedFormat[j] = 'YY';
+                                            } else {
+                                                guessedFormat[j] = 'YYYY';
+                                            }
+                                            // madeDeduction = true;
+                                        } else if (thing[j] > 12 && thing[j] <= 31) {
+                                            guessedFormat[j] = 'dd';
+                                            madeDeduction = true;
+                                        } else if (!guessedFormat[j].length) {
+                                            guessedFormat[j] = 'mm';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (madeDeduction) {
+
+                        // This handles a few edge cases with hard to guess dates
+                        for (j = 0; j < stable.length; j++) {
+                            if (stable[j] !== false) {
+                                if (max[j] > 12 && guessedFormat[j] !== 'YY' && guessedFormat[j] !== 'YYYY') {
+                                    guessedFormat[j] = 'YY';
+                                }
+                            } else if (max[j] > 12 && guessedFormat[j] === 'mm') {
+                                guessedFormat[j] = 'dd';
+                            }
+                        }
+
+                        // If the middle one is dd, and the last one is dd,
+                        // the last should likely be year.
+                        if (guessedFormat.length === 3 &&
+                            guessedFormat[1] === 'dd' &&
+                            guessedFormat[2] === 'dd') {
+                            guessedFormat[2] = 'YY';
+                        }
+
+                        calculatedFormat = guessedFormat.join('/');
+
+                        // If the caculated format is not valid, we need to present an error.
+
+                        if (!(options.dateFormats || self.dateFormats)[calculatedFormat]) {
+                            // This should emit an event instead
+                            fireEvent('invalidDateFormat');
+                            Highcharts.error('Could not deduce date format');
+                            return format;
+                        }
+
+                        return calculatedFormat;
+                    }
+
+                    return format;
+                }
+
+                /* Figure out the best axis types for the data
+                 * - If the first column is a number, we're good
+                 * - If the first column is a date, set to date/time
+                 * - If the first column is a string, set to categories
+                 */
+                function deduceAxisTypes() {
+
+                }
 
                 if (csv) {
 
@@ -210,31 +900,73 @@
                         .replace(/\r/g, '\n') // Mac
                         .split(options.lineDelimiter || '\n');
 
-                    itemDelimiter = options.itemDelimiter || (csv.indexOf('\t') !== -1 ? '\t' : ',');
+                    if (!startRow || startRow < 0) {
+                        startRow = 0;
+                    }
 
-                    each(lines, function(line, rowNo) {
-                        var trimmed = self.trim(line),
-                            isComment = trimmed.indexOf('#') === 0,
-                            isBlank = trimmed === '',
-                            items;
+                    if (!endRow || endRow >= lines.length) {
+                        endRow = lines.length - 1;
+                    }
 
-                        if (rowNo >= startRow && rowNo <= endRow && !isComment && !isBlank) {
-                            items = line.split(itemDelimiter);
-                            each(items, function(item, colNo) {
-                                if (colNo >= startColumn && colNo <= endColumn) {
-                                    if (!columns[colNo - startColumn]) {
-                                        columns[colNo - startColumn] = [];
-                                    }
+                    if (options.itemDelimiter) {
+                        itemDelimiter = options.itemDelimiter;
+                    } else {
+                        itemDelimiter = null;
+                        itemDelimiter = guessDelimiter(lines);
+                    }
 
-                                    columns[colNo - startColumn][activeRowNo] = item;
-                                }
-                            });
-                            activeRowNo += 1;
+                    var offset = 0;
+
+                    for (rowIt = startRow; rowIt <= endRow; rowIt++) {
+                        if (lines[rowIt][0] === '#') {
+                            offset++;
+                        } else {
+                            parseRow(lines[rowIt], rowIt - startRow - offset);
                         }
-                    });
+                    }
+
+                    // //Make sure that there's header columns for everything
+                    // each(columns, function (col) {
+
+                    // });
+
+                    deduceAxisTypes();
+
+                    if ((!options.columnTypes || options.columnTypes.length === 0) &&
+                        dataTypes.length &&
+                        dataTypes[0].length &&
+                        dataTypes[0][1] === 'date' &&
+                        !options.dateFormat) {
+                        options.dateFormat = deduceDateFormat(columns[0]);
+                    }
+
+
+                    // each(lines, function (line, rowNo) {
+                    //	var trimmed = self.trim(line),
+                    //		isComment = trimmed.indexOf('#') === 0,
+                    //		isBlank = trimmed === '',
+                    //		items;
+
+                    //	if (rowNo >= startRow && rowNo <= endRow && !isComment && !isBlank) {
+                    //		items = line.split(itemDelimiter);
+                    //		each(items, function (item, colNo) {
+                    //			if (colNo >= startColumn && colNo <= endColumn) {
+                    //				if (!columns[colNo - startColumn]) {
+                    //					columns[colNo - startColumn] = [];
+                    //				}
+
+                    //				columns[colNo - startColumn][activeRowNo] = item;
+                    //			}
+                    //		});
+                    //		activeRowNo += 1;
+                    //	}
+                    // });
+                    //
 
                     this.dataFound();
                 }
+
+                return columns;
             },
 
             /**
@@ -274,6 +1006,7 @@
             },
 
             /**
+             * Parse a Google spreadsheet.
              */
             parseGoogleSpreadsheet: function() {
                 var self = this,
@@ -303,7 +1036,7 @@
                                 rowCount = 0,
                                 i;
 
-                            // First, find the total number of columns and rows that 
+                            // First, find the total number of columns and rows that
                             // are actually filled with data
                             for (i = 0; i < cellCount; i++) {
                                 cell = cells[i];
@@ -423,7 +1156,7 @@
 
                     // Disable number or date parsing by setting the X axis type to category
                     if (forceCategory || (row === 0 && firstRowAsNames)) {
-                        column[row] = trimVal;
+                        column[row] = '' + trimVal;
 
                     } else if (+trimInsideVal === floatVal) { // is numeric
 
@@ -442,14 +1175,17 @@
 
                         // String, continue to determine if it is a date string or really a string
                     } else {
-                        dateVal = this.parseDate(val);
+                        if (trimVal && trimVal.length) {
+                            dateVal = this.parseDate(val);
+                        }
+
                         // Only allow parsing of dates if this column is an x-column
                         if (isXColumn && isNumber(dateVal) && columnType !== 'float') { // is date
                             backup[row] = val;
                             column[row] = dateVal;
                             column.isDatetime = true;
 
-                            // Check if the dates are uniformly descending or ascending. If they 
+                            // Check if the dates are uniformly descending or ascending. If they
                             // are not, chances are that they are a different time format, so check
                             // for alternative.
                             if (column[row + 1] !== undefined) {
@@ -476,14 +1212,14 @@
                 }
 
                 // If strings are intermixed with numbers or dates in a parsed column, it is an indication
-                // that parsing went wrong or the data was not intended to display as numbers or dates and 
-                // parsing is too aggressive. Fall back to categories. Demonstrated in the 
+                // that parsing went wrong or the data was not intended to display as numbers or dates and
+                // parsing is too aggressive. Fall back to categories. Demonstrated in the
                 // highcharts/demo/column-drilldown sample.
                 if (isXColumn && column.mixed) {
                     columns[col] = rawColumns[col];
                 }
 
-                // If the 0 column is date or number and descending, reverse all columns. 
+                // If the 0 column is date or number and descending, reverse all columns.
                 if (isXColumn && descending && this.options.sort) {
                     for (col = 0; col < columns.length; col++) {
                         columns[col].reverse();
@@ -499,8 +1235,8 @@
              * custom date formats.
              */
             dateFormats: {
-                'YYYY-mm-dd': {
-                    regex: /^([0-9]{4})[\-\/\.]([0-9]{2})[\-\/\.]([0-9]{2})$/,
+                'YYYY/mm/dd': {
+                    regex: /^([0-9]{4})[\-\/\.]([0-9]{1,2})[\-\/\.]([0-9]{1,2})$/,
                     parser: function(match) {
                         return Date.UTC(+match[1], match[2] - 1, +match[3]);
                     }
@@ -521,7 +1257,16 @@
                 'dd/mm/YY': {
                     regex: /^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.]([0-9]{2})$/,
                     parser: function(match) {
-                        return Date.UTC(+match[3] + 2000, match[2] - 1, +match[1]);
+                        var year = +match[3],
+                            d = new Date();
+
+                        if (year > (d.getFullYear() - 2000)) {
+                            year += 1900;
+                        } else {
+                            year += 2000;
+                        }
+
+                        return Date.UTC(year, match[2] - 1, +match[1]);
                     },
                     alternative: 'mm/dd/YY' // different format with the same regex
                 },
@@ -563,12 +1308,20 @@
                         // Next time, use the one previously found
                     } else {
                         format = this.dateFormats[dateFormat];
+
+
+                        if (!format) {
+                            // The selected format is invalid
+                            format = this.dateFormats['YYYY/mm/dd'];
+                        }
+
                         match = val.match(format.regex);
                         if (match) {
                             ret = format.parser(match);
                         }
+
                     }
-                    // Fall back to Date.parse		
+                    // Fall back to Date.parse
                     if (!match) {
                         match = Date.parse(val);
                         // External tools like Date.js and MooTools extend Date object and
@@ -652,7 +1405,7 @@
             },
 
             /**
-             * If a complete callback function is provided in the options, interpret the 
+             * If a complete callback function is provided in the options, interpret the
              * columns into a Highcharts options object.
              */
             complete: function() {
@@ -790,6 +1543,19 @@
                         options.afterComplete(chartOptions);
                     }
                 }
+
+            },
+
+            update: function(options, redraw) {
+                var chart = this.chart;
+                if (options) {
+                    // Set the complete handler
+                    options.afterComplete = function(dataOptions) {
+                        chart.update(dataOptions, redraw);
+                    };
+                    // Apply it
+                    Highcharts.data(options);
+                }
             }
         });
 
@@ -805,7 +1571,7 @@
             var chart = this;
 
             if (userOptions && userOptions.data) {
-                Highcharts.data(Highcharts.extend(userOptions.data, {
+                chart.data = new Data(Highcharts.extend(userOptions.data, {
 
                     afterComplete: function(dataOptions) {
                         var i, series;
@@ -829,6 +1595,7 @@
                         proceed.call(chart, userOptions, callback);
                     }
                 }), userOptions);
+                chart.data.chart = chart;
             } else {
                 proceed.call(chart, userOptions, callback);
             }
@@ -840,7 +1607,7 @@
          * Ex: A series builder can be constructed to read column 3 as 'x' and
          * column 7 and 8 as 'y1' and 'y2'.
          * The output would then be points/rows of the form {x: 11, y1: 22, y2: 33}
-         * 
+         *
          * The name of the builder is taken from the second column. In the above
          * example it would be the column with index 7.
          * @constructor

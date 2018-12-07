@@ -9,14 +9,14 @@ sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-default pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fa fa-plus"></i> {{Ajouter}}</a>
-<table id="table_dataStore" class="tablesorter">
+<a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fa fa-plus"></i> {{Ajouter}}</a>
+<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width: 100%">
     <thead>
         <tr>
             <th>{{Nom}}</th>
             <th>{{Valeur}}</th>
             <th>{{Utilisée dans}}</th>
-            <th data-sorter="false" data-filter="false">{{Action}}</th>
+            <th style="min-width: 100px;">{{Action}}</th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +40,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                         $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
                     },
                     success: function (data) {
-                        $('#div_dataStoreManagementAlert').showAlert({message: '{{Data store supprimé}}', level: 'success'});
+                        $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données supprimé}}', level: 'success'});
                         refreshDataStoreMangementTable();
                     }
                 });
@@ -60,7 +60,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
             },
             success: function (data) {
-                $('#div_dataStoreManagementAlert').showAlert({message: '{{Data store sauvegardé}}', level: 'success'});
+                $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données sauvegardé}}', level: 'success'});
                 refreshDataStoreMangementTable();
             }
         });
@@ -68,7 +68,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 
         $('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
             var tr = $(this).closest('tr');
-            $('#md_modal2').dialog({title: "{{Graphique de lien}}"});
+            $('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"});
             $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
         });
 
@@ -105,10 +105,10 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
              for (var i in data) {
                 tr += '<tr data-dataStore_id="' + data[i].id + '">';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
+                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" style="width:400px" value="' + data[i].key + '" disabled />';
                 tr += '</td>';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';
+                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" style="width:400px" value="' + data[i].value + '" />';
                 tr += '</td>';
                 tr += '<td>';
                 for(var j in data[i].usedBy.scenario){
@@ -119,6 +119,9 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                 }
                 for(var j in data[i].usedBy.cmd){
                     tr += '<span class="label label-primary">'+data[i].usedBy.cmd[j]+'</span> ';
+                }
+		for(var j in data[i].usedBy.interactDef){
+                    tr += '<span class="label label-primary">'+data[i].usedBy.interactDef[j]+'</span> ';
                 }
                 tr += '</td>';
                 tr += '<td>';

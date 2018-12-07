@@ -34,10 +34,10 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 	var rebooti = '0';
 	var testjeedom = '0';
+	jeedom.haltSystem();
 
 	function reboot_jeedom(rebooti){
-		jeedom.haltSystem();
-		$('#div_reboot_jeedom_texte').empty().html('<h6>Votre box Jeedom est éteinte.<br /> Pour la redémarrer, débranchez la et rebranchez la.</h6>');
+		$('#div_reboot_jeedom_texte').empty().html('<h6>Votre box}} '+JEEDOM_PRODUCT_NAME+' {{est éteinte.<br /> Pour la redémarrer, débranchez-la et rebranchez-la.</h6>');
 		$('#progressbar_reboot').width('100%');
 		$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success').removeClass('active');
 	}

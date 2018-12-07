@@ -47,7 +47,7 @@ foreach (ls(dirname(__FILE__) . '/../../core/themes') as $dir) {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-3 control-label">{{Mobile couleur}}</label>
+          <label class="col-sm-3 control-label">{{Couleur sur mobile}}</label>
           <div class="col-sm-3">
             <select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
               <?php
@@ -128,7 +128,7 @@ foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
       <legend><i class="fa fa-file-o"></i>  {{Page par défaut}}</legend>
       <div class="form-group">
         <label class="col-sm-3 control-label">{{Desktop}}</label>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
             <?php
 foreach ($homePage as $key => $value) {
@@ -350,13 +350,13 @@ foreach ($sessions as $id => $session) {
 
 <form class="form-horizontal">
   <fieldset>
-    <legend>{{Péripherique enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
+    <legend>{{Périphériques enregistrés}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fa fa-trash"></i> {{Supprimer tout}}</a></legend>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
           <th>{{Identification}}</th>
           <th>{{IP}}</th>
-          <th>{{Date derniere utilisation}}</th>
+          <th>{{Date dernière utilisation}}</th>
           <th>{{Action}}</th>
         </tr>
       </thead>
@@ -365,7 +365,7 @@ foreach ($sessions as $id => $session) {
 foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
 	echo '<tr data-key="' . $key . '">';
 	echo '<td>';
-	echo $key;
+	echo substr($key, 0, 10) . '...';
 	echo '</td>';
 	echo '<td>';
 	echo $value['ip'];

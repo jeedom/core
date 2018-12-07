@@ -12,7 +12,9 @@ if (!isConnect('admin')) {
 		<span class="input-group-addon" style="width: 100px"><i class="fa fa-random"></i>  {{Test}}</span>
 		<input class="form-control" id="in_testExpression">
 		<span class="input-group-btn">
-			<a class="btn btn-default" id="bt_searchInfoCmd"><i class="fa fa-list-alt"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fa fa-list-alt"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scenario}}"><i class="fa fa-history"></i></a>
+			<a type="button" class="btn btn-default cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher d'un équipement}}"><i class="fa fa-cube"></i></a>
 			<a class="btn btn-default" id="bt_executeExpressionOk"><i class="fa fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
@@ -35,10 +37,24 @@ if (!isConnect('admin')) {
 			$('#in_testExpression').atCaret('insert', result.human);
 		});
 	});
+	
+	$('#bt_searchScenario').on('click', function() {
+		var el = $(this);
+		jeedom.scenario.getSelectModal({}, function(result) {
+			$('#in_testExpression').atCaret('insert', result.human);
+		});
+	});
+
+	$('#bt_searchEqLogic').on('click', function() {
+		var el = $(this);
+		jeedom.eqLogic.getSelectModal({}, function(result) {
+			$('#in_testExpression').atCaret('insert', result.human);
+		});
+	});
 
 	$('#bt_executeExpressionOk').on('click',function(){
 		if($('#in_testExpression').value() == ''){
-			$('#div_alertExpressionTest').showAlert({message: '{{L\'epression de test ne peut être vide}}', level: 'danger'});
+			$('#div_alertExpressionTest').showAlert({message: '{{L\'expression de test ne peut être vide}}', level: 'danger'});
 			return;
 		}
 		jeedom.scenario.testExpression({
@@ -50,7 +66,7 @@ if (!isConnect('admin')) {
 				$('#div_expressionTestResult').empty();
 				var html = '<div class="alert alert-info">';
 				if(data.correct == 'nok'){
-					html += '<strong>{{Attention je pense qu\'il y a un souci car le résultat est le même que l\'expression}}</strong><br\>';
+					html += '<strong>{{Attention : il doit y avoir un souci, car le résultat est le même que l\'expression}}</strong><br\>';
 				}
 				html += '{{Je vais évaluer : }} <strong>'+data.evaluate+'</strong><br/>';
 				html += '{{Résultat : }} <strong>'+data.result+'</strong>';

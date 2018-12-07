@@ -20,7 +20,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		if (!extension_loaded('mysqli')) {
 			$this->markTestSkipped(
-				'The MySQL extension is not available.'
+				'L\'extension MySQL n\'est pas disponible.'
 			);
 		}
 	}
@@ -79,7 +79,7 @@ class scenarioTest extends \PHPUnit_Framework_TestCase {
 	public function testPersistLog() {
 		$path = dirname(__FILE__) . '/../../log/scenarioLog/scenarioTest.log';
 		if (file_exists($path)) {
-			$this->markTestSkipped('File "' . $path . '" already exists. Please remove it.');
+			$this->markTestSkipped('Le fichier "' . $path . '" existe déjà. Veuillez le supprimer.');
 		}
 		$scenario = new scenario();
 		$scenario->setId('Test');

@@ -66,7 +66,7 @@ class update {
 				}
 			}
 		}
-		if (!$findCore) {
+		if (!$findCore && ($_filter == '' || $_filter == 'core')) {
 			$update = new update();
 			$update->setType('core');
 			$update->setLogicalId('jeedom');
@@ -94,6 +94,7 @@ class update {
 			$class = 'repo_' . str_replace('.repo.php', '', $file);
 			$return[str_replace('.repo.php', '', $file)] = array(
 				'name' => $class::$_name,
+				'class' => $class,
 				'configuration' => $class::$_configuration,
 				'scope' => $class::$_scope,
 			);
@@ -106,6 +107,7 @@ class update {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
+			'class' => $class,
 			'configuration' => $class::$_configuration,
 			'scope' => $class::$_scope,
 		);
@@ -278,7 +280,7 @@ class update {
 
 	public function doUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1) {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {
@@ -305,7 +307,7 @@ class update {
 						throw new Exception(__('Impossible de trouver le fichier zip : ', __FILE__) . $this->getConfiguration('path'));
 					}
 					if (filesize($tmp) < 100) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être lié à un manque de place, une version minimale requise non consistente avec votre version de Jeedom, un soucis du plugin sur le market etc...', __FILE__));
+						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être lié à un manque de place, une version minimale requise non consistente avec votre version de Jeedom, un soucis du plugin sur le market, etc.', __FILE__));
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
@@ -321,6 +323,16 @@ class update {
 						}
 						$zip->close();
 						unlink($tmp);
+						try {
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/doc');
+							}
+							if (file_exists(dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs')) {
+								shell_exec('sudo rm -rf ' . dirname(__FILE__) . '/../../plugins/' . $this->getLogicalId() . '/docs');
+							}
+						} catch (Exception $e) {
+
+						}
 						if (!file_exists($cibDir . '/plugin_info')) {
 							$files = ls($cibDir, '*');
 							if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
@@ -416,7 +428,7 @@ class update {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
-						log::add('update', 'alert', __('Action de pre update...', __FILE__));
+						log::add('update', 'alert', __('Action de pré-update...', __FILE__));
 						$plugin->callInstallFunction('pre_update');
 						log::add('update', 'alert', __("OK\n", __FILE__));
 					}
@@ -455,7 +467,7 @@ class update {
 
 	public static function getLastAvailableVersion() {
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/stable/core/config/version';
+			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch','core','master') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec());
 		} catch (Exception $e) {
@@ -471,7 +483,7 @@ class update {
 	 */
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1) {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivé sur ', __FILE__) . $this->getLogicalId());
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {
@@ -492,7 +504,6 @@ class update {
 				}
 				$this->setRemoteVersion($version);
 			}
-			$change = false;
 			if (version_compare($this->getRemoteVersion(), $this->getLocalVersion(), '>')) {
 				$this->setStatus('update');
 			} else {

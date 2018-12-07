@@ -30,7 +30,7 @@ class com_shell {
 	private $history = array();
 
 	/*     * ********************Functions static********************* */
-	
+
         /**
          * @access public
          * @param type $_cmd
@@ -94,7 +94,7 @@ class com_shell {
 			exec($cmd, $output, $retval);
 			$return[] = implode("\n", $output);
 			if ($retval != 0) {
-				throw new Exception('Error on shell exec, return value : ' . $retval . '. Details : ' . print_r($return, true));
+				throw new Exception('Erreur dans l\'exécution du terminal, la valeur retournée est : ' . $retval . '. Détails : ' . print_r($return, true));
 			}
 			$this->history[] = $cmd;
 		}

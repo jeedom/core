@@ -1,6 +1,6 @@
 <div style="padding:10px 20px;">
     <center>
-        <img src="core/img/logo-jeedom-petit-nom-couleur-128x128.png"/>
+        <img id="img_loginImg" src="core/img/logo-jeedom-petit-nom-couleur-128x128.png" style="max-height: 300px;max-width: 600px;"/>
     </center><br/>
     <input type="text" id="in_login_username" value="" placeholder="{{Nom d'utilisateur}}" />
     <input type="password" id="in_login_password" value="" placeholder="{{Mot de passe}}" />
@@ -14,6 +14,9 @@
     <a id="bt_login_validate" href="#" class="ui-btn ui-corner-all ui-btn-raised clr-primary waves-effect waves-button">{{Connexion}}</a>
 </div>
 <script>
+     if(isset(JEEDOM_DATA) && isset(JEEDOM_DATA.product_image)){
+        $('#img_loginImg').attr('src',JEEDOM_DATA.product_image);
+    }
     $('#in_login_username').on('focusout change keypress',function(){
         jeedom.user.useTwoFactorAuthentification({
             login: $('#in_login_username').value(),

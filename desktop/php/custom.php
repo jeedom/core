@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 ?>
 <div class="alert alert-warning" id="div_spanAlertMessage">
-    {{Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel}}
+   {{Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre}} <?php echo config::byKey('product_name'); ?> {{non fonctionel.}}
     <span class="pull-right">
     {{Activer}} : <input type="checkbox" class="configKey" data-l1key="enableCustomCss" checked />
    </span>

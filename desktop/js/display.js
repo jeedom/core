@@ -159,7 +159,7 @@
 });
 
  $('#bt_removeEqlogic').on('click',function(){
-    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer tous ces équipement ?}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir supprimer tous ces équipements ?}}', function (result) {
         if (result) {
             var eqLogics = [];
             $('.cb_selEqLogic').each(function(){

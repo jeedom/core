@@ -260,7 +260,7 @@ $('#div_pageContainer').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 
 $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
   var type = $(this).attr('data-type');
   var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
-  jeedom.cmd.getSelectModal({}, function (result) {
+  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
@@ -273,6 +273,18 @@ $("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', fu
   var type = $(this).attr('data-type');
   var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
   jeedom.getSelectActionModal({}, function (result) {
+    el.value(result.human);
+    jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+      el.closest('.' + type).find('.actionOptions').html(html);
+      taAutosize();
+    });
+  });
+});
+
+$("body").undelegate(".listCmdAction", 'click').delegate(".listCmdAction", 'click', function () {
+ var type = $(this).attr('data-type');
+  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+  jeedom.cmd.getSelectModal({cmd:{type:'action'}}, function (result) {
     el.value(result.human);
     jeedom.cmd.displayActionOption(el.value(), '', function (html) {
       el.closest('.' + type).find('.actionOptions').html(html);
@@ -376,7 +388,7 @@ function addAction(_action, _type, _name) {
   div += '<input class="expressionAttr form-control cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
-  div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm listCmdAction" data-type="' + _type + '"><i class="fa fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';

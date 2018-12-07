@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 
 $repos = update::listRepo();
 
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable');
+$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'market::allowBeta', 'market::allowAllRepo', 'ldap::enable', 'apimarket');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
@@ -40,7 +40,7 @@ user::isBan();
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Nom de votre Jeedom (utilisé notamment par le market)}}">{{Nom de votre Jeedom}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Nom de votre  <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}">{{Nom de votre}} <?php echo config::byKey('product_name'); ?></label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="name" />
 						</div>
@@ -55,7 +55,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre Jeedom quand il communique avec le market}}">{{Clef d'installation}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
@@ -64,27 +64,30 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre Jeedom}}">{{Langue}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<select class="configKey form-control" data-l1key="language">
-								<option value="fr_FR">Français</option>
+								<option value="fr_FR">French</option>
 								<option value="en_US">English</option>
-								<option value="de_DE">Deutsch</option>
-								<option value="es_ES">Español</option>
-								<option value="ru_RU">Pусский</option>
-								<option value="id_ID">Bahasa Indonesia</option>
-								<option value="it_IT">Italiano</option>
+								<option value="de_DE">German</option>
+								<option value="es_ES">Spanish</option>
+								<option value="ru_RU">Russian</option>
+								<option value="id_ID">Indonesian</option>
+								<option value="it_IT">Italian</option>
+								<option value="ja_JP">Japanese</option>
+								<option value="pt_PT">Portuguese</option>
+								<option value="tr">Turkish</option>
 							</select>
 						</div>
 						<div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Générer les traductions}}</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à Jeedom de générer les phrases à traduire}}" />
+								<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à Jeedom si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
 						</div>
@@ -104,7 +107,7 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre Jeedom}}">{{Date et heure}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<select class="configKey form-control" data-l1key="timezone">
 								<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
@@ -134,6 +137,7 @@ $lastKnowDate = $cache->getValue();
 								<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
 								<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
 								<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
+								<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
 								<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
 								<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
 								<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
@@ -149,6 +153,7 @@ $lastKnowDate = $cache->getValue();
 								<option value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</option>
 								<option value="Europe/London">(GMT) Greenwich Mean Time : London</option>
 								<option value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</option>
+								<option value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</option>
 								<option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
 								<option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
 								<option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
@@ -205,13 +210,13 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à Jeedom utilisé lorsque Jeedom force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à Jeedom de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 						</div>
@@ -256,7 +261,7 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de Jeedom}}">{{Clef API}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['api']; ?></span>
@@ -268,7 +273,7 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de Jeedom}}">{{Clef API Pro}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
@@ -285,6 +290,25 @@ $lastKnowDate = $cache->getValue();
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
+						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+							<div class="input-group">
+								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
+								<span class="input-group-btn">
+									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+								</span>
+							</div>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+							<select class="form-control configKey" data-l1key="api::core::market::mode">
+								<option value="enable">{{Activé}}</option>
+								<option value="disable">{{Désactivé}}</option>
+							</select>
+						</div>
+					</div>
+					<hr/>
 					<?php
 if (init('rescue', 0) == 0) {
 	foreach (plugin::listPlugin(true) as $plugin) {
@@ -322,7 +346,7 @@ if (init('rescue', 0) == 0) {
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
+					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<legend><i class="fa fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
@@ -330,7 +354,7 @@ if (init('rescue', 0) == 0) {
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fa fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
-					<legend><i class="fa fa-indent"></i> {{Editeur de fichier}}</legend>
+					<legend><i class="fa fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à Jeedom. L'équipe Jeedom se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Editeur}}</label>
@@ -417,9 +441,15 @@ echo $CONFIG['db']['password'];
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="text"  class="configKey form-control" data-l1key="ldap:filter" />
+								<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
 							</div>
 						</div>
 						<div class="form-group has-error">
@@ -434,14 +464,13 @@ echo $CONFIG['db']['password'];
 								<a class="btn btn-default" id="bt_testLdapConnection"><i class="fa fa-cube"></i> Tester</a>
 							</div>
 						</div>
-						<?php } else {
+					</div>
+					<?php } else {
 	echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 }?>
-
-					</div>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échec toléré}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
@@ -505,20 +534,12 @@ if (count($values) != 0) {
 		</div>
 		<div role="tabpanel" class="tab-pane" id="networktab">
 			<br/>
-			<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer Jeedom de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre Jeedom}}</div>
+			<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?></div>
 			<form class="form-horizontal">
 				<fieldset>
 					<legend>{{Accès interne}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('internal')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="internalProtocol">
@@ -541,15 +562,7 @@ if (network::test('internal')) {
 				<fieldset>
 					<legend>{{Accès externe}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">
-							<?php
-if (network::test('external')) {
-	echo '<span class="label label-success" style="font-size : 1em;">{{OK}}</span>';
-} else {
-	echo '<span class="label label-warning">{{NOK}}</span>';
-}
-?>
-						{{Protocole}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<select class="configKey form-control" data-l1key="externalProtocol">
@@ -597,9 +610,15 @@ foreach (network::getInterfaces() as $interface) {
 								</tbody>
 							</table>
 							<div class="form-group has-error">
-								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par Jeedom}}</label>
+								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
 								<div class="col-xs-4">
 									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 								</div>
 							</div>
 						</div>
@@ -612,13 +631,13 @@ foreach ($repos as $key => $value) {
 	if ($configs[$key . '::enable'] == 0) {
 		continue;
 	}
-	echo '<legend>{{Proxy}} ' . $value['name'] . '</legend>';
+	echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
 	if ($configs['dns::token'] == '') {
 		echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
 		continue;
 	}
 	echo '<div class="form-group">';
-	echo '<label class="col-xs-4 control-label">{{Utiliser les DNS Jeedom}}</label>';
+	echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
 	echo '<div class="col-xs-8">';
 	echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
 	echo '</div>';
@@ -629,7 +648,7 @@ foreach ($repos as $key => $value) {
 	if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
 		echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 	} else {
-		echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS Jeedom}}">{{Arrêté}}</span>';
+		echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 	}
 	echo '</div>';
 	echo '</div>';
@@ -782,7 +801,7 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-info">
-						{{Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom}}
+						{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo config::byKey('product_name'); ?>
 					</div>
 
 					<?php
@@ -800,7 +819,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-								<option value="FilesystemCache">{{Système de fichier (<?php echo cache::getFolder(); ?>)}}</option>
+								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
 								<?php if (class_exists('memcached')) {?>
 								<option value="MemcachedCache">{{Memcached}}</option>
 								<?php }
@@ -868,7 +887,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 				<fieldset>
 					<legend>{{Général}}</legend>
 					<div class="alert alert-info">
-						{{Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte}}
+						{{Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.}}
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
@@ -907,20 +926,20 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex général d'exclusion pour les interactions}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 						</div>
 					</div>
 					<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatique}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelle}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
 						</div>
@@ -938,13 +957,13 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "previens moi"}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "préviens moi"}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::warnme::enable" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "previens moi" si la phrase commence par}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "préviens moi" si la phrase commence par}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
@@ -963,27 +982,39 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les objets}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les équipements}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les équipements}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::eqLogic::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les commandes}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les commandes}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme pour les résumé}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les résumés}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<input class="configKey form-control" data-l1key="interact::autoreply::summary::synonym" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider maximum}}</label>
+						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::max" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider minimum}}</label>
+						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 						</div>
 					</div>
 
@@ -1017,7 +1048,7 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapport plus anciens de (jours)}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nettoyer les rapports plus anciens de (jours)}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<input class="configKey form-control" data-l1key="report::maxdays" />
 						</div>
@@ -1127,16 +1158,12 @@ echo '<span class="label label-primary" style="font-size:1em;"><span id="span_ca
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande d'information utilisateur}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur message}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="emailAdmin" />
-								<span class="input-group-btn">
-									<a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
-								</span>
-							</div>
+							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fa fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
+					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
@@ -1180,13 +1207,13 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 					</div>
 					<div class="logEngine SyslogUdp">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog udp}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Adresse syslog UDP}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog udp}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port syslog UDP}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
 							</div>
@@ -1284,7 +1311,7 @@ if (init('rescue', 0) == 0) {
 				<div class="col-sm-6">
 					<form class="form-horizontal">
 						<fieldset>
-							<legend>{{Mise à jour de jeedom}}</legend>
+							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -1309,8 +1336,8 @@ foreach ($repos as $key => $value) {
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<select class="configKey form-control" data-l1key="core::branch">
-										<option value="master">{{Beta (Plus d'accès au support)}}</option>
-										<option value="stable">{{Stable}}</option>
+										<option value="beta">{{Beta (Plus d'accès au support)}}</option>
+										<option value="master">{{Stable}}</option>
 									</select>
 								</div>
 							</div>

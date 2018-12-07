@@ -1,4 +1,4 @@
-/*! Widget: sort2Hash (BETA) - updated 11/10/2015 (v2.24.4) */
+/*! Widget: sort2Hash (BETA) - updated 9/27/2017 (v2.29.0) */
 /* Requires tablesorter v2.8+ and jQuery 1.7+
  * by Rob Garrison
  */
@@ -26,10 +26,21 @@
 					filter = filter.split( wo.sort2Hash_separator );
 					c.$table.one( 'tablesorter-ready', function() {
 						setTimeout(function(){
-							c.$table.one( 'filterEnd', function(){
+							c.$table.one( 'filterEnd', function() {
 								$(this).triggerHandler( 'pageAndSize', [ page, size ] );
 							});
-							$.tablesorter.setFilters( table, filter, true );
+							// use the newest filter comparison code
+							if ( ts.filter.equalFilters ) {
+								temp = ts.filter.equalFilters( c, c.lastSearch, filter );
+							} else {
+								// quick n' dirty comparison... it will miss filter changes of
+								// the same value in a different column, see #1363
+								temp = ( c.lastSearch || [] ).join( '' ) !== ( filter || [] ).join( '' );
+							}
+							// don't set filters if they haven't changed
+							if ( !temp ) {
+								$.tablesorter.setFilters( table, filter, true );
+							}
 						}, 100 );
 					});
 				}
@@ -214,8 +225,27 @@
 				hash = s2h.cleanHash( c, wo, component, hash );
 				str += value;
 			});
-			// add updated hash
-			window.location.hash = ( ( window.location.hash || '' ).replace( '#', '' ).length ? hash : wo.sort2Hash_hash ) + str;
+
+			var hashChar = wo.sort2Hash_hash;
+			// Combine new hash with any existing hashes
+			var newHash = (
+				( window.location.hash || '' ).replace( hashChar, '' ).length ?
+				hash : hashChar
+			) + str;
+
+			if (wo.sort2Hash_replaceHistory) {
+				var baseUrl = window.location.href.split(hashChar)[0];
+				// Ensure that there is a leading hash character
+				var firstChar = newHash[0];
+				if (firstChar != hashChar) {
+					newHash = hashChar + newHash;
+				}
+				// Update URL in browser
+				window.location.replace(baseUrl + newHash);
+			} else {
+				// Add updated hash
+				window.location.hash = newHash;
+			}
 		}
 	};
 
@@ -227,15 +257,15 @@
 			sort2Hash_separator         : '-',      // don't '#' or '=' here
 			sort2Hash_headerTextAttr    : 'data-header', // data attribute containing alternate header text
 			sort2Hash_directionText     : [ 0, 1 ], // [ 'asc', 'desc' ],
-			sort2Hash_overrideSaveSort  : false     // if true, override saveSort widget if saved sort available
+			sort2Hash_overrideSaveSort  : false,    // if true, override saveSort widget if saved sort available
+			sort2Hash_replaceHistory    : false,    // if true, hash changes are not saved to browser history
 
-			// Options below commented out for improved compression
-			// ******************
-			// sort2Hash_tableId           : null,     // this option > table ID > table index on page,
+			// this option > table ID > table index on page
+			sort2Hash_tableId           : null,
 			// custom hash processing functions
-			// sort2Hash_encodeHash        : null,
-			// sort2Hash_decodeHash        : null,
-			// sort2Hash_cleanHash         : null
+			sort2Hash_encodeHash        : null,
+			sort2Hash_decodeHash        : null,
+			sort2Hash_cleanHash         : null
 		},
 		init: function(table, thisWidget, c, wo) {
 			s2h.init( c, wo );

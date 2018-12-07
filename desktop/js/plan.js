@@ -37,7 +37,7 @@ for(var i in planHeader){
         }
     }
 }
-if(deviceInfo.type == 'desktop'){
+if(deviceInfo.type == 'desktop'  && user_isAdmin == 1){
     $.contextMenu({
         selector: '#div_pageContainer',
         zIndex: 9999,
@@ -295,7 +295,7 @@ removePlan: {
         return !this.data('editOption.state'); 
     },
     callback: function(key, opt){
-      bootbox.confirm('{{Etes vous sûr de vouloir supprimer ce design ?}}', function (result) {
+      bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce design ?}}', function (result) {
         if (result) {
             jeedom.plan.removeHeader({
                 id:planHeader_id,

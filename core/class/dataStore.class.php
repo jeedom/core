@@ -50,7 +50,8 @@ class dataStore {
                 FROM dataStore
                 WHERE `type`=:type
                     AND `link_id`=:link_id
-                    AND `key`=:key';
+                    AND `key`=:key
+                ORDER BY `key`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -120,7 +121,7 @@ class dataStore {
 	}
 
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
-		if ($_drill == null) {
+		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::dataStore::drill');
 		}
 		if (isset($_data['node']['dataStore' . $this->getId()])) {
@@ -151,8 +152,9 @@ class dataStore {
 
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array());
-		$return['cmd'] = cmd::searchConfiguration('variable(' . $this->getKey() . ')');
-		$return['eqLogic'] = eqLogic::searchConfiguration('variable(' . $this->getKey() . ')');
+		$return['cmd'] = cmd::searchConfiguration(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
+		$return['eqLogic'] = eqLogic::searchConfiguration(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
+		$return['interactDef'] = interactDef::searchByUse(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'variable(' . $this->getKey() . ')', 'option' => 'variable(' . $this->getKey() . ')'),
 			array('action' => 'variable', 'option' => $this->getKey(), 'and' => true),

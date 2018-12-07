@@ -19,21 +19,25 @@
 try {
 	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-	}
-
+	
 	ajax::init(false);
 
 	if (init('action') == 'getInfoApplication') {
+		$return = array();
+		$return['product_name'] = config::byKey('product_name');
+		$return['product_icon'] = config::byKey('product_icon');
+		$return['product_image'] = config::byKey('product_image');
+		$return['serverDatetime'] = getmicrotime();
+		if (!isConnect()) {
+			$return['connected'] = false;
+			ajax::success($return);
+		}
+		
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
-		$return = array();
 		$return['jeedom_token'] = ajax::getToken();
 		$return['user_id'] = $_SESSION['user']->getId();
-		$return['serverDatetime'] = getmicrotime();
 		$return['userProfils'] = $_SESSION['user']->getOptions();
 		$return['userProfils']['defaultMobileViewName'] = __('Vue', __FILE__);
 		if ($_SESSION['user']->getOptions('defaultDesktopView') != '') {
@@ -54,7 +58,7 @@ try {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			if ($plugin->getMobile() != '' || $plugin->getEventJs() == 1) {
 				$info_plugin = utils::o2a($plugin);
-				$info_plugin['displayMobilePanel'] = config::bykey('displayMobilePanel', $plugin->getId(), 0);
+				$info_plugin['displayMobilePanel'] = config::byKey('displayMobilePanel', $plugin->getId(), 0);
 				$return['plugins'][] = $info_plugin;
 			}
 		}
@@ -64,6 +68,10 @@ try {
 			$return['custom']['css'] = file_exists(dirname(__FILE__) . '/../../mobile/custom/custom.css');
 		}
 		ajax::success($return);
+	}
+	
+	if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
 	ajax::init(true);
@@ -87,8 +95,10 @@ try {
 				$page = 'scenario';
 			} else if (init('page') == 'view_edit') {
 				$page = 'view';
+			} else if (init('page') == 'plan') {
+				$page = 'design';
 			}
-			ajax::success('https://github.com/jeedom/core/blob/stable/doc/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page) . '.asciidoc');
+			ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
@@ -186,23 +196,23 @@ try {
 			mkdir($uploaddir);
 		}
 		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
 		}
 		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.gz'))) {
 			throw new Exception('Extension du fichier non valide (autorisé .tar.gz) : ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 300000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 300mo)', __FILE__));
+			throw new Exception(__('Le fichier est trop gros (maximum 300Mo)', __FILE__));
 		}
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
 		}
 		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
-			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
+			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
 	}
@@ -263,7 +273,7 @@ try {
 					$info = scenario::timelineDisplay($event);
 					break;
 			}
-			if ($info != null) {
+			if ($info !== null) {
 				$return[] = $info;
 			}
 		}
@@ -307,11 +317,15 @@ try {
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
-		ajax::success(touch(init('path') . init('name')));
+		touch(init('path') . init('name'));
+		if (!file_exists(init('path') . init('name'))) {
+			throw new Exception(__('Impossible de créer le fichier, vérifiez les droits', __FILE__));
+		}
+		ajax::success();
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }

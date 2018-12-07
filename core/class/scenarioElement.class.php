@@ -48,7 +48,7 @@ class scenarioElement {
 			$element_db = new scenarioElement();
 		}
 		if (!isset($element_db) || !is_object($element_db)) {
-			throw new Exception(__('Elément inconnu - Vérifiez l\'id : ', __FILE__) . $element_ajax['id']);
+			throw new Exception(__('Elément inconnu. Vérifiez l\'ID : ', __FILE__) . $element_ajax['id']);
 		}
 		utils::a2o($element_db, $element_ajax);
 		$element_db->save();
@@ -62,7 +62,7 @@ class scenarioElement {
 				$subElement_db = new scenarioSubElement();
 			}
 			if (!isset($subElement_db) || !is_object($subElement_db)) {
-				throw new Exception(__('Elément inconnu vérifier l\'id : ', __FILE__) . $subElement_ajax['id']);
+				throw new Exception(__('Elément inconnu. Vérifiez l\'ID : ', __FILE__) . $subElement_ajax['id']);
 			}
 			utils::a2o($subElement_db, $subElement_ajax);
 			$subElement_db->setScenarioElement_id($element_db->getId());
@@ -84,7 +84,7 @@ class scenarioElement {
 					$expression_db = new scenarioExpression();
 				}
 				if (!isset($expression_db) || !is_object($expression_db)) {
-					throw new Exception(__('Expression inconnue vérifié l\'id : ', __FILE__) . $expression_ajax['id']);
+					throw new Exception(__('Expression inconnue. Vérifiez l\'ID : ', __FILE__) . $expression_ajax['id']);
 				}
 				$expression_db->emptyOptions();
 				utils::a2o($expression_db, $expression_ajax);
@@ -126,7 +126,7 @@ class scenarioElement {
 	}
 
 	public function execute(&$_scenario = null) {
-		if ($_scenario != null && !$_scenario->getDo()) {
+		if ($_scenario !== null && !$_scenario->getDo()) {
 			return;
 		}
 		if ($this->getType() == 'if') {
@@ -164,17 +164,17 @@ class scenarioElement {
 			}
 			return $this->getSubElement('else')->execute($_scenario);
 
-		} else if ($this->getType() == 'action') {
+		} elseif ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('action')->execute($_scenario);
-		} else if ($this->getType() == 'code') {
+		} elseif ($this->getType() == 'code') {
 			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('code')->execute($_scenario);
-		} else if ($this->getType() == 'for') {
+		} elseif ($this->getType() == 'for') {
 			$for = $this->getSubElement('for');
 			if ($for->getOptions('enable', 1) == 0) {
 				return true;
@@ -190,13 +190,12 @@ class scenarioElement {
 				$return = $this->getSubElement('do')->execute($_scenario);
 			}
 			return $return;
-		} else if ($this->getType() == 'in') {
+		} elseif ($this->getType() == 'in') {
 			$in = $this->getSubElement('in');
 			if ($in->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$in = $in->getExpression();
-			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in[0]->getExpression())));
+			$time = ceil(str_replace('.', ',', jeedom::evaluateExpression($in->getExpression()[0]->getExpression(), $_scenario)));
 			if (!is_numeric($time) || $time < 0) {
 				$time = 0;
 			}
@@ -209,7 +208,7 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
 				system::php($cmd);
 			} else {
-				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 				if (is_array($crons)) {
 					foreach ($crons as $cron) {
 						if ($cron->getState() != 'run') {
@@ -229,15 +228,14 @@ class scenarioElement {
 				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmé à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
-		} else if ($this->getType() == 'at') {
+		} elseif ($this->getType() == 'at') {
 			$at = $this->getSubElement('at');
 			if ($at->getOptions('enable', 1) == 0) {
 				return true;
 			}
-			$at = $at->getExpression();
-			$next = jeedom::evaluateExpression($at[0]->getExpression());
+			$next = jeedom::evaluateExpression($at->getExpression()[0]->getExpression(), $_scenario);
 			if (!is_numeric($next) || $next < 0) {
-				$_scenario->setLog(__('Erreur dans bloc (type A) : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
 			}
 			if ($next < date('Gi', strtotime('+1 minute' . date('G:i')))) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
@@ -247,7 +245,10 @@ class scenarioElement {
 				$next = date('Y-m-d') . ' ' . substr($next, 0, 2) . ':' . substr($next, 2, 4);
 			}
 			$next = strtotime($next);
-			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId());
+			if ($next < strtotime('now')) {
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . date('Y-m-d H:i:00', $next));
+			}
+			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
 				foreach ($crons as $cron) {
 					if ($cron->getState() != 'run') {
@@ -276,7 +277,7 @@ class scenarioElement {
 			$this->_subelement[$_type] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);
 			return $this->_subelement[$_type];
 		} else {
-			if (count($this->_subelement[-1]) > 0) {
+			if (isset($this->_subelement[-1]) && is_array($this->_subelement[-1]) && count($this->_subelement[-1]) > 0) {
 				return $this->_subelement[-1];
 			}
 			$this->_subelement[-1] = scenarioSubElement::byScenarioElementId($this->getId(), $_type);

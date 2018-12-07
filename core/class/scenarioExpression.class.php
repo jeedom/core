@@ -132,11 +132,11 @@ class scenarioExpression {
 			}
 			$action = $_action['options']['action'];
 			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $action;
-		} else if ($_action['cmd'] == 'variable') {
+		} elseif ($_action['cmd'] == 'variable') {
 			$name = $_action['options']['name'];
 			$value = $_action['options']['value'];
 			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $value;
-		} else if (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
+		} elseif (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
 			$cmd = cmd::byId(str_replace('#', '', $_action['cmd']));
 			$eqLogic = $cmd->getEqLogic();
 			$return .= $eqLogic->getHumanName(true) . ' ' . $cmd->getName();
@@ -476,11 +476,10 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-		$startHist = date('Y-m-d H:i:s', strtotime($_period));
-		return history::stateChanges($cmd_id, $_value, $startHist, date('Y-m-d H:i:s'));
+		return history::stateChanges($cmd_id, $_value, date('Y-m-d H:i:s', strtotime('-' . $_period)), date('Y-m-d H:i:s'));
 	}
 
-	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate) {
+	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate = null) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
@@ -524,6 +523,10 @@ class scenarioExpression {
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
 		$histories = $cmd->getHistory();
+
+		if (count($histories) == 0) {
+			return '';
+		}
 
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
@@ -703,10 +706,10 @@ class scenarioExpression {
 		if ($value < $color_range * 1) {
 			$color->red += $color_range - $value;
 			$color->green += $value;
-		} else if ($value < $color_range * 2) {
+		} elseif ($value < $color_range * 2) {
 			$color->green += $color_range - $value;
 			$color->blue += $value;
-		} else if ($value < $color_range * 3) {
+		} elseif ($value < $color_range * 3) {
 			$color->blue += $color_range - $value;
 			$color->red += $value;
 		}
@@ -787,6 +790,34 @@ class scenarioExpression {
 		return $date->format('Gi');
 	}
 
+	public static function time_between($_time, $_start, $_end) {
+		$_time = self::setTags($_time);
+		$_start = self::setTags($_start);
+		$_end = self::setTags($_end);
+		if ($_start < $_end) {
+			$result = (($_time >= $_start) && ($_time < $_end)) ? 1 : 0;
+		} else {
+			$result = (($_time >= $_start) || ($_time < $_end)) ? 1 : 0;
+		}
+		return $result;
+	}
+
+	public static function time_diff($_date1, $_date2, $_format = 'd') {
+		$date1 = new DateTime($_date1);
+		$date2 = new DateTime($_date2);
+		$interval = $date1->diff($date2);
+		if ($_format == 's') {
+			return $interval->format('%s') + 60 * $interval->format('%m') + 3600 * $interval->format('%h') + 86400 * $interval->format('%a');
+		}
+		if ($_format == 'm') {
+			return $interval->format('%i') + 60 * $interval->format('%h') + 1440 * $interval->format('%a');
+		}
+		if ($_format == 'h') {
+			return $interval->format('%h') + 24 * $interval->format('%a');
+		}
+		return $interval->format('%a');
+	}
+
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -815,9 +846,9 @@ class scenarioExpression {
 		$_time = self::setTags($_time);
 		if (strlen($_time) > 3) {
 			return substr($_time, 0, 2) . 'h' . substr($_time, 2, 2);
-		} else if (strlen($_time) > 2) {
+		} elseif (strlen($_time) > 2) {
 			return substr($_time, 0, 1) . 'h' . substr($_time, 1, 2);
-		} else if (strlen($_time) > 1) {
+		} elseif (strlen($_time) > 1) {
 			return '00h' . substr($_time, 0, 2);
 		} else {
 			return '00h0' . substr($_time, 0, 1);
@@ -826,6 +857,9 @@ class scenarioExpression {
 
 	public static function name($_type, $_cmd_id) {
 		$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		if (!is_object($cmd)) {
+			$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
+		}
 		if (!is_object($cmd)) {
 			return __('Commande non trouvée', __FILE__);
 		}
@@ -919,7 +953,7 @@ class scenarioExpression {
 	}
 
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
-		if ($_scenario == null) {
+		if ($_scenario === null) {
 			return '"' . $_default . '"';
 		}
 		$tags = $_scenario->getTags();
@@ -930,6 +964,9 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if (file_exists(dirname(__FILE__) . '/../../data/php/user.function.class.php')) {
+			require_once dirname(__FILE__) . '/../../data/php/user.function.class.php';
+		}
 		if ($_nbCall > 10) {
 			return $_expression;
 		}
@@ -1000,8 +1037,9 @@ class scenarioExpression {
 						$replace2[$replace_string] = self::tag($_scenario, $arguments[0], $arguments[1]);
 					} else {
 						$replace2[$replace_string] = call_user_func_array(__CLASS__ . "::" . $function, $arguments);
-
 					}
+				}else if (class_exists('userFunction') && method_exists('userFunction', $function)) {
+					$replace2[$replace_string] = call_user_func_array('userFunction' . "::" . $function, $arguments);
 				} else {
 					if (function_exists($function)) {
 						foreach ($arguments as &$argument) {
@@ -1096,7 +1134,7 @@ class scenarioExpression {
 						$scenario->save();
 					}
 					return;
-				} else if ($this->getExpression() == 'wait') {
+				} elseif ($this->getExpression() == 'wait') {
 					if (!isset($options['condition'])) {
 						return;
 					}
@@ -1119,7 +1157,7 @@ class scenarioExpression {
 					}
 					$this->setLog($scenario, __('[Wait] Condition valide : ', __FILE__) . $expression . ' => ' . $result);
 					return;
-				} else if ($this->getExpression() == 'sleep') {
+				} elseif ($this->getExpression() == 'sleep') {
 					if (isset($options['duration'])) {
 						try {
 							$options['duration'] = floatval(evaluate($options['duration']));
@@ -1139,38 +1177,38 @@ class scenarioExpression {
 					}
 					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
 					return;
-				} else if ($this->getExpression() == 'stop') {
+				} elseif ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
 						$this->setLog($scenario, __('Action stop', __FILE__));
 						$scenario->setDo(false);
 						return;
 					}
 					die();
-				} else if ($this->getExpression() == 'log') {
+				} elseif ($this->getExpression() == 'log') {
 					if ($scenario !== null) {
 						$scenario->setLog('Log : ' . $options['message']);
 					}
 					return;
-				} else if ($this->getExpression() == 'event') {
+				} elseif ($this->getExpression() == 'event') {
 					$cmd = cmd::byId(trim(str_replace('#', '', $options['cmd'])));
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable : ', __FILE__) . $options['cmd']);
 					}
 					$cmd->event(jeedom::evaluateExpression($options['value']));
 					return;
-				} else if ($this->getExpression() == 'message') {
+				} elseif ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message : ', __FILE__) . $options['message']);
 					return;
-				} else if ($this->getExpression() == 'alert') {
+				} elseif ($this->getExpression() == 'alert') {
 					event::add('jeedom::alert', $options);
 					$this->setLog($scenario, __('Ajout de l\'alerte : ', __FILE__) . $options['message']);
 					return;
-				} else if ($this->getExpression() == 'popup') {
+				} elseif ($this->getExpression() == 'popup') {
 					event::add('jeedom::alertPopup', $options['message']);
 					$this->setLog($scenario, __('Affichage du popup : ', __FILE__) . $options['message']);
 					return;
-				} else if ($this->getExpression() == 'equipment') {
+				} elseif ($this->getExpression() == 'equipment' || $this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
 						throw new Exception(__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('eqLogic'));
@@ -1198,11 +1236,11 @@ class scenarioExpression {
 							break;
 					}
 					return;
-				} else if ($this->getExpression() == 'gotodesign') {
+				} elseif ($this->getExpression() == 'gotodesign') {
 					$this->setLog($scenario, __('Changement design : ', __FILE__) . $options['plan_id']);
 					event::add('jeedom::gotoplan', $options['plan_id']);
 					return;
-				} else if ($this->getExpression() == 'scenario') {
+				} elseif ($this->getExpression() == 'scenario') {
 					if ($scenario !== null && $this->getOptions('scenario_id') == $scenario->getId()) {
 						$actionScenario = &$scenario;
 					} else {
@@ -1266,7 +1304,7 @@ class scenarioExpression {
 							break;
 					}
 					return;
-				} else if ($this->getExpression() == 'variable') {
+				} elseif ($this->getExpression() == 'variable') {
 					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
 						$result = evaluate($options['value']);
@@ -1286,7 +1324,7 @@ class scenarioExpression {
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					return;
-				} else if ($this->getExpression() == 'ask') {
+				} elseif ($this->getExpression() == 'ask') {
 					$dataStore = new dataStore();
 					$dataStore->setType('scenario');
 					$dataStore->setKey($this->getOptions('variable'));
@@ -1328,7 +1366,7 @@ class scenarioExpression {
 					}
 					$this->setLog($scenario, __('Réponse ', __FILE__) . $value);
 					return;
-				} else if ($this->getExpression() == 'jeedom_poweroff') {
+				} elseif ($this->getExpression() == 'jeedom_poweroff') {
 					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
 					$scenario->persistLog();
 					jeedom::haltSystem();
@@ -1345,7 +1383,7 @@ class scenarioExpression {
 					if ($scenario === null) {
 						return;
 					}
-					$this->setLog($scenario, __('Suppresion des blocs DANS et A programmés du scénario ', __FILE__));
+					$this->setLog($scenario, __('Suppression des blocs DANS et A programmés du scénario ', __FILE__));
 					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId() . ',');
 					if (is_array($crons)) {
 						foreach ($crons as $cron) {
@@ -1355,7 +1393,7 @@ class scenarioExpression {
 						}
 					}
 					return;
-				} else if ($this->getExpression() == 'report') {
+				} elseif ($this->getExpression() == 'report') {
 					$cmd_parameters = array('files' => null);
 					$this->setLog($scenario, __('Génération d\'un rapport de type ', __FILE__) . $options['type']);
 					switch ($options['type']) {
@@ -1365,7 +1403,7 @@ class scenarioExpression {
 								throw new Exception(__('Vue introuvable - Vérifiez l\'id : ', __FILE__) . $options['view_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $view->getName());
-							$cmd_parameters['files'] = array($view->report($options['export_type']));
+							$cmd_parameters['files'] = array($view->report($options['export_type'], $options));
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $view->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $view->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
@@ -1375,7 +1413,7 @@ class scenarioExpression {
 								throw new Exception(__('Design introuvable - Vérifiez l\'id : ', __FILE__) . $options['plan_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plan->getName());
-							$cmd_parameters['files'] = array($plan->report($options['export_type']));
+							$cmd_parameters['files'] = array($plan->report($options['export_type'], $options));
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plan->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
@@ -1385,7 +1423,7 @@ class scenarioExpression {
 								throw new Exception(__('Panel introuvable - Vérifiez l\'id : ', __FILE__) . $options['plugin_id']);
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plugin->getName());
-							$cmd_parameters['files'] = array($plugin->report($options['export_type']));
+							$cmd_parameters['files'] = array($plugin->report($options['export_type'], $options));
 							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plugin->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plugin->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
@@ -1417,7 +1455,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('[Erreur] Aucune commande trouvée pour ', __FILE__) . $this->getExpression());
 					return;
 				}
-			} else if ($this->getType() == 'condition') {
+			} elseif ($this->getType() == 'condition') {
 				$expression = self::setTags($this->getExpression(), $scenario, true);
 				$message = __('Evaluation de la condition : [', __FILE__) . $expression . '] = ';
 				$result = evaluate($expression);

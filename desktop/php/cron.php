@@ -19,7 +19,7 @@ if (config::byKey('enableCron') == 0) {
     <thead>
         <tr>
             <th class="id" style="width: 40px;">#</th>
-            <th class="" style="width: 50px;" data-sorter="false" data-filter="false"></th>
+            <th class="" style="width: 80px;" data-sorter="false" data-filter="false"></th>
             <th class="enable" style="width: 80px;">{{Actif}}</th>
             <th class="pid" style="width: 100px;">{{PID}}</th>
             <th class="deamons" style="width: 120px;">{{Démon}}</th>
@@ -29,7 +29,7 @@ if (config::byKey('enableCron') == 0) {
             <th class="schedule" style="width: 170px;"><i class="fa fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i> {{Programmation}}</th>
             <th class="timeout" style="width: 150px;">{{Timeout (min)}}</th>
             <th class="lastRun" style="width: 200px;">{{Dernier lancement}}</th>
-            <th class="runtime" style="width: 200px;">{{Derniere durée}}</th>
+            <th class="runtime" style="width: 200px;">{{Dernière durée}}</th>
             <th class="state" style="width: 80px;">{{Statut}}</th>
             <th class="action" style="width: 50px;" data-sorter="false" data-filter="false"></th>
         </tr>

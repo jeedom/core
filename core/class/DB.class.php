@@ -80,11 +80,11 @@ class DB {
 		$stmt = self::getConnection()->prepare($_query);
 		$res = NULL;
 
-		if ($stmt != false && $stmt->execute($_params) != false) {
+		if ($stmt !== false && $stmt->execute($_params) !== false) {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
-				} else if ($_fetch_param == PDO::FETCH_CLASS) {
+				} elseif ($_fetch_param == PDO::FETCH_CLASS) {
 					$res = $stmt->fetchObject($_fetch_opt);
 				}
 			} else {
@@ -104,7 +104,7 @@ class DB {
 	}
 
 	public function __clone() {
-		trigger_error('DB : Cloning this object is not permitted', E_USER_ERROR);
+		trigger_error('DB : Cloner cet objet n\'est pas permis', E_USER_ERROR);
 	}
 
 	public static function optimize() {
@@ -116,15 +116,15 @@ class DB {
 		}
 	}
 
-	public function beginTransaction() {
+	public static function beginTransaction() {
 		self::getConnection()->beginTransaction();
 	}
 
-	public function commit() {
+	public static function commit() {
 		self::getConnection()->commit();
 	}
 
-	public function rollBack() {
+	public static function rollBack() {
 		self::getConnection()->rollBack();
 	}
 
@@ -191,7 +191,7 @@ class DB {
 
 	public static function refresh($object) {
 		if (!self::getField($object, 'id')) {
-			throw new Exception('DB cannot refresh object without id');
+			throw new Exception('DB ne peut rafraîchir l\'objet sans son ID');
 		}
 		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . self::buildField(get_class($object)) .

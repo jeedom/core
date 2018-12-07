@@ -6,14 +6,14 @@ if (config::byKey('market::address') == '') {
 	throw new Exception('{{Aucune adresse pour le market n\'est renseignée}}');
 }
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
-	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market puis renseigner la clé dans Jeedom avant d\'ouvrir un ticket}}');
+	throw new Exception('{{Aucune clé pour le market n\'est renseignée. Veuillez vous enregistrer sur le market, puis renseignez la clé dans}} ' . config::byKey('product_name') . ' {{avant d\'ouvrir un ticket}}');
 }
 ?>
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
     <div class="panel panel-success">
-     <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
-     <div class="panel-body">
+       <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
+       <div class="panel-body">
         {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
         {{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
         {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
@@ -21,22 +21,29 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
     </div>
 </div>
 <div class="panel panel-danger">
-   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
-   <div class="panel-body">
-    {{IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.}}
+ <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
+ <div class="panel-body">
+   <strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
+   <strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
+   <strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
+
+   <center>
+    <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Bug%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les bugs}}</a><br/>
+    <a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Am%C3%A9lioration%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les propositions d'amélioration}}</a>
+</center>
 </div>
 </div>
 
 <div class="panel panel-primary">
- <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
- <div class="panel-body">
+   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
+   <div class="panel-body">
     <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <select class="form-control ticketAttr" data-l1key="type">
                 <option value=''>{{Aucun}}</option>
-                <option value='support'>{{Support}}</option>
-                <option value='Bug'>{{Bug}}</option>
+                <option value='support'>{{Assistance technique}}</option>
+                <option value='Bug'>{{Rapport}}</option>
                 <option value='Amélioration'>{{Demande d'amélioration}}</option>
             </select>
         </div>
@@ -58,22 +65,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
 </div>
 </div>
 
-<div id="div_reportModalSearchAction" class="panel panel-primary" style="display:none;">
-   <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-search"></i> {{Etape 4 : Chercher dans la documentation}}</h3></div>
-   <div class="panel-body">
-    <div class="form-group">
-        <label class="col-sm-2 control-label">{{Rechercher}}</label>
-        <div class="col-sm-2">
-            <a class="btn btn-default" id="bt_searchOnFaq"><i class="fa fa-search"></i> {{Chercher}}</a>
-        </div>
-    </div>
-</div>
-</div>
-
 <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
-       <div class="form-group">
+     <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
         <div class="col-sm-7">
             <input class="form-control ticketAttr" data-l1key="title"/>
@@ -88,21 +83,22 @@ foreach (plugin::listPlugin(true) as $plugin) {
         </div>
     </div>
     <div class="form-actions" style="height: 20px;">
+        <label style="margin-left: 140px;"><input type="checkbox" class="ticketAttr" data-l1key="openSupport" checked="checked" /> {{Ouvrir un accès au support}}</label>
         <a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="fa fa-check-circle"></i> {{Envoyer}}</a>
     </div>
 </div>
 </div>
 
 <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 5 : Demande de support}}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-pencil"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
         <div class="form-group">
             <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
             <div class="col-sm-2">
-             <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fa fa-check-circle"></i> {{Accéder}}</a>
-         </div>
-     </div>
- </div>
+               <a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="fa fa-check-circle"></i> {{Accéder}}</a>
+           </div>
+       </div>
+   </div>
 </div>
 </form>
 
@@ -129,9 +125,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
                     $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'});
                     return;
                 }
+                $('#form_reportBug').hide();
                 $('#bt_sendBugReport').hide();
-                if(data.result != '' && data.result != null){
-                    $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Vous pouvez le suivre}} <a target="_href" href="'+data.result+'">ici</a>', level: 'success'});
+                if(data.result != '' && data.result != null && data.result != 'ok'){
+                     $('#div_alertReportBug').showAlert({message: '{{Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre}} <a target="_blank" href="'+data.result+'">ici</a><br/><br/><strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s\'il ne s\'agit pas d\'un bug, vous ne recevrez pas d\'assistance technique suite à cette déclaration)', level: 'success'});
                 }else{
                     $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'});
                 }
@@ -139,23 +136,11 @@ foreach (plugin::listPlugin(true) as $plugin) {
         });
     });
 
-    $('#bt_searchOnFaq').on('click',function(){
-        var issue = $('.ticketAttr[data-l1key=category] option:selected').attr('data-issue');
-        if(issue != ''){
-            $('#bt_reportBugIssueUrl').attr('href',issue);
-            $('#div_reportModalPrivateIssue').show();
-        }else{
-            $('#div_reportModalSendAction').show();
-        }
-        window.open($('.ticketAttr[data-l1key=category] option:selected').attr('data-pagehelp'), '_blank');
-    });
-
     $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
         if($('.ticketAttr[data-l1key=type]').value() != '' && $('.ticketAttr[data-l1key=category]').value() != ''){
-            $('#div_reportModalSearchAction').show();
+            $('#div_reportModalSendAction').show();
         }else{
-            $('#div_reportModalSearchAction').hide();
+            $('#div_reportModalSendAction').hide();
         }
-        $('#div_reportModalSendAction').hide();
     });
 </script>

@@ -132,7 +132,7 @@ try {
 			}
 			if (!is_object($user)) {
 				if (config::byKey('ldap::enable') == '1') {
-					throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
+					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
 				$user = new user();
 			}
@@ -150,14 +150,14 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		if (config::byKey('ldap::enable') == '1') {
-			throw new Exception(__('Vous devez desactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
+			throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
 		}
 		if (init('id') == $_SESSION['user']->getId()) {
-			throw new Exception(__('Vous ne pouvez supprimer le compte avec lequel vous êtes connecté', __FILE__));
+			throw new Exception(__('Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté', __FILE__));
 		}
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
-			throw new Exception('User id inconnu');
+			throw new Exception('User ID inconnu');
 		}
 		$user->remove();
 		ajax::success();
@@ -166,7 +166,7 @@ try {
 	if (init('action') == 'saveProfils') {
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
-			throw new Exception('401 unautorized');
+			throw new Exception('401 - Accès non autorisé');
 		}
 		@session_start();
 		$_SESSION['user']->refresh();
@@ -188,6 +188,21 @@ try {
 	}
 
 	if (init('action') == 'removeRegisterDevice') {
+		if (init('key') == '' && init('user_id') == '') {
+			if (!isConnect('admin')) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
+			}
+			foreach (user::all() as $user) {
+				if ($user->getId() == $_SESSION['user']->getId()) {
+					$_SESSION['user']->setOptions('registerDevice', array());
+					$_SESSION['user']->save();
+				} else {
+					$user->setOptions('registerDevice', array());
+					$user->save();
+				}
+			}
+			ajax::success();
+		}
 		if (init('user_id') != '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
@@ -224,14 +239,16 @@ try {
 		$sessions = $cache->getValue(array());
 		if (isset($sessions[init('id')])) {
 			$user = user::byId($sessions[init('id')]['user_id']);
-			$registerDevice = $user->getOptions('registerDevice', array());
-			foreach ($user->getOptions('registerDevice', array()) as $key => $value) {
-				if ($value['session_id'] == init('id')) {
-					unset($registerDevice[$key]);
+			if (is_object($user)) {
+				$registerDevice = $user->getOptions('registerDevice', array());
+				foreach ($user->getOptions('registerDevice', array()) as $key => $value) {
+					if ($value['session_id'] == init('id')) {
+						unset($registerDevice[$key]);
+					}
 				}
+				$user->setOptions('registerDevice', $registerDevice);
+				$user->save();
 			}
-			$user->setOptions('registerDevice', $registerDevice);
-			$user->save();
 		}
 		ajax::success();
 	}
@@ -255,9 +272,13 @@ try {
 		ajax::success(user::removeBanIp());
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	if (init('action') == 'supportAccess') {
+		ajax::success(user::supportAccess(init('enable')));
+	}
+
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
 ?>

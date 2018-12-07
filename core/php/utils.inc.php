@@ -56,7 +56,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = dirname(__FILE__) . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('File not found : ' . $path, 35486);
+		throw new Exception('Fichier introuvable : ' . $path, 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -95,11 +95,9 @@ function template_replace($_array, $_subject) {
 
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
-		$cache[$_name] = $_GET[$_name];
 		return $_GET[$_name];
 	}
 	if (isset($_POST[$_name])) {
-		$cache[$_name] = $_POST[$_name];
 		return $_POST[$_name];
 	}
 	if (isset($_REQUEST[$_name])) {
@@ -198,6 +196,11 @@ function mySqlIsHere() {
 }
 
 function displayExeption($e) {
+    trigger_error('La fonction displayExeption devient displayException', E_USER_DEPRECATED);
+    return displayException($e);
+}
+
+function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG) {
 		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
@@ -206,8 +209,18 @@ function displayExeption($e) {
 	return $message;
 }
 
-function is_json($_string) {
-	return ((is_string($_string) && (is_object(json_decode($_string)) || is_array(json_decode($_string))))) ? true : false;
+function is_json($_string, $_default = null) {
+	if ($_default !== null) {
+		if (!is_string($_string)) {
+			return $_default;
+		}
+		$return = json_decode($_string, true, 512, JSON_BIGINT_AS_STRING);
+		if (!is_array($return)) {
+			return $_default;
+		}
+		return $return;
+	}
+	return ((is_string($_string) && is_array(json_decode($_string, true, 512, JSON_BIGINT_AS_STRING)))) ? true : false;
 }
 
 function is_sha1($_string = '') {
@@ -268,6 +281,91 @@ function getVersion($_name) {
 	return jeedom::version();
 }
 
+// got from https://github.com/zendframework/zend-stdlib/issues/58
+function polyfill_glob_brace( $pattern, $flags ) {
+	static $next_brace_sub;
+	if ( ! $next_brace_sub ) {
+		// Find the end of the sub-pattern in a brace expression.
+		$next_brace_sub = function ( $pattern, $current ) {
+			$length  = strlen( $pattern );
+			$depth   = 0;
+
+			while ( $current < $length ) {
+				if ( '\\' === $pattern[ $current ] ) {
+					if ( ++$current === $length ) {
+						break;
+					}
+					$current++;
+				} else {
+					if ( ( '}' === $pattern[ $current ] && $depth-- === 0 ) || ( ',' === $pattern[ $current ] && 0 === $depth ) ) {
+						break;
+					} elseif ( '{' === $pattern[ $current++ ] ) {
+						$depth++;
+					}
+				}
+			}
+
+			return $current < $length ? $current : null;
+		};
+	}
+
+	$length = strlen( $pattern );
+
+	// Find first opening brace.
+	for ( $begin = 0; $begin < $length; $begin++ ) {
+		if ( '\\' === $pattern[ $begin ] ) {
+			$begin++;
+		} elseif ( '{' === $pattern[ $begin ] ) {
+			break;
+		}
+	}
+
+	// Find comma or matching closing brace.
+	if ( null === ( $next = $next_brace_sub( $pattern, $begin + 1 ) ) ) {
+		return glob( $pattern, $flags );
+	}
+
+	$rest = $next;
+
+	// Point `$rest` to matching closing brace.
+	while ( '}' !== $pattern[ $rest ] ) {
+		if ( null === ( $rest = $next_brace_sub( $pattern, $rest + 1 ) ) ) {
+			return glob( $pattern, $flags );
+		}
+	}
+
+	$paths = array();
+	$p = $begin + 1;
+
+	// For each comma-separated subpattern.
+	do {
+		$subpattern = substr( $pattern, 0, $begin )
+					. substr( $pattern, $p, $next - $p )
+					. substr( $pattern, $rest + 1 );
+
+		if ( ( $result = polyfill_glob_brace( $subpattern, $flags ) ) ) {
+			$paths = array_merge( $paths, $result );
+		}
+
+		if ( '}' === $pattern[ $next ] ) {
+			break;
+		}
+
+		$p    = $next + 1;
+		$next = $next_brace_sub( $pattern, $p );
+	} while ( null !== $next );
+
+	return array_values( array_unique( $paths ) );
+}
+
+function glob_brace( $pattern, $flags = 0 ) {
+	if(defined("GLOB_BRACE")) {
+		return glob($pattern, $flags + GLOB_BRACE);
+	} else {
+		return polyfill_glob_brace($pattern, $flags);
+	}
+}
+
 function ls($folder = "", $pattern = "*", $recursivly = false, $options = array('files', 'folders')) {
 	if ($folder) {
 		$current_folder = realpath('.');
@@ -290,7 +388,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 	// Get the all files and folders in the given directory.
 	if ($get_files) {
 		$both = array();
-		foreach (glob($pattern, GLOB_BRACE + GLOB_MARK) as $file) {
+		foreach (glob_brace($pattern, GLOB_MARK) as $file) {
 			if (!is_dir($folder . '/' . $file)) {
 				$both[] = $file;
 			}
@@ -359,7 +457,7 @@ function removeCR($_string) {
 	return trim(str_replace(array("\n", "\r\n", "\r", "\n\r"), '', $_string));
 }
 
-function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array()) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -373,26 +471,58 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
-				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+				if (!rcopy($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError, $_params) && !$_noError) {
 					return false;
 				}
 			}
 		}
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
-			if (!$_noError) {
-				return copy($src, $dst);
-			} else {
-				@copy($src, $dst);
+			$srcSize = filesize($src);
+			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
+				if (isset($_params['log']) && $_params['log']) {
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
+				}
 				return true;
 			}
-
+			if (!copy($src, $dst)) {
+				$output = array();
+				$retval = 0;
+				exec('sudo cp ' . $src . ' ' . $dst, $output, $retval);
+				if ($retval != 0) {
+					if (!$_noError) {
+						return false;
+					} else if (isset($_params['log']) && $_params['log']) {
+						echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
+					}
+				}
+			}
+			if ($srcSize != filesize($dst)) {
+				if (!$_noError) {
+					return false;
+				} else if (isset($_params['log']) && $_params['log']) {
+					echo 'Error on copy ' . $src . ' to ' . $dst . "\n";
+				}
+			}
+			return true;
 		}
 	}
 	return true;
 }
 
-function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false) {
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array()) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -406,20 +536,52 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 		$files = scandir($src);
 		foreach ($files as $file) {
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
-				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError) && !$_noError) {
+				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError, $_params) && !$_noError) {
 					return false;
 				}
 			}
 		}
 	} else {
 		if (!in_array(basename($src), $_exclude) && !in_array(realpath($src), $_exclude)) {
-			if (!$_noError) {
-				return rename($src, $dst);
-			} else {
-				@rename($src, $dst);
+			$srcSize = filesize($src);
+			if (isset($_params['ignoreFileSizeUnder']) && $srcSize < $_params['ignoreFileSizeUnder']) {
+				if (strpos(realpath($src), 'empty') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.git') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.html') !== false) {
+					return true;
+				}
+				if (strpos(realpath($src), '.txt') !== false) {
+					return true;
+				}
+				if (isset($_params['log']) && $_params['log']) {
+					echo 'Ignore file ' . $src . ' because size is ' . $srcSize . "\n";
+				}
 				return true;
 			}
-
+			if (!rename($src, $dst)) {
+				$output = array();
+				$retval = 0;
+				exec('sudo mv ' . $src . ' ' . $dst, $output, $retval);
+				if ($retval != 0) {
+					if (!$_noError) {
+						return false;
+					} else if (isset($_params['log']) && $_params['log']) {
+						echo 'Error on move ' . $src . ' to ' . $dst . "\n";
+					}
+				}
+			}
+			if ($srcSize != filesize($dst)) {
+				if (!$_noError) {
+					return false;
+				} else if (isset($_params['log']) && $_params['log']) {
+					echo 'Error on move ' . $src . ' to ' . $dst . "\n";
+				}
+			}
+			return true;
 		}
 	}
 	return true;
@@ -435,10 +597,22 @@ function rrmdir($dir) {
 			}
 		}
 		if (!rmdir($dir)) {
-			return false;
+			$output = array();
+			$retval = 0;
+			exec('sudo rm -rf ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
 		}
 	} else if (file_exists($dir)) {
-		return unlink($dir);
+		if (!unlink($dir)) {
+			$output = array();
+			$retval = 0;
+			exec('sudo rm -rf ' . $dir, $output, $retval);
+			if ($retval != 0) {
+				return false;
+			}
+		}
 	}
 	return true;
 }
@@ -498,102 +672,54 @@ function date_fr($date_en) {
 }
 
 function convertDayEnToFr($_day) {
-	switch (config::byKey('language', 'core', 'fr_FR')) {
-		case 'fr_FR':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Lundi';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'lundi';
-			}
+	trigger_error('La fonction convertDayEnToFr devient convertDayFromEn', E_USER_DEPRECATED);
+	return convertDayFromEn($_day);
+}
 
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Mardi';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'mardi';
-			}
-
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mercredi';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mercredi';
-			}
-
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Jeudi';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Jeudi';
-			}
-
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Vendredi';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'vendredi';
-			}
-
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samedi';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samedi';
-			}
-
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Dimanche';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'dimanche';
-			}
-		case 'de_DE':
-			if ($_day == 'Monday' || $_day == 'Mon') {
-				return 'Montag';
-			}
-			if ($_day == 'monday' || $_day == 'mon') {
-				return 'montag';
-			}
-			if ($_day == 'Tuesday' || $_day == 'Tue') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'tuesday' || $_day == 'tue') {
-				return 'donnerstag';
-			}
-			if ($_day == 'Wednesday' || $_day == 'Wed') {
-				return 'Mittwoch';
-			}
-			if ($_day == 'wednesday' || $_day == 'wed') {
-				return 'mittwoch';
-			}
-			if ($_day == 'Thursday' || $_day == 'Thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'thursday' || $_day == 'thu') {
-				return 'Donnerstag';
-			}
-			if ($_day == 'Friday' || $_day == 'Fri') {
-				return 'Freitag';
-			}
-			if ($_day == 'friday' || $_day == 'fri') {
-				return 'freitag';
-			}
-			if ($_day == 'Saturday' || $_day == 'Sat') {
-				return 'Samstag';
-			}
-			if ($_day == 'saturday' || $_day == 'sat') {
-				return 'samstag';
-			}
-			if ($_day == 'Sunday' || $_day == 'Sun') {
-				return 'Sonntag';
-			}
-			if ($_day == 'sunday' || $_day == 'sun') {
-				return 'Sonntag';
-			}
-	}
-
-	return $_day;
+function convertDayFromEn($_day) {
+	$result = $_day;
+    $daysMapping = [
+        'fr_FR' => [
+            'Monday' =>    'Lundi',    'Mon' => 'Lundi',
+            'monday' =>    'lundi',    'mon' => 'lundi',
+            'Tuesday' =>   'Mardi',    'Tue' => 'Mardi',
+            'tuesday' =>   'mardi',    'tue' => 'mardi',
+            'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
+            'wednesday' => 'mercredi', 'wed' => 'mercredi',
+            'Thursday' =>  'Jeudi',    'Thu' => 'Jeudi',
+            'thursday' =>  'jeudi',    'thu' => 'jeudi',
+            'Friday' =>    'Vendredi', 'Fri' => 'Vendredi',
+            'friday' =>    'vendredi', 'fri' => 'vendredi',
+            'Saturday' =>  'Samedi',   'Sat' => 'Samedi',
+            'saturday' =>  'samedi',   'sat' => 'samedi',
+            'Sunday' =>    'Dimanche', 'Sun' => 'Dimanche',
+            'sunday' =>    'dimanche', 'sun' => 'dimanche'
+        ],
+        'de_DE' => [
+            'Monday' => 'Montag',       'Mon' => 'Montag',
+            'monday' => 'montag',       'mon' => 'montag',
+            'Tuesday' => 'Dienstag',    'Tue' => 'Dienstag',
+            'tuesday' => 'dienstag',    'tue' => 'dienstag',
+            'Wednesday' => 'Mittwoch',  'Wed' => 'Mittwoch',
+            'wednesday' => 'mittwoch',  'wed' => 'mittwoch',
+            'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
+            'thursday' => 'donnerstag', 'thu' => 'donnerstag',
+            'Friday' => 'Freitag',      'Fri' => 'Freitag',
+            'friday' => 'freitag',      'fri' => 'freitag',
+            'Saturday' => 'Samstag',    'Sat' => 'Samstag',
+            'saturday' => 'samstag',    'sat' => 'samstag',
+            'Sunday' => 'Sonntag',      'Sun' => 'Sonntag',
+            'sunday' => 'sonntag',      'sun' => 'sonntag'
+        ]
+    ];
+    $language = config::byKey('language', 'core', 'fr_FR');
+    if (array_key_exists($language, $daysMapping)) {
+        $daysArray = $daysMapping[$language];
+        if (array_key_exists($_day, $daysArray)) {
+            $result = $daysArray[$_day];
+        }
+    }
+    return $result;
 }
 
 function create_zip($source_arr, $destination, $_excludes = array()) {
@@ -605,7 +731,7 @@ function create_zip($source_arr, $destination, $_excludes = array()) {
 	}
 	$zip = new ZipArchive();
 	if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-		throw new Exception('Impossible de creer l\'archive ZIP dans le dossier de destination : ' . $destination);
+		throw new Exception('Impossible de créer l\'archive ZIP dans le dossier de destination : ' . $destination);
 	}
 	foreach ($source_arr as $source) {
 		if (!file_exists($source)) {
@@ -1111,7 +1237,7 @@ function makeZipSupport() {
 		rrmdir($folder);
 	}
 	mkdir($folder);
-	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null');
+	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null;cp -R .[^.]* "' . $folder . '" > /dev/null');
 	system('sudo dmesg >> ' . $folder . '/dmesg');
 	system('sudo cp /var/log/messages "' . $folder . '/" > /dev/null');
 	system('sudo chmod 777 -R "' . $folder . '" > /dev/null');
@@ -1150,4 +1276,10 @@ function deleteSession($_id) {
 	session_destroy();
 	session_id($cSsid);
 	@session_write_close();
+}
+
+function unautorizedInDemo() {
+	if ($_SESSION['user']->getLogin() == 'demo') {
+		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
+	}
 }

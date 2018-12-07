@@ -10,15 +10,15 @@ JAUNE="\\033[1;33m"
 CYAN="\\033[1;36m"
 
 if [ $(id -u) != 0 ] ; then
-    echo "Super-user (root) privileges are required to install Jeedom"
-    echo "Please run 'sudo $0' or log in as root, and rerun $0"
+    echo "Les droits de super-utilisateur (root) sont requis pour installer Jeedom"
+    echo "Veuillez lancer 'sudo $0' ou connectez-vous en tant que root, puis relancez $0"
     exit 1
 fi
 
 apt_install() {
   apt-get -y install "$@"
   if [ $? -ne 0 ]; then
-	echo "${ROUGE}Could not install $@ - abort${NORMAL}"
+	echo "${ROUGE}Ne peut installer $@ - Annulation${NORMAL}"
 	exit 1
   fi
 }
@@ -26,50 +26,50 @@ apt_install() {
 mysql_sql() {
   echo "$@" | mysql -uroot -p${MYSQL_ROOT_PASSWD}
   if [ $? -ne 0 ]; then
-    echo "C${ROUGE}ould not execute $@ into mysql - abort${NORMAL}"
+    echo "C${ROUGE}Ne peut exécuter $@ dans MySQL - Annulation${NORMAL}"
     exit 1
   fi
 }
 
 step_1_upgrade() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_1_upgrade${NORMAL}"
+	echo "${JAUNE}Commence l'étape 1 de la révision${NORMAL}"
 
 	apt-get update
 	apt-get -f install
 	apt-get -y dist-upgrade
-	echo "${VERT}step_1_upgrade success${NORMAL}"
+	echo "${VERT}étape 1 de la révision réussie${NORMAL}"
 }
 
 step_2_mainpackage() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_2_mainpackage${NORMAL}"
+	echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
 	apt_install ntp ca-certificates unzip curl sudo cron
 	apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
 	apt-get -y install git python python-pip
 	apt-get -y install software-properties-common
 	apt-get -y install libexpat1 ssl-cert
 	apt-get -y install apt-transport-https
-	apt-get -y install xvfb cutycapt
+	apt-get -y install xvfb cutycapt xauth
 	add-apt-repository non-free
 	apt-get update
 	apt-get -y install libav-tools
 	apt-get -y install libsox-fmt-mp3 sox libttspico-utils
-	apt-get -y install espeak 
+	apt-get -y install espeak
 	apt-get -y install mbrola
 	apt-get -y remove brltty
-	echo "${VERT}step_2_mainpackage success${NORMAL}"
+	echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
 step_3_database() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_3_database${NORMAL}"
+	echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
 	echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
 	echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
 	apt_install mysql-client mysql-common mysql-server
-	
+
 	mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
-	
+
 	systemctl status mysql > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
     	service mysql status
@@ -84,42 +84,45 @@ step_3_database() {
 	if [ $? -ne 0 ]; then
     	service mysql status
 		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not start mysql - abort${NORMAL}"
+    		echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
     		exit 1
   		fi
   	fi
-	echo "${VERT}step_3_database success${NORMAL}"
+	echo "${VERT}étape 3 base de données réussie${NORMAL}"
 }
 
 step_4_apache() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_4_apache${NORMAL}"
+	echo "${JAUNE}Commence l'étape 4 apache${NORMAL}"
 	apt_install apache2 apache2-utils libexpat1 ssl-cert
-	echo "${VERT}step_4_apache success${NORMAL}"
+	echo "${VERT}étape 4 apache réussie${NORMAL}"
 }
 
 step_5_php() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_5_php${NORMAL}"
-	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2
+	echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
+	apt-get -y install php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-xml php7.0-opcache php7.0-soap php7.0-xmlrpc libapache2-mod-php7.0 php7.0-common php7.0-dev php7.0-zip php7.0-ssh2 php7.0-mbstring
 	if [ $? -ne 0 ]; then
-		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis
+		apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis php5-mbstring
+		apt_install php5-ldap
+	else
+		apt-get -y install php7.0-ldap
 	fi
-	echo "${VERT}step_5_php success${NORMAL}"
+	echo "${VERT}étape 5 php réussie${NORMAL}"
 }
 
 step_6_jeedom_download() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_6_jeedom_download${NORMAL}"
+	echo "${JAUNE}Commence l'étape 6 téléchargement de jeedom${NORMAL}"
 	wget https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
 	if [ $? -ne 0 ]; then
-		echo "${JAUNE}Could not download jeedom from github, use preadd version if exist${NORMAL}"
+		echo "${JAUNE}Ne peut télécharger Jeedom depuis github. Utilisez la version de déploiement si elle existe${NORMAL}"
 		if [ -f /root/jeedom.zip ]; then
 			cp /root/jeedom.zip /tmp/jeedom.zip
 		fi
 	fi
 	if [ ! /tmp/jeedom.zip ]; then
-		echo "${ROUGE}Could not retrieve jeedom.zip package - abort${NORMAL}"
+		echo "${ROUGE}Ne peut trouver l'archive jeedom.zip - Annulation${NORMAL}"
     	exit 1
 	fi
 	mkdir -p ${WEBSERVER_HOME}
@@ -127,18 +130,19 @@ step_6_jeedom_download() {
 	rm -rf /root/core-*
 	unzip -q /tmp/jeedom.zip -d /root/
 	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not unzip archive - abort${NORMAL}"
+    	echo "${ROUGE}Ne peut décompresser l'archive - Annulation${NORMAL}"
     	exit 1
   	fi
 	cp -R /root/core-*/* ${WEBSERVER_HOME}
+	cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
 	rm -rf /root/core-* > /dev/null 2>&1
 	rm /tmp/jeedom.zip
-	echo "${VERT}step_6_jeedom_download success${NORMAL}"
+	echo "${VERT}étape 6 téléchargement de jeedom réussie${NORMAL}"
 }
 
 step_7_jeedom_customization() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_7_jeedom_customization${NORMAL}"
+	echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom${NORMAL}"
 	cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
 	rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
 	ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
@@ -158,7 +162,7 @@ step_7_jeedom_customization() {
 
 	for file in $(find / -iname php.ini -type f); do
 		echo "Update php file ${file}"
-		sed -i 's/max_execution_time = 30/max_execution_time = 300/g' ${file} > /dev/null 2>&1
+		sed -i 's/max_execution_time = 30/max_execution_time = 600/g' ${file} > /dev/null 2>&1
 	    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
 	    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
 	    sed -i 's/expose_php = On/expose_php = Off/g' ${file} > /dev/null 2>&1
@@ -172,7 +176,7 @@ step_7_jeedom_customization() {
 		for subfolder in apache2 cli; do
 	    	if [ -f /etc/${folder}/${subfolder}/php.ini ]; then
 	    		echo "Update php file /etc/${folder}/${subfolder}/php.ini"
-				sed -i 's/max_execution_time = 30/max_execution_time = 300/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
+				sed -i 's/max_execution_time = 30/max_execution_time = 600/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/post_max_size = 8M/post_max_size = 1G/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/expose_php = On/expose_php = Off/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
@@ -181,7 +185,7 @@ step_7_jeedom_customization() {
 			    sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 			    sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' /etc/${folder}/${subfolder}/php.ini > /dev/null 2>&1
 	    	fi
-		done 
+		done
 	done
 
 	a2dismod status
@@ -189,7 +193,7 @@ step_7_jeedom_customization() {
 	if [ $? -ne 0 ]; then
 		service apache2 restart
 		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not restart apache - abort${NORMAL}"
+    		echo "${ROUGE}Ne peut redémarrer apache - Annulation${NORMAL}"
     		exit 1
   		fi
   	fi
@@ -198,7 +202,7 @@ step_7_jeedom_customization() {
 	if [ $? -ne 0 ]; then
 		service mysql stop
 		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not stop mysql - abort${NORMAL}"
+    		echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
     		exit 1
   		fi
   	fi
@@ -220,71 +224,72 @@ step_7_jeedom_customization() {
 		echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
 		echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+		echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
     fi
 
   	systemctl start mysql > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		service mysql start
 		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not start mysql - abort${NORMAL}"
+    		echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
     		exit 1
   		fi
   	fi
 
-	echo "${VERT}step_7_jeedom_customization success${NORMAL}"
+	echo "${VERT}étape 7 personnalisation de jeedom réussie${NORMAL}"
 }
 
 step_8_jeedom_configuration() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_8_jeedom_configuration${NORMAL}"
+	echo "${JAUNE}commence l'étape 8 configuration de jeedom${NORMAL}"
 	echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
 	mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
 	mysql_sql "DROP DATABASE IF EXISTS jeedom;"
 	mysql_sql "CREATE DATABASE jeedom;"
 	mysql_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
 	cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-	sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-	sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-	sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-	sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php 
-	sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php 
+	sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
+	sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
+	sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
+	sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
+	sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
 	chmod 775 -R ${WEBSERVER_HOME}
 	chown -R www-data:www-data ${WEBSERVER_HOME}
-	echo "${VERT}step_8_jeedom_configuration success${NORMAL}"
+	echo "${VERT}étape 8 configuration de jeedom réussie${NORMAL}"
 }
 
 step_9_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_9_jeedom_installation${NORMAL}"
+	echo "${JAUNE}Commence l'étape 9 installation de jeedom${NORMAL}"
 	mkdir -p /tmp/jeedom
 	chmod 777 -R /tmp/jeedom
 	chown www-data:www-data -R /tmp/jeedom
 	php ${WEBSERVER_HOME}/install/install.php mode=force
 	if [ $? -ne 0 ]; then
-    	echo "${ROUGE}Could not install jeedom - abort${NORMAL}"
+    	echo "${ROUGE}Ne peut installer jeedom - Annulation${NORMAL}"
     	exit 1
   	fi
-	echo "${VERT}step_9_jeedom_installation success${NORMAL}"
+	echo "${VERT}étape 9 installation de jeedom réussie${NORMAL}"
 }
 
 step_10_jeedom_post() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_10_jeedom_post${NORMAL}"
+	echo "${JAUNE}Commence l'étape 10 post jeedom${NORMAL}"
 	if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
 		(echo crontab -l | grep -v "jeedom") | crontab -
-		
+
   	fi
 	if [ ! -f /etc/cron.d/jeedom ]; then
 		echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
 		if [ $? -ne 0 ]; then
-	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	echo "${ROUGE}Ne peut installer le cron de jeedom - Annulation${NORMAL}"
 	    	exit 1
 	  	fi
 	fi
 	if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
-		echo "* * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
+		echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
 		if [ $? -ne 0 ]; then
-	    	echo "${ROUGE}Could not install jeedom cron - abort${NORMAL}"
+	    	echo "${ROUGE}Ne peut installer le cron de jeedom - Annulation${NORMAL}"
 	    	exit 1
 	  	fi
 	fi
@@ -292,7 +297,7 @@ step_10_jeedom_post() {
 	if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
 		echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 		if [ $? -ne 0 ]; then
-    		echo "${ROUGE}Could not install make jeedom sudo - abort${NORMAL}"
+    		echo "${ROUGE}Ne peut permettre à jeedom d'utiliser sudo - Annulation${NORMAL}"
     		exit 1
   		fi
   	fi
@@ -301,16 +306,16 @@ step_10_jeedom_post() {
   			echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
   		fi
   	fi
-	echo "${VERT}step_10_jeedom_post success${NORMAL}"
+	echo "${VERT}étape 10 post jeedom réussie${NORMAL}"
 }
 
 step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
-	echo "${JAUNE}Start step_11_jeedom_check${NORMAL}"
+	echo "${JAUNE}Commence l'étape 11 vérification de jeedom${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
 	chmod 777 -R /tmp/jeedom
 	chown www-data:www-data -R /tmp/jeedom
-	echo "${VERT}step_11_jeedom_check success${NORMAL}"
+	echo "${VERT}étape 11 vérification de jeedom réussie${NORMAL}"
 }
 
 distrib_1_spe(){
@@ -331,7 +336,7 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=stable
+VERSION=master
 WEBSERVER_HOME=/var/www/html
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
@@ -372,13 +377,13 @@ if [ ${HTML_OUTPUT} -eq 1 ]; then
 	echo "<pre>"
 fi
 
-echo "${JAUNE}Welcome to jeedom installer${NORMAL}"
-echo "${JAUNE}Jeedom install version : ${VERSION}${NORMAL}"
-echo "${JAUNE}Webserver home folder : ${WEBSERVER_HOME}${NORMAL}"
+echo "${JAUNE}Bienvenue dans l'installateur de Jeedom${NORMAL}"
+echo "${JAUNE}Version d'installation de Jeedom : ${VERSION}${NORMAL}"
+echo "${JAUNE}Dossier principal du serveur web : ${WEBSERVER_HOME}${NORMAL}"
 
 case ${STEP} in
    0)
-	echo "${JAUNE}Start of all install step${NORMAL}"
+	echo "${JAUNE}Commence toutes les étapes de l'installation${NORMAL}"
 	step_1_upgrade
 	step_2_mainpackage
 	step_3_database
@@ -391,8 +396,8 @@ case ${STEP} in
 	step_10_jeedom_post
 	step_11_jeedom_check
 	distrib_1_spe
-	echo "/!\ IMPORTANT /!\ Root MySql password is ${MYSQL_ROOT_PASSWD}"
-	echo "Installation completed, a system reboot should be performed"
+	echo "/!\ IMPORTANT /!\ Le mot de passe root MySQL est ${MYSQL_ROOT_PASSWD}"
+	echo "Installation finie. Un redémarrage devrait être effectué"
 	;;
    1) step_1_upgrade
 	;;
@@ -416,11 +421,10 @@ case ${STEP} in
 	;;
    11) step_11_jeedom_check
 	;;
-   *) echo "${ROUGE}Sorry, I can not get a ${STEP} step for you!${NORMAL}"
+   *) echo "${ROUGE}Désolé, Je ne peux sélectionner une ${STEP} étape pour vous !${NORMAL}"
 	;;
 esac
 
 rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
 
 exit 0
-

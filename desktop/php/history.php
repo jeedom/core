@@ -81,27 +81,27 @@ foreach (cmd::allHistoryCmd() as $cmd) {
 					<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="fa fa-trash-o"></i> {{Vider}}</a>
 					<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
 					<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
-					<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}"><i class="fa fa-check"></i> {{Ok}}</a>
+					<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fa fa-check"></i> {{Ok}}</a>
 
 					<select class="form-control pull-right" id="sel_groupingType" style="width: 200px;">
 						<option value="">{{Aucun groupement}}</option>
-						<option value="sum::hour">{{Sommes par heure}}</option>
+						<option value="sum::hour">{{Somme par heure}}</option>
 						<option value="average::hour">{{Moyenne par heure}}</option>
 						<option value="low::hour">{{Minimum par heure}}</option>
 						<option value="high::hour">{{Maximum par heure}}</option>
-						<option value="sum::day">{{Sommes par jour}}</option>
+						<option value="sum::day">{{Somme par jour}}</option>
 						<option value="average::day">{{Moyenne par jour}}</option>
 						<option value="low::day">{{Minimum par jour}}</option>
 						<option value="high::day">{{Maximum par jour}}</option>
-						<option value="sum::week">{{Sommes par semaine}}</option>
+						<option value="sum::week">{{Somme par semaine}}</option>
 						<option value="average::week">{{Moyenne par semaine}}</option>
 						<option value="low::week">{{Minimum par semaine}}</option>
 						<option value="high::week">{{Maximum par semaine}}</option>
-						<option value="sum::month">{{Sommes par mois}}</option>
+						<option value="sum::month">{{Somme par mois}}</option>
 						<option value="average::month">{{Moyenne par mois}}</option>
 						<option value="low::month">{{Minimum par mois}}</option>
 						<option value="high::month">{{Maximum par mois}}</option>
-						<option value="sum::year">{{Sommes par année}}</option>
+						<option value="sum::year">{{Somme par année}}</option>
 						<option value="average::year">{{Moyenne par année}}</option>
 						<option value="low::year">{{Minimum par année}}</option>
 						<option value="high::year">{{Maximum par année}}</option>

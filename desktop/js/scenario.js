@@ -714,7 +714,7 @@ $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortab
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Graphique de lien}}"});
+  $('#md_modal').dialog({title: "{{Graphique de lien(s)}}"});
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
@@ -1026,15 +1026,15 @@ function addExpression(_expression) {
     break;
     case 'action' :
     retour += '<div class="col-xs-1" style="margin-top: 4px">';
-    if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
-    } else {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
-    }
     if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;" title="{{Décocher pour désactiver l\'action}}"/>';
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" style="margin-top : 9px;" title="{{Décocher pour désactiver l\'action}}"/>';
+    }
+    if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
+    } else {
+      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
     retour += '<i class="fa fa-arrows-v pull-right cursor bt_sortable" style="margin-top : 9px; margin-right: 10px; "></i>';
     retour += '</div>';

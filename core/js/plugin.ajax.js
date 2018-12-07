@@ -38,7 +38,7 @@ var stackAjaxTab = {
     },
     ajax: function () {
         if(this.callback === null || this.plugin === null || this.action === null) {
-            alert(' fonction init non utilisé ou mal paramétré');
+            alert(' fonction init non utilisée ou mal paramétrée');
             return;
         }
         this.running = true;
@@ -449,4 +449,3 @@ $('body').on('.cmdAttr', 'change', function () {
 $('body').on('.eqLogicAttr', 'change', function () {
     modifyWithoutSave = true;
 });
-

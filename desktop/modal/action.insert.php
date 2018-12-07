@@ -12,11 +12,11 @@ if (!isConnect()) {
         <option value="wait">{{Attendre}}</option>
         <option value="gotodesign">{{Aller au design}}</option>
         <option value="log" class="scenarioOnly">{{Ajouter un log}}</option>
-        <option value="message">{{Creer un message}}</option>
-        <option value="equipement">{{Activer/Desactiver Masquer/Afficher un équipement}}</option>
+        <option value="message">{{Créer un message}}</option>
+        <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
         <option value="ask">{{Faire une demande}}</option>
-        <option value="jeedom_poweroff">{{Arrêter Jeedom}}</option>
-        <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une données}}</option>
+        <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
+        <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
         <option value="icon" class="scenarioOnly">{{Icône}}</option>
         <option value="alert">{{Alerte}}</option>
         <option value="popup">{{Pop-up}}</option>
@@ -46,11 +46,11 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription say" style="display:none;">
-    {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)}}
+    {{Permet de faire dire un texte à Jeedom (ne marche que si un onglet}} <?php echo config::byKey('product_name'); ?> {{est ouvert dans le navigateur)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription gotodesign" style="display:none;">
-    {{Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé}}
+    {{Sur tous les navigateurs qui affichent un design, le remplace par celui demandé}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription log" style="display:none;">
@@ -62,11 +62,11 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription equipement" style="display:none;">
-    {{Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement}}
+    {{Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
-    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.}}
+    {{Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription jeedom_poweroff" style="display:none;">
@@ -78,19 +78,19 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription icon" style="display:none;">
-    {{Permet d'affecter une icone au scénario}}
+    {{Permet d'affecter une icône au scénario}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription alert2" style="display:none;">
-    {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte}}
+    {{Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription popup" style="display:none;">
-    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.}}
+    {{Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page}} <?php echo config::byKey('product_name'); ?> {{ouverte.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription report" style="display:none;">
-    {{Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.}}
+    {{Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription remove_inat" style="display:none;">

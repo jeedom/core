@@ -8,7 +8,7 @@ if (!isConnect('admin')) {
     padding : 2px 2px 2px 2px;
   }
 </style>
-<div id="div_rowSystemCommand" class="row">
+<div id="div_rowSystemCommand" class="row row-overflow">
  <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
   <div class="bs-sidebar">
     <ul class="nav nav-list bs-sidenav list-group" id='ul_listSystemHistory'></ul>
@@ -37,7 +37,7 @@ if (!isConnect('admin')) {
 
       <h3 id="h3_executeCommand">{{Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous}}</h3>
       <input id="in_specificCommand" class="form-control" style="width:90%;display:inline-block;" /> <a id="bt_validateSpecifiCommand" class="btn btn-warning" style="position:relative;top:-2px;"><i class="fa fa-check"></i> {{OK}}</a>
-      <pre id="pre_commandResult" style="width:100%;margin-top:5px;"></pre>
+      <pre id="pre_commandResult" style="height : calc(100% - 110px);width:100%;margin-top:5px;"></pre>
     </div>
   </div>
 <?php include_file("desktop", "system", "js");?>

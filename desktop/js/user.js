@@ -102,7 +102,7 @@
  $("#table_user").on('click',".bt_changeHash",  function (event) {
     $.hideAlert();
     var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-    bootbox.confirm("{{Etês vous sur de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
+    bootbox.confirm("{{Etes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
         if (result) {
             user.hash = '';
             jeedom.user.save({
@@ -128,6 +128,19 @@
     modifyWithoutSave = true;
 });
 
+ $('#bt_supportAccess').on('click',function(){
+    jeedom.user.supportAccess({
+        enable : $(this).attr('data-enable'),
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location.reload();
+        }
+    });
+});
+
  function printUsers() {
     $.showLoading();
     jeedom.user.all({
@@ -138,41 +151,47 @@
             $('#table_user tbody').empty();
             var tr = [];
             for (var i in data) {
+                var disable = '';
+                if(data[i].login == 'internal_report' || data[i].login == 'jeedom_support'){
+                    disable = 'disabled';
+                }
                 var ligne = '<tr><td class="login">';
                 ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/>';
                 ligne += '<span class="userAttr" data-l1key="login" />';
                 ligne += '</td>';
                 ligne += '<td>';
-                ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="enable" />{{Actif}}</label><br/>';
-                ligne += '<label style="margin-right:25px;"><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" />{{Local seulement}}</label>';
+                ligne += '<label><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</label><br/>';
+                ligne += '<label><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" '+disable+' />{{Local}}</label>';
                 ligne += '</td>';
                 ligne += '<td style="width:175px;">';
-                ligne += '<select class="userAttr form-control" data-l1key="profils">';
+                ligne += '<select class="userAttr form-control input-sm" data-l1key="profils" '+disable+'>';
                 ligne += '<option value="admin">{{Administrateur}}</option>';
                 ligne += '<option value="user">{{Utilisateur}}</option>';
                 ligne += '<option value="restrict">{{Utilisateur limité}}</option>';
                 ligne += '</select>';
                 ligne += '</td>';
-                ligne += '<td style="width:300px">';
-                ligne += '<textarea class="userAttr form-control" data-l1key="hash" style="width:100%;" rows="1" disabled></textarea>';
+                ligne += '<td style="width:320px">';
+                ligne += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled />';
                 ligne += '</td>';
                 ligne += '<td>';
                 if(isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != ''){
                     ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
                 }else{
-                   ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
-               }
-               ligne += '</td>';
-               ligne += '<td>';
-               ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
-               ligne += '</td>';
-               ligne += '<td>';
-               ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i> {{Régénérer clef API}}</a>';
-               if (ldapEnable != '1') {
-                ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
-                ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Changer le mot de passe}}</a>';
+                 ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+             }
+             ligne += '</td>';
+             ligne += '<td>';
+             ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>';
+             ligne += '</td>';
+             ligne += '<td>';
+             if(disable == ''){
+                 ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fa fa-refresh"></i> {{Régénérer API}}</a>';
+                 if (ldapEnable != '1') {
+                    ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="fa fa-trash-o"></i> {{Supprimer}}</a>';
+                    ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fa fa-pencil"></i> {{Mot de passe}}</a>';
+                }
+                ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fa fa-align-right"></i> {{Droits}}</a>';
             }
-            ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fa fa-align-right"></i> {{Gérer les droits}}</a>';
             ligne += '</td>';
             ligne += '</tr>';
             var result = $(ligne);
@@ -192,8 +211,8 @@ $('#table_user').delegate('.bt_manage_restrict_rights', 'click', function () {
 });
 
 $('.bt_deleteSession').on('click',function(){
- var id = $(this).closest('tr').attr('data-id'); 
- jeedom.user.deleteSession({
+   var id = $(this).closest('tr').attr('data-id'); 
+   jeedom.user.deleteSession({
     id : id,
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -211,6 +230,18 @@ $('.bt_removeRegisterDevice').on('click',function(){
     jeedom.user.removeRegisterDevice({
         key : key,
         user_id : user_id,
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            modifyWithoutSave = false;
+            window.location.reload();
+        }
+    });
+});
+
+$('#bt_removeAllRegisterDevice').on('click',function(){
+    jeedom.user.removeRegisterDevice({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },

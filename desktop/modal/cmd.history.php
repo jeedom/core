@@ -10,25 +10,29 @@ $date = array(
     <div class="md_history">
         <input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['start']; ?>"/>
         <input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']; ?>"/>
-        <a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
+        <a class="btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
         <select class="form-control pull-right sel_groupingType" style="width: 200px;">
-            <option value="">{{Aucun groupement}}</option>
-            <option value="sum::day">{{Sommes par jour}}</option>
-            <option value="average::day">{{Moyenne par jour}}</option>
-            <option value="low::day">{{Minimum par jour}}</option>
-            <option value="high::day">{{Maximum par jour}}</option>
-            <option value="sum::week">{{Sommes par semaine}}</option>
-            <option value="average::week">{{Moyenne par semaine}}</option>
-            <option value="low::week">{{Minimum par semaine}}</option>
-            <option value="high::week">{{Maximum par semaine}}</option>
-            <option value="sum::month">{{Sommes par mois}}</option>
-            <option value="average::month">{{Moyenne par mois}}</option>
-            <option value="low::month">{{Minimum par mois}}</option>
-            <option value="high::month">{{Maximum par mois}}</option>
-            <option value="sum::year">{{Sommes par année}}</option>
-            <option value="average::year">{{Moyenne par année}}</option>
-            <option value="low::year">{{Minimum par année}}</option>
-            <option value="high::year">{{Maximum par année}}</option>
+            	<option value="">{{Aucun groupement}}</option>
+            	<option value="sum::hour">{{Somme par heure}}</option>
+		<option value="average::hour">{{Moyenne par heure}}</option>
+		<option value="low::hour">{{Minimum par heure}}</option>
+		<option value="high::hour">{{Maximum par heure}}</option>
+		<option value="sum::day">{{Somme par jour}}</option>
+		<option value="average::day">{{Moyenne par jour}}</option>
+		<option value="low::day">{{Minimum par jour}}</option>
+		<option value="high::day">{{Maximum par jour}}</option>
+		<option value="sum::week">{{Somme par semaine}}</option>
+		<option value="average::week">{{Moyenne par semaine}}</option>
+		<option value="low::week">{{Minimum par semaine}}</option>
+		<option value="high::week">{{Maximum par semaine}}</option>
+		<option value="sum::month">{{Somme par mois}}</option>
+		<option value="average::month">{{Moyenne par mois}}</option>
+		<option value="low::month">{{Minimum par mois}}</option>
+		<option value="high::month">{{Maximum par mois}}</option>
+		<option value="sum::year">{{Somme par année}}</option>
+		<option value="average::year">{{Moyenne par année}}</option>
+		<option value="low::year">{{Minimum par année}}</option>
+		<option value="high::year">{{Maximum par année}}</option>
         </select>
         <select class="pull-right sel_chartType form-control" data-cmd_id="#id#" style="width: 200px;display: inline-block;">
             <option value="line"> {{Ligne}} </option>
@@ -175,8 +179,3 @@ if (init('step', 0) == 1) {
         });
     </script>
 </div>
-
-
-
-
-

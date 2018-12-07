@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 
@@ -35,7 +35,11 @@ if (isset($argv)) {
 		}
 	}
 }
-set_time_limit(config::byKey('maxExecTimeScript', 60));
+$timelimit = 60;
+if (config::byKey('maxExecTimeScript', 60) != '') {
+	$timelimit = config::byKey('maxExecTimeScript', 60);
+}
+set_time_limit($timelimit);
 if (init('listener_id') == '') {
 	foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
 		$cmd->event($cmd->execute(), 2);
@@ -54,7 +58,5 @@ if (init('listener_id') == '') {
 		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
 		die($e->getMessage());
 	}
-	$listener->execute(init('event_id'), init('value'));
+	$listener->execute(init('event_id'), trim(init('value'), "'"));
 }
-?>
-

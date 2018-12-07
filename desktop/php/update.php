@@ -61,7 +61,7 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate">
    <form class="form-horizontal">
     <fieldset>
-        <div class="alert alert-danger">{{Avant toute mise à jour merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://github.com/jeedom/core/blob/stable/doc/fr_FR/noteVersion.asciidoc">{{ici}}<a></div>
+        <div class="alert alert-danger">{{Avant toute mise à jour, merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{ici}}</a></div>
      <div class="form-group">
          <div class="form-group">
             <label class="col-xs-6 control-label">{{Pré-update (mettre à jour le script d'update avant)}}</label>
@@ -93,6 +93,8 @@ if (!isConnect('admin')) {
                 <input type="checkbox" class="updateOption" data-l1key="force" />
             </div>
         </div>
+	     <div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur "Aucune"}}</div>
+            <div class="form-group has-error">
         <label class="col-xs-6 control-label">{{Mise à jour à réappliquer}}</label>
         <div class="col-xs-5">
             <select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
@@ -111,6 +113,7 @@ foreach ($updates as $value) {
            </select>
        </div>
    </div>
+	      </div>
 </fieldset>
 </form>
 <a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fa fa-check"></i> {{Mettre à jour}}</a>

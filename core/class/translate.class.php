@@ -23,13 +23,13 @@ class translate {
 	/*     * *************************Attributs****************************** */
 
 	protected static $translation;
-	protected static $language;
+	protected static $language = null;
 	private static $config = null;
 
 	/*     * ***********************Methode static*************************** */
 
 	public static function getConfig($_key, $_default = '') {
-		if (self::$config == null) {
+		if (self::$config === null) {
 			self::$config = config::byKeys(array('language', 'generateTranslation'));
 		}
 		if (isset(self::$config[$_key])) {
@@ -39,12 +39,12 @@ class translate {
 	}
 
 	public static function getTranslation() {
-		if (!isset(static::$translation) || !isset(static::$translation[self::getLanguage()])) {
-			static::$translation = array(
+		if (!isset(self::$translation) || !isset(self::$translation[self::getLanguage()])) {
+			self::$translation = array(
 				self::getLanguage() => self::loadTranslation(),
 			);
 		}
-		return static::$translation[self::getLanguage()];
+		return self::$translation[self::getLanguage()];
 	}
 
 	public static function sentence($_content, $_name, $_backslash = false) {
@@ -155,7 +155,15 @@ class translate {
 	}
 
 	public static function getLanguage() {
-		return self::getConfig('language', 'fr_FR');
+		if (self::$language === null) {
+			self::$language = self::getConfig('language', 'fr_FR');
+		}
+		return self::$language;
+
+	}
+
+	public static function setLanguage($_langage) {
+		self::$language = $_langage;
 	}
 
 	/*     * *********************Methode d'instance************************* */

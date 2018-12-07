@@ -44,7 +44,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
          <?php }
 ?>
        </ul>
-
        <div class="tab-content" id="div_displayCmdConfigure">
         <div role="tabpanel" class="tab-pane active" id="cmd_information">
           <br/>
@@ -59,41 +58,42 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                       <span class="cmdAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Logical ID}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Nom}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Type}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="type" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Sous-type}}</label>
                     <div class="col-xs-4">
                       <span class="cmdAttr label label-primary" data-l1key="subType" style="font-size : 1em;"></span>
                     </div>
                   </div>
-
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
+                    <div class="col-xs-4">
+                      <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
+                    </div>
+                  </div>
                   <?php if ($cmd->getType() == 'action' && $cmd->getSubtype() == 'select') {
 	?>
-                  <div class="form-group">
+                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeurs possibles}}</label>
                     <div class="col-xs-8">
-                    <?php
+                      <?php
 $elements = explode(';', $cmd->getConfiguration('listValue', ''));
 	foreach ($elements as $element) {
 		$coupleArray = explode('|', $element);
@@ -102,12 +102,7 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
 	?>
                     </div>
                   </div>
-
-
                   <?php }?>
-
-
-
                   <?php if ($cmd->getType() == 'info') {?>
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Valeur}}</label>
@@ -115,14 +110,12 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                       <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('value') ?></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Date collecte}}</label>
                     <div class="col-xs-4">
                       <span class="label label-primary" style="font-size : 1em;"><?php echo $cmd->getCache('collectDate') ?></span>
                     </div>
                   </div>
-
                   <div class="form-group">
                     <label class="col-xs-4 control-label">{{Date valeur}}</label>
                     <div class="col-xs-4">
@@ -130,15 +123,12 @@ $elements = explode(';', $cmd->getConfiguration('listValue', ''));
                     </div>
                   </div>
                   <?php }?>
-
-
                 </fieldset>
               </form>
             </div>
             <div class="col-sm-6" >
               <form class="form-horizontal">
                 <fieldset>
-
                  <div class="form-group">
                   <label class="col-xs-4 control-label">{{URL directe}}</label>
                   <div class="col-xs-8">
@@ -147,22 +137,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
 ?>
                   </div>
                 </div>
-
-
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Unité}}</label>
                   <div class="col-xs-4">
                     <span class="cmdAttr label label-primary" data-l1key="unite" style="font-size : 1em;"></span>
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Commande déclenchant une mise à jour}}</label>
-                  <div class="col-xs-4">
-                    <span class="cmdAttr label label-primary" data-l1key="value" style="font-size : 1em;"></span>
-                  </div>
-                </div>
-
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Visible}}</label>
                   <div class="col-xs-4">
@@ -175,6 +155,12 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                     <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
                   </div>
                 </div>
+                  <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
+                  <div class="col-xs-4">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
+                  </div>
+                </div>
                 <div class="iconeGeneric">
                  <label class="col-xs-4 control-label">{{Icône}}</label>
                  <div class="col-xs-4">
@@ -182,7 +168,6 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
-
             </fieldset>
           </form>
         </div>
@@ -191,7 +176,7 @@ echo '<a href="' . $cmd->getDirectUrlAccess() . '" target="_blank"><i class="fa 
       <legend><i class="fa fa-search"></i> {{Utilisé par}}
         <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceMeBy"><i class="fa fa-download" aria-hidden="true"></i> {{Remplacer cette commande par la commande}}</a>
         <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace la commande}}</a>
-        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'id}}</a>
+        <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureReplaceIdByMe"><i class="fa fa-upload" aria-hidden="true"></i> {{Cette commande remplace l'ID}}</a>
       </legend>
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
@@ -246,7 +231,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
 
       <?php if ($cmd->getType() == 'info' && ($cmd->getSubType() == 'numeric' || $cmd->getSubType() == 'binary')) {
 	?>
-       <legend><i class="fa fa-table"></i> {{Calcul et arrondit}}</legend>
+       <legend><i class="fa fa-table"></i> {{Calcul et arrondi}}</legend>
        <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -272,7 +257,7 @@ foreach ($usedBy['scenario'] as $usedByScenario) {
       <div class="form-group">
         <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-          <select class="cmdAttr form-control" data-l1key="display" data-l2key="generic_type">
+          <select class="cmdAttr form-control" data-l1key="generic_type">
             <option value="">{{Aucun}}</option>
             <?php
 $groups = array();
@@ -472,7 +457,7 @@ foreach ($groups as $group) {
   <fieldset>
     <legend><i class="fa fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparé par ";")}}</label>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparées par ";")}}</label>
       <div class="col-xs-3">
         <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
       </div>
@@ -519,16 +504,14 @@ foreach ($groups as $group) {
 	?>
   <div role="tabpanel" class="tab-pane" id="cmd_html">
     <br/>
+    <a class="btn btn-warning btn-sm pull-right" id="bt_reinitHtmlCode" style="position:relative;top:-3px;"><i class="fa fa-times"></i> {{Réinitialiser la personnalisation}}</a>
     <div class="form-group">
-      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personalisation du widget}}</label>
+      <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personnalisation du widget}}</label>
       <div class="col-xs-2">
         <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
       </div>
-      <div class="col-xs-3">
-        <a class="btn btn-warning" id="bt_reinitHtmlCode"><i class="fa fa-times"></i> {{Reinitialiser la personalisation}}</a>
-      </div>
     </div>
-    <legend><i class="fa fa-code"></i> {{Code}}</legend>
+    <br/>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">
@@ -624,7 +607,7 @@ foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 		echo '</div>';
 		echo '</div>';
 		echo '<div class="form-group">';
-		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immediat)}}</label>';
+		echo '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immédiat)}}</label>';
 		echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
 		echo '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
 		echo '</div>';
@@ -936,7 +919,7 @@ if ($cmd->getDisplay('parameters') != '') {
     jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'id}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
+      bootbox.confirm('{{Etes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
         if (result) {
           jeedom.cmd.replaceCmd({
             source_id : target_id,
@@ -955,7 +938,7 @@ if ($cmd->getDisplay('parameters') != '') {
 
 
   $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
-    var target_id = prompt("{{Id de commande à remplacer ?}}");
+    var target_id = prompt("{{ID de commande à remplacer ?}}");
     if(target_id == null){
       return;
     }
@@ -1076,7 +1059,7 @@ if ($cmd->getDisplay('parameters') != '') {
   if(editorCodeMview != null){
    editorCodeMview.setValue('');
  }
- $('#md_displayCmdConfigure').showAlert({message: '{{Opération faite, n\'oubliez pas de sauvegarder}}', level: 'success'});
+ $('#md_displayCmdConfigure').showAlert({message: '{{Opération effectuée avec succès, n\'oubliez pas de sauvegarder}}', level: 'success'});
 });
 
 

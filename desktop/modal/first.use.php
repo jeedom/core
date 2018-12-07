@@ -9,7 +9,7 @@ if (!isConnect()) {
 </legend>
 <div id="div_alertFirstUse"></div>
 <center>
-    {{Bienvenue dans Jeedom, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec Jeedom : }}
+    {{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, et merci d'avoir choisi cet outil pour votre habitat connecté. Voici 3 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
 </center>
 <br/><br/>
 
@@ -24,7 +24,7 @@ if (!isConnect()) {
 </div>
 <div class="col-xs-4">
    <center>
-    <a href="https://github.com/jeedom/documentation/blob/master/premiers-pas/fr_FR/index.asciidoc" target="_blank">
+    <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">
         <i class="fa fa-check-square" style="font-size:12em;"></i><br/>
         {{Documentation de démarrage}}
     </a>

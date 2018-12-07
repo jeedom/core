@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 
@@ -44,7 +44,6 @@ if (init('cron_id') != '') {
 	$datetimeStart = strtotime('now');
 	$cron = cron::byId(init('cron_id'));
 	if (!is_object($cron)) {
-		echo 'Cron non trouvé';
 		die();
 	}
 

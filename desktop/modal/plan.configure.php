@@ -93,7 +93,7 @@ sendVarToJS('id', $plan->getId());
       <option value="1 day">{{Jour}}</option>
       <option value="7 days" selected>{{Semaine}}</option>
       <option value="1 month">{{Mois}}</option>
-      <option value="1 year">{{Années}}</option>
+      <option value="1 year">{{Année}}</option>
       <option value="all">{{Tous}}</option>
     </select>
   </div>
@@ -195,7 +195,7 @@ foreach (planHeader::all() as $plan) {
     <input type="checkbox" class="planAttr" data-l1key="display" data-l2key="background-defaut" checked />
   </div>
 </div>
-<div class="form-group link_type link_plan link_view link_text">
+<div class="form-group link_type link_plan link_view link_text link_summary">
   <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
   <div class="col-lg-2">
     <input type="color" class="planAttr form-control" data-l1key="css" data-l2key="color" />
@@ -206,19 +206,19 @@ foreach (planHeader::all() as $plan) {
   </div>
 </div>
 <div class="form-group link_type link_plan link_view link_text link_summary">
-  <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %, ex 50%)}}</label>
+  <label class="col-lg-4 control-label">{{Arrondir les angles (ne pas oublié de mettre %. Ex : 50%)}}</label>
   <div class="col-lg-2">
     <input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
   </div>
 </div>
 <div class="form-group link_type link_plan link_view link_text link_graph link_summary">
-  <label class="col-lg-4 control-label">{{Bordure (attention syntax css, ex : solid 1px black)}}</label>
+  <label class="col-lg-4 control-label">{{Bordure (attention syntaxe CSS. Ex : solid 1px black)}}</label>
   <div class="col-lg-2">
     <input class="form-control planAttr" data-l1key="css" data-l2key="border" />
   </div>
 </div>
 <div class="form-group link_type link_plan link_view link_text link_summary">
-  <label class="col-lg-4 control-label">{{Taille de la police (ex 50%, il faut bien mettre le signe %)}}</label>
+  <label class="col-lg-4 control-label">{{Taille de la police (il faut bien mettre le signe %. Ex : 50%)}}</label>
   <div class="col-lg-2">
     <input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
   </div>
@@ -279,7 +279,7 @@ foreach (planHeader::all() as $plan) {
        </div>
      </div>
      <div class="form-group">
-      <label class="col-lg-4 control-label">{{Afficher au survole}}</label>
+      <label class="col-lg-4 control-label">{{Afficher au survol}}</label>
       <div class="col-lg-2">
         <input type="checkbox" checked class="planAttr" data-l1key="configuration" data-l2key="showOnFly" >
       </div>
@@ -294,7 +294,7 @@ foreach (planHeader::all() as $plan) {
       <label class="col-lg-4 control-label">{{Position}}</label>
       <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="configuration" data-l2key="position" >
-          <option value="">{{Defaut}}</option>
+          <option value="">{{Défaut}}</option>
           <option value="bottom:0px">{{Haut}}</option>
           <option value="right:0px">{{Gauche}}</option>
           <option value="bottom:0px;right:0p">{{Haut Gauche}}</option>

@@ -34,6 +34,7 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 	var rebooti = '0';
 	var testjeedom = '0';
+	jeedom.rebootSystem();
 
 	function refresh() {
 		$.ajax({
@@ -47,7 +48,7 @@ if (!isConnect('admin')) {
 	function page_rebootjs(rebooti){
 		refresh();
 		if(rebooti=='1'){
-			$('#div_reboot_jeedom_texte').empty().html('<h6>Votre Jeedom est de nouveau opérationnel vous allez être redirigé sur votre dashboard</h6>');
+			$('#div_reboot_jeedom_texte').empty().html('<h6>Jeedom est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.</h6>');
 			$('#progressbar_reboot').addClass('progress-bar-success').removeClass('progress-bar-danger');
 			$('#progressbar_reboot').width('75%');
 			setTimeout("$('#progressbar_reboot').width('100%');", 3500);
@@ -56,14 +57,13 @@ if (!isConnect('admin')) {
 			testjeedom++;
 			if(testjeedom > '15'){
 				$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success');
-				$('#div_reboot_jeedom_texte').empty().html('<h6>Votre Jeedom n\'a pas encore redémarrée, nous continuons cependant à tester son retour.<br />n\'hésitez pas à la débrancher électriquement, puis la rebrancher.</h6>');
+				$('#div_reboot_jeedom_texte').empty().html('<h6>Jeedom n\'a pas encore redémarré, nous continuons cependant de tester son retour.<br />N\'hésitez pas à la débrancher/rebrancher électriquement.</h6>');
 			}
 		}
 	}
 
 	function reboot_jeedom(rebooti){
-		jeedom.rebootSystem();
-		$('#div_reboot_jeedom_texte').empty().html('<h6>Merci de patienter...<br />La box est en cours de redémarrage.</h6>');
+		$('#div_reboot_jeedom_texte').empty().html('<h6>Merci de patienter...<br />Jeedom est en cours de redémarrage.</h6>');
 		$('#progressbar_reboot').width('25%');
 		setInterval('page_rebootjs(rebooti)', 15000);
 	}

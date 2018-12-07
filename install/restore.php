@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 echo "[START RESTORE]\n";
@@ -37,10 +37,10 @@ if (isset($argv)) {
 
 try {
 	require_once dirname(__FILE__) . '/../core/php/core.inc.php';
-	echo "***************Start of Jeedom restoration " . date('Y-m-d H:i:s') . "***************\n";
+	echo "***************Début de la restauration de Jeedom " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Send begin restoration event...";
+		echo "Envoie l'événement de début de restauration...";
 		jeedom::event('begin_restore', true);
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -84,11 +84,11 @@ try {
 	}
 
 	if (!file_exists($backup)) {
-		throw new Exception('SBackup not found.' . $backup);
+		throw new Exception('Backup not found.' . $backup);
 	}
 
 	try {
-		echo "Check rights...";
+		echo "Vérifiez les droits...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -97,9 +97,9 @@ try {
 
 	$jeedom_dir = realpath(dirname(__FILE__) . '/../');
 
-	echo "File use for restoration : " . $backup . "\n";
+	echo "Fichier utilisé pour la restauration : " . $backup . "\n";
 
-	echo "Backup databse acces configuration...";
+	echo "Backup database access configuration...";
 
 	if (copy(dirname(__FILE__) . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Can not copy ' . dirname(__FILE__) . "/../core/config/common.config.php\n";
@@ -113,7 +113,7 @@ try {
 		$e->getMessage();
 	}
 
-	echo "Decompression of backup...";
+	echo "Décompression de la sauvegarde...";
 	$excludes = array(
 		'tmp',
 		'log',
@@ -131,26 +131,26 @@ try {
 	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
 	echo "OK\n";
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
-		throw new Exception('Cannot find backup database file : DB_backup.sql');
+		throw new Exception('Impossible de trouver le fichier de la base de données de la sauvegarde : DB_backup.sql');
 	}
-	echo "Remove databse table";
+	echo "Supprimer la table de la sauvegarde";
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
-	echo "Disable constrainte...";
+	echo "Désactive les contraintes...";
 	DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
 	echo "OK\n";
 	foreach ($tables as $table) {
 		$table = array_values($table);
 		$table = $table[0];
-		echo "Remove table : " . $table . ' ...';
+		echo "Supprimer la table : " . $table . ' ...';
 		DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
 	}
 
-	echo "Restoration of database...";
+	echo "Restauration de la base de données...";
 	shell_exec("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
 
-	echo "Enable constrainte...";
+	echo "Active les contraintes...";
 	try {
 		DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
 	} catch (Exception $e) {
@@ -159,12 +159,12 @@ try {
 	echo "OK\n";
 
 	if (!file_exists(dirname(__FILE__) . '/../core/config/common.config.php')) {
-		echo "Restoration of database configuration file...";
+		echo "Restauration du fichier de configuration de la base de données...";
 		copy('/tmp/common.config.php', dirname(__FILE__) . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
 
-	echo "Restoration of cache...";
+	echo "Restauration du cache...";
 	try {
 		cache::restore();
 	} catch (Exception $e) {
@@ -186,11 +186,11 @@ try {
 	$cache->remove();
 
 	try {
-		echo 'Check jeedom file right...';
-		jeedom::cleanFileSytemRight();
+		echo "Check jeedom consistency...";
+		require_once dirname(__FILE__) . '/consistency.php';
 		echo "OK\n";
-	} catch (Exception $e) {
-		echo "NOK\n";
+	} catch (Exception $ex) {
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
 
 	try {
@@ -200,18 +200,18 @@ try {
 	}
 
 	try {
-		echo "Send end of backup event...";
+		echo "Envoie l'événement de la fin de la sauvegarde...";
 		jeedom::event('end_restore');
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
-	echo "Restoration duration : " . (strtotime('now') - $starttime) . "s\n";
+	echo "Temps de la restauration : " . (strtotime('now') - $starttime) . "s\n";
 	echo "***************Fin de la restauration de Jeedom***************\n";
 	echo "[END RESTORE SUCCESS]\n";
 } catch (Exception $e) {
-	echo 'Error during restoration : ' . $e->getMessage();
-	echo 'Details : ' . print_r($e->getTrace(), true);
+	echo 'Erreur durant la restauration : ' . $e->getMessage();
+	echo 'Détails : ' . print_r($e->getTrace(), true);
 	echo "[END RESTORE ERROR]\n";
 	jeedom::start();
 	throw $e;

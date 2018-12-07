@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v5.0.10 (2017-03-31)
+ * @license Highcharts JS v6.0.4 (2017-12-15)
  *
  * (c) 2009-2017 Torstein Honsi
  *
@@ -25,48 +25,58 @@
          */
         var Chart = H.Chart,
             each = H.each,
+            objectEach = H.objectEach,
             pick = H.pick,
             addEvent = H.addEvent;
 
         // Collect potensial overlapping data labels. Stack labels probably don't need
         // to be considered because they are usually accompanied by data labels that lie
         // inside the columns.
-        Chart.prototype.callbacks.push(function(chart) {
-            function collectAndHide() {
-                var labels = [];
+        addEvent(Chart.prototype, 'render', function collectAndHide() {
+            var labels = [];
 
-                each(chart.series || [], function(series) {
-                    var dlOptions = series.options.dataLabels,
-                        // Range series have two collections
-                        collections = series.dataLabelCollections || ['dataLabel'];
+            // Consider external label collectors
+            each(this.labelCollectors || [], function(collector) {
+                labels = labels.concat(collector());
+            });
 
-                    if (
-                        (dlOptions.enabled || series._hasPointLabels) &&
-                        !dlOptions.allowOverlap &&
-                        series.visible
-                    ) { // #3866
-                        each(collections, function(coll) {
-                            each(series.points, function(point) {
-                                if (point[coll]) {
-                                    point[coll].labelrank = pick(
-                                        point.labelrank,
-                                        point.shapeArgs && point.shapeArgs.height
-                                    ); // #4118
-                                    labels.push(point[coll]);
-                                }
-                            });
+            each(this.yAxis || [], function(yAxis) {
+                if (
+                    yAxis.options.stackLabels &&
+                    !yAxis.options.stackLabels.allowOverlap
+                ) {
+                    objectEach(yAxis.stacks, function(stack) {
+                        objectEach(stack, function(stackItem) {
+                            labels.push(stackItem.label);
                         });
-                    }
-                });
-                chart.hideOverlappingLabels(labels);
-            }
+                    });
+                }
+            });
 
-            // Do it now ...
-            collectAndHide();
+            each(this.series || [], function(series) {
+                var dlOptions = series.options.dataLabels,
+                    // Range series have two collections
+                    collections = series.dataLabelCollections || ['dataLabel'];
 
-            // ... and after each chart redraw
-            addEvent(chart, 'redraw', collectAndHide);
-
+                if (
+                    (dlOptions.enabled || series._hasPointLabels) &&
+                    !dlOptions.allowOverlap &&
+                    series.visible
+                ) { // #3866
+                    each(collections, function(coll) {
+                        each(series.points, function(point) {
+                            if (point[coll]) {
+                                point[coll].labelrank = pick(
+                                    point.labelrank,
+                                    point.shapeArgs && point.shapeArgs.height
+                                ); // #4118
+                                labels.push(point[coll]);
+                            }
+                        });
+                    });
+                }
+            });
+            this.hideOverlappingLabels(labels);
         });
 
         /**
@@ -87,6 +97,7 @@
                 parent1,
                 parent2,
                 padding,
+                bBox,
                 intersectRect = function(x1, y1, w1, h1, x2, y2, w2, h2) {
                     return !(
                         x2 > x1 + w1 ||
@@ -96,12 +107,20 @@
                     );
                 };
 
-            // Mark with initial opacity
             for (i = 0; i < len; i++) {
                 label = labels[i];
                 if (label) {
+
+                    // Mark with initial opacity
                     label.oldOpacity = label.opacity;
                     label.newOpacity = 1;
+
+                    // Get width and height if pure text nodes (stack labels)
+                    if (!label.width) {
+                        bBox = label.getBBox();
+                        label.width = bBox.width;
+                        label.height = bBox.height;
+                    }
                 }
             }
 
@@ -129,7 +148,7 @@
                         parent1 = label1.parentGroup;
                         parent2 = label2.parentGroup;
                         // Substract the padding if no background or border (#4333)
-                        padding = 2 * (label1.box ? 0 : label1.padding);
+                        padding = 2 * (label1.box ? 0 : (label1.padding || 0));
                         isIntersecting = intersectRect(
                             pos1.x + parent1.translateX,
                             pos1.y + parent1.translateY,

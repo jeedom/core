@@ -17,11 +17,11 @@
  */
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Status: 404 Not Found");
+	header("Statut: 404 Page non trouvée");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Not Found</h1>";
-	echo "The page that you have requested could not be found.";
+	echo "<h1>404 Non trouvé</h1>";
+	echo "La page que vous demandez ne peut être trouvée.";
 	exit();
 }
 require_once dirname(__FILE__) . "/core.inc.php";
@@ -38,11 +38,11 @@ if (init('scenarioElement_id') != '') {
 } else {
 	$scenario = scenario::byId(init('scenario_id'));
 	if (!is_object($scenario)) {
-		log::add('scenario', 'info', __('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
-		die(__('Scénario non trouvé vérifier id : ', __FILE__) . init('scenario_id'));
+		log::add('scenario', 'info', __('Scénario non trouvé. Vérifiez ID : ', __FILE__) . init('scenario_id'));
+		die(__('Scénario non trouvé. Vérifiez ID : ', __FILE__) . init('scenario_id'));
 	}
 	if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
-		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 1) * 60));
+		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 'core', 1) * 60));
 	}
 	try {
 		if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
@@ -61,4 +61,4 @@ if (init('scenarioElement_id') != '') {
 		die();
 	}
 }
-?>
+ 

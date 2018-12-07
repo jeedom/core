@@ -31,6 +31,14 @@ class network {
 		if (count($jeedom_ips) != 4) {
 			return 'external';
 		}
+		if (config::byKey('network::localip') != '') {
+			$localIps = explode(';', config::byKey('network::localip'));
+			foreach ($localIps as $localIp) {
+				if (netMatch($localIp, $client_ip)) {
+					return 'internal';
+				}
+			}
+		}
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
@@ -159,7 +167,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
+			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '') {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
@@ -234,9 +242,6 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
 		try {
 			$plugin = plugin::byId('openvpn');
 			if (!is_object($plugin)) {
@@ -263,14 +268,15 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
+		if (!is_object($plugin)) {
+			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
+		}
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
-		}
-		if (!is_object($plugin)) {
-			throw new Exception(__('Le plugin openvpn doit être installé', __FILE__));
+			$plugin->dependancy_install();
 		}
 		if (!$plugin->isActive()) {
-			throw new Exception(__('Le plugin openvpn doit être actif', __FILE__));
+			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
 		if (!is_object($openvpn)) {
@@ -286,13 +292,20 @@ class network {
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
 		$openvpn->setConfiguration('compression', 'comp-lzo');
-		$openvpn->setConfiguration('remote_port', 1194);
+		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
 		$openvpn->save();
 		if (!file_exists(dirname(__FILE__) . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . dirname(__FILE__) . '/../../plugins/openvpn/data');
 		}
-		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt');
+		$path_ca = dirname(__FILE__) . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
+		if (file_exists($path_ca)) {
+			unlink($path_ca);
+		}
+		copy(dirname(__FILE__) . '/../../script/ca_dns.crt', $path_ca);
+		if (!file_exists($path_ca)) {
+			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
+		}
 		return $openvpn;
 	}
 
@@ -306,12 +319,24 @@ class network {
 		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de start du DNS est introuvable', __FILE__));
+			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
 		$interface = $openvpn->getInterfaceName();
 		if ($interface !== null && $interface != '' && $interface !== false) {
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
+			if (config::byKey('dns::openport') != '') {
+				foreach (explode(',', config::byKey('dns::openport')) as $port) {
+					if (is_nan($port)) {
+						continue;
+					}
+					try {
+						shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port ' . $port . ' -j ACCEPT');
+					} catch (Exception $e) {
+
+					}
+				}
+			}
 			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -j DROP');
 		}
 	}
@@ -339,13 +364,10 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
 		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande de stop du DNS est introuvable', __FILE__));
+			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
 	}
@@ -399,7 +421,7 @@ class network {
 		}
 		$gw = shell_exec("ip route show default | awk '/default/ {print $3}'");
 		if ($gw == '') {
-			log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
+			log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau', __FILE__));
 			exec(system::getCmdSudo() . 'service networking restart');
 			return;
 		}
@@ -407,7 +429,7 @@ class network {
 		if ($return_val == 0) {
 			return;
 		}
-		log::add('network', 'error', __('Soucis réseaux detecté, redemarrage du réseaux', __FILE__));
+		log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau', __FILE__));
 		exec(system::getCmdSudo() . 'service networking restart');
 	}
 }

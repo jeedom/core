@@ -12,7 +12,7 @@ if (!isConnect()) {
 			<th style="cursor:default">{{Père}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Visible}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Masqué}}</th>
-			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé alors pas remonté en résumé global">?</th>
+			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Défini}} <sup style="cursor:default" title="Si grisé, alors il n'est pas remonté en résumé global">?</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Dashboard Masqué}}</th>
 			<th style="cursor:default" data-sorter="false" data-filter="false">{{Résumé Mobile Masqué}}</th>
 		</tr>
@@ -42,6 +42,9 @@ foreach ($allObject as $object) {
 	echo '<td>';
 	foreach (config::byKey('object:summary') as $key => $value) {
 		$title = '';
+		if (!is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
+			continue;
+		}
 		foreach ($object->getConfiguration('summary')[$key] as $summary) {
 			if (cmd::byId(str_replace('#', '', $summary['cmd']))) {
 				$title .= '&#10;' . cmd::byId(str_replace('#', '', $summary['cmd']))->getHumanName();

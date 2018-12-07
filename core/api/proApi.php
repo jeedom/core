@@ -38,24 +38,24 @@ try {
 	$jsonrpc = new jsonrpc($request);
 
 	if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
-		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
-		throw new Exception(__('Requête invalide. Version Jsonrpc invalide : ' . $jsonrpc->getJsonrpc(), __FILE__), -32001);
+		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ' . $jsonrpc->getJsonrpc(), __FILE__), -32001);
 	}
 
 	$params = $jsonrpc->getParams();
 
 	if (!isset($params['proapi'])) {
-		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
 	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'apipro')) {
-		throw new Exception(__('Vous n\'etes pas autorisé à effectuer cette action', __FILE__), -32001);
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	log::add('api', 'info', __('connexion valide et verifiee : ' . $jsonrpc->getMethod(), __FILE__));
+	log::add('api', 'info', __('connexion valide et verifiée : ' . $jsonrpc->getMethod(), __FILE__));
 
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
@@ -138,7 +138,7 @@ try {
 			if (user::hasDefaultIdentification() == 1) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Attention vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __file);
+				$advice = __('Attention : vous avez toujours l\'utilisateur admin/admin de configuré, cela représente une grave faille de sécurité, aller <a href=\'index.php?v=d&p=user\'>ici</a> pour modifier le mot de passe de l\'utilisateur admin', __file);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Authentification par défaut', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -148,7 +148,7 @@ try {
 			if (!jeedom::isCapable('sudo')) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = 'Appliquer <a href="https://www.jeedom.com/doc/documentation/installation/fr_FR/doc-installation.html#_etape_4_définition_des_droits_root_à_jeedom" targe="_blank">cette étape</a> de l\'installation';
+				$advice = 'Donnez les droits root à Jeedom.';
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Droits sudo', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -162,7 +162,7 @@ try {
 			$advice = '';
 			if (version_compare(phpversion(), '5.5', '<')) {
 				$defaut = 1;
-				$advice = __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__);
+				$advice = __('Si vous êtes en version 5.4.x, on vous indiquera quand la version 5.5 sera obligatoire', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Version PHP', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -186,7 +186,7 @@ try {
 			if (!network::test('internal')) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__);
+				$advice = __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau interne', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -196,7 +196,7 @@ try {
 			if (!network::test('external')) {
 				$defaut = 1;
 				$result = 'NOK';
-				$advice = __('Allez sur Administration -> Configuration puis configurez correctement la partie réseau', __FILE__);
+				$advice = __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__);
 			}
 			$health[] = array('plugin' => 'core', 'type' => 'Configuration réseau externe', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 
@@ -510,7 +510,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::byId') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32701);
+				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32701);
 			}
 			$jsonrpc->makeSuccess(utils::o2a($cmd));
 		}
@@ -521,14 +521,14 @@ try {
 				foreach ($params['id'] as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($id), -32702);
+						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
 					}
 					$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 				}
 			} else {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+					throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 				}
 				$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 			}
@@ -538,7 +538,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 		}
@@ -546,7 +546,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 		}
@@ -554,7 +554,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getHistory') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception('Cmd introuvable : ' . secureXSS($params['id']), -32702);
+				throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 		}
@@ -567,7 +567,7 @@ try {
 		if ($jsonrpc->getMethod() == 'scenario::byId') {
 			$scenario = scenario::byId($params['id']);
 			if (!is_object($scenario)) {
-				throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32703);
+				throw new Exception('Scénario introuvable : ' . secureXSS($params['id']), -32703);
 			}
 			$jsonrpc->makeSuccess(utils::o2a($scenario));
 		}
@@ -575,7 +575,7 @@ try {
 		if ($jsonrpc->getMethod() == 'scenario::changeState') {
 			$scenario = scenario::byId($params['id']);
 			if (!is_object($scenario)) {
-				throw new Exception('Scenario introuvable : ' . secureXSS($params['id']), -32702);
+				throw new Exception('Scénario introuvable : ' . secureXSS($params['id']), -32702);
 			}
 			if ($params['state'] == 'stop') {
 				$jsonrpc->makeSuccess($scenario->stop());
@@ -591,13 +591,13 @@ try {
 				$scenario->setIsActive(0);
 				$jsonrpc->makeSuccess($scenario->save());
 			}
-			throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable;disable]', __FILE__));
+			throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]', __FILE__));
 		}
 
 		/*             * ************************JeeNetwork*************************** */
 		if ($jsonrpc->getMethod() == 'jeeNetwork::handshake') {
 			if (config::byKey('jeeNetwork::mode') != 'slave') {
-				throw new Exception(__('Impossible d\'ajouter une box jeedom non esclave à un réseau Jeedom', __FILE__));
+				throw new Exception(__('Impossible d\'ajouter une box Jeedom non esclave à un réseau Jeedom', __FILE__));
 			}
 			$auiKey = config::byKey('auiKey');
 			if ($auiKey == '') {
@@ -669,7 +669,7 @@ try {
 			}
 			$jeeNetwork = jeeNetwork::byId($params['slave_id']);
 			if (!is_object($jeeNetwork)) {
-				throw new Exception(__('Aucun esclave correspondant à l\'id : ', __FILE__) . secureXSS($params['slave_id']));
+				throw new Exception(__('Aucun esclave correspondant à l\'ID : ', __FILE__) . secureXSS($params['slave_id']));
 			}
 			if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 				$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
@@ -712,7 +712,7 @@ try {
 				mkdir($uploaddir);
 			}
 			if (!file_exists($uploaddir)) {
-				throw new Exception(__('Repertoire de téléversement non trouvé : ', __FILE__) . secureXSS($uploaddir));
+				throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . secureXSS($uploaddir));
 			}
 			$_file = $_FILES['file'];
 			$extension = strtolower(strrchr($_file['name'], '.'));

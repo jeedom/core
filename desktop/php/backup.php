@@ -22,13 +22,13 @@ if (!isConnect('admin')) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jour(s) de mémorisation des sauvegardes}}</label>
+                        <label class="col-sm-4 col-xs-6 control-label">{{Nombre de jours de mémorisation des sauvegardes}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::keepDays" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 col-xs-6 control-label">{{Taille totale maximale des backups (Mo)}}</label>
+                        <label class="col-sm-4 col-xs-6 control-label">{{Taille totale maximale des sauvegardes (Mo)}}</label>
                         <div class="col-sm-4 col-xs-6">
                             <input type="text" class="configKey form-control" data-l1key="backup::maxSize" />
                         </div>
@@ -75,7 +75,7 @@ if (!isConnect('admin')) {
             <?php
 
 foreach (update::listRepo() as $rkey => $value) {
-	if ($value['scope']['backup'] == false) {
+	if ($value['scope']['backup'] === false) {
 		continue;
 	}
 	if ($value['enable'] == 0) {

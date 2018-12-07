@@ -65,7 +65,7 @@ class user {
 					return false;
 				}
 				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
 				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
 				if ($result) {
 					$entries = ldap_get_entries($ad, $result);
@@ -309,6 +309,62 @@ class user {
 		return false;
 	}
 
+	public static function getAccessKeyForReport() {
+		$user = user::byLogin('internal_report');
+		if (!is_object($user)) {
+			$user = new user();
+			$user->setLogin('internal_report');
+			$google2fa = new Google2FA();
+			$user->setOptions('twoFactorAuthentificationSecret', $google2fa->generateSecretKey());
+			$user->setOptions('twoFactorAuthentification', 1);
+		}
+		$user->setPassword(sha512(config::genKey(255)));
+		$user->setOptions('localOnly', 1);
+		$user->setProfils('admin');
+		$user->setEnable(1);
+		$key = config::genKey();
+		$registerDevice = array(
+			sha512($key) => array(
+				'datetime' => date('Y-m-d H:i:s'),
+				'ip' => '127.0.0.1',
+				'session_id' => 'none',
+			),
+		);
+		$user->setOptions('registerDevice', $registerDevice);
+		$user->save();
+		return $user->getHash() . '-' . $key;
+	}
+
+	public static function supportAccess($_enable = true) {
+		if ($_enable) {
+			$user = user::byLogin('jeedom_support');
+			if (!is_object($user)) {
+				$user = new user();
+				$user->setLogin('jeedom_support');
+			}
+			$user->setPassword(sha512(config::genKey(255)));
+			$user->setProfils('admin');
+			$user->setEnable(1);
+			$key = config::genKey();
+			$registerDevice = array(
+				sha512($key) => array(
+					'datetime' => date('Y-m-d H:i:s'),
+					'ip' => '127.0.0.1',
+					'session_id' => 'none',
+				),
+			);
+			$user->setOptions('registerDevice', $registerDevice);
+			$user->save();
+			repo_market::supportAccess(true, $user->getHash() . '-' . $key);
+		} else {
+			$user = user::byLogin('jeedom_support');
+			if (is_object($user)) {
+				$user->remove();
+			}
+			repo_market::supportAccess(false);
+		}
+	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function preInsert() {
@@ -323,10 +379,10 @@ class user {
 		}
 		$admins = user::byProfils('admin', true);
 		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
-			throw new Exception(__('Vous ne pouvez désactiver le dernière utilisateur', __FILE__));
+			throw new Exception(__('Vous ne pouvez désactiver le dernier utilisateur', __FILE__));
 		}
 		if (count($admins) == 1 && $admins[0]->getId() == $this->getid() && $this->getProfils() != 'admin') {
-			throw new Exception(__('Vous ne pouvez changer le profils du dernière administrateur', __FILE__));
+			throw new Exception(__('Vous ne pouvez changer le profil du dernier administrateur', __FILE__));
 		}
 	}
 
@@ -336,7 +392,15 @@ class user {
 
 	public function preRemove() {
 		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
-			throw new Exception(__('Vous ne pouvez supprimer le dernière administrateur', __FILE__));
+			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
+		}
+		cleanSession();
+		$cache = cache::byKey('current_sessions');
+		$sessions = $cache->getValue(array());
+		foreach ($sessions as $id => $session) {
+			if ($session['login'] == $this->getLogin()) {
+				deleteSession($id);
+			}
 		}
 	}
 

@@ -11,9 +11,12 @@
         "Erreur execution de la commande ": "Erreur execution de la commande ",
         "Alert sur la commande ": "Alert sur la commande ",
         " niveau ": " niveau ",
-        "[jeedom] Message de ": "[jeedom] Message de ",
         "pendant plus de ": "pendant plus de ",
-        " minute(s)": " minute(s)"
+        " minute(s)": " minute(s)",
+        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeur autorisée : ",
+        "Equipement désactivé - impossible d'exécuter la commande : ": "Equipement désactivé - impossible d'exécuter la commande : ",
+        "Erreur exécution de la commande ": "Erreur exécution de la commande ",
+        "Impossible de traduire la couleur en code hexadécimal :": "Impossible de traduire la couleur en code hexadécimal :"
     },
     "core\/class\/scenario.class.php": {
         "Scénario exécuté automatiquement sur événement venant de : ": "Scénario exécuté automatiquement sur événement venant de : ",
@@ -25,10 +28,17 @@
         "************Lancement sous tâche**************": "************Lancement sous tâche**************",
         "************FIN sous tâche**************": "************FIN sous tâche**************",
         "Scénario exécuté sur événement : #": "Scénario exécuté sur événement : #",
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "Scénario désactivé non lancement de la sous tâche": "Scénario désactivé non lancement de la sous tâche",
+        "Tags : ": "Tags : ",
+        "Une commande du scénario : ": "Une commande du scénario : ",
+        " est introuvable": " est introuvable"
     },
     "core\/class\/eqLogic.class.php": {
-        "Aucun": "Aucun"
+        "Aucun": "Aucun",
+        "inconnue": "inconnue",
+        "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
+        "Le": "Le"
     },
     "core\/template\/scenario\/sleep.default": {
         "Durée": "Durée"
@@ -39,7 +49,12 @@
         "Erreur sur la fonction deamon_start du plugin : ": "Erreur sur la fonction deamon_start du plugin : ",
         "Veuillez executer le script : ": "Veuillez executer le script : ",
         "Lancement de : ": "Lancement de : ",
-        "Gestion automatique désactivée": "Gestion automatique désactivée"
+        "Gestion automatique désactivée": "Gestion automatique désactivée",
+        "Les crons et démons sont désactivés": "Les crons et démons sont désactivés",
+        "Erreur sur la fonction cron du plugin : ": "Erreur sur la fonction cron du plugin : ",
+        "Erreur sur la fonction cron15 du plugin : ": "Erreur sur la fonction cron15 du plugin : ",
+        "Erreur sur la fonction cron5 du plugin : ": "Erreur sur la fonction cron5 du plugin : ",
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : "
     },
     "core\/class\/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Exécution du sous-élément de type [condition] : ",
@@ -69,13 +84,29 @@
         " généré le ": " généré le ",
         "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ": "Aucune durée trouvée pour l'action sleep ou la durée n'est pas valide : ",
         "[Erreur] Aucune commande trouvée pour ": "[Erreur] Aucune commande trouvée pour ",
-        " options : ": " options : "
+        " options : ": " options : ",
+        " avec comme option(s) : ": " avec comme option(s) : ",
+        "Affectation de la variable ": "Affectation de la variable ",
+        " => ": " => ",
+        "Execution du lancement en arriere plan : ": "Execution du lancement en arriere plan : ",
+        "Lancement provoqué par le scénario  : ": "Lancement provoqué par le scénario  : ",
+        "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ",
+        "Arrêt forcé du scénario : ": "Arrêt forcé du scénario : ",
+        "Commande non trouvée": "Commande non trouvée",
+        "Scénario : ": "Scénario : "
     },
     "core\/class\/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Non exécution des actions pour cause de répétition",
         "Tâche : ": "Tâche : ",
         " programmé à : ": " programmé à : ",
-        " programmée à : ": " programmée à : "
+        " programmée à : ": " programmée à : ",
+        " lancement immédiat ": " lancement immédiat ",
+        "Expression non valide : ": "Expression non valide : ",
+        "SI": "SI",
+        "ALORS": "ALORS",
+        "SINON": "SINON",
+        "Expression non valide  (": "Expression non valide  (",
+        ") trouvée dans le scénario : ": ") trouvée dans le scénario : "
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Sélectionner le scénario"
@@ -84,11 +115,14 @@
         "Accueil": "Accueil"
     },
     "core\/php\/authentification.php": {
-        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : "
+        "Connexion de l'utilisateur par clef : ": "Connexion de l'utilisateur par clef : ",
+        "Connexion de l'utilisateur : ": "Connexion de l'utilisateur : "
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Vue",
-        "Objet": "Objet"
+        "Objet": "Objet",
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Aucune documentation trouvée": "Aucune documentation trouvée"
     },
     "mobile\/html\/home.html": {
         "Equipements": "Equipements",
@@ -100,7 +134,9 @@
         "Message(s)": "Message(s)",
         "Plugins": "Plugins",
         "Autre": "Autre",
-        "Déconnexion": "Déconnexion"
+        "Déconnexion": "Déconnexion",
+        "Plan 3D": "Plan 3D",
+        "3d": "3d"
     },
     "mobile\/html\/deamon.html": {
         "Nom": "Nom",
@@ -129,7 +165,13 @@
         "Démons": "Démons",
         "Crons": "Crons",
         "Santé": "Santé",
-        "Tout": "Tout"
+        "Tout": "Tout",
+        "Alertes": "Alertes",
+        "Analyse équipement": "Analyse équipement",
+        "Messages": "Messages",
+        "Message(s)": "Message(s)",
+        "Scénarios": "Scénarios",
+        "Scénario": "Scénario"
     },
     "core\/class\/cron.class.php": {
         "Arrêt de ": "Arrêt de "
@@ -156,7 +198,28 @@
         "Persistance du cache": "Persistance du cache",
         "Mémoire disponible": "Mémoire disponible",
         "Swap disponible": "Swap disponible",
-        "Charge": "Charge"
+        "Charge": "Charge",
+        "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver",
+        "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver",
+        "Date système (dernière heure enregistrée)": "Date système (dernière heure enregistrée)",
+        "OK ": "OK ",
+        "Démarrage de jeedom": "Démarrage de jeedom",
+        "Arret des crons": "Arret des crons",
+        "Restauration du cache": "Restauration du cache",
+        "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des péripheriques USB",
+        "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des péripheriques Bluetooth",
+        "Démarrage des processus internet de jeedom": "Démarrage des processus internet de jeedom",
+        "Ecriture du fichier ": "Ecriture du fichier ",
+        "Vérification de la configuration réseau interne": "Vérification de la configuration réseau interne",
+        "Envoi de l'evenement de démarrage": "Envoi de l'evenement de démarrage",
+        "Démarrage des plugins": "Démarrage des plugins",
+        "Test de connexion au market": "Test de connexion au market",
+        "Démarrage de jeedom fini avec succès": "Démarrage de jeedom fini avec succès",
+        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur : ",
+        "Arrêt des crons": "Arrêt des crons",
+        "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
+        "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
+        "Apache private tmp": "Apache private tmp"
     },
     "core\/class\/message.class.php": {
         "Message de ": "Message de "
@@ -194,7 +257,10 @@
         "Multimedia": "Multimedia",
         "Defaut": "Defaut",
         "Autre": "Autre",
-        "Scénarios": "Scénarios"
+        "Scénarios": "Scénarios",
+        "Catégorie": "Catégorie",
+        "Toute": "Toute",
+        "Tags": "Tags"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -245,7 +311,15 @@
         "Générale": "Générale",
         "Détaillée": "Détaillée",
         "Ouverture d'un ticket": "Ouverture d'un ticket",
-        "Rapport": "Rapport"
+        "Rapport": "Rapport",
+        "Confort": "Confort",
+        "Redémarrer": "Redémarrer",
+        "Eteindre": "Eteindre",
+        "Plan 3d": "Plan 3d",
+        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id",
+        "Design 3D": "Design 3D",
+        "Note": "Note",
+        "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop\/php\/message.php": {
         "Vider": "Vider",
@@ -277,7 +351,15 @@
         "Aucune": "Aucune",
         "Mode forcé": "Mode forcé",
         "Tout depuis cette version": "Tout depuis cette version",
-        "Valider": "Valider"
+        "Valider": "Valider",
+        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour merci de consulter la note de version du core de Jeedom",
+        "ici": "ici",
+        "Pré-update (mettre à jour le script d'update avant)": "Pré-update (mettre à jour le script d'update avant)",
+        "Sauvegarder avant": "Sauvegarder avant",
+        "Mettre à jour les plugins": "Mettre à jour les plugins",
+        "Mettre à jour le core": "Mettre à jour le core",
+        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom",
+        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\"": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\""
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
@@ -295,7 +377,8 @@
         "Changelog": "Changelog",
         "Vérifier": "Vérifier",
         "Supprimer": "Supprimer",
-        "Sauvegarde effectuée": "Sauvegarde effectuée"
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés"
     },
     "desktop\/php\/plugin.php": {
         "Ajout depuis une autre source": "Ajout depuis une autre source",
@@ -305,7 +388,7 @@
         "Version": "Version",
         "Version Jeedom": "Version Jeedom",
         "Auteur": "Auteur",
-        "Licence": "Licence",
+        "License": "License",
         "Log": "Log",
         "Sauvegarder": "Sauvegarder",
         "Dépendances": "Dépendances",
@@ -314,7 +397,10 @@
         "Configuration": "Configuration",
         "Fonctionalités": "Fonctionalités",
         "Panel": "Panel",
-        "Fonctionnalités": "Fonctionnalités"
+        "Fonctionnalités": "Fonctionnalités",
+        "Gestion": "Gestion",
+        "Sources": "Sources",
+        "Plugins": "Plugins"
     },
     "core\/class\/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  : ",
@@ -332,7 +418,11 @@
         " de ": " de ",
         " dans ": " dans ",
         "C'est fait": "C'est fait",
-        "Erreur : ": "Erreur : "
+        "Erreur : ": "Erreur : ",
+        "Correspondance trouvée : ": "Correspondance trouvée : ",
+        " mais ne contient pas : ": " mais ne contient pas : ",
+        "Alerte : ": "Alerte : ",
+        " valeur : ": " valeur : "
     },
     "desktop\/php\/log.php": {
         "Rechercher": "Rechercher",
@@ -561,7 +651,94 @@
         "Administration": "Administration",
         "Interface": "Interface",
         "Mac": "Mac",
-        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)"
+        "Nettoyer les rapport plus anciens de (jours)": "Nettoyer les rapport plus anciens de (jours)",
+        "API": "API",
+        "OS\/DB": "OS\/DB",
+        "Réseaux": "Réseaux",
+        "Commandes": "Commandes",
+        "Cache": "Cache",
+        "Interactions": "Interactions",
+        "Rapports": "Rapports",
+        "Liens": "Liens",
+        "Résumés": "Résumés",
+        "Logs": "Logs",
+        "Equipements": "Equipements",
+        "Mises à jour": "Mises à jour",
+        "Dernière date connue": "Dernière date connue",
+        "Editeur de fichier": "Editeur de fichier",
+        "Editeur": "Editeur",
+        "LDAP": "LDAP",
+        "Connexion": "Connexion",
+        "Supprimer les IPs bannies": "Supprimer les IPs bannies",
+        "Supprimer": "Supprimer",
+        "Interaction automatique, contextuelle & avertissement": "Interaction automatique, contextuelle & avertissement",
+        "Activer les interactions \"previens moi\"": "Activer les interactions \"previens moi\"",
+        "Réponse de type \"previens moi\" si la phrase commence par": "Réponse de type \"previens moi\" si la phrase commence par",
+        "Commande de retour par défaut": "Commande de retour par défaut",
+        "Paramètre de prerender": "Paramètre de prerender",
+        "Paramètre de render": "Paramètre de render",
+        "Timeline": "Timeline",
+        "Nombre maximum d'évènements": "Nombre maximum d'évènements",
+        "Supprimer tous les évènements": "Supprimer tous les évènements",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP",
+        "IPs bannies": "IPs bannies",
+        "Sessions active": "Sessions active",
+        "ID": "ID",
+        "Login": "Login",
+        "Actions": "Actions",
+        "Réduire le poids de": "Réduire le poids de",
+        "Champs recherche utilisateur": "Champs recherche utilisateur",
+        "Nombre d'échecs tolérés": "Nombre d'échecs tolérés",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Attention : toute modification du moteur de cache nécessite un redémarrage de Jeedom",
+        "Système de fichiers (\/tmp\/jeedom\/cache)": "Système de fichiers (\/tmp\/jeedom\/cache)",
+        "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.",
+        "Regex générale d'exclusion pour les interactions": "Regex générale d'exclusion pour les interactions",
+        "Activer les interactions automatiques": "Activer les interactions automatiques",
+        "Activer les réponses contextuelles": "Activer les réponses contextuelles",
+        "Activer les interactions \"préviens moi\"": "Activer les interactions \"préviens moi\"",
+        "Réponse de type \"préviens moi\" si la phrase commence par": "Réponse de type \"préviens moi\" si la phrase commence par",
+        "Synonymes pour les objets": "Synonymes pour les objets",
+        "Synonymes pour les équipements": "Synonymes pour les équipements",
+        "Synonymes pour les commandes": "Synonymes pour les commandes",
+        "Synonymes pour les résumés": "Synonymes pour les résumés",
+        "Nettoyer les rapports plus anciens de (jours)": "Nettoyer les rapports plus anciens de (jours)",
+        "Adresse syslog UDP": "Adresse syslog UDP",
+        "Port syslog UDP": "Port syslog UDP",
+        "Synonyme commande slider maximum": "Synonyme commande slider maximum",
+        "Synonyme commande slider minimum": "Synonyme commande slider minimum",
+        "Editeur de fichiers": "Editeur de fichiers",
+        "DNS (proxy)": "DNS (proxy)",
+        "Action sur message": "Action sur message",
+        "Ajouter": "Ajouter",
+        "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
+        "Nom de votre": "Nom de votre",
+        "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
+        "quand il communique avec le market": "quand il communique avec le market",
+        "Langue de votre": "Langue de votre",
+        "Option pour les développeurs permettant à": "Option pour les développeurs permettant à",
+        "de générer les phrases à traduire": "de générer les phrases à traduire",
+        "Durée de vie de votre connexion à": "Durée de vie de votre connexion à",
+        "si vous n'avez pas coché la case enregistrer cet ordinateur": "si vous n'avez pas coché la case enregistrer cet ordinateur",
+        "Fuseau horaire de votre": "Fuseau horaire de votre",
+        "Permet d'ajouter un serveur de temps à": "Permet d'ajouter un serveur de temps à",
+        "utilisé lorsque": "utilisé lorsque",
+        "force la synchronisation de l'heure": "force la synchronisation de l'heure",
+        "Indique à": "Indique à",
+        "de ne pas prendre en compte l'heure du système": "de ne pas prendre en compte l'heure du système",
+        "Clef API globale de": "Clef API globale de",
+        "Clef API Pro de": "Clef API Pro de",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à",
+        ". L'équipe": ". L'équipe",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
+        "Attention : cette configuration n'est là que pour informer": "Attention : cette configuration n'est là que pour informer",
+        "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre",
+        "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
+        "Utiliser les DNS": "Utiliser les DNS",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
+        "Mise à jour de": "Mise à jour de",
+        "Mode développement": "Mode développement",
+        "Vider le cache assets": "Vider le cache assets"
     },
     "desktop\/js\/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Etes-vous sûr de vouloir réinitialiser la clef API de ",
@@ -581,7 +758,16 @@
         "Icône": "Icône",
         "Aucun": "Aucun",
         "Binaire": "Binaire",
-        "Créer virtuel": "Créer virtuel"
+        "Créer virtuel": "Créer virtuel",
+        "Evènement de la timeline supprimé avec succès": "Evènement de la timeline supprimé avec succès",
+        "Suppression des IPs bannies réussie": "Suppression des IPs bannies réussie",
+        "Administration base de données": "Administration base de données",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de",
+        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
+        "Opération réalisée avec succès": "Opération réalisée avec succès"
     },
     "desktop\/php\/interact.php": {
         "Ajouter interaction": "Ajouter interaction",
@@ -622,7 +808,20 @@
         "Voir": "Voir",
         "Nombre de phrases générées": "Nombre de phrases générées",
         "Supprimer": "Supprimer",
-        "Enregistrer": "Enregistrer"
+        "Enregistrer": "Enregistrer",
+        "Interaction ID :": "Interaction ID :",
+        "Phrase(s)": "Phrase(s)",
+        "Actions": "Actions",
+        "Actif": "Actif",
+        "Mot(s) obligatoire": "Mot(s) obligatoire",
+        "Mot(s) obligatoire(s)": "Mot(s) obligatoire(s)",
+        "Remplace les mots par leurs synonymes lors de la génération des commandes": "Remplace les mots par leurs synonymes lors de la génération des commandes",
+        "Liste des utilisateurs (identifiants) séparés par un |": "Liste des utilisateurs (identifiants) séparés par un |",
+        "Limiter aux commandes appartenant aux objets": "Limiter aux commandes appartenant aux objets",
+        "Limiter aux catégories": "Limiter aux catégories",
+        "Regexp de correspondance obligatoire": "Regexp de correspondance obligatoire",
+        "Attendre avant de répondre (s)": "Attendre avant de répondre (s)",
+        "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple"
     },
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Liste des interactions",
@@ -677,7 +876,25 @@
         "Retapez le mot de passe": "Retapez le mot de passe",
         "Hash de l'utilisateur": "Hash de l'utilisateur",
         "Regénérer": "Regénérer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Notifications": "Notifications",
+        "Commande de notification utilisateur": "Commande de notification utilisateur",
+        "Identification": "Identification",
+        "Action": "Action",
+        "Supprimer": "Supprimer",
+        "Péripherique enregistrés": "Péripherique enregistrés",
+        "Supprimer tout": "Supprimer tout",
+        "Date derniere utilisation": "Date derniere utilisation",
+        "IP": "IP",
+        "Sessions actives": "Sessions actives",
+        "ID": "ID",
+        "Login": "Login",
+        "Date": "Date",
+        "Actions": "Actions",
+        "Déconnecter": "Déconnecter",
+        "Couleur sur mobile": "Couleur sur mobile",
+        "Périphériques enregistrés": "Périphériques enregistrés",
+        "Date dernière utilisation": "Date dernière utilisation"
     },
     "desktop\/js\/profils.js": {
         "Authentification 2 étapes": "Authentification 2 étapes",
@@ -694,7 +911,8 @@
         "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Sélectionner la commande"
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?"
     },
     "core\/js\/history.class.js": {
         "Il n\\'existe encore aucun historique pour cette commande :": "Il n\\'existe encore aucun historique pour cette commande :",
@@ -718,7 +936,17 @@
         "Etes-vous sûr de vouloir redémarrer le système ?": "Etes-vous sûr de vouloir redémarrer le système ?",
         "Evénement en temps réel": "Evénement en temps réel",
         "Message Jeedom": "Message Jeedom",
-        "Choisissez votre icône": "Choisissez votre icône"
+        "Choisissez votre icône": "Choisissez votre icône",
+        "Configuration avancée": "Configuration avancée",
+        "Configuration du widget": "Configuration du widget",
+        "Defaut": "Defaut",
+        "Table": "Table",
+        "Ajouter colonne": "Ajouter colonne",
+        "Ajouter ligne": "Ajouter ligne",
+        "Supprimer colonne": "Supprimer colonne",
+        "Supprimer ligne": "Supprimer ligne",
+        "A propos": "A propos",
+        "Note": "Note"
     },
     "desktop\/js\/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets"
@@ -734,7 +962,10 @@
         "Assistant cron": "Assistant cron",
         "Annuler": "Annuler",
         "Valider": "Valider",
-        "Sélectionner la commande": "Sélectionner la commande"
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Erreur de connexion": "Erreur de connexion",
+        "Erreur lors de la connexion à jeedom": "Erreur lors de la connexion à jeedom",
+        "Erreur lors de la connexion à Jeedom": "Erreur lors de la connexion à Jeedom"
     },
     "desktop\/php\/scenarioAssist.php": {
         "Interface simple": "Interface simple",
@@ -895,7 +1126,19 @@
         "Liens": "Liens",
         "Multi lancement": "Multi lancement",
         "Défaut": "Défaut",
-        "Temps réel": "Temps réel"
+        "Temps réel": "Temps réel",
+        "Activer scénarios": "Activer scénarios",
+        "Template": "Template",
+        "Expression": "Expression",
+        "Variables": "Variables",
+        "Général": "Général",
+        "Suivre dans la timeline": "Suivre dans la timeline",
+        "Les executions du scénario pourront etre vu dans la timeline": "Les executions du scénario pourront etre vu dans la timeline",
+        "Timeout en secondes (0 = illimité)": "Timeout en secondes (0 = illimité)",
+        "Le scénario pourra tourner plusieurs fois en même temps": "Le scénario pourra tourner plusieurs fois en même temps",
+        "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable",
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Les exécutions du scénario pourront être vues dans la timeline.",
+        "Ajouter bloc": "Ajouter bloc"
     },
     "desktop\/js\/scenario.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -965,7 +1208,15 @@
         "CODE": "CODE",
         "ACTION": "ACTION",
         "Graphique de lien": "Graphique de lien",
-        "Avancé": "Avancé"
+        "Avancé": "Avancé",
+        "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "Le bloc Sinon ne peut être supprimé s'il contient des éléments",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
+        "Afficher\/masquer le bloc Sinon": "Afficher\/masquer le bloc Sinon",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI\/ALORS….)": "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI\/ALORS….)",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core\/template\/scenario\/report.default": {
         "Vue": "Vue",
@@ -979,7 +1230,10 @@
         "Exporter": "Exporter",
         "Design": "Design",
         "Panel": "Panel",
-        "Plugin": "Plugin"
+        "Plugin": "Plugin",
+        "Largeur  (px)": "Largeur  (px)",
+        "Hauteur (px)": "Hauteur (px)",
+        "Delai (ms)": "Delai (ms)"
     },
     "core\/template\/scenario\/gotodesign.default": {
         "Design": "Design"
@@ -995,7 +1249,9 @@
         "Rechercher": "Rechercher",
         "Vider les logs": "Vider les logs",
         "Télécharger": "Télécharger",
-        "Log vidés avec succès": "Log vidés avec succès"
+        "Log vidés avec succès": "Log vidés avec succès",
+        "Vider le log": "Vider le log",
+        "Log vidé avec succès": "Log vidé avec succès"
     },
     "__FILE": {
         "[jeedom] Rapport ": "[jeedom] Rapport ",
@@ -1074,7 +1330,11 @@
         "Droite": "Droite",
         "Gauche": "Gauche",
         "Non": "Non",
-        "Oui": "Oui"
+        "Oui": "Oui",
+        "Largeur": "Largeur",
+        "Moyenne par année": "Moyenne par année",
+        "Minimum par année": "Minimum par année",
+        "Maximum par année": "Maximum par année"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
         "Objet": "Objet",
@@ -1114,10 +1374,13 @@
         "Supprimer": "Supprimer",
         "Dupliquer": "Dupliquer",
         "Verrouiller": "Verrouiller",
-        "Nom du design ?": "Nom du design ?"
+        "Nom du design ?": "Nom du design ?",
+        "Veuillez indiquer le code ?": "Veuillez indiquer le code ?",
+        "Etes-vous sûr de vouloir supprimer ce design ?": "Etes-vous sûr de vouloir supprimer ce design ?"
     },
     "core\/com\/http.com.php": {
-        "Echec de la requête http : ": "Echec de la requête http : "
+        "Echec de la requête http : ": "Echec de la requête http : ",
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP : "
     },
     "desktop\/php\/report.php": {
         "Type": "Type",
@@ -1165,7 +1428,10 @@
         "Tailles": "Tailles",
         "Taille (LxH)": "Taille (LxH)",
         "Image supprimée": "Image supprimée",
-        "Design sauvegardé": "Design sauvegardé"
+        "Design sauvegardé": "Design sauvegardé",
+        "Code d'accès": "Code d'accès",
+        "Couleur de fond": "Couleur de fond",
+        "Fond transparent": "Fond transparent"
     },
     "desktop\/modal\/cmd.history.php": {
         "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
@@ -1192,17 +1458,24 @@
         "Colonne": "Colonne",
         "Variation": "Variation",
         "Escalier": "Escalier",
-        "Historique": "Historique"
+        "Historique": "Historique",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
+        "Somme par jour": "Somme par jour",
+        "Somme par semaine": "Somme par semaine",
+        "Somme par mois": "Somme par mois",
+        "Somme par année": "Somme par année"
     },
     "mobile\/js\/equipment.js": {
         "Tout": "Tout"
     },
     "desktop\/js\/dashboard.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets",
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
     "desktop\/js\/log.js": {
         "Pause": "Pause",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?"
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sur de vouloir supprimer tous les logs ?",
+        "Etes-vous sûr de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop\/js\/plugin.js": {
         "Envoyer sur le": "Envoyer sur le",
@@ -1236,10 +1509,26 @@
         "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
         "Log du plugin": "Log du plugin",
         "Sauvegarde effectuée": "Sauvegarde effectuée",
-        "Ajouter un plugin": "Ajouter un plugin"
+        "Ajouter un plugin": "Ajouter un plugin",
+        "Afficher le panneau desktop": "Afficher le panneau desktop",
+        "Afficher le panneau mobile": "Afficher le panneau mobile",
+        "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Votre version de Jeedom ne permet pas d\\'activer ce plugin",
+        "Etes-vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
+        "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
+        "Votre version de": "Votre version de",
+        "ne permet pas d\\'activer ce plugin": "ne permet pas d\\'activer ce plugin"
     },
     "core\/repo\/market.list.repo.php": {
-        "Market Jeedom": "Market Jeedom"
+        "Market Jeedom": "Market Jeedom",
+        "Gratuit": "Gratuit",
+        "Payant": "Payant",
+        "Officiel": "Officiel",
+        "Conseillé": "Conseillé",
+        "Installé": "Installé",
+        "Non installé": "Non installé",
+        "Top et nouveautés": "Top et nouveautés",
+        "Aucune": "Aucune",
+        "par": "par"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Aucun aperçu possible en pdf"
@@ -1275,7 +1564,10 @@
         "Envoi des sauvegardes": "Envoi des sauvegardes",
         "Sauvegarder": "Sauvegarder",
         "Informations": "Informations",
-        "Envoyer la sauvegarde locale sélectionnée": "Envoyer la sauvegarde locale sélectionnée"
+        "Envoyer la sauvegarde locale sélectionnée": "Envoyer la sauvegarde locale sélectionnée",
+        "Nombre de jours de mémorisation des sauvegardes": "Nombre de jours de mémorisation des sauvegardes",
+        "Taille totale maximale des sauvegardes (Mo)": "Taille totale maximale des sauvegardes (Mo)",
+        "Chargement...": "Chargement..."
     },
     "desktop\/js\/backup.js": {
         "Sauvegarde réussie": "Sauvegarde réussie",
@@ -1288,7 +1580,15 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
+        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée cette opération ne peut être annulée.",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
+        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
+        "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
+        "avec la sauvegarde Cloud": "avec la sauvegarde Cloud"
     },
     "desktop\/php\/user.php": {
         "Liste des utilisateurs :": "Liste des utilisateurs :",
@@ -1304,7 +1604,27 @@
         "Login": "Login",
         "Mot de passe": "Mot de passe",
         "Annuler": "Annuler",
-        "Enregistrer": "Enregistrer"
+        "Enregistrer": "Enregistrer",
+        "Sessions active": "Sessions active",
+        "ID": "ID",
+        "IP": "IP",
+        "Date": "Date",
+        "Supprimer": "Supprimer",
+        "Profil": "Profil",
+        "Sessions actives": "Sessions actives",
+        "Péripherique enregistrés": "Péripherique enregistrés",
+        "Supprimer tout": "Supprimer tout",
+        "Identification": "Identification",
+        "Utilisateur": "Utilisateur",
+        "Date derniere utilisation": "Date derniere utilisation",
+        "Action": "Action",
+        "Déconnecter": "Déconnecter",
+        "Date dernière utilisation": "Date dernière utilisation",
+        "Identifiant": "Identifiant",
+        "Liste des utilisateurs": "Liste des utilisateurs",
+        "Activer accès support": "Activer accès support",
+        "Dernière connexion": "Dernière connexion",
+        "Périphériques enregistrés": "Périphériques enregistrés"
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Sauvegarde effectuée",
@@ -1324,7 +1644,15 @@
         "Regenérer clef API": "Regenérer clef API",
         "Supprimer": "Supprimer",
         "Changer le mot de passe": "Changer le mot de passe",
-        "Gerer les droits": "Gerer les droits"
+        "Gerer les droits": "Gerer les droits",
+        "Régénérer clef API": "Régénérer clef API",
+        "Gérer les droits": "Gérer les droits",
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
+        "Local": "Local",
+        "Désactiver": "Désactiver",
+        "Régénérer API": "Régénérer API",
+        "Mot de passe": "Mot de passe",
+        "Droits": "Droits"
     },
     "desktop\/modal\/log.display.php": {
         "Supprimer": "Supprimer",
@@ -1348,7 +1676,8 @@
         "Aucune santé spécifique": "Aucune santé spécifique",
         "NOK": "NOK",
         "erreurs": "erreurs",
-        "Démon en mode manuel": "Démon en mode manuel"
+        "Démon en mode manuel": "Démon en mode manuel",
+        "Désactivé": "Désactivé"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -1378,7 +1707,9 @@
         "Timeout (min)": "Timeout (min)",
         "Dernier lancement": "Dernier lancement",
         "Derniere durée": "Derniere durée",
-        "Statut": "Statut"
+        "Statut": "Statut",
+        "Activer le système cron": "Activer le système cron",
+        "Dernière durée": "Dernière durée"
     },
     "desktop\/js\/cron.js": {
         "Désactiver le système cron": "Désactiver le système cron",
@@ -1419,13 +1750,19 @@
         "Aller sur la configuration de l'équipement": "Aller sur la configuration de l'équipement",
         "Non visible": "Non visible",
         "Non actif": "Non actif",
-        "Aller sur la configuration de l'objet": "Aller sur la configuration de l'objet"
+        "Aller sur la configuration de l'objet": "Aller sur la configuration de l'objet",
+        "Historique des suppressions": "Historique des suppressions",
+        "Nombre d'objets :": "Nombre d'objets :",
+        "Nombre d'équipements :": "Nombre d'équipements :",
+        "Nombre de commandes :": "Nombre de commandes :"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'équipement": "Configuration de l'équipement",
         "Configuration de l'objet": "Configuration de l'objet",
         "Configuration de la commande": "Configuration de la commande",
-        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Etes-vous sûr de vouloir supprimer tous ces équipement ?"
+        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Etes-vous sûr de vouloir supprimer tous ces équipement ?",
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
+        "Historique des supression": "Historique des supression"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "Nom": "Nom",
@@ -1471,7 +1808,20 @@
         "Permet d'affecter une icone au scénario": "Permet d'affecter une icone au scénario",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.",
-        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG."
+        "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.",
+        "Créer un message": "Créer un message",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activer\/Désactiver Masquer\/Afficher un équipement",
+        "Retourner un texte\/une donnée": "Retourner un texte\/une donnée",
+        "Supprimer bloc DANS\/A programmé": "Supprimer bloc DANS\/A programmé",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
+        "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé",
+        "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
+        "Permet d'affecter une icône au scénario": "Permet d'affecter une icône au scénario",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.",
+        "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.",
+        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permet de supprimer la programmation de tous les blocs DANS et A du scénario"
     },
     "core\/template\/scenario\/scenario.default": {
         "Scénario": "Scénario",
@@ -1480,7 +1830,9 @@
         "Start (sync)": "Start (sync)",
         "Stop": "Stop",
         "Activer": "Activer",
-        "Désactiver": "Désactiver"
+        "Désactiver": "Désactiver",
+        "Tags": "Tags",
+        "Sélectionner la commande": "Sélectionner la commande"
     },
     "core\/template\/scenario\/icon.default": {
         "Rechercher icône": "Rechercher icône"
@@ -1530,12 +1882,34 @@
         "Areaspline": "Areaspline",
         "Barre": "Barre",
         "Variation": "Variation",
-        "Escalier": "Escalier"
+        "Escalier": "Escalier",
+        "Timeline": "Timeline",
+        "Historique calculé": "Historique calculé",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Vider": "Vider",
+        "Tous": "Tous",
+        "Rafraîchir": "Rafraîchir",
+        "Commandes": "Commandes",
+        "Scénarios": "Scénarios",
+        "Tous (Plugins)": "Tous (Plugins)",
+        "Tous (Catégories)": "Tous (Catégories)",
+        "Tous (Objets)": "Tous (Objets)",
+        "Tous (Types)": "Tous (Types)",
+        "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
+        "Somme par heure": "Somme par heure",
+        "Somme par jour": "Somme par jour",
+        "Somme par semaine": "Somme par semaine",
+        "Somme par mois": "Somme par mois",
+        "Somme par année": "Somme par année"
     },
     "desktop\/js\/history.js": {
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ",
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
-        "Historique supprimé avec succès": "Historique supprimé avec succès"
+        "Historique supprimé avec succès": "Historique supprimé avec succès",
+        "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Résumé scénario": "Résumé scénario",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/modal\/eqLogic.configure.php": {
         "Supprimer": "Supprimer",
@@ -1587,7 +1961,30 @@
         "Configuration de la commande": "Configuration de la commande",
         "Logs": "Logs",
         "Liens": "Liens",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Graphique des liens",
+        "Disposition": "Disposition",
+        "Alertes": "Alertes",
+        "Informations Batteries": "Informations Batteries",
+        "Seuils spécifiques Batteries": "Seuils spécifiques Batteries",
+        "Alertes Communications": "Alertes Communications",
+        "(en minute)": "(en minute)",
+        "Configuration général": "Configuration général",
+        "Tableau": "Tableau",
+        "Nombre de ligne": "Nombre de ligne",
+        "Nombre de colonne": "Nombre de colonne",
+        "Centrer dans les cases": "Centrer dans les cases",
+        "Style générale des cases (CSS)": "Style générale des cases (CSS)",
+        "Style du tableau (CSS)": "Style du tableau (CSS)",
+        "Configuration détaillée": "Configuration détaillée",
+        "Texte de la case": "Texte de la case",
+        "Style de la case (CSS)": "Style de la case (CSS)",
+        "Arrondi des bordures (en px)": "Arrondi des bordures (en px)",
+        "(en minutes)": "(en minutes)",
+        "Défaut": "Défaut",
+        "Nombre de lignes": "Nombre de lignes",
+        "Nombre de colonnes": "Nombre de colonnes",
+        "Style général des cases (CSS)": "Style général des cases (CSS)",
+        "Tag": "Tag"
     },
     "desktop\/modal\/cmd.configure.php": {
         "Enregistrer": "Enregistrer",
@@ -1712,7 +2109,24 @@
         "Thermostat": "Thermostat",
         "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que ",
         "1 an": "1 an",
-        "Copie des données historisées": "Copie des données historisées"
+        "Copie des données historisées": "Copie des données historisées",
+        "Tester": "Tester",
+        "Suivre dans la timeline": "Suivre dans la timeline",
+        "3 mois": "3 mois",
+        "Décocher pour desactiver l\\'action": "Décocher pour desactiver l\\'action",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parrallele des autres actions",
+        "Cette commande remplace l'ID": "Cette commande remplace l'ID",
+        "Etes-vous sûr de vouloir remplacer l\\'ID": "Etes-vous sûr de vouloir remplacer l\\'ID",
+        "ID de commande à remplacer ?": "ID de commande à remplacer ?",
+        "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder": "Opération effectuée avec succès, n\\'oubliez pas de sauvegarder",
+        "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
+        "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Cocher pour que la commande s\\'exécute en parallèle des autres actions",
+        "Activer la personnalisation du widget": "Activer la personnalisation du widget",
+        "Réinitialiser la personnalisation": "Réinitialiser la personnalisation",
+        "Interdire dans les interactions automatique": "Interdire dans les interactions automatique",
+        "Calcul et arrondi": "Calcul et arrondi",
+        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)"
     },
     "desktop\/php\/object.php": {
         "Ajouter objet": "Ajouter objet",
@@ -1736,7 +2150,12 @@
         "Masquer en mobile": "Masquer en mobile",
         "Commandes": "Commandes",
         "Ajouter une commande": "Ajouter une commande",
-        "Liens": "Liens"
+        "Liens": "Liens",
+        "Gestion": "Gestion",
+        "Vue d'ensemble": "Vue d'ensemble",
+        "Masquer sur le dashboard": "Masquer sur le dashboard",
+        "Couleur du texte du résumé": "Couleur du texte du résumé",
+        "Taille sur le dashboard (1 à 12)": "Taille sur le dashboard (1 à 12)"
     },
     "desktop\/js\/object.js": {
         "Sauvegarde effectuée avec succès": "Sauvegarde effectuée avec succès",
@@ -1745,7 +2164,10 @@
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Etes-vous sûr de vouloir supprimer l\\'objet",
         "Commande": "Commande",
         "Inverser": "Inverser",
-        "Graphique des liens": "Graphique des liens"
+        "Graphique des liens": "Graphique des liens",
+        "Résumé objet": "Résumé objet",
+        "Activer": "Activer",
+        "Résumé Objets": "Résumé Objets"
     },
     "desktop\/modal\/icon.selector.php": {
         "Rechercher": "Rechercher",
@@ -1774,7 +2196,10 @@
         "Action": "Action",
         "Data store supprimé": "Data store supprimé",
         "Data store sauvegardé": "Data store sauvegardé",
-        "Graphique de lien": "Graphique de lien"
+        "Graphique de lien": "Graphique de lien",
+        "Dépôt de données supprimé": "Dépôt de données supprimé",
+        "Dépôt de données sauvegardé": "Dépôt de données sauvegardé",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core\/class\/dataStore.class.php": {
         "Variable :": "Variable :"
@@ -1788,7 +2213,12 @@
         "Action de pre update...": "Action de pre update..."
     },
     "core\/repo\/market.repo.php": {
-        "Téléchargement de ": "Téléchargement de "
+        "Téléchargement de ": "Téléchargement de ",
+        "Erreur repo_market::getinfo : ": "Erreur repo_market::getinfo : ",
+        "Cloud monitoring actif": "Cloud monitoring actif",
+        "NOK": "NOK",
+        "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
+        "OK": "OK"
     },
     "core\/class\/network.class.php": {
         "Le plugin openvpn doit être actif": "Le plugin openvpn doit être actif"
@@ -1813,7 +2243,17 @@
         "Type": "Type",
         "Dernière mise à jour le": "Dernière mise à jour le",
         "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez vous aller sur la page de configuration de votre nouveau plugin ?",
-        "Objet installé avec succès": "Objet installé avec succès"
+        "Objet installé avec succès": "Objet installé avec succès",
+        "Installer": "Installer",
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
+        "Taille": "Taille",
+        "Utilisation": "Utilisation",
+        "Informations complementaires": "Informations complementaires",
+        "Langue disponible": "Langue disponible",
+        "Market": "Market",
+        "Conseillé": "Conseillé",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Développé par": "Développé par"
     },
     "core\/class\/view.class.php": {
         "Vue :": "Vue :"
@@ -1876,14 +2316,25 @@
         "Afficher sur un clic": "Afficher sur un clic",
         "Information binaire": "Information binaire",
         "Action on": "Action on",
-        "Action off": "Action off"
+        "Action off": "Action off",
+        "Alignement du texte": "Alignement du texte",
+        "Par defaut": "Par defaut",
+        "Gauche": "Gauche",
+        "Droite": "Droite",
+        "Centré": "Centré",
+        "Position": "Position",
+        "Defaut": "Defaut",
+        "Haut": "Haut",
+        "Haut Gauche": "Haut Gauche",
+        "Sélectionner un mot-clé": "Sélectionner un mot-clé"
     },
     "desktop\/php\/connection.php": {
         "Nom d'utilisateur": "Nom d'utilisateur",
         "Mot de passe": "Mot de passe",
         "Code à 2 facteurs": "Code à 2 facteurs",
         "Enregistrer cet ordinateur": "Enregistrer cet ordinateur",
-        "Connexion": "Connexion"
+        "Connexion": "Connexion",
+        "J'ai perdu mon mot de passe": "J'ai perdu mon mot de passe"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "Nom": "Nom",
@@ -1895,9 +2346,493 @@
         "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]"
     },
     "core\/api\/jeeApi.php": {
-        "Appels de ": "Appels de "
+        "Appels de ": "Appels de ",
+        "Requête invalide. Version Jsonrpc invalide : ": "Requête invalide. Version Jsonrpc invalide : ",
+        "Demande pour le plugin : ": "Demande pour le plugin : ",
+        "Demande API pour les scénarios": "Demande API pour les scénarios",
+        "Démarrage scénario de : ": "Démarrage scénario de : ",
+        "Exécution provoquée par un appel API ": "Exécution provoquée par un appel API "
     },
     "mobile\/js\/message.js": {
         "Vider": "Vider"
+    },
+    "core\/php\/jeeCron.php": {
+        "Tous les crons sont actuellement désactivés": "Tous les crons sont actuellement désactivés",
+        "Erreur sur ": "Erreur sur "
+    },
+    "mobile\/js\/application.js": {
+        "Résumé": "Résumé",
+        "Historique": "Historique",
+        "Préviens moi": "Préviens moi",
+        "Me prévenir si": "Me prévenir si",
+        "Erreur lors de la mise à jour": "Erreur lors de la mise à jour",
+        "Nouvelle tentative dans 5s": "Nouvelle tentative dans 5s"
+    },
+    "mobile\/js\/health.js": {
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Démons": "Démons",
+        "Crons": "Crons",
+        "Alertes": "Alertes"
+    },
+    "mobile\/js\/deamon.js": {
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Crons": "Crons",
+        "Santé": "Santé",
+        "Alertes": "Alertes"
+    },
+    "mobile\/html\/history.html": {
+        "Début": "Début",
+        "Fin": "Fin",
+        "Ok": "Ok",
+        "Aucun groupement": "Aucun groupement",
+        "Sommes par heure": "Sommes par heure",
+        "Moyenne par heure": "Moyenne par heure",
+        "Minimum par heure": "Minimum par heure",
+        "Maximum par heure": "Maximum par heure",
+        "Sommes par jour": "Sommes par jour",
+        "Moyenne par jour": "Moyenne par jour",
+        "Minimum par jour": "Minimum par jour",
+        "Maximum par jour": "Maximum par jour",
+        "Sommes par semaine": "Sommes par semaine",
+        "Moyenne par semaine": "Moyenne par semaine",
+        "Minimum par semaine": "Minimum par semaine",
+        "Maximum par semaine": "Maximum par semaine",
+        "Sommes par mois": "Sommes par mois",
+        "Moyenne par mois": "Moyenne par mois",
+        "Minimum par mois": "Minimum par mois",
+        "Maximum par mois": "Maximum par mois",
+        "Sommes par année": "Sommes par année",
+        "Moyenne par année": "Moyenne par année",
+        "Minimum par année": "Minimum par année",
+        "Maximum par année": "Maximum par année",
+        "Ligne": "Ligne",
+        "Areaspline": "Areaspline",
+        "Barre": "Barre",
+        "Variation": "Variation",
+        "Escalier": "Escalier",
+        "Somme par heure": "Somme par heure",
+        "Somme par jour": "Somme par jour",
+        "Somme par semaine": "Somme par semaine",
+        "Somme par mois": "Somme par mois",
+        "Somme par année": "Somme par année"
+    },
+    "mobile\/modal\/warnme.html": {
+        "Valeur": "Valeur",
+        "Annuler": "Annuler",
+        "Ok": "Ok"
+    },
+    "mobile\/js\/alert.js": {
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Crons": "Crons",
+        "Santé": "Santé"
+    },
+    "mobile\/js\/cron.js": {
+        "Rafraichir": "Rafraichir",
+        "Version desktop": "Version desktop",
+        "Démons": "Démons",
+        "Santé": "Santé",
+        "Alertes": "Alertes"
+    },
+    "core\/ajax\/event.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "core\/class\/user.class.php": {
+        "Connexion de l'utilisateur ": "Connexion de l'utilisateur "
+    },
+    "desktop\/php\/eqAnalyse.php": {
+        "Batteries": "Batteries",
+        "Modules en alerte": "Modules en alerte",
+        "Actions définies": "Actions définies",
+        "Alertes définies": "Alertes définies",
+        "Commandes orphelines": "Commandes orphelines",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Type": "Type",
+        "Actions": "Actions",
+        "Post exécution": "Post exécution",
+        "Pre exécution": "Pre exécution",
+        "Alertes": "Alertes",
+        "Timeout": "Timeout",
+        "Seuils batterie": "Seuils batterie",
+        "Détail": "Détail",
+        "Utilisation": "Utilisation"
+    },
+    "desktop\/js\/eqAnalyse.js": {
+        "Configuration commande": "Configuration commande"
+    },
+    "mobile\/html\/eqAnalyse.html": {
+        "Batteries": "Batteries",
+        "Alertes": "Alertes"
+    },
+    "desktop\/modal\/scenario.summary.php": {
+        "Enregistrer": "Enregistrer",
+        "Rafraîchir": "Rafraîchir",
+        "ID": "ID",
+        "Scénario": "Scénario",
+        "Statut": "Statut",
+        "Dernier lancement": "Dernier lancement",
+        "Actif": "Actif",
+        "Visible": "Visible",
+        "Multi lancement": "Multi lancement",
+        "Mode synchrone": "Mode synchrone",
+        "Log": "Log",
+        "Timeline": "Timeline",
+        "Actions": "Actions",
+        "Erreur": "Erreur",
+        "En cours": "En cours",
+        "Arrêté": "Arrêté",
+        "Défaut": "Défaut",
+        "Aucun": "Aucun",
+        "Temps réel": "Temps réel",
+        "Voir les logs": "Voir les logs",
+        "Exécuter": "Exécuter",
+        "Log d'exécution du scénario": "Log d'exécution du scénario"
+    },
+    "desktop\/modal\/expression.test.php": {
+        "Test": "Test",
+        "Exécuter": "Exécuter",
+        "Résultat": "Résultat",
+        "L\\'epression de test ne peut être vide": "L\\'epression de test ne peut être vide",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression",
+        "Je vais évaluer : ": "Je vais évaluer : ",
+        "Résultat : ": "Résultat : ",
+        "L\\'expression de test ne peut être vide": "L\\'expression de test ne peut être vide",
+        "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression"
+    },
+    "desktop\/modal\/report.bug.php": {
+        "Etape 1 : Information sur les tickets": "Etape 1 : Information sur les tickets",
+        "Merci de vérifier avant toute ouverture de ticket :": "Merci de vérifier avant toute ouverture de ticket :",
+        "- que la question n'a pas déjà été posée sur le <a href='https:\/\/jeedom.com\/forum'>forum<\/a>": "- que la question n'a pas déjà été posée sur le <a href='https:\/\/jeedom.com\/forum'>forum<\/a>",
+        "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais",
+        "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>",
+        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.",
+        "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
+        "Type": "Type",
+        "Aucun": "Aucun",
+        "Support": "Support",
+        "Bug": "Bug",
+        "Demande d'amélioration": "Demande d'amélioration",
+        "Catégorie": "Catégorie",
+        "Aucune": "Aucune",
+        "Général": "Général",
+        "Scénario": "Scénario",
+        "Etape 3 : Chercher dans la documentation": "Etape 3 : Chercher dans la documentation",
+        "Rechercher": "Rechercher",
+        "Chercher": "Chercher",
+        "Etape 4 : Demande de support": "Etape 4 : Demande de support",
+        "Titre": "Titre",
+        "Message": "Message",
+        "Envoyer": "Envoyer",
+        "Ce plugin utilise un gestionnaire de demande de support": "Ce plugin utilise un gestionnaire de demande de support",
+        "Accéder": "Accéder",
+        "Votre ticket a bien été ouvert. Vous pouvez le suivre": "Votre ticket a bien été ouvert. Vous pouvez le suivre",
+        "Votre ticket a bien été ouvert. Un mail va vous être envoyé": "Votre ticket a bien été ouvert. Un mail va vous être envoyé",
+        "Etape 2 : Choix du type de demande": "Etape 2 : Choix du type de demande",
+        "Etape 3 : Catégorie et type de la demande": "Etape 3 : Catégorie et type de la demande",
+        "Etape 4 : Chercher dans la documentation": "Etape 4 : Chercher dans la documentation",
+        "Etape 5 : Demande de support": "Etape 5 : Demande de support",
+        "Assistance technique": "Assistance technique",
+        "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.",
+        "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION<\/strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION<\/strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)",
+        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.",
+        "Voir les bugs": "Voir les bugs",
+        "Voir les propositions d'amélioration": "Voir les propositions d'amélioration",
+        "Rapport": "Rapport",
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
+        "Ouvrir un accès au support": "Ouvrir un accès au support",
+        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br\/>Vous pouvez le suivre"
+    },
+    "core\/ajax\/cmd.ajax.php": {
+        "Commande inconnu verifié l'id :": "Commande inconnu verifié l'id :",
+        "Cmd ID inconnu : ": "Cmd ID inconnu : "
+    },
+    "desktop\/php\/custom.php": {
+        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel",
+        "Activer": "Activer",
+        "Sauvegarder": "Sauvegarder",
+        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre",
+        "non fonctionel.": "non fonctionel."
+    },
+    "desktop\/js\/system.js": {
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande : ",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Commande : ": "Commande : "
+    },
+    "desktop\/php\/database.php": {
+        "Rechercher": "Rechercher",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "OK": "OK"
+    },
+    "desktop\/js\/database.js": {
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir éxécuter cette commande : ",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classé en dangereuse",
+        "Commande : ": "Commande : "
+    },
+    "desktop\/dashboard.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "core\/ajax\/log.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
+    "desktop\/modal\/update.add.php": {
+        "Source": "Source",
+        "Type de source": "Type de source",
+        "Aucun": "Aucun",
+        "Configuration": "Configuration",
+        "ID logique du plugin": "ID logique du plugin",
+        "Envoyer un plugin": "Envoyer un plugin",
+        "Enregistrer": "Enregistrer",
+        "Enregistrement réussi": "Enregistrement réussi"
+    },
+    "core\/template\/scenario\/variable.default": {
+        "Nom": "Nom",
+        "Valeur": "Valeur",
+        "Sélectionner la commande": "Sélectionner la commande"
+    },
+    "desktop\/js\/3d.js": {
+        "Designs": "Designs",
+        "Edition": "Edition",
+        "Configuration de l\\'objet": "Configuration de l\\'objet",
+        "Widget": "Widget",
+        "Configuration du plan 3D": "Configuration du plan 3D"
+    },
+    "desktop\/php\/3d.php": {
+        "Objet": "Objet",
+        "Nom": "Nom",
+        "Equipement liée": "Equipement liée",
+        "Informations": "Informations",
+        "Equipement": "Equipement",
+        "Edition": "Edition",
+        "Sauvegarder": "Sauvegarder"
+    },
+    "desktop\/modal\/plan3d.configure.php": {
+        "Général": "Général",
+        "Sauvegarder": "Sauvegarder",
+        "Nom": "Nom",
+        "Type de lien": "Type de lien",
+        "Equipement": "Equipement",
+        "Lien": "Lien",
+        "Rechercher d\\'un équipement": "Rechercher d\\'un équipement",
+        "Spécificité": "Spécificité",
+        "Lumière": "Lumière",
+        "Lumière couleur": "Lumière couleur",
+        "Aucun": "Aucun",
+        "Statut": "Statut",
+        "Rechercher d\\'une commande": "Rechercher d\\'une commande",
+        "Puissance": "Puissance",
+        "Texte": "Texte",
+        "Taille du texte": "Taille du texte",
+        "Couleur de fond": "Couleur de fond",
+        "Couleur de la bordure": "Couleur de la bordure",
+        "Transparence fond": "Transparence fond",
+        "Transparence bordure": "Transparence bordure",
+        "Couleur du texte": "Couleur du texte",
+        "Transparence du texte": "Transparence du texte",
+        "Espacement au dessus de l'objet": "Espacement au dessus de l'objet",
+        "Porte\/Fenêtre": "Porte\/Fenêtre",
+        "Fênetre": "Fênetre",
+        "Volet": "Volet",
+        "Fênetre\/Porte": "Fênetre\/Porte",
+        "Couleur fênetre\/porte ouverte": "Couleur fênetre\/porte ouverte",
+        "Couleur fênetre\/porte fermée": "Couleur fênetre\/porte fermée",
+        "Couleur volet fermé": "Couleur volet fermé",
+        "Supprimer": "Supprimer",
+        "Couleur conditionnel": "Couleur conditionnel",
+        "Condition": "Condition",
+        "Ajouter": "Ajouter",
+        "Couleur": "Couleur",
+        "Etat": "Etat",
+        "Rotation": "Rotation",
+        "Activer": "Activer",
+        "Ouverture": "Ouverture",
+        "Gauche": "Gauche",
+        "Droite": "Droite",
+        "Devant": "Devant",
+        "Derriere": "Derriere",
+        "Normal": "Normal",
+        "Inversé": "Inversé",
+        "Translation": "Translation",
+        "Sens": "Sens",
+        "Haut": "Haut",
+        "Bas": "Bas",
+        "Répeter": "Répeter",
+        "Masquer quand la porte\/fenêtre est ouverte": "Masquer quand la porte\/fenêtre est ouverte",
+        "Couleur ouverte": "Couleur ouverte",
+        "Couleur fermée": "Couleur fermée",
+        "Masquer quand le volet est ouvert": "Masquer quand le volet est ouvert",
+        "Couleur fermé": "Couleur fermé"
+    },
+    "core\/ajax\/plan3d.ajax.php": {
+        "plan3d header inconnu verifiez l'id : ": "plan3d header inconnu verifiez l'id : "
+    },
+    "desktop\/modal\/plan3dHeader.configure.php": {
+        "Sauvegarder": "Sauvegarder",
+        "Général": "Général",
+        "Nom": "Nom",
+        "Code d'accès": "Code d'accès",
+        "Icône": "Icône",
+        "Choisir": "Choisir",
+        "Chemin d'accès": "Chemin d'accès",
+        "Fichier OBJ": "Fichier OBJ",
+        "Fichier MTL": "Fichier MTL",
+        "Tailles": "Tailles",
+        "Taille (LxH)": "Taille (LxH)",
+        "Image supprimée": "Image supprimée",
+        "Design sauvegardé": "Design sauvegardé",
+        "Plan 3d sauvegardé": "Plan 3d sauvegardé",
+        "Supprimer": "Supprimer",
+        "Model 3D": "Model 3D",
+        "Envoyer": "Envoyer",
+        "Chargement réussi merci de recharger la page pour voir le résultat": "Chargement réussi merci de recharger la page pour voir le résultat"
+    },
+    "desktop\/php\/plan3d.php": {
+        "Informations": "Informations"
+    },
+    "desktop\/js\/plan3d.js": {
+        "Configuration du plan 3D": "Configuration du plan 3D",
+        "Configuration de l\\'objet": "Configuration de l\\'objet",
+        "Chargement...": "Chargement..."
+    },
+    "desktop\/3d.php": {
+        "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id"
+    },
+    "desktop\/php\/system.php": {
+        "Rechercher": "Rechercher",
+        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous",
+        "OK": "OK"
+    },
+    "core\/ajax\/eqLogic.ajax.php": {
+        "EqLogic inconnu, vérifiez l'id : ": "EqLogic inconnu, vérifiez l'id : "
+    },
+    "desktop\/modal\/history.calcul.php": {
+        "Sauvegarder": "Sauvegarder",
+        "Ajouter": "Ajouter",
+        "Nom": "Nom",
+        "Calcul": "Calcul",
+        "Type": "Type",
+        "Groupement": "Groupement",
+        "Escalier": "Escalier",
+        "Action": "Action",
+        "Sauvegarde effectuée": "Sauvegarde effectuée",
+        "Formule de calcul": "Formule de calcul",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Ligne": "Ligne",
+        "Aire": "Aire",
+        "Colonne": "Colonne",
+        "Aucun groupement": "Aucun groupement",
+        "Sommes par jour": "Sommes par jour",
+        "Moyenne par jour": "Moyenne par jour",
+        "Minimum par jour": "Minimum par jour",
+        "Maximum par jour": "Maximum par jour",
+        "Sommes par semaine": "Sommes par semaine",
+        "Moyenne par semaine": "Moyenne par semaine",
+        "Minimum par semaine": "Minimum par semaine",
+        "Maximum par semaine": "Maximum par semaine",
+        "Sommes par mois": "Sommes par mois",
+        "Moyenne par mois": "Moyenne par mois",
+        "Minimum par mois": "Minimum par mois",
+        "Maximum par mois": "Maximum par mois",
+        "Non": "Non",
+        "Oui": "Oui",
+        "Afficher le graphique": "Afficher le graphique"
+    },
+    "desktop\/modal\/scenario.template.php": {
+        "Appliquer un template": "Appliquer un template",
+        "Nom du template": "Nom du template",
+        "Template": "Template",
+        "Général": "Général",
+        "Gérer": "Gérer",
+        "Partager sur": "Partager sur",
+        "Supprimer": "Supprimer",
+        "Télécharger": "Télécharger",
+        "Paramètres du scénario": "Paramètres du scénario",
+        "Appliquer": "Appliquer",
+        "Partager sur le market": "Partager sur le market",
+        "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario",
+        "Template ajouté avec succès": "Template ajouté avec succès",
+        "Envoyer un template": "Envoyer un template"
+    },
+    "desktop\/.php": {
+        "Aucune phrase trouvée": "Aucune phrase trouvée"
+    },
+    "desktop\/modal\/interact.test.php": {
+        "Demande": "Demande",
+        "Exécuter": "Exécuter",
+        "Résultat": "Résultat",
+        "La demande ne peut être vide": "La demande ne peut être vide"
+    },
+    "desktop\/modal\/note.manager.php": {
+        "Supprimer": "Supprimer",
+        "Sauvegarder": "Sauvegarder",
+        "Ajouter": "Ajouter",
+        "Note crée avec succès": "Note crée avec succès",
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note : ",
+        "Note supprimée avec succès": "Note supprimée avec succès",
+        "Note créée avec succès": "Note créée avec succès"
+    },
+    "desktop\/modal\/cmd.selectMultiple.php": {
+        "Basculer": "Basculer",
+        "Valider": "Valider",
+        "Nom": "Nom"
+    },
+    "desktop\/modal\/cmd.configureHistory.php": {
+        "Valider": "Valider",
+        "Historisé": "Historisé",
+        "Timeline": "Timeline",
+        "Nom": "Nom",
+        "Plugin": "Plugin",
+        "Mode de lissage": "Mode de lissage",
+        "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
+        "Action": "Action",
+        "Moyenne": "Moyenne",
+        "Minimum": "Minimum",
+        "Maximum": "Maximum",
+        "Aucun": "Aucun",
+        "Jamais": "Jamais",
+        "1 jour": "1 jour",
+        "7 jours": "7 jours",
+        "1 mois": "1 mois",
+        "3 mois": "3 mois",
+        "6 mois": "6 mois",
+        "1 an": "1 an",
+        "Configuration de la commande": "Configuration de la commande",
+        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
+        "Type": "Type",
+        "Commande(s) historisée(s) : ": "Commande(s) historisée(s) : ",
+        "Commande(s) timeline : ": "Commande(s) timeline : "
+    },
+    "desktop\/modal\/user.rights.php": {
+        "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
+        "Sauvegarder": "Sauvegarder",
+        "Equipements": "Equipements",
+        "Scénarios": "Scénarios",
+        "Equipement": "Equipement",
+        "Droits": "Droits",
+        "Aucun": "Aucun",
+        "Visualisation": "Visualisation",
+        "Visualisation et exécution": "Visualisation et exécution",
+        "Scénario": "Scénario",
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
+    },
+    "desktop\/modal\/object.summary.php": {
+        "ID": "ID",
+        "Objet": "Objet",
+        "Père": "Père",
+        "Visible": "Visible",
+        "Masqué": "Masqué",
+        "Résumé Défini": "Résumé Défini",
+        "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
+        "Résumé Mobile Masqué": "Résumé Mobile Masqué",
+        "Oui": "Oui",
+        "Non": "Non"
+    },
+    "3rdparty\/jquery.tablesorter\/jquery.tablesorter.widgets.min.js": {
+        "label": "label",
+        "([^}]+?)": "([^}]+?)",
+        "|": "|"
     }
 }

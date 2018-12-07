@@ -477,11 +477,19 @@ class object {
 		return $return;
 	}
 
-	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_searchOnchild = false) {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
 			foreach ($eqLogics as &$eqLogic) {
 				$eqLogic->setObject($this);
+			}
+		}
+		if ($_searchOnchild) {
+			$child_object = jeeObject::buildTree($this);
+			if (count($child_object) > 0) {
+				foreach ($child_object as $object) {
+					$eqLogics = array_merge($eqLogics, $object->getEqLogic($_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId));
+				}
 			}
 		}
 		return $eqLogics;
@@ -575,11 +583,7 @@ class object {
 		}
 		$values = array();
 		foreach ($summaries[$_key] as $infos) {
-			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
-			if (is_object($cmd)) {
-				$eqLogic = $cmd->getEqLogic();
-			}
-			if (is_object($eqLogic) && $eqLogic->getAlert() != '') {
+			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
 			$value = jeedom::evaluateExpression(cmd::cmdToValue($infos['cmd']));

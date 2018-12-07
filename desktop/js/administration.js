@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ actionOptions = [];
  var url = document.location.toString();
  if (url.match('#')) {
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
@@ -25,12 +25,12 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"]', 'change', function () {
     if($(this).value() == 1){
-       $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
-       $('.configKey[data-l1key=externalPort]').attr('disabled',true);
-       $('.configKey[data-l1key=externalAddr]').value('');
-       $('.configKey[data-l1key=externalPort]').value('');
-   }else{
+     $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').attr('disabled',true);
+     $('.configKey[data-l1key=externalPort]').attr('disabled',true);
+     $('.configKey[data-l1key=externalAddr]').value('');
+     $('.configKey[data-l1key=externalPort]').value('');
+ }else{
     $('.configKey[data-l1key=externalProtocol]').attr('disabled',false);
     $('.configKey[data-l1key=externalAddr]').attr('disabled',false);
     $('.configKey[data-l1key=externalPort]').attr('disabled',false);
@@ -55,13 +55,13 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change
 });
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
- $('.cacheEngine').hide();
- $('.cacheEngine.'+$(this).value()).show();
+   $('.cacheEngine').hide();
+   $('.cacheEngine.'+$(this).value()).show();
 });
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
- $('.logEngine').hide();
- $('.logEngine.'+$(this).value()).show();
+   $('.logEngine').hide();
+   $('.logEngine.'+$(this).value()).show();
 });
 
 $(".bt_regenerate_api").on('click', function (event) {
@@ -69,7 +69,7 @@ $(".bt_regenerate_api").on('click', function (event) {
     var el = $(this);
     bootbox.confirm('{{Etes-vous sûr de vouloir réinitialiser la clef API de }}'+el.attr('data-plugin')+' ?', function (result) {
         if (result) {
-           $.ajax({
+         $.ajax({
             type: "POST", 
             url: "core/ajax/config.ajax.php",
             data: {
@@ -88,11 +88,9 @@ $(".bt_regenerate_api").on('click', function (event) {
                 el.closest('.input-group').find('.span_apikey').value(data.result);
             }
         });
-       }
-   });
+     }
+ });
 });
-
-
 
 $('#bt_forceSyncHour').on('click', function () {
     $.hideAlert();
@@ -107,45 +105,45 @@ $('#bt_forceSyncHour').on('click', function () {
 });
 
 $('#bt_restartDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
+ $.hideAlert();
+ jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-       jeedom.network.restartDns({
+     jeedom.network.restartDns({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
-     }
- });
-   }
+           modifyWithoutSave = false;
+           loadPage('index.php?v=d&p=administration&panel=config_network');
+       }
+   });
+ }
 }); 
 });
 
 
 $('#bt_haltDns').on('click', function () {
-   $.hideAlert();
-   jeedom.config.save({
+ $.hideAlert();
+ jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-       jeedom.network.stopDns({
+     jeedom.network.stopDns({
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-         modifyWithoutSave = false;
-         loadPage('index.php?v=d&p=administration&panel=config_network');
-     }
- });
-   }
+           modifyWithoutSave = false;
+           loadPage('index.php?v=d&p=administration&panel=config_network');
+       }
+   });
+ }
 }); 
 });
 
@@ -173,8 +171,10 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
     $.hideAlert();
     saveConvertColor();
     saveObjectSummary();
+    var config = $('#config').getValues('.configKey')[0];
+    config.actionOnMessage = json_encode($('#div_actionOnMessage .actionOnMessage').getValues('.expressionAttr'));
     jeedom.config.save({
-        configuration: $('#config').getValues('.configKey')[0],
+        configuration: config,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -186,6 +186,7 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
                 },
                 success: function (data) {
                     $('#config').setValues(data, '.configKey');
+                    loadAactionOnMessage();
                     modifyWithoutSave = false;
                     $('#div_alert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
                 }
@@ -194,9 +195,10 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
     });
 });
 
+
 $('#bt_accessDB').on('click', function () {
     var href = $(this).attr('data-href');
-    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
+    bootbox.confirm('{{Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\'en cas de}} '+JEEDOM_PRODUCT_NAME+' {{non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\'accès est enregistrée) ?}}', function (result) {
         if (result) {
             var win = window.open(href, '_blank');
             win.focus();
@@ -240,10 +242,115 @@ $('#bt_addColorConvert').on('click', function () {
     addConvertColor();
 });
 
-$('#bt_selectMailCmd').on('click', function () {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function (result) {
-        $('.configKey[data-l1key=emailAdmin]').atCaret('insert', result.human);
+$('#bt_addActionOnMessage').on('click',function(){
+    addActionOnMessage();
+});
+
+
+function loadAactionOnMessage(){
+    $('#div_actionOnMessage').empty();
+    jeedom.config.load({
+        configuration: 'actionOnMessage',
+        error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+            if(data == ''){
+                return;
+            }
+            actionOptions = [];
+            for (var i in data) {
+                addActionOnMessage(data[i]);
+            }
+            jeedom.cmd.displayActionsOption({
+                params : actionOptions,
+                async : false,
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+              },
+              success : function(data){
+                for(var i in data){
+                    $('#'+data[i].id).append(data[i].html.html);
+                }
+                taAutosize();
+            }
+        });
+        }
     });
+}
+
+function addActionOnMessage(_action) {
+    if (!isset(_action)) {
+        _action = {};
+    }
+    if (!isset(_action.options)) {
+        _action.options = {};
+    }
+    var div = '<div class="actionOnMessage">';
+    div += '<div class="form-group ">';
+    div += '<label class="col-sm-1 control-label">Action</label>';
+    div += '<div class="col-sm-2">';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
+    div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
+    div += '</div>';
+    div += '<div class="col-sm-4">';
+    div += '<div class="input-group">';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-default bt_removeAction btn-sm"><i class="fa fa-minus-circle"></i></a>';
+    div += '</span>';
+    div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />';
+    div += '<span class="input-group-btn">';
+    div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
+    div += '<a class="btn btn-default btn-sm listCmdAction"><i class="fa fa-list-alt"></i></a>';
+    div += '</span>';
+    div += '</div>';
+    div += '</div>';
+    var actionOption_id = uniqId();
+    div += '<div class="col-sm-5 actionOptions" id="'+actionOption_id+'">';
+    div += '</div>';
+    div += '</div>';
+    $('#div_actionOnMessage').append(div);
+    $('#div_actionOnMessage .actionOnMessage:last').setValues(_action, '.expressionAttr');
+    actionOptions.push({
+        expression : init(_action.cmd, ''),
+        options : _action.options,
+        id : actionOption_id
+    });
+}
+
+$("body").delegate('.bt_removeAction', 'click', function () {
+    $(this).closest('.actionOnMessage').remove();
+});
+
+$('body').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+    var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr');
+    var el = $(this);
+    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
+        el.closest('.actionOnMessage').find('.actionOptions').html(html);
+        taAutosize();
+    })
+});
+
+$("body").delegate(".listCmdAction", 'click', function () {
+    var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]');
+    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function (result) {
+        el.value(result.human);
+        jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+            el.closest('.actionOnMessage').find('.actionOptions').html(html);
+            taAutosize();
+        });
+    });
+});
+
+$("body").delegate(".listAction", 'click', function () {
+  var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]');
+  jeedom.getSelectActionModal({}, function (result) {
+    el.value(result.human);
+    jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+      el.closest('.actionOnMessage').find('.actionOptions').html(html);
+      taAutosize();
+  });
+});
 });
 
 $('.bt_selectAlertCmd').on('click', function () {
@@ -260,7 +367,7 @@ $('.bt_selectWarnMeCmd').on('click', function () {
 });
 
 if (getUrlVars('panel') != false) {
- $('a[href="#'+getUrlVars('panel')+'"]').click();
+   $('a[href="#'+getUrlVars('panel')+'"]').click();
 }
 
 printConvertColor();
@@ -275,6 +382,7 @@ jeedom.config.load({
         $('#config').setValues(data, '.configKey');
         $('.configKey[data-l1key="market::allowDNS"]').trigger('change');
         $('.configKey[data-l1key="ldap:enable"]').trigger('change');
+        loadAactionOnMessage();
         modifyWithoutSave = false;
     }
 });
@@ -285,7 +393,7 @@ $('#div_pageContainer').delegate('.configKey', 'change', function () {
 
 
 $('#bt_resetHour').on('click',function(){
- $.ajax({
+   $.ajax({
     type: "POST", 
     url: "core/ajax/jeedom.ajax.php", 
     data: {
@@ -306,7 +414,7 @@ $('#bt_resetHour').on('click',function(){
 });
 
 $('#bt_resetHwKey').on('click',function(){
- $.ajax({
+   $.ajax({
     type: "POST", 
     url: "core/ajax/jeedom.ajax.php", 
     data: {
@@ -385,9 +493,9 @@ function clearJeedomDate() {
 function flushCache() {
   jeedom.cache.flush({
     error: function (error) {
-       $('#div_alert').showAlert({message: data.result, level: 'danger'});
-   },
-   success: function (data) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
     updateCacheStats();
     $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
 }
@@ -397,9 +505,9 @@ function flushCache() {
 function cleanCache() {
     jeedom.cache.clean({
         error: function (error) {
-           $('#div_alert').showAlert({message: data.result, level: 'danger'});
-       },
-       success: function (data) {
+         $('#div_alert').showAlert({message: data.result, level: 'danger'});
+     },
+     success: function (data) {
         updateCacheStats();
         $('#div_alert').showAlert({message: '{{Cache nettoyé}}', level: 'success'});
     }
@@ -407,11 +515,11 @@ function cleanCache() {
 }
 
 function updateCacheStats(){
-   jeedom.cache.stats({
+ jeedom.cache.stats({
     error: function (error) {
-       $('#div_alert').showAlert({message: data.result, level: 'danger'});
-   },
-   success: function (data) {
+     $('#div_alert').showAlert({message: data.result, level: 'danger'});
+ },
+ success: function (data) {
     $('#span_cacheObject').html(data.count);
 }
 });
@@ -610,7 +718,7 @@ function printObjectSummary() {
             }
             $('#table_objectSummary tbody').empty();
             for (var i in data.result) {
-             if(isset(data.result[i].key) && data.result[i].key == ''){
+               if(isset(data.result[i].key) && data.result[i].key == ''){
                 continue;
             }
             if(!isset(data.result[i].name)){
@@ -668,9 +776,9 @@ function addObjectSummary(_summary) {
     tr += '</tr>';
     $('#table_objectSummary tbody').append(tr);
     if (isset(_summary)){
-     $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
- }
- if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
+       $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+   }
+   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
 }
 modifyWithoutSave = true;

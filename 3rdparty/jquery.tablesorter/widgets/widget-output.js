@@ -1,8 +1,9 @@
-/*! Widget: output - updated 7/31/2016 (v2.27.0) *//*
+/*! Widget: output - updated 9/27/2017 (v2.29.0) *//*
  * Requires tablesorter v2.8+ and jQuery 1.7+
  * Modified from:
  * HTML Table to CSV: http://www.kunalbabre.com/projects/table2CSV.php (License unknown?)
  * Download-File-JS: https://github.com/PixelsCommander/Download-File-JS (http://www.apache.org/licenses/LICENSE-2.0)
+ * FileSaver.js: https://github.com/eligrey/FileSaver.js (MIT)
  */
 /*jshint browser:true, jquery:true, unused:false */
 /*global jQuery:false, alert:false */
@@ -14,6 +15,13 @@
 	output = ts.output = {
 
 		event      : 'outputTable',
+		// Double click time is about 500ms; this value ignores double clicks
+		// and prevents multiple windows from opening - issue in Firefox
+		noDblClick : 600, // ms
+		lastEvent  : 0,
+		// prevent overlapping multiple opens in case rendering of content in
+		// popup or download is longer than noDblClick time.
+		busy       : false,
 
 		// wrap line breaks & tabs in quotes
 		regexQuote : /([\n\t\x09\x0d\x0a]|<[^<]+>)/, // test if cell needs wrapping quotes
@@ -25,7 +33,7 @@
 		replaceTab : '\x09',
 
 		popupTitle : 'Output',
-		popupStyle : 'width:100%;height:100%;', // for textarea
+		popupStyle : 'width:100%;height:100%;margin:0;resize:none;', // for textarea
 		message    : 'Your device does not support downloading. Please try again in desktop browser.',
 
 		init : function(c) {
@@ -33,9 +41,17 @@
 				.off(output.event)
 				.on(output.event, function( e ) {
 					e.stopPropagation();
-					// explicitly use table.config.widgetOptions because we want
-					// the most up-to-date values; not the 'wo' from initialization
-					output.process(c, c.widgetOptions);
+					// prevent multiple windows opening
+					if (
+						!output.busy &&
+						(e.timeStamp - output.lastEvent > output.noDblClick)
+					) {
+						output.lastEvent = e.timeStamp;
+						output.busy = true;
+						// explicitly use table.config.widgetOptions because we want
+						// the most up-to-date values; not the 'wo' from initialization
+						output.process(c, c.widgetOptions);
+					}
 				});
 		},
 
@@ -69,7 +85,7 @@
 						colspanLen = parseInt( $cell.attr('colspan'), 10) - 1;
 						// allow data-attribute to be an empty string
 						txt = output.formatData( c, wo, $cell, isHeader );
-						for (col = 1; col <= colspanLen; col++) {
+						for (col = 0; col < colspanLen; col++) {
 							// if we're processing the header & making JSON, the header names need to be unique
 							if ($cell.filter('[rowspan]').length) {
 								rowspanLen = parseInt( $cell.attr('rowspan'), 10);
@@ -115,8 +131,10 @@
 			return data;
 		},
 
-		process : function(c, wo) {
-			var mydata, $this, $rows, headers, csvData, len, rowsLen, tmp,
+		// optional vars $rows and dump added by TheSin to make
+		// process callable via callback for ajaxPager
+		process : function(c, wo, $rows, dump) {
+			var mydata, $this, headers, csvData, len, rowsLen, tmp,
 				hasStringify = window.JSON && JSON.hasOwnProperty('stringify'),
 				indx = 0,
 				tmpData = (wo.output_separator || ',').toLowerCase(),
@@ -146,7 +164,8 @@
 			headers = output.processRow(c, $this, true, outputJSON);
 
 			// all tbody rows - do not include widget added rows (e.g. grouping widget headers)
-			$rows = $el.children('tbody').children('tr').not(c.selectorRemove);
+			if ( !$rows )
+				$rows = $el.children('tbody').children('tr').not(c.selectorRemove);
 
 			// check for a filter callback function first! because
 			// /^f/.test(function(){ console.log('test'); }) is TRUE! (function is converted to a string)
@@ -162,7 +181,6 @@
 
 			// process to array of arrays
 			csvData = output.processRow(c, $rows);
-
 			if (wo.output_includeFooter) {
 				// clone, to force the tfoot rows to the end of this selection of rows
 				// otherwise they appear after the thead (the order in the HTML)
@@ -183,18 +201,27 @@
 				// requires JSON stringify; if it doesn't exist, the output will show [object Object],... in the output window
 				mydata = hasStringify ? JSON.stringify(tmpData) : tmpData;
 			} else {
-				tmp = [ headers[ ( len > 1 && wo.output_headerRows ) ? indx % len : len - 1 ] ];
-				tmpData = output.row2CSV(wo, wo.output_headerRows ? headers : tmp, outputArray)
-					.concat( output.row2CSV(wo, csvData, outputArray) );
+				if (wo.output_includeHeader) {
+					tmp = [ headers[ ( len > 1 && wo.output_headerRows ) ? indx % len : len - 1 ] ];
+					tmpData = output.row2CSV(wo, wo.output_headerRows ? headers : tmp, outputArray)
+						.concat( output.row2CSV(wo, csvData, outputArray) );
+				} else {
+					tmpData = output.row2CSV(wo, csvData, outputArray);
+				}
 
 				// stringify the array; if stringify doesn't exist the array will be flattened
 				mydata = outputArray && hasStringify ? JSON.stringify(tmpData) : tmpData.join('\n');
+			}
+
+			if (dump) {
+				return mydata;
 			}
 
 			// callback; if true returned, continue processing
 			if ($.isFunction(wo.output_callback)) {
 				tmp = wo.output_callback(c, mydata, c.pager && c.pager.ajaxObject.url || null);
 				if ( tmp === false ) {
+					output.busy = false;
 					return;
 				} else if ( typeof tmp === 'string' ) {
 					mydata = tmp;
@@ -204,8 +231,9 @@
 			if ( /p/i.test( wo.output_delivery || '' ) ) {
 				output.popup(mydata, wo.output_popupStyle, outputJSON || outputArray);
 			} else {
-				output.download(wo, mydata);
+				output.download(c, wo, mydata);
 			}
+			output.busy = false;
 
 		}, // end process
 
@@ -274,13 +302,20 @@
 
 		popup : function(data, style, wrap) {
 			var generator = window.open('', output.popupTitle, style);
-			generator.document.write(
-				'<html><head><title>' + output.popupTitle + '</title></head><body>' +
-				'<textarea wrap="' + (wrap ? 'on' : 'off') + '" style="' + output.popupStyle + '">' + data + '\n</textarea>' +
-				'</body></html>'
-			);
-			generator.document.close();
-			generator.focus();
+			try {
+				generator.document.write(
+					'<html><head><title>' + output.popupTitle + '</title></head><body>' +
+					'<textarea wrap="' + (wrap ? 'on' : 'off') + '" style="' +
+					output.popupStyle + '">' + data + '\n</textarea>' +
+					'</body></html>'
+				);
+				generator.document.close();
+				generator.focus();
+			} catch (e) {
+				// popup already open
+				generator.close();
+				return output.popup(data, style, wrap);
+			}
 			// select all text and focus within the textarea in the popup
 			// $(generator.document).find('textarea').select().focus();
 			return true;
@@ -288,13 +323,18 @@
 
 		// modified from https://github.com/PixelsCommander/Download-File-JS
 		// & http://html5-demos.appspot.com/static/a.download.html
-		download : function (wo, data){
+		download : function (c, wo, data) {
 
-			var e, blob, gotBlob,
+			if (typeof wo.output_savePlugin === 'function') {
+				return wo.output_savePlugin(c, wo, data);
+			}
+
+			var e, blob, gotBlob, bom,
 				nav = window.navigator,
 				link = document.createElement('a');
 
-			// iOS devices do not support downloading. We have to inform user about this.
+			// iOS devices do not support downloading. We have to inform user about
+			// this limitation.
 			if (/(iP)/g.test(nav.userAgent)) {
 				alert(output.message);
 				return false;
@@ -311,8 +351,12 @@
 			if ( gotBlob ) {
 
 				window.URL = window.URL || window.webkitURL;
-				// prepend BOM for utf-8 encoding - see https://github.com/eligrey/FileSaver.js/blob/master/FileSaver.js#L140
-				blob = new Blob( [ '\ufeff', data ], { type: wo.output_encoding } );
+				// prepend BOM for UTF-8 XML and text/* types (including HTML)
+				// note: your browser will automatically convert UTF-16 U+FEFF to EF BB BF
+				// see https://github.com/eligrey/FileSaver.js/blob/master/FileSaver.js#L68
+				bom = (/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(wo.output_encoding)) ?
+					[ '\ufeff', data ] : [ data ];
+				blob = new Blob( bom, { type: wo.output_encoding } );
 
 				if (nav.msSaveBlob) {
 					// IE 10+
@@ -353,8 +397,9 @@
 			output_ignoreColumns  : [],          // columns to ignore [0, 1,... ] (zero-based index)
 			output_hiddenColumns  : false,       // include hidden columns in the output
 			output_includeFooter  : false,       // include footer rows in the output
+			output_includeHeader  : true,        // include header rows in the output
+			output_headerRows     : false,       // if true, include multiple header rows
 			output_dataAttrib     : 'data-name', // header attrib containing modified header name
-			output_headerRows     : false,       // if true, include multiple header rows (JSON only)
 			output_delivery       : 'popup',     // popup, download
 			output_saveRows       : 'filtered',  // (a)ll, (v)isible, (f)iltered or jQuery filter selector
 			output_duplicateSpans : true,        // duplicate output data in tbody colspan/rowspan
@@ -373,7 +418,13 @@
 			// JSON callback executed when a colspan is encountered in the header
 			output_callbackJSON  : function($cell, txt, cellIndex) { return txt + '(' + (cellIndex) + ')'; },
 			// the need to modify this for Excel no longer exists
-			output_encoding      : 'data:application/octet-stream;charset=utf8,'
+			output_encoding      : 'data:application/octet-stream;charset=utf8,',
+			// override internal save file code and use an external plugin such as
+			// https://github.com/eligrey/FileSaver.js
+			output_savePlugin    : null /* function(c, wo, data) {
+				var blob = new Blob([data], {type: wo.output_encoding});
+				saveAs(blob, wo.output_saveFileName);
+			} */
 		},
 		init: function(table, thisWidget, c) {
 			output.init(c);

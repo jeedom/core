@@ -107,7 +107,7 @@ foreach ($scenarioListGroup as $group) {
 <legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 <?php
 if (count($totalScenario) == 0) {
-	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter un scénario pour commencer</span></center>";
+	echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 } else {
 	echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
 	echo '<div class="panel-group" id="accordionScenar">';
@@ -176,7 +176,7 @@ if (count($totalScenario) == 0) {
  <a class="btn btn-default btn-sm pull-right" id="bt_templateScenario"><i class="fa fa-cubes"></i> {{Template}}</a>
  <a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
  <a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
- <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Executer}}</a>
+ <a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fa fa-gamepad"></i> {{Exécuter}}</a>
  <a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fa fa-check"></i> {{Expression}}</a>
  <a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fa fa-eye"></i> {{Variables}}</a>
  <span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
@@ -235,7 +235,7 @@ foreach (object::all() as $object) {
            </div>
          </div>
          <div class="form-group">
-          <label class="col-xs-5 control-label">{{Timeout secondes (0 = illimité)}}</label>
+          <label class="col-xs-5 control-label">{{Timeout en secondes (0 = illimité)}}</label>
           <div class="col-xs-6">
             <input class="form-control scenarioAttr" data-l1key="timeout">
           </div>
@@ -243,11 +243,11 @@ foreach (object::all() as $object) {
         <div class="form-group">
           <label class="col-xs-5 control-label">{{Multi lancement}}</label>
           <div class="col-xs-1">
-            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourné plusieurs fois en même temps}}">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
           </div>
            <label class="col-xs-4 control-label">{{Mode synchrone}}</label>
           <div class="col-xs-1">
-            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est mode synchrone, attention peux rendre le système instable}}">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
           </div>
         </div>
         <div class="form-group">
@@ -263,7 +263,7 @@ foreach (object::all() as $object) {
         <div class="form-group">
           <label class="col-xs-5 control-label">{{Suivre dans la timeline}}</label>
           <div class="col-xs-1">
-            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les executions du scénario pourront etre vu dans la timeline}}">
+            <input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
           </div>
         </div>
       </fieldset>
@@ -363,23 +363,23 @@ foreach (object::all() as $object) {
         </div>
 
         <div class="alert alert-info addElementTypeDescription action" style="display:none;">
-          Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : passer votre sirène sur ON.
+          Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
         </div>
 
         <div class="alert alert-info addElementTypeDescription for" style="display:none;">
-          Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : permet de répéter une action de 1 à X, c’est-à-dire X fois.
+          Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
         </div>
 
         <div class="alert alert-info addElementTypeDescription in" style="display:none;">
-         Permet de faire une action dans X min. Par exemple : Dans 5 min éteindre la lumière.
+         Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
        </div>
 
        <div class="alert alert-info addElementTypeDescription at" style="display:none;">
-         A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30 ouvrir les volets.
+         A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
        </div>
 
        <div class="alert alert-info addElementTypeDescription code" style="display:none;">
-        Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell etc...
+        Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
       </div>
 
       <div class="alert alert-info addElementTypeDescription comment" style="display:none;">

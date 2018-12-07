@@ -50,6 +50,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'category' => array(
 			'security' => array('name' => 'Sécurité', 'icon' => 'fa-lock'),
 			'automation protocol' => array('name' => 'Protocole domotique', 'icon' => 'fa-rss'),
+			'home automation protocol' => array('name' => 'Passerelle domotique', 'icon' => 'fa-asterisk'),
 			'programming' => array('name' => 'Programmation', 'icon' => 'fa-code'),
 			'organization' => array('name' => 'Organisation', 'icon' => 'fa-calendar', 'alias' => array('travel', 'finance')),
 			'weather' => array('name' => 'Météo', 'icon' => 'fa-sun-o'),
@@ -62,6 +63,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
 			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
 			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
+			'other' => array('name' => 'Autre', 'icon' => 'fa-bars'),
 		),
 	),
 	'alerts' => array(
@@ -126,6 +128,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'CAMERA_DEZOOM' => array('name' => 'Zoom caméra vers l\'arrière', 'family' => 'Caméra', 'type' => 'Action'),
 			'CAMERA_STOP' => array('name' => 'Stop caméra', 'family' => 'Caméra', 'type' => 'Action'),
 			'CAMERA_PRESET' => array('name' => 'Preset caméra', 'family' => 'Caméra', 'type' => 'Action'),
+			'CAMERA_URL' => array('name' => 'URL caméra', 'family' => 'Caméra', 'type' => 'info'),
+			'CAMERA_RECORD_STATE' => array('name' => 'État enregistrement caméra', 'family' => 'Caméra', 'type' => 'info'),
+			'CAMERA_RECORD' => array('name' => 'Enregistrement caméra', 'family' => 'Caméra', 'type' => 'Action'),
+			'CAMERA_TAKE' => array('name' => 'Snapshot caméra', 'family' => 'Caméra', 'type' => 'Action'),
 			'MODE_STATE' => array('name' => 'Mode', 'family' => 'Mode', 'type' => 'Info'),
 			'MODE_SET_STATE' => array('name' => 'Mode', 'family' => 'Mode', 'type' => 'Action'),
 			'ALARM_STATE' => array('name' => 'Alarme état', 'family' => 'Alarme', 'type' => 'Info', 'ignore' => true),
@@ -311,4 +317,3 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 );
-?>

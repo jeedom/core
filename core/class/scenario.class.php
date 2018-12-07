@@ -63,6 +63,14 @@ class scenario {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byString($_string) {
+		$scenario = self::byId(str_replace('#scenario', '', self::fromHumanReadable($_string)));
+		if (!is_object($scenario)) {
+			throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
+		}
+		return $scenario;
+	}
+
 	/**
 	 * Renvoie tous les objets scenario
 	 * @return [] scenario object scenario
@@ -257,7 +265,7 @@ class scenario {
 		} else {
 			$message = __('Scénario exécuté automatiquement sur programmation', __FILE__);
 			$scenarios = scenario::schedule();
-			$trigger = '#schedule#';
+			$trigger = 'schedule';
 			if (jeedom::isDateOk()) {
 				foreach ($scenarios as $key => &$scenario) {
 					if ($scenario->getState() != 'in progress') {
@@ -372,11 +380,6 @@ class scenario {
 	public static function consystencyCheck($_needsReturn = false) {
 		$return = array();
 		foreach (self::all() as $scenario) {
-			if ($scenario->getGroup() == '') {
-				$group = 'aucun';
-			} else {
-				$group = $scenario->getGroup();
-			}
 			if ($scenario->getIsActive() != 1) {
 				if (!$_needsReturn) {
 					continue;
@@ -385,13 +388,12 @@ class scenario {
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
 				foreach ($scenario->getTrigger() as $trigger) {
-					$trigger_list .= cmd::cmdToHumanReadable($trigger);
+					$trigger_list .= cmd::cmdToHumanReadable($trigger) . '_';
 				}
-				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);
-				foreach ($matches[1] as $cmd_id) {
+				preg_match_all("/#([0-9]*)#/", $trigger_list, $matches);foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
-							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
+							$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
@@ -400,22 +402,13 @@ class scenario {
 			}
 			$expression_list = '';
 			foreach ($scenario->getElement() as $element) {
-				foreach ($element->getSubElement() as $subElement) {
-					foreach ($subElement->getExpression() as $expression) {
-						$expression_list .= cmd::cmdToHumanReadable($expression->getExpression()) . ' _ ';
-						if (is_array($expression->getOptions())) {
-							foreach ($expression->getOptions() as $key => $value) {
-								$expression_list .= cmd::cmdToHumanReadable($value) . ' _ ';
-							}
-						}
-					}
-				}
+				$expression_list .= cmd::cmdToHumanReadable(json_encode($element->getAjaxElement()));
 			}
 			preg_match_all("/#([0-9]*)#/", $expression_list, $matches);
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn) {
-						$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
+						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
@@ -764,13 +757,13 @@ class scenario {
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == '#schedule#' ? 'programmation' : $_trigger));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $_trigger == 'schedule' ? 'programmation' : $_trigger));
 			}
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog('Start : ' . $_message . '.');
+			$this->setLog('Start : ' . trim($_message, "'") . '.');
 		} else {
-			$this->setLog('Start : ' . $_message . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog('Start : ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
@@ -1087,9 +1080,9 @@ class scenario {
 					try {
 						$prev = $c->getPreviousRunDate()->getTimestamp();
 					} catch (Exception $e) {
-						return false;
+						continue;
 					} catch (Error $e) {
-						return false;
+						continue;
 					}
 					$lastCheck = strtotime($this->getLastLaunch());
 					$diff = abs((strtotime('now') - $prev) / 60);
@@ -1378,7 +1371,16 @@ class scenario {
 	 * @param type $_right
 	 * @return boolean
 	 */
-	public function hasRight($_right) {
+	public function hasRight($_right, $_user = null) {
+		if ($_user !== null) {
+			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
+				return true;
+			}
+			if (strpos($_user->getRights('scenario' . $this->getId()), $_right) !== false) {
+				return true;
+			}
+			return false;
+		}
 		if (!isConnect()) {
 			return false;
 		}
@@ -1487,10 +1489,8 @@ class scenario {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#scenario' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration('#scenario' . $this->getId() . '#');
-		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"scenario_id":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse('#scenario' . $this->getId() . '#');
-		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"scenario_id":"' . $this->getId()));
+		$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
+		$return['interactDef'] = interactDef::searchByUse(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'scenario', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#scenario' . $this->getId() . '#'),

@@ -11,7 +11,7 @@
     });
    }
    $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
-    jeedom.cmd.update['#id#']({display_value:'#000000'});
+    jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
   });
    jeedom.cmd.update['#id#']({display_value:'#state#'});
  </script>

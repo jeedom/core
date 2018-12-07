@@ -3,14 +3,14 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$status = (config::byKey('market::allowBeta') == 1) ? null : 'stable';
 $type = init('type', null);
 $categorie = init('categorie', null);
 $name = init('name', null);
+$author = init('author', null);
 if ($name == 'false') {
 	$name = null;
 }
-if ($name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
+if ($author == null && $name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
 	$default = true;
 	$markets = repo_market::byFilter(array(
 		'status' => 'stable',
@@ -27,10 +27,11 @@ if ($name === null && $categorie === null && init('certification', null) === nul
 	$default = false;
 	$markets = repo_market::byFilter(
 		array(
-			'status' => $status,
+			'status' => null,
 			'type' => $type,
 			'categorie' => $categorie,
 			'name' => $name,
+			'author' => $author,
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
 			'certification' => init('certification', null),
@@ -60,10 +61,10 @@ function displayWidgetName($_name) {
 	}
 	switch ($name[1]) {
 		case 'info':
-			$result .= '<i class="fa fa-eye fa-fw" title="Widget de type information"></i> ';
+			$result .= '<i class="fa fa-eye fa-fw" title="{{Widget de type information}}"></i> ';
 			break;
 		case 'action':
-			$result .= '<i class="fa fa-exclamation-circle fa-fw" title="Widget de type action"></i> ';
+			$result .= '<i class="fa fa-exclamation-circle fa-fw" title="{{Widget de type action}}"></i> ';
 			break;
 		default:
 			$result .= $name[1];
@@ -167,8 +168,8 @@ function displayWidgetSubtype($_name) {
 		<?php if (init('type', 'plugin') == 'plugin') {?>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">Gratuit</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">Payant</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
@@ -176,27 +177,42 @@ function displayWidgetSubtype($_name) {
 ?>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">Officiel</a>
-				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">Conseillé</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="btn-group" >
-				<a class="btn btn-default bt_installFilter" data-state="-1">Installé</a>
-				<a class="btn btn-default bt_installFilter" data-state="1">Non installé</a>
+				<a class="btn btn-default bt_installFilter" data-state="-1">{{Installé}}</a>
+				<a class="btn btn-default bt_installFilter" data-state="1">{{Non installé}}</a>
 				<a class="btn btn-default bt_installFilter" data-state="0"><i class="fa fa-times"></i></a>
 			</div>
 		</div>
 		<div class="form-group">
 			<select class="form-control" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
-				<option value="">Top et nouveautés</option>
 				<?php
-foreach (repo_market::distinctCategorie($type) as $id => $category) {
-	if (trim($category) != '' && is_numeric($id)) {
-		echo '<option value="' . $category . '"';
-		echo (init('categorie') == $category) ? 'selected >' : '>';
-		echo $category;
+if (init('categorie') == '') {
+	echo '<option value="" selected>{{Top et nouveautés}}</option>';
+} else {
+	echo '<option value="">{{Top et nouveautés}}</option>';
+}
+if ($type !== null && $type != 'plugin') {
+	foreach (repo_market::distinctCategorie($type) as $id => $category) {
+		if (trim($category) != '' && is_numeric($id)) {
+			echo '<option value="' . $category . '"';
+			echo (init('categorie') == $category) ? 'selected >' : '>';
+			echo $category;
+			echo '</option>';
+		}
+	}
+} else {
+	global $JEEDOM_INTERNAL_CONFIG;
+	foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+		echo '<option value="' . $key . '"';
+		echo (init('categorie') == $key) ? 'selected >' : '>';
+		echo $value['name'];
 		echo '</option>';
 	}
 }
@@ -243,7 +259,7 @@ foreach ($markets as $market) {
 	$update = update::byLogicalId($market->getLogicalId());
 	$category = $market->getCategorie();
 	if ($category == '') {
-		$category = 'Aucune';
+		$category = '{{Aucune}}';
 	}
 	if ($categorie != $category) {
 		$categorie = $category;
@@ -251,7 +267,11 @@ foreach ($markets as $market) {
 			if (!$first) {
 				echo '</div>';
 			}
-			echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie])) {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['icon'] . '"></i> ' . ucfirst($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$categorie]['name']) . '</legend>';
+			} else {
+				echo '<legend style="border-bottom: 1px solid #34495e; color : #34495e;" data-category="' . $nCategory . '">' . ucfirst($categorie) . '</legend>';
+			}
 			echo '<div class="pluginContainer" data-category="' . $nCategory . '">';
 		}
 		$first = false;
@@ -270,6 +290,9 @@ foreach ($markets as $market) {
 		}
 		if ($market->getCertification() == 'Conseillé') {
 			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Conseille.png" /></div>';
+		}
+		if ($market->getCertification() == 'Legacy') {
+			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Legacy.png" /></div>';
 		}
 		if ($market->getCertification() == 'Obsolète') {
 			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
@@ -296,9 +319,6 @@ foreach ($markets as $market) {
 		case 'plugin':
 			$default_image = 'core/img/no-image-plugin.png';
 			break;
-		case 'camera':
-			$default_image = 'core/img/no-image-camera.png';
-			break;
 		case 'script':
 			$default_image = 'core/img/no-image-script.png';
 			break;
@@ -315,8 +335,9 @@ foreach ($markets as $market) {
 
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
 
-	$note = $market->getRating();
+	echo '<span style="position : absolute;bottom : 25px;right : 12px;font-size : 0.7em;color:#999999;"><span style="font-size : 0.8em;">{{par}}</span> ' . $market->getAuthor() . '</span>';
 
+	$note = $market->getRating();
 	echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
 	for ($i = 1; $i < 6; $i++) {
 		if ($i <= $note) {

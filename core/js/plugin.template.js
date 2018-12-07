@@ -52,6 +52,14 @@
   });
 }
 
+var url = document.location.toString();
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+
 $('.eqLogicDisplayCard').on('click', function () {
     $('.li_eqLogic[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
 });
@@ -230,7 +238,7 @@ $('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
     if ($('.li_eqLogic.active').attr('data-eqLogic_id') != undefined) {
-        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.li_eqLogic.active a:first').text() + '</b> ?', function (result) {
+        bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?', function (result) {
             if (result) {
                 jeedom.eqLogic.remove({
                     type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
@@ -277,6 +285,9 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
                     }
                     modifyWithoutSave = false;
                     url += 'id=' + _data.id + '&saveSuccessFull=1';
+                    if (document.location.toString().match('#')) {
+                        url += '#' + document.location.toString().split('#')[1];
+                    }
                     loadPage(url);
                 }
             });
@@ -350,7 +361,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
 
 });
 
-$('#div_pageContainer').on( 'dblclick','.cmd input,select,span', function (event) {
+$('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
    event.stopPropagation();
 });
 

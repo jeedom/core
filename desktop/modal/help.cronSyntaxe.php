@@ -27,7 +27,7 @@ if (!isConnect()) {
 <div id='div_helpCronGenerate'></div>
 <p>{{Resultat :}} <span id='span_helpCronGenerate'></span></p>
                 </pre>
-                <center><span style='font-weight: bold;'>{{N'oubliez pas de copier/coller le resultat}}</span></center>
+                <center><span style='font-weight: bold;'>{{N'oubliez pas de copier/coller le résultat}}</span></center>
             </div>
         </div>
     </div>
@@ -91,9 +91,9 @@ if (!isConnect()) {
                             <th>{{Caractères spéciaux autorisés}}</th>
                         </tr>
                         <tr>
-                            <td>{{Minutes}}</td>
+                            <td>{{Minute}}</td>
                             <td>{{Oui}}</td>
-                            <td>0-59}}</td>
+                            <td>0-59</td>
                             <td><code>* / , -</code></td>
                         </tr>
                         <tr>
@@ -134,15 +134,15 @@ if (!isConnect()) {
                 <p>{{Support pour chaque caractère spécial dépend des distributions et versions de cron spécifiques}}</p>
                 <dl>
                     <dt>{{Astérisque ( * )}}</dt>
-                    <dd>{{L'astérisque indique que l'expression cron correspond à toutes les valeurs du champ. Par exemple, en utilisant un astérisque dans le 4ème domaine (mois) indique chaque mois.}}</dd>
+                    <dd>{{L'astérisque indique que l'expression cron correspond à toutes les valeurs du champ. Par exemple, en utilisant un astérisque dans le 4ème domaine (mois) indique tous les mois de l'année.}}</dd>
                 </dl>
                 <dl>
                     <dt>{{Slash ( / )}}</dt>
-                    <dd>{{Les barres obliques décrivent l'incréments de gamme. Par exemple 3-59/15 dans le 1er champ (minutes) indique la troisième minute de l'heure et toutes les 15 minutes par la suite. La forme "* / ..." est équivalent à la forme «premier-dernier / ...", c'est-à une augmentation au cours de la plus large possible du champ.}}</dd>
+                    <dd>{{Les barres obliques décrivent l'incrément de gamme. Par exemple 3-59/15 dans le 1er champ (minutes) indique la troisième minute de l'heure et toutes les 15 minutes par la suite. La forme "* / ..." est équivalent à la forme «premier-dernier / ...", c'est-à une augmentation au cours de la plus large plage possible du champ.}}</dd>
                 </dl>
                 <dl>
                     <dt>{{Pourcent (&nbsp;% )}}</dt>
-                    <dd>{{Pourcent (%) dans la commande, à moins échappé à barre oblique inverse (\), sont transformés en caractères de nouvelle ligne, et toutes les données après la première% sont envoyés à la commande comme entrée standard.}}</dd>
+                    <dd>{{Pourcent (%) dans la commande, à moins qu'il soit échappé par une barre oblique inverse (\), sont transformés en caractères de nouvelle ligne, et toutes les données après le  premier % sont envoyés à la commande comme entrée standard.}}</dd>
                 </dl>
                 <dl>
                     <dt>{{Virgule ( , )}}</dt>

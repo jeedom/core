@@ -352,7 +352,10 @@ jeedom.history.drawChart = function (_params) {
                     href: '',
                 },
                 navigator: {
-                    enabled:  _params.showNavigator
+                    enabled:  _params.showNavigator,
+                    series: { 
+                        includeInCSVExport: false 
+                    }
                 },
                 exporting: { 
                     enabled: _params.enableExport || ($.mobile) ? false : true 
@@ -459,10 +462,11 @@ jeedom.history.drawChart = function (_params) {
 });
 }
 
-
-
 jeedom.history.generatePlotBand = function (_startTime, _endTime) {
     var plotBands = [];
+    if((_endTime - _startTime) > (7* 86400000)){
+        return plotBands;
+    }
     var pas = 86400000;
     var offset = 0; //Debut du jour - 4 (soit 20h)
     _startTime = (Math.floor(_startTime / 86400000) * 86400000) - offset;

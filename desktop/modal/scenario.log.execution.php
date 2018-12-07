@@ -42,4 +42,3 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
         window.open('core/php/downloadFile.php?pathfile=log/scenarioLog/scenario<?php echo init('scenario_id') ?>.log', "_blank", null);
     });
 </script>
-

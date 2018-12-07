@@ -77,7 +77,7 @@ try {
 		}
 		$interact = interactDef::byId(init('id'));
 		if (!is_object($interact)) {
-			throw new Exception(__('Interaction inconnu verifié l\'id', __FILE__));
+			throw new Exception(__('Interaction inconnue. Vérifiez l\'ID', __FILE__));
 		}
 		$interact->remove();
 		ajax::success();
@@ -111,6 +111,5 @@ try {
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
-

@@ -50,15 +50,14 @@ try {
 	if (init('action') == 'removeMessage') {
 		$message = message::byId(init('id'));
 		if (!is_object($message)) {
-			throw new Exception(__('Message inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Message inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$message->remove();
 		ajax::success();
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
-	ajax::error(displayExeption($e), $e->getCode());
+	ajax::error(displayException($e), $e->getCode());
 }
- 

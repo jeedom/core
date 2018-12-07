@@ -25,6 +25,7 @@ class eqLogic {
 	protected $id;
 	protected $name;
 	protected $logicalId = '';
+	protected $generic_type;
 	protected $object_id = null;
 	protected $eqType_name;
 	protected $eqReal_id = null;
@@ -184,12 +185,25 @@ class eqLogic {
 	}
 
 	public static function searchConfiguration($_configuration, $_type = null) {
-		$values = array(
-			'configuration' => '%' . $_configuration . '%',
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM eqLogic
-        WHERE configuration LIKE :configuration';
+		if (!is_array($_configuration)) {
+			$values = array(
+				'configuration' => '%' . $_configuration . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM eqLogic
+			        WHERE configuration LIKE :configuration';
+		} else {
+			$values = array(
+				'configuration' => '%' . $_configuration[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			        FROM eqLogic
+			        WHERE configuration LIKE :configuration';
+			for ($i = 1; $i < count($_configuration); $i++) {
+				$values['configuration' . $i] = '%' . $_configuration[$i] . '%';
+				$sql .= ' OR configuration LIKE :configuration' . $i;
+			}
+		}
 		if ($_type !== null) {
 			$values['eqType_name'] = $_type;
 			$sql .= ' AND eqType_name=:eqType_name ';
@@ -271,7 +285,7 @@ class eqLogic {
 				if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
-						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifier les piles)', __FILE__);
+						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::ByKey('alert::addMessageOnTimeout') == 1) {
 							message::add('core', $message, '', $logicalId);
@@ -471,21 +485,26 @@ class eqLogic {
 		$html = '';
 		$color = '#2ecc71';
 		$level = 'good';
+		$niveau = '3';
 		$battery = $this->getConfiguration('battery_type', 'none');
 		if (strpos($battery, ' ') !== false) {
 			$battery = substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
-		$object_name = '';
+		$object_name = 'Aucun';
 		if (is_object($this->getObject())) {
 			$object_name = $this->getObject()->getName();
 		}
 		if ($this->getStatus('battery') <= $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'))) {
 			$color = '#e74c3c';
 			$level = 'critical';
+			$niveau = '0';
 		} else if ($this->getStatus('battery') <= $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'))) {
 			$color = '#f1c40f';
 			$level = 'warning';
+			$niveau = '1';
+		} else if ($this->getStatus('battery') <= 75) {
+			$niveau = '2';
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
@@ -495,8 +514,9 @@ class eqLogic {
 		} else {
 			$html .= '<div class="widget-name" style="text-align : center;"><a href="' . $this->getLinkToConfiguration() . '" style="font-size : 1em;">' . $this->getName() . '</a><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		}
-		$html .= '<div style="text-align : center;"><span style="font-size:2.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
-		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . $this->getStatus('batteryDatetime', __('inconnue', __FILE__)) . '</div>';
+		$html .= '<div style="text-align : center;font-size:2.2em;font-weight: bold;margin-top:-25px;margin-bottom:-25px"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%" style="font-size :2.5em;"></i></div>';
+		$html .= '<div style="text-align : center;"><span style="font-size:1.2em;font-weight: bold;cursor:default;">' . $this->getStatus('battery', -2) . '</span><span>%</span></div>';
+		$html .= '<div style="text-align : center; cursor:default;">' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</div>';
 		if ($this->getConfiguration('battery_type', '') != '') {
 			$html .= '<span class="pull-right" style="font-size : 0.8em;margin-bottom: 3px;margin-right: 5px;cursor:default;" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
 		}
@@ -509,6 +529,9 @@ class eqLogic {
 	}
 
 	public function checkAndUpdateCmd($_logicalId, $_value, $_updateTime = null) {
+		if ($this->getIsEnable() == 0) {
+			return false;
+		}
 		if (is_object($_logicalId)) {
 			$cmd = $_logicalId;
 		} else {
@@ -528,10 +551,9 @@ class eqLogic {
 				return true;
 			}
 		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
-			$cmd->event($_value);
+			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
 		return false;
 	}
 
@@ -1092,7 +1114,16 @@ class eqLogic {
 		event::add('eqLogic::update', array('eqLogic_id' => $this->getId()));
 	}
 
-	public function hasRight($_right) {
+	public function hasRight($_right, $_user = null) {
+		if ($_user != null) {
+			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
+				return true;
+			}
+			if (strpos($_user->getRights('eqLogic' . $this->getId()), $_right) !== false) {
+				return true;
+			}
+			return false;
+		}
 		if (!isConnect()) {
 			return false;
 		}
@@ -1349,10 +1380,8 @@ class eqLogic {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = eqLogic::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = array_merge($return['eqLogic'], eqLogic::searchConfiguration('"eqLogic":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse('#eqLogic' . $this->getId() . '#');
-		$return['interactDef'] = array_merge($return['interactDef'], interactDef::searchByUse('"eqLogic":"' . $this->getId()));
+		$return['eqLogic'] = eqLogic::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
+		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#eqLogic' . $this->getId() . '#'),
@@ -1433,6 +1462,28 @@ class eqLogic {
 		}
 		if ($_logicalId !== null && is_object($cmds)) {
 			$this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type] = $cmds;
+		}
+		return $cmds;
+	}
+
+	public function getCmdByGenericType($_type = null, $_generic_type = null, $_visible = null, $_multiple = false) {
+		if ($_generic_type !== null) {
+			if (isset($this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type])) {
+				return $this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type];
+			}
+			$cmds = cmd::byEqLogicIdAndGenericType($this->id, $_generic_type, $_multiple, $_type);
+		} else {
+			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
+		}
+		if (is_array($cmds)) {
+			foreach ($cmds as $cmd) {
+				$cmd->setEqLogic($this);
+			}
+		} elseif (is_object($cmds)) {
+			$cmds->setEqLogic($this);
+		}
+		if ($_generic_type !== null && is_object($cmds)) {
+			$this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type] = $cmds;
 		}
 		return $cmds;
 	}
@@ -1543,6 +1594,15 @@ class eqLogic {
 
 	public function setCategory($_key, $_value) {
 		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
+		return $this;
+	}
+
+	public function getGenericType() {
+		return $this->generic_type;
+	}
+
+	public function setGenericType($_generic_type) {
+		$this->generic_type = $_generic_type;
 		return $this;
 	}
 

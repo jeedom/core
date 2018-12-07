@@ -1,7 +1,7 @@
 <div id="wrap">
     <div class="container">
         <div style="display: none;width : 100%" id="div_alert"></div>
-        <img style="display:block; margin-left:auto; margin-right:auto;" src="core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive" />
+        <img style="display:block; margin-left:auto; margin-right:auto;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
 	    <div style="text-align:center; display : block; margin-left:auto; margin-right:auto; width:300px">
             <div class="form-group">
 		        <input  class="form-control" type="text" id="in_login_username" placeholder="{{Nom d'utilisateur}}">
@@ -16,7 +16,7 @@
 		        <label><input type="checkbox" id="cb_storeConnection">{{Enregistrer cet ordinateur}}</label>
             </div>
 		    <button class="btn-lg btn-primary btn-block" id="bt_login_validate"><i class="fa fa-sign-in"></i> {{Connexion}}</button>
-            <a href="https://github.com/jeedom/documentation/blob/master/howto/fr_FR/reset.password.asciidoc" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+            <a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
         </div>
     </div>
 </div>

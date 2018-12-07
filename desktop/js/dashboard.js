@@ -151,12 +151,21 @@ function getObjectHtml(_object_id){
                 container.packery( 'on', 'dragItemPositioned',function(){
                     $('.div_displayEquipement').packery();
                 });
-            });
+                function orderItems() {
+                  var itemElems = container.packery('getItemElements');
+                  $( itemElems ).each( function( i, itemElem ) {
+                    $( itemElem ).attr('data-order', i + 1 );
+                });
+              }
+              container.on( 'layoutComplete', orderItems );
+              container.on( 'dragItemPositioned', orderItems );
+          });
             $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
         },10);
     }
 });
 }
+
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
     if($(this).attr('data-mode') == 1){

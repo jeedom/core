@@ -20,7 +20,7 @@ class cronTest extends \PHPUnit_Framework_TestCase {
 
 		$cron1 = cron::byClassAndFunction('calendar', 'pull');
 		if (!is_object($cron1)) {
-			throw new Exception("Could not find calend::pull");
+			throw new Exception("Impossible de trouver calend::pull");
 		}
 		$cron1->remove();
 	}
@@ -66,12 +66,12 @@ class cronTest extends \PHPUnit_Framework_TestCase {
 
 		$cron1 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron1)) {
-			throw new Exception("Could not find calend::pull (1)");
+			throw new Exception("Impossible de trouver calend::pull (1)");
 		}
 		$cron1->remove();
 		$cron2 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(2)));
 		if (!is_object($cron2)) {
-			throw new Exception("Could not find calend::pull (2)");
+			throw new Exception("Impossible de trouver calend::pull (2)");
 		}
 		$cron2->remove();
 	}
