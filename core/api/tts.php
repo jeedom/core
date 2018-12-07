@@ -52,24 +52,31 @@ if (file_exists($filename)) {
 	readfile($filename);
 	die();
 }
-switch ($engine) {
-	case 'gcp':
-		gcp::tts($text);
-		break;
-	case 'espeak':
-		$voice = init('voice', 'fr+f4');
-		shell_exec('espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
-		break;
-	case 'pico':
-		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-		$lang = init('lang', 'fr-FR');
-		shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
-		break;
-	default:
-		echo __('Moteur de voix inconnu : ', __FILE__) . $engine;
-		die();
-		break;
+try {
+	switch ($engine) {
+		case 'gcp':
+			gcp::tts($text);
+			break;
+		case 'espeak':
+			$voice = init('voice', 'fr+f4');
+			shell_exec('espeak -v' . $voice . ' "' . $text . '" --stdout | avconv -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1');
+			break;
+		case 'pico':
+			$volume = '-af "volume=' . init('volume', '6') . 'dB"';
+			$lang = init('lang', 'fr-FR');
+			shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
+			break;
+		default:
+			echo __('Moteur de voix inconnu : ', __FILE__) . $engine;
+			die();
+			break;
+	}
+} catch (Exception $e) {
+	$volume = '-af "volume=' . init('volume', '6') . 'dB"';
+	$lang = init('lang', 'fr-FR');
+	shell_exec('pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;avconv -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav');
 }
+
 if (init('path') == 1) {
 	echo $filename;
 } else {
