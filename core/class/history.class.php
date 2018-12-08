@@ -451,13 +451,13 @@ class history {
 		}
 
 		if ($cmd->getIsHistorized() != 1) {
-			return -2;
+			throw new Exception(__('Commande non historisee: ', __FILE__) . $_cmd_id);
 		}
 
 		$histories = array_reverse(history::all($_cmd_id));
 		$c = count($histories);
 		if ($c == 0) {
-			return -1;
+			throw new Exception(__('Historique de commande vide: ', __FILE__) . $_cmd_id);
 		}
 
 		$currentValue = $histories[0]->getValue();
