@@ -14,10 +14,10 @@ Il est accessible en cliquant sur **Accueil → Dashboard**
     afficher/masquer l’arbre des objets (celui-ci affiche aussi les
     informations des résumés d’objet)
 
--   Au milieu vous pouvez choisir de ne filtrer que sur certains types
+-   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
     d’équipements
 
--   A droite un premier bouton pour passer en mode édition, pour par
+-   A droite, un premier bouton pour passer en mode édition, pour par
     exemple modifier l’ordre des widgets (à l’aide d’un cliqué déposé
     sur le widget), vous pouvez aussi dans ce mode édition
     redimensionner certains widgets et réorganiser l’ordre des commandes
@@ -43,12 +43,12 @@ Il est accessible en cliquant sur **Accueil → Dashboard**
 > En mobile un appui long sur une commande de type info permet
 > d’afficher un menu vous proposant soit d’afficher l’historique de la
 > commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
-> previenne (une seule fois) dès que la valeur passe un certain seuil
+> prévienne (une seule fois) dès que la valeur passe un certain seuil
 
 Mode édition 
 ============
 
-En mode édition vous pouvez changer la taille des widgets et leur
+En mode édition, vous pouvez changer la taille des widgets et leur
 disposition sur le dashboard.
 
 Vous pouvez aussi éditer la disposition interne des commandes du widget
@@ -64,7 +64,7 @@ Vous pouvez aussi éditer la disposition interne des commandes du widget
     -   **Standard** : disposition par défaut, tout est en automatique
         avec juste la possibilité de réorganiser l’ordre des commandes
 
-    -   **Tableau** : permet de mettre les commandes dans un tableau,
+    -   **Tableau** : permet de mettre les commandes dans un tableau :
         les colonnes et les lignes s’ajoutent et se suppriment par clic
         droit, ensuite il suffit de déplacer les commandes dans les
         cases voulues. Vous pouvez mettre plusieurs commandes par case
