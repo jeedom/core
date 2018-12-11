@@ -8,7 +8,7 @@ La page de gestion des Scénarios
 Gestion 
 -------
 
-Pour y accéder rien de plus simple, il suffit d’aller sur Outils ->
+Pour y accéder, rien de plus simple, il suffit d’aller sur Outils ->
 Scénarios. Vous y trouverez la liste des scénarios de votre Jeedom ainsi
 que des fonctions pour les gérer au mieux :
 
@@ -121,7 +121,7 @@ notre scénario :
 
 -   **Mode du scénario** : Le scénario peut être programmé, déclenché ou
     les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s)
-    déclencheur(s) (attention il y a une limite au nombre de déclencheur possible par scénario de 15) et la/les programmation(s).
+    déclencheur(s) (attention, il y a une limite au nombre de déclencheurs possibles par scénario de 15) et la/les programmation(s).
 
 > **Tip**
 >
@@ -137,7 +137,7 @@ créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 
 > **Tip**
 >
-> Dans les condition et action il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
+> Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 
 ### Les blocs 
 
@@ -188,7 +188,7 @@ Chacun de ces blocs a ces options pour mieux les manipuler :
 > résultat que la précedente évaluation.
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les
-écrire le plus possible en langage naturel tout en restant souple. trois
+écrire le plus possible en langage naturel tout en restant souple. Trois
 boutons sont disponibles sur la droite de ce type de bloc pour
 sélectionner un élément à tester :
 
@@ -220,7 +220,7 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 
 > **Important**
 >
-> Attention les tags ne sont pas disponibles dans un bloc de type code.
+> Attention, les tags ne sont pas disponibles dans un bloc de type code.
 
 Commandes (capteurs et actionneurs):
 -   cmd::byString($string); : Retourne l’objet commande correspondant.
@@ -254,8 +254,8 @@ Scénario :
 -   $scenario->getData($key); : Récupère une donnée (variable).
   -   $key => clé de la valeur (int ou string).
 -   $scenario->removeData($key); : Supprime une donnée.
--   $scenario->setLog($message); : Ecris un message dans le log du scénario.
--   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention ceci peut un peu ralentir le scénario.
+-   $scenario->setLog($message); : Ecrit un message dans le log du scénario.
+-   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
 
 ### Les Actions 
 
@@ -268,7 +268,7 @@ Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
     compte dans le scénario.
 
 -   Une **double-flèche verticale** pour déplacer l’action. Il suffit de
-    le glisser/déposer à partir de là.
+    la glisser/déposer à partir de là.
 
 -   Un bouton pour supprimer l’action.
 
@@ -305,7 +305,7 @@ commandes) :
 
 -   #end_restore# : événement envoyé à la fin d’une restauration.
 
--   #user_connect# : connection d'un utilisateur
+-   #user_connect# : connexion d'un utilisateur
 
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
 jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
@@ -353,7 +353,7 @@ pouvez utiliser les tags suivants :
 
 > **Tip**
 >
-> Pour avoir les zéros intiaux à l’affichage, il faut utilier la
+> Pour avoir les zéros initiaux à l’affichage, il faut utiliser la
 > fonction Date(). Voir
 > [ici](http://php.net/manual/fr/function.date.php).
 
@@ -392,11 +392,11 @@ pouvez utiliser les tags suivants :
 
 -   #smois# : Nom du mois (ex : Janvier),
 
--   #IP# : IP interne de jeedom,
+-   #IP# : IP interne de Jeedom,
 
 -   #hostname# : Nom de la machine Jeedom,
 
--   #trigger# : Peut etre le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement
+-   #trigger# : Peut être le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement
 
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :
@@ -500,20 +500,20 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
-    si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario vous pouvez utilisé le bouton dédié à droite de recherche de scénario.
+    si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario, vous pouvez utiliser le bouton dédié à droite de la recherche de scénario.
 
 -   lastScenarioExecution(scenario) : Donne la durée en secondes
     depuis le dernier lancement du scénario :
 
 -   collectDate(cmd,[format]) : Renvoie la date de la dernière donnée
-    pour la commande donnée en paramètre, le 2ème paramètre optionel
+    pour la commande donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
     pas de type info :
 
 -   valueDate(cmd,[format]) : Renvoie la date de la dernière donnée
-    pour la commande donnée en paramètre, le 2ème paramètre optionel
+    pour la commande donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
@@ -523,9 +523,9 @@ Plusieurs fonctions sont disponibles pour les équipements :
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
     est inactif
 
--   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable)    
+-   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par Jeedom (cas lors du stockage du nom de la commande dans une variable)    
 
--   tag(montag,[defaut]) : Permet de récuperer la valeur d’un tag ou
+-   tag(montag,[defaut]) : Permet de récupérer la valeur d’un tag ou
     la valeur par défaut si il n’existe pas :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
@@ -624,7 +624,7 @@ effectuer des conversions ou des calculs :
     Les valeurs start et end peuvent être à cheval sur minuit.
 
 -   `time_diff(date1,date1[,format])` : Permet de connaître la différence entre 2 dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS).
-    Par défaut (si vous ne mettez rien pour format) la méthode retourne le nombre total de jours. Vous pouvez lui demander en secondes (s), minutes (m), heures (h). Exemple en secondes `time_diff(2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
+    Par défaut (si vous ne mettez rien pour format), la méthode retourne le nombre total de jours. Vous pouvez lui demander en secondes (s), minutes (m), heures (h). Exemple en secondes `time_diff(2018-02-02 14:55:00,2018-02-25 14:55:00,s)`
 
 -   `formatTime(time)` : Permet de formater le retour d’une chaine
     `#time#`.
@@ -652,7 +652,7 @@ Et les exemples pratiques :
 Les commandes spécifiques 
 =========================
 
-En plus des commandes domotiques vous avez accès aux actions suivantes :
+En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Pause** (sleep) : Pause de x seconde(s).
 
@@ -663,9 +663,9 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 
 -   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
-    ne faut utiliser que des lettre de a à z. Pas de majuscule, pas
-    d’accent et pas de caractères spéciaux). On récupere le tag dans le
-    scénario cible avec la fonction tag(montag). La commande "Remise à zero des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2eme fois consecutive dedans)
+    ne faut utiliser que des lettre de a à z. Pas de majuscules, pas
+    d’accents et pas de caractères spéciaux). On récupère le tag dans le
+    scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
 -   **Stop** (stop) : Arrête le scénario.
 
@@ -678,7 +678,7 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 -   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
-    de message.
+    de messages.
 
 -   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
@@ -686,10 +686,10 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 
 -   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
     une question à l’utilisateur. La réponse est stockée dans une
-    variable, il suffit ensuite de tester sa valeur. Pour le moment
+    variable, il suffit ensuite de tester sa valeur. Pour le moment,
     seuls les plugins sms et slack sont compatibles. Attention, cette
     fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le
-    timeout n’est pas atteint le scénario attend.
+    timeout n’est pas atteint, le scénario attend.
 
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
@@ -707,15 +707,15 @@ En plus des commandes domotiques vous avez accès aux actions suivantes :
 
 -   **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG
     ou SVG) et de l’envoyer par le biais d’une commande de type message.
-    Attention si votre accès Internet est en HTTPS non-signé, cette
+    Attention, si votre accès Internet est en HTTPS non-signé, cette
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
 -   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
--   **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de maniere arbitraire
+-   **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de manière arbitraire
 
--   **Tag** (tag) : Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)
+-   **Tag** (tag) : Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'exécution en cours du scénario à la difference des variables qui survivent à la fin du scénario)
 
 Template de scénario 
 ====================
@@ -731,7 +731,7 @@ Vous verrez alors cette fenêtre :
 
 ![scenario16](../images/scenario16.JPG)
 
-A partir de celle-ci que vous avez la possibilité :
+A partir de celle-ci, vous avez la possibilité :
 
 -   D’envoyer un template à Jeedom (fichier JSON préalablement
     récupéré),
@@ -741,9 +741,9 @@ A partir de celle-ci que vous avez la possibilité :
 -   De créer un template à partir du scénario courant (n’oubliez pas de
     donner un nom),
 
--   De Consulter les templates actuellement présent sur votre Jeedom.
+-   De consulter les templates actuellement présents sur votre Jeedom.
 
-Par un clic sur un template vous obtenez :
+Par un clic sur un template, vous obtenez :
 
 ![scenario17](../images/scenario17.JPG)
 
@@ -759,7 +759,7 @@ En haut, vous pouvez :
 En-dessous, vous avez la partie pour appliquer votre template au
 scénario courant.
 
-Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre
+Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre,
 les commandes peuvent être différentes, Jeedom vous demande la
 correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
@@ -770,7 +770,7 @@ Ajout de fonction php
 
 > **IMPORTANT**
 >
-> L'ajout de fonction PHP est reservé aux utilisateurs avancé. La moindre erreur peut faire planter votre Jeedom
+> L'ajout de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
 
 ## Mise en place
 
