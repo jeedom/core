@@ -37,6 +37,6 @@ Décompressez-les dans un répertoire de votre serveur web.
 Allez avec un navigateur sur `install/setup.php`.
 
 Remplissez les informations, validez et attendez la fin de l'installation.
-Les identifiants par défaut sont admin/admin.
+Les identifiants par défaut sont Admin/admin.
 
 ---
