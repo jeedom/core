@@ -131,6 +131,9 @@ class listener {
 	}
 
 	public static function backgroundCalculDependencyCmd($_event) {
+		if (count(cmd::byValue($_event, 'info')) == 0) {
+			return;
+		}
 		$cmd = __DIR__ . '/../php/jeeListener.php';
 		$cmd .= ' event_id=' . $_event;
 		system::php($cmd . ' >> /dev/null 2>&1 &');
