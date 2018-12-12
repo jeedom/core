@@ -7,7 +7,7 @@ demande du support technique.
 > En cas de mauvaise manipulation sur cette page, toute demande de
 > support peut vous être refusée.
 
-Pour y accéder il faut aller dans **Administration → Moteur de tâches**
+Pour y accéder, il faut aller dans **Administration → Moteur de tâches**
 :
 
 # Cron
@@ -24,16 +24,16 @@ En haut, à droite, vous avez :
 
 -   **Enregistrer** : un bouton pour enregistrer vos modifications.
 
-En-dessous vous avez le tableau de toutes les tâches existantes
-(attention certaines tâches peuvent lancer des sous-tâches, il est donc
+En-dessous, vous avez le tableau de toutes les tâches existantes
+(attention, certaines tâches peuvent lancer des sous-tâches, il est donc
 vivement recommandé de ne jamais modifier d’informations sur cette
-page). Dans ce tableau on retrouve :
+page). Dans ce tableau, on retrouve :
 
 -   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
     processus qui tourne et ce qu’il fait vraiment
 
 -   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
-    de son statut et un bouton pour voir le cron dans le details (tel que stocké en base)
+    de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
 
 -   **Actif** : indique si la tâche est active (peut être lancée
     par Jeedom) ou non
@@ -41,7 +41,7 @@ page). Dans ce tableau on retrouve :
 -   **PID** : indique le process ID actuel
 
 -   **Démon** : si cette case est à "oui" alors la tâche doit toujours
-    être en cours. A coté vous retrouvez la fréquence du démon, il est
+    être en cours. A côté, vous retrouvez la fréquence du démon, il est
     conseillé de ne jamais toucher cette valeur et surtout de ne jamais
     la diminuer
 
@@ -66,7 +66,7 @@ page). Dans ce tableau on retrouve :
     démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
     peuvent être à 0s)
 
--   **Statut** : état actuel de la tâche (pour rappel une tâche démon
+-   **Statut** : état actuel de la tâche (pour rappel, une tâche démon
     est toujours à "run")
 
 -   **Suppression** : permet de supprimer la tâche
@@ -74,4 +74,4 @@ page). Dans ce tableau on retrouve :
 
 # Listener
 
-Les listeners sont juste visible en lecture et permettent de voir les fonctions appellées sur un évenement (mise à jour d'une commande...)
+Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évenement (mise à jour d'une commande...)
