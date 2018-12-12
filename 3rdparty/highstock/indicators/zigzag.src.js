@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Kacper Madej
+ * (c) 2010-2018 Kacper Madej
  *
  * License: www.highcharts.com/license
  */
@@ -16,15 +16,18 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Kacper Madej
+		/* *
 		 *
-		 * License: www.highcharts.com/license
-		 */
+		 *  (c) 2010-2018 Kacper Madej
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
 
 
 		var seriesType = H.seriesType,
@@ -33,8 +36,11 @@
 		/**
 		 * The Zig Zag series type.
 		 *
-		 * @constructor seriesTypes.zigzag
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.zigzag
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('zigzag', 'sma',
 		    /**
@@ -42,16 +48,17 @@
 		     *
 		     * This series requires `linkedTo` option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/zigzag
-		     *                     Zig Zag indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/zigzag
+		     *         Zig Zag indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.zigzag
 		     */
 		    {
 		        /**
-		         * @excluding index,period
+		         * @excluding index, period
 		         */
 		        params: {
 		            /**
@@ -60,10 +67,6 @@
 		             *
 		             * For example using OHLC data, index=2 means the indicator will be
 		             * calculated using Low values.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            lowIndex: 2,
 		            /**
@@ -72,10 +75,6 @@
 		             *
 		             * For example using OHLC data, index=1 means the indicator will be
 		             * calculated using High values.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            highIndex: 1,
 		            /**
@@ -83,14 +82,14 @@
 		             *
 		             * For example deviation=1 means the indicator will ignore all price
 		             * movements less than 1%.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            deviation: 1
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameComponents: ['deviation'],
 		        nameSuffixes: ['%'],
 		        nameBase: 'Zig Zag',
@@ -224,24 +223,18 @@
 		                yData: yData
 		            };
 		        }
-		    });
+		    }
+		);
 
 		/**
 		 * A `Zig Zag` series. If the [type](#series.zigzag.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.zigzag
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.zigzag
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.zigzag
-		 */
-
-		/**
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.zigzag.data
 		 */
 
 	}(Highcharts));

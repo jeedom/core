@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Paweł Fus
+ * (c) 2010-2018 Paweł Fus
  *
  * License: www.highcharts.com/license
  */
@@ -16,10 +16,16 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
 
 
 		var isArray = H.isArray;
@@ -29,19 +35,29 @@
 		    return parseFloat(a.toFixed(n));
 		}
 
+		/**
+		 * The RSI series type.
+		 *
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.rsi
+		 *
+		 * @augments Highcharts.Series
+		 */
 		H.seriesType('rsi', 'sma',
-		        /**
-		         * Relative strength index (RSI) technical indicator. This series
-		         * requires the `linkedTo` option to be set and should be loaded after
-		         * the `stock/indicators/indicators.js` file.
-		         *
-		         * @extends plotOptions.sma
-		         * @product highstock
-		         * @sample {highstock} stock/indicators/rsi
-		         *                     RSI indicator
-		         * @since 6.0.0
-		         * @optionparent plotOptions.rsi
-		         */
+		    /**
+		     * Relative strength index (RSI) technical indicator. This series
+		     * requires the `linkedTo` option to be set and should be loaded after
+		     * the `stock/indicators/indicators.js` file.
+		     *
+		     * @sample stock/indicators/rsi
+		     *         RSI indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
+		     * @optionparent plotOptions.rsi
+		     */
 		    {
 		        /**
 		         * @excluding index
@@ -50,14 +66,14 @@
 		            period: 14,
 		            /**
 		             * Number of maximum decimals that are used in RSI calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            decimals: 4
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        getValues: function (series, params) {
 		            var period = params.period,
 		                xVal = series.xData,
@@ -156,23 +172,11 @@
 		 * A `RSI` series. If the [type](#series.rsi.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.rsi
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.rsi
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.rsi
-		 */
-
-		/**
-		 * An array of data points for the series. For the `rsi` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.rsi.data
 		 */
 
 	}(Highcharts));

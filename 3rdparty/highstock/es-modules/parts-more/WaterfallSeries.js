@@ -1,14 +1,17 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Options.js';
 import '../parts/Series.js';
 import '../parts/Point.js';
+
 var correctFloat = H.correctFloat,
     isNumber = H.isNumber,
     pick = H.pick,
@@ -21,13 +24,14 @@ var correctFloat = H.correctFloat,
  * A waterfall chart displays sequentially introduced positive or negative
  * values in cumulative columns.
  *
- * @sample       highcharts/demo/waterfall/
- *               Waterfall chart
- * @sample       highcharts/plotoptions/waterfall-inverted/
- *               Horizontal (inverted) waterfall
- * @sample       highcharts/plotoptions/waterfall-stacked/
- *               Stacked waterfall chart
- * @extends      {plotOptions.column}
+ * @sample highcharts/demo/waterfall/
+ *         Waterfall chart
+ * @sample highcharts/plotoptions/waterfall-inverted/
+ *         Horizontal (inverted) waterfall
+ * @sample highcharts/plotoptions/waterfall-stacked/
+ *         Stacked waterfall chart
+ *
+ * @extends      plotOptions.column
  * @product      highcharts
  * @optionparent plotOptions.waterfall
  */
@@ -41,8 +45,10 @@ seriesType('waterfall', 'column', {
      * `.highcharts-point-negative`, `.highcharts-sum` and
      * `.highcharts-intermediate-sum` classes.
      *
-     * @type      {Color}
-     * @sample    {highcharts} highcharts/demo/waterfall/ Waterfall
+     * @sample {highcharts} highcharts/demo/waterfall/
+     *         Waterfall
+     *
+     * @type      {Highcharts.ColorString|Highcharts.GradientColorObject}
      * @product   highcharts
      * @apioption plotOptions.waterfall.upColor
      */
@@ -50,7 +56,6 @@ seriesType('waterfall', 'column', {
     dataLabels: {
         inside: true
     },
-    
 
     /**
      * The width of the line connecting waterfall columns.
@@ -64,8 +69,7 @@ seriesType('waterfall', 'column', {
      *
      * In styled mode, the stroke can be set with the `.highcharts-graph` class.
      *
-     * @type    {Color}
-     * @default #333333
+     * @type    {Highcharts.ColorString}
      * @since   3.0
      * @product highcharts
      */
@@ -73,29 +77,21 @@ seriesType('waterfall', 'column', {
 
     /**
      * A name for the dash style to use for the line connecting the columns
-     * of the waterfall series. Possible values:
-     *
-     * *   Solid
-     * *   ShortDash
-     * *   ShortDot
-     * *   ShortDashDot
-     * *   ShortDashDotDot
-     * *   Dot
-     * *   Dash
-     * *   LongDash
-     * *   DashDot
-     * *   LongDashDot
-     * *   LongDashDotDot
+     * of the waterfall series. Possible values: Dash, DashDot, Dot, LongDash,
+     * LongDashDot, LongDashDotDot, ShortDash, ShortDashDot, ShortDashDotDot,
+     * ShortDot, Solid
      *
      * In styled mode, the stroke dash-array can be set with the
      * `.highcharts-graph` class.
      *
-     * @type    {String}
-     * @default Dot
-     * @since   3.0
-     * @product highcharts
+     * @type       {string}
+     * @since      3.0
+     * @validvalue ["Dash", "DashDot", "Dot", "LongDash", "LongDashDot",
+     *             "LongDashDotDot", "ShortDash", "ShortDashDot",
+     *             "ShortDashDotDot", "ShortDot", "Solid"]
+     * @product    highcharts
      */
-    dashStyle: 'dot',
+    dashStyle: 'Dot',
 
     /**
      * The color of the border of each waterfall column.
@@ -103,8 +99,7 @@ seriesType('waterfall', 'column', {
      * In styled mode, the border stroke can be set with the
      * `.highcharts-point` class.
      *
-     * @type    {Color}
-     * @default #333333
+     * @type    {Highcharts.ColorString}
      * @since   3.0
      * @product highcharts
      */
@@ -115,21 +110,16 @@ seriesType('waterfall', 'column', {
             lineWidthPlus: 0 // #3126
         }
     }
-    
 
 // Prototype members
 }, {
     pointValKey: 'y',
 
-    /**
-     * Property needed to prevent lines between the columns from disappearing
-     * when negativeColor is used.
-     */
+    // Property needed to prevent lines between the columns from disappearing
+    // when negativeColor is used.
     showLine: true,
 
-    /**
-     * After generating points, set y-values for all sums.
-     */
+    // After generating points, set y-values for all sums.
     generatePoints: function () {
         var previousIntermediate = this.options.threshold,
             point,
@@ -153,9 +143,7 @@ seriesType('waterfall', 'column', {
         }
     },
 
-    /**
-     * Translate data points from raw values
-     */
+    // Translate data points from raw values
     translate: function () {
         var series = this,
             options = series.options,
@@ -280,10 +268,8 @@ seriesType('waterfall', 'column', {
         }
     },
 
-    /**
-     * Call default processData then override yData to reflect
-     * waterfall's extremes on yAxis
-     */
+    // Call default processData then override yData to reflect waterfall's
+    // extremes on yAxis
     processData: function (force) {
         var series = this,
             options = series.options,
@@ -327,9 +313,7 @@ seriesType('waterfall', 'column', {
         }
     },
 
-    /**
-     * Return y value or string if point is sum
-     */
+    // Return y value or string if point is sum
     toYData: function (pt) {
         if (pt.isSum) {
             // #3245 Error when first element is Sum or Intermediate Sum
@@ -341,10 +325,7 @@ seriesType('waterfall', 'column', {
         return pt.y;
     },
 
-    
-    /**
-     * Postprocess mapping between options and SVG attributes
-     */
+    // Postprocess mapping between options and SVG attributes
     pointAttribs: function (point, state) {
 
         var upColor = this.options.upColor,
@@ -367,19 +348,14 @@ seriesType('waterfall', 'column', {
 
         return attr;
     },
-    
 
-    /**
-     * Return an empty path initially, because we need to know the
-     * stroke-width in order to set the final path.
-     */
+    // Return an empty path initially, because we need to know the stroke-width
+    // in order to set the final path.
     getGraphPath: function () {
         return ['M', 0, 0];
     },
 
-    /**
-     * Draw columns' connector lines
-     */
+    // Draw columns' connector lines
     getCrispPath: function () {
 
         var data = this.data,
@@ -421,10 +397,8 @@ seriesType('waterfall', 'column', {
         return path;
     },
 
-    /**
-     * The graph is initially drawn with an empty definition, then updated with
-     * crisp rendering.
-     */
+    // The graph is initially drawn with an empty definition, then updated with
+    // crisp rendering.
     drawGraph: function () {
         Series.prototype.drawGraph.call(this);
         this.graph.attr({
@@ -432,9 +406,7 @@ seriesType('waterfall', 'column', {
         });
     },
 
-    /**
-     * Waterfall has stacking along the x-values too.
-     */
+    // Waterfall has stacking along the x-values too.
     setStackedPoints: function () {
         var series = this,
             options = series.options,
@@ -457,10 +429,8 @@ seriesType('waterfall', 'column', {
         }
     },
 
-    /**
-     * Extremes for a non-stacked series are recorded in processData.
-     * In case of stacking, use Series.stackedYData to calculate extremes.
-     */
+    // Extremes for a non-stacked series are recorded in processData.
+    // In case of stacking, use Series.stackedYData to calculate extremes.
     getExtremes: function () {
         if (this.options.stacking) {
             return Series.prototype.getExtremes.apply(this, arguments);
@@ -480,9 +450,7 @@ seriesType('waterfall', 'column', {
         }
         return className;
     },
-    /**
-     * Pass the null test in ColumnSeries.translate.
-     */
+    // Pass the null test in ColumnSeries.translate.
     isValid: function () {
         return isNumber(this.y, true) || this.isSum || this.isIntermediateSum;
     }
@@ -493,9 +461,8 @@ seriesType('waterfall', 'column', {
  * A `waterfall` series. If the [type](#series.waterfall.type) option
  * is not specified, it is inherited from [chart.type](#chart.type).
  *
- * @type      {Object}
  * @extends   series,plotOptions.waterfall
- * @excluding dataParser,dataURL
+ * @excluding dataParser, dataURL
  * @product   highcharts
  * @apioption series.waterfall
  */
@@ -526,8 +493,8 @@ seriesType('waterfall', 'column', {
  *     ]
  *  ```
  *
- * 3.  An array of objects with named values. The objects are point
- * configuration objects as seen below. If the total number of data
+ * 3.  An array of objects with named values. The following snippet shows only a
+ * few settings, see the complete options set below. If the total number of data
  * points exceeds the series'
  * [turboThreshold](#series.waterfall.turboThreshold),
  * this option is not available.
@@ -546,19 +513,20 @@ seriesType('waterfall', 'column', {
  *     }]
  *  ```
  *
- * @type      {Array<Object|Array|Number>}
+ * @sample {highcharts} highcharts/chart/reflow-true/
+ *         Numerical values
+ * @sample {highcharts} highcharts/series/data-array-of-arrays/
+ *         Arrays of numeric x and y
+ * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+ *         Arrays of datetime x and y
+ * @sample {highcharts} highcharts/series/data-array-of-name-value/
+ *         Arrays of point.name and y
+ * @sample {highcharts} highcharts/series/data-array-of-objects/
+ *         Config objects
+ *
+ * @type      {Array<number|Array<number>|*>}
  * @extends   series.line.data
  * @excluding marker
- * @sample    {highcharts} highcharts/chart/reflow-true/
- *            Numerical values
- * @sample    {highcharts} highcharts/series/data-array-of-arrays/
- *            Arrays of numeric x and y
- * @sample    {highcharts} highcharts/series/data-array-of-arrays-datetime/
- *            Arrays of datetime x and y
- * @sample    {highcharts} highcharts/series/data-array-of-name-value/
- *            Arrays of point.name and y
- * @sample    {highcharts} highcharts/series/data-array-of-objects/
- *            Config objects
  * @product   highcharts
  * @apioption series.waterfall.data
  */
@@ -569,8 +537,10 @@ seriesType('waterfall', 'column', {
  * the values added or substracted since the last intermediate sum,
  * or since the start of the series. The `y` value is ignored.
  *
- * @type      {Boolean}
- * @sample    {highcharts} highcharts/demo/waterfall/ Waterfall
+ * @sample {highcharts} highcharts/demo/waterfall/
+ *         Waterfall
+ *
+ * @type      {boolean}
  * @default   false
  * @product   highcharts
  * @apioption series.waterfall.data.isIntermediateSum
@@ -580,8 +550,10 @@ seriesType('waterfall', 'column', {
  * When this property is true, the point display the total sum across
  * the entire series. The `y` value is ignored.
  *
- * @type      {Boolean}
- * @sample    {highcharts} highcharts/demo/waterfall/ Waterfall
+ * @sample {highcharts} highcharts/demo/waterfall/
+ *         Waterfall
+ *
+ * @type      {boolean}
  * @default   false
  * @product   highcharts
  * @apioption series.waterfall.data.isSum

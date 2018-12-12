@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Sebastian Bochan
+ * (c) 2010-2018 Sebastian Bochan
  *
  * License: www.highcharts.com/license
  */
@@ -16,279 +16,111 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-
-		var isArray = H.isArray,
-		    seriesType = H.seriesType;
-
-		// Utils:
-		function accumulateAverage(points, xVal, yVal, i, index) {
-		    var xValue = xVal[i],
-		        yValue = index < 0 ? yVal[i] : yVal[i][index];
-
-		    points.push([xValue, yValue]);
-		}
-
-		function populateAverage(
-		    points,
-		    xVal,
-		    yVal,
-		    i,
-		    EMApercent,
-		    calEMA,
-		    index,
-		    SMA
-		) {
-		    var x = xVal[i - 1],
-		        yValue = index < 0 ? yVal[i - 1] : yVal[i - 1][index],
-		        y;
-
-		    y = calEMA === undefined ?
-		        SMA :
-		        ((yValue * EMApercent) + (calEMA * (1 - EMApercent)));
-
-		    return [x, y];
-		}
-		/**
-		 * The EMA series type.
+		/* *
 		 *
-		 * @constructor seriesTypes.ema
-		 * @augments seriesTypes.sma
-		 */
-		seriesType('ema', 'sma',
-		    /**
-		     * Exponential moving average indicator (EMA). This series requires the
-		     * `linkedTo` option to be set.
-		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/ema
-		     *                        Exponential moving average indicator
-		     * @since 6.0.0
-		     * @optionparent plotOptions.ema
-		     */
-		    {
-		        params: {
-		            index: 0,
-		            period: 14
-		        }
-		    }, {
-		        getValues: function (series, params) {
-		            var period = params.period,
-		                xVal = series.xData,
-		                yVal = series.yData,
-		                yValLen = yVal ? yVal.length : 0,
-		                EMApercent = (2 / (period + 1)),
-		                range = 0,
-		                sum = 0,
-		                EMA = [],
-		                xData = [],
-		                yData = [],
-		                index = -1,
-		                points = [],
-		                SMA = 0,
-		                calEMA,
-		                EMAPoint,
-		                i;
-
-		            // Check period, if bigger than points length, skip
-		            if (xVal.length < period) {
-		                return false;
-		            }
-
-		            // Switch index for OHLC / Candlestick / Arearange
-		            if (isArray(yVal[0])) {
-		                index = params.index ? params.index : 0;
-		            }
-
-		            // Accumulate first N-points
-		            while (range < period) {
-		                accumulateAverage(points, xVal, yVal, range, index);
-		                sum += index < 0 ? yVal[range] : yVal[range][index];
-		                range++;
-		            }
-
-		            // first point
-		            SMA = sum / period;
-
-		            // Calculate value one-by-one for each period in visible data
-		            for (i = range; i < yValLen; i++) {
-		                EMAPoint = populateAverage(
-		                    points,
-		                    xVal,
-		                    yVal,
-		                    i,
-		                    EMApercent,
-		                    calEMA,
-		                    index,
-		                    SMA
-		                );
-		                EMA.push(EMAPoint);
-		                xData.push(EMAPoint[0]);
-		                yData.push(EMAPoint[1]);
-		                calEMA = EMAPoint[1];
-
-		                accumulateAverage(points, xVal, yVal, i, index);
-		            }
-
-		            EMAPoint = populateAverage(
-		                points,
-		                xVal,
-		                yVal,
-		                i,
-		                EMApercent,
-		                calEMA,
-		                index
-		            );
-		            EMA.push(EMAPoint);
-		            xData.push(EMAPoint[0]);
-		            yData.push(EMAPoint[1]);
-
-		            return {
-		                values: EMA,
-		                xData: xData,
-		                yData: yData
-		            };
-		        }
-		    });
-
-		/**
-		 * A `EMA` series. If the [type](#series.ema.type) option is not
-		 * specified, it is inherited from [chart.type](#chart.type).
+		 *  License: www.highcharts.com/license
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.ema
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
-		 * @apioption series.ema
-		 */
+		 * */
 
-		/**
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.ema.data
-		 */
 
-	}(Highcharts));
-	(function (H) {
+
 
 		var seriesType = H.seriesType,
-		    each = H.each,
 		    noop = H.noop,
 		    merge = H.merge,
 		    defined = H.defined,
 		    SMA = H.seriesTypes.sma,
-		    EMA = H.seriesTypes.ema;
+		    EMA = H.seriesTypes.ema,
+		    correctFloat = H.correctFloat;
 
 		/**
 		 * The MACD series type.
 		 *
-		 * @constructor seriesTypes.macd
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.macd
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('macd', 'sma',
+
 		    /**
 		     * Moving Average Convergence Divergence (MACD). This series requires
-		     * `linkedTo` option to be set.
+		     * `linkedTo` option to be set and should be loaded after the
+		     * `stock/indicators/indicators.js` and `stock/indicators/ema.js`.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/macd MACD indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/macd
+		     *         MACD indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.macd
 		     */
 		    {
 		        params: {
 		            /**
 		             * The short period for indicator calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            shortPeriod: 12,
 		            /**
 		             * The long period for indicator calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            longPeriod: 26,
 		            /**
 		             * The base period for signal calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            signalPeriod: 9,
 		            period: 26
 		        },
 		        /**
 		         * The styles for signal line
-		         *
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        signalLine: {
 		            /**
+		             * @sample stock/indicators/macd-zones
+		             *         Zones in MACD
+		             *
 		             * @extends plotOptions.macd.zones
-		             * @sample  stock/indicators/macd-zones Zones in MACD
 		             */
 		            zones: [],
 		            styles: {
 		                /**
 		                 * Pixel width of the line.
-		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                lineWidth: 1,
 		                /**
 		                 * Color of the line.
 		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type  {Highcharts.ColorString}
 		                 */
 		                lineColor: undefined
 		            }
 		        },
 		        /**
 		         * The styles for macd line
-		         *
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        macdLine: {
 		            /**
+		             * @sample stock/indicators/macd-zones
+		             *         Zones in MACD
+		             *
 		             * @extends plotOptions.macd.zones
-		             * @sample  stock/indicators/macd-zones Zones in MACD
 		             */
 		            zones: [],
 		            styles: {
 		                /**
 		                 * Pixel width of the line.
-		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                lineWidth: 1,
 		                /**
 		                 * Color of the line.
 		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type  {Highcharts.ColorString}
 		                 */
 		                lineColor: undefined
 		            }
@@ -313,8 +145,13 @@
 		            approximation: 'averages'
 		        },
 		        minPointLength: 0
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameComponents: ['longPeriod', 'shortPeriod', 'signalPeriod'],
+		        requiredIndicators: ['ema'],
 		        // "y" value is treated as Histogram data
 		        pointArrayMap: ['y', 'signal', 'MACD'],
 		        parallelArrays: ['x', 'y', 'signal', 'MACD'],
@@ -327,33 +164,37 @@
 		        init: function () {
 		            SMA.prototype.init.apply(this, arguments);
 
-		            // Set default color for a signal line and the histogram:
-		            this.options = merge({
-		                signalLine: {
-		                    styles: {
-		                        lineColor: this.color
+		            // Check whether series is initialized. It may be not initialized,
+		            // when any of required indicators is missing.
+		            if (this.options) {
+		                // Set default color for a signal line and the histogram:
+		                this.options = merge({
+		                    signalLine: {
+		                        styles: {
+		                            lineColor: this.color
+		                        }
+		                    },
+		                    macdLine: {
+		                        styles: {
+		                            color: this.color
+		                        }
 		                    }
-		                },
-		                macdLine: {
-		                    styles: {
-		                        color: this.color
-		                    }
-		                }
-		            }, this.options);
+		                }, this.options);
 
-		            // Zones have indexes automatically calculated, we need to
-		            // translate them to support multiple lines within one indicator
-		            this.macdZones = {
-		                zones: this.options.macdLine.zones,
-		                startIndex: 0
-		            };
-		            this.signalZones = {
-		                zones: this.macdZones.zones.concat(
-		                    this.options.signalLine.zones
-		                ),
-		                startIndex: this.macdZones.zones.length
-		            };
-		            this.resetZones = true;
+		                // Zones have indexes automatically calculated, we need to
+		                // translate them to support multiple lines within one indicator
+		                this.macdZones = {
+		                    zones: this.options.macdLine.zones,
+		                    startIndex: 0
+		                };
+		                this.signalZones = {
+		                    zones: this.macdZones.zones.concat(
+		                        this.options.signalLine.zones
+		                    ),
+		                    startIndex: this.macdZones.zones.length
+		                };
+		                this.resetZones = true;
+		            }
 		        },
 		        toYData: function (point) {
 		            return [point.y, point.signal, point.MACD];
@@ -364,8 +205,8 @@
 
 		            H.seriesTypes.column.prototype.translate.apply(indicator);
 
-		            each(indicator.points, function (point) {
-		                each([point.signal, point.MACD], function (value, i) {
+		            indicator.points.forEach(function (point) {
+		                [point.signal, point.MACD].forEach(function (value, i) {
 		                    if (value !== null) {
 		                        point[plotNames[i]] = indicator.yAxis.toPixels(
 		                            value,
@@ -378,8 +219,8 @@
 		        destroy: function () {
 		            // this.graph is null due to removing two times the same SVG element
 		            this.graph = null;
-		            this.graphmacd = this.graphmacd.destroy();
-		            this.graphsignal = this.graphsignal.destroy();
+		            this.graphmacd = this.graphmacd && this.graphmacd.destroy();
+		            this.graphsignal = this.graphsignal && this.graphsignal.destroy();
 
 		            SMA.prototype.destroy.apply(this, arguments);
 		        },
@@ -418,7 +259,7 @@
 		            }
 
 		            // Modify options and generate smoothing line:
-		            each(['macd', 'signal'], function (lineName, i) {
+		            ['macd', 'signal'].forEach(function (lineName, i) {
 		                indicator.points = otherSignals[i];
 		                indicator.options = merge(
 		                    mainLineOptions[lineName + 'Line'].styles,
@@ -487,7 +328,7 @@
 		                longEMA,
 		                i;
 
-		            if (series.xData.length < params.longPeriod) {
+		            if (series.xData.length < params.longPeriod + params.signalPeriod) {
 		                return false;
 		            }
 
@@ -560,8 +401,10 @@
 		                        MACD[i][1] = 0;
 		                        yMACD[i][0] = 0;
 		                    } else {
-		                        MACD[i][1] = (MACD[i][3] - signalLine[j][1]);
-		                        yMACD[i][0] = (MACD[i][3] - signalLine[j][1]);
+		                        MACD[i][1] = correctFloat(MACD[i][3] -
+		                        signalLine[j][1]);
+		                        yMACD[i][0] = correctFloat(MACD[i][3] -
+		                        signalLine[j][1]);
 		                    }
 
 		                    j++;
@@ -574,26 +417,18 @@
 		                yData: yMACD
 		            };
 		        }
-		    });
+		    }
+		);
 
 		/**
 		 * A `MACD` series. If the [type](#series.macd.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.macd
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.macd
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.macd
-		 */
-
-		/**
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.macd.data
 		 */
 
 	}(Highcharts));

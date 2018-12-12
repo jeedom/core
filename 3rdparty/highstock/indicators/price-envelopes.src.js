@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Paweł Fus
+ * (c) 2010-2018 Paweł Fus
  *
  * License: www.highcharts.com/license
  */
@@ -16,28 +16,43 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
 
 
-		var each = H.each,
-		    merge = H.merge,
+
+		var merge = H.merge,
 		    isArray = H.isArray,
 		    SMA = H.seriesTypes.sma;
 
+		/**
+		 * The Price Envelopes series type.
+		 *
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.priceenvelopes
+		 *
+		 * @augments Highcharts.Series
+		 */
 		H.seriesType('priceenvelopes', 'sma',
 		    /**
 		     * Price envelopes indicator based on [SMA](#plotOptions.sma) calculations.
 		     * This series requires the `linkedTo` option to be set and should be loaded
 		     * after the `stock/indicators/indicators.js` file.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/price-envelopes
-		     *                     Price envelopes
-		     * @since 6.0.0
+		     * @sample stock/indicators/price-envelopes
+		     *         Price envelopes
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.priceenvelopes
 		     */
 		    {
@@ -52,36 +67,21 @@
 		            /**
 		             * Percentage above the moving average that should be displayed.
 		             * 0.1 means 110%. Relative to the calculated value.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            topBand: 0.1,
 		            /**
 		             * Percentage below the moving average that should be displayed.
 		             * 0.1 means 90%. Relative to the calculated value.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            bottomBand: 0.1
 		        },
 		        /**
 		         * Bottom line options.
-		         *
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        bottomLine: {
 		            styles: {
 		                /**
 		                 * Pixel width of the line.
-		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                lineWidth: 1,
 		                /**
@@ -89,9 +89,7 @@
 		                 * [plotOptions.priceenvelopes.color](
 		                 * #plotOptions.priceenvelopes.color).
 		                 *
-		                 * @type {String}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type {Highcharts.ColorString}
 		                 */
 		                lineColor: undefined
 		            }
@@ -100,8 +98,6 @@
 		         * Top line options.
 		         *
 		         * @extends plotOptions.priceenvelopes.bottomLine
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        topLine: {
 		            styles: {
@@ -111,7 +107,11 @@
 		        dataGrouping: {
 		            approximation: 'averages'
 		        }
-		    }, /** @lends Highcharts.Series.prototype */ {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameComponents: ['period', 'topBand', 'bottomBand'],
 		        nameBase: 'Price envelopes',
 		        pointArrayMap: ['top', 'middle', 'bottom'],
@@ -143,9 +143,8 @@
 
 		            SMA.prototype.translate.apply(indicator);
 
-		            each(indicator.points, function (point) {
-		                each(
-		                    [point.top, point.middle, point.bottom],
+		            indicator.points.forEach(function (point) {
+		                [point.top, point.middle, point.bottom].forEach(
 		                    function (value, i) {
 		                        if (value !== null) {
 		                            point[translatedEnvelopes[i]] =
@@ -185,7 +184,7 @@
 		            }
 
 		            // Modify options and generate lines:
-		            each(['topLine', 'bottomLine'], function (lineName, i) {
+		            ['topLine', 'bottomLine'].forEach(function (lineName, i) {
 		                indicator.points = deviations[i];
 		                indicator.options = merge(
 		                    middleLineOptions[lineName].styles,
@@ -261,23 +260,11 @@
 		 * A price envelopes indicator. If the [type](#series.priceenvelopes.type)
 		 * option is not specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.priceenvelopes
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.priceenvelopes
+		 * @since     6.0.0
+		 * @excluding dataParser, dataURL
+		 * @product   highstock
 		 * @apioption series.priceenvelopes
-		 */
-
-		/**
-		 * An array of data points for the series. For the `priceenvelopes` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.priceenvelopes.data
 		 */
 
 	}(Highcharts));

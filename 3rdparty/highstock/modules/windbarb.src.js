@@ -1,8 +1,8 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  * Wind barb series module
  *
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
@@ -15,26 +15,36 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	var onSeriesMixin = (function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
 
-		var each = H.each,
-		    defined = H.defined,
+
+
+		var defined = H.defined,
 		    seriesTypes = H.seriesTypes,
 		    stableSort = H.stableSort;
 
+		/**
+		 * @private
+		 * @mixin onSeriesMixin
+		 */
 		var onSeriesMixin = {
 
 		    /**
 		     * Override getPlotBox. If the onSeries option is valid, return the plot box
 		     * of the onSeries, otherwise proceed as usual.
+		     *
+		     * @private
+		     * @function onSeriesMixin.getPlotBox
+		     *
+		     * @return {Highcharts.SeriesPlotBoxObject}
 		     */
 		    getPlotBox: function () {
 		        return H.Series.prototype.getPlotBox.call(
@@ -47,6 +57,9 @@
 
 		    /**
 		     * Extend the translate method by placing the point on the related series
+		     *
+		     * @private
+		     * @function onSeriesMixin.translate
 		     */
 		    translate: function () {
 
@@ -127,7 +140,7 @@
 		        }
 
 		        // Add plotY position and handle stacking
-		        each(points, function (point, i) {
+		        points.forEach(function (point, i) {
 
 		            var stackIndex;
 
@@ -174,46 +187,58 @@
 		return onSeriesMixin;
 	}(Highcharts));
 	(function (H, onSeriesMixin) {
-		/**
+		/* *
 		 * Wind barb series module
 		 *
-		 * (c) 2010-2017 Torstein Honsi
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
 
-		var each = H.each,
-		    noop = H.noop,
+
+
+		var noop = H.noop,
 		    seriesType = H.seriesType;
+
+		/**
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.windbarb
+		 *
+		 * @augments Highcharts.Series
+		 */
+		seriesType('windbarb', 'column'
 
 		/**
 		 * Wind barbs are a convenient way to represent wind speed and direction in one
 		 * graphical form. Wind direction is given by the stem direction, and wind speed
 		 * by the number and shape of barbs.
 		 *
-		 * @extends plotOptions.column
-		 * @excluding boostThreshold,marker,connectEnds,connectNulls,cropThreshold,
-		 *            dashStyle,gapSize,gapUnit,dataGrouping,linecap,shadow,stacking,
-		 *            step
-		 * @product highcharts highstock
 		 * @sample {highcharts|highstock} highcharts/demo/windbarb-series/
 		 *         Wind barb series
-		 * @since 6.0.0
+		 *
+		 * @extends      plotOptions.column
+		 * @excluding    boostThreshold, marker, connectEnds, connectNulls,
+		 *               cropThreshold, dashStyle, gapSize, gapUnit, dataGrouping,
+		 *               linecap, shadow, stacking, step
+		 * @since        6.0.0
+		 * @product      highcharts highstock
 		 * @optionparent plotOptions.windbarb
 		 */
-		seriesType('windbarb', 'column', {
+		, {
 		    /**
 		     * The line width of the wind barb symbols.
 		     */
 		    lineWidth: 2,
 		    /**
 		     * The id of another series in the chart that the wind barbs are projected
-		     * on. When `null`, the wind symbols are drawn on the X axis, but offset
-		     * up or down by the `yOffset` setting.
+		     * on. When `null`, the wind symbols are drawn on the X axis, but offset up
+		     * or down by the `yOffset` setting.
 		     *
 		     * @sample {highcharts|highstock} highcharts/plotoptions/windbarb-onseries
 		     *         Projected on area series
-		     * @type {String|null}
+		     *
+		     * @type {string|null}
 		     */
 		    onSeries: null,
 		    states: {
@@ -260,9 +285,7 @@
 		        24.5, 28.5, 32.7],
 		    trackerGroups: ['markerGroup'],
 
-		    /**
-		     * Get presentational attributes.
-		     */
+		    // Get presentational attributes.
 		    pointAttribs: function (point, state) {
 		        var options = this.options,
 		            stroke = point.color || this.color,
@@ -284,10 +307,8 @@
 		        return undefined;
 		    },
 		    getPlotBox: onSeriesMixin.getPlotBox,
-		    /**
-		     * Create a single wind arrow. It is later rotated around the zero
-		     * centerpoint.
-		     */
+		    // Create a single wind arrow. It is later rotated around the zero
+		    // centerpoint.
 		    windArrow: function (point) {
 		        var knots = point.value * 1.943844,
 		            level = point.beaufortLevel,
@@ -384,7 +405,7 @@
 
 		        onSeriesMixin.translate.call(this);
 
-		        each(this.points, function (point) {
+		        this.points.forEach(function (point) {
 		            var level = 0;
 		            // Find the beaufort level (zero based)
 		            for (; level < beaufortFloor.length; level++) {
@@ -405,7 +426,7 @@
 		            inverted = chart.inverted,
 		            shapeOffset = this.options.vectorLength / 2;
 
-		        each(this.points, function (point) {
+		        this.points.forEach(function (point) {
 		            var plotX = point.plotX,
 		                plotY = point.plotY;
 
@@ -443,9 +464,7 @@
 		        }, this);
 		    },
 
-		    /**
-		     * Fade in the arrows on initiating series.
-		     */
+		    // Fade in the arrows on initiating series.
 		    animate: function (init) {
 		        if (init) {
 		            this.markerGroup.attr({
@@ -460,9 +479,7 @@
 		        }
 		    },
 
-		    /**
-		     * Don't invert the marker group (#4960)
-		     */
+		    // Don't invert the marker group (#4960)
 		    invertGroups: noop
 		}, {
 		    isValid: function () {
@@ -476,10 +493,9 @@
 		 * A `windbarb` series. If the [type](#series.windbarb.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @extends series,plotOptions.windbarb
-		 * @excluding dataParser,dataURL
-		 * @product highcharts highstock
+		 * @extends   series,plotOptions.windbarb
+		 * @excluding dataParser, dataURL
+		 * @product   highcharts highstock
 		 * @apioption series.windbarb
 		 */
 
@@ -487,37 +503,34 @@
 		 * An array of data points for the series. For the `windbarb` series type,
 		 * points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 3 values. In this case, the values correspond
-		 * to `x,value,direction`. If the first value is a string, it is applied as
-		 * the name of the point, and the `x` value is inferred.
+		 * 1. An array of arrays with 3 values. In this case, the values correspond to
+		 *    `x,value,direction`. If the first value is a string, it is applied as the
+		 *    name of the point, and the `x` value is inferred.
+		 *    ```js
+		 *       data: [
+		 *           [Date.UTC(2017, 0, 1, 0), 3.3, 90],
+		 *           [Date.UTC(2017, 0, 1, 1), 12.1, 180],
+		 *           [Date.UTC(2017, 0, 1, 2), 11.1, 270]
+		 *       ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [Date.UTC(2017, 0, 1, 0), 3.3, 90],
-		 *         [Date.UTC(2017, 0, 1, 1), 12.1, 180],
-		 *         [Date.UTC(2017, 0, 1, 2), 11.1, 270]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.area.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *       data: [{
+		 *           x: Date.UTC(2017, 0, 1, 0),
+		 *           value: 12.1,
+		 *           direction: 90
+		 *       }, {
+		 *           x: Date.UTC(2017, 0, 1, 1),
+		 *           value: 11.1,
+		 *           direction: 270
+		 *       }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The objects are point
-		 * configuration objects as seen below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.area.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: Date.UTC(2017, 0, 1, 0),
-		 *         value: 12.1,
-		 *         direction: 90
-		 *     }, {
-		 *         x: Date.UTC(2017, 0, 1, 1),
-		 *         value: 11.1,
-		 *         direction: 270
-		 *     }]
-		 *  ```
-		 *
-		 * @type {Array<Object|Array|Number>}
-		 * @extends series.line.data
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
@@ -528,23 +541,26 @@
 		 *         Arrays of point.name and y
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
-		 * @product highcharts highstock
+		 *
+		 * @type      {Array<number|Array<number>|*>}
+		 * @extends   series.line.data
+		 * @product   highcharts highstock
 		 * @apioption series.windbarb.data
 		 */
 
 		/**
 		 * The wind speed in meters per second.
 		 *
-		 * @type {Number}
-		 * @product highcharts highstock
+		 * @type      {number}
+		 * @product   highcharts highstock
 		 * @apioption series.windbarb.data.value
 		 */
 
 		/**
 		 * The wind direction in degrees, where 0 is north (pointing towards south).
 		 *
-		 * @type {Number}
-		 * @product highcharts highstock
+		 * @type      {number}
+		 * @product   highcharts highstock
 		 * @apioption series.windbarb.data.direction
 		 */
 

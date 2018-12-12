@@ -1,22 +1,21 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Pointer.js';
 import '../parts/Series.js';
 import '../parts/Pointer.js';
 
-/**
- * Extensions for polar charts. Additionally, much of the geometry required for
- * polar charts is gathered in RadialAxes.js.
- */
+// Extensions for polar charts. Additionally, much of the geometry required for
+// polar charts is gathered in RadialAxes.js.
 
-var each = H.each,
-    pick = H.pick,
+var pick = H.pick,
     Pointer = H.Pointer,
     Series = H.Series,
     seriesTypes = H.seriesTypes,
@@ -50,7 +49,7 @@ if (!H.polarExtended) {
 
     /**
      * #6212 Calculate connectors for spline series in polar chart.
-     * @param {Boolean} calculateNeighbours
+     * @param {boolean} calculateNeighbours
      *        Check if connectors should be calculated for neighbour points as
      *        well allows short recurence
      */
@@ -331,15 +330,15 @@ if (!H.polarExtended) {
              * Polar charts only. Whether to connect the ends of a line series
              * plot across the extremes.
              *
-             * @type {Boolean}
              * @sample {highcharts} highcharts/plotoptions/line-connectends-false/
              *         Do not connect
-             * @since 2.3.0
-             * @product highcharts
+             *
+             * @type      {boolean}
+             * @since     2.3.0
+             * @product   highcharts
              * @apioption plotOptions.series.connectEnds
              */
-            if (
-                this.options.connectEnds !== false &&
+            if (this.options.connectEnds !== false &&
                 firstValid !== undefined
             ) {
                 this.connectEnds = true; // re-used in splines
@@ -349,7 +348,7 @@ if (!H.polarExtended) {
 
             // For area charts, pseudo points are added to the graph, now we
             // need to translate these
-            each(points, function (point) {
+            points.forEach(function (point) {
                 if (point.polarPlotY === undefined) {
                     series.toXY(point);
                 }
@@ -570,7 +569,7 @@ if (!H.polarExtended) {
 
         if (chart.polar) {
 
-            each(chart.axes, function (axis) {
+            chart.axes.forEach(function (axis) {
                 var isXAxis = axis.isXAxis,
                     center = axis.center,
                     x = e.chartX - center[0] - chart.plotLeft,
@@ -615,7 +614,7 @@ if (!H.polarExtended) {
         if (!this.pane) {
             this.pane = [];
         }
-        each(H.splat(this.options.pane), function (paneOptions) {
+        H.splat(this.options.pane).forEach(function (paneOptions) {
             new H.Pane( // eslint-disable-line no-new
                 paneOptions,
                 this
@@ -624,7 +623,7 @@ if (!H.polarExtended) {
     });
 
     H.addEvent(H.Chart, 'afterDrawChartBox', function () {
-        each(this.pane, function (pane) {
+        this.pane.forEach(function (pane) {
             pane.render();
         });
     });

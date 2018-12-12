@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Paweł Fus
+ * (c) 2010-2018 Paweł Fus
  *
  * License: www.highcharts.com/license
  */
@@ -16,14 +16,242 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
-	(function (H) {
+	var multipleLinesMixin = (function (H) {
+		/**
+		 *
+		 *  (c) 2010-2018 Wojciech Chmiel
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
 
 
 		var each = H.each,
 		    merge = H.merge,
+		    error = H.error,
+		    defined = H.defined,
+		    SMA = H.seriesTypes.sma;
+
+		/**
+		 * Mixin useful for all indicators that have more than one line.
+		 * Merge it with your implementation where you will provide
+		 * getValues method appropriate to your indicator and pointArrayMap,
+		 * pointValKey, linesApiNames properites. Notice that pointArrayMap
+		 * should be consistent with amount of lines calculated in getValues method.
+		 *
+		 * @private
+		 * @mixin multipleLinesMixin
+		 */
+		var multipleLinesMixin = {
+		    /**
+		     * Lines ids. Required to plot appropriate amount of lines.
+		     * Notice that pointArrayMap should have more elements than
+		     * linesApiNames, because it contains main line and additional lines ids.
+		     * Also it should be consistent with amount of lines calculated in
+		     * getValues method from your implementation.
+		     *
+		     * @private
+		     * @name multipleLinesMixin.pointArrayMap
+		     * @type {Array<string>}
+		     */
+		    pointArrayMap: ['top', 'bottom'],
+
+		    /**
+		     * Main line id.
+		     *
+		     * @private
+		     * @name multipleLinesMixin.pointValKey
+		     * @type {string}
+		     */
+		    pointValKey: 'top',
+
+		    /**
+		     * Additional lines DOCS names. Elements of linesApiNames array should
+		     * be consistent with DOCS line names defined in your implementation.
+		     * Notice that linesApiNames should have decreased amount of elements
+		     * relative to pointArrayMap (without pointValKey).
+		     *
+		     * @private
+		     * @name multipleLinesMixin.linesApiNames
+		     * @type {Array<string>}
+		     */
+		    linesApiNames: ['bottomLine'],
+
+		    /**
+		     * Create translatedLines Collection based on pointArrayMap.
+		     *
+		     * @private
+		     * @function multipleLinesMixin.getTranslatedLinesNames
+		     *
+		     * @param {string} excludedValue
+		     *        pointValKey - main line id
+		     *
+		     * @return {Array<string>}
+		     *         Returns translated lines names without excluded value.
+		     */
+		    getTranslatedLinesNames: function (excludedValue) {
+		        var translatedLines = [];
+
+		        each(this.pointArrayMap, function (propertyName) {
+		            if (propertyName !== excludedValue) {
+		                translatedLines.push(
+		                    'plot' +
+		                    propertyName.charAt(0).toUpperCase() +
+		                    propertyName.slice(1)
+		                );
+		            }
+		        });
+
+		        return translatedLines;
+		    },
+		    /**
+		     * @private
+		     * @function multipleLinesMixin.toYData
+		     *
+		     * @param {string} point
+		     *
+		     * @return {Array<number>}
+		     *         Returns point Y value for all lines
+		     */
+		    toYData: function (point) {
+		        var pointColl = [];
+
+		        each(this.pointArrayMap, function (propertyName) {
+		            pointColl.push(point[propertyName]);
+		        });
+		        return pointColl;
+		    },
+		    /**
+		     * Add lines plot pixel values.
+		     *
+		     * @private
+		     * @function multipleLinesMixin.translate
+		     */
+		    translate: function () {
+		        var indicator = this,
+		            pointArrayMap = indicator.pointArrayMap,
+		            LinesNames = [],
+		            value;
+
+		        LinesNames = indicator.getTranslatedLinesNames();
+
+		        SMA.prototype.translate.apply(indicator, arguments);
+
+		        each(indicator.points, function (point) {
+		            each(pointArrayMap, function (propertyName, i) {
+		                value = point[propertyName];
+
+		                if (value !== null) {
+		                    point[LinesNames[i]] = indicator.yAxis.toPixels(
+		                        value,
+		                        true
+		                    );
+		                }
+		            });
+		        });
+		    },
+		    /**
+		     * Draw main and additional lines.
+		     *
+		     * @private
+		     * @function multipleLinesMixin.drawGraph
+		     */
+		    drawGraph: function () {
+		        var indicator = this,
+		            pointValKey = indicator.pointValKey,
+		            linesApiNames = indicator.linesApiNames,
+		            mainLinePoints = indicator.points,
+		            pointsLength = mainLinePoints.length,
+		            mainLineOptions = indicator.options,
+		            mainLinePath = indicator.graph,
+		            gappedExtend = {
+		                options: {
+		                    gapSize: mainLineOptions.gapSize
+		                }
+		            },
+		            secondaryLines = [], // additional lines point place holders
+		            secondaryLinesNames = indicator.getTranslatedLinesNames(
+		                pointValKey
+		            ),
+		            point;
+
+
+		        // Generate points for additional lines:
+		        each(secondaryLinesNames, function (plotLine, index) {
+
+		            // create additional lines point place holders
+		            secondaryLines[index] = [];
+
+		            while (pointsLength--) {
+		                point = mainLinePoints[pointsLength];
+		                secondaryLines[index].push({
+		                    x: point.x,
+		                    plotX: point.plotX,
+		                    plotY: point[plotLine],
+		                    isNull: !defined(point[plotLine])
+		                });
+		            }
+
+		            pointsLength = mainLinePoints.length;
+		        });
+
+		        // Modify options and generate additional lines:
+		        each(linesApiNames, function (lineName, i) {
+		            if (secondaryLines[i]) {
+		                indicator.points = secondaryLines[i];
+		                if (mainLineOptions[lineName]) {
+		                    indicator.options = merge(
+		                        mainLineOptions[lineName].styles,
+		                        gappedExtend
+		                    );
+		                } else {
+		                    error(
+		                        'Error: "There is no ' + lineName +
+		                        ' in DOCS options declared. Check if linesApiNames' +
+		                        ' are consistent with your DOCS line names."' +
+		                        ' at mixin/multiple-line.js:34'
+		                    );
+		                }
+
+		                indicator.graph = indicator['graph' + lineName];
+		                SMA.prototype.drawGraph.call(indicator);
+
+		                // Now save lines:
+		                indicator['graph' + lineName] = indicator.graph;
+		            } else {
+		                error(
+		                    'Error: "' + lineName + ' doesn\'t have equivalent ' +
+		                    'in pointArrayMap. To many elements in linesApiNames ' +
+		                    'relative to pointArrayMap."'
+		                );
+		            }
+		        });
+
+		        // Restore options and draw a main line:
+		        indicator.points = mainLinePoints;
+		        indicator.options = mainLineOptions;
+		        indicator.graph = mainLinePath;
+		        SMA.prototype.drawGraph.call(indicator);
+		    }
+		};
+
+
+		return multipleLinesMixin;
+	}(Highcharts));
+	(function (H, multipleLinesMixin) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
+
+
+		var merge = H.merge,
 		    isArray = H.isArray,
 		    SMA = H.seriesTypes.sma;
 
@@ -45,61 +273,54 @@
 		    return std;
 		}
 
+		/**
+		 * Bollinger Bands series type.
+		 *
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.bb
+		 *
+		 * @augments Highcharts.Series
+		 */
 		H.seriesType('bb', 'sma',
 		    /**
 		     * Bollinger bands (BB). This series requires the `linkedTo` option to be
 		     * set and should be loaded after the `stock/indicators/indicators.js` file.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/bollinger-bands
-		     *                     Bollinger bands
-		     * @since 6.0.0
+		     * @sample stock/indicators/bollinger-bands
+		     *         Bollinger bands
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.bb
 		     */
 		    {
-		        name: 'BB (20, 2)',
 		        params: {
 		            period: 20,
 		            /**
 		             * Standard deviation for top and bottom bands.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            standardDeviation: 2,
 		            index: 3
 		        },
 		        /**
 		         * Bottom line options.
-		         *
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        bottomLine: {
 		            /**
 		             * Styles for a bottom line.
-		             *
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            styles: {
 		                /**
 		                 * Pixel width of the line.
-		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                lineWidth: 1,
 		                /**
 		                 * Color of the line. If not set, it's inherited from
 		                 * [plotOptions.bb.color](#plotOptions.bb.color).
 		                 *
-		                 * @type {String}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type  {Highcharts.ColorString}
 		                 */
 		                lineColor: undefined
 		            }
@@ -108,12 +329,13 @@
 		         * Top line options.
 		         *
 		         * @extends plotOptions.bb.bottomLine
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        topLine: {
 		            styles: {
 		                lineWidth: 1,
+		                /**
+		                 * @type {Highcharts.ColorString}
+		                 */
 		                lineColor: undefined
 		            }
 		        },
@@ -126,10 +348,15 @@
 		        dataGrouping: {
 		            approximation: 'averages'
 		        }
-		    }, /** @lends Highcharts.Series.prototype */ {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    H.merge(multipleLinesMixin, {
 		        pointArrayMap: ['top', 'middle', 'bottom'],
 		        pointValKey: 'middle',
 		        nameComponents: ['period', 'standardDeviation'],
+		        linesApiNames: ['topLine', 'bottomLine'],
 		        init: function () {
 		            SMA.prototype.init.apply(this, arguments);
 
@@ -146,78 +373,6 @@
 		                    }
 		                }
 		            }, this.options);
-		        },
-		        toYData: function (point) {
-		            return [point.top, point.middle, point.bottom];
-		        },
-		        translate: function () {
-		            var indicator = this,
-		                translatedBB = ['plotTop', 'plotMiddle', 'plotBottom'];
-
-		            SMA.prototype.translate.apply(indicator, arguments);
-
-		            each(indicator.points, function (point) {
-		                each(
-		                    [point.top, point.middle, point.bottom],
-		                    function (value, i) {
-		                        if (value !== null) {
-		                            point[translatedBB[i]] = indicator.yAxis.toPixels(
-		                                value,
-		                                true
-		                            );
-		                        }
-		                    }
-		                );
-		            });
-		        },
-		        drawGraph: function () {
-		            var indicator = this,
-		                middleLinePoints = indicator.points,
-		                pointsLength = middleLinePoints.length,
-		                middleLineOptions = indicator.options,
-		                middleLinePath = indicator.graph,
-		                gappedExtend = {
-		                    options: {
-		                        gapSize: middleLineOptions.gapSize
-		                    }
-		                },
-		                deviations = [[], []], // top and bottom point place holders
-		                point;
-
-		            // Generate points for top and bottom lines:
-		            while (pointsLength--) {
-		                point = middleLinePoints[pointsLength];
-		                deviations[0].push({
-		                    plotX: point.plotX,
-		                    plotY: point.plotTop,
-		                    isNull: point.isNull
-		                });
-		                deviations[1].push({
-		                    plotX: point.plotX,
-		                    plotY: point.plotBottom,
-		                    isNull: point.isNull
-		                });
-		            }
-
-		            // Modify options and generate lines:
-		            each(['topLine', 'bottomLine'], function (lineName, i) {
-		                indicator.points = deviations[i];
-		                indicator.options = merge(
-		                    middleLineOptions[lineName].styles,
-		                    gappedExtend
-		                );
-		                indicator.graph = indicator['graph' + lineName];
-		                SMA.prototype.drawGraph.call(indicator);
-
-		                // Now save lines:
-		                indicator['graph' + lineName] = indicator.graph;
-		            });
-
-		            // Restore options and draw a middle line:
-		            indicator.points = middleLinePoints;
-		            indicator.options = middleLineOptions;
-		            indicator.graph = middleLinePath;
-		            SMA.prototype.drawGraph.call(indicator);
 		        },
 		        getValues: function (series, params) {
 		            var period = params.period,
@@ -278,33 +433,21 @@
 		                yData: yData
 		            };
 		        }
-		    }
+		    })
 		);
 
 		/**
 		 * A bollinger bands indicator. If the [type](#series.bb.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.bb
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.bb
+		 * @since     6.0.0
+		 * @excluding dataParser, dataURL
+		 * @product   highstock
 		 * @apioption series.bb
 		 */
 
-		/**
-		 * An array of data points for the series. For the `bb` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.bb.data
-		 */
-
-	}(Highcharts));
+	}(Highcharts, multipleLinesMixin));
 	return (function () {
 
 

@@ -1,36 +1,36 @@
-/**
- * (c) 2009-2017 Torstein Honsi
- *
- * License: www.highcharts.com/license
- */
-'use strict';
-import H from '../parts/Globals.js';
-import '../parts/Utilities.js';
-import '../parts/Chart.js';
-/**
+/* *
  * Highcharts module to hide overlapping data labels. This module is included in
  * Highcharts.
  *
- * @ignore
+ * (c) 2009-2018 Torstein Honsi
+ *
+ * License: www.highcharts.com/license
  */
+
+'use strict';
+
+import H from '../parts/Globals.js';
+import '../parts/Utilities.js';
+import '../parts/Chart.js';
+
 var Chart = H.Chart,
-    each = H.each,
+    isArray = H.isArray,
     objectEach = H.objectEach,
     pick = H.pick,
-    addEvent = H.addEvent;
+    addEvent = H.addEvent,
+    fireEvent = H.fireEvent;
 
 // Collect potensial overlapping data labels. Stack labels probably don't need
 // to be considered because they are usually accompanied by data labels that lie
 // inside the columns.
 addEvent(Chart, 'render', function collectAndHide() {
     var labels = [];
-
     // Consider external label collectors
-    each(this.labelCollectors || [], function (collector) {
+    (this.labelCollectors || []).forEach(function (collector) {
         labels = labels.concat(collector());
     });
 
-    each(this.yAxis || [], function (yAxis) {
+    (this.yAxis || []).forEach(function (yAxis) {
         if (
             yAxis.options.stackLabels &&
             !yAxis.options.stackLabels.allowOverlap
@@ -43,26 +43,33 @@ addEvent(Chart, 'render', function collectAndHide() {
         }
     });
 
-    each(this.series || [], function (series) {
-        var dlOptions = series.options.dataLabels,
-            // Range series have two collections
-            collections = series.dataLabelCollections || ['dataLabel'];
+    (this.series || []).forEach(function (series) {
+        var dlOptions = series.options.dataLabels;
 
         if (
-            (dlOptions.enabled || series._hasPointLabels) &&
-            !dlOptions.allowOverlap &&
-            series.visible
+            series.visible &&
+            !(dlOptions.enabled === false && !series._hasPointLabels)
         ) { // #3866
-            each(collections, function (coll) {
-                each(series.points, function (point) {
-                    if (point[coll]) {
-                        point[coll].labelrank = pick(
+            series.points.forEach(function (point) {
+                if (point.visible) {
+                    var dataLabels = (
+                        isArray(point.dataLabels) ?
+                        point.dataLabels :
+                        (point.dataLabel ? [point.dataLabel] : [])
+                    );
+                    dataLabels.forEach(function (label) {
+                        var options = label.options;
+                        label.labelrank = pick(
+                            options.labelrank,
                             point.labelrank,
                             point.shapeArgs && point.shapeArgs.height
                         ); // #4118
-                        labels.push(point[coll]);
-                    }
-                });
+
+                        if (!options.allowOverlap) {
+                            labels.push(label);
+                        }
+                    });
+                }
             });
         }
     });
@@ -73,11 +80,17 @@ addEvent(Chart, 'render', function collectAndHide() {
 /**
  * Hide overlapping labels. Labels are moved and faded in and out on zoom to
  * provide a smooth visual imression.
+ *
+ * @private
+ * @function Highcharts.Chart#hideOverlappingLabels
+ *
+ * @param {Array<Highcharts.SVGElement>} labels
  */
 Chart.prototype.hideOverlappingLabels = function (labels) {
 
-    var len = labels.length,
-        ren = this.renderer,
+    var chart = this,
+        len = labels.length,
+        ren = chart.renderer,
         label,
         i,
         j,
@@ -95,16 +108,14 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
             );
         },
 
-        /**
-         * Get the box with its position inside the chart, as opposed to getBBox
-         * that only reports the position relative to the parent.
-         */
+        // Get the box with its position inside the chart, as opposed to getBBox
+        // that only reports the position relative to the parent.
         getAbsoluteBox = function (label) {
             var pos,
                 parent,
                 bBox,
                 // Substract the padding if no background or border (#4333)
-                padding = 2 * (label.box ? 0 : (label.padding || 0)),
+                padding = label.box ? 0 : (label.padding || 0),
                 lineHeightCorrection = 0;
 
             if (
@@ -129,10 +140,11 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
                         .fontMetrics(null, label.element).h;
                 }
                 return {
-                    x: pos.x + (parent.translateX || 0),
-                    y: pos.y + (parent.translateY || 0) - lineHeightCorrection,
-                    width: label.width - padding,
-                    height: label.height - padding
+                    x: pos.x + (parent.translateX || 0) + padding,
+                    y: pos.y + (parent.translateY || 0) + padding -
+                        lineHeightCorrection,
+                    width: label.width - 2 * padding,
+                    height: label.height - 2 * padding
                 };
 
             }
@@ -194,7 +206,7 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
     }
 
     // Hide or show
-    each(labels, function (label) {
+    labels.forEach(function (label) {
         var complete,
             newOpacity;
 
@@ -221,6 +233,7 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
                         null,
                         complete
                     );
+                    fireEvent(chart, 'afterHideOverlappingLabels');
                 } else { // other labels, tick labels
                     label.attr({
                         opacity: newOpacity

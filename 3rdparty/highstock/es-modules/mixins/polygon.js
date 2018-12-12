@@ -1,15 +1,23 @@
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
+
 var deg2rad = H.deg2rad,
     find = H.find,
     isArray = H.isArray,
-    isNumber = H.isNumber,
-    map = H.map,
-    reduce = H.reduce;
+    isNumber = H.isNumber;
 
 /**
  * Alternative solution to correctFloat.
  * E.g H.correctFloat(123, 2) returns 120, when it should be 123.
+ *
+ * @private
+ * @function correctFloat
+ *
+ * @param {number} number
+ *
+ * @param {number} precision
+ *
+ * @return {number}
  */
 var correctFloat = function (number, precision) {
     var p = isNumber(precision) ? precision : 14,
@@ -19,9 +27,18 @@ var correctFloat = function (number, precision) {
 
 /**
  * Calculates the normals to a line between two points.
- * @param {Array} p1 Start point for the line. Array of x and y value.
- * @param {Array} p2 End point for the line. Array of x and y value.
- * @returns {Array} Returns the two normals in an array.
+ *
+ * @private
+ * @function getNormals
+ *
+ * @param {Array<number,number>} p1
+ *        Start point for the line. Array of x and y value.
+ *
+ * @param {Array<number,number>} p2
+ *        End point for the line. Array of x and y value.
+ *
+ * @return {Array<Array<number,number>>}
+ *         Returns the two normals in an array.
  */
 var getNormals = function getNormal(p1, p2) {
     var dx = p2[0] - p1[0], // x2 - x1
@@ -34,9 +51,18 @@ var getNormals = function getNormal(p1, p2) {
 
 /**
  * Calculates the dot product of two coordinates. The result is a scalar value.
- * @param {Array} a The x and y coordinates of the first point.
- * @param {Array} b The x and y coordinates of the second point.
- * @returns {Number} Returns the dot product of a and b.
+ *
+ * @private
+ * @function dotProduct
+ *
+ * @param {Array<number,number>} a
+ *        The x and y coordinates of the first point.
+ *
+ * @param {Array<number,number>} b
+ *        The x and y coordinates of the second point.
+ *
+ * @return {number}
+ *         Returns the dot product of a and b.
  */
 var dotProduct = function dotProduct(a, b) {
     var ax = a[0],
@@ -48,11 +74,20 @@ var dotProduct = function dotProduct(a, b) {
 
 /**
  * Projects a polygon onto a coordinate.
- * @param {Array} polygon Array of points in a polygon.
- * @param {Array} target The coordinate of pr
+ *
+ * @private
+ * @function project
+ *
+ * @param {Array<Array<number,number>>} polygon
+ *        Array of points in a polygon.
+ *
+ * @param {Array<number,number>} target
+ *        The coordinate of pr
+ *
+ * @return {object}
  */
 var project = function project(polygon, target) {
-    var products = map(polygon, function (point) {
+    var products = polygon.map(function (point) {
         return dotProduct(point, target);
     });
     return {
@@ -63,9 +98,18 @@ var project = function project(polygon, target) {
 
 /**
  * Rotates a point clockwise around the origin.
- * @param {Array} point The x and y coordinates for the point.
- * @param {Number} angle The angle of rotation.
- * @returns {Array} The x and y coordinate for the rotated point.
+ *
+ * @private
+ * @function rotate2DToOrigin
+ *
+ * @param {Array<number,number>} point
+ *        The x and y coordinates for the point.
+ *
+ * @param {number} angle
+ *        The angle of rotation.
+ *
+ * @return {Array<number,number>}
+ *         The x and y coordinate for the rotated point.
  */
 var rotate2DToOrigin = function (point, angle) {
     var x = point[0],
@@ -81,10 +125,21 @@ var rotate2DToOrigin = function (point, angle) {
 
 /**
  * Rotate a point clockwise around another point.
- * @param {Array} point The x and y coordinates for the point.
- * @param {Array} origin The point to rotate around.
- * @param {Number} angle The angle of rotation.
- * @returns {Array} The x and y coordinate for the rotated point.
+ *
+ * @private
+ * @function rotate2DToPoint
+ *
+ * @param {Array<number,number>} point
+ *        The x and y coordinates for the point.
+ *
+ * @param {Array<number,numbner>} origin
+ *        The point to rotate around.
+ *
+ * @param {number} angle
+ *        The angle of rotation.
+ *
+ * @return {Array<number,number>}
+ *         The x and y coordinate for the rotated point.
  */
 var rotate2DToPoint = function (point, origin, angle) {
     var x = point[0] - origin[0],
@@ -109,8 +164,7 @@ var getAxesFromPolygon = function (polygon) {
     if (!isArray(axes)) {
         axes = [];
         points = points = polygon.concat([polygon[0]]);
-        reduce(
-            points,
+        points.reduce(
             function findAxis(p1, p2) {
                 var normals = getNormals(p1, p2),
                     axis = normals[0]; // Use the left normal as axis.
@@ -150,13 +204,13 @@ var getPolygon = function (x, y, width, height, rotation) {
             [right, bottom],
             [left, bottom]
         ];
-    return map(polygon, function (point) {
+    return polygon.map(function (point) {
         return rotate2DToPoint(point, origin, -rotation);
     });
 };
 
 var getBoundingBoxFromPolygon = function (points) {
-    return reduce(points, function (obj, point) {
+    return points.reduce(function (obj, point) {
         var x = point[0],
             y = point[1];
         obj.left = Math.min(x, obj.left);
@@ -165,10 +219,10 @@ var getBoundingBoxFromPolygon = function (points) {
         obj.top = Math.min(y, obj.top);
         return obj;
     }, {
-        left: Number.MAX_SAFE_INTEGER,
-        right: Number.MIN_SAFE_INTEGER,
-        bottom: Number.MIN_SAFE_INTEGER,
-        top: Number.MAX_SAFE_INTEGER
+        left: Number.MAX_VALUE,
+        right: -Number.MAX_VALUE,
+        bottom: -Number.MAX_VALUE,
+        top: Number.MAX_VALUE
     });
 };
 
@@ -185,9 +239,18 @@ var isPolygonsOverlappingOnAxis = function (axis, polygon1, polygon2) {
 /**
  * Checks wether two convex polygons are colliding by using the Separating Axis
  * Theorem.
- * @param {Array} polygon1 First polygon.
- * @param {Array} polygon2 Second polygon.
- * @returns {boolean} Returns true if they are colliding, otherwise false.
+ *
+ * @private
+ * @function isPolygonsColliding
+ *
+ * @param {Array<Array<number,number>>} polygon1
+ *        First polygon.
+ *
+ * @param {Array<Array<number,number>>} polygon2
+ *        Second polygon.
+ *
+ * @return {boolean}
+ *         Returns true if they are colliding, otherwise false.
  */
 var isPolygonsColliding = function isPolygonsColliding(polygon1, polygon2) {
     var axes = getAxes(polygon1, polygon2),
@@ -198,7 +261,7 @@ var isPolygonsColliding = function isPolygonsColliding(polygon1, polygon2) {
 };
 
 var movePolygon = function (deltaX, deltaY, polygon) {
-    return map(polygon, function (point) {
+    return polygon.map(function (point) {
         return [
             point[0] + deltaX,
             point[1] + deltaY

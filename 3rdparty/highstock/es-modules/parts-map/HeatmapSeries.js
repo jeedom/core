@@ -1,9 +1,11 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Options.js';
@@ -11,9 +13,9 @@ import '../parts/Point.js';
 import '../parts/Series.js';
 import '../parts/Legend.js';
 import './ColorSeriesMixin.js';
+
 var colorPointMixin = H.colorPointMixin,
     colorSeriesMixin = H.colorSeriesMixin,
-    each = H.each,
     LegendSymbolMixin = H.LegendSymbolMixin,
     merge = H.merge,
     noop = H.noop,
@@ -22,29 +24,37 @@ var colorPointMixin = H.colorPointMixin,
     seriesType = H.seriesType,
     seriesTypes = H.seriesTypes;
 
+/**
+ * @private
+ * @class
+ * @name Highcharts.seriesTypes.heatmap
+ *
+ * @augments Highcharts.Series
+ */
+seriesType('heatmap', 'scatter'
 
 /**
  * A heatmap is a graphical representation of data where the individual values
  * contained in a matrix are represented as colors.
  *
- * @sample       highcharts/demo/heatmap/
- *               Simple heatmap
- * @sample       highcharts/demo/heatmap-canvas/
- *               Heavy heatmap
- * @extends      {plotOptions.scatter}
- * @excluding    animationLimit,connectEnds,connectNulls,dashStyle,
- *               findNearestPointBy,getExtremesFromAll,linecap,lineWidth,marker,
- *               pointInterval,pointIntervalUnit,pointRange,pointStart,shadow,
- *               softThreshold,stacking,step,threshold
+ * @sample highcharts/demo/heatmap/
+ *         Simple heatmap
+ * @sample highcharts/demo/heatmap-canvas/
+ *         Heavy heatmap
+ *
+ * @extends      plotOptions.scatter
+ * @excluding    animationLimit, connectEnds, connectNulls, dashStyle,
+ *               findNearestPointBy, getExtremesFromAll, linecap, lineWidth,
+ *               marker, pointInterval, pointIntervalUnit, pointRange,
+ *               pointStart, shadow, softThreshold, stacking, step,
+ *               threshold
  * @product      highcharts highmaps
  * @optionparent plotOptions.heatmap
  */
-seriesType('heatmap', 'scatter', {
+, {
 
     /**
      * Animation is disabled by default on the heatmap series.
-     *
-     * @type {Boolean|Object}
      */
     animation: false,
 
@@ -56,9 +66,9 @@ seriesType('heatmap', 'scatter', {
     /**
      * Padding between the points in the heatmap.
      *
-     * @type {Number}
-     * @default 0
-     * @since 6.0
+     * @type      {number}
+     * @default   0
+     * @since     6.0
      * @apioption plotOptions.heatmap.pointPadding
      */
 
@@ -68,10 +78,9 @@ seriesType('heatmap', 'scatter', {
      * options are set in the [colorAxis](#colorAxis), the default value
      * is pulled from the [options.colors](#colors) array.
      *
-     * @type {Color}
-     * @default null
-     * @since 4.0
-     * @product highcharts
+     * @type      {Highcharts.ColorString}
+     * @since     4.0
+     * @product   highcharts
      * @apioption plotOptions.heatmap.color
      */
 
@@ -79,40 +88,42 @@ seriesType('heatmap', 'scatter', {
      * The column size - how many X axis units each column in the heatmap
      * should span.
      *
-     * @type {Number}
-     * @sample {highcharts} maps/demo/heatmap/ One day
-     * @sample {highmaps} maps/demo/heatmap/ One day
-     * @default 1
-     * @since 4.0
-     * @product highcharts highmaps
+     * @sample {highcharts} maps/demo/heatmap/
+     *         One day
+     * @sample {highmaps} maps/demo/heatmap/
+     *         One day
+     *
+     * @type      {number}
+     * @default   1
+     * @since     4.0
+     * @product   highcharts highmaps
      * @apioption plotOptions.heatmap.colsize
      */
 
     /**
      * The row size - how many Y axis units each heatmap row should span.
      *
-     * @type {Number}
-     * @sample {highcharts} maps/demo/heatmap/ 1 by default
-     * @sample {highmaps} maps/demo/heatmap/ 1 by default
-     * @default 1
-     * @since 4.0
-     * @product highcharts highmaps
+     * @sample {highcharts} maps/demo/heatmap/
+     *         1 by default
+     * @sample {highmaps} maps/demo/heatmap/
+     *         1 by default
+     *
+     * @type      {number}
+     * @default   1
+     * @since     4.0
+     * @product   highcharts highmaps
      * @apioption plotOptions.heatmap.rowsize
      */
-
-    
 
     /**
      * The color applied to null points. In styled mode, a general CSS class is
      * applied instead.
      *
-     * @type {Color}
+     * @type {Highcharts.ColorString}
      */
     nullColor: '#f7f7f7',
-    
 
     dataLabels: {
-
         formatter: function () { // #2945
             return this.point.value;
         },
@@ -123,12 +134,12 @@ seriesType('heatmap', 'scatter', {
         padding: 0 // #3837
     },
 
+    /** @ignore */
+    marker: null,
+
     /**
      * @ignore
      */
-    marker: null,
-
-    /**    @ignore */
     pointRange: null, // dynamically set to colsize by default
 
     tooltip: {
@@ -138,26 +149,24 @@ seriesType('heatmap', 'scatter', {
     states: {
 
         hover: {
-            /**
-             * @ignore
-             */
-            halo: false,  // #3406, halo is disabled on heatmaps by default
+
+            /** @ignore */
+            halo: false, // #3406, halo is disabled on heatmaps by default
 
             /**
              * How much to brighten the point on interaction. Requires the main
              * color to be defined in hex or rgb(a) format.
              *
-             * In styled mode, the hover brightening is by default replaced
-             * with a fill-opacity set in the `.highcharts-point:hover` rule.
-             *
-             * @type {Number}
-             * @product highcharts highmaps
+             * In styled mode, the hover brightening is by default replaced with
+             * a fill-opacity set in the `.highcharts-point:hover` rule.
              */
             brightness: 0.2
         }
+
     }
 
 }, merge(colorSeriesMixin, {
+
     pointArrayMap: ['y', 'value'],
     hasPointSpecificOptions: true,
     getExtremesFromAll: true,
@@ -165,6 +174,9 @@ seriesType('heatmap', 'scatter', {
 
     /**
      * Override the init method to add point ranges on both axes.
+     *
+     * @private
+     * @function Highcharts.seriesTypes.heatmap#init
      */
     init: function () {
         var options;
@@ -173,8 +185,14 @@ seriesType('heatmap', 'scatter', {
         options = this.options;
         // #3758, prevent resetting in setData
         options.pointRange = pick(options.pointRange, options.colsize || 1);
-        this.yAxis.axisPointRange = options.rowsize || 1; // general point range
+        // general point range
+        this.yAxis.axisPointRange = options.rowsize || 1;
     },
+
+    /**
+     * @private
+     * @function Highcharts.seriesTypes.heatmap#translate
+     */
     translate: function () {
         var series = this,
             options = series.options,
@@ -187,7 +205,7 @@ seriesType('heatmap', 'scatter', {
 
         series.generatePoints();
 
-        each(series.points, function (point) {
+        series.points.forEach(function (point) {
             var xPad = (options.colsize || 1) / 2,
                 yPad = (options.rowsize || 1) / 2,
                 x1 = between(
@@ -229,19 +247,54 @@ seriesType('heatmap', 'scatter', {
 
         series.translateColors();
     },
+
+    /**
+     * @private
+     * @function Highcharts.seriesTypes.heatmap#drawPoints
+     */
     drawPoints: function () {
+
+        // In styled mode, use CSS, otherwise the fill used in the style sheet
+        // will take precedence over the fill attribute.
+        var func = this.chart.styledMode ? 'css' : 'attr';
+
         seriesTypes.column.prototype.drawPoints.call(this);
 
-        each(this.points, function (point) {
-            
-            point.graphic.attr(this.colorAttribs(point));
-            
+        this.points.forEach(function (point) {
+            point.graphic[func](this.colorAttribs(point));
         }, this);
     },
+
+    /**
+     * @ignore
+     * @deprecated
+     * @function Highcharts.seriesTypes.heatmap#animate
+     */
     animate: noop,
+
+    /**
+     * @ignore
+     * @deprecated
+     * @function Highcharts.seriesTypes.heatmap#getBox
+     */
     getBox: noop,
+
+    /**
+     * @private
+     * @borrows Highcharts.LegendSymbolMixin.drawRectangle as Highcharts.seriesTypes.heatmap#drawLegendSymbol
+     */
     drawLegendSymbol: LegendSymbolMixin.drawRectangle,
+
+    /**
+     * @private
+     * @borrows Highcharts.seriesTypes.column#alignDataLabel as Highcharts.seriesTypes.heatmap#alignDataLabel
+     */
     alignDataLabel: seriesTypes.column.prototype.alignDataLabel,
+
+    /**
+     * @private
+     * @function Highcharts.seriesTypes.heatmap#getExtremes
+     */
     getExtremes: function () {
         // Get the extremes from the value data
         Series.prototype.getExtremes.call(this, this.valueData);
@@ -253,6 +306,15 @@ seriesType('heatmap', 'scatter', {
     }
 
 }), H.extend({
+
+    /**
+     * @private
+     * @function Highcharts.Point#haloPath
+     *
+     * @param {number} size
+     *
+     * @return {Highcharts.SVGPathArray}
+     */
     haloPath: function (size) {
         if (!size) {
             return [];
@@ -267,14 +329,14 @@ seriesType('heatmap', 'scatter', {
         ];
     }
 }, colorPointMixin));
+
 /**
  * A `heatmap` series. If the [type](#series.heatmap.type) option is
  * not specified, it is inherited from [chart.type](#chart.type).
  *
- * @type {Object}
- * @extends series,plotOptions.heatmap
- * @excluding dataParser,dataURL,marker,pointRange,stack
- * @product highcharts highmaps
+ * @extends   series,plotOptions.heatmap
+ * @excluding dataParser, dataURL, marker, pointRange, stack
+ * @product   highcharts highmaps
  * @apioption series.heatmap
  */
 
@@ -298,8 +360,8 @@ seriesType('heatmap', 'scatter', {
  *     ]
  *  ```
  *
- * 2.  An array of objects with named values. The objects are point
- * configuration objects as seen below. If the total number of data
+ * 2.  An array of objects with named values. The following snippet shows only a
+ * few settings, see the complete options set below. If the total number of data
  * points exceeds the series' [turboThreshold](#series.heatmap.turboThreshold),
  * this option is not available.
  *
@@ -319,9 +381,6 @@ seriesType('heatmap', 'scatter', {
  *     }]
  *  ```
  *
- * @type {Array<Object|Array>}
- * @extends series.line.data
- * @excluding marker
  * @sample {highcharts} highcharts/chart/reflow-true/
  *         Numerical values
  * @sample {highcharts} highcharts/series/data-array-of-arrays/
@@ -332,7 +391,11 @@ seriesType('heatmap', 'scatter', {
  *         Arrays of point.name and y
  * @sample {highcharts} highcharts/series/data-array-of-objects/
  *         Config objects
- * @product highcharts highmaps
+ *
+ * @type      {Array<Array<number>|*>}
+ * @extends   series.line.data
+ * @excluding marker
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data
  */
 
@@ -341,8 +404,8 @@ seriesType('heatmap', 'scatter', {
  * explicitly, as we use the color to denote the `value`. Options for
  * this are set in the [colorAxis](#colorAxis) configuration.
  *
- * @type {Color}
- * @product highcharts highmaps
+ * @type      {Highcharts.ColorString}
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data.color
  */
 
@@ -350,8 +413,8 @@ seriesType('heatmap', 'scatter', {
  * The value of the point, resulting in a color controled by options
  * as set in the [colorAxis](#colorAxis) configuration.
  *
- * @type {Number}
- * @product highcharts highmaps
+ * @type      {number}
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data.value
  */
 
@@ -359,24 +422,27 @@ seriesType('heatmap', 'scatter', {
  * The x value of the point. For datetime axes,
  * the X value is the timestamp in milliseconds since 1970.
  *
- * @type {Number}
- * @product highcharts highmaps
+ * @type      {number}
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data.x
  */
 
 /**
  * The y value of the point.
  *
- * @type {Number}
- * @product highcharts highmaps
+ * @type      {number}
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data.y
  */
 
 /**
  * Point padding for a single point.
  *
- * @type {Number}
- * @sample maps/plotoptions/tilemap-pointpadding Point padding on tiles
+ * @sample maps/plotoptions/tilemap-pointpadding
+ *         Point padding on tiles
+ *
+ * @type      {number}
+ * @product   highcharts highmaps
  * @apioption series.heatmap.data.pointPadding
  */
 

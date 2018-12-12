@@ -1,20 +1,22 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from './Globals.js';
 import './Utilities.js';
 import './Axis.js';
 import './Options.js';
+
 var addEvent = H.addEvent,
     Axis = H.Axis,
     correctFloat = H.correctFloat,
     defaultOptions = H.defaultOptions,
     defined = H.defined,
     destroyObjectProperties = H.destroyObjectProperties,
-    each = H.each,
     fireEvent = H.fireEvent,
     hasTouch = H.hasTouch,
     isTouchDevice = H.isTouchDevice,
@@ -50,51 +52,39 @@ var defaultScrollbarOptions = {
      * of the scroll arrows so that they are always squares. Defaults to
      * 20 for touch devices and 14 for mouse devices.
      *
-     * @sample {highstock} stock/scrollbar/height/
+     * @sample stock/scrollbar/height/
      *         A 30px scrollbar
      *
-     * @type       {number}
-     * @default    20/14
-     * @product    highstock
-     * @apioption  scrollbar.height
+     * @type    {number}
+     * @default 20/14
      */
     height: isTouchDevice ? 20 : 14,
 
     /**
      * The border rounding radius of the bar.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
-     *
-     * @type       {number}
-     * @default    0
-     * @product    highstock
-     * @apioption  scrollbar.barBorderRadius
      */
     barBorderRadius: 0,
 
     /**
      * The corner radius of the scrollbar buttons.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
-     *
-     * @type       {number}
-     * @default    0
-     * @product    highstock
-     * @apioption  scrollbar.buttonBorderRadius
      */
     buttonBorderRadius: 0,
 
     /**
      * Enable or disable the scrollbar.
      *
-     * @type       {boolean}
-     * @sample     {highstock} stock/scrollbar/enabled/
-     *             Disable the scrollbar, only use navigator
-     * @default    true
-     * @product    highstock
-     * @apioption  scrollbar.enabled
+     * @sample stock/scrollbar/enabled/
+     *         Disable the scrollbar, only use navigator
+     *
+     * @type      {boolean}
+     * @default   true
+     * @apioption scrollbar.enabled
      */
 
     /**
@@ -102,31 +92,24 @@ var defaultScrollbarOptions = {
      * zoomed window is moved. Defaults to `true` for modern browsers and
      * `false` for legacy IE browsers as well as mobile devices.
      *
-     * @type       {boolean}
-     * @since      1.3
-     * @product    highstock
-     * @apioption  scrollbar.liveRedraw
+     * @sample stock/scrollbar/liveredraw
+     *         Setting live redraw to false
+     *
+     * @type  {boolean}
+     * @since 1.3
      */
     liveRedraw: undefined,
 
     /**
      * The margin between the scrollbar and its axis when the scrollbar is
      * applied directly to an axis.
-     *
-     * @type       {number}
-     * @default    10
-     * @apioption  scrollbar.margin
      */
     margin: 10,
 
     /**
      * The minimum width of the scrollbar.
      *
-     * @type       {number}
-     * @default    6
-     * @since      1.2.5
-     * @product    highstock
-     * @apioption  scrollbar.minWidth
+     * @since 1.2.5
      */
     minWidth: 6,
 
@@ -134,179 +117,127 @@ var defaultScrollbarOptions = {
      * Whether to show or hide the scrollbar when the scrolled content is
      * zoomed out to it full extent.
      *
-     * @type       {boolean}
-     * @default    true
-     * @product    highstock
-     * @apioption  scrollbar.showFull
+     * @type      {boolean}
+     * @default   true
+     * @product   highstock
+     * @apioption scrollbar.showFull
      */
 
-    /**
-     * @type       {number}
-     * @default    0.2
-     * @apioption  scrollbar.step
-     */
     step: 0.2,
 
     /**
      * The z index of the scrollbar group.
-     *
-     * @type       {number}
-     * @default    3
-     * @apioption  scrollbar.zIndex
      */
     zIndex: 3,
-
-    
 
     /**
      * The background color of the scrollbar itself.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #cccccc
-     * @product    highstock
-     * @apioption  scrollbar.barBackgroundColor
+     * @type {Highcharts.ColorString}
      */
     barBackgroundColor: '#cccccc',
 
     /**
      * The width of the bar's border.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
-     *
-     * @type       {number}
-     * @default    1
-     * @product    highstock
-     * @apioption  scrollbar.barBorderWidth
      */
     barBorderWidth: 1,
 
     /**
      * The color of the scrollbar's border.
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #cccccc
-     * @product    highstock
-     * @apioption  scrollbar.barBorderColor
+     * @type {Highcharts.ColorString}
      */
     barBorderColor: '#cccccc',
 
     /**
      * The color of the small arrow inside the scrollbar buttons.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #333333
-     * @product    highstock
-     * @apioption  scrollbar.buttonArrowColor
+     * @type {Highcharts.ColorString}
      */
     buttonArrowColor: '#333333',
 
     /**
      * The color of scrollbar buttons.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #e6e6e6
-     * @product    highstock
-     * @apioption  scrollbar.buttonBackgroundColor
+     * @type {Highcharts.ColorString}
      */
     buttonBackgroundColor: '#e6e6e6',
 
     /**
      * The color of the border of the scrollbar buttons.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #cccccc
-     * @product    highstock
-     * @apioption  scrollbar.buttonBorderColor
+     * @type {Highcharts.ColorString}
      */
     buttonBorderColor: '#cccccc',
 
     /**
      * The border width of the scrollbar buttons.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
-     *
-     * @type       {number}
-     * @default    1
-     * @product    highstock
-     * @apioption  scrollbar.buttonBorderWidth
      */
     buttonBorderWidth: 1,
 
     /**
      * The color of the small rifles in the middle of the scrollbar.
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #333333
-     * @product    highstock
-     * @apioption  scrollbar.rifleColor
+     * @type {Highcharts.ColorString}
      */
     rifleColor: '#333333',
 
     /**
      * The color of the track background.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #f2f2f2
-     * @product    highstock
-     * @apioption  scrollbar.trackBackgroundColor
+     * @type {Highcharts.ColorString}
      */
     trackBackgroundColor: '#f2f2f2',
 
     /**
      * The color of the border of the scrollbar track.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {Highcharts.ColorString}
-     * @default    #f2f2f2
-     * @product    highstock
-     * @apioption  scrollbar.trackBorderColor
+     * @type {Highcharts.ColorString}
      */
     trackBorderColor: '#f2f2f2',
 
     /**
      * The corner radius of the border of the scrollbar track.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
      *
-     * @type       {number}
-     * @default    0
-     * @product    highstock
-     * @apioption  scrollbar.trackBorderRadius
+     * @type      {number}
+     * @default   0
+     * @apioption scrollbar.trackBorderRadius
      */
 
     /**
      * The width of the border of the scrollbar track.
      *
-     * @sample {highstock} stock/scrollbar/style/
+     * @sample stock/scrollbar/style/
      *         Scrollbar styling
-     *
-     * @type       {number}
-     * @default    1
-     * @product    highstock
-     * @apioption  scrollbar.trackBorderWidth
      */
     trackBorderWidth: 1
-    
 };
 
 defaultOptions.scrollbar = merge(
@@ -321,11 +252,11 @@ defaultOptions.scrollbar = merge(
  *
  * @function Highcharts.swapXY
  *
- * @param  {Array<number|string>} path
- *         Path to be rotated.
+ * @param {Array<number|string>} path
+ *        Path to be rotated.
  *
- * @param  {boolean} vertical
- *         If vertical scrollbar, swap x-y values.
+ * @param {boolean} vertical
+ *        If vertical scrollbar, swap x-y values.
  *
  * @return {Array<number|string>}
  */
@@ -349,7 +280,9 @@ H.swapXY = swapXY = function (path, vertical) {
  * A reusable scrollbar, internally used in Highstock's navigator and optionally
  * on individual axes.
  *
- * @class Highcharts.Scrollbar
+ * @private
+ * @class
+ * @name Highcharts.Scrollbar
  *
  * @param {Highcharts.SVGRenderer} renderer
  *
@@ -364,15 +297,14 @@ function Scrollbar(renderer, options, chart) { // docs
 Scrollbar.prototype = {
 
     /**
+     * @private
      * @function Highcharts.Scrollbar#init
      *
-     * @param  {Highcharts.SVGRenderer} renderer
+     * @param {Highcharts.SVGRenderer} renderer
      *
-     * @param  {Highcharts.ScrollbarOptions} options
+     * @param {Highcharts.ScrollbarOptions} options
      *
-     * @param  {Highcharts.Chart} chart
-     *
-     * @return {void}
+     * @param {Highcharts.Chart} chart
      */
     init: function (renderer, options, chart) {
 
@@ -397,17 +329,17 @@ Scrollbar.prototype = {
     },
 
     /**
-    * Render scrollbar with all required items.
-    *
-    * @function Highcharts.Scrollbar#render
-    *
-    * @return {void}
-    */
+     * Render scrollbar with all required items.
+     *
+     * @private
+     * @function Highcharts.Scrollbar#render
+     */
     render: function () {
         var scroller = this,
             renderer = scroller.renderer,
             options = scroller.options,
             size = scroller.size,
+            styledMode = this.chart.styledMode,
             group;
 
         // Draw the scrollbar group
@@ -426,13 +358,14 @@ Scrollbar.prototype = {
                 width: size
             }).add(group);
 
-        
-        scroller.track.attr({
-            fill: options.trackBackgroundColor,
-            stroke: options.trackBorderColor,
-            'stroke-width': options.trackBorderWidth
-        });
-        
+        if (!styledMode) {
+            scroller.track.attr({
+                fill: options.trackBackgroundColor,
+                stroke: options.trackBorderColor,
+                'stroke-width': options.trackBorderWidth
+            });
+        }
+
         this.trackBorderWidth = scroller.track.strokeWidth();
         scroller.track.attr({
             y: -this.trackBorderWidth % 2 / 2
@@ -468,17 +401,18 @@ Scrollbar.prototype = {
             .addClass('highcharts-scrollbar-rifles')
             .add(scroller.scrollbarGroup);
 
-        
-        scroller.scrollbar.attr({
-            fill: options.barBackgroundColor,
-            stroke: options.barBorderColor,
-            'stroke-width': options.barBorderWidth
-        });
-        scroller.scrollbarRifles.attr({
-            stroke: options.rifleColor,
-            'stroke-width': 1
-        });
-        
+        if (!styledMode) {
+            scroller.scrollbar.attr({
+                fill: options.barBackgroundColor,
+                stroke: options.barBorderColor,
+                'stroke-width': options.barBorderWidth
+            });
+            scroller.scrollbarRifles.attr({
+                stroke: options.rifleColor,
+                'stroke-width': 1
+            });
+        }
+
         scroller.scrollbarStrokeWidth = scroller.scrollbar.strokeWidth();
         scroller.scrollbarGroup.translate(
             -scroller.scrollbarStrokeWidth % 2 / 2,
@@ -494,21 +428,20 @@ Scrollbar.prototype = {
      * Position the scrollbar, method called from a parent with defined
      * dimensions.
      *
+     * @private
      * @function Highcharts.Scrollbar#position
      *
-     * @param  {number} x
-     *         x-position on the chart
+     * @param {number} x
+     *        x-position on the chart
      *
-     * @param  {number} y
-     *         y-position on the chart
+     * @param {number} y
+     *        y-position on the chart
      *
-     * @param  {number} width
-     *         width of the scrollbar
+     * @param {number} width
+     *        width of the scrollbar
      *
-     * @param  {number} height
-     *         height of the scorllbar
-     *
-     * @return {void}
+     * @param {number} height
+     *        height of the scorllbar
      */
     position: function (x, y, width, height) {
         var scroller = this,
@@ -560,12 +493,11 @@ Scrollbar.prototype = {
     /**
      * Draw the scrollbar buttons with arrows
      *
+     * @private
      * @function Highcharts.Scrollbar#drawScrollbarButton
      *
-     * @param  {number} index
-     *         0 is left, 1 is right
-     *
-     * @return {void}
+     * @param {number} index
+     *        0 is left, 1 is right
      */
     drawScrollbarButton: function (index) {
         var scroller = this,
@@ -584,14 +516,14 @@ Scrollbar.prototype = {
             .addClass('highcharts-scrollbar-button')
             .add(group);
 
-        
         // Presentational attributes
-        tempElem.attr({
-            stroke: options.buttonBorderColor,
-            'stroke-width': options.buttonBorderWidth,
-            fill: options.buttonBackgroundColor
-        });
-        
+        if (!this.chart.styledMode) {
+            tempElem.attr({
+                stroke: options.buttonBorderColor,
+                'stroke-width': options.buttonBorderWidth,
+                fill: options.buttonBackgroundColor
+            });
+        }
 
         // Place the rectangle based on the rendered stroke width
         tempElem.attr(tempElem.crisp({
@@ -618,26 +550,25 @@ Scrollbar.prototype = {
             .addClass('highcharts-scrollbar-arrow')
             .add(scrollbarButtons[index]);
 
-        
-        tempElem.attr({
-            fill: options.buttonArrowColor
-        });
-        
+        if (!this.chart.styledMode) {
+            tempElem.attr({
+                fill: options.buttonArrowColor
+            });
+        }
     },
 
     /**
-    * Set scrollbar size, with a given scale.
-    *
-    * @function Highcharts.Scrollbar#setRange
-    *
-    * @param  {number} from
-    *         scale (0-1) where bar should start
-    *
-    * @param  {number} to
-    *         scale (0-1) where bar should end
-    *
-    * @return {void}
-    */
+     * Set scrollbar size, with a given scale.
+     *
+     * @private
+     * @function Highcharts.Scrollbar#setRange
+     *
+     * @param {number} from
+     *        scale (0-1) where bar should start
+     *
+     * @param {number} to
+     *        scale (0-1) where bar should end
+     */
     setRange: function (from, to) {
         var scroller = this,
             options = scroller.options,
@@ -721,15 +652,13 @@ Scrollbar.prototype = {
     },
 
     /**
-    * Init events methods, so we have an access to the Scrollbar itself
-    *
-    * @function Highcharts.Scrollbar#initEvents
-    *
-    * @return {void}
-    *
-    * @todo
-    * Make events official: Fires the event `changed`.
-    */
+     * Init events methods, so we have an access to the Scrollbar itself
+     *
+     * @private
+     * @function Highcharts.Scrollbar#initEvents
+     *
+     * @fires Highcharts.Scrollbar#event:changed
+     */
     initEvents: function () {
         var scroller = this;
         /**
@@ -870,6 +799,7 @@ Scrollbar.prototype = {
     /**
      * Get normalized (0-1) cursor position over the scrollbar
      *
+     * @private
      * @function Highcharts.Scrollbar#cursorToScrollbarPosition
      *
      * @param  {*} normalizedEvent
@@ -894,16 +824,15 @@ Scrollbar.prototype = {
     },
 
     /**
-    * Update position option in the Scrollbar, with normalized 0-1 scale
-    *
-    * @function Highcharts.Scrollbar#updatePosition
-    *
-    * @param  {number} from
-    *
-    * @param  {number} to
-    *
-    * @return {void}
-    */
+     * Update position option in the Scrollbar, with normalized 0-1 scale
+     *
+     * @private
+     * @function Highcharts.Scrollbar#updatePosition
+     *
+     * @param  {number} from
+     *
+     * @param  {number} to
+     */
     updatePosition: function (from, to) {
         if (to > 1) {
             from = correctFloat(1 - correctFloat(to - from));
@@ -922,11 +851,10 @@ Scrollbar.prototype = {
     /**
      * Update the scrollbar with new options
      *
+     * @private
      * @function Highcharts.Scrollbar#update
      *
      * @param  {Highcharts.ScrollbarOptions} options
-     *
-     * @return {void}
      */
     update: function (options) {
         this.destroy();
@@ -940,9 +868,8 @@ Scrollbar.prototype = {
     /**
      * Set up the mouse and touch events for the Scrollbar
      *
+     * @private
      * @function Highcharts.Scrollbar#addEvents
-     *
-     * @return {void}
      */
     addEvents: function () {
         var buttonsOrder = this.options.inverted ? [1, 0] : [0, 1],
@@ -974,7 +901,7 @@ Scrollbar.prototype = {
         }
 
         // Add them all
-        each(_events, function (args) {
+        _events.forEach(function (args) {
             addEvent.apply(null, args);
         });
         this._events = _events;
@@ -983,12 +910,11 @@ Scrollbar.prototype = {
     /**
      * Removes the event handlers attached previously with addEvents.
      *
+     * @private
      * @function Highcharts.Scrollbar#removeEvents
-     *
-     * @return {void}
      */
     removeEvents: function () {
-        each(this._events, function (args) {
+        this._events.forEach(function (args) {
             removeEvent.apply(null, args);
         });
         this._events.length = 0;
@@ -997,9 +923,8 @@ Scrollbar.prototype = {
     /**
      * Destroys allocated elements.
      *
+     * @private
      * @function Highcharts.Scrollbar#destroy
-     *
-     * @return {void}
      */
     destroy: function () {
 
@@ -1009,14 +934,13 @@ Scrollbar.prototype = {
         this.removeEvents();
 
         // Destroy properties
-        each(
-            [
-                'track',
-                'scrollbarRifles',
-                'scrollbar',
-                'scrollbarGroup',
-                'group'
-            ],
+        [
+            'track',
+            'scrollbarRifles',
+            'scrollbar',
+            'scrollbarGroup',
+            'group'
+        ].forEach(
             function (prop) {
                 if (this[prop] && this[prop].destroy) {
                     this[prop] = this[prop].destroy();
@@ -1035,13 +959,17 @@ Scrollbar.prototype = {
     }
 };
 
-/*
+/* *
  * Wrap axis initialization and create scrollbar if enabled:
  */
 addEvent(Axis, 'afterInit', function () {
     var axis = this;
 
-    if (axis.options.scrollbar && axis.options.scrollbar.enabled) {
+    if (
+        axis.options &&
+        axis.options.scrollbar &&
+        axis.options.scrollbar.enabled
+    ) {
         // Predefined options:
         axis.options.scrollbar.vertical = !axis.horiz;
         axis.options.startOnTick = axis.options.endOnTick = false;
@@ -1085,7 +1013,7 @@ addEvent(Axis, 'afterInit', function () {
     }
 });
 
-/*
+/* *
  * Wrap rendering axis, and update scrollbar if one is created:
  */
 addEvent(Axis, 'afterRender', function () {
@@ -1164,7 +1092,7 @@ addEvent(Axis, 'afterRender', function () {
     }
 });
 
-/*
+/* *
  * Make space for a scrollbar
  */
 addEvent(Axis, 'afterGetOffset', function () {

@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Money Flow Index indicator for Highstock
  *
- * (c) 2010-2017 Grzegorz Blachliński
+ * (c) 2010-2018 Grzegorz Blachliński
  *
  * License: www.highcharts.com/license
  */
@@ -16,21 +16,28 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  Money Flow Index indicator for Highstock
+		 *
+		 *  (c) 2010-2018 Grzegorz Blachliński
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
 
 
 
+		var isArray = H.isArray;
 
-		var isArray = H.isArray,
-		    reduce = H.reduce;
-
-		    // Utils:
+		// Utils:
 		function sumArray(array) {
 
-		    return reduce(array, function (prev, cur) {
+		    return array.reduce(function (prev, cur) {
 		        return prev + cur;
 		    });
 		}
@@ -46,26 +53,29 @@
 		function calculateRawMoneyFlow(typicalPrice, volume) {
 		    return typicalPrice * volume;
 		}
+
 		/**
 		 * The MFI series type.
 		 *
-		 * @constructor seriesTypes.mfi
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.mfi
+		 *
+		 * @augments Highcharts.Series
 		 */
 		H.seriesType('mfi', 'sma',
-
 		    /**
 		     * Money Flow Index. This series requires `linkedTo` option to be set and
 		     * should be loaded after the `stock/indicators/indicators.js` file.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/mfi
-		     *                     Money Flow Index Indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/mfi
+		     *         Money Flow Index Indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.mfi
 		     */
-
 		    {
 		        /**
 		         * @excluding index
@@ -76,23 +86,19 @@
 		             * The id of volume series which is mandatory.
 		             * For example using OHLC data, volumeSeriesID='volume' means
 		             * the indicator will be calculated using OHLC and volume values.
-		             *
-		             * @type {String}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            volumeSeriesID: 'volume',
 		            /**
 		             * Number of maximum decimals that are used in MFI calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            decimals: 4
 
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameBase: 'Money Flow Index',
 		        getValues: function (series, params) {
 		            var period = params.period,
@@ -124,7 +130,8 @@
 		                    'Series ' +
 		                    params.volumeSeriesID +
 		                    ' not found! Check `volumeSeriesID`.',
-		                    true
+		                    true,
+		                    series.chart
 		                );
 		            }
 
@@ -197,26 +204,14 @@
 		);
 
 		/**
-		 * A `MFI` series. If the [type](#series.mfi.type) option is not
-		 * specified, it is inherited from [chart.type](#chart.type).
+		 * A `MFI` series. If the [type](#series.mfi.type) option is not specified, it
+		 * is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.mfi
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.mfi
+		 * @since     6.0.0
+		 * @excluding dataParser, dataURL
+		 * @product   highstock
 		 * @apioption series.mfi
-		 */
-
-		/**
-		 * An array of data points for the series. For the `mfi` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.mfi.data
 		 */
 
 	}(Highcharts));

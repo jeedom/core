@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v6.1.2 (2018-08-31)
+ * @license Highcharts JS v7.0.0 (2018-12-11)
  *
  * 3D features for Highcharts JS
  *
@@ -14,18 +14,19 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
-		/**
-		 *    Mathematical Functionility
-		 */
+
+
+
+		// Mathematical Functionility
 		var deg2rad = H.deg2rad,
 		    pick = H.pick;
 
@@ -53,6 +54,9 @@
 		 * |      cosB     |   0    |    - sinB     |     | x |     | px |
 		 * | - sinA * sinB |  cosA  | - sinA * cosB |  x  | y |  =  | py |
 		 * |  cosA * sinB  |  sinA  |  cosA * cosB  |     | z |     | pz |
+		 *
+		 * @private
+		 * @function rotate3D
 		 */
 		/* eslint-enable max-len */
 		function rotate3D(x, y, z, angles) {
@@ -79,12 +83,21 @@
 
 		/**
 		 * Transforms a given array of points according to the angles in chart.options.
-		 * Parameters:
-		 *        - points: the array of points
-		 *        - chart: the chart
-		 *        - insidePlotArea: wether to verifiy the points are inside the plotArea
-		 * Returns:
-		 *        - an array of transformed points
+		 *
+		 * @private
+		 * @function Highcharts.perspective
+		 *
+		 * @param {Array<Highcharts.Point>} points
+		 *        The array of points
+		 *
+		 * @param {Highcharts.Chart} chart
+		 *        The chart
+		 *
+		 * @param {boolean} [insidePlotArea]
+		 *        Wether to verifiy the points are inside the plotArea
+		 *
+		 * @return {Array<Highcharts.Point>}
+		 *         An array of transformed points
 		 */
 		H.perspective = function (points, chart, insidePlotArea) {
 		    var options3d = chart.options.chart.options3d,
@@ -111,7 +124,7 @@
 		    }
 
 		    // Transform each point
-		    return H.map(points, function (point) {
+		    return points.map(function (point) {
 		        var rotated = rotate3D(
 		                (inverted ? point.y : point.x) - origin.x,
 		                (inverted ? point.x : point.y) - origin.y,
@@ -137,11 +150,18 @@
 		/**
 		 * Calculate a distance from camera to points - made for calculating zIndex of
 		 * scatter points.
-		 * Parameters:
-		 *        - coordinates: The coordinates of the specific point
-		 *        - chart: the chart
-		 * Returns:
-		 *        - a distance from camera to point
+		 *
+		 * @private
+		 * @function Highcharts.pointCameraDistance
+		 *
+		 * @param {object} coordinates
+		 *        The coordinates of the specific point
+		 *
+		 * @param {Highcharts.Chart} chart
+		 *        The chart
+		 *
+		 * @return {number}
+		 *         A distance from camera to point
 		 */
 		H.pointCameraDistance = function (coordinates, chart) {
 		    var options3d = chart.options.chart.options3d,
@@ -162,6 +182,13 @@
 		/**
 		 * Calculate area of a 2D polygon using Shoelace algorithm
 		 * http://en.wikipedia.org/wiki/Shoelace_formula
+		 *
+		 * @private
+		 * @function Highcharts.shapeArea
+		 *
+		 * @param {Array<object>} vertexes
+		 *
+		 * @return {number}
 		 */
 		H.shapeArea = function (vertexes) {
 		    var area = 0,
@@ -176,6 +203,17 @@
 
 		/**
 		 * Calculate area of a 3D polygon after perspective projection
+		 *
+		 * @private
+		 * @function Highcharts.shapeArea3d
+		 *
+		 * @param {Array<object>} vertexes
+		 *
+		 * @param {Highcharts.Chart} chart
+		 *
+		 * @param {boolean} [insidePlotArea]
+		 *
+		 * @return {number}
 		 */
 		H.shapeArea3d = function (vertexes, chart, insidePlotArea) {
 		    return H.shapeArea(H.perspective(vertexes, chart, insidePlotArea));
@@ -184,41 +222,43 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
+		 *
+		 * Extensions to the SVGRenderer class to enable 3D shapes
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var cos = Math.cos,
 		    PI = Math.PI,
 		    sin = Math.sin;
-
 
 		var animObject = H.animObject,
 		    charts = H.charts,
 		    color = H.color,
 		    defined = H.defined,
 		    deg2rad = H.deg2rad,
-		    each = H.each,
 		    extend = H.extend,
-		    inArray = H.inArray,
-		    map = H.map,
 		    merge = H.merge,
 		    perspective = H.perspective,
 		    pick = H.pick,
 		    SVGElement = H.SVGElement,
 		    SVGRenderer = H.SVGRenderer,
-		    wrap = H.wrap;
+		    wrap = H.wrap,
+
+		    dFactor,
+		    element3dMethods,
+		    cuboidMethods;
 		/*
 		    EXTENSION TO THE SVG-RENDERER TO ENABLE 3D SHAPES
 		*/
-		// HELPER METHODS //
+		// HELPER METHODS
+		dFactor = (4 * (Math.sqrt(2) - 1) / 3) / (PI / 2);
 
-		var dFactor = (4 * (Math.sqrt(2) - 1) / 3) / (PI / 2);
-
-		/** Method to construct a curved path
-		  * Can 'wrap' around more then 180 degrees
-		  */
+		// Method to construct a curved path. Can 'wrap' around more then 180 degrees
 		function curveTo(cx, cy, rx, ry, start, end, dx, dy) {
 		    var result = [],
 		        arcAngle = end - start;
@@ -256,13 +296,52 @@
 		    ];
 		}
 
+		/* @merge v6.2
 
+		     if (!build.classic) {
+
+		// Override the SVGRenderer initiator to add definitions used by brighter and
+		// darker faces of the cuboids.
+		wrap(SVGRenderer.prototype, 'init', function (proceed) {
+		    proceed.apply(this, [].slice.call(arguments, 1));
+
+		    each([{
+		        name: 'darker',
+		        slope: 0.6
+		    }, {
+		        name: 'brighter',
+		        slope: 1.4
+		    }], function (cfg) {
+		        this.definition({
+		            tagName: 'filter',
+		            id: 'highcharts-' + cfg.name,
+		            children: [{
+		                tagName: 'feComponentTransfer',
+		                children: [{
+		                    tagName: 'feFuncR',
+		                    type: 'linear',
+		                    slope: cfg.slope
+		                }, {
+		                    tagName: 'feFuncG',
+		                    type: 'linear',
+		                    slope: cfg.slope
+		                }, {
+		                    tagName: 'feFuncB',
+		                    type: 'linear',
+		                    slope: cfg.slope
+		                }]
+		            }]
+		        });
+		    }, this);
+		});
+
+		*/
 
 		SVGRenderer.prototype.toLinePath = function (points, closed) {
 		    var result = [];
 
 		    // Put "L x y" for each point
-		    each(points, function (point) {
+		    points.forEach(function (point) {
 		        result.push('L', point.x, point.y);
 		    });
 
@@ -280,10 +359,10 @@
 		};
 
 		SVGRenderer.prototype.toLineSegments = function (points) {
-		    var result = [];
+		    var result = [],
+		        m = true;
 
-		    var m = true;
-		    each(points, function (point) {
+		    points.forEach(function (point) {
 		        result.push(m ? 'M' : 'L', point.x, point.y);
 		        m = !m;
 		    });
@@ -291,11 +370,9 @@
 		    return result;
 		};
 
-		/**
-		 * A 3-D Face is defined by it's 3D vertexes, and is only
-		 * visible if it's vertexes are counter-clockwise (Back-face culling).
-		 * It is used as a polyhedron Element
-		 */
+		// A 3-D Face is defined by it's 3D vertexes, and is only visible if it's
+		// vertexes are counter-clockwise (Back-face culling). It is used as a
+		// polyhedron Element
 		SVGRenderer.prototype.face3d = function (args) {
 		    var renderer = this,
 		        ret = this.createElement('path');
@@ -377,21 +454,19 @@
 		    return ret.attr(args);
 		};
 
-		/**
-		 * A Polyhedron is a handy way of defining a group of 3-D faces. It's only
-		 * attribute is `faces`, an array of attributes of each one of it's Face3D
-		 * instances.
-		 */
+		// A Polyhedron is a handy way of defining a group of 3-D faces. It's only
+		// attribute is `faces`, an array of attributes of each one of it's Face3D
+		// instances.
 		SVGRenderer.prototype.polyhedron = function (args) {
 		    var renderer = this,
 		        result = this.g(),
 		        destroy = result.destroy;
 
-    
-		    result.attr({
-		        'stroke-linejoin': 'round'
-		    });
-    
+		    if (!this.styledMode) {
+		        result.attr({
+		            'stroke-linejoin': 'round'
+		        });
+		    }
 
 		    result.faces = [];
 
@@ -416,6 +491,9 @@
 		                    result.faces.push(renderer.face3d().add(result));
 		                }
 		                for (var i = 0; i < hash.faces.length; i++) {
+		                    if (renderer.styledMode) {
+		                        delete hash.faces[i].fill;
+		                    }
 		                    result.faces[i].attr(
 		                        hash.faces[i],
 		                        null,
@@ -449,60 +527,92 @@
 		    return result.attr(args);
 		};
 
-		// CUBOIDS //
-		SVGRenderer.prototype.cuboid = function (shapeArgs) {
+		// Base, abstract prototype member for 3D elements
+		element3dMethods = {
+		    // The init is used by base - renderer.Element
+		    initArgs: function (args) {
+		        var elem3d = this,
+		            renderer = elem3d.renderer,
+		            paths = renderer[elem3d.pathType + 'Path'](args),
+		            zIndexes = paths.zIndexes;
 
-		    var result = this.g(),
-		        destroy = result.destroy,
-		        paths = this.cuboidPath(shapeArgs);
-
-    
-		    result.attr({
-		        'stroke-linejoin': 'round'
-		    });
-    
-
-		    // Create the 3 sides. // Front, top and side are never overlapping in our
-		    // case so it is redundant to set zIndex of every element.
-		    result.front = this.path(paths[0]).attr({
-		        'class': 'highcharts-3d-front'
-		    }).add(result);
-		    result.top = this.path(paths[1]).attr({
-		        'class': 'highcharts-3d-top'
-		    }).add(result);
-		    result.side = this.path(paths[2]).attr({
-		        'class': 'highcharts-3d-side'
-		    }).add(result);
-
-		    // apply the fill everywhere, the top a bit brighter, the side a bit darker
-		    result.fillSetter = function (fill) {
-		        this.front.attr({
-		            fill: fill
+		        // build parts
+		        elem3d.parts.forEach(function (part) {
+		            elem3d[part] = renderer.path(paths[part]).attr({
+		                'class': 'highcharts-3d-' + part,
+		                zIndex: zIndexes[part] || 0
+		            }).add(elem3d);
 		        });
-		        this.top.attr({
-		            fill: color(fill).brighten(0.1).get()
+
+		        elem3d.attr({
+		            'stroke-linejoin': 'round',
+		            zIndex: zIndexes.group
 		        });
-		        this.side.attr({
-		            fill: color(fill).brighten(-0.1).get()
+
+		        // store original destroy
+		        elem3d.originalDestroy = elem3d.destroy;
+		        elem3d.destroy = elem3d.destroyParts;
+		    },
+
+		    // Single property setter that applies options to each part
+		    singleSetterForParts: function (
+		        prop, val, values, verb, duration, complete
+		    ) {
+		        var elem3d = this,
+		            newAttr = {},
+		            optionsToApply = [null, null, (verb || 'attr'), duration, complete],
+		            hasZIndexes = values && values.zIndexes;
+
+		        if (!values) {
+		            newAttr[prop] = val;
+		            optionsToApply[0] = newAttr;
+		        } else {
+		            H.objectEach(values, function (partVal, part) {
+		                newAttr[part] = {};
+		                newAttr[part][prop] = partVal;
+
+		                // include zIndexes if provided
+		                if (hasZIndexes) {
+		                    newAttr[part].zIndex = values.zIndexes[part] || 0;
+		                }
+		            });
+		            optionsToApply[1] = newAttr;
+		        }
+
+		        return elem3d.processParts.apply(elem3d, optionsToApply);
+		    },
+
+		    // Calls function for each part. Used for attr, animate and destroy.
+		    processParts: function (props, partsProps, verb, duration, complete) {
+		        var elem3d = this;
+
+		        elem3d.parts.forEach(function (part) {
+		            // if different props for different parts
+		            if (partsProps) {
+		                props = H.pick(partsProps[part], false);
+		            }
+
+		            // only if something to set, but allow undefined
+		            if (props !== false) {
+		                elem3d[part][verb](props, duration, complete);
+		            }
 		        });
-		        this.color = fill;
+		        return elem3d;
+		    },
 
-		        // for animation getter (#6776)
-		        result.fill = fill;
+		    // Destroy all parts
+		    destroyParts: function () {
+		        this.processParts(null, null, 'destroy');
+		        return this.originalDestroy.call(this);
+		    }
+		};
 
-		        return this;
-		    };
+		// CUBOID
+		cuboidMethods = H.merge(element3dMethods, {
+		    parts: ['front', 'top', 'side'],
+		    pathType: 'cuboid',
 
-		    // apply opacaity everywhere
-		    result.opacitySetter = function (opacity) {
-		        this.front.attr({ opacity: opacity });
-		        this.top.attr({ opacity: opacity });
-		        this.side.attr({ opacity: opacity });
-		        return this;
-		    };
-
-		    result.attr = function (args, val, complete, continueAnimation) {
-
+		    attr: function (args, val, complete, continueAnimation) {
 		        // Resolve setting attributes by string name
 		        if (typeof args === 'string' && typeof val !== 'undefined') {
 		            var key = args;
@@ -511,58 +621,79 @@
 		        }
 
 		        if (args.shapeArgs || defined(args.x)) {
-		            var shapeArgs = args.shapeArgs || args;
-		            var paths = this.renderer.cuboidPath(shapeArgs);
-		            this.front.attr({ d: paths[0] });
-		            this.top.attr({ d: paths[1] });
-		            this.side.attr({ d: paths[2] });
-		        } else {
-		            // getter returns value
-		            return SVGElement.prototype.attr.call(
-		                this, args, undefined, complete, continueAnimation
+		            return this.singleSetterForParts(
+		                'd',
+		                null,
+		                this.renderer[this.pathType + 'Path'](args.shapeArgs || args)
 		            );
 		        }
 
-		        return this;
-		    };
-
-		    result.animate = function (args, duration, complete) {
+		        return SVGElement.prototype.attr.call(
+		            this, args, undefined, complete, continueAnimation
+		        );
+		    },
+		    animate: function (args, duration, complete) {
 		        if (defined(args.x) && defined(args.y)) {
-		            var paths = this.renderer.cuboidPath(args);
-		            this.front.animate({ d: paths[0] }, duration, complete);
-		            this.top.animate({ d: paths[1] }, duration, complete);
-		            this.side.animate({ d: paths[2] }, duration, complete);
+		            var paths = this.renderer[this.pathType + 'Path'](args);
+
+		            this.singleSetterForParts(
+		                'd', null, paths, 'animate', duration, complete
+		            );
+
 		            this.attr({
-		                zIndex: -paths[3] // #4774
+		                zIndex: paths.zIndexes.group
 		            });
 		        } else if (args.opacity) {
-		            this.front.animate(args, duration, complete);
-		            this.top.animate(args, duration, complete);
-		            this.side.animate(args, duration, complete);
+		            this.processParts(args, null, 'animate', duration, complete);
 		        } else {
 		            SVGElement.prototype.animate.call(this, args, duration, complete);
 		        }
 		        return this;
-		    };
+		    },
+		    fillSetter: function (fill) {
+		        this.singleSetterForParts('fill', null, {
+		            front: fill,
+		            top: color(fill).brighten(0.1).get(),
+		            side: color(fill).brighten(-0.1).get()
+		        });
 
-		    // destroy all children
-		    result.destroy = function () {
-		        this.front.destroy();
-		        this.top.destroy();
-		        this.side.destroy();
+		        // fill for animation getter (#6776)
+		        this.color = this.fill = fill;
 
-		        return destroy.call(this);
-		    };
+		        return this;
+		    },
+		    opacitySetter: function (opacity) {
+		        return this.singleSetterForParts('opacity', opacity);
+		    }
+		});
 
-		    // Apply the Z index to the cuboid group
-		    result.attr({ zIndex: -paths[3] });
-
-		    return result;
+		// set them up
+		SVGRenderer.prototype.elements3d = {
+		    base: element3dMethods,
+		    cuboid: cuboidMethods
 		};
 
-		/**
-		 *    Generates a cuboid
-		 */
+		// return result, generalization
+		SVGRenderer.prototype.element3d = function (type, shapeArgs) {
+		    // base
+		    var ret = this.g();
+
+		    // extend
+		    H.extend(ret, this.elements3d[type]);
+
+		    // init
+		    ret.initArgs(shapeArgs);
+
+		    // return
+		    return ret;
+		};
+
+		// generelized, so now use simply
+		SVGRenderer.prototype.cuboid = function (shapeArgs) {
+		    return this.element3d('cuboid', shapeArgs);
+		};
+
+		// Generates a cuboid path and zIndexes
 		H.SVGRenderer.prototype.cuboidPath = function (shapeArgs) {
 		    var x = shapeArgs.x,
 		        y = shapeArgs.y,
@@ -593,42 +724,44 @@
 		        // (needs to be set because of stacking)
 		        incrementY = 10,
 		        incrementZ = 100,
-		        zIndex = 0;
+		        zIndex = 0,
 
-		    // The 8 corners of the cube
-		    var pArr = [{
-		        x: x,
-		        y: y,
-		        z: z
-		    }, {
-		        x: x + w,
-		        y: y,
-		        z: z
-		    }, {
-		        x: x + w,
-		        y: y + h,
-		        z: z
-		    }, {
-		        x: x,
-		        y: y + h,
-		        z: z
-		    }, {
-		        x: x,
-		        y: y + h,
-		        z: z + d
-		    }, {
-		        x: x + w,
-		        y: y + h,
-		        z: z + d
-		    }, {
-		        x: x + w,
-		        y: y,
-		        z: z + d
-		    }, {
-		        x: x,
-		        y: y,
-		        z: z + d
-		    }];
+		        // The 8 corners of the cube
+		        pArr = [{
+		            x: x,
+		            y: y,
+		            z: z
+		        }, {
+		            x: x + w,
+		            y: y,
+		            z: z
+		        }, {
+		            x: x + w,
+		            y: y + h,
+		            z: z
+		        }, {
+		            x: x,
+		            y: y + h,
+		            z: z
+		        }, {
+		            x: x,
+		            y: y + h,
+		            z: z + d
+		        }, {
+		            x: x + w,
+		            y: y + h,
+		            z: z + d
+		        }, {
+		            x: x + w,
+		            y: y,
+		            z: z + d
+		        }, {
+		            x: x,
+		            y: y,
+		            z: z + d
+		        }],
+
+		        pickShape;
 
 		    // apply perspective
 		    pArr = perspective(pArr, chart, shapeArgs.insidePlotArea);
@@ -638,18 +771,18 @@
 		        return pArr[i];
 		    }
 
-		    /*
+		    /* *
 		     * First value - path with specific side
 		     * Second  value - added information about side for later calculations.
 		     * Possible second values are 0 for path1, 1 for path2 and -1 for no path
 		     * chosen.
 		     */
-		    var pickShape = function (path1, path2) {
+		    pickShape = function (path1, path2) {
 		        var ret = [
 		                [], -1
 		        ];
-		        path1 = map(path1, mapPath);
-		        path2 = map(path2, mapPath);
+		        path1 = path1.map(mapPath);
+		        path2 = path2.map(mapPath);
 		        if (H.shapeArea(path1) < 0) {
 		            ret = [path1, 0];
 		        } else if (H.shapeArea(path2) < 0) {
@@ -680,16 +813,14 @@
 		    path3 = shape[0];
 		    isRight = shape[1];
 
-		    /*
-		     * New block used for calculating zIndex. It is basing on X, Y and Z
-		     * position of specific columns. All zIndexes (for X, Y and Z values) are
-		     * added to the final zIndex, where every value has different priority. The
-		     * biggest priority is in X and Z directions, the lowest index is for
-		     * stacked columns (Y direction and the same X and Z positions). Big
-		     * differences between priorities is made because we need to ensure that
-		     * even for big changes in Y and Z parameters all columns will be drawn
-		     * correctly.
-		     */
+		    /* New block used for calculating zIndex. It is basing on X, Y and Z
+		       position of specific columns. All zIndexes (for X, Y and Z values) are
+		       added to the final zIndex, where every value has different priority. The
+		       biggest priority is in X and Z directions, the lowest index is for
+		       stacked columns (Y direction and the same X and Z positions). Big
+		       differences between priorities is made because we need to ensure that
+		       even for big changes in Y and Z parameters all columns will be drawn
+		       correctly. */
 
 		    if (isRight === 1) {
 		        zIndex += incrementX * (1000 - x);
@@ -710,14 +841,18 @@
 		        zIndex += incrementZ * (1000 - z);
 		    }
 
-		    zIndex = -Math.round(zIndex);
+		    return {
+		        front: this.toLinePath(path1, true),
+		        top: this.toLinePath(path2, true),
+		        side: this.toLinePath(path3, true),
+		        zIndexes: {
+		            group: Math.round(zIndex)
+		        },
 
-		    return [
-		        this.toLinePath(path1, true),
-		        this.toLinePath(path2, true),
-		        this.toLinePath(path3, true),
-		        zIndex
-		    ]; // #4774
+		        // additional info about zIndexes
+		        isFront: isFront,
+		        isTop: isTop
+		    }; // #4774
 		};
 
 		// SECTORS //
@@ -727,18 +862,17 @@
 		        renderer = wrapper.renderer,
 		        customAttribs = ['x', 'y', 'r', 'innerR', 'start', 'end'];
 
-		    /**
-		     * Get custom attributes. Don't mutate the original object and return an
-		     * object with only custom attr.
-		     */
+		    // Get custom attributes. Don't mutate the original object and return an
+		    // object with only custom attr.
 		    function suckOutCustom(params) {
 		        var hasCA = false,
-		            ca = {};
+		            ca = {},
+		            key;
 
 		        params = merge(params); // Don't mutate the original object
 
-		        for (var key in params) {
-		            if (inArray(key, customAttribs) !== -1) {
+		        for (key in params) {
+		            if (customAttribs.indexOf(key) !== -1) {
 		                ca[key] = params[key];
 		                delete params[key];
 		                hasCA = true;
@@ -759,9 +893,7 @@
 		    wrapper.inn = renderer.path();
 		    wrapper.out = renderer.path();
 
-		    /**
-		     * Add all faces
-		     */
+		    // Add all faces
 		    wrapper.onAdd = function () {
 		        var parent = wrapper.parentGroup,
 		            className = wrapper.attr('class');
@@ -769,7 +901,7 @@
 
 		        // These faces are added outside the wrapper group because the z index
 		        // relates to neighbour elements as well
-		        each(['out', 'inn', 'side1', 'side2'], function (face) {
+		        ['out', 'inn', 'side1', 'side2'].forEach(function (face) {
 		            wrapper[face]
 		                .attr({
 		                    'class': className + ' highcharts-3d-side'
@@ -779,18 +911,16 @@
 		    };
 
 		    // Cascade to faces
-		    each(['addClass', 'removeClass'], function (fn) {
+		    ['addClass', 'removeClass'].forEach(function (fn) {
 		        wrapper[fn] = function () {
 		            var args = arguments;
-		            each(['top', 'out', 'inn', 'side1', 'side2'], function (face) {
+		            ['top', 'out', 'inn', 'side1', 'side2'].forEach(function (face) {
 		                wrapper[face][fn].apply(wrapper[face], args);
 		            });
 		        };
 		    });
 
-		    /**
-		     * Compute the transformed paths and set them to the composite shapes
-		     */
+		    // Compute the transformed paths and set them to the composite shapes
 		    wrapper.setPaths = function (attribs) {
 
 		        var paths = wrapper.renderer.arc3dPath(attribs),
@@ -833,21 +963,18 @@
 
 		    // Apply the same value to all. These properties cascade down to the
 		    // children when set to the composite arc3d.
-		    each(
-		        ['opacity', 'translateX', 'translateY', 'visibility'],
+		    ['opacity', 'translateX', 'translateY', 'visibility'].forEach(
 		        function (setter) {
 		            wrapper[setter + 'Setter'] = function (value, key) {
 		                wrapper[key] = value;
-		                each(['out', 'inn', 'side1', 'side2', 'top'], function (el) {
+		                ['out', 'inn', 'side1', 'side2', 'top'].forEach(function (el) {
 		                    wrapper[el].attr(key, value);
 		                });
 		            };
 		        }
 		    );
 
-		    /**
-		     * Override attr to remove shape attributes and use those to set child paths
-		     */
+		    // Override attr to remove shape attributes and use those to set child paths
 		    wrap(wrapper, 'attr', function (proceed, params) {
 		        var ca;
 		        if (typeof params === 'object') {
@@ -860,10 +987,8 @@
 		        return proceed.apply(this, [].slice.call(arguments, 1));
 		    });
 
-		    /**
-		     * Override the animate function by sucking out custom parameters related to
-		     * the shapes directly, and update the shapes from the animation step.
-		     */
+		    // Override the animate function by sucking out custom parameters related to
+		    // the shapes directly, and update the shapes from the animation step.
 		    wrap(wrapper, 'animate', function (proceed, params, animation, complete) {
 		        var ca,
 		            from = this.attribs,
@@ -932,19 +1057,17 @@
 		        this.side1.hide();
 		        this.side2.hide();
 		    };
-		    wrapper.show = function () {
-		        this.top.show();
-		        this.out.show();
-		        this.inn.show();
-		        this.side1.show();
-		        this.side2.show();
+		    wrapper.show = function (inherit) {
+		        this.top.show(inherit);
+		        this.out.show(inherit);
+		        this.inn.show(inherit);
+		        this.side1.show(inherit);
+		        this.side2.show(inherit);
 		    };
 		    return wrapper;
 		};
 
-		/**
-		 * Generate the paths required to draw a 3D arc
-		 */
+		// Generate the paths required to draw a 3D arc
 		SVGRenderer.prototype.arc3dPath = function (shapeArgs) {
 		    var cx = shapeArgs.x, // x coordinate of the center
 		        cy = shapeArgs.y, // y coordinate of the center
@@ -1130,16 +1253,18 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * Extension for 3D charts
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var addEvent = H.addEvent,
 		    Chart = H.Chart,
-		    each = H.each,
 		    merge = H.merge,
 		    perspective = H.perspective,
 		    pick = H.pick,
@@ -1162,7 +1287,7 @@
 		    var options = this.options;
 
 		    if (this.is3d()) {
-		        each(options.series || [], function (s) {
+		        (options.series || []).forEach(function (s) {
 		            var type = s.type ||
 		                options.chart.type ||
 		                options.chart.defaultSeriesType;
@@ -1188,13 +1313,18 @@
 		 *         object, but since the chart object is needed for perspective it is
 		 *         not practical. Possible to make both getScale and perspective more
 		 *         logical and also immutable.
-		 * @param  {Object} chart Chart object
-		 * @param  {Number} chart.plotLeft
-		 * @param  {Number} chart.plotWidth
-		 * @param  {Number} chart.plotTop
-		 * @param  {Number} chart.plotHeight
-		 * @param  {Number} depth The depth of the chart
-		 * @return {Number} The scale to fit the 3D chart into the plotting area.
+		 *
+		 * @private
+		 * @function getScale
+		 *
+		 * @param {Highcharts.Chart} chart
+		 *        Chart object
+		 *
+		 * @param {number} depth
+		 *        The depth of the chart
+		 *
+		 * @return {number}
+		 *         The scale to fit the 3D chart into the plotting area.
 		 */
 		function getScale(chart, depth) {
 		    var plotLeft = chart.plotLeft,
@@ -1224,7 +1354,7 @@
 		    }];
 
 		    // Top right corners:
-		    each([0, 1], function (i) {
+		    [0, 1].forEach(function (i) {
 		        corners.push({
 		            x: plotRight,
 		            y: corners[i].y,
@@ -1233,7 +1363,7 @@
 		    });
 
 		    // All bottom corners:
-		    each([0, 1, 2, 3], function (i) {
+		    [0, 1, 2, 3].forEach(function (i) {
 		        corners.push({
 		            x: corners[i].x,
 		            y: plotBottom,
@@ -1245,7 +1375,7 @@
 		    corners = perspective(corners, chart, false);
 
 		    // Get bounding box of 3D element:
-		    each(corners, function (corner) {
+		    corners.forEach(function (corner) {
 		        bbox3d.minX = Math.min(bbox3d.minX, corner.x);
 		        bbox3d.maxX = Math.max(bbox3d.maxX, corner.x);
 		        bbox3d.minY = Math.min(bbox3d.minY, corner.y);
@@ -1312,10 +1442,9 @@
 		        /**
 		         * Options to render charts in 3 dimensions. This feature requires
 		         * `highcharts-3d.js`, found in the download package or online at
-		         * [code.highcharts.com/highcharts-3d.js](http://code.highcharts.com/highcharts-
-		         * 3d.js).
+		         * [code.highcharts.com/highcharts-3d.js](http://code.highcharts.com/highcharts-3d.js).
 		         *
-		         * @since 4.0
+		         * @since   4.0
 		         * @product highcharts
 		         */
 		        options3d: {
@@ -1323,9 +1452,7 @@
 		            /**
 		             * Wether to render the chart using the 3D functionality.
 		             *
-		             * @type {Boolean}
-		             * @default false
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            enabled: false,
@@ -1333,9 +1460,7 @@
 		            /**
 		             * One of the two rotation angles for the chart.
 		             *
-		             * @type {Number}
-		             * @default 0
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            alpha: 0,
@@ -1343,9 +1468,7 @@
 		            /**
 		             * One of the two rotation angles for the chart.
 		             *
-		             * @type {Number}
-		             * @default 0
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            beta: 0,
@@ -1353,9 +1476,7 @@
 		            /**
 		             * The total depth of the chart.
 		             *
-		             * @type {Number}
-		             * @default 100
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            depth: 100,
@@ -1364,9 +1485,7 @@
 		             * Whether the 3d box should automatically adjust to the chart plot
 		             * area.
 		             *
-		             * @type {Boolean}
-		             * @default true
-		             * @since 4.2.4
+		             * @since   4.2.4
 		             * @product highcharts
 		             */
 		            fitToPlot: true,
@@ -1377,9 +1496,7 @@
 		             * effect in column and scatter charts. It is not used for 3D pie
 		             * charts.
 		             *
-		             * @type {Number}
-		             * @default 100
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            viewDistance: 25,
@@ -1388,9 +1505,8 @@
 		             * Set it to `"auto"` to automatically move the labels to the best
 		             * edge.
 		             *
-		             * @validvalue [null, "auto"]
-		             * @type {String}
-		             * @since 5.0.12
+		             * @type    {"auto"|null}
+		             * @since   5.0.12
 		             * @product highcharts
 		             */
 		            axisLabelPosition: null,
@@ -1399,7 +1515,7 @@
 		             * Provides the option to draw a frame around the charts by defining
 		             * a bottom, front and back panel.
 		             *
-		             * @since 4.0
+		             * @since   4.0
 		             * @product highcharts
 		             */
 		            frame: {
@@ -1417,27 +1533,27 @@
 		                /**
 		                 * The bottom of the frame around a 3D chart.
 		                 *
-		                 * @since 4.0
+		                 * @since   4.0
 		                 * @product highcharts
 		                 */
 
 		                /**
 		                 * The color of the panel.
 		                 *
-		                 * @type {Color}
-		                 * @default transparent
-		                 * @since 4.0
-		                 * @product highcharts
+		                 * @type      {Highcharts.ColorString}
+		                 * @default   transparent
+		                 * @since     4.0
+		                 * @product   highcharts
 		                 * @apioption chart.options3d.frame.bottom.color
 		                 */
 
 		                /**
 		                 * The thickness of the panel.
 		                 *
-		                 * @type {Number}
-		                 * @default 1
-		                 * @since 4.0
-		                 * @product highcharts
+		                 * @type      {number}
+		                 * @default   1
+		                 * @since     4.0
+		                 * @product   highcharts
 		                 * @apioption chart.options3d.frame.bottom.size
 		                 */
 
@@ -1447,12 +1563,13 @@
 		                 * and `"default"` to display faces behind the data based on the
 		                 * axis layout, ignoring the point of view.
 		                 *
-		                 * @validvalue ["default", "auto", true, false]
-		                 * @type {Boolean|String}
-		                 * @sample {highcharts} highcharts/3d/scatter-frame/ Auto frames
-		                 * @default default
-		                 * @since 5.0.12
-		                 * @product highcharts
+		                 * @sample {highcharts} highcharts/3d/scatter-frame/
+		                 *         Auto frames
+		                 *
+		                 * @type      {boolean|"default"|"auto"}
+		                 * @default   default
+		                 * @since     5.0.12
+		                 * @product   highcharts
 		                 * @apioption chart.options3d.frame.bottom.visible
 		                 */
 
@@ -1502,7 +1619,51 @@
 
 		merge(true, defaultOptions, extendedOptions);
 
+		// Add the required CSS classes for column sides (#6018)
+		addEvent(Chart, 'afterGetContainer', function () {
+		    if (this.styledMode) {
+		        this.renderer.definition({
+		            tagName: 'style',
+		            textContent:
+		                '.highcharts-3d-top{' +
+		                    'filter: url(#highcharts-brighter)' +
+		                '}\n' +
+		                '.highcharts-3d-side{' +
+		                    'filter: url(#highcharts-darker)' +
+		                '}\n'
+		        });
 
+		        // Add add definitions used by brighter and darker faces of the cuboids.
+		        [{
+		            name: 'darker',
+		            slope: 0.6
+		        }, {
+		            name: 'brighter',
+		            slope: 1.4
+		        }].forEach(function (cfg) {
+		            this.renderer.definition({
+		                tagName: 'filter',
+		                id: 'highcharts-' + cfg.name,
+		                children: [{
+		                    tagName: 'feComponentTransfer',
+		                    children: [{
+		                        tagName: 'feFuncR',
+		                        type: 'linear',
+		                        slope: cfg.slope
+		                    }, {
+		                        tagName: 'feFuncG',
+		                        type: 'linear',
+		                        slope: cfg.slope
+		                    }, {
+		                        tagName: 'feFuncB',
+		                        type: 'linear',
+		                        slope: cfg.slope
+		                    }]
+		                }]
+		            });
+		        }, this);
+		    }
+		});
 
 		wrap(Chart.prototype, 'setClassName', function (proceed) {
 		    proceed.apply(this, [].slice.call(arguments, 1));
@@ -2393,7 +2554,7 @@
 		        stackNumber,
 		        i = 1;
 
-		    each(this.series, function (s) {
+		    this.series.forEach(function (s) {
 		        stackNumber = pick(
 		            s.options.stack,
 		            (stacking ? 0 : series.length - 1 - s.index)
@@ -2477,7 +2638,7 @@
 		    // The 'default' criteria to visible faces of the frame is looking up every
 		    // axis to decide whenever the left/right//top/bottom sides of the frame
 		    // will be shown
-		    each([].concat(chart.xAxis, chart.yAxis, chart.zAxis), function (axis) {
+		    [].concat(chart.xAxis, chart.yAxis, chart.zAxis).forEach(function (axis) {
 		        if (axis) {
 		            if (axis.horiz) {
 		                if (axis.opposite) {
@@ -2771,9 +2932,7 @@
 		    return ret;
 		};
 
-		/**
-		 * Animation setter for matrix property.
-		 */
+		// Animation setter for matrix property.
 		H.Fx.prototype.matrixSetter = function () {
 		    var interpolated;
 		    if (this.pos < 1 &&
@@ -2797,53 +2956,55 @@
 		};
 
 		/**
-		 * Note: As of v5.0.12, `frame.left` or `frame.right` should be used
-		 * instead.
+		 * Note: As of v5.0.12, `frame.left` or `frame.right` should be used instead.
 		 *
 		 * The side for the frame around a 3D chart.
 		 *
-		 * @since 4.0
-		 * @product highcharts
+		 * @deprecated
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption chart.options3d.frame.side
 		 */
 
 		/**
 		 * The color of the panel.
 		 *
-		 * @type {Color}
-		 * @default transparent
-		 * @since 4.0
-		 * @product highcharts
+		 * @deprecated
+		 * @type      {Highcharts.ColorString}
+		 * @default   transparent
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption chart.options3d.frame.side.color
 		 */
 
 		/**
 		 * The thickness of the panel.
 		 *
-		 * @type {Number}
-		 * @default 1
-		 * @since 4.0
-		 * @product highcharts
+		 * @deprecated
+		 * @type      {number}
+		 * @default   1
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption chart.options3d.frame.side.size
 		 */
 
-
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * Extenstion for 3d axes
 		 *
 		 * License: www.highcharts.com/license
 		 */
-		var ZAxis,
 
+
+
+		var ZAxis,
 		    addEvent = H.addEvent,
 		    Axis = H.Axis,
 		    Chart = H.Chart,
 		    deg2rad = H.deg2rad,
-		    each = H.each,
 		    extend = H.extend,
 		    merge = H.merge,
 		    perspective = H.perspective,
@@ -2862,24 +3023,30 @@
 		        /**
 		         * Defines how the labels are be repositioned according to the 3D chart
 		         * orientation.
+		         *
 		         * - `'offset'`: Maintain a fixed horizontal/vertical distance from the
-		         *      tick marks, despite the chart orientation. This is the backwards
-		         *      compatible behavior, and causes skewing of X and Z axes.
+		         *   tick marks, despite the chart orientation. This is the backwards
+		         *   compatible behavior, and causes skewing of X and Z axes.
+		         *
 		         * - `'chart'`: Preserve 3D position relative to the chart.
 		         *   This looks nice, but hard to read if the text isn't
 		         *   forward-facing.
-		         * - `'flap'`: Rotated text along the axis to compensate for the chart
-		         *      orientation. This tries to maintain text as legible as possible
-		         *      on all orientations.
-		         * - `'ortho'`: Rotated text along the axis direction so that the labels
-		         *      are orthogonal to the axis. This is very similar to `'flap'`,
-		         *      but prevents skewing the labels (X and Y scaling are still
-		         *      present).
 		         *
+		         * - `'flap'`: Rotated text along the axis to compensate for the chart
+		         *   orientation. This tries to maintain text as legible as possible
+		         *   on all orientations.
+		         *
+		         * - `'ortho'`: Rotated text along the axis direction so that the labels
+		         *   are orthogonal to the axis. This is very similar to `'flap'`,
+		         *   but prevents skewing the labels (X and Y scaling are still
+		         *   present).
+		         *
+		         * @sample highcharts/3d/skewed-labels/
+		         *         Skewed labels
+		         *
+		         * @since      5.0.15
 		         * @validvalue ['offset', 'chart', 'flap', 'ortho']
-		         * @sample highcharts/3d/skewed-labels/ Skewed labels
-		         * @since 5.0.15
-		         * @product highcharts
+		         * @product    highcharts
 		         */
 		        position3d: 'offset',
 
@@ -2891,8 +3058,10 @@
 		         *
 		         * The final appearance depends heavily on `labels.position3d`.
 		         *
-		         * @since 5.0.15
-		         * @sample highcharts/3d/skewed-labels/ Skewed labels
+		         * @sample highcharts/3d/skewed-labels/
+		         *         Skewed labels
+		         *
+		         * @since   5.0.15
 		         * @product highcharts
 		         */
 		        skew3d: false
@@ -2901,42 +3070,49 @@
 		        /**
 		         * Defines how the title is repositioned according to the 3D chart
 		         * orientation.
+		         *
 		         * - `'offset'`: Maintain a fixed horizontal/vertical distance from the
 		         *   tick marks, despite the chart orientation. This is the backwards
 		         *   compatible behavior, and causes skewing of X and Z axes.
+		         *
 		         * - `'chart'`: Preserve 3D position relative to the chart.
 		         *   This looks nice, but hard to read if the text isn't
 		         *   forward-facing.
+		         *
 		         * - `'flap'`: Rotated text along the axis to compensate for the chart
 		         *   orientation. This tries to maintain text as legible as possible on
 		         *   all orientations.
+		         *
 		         * - `'ortho'`: Rotated text along the axis direction so that the labels
 		         *   are orthogonal to the axis. This is very similar to `'flap'`, but
 		         *   prevents skewing the labels (X and Y scaling are still present).
-		         * - `null`: Will use the config from `labels.position3d`
 		         *
-		         * @validvalue ['offset', 'chart', 'flap', 'ortho', null]
-		         * @type {String}
-		         * @since 5.0.15
-		         * @sample highcharts/3d/skewed-labels/ Skewed labels
-		         * @product highcharts
+		         * - `undefined`: Will use the config from `labels.position3d`
+		         *
+		         * @sample highcharts/3d/skewed-labels/
+		         *         Skewed labels
+		         *
+		         * @type       {"offset"|"chart"|"flap"|"ortho"|null}
+		         * @since      5.0.15
+		         * @product    highcharts
 		         */
 		        position3d: null,
 
 		        /**
 		         * If enabled, the axis title will skewed to follow the perspective.
 		         *
-		          * This will fix overlapping labels and titles, but texts become less
-		          * legible due to the distortion.
+		         * This will fix overlapping labels and titles, but texts become less
+		         * legible due to the distortion.
 		         *
 		         * The final appearance depends heavily on `title.position3d`.
 		         *
 		         * A `null` value will use the config from `labels.skew3d`.
 		         *
-		         * @validvalue [false, true, null]
-		         * @type {Boolean}
-		         * @sample highcharts/3d/skewed-labels/ Skewed labels
-		         * @since 5.0.15
+		         * @sample highcharts/3d/skewed-labels/
+		         *         Skewed labels
+		         *
+		         * @type    {boolean|null}
+		         * @since   5.0.15
 		         * @product highcharts
 		         */
 		        skew3d: null
@@ -3256,6 +3432,7 @@
 		/*
 		Tick extensions
 		 */
+
 		wrap(Tick.prototype, 'getMarkPath', function (proceed) {
 		    var path = proceed.apply(this, [].slice.call(arguments, 1));
 
@@ -3287,7 +3464,7 @@
 		});
 
 		addEvent(Axis, 'destroy', function () {
-		    each(['backFrame', 'bottomFrame', 'sideFrame'], function (prop) {
+		    ['backFrame', 'bottomFrame', 'sideFrame'].forEach(function (prop) {
 		        if (this[prop]) {
 		            this[prop] = this[prop].destroy();
 		        }
@@ -3296,7 +3473,7 @@
 
 		/*
 		Z-AXIS
-		*/
+		 */
 
 		Axis.prototype.swapZ = function (p, insidePlotArea) {
 		    if (this.isZAxis) {
@@ -3346,7 +3523,7 @@
 		        }
 
 		        // loop through this axis' series
-		        each(axis.series, function (series) {
+		        axis.series.forEach(function (series) {
 
 		            if (series.visible || !chart.options.chart.ignoreHiddenSeries) {
 
@@ -3378,9 +3555,7 @@
 		});
 
 
-		/**
-		* Get the Z axis in addition to the default X and Y.
-		*/
+		// Get the Z axis in addition to the default X and Y.
 		addEvent(Chart, 'afterGetAxes', function () {
 		    var chart = this,
 		        options = this.options,
@@ -3390,7 +3565,7 @@
 		        return;
 		    }
 		    this.zAxis = [];
-		    each(zAxisOptions, function (axisOptions, i) {
+		    zAxisOptions.forEach(function (axisOptions, i) {
 		        axisOptions.index = i;
 		        // Z-Axis is shown horizontally, so it's kind of a X-Axis
 		        axisOptions.isX = true;
@@ -3398,10 +3573,9 @@
 		        zAxis.setScale();
 		    });
 		});
-		/**
-		 * Wrap getSlotWidth function to calculate individual width value
-		 * for each slot (#8042).
-		 */
+
+		// Wrap getSlotWidth function to calculate individual width value for each slot
+		// (#8042).
 		wrap(Axis.prototype, 'getSlotWidth', function (proceed, tick) {
 		    if (this.chart.is3d() &&
 		        tick &&
@@ -3470,13 +3644,16 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * Extension to the Series object in 3D charts.
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var addEvent = H.addEvent,
 		    perspective = H.perspective,
 		    pick = H.pick;
@@ -3488,9 +3665,7 @@
 		    }
 		});
 
-		/**
-		 * Translate the plotX, plotY properties and add plotZ.
-		 */
+		// Translate the plotX, plotY properties and add plotZ.
 		H.Series.prototype.translate3dPoints = function () {
 		    var series = this,
 		        chart = series.chart,
@@ -3540,33 +3715,31 @@
 		    }
 		};
 
-
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var addEvent = H.addEvent,
-		    each = H.each,
 		    perspective = H.perspective,
 		    pick = H.pick,
 		    Series = H.Series,
 		    seriesTypes = H.seriesTypes,
-		    inArray = H.inArray,
 		    svg = H.svg,
 		    wrap = H.wrap;
-
-
 
 		/**
 		 * Depth of the columns in a 3D column chart. Requires `highcharts-3d.js`.
 		 *
-		 * @type {Number}
-		 * @default 25
-		 * @since 4.0
-		 * @product highcharts
+		 * @type      {number}
+		 * @default   25
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption plotOptions.column.depth
 		 */
 
@@ -3574,17 +3747,17 @@
 		 * 3D columns only. The color of the edges. Similar to `borderColor`,
 		 *  except it defaults to the same color as the column.
 		 *
-		 * @type {Color}
-		 * @product highcharts
+		 * @type      {Highcharts.ColorString}
+		 * @product   highcharts
 		 * @apioption plotOptions.column.edgeColor
 		 */
 
 		/**
 		 * 3D columns only. The width of the colored edges.
 		 *
-		 * @type {Number}
-		 * @default 1
-		 * @product highcharts
+		 * @type      {number}
+		 * @default   1
+		 * @product   highcharts
 		 * @apioption plotOptions.column.edgeWidth
 		 */
 
@@ -3592,10 +3765,10 @@
 		 * The spacing between columns on the Z Axis in a 3D chart. Requires
 		 * `highcharts-3d.js`.
 		 *
-		 * @type {Number}
-		 * @default 1
-		 * @since 4.0
-		 * @product highcharts
+		 * @type      {number}
+		 * @default   1
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption plotOptions.column.groupZPadding
 		 */
 
@@ -3644,7 +3817,7 @@
 		    }
 
 		    z += (seriesOptions.groupZPadding || 1);
-		    each(series.data, function (point) {
+		    series.data.forEach(function (point) {
 		        // #7103 Reset outside3dPlot flag
 		        point.outside3dPlot = null;
 		        if (point.y !== null) {
@@ -3656,7 +3829,7 @@
 		                borderlessBase; // Crisped rects can have +/- 0.5 pixels offset.
 
 		            // #3131 We need to check if column is inside plotArea.
-		            each(dimensions, function (d) {
+		            dimensions.forEach(function (d) {
 		                borderlessBase = shapeArgs[d[0]] - borderCrisp;
 		                if (borderlessBase < 0) {
 		                    // If borderLessBase is smaller than 0, it is needed to set
@@ -3695,7 +3868,11 @@
 		                }
 		            });
 
-		            point.shapeType = 'cuboid';
+		            // Change from 2d to 3d
+		            if (point.shapeType === 'rect') {
+		                point.shapeType = 'cuboid';
+		            }
+
 		            shapeArgs.z = z;
 		            shapeArgs.depth = depth;
 		            shapeArgs.insidePlotArea = true;
@@ -3725,7 +3902,7 @@
 
 		        if (svg) { // VML is too slow anyway
 		            if (init) {
-		                each(series.data, function (point) {
+		                series.data.forEach(function (point) {
 		                    if (point.y !== null) {
 		                        point.height = point.shapeArgs.height;
 		                        point.shapey = point.shapeArgs.y;    // #2968
@@ -3748,7 +3925,7 @@
 		                });
 
 		            } else { // run the animation
-		                each(series.data, function (point) {
+		                series.data.forEach(function (point) {
 		                    if (point.y !== null) {
 		                        point.shapeArgs.height = point.height;
 		                        point.shapeArgs.y = point.shapey;    // #2968
@@ -3772,12 +3949,9 @@
 		    }
 		});
 
-		/*
-		 * In case of 3d columns there is no sense to add this columns
-		 * to a specific series group - if series is added to a group
-		 * all columns will have the same zIndex in comparison with different series
-		 */
-
+		// In case of 3d columns there is no sense to add this columns to a specific
+		// series group - if series is added to a group all columns will have the same
+		// zIndex in comparison with different series.
 		wrap(
 		    seriesTypes.column.prototype,
 		    'plotGroup',
@@ -3795,11 +3969,8 @@
 		    }
 		);
 
-		/*
-		 * When series is not added to group it is needed to change
-		 * setVisible method to allow correct Legend funcionality
-		 * This wrap is basing on pie chart series
-		 */
+		// When series is not added to group it is needed to change setVisible method to
+		// allow correct Legend funcionality. This wrap is basing on pie chart series.
 		wrap(
 		    seriesTypes.column.prototype,
 		    'setVisible',
@@ -3807,11 +3978,11 @@
 		        var series = this,
 		            pointVis;
 		        if (series.chart.is3d()) {
-		            each(series.data, function (point) {
+		            series.data.forEach(function (point) {
 		                point.visible = point.options.visible = vis =
 		                    vis === undefined ? !point.visible : vis;
 		                pointVis = vis ? 'visible' : 'hidden';
-		                series.options.data[inArray(point, series.data)] =
+		                series.options.data[series.data.indexOf(point)] =
 		                    point.options;
 		                if (point.graphic) {
 		                    point.graphic.attr({
@@ -3856,7 +4027,6 @@
 		    }
 		});
 
-
 		function pointAttribs(proceed) {
 		    var attr = proceed.apply(this, [].slice.call(arguments, 1));
 
@@ -3878,13 +4048,12 @@
 		        seriesTypes.column.prototype.setVisible;
 		}
 
-
 		wrap(Series.prototype, 'alignDataLabel', function (proceed) {
 
-		    // Only do this for 3D columns and columnranges
+		    // Only do this for 3D columns and it's derived series
 		    if (
 		        this.chart.is3d() &&
-		        (this.type === 'column' || this.type === 'columnrange')
+		        this instanceof seriesTypes.column
 		    ) {
 		        var series = this,
 		            chart = series.chart;
@@ -3923,6 +4092,8 @@
 		});
 
 		/*
+		    @merge v6.2
+		    @todo
 		    EXTENSION FOR 3D CYLINDRICAL COLUMNS
 		    Not supported
 		*/
@@ -3978,28 +4149,29 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * 3D pie series
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var deg2rad = H.deg2rad,
-		    each = H.each,
 		    pick = H.pick,
 		    seriesTypes = H.seriesTypes,
 		    svg = H.svg,
 		    wrap = H.wrap;
 
-
 		/**
 		 * The thickness of a 3D pie. Requires `highcharts-3d.js`
 		 *
-		 * @type {Number}
-		 * @default 0
-		 * @since 4.0
-		 * @product highcharts
+		 * @type      {number}
+		 * @default   0
+		 * @since     4.0
+		 * @product   highcharts
 		 * @apioption plotOptions.pie.depth
 		 */
 
@@ -4027,7 +4199,7 @@
 		        z = 0;
 		    }
 
-		    each(series.data, function (point) {
+		    series.data.forEach(function (point) {
 
 		        var shapeArgs = point.shapeArgs,
 		            angle;
@@ -4066,7 +4238,6 @@
 		    }
 		);
 
-
 		wrap(
 		    seriesTypes.pie.prototype,
 		    'pointAttribs',
@@ -4074,7 +4245,7 @@
 		        var attr = proceed.call(this, point, state),
 		            options = this.options;
 
-		        if (this.chart.is3d()) {
+		        if (this.chart.is3d() && !this.chart.styledMode) {
 		            attr.stroke = options.edgeColor || point.color || this.color;
 		            attr['stroke-width'] = pick(options.edgeWidth, 1);
 		        }
@@ -4083,44 +4254,31 @@
 		    }
 		);
 
-
-		wrap(seriesTypes.pie.prototype, 'drawPoints', function (proceed) {
-		    proceed.apply(this, [].slice.call(arguments, 1));
-
-		    if (this.chart.is3d()) {
-		        each(this.points, function (point) {
-		            var graphic = point.graphic;
-
-		            // #4584 Check if has graphic - null points don't have it
-		            if (graphic) {
-		                // Hide null or 0 points (#3006, 3650)
-		                graphic[point.y && point.visible ? 'show' : 'hide']();
-		            }
-		        });
-		    }
-		});
-
 		wrap(seriesTypes.pie.prototype, 'drawDataLabels', function (proceed) {
 		    if (this.chart.is3d()) {
 		        var series = this,
 		            chart = series.chart,
 		            options3d = chart.options.chart.options3d;
-		        each(series.data, function (point) {
+		        series.data.forEach(function (point) {
 		            var shapeArgs = point.shapeArgs,
 		                r = shapeArgs.r,
 		                // #3240 issue with datalabels for 0 and null values
 		                a1 = (shapeArgs.alpha || options3d.alpha) * deg2rad,
 		                b1 = (shapeArgs.beta || options3d.beta) * deg2rad,
 		                a2 = (shapeArgs.start + shapeArgs.end) / 2,
-		                labelPos = point.labelPos,
-		                labelIndexes = [0, 2, 4], // [x1, y1, x2, y2, x3, y3]
+		                labelPosition = point.labelPosition,
+		                connectorPosition = labelPosition.connectorPosition,
 		                yOffset = (-r * (1 - Math.cos(a1)) * Math.sin(a2)),
 		                xOffset = r * (Math.cos(b1) - 1) * Math.cos(a2);
 
 		            // Apply perspective on label positions
-		            each(labelIndexes, function (index) {
-		                labelPos[index] += xOffset;
-		                labelPos[index + 1] += yOffset;
+		            [
+		                labelPosition.natural,
+		                connectorPosition.breakAt,
+		                connectorPosition.touchingSliceAt
+		            ].forEach(function (coordinates) {
+		                coordinates.x += xOffset;
+		                coordinates.y += yOffset;
 		            });
 		        });
 		    }
@@ -4196,67 +4354,80 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * Scatter 3D series.
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		var Point = H.Point,
 		    seriesType = H.seriesType,
 		    seriesTypes = H.seriesTypes;
 
 		/**
-		 * A 3D scatter plot uses x, y and z coordinates to display values for three
-		 * variables for a set of data.
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.scatter3d
 		 *
-		 * @sample {highcharts} highcharts/3d/scatter/
-		 *         Simple 3D scatter
-		 * @sample {highcharts} highcharts/demo/3d-scatter-draggable
-		 *         Draggable 3d scatter
-		 *
-		 * @extends plotOptions.scatter
-		 * @product highcharts
-		 * @optionparent plotOptions.scatter3d
+		 * @augments Highcharts.Series
 		 */
-		seriesType('scatter3d', 'scatter', {
-		    tooltip: {
-		        pointFormat: 'x: <b>{point.x}</b><br/>y: <b>{point.y}</b><br/>z: <b>{point.z}</b><br/>'
-		    }
-
-		// Series class
-		}, {
-		    pointAttribs: function (point) {
-		        var attribs = seriesTypes.scatter.prototype.pointAttribs
-		            .apply(this, arguments);
-
-		        if (this.chart.is3d() && point) {
-		            attribs.zIndex = H.pointCameraDistance(point, this.chart);
+		seriesType('scatter3d', 'scatter',
+		    /**
+		     * A 3D scatter plot uses x, y and z coordinates to display values for three
+		     * variables for a set of data.
+		     *
+		     * @sample {highcharts} highcharts/3d/scatter/
+		     *         Simple 3D scatter
+		     * @sample {highcharts} highcharts/demo/3d-scatter-draggable
+		     *         Draggable 3d scatter
+		     *
+		     * @extends      plotOptions.scatter
+		     * @product      highcharts
+		     * @optionparent plotOptions.scatter3d
+		     */
+		    {
+		        tooltip: {
+		            pointFormat: 'x: <b>{point.x}</b><br/>y: <b>{point.y}</b><br/>z: <b>{point.z}</b><br/>'
 		        }
 
-		        return attribs;
-		    },
-		    axisTypes: ['xAxis', 'yAxis', 'zAxis'],
-		    pointArrayMap: ['x', 'y', 'z'],
-		    parallelArrays: ['x', 'y', 'z'],
+		    // Series class
+		    }, {
+		        pointAttribs: function (point) {
+		            var attribs = seriesTypes.scatter.prototype.pointAttribs
+		                .apply(this, arguments);
 
-		    // Require direct touch rather than using the k-d-tree, because the k-d-tree
-		    // currently doesn't take the xyz coordinate system into account (#4552)
-		    directTouch: true
+		            if (this.chart.is3d() && point) {
+		                attribs.zIndex = H.pointCameraDistance(point, this.chart);
+		            }
 
-		// Point class
-		}, {
-		    applyOptions: function () {
-		        Point.prototype.applyOptions.apply(this, arguments);
-		        if (this.z === undefined) {
-		            this.z = 0;
+		            return attribs;
+		        },
+		        axisTypes: ['xAxis', 'yAxis', 'zAxis'],
+		        pointArrayMap: ['x', 'y', 'z'],
+		        parallelArrays: ['x', 'y', 'z'],
+
+		        // Require direct touch rather than using the k-d-tree, because the
+		        // k-d-tree currently doesn't take the xyz coordinate system into
+		        // account (#4552)
+		        directTouch: true
+
+		    // Point class
+		    }, {
+		        applyOptions: function () {
+		            Point.prototype.applyOptions.apply(this, arguments);
+		            if (this.z === undefined) {
+		                this.z = 0;
+		            }
+
+		            return this;
 		        }
 
-		        return this;
 		    }
-
-		});
+		);
 
 
 		/**
@@ -4265,9 +4436,8 @@
 		 *
 		 * scatter3d](#plotOptions.scatter3d).
 		 *
-		 * @type {Object}
-		 * @extends series,plotOptions.scatter3d
-		 * @product highcharts
+		 * @extends   series,plotOptions.scatter3d
+		 * @product   highcharts
 		 * @apioption series.scatter3d
 		 */
 
@@ -4287,8 +4457,8 @@
 		 *     ]
 		 *  ```
 		 *
-		 * 3.  An array of objects with named values. The objects are point
-		 * configuration objects as seen below. If the total number of data
+		 * 3.  An array of objects with named values. The following snippet shows only a
+		 * few settings, see the complete options set below. If the total number of data
 		 * points exceeds the series'
 		 * [turboThreshold](#series.scatter3d.turboThreshold), this option is not
 		 * available.
@@ -4309,8 +4479,6 @@
 		 *     }]
 		 *  ```
 		 *
-		 * @type {Array<Object|Array>}
-		 * @extends series.scatter.data
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
@@ -4321,48 +4489,52 @@
 		 *         Arrays of point.name and y
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
-		 * @product highcharts
+		 *
+		 * @type      {Array<Array<number>|*>}
+		 * @extends   series.scatter.data
+		 * @product   highcharts
 		 * @apioption series.scatter3d.data
 		 */
 
 		/**
 		 * The z value for each data point.
 		 *
-		 * @type {Number}
-		 * @product highcharts
+		 * @type      {number}
+		 * @product   highcharts
 		 * @apioption series.scatter3d.data.z
 		 */
 
 	}(Highcharts));
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Torstein Honsi
+		/* *
+		 * (c) 2010-2018 Torstein Honsi
+		 *
+		 * Extension to the VML Renderer
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
 
 		var addEvent = H.addEvent,
 		    Axis = H.Axis,
 		    SVGRenderer = H.SVGRenderer,
 		    VMLRenderer = H.VMLRenderer;
 
-		/**
-		 *    Extension to the VML Renderer
-		 */
 		if (VMLRenderer) {
 
 		    H.setOptions({ animate: false });
 
 		    VMLRenderer.prototype.face3d = SVGRenderer.prototype.face3d;
 		    VMLRenderer.prototype.polyhedron = SVGRenderer.prototype.polyhedron;
+
+		    VMLRenderer.prototype.elements3d = SVGRenderer.prototype.elements3d;
+		    VMLRenderer.prototype.element3d = SVGRenderer.prototype.element3d;
 		    VMLRenderer.prototype.cuboid = SVGRenderer.prototype.cuboid;
 		    VMLRenderer.prototype.cuboidPath = SVGRenderer.prototype.cuboidPath;
 
 		    VMLRenderer.prototype.toLinePath = SVGRenderer.prototype.toLinePath;
 		    VMLRenderer.prototype.toLineSegments = SVGRenderer.prototype.toLineSegments;
-
-		    VMLRenderer.prototype.createElement3D =
-		        SVGRenderer.prototype.createElement3D;
 
 		    VMLRenderer.prototype.arc3d = function (shapeArgs) {
 		        var result = SVGRenderer.prototype.arc3d.call(this, shapeArgs);
@@ -4390,7 +4562,6 @@
 		    });
 
 		}
-
 
 	}(Highcharts));
 	return (function () {

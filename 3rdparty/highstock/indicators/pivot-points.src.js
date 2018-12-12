@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Paweł Fus
+ * (c) 2010-2018 Paweł Fus
  *
  * License: www.highcharts.com/license
  */
@@ -16,14 +16,19 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
 
 
-		var each = H.each,
-		    defined = H.defined,
+
+		var defined = H.defined,
 		    isArray = H.isArray,
 		    SMA = H.seriesTypes.sma;
 
@@ -44,16 +49,26 @@
 		    }
 		}
 
+		/**
+		 * The Pivot Points series type.
+		 *
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.pivotpoints
+		 *
+		 * @augments Highcharts.Series
+		 */
 		H.seriesType('pivotpoints', 'sma',
 		    /**
 		     * Pivot points indicator. This series requires the `linkedTo` option to be
 		     * set and should be loaded after `stock/indicators/indicators.js` file.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/pivot-points
-		     *                     Pivot points
-		     * @since 6.0.0
+		     * @sample stock/indicators/pivot-points
+		     *         Pivot points
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.pivotpoints
 		     */
 		    {
@@ -66,10 +81,6 @@
 		             * Algorithm used to calculate ressistance and support lines based
 		             * on pivot points. Implemented algorithms: `'standard'`,
 		             * `'fibonacci'` and `'camarilla'`
-		             *
-		             * @type {String}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            algorithm: 'standard'
 		        },
@@ -84,7 +95,11 @@
 		        dataGrouping: {
 		            approximation: 'averages'
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameBase: 'Pivot Points',
 		        pointArrayMap: ['R4', 'R3', 'R2', 'R1', 'P', 'S1', 'S2', 'S3', 'S4'],
 		        pointValKey: 'P',
@@ -96,8 +111,8 @@
 
 		            SMA.prototype.translate.apply(indicator);
 
-		            each(indicator.points, function (point) {
-		                each(indicator.pointArrayMap, function (value) {
+		            indicator.points.forEach(function (point) {
+		                indicator.pointArrayMap.forEach(function (value) {
 		                    if (defined(point[value])) {
 		                        point['plot' + value] = indicator.yAxis.toPixels(
 		                            point[value],
@@ -153,7 +168,7 @@
 		                endPoint = point.plotX;
 		            }
 
-		            each(allPivotPoints, function (pivotPoints) {
+		            allPivotPoints.forEach(function (pivotPoints) {
 		                path = path.concat(
 		                    SMA.prototype.getGraphPath.call(indicator, pivotPoints)
 		                );
@@ -161,6 +176,7 @@
 
 		            return path;
 		        },
+		        // TODO: Rewrite this logic to use multiple datalabels
 		        drawDataLabels: function () {
 		            var indicator = this,
 		                pointMapping = indicator.pointArrayMap,
@@ -175,7 +191,7 @@
 		                // For every Ressitance/Support group we need to render labels.
 		                // Add one more item, which will just store dataLabels from
 		                // previous iteration
-		                each(pointMapping.concat([false]), function (position, k) {
+		                pointMapping.concat([false]).forEach(function (position, k) {
 		                    i = pointsLength;
 		                    while (i--) {
 		                        point = indicator.points[i];
@@ -196,7 +212,11 @@
 		                                    point.dataLabel;
 		                            }
 
-		                            point.dataLabel = currentLabel =
+		                            if (!point.dataLabels) {
+		                                point.dataLabels = [];
+		                            }
+		                            point.dataLabels[0] = point.dataLabel =
+		                                currentLabel =
 		                                currentLabel && currentLabel.element ?
 		                                    currentLabel :
 		                                    null;
@@ -271,7 +291,7 @@
 		                low = Infinity,
 		                close = values[values.length - 1][3],
 		                pivot;
-		            each(values, function (p) {
+		            values.forEach(function (p) {
 		                high = Math.max(high, p[1]);
 		                low = Math.min(low, p[2]);
 		            });
@@ -327,7 +347,11 @@
 
 		            return avg;
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Point#
+		     */
+		    {
 		        // Destroy labels:
 		        // This method is called when cropping data:
 		        destroyElements: function () {
@@ -344,23 +368,11 @@
 		 * A pivot points indicator. If the [type](#series.pivotpoints.type) option is
 		 * not specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.pivotpoints
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.pivotpoints
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.pivotpoints
-		 */
-
-		/**
-		 * An array of data points for the series. For the `pivotpoints` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.pivotpoints.data
 		 */
 
 	}(Highcharts));

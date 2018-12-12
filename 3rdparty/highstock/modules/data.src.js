@@ -1,8 +1,8 @@
 /**
- * @license Highcharts JS v6.1.2 (2018-08-31)
+ * @license Highcharts JS v7.0.0 (2018-12-11)
  * Data module
  *
- * (c) 2012-2017 Torstein Honsi
+ * (c) 2012-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
@@ -15,32 +15,64 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2017 Christer Vasseng, Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+
+
 		/**
-		 * @typedef {Object} AjaxSettings
-		 * @property {String} url - The URL to call
-		 * @property {('get'|'post'|'update'|'delete')} type - The verb to use
-		 * @property {('json'|'xml'|'text'|'octet')} dataType - The data type expected
-		 * @property {Function} success - Function to call on success
-		 * @property {Function} error - Function to call on error
-		 * @property {Object} data - The payload to send
-		 * @property {Object} headers - The headers; keyed on header name
+		 * @interface Highcharts.AjaxSettings
+		 *//**
+		 * The URL to call.
+		 *
+		 * @name Highcharts.AjaxSettings#url
+		 * @type {string}
+		 *//**
+		 * The verb to use.
+		 *
+		 * @name Highcharts.AjaxSettings#type
+		 * @type {"get"|"post"|"update"|"delete"}
+		 *//**
+		 * The data type expected.
+		 *
+		 * @name Highcharts.AjaxSettings#dataType
+		 * @type {"json"|"xml"|"text"|"octet"}
+		 *//**
+		 * Function to call on success.
+		 *
+		 * @name Highcharts.AjaxSettings#success
+		 * @type {Function}
+		 *//**
+		 * Function to call on error.
+		 *
+		 * @name Highcharts.AjaxSettings#error
+		 * @type {Function}
+		 *//**
+		 * The payload to send.
+		 *
+		 * @name Highcharts.AjaxSettings#data
+		 * @type {object}
+		 *//**
+		 * The headers; keyed on header name.
+		 *
+		 * @name Highcharts.AjaxSettings#headers
+		 * @type {object}
 		 */
 
 		/**
 		 * Perform an Ajax call.
 		 *
-		 * @memberof Highcharts
-		 * @param {AjaxSettings} - The Ajax settings to use
+		 * @function Highcharts.ajax
 		 *
+		 * @param {Highcharts.AjaxSettings} attr
+		 *        The Ajax settings to use.
 		 */
 		H.ajax = function (attr) {
 		    var options = H.merge(true, {
@@ -114,33 +146,104 @@
 		/**
 		 * Data module
 		 *
-		 * (c) 2012-2017 Torstein Honsi
+		 * (c) 2012-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
+
+		/**
+		 * Callback function to modify the CSV before parsing it by the data module.
+		 *
+		 * @callback Highcharts.DataBeforeParseCallbackFunction
+		 *
+		 * @param {string} csv
+		 *        The CSV to modify.
+		 *
+		 * @return {string}
+		 *         The CSV to parse.
+		 */
+
+		/**
+		 * Callback function that gets called after parsing data.
+		 *
+		 * @callback Highcharts.DataCompleteCallbackFunction
+		 *
+		 * @param {Highcharts.ChartOptions} chartOptions
+		 *        The chart options that were used.
+		 */
+
+		/**
+		 * Callback function that returns the correspondig Date object to a match.
+		 *
+		 * @callback Highcharts.DataDateFormatCallbackFunction
+		 *
+		 * @param {Array<number>} match
+		 *
+		 * @return {global.Date}
+		 */
+
+		/**
+		 * Structure for alternative date formats to parse.
+		 *
+		 * @interface Highcharts.DataDateFormatObject
+		 *//**
+		 * @name Highcharts.DataDateFormatObject#alternative
+		 * @type {string|undefined}
+		 *//**
+		 * @name Highcharts.DataDateFormatObject#parser
+		 * @type {Highcharts.DataDateFormatCallbackFunction}
+		 *//**
+		 * @name Highcharts.DataDateFormatObject#regex
+		 * @type {global.RegExp}
+		 */
+
+		/**
+		 * Callback function to parse string representations of dates into
+		 * JavaScript timestamps (milliseconds since 1.1.1970).
+		 *
+		 * @callback Highcharts.DataParseDateCallbackFunction
+		 *
+		 * @param {string} dateValue
+		 *
+		 * @return {number}
+		 *         Timestamp (milliseconds since 1.1.1970) as integer for Date class.
+		 */
+
+		/**
+		 * Callback function to access the parsed columns, the two-dimentional
+		 * input data array directly, before they are interpreted into series
+		 * data and categories.
+		 *
+		 * @callback Highcharts.DataParsedCallbackFunction
+		 *
+		 * @param {Array<Array<*>>} columns
+		 *        The parsed columns by the data module.
+		 *
+		 * @return {boolean|undefined}
+		 *         Return `false` to stop completion, or call `this.complete()` to
+		 *         continue async.
+		 */
+
+
 
 		// Utilities
 		var addEvent = Highcharts.addEvent,
 		    Chart = Highcharts.Chart,
 		    win = Highcharts.win,
 		    doc = win.document,
-		    each = Highcharts.each,
 		    objectEach = Highcharts.objectEach,
 		    pick = Highcharts.pick,
-		    inArray = Highcharts.inArray,
 		    isNumber = Highcharts.isNumber,
 		    merge = Highcharts.merge,
 		    splat = Highcharts.splat,
 		    fireEvent = Highcharts.fireEvent,
-		    some = Highcharts.some,
 		    SeriesBuilder;
-
 
 		/**
 		 * The Data module provides a simplified interface for adding data to
 		 * a chart from sources like CVS, HTML tables or grid views. See also
-		 * the [tutorial article on the Data module](https://www.highcharts.com/docs/working-
-		 * with-data/data-module).
+		 * the [tutorial article on the Data module](
+		 * https://www.highcharts.com/docs/working-with-data/data-module).
 		 *
 		 * It requires the `modules/data.js` file to be loaded.
 		 *
@@ -148,9 +251,12 @@
 		 * the need of a module, is through the [series.data](#series.data)
 		 * option.
 		 *
-		 * @sample {highcharts} highcharts/demo/column-parsed/ HTML table
-		 * @sample {highcharts} highcharts/data/csv/ CSV
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/demo/column-parsed/
+		 *         HTML table
+		 * @sample {highcharts} highcharts/data/csv/
+		 *         CSV
+		 *
+		 * @since     4.0
 		 * @apioption data
 		 */
 
@@ -158,9 +264,11 @@
 		 * A callback function to modify the CSV before parsing it. Return the modified
 		 * string.
 		 *
-		 * @type {Function}
-		 * @sample {highcharts} highcharts/demo/line-ajax/ Modify CSV before parse
-		 * @since 6.1
+		 * @sample {highcharts} highcharts/demo/line-ajax/
+		 *         Modify CSV before parse
+		 *
+		 * @type      {Highcharts.DataBeforeParseCallbackFunction}
+		 * @since     6.1
 		 * @apioption data.beforeParse
 		 */
 
@@ -171,10 +279,13 @@
 		 * If not switchRowsAndColumns is set, the columns are interpreted as
 		 * series.
 		 *
-		 * @type {Array<Array<Mixed>>}
 		 * @see [data.rows](#data.rows)
-		 * @sample {highcharts} highcharts/data/columns/ Columns
-		 * @since 4.0
+		 *
+		 * @sample {highcharts} highcharts/data/columns/
+		 *         Columns
+		 *
+		 * @type      {Array<Array<*>>}
+		 * @since     4.0
 		 * @apioption data.columns
 		 */
 
@@ -185,10 +296,13 @@
 		 * These options can be extended with additional options and passed
 		 * directly to the chart constructor.
 		 *
-		 * @type {Function}
 		 * @see [data.parsed](#data.parsed)
-		 * @sample {highcharts} highcharts/data/complete/ Modify data on complete
-		 * @since 4.0
+		 *
+		 * @sample {highcharts} highcharts/data/complete/
+		 *         Modify data on complete
+		 *
+		 * @type      {Highcharts.DataCompleteCallbackFunction}
+		 * @since     4.0
 		 * @apioption data.complete
 		 */
 
@@ -205,44 +319,44 @@
 		 * CSV through the MIT licensed [Papa Parse](http://papaparse.com/)
 		 * library.
 		 *
-		 * @type {String}
-		 * @sample {highcharts} highcharts/data/csv/ Data from CSV
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/csv/
+		 *         Data from CSV
+		 *
+		 * @type      {string}
+		 * @since     4.0
 		 * @apioption data.csv
 		 */
 
 		/**
 		 * Which of the predefined date formats in Date.prototype.dateFormats
 		 * to use to parse date values. Defaults to a best guess based on what
-		 * format gives valid and ordered dates.
+		 * format gives valid and ordered dates. Valid options include: `YYYY/mm/dd`,
+		 * `dd/mm/YYYY`, `mm/dd/YYYY`, `dd/mm/YY`, `mm/dd/YY`.
 		 *
-		 * Valid options include:
-		 *
-		 * *   `YYYY/mm/dd`
-		 * *   `dd/mm/YYYY`
-		 * *   `mm/dd/YYYY`
-		 * *   `dd/mm/YY`
-		 * *   `mm/dd/YY`
-		 *
-		 * @validvalue [undefined, "YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY",
-		 *             "dd/mm/YYYY", "dd/mm/YY", "mm/dd/YY"]
-		 * @type {String}
 		 * @see [data.parseDate](#data.parseDate)
-		 * @sample {highcharts} highcharts/data/dateformat-auto/ Best guess date format
-		 * @since 4.0
-		 * @apioption data.dateFormat
+		 *
+		 * @sample {highcharts} highcharts/data/dateformat-auto/
+		 *         Best guess date format
+		 *
+		 * @type       {string}
+		 * @since      4.0
+		 * @validvalue ["YYYY/mm/dd", "dd/mm/YYYY", "mm/dd/YYYY", "dd/mm/YYYY",
+		 *             "dd/mm/YY", "mm/dd/YY"]
+		 * @apioption  data.dateFormat
 		 */
 
 		/**
 		 * The decimal point used for parsing numbers in the CSV.
 		 *
-		 * If both this and data.delimiter is set to false, the parser will
+		 * If both this and data.delimiter is set to `undefined`, the parser will
 		 * attempt to deduce the decimal point automatically.
 		 *
-		 * @type {String}
-		 * @sample {highcharts} highcharts/data/delimiters/ Comma as decimal point
-		 * @default .
-		 * @since 4.1.0
+		 * @sample {highcharts} highcharts/data/delimiters/
+		 *         Comma as decimal point
+		 *
+		 * @type      {string}
+		 * @default   .
+		 * @since     4.1.0
 		 * @apioption data.decimalPoint
 		 */
 
@@ -250,9 +364,11 @@
 		 * In tabular input data, the last column (indexed by 0) to use. Defaults
 		 * to the last column containing data.
 		 *
-		 * @type {Number}
-		 * @sample {highcharts} highcharts/data/start-end/ Limited data
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/start-end/
+		 *         Limited data
+		 *
+		 * @type      {number}
+		 * @since     4.0
 		 * @apioption data.endColumn
 		 */
 
@@ -260,21 +376,26 @@
 		 * In tabular input data, the last row (indexed by 0) to use. Defaults
 		 * to the last row containing data.
 		 *
-		 * @type {Number}
-		 * @sample {highcharts} highcharts/data/start-end/ Limited data
-		 * @since 4.0.4
+		 * @sample {highcharts} highcharts/data/start-end/
+		 *         Limited data
+		 *
+		 * @type      {number}
+		 * @since     4.0.4
 		 * @apioption data.endRow
 		 */
 
 		/**
 		 * Whether to use the first row in the data set as series names.
 		 *
-		 * @type {Boolean}
-		 * @sample {highcharts} highcharts/data/start-end/ Don't get series names from the CSV
-		 * @sample {highstock} highcharts/data/start-end/ Don't get series names from the CSV
-		 * @default true
-		 * @since 4.1.0
-		 * @product highcharts highstock
+		 * @sample {highcharts} highcharts/data/start-end/
+		 *         Don't get series names from the CSV
+		 * @sample {highstock} highcharts/data/start-end/
+		 *         Don't get series names from the CSV
+		 *
+		 * @type      {boolean}
+		 * @default   true
+		 * @since     4.1.0
+		 * @product   highcharts highstock gantt
 		 * @apioption data.firstRowAsNames
 		 */
 
@@ -282,10 +403,11 @@
 		 * The key for a Google Spreadsheet to load. See [general information
 		 * on GS](https://developers.google.com/gdata/samples/spreadsheet_sample).
 		 *
-		 * @type {String}
 		 * @sample {highcharts} highcharts/data/google-spreadsheet/
 		 *         Load a Google Spreadsheet
-		 * @since 4.0
+		 *
+		 * @type      {string}
+		 * @since     4.0
 		 * @apioption data.googleSpreadsheetKey
 		 */
 
@@ -294,9 +416,11 @@
 		 * [googleSpreadsheetKey](#data.googleSpreadsheetKey). The available id's from
 		 * your sheet can be read from `https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic`.
 		 *
-		 * @type {String}
-		 * @sample {highcharts} highcharts/data/google-spreadsheet/ Load a Google Spreadsheet
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/google-spreadsheet/
+		 *         Load a Google Spreadsheet
+		 *
+		 * @type      {string}
+		 * @since     4.0
 		 * @apioption data.googleSpreadsheetWorksheet
 		 */
 
@@ -308,19 +432,23 @@
 		 * If this is set to false or undefined, the parser will attempt to deduce
 		 * the delimiter automatically.
 		 *
-		 * @type {String}
-		 * @sample {highcharts} highcharts/data/delimiters/ Delimiters
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/delimiters/
+		 *         Delimiters
+		 *
+		 * @type      {string}
+		 * @since     4.0
 		 * @apioption data.itemDelimiter
 		 */
 
 		/**
 		 * Line delimiter for parsing CSV.
 		 *
-		 * @type {String}
-		 * @sample {highcharts} highcharts/data/delimiters/ Delimiters
-		 * @default \n
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/delimiters/
+		 *         Delimiters
+		 *
+		 * @type      {string}
+		 * @default   \n
+		 * @since     4.0
 		 * @apioption data.lineDelimiter
 		 */
 
@@ -328,9 +456,10 @@
 		 * A callback function to parse string representations of dates into
 		 * JavaScript timestamps. Should return an integer timestamp on success.
 		 *
-		 * @type {Function}
 		 * @see [dateFormat](#data.dateFormat)
-		 * @since 4.0
+		 *
+		 * @type      {Highcharts.DataParseDateCallbackFunction}
+		 * @since     4.0
 		 * @apioption data.parseDate
 		 */
 
@@ -340,10 +469,13 @@
 		 * data and categories. Return `false` to stop completion, or call
 		 * `this.complete()` to continue async.
 		 *
-		 * @type {Function}
 		 * @see [data.complete](#data.complete)
-		 * @sample {highcharts} highcharts/data/parsed/ Modify data after parse
-		 * @since 4.0
+		 *
+		 * @sample {highcharts} highcharts/data/parsed/
+		 *         Modify data after parse
+		 *
+		 * @type      {Highcharts.DataParsedCallbackFunction}
+		 * @since     4.0
 		 * @apioption data.parsed
 		 */
 
@@ -351,40 +483,49 @@
 		 * The same as the columns input option, but defining rows intead of
 		 * columns.
 		 *
-		 * @type {Array<Array<Mixed>>}
 		 * @see [data.columns](#data.columns)
-		 * @sample {highcharts} highcharts/data/rows/ Data in rows
-		 * @since 4.0
+		 *
+		 * @sample {highcharts} highcharts/data/rows/
+		 *         Data in rows
+		 *
+		 * @type      {Array<Array<*>>}
+		 * @since     4.0
 		 * @apioption data.rows
 		 */
 
 		/**
-		 * An array containing object with Point property names along with what
-		 * column id the property should be taken from.
+		 * An array containing dictionaries for each series. A dictionary exists of
+		 * Point property names as the key and the CSV column index as the value.
 		 *
-		 * @type {Array<Object>}
-		 * @sample {highcharts} highcharts/data/seriesmapping-label/ Label from data set
-		 * @since 4.0.4
+		 * @sample {highcharts} highcharts/data/seriesmapping-label/
+		 *         Label from data set
+		 *
+		 * @type      {Array<Highcharts.Dictionary<number>>}
+		 * @since     4.0.4
 		 * @apioption data.seriesMapping
 		 */
 
 		/**
 		 * In tabular input data, the first column (indexed by 0) to use.
 		 *
-		 * @type {Number}
-		 * @sample {highcharts} highcharts/data/start-end/ Limited data
-		 * @default 0
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/start-end/
+		 *         Limited data
+		 *
+		 * @type      {number}
+		 * @default   0
+		 * @since     4.0
 		 * @apioption data.startColumn
 		 */
 
 		/**
 		 * In tabular input data, the first row (indexed by 0) to use.
 		 *
-		 * @type {Number}
-		 * @sample {highcharts} highcharts/data/start-end/ Limited data
-		 * @default 0
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/start-end/
+		 *         Limited data
+		 *
+		 * @type      {number}
+		 * @default   0
+		 * @since     4.0
 		 * @apioption data.startRow
 		 */
 
@@ -393,10 +534,12 @@
 		 * effectively becomes the rows of the data set, and the rows are interpreted
 		 * as series.
 		 *
-		 * @type {Boolean}
-		 * @sample {highcharts} highcharts/data/switchrowsandcolumns/ Switch rows and columns
-		 * @default false
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/data/switchrowsandcolumns/
+		 *         Switch rows and columns
+		 *
+		 * @type      {boolean}
+		 * @default   false
+		 * @since     4.0
 		 * @apioption data.switchRowsAndColumns
 		 */
 
@@ -405,21 +548,24 @@
 		 * options are `startRow`, `endRow`, `startColumn` and `endColumn` to
 		 * delimit what part of the table is used.
 		 *
-		 * @type {String|HTMLElement}
-		 * @sample {highcharts} highcharts/demo/column-parsed/ Parsed table
-		 * @since 4.0
+		 * @sample {highcharts} highcharts/demo/column-parsed/
+		 *         Parsed table
+		 *
+		 * @type      {string|global.HTMLElement}
+		 * @since     4.0
 		 * @apioption data.table
 		 */
 
 		/**
-		 * A URL to a remote CSV dataset.
-		 * Will be fetched when the chart is created using Ajax.
+		 * An URL to a remote CSV dataset. Will be fetched when the chart is created
+		 * using Ajax.
 		 *
-		 * @type {String}
 		 * @sample highcharts/data/livedata-columns
-		 *           Categorized bar chart with CSV and live polling
+		 *         Categorized bar chart with CSV and live polling
 		 * @sample highcharts/data/livedata-csv
 		 *         Time based line chart with CSV and live polling
+		 *
+		 * @type      {string}
 		 * @apioption data.csvURL
 		 */
 
@@ -427,9 +573,10 @@
 		 * A URL to a remote JSON dataset, structured as a row array.
 		 * Will be fetched when the chart is created using Ajax.
 		 *
-		 * @type {String}
 		 * @sample highcharts/data/livedata-rows
 		 *         Rows with live polling
+		 *
+		 * @type      {string}
 		 * @apioption data.rowsURL
 		 */
 
@@ -437,9 +584,10 @@
 		 * A URL to a remote JSON dataset, structured as a column array.
 		 * Will be fetched when the chart is created using Ajax.
 		 *
-		 * @type {String}
 		 * @sample highcharts/data/livedata-columns
 		 *         Columns with live polling
+		 *
+		 * @type      {string}
 		 * @apioption data.columnsURL
 		 */
 
@@ -455,10 +603,11 @@
 		 * The value is the number of seconds between pollings.
 		 * It cannot be set to less than 1 second.
 		 *
-		 * @default 1
-		 * @type {Number}
 		 * @sample highcharts/demo/live-data
 		 *         Live data with user set refresh rate
+		 *
+		 * @default   1
+		 * @type      {number}
 		 * @apioption data.dataRefreshRate
 		 */
 
@@ -473,14 +622,27 @@
 		 * @sample highcharts/demo/live-data
 		 *         Live data
 		 * @sample highcharts/data/livedata-columns
-		 *           Categorized bar chart with CSV and live polling
+		 *         Categorized bar chart with CSV and live polling
 		 *
-		 * @type {Boolean}
-		 * @default false
+		 * @type      {boolean}
+		 * @default   false
 		 * @apioption data.enablePolling
 		 */
 
-		// The Data constructor
+		/**
+		 * The Data class
+		 *
+		 * @requires module:modules/data
+		 *
+		 * @class
+		 * @name Highcharts.Data
+		 *
+		 * @param {Highcharts.DataOptions} dataOptions
+		 *
+		 * @param {Highcharts.Options} [chartOptions]
+		 *
+		 * @param {Highcharts.Chart} [chart]
+		 */
 		var Data = function (dataOptions, chartOptions, chart) {
 		    this.init(dataOptions, chartOptions, chart);
 		};
@@ -490,6 +652,15 @@
 
 		    /**
 		     * Initialize the Data object with the given options
+		     *
+		     * @private
+		     * @function Highcharts.Data#init
+		     *
+		     * @param {Highcharts.DataOptions} options
+		     *
+		     * @param {Highcharts.Options} [chartOptions]
+		     *
+		     * @param {Highcharts.Chart} [chart]
 		     */
 		    init: function (options, chartOptions, chart) {
 
@@ -567,6 +738,8 @@
 		     * Get the column distribution. For example, a line series takes a single
 		     * column for Y values. A range series takes two columns for low and high
 		     * values respectively, and an OHLC series takes four columns.
+		     *
+		     * @function Highcharts.Data#getColumnDistribution
 		     */
 		    getColumnDistribution: function () {
 		        var chartOptions = this.chartOptions,
@@ -599,7 +772,7 @@
 		                (
 		                    chartOptions &&
 		                    chartOptions.series &&
-		                    Highcharts.map(chartOptions.series, function () {
+		                    chartOptions.series.map(function () {
 		                        return { x: 0 };
 		                    })
 		                ) ||
@@ -607,12 +780,14 @@
 		            ),
 		            i;
 
-		        each((chartOptions && chartOptions.series) || [], function (series) {
-		            individualCounts.push(getValueCount(series.type || globalType));
-		        });
+		        ((chartOptions && chartOptions.series) || []).forEach(
+		            function (series) {
+		                individualCounts.push(getValueCount(series.type || globalType));
+		            }
+		        );
 
 		        // Collect the x-column indexes from seriesMapping
-		        each(seriesMapping, function (mapping) {
+		        seriesMapping.forEach(function (mapping) {
 		            xColumns.push(mapping.x || 0);
 		        });
 
@@ -624,7 +799,7 @@
 
 		        // Loop all seriesMappings and constructs SeriesBuilders from
 		        // the mapping options.
-		        each(seriesMapping, function (mapping) {
+		        seriesMapping.forEach(function (mapping) {
 		            var builder = new SeriesBuilder(),
 		                numberOfValueColumnsNeeded = individualCounts[seriesIndex] ||
 		                    getValueCount(globalType),
@@ -674,6 +849,9 @@
 		    /**
 		     * When the data is parsed into columns, either by CSV, table, GS or direct
 		     * input, continue with other operations.
+		     *
+		     * @private
+		     * @function Highcharts.Data#dataFound
 		     */
 		    dataFound: function () {
 		        if (this.options.switchRowsAndColumns) {
@@ -697,6 +875,12 @@
 
 		    /**
 		     * Parse a CSV input string
+		     *
+		     * @function Highcharts.Data#parseCSV
+		     *
+		     * @param {Highcharts.DataOptions} inOptions
+		     *
+		     * @return {Array<Array<*>>}
 		     */
 		    parseCSV: function (inOptions) {
 		        var self = this,
@@ -810,7 +994,6 @@
 		                    pushType('string');
 		                }
 
-
 		                if (columns.length < column + 1) {
 		                    columns.push([]);
 		                }
@@ -885,7 +1068,7 @@
 		                commas = 0,
 		                guessed = false;
 
-		            some(lines, function (columnStr, i) {
+		            lines.some(function (columnStr, i) {
 		                var inStr = false,
 		                    c,
 		                    cn,
@@ -987,7 +1170,7 @@
 		        }
 
 		        /* Tries to guess the date format
-		         *    - Check if either month candidate exceeds 12
+		         *  - Check if either month candidate exceeds 12
 		         *  - Check if year is missing (use current year)
 		         *  - Check if a shortened year format is used (e.g. 1/1/99)
 		         *  - If no guess can be made, the user must be prompted
@@ -1018,6 +1201,7 @@
 		                            .trim()
 		                            .replace(/\//g, ' ')
 		                            .replace(/\-/g, ' ')
+		                            .replace(/\./g, ' ')
 		                            .split(' ');
 
 		                    guessedFormat = [
@@ -1154,7 +1338,7 @@
 		            }
 
 		            // //Make sure that there's header columns for everything
-		            // each(columns, function (col) {
+		            // columns.forEach(function (col) {
 
 		            // });
 
@@ -1169,7 +1353,7 @@
 		            }
 
 
-		            // each(lines, function (line, rowNo) {
+		            // lines.forEach(function (line, rowNo) {
 		            //    var trimmed = self.trim(line),
 		            //        isComment = trimmed.indexOf('#') === 0,
 		            //        isBlank = trimmed === '',
@@ -1181,7 +1365,7 @@
 		            //        !isComment && !isBlank
 		            //    ) {
 		            //        items = line.split(itemDelimiter);
-		            //        each(items, function (item, colNo) {
+		            //        items.forEach(function (item, colNo) {
 		            //            if (colNo >= startColumn && colNo <= endColumn) {
 		            //                if (!columns[colNo - startColumn]) {
 		            //                    columns[colNo - startColumn] = [];
@@ -1203,6 +1387,10 @@
 
 		    /**
 		     * Parse a HTML table
+		     *
+		     * @function Highcharts.Data#parseTable
+		     *
+		     * @return {Array<Array<*>>}
 		     */
 		    parseTable: function () {
 		        var options = this.options,
@@ -1219,24 +1407,30 @@
 		                table = doc.getElementById(table);
 		            }
 
-		            each(table.getElementsByTagName('tr'), function (tr, rowNo) {
-		                if (rowNo >= startRow && rowNo <= endRow) {
-		                    each(tr.children, function (item, colNo) {
-		                        if (
-		                            (item.tagName === 'TD' || item.tagName === 'TH') &&
-		                            colNo >= startColumn &&
-		                            colNo <= endColumn
-		                        ) {
-		                            if (!columns[colNo - startColumn]) {
-		                                columns[colNo - startColumn] = [];
-		                            }
+		            [].forEach.call(
+		                table.getElementsByTagName('tr'),
+		                function (tr, rowNo) {
+		                    if (rowNo >= startRow && rowNo <= endRow) {
+		                        [].forEach.call(tr.children, function (item, colNo) {
+		                            if (
+		                                (
+		                                    item.tagName === 'TD' ||
+		                                    item.tagName === 'TH'
+		                                ) &&
+		                                colNo >= startColumn &&
+		                                colNo <= endColumn
+		                            ) {
+		                                if (!columns[colNo - startColumn]) {
+		                                    columns[colNo - startColumn] = [];
+		                                }
 
-		                            columns[colNo - startColumn][rowNo - startRow] =
-		                                item.innerHTML;
-		                        }
-		                    });
+		                                columns[colNo - startColumn][rowNo - startRow] =
+		                                    item.innerHTML;
+		                            }
+		                        });
+		                    }
 		                }
-		            });
+		            );
 
 		            this.dataFound(); // continue
 		        }
@@ -1246,6 +1440,11 @@
 
 		    /**
 		     * Fetch or refetch live data
+		     *
+		     * @function Highcharts.Data#fetchLiveData
+		     *
+		     * @return {string}
+		     *         The first URL that was tried.
 		     */
 		    fetchLiveData: function () {
 		        var chart = this.chart,
@@ -1354,6 +1553,11 @@
 
 		    /**
 		     * Parse a Google spreadsheet.
+		     *
+		     * @function Highcharts.Data#parseGoogleSpreadsheet
+		     *
+		     * @return {boolean}
+		     *         Always returns false, because it is an intermediate fetch.
 		     */
 		    parseGoogleSpreadsheet: function () {
 		        var data = this,
@@ -1478,7 +1682,7 @@
 		                }
 
 		                // Insert null for empty spreadsheet cells (#5298)
-		                each(columns, function (column) {
+		                columns.forEach(function (column) {
 		                    for (i = 0; i < column.length; i++) {
 		                        if (column[i] === undefined) {
 		                            column[i] = null;
@@ -1504,7 +1708,18 @@
 		    },
 
 		    /**
-		     * Trim a string from whitespace
+		     * Trim a string from whitespaces.
+		     *
+		     * @function Highcharts.Data#trim
+		     *
+		     * @param {string} str
+		     *        String to trim
+		     *
+		     * @param {boolean} [inside=false]
+		     *        Remove all spaces between numbers.
+		     *
+		     * @return {string}
+		     *         Trimed string
 		     */
 		    trim: function (str, inside) {
 		        if (typeof str === 'string') {
@@ -1524,6 +1739,8 @@
 
 		    /**
 		     * Parse numeric cells in to number types and date types in to true dates.
+		     *
+		     * @function Highcharts.Data#parseTypes
 		     */
 		    parseTypes: function () {
 		        var columns = this.columns,
@@ -1537,6 +1754,14 @@
 
 		    /**
 		     * Parse a single column. Set properties like .isDatetime and .isNumeric.
+		     *
+		     * @function Highcharts.Data#parseColumn
+		     *
+		     * @param {Array<*>} column
+		     *        Column to parse
+		     *
+		     * @param {number} col
+		     *        Column index
 		     */
 		    parseColumn: function (column, col) {
 		        var rawColumns = this.rawColumns,
@@ -1547,7 +1772,7 @@
 		            trimVal,
 		            trimInsideVal,
 		            firstRowAsNames = this.firstRowAsNames,
-		            isXColumn = inArray(col, this.valueCount.xColumns) !== -1,
+		            isXColumn = this.valueCount.xColumns.indexOf(col) !== -1,
 		            dateVal,
 		            backup = [],
 		            diff,
@@ -1665,6 +1890,9 @@
 		    /**
 		     * A collection of available date formats, extendable from the outside to
 		     * support custom date formats.
+		     *
+		     * @name Highcharts.Data#dateFormats
+		     * @type {Highcharts.Dictionary<Highcharts.DataDateFormatObject>}
 		     */
 		    dateFormats: {
 		        'YYYY/mm/dd': {
@@ -1714,6 +1942,12 @@
 		    /**
 		     * Parse a date and return it as a number. Overridable through
 		     * `options.parseDate`.
+		     *
+		     * @function Highcharts.Data#parseDate
+		     *
+		     * @param {string} val
+		     *
+		     * @return {global.Date}
 		     */
 		    parseDate: function (val) {
 		        var parseDate = this.options.parseDate,
@@ -1777,7 +2011,13 @@
 		    },
 
 		    /**
-		     * Reorganize rows into columns
+		     * Reorganize rows into columns.
+		     *
+		     * @function Highcharts.Data#rowsToColumns
+		     *
+		     * @param {Array<Array<*>>} rows
+		     *
+		     * @return {Array<Array<*>>}
 		     */
 		    rowsToColumns: function (rows) {
 		        var row,
@@ -1804,6 +2044,10 @@
 
 		    /**
 		     * A hook for working directly on the parsed columns
+		     *
+		     * @function Highcharts.Data#parsed
+		     *
+		     * @return {*}
 		     */
 		    parsed: function () {
 		        if (this.options.parsed) {
@@ -1811,6 +2055,10 @@
 		        }
 		    },
 
+		    /**
+		     * @private
+		     * @function Highcharts.Data#getFreeIndexes
+		     */
 		    getFreeIndexes: function (numberOfColumns, seriesBuilders) {
 		        var s,
 		            i,
@@ -1845,6 +2093,8 @@
 		    /**
 		     * If a complete callback function is provided in the options, interpret the
 		     * columns into a Highcharts options object.
+		     *
+		     * @function Highcharts.Data#complete
 		     */
 		    complete: function () {
 
@@ -1903,7 +2153,7 @@
 		                builder.addColumnReader(0, 'x');
 
 		                // Mark index as used (not free)
-		                index = inArray(0, freeIndexes);
+		                index = freeIndexes.indexOf(0);
 		                if (index !== -1) {
 		                    freeIndexes.splice(index, 1);
 		                }
@@ -2010,6 +2260,15 @@
 
 		    },
 
+		    /**
+		     * Updates the chart with new data options.
+		     *
+		     * @function Highcharts.Data#update
+		     *
+		     * @param {Highcharts.DataOptions} options
+		     *
+		     * @param {boolean} [redraw=true]
+		     */
 		    update: function (options, redraw) {
 		        var chart = this.chart;
 		        if (options) {
@@ -2037,8 +2296,22 @@
 
 		// Register the Data prototype and data function on Highcharts
 		Highcharts.Data = Data;
-		Highcharts.data = function (options, chartOptions) {
-		    return new Data(options, chartOptions);
+
+		/**
+		 * Creates a data object to parse data for a chart.
+		 *
+		 * @function Highcharts.data
+		 *
+		 * @param {Highcharts.DataOptions} dataOptions
+		 *
+		 * @param {Highcharts.Options} [chartOptions]
+		 *
+		 * @param {Highcharts.Chart} [chart]
+		 *
+		 * @return {Highcharts.Data}
+		 */
+		Highcharts.data = function (dataOptions, chartOptions, chart) {
+		    return new Data(dataOptions, chartOptions, chart);
 		};
 
 		// Extend Chart.init so that the Chart constructor accepts a new configuration
@@ -2053,6 +2326,12 @@
 
 		        if (userOptions && userOptions.data && !chart.hasDataDef) {
 		            chart.hasDataDef = true;
+		            /**
+		             * The data parser for this chart.
+		             *
+		             * @name Highcharts.Chart#data
+		             * @type {Highcharts.Data|undefined}
+		             */
 		            chart.data = new Data(Highcharts.extend(userOptions.data, {
 
 		                afterComplete: function (dataOptions) {
@@ -2103,7 +2382,10 @@
 		 *
 		 * The name of the builder is taken from the second column. In the above
 		 * example it would be the column with index 7.
-		 * @constructor
+		 *
+		 * @private
+		 * @class
+		 * @name SeriesBuilder
 		 */
 		SeriesBuilder = function () {
 		    this.readers = [];
@@ -2114,6 +2396,11 @@
 		 * Populates readers with column indexes. A reader can be added without
 		 * a specific index and for those readers the index is taken sequentially
 		 * from the free columns (this is handled by the ColumnCursor instance).
+		 *
+		 * @function SeriesBuilder#populateColumns
+		 *
+		 * @param {Array<number>} freeIndexes
+		 *
 		 * @returns {boolean}
 		 */
 		SeriesBuilder.prototype.populateColumns = function (freeIndexes) {
@@ -2123,7 +2410,7 @@
 		    // Loop each reader and give it an index if its missing.
 		    // The freeIndexes.shift() will return undefined if there
 		    // are no more columns.
-		    each(builder.readers, function (reader) {
+		    builder.readers.forEach(function (reader) {
 		        if (reader.columnIndex === undefined) {
 		            reader.columnIndex = freeIndexes.shift();
 		        }
@@ -2132,7 +2419,7 @@
 		    // Now, all readers should have columns mapped. If not
 		    // then return false to signal that this series should
 		    // not be added.
-		    each(builder.readers, function (reader) {
+		    builder.readers.forEach(function (reader) {
 		        if (reader.columnIndex === undefined) {
 		            enoughColumns = false;
 		        }
@@ -2144,9 +2431,14 @@
 		/**
 		 * Reads a row from the dataset and returns a point or array depending
 		 * on the names of the readers.
-		 * @param columns
-		 * @param rowIndex
-		 * @returns {Array | Object}
+		 *
+		 * @function SeriesBuilder#read
+		 *
+		 * @param {Array<Array<*>>} columns
+		 *
+		 * @param {number} rowIndex
+		 *
+		 * @returns {Array<*>|*}
 		 */
 		SeriesBuilder.prototype.read = function (columns, rowIndex) {
 		    var builder = this,
@@ -2156,7 +2448,7 @@
 
 		    // Loop each reader and ask it to read its value.
 		    // Then, build an array or point based on the readers names.
-		    each(builder.readers, function (reader) {
+		    builder.readers.forEach(function (reader) {
 		        var value = columns[reader.columnIndex][rowIndex];
 		        if (pointIsArray) {
 		            point.push(value);
@@ -2196,8 +2488,12 @@
 		 * Creates and adds ColumnReader from the given columnIndex and configName.
 		 * ColumnIndex can be undefined and in that case the reader will be given
 		 * an index when columns are populated.
-		 * @param columnIndex {Number | undefined}
-		 * @param configName
+		 *
+		 * @function SeriesBuilder#addColumnReader
+		 *
+		 * @param {number} columnIndex
+		 *
+		 * @param {string} configName
 		 */
 		SeriesBuilder.prototype.addColumnReader = function (columnIndex, configName) {
 		    this.readers.push({
@@ -2215,7 +2511,10 @@
 		/**
 		 * Returns an array of column indexes that the builder will use when
 		 * reading data.
-		 * @returns {Array}
+		 *
+		 * @function SeriesBuilder#getReferencedColumnIndexes
+		 *
+		 * @returns {Array<number>}
 		 */
 		SeriesBuilder.prototype.getReferencedColumnIndexes = function () {
 		    var i,
@@ -2234,7 +2533,11 @@
 
 		/**
 		 * Returns true if the builder has a reader for the given configName.
-		 * @param configName
+		 *
+		 * @function SeriesBuider#hasReader
+		 *
+		 * @param {string} configName
+		 *
 		 * @returns {boolean}
 		 */
 		SeriesBuilder.prototype.hasReader = function (configName) {

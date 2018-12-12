@@ -1,9 +1,13 @@
-/**
- * (c) 2010-2017 Torstein Honsi
+/* *
  *
- * License: www.highcharts.com/license
- */
+ *  (c) 2010-2018 Torstein Honsi
+ *
+ *  License: www.highcharts.com/license
+ *
+ * */
+
 'use strict';
+
 import H from './Globals.js';
 import './Utilities.js';
 import './Chart.js';
@@ -12,20 +16,17 @@ import './Point.js';
 import './Pointer.js';
 import './Series.js';
 import './SvgRenderer.js';
+
 var addEvent = H.addEvent,
     arrayMax = H.arrayMax,
     arrayMin = H.arrayMin,
     Axis = H.Axis,
     Chart = H.Chart,
     defined = H.defined,
-    each = H.each,
     extend = H.extend,
     format = H.format,
-    grep = H.grep,
-    inArray = H.inArray,
     isNumber = H.isNumber,
     isString = H.isString,
-    map = H.map,
     merge = H.merge,
     pick = H.pick,
     Point = H.Point,
@@ -35,7 +36,6 @@ var addEvent = H.addEvent,
     SVGRenderer = H.SVGRenderer,
     VMLRenderer = H.VMLRenderer,
     wrap = H.wrap,
-
 
     seriesProto = Series.prototype,
     seriesInit = seriesProto.init,
@@ -51,14 +51,17 @@ var addEvent = H.addEvent,
  * comparing the development of the series against each other. Adds
  * a `change` field to every point object.
  *
- * @type {String}
- * @see [compareBase](#plotOptions.series.compareBase),
- *      [Axis.setCompare()](/class-reference/Highcharts.Axis#setCompare)
- * @sample {highstock} stock/plotoptions/series-compare-percent/ Percent
- * @sample {highstock} stock/plotoptions/series-compare-value/ Value
- * @default undefined
- * @since 1.0.1
- * @product highstock
+ * @see [compareBase](#plotOptions.series.compareBase)
+ * @see [Axis.setCompare()](/class-reference/Highcharts.Axis#setCompare)
+ *
+ * @sample {highstock} stock/plotoptions/series-compare-percent/
+ *         Percent
+ * @sample {highstock} stock/plotoptions/series-compare-value/
+ *         Value
+ *
+ * @type      {string}
+ * @since     1.0.1
+ * @product   highstock
  * @apioption plotOptions.series.compare
  */
 
@@ -69,12 +72,13 @@ var addEvent = H.addEvent,
  * will have 0% (`compareStart=true`) or should have been already calculated
  * according to the previous point (`compareStart=false`).
  *
- * @type {Boolean}
  * @sample {highstock} stock/plotoptions/series-comparestart/
  *         Calculate compare within visible range
- * @default false
- * @since 6.0.0
- * @product highstock
+ *
+ * @type      {boolean}
+ * @default   false
+ * @since     6.0.0
+ * @product   highstock
  * @apioption plotOptions.series.compareStart
  */
 
@@ -82,39 +86,21 @@ var addEvent = H.addEvent,
  * When [compare](#plotOptions.series.compare) is `percent`, this option
  * dictates whether to use 0 or 100 as the base of comparison.
  *
+ * @sample {highstock} stock/plotoptions/series-comparebase/
+ *         Compare base is 100
+ *
+ * @type       {number}
+ * @default    0
+ * @since      5.0.6
+ * @product    highstock
  * @validvalue [0, 100]
- * @type {Number}
- * @sample {highstock} / Compare base is 100
- * @default 0
- * @since 5.0.6
- * @product highstock
- * @apioption plotOptions.series.compareBase
+ * @apioption  plotOptions.series.compareBase
  */
 
 /**
- * Factory function for creating new stock charts. Creates a new {@link Chart|
- * Chart} object with different default options than the basic Chart.
- *
- * @function #stockChart
- * @memberof Highcharts
- *
- * @param  {String|HTMLDOMElement} renderTo
- *         The DOM element to render to, or its id.
- * @param  {Options} options
- *         The chart options structure as described in the {@link
- *         https://api.highcharts.com/highstock|options reference}.
- * @param  {Function} callback
- *         A function to execute when the chart object is finished loading and
- *         rendering. In most cases the chart is built in one thread, but in
- *         Internet Explorer version 8 or less the chart is sometimes
- *         initialized before the document is ready, and in these cases the
- *         chart object will not be finished synchronously. As a consequence,
- *         code that relies on the newly built Chart object should always run in
- *         the callback. Defining a {@link https://api.highcharts.com/highstock/chart.events.load|
- *         chart.event.load} handler is equivalent.
- *
- * @return {Chart}
- *         The chart object.
+ * Factory function for creating new stock charts. Creates a new
+ * {@link Highcharts.Chart|Chart} object with different default options than the
+ * basic Chart.
  *
  * @example
  * var chart = Highcharts.stockChart('container', {
@@ -123,10 +109,34 @@ var addEvent = H.addEvent,
  *         pointInterval: 24 * 60 * 60 * 1000
  *     }]
  * });
+ *
+ * @function Highcharts.stockChart
+ *
+ * @param {string|Highcharts.HTMLDOMElement} [renderTo]
+ *        The DOM element to render to, or its id.
+ *
+ * @param {Highcharts.Options} options
+ *        The chart options structure as described in the
+ *        [options reference](https://api.highcharts.com/highstock).
+ *
+ * @param {Highcharts.ChartCallbackFunction} [callback]
+ *        A function to execute when the chart object is finished loading and
+ *        rendering. In most cases the chart is built in one thread, but in
+ *        Internet Explorer version 8 or less the chart is sometimes
+ *        initialized before the document is ready, and in these cases the
+ *        chart object will not be finished synchronously. As a consequence,
+ *        code that relies on the newly built Chart object should always run in
+ *        the callback. Defining a
+ *        [chart.event.load](https://api.highcharts.com/highstock/chart.events.load)
+ *        handler is equivalent.
+ *
+ * @return {Highcharts.Chart}
+ *         The chart object.
  */
 H.StockChart = H.stockChart = function (a, b, c) {
     var hasRenderToArg = isString(a) || a.nodeName,
         options = arguments[hasRenderToArg ? 1 : 0],
+        userOptions = options,
         // to increase performance, don't merge the data
         seriesOptions = options.series,
         defaultOptions = H.getOptions(),
@@ -158,7 +168,7 @@ H.StockChart = H.stockChart = function (a, b, c) {
         };
 
     // apply X axis options to both single and multi y axes
-    options.xAxis = map(splat(options.xAxis || {}), function (xAxisOptions, i) {
+    options.xAxis = splat(options.xAxis || {}).map(function (xAxisOptions, i) {
         return merge(
             { // defaults
                 minPadding: 0,
@@ -185,7 +195,7 @@ H.StockChart = H.stockChart = function (a, b, c) {
     });
 
     // apply Y axis options to both single and multi y axes
-    options.yAxis = map(splat(options.yAxis || {}), function (yAxisOptions, i) {
+    options.yAxis = splat(options.yAxis || {}).map(function (yAxisOptions, i) {
         opposite = pick(yAxisOptions.opposite, true);
         return merge({ // defaults
             labels: {
@@ -266,7 +276,7 @@ H.StockChart = H.stockChart = function (a, b, c) {
         }
     );
 
-    options.series = seriesOptions;
+    options.series = userOptions.series = seriesOptions;
 
     return hasRenderToArg ?
         new Chart(a, options, c) :
@@ -337,10 +347,8 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
         uniqueAxes,
         transVal;
 
-    /**
-     * Return the other axis based on either the axis option or on related
-     * series.
-     */
+    // Return the other axis based on either the axis option or on related
+    // series.
     function getAxis(coll) {
         var otherColl = coll === 'xAxis' ? 'yAxis' : 'xAxis',
             opt = axis.options[otherColl];
@@ -356,7 +364,7 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
         }
 
         // Auto detect based on existing series
-        return map(series, function (s) {
+        return series.map(function (s) {
             return s[otherColl];
         });
     }
@@ -371,7 +379,7 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
 
     // Get the related axes based options.*Axis setting #2810
     axes2 = (axis.isXAxis ? chart.yAxis : chart.xAxis);
-    each(axes2, function (A) {
+    axes2.forEach(function (A) {
         if (
             defined(A.options.id) ?
                 A.options.id.indexOf('navigator') === -1 :
@@ -397,9 +405,9 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
     uniqueAxes = axes.length ?
         [] :
         [axis.isXAxis ? chart.yAxis[0] : chart.xAxis[0]]; // #3742
-    each(axes, function (axis2) {
+    axes.forEach(function (axis2) {
         if (
-            inArray(axis2, uniqueAxes) === -1 &&
+            uniqueAxes.indexOf(axis2) === -1 &&
             // Do not draw on axis which overlap completely. #5424
             !H.find(uniqueAxes, function (unique) {
                 return unique.pos === axis2.pos && unique.len === axis2.len;
@@ -412,7 +420,7 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
     transVal = pick(translatedValue, axis.translate(value, null, null, old));
     if (isNumber(transVal)) {
         if (axis.horiz) {
-            each(uniqueAxes, function (axis2) {
+            uniqueAxes.forEach(function (axis2) {
                 var skip;
 
                 y1 = axis2.pos;
@@ -420,7 +428,10 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
                 x1 = x2 = Math.round(transVal + axis.transB);
 
                 // outside plot area
-                if (x1 < axisLeft || x1 > axisLeft + axis.width) {
+                if (
+                    force !== 'pass' &&
+                    (x1 < axisLeft || x1 > axisLeft + axis.width)
+                ) {
                     if (force) {
                         x1 = x2 = Math.min(
                             Math.max(axisLeft, x1),
@@ -435,7 +446,7 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
                 }
             });
         } else {
-            each(uniqueAxes, function (axis2) {
+            uniqueAxes.forEach(function (axis2) {
                 var skip;
 
                 x1 = axis2.pos;
@@ -443,7 +454,10 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
                 y1 = y2 = Math.round(axisTop + axis.height - transVal);
 
                 // outside plot area
-                if (y1 < axisTop || y1 > axisTop + axis.height) {
+                if (
+                    force !== 'pass' &&
+                    (y1 < axisTop || y1 > axisTop + axis.height)
+                ) {
                     if (force) {
                         y1 = y2 = Math.min(
                             Math.max(axisTop, y1),
@@ -464,7 +478,18 @@ wrap(Axis.prototype, 'getPlotLinePath', function (
         null; // #3557 getPlotLinePath in regular Highcharts also returns null
 });
 
-// Function to crisp a line with multiple segments
+/**
+ * Function to crisp a line with multiple segments
+ *
+ * @private
+ * @function Highcharts.SVGRenderer#crispPolyLine
+ *
+ * @param {Array<number>} points
+ *
+ * @param {number} width
+ *
+ * @return {Array<number>}
+ */
 SVGRenderer.prototype.crispPolyLine = function (points, width) {
     // points format: ['M', 0, 0, 'L', 100, 0]
     // normalize to a crisp line
@@ -483,11 +508,9 @@ SVGRenderer.prototype.crispPolyLine = function (points, width) {
     }
     return points;
 };
-
 if (Renderer === VMLRenderer) {
     VMLRenderer.prototype.crispPolyLine = SVGRenderer.prototype.crispPolyLine;
 }
-
 
 // Wrapper to hide the label
 wrap(Axis.prototype, 'hideCrosshair', function (proceed, i) {
@@ -568,23 +591,23 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
             })
             .add(this.labelGroup);
 
-        
         // Presentational
-        crossLabel
-            .attr({
-                fill: options.backgroundColor ||
-                    (this.series[0] && this.series[0].color) ||
-                    '#666666',
-                stroke: options.borderColor || '',
-                'stroke-width': options.borderWidth || 0
-            })
-            .css(extend({
-                color: '#ffffff',
-                fontWeight: 'normal',
-                fontSize: '11px',
-                textAlign: 'center'
-            }, options.style));
-        
+        if (!chart.styledMode) {
+            crossLabel
+                .attr({
+                    fill: options.backgroundColor ||
+                        (this.series[0] && this.series[0].color) ||
+                        '#666666',
+                    stroke: options.borderColor || '',
+                    'stroke-width': options.borderWidth || 0
+                })
+                .css(extend({
+                    color: '#ffffff',
+                    fontWeight: 'normal',
+                    fontSize: '11px',
+                    textAlign: 'center'
+                }, options.style));
+        }
     }
 
     if (horiz) {
@@ -668,14 +691,17 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
     });
 });
 
-/* ****************************************************************************
- * Start value compare logic                                                  *
- *****************************************************************************/
+/* ************************************************************************** *
+ *  Start value compare logic                                                 *
+ * ************************************************************************** */
 
 /**
  * Extend series.init by adding a method to modify the y value used for plotting
  * on the y axis. This method is called both from the axis when finding dataMin
  * and dataMax, and from the series.translate method.
+ *
+ * @ignore
+ * @function Highcharts.Series#init
  */
 seriesProto.init = function () {
 
@@ -687,17 +713,15 @@ seriesProto.init = function () {
 };
 
 /**
- * Highstock only. Set the {@link
- * http://api.highcharts.com/highstock/plotOptions.series.compare|
- * compare} mode of the series after render time. In most cases it is more
- * useful running {@link Axis#setCompare} on the X axis to update all its
- * series.
+ * Highstock only. Set the
+ * [compare](https://api.highcharts.com/highstock/plotOptions.series.compare)
+ * mode of the series after render time. In most cases it is more useful running
+ * {@link Axis#setCompare} on the X axis to update all its series.
  *
- * @function setCompare
- * @memberof Series.prototype
+ * @function Highcharts.Series#setCompare
  *
- * @param  {String} compare
- *         Can be one of `null`, `"percent"` or `"value"`.
+ * @param {string} compare
+ *        Can be one of `null`, `"percent"` or `"value"`.
  */
 seriesProto.setCompare = function (compare) {
 
@@ -744,6 +768,9 @@ seriesProto.setCompare = function (compare) {
 /**
  * Extend series.processData by finding the first y value in the plot area,
  * used for comparing the following values
+ *
+ * @ignore
+ * @function Highcharts.Series#processData
  */
 seriesProto.processData = function () {
     var series = this,
@@ -769,12 +796,10 @@ seriesProto.processData = function () {
         // against close or the pointValKey (#4922, #3112)
         if (series.pointArrayMap) {
             // Use close if present (#3112)
-            keyIndex = inArray('close', series.pointArrayMap);
+            keyIndex = series.pointArrayMap.indexOf('close');
             if (keyIndex === -1) {
-                keyIndex = inArray(
-                    series.pointValKey || 'y',
-                    series.pointArrayMap
-                );
+                keyIndex = series.pointArrayMap.indexOf(
+                    series.pointValKey || 'y');
             }
         }
 
@@ -795,9 +820,7 @@ seriesProto.processData = function () {
     }
 };
 
-/**
- * Modify series extremes
- */
+// Modify series extremes
 wrap(seriesProto, 'getExtremes', function (proceed) {
     var extremes;
 
@@ -817,24 +840,23 @@ wrap(seriesProto, 'getExtremes', function (proceed) {
  * Highstock only. Set the compare mode on all series belonging to an Y axis
  * after render time.
  *
- * @param  {String} compare
- *         The compare mode. Can be one of `null`, `"value"` or `"percent"`.
- * @param  {Boolean} [redraw=true]
- *         Whether to redraw the chart or to wait for a later call to {@link
- *         Chart#redraw},
- *
- * @function setCompare
- * @memberof Axis.prototype
- *
- * @see    {@link https://api.highcharts.com/highstock/series.plotOptions.compare|
- *         series.plotOptions.compare}
+ * @see [series.plotOptions.compare](https://api.highcharts.com/highstock/series.plotOptions.compare)
  *
  * @sample stock/members/axis-setcompare/
  *         Set compoare
+ *
+ * @function Highcharts.Axis#setCompare
+ *
+ * @param {string} compare
+ *        The compare mode. Can be one of `null`, `"value"` or `"percent"`.
+ *
+ * @param {boolean} [redraw=true]
+ *        Whether to redraw the chart or to wait for a later call to
+ *        {@link Chart#redraw}.
  */
 Axis.prototype.setCompare = function (compare, redraw) {
     if (!this.isXAxis) {
-        each(this.series, function (series) {
+        this.series.forEach(function (series) {
             series.setCompare(compare);
         });
         if (pick(redraw, true)) {
@@ -845,7 +867,12 @@ Axis.prototype.setCompare = function (compare, redraw) {
 
 /**
  * Extend the tooltip formatter by adding support for the point.change variable
- * as well as the changeDecimals option
+ * as well as the changeDecimals option.
+ *
+ * @ignore
+ * @function Highcharts.Point#tooltipFormatter
+ *
+ * @param {string} pointFormat
  */
 Point.prototype.tooltipFormatter = function (pointFormat) {
     var point = this;
@@ -861,16 +888,14 @@ Point.prototype.tooltipFormatter = function (pointFormat) {
     return pointTooltipFormatter.apply(this, [pointFormat]);
 };
 
-/* ****************************************************************************
- * End value compare logic                                                    *
- *****************************************************************************/
+/* ************************************************************************** *
+ *  End value compare logic                                                   *
+ * ************************************************************************** */
 
 
-/**
- * Extend the Series prototype to create a separate series clip box. This is
- * related to using multiple panes, and a future pane logic should incorporate
- * this feature (#2754).
- */
+// Extend the Series prototype to create a separate series clip box. This is
+// related to using multiple panes, and a future pane logic should incorporate
+// this feature (#2754).
 wrap(Series.prototype, 'render', function (proceed) {
     var clipHeight;
     // Only do this on not 3d (#2939, #5904) nor polar (#6057) charts, and only
@@ -910,12 +935,14 @@ wrap(Series.prototype, 'render', function (proceed) {
 wrap(Chart.prototype, 'getSelectedPoints', function (proceed) {
     var points = proceed.call(this);
 
-    each(this.series, function (serie) {
+    this.series.forEach(function (serie) {
         // series.points - for grouped points (#6445)
         if (serie.hasGroupedData) {
-            points = points.concat(grep(serie.points || [], function (point) {
-                return point.selected;
-            }));
+            points = points.concat((serie.points || []).filter(
+                function (point) {
+                    return point.selected;
+                }
+            ));
         }
     });
     return points;

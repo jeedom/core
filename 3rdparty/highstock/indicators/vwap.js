@@ -1,11 +1,12 @@
 /*
-  Highcharts JS v6.1.2 (2018-08-31)
+  Highcharts JS v7.0.0 (2018-12-11)
 
  Indicator series type for Highstock
 
- (c) 2010-2017 Pawe Dalek
+ (c) 2010-2018 Pawe Dalek
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?module.exports=b:"function"===typeof define&&define.amd?define(function(){return b}):b(Highcharts)})(function(b){(function(b){var t=b.isArray,u=b.seriesType;u("vwap","sma",{params:{period:30,volumeSeriesID:"volume"}},{getValues:function(c,f){var g=c.xData,d=c.yData,m=f.period,h=!0;if(!(c=c.chart.get(f.volumeSeriesID)))return b.error("Series "+f.volumeSeriesID+" not found! Check `volumeSeriesID`.",!0);t(d[0])||(h=!1);return this.calculateVWAPValues(h,
-g,d,c,m)},calculateVWAPValues:function(b,f,g,d,m){var h=d.yData,c=d.xData.length,a=f.length;d=[];var p=[],q=[],r=[],l=[],e,n,k,c=a<=c?a:c;for(k=a=0;a<c;a++)e=b?(g[a][1]+g[a][2]+g[a][3])/3:g[a],e*=h[a],e=k?d[a-1]+e:e,n=k?p[a-1]+h[a]:h[a],d.push(e),p.push(n),l.push([f[a],e/n]),q.push(l[a][0]),r.push(l[a][1]),k++,k===m&&(k=0);return{values:l,xData:q,yData:r}}})})(b)});
+(function(b){"object"===typeof module&&module.exports?module.exports=b:"function"===typeof define&&define.amd?define(function(){return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){(function(b){var u=b.isArray,v=b.seriesType;v("vwap","sma",{params:{period:30,volumeSeriesID:"volume"}},{getValues:function(c,h){var d=c.chart,e=c.xData;c=c.yData;var m=h.period,p=!0,f;if(!(f=d.get(h.volumeSeriesID)))return b.error("Series "+h.volumeSeriesID+" not found! Check `volumeSeriesID`.",
+!0,d);u(c[0])||(p=!1);return this.calculateVWAPValues(p,e,c,f,m)},calculateVWAPValues:function(b,h,d,e,m){var c=e.yData,f=e.xData.length,a=h.length;e=[];var q=[],r=[],t=[],l=[],g,n,k,f=a<=f?a:f;for(k=a=0;a<f;a++)g=b?(d[a][1]+d[a][2]+d[a][3])/3:d[a],g*=c[a],g=k?e[a-1]+g:g,n=k?q[a-1]+c[a]:c[a],e.push(g),q.push(n),l.push([h[a],g/n]),r.push(l[a][0]),t.push(l[a][1]),k++,k===m&&(k=0);return{values:l,xData:r,yData:t}}})})(b)});
+//# sourceMappingURL=vwap.js.map

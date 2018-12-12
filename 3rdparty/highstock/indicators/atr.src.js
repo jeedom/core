@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Sebastian Bochan
+ * (c) 2010-2018 Sebastian Bochan
  *
  * License: www.highcharts.com/license
  */
@@ -16,10 +16,17 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
+
 
 		var isArray = H.isArray,
 		    seriesType = H.seriesType,
@@ -53,28 +60,38 @@
 
 		    return [x, y];
 		}
+
 		/**
 		 * The ATR series type.
 		 *
-		 * @constructor seriesTypes.atr
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.atr
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('atr', 'sma',
 		    /**
 		     * Average true range indicator (ATR). This series requires `linkedTo`
 		     * option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/atr ATR indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/atr
+		     *         ATR indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.atr
 		     */
 		    {
 		        params: {
 		            period: 14
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        getValues: function (series, params) {
 		            var period = params.period,
 		                xVal = series.xData,
@@ -136,26 +153,18 @@
 		            };
 		        }
 
-		    });
+		    }
+		);
 
 		/**
-		 * A `ATR` series. If the [type](#series.atr.type) option is not
-		 * specified, it is inherited from [chart.type](#chart.type).
+		 * A `ATR` series. If the [type](#series.atr.type) option is not specified, it
+		 * is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.atr
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.atr
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.atr
-		 */
-
-		/**
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.atr.data
 		 */
 
 	}(Highcharts));

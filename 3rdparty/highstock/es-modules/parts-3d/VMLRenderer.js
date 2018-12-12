@@ -1,9 +1,13 @@
-/**
- * (c) 2010-2017 Torstein Honsi
+/* *
+ * (c) 2010-2018 Torstein Honsi
+ *
+ * Extension to the VML Renderer
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Axis.js';
@@ -14,23 +18,20 @@ var addEvent = H.addEvent,
     SVGRenderer = H.SVGRenderer,
     VMLRenderer = H.VMLRenderer;
 
-/**
- *    Extension to the VML Renderer
- */
 if (VMLRenderer) {
 
     H.setOptions({ animate: false });
 
     VMLRenderer.prototype.face3d = SVGRenderer.prototype.face3d;
     VMLRenderer.prototype.polyhedron = SVGRenderer.prototype.polyhedron;
+
+    VMLRenderer.prototype.elements3d = SVGRenderer.prototype.elements3d;
+    VMLRenderer.prototype.element3d = SVGRenderer.prototype.element3d;
     VMLRenderer.prototype.cuboid = SVGRenderer.prototype.cuboid;
     VMLRenderer.prototype.cuboidPath = SVGRenderer.prototype.cuboidPath;
 
     VMLRenderer.prototype.toLinePath = SVGRenderer.prototype.toLinePath;
     VMLRenderer.prototype.toLineSegments = SVGRenderer.prototype.toLineSegments;
-
-    VMLRenderer.prototype.createElement3D =
-        SVGRenderer.prototype.createElement3D;
 
     VMLRenderer.prototype.arc3d = function (shapeArgs) {
         var result = SVGRenderer.prototype.arc3d.call(this, shapeArgs);
@@ -58,4 +59,3 @@ if (VMLRenderer) {
     });
 
 }
-

@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Item series type for Highcharts
  *
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
@@ -16,29 +16,41 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2009-2017 Torstein Honsi
+		/* *
 		 *
-		 * Item series type for Highcharts
+		 *  (c) 2009-2018 Torstein Honsi
 		 *
-		 * License: www.highcharts.com/license
-		 */
+		 *  Item series type for Highcharts
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
 
 		/**
+		 * @private
 		 * @todo
 		 * - Check update, remove etc.
 		 * - Custom icons like persons, carts etc. Either as images, font icons or
 		 *   Highcharts symbols.
 		 */
-		var each = H.each,
-		    extend = H.extend,
+
+
+
+		var extend = H.extend,
 		    pick = H.pick,
 		    seriesType = H.seriesType;
 
+		/**
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.item
+		 *
+		 * @augments Highcharts.Series
+		 */
 		seriesType('item', 'column', {
 		    itemPadding: 0.2,
 		    marker: {
@@ -58,7 +70,7 @@
 		            borderWidth = this.borderWidth,
 		            crisp = borderWidth % 2 ? 0.5 : 1;
 
-		        each(this.points, function (point) {
+		        this.points.forEach(function (point) {
 		            var yPos,
 		                attr,
 		                graphics,
@@ -87,6 +99,11 @@
 		                ) :
 		                series.pointAttribs(point, point.selected && 'select');
 		            delete pointAttr.r;
+
+		            if (series.chart.styledMode) {
+		                delete pointAttr.stroke;
+		                delete pointAttr['stroke-width'];
+		            }
 
 		            if (point.y !== null) {
 

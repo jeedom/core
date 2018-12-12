@@ -1,8 +1,8 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  * Sankey diagram module
  *
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
@@ -15,48 +15,133 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
+
+		H.NodesMixin = {
+		    // Create a single node that holds information on incoming and outgoing
+		    // links.
+		    createNode: function (id) {
+
+		        function findById(nodes, id) {
+		            return H.find(nodes, function (node) {
+		                return node.id === id;
+		            });
+		        }
+
+		        var node = findById(this.nodes, id),
+		            PointClass = this.pointClass,
+		            options;
+
+		        if (!node) {
+		            options = this.options.nodes && findById(this.options.nodes, id);
+		            node = (new PointClass()).init(
+		                this,
+		                H.extend({
+		                    className: 'highcharts-node',
+		                    isNode: true,
+		                    id: id,
+		                    y: 1 // Pass isNull test
+		                }, options)
+		            );
+		            node.linksTo = [];
+		            node.linksFrom = [];
+		            node.formatPrefix = 'node';
+		            node.name = node.name || node.options.id; // for use in formats
+
+		            // Return the largest sum of either the incoming or outgoing links.
+		            node.getSum = function () {
+		                var sumTo = 0,
+		                    sumFrom = 0;
+		                node.linksTo.forEach(function (link) {
+		                    sumTo += link.weight;
+		                });
+		                node.linksFrom.forEach(function (link) {
+		                    sumFrom += link.weight;
+		                });
+		                return Math.max(sumTo, sumFrom);
+		            };
+		            // Get the offset in weight values of a point/link.
+		            node.offset = function (point, coll) {
+		                var offset = 0;
+		                for (var i = 0; i < node[coll].length; i++) {
+		                    if (node[coll][i] === point) {
+		                        return offset;
+		                    }
+		                    offset += node[coll][i].weight;
+		                }
+		            };
+
+		            // Return true if the node has a shape, otherwise all links are
+		            // outgoing.
+		            node.hasShape = function () {
+		                var outgoing = 0;
+		                node.linksTo.forEach(function (link) {
+		                    if (link.outgoing) {
+		                        outgoing++;
+		                    }
+		                });
+		                return !node.linksTo.length || outgoing !== node.linksTo.length;
+		            };
+
+		            this.nodes.push(node);
+		        }
+		        return node;
+		    }
+		};
+
+	}(Highcharts));
+	(function (H) {
+		/* *
 		 * Sankey diagram module
 		 *
-		 * (c) 2010-2017 Torstein Honsi
+		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
 		 */
 
 
+
 		var defined = H.defined,
-		    each = H.each,
-		    extend = H.extend,
 		    seriesType = H.seriesType,
 		    pick = H.pick,
 		    Point = H.Point;
 
 		/**
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.sankey
+		 *
+		 * @augments Highcharts.Series
+		 */
+		seriesType('sankey', 'column'
+
+		/**
 		 * A sankey diagram is a type of flow diagram, in which the width of the
 		 * link between two nodes is shown proportionally to the flow quantity.
 		 *
-		 * @extends      {plotOptions.column}
-		 * @product      highcharts
-		 * @sample       highcharts/demo/sankey-diagram/
-		 *               Sankey diagram
-		 * @sample       highcharts/plotoptions/sankey-inverted/
-		 *               Inverted sankey diagram
-		 * @sample       highcharts/plotoptions/sankey-outgoing
-		 *               Sankey diagram with outgoing links
+		 * @sample highcharts/demo/sankey-diagram/
+		 *         Sankey diagram
+		 * @sample highcharts/plotoptions/sankey-inverted/
+		 *         Inverted sankey diagram
+		 * @sample highcharts/plotoptions/sankey-outgoing
+		 *         Sankey diagram with outgoing links
+		 *
+		 * @extends      plotOptions.column
 		 * @since        6.0.0
-		 * @excluding    animationLimit,boostThreshold,borderColor,borderRadius,
-		 *               borderWidth,crisp,cropThreshold,depth,edgeColor,edgeWidth,
-		 *               findNearestPointBy,grouping,groupPadding,groupZPadding,
-		 *               maxPointWidth,negativeColor,pointInterval,pointIntervalUnit,
-		 *               pointPadding,pointPlacement,pointRange,pointStart,pointWidth,
-		 *               shadow,softThreshold,stacking,threshold,zoneAxis,zones
+		 * @product      highcharts
+		 * @excluding    animationLimit, boostThreshold, borderColor, borderRadius,
+		 *               borderWidth, crisp, cropThreshold, depth, edgeColor, edgeWidth,
+		 *               findNearestPointBy, grouping, groupPadding, groupZPadding,
+		 *               maxPointWidth, negativeColor, pointInterval, pointIntervalUnit,
+		 *               pointPadding, pointPlacement, pointRange, pointStart,
+		 *               pointWidth, shadow, softThreshold, stacking, threshold,
+		 *               zoneAxis, zones
 		 * @optionparent plotOptions.sankey
 		 */
-		seriesType('sankey', 'column', {
+		, {
 		    colorByPoint: true,
 		    /**
 		     * Higher numbers makes the links in a sankey diagram render more curved.
@@ -74,12 +159,12 @@
 		        backgroundColor: 'none', // enable padding
 		        crop: false,
 		        /**
-		         * The [format string](https://www.highcharts.com/docs/chart-
-		         * concepts/labels-and-string-formatting) specifying what to show
-		         * for _nodes_ in the sankey diagram. By default the
-		         * `nodeFormatter` returns `{point.name}`.
+		         * The
+		         * [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting)
+		         * specifying what to show for _nodes_ in the sankey diagram. By default
+		         * the `nodeFormatter` returns `{point.name}`.
 		         *
-		         * @type {String}
+		         * @type {string}
 		         */
 		        nodeFormat: undefined,
 
@@ -87,23 +172,27 @@
 		         * Callback to format data labels for _nodes_ in the sankey diagram.
 		         * The `nodeFormat` option takes precedence over the `nodeFormatter`.
 		         *
-		         * @type {Function}
+		         * @type  {Highcharts.FormatterCallbackFunction<object>}
 		         * @since 6.0.2
 		         */
 		        nodeFormatter: function () {
 		            return this.point.name;
 		        },
 		        /**
-		         * The [format string](https://www.highcharts.com/docs/chart-
-		         * concepts/labels-and-string-formatting) specifying what to show for
-		         * _links_ in the sankey diagram. Defaults to an empty string returned
-		         * from the `formatter`, in effect disabling the labels.
+		         * The
+		         * [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting)
+		         * specifying what to show for _links_ in the sankey diagram. Defaults
+		         * to an empty string returned from the `formatter`, in effect disabling
+		         * the labels.
+		         *
+		         * @type {string}
 		         */
 		        format: undefined,
 		        /**
 		         * Callback to format data labels for _links_ in the sankey diagram.
 		         * The `format` option takes precedence over the `formatter`.
 		         *
+		         * @type  {Highcharts.FormatterCallbackFunction<Highcharts.SeriesDataLabelsFormatterContextObject>}
 		         * @since 6.0.2
 		         */
 		        formatter: function () {
@@ -111,12 +200,10 @@
 		        },
 		        inside: true
 		    },
-    
 		    /**
 		     * Opacity for the links between nodes in the sankey diagram.
 		     */
 		    linkOpacity: 0.5,
-    
 		    /**
 		     * The pixel width of each node in a sankey diagram, or the height in case
 		     * the chart is inverted.
@@ -141,7 +228,7 @@
 		         * A callback for defining the format for _nodes_ in the sankey chart's
 		         * tooltip, as opposed to links.
 		         *
-		         * @type      {Function}
+		         * @type      {Highcharts.FormatterCallbackFunction<object>}
 		         * @since     6.0.2
 		         * @apioption plotOptions.sankey.tooltip.nodeFormatter
 		         */
@@ -152,16 +239,14 @@
 		         */
 		        followPointer: true,
 
-        
 		        headerFormat:
-		            '<span style="font-size: 0.85em">{series.name}</span><br/>',
-        
+		            '<span style="font-size: 10px">{series.name}</span><br/>',
 		        pointFormat: '{point.fromNode.name} \u2192 {point.toNode.name}: <b>{point.weight}</b><br/>',
 		        /**
-		         * The [format string](https://www.highcharts.com/docs/chart-
-		         * concepts/labels-and-string-formatting) specifying what to
-		         * show for _nodes_ in tooltip
-		         * of a sankey diagram series, as opposed to links.
+		         * The
+		         * [format string](https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting)
+		         * specifying what to show for _nodes_ in tooltip of a sankey diagram
+		         * series, as opposed to links.
 		         */
 		        nodeFormat: '{point.name}: <b>{point.sum}</b><br/>'
 		    }
@@ -169,86 +254,11 @@
 		}, {
 		    isCartesian: false,
 		    forceDL: true,
-		    /**
-		     * Create a single node that holds information on incoming and outgoing
-		     * links.
-		     */
-		    createNode: function (id) {
+		    // Create a single node that holds information on incoming and outgoing
+		    // links.
+		    createNode: H.NodesMixin.createNode,
 
-		        function findById(nodes, id) {
-		            return H.find(nodes, function (node) {
-		                return node.id === id;
-		            });
-		        }
-
-		        var node = findById(this.nodes, id),
-		            options;
-
-		        if (!node) {
-		            options = this.options.nodes && findById(this.options.nodes, id);
-		            node = (new Point()).init(
-		                this,
-		                extend({
-		                    className: 'highcharts-node',
-		                    isNode: true,
-		                    id: id,
-		                    y: 1 // Pass isNull test
-		                }, options)
-		            );
-		            node.linksTo = [];
-		            node.linksFrom = [];
-		            node.formatPrefix = 'node';
-		            node.name = node.name || node.id; // for use in formats
-
-		            /**
-		             * Return the largest sum of either the incoming or outgoing links.
-		             */
-		            node.getSum = function () {
-		                var sumTo = 0,
-		                    sumFrom = 0;
-		                each(node.linksTo, function (link) {
-		                    sumTo += link.weight;
-		                });
-		                each(node.linksFrom, function (link) {
-		                    sumFrom += link.weight;
-		                });
-		                return Math.max(sumTo, sumFrom);
-		            };
-		            /**
-		             * Get the offset in weight values of a point/link.
-		             */
-		            node.offset = function (point, coll) {
-		                var offset = 0;
-		                for (var i = 0; i < node[coll].length; i++) {
-		                    if (node[coll][i] === point) {
-		                        return offset;
-		                    }
-		                    offset += node[coll][i].weight;
-		                }
-		            };
-
-		            /**
-		             * Return true if the node has a shape, otherwise all links are
-		             * outgoing.
-		             */
-		            node.hasShape = function () {
-		                var outgoing = 0;
-		                each(node.linksTo, function (link) {
-		                    if (link.outgoing) {
-		                        outgoing++;
-		                    }
-		                });
-		                return !node.linksTo.length || outgoing !== node.linksTo.length;
-		            };
-
-		            this.nodes.push(node);
-		        }
-		        return node;
-		    },
-
-		    /**
-		     * Create a node column.
-		     */
+		    // Create a node column.
 		    createNodeColumn: function () {
 		        var chart = this.chart,
 		            column = [],
@@ -256,14 +266,12 @@
 
 		        column.sum = function () {
 		            var sum = 0;
-		            each(this, function (node) {
+		            this.forEach(function (node) {
 		                sum += node.getSum();
 		            });
 		            return sum;
 		        };
-		        /**
-		         * Get the offset in pixels of a node inside the column.
-		         */
+		        // Get the offset in pixels of a node inside the column.
 		        column.offset = function (node, factor) {
 		            var offset = 0;
 		            for (var i = 0; i < column.length; i++) {
@@ -274,9 +282,7 @@
 		            }
 		        };
 
-		        /**
-		         * Get the column height in pixels.
-		         */
+		        // Get the column height in pixels.
 		        column.top = function (factor) {
 		            var height = 0;
 		            for (var i = 0; i < column.length; i++) {
@@ -291,13 +297,11 @@
 		        return column;
 		    },
 
-		    /**
-		     * Create node columns by analyzing the nodes and the relations between
-		     * incoming and outgoing links.
-		     */
+		    // Create node columns by analyzing the nodes and the relations between
+		    // incoming and outgoing links.
 		    createNodeColumns: function () {
 		        var columns = [];
-		        each(this.nodes, function (node) {
+		        this.nodes.forEach(function (node) {
 		            var fromColumn = -1,
 		                i,
 		                point;
@@ -327,14 +331,19 @@
 		            columns[node.column].push(node);
 
 		        }, this);
+
+		        // Fill in empty columns (#8865)
+		        for (var i = 0; i < columns.length; i++) {
+		            if (columns[i] === undefined) {
+		                columns[i] = this.createNodeColumn();
+		            }
+		        }
+
 		        return columns;
 		    },
 
 
-    
-		    /**
-		     * Return the presentational attributes.
-		     */
+		    // Return the presentational attributes.
 		    pointAttribs: function (point, state) {
 
 		        var opacity = this.options.linkOpacity,
@@ -351,15 +360,13 @@
 		                H.color(color).setOpacity(opacity).get()
 		        };
 		    },
-    
 
-		    /**
-		     * Extend generatePoints by adding the nodes, which are Point objects
-		     * but pushed to the this.nodes array.
-		     */
+		    // Extend generatePoints by adding the nodes, which are Point objects but
+		    // pushed to the this.nodes array.
 		    generatePoints: function () {
 
-		        var nodeLookup = {};
+		        var nodeLookup = {},
+		            chart = this.chart;
 
 		        H.Series.prototype.generatePoints.call(this);
 
@@ -369,13 +376,13 @@
 		        this.colorCounter = 0;
 
 		        // Reset links from previous run
-		        each(this.nodes, function (node) {
+		        this.nodes.forEach(function (node) {
 		            node.linksFrom.length = 0;
 		            node.linksTo.length = 0;
 		        });
 
 		        // Create the node list and set up links
-		        each(this.points, function (point) {
+		        this.points.forEach(function (point) {
 		            if (defined(point.from)) {
 		                if (!nodeLookup[point.from]) {
 		                    nodeLookup[point.from] = this.createNode(point.from);
@@ -384,10 +391,15 @@
 		                point.fromNode = nodeLookup[point.from];
 
 		                // Point color defaults to the fromNode's color
-                
-		                point.color =
-		                    point.options.color || nodeLookup[point.from].color;
-                
+		                if (chart.styledMode) {
+		                    point.colorIndex = pick(
+		                        point.options.colorIndex,
+		                        nodeLookup[point.from].colorIndex
+		                    );
+		                } else {
+		                    point.color =
+		                        point.options.color || nodeLookup[point.from].color;
+		                }
 
 		            }
 		            if (defined(point.to)) {
@@ -398,14 +410,12 @@
 		                point.toNode = nodeLookup[point.to];
 		            }
 
-		            point.name = point.name || point.id; // for use in formats
+		            point.name = point.name || point.options.id; // for use in formats
 
 		        }, this);
 		    },
 
-		    /**
-		     * Run pre-translation by generating the nodeColumns.
-		     */
+		    // Run pre-translation by generating the nodeColumns.
 		    translate: function () {
 		        if (!this.processedXData) {
 		            this.processData();
@@ -430,15 +440,15 @@
 
 		        // Find out how much space is needed. Base it on the translation
 		        // factor of the most spaceous column.
-		        each(this.nodeColumns, function (column) {
+		        this.nodeColumns.forEach(function (column) {
 		            var height = chart.plotSizeY -
 		                (column.length - 1) * options.nodePadding;
 
 		            factor = Math.min(factor, height / column.sum());
 		        });
 
-		        each(this.nodeColumns, function (column) {
-		            each(column, function (node) {
+		        this.nodeColumns.forEach(function (column) {
+		            column.forEach(function (node) {
 		                var sum = node.getSum(),
 		                    height = sum * factor,
 		                    fromNodeTop = (
@@ -474,7 +484,7 @@
 		                node.plotY = 1;
 
 		                // Draw the links from this node
-		                each(node.linksFrom, function (point) {
+		                node.linksFrom.forEach(function (point) {
 		                    var linkHeight = point.weight * factor,
 		                        fromLinkTop = node.offset(point, 'linksFrom') *
 		                            factor,
@@ -491,7 +501,8 @@
 		                        ),
 		                        nodeW = nodeWidth,
 		                        right = toNode.column * colDistance,
-		                        outgoing = point.outgoing;
+		                        outgoing = point.outgoing,
+		                        straight = right > nodeLeft;
 
 		                    if (inverted) {
 		                        fromY = chart.plotSizeY - fromY;
@@ -499,12 +510,13 @@
 		                        right = chart.plotSizeX - right;
 		                        nodeW = -nodeW;
 		                        linkHeight = -linkHeight;
+		                        straight = nodeLeft > right;
 		                    }
 
 		                    point.shapeType = 'path';
 
 		                    // Links going from left to right
-		                    if (right > left) {
+		                    if (straight) {
 		                        point.shapeArgs = {
 		                            d: [
 		                                'M', nodeLeft + nodeW, fromY,
@@ -598,10 +610,8 @@
 
 		        }, this);
 		    },
-		    /**
-		     * Extend the render function to also render this.nodes together with
-		     * the points.
-		     */
+		    // Extend the render function to also render this.nodes together with the
+		    // points.
 		    render: function () {
 		        var points = this.points;
 		        this.points = this.points.concat(this.nodes);
@@ -612,13 +622,14 @@
 
 
 		    destroy: function () {
-		        // Nodes must also be destroyed (#8682)
-		        this.data = this.points.concat(this.nodes);
+		        // Nodes must also be destroyed (#8682, #9300)
+		        this.data = [].concat(this.points, this.nodes);
 		        H.Series.prototype.destroy.call(this);
 		    }
 		}, {
 		    getClassName: function () {
-		        return 'highcharts-link ' + Point.prototype.getClassName.call(this);
+		        return (this.isNode ? 'highcharts-node ' : 'highcharts-link ') +
+		            Point.prototype.getClassName.call(this);
 		    },
 		    isValid: function () {
 		        return this.isNode || typeof this.weight === 'number';
@@ -630,15 +641,14 @@
 		 * A `sankey` series. If the [type](#series.sankey.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type      {Object}
 		 * @extends   series,plotOptions.sankey
-		 * @excluding animationLimit,boostThreshold,borderColor,borderRadius,
-		 *            borderWidth,crisp,cropThreshold,dataParser,dataURL,depth,
-		 *            edgeColor,edgeWidth,findNearestPointBy,grouping,groupPadding,
-		 *            groupZPadding,maxPointWidth,negativeColor,pointInterval,
-		 *            pointIntervalUnit,pointPadding,pointPlacement,pointRange,
-		 *            pointStart,pointWidth,shadow,softThreshold,stacking,threshold,
-		 *            zoneAxis,zones
+		 * @excluding animationLimit, boostThreshold, borderColor, borderRadius,
+		 *            borderWidth, crisp, cropThreshold, dataParser, dataURL, depth,
+		 *            edgeColor, edgeWidth, findNearestPointBy, grouping, groupPadding,
+		 *            groupZPadding, maxPointWidth, negativeColor, pointInterval,
+		 *            pointIntervalUnit, pointPadding, pointPlacement, pointRange,
+		 *            pointStart, pointWidth, shadow, softThreshold, stacking,
+		 *            threshold, zoneAxis, zones
 		 * @product   highcharts
 		 * @apioption series.sankey
 		 */
@@ -649,9 +659,10 @@
 		 * diagram are auto-generated instances of `Highcharts.Point`, but options can
 		 * be applied here and linked by the `id`.
 		 *
-		 * @sample    highcharts/css/sankey/
-		 *            Sankey diagram with node options
-		 * @type      {Array<Object>}
+		 * @sample highcharts/css/sankey/
+		 *         Sankey diagram with node options
+		 *
+		 * @type      {Array<*>}
 		 * @product   highcharts
 		 * @apioption series.sankey.nodes
 		 */
@@ -660,7 +671,7 @@
 		 * The id of the auto-generated node, refering to the `from` or `to` setting of
 		 * the link.
 		 *
-		 * @type      {String}
+		 * @type      {string}
 		 * @product   highcharts
 		 * @apioption series.sankey.nodes.id
 		 */
@@ -668,7 +679,7 @@
 		/**
 		 * The color of the auto generated node.
 		 *
-		 * @type      {Color}
+		 * @type      {Highcharts.ColorString}
 		 * @product   highcharts
 		 * @apioption series.sankey.nodes.color
 		 */
@@ -677,7 +688,7 @@
 		 * The color index of the auto generated node, especially for use in styled
 		 * mode.
 		 *
-		 * @type      {Number}
+		 * @type      {number}
 		 * @product   highcharts
 		 * @apioption series.sankey.nodes.colorIndex
 		 */
@@ -686,12 +697,12 @@
 		 * An optional column index of where to place the node. The default behaviour is
 		 * to place it next to the preceding node.
 		 *
-		 * @type      {Undefined|Number}
-		 * @default   undefined
-		 * @sample    highcharts/plotoptions/sankey-node-column/
-		 *            Specified node column
-		 * @product   highcharts
+		 * @sample highcharts/plotoptions/sankey-node-column/
+		 *         Specified node column
+		 *
+		 * @type      {number}
 		 * @since     6.0.5
+		 * @product   highcharts
 		 * @apioption series.sankey.nodes.column
 		 */
 
@@ -700,9 +711,10 @@
 		 * the name is different from the `id`. Where the id must be unique for each
 		 * node, this is not necessary for the name.
 		 *
-		 * @type      {String}
-		 * @sample    highcharts/css/sankey/
-		 *            Sankey diagram with node options
+		 * @sample highcharts/css/sankey/
+		 *         Sankey diagram with node options
+		 *
+		 * @type      {string}
 		 * @product   highcharts
 		 * @apioption series.sankey.nodes.name
 		 */
@@ -711,12 +723,13 @@
 		 * The vertical offset of a node in terms of weight. Positive values shift the
 		 * node downwards, negative shift it upwards.
 		 *
-		 * @type      {Number}
+		 * @sample highcharts/plotoptions/sankey-node-column/
+		 *         Specified node offset
+		 *
+		 * @type      {number}
 		 * @default   0
-		 * @sample    highcharts/plotoptions/sankey-node-column/
-		 *            Specified node offset
-		 * @product   highcharts
 		 * @since     6.0.5
+		 * @product   highcharts
 		 * @apioption series.sankey.nodes.offset
 		 */
 
@@ -724,8 +737,8 @@
 		 * An array of data points for the series. For the `sankey` series type,
 		 * points can be given in the following way:
 		 *
-		 * An array of objects with named values. The objects are point
-		 * configuration objects as seen below. If the total number of data
+		 * An array of objects with named values. The following snippet shows only a
+		 * few settings, see the complete options set below. If the total number of data
 		 * points exceeds the series' [turboThreshold](#series.area.turboThreshold),
 		 * this option is not available.
 		 *
@@ -741,19 +754,20 @@
 		 *     }]
 		 *  ```
 		 *
-		 * @type      {Array<Object|Array|Number>}
+		 * @sample {highcharts} highcharts/chart/reflow-true/
+		 *         Numerical values
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
+		 *         Arrays of numeric x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+		 *         Arrays of datetime x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-name-value/
+		 *         Arrays of point.name and y
+		 * @sample {highcharts} highcharts/series/data-array-of-objects/
+		 *         Config objects
+		 *
+		 * @type      {Array<number|Array<number|string>|*>}
 		 * @extends   series.line.data
-		 * @excluding drilldown,marker,x,y
-		 * @sample    {highcharts} highcharts/chart/reflow-true/
-		 *            Numerical values
-		 * @sample    {highcharts} highcharts/series/data-array-of-arrays/
-		 *            Arrays of numeric x and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-arrays-datetime/
-		 *            Arrays of datetime x and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-name-value/
-		 *            Arrays of point.name and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-objects/
-		 *            Config objects
+		 * @excluding drilldown, marker, x, y
 		 * @product   highcharts
 		 * @apioption series.sankey.data
 		 */
@@ -764,7 +778,7 @@
 		 * the points, so when setting a specific link color, consider setting the
 		 * `fillOpacity` to 1.
 		 *
-		 * @type      {String}
+		 * @type      {Highcharts.ColorString}
 		 * @product   highcharts
 		 * @apioption series.sankey.data.color
 		 */
@@ -772,7 +786,7 @@
 		/**
 		 * The node that the link runs from.
 		 *
-		 * @type      {String}
+		 * @type      {string}
 		 * @product   highcharts
 		 * @apioption series.sankey.data.from
 		 */
@@ -780,7 +794,7 @@
 		/**
 		 * The node that the link runs to.
 		 *
-		 * @type      {String}
+		 * @type      {string}
 		 * @product   highcharts
 		 * @apioption series.sankey.data.to
 		 */
@@ -788,10 +802,11 @@
 		/**
 		 * Whether the link goes out of the system.
 		 *
-		 * @type      {Boolean}
+		 * @sample highcharts/plotoptions/sankey-outgoing
+		 *         Sankey chart with outgoing links
+		 *
+		 * @type      {boolean}
 		 * @default   false
-		 * @sample    highcharts/plotoptions/sankey-outgoing
-		 *            Sankey chart with outgoing links
 		 * @product   highcharts
 		 * @apioption series.sankey.data.outgoing
 		 */
@@ -799,7 +814,7 @@
 		/**
 		 * The weight of the link.
 		 *
-		 * @type      {Number}
+		 * @type      {number}
 		 * @product   highcharts
 		 * @apioption series.sankey.data.weight
 		 */

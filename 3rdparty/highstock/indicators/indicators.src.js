@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Pawel Fus, Sebastian Bochan
+ * (c) 2010-2018 Pawel Fus, Sebastian Bochan
  *
  * License: www.highcharts.com/license
  */
@@ -16,38 +16,135 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
-	(function (H) {
+	var requiredIndicatorMixin = (function (H) {
+		/**
+		 * (c) 2010-2018 Daniel Studencki
+		 *
+		 * License: www.highcharts.com/license
+		 */
+
+
+		var error = H.error;
+
+		var requiredIndicatorMixin = {
+		    /**
+		     * Check whether given indicator is loaded, else throw error.
+		     * @param {function} indicator Indicator constructor function.
+		     * @param {string} requiredIndicator required indicator type.
+		     * @param {string} type Type of indicator where function was called (parent).
+		     * @param {function} callback Callback which is triggered if the given
+		     *                            indicator is loaded. Takes indicator as
+		     *                            an argument.
+		     * @param {string} errMessage Error message that will be logged in console.
+		     * @returns {boolean} Returns false when there is no required indicator loaded.
+		     */
+		    isParentLoaded: function (
+		        indicator,
+		        requiredIndicator,
+		        type,
+		        callback,
+		        errMessage
+		    ) {
+		        if (indicator) {
+		            return callback ? callback(indicator) : true;
+		        }
+		        error(
+		            errMessage || this.generateMessage(type, requiredIndicator)
+		        );
+		        return false;
+		    },
+		    generateMessage: function (indicatorType, required) {
+		        return 'Error: "' + indicatorType +
+		            '" indicator type requires "' + required +
+		            '" indicator loaded before. Please read docs: ' +
+		            'https://api.highcharts.com/highstock/plotOptions.' +
+		            indicatorType;
+		    }
+		};
+
+		return requiredIndicatorMixin;
+	}(Highcharts));
+	(function (H, requiredIndicatorMixin) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
+
 
 		var pick = H.pick,
-		    each = H.each,
 		    error = H.error,
 		    Series = H.Series,
 		    isArray = H.isArray,
 		    addEvent = H.addEvent,
-		    seriesType = H.seriesType;
+		    seriesType = H.seriesType,
+		    seriesTypes = H.seriesTypes,
+		    ohlcProto = H.seriesTypes.ohlc.prototype,
+		    generateMessage = requiredIndicatorMixin.generateMessage;
+
+		/**
+		 * The parameter allows setting line series type and use OHLC indicators. Data
+		 * in OHLC format is required.
+		 *
+		 * @sample {highstock} stock/indicators/use-ohlc-data
+		 *         Plot line on Y axis
+		 *
+		 * @type      {boolean}
+		 * @product   highstock
+		 * @apioption plotOptions.line.useOhlcData
+		 */
+
+		addEvent(H.Series, 'init', function (eventOptions) {
+		    var series = this,
+		        options = eventOptions.options,
+		        dataGrouping = options.dataGrouping;
+
+		    if (
+		        options.useOhlcData &&
+		        options.id !== 'highcharts-navigator-series'
+		        ) {
+
+		        if (dataGrouping && dataGrouping.enabled) {
+		            dataGrouping.approximation = 'ohlc';
+		        }
+
+		        H.extend(series, {
+		            pointValKey: ohlcProto.pointValKey,
+		            keys: ohlcProto.keys,
+		            pointArrayMap: ohlcProto.pointArrayMap,
+		            toYData: ohlcProto.toYData
+		        });
+		    }
+		});
 
 		/**
 		 * The SMA series type.
 		 *
-		 * @constructor seriesTypes.sma
-		 * @augments seriesTypes.line
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.sma
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('sma', 'line',
 		    /**
 		     * Simple moving average indicator (SMA). This series requires `linkedTo`
 		     * option to be set.
 		     *
-		     * @extends plotOptions.line
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/sma Simple moving average indicator
-		     * @since 6.0.0
-		     * @excluding
-		     *             allAreas,colorAxis,compare,compareBase,joinBy,keys,stacking,
-		     *             showInNavigator,navigatorOptions,pointInterval,
-		     *             pointIntervalUnit,pointPlacement,pointRange,pointStart,joinBy
+		     * @sample stock/indicators/sma
+		     *         Simple moving average indicator
+		     *
+		     * @extends      plotOptions.line
+		     * @since        6.0.0
+		     * @excluding    allAreas, colorAxis, compare, compareBase, joinBy, keys,
+		     *               navigatorOptions, pointInterval, pointIntervalUnit,
+		     *               pointPlacement, pointRange, pointStart, showInNavigator,
+		     *               stacking, useOhlcData
+		     * @product      highstock
 		     * @optionparent plotOptions.sma
 		     */
 		    {
@@ -56,18 +153,12 @@
 		         * set, it will be based on a technical indicator type and default
 		         * params.
 		         *
-		         * @type {String}
-		         * @since 6.0.0
-		         * @product highstock
+		         * @type {string}
 		         */
 		        name: undefined,
 		        tooltip: {
 		            /**
 		             * Number of decimals in indicator series.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            valueDecimals: 4
 		        },
@@ -75,34 +166,31 @@
 		         * The main series ID that indicator will be based on. Required for this
 		         * indicator.
 		         *
-		         * @type {String}
-		         * @since 6.0.0
-		         * @product highstock
+		         * @type {string}
 		         */
 		        linkedTo: undefined,
+		        /**
+		         * Paramters used in calculation of regression series' points.
+		         */
 		        params: {
 		            /**
 		             * The point index which indicator calculations will base. For
 		             * example using OHLC data, index=2 means the indicator will be
 		             * calculated using Low values.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            index: 0,
 		            /**
 		             * The base period for indicator calculations. This is the number of
 		             * data points which are taken into account for the indicator
 		             * calculations.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            period: 14
 		        }
-		    }, /** @lends Highcharts.Series.prototype */ {
+		    },
+		    /**
+		     * @lends Highcharts.Series.prototype
+		     */
+		    {
 		        bindTo: {
 		            series: true,
 		            eventName: 'updatedData'
@@ -111,8 +199,35 @@
 		        nameComponents: ['period'],
 		        nameSuffixes: [], // e.g. Zig Zag uses extra '%'' in the legend name
 		        calculateOn: 'init',
+		        // Defines on which other indicators is this indicator based on.
+		        requiredIndicators: [],
+		        requireIndicators: function () {
+		            var obj = {
+		                allLoaded: true
+		            };
+
+		            // Check whether all required indicators are loaded, else return
+		            // the object with missing indicator's name.
+		            this.requiredIndicators.forEach(function (indicator) {
+		                if (seriesTypes[indicator]) {
+		                    seriesTypes[indicator].prototype.requireIndicators();
+		                } else {
+		                    obj.allLoaded = false;
+		                    obj.needed = indicator;
+		                }
+		            });
+		            return obj;
+		        },
 		        init: function (chart, options) {
-		            var indicator = this;
+		            var indicator = this,
+		                requiredIndicators = indicator.requireIndicators();
+
+		            // Check whether all required indicators are loaded.
+		            if (!requiredIndicators.allLoaded) {
+		                return error(
+		                    generateMessage(indicator.type, requiredIndicators.needed)
+		                );
+		            }
 
 		            Series.prototype.init.call(
 		                indicator,
@@ -142,6 +257,7 @@
 		                if (
 		                    oldDataLength &&
 		                    oldDataLength === processedData.xData.length &&
+		                    !indicator.cropped && // #8968
 		                    !indicator.hasGroupedData &&
 		                    indicator.visible &&
 		                    indicator.points
@@ -168,7 +284,9 @@
 		                return error(
 		                    'Series ' +
 		                    indicator.options.linkedTo +
-		                    ' not found! Check `linkedTo`.'
+		                    ' not found! Check `linkedTo`.',
+		                    false,
+		                    chart
 		                );
 		            }
 
@@ -203,8 +321,7 @@
 
 		            if (!name) {
 
-		                each(
-		                    this.nameComponents,
+		                (this.nameComponents || []).forEach(
 		                    function (component, index) {
 		                        params.push(
 		                            this.options.params[component] +
@@ -268,38 +385,26 @@
 		            };
 		        },
 		        destroy: function () {
-		            each(this.dataEventsToUnbind, function (unbinder) {
+		            this.dataEventsToUnbind.forEach(function (unbinder) {
 		                unbinder();
 		            });
 		            Series.prototype.destroy.call(this);
 		        }
-		    });
+		    }
+		);
 
 		/**
-		 * A `SMA` series. If the [type](#series.sma.type) option is not
-		 * specified, it is inherited from [chart.type](#chart.type).
+		 * A `SMA` series. If the [type](#series.sma.type) option is not specified, it
+		 * is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.sma
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.sma
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL, useOhlcData
 		 * @apioption series.sma
 		 */
 
-
-		/**
-		 * An array of data points for the series. For the `SMA` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.line.data
-		 * @product highstock
-		 * @apioption series.sma.data
-		 */
-
-	}(Highcharts));
+	}(Highcharts, requiredIndicatorMixin));
 	return (function () {
 
 

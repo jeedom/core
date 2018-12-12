@@ -1,8 +1,9 @@
 /*
- Highcharts JS v6.1.2 (2018-08-31)
+ Highcharts JS v7.0.0 (2018-12-11)
 
- (c) 2009-2017 Torstein Honsi
+ (c) 2009-2018 Torstein Honsi
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a(Highcharts)})(function(a){});
+(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){});
+//# sourceMappingURL=overlapping-datalabels.js.map

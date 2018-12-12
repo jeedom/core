@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Paweł Dalek
+ * (c) 2010-2018 Paweł Dalek
  *
  * License: www.highcharts.com/license
  */
@@ -16,17 +16,21 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Paweł Dalek
+		/* *
 		 *
-		 * Volume By Price (VBP) indicator for Highstock
+		 *  (c) 2010-2018 Paweł Dalek
 		 *
-		 * License: www.highcharts.com/license
-		 */
+		 *  Volume By Price (VBP) indicator for Highstock
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
+
 
 		// Utils
 		function arrayExtremesOHLC(data) {
@@ -54,7 +58,6 @@
 		}
 
 		var abs = Math.abs,
-		    each = H.each,
 		    noop = H.noop,
 		    addEvent = H.addEvent,
 		    correctFloat = H.correctFloat,
@@ -64,8 +67,11 @@
 		/**
 		 * The Volume By Price (VBP) series type.
 		 *
-		 * @constructor seriesTypes.vbp
-		 * @augments seriesTypes.vbp
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.vbp
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('vbp', 'sma',
 		    /**
@@ -73,112 +79,74 @@
 		     *
 		     * This series requires `linkedTo` option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/volume-by-price
-		     *                     Volume By Price indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/volume-by-price
+		     *         Volume By Price indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.vbp
 		     */
 		    {
 		        /**
-		         * @excluding index,period
+		         * @excluding index, period
 		         */
 		        params: {
 		            /**
 		             * The number of price zones.
-		             *
-		             * @type {Number}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            ranges: 12,
 		            /**
 		             * The id of volume series which is mandatory. For example using
 		             * OHLC data, volumeSeriesID='volume' means the indicator will be
 		             * calculated using OHLC and volume values.
-		             *
-		             * @type {String}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            volumeSeriesID: 'volume'
 		        },
 		        /**
 		         * The styles for lines which determine price zones.
-		         *
-		         * @type {Object}
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        zoneLines: {
 		            /**
 		             * Enable/disable zone lines.
-		             *
-		             * @type {Boolean}
-		             * @since 6.0.0
-		             * @default true
-		             * @product highstock
 		             */
 		            enabled: true,
 		            styles: {
 		                /**
 		                 * Color of zone lines.
 		                 *
-		                 * @type {Color}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type {Highcharts.ColorString}
 		                 */
 		                color: '#0A9AC9',
 		                /**
 		                 * The dash style of zone lines.
-		                 *
-		                 * @type {String}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                dashStyle: 'LongDash',
 		                /**
 		                 * Pixel width of zone lines.
-		                 *
-		                 * @type {Number}
-		                 * @since 6.0.0
-		                 * @product highstock
 		                 */
 		                lineWidth: 1
 		            }
 		        },
 		        /**
 		         * The styles for bars when volume is divided into positive/negative.
-		         *
-		         * @type {Object}
-		         * @since 6.0.0
-		         * @product highstock
 		         */
 		        volumeDivision: {
 		            /**
 		             * Option to control if volume is divided.
-		             *
-		             * @type {Boolean}
-		             * @since 6.0.0
-		             * @product highstock
 		             */
 		            enabled: true,
 		            styles: {
 		                /**
 		                 * Color of positive volume bars.
 		                 *
-		                 * @type {Color}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type {Highcharts.ColorString}
 		                 */
 		                positiveColor: 'rgba(144, 237, 125, 0.8)',
 		                /**
 		                 * Color of negative volume bars.
 		                 *
-		                 * @type {Color}
-		                 * @since 6.0.0
-		                 * @product highstock
+		                 * @type {Highcharts.ColorString}
 		                 */
 		                negativeColor: 'rgba(244, 91, 91, 0.8)'
 		            }
@@ -202,7 +170,11 @@
 		                fontSize: '7px'
 		            }
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameBase: 'Volume by Price',
 		        bindTo: {
 		            series: false,
@@ -401,7 +373,7 @@
 		                    barHeight = abs(barHeightP);
 		                }
 
-		                each(indicatorPoints, function (point, index) {
+		                indicatorPoints.forEach(function (point, index) {
 		                    barX = point.barX = point.plotX = 0;
 		                    barY = point.plotY = (
 		                        yAxis.toPixels(priceZones[index].start) -
@@ -443,7 +415,7 @@
 		            var indicator = this,
 		                xValues = series.processedXData,
 		                yValues = series.processedYData,
-		                chart = series.chart,
+		                chart = indicator.chart,
 		                ranges = params.ranges,
 		                VBP = [],
 		                xData = [],
@@ -453,11 +425,12 @@
 		                priceZones;
 
 		            // Checks if base series exists
-		            if (!chart) {
+		            if (!series.chart) {
 		                return H.error(
 		                    'Base series not found! In case it has been removed, add ' +
 		                    'a new one.',
-		                    true
+		                    true,
+		                    chart
 		                );
 		            }
 
@@ -467,7 +440,8 @@
 		                    'Series ' +
 		                    params.volumeSeriesID +
 		                    ' not found! Check `volumeSeriesID`.',
-		                    true
+		                    true,
+		                    chart
 		                );
 		            }
 
@@ -479,7 +453,8 @@
 		                    'Type of ' +
 		                    series.name +
 		                    ' series is different than line, OHLC or candlestick.',
-		                    true
+		                    true,
+		                    chart
 		                );
 		            }
 
@@ -493,7 +468,7 @@
 		                volumeSeries
 		            );
 
-		            each(priceZones, function (zone, index) {
+		            priceZones.forEach(function (zone, index) {
 		                VBP.push([zone.x, zone.end]);
 		                xData.push(VBP[index][0]);
 		                yData.push(VBP[index][1]);
@@ -606,7 +581,7 @@
 
 		            indicator.volumeDataArray = [];
 
-		            each(priceZones, function (zone) {
+		            priceZones.forEach(function (zone) {
 		                zone.wholeVolumeData = 0;
 		                zone.positiveVolumeData = 0;
 		                zone.negativeVolumeData = 0;
@@ -660,7 +635,7 @@
 		                verticalOffset = chart.plotTop,
 		                verticalLinePos;
 
-		            each(zonesValues, function (value) {
+		            zonesValues.forEach(function (value) {
 		                verticalLinePos = yAxis.toPixels(value) - verticalOffset;
 		                zoneLinesPath = zoneLinesPath.concat(chart.renderer.crispLine([
 		                    'M',
@@ -688,7 +663,11 @@
 		                    .add(indicator.group);
 		            }
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Point#
+		     */
+		    {
 		        // Required for destroying negative part of volume
 		        destroy: function () {
 		            if (this.negativeGraphic) {
@@ -696,24 +675,18 @@
 		            }
 		            return H.Point.prototype.destroy.apply(this, arguments);
 		        }
-		    });
+		    }
+		);
 
 		/**
 		 * A `Volume By Price (VBP)` series. If the [type](#series.vbp.type) option is
 		 * not specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.vbp
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.vbp
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.vbp
-		 */
-
-		/**
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.vbp.data
 		 */
 
 	}(Highcharts));

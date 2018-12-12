@@ -1,11 +1,12 @@
 /*
-  Highcharts JS v6.1.2 (2018-08-31)
+  Highcharts JS v7.0.0 (2018-12-11)
 
  Indicator series type for Highstock
 
- (c) 2010-2017 Sebastian Bochan
+ (c) 2010-2018 Sebastian Bochan
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a(Highcharts)})(function(a){(function(a){function r(b,a,c,f,k,h,e,l){b=0>e?c[f-1]:c[f-1][e];return[a[f-1],void 0===h?l:b*k+h*(1-k)]}var t=a.isArray;a=a.seriesType;a("ema","sma",{params:{index:0,period:14}},{getValues:function(b,a){var c=a.period,f=b.xData,k=(b=b.yData)?b.length:0,h=2/(c+1),e=0,l=0,n=[],p=[],q=[],g=-1,m=[],d;if(f.length<c)return!1;for(t(b[0])&&
-(g=a.index?a.index:0);e<c;)m.push([f[e],0>g?b[e]:b[e][g]]),l+=0>g?b[e]:b[e][g],e++;a=l/c;for(c=e;c<k;c++)d=r(m,f,b,c,h,d,g,a),n.push(d),p.push(d[0]),q.push(d[1]),d=d[1],m.push([f[c],0>g?b[c]:b[c][g]]);d=r(m,f,b,c,h,d,g);n.push(d);p.push(d[0]);q.push(d[1]);return{values:n,xData:p,yData:q}}})})(a)});
+(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){(function(a){var n=a.isArray,p=a.seriesType,q=a.correctFloat;p("ema","sma",{params:{index:3,period:9}},{accumulatePeriodPoints:function(e,c,b){for(var a=0,d=0,f;d<e;)f=0>c?b[d]:b[d][c],a+=f,d++;return a},calculateEma:function(e,c,b,a,d,f,h){e=e[b-1];c=0>f?c[b-1]:c[b-1][f];a=void 0===d?h:q(c*a+d*
+(1-a));return[e,a]},getValues:function(a,c){var b=c.period,e=a.xData,d=(a=a.yData)?a.length:0,f=2/(b+1),h=[],l=[],m=[],k=-1,g;if(d<b)return!1;n(a[0])&&(k=c.index?c.index:0);for(c=this.accumulatePeriodPoints(b,k,a)/b;b<d+1;b++)g=this.calculateEma(e,a,b,f,g,k,c),h.push(g),l.push(g[0]),m.push(g[1]),g=g[1];return{values:h,xData:l,yData:m}}})})(a)});
+//# sourceMappingURL=ema.js.map

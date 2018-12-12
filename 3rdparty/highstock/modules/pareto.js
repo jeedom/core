@@ -1,12 +1,14 @@
 /*
-  Highcharts JS v6.1.2 (2018-08-31)
+  Highcharts JS v7.0.0 (2018-12-11)
 
  Pareto series type for Highcharts
 
- (c) 2010-2017 Sebastian Bochan
+ (c) 2010-2018 Sebastian Bochan
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?module.exports=c:"function"===typeof define&&define.amd?define(function(){return c}):c(Highcharts)})(function(c){var m=function(b){var c=b.each,e=b.Series,f=b.addEvent;return{init:function(){e.prototype.init.apply(this,arguments);this.initialised=!1;this.baseSeries=null;this.eventRemovers=[];this.addEvents()},setDerivedData:b.noop,setBaseSeries:function(){var a=this.chart,d=this.options.baseSeries;this.baseSeries=d&&(a.series[d]||a.get(d))||null},
-addEvents:function(){var a=this,d;d=f(this.chart,"afterLinkSeries",function(){a.setBaseSeries();a.baseSeries&&!a.initialised&&(a.setDerivedData(),a.addBaseSeriesEvents(),a.initialised=!0)});this.eventRemovers.push(d)},addBaseSeriesEvents:function(){var a=this,d,b;d=f(a.baseSeries,"updatedData",function(){a.setDerivedData()});b=f(a.baseSeries,"destroy",function(){a.baseSeries=null;a.initialised=!1});a.eventRemovers.push(d,b)},destroy:function(){c(this.eventRemovers,function(a){a()});e.prototype.destroy.apply(this,
-arguments)}}}(c);(function(b,c){var e=b.each,f=b.correctFloat,a=b.seriesType;b=b.merge;a("pareto","line",{zIndex:3},b(c,{setDerivedData:function(){if(1<this.baseSeries.yData.length){var a=this.baseSeries.xData,b=this.baseSeries.yData,c=this.sumPointsPercents(b,a,null,!0);this.setData(this.sumPointsPercents(b,a,c,!1),!1)}},sumPointsPercents:function(a,b,c,h){var d=0,k=0,l=[],g;e(a,function(a,e){null!==a&&(h?d+=a:(g=a/c*100,l.push([b[e],f(k+g)]),k+=g))});return h?d:l}}))})(c,m)});
+(function(b){"object"===typeof module&&module.exports?module.exports=b:"function"===typeof define&&define.amd?define(function(){return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){var e=function(f){var b=f.Series,d=f.addEvent;return{init:function(){b.prototype.init.apply(this,arguments);this.initialised=!1;this.baseSeries=null;this.eventRemovers=[];this.addEvents()},setDerivedData:f.noop,setBaseSeries:function(){var a=this.chart,c=this.options.baseSeries;this.baseSeries=
+c&&(a.series[c]||a.get(c))||null},addEvents:function(){var a=this,c;c=d(this.chart,"afterLinkSeries",function(){a.setBaseSeries();a.baseSeries&&!a.initialised&&(a.setDerivedData(),a.addBaseSeriesEvents(),a.initialised=!0)});this.eventRemovers.push(c)},addBaseSeriesEvents:function(){var a=this,c,b;c=d(a.baseSeries,"updatedData",function(){a.setDerivedData()});b=d(a.baseSeries,"destroy",function(){a.baseSeries=null;a.initialised=!1});a.eventRemovers.push(c,b)},destroy:function(){this.eventRemovers.forEach(function(a){a()});
+b.prototype.destroy.apply(this,arguments)}}}(b);(function(b,e){var d=b.correctFloat,a=b.seriesType;b=b.merge;a("pareto","line",{zIndex:3},b(e,{setDerivedData:function(){if(1<this.baseSeries.yData.length){var a=this.baseSeries.xData,b=this.baseSeries.yData,d=this.sumPointsPercents(b,a,null,!0);this.setData(this.sumPointsPercents(b,a,d,!1),!1)}},sumPointsPercents:function(a,b,f,e){var c=0,h=0,k=[],g;a.forEach(function(a,l){null!==a&&(e?c+=a:(g=a/f*100,k.push([b[l],d(h+g)]),h+=g))});return e?c:k}}))})(b,
+e)});
+//# sourceMappingURL=pareto.js.map

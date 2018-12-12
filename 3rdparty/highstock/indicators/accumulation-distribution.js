@@ -1,11 +1,12 @@
 /*
-  Highcharts JS v6.1.2 (2018-08-31)
+  Highcharts JS v7.0.0 (2018-12-11)
 
  Indicator series type for Highstock
 
- (c) 2010-2017 Sebastian Bochan
+ (c) 2010-2018 Sebastian Bochan
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?module.exports=c:"function"===typeof define&&define.amd?define(function(){return c}):c(Highcharts)})(function(c){(function(c){var l=c.seriesType;l("ad","sma",{params:{volumeSeriesID:"volume"}},{nameComponents:!1,nameBase:"Accumulation/Distribution",getValues:function(e,f){var g=f.period,n=e.xData,d=e.yData,b=f.volumeSeriesID,a=e.chart.get(b);e=a&&a.yData;f=d?d.length:0;var h=[],p=[],q=[];if(n.length<=g&&f&&4!==d[0].length)return!1;if(!a)return c.error("Series "+
-b+" not found! Check `volumeSeriesID`.",!0);for(b=g;b<f;b++){var g=h.length,a=d[b][1],k=d[b][2],m=d[b][3],l=e[b],a=[n[b],m===a&&m===k||a===k?0:(2*m-k-a)/(a-k)*l];0<g&&(a[1]+=h[g-1][1],a[1]=a[1]);h.push(a);p.push(a[0]);q.push(a[1])}return{values:h,xData:p,yData:q}}})})(c)});
+(function(b){"object"===typeof module&&module.exports?module.exports=b:"function"===typeof define&&define.amd?define(function(){return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){(function(b){var k=b.seriesType;k("ad","sma",{params:{volumeSeriesID:"volume"}},{nameComponents:!1,nameBase:"Accumulation/Distribution",getValues:function(e,g){var c=g.period,m=e.xData,f=e.yData,a=g.volumeSeriesID,d=e.chart.get(a);g=d&&d.yData;var n=f?f.length:0,h=[],p=[],q=[];if(m.length<=c&&n&&
+4!==f[0].length)return!1;if(!d)return b.error("Series "+a+" not found! Check `volumeSeriesID`.",!0,e.chart);for(;c<n;c++){e=h.length;var a=f[c][1],d=f[c][2],l=f[c][3],k=g[c],a=[m[c],l===a&&l===d||a===d?0:(2*l-d-a)/(a-d)*k];0<e&&(a[1]+=h[e-1][1],a[1]=a[1]);h.push(a);p.push(a[0]);q.push(a[1])}return{values:h,xData:p,yData:q}}})})(b)});
+//# sourceMappingURL=accumulation-distribution.js.map

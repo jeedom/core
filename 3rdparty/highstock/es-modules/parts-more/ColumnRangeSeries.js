@@ -1,13 +1,15 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
+
 var defaultPlotOptions = H.defaultPlotOptions,
-    each = H.each,
     merge = H.merge,
     noop = H.noop,
     pick = H.pick,
@@ -15,17 +17,18 @@ var defaultPlotOptions = H.defaultPlotOptions,
     seriesTypes = H.seriesTypes;
 
 var colProto = seriesTypes.column.prototype;
+
 /**
  * The column range is a cartesian series type with higher and lower
  * Y values along an X axis. Requires `highcharts-more.js`. To display
  * horizontal bars, set [chart.inverted](#chart.inverted) to `true`.
  *
- * @type         {Object}
+ * @sample {highcharts|highstock} highcharts/demo/columnrange/
+ *         Inverted column range
+ *
  * @extends      plotOptions.column
- * @excluding    negativeColor,stacking,softThreshold,threshold
- * @sample       {highcharts|highstock} highcharts/demo/columnrange/
- *               Inverted column range
  * @since        2.3.0
+ * @excluding    negativeColor, stacking, softThreshold, threshold
  * @product      highcharts highstock
  * @optionparent plotOptions.columnrange
  */
@@ -37,10 +40,9 @@ var columnRangeOptions = {
      * `yLow` and `yHigh` options to allow the higher and lower data label
      * sets individually.
      *
-     * @type      {Object}
      * @extends   plotOptions.arearange.dataLabels
-     * @excluding x,y
      * @since     2.3.0
+     * @excluding x, y
      * @product   highcharts highstock
      * @apioption plotOptions.columnrange.dataLabels
      */
@@ -59,6 +61,12 @@ var columnRangeOptions = {
 };
 /**
  * The ColumnRangeSeries class
+ *
+ * @private
+ * @class
+ * @name Highcharts.seriesTypes.columnrange
+ *
+ * @augments Highcharts.Series
  */
 seriesType('columnrange', 'arearange', merge(
     defaultPlotOptions.column,
@@ -66,9 +74,8 @@ seriesType('columnrange', 'arearange', merge(
     columnRangeOptions
 
 ), {
-    /**
-     * Translate data points from raw values x and y to plotX and plotY
-     */
+
+    // Translate data points from raw values x and y to plotX and plotY
     translate: function () {
         var series = this,
             yAxis = series.yAxis,
@@ -92,7 +99,7 @@ seriesType('columnrange', 'arearange', merge(
         colProto.translate.apply(series);
 
         // Set plotLow and plotHigh
-        each(series.points, function (point) {
+        series.points.forEach(function (point) {
             var shapeArgs = point.shapeArgs,
                 minPointLength = series.options.minPointLength,
                 heightDifference,
@@ -156,13 +163,23 @@ seriesType('columnrange', 'arearange', merge(
     trackerGroups: ['group', 'dataLabelsGroup'],
     drawGraph: noop,
     getSymbol: noop,
-    crispCol: colProto.crispCol,
-    drawPoints: colProto.drawPoints,
-    drawTracker: colProto.drawTracker,
-    getColumnMetrics: colProto.getColumnMetrics,
-    pointAttribs: colProto.pointAttribs,
 
     // Overrides from modules that may be loaded after this module
+    crispCol: function () {
+        return colProto.crispCol.apply(this, arguments);
+    },
+    drawPoints: function () {
+        return colProto.drawPoints.apply(this, arguments);
+    },
+    drawTracker: function () {
+        return colProto.drawTracker.apply(this, arguments);
+    },
+    getColumnMetrics: function () {
+        return colProto.getColumnMetrics.apply(this, arguments);
+    },
+    pointAttribs: function () {
+        return colProto.pointAttribs.apply(this, arguments);
+    },
     animate: function () {
         return colProto.animate.apply(this, arguments);
     },
@@ -185,9 +202,8 @@ seriesType('columnrange', 'arearange', merge(
  * option is not specified, it is inherited from
  * [chart.type](#chart.type).
  *
- * @type      {Object}
  * @extends   series,plotOptions.columnrange
- * @excluding dataParser,dataURL,stack,stacking
+ * @excluding dataParser, dataURL, stack, stacking
  * @product   highcharts highstock
  * @apioption series.columnrange
  */
@@ -212,8 +228,8 @@ seriesType('columnrange', 'arearange', merge(
  *     ]
  *  ```
  *
- * 2.  An array of objects with named values. The objects are point
- * configuration objects as seen below. If the total number of data
+ * 2.  An array of objects with named values. The following snippet shows only a
+ * few settings, see the complete options set below. If the total number of data
  * points exceeds the series' [turboThreshold](
  * #series.columnrange.turboThreshold), this option is not available.
  *
@@ -233,31 +249,32 @@ seriesType('columnrange', 'arearange', merge(
  *     }]
  *  ```
  *
- * @type      {Array<Object|Array>}
+ * @sample {highcharts} highcharts/chart/reflow-true/
+ *         Numerical values
+ * @sample {highcharts} highcharts/series/data-array-of-arrays/
+ *         Arrays of numeric x and y
+ * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+ *         Arrays of datetime x and y
+ * @sample {highcharts} highcharts/series/data-array-of-name-value/
+ *         Arrays of point.name and y
+ * @sample {highcharts} highcharts/series/data-array-of-objects/
+ *         Config objects
+ *
+ * @type      {Array<Array<number>|*>}
  * @extends   series.arearange.data
  * @excluding marker
- * @sample    {highcharts} highcharts/chart/reflow-true/
- *            Numerical values
- * @sample    {highcharts} highcharts/series/data-array-of-arrays/
- *            Arrays of numeric x and y
- * @sample    {highcharts} highcharts/series/data-array-of-arrays-datetime/
- *            Arrays of datetime x and y
- * @sample    {highcharts} highcharts/series/data-array-of-name-value/
- *            Arrays of point.name and y
- * @sample    {highcharts} highcharts/series/data-array-of-objects/
- *            Config objects
  * @product   highcharts highstock
  * @apioption series.columnrange.data
  */
 
 /**
- * @excluding halo,lineWidth,lineWidthPlus,marker
+ * @excluding halo, lineWidth, lineWidthPlus, marker
  * @product   highcharts highstock
  * @apioption series.columnrange.states.hover
  */
 
 /**
- * @excluding halo,lineWidth,lineWidthPlus,marker
+ * @excluding halo, lineWidth, lineWidthPlus, marker
  * @product   highcharts highstock
  * @apioption series.columnrange.states.select
  */

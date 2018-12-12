@@ -1,4 +1,4 @@
-/**
+/* *
  * License: www.highcharts.com/license
  * Author: Torstein Honsi, Christer Vasseng
  *
@@ -8,7 +8,9 @@
  * It is recommended to include this module in conditional comments targeting
  * IE9 and IE10.
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Color.js';
@@ -21,7 +23,6 @@ var win = H.win,
     Color = H.Color,
     Series = H.Series,
     seriesTypes = H.seriesTypes,
-    each = H.each,
     extend = H.extend,
     addEvent = H.addEvent,
     fireEvent = H.fireEvent,
@@ -32,14 +33,24 @@ var win = H.win,
     CHUNK_SIZE = 50000,
     destroyLoadingDiv;
 
+/**
+ * Initialize the canvas boost.
+ *
+ * @function Highcharts.initCanvasBoost
+ */
 H.initCanvasBoost = function () {
     if (H.seriesTypes.heatmap) {
         H.wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function () {
-            var ctx = this.getContext();
+            var chart = this.chart,
+                ctx = this.getContext(),
+                inverted = this.chart.inverted,
+                xAxis = this.xAxis,
+                yAxis = this.yAxis;
+
             if (ctx) {
 
                 // draw the columns
-                each(this.points, function (point) {
+                this.points.forEach(function (point) {
                     var plotY = point.plotY,
                         shapeArgs,
                         pointAttr;
@@ -51,17 +62,29 @@ H.initCanvasBoost = function () {
                     ) {
                         shapeArgs = point.shapeArgs;
 
-                        
-                        pointAttr = point.series.pointAttribs(point);
-                        
+                        if (!chart.styledMode) {
+                            pointAttr = point.series.pointAttribs(point);
+                        } else {
+                            pointAttr = point.series.colorAttribs(point);
+                        }
 
                         ctx.fillStyle = pointAttr.fill;
-                        ctx.fillRect(
-                            shapeArgs.x,
-                            shapeArgs.y,
-                            shapeArgs.width,
-                            shapeArgs.height
-                        );
+
+                        if (inverted) {
+                            ctx.fillRect(
+                                yAxis.len - shapeArgs.y + xAxis.left,
+                                xAxis.len - shapeArgs.x + yAxis.top,
+                                -shapeArgs.height,
+                                -shapeArgs.width
+                            );
+                        } else {
+                            ctx.fillRect(
+                                shapeArgs.x + xAxis.left,
+                                shapeArgs.y + yAxis.top,
+                                shapeArgs.width,
+                                shapeArgs.height
+                            );
+                        }
                     }
                 });
 
@@ -86,6 +109,9 @@ H.initCanvasBoost = function () {
         /**
          * Create a hidden canvas to draw the graph on. The contents is later
          * copied over to an SVG image element.
+         *
+         * @private
+         * @function Highcharts.Series#getContext
          */
         getContext: function () {
             var chart = this.chart,
@@ -121,7 +147,7 @@ H.initCanvasBoost = function () {
                 target.ctx = ctx = target.canvas.getContext('2d');
 
                 if (chart.inverted) {
-                    each(['moveTo', 'lineTo', 'rect', 'arc'], function (fn) {
+                    ['moveTo', 'lineTo', 'rect', 'arc'].forEach(function (fn) {
                         wrap(ctx, fn, swapXY);
                     });
                 }
@@ -177,6 +203,9 @@ H.initCanvasBoost = function () {
 
         /**
          * Draw the canvas image inside an SVG image
+         *
+         * @private
+         * @function Highcharts.Series#canvasToSVG
          */
         canvasToSVG: function () {
             if (!this.chart.isChartSeriesBoosting()) {

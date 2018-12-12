@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Kacper Madej
+ * (c) 2010-2018 Kacper Madej
  *
  * License: www.highcharts.com/license
  */
@@ -16,15 +16,18 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Kacper Madej
+		/* *
 		 *
-		 * License: www.highcharts.com/license
-		 */
+		 *  (c) 2010-2018 Kacper Madej
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
 
 
 		var seriesType = H.seriesType,
@@ -32,13 +35,12 @@
 
 		// Utils:
 		function populateAverage(xVal, yVal, i, period, index) {
-		    /**
-		     * Calculated as:
-		     * (Closing Price [today] - Closing Price [n days ago]) /
-		     * Closing Price [n days ago] * 100
-		     *
-		     * Return y as null when avoiding division by zero
-		     */
+		    /* Calculated as:
+
+		       (Closing Price [today] - Closing Price [n days ago]) /
+		        Closing Price [n days ago] * 100
+
+		       Return y as null when avoiding division by zero */
 		    var nDaysAgoY,
 		        rocY;
 
@@ -62,8 +64,11 @@
 		/**
 		 * The ROC series type.
 		 *
-		 * @constructor seriesTypes.roc
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.roc
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('roc', 'sma',
 		    /**
@@ -78,11 +83,12 @@
 		     *
 		     * This series requires `linkedTo` option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/roc
-		     *                     Rate of change indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/roc
+		     *         Rate of change indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.roc
 		     */
 		    {
@@ -90,7 +96,11 @@
 		            index: 3,
 		            period: 9
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameBase: 'Rate of Change',
 		        getValues: function (series, params) {
 		            var period = params.period,
@@ -130,7 +140,8 @@
 		                yData: yData
 		            };
 		        }
-		    });
+		    }
+		);
 
 		/**
 		 * A `ROC` series. If the [type](#series.wma.type) option is not
@@ -147,18 +158,11 @@
 		 *
 		 * This series requires `linkedTo` option to be set.
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.roc
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.roc
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.roc
-		 */
-
-		/**
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.roc.data
 		 */
 
 	}(Highcharts));

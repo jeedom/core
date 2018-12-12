@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Kacper Madej
+ * (c) 2010-2018 Kacper Madej
  *
  * License: www.highcharts.com/license
  */
@@ -16,19 +16,21 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
-		 * (c) 2010-2017 Kacper Madej
+		/* *
 		 *
-		 * License: www.highcharts.com/license
-		 */
+		 *  (c) 2010-2018 Kacper Madej
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
 
 
 		var isArray = H.isArray,
-		    reduce = H.reduce,
 		    seriesType = H.seriesType;
 
 		// Utils:
@@ -46,7 +48,7 @@
 		    var denominator = (pLen + 1) / 2 * pLen;
 
 		    // reduce VS loop => reduce
-		    return reduce(array, function (prev, cur, i) {
+		    return array.reduce(function (prev, cur, i) {
 		        return [null, prev[1] + cur[1] * (i + 1)];
 		    })[1] / denominator;
 		}
@@ -64,19 +66,23 @@
 		/**
 		 * The SMA series type.
 		 *
-		 * @constructor seriesTypes.wma
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.wma
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('wma', 'sma',
 		    /**
 		     * Weighted moving average indicator (WMA). This series requires `linkedTo`
 		     * option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/wma
-		     *                     Weighted moving average indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/wma
+		     *         Weighted moving average indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.wma
 		     */
 		    {
@@ -84,7 +90,11 @@
 		            index: 3,
 		            period: 9
 		        }
-		    }, /** @lends Highcharts.Series.prototype */ {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        getValues: function (series, params) {
 		            var period = params.period,
 		                xVal = series.xData,
@@ -138,24 +148,18 @@
 		                yData: yData
 		            };
 		        }
-		    });
+		    }
+		);
 
 		/**
-		 * A `WMA` series. If the [type](#series.wma.type) option is not
-		 * specified, it is inherited from [chart.type](#chart.type).
+		 * A `WMA` series. If the [type](#series.wma.type) option is not specified, it
+		 * is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.wma
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.wma
+		 * @since     6.0.0
+		 * @product   highstock
+		 * @excluding dataParser, dataURL
 		 * @apioption series.wma
-		 */
-
-		/**
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.wma.data
 		 */
 
 	}(Highcharts));

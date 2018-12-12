@@ -1,19 +1,20 @@
 /**
- * (c) 2010-2017 Torstein Honsi
+ * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
  */
+
 'use strict';
+
 import H from '../parts/Globals.js';
 import '../parts/Utilities.js';
 import '../parts/Axis.js';
 import '../parts/Tick.js';
 import './Pane.js';
+
 var addEvent = H.addEvent,
     Axis = H.Axis,
-    each = H.each,
     extend = H.extend,
-    map = H.map,
     merge = H.merge,
     noop = H.noop,
     pick = H.pick,
@@ -31,10 +32,8 @@ var addEvent = H.addEvent,
 if (!H.radialAxisExtended) {
     H.radialAxisExtended = true;
 
-    /**
-     * Augmented methods for the x axis in order to hide it completely, used for
-     * the X axis in gauges
-     */
+    // Augmented methods for the x axis in order to hide it completely, used for
+    // the X axis in gauges
     hiddenAxisMixin = {
         getOffset: noop,
         redraw: function () {
@@ -48,14 +47,10 @@ if (!H.radialAxisExtended) {
         setTitle: noop
     };
 
-    /**
-     * Augmented methods for the value axis
-     */
+    // Augmented methods for the value axis
     radialAxisMixin = {
 
-        /**
-         * The default options extend defaultYAxisOptions
-         */
+        // The default options extend defaultYAxisOptions
         defaultRadialGaugeOptions: {
             labels: {
                 align: 'center',
@@ -110,9 +105,7 @@ if (!H.radialAxisExtended) {
             }
         },
 
-        /**
-         * Merge and set options
-         */
+        // Merge and set options
         setOptions: function (userOptions) {
 
             var options = this.options = merge(
@@ -131,10 +124,8 @@ if (!H.radialAxisExtended) {
 
         },
 
-        /**
-         * Wrap the getOffset method to return zero offset for title or labels
-         * in a radial axis
-         */
+        // Wrap the getOffset method to return zero offset for title or labels
+        // in a radial axis
         getOffset: function () {
             // Call the Axis prototype method (the method we're in now is on the
             // instance)
@@ -146,10 +137,8 @@ if (!H.radialAxisExtended) {
         },
 
 
-        /**
-         * Get the path for the axis line. This method is also referenced in the
-         * getPlotLinePath method.
-         */
+        // Get the path for the axis line. This method is also referenced in the
+        // getPlotLinePath method.
         getLinePath: function (lineWidth, radius) {
             var center = this.center,
                 end,
@@ -190,7 +179,7 @@ if (!H.radialAxisExtended) {
             return path;
         },
 
-        /**
+        /* *
          * Override setAxisTranslation by setting the translation to the
          * difference in rotation. This allows the translate method to return
          * angle for any given value.
@@ -225,7 +214,7 @@ if (!H.radialAxisExtended) {
             }
         },
 
-        /**
+        /* *
          * In case of auto connect, add one closestPointRange to the max value
          * right before tickPositions are computed, so that ticks will extend
          * passed the real max.
@@ -251,7 +240,7 @@ if (!H.radialAxisExtended) {
             }
         },
 
-        /**
+        /* *
          * Override the setAxisSize method to use the arc's circumference as
          * length. This allows tickPixelInterval to apply to pixel lengths along
          * the perimeter
@@ -278,7 +267,7 @@ if (!H.radialAxisExtended) {
             }
         },
 
-        /**
+        /* *
          * Returns the x, y coordinate of a point given by a value and a pixel
          * distance from center
          */
@@ -294,7 +283,7 @@ if (!H.radialAxisExtended) {
             );
         },
 
-        /**
+        /* *
          * Translate from intermediate plotX (angle), plotY (axis.len - radius)
          * to final chart coordinates.
          */
@@ -312,7 +301,7 @@ if (!H.radialAxisExtended) {
 
         },
 
-        /**
+        /* *
          * Find the path for plot bands along the radial axis
          */
         getPlotBandPath: function (from, to, options) {
@@ -353,7 +342,7 @@ if (!H.radialAxisExtended) {
                 }
 
                 // Convert percentages to pixel values
-                radii = map(radii, function (radius) {
+                radii = radii.map(function (radius) {
                     if (percentRegex.test(radius)) {
                         radius = (pInt(radius, 10) * fullRadius) / 100;
                     }
@@ -391,7 +380,7 @@ if (!H.radialAxisExtended) {
             return ret;
         },
 
-        /**
+        /* *
          * Find the path for plot lines perpendicular to the radial axis.
          */
         getPlotLinePath: function (value, reverse) {
@@ -418,13 +407,14 @@ if (!H.radialAxisExtended) {
             // Concentric circles
             } else if (axis.options.gridLineInterpolation === 'circle') {
                 value = axis.translate(value);
-                if (value) { // a value of 0 is in the center
-                    ret = axis.getLinePath(0, value);
-                }
+
+                // a value of 0 is in the center, so it won't be visible,
+                // but draw it anyway for update and animation (#2366)
+                ret = axis.getLinePath(0, value);
             // Concentric polygons
             } else {
                 // Find the X axis in the same pane
-                each(chart.xAxis, function (a) {
+                chart.xAxis.forEach(function (a) {
                     if (a.pane === axis.pane) {
                         xAxis = a;
                     }
@@ -441,7 +431,7 @@ if (!H.radialAxisExtended) {
                     tickPositions = [].concat(tickPositions).reverse();
                 }
 
-                each(tickPositions, function (pos, i) {
+                tickPositions.forEach(function (pos, i) {
                     xy = xAxis.getPosition(pos, value);
                     ret.push(i ? 'L' : 'M', xy.x, xy.y);
                 });
@@ -450,7 +440,7 @@ if (!H.radialAxisExtended) {
             return ret;
         },
 
-        /**
+        /* *
          * Find the position for the axis title, by default inside the gauge
          */
         getTitlePosition: function () {
@@ -477,9 +467,7 @@ if (!H.radialAxisExtended) {
 
     };
 
-    /**
-     * Actions before axis init.
-     */
+    // Actions before axis init.
     addEvent(Axis, 'init', function (e) {
         var chart = this.chart,
             angular = chart.angular,
@@ -553,7 +541,7 @@ if (!H.radialAxisExtended) {
 
     });
 
-    /**
+    /* *
      * Wrap auto label align to avoid setting axis-wide rotation on radial axes
      * (#4920)
      * @param   {Function} proceed
@@ -565,18 +553,14 @@ if (!H.radialAxisExtended) {
         } // else return undefined
     });
 
-    /**
-     * Add special cases within the Tick class' methods for radial axes.
-     */
+    // Add special cases within the Tick class' methods for radial axes.
     addEvent(Tick, 'afterGetPosition', function (e) {
         if (this.axis.getPosition) {
             extend(e.pos, this.axis.getPosition(this.pos));
         }
     });
 
-    /**
-     * Find the center position of the label based on the distance option.
-     */
+    // Find the center position of the label based on the distance option.
     addEvent(Tick, 'afterGetLabelPosition', function (e) {
         var axis = this.axis,
             label = this.label,
@@ -642,9 +626,7 @@ if (!H.radialAxisExtended) {
         }
     });
 
-    /**
-     * Wrap the getMarkPath function to return the path of the radial marker
-     */
+    // Wrap the getMarkPath function to return the path of the radial marker
     wrap(tickProto, 'getMarkPath', function (
         proceed,
         x,

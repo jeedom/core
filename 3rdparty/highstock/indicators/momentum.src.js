@@ -1,9 +1,9 @@
 /**
- * @license  Highcharts JS v6.1.2 (2018-08-31)
+ * @license  Highcharts JS v7.0.0 (2018-12-11)
  *
  * Indicator series type for Highstock
  *
- * (c) 2010-2017 Sebastian Bochan
+ * (c) 2010-2018 Sebastian Bochan
  *
  * License: www.highcharts.com/license
  */
@@ -16,10 +16,17 @@
 			return factory;
 		});
 	} else {
-		factory(Highcharts);
+		factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
 	}
 }(function (Highcharts) {
 	(function (H) {
+		/* *
+		 *
+		 *  License: www.highcharts.com/license
+		 *
+		 * */
+
+
 
 		var isArray = H.isArray,
 		    seriesType = H.seriesType;
@@ -36,24 +43,33 @@
 		/**
 		 * The Momentum series type.
 		 *
-		 * @constructor seriesTypes.momentum
-		 * @augments seriesTypes.sma
+		 * @private
+		 * @class
+		 * @name Highcharts.seriesTypes.momentum
+		 *
+		 * @augments Highcharts.Series
 		 */
 		seriesType('momentum', 'sma',
 		    /**
 		     * Momentum. This series requires `linkedTo` option to be set.
 		     *
-		     * @extends plotOptions.sma
-		     * @product highstock
-		     * @sample {highstock} stock/indicators/momentum Momentum indicator
-		     * @since 6.0.0
+		     * @sample stock/indicators/momentum
+		     *         Momentum indicator
+		     *
+		     * @extends      plotOptions.sma
+		     * @since        6.0.0
+		     * @product      highstock
 		     * @optionparent plotOptions.momentum
 		     */
 		    {
 		        params: {
 		            period: 14
 		        }
-		    }, {
+		    },
+		    /**
+		     * @lends Highcharts.Series#
+		     */
+		    {
 		        nameBase: 'Momentum',
 		        getValues: function (series, params) {
 		            var period = params.period,
@@ -86,7 +102,7 @@
 		            ];
 
 
-		            // Calculate value one-by-one for each perdio in visible data
+		            // Calculate value one-by-one for each period in visible data
 		            for (i = (period + 1); i < yValLen; i++) {
 		                MMPoint = populateAverage(points, xVal, yVal, i, period, index);
 		                MM.push(MMPoint);
@@ -105,26 +121,18 @@
 		                yData: yData
 		            };
 		        }
-		    });
+		    }
+		);
 
 		/**
 		 * A `Momentum` series. If the [type](#series.momentum.type) option is not
 		 * specified, it is inherited from [chart.type](#chart.type).
 		 *
-		 * @type {Object}
-		 * @since 6.0.0
-		 * @extends series,plotOptions.momentum
-		 * @excluding data,dataParser,dataURL
-		 * @product highstock
+		 * @extends   series,plotOptions.momentum
+		 * @since     6.0.0
+		 * @excluding dataParser, dataURL
+		 * @product   highstock
 		 * @apioption series.momentum
-		 */
-
-		/**
-		 * @type {Array<Object|Array>}
-		 * @since 6.0.0
-		 * @extends series.sma.data
-		 * @product highstock
-		 * @apioption series.momentum.data
 		 */
 
 	}(Highcharts));
