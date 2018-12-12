@@ -4,6 +4,7 @@ nbproject/
 Thumbs.db
 .DS_Store
 /.buildpath
+ui
 
 test.php
 core/config/common.config.php
