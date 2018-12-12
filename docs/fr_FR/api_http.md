@@ -54,15 +54,15 @@ Voici l’URL =
 
 Le plus simple pour avoir cette URL est d’aller sur la page Outils →
 Résumé domotique, de chercher la commande puis d’ouvrir sa configuration
-avancée (l’icône "engrenage") et là vous allez voir une URL qui contient
+avancée (l’icône "engrenage") et là, vous allez voir une URL qui contient
 déjà tout ce qu’il faut en fonction du type et du sous-type de la
 commande.
 
 > **Note**
 >
 > Il est possible pour le champs \#ID\# de passer plusieurs commandes
-> d’un coup, pour cela il faut passer un tableau en json (ex
-> %5B12,58,23%5D, a noter que \[ et \] doivent être encodés d’où les %5B
+> d’un coup. Pour cela, il faut passer un tableau en json (ex
+> %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B
 > et %5D). Le retour de Jeedom sera un json
 
 > **Note**
