@@ -87,8 +87,7 @@ class cmd {
 			return;
 		}
 		$in = trim(implode(',', $_ids), ',');
-		if (!empty($in))
-		{
+		if (!empty($in)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM cmd
 			WHERE id IN (' . $in . ')';
@@ -1317,7 +1316,7 @@ class cmd {
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
 		}
-		listener::check($this->getId(), $value, $this->getCollectDate());
+		listener::check($this->getId(), $value, $this->getCollectDate(), $repeat);
 		if (!$repeat) {
 			jeeObject::checkSummaryUpdate($this->getId());
 		}

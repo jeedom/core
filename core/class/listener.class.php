@@ -121,10 +121,14 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function check($_event, $_value, $_datetime) {
+	public static function check($_event, $_value, $_datetime, $_repeat = false) {
 		$listeners = self::searchEvent($_event);
 		if (count($listeners) > 0) {
 			foreach ($listeners as $listener) {
+				if ($_repeat && $listener->getOption('repeat', true) == false) {
+					continue;
+				}
+				log::add('listener_debug', 'debug', 'Launch ' . $listener->getId());
 				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
 			}
 		}
@@ -217,7 +221,7 @@ class listener {
 	}
 
 	public function emptyEvent() {
-		$this->setEvent(array());
+		$this->event = array();
 	}
 
 	public function addEvent($_id, $_type = 'cmd') {
@@ -252,8 +256,8 @@ class listener {
 		return $this->function;
 	}
 
-	public function getOption() {
-		return json_decode($this->option, true);
+	public function getOption($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->option, $_key, $_default);
 	}
 
 	public function setId($id) {
@@ -276,8 +280,8 @@ class listener {
 		return $this;
 	}
 
-	public function setOption($option) {
-		$this->option = json_encode($option, JSON_UNESCAPED_UNICODE);
+	public function setOption($_key, $_value = '') {
+		$this->option = utils::setJsonAttr($this->option, $_key, $_value);
 		return $this;
 	}
 
