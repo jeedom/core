@@ -128,7 +128,6 @@ class listener {
 				if ($_repeat && $listener->getOption('repeat', true) == false) {
 					continue;
 				}
-				log::add('listener_debug', 'debug', 'Launch ' . $listener->getId());
 				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
 			}
 		}
