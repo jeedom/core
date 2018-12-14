@@ -1290,13 +1290,9 @@ class cmd {
 			$eqLogic->emptyCacheWidget();
 			$level = $this->checkAlertLevel($value);
 			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level));
-		} else {
-			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
-		}
-		if (!$repeat) {
 			$foundInfo = false;
 			$value_cmd = self::byValue($this->getId(), null, true);
-			if (is_array($value_cmd)) {
+			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
 						if (!$repeat) {
@@ -1314,6 +1310,8 @@ class cmd {
 			if ($foundInfo) {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
+		} else {
+			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
