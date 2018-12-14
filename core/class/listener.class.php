@@ -135,13 +135,10 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function check($_event, $_value, $_datetime, $_repeat = false) {
+	public static function check($_event, $_value, $_datetime) {
 		$listeners = self::searchEvent($_event);
 		if (count($listeners) > 0) {
 			foreach ($listeners as $listener) {
-				if ($_repeat && $listener->getOption('repeat', true) == false) {
-					continue;
-				}
 				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
 			}
 		}

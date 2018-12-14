@@ -42,7 +42,7 @@ if (config::byKey('maxExecTimeScript', 60) != '') {
 set_time_limit($timelimit);
 if (init('listener_id') == '') {
 	foreach (cmd::byValue(init('event_id'), 'info') as $cmd) {
-		$cmd->event($cmd->execute(), 2);
+		$cmd->event($cmd->execute(), null, 2);
 	}
 } else {
 	try {

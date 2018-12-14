@@ -1293,31 +1293,33 @@ class cmd {
 		} else {
 			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
-		$foundInfo = false;
-		$value_cmd = self::byValue($this->getId(), null, true);
-		if (is_array($value_cmd)) {
-			foreach ($value_cmd as $cmd) {
-				if ($cmd->getType() == 'action') {
-					if (!$repeat) {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
-					}
-				} else {
-					if ($_loop > 1) {
-						$cmd->event($cmd->execute(), null, $_loop);
+		if (!$repeat) {
+			$foundInfo = false;
+			$value_cmd = self::byValue($this->getId(), null, true);
+			if (is_array($value_cmd)) {
+				foreach ($value_cmd as $cmd) {
+					if ($cmd->getType() == 'action') {
+						if (!$repeat) {
+							$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+						}
 					} else {
-						$foundInfo = true;
+						if ($_loop > 1) {
+							$cmd->event($cmd->execute(), null, $_loop);
+						} else {
+							$foundInfo = true;
+						}
 					}
 				}
 			}
-		}
-		if ($foundInfo) {
-			listener::backgroundCalculDependencyCmd($this->getId());
+			if ($foundInfo) {
+				listener::backgroundCalculDependencyCmd($this->getId());
+			}
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
 		}
-		listener::check($this->getId(), $value, $this->getCollectDate(), $repeat);
 		if (!$repeat) {
+			listener::check($this->getId(), $value, $this->getCollectDate());
 			jeeObject::checkSummaryUpdate($this->getId());
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
