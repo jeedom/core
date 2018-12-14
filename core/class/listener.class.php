@@ -73,6 +73,20 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function searchClassFunctionOption($_class, $_function, $_option = '') {
+		$value = array(
+			'class' => $_class,
+			'function' => $_function,
+			'option' => '%' . $_option . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+                FROM listener
+                WHERE class=:class
+                    AND function=:function
+                    AND `option` LIKE :option';
+		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+
 	public static function byClassFunctionAndEvent($_class, $_function, $_event) {
 		$value = array(
 			'class' => $_class,
