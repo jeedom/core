@@ -1311,7 +1311,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
+			//$events = array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate()));
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
