@@ -107,7 +107,7 @@
     $('#md_modal').load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open');
 });
 
- jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s/⌘+s', function (e) {
     e.preventDefault();
     $('#bt_saveView').click();
 });

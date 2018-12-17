@@ -408,7 +408,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('.pluginListContainer').packery();
 });
 
-jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_savePluginConfig").click();
 });

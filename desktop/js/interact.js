@@ -128,7 +128,7 @@ $('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function (
   });
 });
 
-jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_saveInteract").click();
 });
