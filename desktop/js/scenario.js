@@ -215,7 +215,7 @@ $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) 
   });
 });
 
-jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   saveScenario();
 });
