@@ -99,6 +99,19 @@ function setBackgroundImage(_image){
  }
 }
 
+function insertHeader(rel, href, size = null, media = null){
+    var link = document.createElement('link');
+    link.rel = rel;
+    link.href = href;
+    if(size != null){
+      link.size = size;
+    }
+    if(media != null){
+      link.media = media;
+    }
+    document.head.appendChild(link);
+}
+
 function isset() {
     var a = arguments, b = a.length, d = 0;
     if (0 === b)
@@ -124,6 +137,16 @@ function initApplication(_reinit) {
         },
         success: function (data) {
             JEEDOM_DATA= data.result;
+            insertHeader("apple-touch-icon",JEEDOM_DATA.product_icon, "128x128");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, "256x256");
+            insertHeader("apple-touch-icon-precomposed",JEEDOM_DATA.product_icon, "256x256");
+            insertHeader("shortcut icon",JEEDOM_DATA.product_icon, "128x128");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 320px)");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 768px) and (orientation: portrait)");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 768px) and (orientation: landscape)");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)");
+            insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)");
             if (data.state != 'ok' || (isset(data.result.connected) && data.result.connected == false)) {
                 modal(false);
                 panel(false);
