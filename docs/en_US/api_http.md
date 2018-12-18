@@ -52,23 +52,23 @@ Here is the URL =
 -   **id**: is the id of what you want to drive or which
     you want to receive information
 
-The easiest way to get this URL is to go to the Tools page →
-Home automation summary, search for the command and open its configuration
-advanced (the "gear" icon) and there you will see a URL that contains
-already all that is needed depending on the type and subtype of the
-command.
+Le plus simple pour avoir cette URL est d’aller sur la page Outils →
+Résumé domotique, de chercher la commande puis d’ouvrir sa configuration
+avancée (l’icône "engrenage") et là, vous allez voir une URL qui contient
+déjà tout ce qu’il faut en fonction du type et du sous-type de la
+commande.
 
 > **Note**
 >
-> It is possible for the \ #ID \ # field to pass several commands
-> all of a sudden, for that you have to pass a painting in json (ex
->% 5B12,58,23% 5D, note that \ [and \] must be encoded hence the% 5B
-> and% 5D). The return of Jeedom will be a json
+> Il est possible pour le champs \#ID\# de passer plusieurs commandes
+> d’un coup. Pour cela, il faut passer un tableau en json (ex
+> %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B
+> et %5D). Le retour de Jeedom sera un json
 
 > **Note**
 >
-> Parameters must be encoded for url, You can use
-> a tool, [here] (https://meyerweb.com/eric/tools/dencoder/)
+> Les paramètres doivent être encodés pour les url, Vous pouvez utiliser
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Interaction
 ===========

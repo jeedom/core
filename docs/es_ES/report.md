@@ -1,17 +1,17 @@
-Cette page permet de voir tous les rapports qui ont été généré par l'action report (voir documentation des scénarios).
+Esta página permite ver todos los informes generados por la acción del informe (véase la documentación del escenario).
 
-Son utilisation est très simple vous selectionnez si vous voulez voir : 
+Su uso es muy sencillo seleccionando si se quiere ver : 
 
--   les rapports des vues
--   les rapports des degins
--   les rapports des panels des plugins
+-   ver informes de las vistas
+-   los informes de los diseños
+-   Los informes del panel de plugins
 
-Ensuite vous selectionner le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
+A continuación, seleccione el nombre del informe en cuestión y verá todas las fechas de los informes en memoria
 
-> **Important**
+> **Importante**
 >
-> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
+> El borrado automático se realiza de forma predeterminada para los informes con más de 30 días de antigüedad (puede configurar este retardo en la configuración de Jeedom).
 
-Une fois le rapport selectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
+Una vez seleccionado el informe, podrá verlo aparecer, descargarlo de nuevo o borrarlo.
 
-Vous pouvez aussi supprimer toute les sauvegardes d'un rapport donné
+También puede eliminar todas las copias de seguridad de un informe determinado

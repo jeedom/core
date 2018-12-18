@@ -122,14 +122,14 @@ LDAP
 -    **Filter (optional)** : Filter auf dem AD (zum Beispiel für 
     Gruppenmanagement)
 
--   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
+-   **REMOTE_USER zulassen** : REMOTE_USER aktivieren (zum Beispiel 
     verwendet in SSO)
 
 Verbindung 
 ---------
 
--   **Anzahl der tolerierten Fehler** : Legt die Anzahl der aufeinander folgenden Versuche fest, bevor die IP verboten wird.
-    successives autorisées avant de bannir l’IP
+-   **Anzahl der tolerierten Fehler** : Legt die Anzahl der aufeinander 
+    folgenden Versuche fest, bevor die IP verboten wird.
 
 -   **Maximale Zeit zwischen Fehlern (in Sekunden)** : maximale Zeit für 2 
     Versuche, die als aufeinanderfolgend betrachtet werden
@@ -178,26 +178,26 @@ Netzwerk, insbesondere vom Internet).
     -   **URL oder IP Adresse** : Die Jeedom IP-Adresse eintragen.
 
     -   **Port** : Der Port des Webinterface von Jeedom, allgemein 80.
-        Attention changer le port ici ne change pas le port réel de
-        Jeedom qui restera le même
+        Achtung, den Port hier zu ändern, ändert tatsächlich nicht den 
+        Jeedom Port, er wird derselbe bleiben.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
+        /jeedom) um auf Jeedom zuzugreifen.
 
--   **Accès externe** : informations pour joindre Jeedom de l’extérieur
-    du réseau local. À ne remplir que si vous n’utilisez pas le DNS
-    Jeedom
+-   **Externer Zugriff** : Angaben, um von außerhalb des lokalen Netzwerks 
+    auf Jeedom zuzugreifen. Füllen Sie dies nur aus, wenn Sie die
+    Jeedom DNS nicht verwenden.
 
-    -   **OK/NOK** : indique si la configuration réseau externe est
-        correcte
+    -   **OK/NOK** : Zeigt an, ob die externe Netzwerkkonfiguration
+        korrekt ist.
 
     -   **Protokolle** : verwendetes Protokoll für den Zugriff von außen 
 
-    -   **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon,
-        donnez l’URL pointant sur l’adresse IP externe de votre réseau.
+    -   **URL oder IP Adresse** : Externe IP-Adresse, wenn es behoben wird.
+        Andernfalls geben Sie die URL für die externe IP-Adresse Ihres Netzwerks.
 
-    -   **Complément** : le fragment d’URL complémentaire (exemple
-        : /jeedom) pour accéder à Jeedom.
+    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
+        /jeedom) um auf Jeedom zuzugreifen.
 
 > **Tip**
 >
@@ -217,7 +217,7 @@ Netzwerk, insbesondere vom Internet).
     la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
     gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau)
+    keine Netwerke)
 
 -   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
     besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
@@ -236,12 +236,10 @@ Netzwerk, insbesondere vom Internet).
 > configuration du pare-feu et du filtre parental de votre box Internet
 > (sur livebox il faut par exemple le pare-feu en moyen).
 
-Couleurs 
-========
+Farben
+======
 
-La colorisation des widgets est effectuée en fonction de la catégorie à
-laquelle appartient l’équipement. Parmi les catégories on retrouve le
-chauffage, Sécurité, Energie, lumière, Automatisme, Multimedia, Autre…​
+Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets. Unter die Kategorien umfassen Heizung, Licht, Automation etc.... 
 
 Pour chaque catégorie, on pourra différencier les couleurs de la version
 desktop et de la version mobile. On peut alors changer :
@@ -323,7 +321,7 @@ Historique
 > [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > pour le détail).
 
-Push 
+Push
 ----
 
 **URL de push globale** : permet de rajouter une URL à appeler en cas de
@@ -344,7 +342,7 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     plus utiles. Jeedom le fait automatiquement toutes les nuits.
 
 -   **Vider toutes les données en cache** : Vide complètement le cache.
-    Attention cela peut faire perdre des données !
+    Achtung, Daten könnten verschwinden 
 
 -   **Temps de pause pour le long polling** : Fréquence à laquelle
     Jeedom vérifie si il y a des événements en attente pour les clients
@@ -352,8 +350,8 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     l’interface se mettra à jour rapidement, en contre partie cela
     utilise plus de ressources et peut donc ralentir Jeedom.
 
-Interactions 
-============
+Interaktion
+==========
 
 Cet onglet permet de fixer des paramètres globaux concernant les
 interactions que vous trouverez dans Outils→Interactions.
@@ -376,10 +374,10 @@ Vous avez ici trois paramètres :
         un seul mot
 
     -   2 mots : le niveau de correspondance pour les interactions à
-        deux mots
+        zwei Wörter
 
     -   3 mots : le niveau de correspondance pour les interactions à
-        trois mots
+        drei Wörter
 
     -   + de 3 mots : le niveau de correspondance pour les interactions
         à plus de trois mots
@@ -388,14 +386,14 @@ Vous avez ici trois paramètres :
     Jeedom répond "je n’ai pas compris" si aucune interaction
     ne correspond. Il est possible de désactiver ce fonctionnement pour
     que Jeedom ne réponde rien. Cochez la case pour désactiver
-    la réponse.
+    Die Antwort.
 
 -   **Regex général d’exclusion pour les interactions** : permet de
     définir une regexp qui, si elle correspond à une interaction,
     supprimera automatiquement cette phrase de la génération (réservé
     aux experts). Pour plus d’informations voir les explications dans le
     chapitre **Regexp d’exclusion** de la documentation sur
-    les interactions.
+    Interaktion.
 
 Interaction automatique, contextuelle & avertissement 
 -----------------------------------------------------
@@ -412,7 +410,7 @@ Interaction automatique, contextuelle & avertissement
 
         -   *Vous* : Combien fait-il dans la chambre ?
 
-        -   *Jeedom* : Température 25.2 °C
+        -   *Jeedom* : Temperatur 25.2 °C 
 
         -   *Vous* : et dans le salon ?
 
@@ -548,7 +546,7 @@ objets :
 
 -   **Clef** : Clé du résumé, à ne surtout pas toucher.
 
--   **Nom** : Nom du résumé.
+-   **Name** : Der Name der Zusammenfassung.
 
 -   **Calcul** : Méthode de calcul, peut être de type :
 
@@ -720,7 +718,7 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **Adresse** : Adresse du Market.
 
--   **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
+-   **Benutzername** : Ihr Benutzername auf dem Markt.
 
 -   **Mot de passe** : Votre mot de passe du Market.
 

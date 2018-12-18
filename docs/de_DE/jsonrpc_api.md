@@ -1,26 +1,26 @@
-Voici une documentation sur les méthodes de l’API. Tout d’abord voici
-les spécifications (JSON RPC 2.0) :
+Das ist eine Dokumentation der API-Methoden. Zuallererst, sind hier die
+(JSON RPC 2.0) Spezifizierungen :
 <http://www.jsonrpc.org/specification>
 
-L’accès à l’API se fait par l’url : *URL\_JEEDOM*/core/api/jeeApi.php
+Der Zugriff auf die API erfolgt über die URL : *URL\_JEEDOM*/core/api/jeeApi.php
 
-Divers 
+Verschiedene
 ======
 
 ping 
 ----
 
-Retourne pong, permet de tester la communication avec Jeedom
+Gib Ping zurück, um die Kommunikation mit Jeedom zu testen
 
-Version 
+version 
 -------
 
-Retourne la version de Jeedom
+Gibt die Jeedom Version zurück
 
 datetime 
 --------
 
-Retourne le datetime de Jeedom en microsecondes
+Gibt das Jeedom-Datum in Mikrosekunden zurück
 
 API config 
 ==========
@@ -28,110 +28,106 @@ API config
 config::byKey 
 -------------
 
-Retourne une valeur de configuration.
+Gibt einen Konfigurationswert zurück.
 
 Parameter :
 
--   string key : clef de la valeur de configuration à retourner
+-   string key : Schlüssel des Konfigurationswerts, der zurückgegeben werden soll
 
--   string plugin : (optionnel), plugin de la valeur de configuration
+-   string plugin : (optional), Plugin Konfigurationswert
 
--   string default : (optionnel), valeur à retourner si la clef n’existe
-    pas
+-   string default : (optional), Rückgabewert, wenn der Schlüssel nicht
+    existiert
 
 config::save 
 ------------
 
-Enregistre une valeur de configuration
+Speichert einen Konfigurationswert
 
 Parameter :
 
--   string value : valeur à enregistrer
+-   string value : Wert zum Speichern
 
--   string key : clef de la valeur de configuration à enregistrer
+-   string key : Schlüssel, des zu speichernden Konfigurationswertes
 
--   string plugin : (optionnel), plugin de la valeur de configuration à
-    enregistrer
+-   string plugin : Plugin, des zu speichernden 
+    Konfigurationswertes
 
-API JSON Event 
+JSON API Event 
 ==============
 
 event::changes 
 --------------
 
-Retourne la liste des changements depuis le datetime passé en paramètre
-(doit être en microsecondes). Vous aurez aussi dans la réponse le
-datetime courant de Jeedom (à réutiliser pour l’interrogation suivante)
+Gibt eine Liste der Änderungen aus, die als Parameter in datetime übergeben wurde, (muss in Mikrosekunden sein). Sie werden in der Antwort auch das aktuelle Jeedom Datum zurück bekommen (um für die nächste Abfrage wiederverwendet zu werden).
 
-Paramètres :
+Parameter :
 
 -   int datetime
 
-API JSON Plugin 
+JSON API Plugin 
 ===============
 
 plugin::listPlugin 
 ------------------
 
-Retourne la liste de tous les plugins
+Gibt die Liste aller Plugins zurück
 
-Paramètres :
+Parameter :
 
--   int activateOnly = 0 (ne retourne que la liste des plugins activés)
+-   int activateOnly = 0 (liefert nur die Liste der aktivierten Plugins)
 
--   int orderByCaterogy = 0 (retourne la liste des plugins triés
-    par catégorie)
+-   int orderByCaterogy = 0 (liefert die Liste der Plugins nach 
+    Kategorie geordnet)
 
-API JSON Objet 
+JSON API  Object 
 ==============
 
 object::all 
 -----------
 
-Retourne la liste de tous les objets
+Gibt die Liste aller Objekte zurück 
 
 object::full 
 ------------
 
-Retourne la liste de tous les objets, avec pour chaque objet tous ses
-équipements et pour chaque équipement toutes ses commandes ainsi que les
-états de celles-ci (pour les commandes de type info)
+Liefert eine Liste aller Objekte, mit allen Geräten für jedes Objekt und alle
+Befehle von jedem Gerät, sowie die Zustände von diesem
+(für Befehle des Typs Info)
 
 object::fullById 
 ----------------
 
-Retourne un objet avec tous ses équipements et pour chaque équipement
-toutes ses commandes ainsi que les états de celles-ci (pour les
-commandes de type info)
+Gibt ein Objekt mit allen seinen Geräten und für jedes Gerät alle seine
+Befehle sowie deren Zustände zurück (für Befehle des Typs Info)
 
-Paramètres :
+Parameter :
 
 -   int id
 
 object::byId 
 ------------
 
-Retourne l’objet spécifié
+Gibt das angegebenen Objekt zurück
 
-Paramètres:
+Parameter :
 
 -   int id
 
 object::fullById 
 ----------------
 
-Retourne un objet, ses équipements et pour chaque équipement toutes ses
-commandes ainsi que les états de cellse-ci (pour les commandes de type
-info)
+Gibt ein Objekt, seine Ausrüstung und für jedes Gerät alle seine Befehle
+sowie die Zustände dieses Objekts zurück (für Befehle des Typs Info)
 
 object::save 
 ------------
 
-Retourne l’objet spécifié
+Gibt das angegebenen Objekt zurück
 
-Paramètres:
+Parameter :
 
--   int id (vide si c’est une création)
+-   int id (leer, wenn es geschaffen wurde)
 
 -   string name
 
@@ -145,86 +141,89 @@ Paramètres:
 
 -   array display
 
-API JSON Summary 
+JSON API Summary 
 ================
 
 summary::global 
 ---------------
 
-Retour le résumé global pour la clef passée en paramètre
+Gibt eine gesamt Zusammenfassung der Parameter des übergebenen Schlüssels zurück
 
-Paramètres:
+Parameter :
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
-    vous renvoi le résumé pour toute les clefs
+-   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer, dann gibt Jeedom
+    die Zusammenfassung für alle Schlüssel zurück
 
 summary::byId 
 -------------
 
-Retourne le résumé pour l’objet id
+Gibt die Zusammenfassung für das ID-Objekt zurück
 
-Paramètres:
+Parameter :
 
--   int id : id de l’objet
+-   int id : ID vom Objekt
 
--   string key : (optionnel), clef du résumé voulu, si vide alors Jeedom
-    vous renvoi le résumé pour toute les clefs
+-   string key : (optional), Schlüssel der gewünschten Zusammenfassung, wenn leer dann Jeedom
+    die Zusammenfassung für alle Schlüssel zurück
 
-API JSON EqLogic 
+JSON API EqLogic 
 ================
 
 eqLogic::all 
 ------------
 
-Retourne la liste de tous les équipements
+Gibt die Liste aller Geräte zurück
 
 eqLogic::fullById 
 -----------------
 
-Retourne un équipement et ses commandes ainsi que les états de celles-ci
-(pour les commandes de type info)
+Gibt ein Gerät sowie dessen Befehle und die Zustände zurück
+(für Befehle des Typs Info)
+
+Parameter :
+
+-   int id
 
 eqLogic::byId 
 -------------
 
-Retourne l’équipement spécifié
+Liefert das angegebene Gerät zurück
 
-Paramètres:
+Parameter :
 
 -   int id
 
 eqLogic::byType 
 ---------------
 
-Retourne tous les équipements appartenant au type (plugin) spécifié
+Gibt alle Geräte zurück, die zum angegebenen Typ (Plugin) gehören
 
-Paramètres:
+Parameter :
 
 -   string type
 
 eqLogic::byObjectId 
 -------------------
 
-Retourne tous les équipements appartenant à l’objet spécifié
+Gibt alle zum angegebenen Objekt gehörenden Geräte zurück
 
-Paramètres:
+Parameter :
 
 -   int object\_id
 
 eqLogic::byTypeAndId 
 --------------------
 
-Renvoi un tableau d’équipement en fonction des paramètres. Le retour
-sera de la forme array('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
+Giebt eine Tabelle von Geräten gemäß den Parametern zurück. Die Rückgabe erfolgt in Form von Arrays ('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
 array(…​.)),'eqType2' ⇒array( 'id'⇒…​,'cmds' ⇒ array(…​.))…​.,id1 ⇒
 array( 'id'⇒…​,'cmds' ⇒ array(…​.)),id2 ⇒ array( 'id'⇒…​,'cmds' ⇒
 array(…​.))..)
 
-Paramètres:
+Parameter :
 
--   string\[\] eqType = tableau des types d’équipements voulus
+-   string\[\] eqType = Tabelle der gewünschten Gerätetypen
 
--   int\[\] id = tableau des ID d’équipements personnalisés voulus
+-   int\[\] id = benutzerdefinierte Tabelle der gewünschten Geräte-IDs
 
 eqLogic::save 
 -------------
