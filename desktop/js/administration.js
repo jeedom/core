@@ -164,7 +164,7 @@ $("#bt_clearJeedomLastDate").on('click', function (event) {
     clearJeedomDate();
 });
 
-jwerty.key('ctrl+s', function (e) {
+jwerty.key('ctrl+s/⌘+s', function (e) {
     e.preventDefault();
     $("#bt_saveGeneraleConfig").click();
 });

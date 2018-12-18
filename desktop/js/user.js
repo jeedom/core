@@ -40,7 +40,7 @@
     });
 });
 
- jwerty.key('ctrl+s', function (e) {
+ jwerty.key('ctrl+s/⌘+s', function (e) {
     e.preventDefault();
     $('#bt_saveUser').click();
 });
