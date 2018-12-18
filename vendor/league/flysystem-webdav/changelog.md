@@ -1,6 +1,12 @@
 # Changelog
 
-### 1.0.5 - 2016-12-14
+## 1.0.6 - 2018-12-14
+
+### Fixed
+
+* Create directories with a trailing "/".
+
+## 1.0.5 - 2016-12-14
 
 ### Fixed
 

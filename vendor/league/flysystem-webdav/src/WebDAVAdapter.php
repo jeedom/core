@@ -5,23 +5,30 @@ namespace League\Flysystem\WebDAV;
 use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Adapter\Polyfill\NotSupportingVisibilityTrait;
 use League\Flysystem\Adapter\Polyfill\StreamedCopyTrait;
-use League\Flysystem\Adapter\Polyfill\StreamedTrait;
+use League\Flysystem\Adapter\Polyfill\StreamedReadingTrait;
 use League\Flysystem\Config;
 use League\Flysystem\Util;
 use LogicException;
 use Sabre\DAV\Client;
 use Sabre\DAV\Exception;
 use Sabre\DAV\Exception\NotFound;
-use Sabre\HTTP\ClientHttpException;
 use Sabre\HTTP\HttpException;
 
 class WebDAVAdapter extends AbstractAdapter
 {
-    use StreamedTrait;
+    use StreamedReadingTrait;
     use StreamedCopyTrait {
         StreamedCopyTrait::copy as streamedCopy;
     }
     use NotSupportingVisibilityTrait;
+
+    private static $metadataFields = [
+        '{DAV:}displayname',
+        '{DAV:}getcontentlength',
+        '{DAV:}getcontenttype',
+        '{DAV:}getlastmodified',
+        '{DAV:}iscollection',
+    ];
 
     /**
      * @var array
@@ -81,12 +88,11 @@ class WebDAVAdapter extends AbstractAdapter
         $location = $this->applyPathPrefix($this->encodePath($path));
 
         try {
-            $result = $this->client->propFind($location, [
-                '{DAV:}displayname',
-                '{DAV:}getcontentlength',
-                '{DAV:}getcontenttype',
-                '{DAV:}getlastmodified',
-            ]);
+            $result = $this->client->propFind($location, self::$metadataFields);
+
+            if (empty($result)) {
+                return false;
+            }
 
             return $this->normalizeObject($result, $path);
         } catch (Exception $e) {
@@ -158,9 +164,25 @@ class WebDAVAdapter extends AbstractAdapter
     /**
      * {@inheritdoc}
      */
+    public function writeStream($path, $resource, Config $config)
+    {
+        return $this->write($path, $resource, $config);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function update($path, $contents, Config $config)
     {
         return $this->write($path, $contents, $config);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateStream($path, $resource, Config $config)
+    {
+        return $this->update($path, $resource, $config);
     }
 
     /**
@@ -206,9 +228,10 @@ class WebDAVAdapter extends AbstractAdapter
         $location = $this->applyPathPrefix($this->encodePath($path));
 
         try {
-            $this->client->request('DELETE', $location);
+            $response =  $this->client->request('DELETE', $location)['statusCode'];
 
-            return true;
+
+            return $response >= 200 && $response < 300;
         } catch (NotFound $e) {
             return false;
         }
@@ -237,7 +260,7 @@ class WebDAVAdapter extends AbstractAdapter
         }
 
         $location = $this->applyPathPrefix($encodedPath);
-        $response = $this->client->request('MKCOL', $location);
+        $response = $this->client->request('MKCOL', $location . $this->pathSeparator);
 
         if ($response['statusCode'] !== 201) {
             return false;
@@ -260,18 +283,13 @@ class WebDAVAdapter extends AbstractAdapter
     public function listContents($directory = '', $recursive = false)
     {
         $location = $this->applyPathPrefix($this->encodePath($directory));
-        $response = $this->client->propFind($location . '/', [
-            '{DAV:}displayname',
-            '{DAV:}getcontentlength',
-            '{DAV:}getcontenttype',
-            '{DAV:}getlastmodified',
-        ], 1);
+        $response = $this->client->propFind($location . '/', self::$metadataFields, 1);
 
         array_shift($response);
         $result = [];
 
         foreach ($response as $path => $object) {
-            $path = urldecode($this->removePathPrefix($path));
+            $path = rawurldecode($this->removePathPrefix($path));
             $object = $this->normalizeObject($object, $path);
             $result[] = $object;
 
@@ -366,7 +384,7 @@ class WebDAVAdapter extends AbstractAdapter
      */
     protected function normalizeObject(array $object, $path)
     {
-        if (! isset($object['{DAV:}getcontentlength']) or $object['{DAV:}getcontentlength'] == "") {
+        if ($this->isDirectory($object)) {
             return ['type' => 'dir', 'path' => trim($path, '/')];
         }
 
@@ -380,5 +398,10 @@ class WebDAVAdapter extends AbstractAdapter
         $result['path'] = trim($path, '/');
 
         return $result;
+    }
+
+    private function isDirectory(array $object)
+    {
+        return isset($object['{DAV:}iscollection']) && $object['{DAV:}iscollection'] === '1';
     }
 }
