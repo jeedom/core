@@ -8,7 +8,7 @@ ui
 
 test.php
 core/config/common.config.php
-deployment-config.json
+.remote-sync.json
 
 /plugins
 

@@ -255,7 +255,7 @@ class listener {
 	}
 
 	public function getEvent() {
-		return json_decode($this->event, true);
+		return is_json($this->event, array());
 	}
 
 	public function getClass() {
