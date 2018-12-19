@@ -121,10 +121,10 @@ class event {
 		if ($_filter == null) {
 			return $_data;
 		}
-		$filters = cache::byKey($_filter . '::event')->getValue(array());
+		$filters = ($_filter !== null) ? cache::byKey($_filter . '::event')->getValue(array()) : array();
 		$return = array('datetime' => $_data['datetime'], 'result' => array());
 		foreach ($_data['result'] as $value) {
-			if (isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
+			if ($_filter !== null && isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
 				continue;
 			}
 			if (count($filters) != 0 && $value['name'] == 'cmd::update' && !in_array($value['option']['cmd_id'], $filters)) {
