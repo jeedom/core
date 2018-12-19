@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
@@ -126,15 +126,15 @@ class cmd {
 		$values = array();
 		if (is_array($_eqLogic_id)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE eqLogic_id IN (' . implode(',', $_eqLogic_id) . ')';
+			FROM cmd
+			WHERE eqLogic_id IN (' . implode(',', $_eqLogic_id) . ')';
 		} else {
 			$values = array(
 				'eqLogic_id' => $_eqLogic_id,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE eqLogic_id=:eqLogic_id';
+			FROM cmd
+			WHERE eqLogic_id=:eqLogic_id';
 		}
 		if ($_type !== null) {
 			$values['type'] = $_type;
@@ -173,15 +173,15 @@ class cmd {
 			}
 			$values = array();
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE generic_type IN (' . trim($in, ',') . ')';
+			FROM cmd
+			WHERE generic_type IN (' . trim($in, ',') . ')';
 		} else {
 			$values = array(
 				'generic_type' => $_generic_type,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM cmd
-		WHERE generic_type=:generic_type';
+			FROM cmd
+			WHERE generic_type=:generic_type';
 		}
 		if ($_eqLogic_id !== null) {
 			$values['eqLogic_id'] = $_eqLogic_id;
@@ -200,15 +200,15 @@ class cmd {
 				'configuration' => '%' . $_configuration . '%',
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-					FROM cmd
-					WHERE configuration LIKE :configuration';
+			FROM cmd
+			WHERE configuration LIKE :configuration';
 		} else {
 			$values = array(
 				'configuration' => '%' . $_configuration[0] . '%',
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-			        FROM cmd
-			        WHERE configuration LIKE :configuration';
+			FROM cmd
+			WHERE configuration LIKE :configuration';
 			for ($i = 1; $i < count($_configuration); $i++) {
 				$values['configuration' . $i] = '%' . $_configuration[$i] . '%';
 				$sql .= ' OR configuration LIKE :configuration' . $i;
@@ -702,18 +702,18 @@ class cmd {
 
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-				. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
-				. '</div>';
+			. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
+			. '</div>';
 		} else {
 			$backgroundColor = '#A9D0F5';
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
 				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
 			}
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-				. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-				. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
-				. '</div>';
+			. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
+			. '</div>';
 		}
 		return $return;
 	}
@@ -734,65 +734,65 @@ class cmd {
 		if ($this->getType() == 'info') {
 			switch ($this->getSubType()) {
 				case 'string':
-					if ($_quote) {
-						return '"' . $_value . '"';
-					}
-					return $_value;
+				if ($_quote) {
+					return '"' . $_value . '"';
+				}
+				return $_value;
 				case 'other':
-					if ($_quote) {
-						return '"' . $_value . '"';
-					}
-					return $_value;
+				if ($_quote) {
+					return '"' . $_value . '"';
+				}
+				return $_value;
 				case 'binary':
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-
-						} catch (Error $ex) {
-
+				if ($this->getConfiguration('calculValueOffset') != '') {
+					try {
+						if (preg_match("/[a-zA-Z#]/", $_value)) {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
+						} else {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						}
+					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
+
 					}
-					$value = strtolower($_value);
-					if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
-						return 1;
-					}
-					if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
-						return 0;
-					}
-					if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
-						return 1;
-					}
+				}
+				$value = strtolower($_value);
+				if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
+					return 1;
+				}
+				if ($value == 'off' || $value == 'low' || $value == 'false' || $value === false) {
 					return 0;
+				}
+				if ((is_numeric(intval($_value)) && intval($_value) > 1) || $_value === true || $_value == 1) {
+					return 1;
+				}
+				return 0;
 				case 'numeric':
-					$_value = floatval(str_replace(',', '.', $_value));
-					if ($this->getConfiguration('calculValueOffset') != '') {
-						try {
-							if (preg_match("/[a-zA-Z#]/", $_value)) {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
-							} else {
-								$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
-							}
-						} catch (Exception $ex) {
-
-						} catch (Error $ex) {
-
+				$_value = floatval(str_replace(',', '.', $_value));
+				if ($this->getConfiguration('calculValueOffset') != '') {
+					try {
+						if (preg_match("/[a-zA-Z#]/", $_value)) {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', '"' . $_value . '"', str_replace('\'#value#\'', '#value#', str_replace('"#value#"', '#value#', $this->getConfiguration('calculValueOffset')))));
+						} else {
+							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						}
+					} catch (Exception $ex) {
+
+					} catch (Error $ex) {
+
 					}
-					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
-						$_value = round($_value, $this->getConfiguration('historizeRound'));
-					}
-					if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
-						$_value = $this->getConfiguration('maxValue', $_value);
-					}
-					if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
-						$_value = $this->getConfiguration('minValue', $_value);
-					}
-					return floatval($_value);
+				}
+				if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+					$_value = round($_value, $this->getConfiguration('historizeRound'));
+				}
+				if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
+					$_value = $this->getConfiguration('maxValue', $_value);
+				}
+				if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
+					$_value = $this->getConfiguration('minValue', $_value);
+				}
+				return floatval($_value);
 			}
 		}
 		return $_value;
@@ -920,13 +920,13 @@ class cmd {
 	}
 
 	/**
-	 *
-	 * @param type $_options
-	 * @param type $_sendNodeJsEvent
-	 * @param type $_quote
-	 * @return command result
-	 * @throws Exception
-	 */
+	*
+	* @param type $_options
+	* @param type $_sendNodeJsEvent
+	* @param type $_quote
+	* @return command result
+	* @throws Exception
+	*/
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
 		if ($this->getType() == 'info') {
 			$state = $this->getCache(array('collectDate', 'valueDate', 'value'));
@@ -998,11 +998,11 @@ class cmd {
 				$value = $this->getConfiguration('updateCmdToValue');
 				switch ($this->getSubType()) {
 					case 'slider':
-						$value = str_replace('#slider#', $options['slider'], $value);
-						break;
+					$value = str_replace('#slider#', $options['slider'], $value);
+					break;
 					case 'color':
-						$value = str_replace('#color#', $options['color'], $value);
-						break;
+					$value = str_replace('#color#', $options['color'], $value);
+					break;
 				}
 				$cmd->event($value);
 			}
@@ -1720,17 +1720,17 @@ class cmd {
 		if ($this->getType() == 'action') {
 			switch ($this->getSubType()) {
 				case 'slider':
-					$url .= '&slider=50';
-					break;
+				$url .= '&slider=50';
+				break;
 				case 'color':
-					$url .= '&color=#123456';
-					break;
+				$url .= '&color=#123456';
+				break;
 				case 'message':
-					$url .= '&title=montitre&message=monmessage';
-					break;
+				$url .= '&title=montitre&message=monmessage';
+				break;
 				case 'select':
-					$url .= '&select=value';
-					break;
+				$url .= '&select=value';
+				break;
 			}
 		}
 		return network::getNetworkAccess('external') . $url;
@@ -1891,10 +1891,10 @@ class cmd {
 	}
 
 	/**
-	 *
-	 * @param type $name
-	 * @return $this
-	 */
+	*
+	* @param type $name
+	* @return $this
+	*/
 	public function setName($name) {
 		$this->name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
 		return $this;
