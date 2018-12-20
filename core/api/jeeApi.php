@@ -134,7 +134,7 @@ if (init('type') != '') {
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 			}
-			if ($_USER_GLOBAL !== null && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+			if ($_USER_GLOBAL !== null && !$scenario->hasRight('x', $_USER_GLOBAL)) {
 				throw new Exception(__('Vous n\'avez pas le droit de faire une action sur ce scénario', __FILE__));
 			}
 			switch (init('action')) {
