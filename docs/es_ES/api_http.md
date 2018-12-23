@@ -52,23 +52,23 @@ Aquí está la URL =
 -   ** ** Identificación: es el identificador que desea controlar o cual
     que desea recibir la información
 
-Le plus simple pour avoir cette URL est d’aller sur la page Outils →
-Résumé domotique, de chercher la commande puis d’ouvrir sa configuration
-avancée (l’icône "engrenage") et là, vous allez voir une URL qui contient
-déjà tout ce qu’il faut en fonction du type et du sous-type de la
-commande.
+La forma más fácil de obtener esta URL es ir a la página de Herramientas →
+Resumen de domótica, buscar el coamando y abrir su configuración
+(el icono "rueda") y allí verá una URL que contiene
+ya todo lo que se necesita dependiendo del tipo y subtipo de los
+comandos.
 
-> **Note**
+> **Nota**
 >
-> Il est possible pour le champs \#ID\# de passer plusieurs commandes
-> d’un coup. Pour cela, il faut passer un tableau en json (ex
-> %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B
-> et %5D). Le retour de Jeedom sera un json
+> Es posible que el campo \#ID\# pueda contener varios comandos.
+> repentinamente. Para hacer esto, es necesario pasar una tabla en json (ex
+> %5B12,58,23%5D, tenga en cuenta que \[ y \] debe ser codificado, de ahí el %5B
+> y %5D). El retorno de Jeedom será un json
 
-> **Note**
+> **Nota**
 >
-> Les paramètres doivent être encodés pour les url, Vous pouvez utiliser
-> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
+> Los parámetros deben estar codificados para la url. Puede utilizar la
+> siguiente herramienta,[aquí](https://meyerweb.com/eric/tools/dencoder/)
 
 interacción
 ===========
