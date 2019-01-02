@@ -390,6 +390,9 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+                                                <?php if(jeedom::getHardwareName() == 'smart'){
+                                                    echo '<li><a href="index.php?v=d&p=imageMaj"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
+                                                }?>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
 												<li role="separator" class="divider"></li>
