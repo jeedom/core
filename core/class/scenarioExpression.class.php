@@ -605,7 +605,6 @@ class scenarioExpression {
 	}
 	
 	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
-		
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -688,6 +687,14 @@ class scenarioExpression {
 		}
 		$cmd->execCmd();
 		return date($_format, strtotime($cmd->getValueDate()));
+	}
+	
+	public static function lastCommunication($_eqLogic_id, $_format = 'Y-m-d H:i:s') {
+		$eqLogic = eqLogic::byId(trim(str_replace(array('#','#eqLogic','eqLogic'), '', eqLogic::fromHumanReadable('#' . str_replace('#', '', $_eqLogic_id) . '#'))));
+		if (!is_object($eqLogic)) {
+			return  -1;
+		}
+		return date($_format, strtotime($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s'))));
 	}
 	
 	public static function value($_cmd_id) {
