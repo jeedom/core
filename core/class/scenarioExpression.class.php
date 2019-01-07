@@ -1354,7 +1354,18 @@ class scenarioExpression {
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
+
+					//Recuperation des tags
+					$tags = $scenario->getTags();
+					if (isset($tags['#profile#']) === true) {
+					   //Remplacement du pattern #profile# par le profile utilisateur 
+					   //si la commande contient #profile#
+					   $this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+					}
+
+					#Recherche de la commandeId avec le bon user
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
+					
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
