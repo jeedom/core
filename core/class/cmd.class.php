@@ -935,10 +935,10 @@ class cmd {
 			}else{
 				$this->setCollectDate(date('Y-m-d H:i:s'));
 			}
-			if(isset($state['collectDate'])){
-				$this->setValueDate($state['collectDate']);
+			if(isset($state['valueDate'])){
+				$this->setValueDate($state['valueDate']);
 			}else{
-				$this->setValueDate(date('Y-m-d H:i:s'));
+				$this->setValueDate($this->getCollectDate());
 			}
 			return $state['value'];
 		}
