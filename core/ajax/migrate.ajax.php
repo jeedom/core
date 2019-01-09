@@ -3,7 +3,7 @@
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Genxeral Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -29,6 +29,12 @@ try {
 	if (init('action') == 'usbTry') {
 		$usbTry = migrate::usbTry();
 		ajax::success($usbTry);
+	}
+	
+	if (init('action') == 'backupToUsb') {
+		log::add('backup', 'info', 'BackupToUsb demandé dans Ajax.');
+		$backupToUsb = migrate::backupToUsb();
+		ajax::success($backupToUsb);
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
