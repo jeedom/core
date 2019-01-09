@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  * Exporting module
  *
  * (c) 2010-2018 Torstein Honsi
@@ -702,7 +702,7 @@
 		     * See [navigation.buttonOptions](#navigation.buttonOptions) for general
 		     * options.
 		     *
-		     * @type {Highcharts.Dictionary<*>}
+		     * @type {Highcharts.Dictionary<Highcharts.ExportingButtonsContextButtonOptions>}
 		     */
 		    buttons: {
 

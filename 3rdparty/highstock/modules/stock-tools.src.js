@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  * Advanced Highstock tools
  *
  * (c) 2010-2018 Highsoft AS
@@ -196,7 +196,20 @@
 		            'mfi',
 		            'roc',
 		            'rsi',
-		            'vwap'
+		            'vwap',
+		            'ao',
+		            'aroon',
+		            'aroonoscillator',
+		            'trix',
+		            'apo',
+		            'dpo',
+		            'ppo',
+		            'natr',
+		            'williamsr',
+		            'linearRegression',
+		            'linearRegressionSlope',
+		            'linearRegressionIntercept',
+		            'linearRegressionAngle'
 		        ],
 		        yAxis,
 		        series;
@@ -299,7 +312,7 @@
 		bindingsUtils.attractToPoint = function (e, chart) {
 		    var x = chart.xAxis[0].toValue(e.chartX),
 		        y = chart.yAxis[0].toValue(e.chartY),
-		        distX = Number.MAX_SAFE_INTEGER, // IE?
+		        distX = Number.MAX_VALUE,
 		        closestPoint;
 
 		    chart.series.forEach(function (series) {
@@ -2088,6 +2101,7 @@
 		                pitchfork: 'Pitchfork',
 		                parallelChannel: 'Parallel channel',
 		                infinityLine: 'Infinity line',
+		                measure: 'Measure',
 		                measureXY: 'Measure XY',
 		                measureX: 'Measure X',
 		                measureY: 'Measure Y',
@@ -2163,7 +2177,7 @@
 		             * Path where Highcharts will look for icons. Change this to use
 		             * icons from a different server.
 		             */
-		            iconsURL: 'https://code.highcharts.com/7.0.0/gfx/stock-icons/',
+		            iconsURL: 'https://code.highcharts.com/7.0.1/gfx/stock-icons/',
 		            /**
 		             * A collection of strings pointing to config options for the
 		             * toolbar items. Each name refers to unique key from definitions
@@ -2734,6 +2748,17 @@
 		    H.Chart.prototype.setStockTools.call(this, options);
 		});
 
+		addEvent(H.Chart, 'getMargins', function () {
+		    var offsetWidth = (
+		        this.stockToolbar &&
+		        this.stockToolbar.listWrapper &&
+		        this.stockToolbar.listWrapper.offsetWidth
+		    );
+		    if (offsetWidth && offsetWidth < this.plotWidth) {
+		        this.plotLeft += offsetWidth;
+		    }
+		});
+
 		addEvent(H.Chart, 'destroy', function () {
 		    if (this.stockToolbar) {
 		        this.stockToolbar.destroy();
@@ -2806,7 +2831,7 @@
 		        this.stockToolbar = new H.Toolbar(guiOptions, langOptions, this);
 
 		        if (this.stockToolbar.guiEnabled) {
-		            this.stockToolbar.setToolbarSpace();
+		            this.isDirtyBox = true;
 		        }
 		    }
 		});
@@ -2887,7 +2912,7 @@
 
 		            // hide menu
 		            if (buttonWrapper.className.indexOf(PREFIX + 'current') >= 0) {
-		                menuWrapper.style.width = '40px';
+		                menuWrapper.style.width = menuWrapper.startWidth + 'px';
 		                buttonWrapper.classList.remove(PREFIX + 'current');
 		                submenuWrapper.style.display = 'none';
 		            } else {
@@ -2916,7 +2941,10 @@
 		                });
 
 		                buttonWrapper.className += ' ' + PREFIX + 'current';
-		                menuWrapper.style.width = '83px';
+		                menuWrapper.startWidth = wrapper.offsetWidth;
+		                menuWrapper.style.width = menuWrapper.startWidth +
+		                                    H.getStyle(menuWrapper, 'padding-left') +
+		                                    submenuWrapper.offsetWidth + 3 + 'px';
 		            }
 		        });
 		    },
@@ -2948,14 +2976,14 @@
 
 		            addEvent(submenuBtn.mainButton, 'click', function () {
 		                _self.switchSymbol(this, buttonWrapper, true);
-		                menuWrapper.style.width = '40px';
+		                menuWrapper.style.width = menuWrapper.startWidth + 'px';
 		                submenuWrapper.style.display = 'none';
 		            });
 		        });
 
-		                // select first submenu item
+		        // select first submenu item
 		        firstSubmenuItem = submenuWrapper
-		                .querySelectorAll('li > .' + PREFIX + 'menu-item-btn')[0];
+		            .querySelectorAll('li > .' + PREFIX + 'menu-item-btn')[0];
 
 		        // replace current symbol, in main button, with submenu's button style
 		        _self.switchSymbol(firstSubmenuItem, false);
@@ -3178,6 +3206,12 @@
 
 		            toolbar.classList.add(PREFIX + 'hide');
 		            showhideBtn.classList.toggle(PREFIX + 'arrow-right');
+		        } else {
+		            showhideBtn.style.top = H.getStyle(toolbar, 'padding-top') + 'px';
+		            showhideBtn.style.left = (
+		                wrapper.offsetWidth +
+		                H.getStyle(toolbar, 'padding-left')
+		            ) + 'px';
 		        }
 
 		        // toggle menu
@@ -3250,27 +3284,6 @@
 		        });
 		    },
 		    /*
-		     * Add space for toolbar.
-		     *
-		     */
-		    setToolbarSpace: function () {
-		        var chart = this.chart,
-		            marginLeft = chart.options.chart.marginLeft || 0,
-		            spacingLeft = chart.spacing[3] || 0,
-		            stockToolbar = chart.stockToolbar;
-
-		        if (!stockToolbar.visible && stockToolbar.placed) {
-		            this.chart.options.chart.marginLeft = marginLeft + spacingLeft;
-		        }
-
-		        if (stockToolbar.visible) {
-		            // 50 - width of toolbar
-		            this.chart.options.chart.marginLeft = marginLeft + 50;
-		        }
-
-		        this.chart.isDirtyBox = true;
-		    },
-		    /*
 		     * Verify if chart is in iframe.
 		     *
 		     * @return {Object} - elements translations.
@@ -3288,12 +3301,7 @@
 		     */
 		    destroy: function () {
 		        var stockToolsDiv = this.wrapper,
-		            parent = stockToolsDiv && stockToolsDiv.parentNode,
-		            chartOptions = this.chart.options,
-		            visible = this.chart.stockToolbar.visible,
-		            placed = this.chart.stockToolbar.placed,
-		            spacingLeft = this.chart.spacing[3] || 0,
-		            marginLeft = chartOptions.chart.marginLeft || 0;
+		            parent = stockToolsDiv && stockToolsDiv.parentNode;
 
 		        this.eventsToUnbind.forEach(function (unbinder) {
 		            unbinder();
@@ -3302,16 +3310,6 @@
 		        // Remove the empty element
 		        if (parent) {
 		            parent.removeChild(stockToolsDiv);
-		        }
-
-		        if (this.guiEnabled) {
-		            // remove extra space if toolbar was added
-		            if (visible) {
-		                // 50 - width of toolbar
-		                this.chart.options.chart.marginLeft = marginLeft - 50;
-		            } else if (placed) {
-		                this.chart.options.chart.marginLeft = marginLeft - spacingLeft;
-		            }
 		        }
 
 		        // delete stockToolbar reference

@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  *
  * (c) 2009-2018 Torstein Honsi
  *
@@ -18,7 +18,7 @@
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -416,7 +416,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -1082,7 +1082,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -1729,22 +1729,20 @@
 		 *     should be of length 2\. Then the `x` value is automatically calculated,
 		 *     either starting at 0 and incremented by 1, or from `pointStart`
 		 *     and `pointInterval` given in the series options.
-		 *
-		 *  ```js
+		 *     ```js
 		 *     data: [
 		 *         [0, 8, 3],
 		 *         [1, 1, 1],
 		 *         [2, 6, 8]
 		 *     ]
-		 *  ```
+		 *     ```
 		 *
 		 * 2.  An array of objects with named values. The following snippet shows only a
 		 *     few settings, see the complete options set below. If the total number of
 		 *     data points exceeds the series'
 		 *     [turboThreshold](#series.arearange.turboThreshold),
 		 *     this option is not available.
-		 *
-		 *  ```js
+		 *     ```js
 		 *     data: [{
 		 *         x: 1,
 		 *         low: 9,
@@ -1758,10 +1756,8 @@
 		 *         name: "Point1",
 		 *         color: "#FF00FF"
 		 *     }]
-		 *  ```
+		 *     ```
 		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -1771,7 +1767,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number>|Array<(number|string),number,number>|*>}
 		 * @extends   series.line.data
 		 * @excluding marker, y
 		 * @product   highcharts highstock
@@ -1802,7 +1798,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -1846,45 +1842,42 @@
 		 * An array of data points for the series. For the `areasplinerange`
 		 * series type, points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 3 or 2 values. In this case, the values
-		 * correspond to `x,low,high`. If the first value is a string, it is
-		 * applied as the name of the point, and the `x` value is inferred.
-		 * The `x` value can also be omitted, in which case the inner arrays
-		 * should be of length 2\. Then the `x` value is automatically calculated,
-		 * either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options.
+		 * 1. An array of arrays with 3 or 2 values. In this case, the values correspond
+		 *    to `x,low,high`. If the first value is a string, it is applied as the name
+		 *    of the point, and the `x` value is inferred. The `x` value can also be
+		 *    omitted, in which case the inner arrays should be of length 2\. Then the
+		 *    `x` value is automatically calculated, either starting at 0 and
+		 *    incremented by 1, or from `pointStart` and `pointInterval` given in the
+		 *    series options.
+		 *    ```js
+		 *    data: [
+		 *        [0, 0, 5],
+		 *        [1, 9, 1],
+		 *        [2, 5, 2]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 0, 5],
-		 *         [1, 9, 1],
-		 *         [2, 5, 2]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.areasplinerange.turboThreshold), this option is
+		 *    not available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        low: 5,
+		 *        high: 0,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        low: 4,
+		 *        high: 1,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](
-		 * #series.areasplinerange.turboThreshold), this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         low: 5,
-		 *         high: 0,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         low: 4,
-		 *         high: 1,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
-		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -1894,7 +1887,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number>|Array<(number|string),number,number>|*>}
 		 * @extends   series.arearange.data
 		 * @product   highcharts highstock
 		 * @apioption series.areasplinerange.data
@@ -1902,7 +1895,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -2113,45 +2106,42 @@
 		 * An array of data points for the series. For the `columnrange` series
 		 * type, points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 3 or 2 values. In this case, the values
-		 * correspond to `x,low,high`. If the first value is a string, it is
-		 * applied as the name of the point, and the `x` value is inferred.
-		 * The `x` value can also be omitted, in which case the inner arrays
-		 * should be of length 2\. Then the `x` value is automatically calculated,
-		 * either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options.
+		 * 1. An array of arrays with 3 or 2 values. In this case, the values correspond
+		 *    to `x,low,high`. If the first value is a string, it is applied as the name
+		 *    of the point, and the `x` value is inferred. The `x` value can also be
+		 *    omitted, in which case the inner arrays should be of length 2\. Then the
+		 *    `x` value is automatically calculated, either starting at 0 and
+		 *    incremented by 1, or from `pointStart` and `pointInterval` given in the
+		 *    series options.
+		 *    ```js
+		 *    data: [
+		 *        [0, 4, 2],
+		 *        [1, 2, 1],
+		 *        [2, 9, 10]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 4, 2],
-		 *         [1, 2, 1],
-		 *         [2, 9, 10]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.columnrange.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        low: 0,
+		 *        high: 4,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        low: 5,
+		 *        high: 3,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](
-		 * #series.columnrange.turboThreshold), this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         low: 0,
-		 *         high: 4,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         low: 5,
-		 *         high: 3,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
-		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -2161,7 +2151,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number>|Array<(number|string),number,number>|*>}
 		 * @extends   series.arearange.data
 		 * @excluding marker
 		 * @product   highcharts highstock
@@ -2183,12 +2173,10 @@
 	}(Highcharts));
 	(function (H) {
 		/* *
+		 * (c) 2010-2018 Sebastian Bochan
 		 *
-		 *  (c) 2010-2018 Sebastian Bochan
-		 *
-		 *  License: www.highcharts.com/license
-		 *
-		 * */
+		 * License: www.highcharts.com/license
+		 */
 
 
 
@@ -2463,7 +2451,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number|string>|*>}
+		 * @type      {Array<number|Array<(number|string),number>|*>}
 		 * @extends   series.line.data
 		 * @excluding marker
 		 * @product   highcharts highstock
@@ -2472,7 +2460,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -3047,39 +3035,33 @@
 		 * An array of data points for the series. For the `gauge` series type,
 		 * points can be given in the following ways:
 		 *
-		 * 1.  An array of numerical values. In this case, the numerical values
-		 * will be interpreted as `y` options. Example:
+		 * 1. An array of numerical values. In this case, the numerical values will be
+		 *    interpreted as `y` options. Example:
+		 *    ```js
+		 *    data: [0, 5, 3, 5]
+		 *    ```
 		 *
-		 *  ```js
-		 *  data: [0, 5, 3, 5]
-		 *  ```
-		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.gauge.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *     y: 6,
-		 *     name: "Point2",
-		 *     color: "#00FF00"
-		 * }, {
-		 *     y: 8,
-		 *     name: "Point1",
-		 *     color: "#FF00FF"
-		 * }]</pre>
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.gauge.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        y: 6,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        y: 8,
+		 *        name: "Point1",
+		 *       color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
 		 * The typical gauge only contains a single data value.
 		 *
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
-		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
-		 *         Arrays of numeric x and y
-		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
-		 *         Arrays of datetime x and y
-		 * @sample {highcharts} highcharts/series/data-array-of-name-value/
-		 *         Arrays of point.name and y
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
@@ -3092,7 +3074,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -3599,61 +3581,58 @@
 		 * An array of data points for the series. For the `boxplot` series
 		 * type, points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 6 or 5 values. In this case, the values
-		 * correspond to `x,low,q1,median,q3,high`. If the first value is a
-		 * string, it is applied as the name of the point, and the `x` value
-		 * is inferred. The `x` value can also be omitted, in which case the
-		 * inner arrays should be of length 5\. Then the `x` value is automatically
-		 * calculated, either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options.
+		 * 1. An array of arrays with 6 or 5 values. In this case, the values correspond
+		 *    to `x,low,q1,median,q3,high`. If the first value is a string, it is
+		 *    applied as the name of the point, and the `x` value is inferred. The `x`
+		 *    value can also be omitted, in which case the inner arrays should be of
+		 *    length 5. Then the `x` value is automatically calculated, either starting
+		 *    at 0 and incremented by 1, or from `pointStart` and `pointInterval` given
+		 *    in the series options.
+		 *    ```js
+		 *    data: [
+		 *        [0, 3, 0, 10, 3, 5],
+		 *        [1, 7, 8, 7, 2, 9],
+		 *        [2, 6, 9, 5, 1, 3]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 3, 0, 10, 3, 5],
-		 *         [1, 7, 8, 7, 2, 9],
-		 *         [2, 6, 9, 5, 1, 3]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.boxplot.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        low: 4,
+		 *        q1: 9,
+		 *        median: 9,
+		 *        q3: 1,
+		 *        high: 10,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        low: 5,
+		 *        q1: 7,
+		 *        median: 3,
+		 *        q3: 6,
+		 *        high: 2,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.boxplot.turboThreshold),
-		 * this option is not available.
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
+		 *         Arrays of numeric x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
+		 *         Arrays of datetime x and y
+		 * @sample {highcharts} highcharts/series/data-array-of-name-value/
+		 *         Arrays of point.name and y
+		 * @sample {highcharts} highcharts/series/data-array-of-objects/
+		 *         Config objects
 		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         low: 4,
-		 *         q1: 9,
-		 *         median: 9,
-		 *         q3: 1,
-		 *         high: 10,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         low: 5,
-		 *         q1: 7,
-		 *         median: 3,
-		 *         q3: 6,
-		 *         high: 2,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
-		 *
-		 * @sample    {highcharts} highcharts/chart/reflow-true/
-		 *            Numerical values
-		 * @sample    {highcharts} highcharts/series/data-array-of-arrays/
-		 *            Arrays of numeric x and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-arrays-datetime/
-		 *            Arrays of datetime x and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-name-value/
-		 *            Arrays of point.name and y
-		 * @sample    {highcharts} highcharts/series/data-array-of-objects/
-		 *            Config objects
-		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number,number,number,number>|Array<(number|string),number,number,number,number,number>|*>}
 		 * @extends   series.line.data
 		 * @excluding marker
 		 * @product   highcharts
@@ -3706,7 +3685,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -3821,45 +3800,42 @@
 		 * An array of data points for the series. For the `errorbar` series
 		 * type, points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 3 or 2 values. In this case, the values
-		 * correspond to `x,low,high`. If the first value is a string, it is
-		 * applied as the name of the point, and the `x` value is inferred.
-		 * The `x` value can also be omitted, in which case the inner arrays
-		 * should be of length 2\. Then the `x` value is automatically calculated,
-		 * either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options.
+		 * 1. An array of arrays with 3 or 2 values. In this case, the values correspond
+		 *    to `x,low,high`. If the first value is a string, it is applied as the name
+		 *    of the point, and the `x` value is inferred. The `x` value can also be
+		 *    omitted, in which case the inner arrays should be of length 2\. Then the
+		 *    `x` value is automatically calculated, either starting at 0 and
+		 *    incremented by 1, or from `pointStart` and `pointInterval` given in the
+		 *    series options.
+		 *    ```js
+		 *    data: [
+		 *        [0, 10, 2],
+		 *        [1, 1, 8],
+		 *        [2, 4, 5]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 10, 2],
-		 *         [1, 1, 8],
-		 *         [2, 4, 5]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.errorbar.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        low: 0,
+		 *        high: 0,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        low: 5,
+		 *        high: 5,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.errorbar.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         low: 0,
-		 *         high: 0,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         low: 5,
-		 *         high: 5,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
-		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -3869,7 +3845,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number>|Array<(number|string),number,number>|*>}
 		 * @extends   series.arearange.data
 		 * @excluding dataLabels, drilldown, marker, states
 		 * @product   highcharts
@@ -3878,7 +3854,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -4345,47 +4321,44 @@
 		 * An array of data points for the series. For the `waterfall` series
 		 * type, points can be given in the following ways:
 		 *
-		 * 1.  An array of numerical values. In this case, the numerical values
-		 * will be interpreted as `y` options. The `x` values will be automatically
-		 * calculated, either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options. If the axis has
-		 * categories, these will be used. Example:
+		 * 1. An array of numerical values. In this case, the numerical values will be
+		 *    interpreted as `y` options. The `x` values will be automatically
+		 *    calculated, either starting at 0 and incremented by 1, or from
+		 *    `pointStart` and `pointInterval` given in the series options. If the axis
+		 *    has categories, these will be used. Example:
+		 *    ```js
+		 *    data: [0, 5, 3, 5]
+		 *    ```
 		 *
-		 *  ```js
-		 *  data: [0, 5, 3, 5]
-		 *  ```
+		 * 2. An array of arrays with 2 values. In this case, the values correspond to
+		 *    `x,y`. If the first value is a string, it is applied as the name of the
+		 *    point, and the `x` value is inferred.
+		 *    ```js
+		 *    data: [
+		 *        [0, 7],
+		 *        [1, 8],
+		 *        [2, 3]
+		 *    ]
+		 *    ```
 		 *
-		 * 2.  An array of arrays with 2 values. In this case, the values correspond
-		 * to `x,y`. If the first value is a string, it is applied as the name
-		 * of the point, and the `x` value is inferred.
-		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 7],
-		 *         [1, 8],
-		 *         [2, 3]
-		 *     ]
-		 *  ```
-		 *
-		 * 3.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series'
-		 * [turboThreshold](#series.waterfall.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         y: 8,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         y: 8,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
+		 * 3. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.waterfall.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        y: 8,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        y: 8,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
@@ -4398,7 +4371,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number>|*>}
+		 * @type      {Array<number|Array<(number|string),number>|*>}
 		 * @extends   series.line.data
 		 * @excluding marker
 		 * @product   highcharts
@@ -4435,7 +4408,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -4525,46 +4498,44 @@
 		 * An array of data points for the series. For the `polygon` series
 		 * type, points can be given in the following ways:
 		 *
-		 * 1.  An array of numerical values. In this case, the numerical values
-		 * will be interpreted as `y` options. The `x` values will be automatically
-		 * calculated, either starting at 0 and incremented by 1, or from `pointStart`
-		 * and `pointInterval` given in the series options. If the axis has
-		 * categories, these will be used. Example:
+		 * 1. An array of numerical values. In this case, the numerical values will be
+		 *    interpreted as `y` options. The `x` values will be automatically
+		 *    calculated, either starting at 0 and incremented by 1, or from
+		 *    `pointStart` and `pointInterval` given in the series options. If the axis
+		 *    has categories, these will be used. Example:
+		 *    ```js
+		 *    data: [0, 5, 3, 5]
+		 *    ```
 		 *
-		 *  ```js
-		 *  data: [0, 5, 3, 5]
-		 *  ```
+		 * 2. An array of arrays with 2 values. In this case, the values correspond to
+		 *    `x,y`. If the first value is a string, it is applied as the name of the
+		 *    point, and the `x` value is inferred.
+		 *    ```js
+		 *    data: [
+		 *        [0, 10],
+		 *        [1, 3],
+		 *        [2, 1]
+		 *    ]
+		 *    ```
 		 *
-		 * 2.  An array of arrays with 2 values. In this case, the values correspond
-		 * to `x,y`. If the first value is a string, it is applied as the name
-		 * of the point, and the `x` value is inferred.
-		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 10],
-		 *         [1, 3],
-		 *         [2, 1]
-		 *     ]
-		 *  ```
-		 *
-		 * 3.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.polygon.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         y: 1,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         y: 8,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
+		 * 3. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.polygon.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        y: 1,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        y: 8,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
@@ -4577,7 +4548,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number>|*>}
+		 * @type      {Array<number|Array<(number|string),number>|*>}
 		 * @extends   series.line.data
 		 * @product   highcharts highstock
 		 * @apioption series.polygon.data
@@ -4586,14 +4557,12 @@
 	}(Highcharts));
 	(function (H) {
 		/* *
+		 * (c) 2010-2018 Highsoft AS
 		 *
-		 *  (c) 2010-2018 Highsoft AS
+		 * Author: Paweł Potaczek
 		 *
-		 *  Author: Paweł Potaczek
-		 *
-		 *  License: www.highcharts.com/license
-		 *
-		 * */
+		 * License: www.highcharts.com/license
+		 */
 
 		/**
 		 * @interface Highcharts.LegendBubbleLegendFormatterContextObject
@@ -5308,7 +5277,7 @@
 		                maxLabel = labelSize;
 		            }
 		        });
-		        return maxLabel;
+		        return maxLabel || {};
 		    },
 
 		    /**
@@ -5755,7 +5724,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license
@@ -6341,45 +6310,42 @@
 		 * An array of data points for the series. For the `bubble` series type,
 		 * points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 3 or 2 values. In this case, the values
-		 * correspond to `x,y,z`. If the first value is a string, it is applied
-		 * as the name of the point, and the `x` value is inferred. The `x`
-		 * value can also be omitted, in which case the inner arrays should
-		 * be of length 2\. Then the `x` value is automatically calculated,
-		 * either starting at 0 and incremented by 1, or from `pointStart` and
-		 * `pointInterval` given in the series options.
+		 * 1. An array of arrays with 3 or 2 values. In this case, the values correspond
+		 *    to `x,y,z`. If the first value is a string, it is applied as the name of
+		 *    the point, and the `x` value is inferred. The `x` value can also be
+		 *    omitted, in which case the inner arrays should be of length 2\. Then the
+		 *    `x` value is automatically calculated, either starting at 0 and
+		 *    incremented by 1, or from `pointStart` and `pointInterval` given in the
+		 *    series options.
+		 *    ```js
+		 *    data: [
+		 *        [0, 1, 2],
+		 *        [1, 5, 5],
+		 *        [2, 0, 2]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 1, 2],
-		 *         [1, 5, 5],
-		 *         [2, 0, 2]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.bubble.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 1,
+		 *        y: 1,
+		 *        z: 1,
+		 *        name: "Point2",
+		 *        color: "#00FF00"
+		 *    }, {
+		 *        x: 1,
+		 *        y: 5,
+		 *        z: 4,
+		 *        name: "Point1",
+		 *        color: "#FF00FF"
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.bubble.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 1,
-		 *         y: 1,
-		 *         z: 1,
-		 *         name: "Point2",
-		 *         color: "#00FF00"
-		 *     }, {
-		 *         x: 1,
-		 *         y: 5,
-		 *         z: 4,
-		 *         name: "Point1",
-		 *         color: "#FF00FF"
-		 *     }]
-		 *  ```
-		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -6389,7 +6355,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number>|Array<(number|string),number,number>|*>}
 		 * @extends   series.line.data
 		 * @excluding marker
 		 * @product   highcharts
@@ -6414,12 +6380,10 @@
 	}(Highcharts));
 	(function (H) {
 		/* *
+		 * (c) 2010-2018 Grzegorz Blachlinski, Sebastian Bochan
 		 *
-		 *  (c) 2010-2018 Grzegorz Blachlinski, Sebastian Bochan
-		 *
-		 *  License: www.highcharts.com/license
-		 *
-		 * */
+		 * License: www.highcharts.com/license
+		 */
 
 
 
@@ -6452,14 +6416,14 @@
 		     * @extends      plotOptions.bubble
 		     * @since        7.0.0
 		     * @product      highcharts
-		     * @excluding    connectEnds, connectNulls, keys, maxSize, minSize, sizeBy,
-		     *               sizeByAbsoluteValue, step, zMax, zMin
+		     * @excluding    connectEnds, connectNulls, keys, sizeByAbsoluteValue, step,
+		     *               zMax, zMin
 		     * @optionparent plotOptions.packedbubble
 		     */
 		    {
 		        /**
 		         * Minimum bubble size. Bubbles will automatically size between the
-		         * `minSize` and `maxSize` to reflect the `z` value of each bubble.
+		         * `minSize` and `maxSize` to reflect the value of each bubble.
 		         * Can be either pixels (when no unit is given), or a percentage of
 		         * the smallest one of the plot width and height.
 		         *
@@ -6467,13 +6431,11 @@
 		         *         Bubble size
 		         *
 		         * @type    {number|string}
-		         * @since   3.0
-		         * @product highcharts highstock
 		         */
 		        minSize: '10%',
 		        /**
 		         * Maximum bubble size. Bubbles will automatically size between the
-		         * `minSize` and `maxSize` to reflect the `z` value of each bubble.
+		         * `minSize` and `maxSize` to reflect the value of each bubble.
 		         * Can be either pixels (when no unit is given), or a percentage of
 		         * the smallest one of the plot width and height.
 		         *
@@ -6481,8 +6443,6 @@
 		         *         Bubble size
 		         *
 		         * @type    {number|string}
-		         * @since   3.0
-		         * @product highcharts highstock
 		         */
 		        maxSize: '100%',
 		        sizeBy: 'radius',
@@ -6930,7 +6890,7 @@
 		 * An array of data points for the series. For the `packedbubble` series type,
 		 * points can be given in the following ways:
 		 *
-		 * 1. An array of `y` values.
+		 * 1. An array of `value` values.
 		 *    ```js
 		 *    data: [5, 1, 20]
 		 *    ```
@@ -6941,11 +6901,11 @@
 		 *    is not available.
 		 *    ```js
 		 *    data: [{
-		 *        y: 1,
+		 *        value: 1,
 		 *        name: "Point2",
 		 *        color: "#00FF00"
 		 *    }, {
-		 *        y: 5,
+		 *        value: 5,
 		 *        name: "Point1",
 		 *        color: "#FF00FF"
 		 *    }]
@@ -6956,9 +6916,17 @@
 		 *
 		 * @type      {Array<number|*>}
 		 * @extends   series.line.data
-		 * @excluding marker
+		 * @excluding marker,x,y
 		 * @product   highcharts
 		 * @apioption series.packedbubble.data
+		 */
+
+		/**
+		 * The value of a bubble. The bubble's size proportional to its `value`.
+		 *
+		 * @type      {number}
+		 * @product   highcharts
+		 * @apioption series.packedbubble.data.weight
 		 */
 
 		/**
@@ -6968,7 +6936,7 @@
 
 	}(Highcharts));
 	(function (H) {
-		/**
+		/* *
 		 * (c) 2010-2018 Torstein Honsi
 		 *
 		 * License: www.highcharts.com/license

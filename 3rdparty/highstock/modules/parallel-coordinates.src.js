@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.0 (2018-12-11)
+ * @license  Highcharts JS v7.0.1 (2018-12-19)
  *
  * Support for parallel coordinates in Highcharts
  *
@@ -23,7 +23,7 @@
 		/* *
 		 * Parallel coordinates module
 		 *
-		 * (c) 2010-2017 Pawel Fus
+		 * (c) 2010-2018 Pawel Fus
 		 *
 		 * License: www.highcharts.com/license
 		 */
@@ -176,11 +176,11 @@
 		            // Disable boost
 		            {
 		                boost: {
-		                    seriesThreshold: Number.MAX_SAFE_INTEGER
+		                    seriesThreshold: Number.MAX_VALUE
 		                },
 		                plotOptions: {
 		                    series: {
-		                        boostThreshold: Number.MAX_SAFE_INTEGER
+		                        boostThreshold: Number.MAX_VALUE
 		                    }
 		                }
 		            }

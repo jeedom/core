@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  * Boost module
  *
  * (c) 2010-2018 Highsoft AS
@@ -536,6 +536,13 @@
 		            // See #9046
 		            if (series.options.boostThreshold === 0 ||
 		                series.visible === false) {
+		                continue;
+		            }
+
+		            // Don't count heatmap series as they are handled differently.
+		            // In the future we should make the heatmap/treemap path compatible
+		            // with forcing. See #9636.
+		            if (series.type === 'heatmap') {
 		                continue;
 		            }
 

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.0 (2018-12-11)
+ * @license  Highcharts JS v7.0.1 (2018-12-19)
  * Vector plot series module
  *
  * (c) 2010-2018 Torstein Honsi
@@ -19,7 +19,7 @@
 	}
 }(function (Highcharts) {
 	(function (H) {
-		/**
+		/* *
 		 * Vector plot series module
 		 *
 		 * (c) 2010-2018 Torstein Honsi
@@ -309,40 +309,37 @@
 		 * An array of data points for the series. For the `vector` series type,
 		 * points can be given in the following ways:
 		 *
-		 * 1.  An array of arrays with 4 values. In this case, the values correspond
-		 * to `x,y,length,direction`. If the first value is a string, it is applied as
-		 * the name of the point, and the `x` value is inferred.
+		 * 1. An array of arrays with 4 values. In this case, the values correspond to
+		 *    to `x,y,length,direction`. If the first value is a string, it is applied
+		 *    as the name of the point, and the `x` value is inferred.
+		 *    ```js
+		 *    data: [
+		 *        [0, 0, 10, 90],
+		 *        [0, 1, 5, 180],
+		 *        [1, 1, 2, 270]
+		 *    ]
+		 *    ```
 		 *
-		 *  ```js
-		 *     data: [
-		 *         [0, 0, 10, 90],
-		 *         [0, 1, 5, 180],
-		 *         [1, 1, 2, 270]
-		 *     ]
-		 *  ```
+		 * 2. An array of objects with named values. The following snippet shows only a
+		 *    few settings, see the complete options set below. If the total number of
+		 *    data points exceeds the series'
+		 *    [turboThreshold](#series.area.turboThreshold), this option is not
+		 *    available.
+		 *    ```js
+		 *    data: [{
+		 *        x: 0,
+		 *        y: 0,
+		 *        name: "Point2",
+		 *        length: 10,
+		 *        direction: 90
+		 *    }, {
+		 *        x: 1,
+		 *        y: 1,
+		 *        name: "Point1",
+		 *        direction: 270
+		 *    }]
+		 *    ```
 		 *
-		 * 2.  An array of objects with named values. The following snippet shows only a
-		 * few settings, see the complete options set below. If the total number of data
-		 * points exceeds the series' [turboThreshold](#series.area.turboThreshold),
-		 * this option is not available.
-		 *
-		 *  ```js
-		 *     data: [{
-		 *         x: 0,
-		 *         y: 0,
-		 *         name: "Point2",
-		 *         length: 10,
-		 *         direction: 90
-		 *     }, {
-		 *         x: 1,
-		 *         y: 1,
-		 *         name: "Point1",
-		 *         direction: 270
-		 *     }]
-		 *  ```
-		 *
-		 * @sample {highcharts} highcharts/chart/reflow-true/
-		 *         Numerical values
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
 		 *         Arrays of numeric x and y
 		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
@@ -352,7 +349,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number,number,number>|*>}
 		 * @extends   series.line.data
 		 * @product   highcharts highstock
 		 * @apioption series.vector.data

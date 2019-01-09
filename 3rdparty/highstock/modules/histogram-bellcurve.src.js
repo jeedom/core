@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.0 (2018-12-11)
+ * @license  Highcharts JS v7.0.1 (2018-12-19)
  *
  * (c) 2010-2018 Highsoft AS
  * Author: Sebastian Domas
@@ -388,7 +388,13 @@
 
 	}(Highcharts, derivedSeriesMixin));
 	(function (H, derivedSeriesMixin) {
-
+		/* *
+		 * (c) 2010-2018 Highsoft AS
+		 *
+		 * Author: Sebastian Domas
+		 *
+		 * License: www.highcharts.com/license
+		 */
 
 
 
@@ -398,11 +404,9 @@
 		    merge = H.merge;
 
 
-		/** ****************************************************************************
-		 *
-		 * BELL CURVE
-		 *
-		 ******************************************************************************/
+		/* ************************************************************************** *
+		 *  BELL CURVE                                                                *
+		 * ************************************************************************** */
 
 		function mean(data) {
 		    var length = data.length,
@@ -436,7 +440,7 @@
 		}
 
 
-		/* *
+		/**
 		 * Bell curve class
 		 *
 		 * @private
@@ -444,8 +448,10 @@
 		 * @name Highcharts.seriesTypes.bellcurve
 		 *
 		 * @augments Highcharts.Series
-		 * @mixes    DerivedSeriesMixin
+		 *
+		 * @mixes DerivedSeriesMixin
 		 */
+		seriesType('bellcurve', 'areaspline'
 
 		/**
 		 * A bell curve is an areaspline series which represents the probability density
@@ -463,7 +469,7 @@
 		 *               pointIntervalUnit
 		 * @optionparent plotOptions.bellcurve
 		 */
-		seriesType('bellcurve', 'areaspline', {
+		, {
 		   /**
 		    * This option allows to define the length of the bell curve. A unit of the
 		    * length of the bell curve is standard deviation.
@@ -548,17 +554,6 @@
 		 *
 		 * @type      {number|string}
 		 * @apioption series.bellcurve.baseSeries
-		 */
-
-		/**
-		 * An array of data points for the series. For the `bellcurve` series type,
-		 * points are calculated dynamically.
-		 *
-		 * @type      {Array<number|Array<number|string>|*>}
-		 * @extends   series.areaspline.data
-		 * @since     6.0.0
-		 * @product   highcharts
-		 * @apioption series.bellcurve.data
 		 */
 
 	}(Highcharts, derivedSeriesMixin));

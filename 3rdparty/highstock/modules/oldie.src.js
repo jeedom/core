@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  * Old IE (v6, v7, v8) module for Highcharts v6+.
  *
  * (c) 2010-2018 Highsoft AS
@@ -67,7 +67,7 @@
 		 * @apioption global.VMLRadialGradientURL
 		 */
 		H.getOptions().global.VMLRadialGradientURL =
-		    'http://code.highcharts.com/7.0.0/gfx/vml-radial-gradient.png';
+		    'http://code.highcharts.com/7.0.1/gfx/vml-radial-gradient.png';
 
 
 		// Utilites

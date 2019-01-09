@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  *
  * (c) 2009-2018 Torstein Honsi
  *
@@ -929,7 +929,7 @@
 		     *
 		     * @since 6.2.0
 		     */
-		    default: {
+		    'default': {
 		        /**
 		         * CSS class name of the guide box in this state. Defaults to
 		         * `highcharts-drag-box-default`.
@@ -2006,7 +2006,7 @@
 		 */
 		function mouseOut(point) {
 		    var chart = point.series && point.series.chart,
-		        dragDropData = chart.dragDropData;
+		        dragDropData = chart && chart.dragDropData;
 		    if (
 		        chart &&
 		        chart.dragHandles &&

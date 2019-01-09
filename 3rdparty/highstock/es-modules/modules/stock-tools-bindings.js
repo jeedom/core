@@ -176,7 +176,20 @@ bindingsUtils.manageIndicators = function (data) {
             'mfi',
             'roc',
             'rsi',
-            'vwap'
+            'vwap',
+            'ao',
+            'aroon',
+            'aroonoscillator',
+            'trix',
+            'apo',
+            'dpo',
+            'ppo',
+            'natr',
+            'williamsr',
+            'linearRegression',
+            'linearRegressionSlope',
+            'linearRegressionIntercept',
+            'linearRegressionAngle'
         ],
         yAxis,
         series;
@@ -279,7 +292,7 @@ bindingsUtils.updateHeight = function (e, annotation) {
 bindingsUtils.attractToPoint = function (e, chart) {
     var x = chart.xAxis[0].toValue(e.chartX),
         y = chart.yAxis[0].toValue(e.chartY),
-        distX = Number.MAX_SAFE_INTEGER, // IE?
+        distX = Number.MAX_VALUE,
         closestPoint;
 
     chart.series.forEach(function (series) {

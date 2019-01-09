@@ -1,5 +1,5 @@
 /*
- Highcharts JS v7.0.0 (2018-12-11)
+ Highcharts JS v7.0.1 (2018-12-19)
  Highstock as a plugin for Highcharts
 
  (c) 2018 Torstein Honsi
