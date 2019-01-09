@@ -2,4 +2,8 @@
     <testsuite>
         <directory suffix="Test.php">./tests</directory>
     </testsuite>
+
+    <php>
+        <env name="ENV" value="test" />
+    </php>
 </phpunit>

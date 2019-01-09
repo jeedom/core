@@ -16,13 +16,22 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-class scenarioTest extends \PHPUnit_Framework_TestCase {
+class scenarioTest extends \PHPUnit_Framework_TestCase
+{
 	protected function setUp() {
 		if (!extension_loaded('mysqli')) {
 			$this->markTestSkipped(
 				'L\'extension MySQL n\'est pas disponible.'
 			);
 		}
+
+        try {
+            DB::getConnection();
+        } catch (\Exception $e) {
+            $this->markTestSkipped(
+                'La base de donnée n\'est pas accessible.'
+            );
+        }
 	}
 
 	public function getGetSets() {
