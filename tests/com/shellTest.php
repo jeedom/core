@@ -104,7 +104,7 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$shell->addCmd('echo foo');
 		$result = com_shell::execute('echo bar');
 		$this->assertSame('bar', $result);
-		$this->assertSame(array('echo bar'), $shell->getHistory());
+		$this->assertSame(array('echo bar 2>&1'), $shell->getHistory());
 		$result = $shell->exec();
 		$this->assertSame('foo', $result);
 	}
@@ -114,12 +114,12 @@ class com_shellTest extends \PHPUnit_Framework_TestCase {
 		$shell->clearHistory();
 		$this->assertSame(array(), $shell->getHistory());
 		com_shell::execute('echo foo');
-		$this->assertSame(array('echo foo'), $shell->getHistory());
+		$this->assertSame(array('echo foo 2>&1'), $shell->getHistory());
 		$shell->addCmd('echo bar');
 		$shell->addCmd('echo baz');
-		$this->assertSame(array('echo foo'), $shell->getHistory());
+		$this->assertSame(array('echo foo 2>&1'), $shell->getHistory());
 		$shell->exec();
-		$this->assertSame(array('echo foo', 'echo bar', 'echo baz'), $shell->getHistory());
+		$this->assertSame(array('echo foo 2>&1', 'echo bar 2>&1', 'echo baz 2>&1'), $shell->getHistory());
 		$shell->clearHistory();
 		$this->assertSame(array(), $shell->getHistory());
 	}

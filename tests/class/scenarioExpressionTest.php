@@ -6,23 +6,27 @@ class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 					'L\'extension CURL n\'est pas disponible.'
 			);
 		}
+
+        try {
+            DB::getConnection();
+        } catch (\Exception $e) {
+            $this->markTestSkipped(
+                'La base de donnée n\'est pas accessible.'
+            );
+        }
 	}
 
 	public function testCalculCondition() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$tests = array(
 			'1+1' => 2,
 		);
 		foreach ($tests as $key => $value) {
-			echo "\n\t " . $key . ' = ' . $value;
 			$result = scenarioExpression::createAndExec('condition', $key);
 			$this->assertEquals(2, $value);
 		}
-		echo "\n";
 	}
 
 	public function testVariable() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		scenarioExpression::createAndExec('action', 'variable', array('value' => 'plop', 'name' => 'test'));
 		$result = scenarioExpression::createAndExec('condition', 'variable(test)');
 		$this->assertEquals('plop', $result);
@@ -32,9 +36,7 @@ class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testVariable
 	 */
 	public function testStringCondition() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$result = scenarioExpression::createAndExec('condition', 'variable(test) == "plop"');
 		$this->assertTrue($result);
 	}
 }
-?>
