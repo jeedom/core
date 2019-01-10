@@ -312,21 +312,33 @@ $('#bt_showNoteManager').on('click',function(){
 });
 
 $('#bt_gotoDashboard').on('click',function(){
+  if('ontouchstart' in window || navigator.msMaxTouchPoints){
+    return;
+  }
   $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
   loadPage('index.php?v=d&p=dashboard');
 });
 
 $('#bt_gotoView').on('click',function(){
+  if('ontouchstart' in window || navigator.msMaxTouchPoints){
+    return;
+  }
   $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
   loadPage('index.php?v=d&p=view');
 });
 
 $('#bt_gotoPlan').on('click',function(){
+  if('ontouchstart' in window || navigator.msMaxTouchPoints){
+    return;
+  }
   $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
   loadPage('index.php?v=d&p=plan');
 });
 
 $('#bt_gotoPlan3d').on('click',function(){
+  if('ontouchstart' in window || navigator.msMaxTouchPoints){
+    return;
+  }
   $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
   loadPage('index.php?v=d&p=plan3d');
 });
