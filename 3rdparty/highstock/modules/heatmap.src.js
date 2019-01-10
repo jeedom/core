@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  *
  * (c) 2009-2018 Torstein Honsi
  *
@@ -448,6 +448,12 @@
 		             * @type      {boolean}
 		             * @product   highcharts highmaps
 		             * @apioption colorAxis.reversed
+		             */
+
+		            /**
+		             * @product   highcharts highmaps
+		             * @excluding afterBreaks, pointBreak, pointInBreak
+		             * @apioption colorAxis.events
 		             */
 
 		            /**

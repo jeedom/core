@@ -175,7 +175,7 @@ H.Tooltip.prototype = {
             opacity: 0.5,
             children: [{
                 tagName: 'feGaussianBlur',
-                in: 'SourceAlpha',
+                'in': 'SourceAlpha',
                 stdDeviation: 1
             }, {
                 tagName: 'feOffset',
@@ -194,7 +194,7 @@ H.Tooltip.prototype = {
                     tagName: 'feMergeNode'
                 }, {
                     tagName: 'feMergeNode',
-                    in: 'SourceGraphic'
+                    'in': 'SourceGraphic'
                 }]
             }]
         });
@@ -303,6 +303,7 @@ H.Tooltip.prototype = {
      * @function Highcharts.Tooltip#update
      *
      * @param {Highcharts.TooltipOptions} options
+     *        The tooltip options to update.
      */
     update: function (options) {
         this.destroy();

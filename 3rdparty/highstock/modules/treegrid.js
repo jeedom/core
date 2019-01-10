@@ -1,5 +1,5 @@
 /*
- Highcharts JS v7.0.0 (2018-12-11)
+ Highcharts JS v7.0.1 (2018-12-19)
  Tree Grid
 
  (c) 2016-2018 Jon Arild Nygard

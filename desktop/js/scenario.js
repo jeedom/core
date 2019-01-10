@@ -1,25 +1,25 @@
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
- tab = null;
- var url = document.location.toString();
- if (url.match('#')) {
+tab = null;
+var url = document.location.toString();
+if (url.match('#')) {
   $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
-} 
+}
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -31,38 +31,39 @@ listColorStrong = ['#12846D', '#229351', '#246F9E', '#634F96', '#D88811', '#B746
 pColor = 0;
 
 autoCompleteCondition = [
-{val: 'rand(MIN,MAX)'},
-{val: '#heure#'},
-{val: '#jour#'},
-{val: '#mois#'},
-{val: '#annee#'},
-{val: '#date#'},
-{val: '#time#'},
-{val: '#timestamp#'},
-{val: '#semaine#'},
-{val: '#sjour#'},
-{val: '#minute#'},
-{val: '#IP#'},
-{val: '#hostname#'},
-{val: 'variable(mavariable,defaut)'},
-{val: 'delete_variable(mavariable)'},
-{val: 'tendance(commande,periode)'},
-{val: 'average(commande,periode)'},
-{val: 'max(commande,periode)'},
-{val: 'min(commande,periode)'},
-{val: 'round(valeur)'},
-{val: 'trigger(commande)'},
-{val: 'randomColor(debut,fin)'},
-{val: 'lastScenarioExecution(scenario)'},
-{val: 'stateDuration(commande)'},
-{val: 'lastChangeStateDuration(commande,value)'},
-{val: 'median(commande1,commande2)'},
-{val: 'time(value)'},
-{val: 'collectDate(cmd)'},
-{val: 'valueDate(cmd)'},
-{val: 'eqEnable(equipement)'},
-{val: 'name(type,commande)'},
-{val: 'value(commande)'}
+  {val: 'rand(MIN,MAX)'},
+  {val: '#heure#'},
+  {val: '#jour#'},
+  {val: '#mois#'},
+  {val: '#annee#'},
+  {val: '#date#'},
+  {val: '#time#'},
+  {val: '#timestamp#'},
+  {val: '#semaine#'},
+  {val: '#sjour#'},
+  {val: '#minute#'},
+  {val: '#IP#'},
+  {val: '#hostname#'},
+  {val: 'variable(mavariable,defaut)'},
+  {val: 'delete_variable(mavariable)'},
+  {val: 'tendance(commande,periode)'},
+  {val: 'average(commande,periode)'},
+  {val: 'max(commande,periode)'},
+  {val: 'min(commande,periode)'},
+  {val: 'round(valeur)'},
+  {val: 'trigger(commande)'},
+  {val: 'randomColor(debut,fin)'},
+  {val: 'lastScenarioExecution(scenario)'},
+  {val: 'stateDuration(commande)'},
+  {val: 'lastChangeStateDuration(commande,value)'},
+  {val: 'median(commande1,commande2)'},
+  {val: 'time(value)'},
+  {val: 'collectDate(cmd)'},
+  {val: 'valueDate(cmd)'},
+  {val: 'eqEnable(equipement)'},
+  {val: 'name(type,commande)'},
+  {val: 'value(commande)'},
+  {val: 'lastCommunication(equipement)'}
 ];
 autoCompleteAction = ['tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
@@ -160,9 +161,9 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").off('click').on('cli
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-     loadPage('index.php?v=d&p=scenario');
-   }
- });
+      loadPage('index.php?v=d&p=scenario');
+    }
+  });
 });
 
 $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) {
@@ -287,8 +288,8 @@ $("#bt_stopScenario").off('click').on('click', function () {
 });
 
 $('#bt_editJsonScenario').on('click',function(){
- $('#md_modal').dialog({title: "{{Edition texte scénarios}}"});
- $("#md_modal").load('index.php?v=d&modal=scenario.jsonEdit&id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Edition texte scénarios}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.jsonEdit&id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
 $('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').off('click').on('click', function () {
@@ -312,8 +313,8 @@ $('#in_addElementType').off('change').on('change',function(){
 });
 
 $('#bt_scenarioTab').on('click',function(){
-  setTimeout(function(){ 
-    setEditor(); 
+  setTimeout(function(){
+    setEditor();
     taAutosize();
   }, 50);
 });
@@ -330,25 +331,25 @@ $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCr
 $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   var elementDiv = $(this).closest('.element');
   if(elementDiv.html() == undefined){
-   elementDiv = $('#div_scenarioElement');
- }
- var expression = false;
- if ($(this).hasClass('fromSubElement')) {
-  elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
-  expression = true;
-}
-$('#md_addElement').modal('show');
-$("#bt_addElementSave").off('click').on('click', function (event) {
-  if (expression) {
-    elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
-  } else {
-    $('#div_scenarioElement .span_noScenarioElement').remove();
-    elementDiv.append(addElement({type: $("#in_addElementType").value()}));
+    elementDiv = $('#div_scenarioElement');
   }
-  setEditor();
-  updateSortable();
-  $('#md_addElement').modal('hide');
-});
+  var expression = false;
+  if ($(this).hasClass('fromSubElement')) {
+    elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
+    expression = true;
+  }
+  $('#md_addElement').modal('show');
+  $("#bt_addElementSave").off('click').on('click', function (event) {
+    if (expression) {
+      elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
+    } else {
+      $('#div_scenarioElement .span_noScenarioElement').remove();
+      elementDiv.append(addElement({type: $("#in_addElementType").value()}));
+    }
+    setEditor();
+    updateSortable();
+    $('#md_addElement').modal('hide');
+  });
 });
 
 $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
@@ -366,7 +367,7 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-
+  
   if($(this).children("i").hasClass('fa-chevron-right')){
     $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.subElement').next().css('display','table');
@@ -375,18 +376,18 @@ $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', 
   {
     if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
     {
-     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-   }
-   else
-   {  
-     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-     $(this).closest('.subElement').next().css('display','none');
-   }
- }
+      alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+    }
+    else
+    {
+      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+      $(this).closest('.subElement').next().css('display','none');
+    }
+  }
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-
+  
   if($(this).children("i").hasClass('fa-chevron-right')){
     $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.subElement').next().css('display','table');
@@ -395,14 +396,14 @@ $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', 
   {
     if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
     {
-     alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-   }
-   else
-   {  
-     $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-     $(this).closest('.subElement').next().css('display','none');
-   }
- }
+      alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+    }
+    else
+    {
+      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+      $(this).closest('.subElement').next().css('display','none');
+    }
+  }
 });
 
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
@@ -428,146 +429,146 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
       message = 'Aucun choix possible';
       if(result.cmd.subType == 'numeric'){
-       message = '<div class="row">  ' +
-       '<div class="col-md-12"> ' +
-       '<form class="form-horizontal" onsubmit="return false;"> ' +
-       '<div class="form-group"> ' +
-       '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-       '             <div class="col-xs-3">' +
-       '                <select class="conditionAttr form-control" data-l1key="operator">' +
-       '                    <option value="==">{{égal}}</option>' +
-       '                  <option value=">">{{supérieur}}</option>' +
-       '                  <option value="<">{{inférieur}}</option>' +
-       '                 <option value="!=">{{différent}}</option>' +
-       '            </select>' +
-       '       </div>' +
-       '      <div class="col-xs-4">' +
-       '         <input type="number" class="conditionAttr form-control" data-l1key="operande" />' +
-       '    </div>' +
-       '</div>' +
-       '<div class="form-group"> ' +
-       '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-       '             <div class="col-xs-3">' +
-       '                <select class="conditionAttr form-control" data-l1key="next">' +
-       '                    <option value="">rien</option>' +
-       '                  <option value="ET">{{et}}</option>' +
-       '                  <option value="OU">{{ou}}</option>' +
-       '            </select>' +
-       '       </div>' +
-       '</div>' +
-       '</div> </div>' +
-       '</form> </div>  </div>';
-     }
-     if(result.cmd.subType == 'string'){
-      message = '<div class="row">  ' +
-      '<div class="col-md-12"> ' +
-      '<form class="form-horizontal" onsubmit="return false;"> ' +
-      '<div class="form-group"> ' +
-      '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-      '             <div class="col-xs-3">' +
-      '                <select class="conditionAttr form-control" data-l1key="operator">' +
-      '                    <option value="==">{{égale}}</option>' +
-      '                  <option value="matches">{{contient}}</option>' +
-      '                 <option value="!=">{{différent}}</option>' +
-      '            </select>' +
-      '       </div>' +
-      '      <div class="col-xs-4">' +
-      '         <input class="conditionAttr form-control" data-l1key="operande" />' +
-      '    </div>' +
-      '</div>' +
-      '<div class="form-group"> ' +
-      '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-      '             <div class="col-xs-3">' +
-      '                <select class="conditionAttr form-control" data-l1key="next">' +
-      '                    <option value="">{{rien}}</option>' +
-      '                  <option value="ET">{{et}}</option>' +
-      '                  <option value="OU">{{ou}}</option>' +
-      '            </select>' +
-      '       </div>' +
-      '</div>' +
-      '</div> </div>' +
-      '</form> </div>  </div>';
-    }
-    if(result.cmd.subType == 'binary'){
-      message = '<div class="row">  ' +
-      '<div class="col-md-12"> ' +
-      '<form class="form-horizontal" onsubmit="return false;"> ' +
-      '<div class="form-group"> ' +
-      '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-      '            <div class="col-xs-7">' +
-      '                 <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />' +
-      '                  <select class="conditionAttr form-control" data-l1key="operande">' +
-      '                       <option value="1">{{Ouvert}}</option>' +
-      '                       <option value="0">{{Fermé}}</option>' +
-      '                       <option value="1">{{Allumé}}</option>' +
-      '                       <option value="0">{{Eteint}}</option>' +
-      '                       <option value="1">{{Déclenché}}</option>' +
-      '                       <option value="0">{{Au repos}}</option>' +
-      '                       </select>' +
-      '                    </div>' +
-      '                 </div>' +
-      '<div class="form-group"> ' +
-      '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-      '             <div class="col-xs-3">' +
-      '                <select class="conditionAttr form-control" data-l1key="next">' +
-      '                  <option value="">{{rien}}</option>' +
-      '                  <option value="ET">{{et}}</option>' +
-      '                  <option value="OU">{{ou}}</option>' +
-      '            </select>' +
-      '       </div>' +
-      '</div>' +
-      '</div> </div>' +
-      '</form> </div>  </div>';
-    }
-
-    bootbox.dialog({
-      title: "{{Ajout d'un nouveau scénario}}",
-      message: message,
-      buttons: {
-        "Ne rien mettre": {
-          className: "btn-default",
-          callback: function () {
-            expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human);
-          }
-        },
-        success: {
-          label: "Valider",
-          className: "btn-primary",
-          callback: function () {
-           var condition = result.human;
-           condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
-           if(result.cmd.subType == 'string'){
-            if($('.conditionAttr[data-l1key=operator]').value() == 'matches'){
-              condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
-            }else{
-             condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
-           }
-         }else{
-          condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
-        }
-        condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
-        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
-        if($('.conditionAttr[data-l1key=next]').value() != ''){
-          el.click();
-        }
+        message = '<div class="row">  ' +
+        '<div class="col-md-12"> ' +
+        '<form class="form-horizontal" onsubmit="return false;"> ' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+        '             <div class="col-xs-3">' +
+        '                <select class="conditionAttr form-control" data-l1key="operator">' +
+        '                    <option value="==">{{égal}}</option>' +
+        '                  <option value=">">{{supérieur}}</option>' +
+        '                  <option value="<">{{inférieur}}</option>' +
+        '                 <option value="!=">{{différent}}</option>' +
+        '            </select>' +
+        '       </div>' +
+        '      <div class="col-xs-4">' +
+        '         <input type="number" class="conditionAttr form-control" data-l1key="operande" />' +
+        '    </div>' +
+        '</div>' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
+        '             <div class="col-xs-3">' +
+        '                <select class="conditionAttr form-control" data-l1key="next">' +
+        '                    <option value="">rien</option>' +
+        '                  <option value="ET">{{et}}</option>' +
+        '                  <option value="OU">{{ou}}</option>' +
+        '            </select>' +
+        '       </div>' +
+        '</div>' +
+        '</div> </div>' +
+        '</form> </div>  </div>';
       }
-    },
-  }
-});
-  }
-});
+      if(result.cmd.subType == 'string'){
+        message = '<div class="row">  ' +
+        '<div class="col-md-12"> ' +
+        '<form class="form-horizontal" onsubmit="return false;"> ' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+        '             <div class="col-xs-3">' +
+        '                <select class="conditionAttr form-control" data-l1key="operator">' +
+        '                    <option value="==">{{égale}}</option>' +
+        '                  <option value="matches">{{contient}}</option>' +
+        '                 <option value="!=">{{différent}}</option>' +
+        '            </select>' +
+        '       </div>' +
+        '      <div class="col-xs-4">' +
+        '         <input class="conditionAttr form-control" data-l1key="operande" />' +
+        '    </div>' +
+        '</div>' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
+        '             <div class="col-xs-3">' +
+        '                <select class="conditionAttr form-control" data-l1key="next">' +
+        '                    <option value="">{{rien}}</option>' +
+        '                  <option value="ET">{{et}}</option>' +
+        '                  <option value="OU">{{ou}}</option>' +
+        '            </select>' +
+        '       </div>' +
+        '</div>' +
+        '</div> </div>' +
+        '</form> </div>  </div>';
+      }
+      if(result.cmd.subType == 'binary'){
+        message = '<div class="row">  ' +
+        '<div class="col-md-12"> ' +
+        '<form class="form-horizontal" onsubmit="return false;"> ' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
+        '            <div class="col-xs-7">' +
+        '                 <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />' +
+        '                  <select class="conditionAttr form-control" data-l1key="operande">' +
+        '                       <option value="1">{{Ouvert}}</option>' +
+        '                       <option value="0">{{Fermé}}</option>' +
+        '                       <option value="1">{{Allumé}}</option>' +
+        '                       <option value="0">{{Eteint}}</option>' +
+        '                       <option value="1">{{Déclenché}}</option>' +
+        '                       <option value="0">{{Au repos}}</option>' +
+        '                       </select>' +
+        '                    </div>' +
+        '                 </div>' +
+        '<div class="form-group"> ' +
+        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
+        '             <div class="col-xs-3">' +
+        '                <select class="conditionAttr form-control" data-l1key="next">' +
+        '                  <option value="">{{rien}}</option>' +
+        '                  <option value="ET">{{et}}</option>' +
+        '                  <option value="OU">{{ou}}</option>' +
+        '            </select>' +
+        '       </div>' +
+        '</div>' +
+        '</div> </div>' +
+        '</form> </div>  </div>';
+      }
+      
+      bootbox.dialog({
+        title: "{{Ajout d'un nouveau scénario}}",
+        message: message,
+        buttons: {
+          "Ne rien mettre": {
+            className: "btn-default",
+            callback: function () {
+              expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human);
+            }
+          },
+          success: {
+            label: "Valider",
+            className: "btn-primary",
+            callback: function () {
+              var condition = result.human;
+              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
+              if(result.cmd.subType == 'string'){
+                if($('.conditionAttr[data-l1key=operator]').value() == 'matches'){
+                  condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
+                }else{
+                  condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+                }
+              }else{
+                condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
+              }
+              condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
+              expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
+              if($('.conditionAttr[data-l1key=next]').value() != ''){
+                el.click();
+              }
+            }
+          },
+        }
+      });
+    }
+  });
 });
 
 
 $('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
-   expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
-   jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
-    expression.find('.expressionOptions').html(html);
-    taAutosize();
+    expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
+    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
+      expression.find('.expressionOptions').html(html);
+      taAutosize();
+    });
   });
- });
 });
 
 
@@ -691,7 +692,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
-
+  
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
@@ -733,9 +734,9 @@ $('#div_pageContainer').on('change', '.subElementAttr', function () {
 });
 
 if (is_numeric(getUrlVars('id'))) {
- if ($('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').length != 0) {
-  $('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').click();
-}
+  if ($('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').length != 0) {
+    $('.scenarioDisplayCard[data-scenario_id=' + getUrlVars('id') + ']').click();
+  }
 }
 
 function updateSortable() {
@@ -798,116 +799,116 @@ function printScenario(_id) {
       return;
     }
     switch(_options.state){
-     case 'error' :
-     $('#bt_stopScenario').hide();
-     $('#span_ongoing').text('{{Erreur}}');
-     $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
-     break;
-     case 'on' :
-     $('#bt_stopScenario').show();
-     $('#span_ongoing').text('{{Actif}}');
-     $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
-     break;
-     case 'in progress' :
-     $('#bt_stopScenario').show();
-     $('#span_ongoing').text('{{En cours}}');
-     $('#span_ongoing').addClass('label-success');
-     $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
-     break;
-     case 'stop' :
-     $('#bt_stopScenario').hide();
-     $('#span_ongoing').text('{{Arrêté}}');
-     $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
-     break;
-   }
- }
- jeedom.scenario.get({
-  id: _id,
-  error: function (error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'});
-  },
-  success: function (data) {
-    pColor = 0;
-    $('.scenarioAttr').value('');
-    if(data.name){
-      document.title = data.name +' - Jeedom';
+      case 'error' :
+      $('#bt_stopScenario').hide();
+      $('#span_ongoing').text('{{Erreur}}');
+      $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+      break;
+      case 'on' :
+      $('#bt_stopScenario').show();
+      $('#span_ongoing').text('{{Actif}}');
+      $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+      break;
+      case 'in progress' :
+      $('#bt_stopScenario').show();
+      $('#span_ongoing').text('{{En cours}}');
+      $('#span_ongoing').addClass('label-success');
+      $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+      break;
+      case 'stop' :
+      $('#bt_stopScenario').hide();
+      $('#span_ongoing').text('{{Arrêté}}');
+      $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+      break;
     }
-    $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
-    $('.scenarioAttr[data-l1key=object_id]').val('');
-    $('#div_pageContainer').setValues(data, '.scenarioAttr');
-    data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
-    $('#span_lastLaunch').text(data.lastLaunch);
-
-    $('#div_scenarioElement').empty();
-    $('.provokeMode').empty();
-    $('.scheduleMode').empty();
-    $('.scenarioAttr[data-l1key=mode]').trigger('change');
-    for (var i in data.schedules) {
-      $('#div_schedules').schedule.display(data.schedules[i]);
-    }
-    jeedom.scenario.update[_id](data);
-    if (data.isActive != 1) {
-      $('#in_ongoing').text('{{Inactif}}');
-      $('#in_ongoing').removeClass('label-danger');
-      $('#in_ongoing').removeClass('label-success');
-    }
-    if ($.isArray(data.trigger)) {
-      for (var i in data.trigger) {
-        if (data.trigger[i] != '' && data.trigger[i] != null) {
-          addTrigger(data.trigger[i]);
+  }
+  jeedom.scenario.get({
+    id: _id,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      pColor = 0;
+      $('.scenarioAttr').value('');
+      if(data.name){
+        document.title = data.name +' - Jeedom';
+      }
+      $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
+      $('.scenarioAttr[data-l1key=object_id]').val('');
+      $('#div_pageContainer').setValues(data, '.scenarioAttr');
+      data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
+      $('#span_lastLaunch').text(data.lastLaunch);
+      
+      $('#div_scenarioElement').empty();
+      $('.provokeMode').empty();
+      $('.scheduleMode').empty();
+      $('.scenarioAttr[data-l1key=mode]').trigger('change');
+      for (var i in data.schedules) {
+        $('#div_schedules').schedule.display(data.schedules[i]);
+      }
+      jeedom.scenario.update[_id](data);
+      if (data.isActive != 1) {
+        $('#in_ongoing').text('{{Inactif}}');
+        $('#in_ongoing').removeClass('label-danger');
+        $('#in_ongoing').removeClass('label-success');
+      }
+      if ($.isArray(data.trigger)) {
+        for (var i in data.trigger) {
+          if (data.trigger[i] != '' && data.trigger[i] != null) {
+            addTrigger(data.trigger[i]);
+          }
+        }
+      } else {
+        if (data.trigger != '' && data.trigger != null) {
+          addTrigger(data.trigger);
         }
       }
-    } else {
-      if (data.trigger != '' && data.trigger != null) {
-        addTrigger(data.trigger);
-      }
-    }
-    if ($.isArray(data.schedule)) {
-      for (var i in data.schedule) {
-        if (data.schedule[i] != '' && data.schedule[i] != null) {
-          addSchedule(data.schedule[i]);
+      if ($.isArray(data.schedule)) {
+        for (var i in data.schedule) {
+          if (data.schedule[i] != '' && data.schedule[i] != null) {
+            addSchedule(data.schedule[i]);
+          }
+        }
+      } else {
+        if (data.schedule != '' && data.schedule != null) {
+          addSchedule(data.schedule);
         }
       }
-    } else {
-      if (data.schedule != '' && data.schedule != null) {
-        addSchedule(data.schedule);
+      
+      if(data.elements.length == 0){
+        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }
-    }
-
-    if(data.elements.length == 0){
-      $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
-    }
-    actionOptions = []
-    for (var i in data.elements) {
-      $('#div_scenarioElement').append(addElement(data.elements[i]));
-    }
-    jeedom.cmd.displayActionsOption({
-      params : actionOptions,
-      async : false,
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success : function(data){
-       $.showLoading();
-       for(var i in data){
-        $('#'+data[i].id).append(data[i].html.html);
+      actionOptions = []
+      for (var i in data.elements) {
+        $('#div_scenarioElement').append(addElement(data.elements[i]));
       }
-      $.hideLoading();
+      jeedom.cmd.displayActionsOption({
+        params : actionOptions,
+        async : false,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function(data){
+          $.showLoading();
+          for(var i in data){
+            $('#'+data[i].id).append(data[i].html.html);
+          }
+          $.hideLoading();
+          taAutosize();
+        }
+      });
+      updateSortable();
+      setEditor();
+      setAutocomplete();
+      updateElseToggle();
+      $('#div_editScenario').show();
       taAutosize();
+      modifyWithoutSave = false;
+      setTimeout(function () {
+        modifyWithoutSave = false;
+      }, 1000);
     }
   });
-    updateSortable();
-    setEditor();
-    setAutocomplete();
-    updateElseToggle();
-    $('#div_editScenario').show();
-    taAutosize();
-    modifyWithoutSave = false;
-    setTimeout(function () {
-      modifyWithoutSave = false;
-    }, 1000);
-  }
-});
 }
 
 function saveScenario() {
@@ -928,11 +929,11 @@ function saveScenario() {
       modifyWithoutSave = false;
       url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
       if (document.location.toString().match('#')) {
-       url += '#' + document.location.toString().split('#')[1];
-     } 
-     loadPage(url);
-   }
- });
+        url += '#' + document.location.toString().split('#')[1];
+      }
+      loadPage(url);
+    }
+  });
 }
 
 function addTrigger(_trigger) {
@@ -993,7 +994,7 @@ function addExpression(_expression) {
     retour += '       <button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '    </span>';
     retour += '</div>';
-
+    
     break;
     case 'element' :
     retour += '<div class="col-xs-12" style="padding-right: 0px; padding-left: 0px;">';
@@ -1021,7 +1022,7 @@ function addExpression(_expression) {
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;margin-right : 0px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
-
+    
     retour += '</div>';
     retour += '<div class="col-xs-4" style="margin-top: 4px"><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
@@ -1099,7 +1100,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}';
     retour += ' </legend>';
     retour += '  </div>';
-
+    
     retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
       retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
@@ -1115,12 +1116,12 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-
+    
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>';
     retour += '       <button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fas fa-chevron-right"></i>';
     retour += '       </button>';
@@ -1144,12 +1145,12 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-
+    
     break;
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 125px; vertical-align: top; padding-left: 15px;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{SINON}}</legend>';
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fas fa-plus-circle"></i> Ajouter';
@@ -1170,7 +1171,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-
+    
     break;
     case 'for' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1215,7 +1216,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-
+    
     break;
     case 'at' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1242,7 +1243,7 @@ function addSubElement(_subElement, _pColor) {
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '  <div style="display:table-cell; width: 100px; vertical-align: top; padding-left: 15px;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{FAIRE}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{FAIRE}}</legend>';
     retour += '     <div class="dropdown">';
     retour += '       <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '         <i class="fas fa-plus-circle"></i> Ajouter';
@@ -1263,7 +1264,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-
+    
     break;
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1276,7 +1277,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 85px;vertical-align: top;">';
-    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>'; 
+    retour += '     <legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>';
     retour += '  </div>';
     retour += '  <div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
     retour += '     <div class="sortable empty" style="height : 30px;"></div>';
@@ -1302,7 +1303,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-
+    
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1350,13 +1351,13 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-
+  
   pColor++;
   if (pColor > 4) {
     pColor = 0;
   }
   var color = pColor;
-
+  
   var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 0px;background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
@@ -1441,7 +1442,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-
+  
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -1463,7 +1464,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-
+      
     });
     element.subElements.push(subElement);
   });

@@ -1,10 +1,10 @@
 <?php
-if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system', 'product_name', 'product_icon', 'product_image'))) {
+if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'widget::step::width', 'widget::step::height', 'widget::margin'));
+$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'widget::step::width', 'widget::step::height', 'widget::margin', 'product_name', 'product_icon', 'product_image'));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -74,7 +74,7 @@ if (init('rescue', 0) == 0) {
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<link rel="shortcut icon" href="<?php echo config::byKey('product_icon') ?>">
+	<link rel="shortcut icon" href="<?php echo $configs['product_icon'] ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -115,7 +115,7 @@ include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 include_file('3rdparty', 'jquery/jquery.min', 'js');
 ?>
 	<script>
-		JEEDOM_PRODUCT_NAME='<?php echo config::byKey('product_name') ?>';
+		JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
 		JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
 		$.ajaxSetup({
 			type: "POST",
@@ -243,7 +243,7 @@ if (!isConnect()) {
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-							<img src="<?php echo config::byKey('product_image') ?>" height="30" style="position: relative; top:-5px;"/>
+							<img src="<?php echo $configs['product_image'] ?>" height="30" style="position: relative; top:-5px;"/>
 						</a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
@@ -390,6 +390,9 @@ $nbMessage = message::nbMessage();
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+                                                <?php if(jeedom::getHardwareName() == 'smart'){
+                                                    echo '<li><a href="index.php?v=d&p=imageMaj"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
+                                                }?>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
 												<li role="separator" class="divider"></li>

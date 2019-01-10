@@ -1,4 +1,4 @@
-/**
+/* *
  * (c) 2010-2018 Torstein Honsi
  *
  * License: www.highcharts.com/license
@@ -215,7 +215,7 @@ var addEvent = H.addEvent,
  * @param {Highcharts.Chart} chart
  *        The chart instance.
  *
- * @param {Highcharts.SeriesOptions|object} options
+ * @param {Highcharts.SeriesOptionsType|object} options
  *        The series options.
  *//**
  * The line series is the base type and is therefor the series base prototype.
@@ -2352,9 +2352,9 @@ null
      *
      * @since     2.3
      * @extends   tooltip
-     * @excluding animation,backgroundColor,borderColor,borderRadius,
-     *            borderWidth,crosshairs,enabled,formatter,positioner,shadow,
-     *            shared,shape,snap,style,useHTML
+     * @excluding animation, backgroundColor, borderColor, borderRadius,
+     *            borderWidth, crosshairs, enabled, formatter, positioner,
+     *            shadow, shape, shared, snap, style, useHTML
      * @apioption plotOptions.series.tooltip
      */
 
@@ -2516,7 +2516,7 @@ null
          * {@link Series#update}.
          *
          * @name Highcharts.Series#options
-         * @type {Highcharts.PlotSeriesOptions}
+         * @type {Highcharts.SeriesOptionsType}
          */
         series.options = options = series.setOptions(options);
         series.linkedSeries = [];
@@ -2811,10 +2811,10 @@ null
      *
      * @function Highcharts.Series#setOptions
      *
-     * @param {Highcharts.PlotSeriesOptions} itemOptions
+     * @param {Highcharts.SeriesOptionsType} itemOptions
      *        The series options.
      *
-     * @return {Highcharts.PlotSeriesOptions}
+     * @return {Highcharts.SeriesOptionsType}
      *
      * @fires Highcharts.Series#event:afterSetOptions
      */
@@ -2923,7 +2923,7 @@ null
      *         The series name.
      */
     getName: function () {
-        return this.name || 'Series ' + (this.index + 1);
+        return pick(this.options.name, 'Series ' + (this.index + 1)); // #4119
     },
 
     /**
@@ -5345,46 +5345,44 @@ null
  * An array of data points for the series. For the `line` series type,
  * points can be given in the following ways:
  *
- * 1.  An array of numerical values. In this case, the numerical values
- * will be interpreted as `y` options. The `x` values will be automatically
- * calculated, either starting at 0 and incremented by 1, or from `pointStart`
- * and `pointInterval` given in the series options. If the axis has
- * categories, these will be used. Example:
+ * 1. An array of numerical values. In this case, the numerical values will be
+ *    interpreted as `y` options. The `x` values will be automatically
+ *    calculated, either starting at 0 and incremented by 1, or from
+ *    `pointStart` and `pointInterval` given in the series options. If the axis
+ *    has categories, these will be used. Example:
+ *    ```js
+ *    data: [0, 5, 3, 5]
+ *    ```
  *
- *  ```js
- *  data: [0, 5, 3, 5]
- *  ```
+ * 2. An array of arrays with 2 values. In this case, the values correspond to
+ *    `x,y`. If the first value is a string, it is applied as the name of the
+ *    point, and the `x` value is inferred.
+ *    ```js
+ *    data: [
+ *        [0, 1],
+ *        [1, 2],
+ *        [2, 8]
+ *    ]
+ *    ```
  *
- * 2.  An array of arrays with 2 values. In this case, the values correspond
- * to `x,y`. If the first value is a string, it is applied as the name
- * of the point, and the `x` value is inferred.
- *
- *  ```js
- *     data: [
- *         [0, 1],
- *         [1, 2],
- *         [2, 8]
- *     ]
- *  ```
- *
- * 3.  An array of objects with named values. The following snippet shows only a
- * few settings, see the complete options set below. If the total number of data
- * points exceeds the series' [turboThreshold](#series.line.turboThreshold),
- * this option is not available.
- *
- *  ```js
- *     data: [{
- *         x: 1,
- *         y: 9,
- *         name: "Point2",
- *         color: "#00FF00"
- *     }, {
- *         x: 1,
- *         y: 6,
- *         name: "Point1",
- *         color: "#FF00FF"
- *     }]
- *  ```
+ * 3. An array of objects with named values. The following snippet shows only a
+ *    few settings, see the complete options set below. If the total number of
+ *    data points exceeds the series'
+ *    [turboThreshold](#series.line.turboThreshold), this option is not
+ *    available.
+ *    ```js
+ *    data: [{
+ *        x: 1,
+ *        y: 9,
+ *        name: "Point2",
+ *        color: "#00FF00"
+ *    }, {
+ *        x: 1,
+ *        y: 6,
+ *        name: "Point1",
+ *        color: "#FF00FF"
+ *    }]
+ *    ```
  *
  * @sample {highcharts} highcharts/chart/reflow-true/
  *         Numerical values
@@ -5397,7 +5395,7 @@ null
  * @sample {highcharts} highcharts/series/data-array-of-objects/
  *         Config objects
  *
- * @type      {Array<number|Array<number|string>|*>}
+ * @type      {Array<number|Array<(number|string),number>|*>}
  * @apioption series.line.data
  */
 

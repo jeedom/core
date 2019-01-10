@@ -26,6 +26,11 @@
  *
  * @param {Highcharts.TitleOptions} titleOptions
  *        Options to modify.
+ *
+ * @param {boolean} [redraw=true]
+ *        Whether to redraw the chart after the title is altered. If doing more
+ *        operations on the chart, it is a good idea to set redraw to false and
+ *        call {@link Chart#redraw} after.
  */
 
 /**
@@ -42,6 +47,11 @@
  *
  * @param {Highcharts.SubtitleOptions} subtitleOptions
  *        Options to modify.
+ *
+ * @param {boolean} [redraw=true]
+ *        Whether to redraw the chart after the subtitle is altered. If doing
+ *        more operations on the chart, it is a good idea to set redraw to false
+ *        and call {@link Chart#redraw} after.
  */
 
 'use strict';
@@ -1301,7 +1311,7 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
      *
      * @function Highcharts.Chart#reflow
      *
-     * @param {global.Event} e
+     * @param {global.Event} [e]
      *        Event arguments. Used primarily when the function is called
      *        internally as a response to window resize.
      */
@@ -2196,9 +2206,11 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
         chart.getAxes();
 
         // Initialize the series
-        (options.series || []).forEach(function (serieOptions) {
-            chart.initSeries(serieOptions);
-        });
+        (H.isArray(options.series) ? options.series : []).forEach( // #9680
+            function (serieOptions) {
+                chart.initSeries(serieOptions);
+            }
+        );
 
         chart.linkSeries();
 
