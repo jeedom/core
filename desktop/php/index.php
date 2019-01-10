@@ -80,11 +80,6 @@ if (init('rescue', 0) == 0) {
 	<meta name="author" content="">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<script>
-	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo strtotime('now'); ?> * 1000) - clientDatetime.getTime();
-	var serverDatetime = <?php echo getmicrotime(); ?>;
-	</script>
 	<?php
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
@@ -212,7 +207,7 @@ if (init('rescue', 0) == 0) {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
-	<div class="backgroundforJeedom"> </div>
+	<div class="backgroundforJeedom" style="position:fixed"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	if (!isConnect()) {
