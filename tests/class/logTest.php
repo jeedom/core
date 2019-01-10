@@ -17,6 +17,16 @@
  */
 
 class logTest extends \PHPUnit_Framework_TestCase {
+    protected function setUp() {
+        try {
+            DB::getConnection();
+        } catch (\Exception $e) {
+            $this->markTestSkipped(
+                'La base de donnée n\'est pas accessible.'
+            );
+        }
+    }
+
 	public function getEngins() {
 		return array(
 			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
