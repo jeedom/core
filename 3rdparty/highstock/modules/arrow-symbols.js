@@ -1,5 +1,5 @@
 /*
- Highcharts JS v7.0.0 (2018-12-11)
+ Highcharts JS v7.0.1 (2018-12-19)
  Arrow Symbols
 
  (c) 2017-2018 Lars A. V. Cabrera

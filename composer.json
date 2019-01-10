@@ -3,8 +3,11 @@
     "description": "Software for home automation",
     "autoload": {
         "classmap": [
-        "core/class/"
-      ]
+            "core/class/"
+        ],
+        "psr-4": {
+            "Jeedom\\": "src/"
+        }
     },
     "require": {
         "mtdowling/cron-expression": "~1.0",

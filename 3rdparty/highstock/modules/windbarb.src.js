@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.0 (2018-12-11)
+ * @license  Highcharts JS v7.0.1 (2018-12-19)
  * Wind barb series module
  *
  * (c) 2010-2018 Torstein Honsi
@@ -542,7 +542,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number>|*>}
+		 * @type      {Array<Array<(number|string),number,number>|*>}
 		 * @extends   series.line.data
 		 * @product   highcharts highstock
 		 * @apioption series.windbarb.data

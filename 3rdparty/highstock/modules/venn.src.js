@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  *
  * (c) 2017-2018 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -412,20 +412,17 @@
 	}(geometry));
 	(function (draw, geometry, geometryCircles, H) {
 		/* *
+		 * Experimental Highcharts module which enables visualization of a Venn Diagram.
 		 *
-		 *  (c) 2016-2018 Highsoft AS
+		 * (c) 2016-2018 Highsoft AS
 		 *
-		 *  Authors: Jon Arild Nygard
+		 * Authors: Jon Arild Nygard
 		 *
-		 *  Layout algorithm by Ben Frederickson:
-		 *  https://www.benfrederickson.com/better-venn-diagrams/
+		 * Layout algorithm by Ben Frederickson:
+		 * https://www.benfrederickson.com/better-venn-diagrams/
 		 *
-		 *  License: www.highcharts.com/license
-		 *
-		 *  This is an experimental Highcharts module which enables visualization of a
-		 *  Venn Diagram.
-		 *
-		 * */
+		 * License: www.highcharts.com/license
+		 */
 
 
 
@@ -745,7 +742,7 @@
 		    var margin = internal.reduce(function (margin, circle) {
 		        var m = circle.r - getDistanceBetweenPoints(point, circle);
 		        return (m <= margin) ? m : margin;
-		    }, Number.MAX_SAFE_INTEGER);
+		    }, Number.MAX_VALUE);
 
 		    margin = external.reduce(function (margin, circle) {
 		        var m = getDistanceBetweenPoints(point, circle) - circle.r;
@@ -793,7 +790,7 @@
 		        }, best);
 		    }, {
 		        point: undefined,
-		        margin: -Number.MAX_SAFE_INTEGER
+		        margin: -Number.MAX_VALUE
 		    }).point;
 
 		    // Use nelder mead to optimize the initial label position.
@@ -941,8 +938,8 @@
 		            return relation.sets.length === 1;
 		        }).forEach(function (relation) {
 		            mapOfIdToCircles[relation.sets[0]] = relation.circle = {
-		                x: Number.MAX_SAFE_INTEGER,
-		                y: Number.MAX_SAFE_INTEGER,
+		                x: Number.MAX_VALUE,
+		                y: Number.MAX_VALUE,
 		                r: Math.sqrt(relation.value / Math.PI)
 		            };
 		        });
@@ -1046,7 +1043,7 @@
 		            // Return resulting coordinates.
 		            return best;
 		        }, {
-		            loss: Number.MAX_SAFE_INTEGER,
+		            loss: Number.MAX_VALUE,
 		            coordinates: undefined
 		        });
 

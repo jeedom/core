@@ -48,16 +48,38 @@ class migrate {
 			}elseif($iSDn > 1){
 				$statut = 'sdaNumSup';
 			}else{
-				exec('sudo mount -t vfat /dev/'.$usb.' /media/usb2');
-				if((disk_free_space('/media/usb2')/1024)/1024 > $minSize){
+              	exec('sudo umount /media/migrate');
+              	exec('sudo mkdir /media/migrate');
+				exec('sudo mount -t vfat /dev/'.$usb.' /media/migrate');
+				if((disk_free_space('/media/migrate')/1024)/1024 > $minSize){
 					$statut = 'ok';
 				}else{
 					$statut = 'space';
-					$space = (disk_free_space('/media/usb2')/1024)/1024;
+					$space = (disk_free_space('/media/migrate')/1024)/1024;
 				}
 			}
 		}
 		return array('statut' => $statut, 'space' => $space, 'minSpace' => $minSize);
 	}
+	
+	public static function backupToUsb() { 
+	    $backups = jeedom::listBackup();
+	    foreach ($backups as $backup) {
+		    	$lienBackup = $backup;
+	    }
+	    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
+			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+		} else {
+			$backup_dir = config::byKey('backup::path');
+		}
+		$tailleBackup = filesize($backup_dir.'/'.$lienBackup);
+		exec('sudo cp '.$backup_dir.'/'.$lienBackup.' /media/migrate/'.$lienBackup);
+		$tailleBackupFin = filesize('/media/migrate/'.$lienBackup);
+		if($tailleBackup <= $tailleBackupFin){
+			return 'ok';
+		}else{
+			return 'nok';
+		}
+	} 
 
 }

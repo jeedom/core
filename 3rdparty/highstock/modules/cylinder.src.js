@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.0 (2018-12-11)
+ * @license Highcharts JS v7.0.1 (2018-12-19)
  * Highcharts cylinder module
  *
  * (c) 2010-2018 Kacper Madej
@@ -20,12 +20,10 @@
 }(function (Highcharts) {
 	(function (H) {
 		/* *
+		 * (c) 2010-2018 Kacper Madej
 		 *
-		 *  (c) 2010-2018 Kacper Madej
-		 *
-		 *  License: www.highcharts.com/license
-		 *
-		 * */
+		 * License: www.highcharts.com/license
+		 */
 
 
 
@@ -69,7 +67,8 @@
 		    {},
 		    {}, /** @lends Highcharts.seriesTypes.cylinder#pointClass# */ {
 		        shapeType: 'cylinder'
-		    });
+		    }
+		);
 
 		/**
 		 * A `cylinder` series. If the [type](#series.cylinder.type) option is not
@@ -137,7 +136,7 @@
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
-		 * @type      {Array<number|Array<number>|*>}
+		 * @type      {Array<number|Array<(number|string),number>|*>}
 		 * @extends   series.column.data
 		 * @product   highcharts highstock
 		 * @apioption series.cylinder.data

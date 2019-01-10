@@ -1,5 +1,5 @@
 /*
- Highcharts JS v7.0.0 (2018-12-11)
+ Highcharts JS v7.0.1 (2018-12-19)
  Sonification module
 
  (c) 2012-2018 ystein Moseng

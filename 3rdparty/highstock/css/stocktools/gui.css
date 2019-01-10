@@ -43,11 +43,12 @@
 .highcharts-menu-wrapper {
   float: left;
   width: 40px;
-  height: calc(100% - 30px);
+  height: calc(100% - 50px);
   overflow: hidden;
   position: absolute;
   left: 0px;
   top: 0px;
+  padding: 10px;
 }
 
 .highcharts-bindings-wrapper .highcharts-submenu-wrapper {
@@ -64,8 +65,8 @@
   text-align: center;
   width: 40px;
   position: absolute;
-  left: 0%;
-  bottom: 2px;
+  left: 10px;
+  bottom: 10px;
   font-size: 1.5em;
 }
 
@@ -74,7 +75,7 @@
 }
 
 .highcharts-bindings-wrapper .highcharts-arrow-down {
-  background-image: url("https://code.highcharts.com/7.0.0/gfx/stock-icons/arrow-right.svg");
+  background-image: url("https://code.highcharts.com/7.0.1/gfx/stock-icons/arrow-right.svg");
   background-size: cover;
   /* Safari */
   -webkit-transform: rotate(90deg);
@@ -90,7 +91,7 @@
 }
 
 .highcharts-bindings-wrapper .highcharts-arrow-up {
-  background-image: url("https://code.highcharts.com/7.0.0/gfx/stock-icons/arrow-right.svg");
+  background-image: url("https://code.highcharts.com/7.0.1/gfx/stock-icons/arrow-right.svg");
   background-size: cover;
   outline: none;
   display: inline-block;
@@ -119,7 +120,7 @@
 }
 
 .highcharts-bindings-wrapper .highcharts-arrow-right {
-  background: url("https://code.highcharts.com/7.0.0/gfx/stock-icons/arrow-bottom.svg") no-repeat right bottom;
+  background: url("https://code.highcharts.com/7.0.1/gfx/stock-icons/arrow-bottom.svg") no-repeat right bottom;
   background-size: contain;
 }
 
@@ -138,7 +139,7 @@
 }
 
 .highcharts-bindings-wrapper .highcharts-arrow-left {
-  background-image: url("https://code.highcharts.com/7.0.0/gfx/stock-icons/arrow-right.svg");
+  background-image: url("https://code.highcharts.com/7.0.1/gfx/stock-icons/arrow-right.svg");
   /* Safari */
   -webkit-transform: rotate(180deg);
   /* Firefox */
@@ -242,9 +243,8 @@
   cursor: pointer;
   width: 10px;
   height: 10px;
-  left: 43px;
   background-color: #f7f7f7;
-  background-image: url("https://code.highcharts.com/gfx/7.0.0/stock-icons/arrow-right.svg");
+  background-image: url("https://code.highcharts.com/gfx/7.0.1/stock-icons/arrow-right.svg");
   background-size: cover;
 }
 

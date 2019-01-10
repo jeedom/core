@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 global $JEEDOM_INTERNAL_CONFIG;
 $JEEDOM_INTERNAL_CONFIG = array(
@@ -195,6 +195,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'WIND_SPEED' => array('name' => 'Vent (vitesse)', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'WIND_DIRECTION' => array('name' => 'Vent (direction)', 'family' => 'Generic', 'type' => 'Info', 'ignore' => true),
 			'SHOCK' => array('name' => 'Choc', 'family' => 'Generic', 'type' => 'Info'),
+			'VOLUME' => array('name' => 'Volume', 'family' => 'Multimédia', 'type' => 'Info'),
+			'SET_VOLUME' => array('name' => 'Volume', 'family' => 'Multimédia', 'type' => 'Action'),
+			'CHANNEL' => array('name' => 'Chaine', 'family' => 'Multimédia', 'type' => 'Info'),
+			'SET_CHANNEL' => array('name' => 'Chaine', 'family' => 'Multimédia', 'type' => 'Action'),
 			'GENERIC_INFO' => array('name' => ' Générique', 'family' => 'Generic', 'type' => 'Info'),
 			'GENERIC_ACTION' => array('name' => ' Générique', 'family' => 'Generic', 'type' => 'Action'),
 			'DONT' => array('name' => 'Ne pas tenir compte de cette commande', 'family' => 'Generic', 'type' => 'All'),
@@ -209,111 +213,112 @@ $JEEDOM_INTERNAL_CONFIG = array(
 							'minValue' => array('visible' => true),
 							'maxValue' => array('visible' => true),
 							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => true),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
+							'unite' => array('visible' => true),
+							'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => true),
+							'display' => array(
+								'invertBinary' => array('visible' => false),
+								'icon' => array('visible' => true, 'parentVisible' => true),
+							),
 						),
-					),
-					'binary' => array(
-						'name' => 'Binaire',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => true, 'parentVisible' => true),
-							'icon' => array('visible' => true, 'parentVisible' => true),
+						'binary' => array(
+							'name' => 'Binaire',
+							'configuration' => array(
+								'minValue' => array('visible' => false),
+								'maxValue' => array('visible' => false),
+								'listValue' => array('visible' => false)),
+								'unite' => array('visible' => false),
+								'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => false),
+								'display' => array(
+									'invertBinary' => array('visible' => true, 'parentVisible' => true),
+									'icon' => array('visible' => true, 'parentVisible' => true),
+								),
+							),
+							'string' => array(
+								'name' => 'Autre',
+								'configuration' => array(
+									'minValue' => array('visible' => false),
+									'maxValue' => array('visible' => false),
+									'listValue' => array('visible' => false)),
+									'unite' => array('visible' => true),
+									'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
+									'display' => array(
+										'invertBinary' => array('visible' => false),
+										'icon' => array('visible' => true, 'parentVisible' => true),
+									),
+								),
+							),
 						),
-					),
-					'string' => array(
-						'name' => 'Autre',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => true),
-						'isHistorized' => array('visible' => true, 'timelineOnly' => true, 'canBeSmooth' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				),
-			),
-			'action' => array(
-				'name' => 'Action',
-				'subtype' => array(
-					'other' => array(
-						'name' => 'Défaut',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-					'slider' => array(
-						'name' => 'Curseur',
-						'configuration' => array(
-							'minValue' => array('visible' => true),
-							'maxValue' => array('visible' => true),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-					'message' => array(
-						'name' => 'Message',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-					'color' => array(
-						'name' => 'Couleur',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => false)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-					'select' => array(
-						'name' => 'Liste',
-						'configuration' => array(
-							'minValue' => array('visible' => false),
-							'maxValue' => array('visible' => false),
-							'listValue' => array('visible' => true)),
-						'unite' => array('visible' => false),
-						'isHistorized' => array('visible' => false),
-						'display' => array(
-							'invertBinary' => array('visible' => false),
-							'icon' => array('visible' => true, 'parentVisible' => true),
-						),
-					),
-				),
-			),
-		),
-	),
-);
+						'action' => array(
+							'name' => 'Action',
+							'subtype' => array(
+								'other' => array(
+									'name' => 'Défaut',
+									'configuration' => array(
+										'minValue' => array('visible' => false),
+										'maxValue' => array('visible' => false),
+										'listValue' => array('visible' => false)),
+										'unite' => array('visible' => false),
+										'isHistorized' => array('visible' => false),
+										'display' => array(
+											'invertBinary' => array('visible' => false),
+											'icon' => array('visible' => true, 'parentVisible' => true),
+										),
+									),
+									'slider' => array(
+										'name' => 'Curseur',
+										'configuration' => array(
+											'minValue' => array('visible' => true),
+											'maxValue' => array('visible' => true),
+											'listValue' => array('visible' => false)),
+											'unite' => array('visible' => false),
+											'isHistorized' => array('visible' => false),
+											'display' => array(
+												'invertBinary' => array('visible' => false),
+												'icon' => array('visible' => true, 'parentVisible' => true),
+											),
+										),
+										'message' => array(
+											'name' => 'Message',
+											'configuration' => array(
+												'minValue' => array('visible' => false),
+												'maxValue' => array('visible' => false),
+												'listValue' => array('visible' => false)),
+												'unite' => array('visible' => false),
+												'isHistorized' => array('visible' => false),
+												'display' => array(
+													'invertBinary' => array('visible' => false),
+													'icon' => array('visible' => true, 'parentVisible' => true),
+												),
+											),
+											'color' => array(
+												'name' => 'Couleur',
+												'configuration' => array(
+													'minValue' => array('visible' => false),
+													'maxValue' => array('visible' => false),
+													'listValue' => array('visible' => false)),
+													'unite' => array('visible' => false),
+													'isHistorized' => array('visible' => false),
+													'display' => array(
+														'invertBinary' => array('visible' => false),
+														'icon' => array('visible' => true, 'parentVisible' => true),
+													),
+												),
+												'select' => array(
+													'name' => 'Liste',
+													'configuration' => array(
+														'minValue' => array('visible' => false),
+														'maxValue' => array('visible' => false),
+														'listValue' => array('visible' => true)),
+														'unite' => array('visible' => false),
+														'isHistorized' => array('visible' => false),
+														'display' => array(
+															'invertBinary' => array('visible' => false),
+															'icon' => array('visible' => true, 'parentVisible' => true),
+														),
+													),
+												),
+											),
+										),
+									),
+								);
+								

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.0 (2018-12-11)
+ * @license  Highcharts JS v7.0.1 (2018-12-19)
  * Solid angular gauge module
  *
  * (c) 2010-2018 Torstein Honsi
@@ -462,12 +462,6 @@
 		 *
 		 * @sample {highcharts} highcharts/chart/reflow-true/
 		 *         Numerical values
-		 * @sample {highcharts} highcharts/series/data-array-of-arrays/
-		 *         Arrays of numeric x and y
-		 * @sample {highcharts} highcharts/series/data-array-of-arrays-datetime/
-		 *         Arrays of datetime x and y
-		 * @sample {highcharts} highcharts/series/data-array-of-name-value/
-		 *         Arrays of point.name and y
 		 * @sample {highcharts} highcharts/series/data-array-of-objects/
 		 *         Config objects
 		 *
