@@ -1,6 +1,6 @@
 <?php
 
-namespace Jeedom\Core\Configuration\Event;
+namespace Jeedom\Core\Infrastructure\Configuration\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace Jeedom\Core\Configuration;
+namespace Jeedom\Core\Infrastructure\Configuration;
 
-use Jeedom\Core\Configuration\Event\Configured;
+use Jeedom\Core\Application\Configuration\Configuration;
+use Jeedom\Core\Infrastructure\Configuration\Event\Configured;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class EventDispatcherConfigurationDecorator implements Configuration

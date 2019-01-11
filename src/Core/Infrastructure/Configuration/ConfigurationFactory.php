@@ -1,8 +1,12 @@
 <?php
 
-namespace Jeedom\Core\Configuration;
+namespace Jeedom\Core\Infrastructure\Configuration;
 
-use Jeedom\Core\Configuration\Event\Configured;
+use Jeedom\Core\Application\Configuration\ChainConfiguration;
+use Jeedom\Core\Application\Configuration\InMemoryCacheConfigurationDecorator;
+use Jeedom\Core\Application\Configuration\InMemoryConfiguration;
+use Jeedom\Core\Application\Configuration\ReadOnlyIniFileConfiguration;
+use Jeedom\Core\Infrastructure\Configuration\Event\Configured;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ConfigurationFactory

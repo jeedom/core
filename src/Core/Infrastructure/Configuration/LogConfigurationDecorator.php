@@ -1,6 +1,8 @@
 <?php
 
-namespace Jeedom\Core\Configuration;
+namespace Jeedom\Core\Infrastructure\Configuration;
+
+use Jeedom\Core\Application\Configuration\Configuration;
 
 class LogConfigurationDecorator implements Configuration
 {

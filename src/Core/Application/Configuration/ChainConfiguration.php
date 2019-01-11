@@ -1,6 +1,6 @@
 <?php
 
-namespace Jeedom\Core\Configuration;
+namespace Jeedom\Core\Application\Configuration;
 
 class ChainConfiguration implements Configuration
 {
