@@ -4,10 +4,7 @@
     "autoload": {
         "classmap": [
             "core/class/"
-        ],
-        "psr-4": {
-            "Jeedom\\": "src/"
-        }
+        ]
     },
     "require": {
         "mtdowling/cron-expression": "~1.0",
