@@ -546,19 +546,6 @@ class SQLDatabaseCommandRepository implements CommandRepository
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function findOneByString($_string)
-    {
-        $cmd = $this->get(str_replace('#', '', \cmd::humanReadableToCmd($_string)));
-        if (!is_object($cmd)) {
-            throw new \DomainException(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . \cmd::humanReadableToCmd($_string));
-        }
-
-        return $cmd;
-    }
-
-    /**
      * @param $_inputs
      * @param null $_eqLogic
      *

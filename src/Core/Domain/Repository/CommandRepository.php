@@ -93,13 +93,6 @@ interface CommandRepository
     public function findOneByEqLogicIdAndGenericType($eqLogicId, $genericType, $type = null);
 
     /**
-     * @param $string
-     *
-     * @return \cmd
-     */
-    public function findOneByString($string);
-
-    /**
      * @param array $ids
      *
      * @return \cmd[]

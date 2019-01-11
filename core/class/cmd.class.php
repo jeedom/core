@@ -18,14 +18,22 @@
 
 /* * ***************************Includes********************************* */
 
+use Jeedom\Core\Api\Security\ApiKey;
 use Jeedom\Core\Application\Query\CommandSubTypesQuery;
 use Jeedom\Core\Application\Query\CommandSubTypesQueryHandler;
 use Jeedom\Core\Application\Query\CommandTypesQuery;
 use Jeedom\Core\Application\Query\CommandTypesQueryHandler;
 use Jeedom\Core\Application\Query\CommandUnitesQuery;
 use Jeedom\Core\Application\Query\CommandUnitesQueryHandler;
+use Jeedom\Core\Configuration\Configuration;
+use Jeedom\Core\Configuration\ConfigurationFactory;
 use Jeedom\Core\Domain\Repository\CommandRepository;
 use Jeedom\Core\Infrastructure\Repository\RepositoryFactory;
+use Jeedom\Core\Infrastructure\Repository\ServiceFactory;
+use Jeedom\Core\Infrastructure\Service\FilesystemWidgetService;
+use Jeedom\Core\Presenter\ColorConverter;
+use Jeedom\Core\Presenter\HumanCommandMap;
+use Jeedom\Core\Presenter\Service\WidgetService;
 
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
@@ -155,25 +163,7 @@ class cmd {
      * @throws ReflectionException
      */
 	public static function cmdToHumanReadable($_input) {
-		if (is_object($_input)) {
-            return self::setObjectValueByReflection($_input, [self::class, 'cmdToHumanReadable']);
-		}
-		if (is_array($_input)) {
-			return json_decode(self::cmdToHumanReadable(json_encode($_input)), true);
-		}
-		$replace = array();
-		preg_match_all("/#([0-9]*)#/", $_input, $matches);
-		if (count($matches[1]) === 0) {
-			return $_input;
-		}
-		$cmds = self::getRepository()->get($matches[1]);
-		foreach ($cmds as $cmd) {
-            $hashId = '#' . $cmd->getId() . '#';
-            if (!isset($replace[$hashId])) {
-                $replace[$hashId] = '#' . $cmd->getHumanName() . '#';
-            }
-		}
-		return str_replace(array_keys($replace), $replace, $_input);
+        return self::getCommandMap()->cmdToHumanReadable($_input);
 	}
 
     /**
@@ -183,44 +173,24 @@ class cmd {
      * @throws ReflectionException
      */
 	public static function humanReadableToCmd($_input) {
-		$isJson = false;
-		if (is_json($_input)) {
-			$isJson = true;
-			$_input = json_decode($_input, true);
-		}
-		if (is_object($_input)) {
-            return self::setObjectValueByReflection($_input, [self::class, 'humanReadableToCmd']);
-        }
-        if (is_array($_input)) {
-			foreach ($_input as $key => $value) {
-				$_input[$key] = self::humanReadableToCmd($value);
-			}
-			if ($isJson) {
-				return json_encode($_input, JSON_UNESCAPED_UNICODE);
-			}
-			return $_input;
-		}
-		$replace = array();
-		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
-		if (count($matches) === 4) {
-			$countMatches = count($matches[0]);
-			for ($i = 0; $i < $countMatches; $i++) {
-				if (isset($replace[$matches[0][$i]])) {
-					continue;
-				}
-				if (isset($matches[1][$i], $matches[2][$i], $matches[3][$i])) {
-					$cmd = self::getRepository()->findOneByObjectNameEqLogicNameCmdName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
-					if (is_object($cmd)) {
-						$replace[$matches[0][$i]] = '#' . $cmd->getId() . '#';
-					}
-				}
-			}
-		}
-		return str_replace(array_keys($replace), $replace, $_input);
+		return self::getCommandMap()->humanReadableToCmd($_input);
 	}
-	
+
+    /**
+     * @param string $_string
+     *
+     * @return \cmd
+     * @throws ReflectionException
+     */
 	public static function byString($_string) {
-        return self::getRepository()->findOneByString($_string);
+	    $hashedId = self::getCommandMap()->humanReadableToCmd($_string);
+	    $id = str_replace('#', '', $hashedId);
+	    $cmd = self::getRepository()->get($id);
+        if (!is_object($cmd)) {
+            throw new \DomainException(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . \cmd::humanReadableToCmd($_string));
+        }
+
+        return $cmd;
 	}
 
     /**
@@ -231,52 +201,7 @@ class cmd {
      * @throws ReflectionException
      */
 	public static function cmdToValue($_input, $_quote = false) {
-		if (is_object($_input)) {
-            return self::setObjectValueByReflection($_input, [self::class, 'cmdToValue']);
-		}
-		if (is_array($_input)) {
-			foreach ($_input as $key => $value) {
-				$_input[$key] = self::cmdToValue($value, $_quote);
-			}
-			return $_input;
-		}
-		$json = is_json($_input);
-		$replace = array();
-		preg_match_all('/#(\d*)#/', $_input, $matches);
-		foreach ($matches[1] as $cmd_id) {
-            $hashId = '#' . $cmd_id . '#';
-            if (isset($replace[$hashId])) {
-				continue;
-			}
-			$cache = cache::byKey('cmdCacheAttr' . $cmd_id)->getValue();
-			if (utils::getJsonAttr($cache, 'value', null) !== null) {
-				$collectDate = utils::getJsonAttr($cache, 'collectDate', date('Y-m-d H:i:s'));
-				$valueDate = utils::getJsonAttr($cache, 'valueDate', date('Y-m-d H:i:s'));
-				$cmd_value = utils::getJsonAttr($cache, 'value', '');
-			} else {
-				$cmd = self::getRepository()->get($cmd_id);
-				if (!is_object($cmd) || $cmd->getType() != 'info') {
-					continue;
-				}
-				$cmd_value = $cmd->execCmd(null, true, $_quote);
-				$collectDate = $cmd->getCollectDate();
-				$valueDate = $cmd->getValueDate();
-			}
-			if ($_quote && (strpos($cmd_value, ' ') !== false || preg_match("/[a-zA-Z#]/", $cmd_value) || $cmd_value === '')) {
-				$cmd_value = '"' . trim($cmd_value, '"') . '"';
-			}
-			if (!$json) {
-				$replace['"#' . $cmd_id . '#"'] = $cmd_value;
-				$replace[$hashId] = $cmd_value;
-				$replace['#collectDate' . $cmd_id . '#'] = $collectDate;
-				$replace['#valueDate' . $cmd_id . '#'] = $valueDate;
-			} else {
-				$replace[$hashId] = trim(json_encode($cmd_value), '"');
-				$replace['#valueDate' . $cmd_id . '#'] = trim(json_encode($valueDate), '"');
-				$replace['#collectDate' . $cmd_id . '#'] = trim(json_encode($collectDate), '"');
-			}
-		}
-		return str_replace(array_keys($replace), $replace, $_input);
+		return self::getCommandMap()->cmdToValue($_input, $_quote);
 	}
 
     /**
@@ -304,50 +229,19 @@ class cmd {
 	public static function allUnite() {
         return self::getRepository()->listUnites();
 	}
-	
+
+    /**
+     * @param $_color
+     *
+     * @return mixed
+     * @throws Exception
+     */
 	public static function convertColor($_color) {
-		$colors = config::byKey('convertColor');
-		if (isset($colors[$_color])) {
-			return $colors[$_color];
-		}
-		throw new Exception(__('Impossible de traduire la couleur en code hexadécimal :', __FILE__) . $_color);
+	    return self::getColorConverter()->convert($_color);
 	}
 	
 	public static function availableWidget($_version) {
-		$path = __DIR__ . '/../template/' . $_version;
-		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
-		$return = array();
-		foreach ($files as $file) {
-			$informations = explode('.', $file);
-			if (!isset($return[$informations[1]])) {
-				$return[$informations[1]] = array();
-			}
-			if (!isset($return[$informations[1]][$informations[2]])) {
-				$return[$informations[1]][$informations[2]] = array();
-			}
-			if (isset($informations[3])) {
-				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core');
-			}
-		}
-		$path = dirname(__DIR__, 2) . '/plugins/widget/core/template/' . $_version;
-		if (file_exists($path)) {
-			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
-			foreach ($files as $file) {
-				$informations = explode('.', $file);
-				if (count($informations) > 3) {
-					if (!isset($return[$informations[1]])) {
-						$return[$informations[1]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]])) {
-						$return[$informations[1]][$informations[2]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
-						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget');
-					}
-				}
-			}
-		}
-		return $return;
+	    return self::getWidgetService()->getAvailables('cmd', $_version);
 	}
 	
 	public static function returnState($_options) {
@@ -659,7 +553,7 @@ class cmd {
 			if ($eqLogic->getConfiguration('nerverFail') != 1) {
 				$numberTryWithoutSuccess = $eqLogic->getStatus('numberTryWithoutSuccess', 0);
 				$eqLogic->setStatus('numberTryWithoutSuccess', $numberTryWithoutSuccess);
-				if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
+				if ($numberTryWithoutSuccess >= self::getConfig()->get('numberOfTryBeforeEqLogicDisable')) {
 					$message = 'Désactivation de <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getName();
 					$message .= '</a> car il n\'a pas répondu ou mal répondu lors des 3 derniers essais';
 					message::add($type, $message);
@@ -710,7 +604,7 @@ class cmd {
 
         $template = getTemplate('core', $version, $template_name);
         if ($template == '') {
-            if (config::byKey('active', 'widget') == 1) {
+            if (self::getConfig('widget')->get('active') == 1) {
                 $template = getTemplate('core', $version, $template_name, 'widget');
             }
             if ($template == '') {
@@ -824,33 +718,34 @@ class cmd {
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
+            $config = self::getConfig();
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
-				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-					if ($this->getDisplay('showStatsOn' . $version2, 1) == 1) {
-						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
-						$replace['#displayHistory#'] = '';
-						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
-						if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
-							$replace['#averageHistoryValue#'] = round($replace['#state#'], 1);
-							$replace['#minHistoryValue#'] = round($replace['#state#'], 1);
-							$replace['#maxHistoryValue#'] = round($replace['#state#'], 1);
-						} else {
-							$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-							$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-							$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
-						}
-						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
-						$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
-						if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
-							$replace['#tendance#'] = 'fa fa-arrow-up';
-						} else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
-							$replace['#tendance#'] = 'fa fa-arrow-down';
-						} else {
-							$replace['#tendance#'] = 'fa fa-minus';
-						}
-					}
-				}
+				if ($config->get('displayStatsWidget') == 1
+                    && strpos($template, '#displayHistory#') !== false
+                    && $this->getDisplay('showStatsOn' . $version2, 1) == 1) {
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $config->get('historyCalculPeriod') . ' hour'));
+                        $replace['#displayHistory#'] = '';
+                        $historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
+                        if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
+                            $replace['#averageHistoryValue#'] = round($replace['#state#'], 1);
+                            $replace['#minHistoryValue#'] = round($replace['#state#'], 1);
+                            $replace['#maxHistoryValue#'] = round($replace['#state#'], 1);
+                        } else {
+                            $replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
+                            $replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
+                            $replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+                        }
+                        $startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . $config->get('historyCalculTendance') . ' hour'));
+                        $tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
+                        if ($tendance > $config->get('historyCalculTendanceThresholddMax')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-up';
+                        } else if ($tendance < $config->get('historyCalculTendanceThresholddMin')) {
+                            $replace['#tendance#'] = 'fa fa-arrow-down';
+                        } else {
+                            $replace['#tendance#'] = 'fa fa-minus';
+                        }
+                    }
 			}
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {
@@ -1190,6 +1085,7 @@ class cmd {
 		if (!$_value) {
 			$_value = $this->execCmd();
 		}
+		$config = self::getConfig();
 		if ($_level != 'none') {
 			$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value . trim(' ' . $this->getUnite());
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
@@ -1198,17 +1094,17 @@ class cmd {
 			$message .= ' => ' . str_replace('#value#', $_value, $this->getAlert($_level . 'if'));
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
-			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
+			if ($config->get('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				message::add($eqLogic->getEqType_name(), $message);
 			}
-			$cmds = explode('&&', config::byKey('alert::' . $_level . 'Cmd'));
-			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
+			$cmds = explode('&&', $config->get('alert::' . $_level . 'Cmd'));
+			if (count($cmds) > 0 && trim($config->get('alert::' . $_level . 'Cmd')) != '') {
 				foreach ($cmds as $id) {
 					$cmd = self::getRepository()->get(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
-							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
+							'title' => __('[' . $config->get('name', 'JEEDOM') . '] ', __FILE__) . $message,
+							'message' => $config->get('name', 'JEEDOM') . ' : ' . $message,
 						));
 					}
 				}
@@ -1231,7 +1127,7 @@ class cmd {
 	public function pushUrl($_value) {
 		$url = $this->getConfiguration('jeedomPushUrl');
 		if ($url == '') {
-			$url = config::byKey('cmdPushUrl');
+			$url = self::getConfig()->get('cmdPushUrl');
 		}
 		if ($url == '') {
 			return;
@@ -1257,7 +1153,7 @@ class cmd {
 	}
 	
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
-		$token = $this->getCache('ask::token', config::genKey());
+		$token = $this->getCache('ask::token', ApiKey::generate());
 		$this->setCache(array('ask::count' => 0, 'ask::token' => $token));
 		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
 		$return .= 'type=ask';
@@ -1430,7 +1326,7 @@ class cmd {
 	}
 	
 	public function getDirectUrlAccess() {
-		$url = '/core/api/jeeApi.php?apikey=' . config::byKey('api') . '&type=cmd&id=' . $this->getId();
+		$url = '/core/api/jeeApi.php?apikey=' . self::getConfig()->get('api') . '&type=cmd&id=' . $this->getId();
 		if ($this->getType() == 'action') {
 			switch ($this->getSubType()) {
 				case 'slider':
@@ -1473,7 +1369,7 @@ class cmd {
 	
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
 		if ($_drill === null) {
-			$_drill = config::byKey('graphlink::cmd::drill');
+			$_drill = self::getConfig()->get('graphlink::cmd::drill');
 		}
 		if (isset($_data['node']['cmd' . $this->getId()])) {
 			return;
@@ -1640,7 +1536,7 @@ class cmd {
 	}
 
     /**
-     * @deprcated This method is deprecated
+     * @deprecated This method is deprecated
      */
 	public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
@@ -1806,32 +1702,7 @@ class cmd {
         $this->_needRefreshWidget = $refresh;
     }
 
-    /**
-     * @param $_input
-     *
-     * @param callable $valueTransformer
-     *
-     * @return mixed
-     * @throws ReflectionException
-     */
-    private static function setObjectValueByReflection($_input, callable $valueTransformer)
-    {
-        $reflections = [];
-        $uuid = spl_object_hash($_input);
-        if (!isset($reflections[$uuid])) {
-            $reflections[$uuid] = new ReflectionClass($_input);
-        }
-        $reflection = $reflections[$uuid];
-        $properties = $reflection->getProperties();
-        foreach ($properties as $property) {
-            $property->setAccessible(true);
-            $value = $property->getValue($_input);
-            $property->setValue($_input, $valueTransformer($value));
-            $property->setAccessible(false);
-        }
-
-        return $_input;
-    }
+    /** **************************** Dépendances ************************************** */
 
     /**
      * @return CommandRepository
@@ -1839,5 +1710,32 @@ class cmd {
     private static function getRepository()
     {
         return RepositoryFactory::build(CommandRepository::class);
+    }
+
+    /**
+     * @param $plugin
+     *
+     * @return Configuration
+     */
+    private static function getConfig($plugin = 'core')
+    {
+        return ConfigurationFactory::build($plugin);
+    }
+
+    /**
+     *
+     */
+    private static function getCommandMap()
+    {
+        return ServiceFactory::build(HumanCommandMap::class);
+    }
+
+    private static function getColorConverter() {
+        return ServiceFactory::build(ColorConverter::class);
+    }
+
+    private static function getWidgetService()
+    {
+        return ServiceFactory::build(WidgetService::class);
     }
 }
