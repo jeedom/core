@@ -284,8 +284,7 @@ class cmd {
      * @throws Exception
      */
 	public static function allType() {
-	    $handler = new CommandTypesQueryHandler();
-	    return $handler->handle(new CommandTypesQuery());
+        return self::getRepository()->listTypes();
 	}
 
     /**
@@ -295,8 +294,7 @@ class cmd {
      * @throws Exception
      */
 	public static function allSubType($_type = '') {
-        $handler = new CommandSubTypesQueryHandler();
-        return $handler->handle(new CommandSubTypesQuery($_type));
+        return self::getRepository()->listSubTypes($_type);
 	}
 
     /**
@@ -304,8 +302,7 @@ class cmd {
      * @throws Exception
      */
 	public static function allUnite() {
-        $handler = new CommandUnitesQueryHandler();
-        return $handler->handle(new CommandUnitesQuery());
+        return self::getRepository()->listUnites();
 	}
 	
 	public static function convertColor($_color) {
