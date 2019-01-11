@@ -1,16 +1,7 @@
 <?php
 class userTest extends \PHPUnit_Framework_TestCase {
-	protected function setUp() {
-		try {
-			DB::getConnection();
-		} catch (\Exception $e) {
-			$this->markTestSkipped(
-				'La base de donnée n\'est pas accessible.'
-			);
-		}
-	}
-
 	public function testCreate() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$user_array = array(
 			'login' => 'test',
 			'password' => 'test',
@@ -30,6 +21,7 @@ class userTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testCreate
 	 */
 	public function testGet($_user) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$user = user::byId($_user->getId());
 		$this->assertEquals($user, $_user);
 
@@ -41,6 +33,7 @@ class userTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testCreate
 	 */
 	public function testConnect($_user) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$user = user::connect('test', 'test');
 		$this->assertEquals($user->getId(), $_user->getId());
 	}
@@ -49,7 +42,9 @@ class userTest extends \PHPUnit_Framework_TestCase {
 	 * @depends testCreate
 	 */
 	public function testRemove($_user) {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$_user->remove();
 	}
 
 }
+?>
