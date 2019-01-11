@@ -1,16 +1,7 @@
 <?php
 class cronTest extends \PHPUnit_Framework_TestCase {
-	protected function setUp() {
-		try {
-			DB::getConnection();
-		} catch (\Exception $e) {
-			$this->markTestSkipped(
-				'La base de donnée n\'est pas accessible.'
-			);
-		}
-	}
-
 	public function testCreate() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cron1 = new cron();
 		$cron1->setClass('calendar');
 		$cron1->setFunction('pull');
@@ -35,6 +26,7 @@ class cronTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testCreateWithOption() {
+		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cron1 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron1)) {
 			$cron1 = new cron();
