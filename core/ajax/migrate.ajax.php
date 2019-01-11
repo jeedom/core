@@ -32,9 +32,18 @@ try {
 	}
 	
 	if (init('action') == 'backupToUsb') {
-		log::add('backup', 'info', 'BackupToUsb demandé dans Ajax.');
 		$backupToUsb = migrate::backupToUsb();
 		ajax::success($backupToUsb);
+	}
+	
+	if (init('action') == 'imageToUsb') {
+		$imageToUsb = migrate::imageToUsb();
+		ajax::success($imageToUsb);
+	}
+	
+	if (init('action') == 'freeSpaceUsb') {
+		$freeSpaceUsb = migrate::freeSpaceUsb();
+		ajax::success($freeSpaceUsb);
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
