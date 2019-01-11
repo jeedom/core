@@ -212,7 +212,7 @@ if (init('rescue', 0) == 0) {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
-	<div class="backgroundforJeedom" style="position:fixed"></div>
+	<div class="backgroundforJeedom" style="position:fixed;"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	if (!isConnect()) {
@@ -249,7 +249,7 @@ if (init('rescue', 0) == 0) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<span class="visible-xs-inline-block" style="margin-top:20px"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span>
+						<center><span class="visible-xs-inline-block" style="margin-top:20px; font-size:0.8em !important;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
