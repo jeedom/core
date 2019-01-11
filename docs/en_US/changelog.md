@@ -32,6 +32,7 @@ Changelog
 -   Possibilité de consulter les logs en version mobile (wepapp)
 -   Ajout d'une action tag dans les scénarios (voir documentation)
 -   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscree=1" dans l'url
+-   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
 
 3.2.12
 =====
@@ -206,7 +207,7 @@ Changelog
 
 -   Possibilité de rendre des mots obligatoires dans une interaction
 
-3.1.7 
+3.1.7
 =====
 
 -   Correction de bugs (en particulier sur les historiques et
@@ -218,7 +219,7 @@ Changelog
 
 -   Correction d’un bug qui récupérait les logs lors des restaurations
 
-3.1 
+3.1
 ===
 
 -   Correction de bugs
@@ -341,17 +342,17 @@ Changelog
 -   Ajout d’un watchdog indépendant de Jeedom pour vérifier le status de
     MySql et Apache
 
-3.0.11 
+3.0.11
 ======
 
 -   Correction de bugs sur les demandes "ask" en timeout
 
-3.0.10 
+3.0.10
 ======
 
 -   Correction de bugs sur l’interface de configuration des interactions
 
-3.0 
+3.0
 ===
 
 -   Suppression du mode esclave
@@ -588,20 +589,20 @@ Changelog
 -   Optimisation du chargement des scénarios et pages utilisant des
     actions avec option (type configuration du plugin alarme ou mode)
 
-2.4.6 
+2.4.6
 =====
 
 -   Amélioration de la gestion de la répétition des valeurs des
     commandes
 
-2.4.5 
+2.4.5
 =====
 
 -   Correction de bugs
 
 -   Optimisation de la vérification des mises à jour
 
-2.4 
+2.4
 ---
 
 -   Optimisation générale
@@ -651,7 +652,7 @@ Changelog
 -   Possibilité de remplacer une commande par une autre dans tout Jeedom
     (même si la commande à remplacer n’existe plus)
 
-2.3 
+2.3
 ---
 
 -   Correction des filtres sur le market
@@ -824,7 +825,7 @@ Changelog
 -   Ajout d’un tag *begin\_backup*, *end\_backup*, *begin\_update*,
     *end\_update*, *begin\_restore*, *end\_restore* dans les scénarios
 
-2.2 
+2.2
 ---
 
 -   Correction de bugs
@@ -851,7 +852,7 @@ Changelog
 
 -   Refonte de la gestion des thèmes
 
-2.1 
+2.1
 ---
 
 -   Refonte du système de cache de Jeedom (utilisation de
@@ -948,7 +949,7 @@ Changelog
 
 -   Revue du système de partage de scénario
 
-2.0 
+2.0
 ---
 
 -   Refonte du système de cache de Jeedom (utilisation de
@@ -1044,5 +1045,3 @@ Changelog
 -   Ajout sur la page des scénarios d’un testeur d’expression
 
 -   Revue du système de partage de scénario
-
-

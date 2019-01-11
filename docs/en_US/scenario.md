@@ -2,10 +2,10 @@ Voici la partie la plus importante dans la domotique : les scénarios.
 Véritable cerveau de la domotique, c’est ce qui permet d’interagir avec
 le monde réel de manière "intelligente".
 
-La page de gestion des Scénarios 
+La page de gestion des Scénarios
 ================================
 
-Gestion 
+Gestion
 -------
 
 Pour y accéder, rien de plus simple, il suffit d’aller sur Outils ->
@@ -32,7 +32,7 @@ que des fonctions pour les gérer au mieux :
 -   **Testeur d’expression** : Permet d’executer un test sur une
     expression de votre choix et d’en afficher le résultat.
 
-Mes scénarios 
+Mes scénarios
 -------------
 
 Vous trouverez dans cette partie la **liste des scénarios** que vous
@@ -47,7 +47,7 @@ votre profil, vous pouvez le laisser toujours visible). Vous pourrez
 alors **chercher**votre scénario, mais aussi en**ajouter** un par ce
 menu.
 
-Edition d’un scénario 
+Edition d’un scénario
 =====================
 
 Après avoir cliqué sur **Ajouter**, vous devez choisir le nom de votre
@@ -84,7 +84,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 -   **Liens** : Permet de visualiser le graphique des éléments en lien
     avec le scénario.
 
-Onglet Général 
+Onglet Général
 --------------
 
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
@@ -128,7 +128,7 @@ notre scénario :
 > Attention : vous pouvez avoir au maximum 28
 > déclencheurs/programmations pour un scénario.
 
-Onglet Scénario 
+Onglet Scénario
 ---------------
 
 C’est ici que vous allez construire votre scénario. Il faut commencer
@@ -139,7 +139,7 @@ créé, vous pourrez y ajouter un autre **bloc**ou une**action**.
 >
 > Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 
-### Les blocs 
+### Les blocs
 
 Voici les différents types de blocs disponibles :
 
@@ -178,7 +178,7 @@ Chacun de ces blocs a ces options pour mieux les manipuler :
 
 -   Le bouton, tout à droite, permet de supprimer le bloc entier.
 
-#### Blocs Si/Alors/Sinon , Boucle, Dans et A 
+#### Blocs Si/Alors/Sinon , Boucle, Dans et A
 
 > **Note**
 >
@@ -216,7 +216,7 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une
 **action** dans le bloc actuel.
 
-#### Bloc Code 
+#### Bloc Code
 
 > **Important**
 >
@@ -257,7 +257,7 @@ Scénario :
 -   $scenario->setLog($message); : Ecrit un message dans le log du scénario.
 -   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
 
-### Les Actions 
+### Les Actions
 
 Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
 
@@ -282,10 +282,10 @@ Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
 > Suivant la commande sélectionnée, on peut voir apparaître différents
 > champs supplémentaires s’afficher.
 
-Les substitutions possibles 
+Les substitutions possibles
 ===========================
 
-Les déclencheurs 
+Les déclencheurs
 ----------------
 
 Il existe des déclencheurs spécifiques (autre que ceux fournis par les
@@ -312,7 +312,7 @@ jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
 [ici](https://github.com/jeedom/core/blob/master/doc/fr_FR/api_http.asciidoc).
 
-Opérateurs de comparaison et liens entre les conditions 
+Opérateurs de comparaison et liens entre les conditions
 -------------------------------------------------------
 
 Vous pouvez utiliser n’importe lequel des symboles suivant pour les
@@ -345,7 +345,7 @@ suivants :
 
 -   \|^ / XOR / xor : ou exclusif.
 
-Les tags 
+Les tags
 --------
 
 Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous
@@ -411,7 +411,7 @@ déclenché par une interaction :
 > Lorsqu’un scénario est déclenché par une interaction, celui-ci est
 > forcément exécuté en mode rapide.
 
-Les fonctions de calcul 
+Les fonctions de calcul
 -----------------------
 
 Plusieurs fonctions sont disponibles pour les équipements :
@@ -510,14 +510,14 @@ Plusieurs fonctions sont disponibles pour les équipements :
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
-    pas de type info :
+    pas de type info
 
 -   valueDate(cmd,[format]) : Renvoie la date de la dernière donnée
     pour la commande donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
-    pas de type info :
+    pas de type info
 
 -   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
@@ -530,7 +530,13 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
     de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
-    object :
+    object.
+
+-   lastCommunication(equipment,[format]) : Renvoie la date de la dernière communication
+    pour l'équipement donnée en paramètre, le 2ème paramètre optionnel
+    permet de spécifier le format de retour (détails
+    [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
+    signifie que la commande est introuvable
 
 Les périodes et intervalles de ces fonctions peuvent également
 s’utiliser avec [des expressions
@@ -584,7 +590,7 @@ ces différentes fonctions :
 | tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
 | name(eqLogic,\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie Hydrometrie                  |
 
-Les fonctions mathématiques 
+Les fonctions mathématiques
 ---------------------------
 
 Une boîte à outils de fonctions génériques peut également servir à
@@ -649,7 +655,7 @@ Et les exemples pratiques :
 | formatTime(1650)                   | Renvoie 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
 
-Les commandes spécifiques 
+Les commandes spécifiques
 =========================
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
@@ -717,7 +723,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Tag** (tag) : Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'exécution en cours du scénario à la difference des variables qui survivent à la fin du scénario)
 
-Template de scénario 
+Template de scénario
 ====================
 
 Cette fonctionalité permet de transformer un scénario en template pour
@@ -765,7 +771,7 @@ correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
 correspondance des commandes puis de faire appliquer.
 
-Ajout de fonction php 
+Ajout de fonction php
 ====================
 
 > **IMPORTANT**
@@ -778,7 +784,7 @@ Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichie
 
 Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
 
-C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique. 
+C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique.
 
 > **IMPORTANT**
 >
