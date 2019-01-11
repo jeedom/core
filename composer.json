@@ -1,11 +1,6 @@
 {
     "name": "jeedom/core",
     "description": "Software for home automation",
-    "autoload": {
-        "psr-4": {
-            "Jeedom\\": "src/"
-        }
-    },
     "require": {
         "mtdowling/cron-expression": "~1.0",
         "symfony/expression-language": "~2.6",
