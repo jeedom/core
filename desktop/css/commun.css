@@ -9,19 +9,27 @@ body {
   height: 100%;
 }
 
+.row.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:  flex;
+  flex-wrap: wrap;
+}
+
 .backgroundforJeedom{
-  width:100%; 
-  height:calc(100% - 50px); 
-  z-index : -1; 
-  position: absolute;
+  width:100%;
+  height:calc(100% - 50px);
+  z-index : -1;
+  position:fixed;
   opacity : 0.35;
   top : 50;
   background-size:cover;
-  background-position: center center; 
+  background-position: center center;
 }
 
-.btn:hover { 
- opacity: 0.7;
+.btn:hover {
+  opacity: 0.7;
 }
 
 .sidebar-nav {
@@ -118,7 +126,7 @@ body {
 }
 
 .cmd-widget .statistiques{
-  position : absolute; 
+  position : absolute;
   bottom: 0;
   font-size: 0.80em;
   left : 0;
@@ -170,7 +178,7 @@ body {
 
 ::-webkit-scrollbar-thumb{
   background:#ddd
-} 
+}
 
 /* Docs sidebar
 -------------------------------------------------- */

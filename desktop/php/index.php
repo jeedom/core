@@ -212,7 +212,7 @@ if (init('rescue', 0) == 0) {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
-	<div class="backgroundforJeedom" style="position:fixed;"></div>
+	<div class="backgroundforJeedom"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
 	if (!isConnect()) {
