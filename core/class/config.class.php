@@ -17,34 +17,21 @@
  */
 
 /* * ***************************Includes********************************* */
+
+use Jeedom\Core\Api\Security\ApiKey;
+use Jeedom\Core\Configuration\ConfigurationFactory;
+use Jeedom\Core\Log\Log;
+use Jeedom\Core\Plugin\Plugin;
+
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class config {
 	/*     * *************************Attributs****************************** */
 
-	private static $defaultConfiguration = array();
-	private static $cache = array();
-
 	/*     * ***********************Methode static*************************** */
 
 	public static function getDefaultConfiguration($_plugin = 'core') {
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			if ($_plugin == 'core') {
-				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
-				if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
-					self::$defaultConfiguration[$_plugin] = array_merge(self::$defaultConfiguration[$_plugin], parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true));
-				}
-			} else {
-				$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
-				if (file_exists($filename)) {
-					self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
-				}
-			}
-		}
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			self::$defaultConfiguration[$_plugin] = array();
-		}
-		return self::$defaultConfiguration[$_plugin];
+		return ConfigurationFactory::getDefaultConfiguration($_plugin)->search('');
 	}
 	/**
 	 * Ajoute une clef à la config
@@ -54,46 +41,9 @@ class config {
 	 * @return boolean
 	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
-		if (is_object($_value) || is_array($_value)) {
-			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
-		}
-		if (isset(self::$cache[$_plugin . '::' . $_key])) {
-			unset(self::$cache[$_plugin . '::' . $_key]);
-		}
-		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
-		if (isset($defaultConfiguration[$_plugin][$_key]) && $_value == $defaultConfiguration[$_plugin][$_key]) {
-			self::remove($_key, $_plugin);
-			return true;
-		}
-		if ($_plugin == 'core') {
-			$jeedomConfig = jeedom::getConfiguration($_key, true);
-			if ($jeedomConfig != '' && $jeedomConfig == $_value) {
-				self::remove($_key);
-				return true;
-			}
-		}
+        self::getConfiguration($_plugin)->set($_key, $_value);
 
-		$class = ($_plugin == 'core') ? 'config' : $_plugin;
-
-		$function = 'preConfig_' . str_replace(array('::', ':'), '_', $_key);
-		if (method_exists($class, $function)) {
-			$_value = $class::$function($_value);
-		}
-		$values = array(
-			'plugin' => $_plugin,
-			'key' => $_key,
-			'value' => $_value,
-		);
-		$sql = 'REPLACE config
-                SET `key`=:key,
-                    `value`=:value,
-                     plugin=:plugin';
-		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-
-		$function = 'postConfig_' . str_replace(array('::', ':'), '_', $_key);
-		if (method_exists($class, $function)) {
-			$class::$function($_value);
-		}
+        return true;
 	}
 
 	/**
@@ -102,26 +52,9 @@ class config {
 	 * @return boolean vrai si ok faux sinon
 	 */
 	public static function remove($_key, $_plugin = 'core') {
-		if ($_key == "*" && $_plugin != 'core') {
-			$values = array(
-				'plugin' => $_plugin,
-			);
-			$sql = 'DELETE FROM config
-                	WHERE plugin=:plugin';
-			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		} else {
-			$values = array(
-				'plugin' => $_plugin,
-				'key' => $_key,
-			);
-			$sql = 'DELETE FROM config
-                	WHERE `key`=:key
-                    	AND plugin=:plugin';
-			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			if (isset(self::$cache[$_plugin . '::' . $_key])) {
-				unset(self::$cache[$_plugin . '::' . $_key]);
-			}
-		}
+        self::getConfiguration($_plugin)->remove($_key);
+
+        return true;
 	}
 
 	/**
@@ -130,123 +63,27 @@ class config {
 	 * @return string valeur de la clef
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
-		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key])) {
-			return self::$cache[$_plugin . '::' . $_key];
-		}
-		$values = array(
-			'plugin' => $_plugin,
-			'key' => $_key,
-		);
-		$sql = 'SELECT `value`
-                FROM config
-                WHERE `key`=:key
-                    AND plugin=:plugin';
-		$value = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($value['value'] === '' || $value['value'] === null) {
-			if ($_default !== '') {
-				self::$cache[$_plugin . '::' . $_key] = $_default;
-			} else {
-				$defaultConfiguration = self::getDefaultConfiguration($_plugin);
-				if (isset($defaultConfiguration[$_plugin][$_key])) {
-					self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
-				}
-			}
-		} else {
-			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
-		}
-		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
+        return self::getConfiguration($_plugin)->get($_key, $_default);
 	}
 
 	public static function byKeys($_keys, $_plugin = 'core', $_default = '') {
-		if (!is_array($_keys) || count($_keys) == 0) {
-			return array();
-		}
-		$values = array(
-			'plugin' => $_plugin,
-		);
-		$keys = '(\'' . implode('\',\'', $_keys) . '\')';
-		$sql = 'SELECT `key`,`value`
-                FROM config
-                WHERE `key` IN ' . $keys . '
-                    AND plugin=:plugin';
-		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
-		$return = array();
-		foreach ($values as $value) {
-			$return[$value['key']] = $value['value'];
-		}
-		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
-		foreach ($_keys as $key) {
-			if (isset($return[$key])) {
-				$return[$key] = is_json($return[$key], $return[$key]);
-			} elseif (isset($defaultConfiguration[$_plugin][$key])) {
-				$return[$key] = $defaultConfiguration[$_plugin][$key];
-			} else {
-				if (is_array($_default)) {
-					if (isset($_default[$key])) {
-						$return[$key] = $_default[$key];
-					} else {
-						$return[$key] = '';
-					}
-				} else {
-					$return[$key] = $_default;
-				}
-			}
-			self::$cache[$_plugin . '::' . $key] = $return[$key];
-		}
-		return $return;
+        return self::getConfiguration($_plugin)->multiGet($_keys, $_default);
 	}
 
 	public static function searchKey($_key, $_plugin = 'core') {
-		$values = array(
-			'plugin' => $_plugin,
-			'key' => '%' . $_key . '%',
-		);
-		$sql = 'SELECT *
-                FROM config
-                WHERE `key` LIKE :key
-                    AND plugin=:plugin';
-		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
-		foreach ($results as &$result) {
-			$result['value'] = is_json($result['value'], $result['value']);
-		}
-		return $results;
+        return self::getConfiguration($_plugin)->search($_key);
 	}
 
 	public static function genKey($_car = 32) {
-		$key = '';
-		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		for ($i = 0; $i < $_car; $i++) {
-			if (function_exists('random_int')) {
-				$key .= $chaine[random_int(0, strlen($chaine) - 1)];
-			} else {
-				$key .= $chaine[rand(0, strlen($chaine) - 1)];
-			}
-		}
-		return $key;
+		return ApiKey::generate($_car);
 	}
 
 	public static function getPluginEnable() {
-		$sql = 'SELECT `value`,`plugin`
-                FROM config
-                WHERE `key`=\'active\'';
-		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		$return = array();
-		foreach ($values as $value) {
-			$return[$value['plugin']] = $value['value'];
-		}
-		return $return;
+		return Plugin::getEnable();
 	}
 
 	public static function getLogLevelPlugin() {
-		$sql = 'SELECT `value`,`key`
-                FROM config
-                WHERE `key` LIKE \'log::level::%\'';
-		$values = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-		$return = array();
-		foreach ($values as $value) {
-			$return[$value['key']] = is_json($value['value'], $value['value']);
-		}
-		return $return;
+	    return Log::getLevels();
 	}
 
 	/*     * *********************Action sur config************************* */
@@ -269,6 +106,16 @@ class config {
 		}
 		return $_value;
 	}
+
+    /**
+     * @param $_plugin
+     *
+     * @return mixed
+     */
+    private static function getConfiguration($_plugin)
+    {
+        return ConfigurationFactory::build($_plugin);
+    }
 
 	/*     * *********************Methode d'instance************************* */
 
