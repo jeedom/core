@@ -4,7 +4,7 @@
     "autoload": {
         "classmap": [
             "core/class/"
-        ]
+        ],
         "psr-4": {
             "Jeedom\\": "src/"
         }
