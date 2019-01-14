@@ -23,6 +23,7 @@ class migrate {
 
 	public static function usbTry(){
 		$minSize = 7900; //En megaOct.
+		$mediaLink = '/media/migrate';
 		$iSD = 0;
 		$iSDn = 0;
 		$usbSD = null;
@@ -48,14 +49,14 @@ class migrate {
 			}elseif($iSDn > 1){
 				$statut = 'sdaNumSup';
 			}else{
-              	exec('sudo umount /media/migrate');
-              	exec('sudo mkdir /media/migrate');
-				exec('sudo mount -t vfat /dev/'.$usb.' /media/migrate');
-				if((disk_free_space('/media/migrate')/1024)/1024 > $minSize){
+              	exec('sudo umount '.$mediaLink);
+              	exec('sudo mkdir '.$mediaLink);
+				exec('sudo mount -t vfat /dev/'.$usb.' '.$mediaLink);
+				if((migrate::freeSpaceUsb()/1024) > $minSize){
 					$statut = 'ok';
 				}else{
 					$statut = 'space';
-					$space = (disk_free_space('/media/migrate')/1024)/1024;
+					$space = migrate::freeSpaceUsb()/1024;
 				}
 			}
 		}
@@ -63,6 +64,7 @@ class migrate {
 	}
 	
 	public static function backupToUsb() { 
+		$mediaLink = '/media/migrate';
 	    $backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
@@ -73,13 +75,38 @@ class migrate {
 			$backup_dir = config::byKey('backup::path');
 		}
 		$tailleBackup = filesize($backup_dir.'/'.$lienBackup);
-		exec('sudo cp '.$backup_dir.'/'.$lienBackup.' /media/migrate/'.$lienBackup);
-		$tailleBackupFin = filesize('/media/migrate/'.$lienBackup);
+		exec('sudo cp '.$backup_dir.'/'.$lienBackup.' '.$mediaLink.'/'.$lienBackup);
+		$tailleBackupFin = filesize($mediaLink.'/'.$lienBackup);
 		if($tailleBackup <= $tailleBackupFin){
 			return 'ok';
 		}else{
 			return 'nok';
 		}
 	} 
+	
+	public static function imageToUsb() { 
+		$mediaLink = '/media/migrate';
+		log::remove('migrate');
+		$jsonrpc = repo_market::getJsonRpc();
+		if (!$jsonrpc->sendRequest('box::smart_image_url')) {
+	    	throw new Exception($jsonrpc->getErrorMessage());
+		}
+		$urlArray = $jsonrpc->getResult();
+		$url = $urlArray['url'];
+		$size = $urlArray['size'];
+		$freespace = migrate::freeSpaceUsb()*1024;
+		exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+		$sizeafter = $freespace - migrate::freeSpaceUsb();
+		if($sizeafter >= $size){
+			return 'ok';
+		}else{
+			return 'nok';
+		}
+	}
+	
+	public static function freeSpaceUsb(){
+		$mediaLink = '/media/migrate';
+		return disk_free_space($mediaLink)/1024;
+	}
 
 }

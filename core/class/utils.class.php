@@ -1,31 +1,31 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../php/core.inc.php';
 
 class utils {
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $properties = array();
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
 			$return = array();
@@ -61,7 +61,7 @@ class utils {
 		}
 		return $array;
 	}
-
+	
 	public static function a2o(&$_object, $_data) {
 		if (is_array($_data)) {
 			foreach ($_data as $key => $value) {
@@ -94,7 +94,7 @@ class utils {
 			}
 		}
 	}
-
+	
 	public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
@@ -109,7 +109,7 @@ class utils {
 			}
 			$_dbList = $_class::all();
 		}
-
+		
 		$enableList = array();
 		foreach ($_ajaxList as $ajaxObject) {
 			$object = $_class::byId($ajaxObject['id']);
@@ -126,7 +126,7 @@ class utils {
 			}
 		}
 	}
-
+	
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if (!is_array($_attr)) {
@@ -145,7 +145,7 @@ class utils {
 		}
 		return $_attr;
 	}
-
+	
 	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
 		if (is_array($_attr)) {
 			if ($_key == '') {
@@ -153,10 +153,15 @@ class utils {
 			}
 		} else {
 			if ($_key == '') {
-				$_attr = is_json($_attr, array());
-				return $_attr;
+				return is_json($_attr, array());
 			}
 			if ($_attr === '') {
+				if (is_array($_key)) {
+					foreach ($_key as $key) {
+						$return[$key] = $_default;
+					}
+					return $return;
+				}
 				return $_default;
 			}
 			$_attr = json_decode($_attr, true);
@@ -170,9 +175,9 @@ class utils {
 		}
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
 }
 
