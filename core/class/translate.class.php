@@ -17,175 +17,73 @@
  */
 
 /* * ***************************Includes********************************* */
+
+use Jeedom\Core\Translator\TranslatorFactory;
+
 require_once __DIR__ . '/../php/core.inc.php';
 
 class translate {
 	/*     * *************************Attributs****************************** */
 
-	protected static $translation = array();
 	protected static $language = null;
-	private static $config = null;
-	private static $pluginLoad = array();
 
 	/*     * ***********************Methode static*************************** */
 
 	public static function getConfig($_key, $_default = '') {
-		if (self::$config === null) {
-			self::$config = config::byKeys(array('language', 'generateTranslation'));
-		}
-		if (isset(self::$config[$_key])) {
-			return self::$config[$_key];
-		}
-		return $_default;
+	    if ($_key === 'language') {
+	        return self::getTranslator()->getLanguage();
+        }
+        if ($_key === 'generateTranslation') {
+            return \Jeedom\Core\Configuration\ConfigurationFactory::build('core')->get('generateTranslation');
+        }
+
+        return $_default;
 	}
 
 	public static function getTranslation($_plugin) {
-		if (!isset(self::$translation[self::getLanguage()])) {
-			self::$translation[self::getLanguage()] = array();
-		}
-		if (!isset(self::$pluginLoad[$_plugin])) {
-			self::$pluginLoad[$_plugin] = true;
-			self::$translation[self::getLanguage()] = array_merge(self::$translation[self::getLanguage()], self::loadTranslation($_plugin));
-		}
-		return self::$translation[self::getLanguage()];
+        trigger_error(__CLASS__ . '::' . __METHOD__ . ' is deprecated.');
 	}
 
 	public static function sentence($_content, $_name, $_backslash = false) {
-		return self::exec("{{" . $_content . "}}", $_name, $_backslash);
+	    return self::getTranslator()->translate($_content, $_name);
 	}
 
 	public static function getPluginFromName($_name) {
-		if (strpos($_name, 'plugins/') === false) {
-			return 'core';
-		}
-		preg_match_all('/plugins\/(.*?)\//m', $_name, $matches, PREG_SET_ORDER, 0);
-		if (!isset($matches[1])) {
-			return 'core';
-		}
-		return $matches[1];
+        trigger_error(__CLASS__ . '::' . __METHOD__ . ' is deprecated.');
 	}
 
 	public static function exec($_content, $_name = '', $_backslash = false) {
-		if ($_content == '' || $_name == '') {
-			return '';
-		}
-		$language = self::getLanguage();
-
-		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
-			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
-		}
-		if (substr($_name, 0, 1) == '/') {
-			if (strpos($_name, 'plugins') !== false) {
-				$_name = substr($_name, strpos($_name, 'plugins'));
-			} else {
-				if (strpos($_name, 'core') !== false) {
-					$_name = substr($_name, strpos($_name, 'core'));
-				}
-				if (strpos($_name, 'install') !== false) {
-					$_name = substr($_name, strpos($_name, 'install'));
-				}
-			}
-		}
-		$modify = false;
-		$translate = self::getTranslation(self::getPluginFromName($_name));
-		$replace = array();
-		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
-		foreach ($matches[1] as $text) {
-			if (trim($text) == '') {
-				$replace["{{" . $text . "}}"] = $text;
-			}
-			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
-				$replace["{{" . $text . "}}"] = $translate[$_name][$text];
-			}
-			if (!isset($replace["{{" . $text . "}}"]) && isset($translate['common']) && isset($translate['common'][$text])) {
-				$replace["{{" . $text . "}}"] = $translate['common'][$text];
-			}
-			if (!isset($replace["{{" . $text . "}}"])) {
-				if (strpos($_name, '#') === false) {
-					$modify = true;
-					if (!isset($translate[$_name])) {
-						$translate[$_name] = array();
-					}
-					$translate[$_name][$text] = $text;
-				}
-			}
-			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace["{{" . $text . "}}"]));
-			}
-			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = $text;
-			}
-		}
-		if ($language == 'fr_FR' && $modify) {
-			static::$translation[self::getLanguage()] = $translate;
-			self::saveTranslation($language);
-		}
-		return str_replace(array_keys($replace), $replace, $_content);
+        return self::getTranslator()->exec($_content, $_name);
 	}
 
 	public static function getPathTranslationFile($_language) {
-		return __DIR__ . '/../i18n/' . $_language . '.json';
+        return dirname(__DIR__) . '/i18n/' . $_language . '.json';
 	}
 
 	public static function loadTranslation($_plugin = null) {
-		$return = array();
-		if ($_plugin == null || $_plugin == 'core') {
-			$filename = self::getPathTranslationFile(self::getLanguage());
-			if (file_exists($filename)) {
-				$content = file_get_contents($filename);
-				$return = is_json($content, array());
-			}
-		}
-		if ($_plugin == null) {
-			foreach (plugin::listPlugin(true, false, false, true) as $plugin) {
-				$return = array_merge($return, plugin::getTranslation($plugin, self::getLanguage()));
-			}
-		} else {
-			$return = array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
-		}
-		return $return;
+        trigger_error(__CLASS__ . '::' . __METHOD__ . ' is deprecated.');
 	}
 
 	public static function saveTranslation() {
-		$core = array();
-		$plugins = array();
-		foreach (self::getTranslation(self::getLanguage()) as $page => $translation) {
-			if (strpos($page, 'plugins/') === false) {
-				$core[$page] = $translation;
-			} else {
-				$plugin = substr($page, strpos($page, 'plugins/') + 8);
-				$plugin = substr($plugin, 0, strpos($plugin, '/'));
-				if (!isset($plugins[$plugin])) {
-					$plugins[$plugin] = array();
-				}
-				$plugins[$plugin][$page] = $translation;
-			}
-		}
-		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-		foreach ($plugins as $plugin_name => $translation) {
-			try {
-				plugin::saveTranslation($plugin_name, self::getLanguage(), $translation);
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
-		}
+	    trigger_error(__CLASS__ . '::' . __METHOD__ . ' is deprecated. Use Symfony Translator cache instead.');
 	}
 
 	public static function getLanguage() {
-		if (self::$language == null) {
-			self::$language = self::getConfig('language', 'fr_FR');
-		}
-		return self::$language;
-
+        return self::getTranslator()->getLanguage();
 	}
 
 	public static function setLanguage($_langage) {
 		self::$language = $_langage;
 	}
 
-	/*     * *********************Methode d'instance************************* */
+    private static function getTranslator($language = null)
+    {
+        if (null === $language) {
+            $language = self::$language;
+        }
+        return TranslatorFactory::build($language);
+    }
+    /*     * *********************Methode d'instance************************* */
 }
 
 function __($_content, $_name, $_backslash = false) {
