@@ -22,6 +22,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class migrate {
 
 	public static function usbTry(){
+		log::remove('migrate');
 		$minSize = 7900; //En megaOct.
 		$mediaLink = '/media/migrate';
 		$iSD = 0;
@@ -65,6 +66,7 @@ class migrate {
 	
 	public static function backupToUsb() { 
 		$mediaLink = '/media/migrate';
+		log::remove('migrate');
 	    $backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
@@ -75,7 +77,7 @@ class migrate {
 			$backup_dir = config::byKey('backup::path');
 		}
 		$tailleBackup = filesize($backup_dir.'/'.$lienBackup);
-		exec('sudo cp '.$backup_dir.'/'.$lienBackup.' '.$mediaLink.'/'.$lienBackup);
+		exec('sudo rsync --progress '.$backup_dir.'/'.$lienBackup.' '.$mediaLink.'/'.$lienBackup. ' >'.log::getPathToLog('migrate').' 2>&1');
 		$tailleBackupFin = filesize($mediaLink.'/'.$lienBackup);
 		if($tailleBackup <= $tailleBackupFin){
 			return 'ok';
@@ -95,6 +97,7 @@ class migrate {
 		$url = $urlArray['url'];
 		$size = $urlArray['size'];
 		$freespace = migrate::freeSpaceUsb()*1024;
+		exec('sudo pkill -9 wget');
 		exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
 		$sizeafter = $freespace - migrate::freeSpaceUsb();
 		if($sizeafter >= $size){

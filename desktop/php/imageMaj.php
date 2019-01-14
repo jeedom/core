@@ -55,8 +55,11 @@ if (!isConnect('admin')) {
 	</div>
 </div>
 <script>
+
+returnStep();
+
 $('#bt_next').on('click', function() {
-	$.ajax({
+$.ajax({
         type: 'POST',
         url: 'core/ajax/migrate.ajax.php',
         data: {
@@ -88,7 +91,7 @@ $('#bt_next').on('click', function() {
 	        	case 'ok' :
 	        		$('.debut').hide();
 					$('.usb').show();
-	        		$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifié passage à l\'étape 2 en cours}}<br /><i class="next fas fa-arrow-circle-right" id="bt_next"></i></span>');
+	        		$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifié passage à l\'étape 2 en cours}}<br /><i class="next fa fa-refresh" id="bt_next"></i></span>');
 	        		setTimeout(function(){
 	        			$('#step1').hide();
 	        			$('#step2').show();
@@ -103,7 +106,9 @@ $('#bt_next').on('click', function() {
 });
 
 /* FONCTION */
+
 function stepTwo(){
+	setStep('2');
 	/* Lancement du backup */
 	jeedom.backup.backup({
         error: function (error) {
@@ -185,16 +190,35 @@ function getJeedomLog(_autoUpdate, _log) {
 						if(migrateGo == 0){
 							if(data.result[i].indexOf("Saving to: '/media/migrate/backupJeedomDownload.tar.gz'") != -1){
 			                    $('.TextImage').text('Téléchargement en cours de l\'image...');
+			                    pourcentageBar = 0;
 			                    migrateGo = 1;
+		                    }else{
+			                    if(data.result[i].indexOf("%") != -1){
+				                    var indexOfFirst = data.result[i].lastIndexOf("%");
+				                    var pourcentage = data.result[i].substring((indexOfFirst-2),indexOfFirst);
+				                    pourcentage = Number(pourcentage);
+				                    if(pourcentageBar < pourcentage){
+					                    $('.progress-bar').width(Math.round(pourcentage/5+80)+'%');
+										$('.progress-bar').text(Math.round(pourcentage/5+80)+'%');
+										pourcentageBar = pourcentage;
+										if(pourcentage == 99){
+											_autoUpdate = 0;
+										}
+									}	
+								}
 		                    }
 	                    }else{
 		                    if(data.result[i].indexOf("%") != -1){
 			                    var indexOfFirst = data.result[i].indexOf("%");
 			                    var pourcentage = data.result[i].substring((indexOfFirst-2),indexOfFirst);
-			                    if(pourcentageBar < Number(pourcentage)){
-				                    $('.progress-bar').width(Number(pourcentage)+'%');
-									$('.progress-bar').text(Number(pourcentage)+'%');
-									pourcentageBar = Number(pourcentage);
+			                    pourcentage = Number(pourcentage);
+			                    if(pourcentageBar < pourcentage){
+				                    $('.progress-bar').width(pourcentage+'%');
+									$('.progress-bar').text(pourcentage+'%');
+									pourcentageBar = pourcentage;
+									if(pourcentage == 99){
+										_autoUpdate = 0;
+									}
 								}	
 		                    }
 	                    }
@@ -211,8 +235,10 @@ function getJeedomLog(_autoUpdate, _log) {
 }
 
 function backupToUsb(){
+	pourcentageBar = 0;
 	$('.progress-bar').width('80%');
 	$('.progress-bar').text('80%');
+	getJeedomLog(1, 'migrate');
 	$.ajax({
         type: 'POST',
         url: 'core/ajax/migrate.ajax.php',
@@ -232,8 +258,6 @@ function backupToUsb(){
 	        	break;
 	        	case 'ok' :
 	        		$('.TextBackup').text('Backup Copié...');
-	                $('.progress-bar').width('90%');
-					$('.progress-bar').text('90%');
 					setTimeout(function () {
                     	UpImage();
 					}, 1000);
@@ -246,6 +270,9 @@ function backupToUsb(){
 }
 
 function UpImage(){
+	pourcentage = 0;
+	setStep('3');
+	$('#step1').hide();
 	$('#step2').hide();
 	$('.progress-bar').width('0%');
 	$('.progress-bar').text('0%');
@@ -273,6 +300,67 @@ function UpImage(){
 	        	break;
 	        	default:
 	        		alert(imageToUsbResult);
+        	}
+        }
+	});
+}
+
+function setStep(stepValue){
+	$.ajax({
+        type: 'POST',
+        url: 'core/ajax/migrate.ajax.php',
+        data: {
+            action: 'setStep',
+            stepValue: stepValue
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result){
+        }
+	});
+}
+
+function returnStep(){
+	$.ajax({
+        type: 'POST',
+        url: 'core/ajax/migrate.ajax.php',
+        data: {
+            action: 'usbTry',
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result){
+        	var statusUsb = result.result.statut;
+        	if(statusUsb == 'ok'){
+	        	$.ajax({
+			        type: 'POST',
+			        url: 'core/ajax/migrate.ajax.php',
+			        data: {
+			            action: 'getStep'
+			        },
+			        dataType: 'json',
+			        global: false,
+			        error: function (request, status, error) {
+			        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			        },
+			        success: function (result){
+			        	var stepResult = result.result;
+			        	switch(stepResult){
+				        	case '2' :
+					        	stepTwo();
+				        	break;
+				        	case '3' :
+					        	UpImage();
+				        	break;
+			        	}
+			        }
+				});
         	}
         }
 	});
