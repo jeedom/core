@@ -72,7 +72,6 @@ class ConfigurationFactory
             try {
                 $configuration[] = new ReadOnlyIniFileConfiguration($filename, $section);
             } catch (\Exception $e) {
-                echo $filename . ' not readable'.PHP_EOL;
             }
         }
 
