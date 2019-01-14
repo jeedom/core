@@ -33,3 +33,4 @@ tmp/*
 phpunit.xml
 /report
 
+.env

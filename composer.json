@@ -10,6 +10,7 @@
         }
     },
     "require": {
+        "ext-json": "^1.5",
         "mtdowling/cron-expression": "~1.0",
         "symfony/expression-language": "~2.6",
         "league/oauth2-client": "^1.0",
@@ -20,7 +21,6 @@
         "touki/ftp": "^1.2",
         "matthiasmullie/minify": "^1.3",
         "sabre/dav": "^3.2",
-        "ext-json": "^1.5",
         "symfony/translation": "^3.4",
         "symfony/config": "^3.4"
     },

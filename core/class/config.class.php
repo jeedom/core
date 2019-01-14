@@ -19,7 +19,7 @@
 /* * ***************************Includes********************************* */
 
 use Jeedom\Core\Api\Security\ApiKey;
-use Jeedom\Core\Configuration\ConfigurationFactory;
+use Jeedom\Core\Infrastructure\Configuration\ConfigurationFactory;
 use Jeedom\Core\Log\Log;
 use Jeedom\Core\Plugin\Plugin;
 

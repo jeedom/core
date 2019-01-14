@@ -64,11 +64,11 @@ class ConfigurationFactory
 
         $iniFiles = [];
         if ('core' === $plugin) {
-            $iniFiles[] = ['core', dirname(__DIR__, 3) . '/data/custom/custom.config.ini'];
-            $iniFiles[] = ['core', dirname(__DIR__, 3) . '/core/config/default.config.ini'];
+            $iniFiles[] = ['core', dirname(__DIR__, 4) . '/data/custom/custom.config.ini'];
+            $iniFiles[] = ['core', dirname(__DIR__, 4) . '/core/config/default.config.ini'];
         } else {
-            $iniFiles[] = [$plugin, dirname(__DIR__, 3) . '/data/custom/custom.config.ini'];
-            $iniFiles[] = [$plugin, dirname(__DIR__, 3) . '/plugins/' . $plugin . '/core/config/' . $plugin . '.config.ini'];
+            $iniFiles[] = [$plugin, dirname(__DIR__, 4) . '/data/custom/custom.config.ini'];
+            $iniFiles[] = [$plugin, dirname(__DIR__, 4) . '/plugins/' . $plugin . '/core/config/' . $plugin . '.config.ini'];
         }
 
         $configuration = [];

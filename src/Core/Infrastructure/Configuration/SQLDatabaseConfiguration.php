@@ -41,7 +41,7 @@ class SQLDatabaseConfiguration implements Configuration
             'value' => self::serialize($value),
         ];
         $sql = !$exists
-            ? 'INSERT INTO config (key, value, plugin) VALUES (:key, :value, :plugin)'
+            ? 'INSERT INTO config (`key`, `value`, `plugin`) VALUES (:key, :value, :plugin)'
             : 'UPDATE config SET `value`=:value WHERE `key`=:key AND plugin=:plugin'
         ;
         \DB::Prepare($sql, $values, \DB::FETCH_TYPE_ROW);
