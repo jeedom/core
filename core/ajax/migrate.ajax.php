@@ -32,9 +32,30 @@ try {
 	}
 	
 	if (init('action') == 'backupToUsb') {
-		log::add('backup', 'info', 'BackupToUsb demandé dans Ajax.');
 		$backupToUsb = migrate::backupToUsb();
 		ajax::success($backupToUsb);
+	}
+	
+	if (init('action') == 'imageToUsb') {
+		$imageToUsb = migrate::imageToUsb();
+		ajax::success($imageToUsb);
+	}
+	
+	if (init('action') == 'freeSpaceUsb') {
+		$freeSpaceUsb = migrate::freeSpaceUsb();
+		ajax::success($freeSpaceUsb);
+	}
+	
+	if (init('action') == 'getStep') {
+		$valueMigrate = config::byKey('stepMigrate');
+		ajax::success($valueMigrate);
+	}
+	
+	if (init('action') == 'setStep') {
+		if(!init('stepValue')){
+			config::save('stepMigrate', init('stepValue'));
+			ajax::success();
+		}
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
