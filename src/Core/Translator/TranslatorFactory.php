@@ -25,12 +25,21 @@ class TranslatorFactory
             $language = $configuration->get('language', 'fr_FR');
         }
 
-        $symfonyTranslator = new SymfonyTranslator($language);
-        $file = json_decode(file_get_contents(dirname(__DIR__, 3).'/core/i18n/' . $language . '.json'), true);
+        $plugins = \plugin::listPlugin(true, false, false, true);
+
+        $symfonyTranslator = new SymfonyTranslator(
+            $language,
+            null,
+            dirname(__DIR__, 3).'/var/cache/translations',
+            getenv('DEBUG')
+        );
+
         $symfonyTranslator->addLoader('array', new ArrayLoader());
 
-        foreach ($file as $domain => $resource) {
-            $symfonyTranslator->addResource('array', $resource, $language, $domain);
+        $languageFile = '/core/i18n/' . $language . '.json';
+        self::addFile($symfonyTranslator, $language, dirname(__DIR__, 3) . $languageFile);
+        foreach ($plugins as $plugin) {
+            self::addFile($symfonyTranslator, $language, dirname(__DIR__, 3) . '/plugins/' . $plugin . $languageFile);
         }
 
         if (!isset(self::$translators[$language])) {
@@ -38,5 +47,24 @@ class TranslatorFactory
         }
 
         return self::$translators[$language];
+    }
+
+    /**
+     * @param SymfonyTranslator $symfonyTranslator
+     * @param $language
+     * @param string $fileName
+     *
+     * @return void
+     */
+    private static function addFile(SymfonyTranslator $symfonyTranslator, $language, $fileName)
+    {
+        if (!file_exists($fileName) || !is_readable($fileName)) {
+            return;
+        }
+        $file = json_decode(file_get_contents($fileName), true);
+
+        foreach ($file as $domain => $resource) {
+            $symfonyTranslator->addResource('array', $resource, $language, $domain);
+        }
     }
 }
