@@ -16,6 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Jeedom\Core\Translator\TranslatorFactory;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
@@ -54,18 +55,19 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if ($_plugin != '') {
 		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
 	}
-	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
+	$path = dirname(__DIR__, 2) . '/' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
 		throw new Exception('Fichier introuvable : ' . $path, 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
-			ob_start();
+            $renderer = new \Jeedom\Core\Renderer\PHPRenderer(dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . $_folder);
+            $content = $renderer->render($_fn);
 			require_once $path;
 			if ($_rescue) {
-				echo str_replace(array('{{', '}}'), '', ob_get_clean());
+				echo str_replace(array('{{', '}}'), '', $content);
 			} else {
-				echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
+				echo TranslatorFactory::build()->exec($content, $_folder . '/' . $_fn);
 			}
 			return;
 		}
@@ -1365,4 +1367,8 @@ function unautorizedInDemo($_user = null) {
 	if ($_user->getLogin() == 'demo') {
 		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 	}
+}
+
+function __($_content, $_name, $_backslash = false) {
+    return translate::sentence($_content, $_name, $_backslash);
 }
