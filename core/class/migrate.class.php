@@ -22,7 +22,7 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class migrate {
 
 	public static function usbTry(){
-		log::remove('migrate');
+		//log::remove('migrate');
 		$minSize = 7900; //En megaOct.
 		$mediaLink = '/media/migrate';
 		$iSD = 0;

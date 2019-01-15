@@ -52,9 +52,9 @@ try {
 	}
 	
 	if (init('action') == 'setStep') {
-		if(!init('stepValue')){
-			config::save('stepMigrate', init('stepValue'));
-			ajax::success();
+		if(init('stepValues')){
+			config::save('stepMigrate', init('stepValues'));
+			ajax::success(init('stepValues'));
 		}
 	}
 	
