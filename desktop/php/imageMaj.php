@@ -269,40 +269,51 @@ function backupToUsb(){
 	});
 }
 
-function UpImage(){
+function UpImage(go){
 	pourcentage = 0;
-	setStep('3');
-	$('#step1').hide();
-	$('#step2').hide();
-	$('.progress-bar').width('0%');
-	$('.progress-bar').text('0%');
-	$('#step3').show();
-	$('#contenuWithStepTree').addClass('animated');
-	$.ajax({
-        type: 'POST',
-        url: 'core/ajax/migrate.ajax.php',
-        data: {
-            action: 'imageToUsb',
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (result){
-        	var imageToUsbResult = result.result;
-        	switch(imageToUsbResult){
-	        	case 'nok' :
-	        		alert('{{L\'image n\'a pas été copié}}');
-	        	break;
-	        	case 'ok' :
-	        		getJeedomLog(1, 'migrate');
-	        	break;
-	        	default:
-	        		alert(imageToUsbResult);
-        	}
-        }
-	});
+	if(go == 1){
+		setStep('3');
+		$('#step1').hide();
+		$('#step2').hide();
+		$('.progress-bar').width('0%');
+		$('.progress-bar').text('0%');
+		$('#step3').show();
+		$('#contenuWithStepTree').addClass('animated');
+		getJeedomLog(1, 'migrate');
+	}else{
+		setStep('3');
+		$('#step1').hide();
+		$('#step2').hide();
+		$('.progress-bar').width('0%');
+		$('.progress-bar').text('0%');
+		$('#step3').show();
+		$('#contenuWithStepTree').addClass('animated');
+		$.ajax({
+	        type: 'POST',
+	        url: 'core/ajax/migrate.ajax.php',
+	        data: {
+	            action: 'imageToUsb',
+	        },
+	        dataType: 'json',
+	        global: false,
+	        error: function (request, status, error) {
+	        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+	        },
+	        success: function (result){
+	        	var imageToUsbResult = result.result;
+	        	switch(imageToUsbResult){
+		        	case 'nok' :
+		        		alert('{{L\'image n\'a pas été copié}}');
+		        	break;
+		        	case 'ok' :
+		        		getJeedomLog(1, 'migrate');
+		        	break;
+		        	default:
+		        		alert(imageToUsbResult);
+	        	}
+	        }
+		});
+	}
 }
 
 function setStep(stepValue){
@@ -311,7 +322,7 @@ function setStep(stepValue){
         url: 'core/ajax/migrate.ajax.php',
         data: {
             action: 'setStep',
-            stepValue: stepValue
+            stepValues: stepValue
         },
         dataType: 'json',
         global: false,
@@ -356,7 +367,7 @@ function returnStep(){
 					        	stepTwo();
 				        	break;
 				        	case '3' :
-					        	UpImage();
+					        	UpImage(1);
 				        	break;
 			        	}
 			        }
