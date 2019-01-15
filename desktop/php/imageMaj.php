@@ -30,7 +30,7 @@ if (!isConnect('admin')) {
 			<div id="contenuText" class="backup">
 				<span id="contenuTextSpan" class="TextBackup">Backup lancé merci de patienter...</span>
 			<div id="contenuTextSpan" class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+  <div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 </div>
 		</div>
 		</div>
@@ -45,7 +45,7 @@ if (!isConnect('admin')) {
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextImage">Téléchargement de l'image Jeedom.</span>
 			<div id="contenuTextSpan" class="progress">
-			<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+			<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 </div>
 		</div>
 		</div>
@@ -54,6 +54,24 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
 	</div>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalReloadStep">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{Reprendre la restauration}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{Pour reprendre votre restauration cliquez sur "Reprendre".}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="bt_close" data-dismiss="modal">{{Fermer}}</button>
+        <button type="button" class="btn btn-primary" id="bt_reprendre">{{Reprendre}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script>
 
 returnStep();
@@ -105,6 +123,15 @@ $.ajax({
 	});
 });
 
+
+/* VARIABLE */
+
+var persiste = 0;
+var netoyage = 0;
+var migrateGo = 0;
+var pourcentageBar = 0;
+var stepReload = null;
+
 /* FONCTION */
 
 function stepTwo(){
@@ -119,15 +146,12 @@ function stepTwo(){
         }
     });
 }
+
 function verifBackup(){
 	$('.progress-bar').width('10%');
 	$('.progress-bar').text('10%');
 	getJeedomLog(1, 'backup');
 }
-var persiste = 0;
-var netoyage = 0;
-var migrateGo = 0;
-var pourcentageBar = 0;
 
 function getJeedomLog(_autoUpdate, _log) {
     $.ajax({
@@ -269,40 +293,52 @@ function backupToUsb(){
 	});
 }
 
-function UpImage(){
+function UpImage(go){
 	pourcentage = 0;
-	setStep('3');
-	$('#step1').hide();
-	$('#step2').hide();
-	$('.progress-bar').width('0%');
-	$('.progress-bar').text('0%');
-	$('#step3').show();
-	$('#contenuWithStepTree').addClass('animated');
-	$.ajax({
-        type: 'POST',
-        url: 'core/ajax/migrate.ajax.php',
-        data: {
-            action: 'imageToUsb',
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (result){
-        	var imageToUsbResult = result.result;
-        	switch(imageToUsbResult){
-	        	case 'nok' :
-	        		alert('{{L\'image n\'a pas été copié}}');
-	        	break;
-	        	case 'ok' :
-	        		getJeedomLog(1, 'migrate');
-	        	break;
-	        	default:
-	        		alert(imageToUsbResult);
-        	}
-        }
-	});
+	if(go == 1){
+		setStep('3');
+		migrateGo = 1;
+		$('#step1').hide();
+		$('#step2').hide();
+		$('.progress-bar').width('0%');
+		$('.progress-bar').text('0%');
+		$('#step3').show();
+		$('#contenuWithStepTree').addClass('animated');
+		getJeedomLog(1, 'migrate');
+	}else{
+		setStep('3');
+		$('#step1').hide();
+		$('#step2').hide();
+		$('.progress-bar').width('0%');
+		$('.progress-bar').text('0%');
+		$('#step3').show();
+		$('#contenuWithStepTree').addClass('animated');
+		$.ajax({
+	        type: 'POST',
+	        url: 'core/ajax/migrate.ajax.php',
+	        data: {
+	            action: 'imageToUsb',
+	        },
+	        dataType: 'json',
+	        global: false,
+	        error: function (request, status, error) {
+	        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+	        },
+	        success: function (result){
+	        	var imageToUsbResult = result.result;
+	        	switch(imageToUsbResult){
+		        	case 'nok' :
+		        		alert('{{L\'image n\'a pas été copié}}');
+		        	break;
+		        	case 'ok' :
+		        		getJeedomLog(1, 'migrate');
+		        	break;
+		        	default:
+		        		alert(imageToUsbResult);
+	        	}
+	        }
+		});
+	}
 }
 
 function setStep(stepValue){
@@ -311,7 +347,7 @@ function setStep(stepValue){
         url: 'core/ajax/migrate.ajax.php',
         data: {
             action: 'setStep',
-            stepValue: stepValue
+            stepValues: stepValue
         },
         dataType: 'json',
         global: false,
@@ -324,6 +360,7 @@ function setStep(stepValue){
 }
 
 function returnStep(){
+	console.log('returnStep demandé');
 	$.ajax({
         type: 'POST',
         url: 'core/ajax/migrate.ajax.php',
@@ -353,10 +390,14 @@ function returnStep(){
 			        	var stepResult = result.result;
 			        	switch(stepResult){
 				        	case '2' :
-					        	stepTwo();
+				        		$('#modalReloadStep').modal('show');
+				        		stepReload = 2;
+					        	//stepTwo();
 				        	break;
 				        	case '3' :
-					        	UpImage();
+				        		$('#modalReloadStep').modal('show');
+					        	//UpImage(1);
+					        	stepReload = 3;
 				        	break;
 			        	}
 			        }
@@ -365,6 +406,27 @@ function returnStep(){
         }
 	});
 }
+
+$('#bt_reprendre').on('click', function() {
+	if(stepReload !== null){
+		switch(stepReload){
+        	case 2 :
+	        	stepTwo();
+        	break;
+        	case 3 :
+	        	UpImage(1);
+        	break;
+    	}
+		$('#modalReloadStep').modal('hide');
+	}else{
+		$('#modalReloadStep').modal('hide');
+	}
+});
+
+$('#bt_close').on('click', function() {
+	setStep(1);
+});
+
 </script>
 <?php
 include_file('desktop', 'imageMaj', 'css');
