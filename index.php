@@ -39,6 +39,7 @@ try {
 	}
 	require_once __DIR__ . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
+	    $translator = \Jeedom\Core\Translator\TranslatorFactory::build();
 		if (isset($_GET['modal'])) {
 			try {
 				include_file('core', 'authentification', 'php');
@@ -46,12 +47,12 @@ try {
 			} catch (Exception $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				echo $translator->exec(displayException($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			} catch (Error $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				echo $translator->exec(displayException($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			}
 		} elseif (isset($_GET['configure'])) {
@@ -82,12 +83,12 @@ try {
 			} catch (Exception $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				echo $translator->exec(displayException($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			} catch (Error $e) {
 				ob_end_clean();
 				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				echo $translator->exec(displayException($e), 'desktop/' . init('p') . '.php');
 				echo '</div>';
 			}
 		} else {

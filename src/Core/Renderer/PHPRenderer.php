@@ -35,7 +35,7 @@ class PHPRenderer implements Renderer
 
     private function getTemplateFile($template)
     {
-        $templateFile = str_replace('/', DIRECTORY_SEPARATOR, $this->resolveNamespace($template)).'.php';
+        $templateFile = str_replace('/', DIRECTORY_SEPARATOR, $this->resolveNamespace($template));
         if (!file_exists($templateFile) || !is_readable($templateFile)) {
             throw new TemplateNotExistsException('Template '.$template. ' not exists. File '.$templateFile.' not exists.');
         }

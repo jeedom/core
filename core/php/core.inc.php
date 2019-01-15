@@ -21,8 +21,6 @@ require_once __DIR__ . '/../config/common.config.php';
 require_once __DIR__ . '/utils.inc.php';
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
-include_file('core', 'utils', 'class');
-include_file('core', 'log', 'class');
 
 try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
