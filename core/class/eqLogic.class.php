@@ -452,6 +452,14 @@ class eqLogic {
 		return $text;
 	}
 	
+	public static function byString($_string) {
+		$eqLogic = self::byId(str_replace('#', '', self::fromHumanReadable($_string)));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
+		}
+		return $eqLogic;
+	}
+	
 	public static function clearCacheWidget() {
 		foreach (self::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
