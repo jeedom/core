@@ -46,6 +46,18 @@ try {
 		ajax::success($freeSpaceUsb);
 	}
 	
+	if (init('action') == 'getStep') {
+		$valueMigrate = config::byKey('stepMigrate');
+		ajax::success($valueMigrate);
+	}
+	
+	if (init('action') == 'setStep') {
+		if(!init('stepValue')){
+			config::save('stepMigrate', init('stepValue'));
+			ajax::success();
+		}
+	}
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
