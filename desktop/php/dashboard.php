@@ -25,7 +25,10 @@ foreach ($allObject as $value) {
 }
 sendVarToJs('rootObjectId', $object->getId());
 ?>
-
+<?php include_file('desktop', 'dashboard', 'js');?>
+<?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
+<?php include_file('desktop', 'dashboard', 'css');?>
+<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');?>
 <div class="row row-overflow">
 	<?php
 	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
@@ -65,13 +68,12 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 	}
 }
 ?>
-<i class='fa fa-picture-o cursor pull-left' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
-<i class='fa fa-sort-amount-desc pull-left cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
 <i class='fa fa-cogs pull-right cursor' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault') ?>' title="{{Afficher/Masquer les scénarios}}"></i>
 <?php if (init('category', 'all') == 'all') {?>
 	<i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
-<?php }
-?>
+<?php } ?>
+<i class='fa fa-sort-amount-desc pull-right cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
+<i class='fa fa-picture-o cursor pull-right' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
 <div style="witdh:100%; display: none;" class="categorieHidden">
 	<div style="witdh:45%; float:left;">
 		<div class="demo">
@@ -115,10 +117,6 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 		</div>
 	</div>
 </div>
-<?php include_file('desktop', 'dashboard', 'js');?>
-<?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
-<?php include_file('desktop', 'dashboard', 'css');?>
-<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');?>
 <div class="row" >
 	<?php
 	if (init('object_id') != '') {
