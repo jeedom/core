@@ -49,10 +49,10 @@ else
 fi
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Vérifie les droits..."
-sudo chown -R www-data:www-data ${DIR}/*
-sudo chmod -R 775 ${DIR}/*
-sudo chown -R www-data:www-data /tmp/jeedom/cache
-sudo chmod -R 775 /tmp/jeedom/cache
-sudo chown -R www-data:www-data /var/www
-sudo chmod -R 775 /var/www
+#sudo chown -R www-data:www-data ${DIR}/*
+#sudo chmod -R 775 ${DIR}/*
+#sudo chown -R www-data:www-data /tmp/jeedom/cache
+#sudo chmod -R 775 /tmp/jeedom/cache
+#sudo chown -R www-data:www-data /var/www
+#sudo chmod -R 775 /var/www
 	echo "OK"

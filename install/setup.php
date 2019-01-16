@@ -225,8 +225,8 @@ if ($config) {
 			</div>
 		</form>
 		<?php } else {
-	shell_exec('sudo chmod 775 -R ' . __DIR__ . '/../*');
-	shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . __DIR__ . '/../*');
+	// shell_exec('sudo chmod 775 -R ' . __DIR__ . '/../*');
+	// shell_exec('sudo chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' -R ' . __DIR__ . '/../*');
 	if (!is_writable(__DIR__ . '/../core/config')) {
 		echo '<div class="alert alert-danger" style="margin:15px;">';
 		echo '<center style="font-size:1.2em;">Le dossier ' . __DIR__ . '/../core/config' . ' doit être en écriture</center>';

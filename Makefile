@@ -17,7 +17,7 @@ SQL_EXEC?=mysql \
 PHP?=php
 PHPUNIT?=vendor/bin/phpunit
 SERVER_HOST?=localhost
-SERVER_PORT?=80
+SERVER_PORT?=8080
 PUBLIC_PATH=./
 
 CONFIGURATION_FILE=core/config/common.config.php

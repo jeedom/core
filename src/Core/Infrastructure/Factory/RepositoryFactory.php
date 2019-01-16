@@ -1,8 +1,9 @@
 <?php
 
-namespace Jeedom\Core\Infrastructure\Repository;
+namespace Jeedom\Core\Infrastructure\Factory;
 
 use Jeedom\Core\Domain\Repository\CommandRepository;
+use Jeedom\Core\Infrastructure\Repository\SQLDatabaseCommandRepository;
 
 class RepositoryFactory
 {

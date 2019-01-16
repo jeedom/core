@@ -19,8 +19,8 @@
 /* * ***************************Includes********************************* */
 
 use Jeedom\Core\Api\Security\ApiKey;
-use Jeedom\Core\Infrastructure\Configuration\ConfigurationFactory;
-use Jeedom\Core\Log\Log;
+use Jeedom\Core\Infrastructure\Factory\ConfigurationFactory;
+use Jeedom\Core\Infrastructure\Log\Log;
 use Jeedom\Core\Plugin\Plugin;
 
 require_once __DIR__ . '/../../core/php/core.inc.php';

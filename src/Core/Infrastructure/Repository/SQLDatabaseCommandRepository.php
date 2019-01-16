@@ -553,10 +553,11 @@ class SQLDatabaseCommandRepository implements CommandRepository
      */
     private static function cast($_inputs, $_eqLogic = null)
     {
-        $destination = $_inputs->getEqType() . 'Cmd';
-        if (is_object($_inputs) && class_exists($destination)) {
+
+        if ($_inputs instanceof \cmd && class_exists($_inputs->getEqType() . 'Cmd')) {
+            $destination = $_inputs->getEqType() . 'Cmd';
             if ($_eqLogic !== null) {
-                $_inputs->_eqLogic = $_eqLogic;
+                $_inputs->setEqLogic($_eqLogic);
             }
             $obj_in = serialize($_inputs);
             return unserialize('O:' . strlen($destination) . ':"' . $destination . '":' . substr($obj_in, $obj_in[2] + 7));
@@ -582,7 +583,7 @@ class SQLDatabaseCommandRepository implements CommandRepository
     private function getFields($alias = '')
     {
         if (null === $this->fields[$alias]) {
-            $this->fields[$alias] = \DB::buildField(__CLASS__, $alias);
+            $this->fields[$alias] = \DB::buildField(\cmd::class, $alias);
         }
 
         return $this->fields[$alias];

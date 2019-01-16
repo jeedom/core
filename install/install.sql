@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   `display` TEXT NULL,
   `order` INT NULL DEFAULT '1',
   `comment` TEXT NULL,
+  `tags` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `unique` (`name` ASC, `object_id` ASC),
   INDEX `eqTypeName` (`eqType_name` ASC),
@@ -85,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `eqLogic` (
   INDEX `object_id` (`object_id` ASC),
   INDEX `timeout` (`timeout` ASC),
   INDEX `eqReal_id` (`eqReal_id` ASC),
+  INDEX `tags` (`tags` ASC),
   CONSTRAINT `fk_eqLogic_jeenode1`
     FOREIGN KEY (`eqReal_id`)
     REFERENCES `eqReal` (`id`)

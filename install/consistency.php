@@ -346,7 +346,7 @@ try {
 	}
 
 	try {
-		foreach (object::all() as $object) {
+		foreach (jeeObject::all() as $object) {
 			$object->save();
 		}
 	} catch (Exception $exc) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jeedom\Core\Log;
+namespace Jeedom\Core\Infrastructure\Log;
 
 class Log
 {

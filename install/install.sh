@@ -239,8 +239,8 @@ step_8_jeedom_configuration() {
 	sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 	sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
 	sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
-	chmod 775 -R ${WEBSERVER_HOME}
-	chown -R www-data:www-data ${WEBSERVER_HOME}
+	#chmod 775 -R ${WEBSERVER_HOME}
+	#chown -R www-data:www-data ${WEBSERVER_HOME}
 	echo "${VERT}étape 8 configuration de jeedom réussie${NORMAL}"
 }
 
@@ -248,8 +248,8 @@ step_9_jeedom_installation() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Commence l'étape 9 installation de jeedom${NORMAL}"
 	mkdir -p /tmp/jeedom
-	chmod 777 -R /tmp/jeedom
-	chown www-data:www-data -R /tmp/jeedom
+	#chmod 777 -R /tmp/jeedom
+	#chown www-data:www-data -R /tmp/jeedom
 	php ${WEBSERVER_HOME}/install/install.php mode=force
 	if [ $? -ne 0 ]; then
     	echo "${ROUGE}Ne peut installer jeedom - Annulation${NORMAL}"
@@ -299,8 +299,8 @@ step_11_jeedom_check() {
 	echo "---------------------------------------------------------------------"
 	echo "${JAUNE}Commence l'étape 11 vérification de jeedom${NORMAL}"
 	php ${WEBSERVER_HOME}/sick.php
-	chmod 777 -R /tmp/jeedom
-	chown www-data:www-data -R /tmp/jeedom
+	#chmod 777 -R /tmp/jeedom
+	#chown www-data:www-data -R /tmp/jeedom
 	echo "${VERT}étape 11 vérification de jeedom réussie${NORMAL}"
 }
 
@@ -315,7 +315,7 @@ distrib_1_spe(){
 		cp ${WEBSERVER_HOME}/install/OS_specific/rpi/post-install.sh post-install.sh
 	fi
 	if [ -f post-install.sh ]; then
-		chmod +x post-install.sh
+		#chmod +x post-install.sh
 		./post-install.sh
 		rm post-install.sh
 	fi

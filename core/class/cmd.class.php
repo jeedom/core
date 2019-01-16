@@ -19,18 +19,11 @@
 /* * ***************************Includes********************************* */
 
 use Jeedom\Core\Api\Security\ApiKey;
-use Jeedom\Core\Application\Query\CommandSubTypesQuery;
-use Jeedom\Core\Application\Query\CommandSubTypesQueryHandler;
-use Jeedom\Core\Application\Query\CommandTypesQuery;
-use Jeedom\Core\Application\Query\CommandTypesQueryHandler;
-use Jeedom\Core\Application\Query\CommandUnitesQuery;
-use Jeedom\Core\Application\Query\CommandUnitesQueryHandler;
-use Jeedom\Core\Configuration\Configuration;
-use Jeedom\Core\Configuration\ConfigurationFactory;
+use Jeedom\Core\Application\Configuration\Configuration;
+use Jeedom\Core\Infrastructure\Factory\ConfigurationFactory;
 use Jeedom\Core\Domain\Repository\CommandRepository;
-use Jeedom\Core\Infrastructure\Repository\RepositoryFactory;
-use Jeedom\Core\Infrastructure\Repository\ServiceFactory;
-use Jeedom\Core\Infrastructure\Service\FilesystemWidgetService;
+use Jeedom\Core\Infrastructure\Factory\RepositoryFactory;
+use Jeedom\Core\Infrastructure\Factory\ServiceFactory;
 use Jeedom\Core\Presenter\ColorConverter;
 use Jeedom\Core\Presenter\HumanCommandMap;
 use Jeedom\Core\Presenter\Service\WidgetService;
