@@ -1388,7 +1388,7 @@ class eqLogic {
 		if (isset($_data['node']['eqLogic' . $this->getId()])) {
 			return;
 		}
-		if ($this->getIsEnable() == 0 && $_level > 0) {
+		if ($_level > 0) {
 			return $_data;
 		}
 		$_level++;
@@ -1402,6 +1402,7 @@ class eqLogic {
 			'height' => 60,
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'image' => $this->getImage(),
+			'isActive' => $this->getIsEnable(),
 			'title' => $this->getHumanName(),
 			'url' => $this->getLinkToConfiguration(),
 		);
