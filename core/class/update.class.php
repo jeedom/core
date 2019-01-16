@@ -480,7 +480,7 @@ class update {
 	* @return type
 	*/
 	public function checkUpdate() {
-		if ($this->getConfiguration('doNotUpdate') == 1) {
+		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
 			return;
 		}
