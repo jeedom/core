@@ -2,7 +2,7 @@
 
 namespace Jeedom\Core\Translator;
 
-use Jeedom\Core\Configuration\ConfigurationFactory;
+use Jeedom\Core\Infrastructure\Factory\ConfigurationFactory;
 use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Translation\Translator as SymfonyTranslator;
 

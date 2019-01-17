@@ -14,7 +14,7 @@ class FilesystemWidgetService implements WidgetService
      */
     public function getAvailables($type, $viewer)
     {
-        $path = diname(__DIR__, 4) . '/template/' . $viewer;
+        $path = dirname(__DIR__, 4) . '/template/' . $viewer;
         $files = ls($path, $type.'.*', false, array('files', 'quiet'));
         $return = array();
         foreach ($files as $file) {

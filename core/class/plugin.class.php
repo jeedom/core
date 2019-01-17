@@ -142,7 +142,11 @@ class plugin {
             FROM config
             WHERE `key`='active'
             AND `value`='1'";
-			$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+			try {
+                $results = DB::Prepare($sql, [], DB::FETCH_TYPE_ALL);
+            } catch (\Exception $e) {
+			    return [];
+            }
 			if ($_nameOnly) {
 				foreach ($results as $result) {
 					$listPlugin[] = $result['plugin'];
