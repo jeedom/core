@@ -396,71 +396,6 @@
         ]
     },
     {
-        "name": "sabre/xml",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sabre-io/xml.git",
-            "reference": "59b20e5bbace9912607481634f97d05a776ffca7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sabre-io/xml/zipball/59b20e5bbace9912607481634f97d05a776ffca7",
-            "reference": "59b20e5bbace9912607481634f97d05a776ffca7",
-            "shasum": ""
-        },
-        "require": {
-            "ext-dom": "*",
-            "ext-xmlreader": "*",
-            "ext-xmlwriter": "*",
-            "lib-libxml": ">=2.6.20",
-            "php": ">=5.5.5",
-            "sabre/uri": ">=1.0,<3.0.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "*",
-            "sabre/cs": "~1.0.0"
-        },
-        "time": "2016-10-09T22:57:52+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Sabre\\Xml\\": "lib/"
-            },
-            "files": [
-                "lib/Deserializer/functions.php",
-                "lib/Serializer/functions.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Evert Pot",
-                "email": "me@evertpot.com",
-                "homepage": "http://evertpot.com/",
-                "role": "Developer"
-            },
-            {
-                "name": "Markus Staab",
-                "email": "markus.staab@redaxo.de",
-                "role": "Developer"
-            }
-        ],
-        "description": "sabre/xml is an XML library that you may not hate.",
-        "homepage": "https://sabre.io/xml/",
-        "keywords": [
-            "XMLReader",
-            "XMLWriter",
-            "dom",
-            "xml"
-        ]
-    },
-    {
         "name": "sabre/event",
         "version": "3.0.0",
         "version_normalized": "3.0.0.0",
@@ -575,57 +510,6 @@
         "homepage": "https://github.com/fruux/sabre-http",
         "keywords": [
             "http"
-        ]
-    },
-    {
-        "name": "paragonie/random_compat",
-        "version": "v2.0.17",
-        "version_normalized": "2.0.17.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
-            "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.*|5.*"
-        },
-        "suggest": {
-            "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-        },
-        "time": "2018-07-04T16:31:37+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "lib/random.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Paragon Initiative Enterprises",
-                "email": "security@paragonie.com",
-                "homepage": "https://paragonie.com"
-            }
-        ],
-        "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-        "keywords": [
-            "csprng",
-            "polyfill",
-            "pseudorandom",
-            "random"
         ]
     },
     {
@@ -1863,5 +1747,121 @@
         ],
         "description": "Symfony EventDispatcher Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "paragonie/random_compat",
+        "version": "v2.0.18",
+        "version_normalized": "2.0.18.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paragonie/random_compat.git",
+            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
+            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*|5.*"
+        },
+        "suggest": {
+            "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+        },
+        "time": "2019-01-03T20:59:08+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/random.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Paragon Initiative Enterprises",
+                "email": "security@paragonie.com",
+                "homepage": "https://paragonie.com"
+            }
+        ],
+        "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+        "keywords": [
+            "csprng",
+            "polyfill",
+            "pseudorandom",
+            "random"
+        ]
+    },
+    {
+        "name": "sabre/xml",
+        "version": "1.5.1",
+        "version_normalized": "1.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sabre-io/xml.git",
+            "reference": "a367665f1df614c3b8fefc30a54de7cd295e444e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sabre-io/xml/zipball/a367665f1df614c3b8fefc30a54de7cd295e444e",
+            "reference": "a367665f1df614c3b8fefc30a54de7cd295e444e",
+            "shasum": ""
+        },
+        "require": {
+            "ext-dom": "*",
+            "ext-xmlreader": "*",
+            "ext-xmlwriter": "*",
+            "lib-libxml": ">=2.6.20",
+            "php": ">=5.5.5",
+            "sabre/uri": ">=1.0,<3.0.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.8|~5.7",
+            "sabre/cs": "~1.0.0"
+        },
+        "time": "2019-01-09T13:51:57+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Sabre\\Xml\\": "lib/"
+            },
+            "files": [
+                "lib/Deserializer/functions.php",
+                "lib/Serializer/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Evert Pot",
+                "email": "me@evertpot.com",
+                "homepage": "http://evertpot.com/",
+                "role": "Developer"
+            },
+            {
+                "name": "Markus Staab",
+                "email": "markus.staab@redaxo.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "sabre/xml is an XML library that you may not hate.",
+        "homepage": "https://sabre.io/xml/",
+        "keywords": [
+            "XMLReader",
+            "XMLWriter",
+            "dom",
+            "xml"
+        ]
     }
 ]

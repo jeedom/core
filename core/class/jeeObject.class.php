@@ -1,27 +1,27 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class jeeObject {
 	/*     * *************************Attributs****************************** */
-
+	
 	private $id;
 	private $name;
 	private $father_id = null;
@@ -31,9 +31,9 @@ class jeeObject {
 	private $display;
 	private $image;
 	private $_child = array();
-
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function byId($_id) {
 		if ($_id == '') {
 			return;
@@ -42,35 +42,35 @@ class jeeObject {
 			'id' => $_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
-                WHERE id=:id';
+		FROM object
+		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byName($_name) {
 		$values = array(
 			'name' => $_name,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
-                WHERE name=:name';
+		FROM object
+		WHERE name=:name';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function all($_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object ';
+		FROM object ';
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
 		$sql .= ' ORDER BY position,name,father_id';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function rootObject($_all = false, $_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
-                WHERE father_id IS NULL';
+		FROM object
+		WHERE father_id IS NULL';
 		if ($_onlyVisible) {
 			$sql .= ' AND isVisible = 1';
 		}
@@ -81,7 +81,7 @@ class jeeObject {
 		}
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function buildTree($_object = null, $_visible = true) {
 		$return = array();
 		if (!is_object($_object)) {
@@ -97,7 +97,7 @@ class jeeObject {
 		}
 		return $return;
 	}
-
+	
 	public static function fullData($_restrict = array()) {
 		$return = array();
 		foreach (jeeObject::all(true) as $object) {
@@ -125,7 +125,7 @@ class jeeObject {
 		}
 		return $return;
 	}
-
+	
 	public static function searchConfiguration($_search) {
 		$values = array(
 			'configuration' => '%' . $_search . '%',
@@ -135,7 +135,7 @@ class jeeObject {
 		WHERE `configuration` LIKE :configuration';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function deadCmd() {
 		$return = array();
 		foreach (jeeObject::all() as $object) {
@@ -149,7 +149,7 @@ class jeeObject {
 		}
 		return $return;
 	}
-
+	
 	public static function checkSummaryUpdate($_cmd_id) {
 		$objects = self::searchConfiguration('#' . $_cmd_id . '#');
 		if (count($objects) == 0) {
@@ -200,7 +200,7 @@ class jeeObject {
 					}
 					$cmd->event($value['value']);
 				} catch (Exception $e) {
-
+					
 				}
 			}
 		}
@@ -225,7 +225,7 @@ class jeeObject {
 					}
 					$cmd->event($result);
 				} catch (Exception $e) {
-
+					
 				}
 			}
 			$events[] = $event;
@@ -234,7 +234,7 @@ class jeeObject {
 			event::adds('jeeObject::summary::update', $events);
 		}
 	}
-
+	
 	public static function getGlobalSummary($_key) {
 		if ($_key == '') {
 			return null;
@@ -260,7 +260,7 @@ class jeeObject {
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
-
+	
 	public static function getGlobalHtmlSummary($_version = 'desktop') {
 		$cache = cache::byKey('globalSummaryHtml' . $_version);
 		if ($cache->getValue() != '') {
@@ -286,7 +286,7 @@ class jeeObject {
 			}
 		}
 		$margin = ($_version == 'desktop') ? 4 : 2;
-
+		
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
 				continue;
@@ -298,7 +298,7 @@ class jeeObject {
 				$allowDisplayZero = 1;
 			} else {
 				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-
+				
 			}
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
@@ -311,7 +311,7 @@ class jeeObject {
 		cache::set('globalSummaryHtml' . $_version, $return);
 		return $return;
 	}
-
+	
 	public static function createSummaryToVirtual($_key = '') {
 		if ($_key == '') {
 			return;
@@ -357,7 +357,7 @@ class jeeObject {
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
 		}
-
+		
 		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 		if (!is_object($virtual)) {
 			$virtual = new virtual();
@@ -385,7 +385,7 @@ class jeeObject {
 		}
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
-
+		
 		foreach (jeeObject::all() as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
@@ -426,13 +426,13 @@ class jeeObject {
 			$cmd->save();
 		}
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	public function getTableName() {
 		return 'object';
 	}
-
+	
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
 		if (!is_object($father)) {
@@ -442,10 +442,10 @@ class jeeObject {
 			throw new Exception(__('Problème dans l\'arbre des objets', __FILE__));
 		}
 		$_fathers[] = $this->getId();
-
+		
 		$father->checkTreeConsistency($_fathers);
 	}
-
+	
 	public function preSave() {
 		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
 			throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
@@ -465,19 +465,19 @@ class jeeObject {
 			$this->setConfiguration('mobile::summaryTextColor', '');
 		}
 	}
-
+	
 	public function save() {
 		return DB::save($this);
 	}
-
+	
 	public function getChild($_visible = true) {
 		if (!isset($this->_child[$_visible])) {
 			$values = array(
 				'id' => $this->id,
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-                FROM object
-                WHERE father_id=:id';
+			FROM object
+			WHERE father_id=:id';
 			if ($_visible) {
 				$sql .= ' AND isVisible=1 ';
 			}
@@ -486,7 +486,7 @@ class jeeObject {
 		}
 		return $this->_child[$_visible];
 	}
-
+	
 	public function getChilds() {
 		$return = array();
 		foreach ($this->getChild() as $child) {
@@ -495,7 +495,7 @@ class jeeObject {
 		}
 		return $return;
 	}
-
+	
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_searchOnchild = false) {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {
@@ -513,7 +513,7 @@ class jeeObject {
 		}
 		return $eqLogics;
 	}
-
+	
 	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
@@ -542,24 +542,24 @@ class jeeObject {
 		}
 		return $return;
 	}
-
+	
 	public function getScenario($_onlyEnable = true, $_onlyVisible = false) {
 		return scenario::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
 	}
-
+	
 	public function preRemove() {
 		dataStore::removeByTypeLinkId('object', $this->getId());
 	}
-
+	
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'object'));
 		return DB::remove($this);
 	}
-
+	
 	public function getFather() {
 		return self::byId($this->getFather_id());
 	}
-
+	
 	public function parentNumber() {
 		$father = $this->getFather();
 		if (!is_object($father)) {
@@ -575,7 +575,7 @@ class jeeObject {
 		}
 		return 0;
 	}
-
+	
 	public function getHumanName($_tag = false, $_prettify = false) {
 		if ($_tag) {
 			if ($_prettify) {
@@ -591,7 +591,7 @@ class jeeObject {
 			return $this->getName();
 		}
 	}
-
+	
 	public function getSummary($_key = '', $_raw = false) {
 		$def = config::byKey('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
@@ -626,7 +626,7 @@ class jeeObject {
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
-
+	
 	public function getHtmlSummary($_version = 'desktop') {
 		if (trim($this->getCache('summaryHtml' . $_version)) != '') {
 			return $this->getCache('summaryHtml' . $_version);
@@ -657,7 +657,7 @@ class jeeObject {
 		$this->setCache('summaryHtml' . $_version, $return);
 		return $return;
 	}
-
+	
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::jeeObject::drill');
@@ -689,15 +689,15 @@ class jeeObject {
 		addGraphLink($this, 'object', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'object', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
 		addGraphLink($this, 'object', $this->getChild(), 'object', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'object', $this->getScenario(), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
+		addGraphLink($this, 'object', $this->getScenario(false), 'scenario', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
-
+	
 	public function getUse() {
 		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
 		return jeedom::getTypeUse($json);
 	}
-
+	
 	public function getImgLink() {
 		if ($this->getImage('data') == '') {
 			return '';
@@ -717,105 +717,105 @@ class jeeObject {
 		}
 		return 'core/img/object/' . $filename;
 	}
-
+	
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		unset($return['image']);
 		$return['img'] = $this->getImgLink();
 		return $return;
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	public function getName() {
 		return $this->name;
 	}
-
+	
 	public function getFather_id($_default = null) {
 		if ($this->father_id == '' || !is_numeric($this->father_id)) {
 			return $_default;
 		}
 		return $this->father_id;
 	}
-
+	
 	public function getIsVisible($_default = null) {
 		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
 	}
-
+	
 	public function setId($id) {
 		$this->id = $id;
 		return $this;
 	}
-
+	
 	public function setName($name) {
 		$name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
 		$this->name = $name;
 		return $this;
 	}
-
+	
 	public function setFather_id($father_id = null) {
 		$this->father_id = ($father_id == '') ? null : $father_id;
 		return $this;
 	}
-
+	
 	public function setIsVisible($isVisible) {
 		$this->isVisible = $isVisible;
 		return $this;
 	}
-
+	
 	public function getPosition($_default = null) {
 		if ($this->position == '' || !is_numeric($this->position)) {
 			return $_default;
 		}
 		return $this->position;
 	}
-
+	
 	public function setPosition($position) {
 		$this->position = $position;
 		return $this;
 	}
-
+	
 	public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-
+	
 	public function setConfiguration($_key, $_value) {
 		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		return $this;
 	}
-
+	
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-
+	
 	public function setDisplay($_key, $_value) {
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
 	}
-
+	
 	public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('objectCacheAttr' . $this->getId())->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
-
+	
 	public function setCache($_key, $_value = null) {
 		cache::set('objectCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('objectCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
-
+	
 	public function getImage($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->image, $_key, $_default);
 	}
-
+	
 	public function setImage($_key, $_value) {
 		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
 		return $this;
 	}
-
+	
 }
