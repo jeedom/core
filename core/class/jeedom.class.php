@@ -1159,11 +1159,11 @@ class jeedom {
 	}
 
 	public static function cleanFileSytemRight() {
-		$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
-		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../*;';
-		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +;';
-		$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;';
-		exec($cmd);
+		// $cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
+		// $cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../*;';
+		// $cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 664 {} +;';
+		// $cmd .= system::getCmdSudo() . 'chmod 774 -R ' . __DIR__ . '/../../.* ;';
+		// exec($cmd);
 	}
 
 	public static function checkSpaceLeft($_dir = null) {
@@ -1182,8 +1182,8 @@ class jeedom {
 		}
 		if (!file_exists($return)) {
 			mkdir($return, 0774, true);
-			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
-			com_shell::execute($cmd);
+			// $cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
+			// com_shell::execute($cmd);
 		}
 		return $return;
 	}

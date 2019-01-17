@@ -30,3 +30,7 @@ tmp/*
 
 /vendor
 /var
+phpunit.xml
+/report
+
+.env

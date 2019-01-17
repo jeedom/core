@@ -1,8 +1,15 @@
 <?php
 
-namespace Jeedom\Core\Configuration;
+namespace Jeedom\Core\Infrastructure\Factory;
 
-use Jeedom\Core\Configuration\Event\Configured;
+use Jeedom\Core\Application\Configuration\ChainConfiguration;
+use Jeedom\Core\Application\Configuration\InMemoryCacheConfigurationDecorator;
+use Jeedom\Core\Application\Configuration\InMemoryConfiguration;
+use Jeedom\Core\Application\Configuration\ReadOnlyIniFileConfiguration;
+use Jeedom\Core\Infrastructure\Configuration\Event\Configured;
+use Jeedom\Core\Infrastructure\Configuration\EventDispatcherConfigurationDecorator;
+use Jeedom\Core\Infrastructure\Configuration\LogConfigurationDecorator;
+use Jeedom\Core\Infrastructure\Configuration\SQLDatabaseConfiguration;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ConfigurationFactory
@@ -60,11 +67,11 @@ class ConfigurationFactory
 
         $iniFiles = [];
         if ('core' === $plugin) {
-            $iniFiles[] = ['core', dirname(__DIR__, 3) . '/data/custom/custom.config.ini'];
-            $iniFiles[] = ['core', dirname(__DIR__, 3) . '/core/config/default.config.ini'];
+            $iniFiles[] = ['core', dirname(__DIR__, 4) . '/data/custom/custom.config.ini'];
+            $iniFiles[] = ['core', dirname(__DIR__, 4) . '/core/config/default.config.ini'];
         } else {
-            $iniFiles[] = [$plugin, dirname(__DIR__, 3) . '/data/custom/custom.config.ini'];
-            $iniFiles[] = [$plugin, dirname(__DIR__, 3) . '/plugins/' . $plugin . '/core/config/' . $plugin . '.config.ini'];
+            $iniFiles[] = [$plugin, dirname(__DIR__, 4) . '/data/custom/custom.config.ini'];
+            $iniFiles[] = [$plugin, dirname(__DIR__, 4) . '/plugins/' . $plugin . '/core/config/' . $plugin . '.config.ini'];
         }
 
         $configuration = [];
