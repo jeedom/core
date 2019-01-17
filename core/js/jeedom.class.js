@@ -94,6 +94,7 @@ jeedom.changes = function(){
 
 
 jeedom.init = function () {
+  jeedom.datetime = serverDatetime;
   jeedom.display.version = 'desktop';
   if ($.mobile) {
     jeedom.display.version = 'mobile';
