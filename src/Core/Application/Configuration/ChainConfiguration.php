@@ -7,14 +7,10 @@ class ChainConfiguration implements Configuration
     /**
      * @var Configuration[]
      */
-    private $configurations;
+    private $configurations = [];
 
-    public function __construct(array $configurations)
+    public function __construct(array $configurations = [])
     {
-        if (empty($configurations)) {
-            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
-        }
-
         foreach ($configurations as $configuration) {
             $this->addPreConfiguration($configuration);
         }
@@ -25,8 +21,16 @@ class ChainConfiguration implements Configuration
      */
     public function get($key, $default = null)
     {
+        if (empty($this->configurations)) {
+            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
+        }
+
         foreach ($this->configurations as $configuration) {
-            $value = $configuration->get($key);
+            try {
+                $value = $configuration->get($key);
+            } catch (\Exception $e) {
+                $value = null;
+            }
             if (null !== $value) {
                 return $value;
             }
@@ -40,6 +44,10 @@ class ChainConfiguration implements Configuration
      */
     public function set($key, $value)
     {
+        if (empty($this->configurations)) {
+            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
+        }
+
         $setted = false;
         foreach ($this->configurations as $configuration) {
             try {
@@ -60,6 +68,10 @@ class ChainConfiguration implements Configuration
      */
     public function remove($key)
     {
+        if (empty($this->configurations)) {
+            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
+        }
+
         $unsetted = false;
         foreach ($this->configurations as $configuration) {
             try {
@@ -86,6 +98,10 @@ class ChainConfiguration implements Configuration
      */
     public function multiGet(array $keys, $default = null)
     {
+        if (empty($this->configurations)) {
+            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
+        }
+
         $asKeys = array_flip($keys);
         if (!is_array($default)) {
             $default = array_fill_keys($keys, $default);
@@ -123,6 +139,10 @@ class ChainConfiguration implements Configuration
      */
     public function search($pattern)
     {
+        if (empty($this->configurations)) {
+            throw new \LogicException(self::class . ' doit être construit avec au moins une Configuration.');
+        }
+
         $returns = [];
         foreach ($this->configurations as $configuration) {
             $returns[] = $configuration->search($pattern);

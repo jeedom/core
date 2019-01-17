@@ -1,6 +1,6 @@
 <?php
 
-namespace Jeedom\Core\Plugin;
+namespace Jeedom\Core\Infrastructure\Plugin;
 
 class Plugin
 {

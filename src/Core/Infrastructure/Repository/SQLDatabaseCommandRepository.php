@@ -566,7 +566,7 @@ class SQLDatabaseCommandRepository implements CommandRepository
             $return = [];
             foreach ($_inputs as $input) {
                 if ($_eqLogic !== null) {
-                    $input->_eqLogic = $_eqLogic;
+                    $input->setEqLogic($_eqLogic);
                 }
                 $return[] = self::cast($input);
             }
@@ -600,7 +600,7 @@ class SQLDatabaseCommandRepository implements CommandRepository
      */
     private function getResults($sql, $values = [], $eqLogic = null)
     {
-        return self::cast(\DB::Prepare($sql, $values, \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, __CLASS__), $eqLogic);
+        return self::cast(\DB::Prepare($sql, $values, \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, \cmd::class), $eqLogic);
     }
 
     /**
@@ -614,7 +614,7 @@ class SQLDatabaseCommandRepository implements CommandRepository
      */
     private function getOneResult($sql, $values = [], $eqLogic = null)
     {
-        return self::cast(\DB::Prepare($sql, $values, \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, __CLASS__), $eqLogic);
+        return self::cast(\DB::Prepare($sql, $values, \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, \cmd::class), $eqLogic);
     }
 
     /**

@@ -124,7 +124,6 @@ class ChainConfigurationTest extends TestCase
 
         $configuration = new ChainConfiguration([new InMemoryConfiguration(), new InMemoryConfiguration()]);
         $configuration->addPostConfiguration($configuration1);
-        var_dump($configuration);
 
         $result = $configuration->multiGet(['foo', 'bar'], 'default');
         $this->assertEquals([

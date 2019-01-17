@@ -2,7 +2,7 @@
 
 namespace Jeedom\Core\Infrastructure\Service;
 
-use Jeedom\Core\Configuration\Configuration;
+use Jeedom\Core\Application\Configuration\Configuration;
 
 class ConfigurationColorConverter
 {
