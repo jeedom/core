@@ -24,11 +24,8 @@ foreach ($allObject as $value) {
 	}
 }
 sendVarToJs('rootObjectId', $object->getId());
+include_file('desktop', 'dashboard', 'css');
 ?>
-<?php include_file('desktop', 'dashboard', 'js');?>
-<?php include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');?>
-<?php include_file('desktop', 'dashboard', 'css');?>
-<?php include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');?>
 <div class="row row-overflow">
 	<?php
 	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
@@ -117,6 +114,11 @@ if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
 		</div>
 	</div>
 </div>
+<?php
+include_file('desktop', 'dashboard', 'js');
+include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');
+include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');
+?>
 <div class="row" >
 	<?php
 	if (init('object_id') != '') {
