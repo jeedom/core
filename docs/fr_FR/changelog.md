@@ -33,6 +33,7 @@ Changelog
 -   Ajout d'une action tag dans les scénarios (voir documentation)
 -   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscree=1" dans l'url
 -   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+-   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 
 3.2.12
 =====
