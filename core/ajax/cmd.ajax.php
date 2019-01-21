@@ -343,25 +343,38 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
-		$cmds = json_decode(init('cmds'), true);
-		foreach ($cmds as $cmd_json) {
-			if (!isset($cmd_json['id']) || trim($cmd_json['id']) == '') {
-				continue;
+			$cmds = json_decode(init('cmds'), true);
+			$eqLogics = array();
+			foreach ($cmds as $cmd_json) {
+				if (!isset($cmd_json['id']) || trim($cmd_json['id']) == '') {
+					continue;
+				}
+				$cmd = cmd::byId($cmd_json['id']);
+				if (!is_object($cmd)) {
+					continue;
+				}
+				if($cmd->getOrder() != $cmd_json['order']){
+					$cmd->setOrder($cmd_json['order']);
+					$cmd->save(true);
+				}
+				if (isset($cmd_json['line']) && isset($cmd_json['column'])) {
+					if(!isset($eqLogics[$cmd->getEqLogic_id()])){
+						$eqLogics[$cmd->getEqLogic_id()] = array('eqLogic' => $cmd->getEqLogic(),'changed' => false);
+					}
+					if ($eqLogics[$cmd->getEqLogic_id()]['eqLogic']->getDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line') != $cmd_json['line'] || $eqLogics[$cmd->getEqLogic_id()]['eqLogic']->getDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column') != $cmd_json['column']) {
+						$eqLogics[$cmd->getEqLogic_id()]['eqLogic']->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line', $cmd_json['line']);
+						$eqLogics[$cmd->getEqLogic_id()]['eqLogic']->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column', $cmd_json['column']);
+						$eqLogics[$cmd->getEqLogic_id()]['changed'] = true;
+					}
+				}
 			}
-			$cmd = cmd::byId($cmd_json['id']);
-			if (!is_object($cmd)) {
-				continue;
+			foreach($eqLogics as $eqLogic){
+				if(!$eqLogic['changed']){
+					continue;
+				}
+				$eqLogic['eqLogic']->save(true);
 			}
-			$cmd->setOrder($cmd_json['order']);
-			$cmd->save(true);
-			if (isset($cmd_json['line']) && isset($cmd_json['column'])) {
-				$eqLogic = $cmd->getEqLogic();
-				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line', $cmd_json['line']);
-				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column', $cmd_json['column']);
-				$eqLogic->save(true);
-			}
-		}
-		ajax::success();
+			ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
