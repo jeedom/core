@@ -353,12 +353,12 @@ try {
 				continue;
 			}
 			$cmd->setOrder($cmd_json['order']);
-			$cmd->save();
+			$cmd->save(true);
 			if (isset($cmd_json['line']) && isset($cmd_json['column'])) {
 				$eqLogic = $cmd->getEqLogic();
 				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::line', $cmd_json['line']);
 				$eqLogic->setDisplay('layout::' . init('version', 'dashboard') . '::table::cmd::' . $cmd->getId() . '::column', $cmd_json['column']);
-				$eqLogic->save();
+				$eqLogic->save(true);
 			}
 		}
 		ajax::success();
