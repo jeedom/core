@@ -31,6 +31,7 @@ class jeeObject {
 	private $display;
 	private $image;
 	private $_child = array();
+	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -467,7 +468,12 @@ class jeeObject {
 	}
 	
 	public function save() {
-		return DB::save($this);
+		if(!$this->_changed){
+			return true;
+		}
+		DB::save($this);
+		$this->_changed = false;
+		return true;
 	}
 	
 	public function getChild($_visible = true) {
@@ -749,24 +755,29 @@ class jeeObject {
 		return $this->isVisible;
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
-	public function setName($name) {
-		$name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
-		$this->name = $name;
+	public function setName($_name) {
+		$_name = str_replace(array('&', '#', ']', '[', '%'), '', $name);
+		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->name = $_name;
 		return $this;
 	}
 	
-	public function setFather_id($father_id = null) {
-		$this->father_id = ($father_id == '') ? null : $father_id;
+	public function setFather_id($_father_id = null) {
+		$_father_id = ($_father_id == '') ? null : $_father_id;
+		$this->_changed = utils::attrChanged($this->_changed,$this->father_id,$_father_id);
+		$this->father_id = $_father_id;
 		return $this;
 	}
 	
-	public function setIsVisible($isVisible) {
-		$this->isVisible = $isVisible;
+	public function setIsVisible($_isVisible) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->isVisible,$_isVisible);
+		$this->isVisible = $_isVisible;
 		return $this;
 	}
 	
@@ -777,8 +788,9 @@ class jeeObject {
 		return $this->position;
 	}
 	
-	public function setPosition($position) {
-		$this->position = $position;
+	public function setPosition($_position) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->position,$_position);
+		$this->position = $_position;
 		return $this;
 	}
 	
@@ -787,7 +799,9 @@ class jeeObject {
 	}
 	
 	public function setConfiguration($_key, $_value) {
-		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$configuration =  utils::setJsonAttr($this->configuration, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->configuration = $configuration;
 		return $this;
 	}
 	
@@ -796,7 +810,9 @@ class jeeObject {
 	}
 	
 	public function setDisplay($_key, $_value) {
-		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		$display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->display = $display;
 		return $this;
 	}
 	
@@ -814,7 +830,9 @@ class jeeObject {
 	}
 	
 	public function setImage($_key, $_value) {
-		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
+		$image = utils::setJsonAttr($this->image, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
+		$this->image = $image;
 		return $this;
 	}
 	

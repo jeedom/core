@@ -45,6 +45,7 @@ class cmd {
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	protected $_needRefreshAlert;
+	protected $_changed = false;
 	private static $_templateArray = array();
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -811,6 +812,9 @@ class cmd {
 	}
 	
 	public function save() {
+		if(!$this->_changed){
+			return true;
+		}
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
@@ -834,6 +838,7 @@ class cmd {
 			$this->setDisplay('generic_type', '');
 		}
 		DB::save($this);
+		$this->_changed = false;
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
 			$this->getEqLogic()->refreshWidget();
@@ -1849,6 +1854,7 @@ class cmd {
 	}
 	
 	public function setGeneric_type($_generic_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->generic_type,$_generic_type);
 		$this->generic_type = $_generic_type;
 		return $this;
 	}
@@ -1893,8 +1899,9 @@ class cmd {
 		return 1;
 	}
 	
-	public function setId($id = '') {
-		$this->id = $id;
+	public function setId($_id = '') {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
@@ -1903,33 +1910,40 @@ class cmd {
 	* @param type $name
 	* @return $this
 	*/
-	public function setName($name) {
-		$this->name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $name);
+	public function setName($_name) {
+		$_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
+		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->name = $_name;
 		return $this;
 	}
 	
-	public function setType($type) {
-		$this->type = $type;
+	public function setType($_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->type = $_type;
 		return $this;
 	}
 	
-	public function setSubType($subType) {
-		$this->subType = $subType;
+	public function setSubType($_subType) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->subType,$_subType);
+		$this->subType = $_subType;
 		return $this;
 	}
 	
-	public function setEqLogic_id($eqLogic_id) {
-		$this->eqLogic_id = $eqLogic_id;
+	public function setEqLogic_id($_eqLogic_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->eqLogic_id,$_eqLogic_id);
+		$this->eqLogic_id = $_eqLogic_id;
 		return $this;
 	}
 	
-	public function setIsHistorized($isHistorized) {
-		$this->isHistorized = $isHistorized;
+	public function setIsHistorized($_isHistorized) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->isHistorized,$_isHistorized);
+		$this->isHistorized = $_isHistorized;
 		return $this;
 	}
 	
-	public function setUnite($unite) {
-		$this->unite = $unite;
+	public function setUnite($_unite) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->unite,$_unite);
+		$this->unite = $_unite;
 		return $this;
 	}
 	
@@ -1947,6 +1961,7 @@ class cmd {
 		}
 		if ($this->getHtml($_key) != $_value) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
 		return $this;
@@ -1959,6 +1974,7 @@ class cmd {
 	public function setTemplate($_key, $_value) {
 		if ($this->getTemplate($_key) != $_value) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->template = utils::setJsonAttr($this->template, $_key, $_value);
 		return $this;
@@ -1974,7 +1990,9 @@ class cmd {
 				$_value = sha512($_value);
 			}
 		}
-		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->configuration = $configuration;
 		return $this;
 	}
 	
@@ -1985,6 +2003,7 @@ class cmd {
 	public function setDisplay($_key, $_value) {
 		if ($this->getDisplay($_key) != $_value) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
 		return $this;
@@ -1995,7 +2014,9 @@ class cmd {
 	}
 	
 	public function setAlert($_key, $_value) {
-		$this->alert = utils::setJsonAttr($this->alert, $_key, $_value);
+		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->alert,$alert );
+		$this->alert = $alert ;
 		$this->_needRefreshAlert = true;
 		return $this;
 	}
@@ -2022,8 +2043,9 @@ class cmd {
 		return $this->value;
 	}
 	
-	public function setValue($value) {
-		$this->value = $value;
+	public function setValue($_value) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->value,$_value);
+		$this->value = $_value;
 		return $this;
 	}
 	
@@ -2034,6 +2056,7 @@ class cmd {
 	public function setIsVisible($isVisible) {
 		if ($this->isVisible != $isVisible) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->isVisible = $isVisible;
 		return $this;
@@ -2049,6 +2072,7 @@ class cmd {
 	public function setOrder($order) {
 		if ($this->order != $order) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->order = $order;
 		return $this;
@@ -2058,8 +2082,9 @@ class cmd {
 		return $this->logicalId;
 	}
 	
-	public function setLogicalId($logicalId) {
-		$this->logicalId = $logicalId;
+	public function setLogicalId($_logicalId) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
+		$this->logicalId = $_logicalId;
 		return $this;
 	}
 	
@@ -2067,8 +2092,9 @@ class cmd {
 		return $this->eqType;
 	}
 	
-	public function setEqType($eqType) {
-		$this->eqType = $eqType;
+	public function setEqType($_eqType) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->eqType,$_eqType);
+		$this->eqType = $_eqType;
 		return $this;
 	}
 	

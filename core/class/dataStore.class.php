@@ -27,6 +27,7 @@ class dataStore {
 	private $link_id;
 	private $key;
 	private $value;
+	private $_changed;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -100,7 +101,12 @@ class dataStore {
 	}
 	
 	public function save() {
+		if(!$this->_changed){
+			return true;
+		}
 		DB::save($this);
+		$this->_changed = false;
+		return true;
 	}
 	
 	public function postSave() {
@@ -175,8 +181,9 @@ class dataStore {
 		return $this->id;
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
@@ -184,8 +191,9 @@ class dataStore {
 		return $this->type;
 	}
 	
-	public function setType($type) {
-		$this->type = $type;
+	public function setType($_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->type = $_type;
 		return $this;
 	}
 	
@@ -193,8 +201,9 @@ class dataStore {
 		return $this->link_id;
 	}
 	
-	public function setLink_id($link_id) {
-		$this->link_id = $link_id;
+	public function setLink_id($_link_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
+		$this->link_id = $_link_id;
 		return $this;
 	}
 	
@@ -202,8 +211,9 @@ class dataStore {
 		return $this->key;
 	}
 	
-	public function setKey($key) {
-		$this->key = $key;
+	public function setKey($_key) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->key,$_key);
+		$this->key = $_key;
 		return $this;
 	}
 	
@@ -214,12 +224,12 @@ class dataStore {
 		return is_json($this->value, $this->value);
 	}
 	
-	public function setValue($value) {
-		if (is_object($value) || is_array($value)) {
-			$this->value = json_encode($value, JSON_UNESCAPED_UNICODE);
-		} else {
-			$this->value = $value;
+	public function setValue($_value) {
+		if (is_object($_value) || is_array($_value)) {
+			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
+		$this->_changed = utils::attrChanged($this->_changed,$this->value,$_value);
+		$this->value = $_value;
 		return $this;
 	}
 	
