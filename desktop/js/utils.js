@@ -675,7 +675,15 @@ function saveWidgetDisplay(_params){
         eqLogics: eqLogics,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
+        },
+      success:function(data){
+        jeedom.cmd.setOrder({
+          cmds: cmds,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          }
+        });
+      }
     });
    }
    if(init(_params['view']) == 1){
@@ -696,15 +704,17 @@ function saveWidgetDisplay(_params){
         eqLogics: eqLogics,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        }
+        },
+      success:function(data){
+        jeedom.cmd.setOrder({
+          cmds: cmds,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          }
+        });
+      }
     });
  }
- jeedom.cmd.setOrder({
-    cmds: cmds,
-    error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    }
-});
 }
 
 
