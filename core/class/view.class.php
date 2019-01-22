@@ -28,6 +28,7 @@ class view {
 	private $order;
 	private $image;
 	private $configuration;
+	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -242,8 +243,9 @@ class view {
 		return $this->id;
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
@@ -251,8 +253,9 @@ class view {
 		return $this->name;
 	}
 	
-	public function setName($name) {
-		$this->name = $name;
+	public function setName($_name) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->name = $_name;
 		return $this;
 	}
 	
@@ -263,8 +266,9 @@ class view {
 		return $this->order;
 	}
 	
-	public function setOrder($order) {
-		$this->order = $order;
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
 		return $this;
 	}
 	
@@ -273,7 +277,9 @@ class view {
 	}
 	
 	public function setDisplay($_key, $_value) {
-		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		$display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->display = $display;
 		return $this;
 	}
 	
@@ -282,7 +288,9 @@ class view {
 	}
 	
 	public function setImage($_key, $_value) {
-		$this->image = utils::setJsonAttr($this->image, $_key, $_value);
+		$image = utils::setJsonAttr($this->image, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
+		$this->image = $image;
 		return $this;
 	}
 	
@@ -291,12 +299,21 @@ class view {
 	}
 	
 	public function setConfiguration($_key, $_value) {
-		if ($_key == 'accessCode' && $_value != '') {
-			if (!is_sha512($_value)) {
-				$_value = sha512($_value);
-			}
+		if ($_key == 'accessCode' && $_value != '' && !is_sha512($_value)) {
+			$_value = sha512($_value);
 		}
-		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->configuration = $configuration;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	
