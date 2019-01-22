@@ -29,6 +29,7 @@ class scenarioExpression {
 	private $expression;
 	private $options;
 	private $order;
+	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -1354,15 +1355,15 @@ class scenarioExpression {
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
-
+					
 					//Recuperation des tags
 					$tags = $scenario->getTags();
 					if (isset($tags['#profile#']) === true) {
-					   //Remplacement du pattern #profile# par le profile utilisateur 
-					   //si la commande contient #profile#
-					   $this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+						//Remplacement du pattern #profile# par le profile utilisateur
+						//si la commande contient #profile#
+						$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
 					}
-
+					
 					#Recherche de la commandeId avec le bon user
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
 					
@@ -1526,6 +1527,7 @@ class scenarioExpression {
 	public function save() {
 		$this->checkBackground();
 		DB::save($this);
+		return true;
 	}
 	
 	public function remove() {
@@ -1632,8 +1634,9 @@ class scenarioExpression {
 		return $this->id;
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
@@ -1641,8 +1644,9 @@ class scenarioExpression {
 		return $this->type;
 	}
 	
-	public function setType($type) {
-		$this->type = $type;
+	public function setType($_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->type = $_type;
 		return $this;
 	}
 	
@@ -1654,8 +1658,9 @@ class scenarioExpression {
 		return scenarioSubElement::byId($this->getScenarioSubElement_id());
 	}
 	
-	public function setScenarioSubElement_id($scenarioSubElement_id) {
-		$this->scenarioSubElement_id = $scenarioSubElement_id;
+	public function setScenarioSubElement_id($_scenarioSubElement_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->scenarioSubElement_id,$_scenarioSubElement_id);
+		$this->scenarioSubElement_id = $_scenarioSubElement_id;
 		return $this;
 	}
 	
@@ -1663,8 +1668,9 @@ class scenarioExpression {
 		return $this->subtype;
 	}
 	
-	public function setSubtype($subtype) {
-		$this->subtype = $subtype;
+	public function setSubtype($_subtype) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
+		$this->subtype = $_subtype;
 		return $this;
 	}
 	
@@ -1672,8 +1678,10 @@ class scenarioExpression {
 		return $this->expression;
 	}
 	
-	public function setExpression($expression) {
-		$this->expression = jeedom::fromHumanReadable($expression);
+	public function setExpression($_expression) {
+		$_expression = jeedom::fromHumanReadable($_expression);
+		$this->_changed = utils::attrChanged($this->_changed,$this->expression,$_expression);
+		$this->expression = $_expression;
 		return $this;
 	}
 	
@@ -1682,7 +1690,9 @@ class scenarioExpression {
 	}
 	
 	public function setOptions($_key, $_value) {
-		$this->options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
+		$options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
+		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+		$this->options = 	$options;
 		return $this;
 	}
 	
@@ -1690,8 +1700,9 @@ class scenarioExpression {
 		return $this->order;
 	}
 	
-	public function setOrder($order) {
-		$this->order = $order;
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
 		return $this;
 	}
 	
@@ -1699,6 +1710,15 @@ class scenarioExpression {
 		if ($_scenario !== null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
 	}
 	
 }

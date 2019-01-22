@@ -45,6 +45,7 @@ class scenario {
 	private $_return = true;
 	private $_tags = array();
 	private $_do = true;
+	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -946,6 +947,7 @@ class scenario {
 						$this->_changeState = false;
 						event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
 					}
+					return true;
 				}
 				/**
 				*
@@ -1570,8 +1572,9 @@ class scenario {
 				* @param int $id
 				* @return $this
 				*/
-				public function setId($id) {
-					$this->id = $id;
+				public function setId($_id) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+					$this->id = $_id;
 					return $this;
 				}
 				/**
@@ -1579,11 +1582,12 @@ class scenario {
 				* @param type $name
 				* @return $this
 				*/
-				public function setName($name) {
-					if ($name != $this->getName()) {
+				public function setName($_name) {
+					if ($_name != $this->getName()) {
 						$this->_changeState = true;
+						$this->_changed = true;
 					}
-					$this->name = $name;
+					$this->name = $_name;
 					return $this;
 				}
 				/**
@@ -1591,11 +1595,12 @@ class scenario {
 				* @param type $isActive
 				* @return $this
 				*/
-				public function setIsActive($isActive) {
-					if ($isActive != $this->getIsActive()) {
+				public function setIsActive($_isActive) {
+					if ($_isActive != $this->getIsActive()) {
 						$this->_changeState = true;
+						$this->_changed = true;
 					}
-					$this->isActive = $isActive;
+					$this->isActive = $_isActive;
 					return $this;
 				}
 				/**
@@ -1603,11 +1608,12 @@ class scenario {
 				* @param type $group
 				* @return $this
 				*/
-				public function setGroup($group) {
-					if ($group != $this->getGroup()) {
+				public function setGroup($_group) {
+					if ($_group != $this->getGroup()) {
 						$this->_changeState = true;
+						$this->_changed = true;
 					}
-					$this->group = $group;
+					$this->group = $_group;
 					return $this;
 				}
 				/**
@@ -1640,8 +1646,9 @@ class scenario {
 				* @param type $type
 				* @return $this
 				*/
-				public function setType($type) {
-					$this->type = $type;
+				public function setType($_type) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+					$this->type = $_type;
 					return $this;
 				}
 				/**
@@ -1656,8 +1663,9 @@ class scenario {
 				* @param type $mode
 				* @return $this
 				*/
-				public function setMode($mode) {
-					$this->mode = $mode;
+				public function setMode($_mode) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->mode,$_mode);
+					$this->mode = $_mode;
 					return $this;
 				}
 				/**
@@ -1672,11 +1680,12 @@ class scenario {
 				* @param type $schedule
 				* @return $this
 				*/
-				public function setSchedule($schedule) {
-					if (is_array($schedule)) {
-						$schedule = json_encode($schedule, JSON_UNESCAPED_UNICODE);
+				public function setSchedule($_schedule) {
+					if (is_array($_schedule)) {
+						$_schedule = json_encode($_schedule, JSON_UNESCAPED_UNICODE);
 					}
-					$this->schedule = $schedule;
+					$this->_changed = utils::attrChanged($this->_changed,$this->schedule,$_schedule);
+					$this->schedule = $_schedule;
 					return $this;
 				}
 				/**
@@ -1705,11 +1714,12 @@ class scenario {
 				* @param type $scenarioElement
 				* @return $this
 				*/
-				public function setScenarioElement($scenarioElement) {
-					if (is_array($scenarioElement)) {
-						$scenarioElement = json_encode($scenarioElement, JSON_UNESCAPED_UNICODE);
+				public function setScenarioElement($_scenarioElement) {
+					if (is_array($_scenarioElement)) {
+						$_scenarioElement = json_encode($_scenarioElement, JSON_UNESCAPED_UNICODE);
 					}
-					$this->scenarioElement = $scenarioElement;
+					$this->_changed = utils::attrChanged($this->_changed,$this->scenarioElement,$_scenarioElement);
+					$this->scenarioElement = $_scenarioElement;
 					return $this;
 				}
 				/**
@@ -1724,11 +1734,13 @@ class scenario {
 				* @param type $trigger
 				* @return $this
 				*/
-				public function setTrigger($trigger) {
-					if (is_array($trigger)) {
-						$trigger = json_encode($trigger, JSON_UNESCAPED_UNICODE);
+				public function setTrigger($_trigger) {
+					if (is_array($_trigger)) {
+						$_trigger = json_encode($_trigger, JSON_UNESCAPED_UNICODE);
 					}
-					$this->trigger = cmd::humanReadableToCmd($trigger);
+					$_trigger = cmd::humanReadableToCmd($_trigger);
+					$this->_changed = utils::attrChanged($this->_changed,$this->trigger,$_trigger);
+					$this->trigger = $_trigger;
 					return $this;
 				}
 				/**
@@ -1765,11 +1777,12 @@ class scenario {
 				* @param string $timeout
 				* @return $this
 				*/
-				public function setTimeout($timeout) {
-					if ($timeout == '' || is_nan(intval($timeout)) || $timeout < 1) {
-						$timeout = '';
+				public function setTimeout($_timeout) {
+					if ($_timeout == '' || is_nan(intval($_timeout)) || $_timeout < 1) {
+						$_timeout = '';
 					}
-					$this->timeout = $timeout;
+					$this->_changed = utils::attrChanged($this->_changed,$this->timeout,$_timeout);
+					$this->timeout = $_timeout;
 					return $this;
 				}
 				/**
@@ -1802,6 +1815,7 @@ class scenario {
 				public function setObject_id($object_id = null) {
 					if ($object_id != $this->getObject_id()) {
 						$this->_changeState = true;
+						$this->_changed = true;
 					}
 					$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 					return $this;
@@ -1811,8 +1825,9 @@ class scenario {
 				* @param type $isVisible
 				* @return $this
 				*/
-				public function setIsVisible($isVisible) {
-					$this->isVisible = $isVisible;
+				public function setIsVisible($_isVisible) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->isVisible,$_isVisible);
+					$this->isVisible = $_isVisible;
 					return $this;
 				}
 				/**
@@ -1831,7 +1846,9 @@ class scenario {
 				* @return $this
 				*/
 				public function setDisplay($_key, $_value) {
-					$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+					$display = utils::setJsonAttr($this->display, $_key, $_value);
+					$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+					$this->display = $display;
 					return $this;
 				}
 				/**
@@ -1846,8 +1863,9 @@ class scenario {
 				* @param type $description
 				* @return $this
 				*/
-				public function setDescription($description) {
-					$this->description = $description;
+				public function setDescription($_description) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->description,$_description);
+					$this->description = $_description;
 					return $this;
 				}
 				/**
@@ -1866,7 +1884,9 @@ class scenario {
 				* @return $this
 				*/
 				public function setConfiguration($_key, $_value) {
-					$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+					$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+					$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+					$this->configuration = $configuration;
 					return $this;
 				}
 				/**
@@ -1950,6 +1970,15 @@ class scenario {
 				*/
 				public function setCache($_key, $_value = null) {
 					cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+				}
+				
+				public function getChanged() {
+					return $this->_changed;
+				}
+				
+				public function setChanged($_changed) {
+					$this->_changed = $_changed;
+					return $this;
 				}
 				
 			}

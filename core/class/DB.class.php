@@ -81,7 +81,6 @@ class DB {
 	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
 		$stmt = self::getConnection()->prepare($_query);
 		$res = NULL;
-		
 		if ($stmt != false && $stmt->execute($_params) != false) {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
@@ -97,7 +96,6 @@ class DB {
 				}
 			}
 		}
-		
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
@@ -175,12 +173,21 @@ class DB {
 			if (!$_direct && method_exists($object, 'preUpdate')) {
 				$object->preUpdate();
 			}
-			list($sql, $parameters) = self::buildQuery($object);
-			if (!$_direct && method_exists($object, 'getId')) {
-				$parameters['id'] = $object->getId(); //override if necessary
+			$changed = true;
+			if(method_exists($object, 'getChanged')){
+				$changed = $object->getChanged();
 			}
-			$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
-			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			if($changed){
+				list($sql, $parameters) = self::buildQuery($object);
+				if (!$_direct && method_exists($object, 'getId')) {
+					$parameters['id'] = $object->getId(); //override if necessary
+				}
+				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			}
+			if(method_exists($object, 'setChanged')){
+				$object->setChanged(false);
+			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
 			}

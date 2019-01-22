@@ -32,6 +32,7 @@ class update {
 	private $configuration;
 	private $source = 'market';
 	private $_changeUpdate = false;
+	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -571,26 +572,31 @@ class update {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
-	public function setName($name) {
-		$this->name = $name;
+	public function setName($_name) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->name = $_name;
 		return $this;
 	}
 	
-	public function setStatus($status) {
-		if ($status != $this->status) {
+	public function setStatus($_status) {
+		if ($_status != $this->status) {
 			$this->_changeUpdate = true;
+			$this->_changed = true;
 		}
-		$this->status = $status;
+		$this->status = $_status;
 		return $this;
 	}
 	
 	public function setConfiguration($_key, $_value) {
-		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->configuration = $configuration;
 		return $this;
 	}
 	
@@ -598,8 +604,9 @@ class update {
 		return $this->type;
 	}
 	
-	public function setType($type) {
-		$this->type = $type;
+	public function setType($_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->type = $_type;
 		return $this;
 	}
 	
@@ -611,13 +618,15 @@ class update {
 		return $this->remoteVersion;
 	}
 	
-	public function setLocalVersion($localVersion) {
-		$this->localVersion = $localVersion;
+	public function setLocalVersion($_localVersion) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->localVersion,$_localVersion);
+		$this->localVersion = $_localVersion;
 		return $this;
 	}
 	
-	public function setRemoteVersion($remoteVersion) {
-		$this->remoteVersion = $remoteVersion;
+	public function setRemoteVersion($_remoteVersion) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->remoteVersion,$_remoteVersion);
+		$this->remoteVersion = $_remoteVersion;
 		return $this;
 	}
 	
@@ -625,8 +634,9 @@ class update {
 		return $this->logicalId;
 	}
 	
-	public function setLogicalId($logicalId) {
-		$this->logicalId = $logicalId;
+	public function setLogicalId($_logicalId) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
+		$this->logicalId = $_logicalId;
 		return $this;
 	}
 	
@@ -634,8 +644,18 @@ class update {
 		return $this->source;
 	}
 	
-	public function setSource($source) {
-		$this->source = $source;
+	public function setSource($_source) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->source,$_source);
+		$this->source = $_source;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	
