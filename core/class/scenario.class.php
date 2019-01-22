@@ -941,11 +941,7 @@ class scenario {
 						$calculateScheduleDate = $this->calculateScheduleDate();
 						$this->setLastLaunch($calculateScheduleDate['prevDate']);
 					}
-					if(!$this->_changed){
-						return true;
-					}
 					DB::save($this);
-					$this->_changed = false;
 					$this->emptyCacheWidget();
 					if ($this->_changeState) {
 						$this->_changeState = false;
@@ -1974,6 +1970,15 @@ class scenario {
 				*/
 				public function setCache($_key, $_value = null) {
 					cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+				}
+				
+				public function getChanged() {
+					return $this->_changed;
+				}
+				
+				public function setChanged($_changed) {
+					$this->_changed = $_changed;
+					return $this;
 				}
 				
 			}

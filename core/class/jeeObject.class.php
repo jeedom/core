@@ -468,11 +468,7 @@ class jeeObject {
 	}
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -833,6 +829,15 @@ class jeeObject {
 		$image = utils::setJsonAttr($this->image, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
 		$this->image = $image;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

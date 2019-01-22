@@ -859,9 +859,6 @@ class history {
 								$this->setDatetime(date('Y-m-d H:00:00', strtotime($this->getDatetime())));
 							}
 						}
-						if(!$this->_changed){
-							return true;
-						}
 						$values = array(
 							'cmd_id' => $this->getCmd_id(),
 							'datetime' => $this->getDatetime(),
@@ -875,7 +872,6 @@ class history {
 						`datetime`=:datetime,
 						value=:value';
 						DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-						$this->_changed = false;
 					}
 					
 					public function remove() {
@@ -924,6 +920,15 @@ class history {
 					public function setDatetime($_datetime) {
 						$this->_changed = utils::attrChanged($this->_changed,$this->datetime,$_datetime);
 						$this->datetime = $_datetime;
+						return $this;
+					}
+					
+					public function getChanged() {
+						return $this->_changed;
+					}
+					
+					public function setChanged($_changed) {
+						$this->_changed = $_changed;
 						return $this;
 					}
 					

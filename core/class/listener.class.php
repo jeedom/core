@@ -221,14 +221,10 @@ class listener {
 	}
 	
 	public function save($_once = false) {
-		if(!$this->_changed){
-			return true;
-		}
 		if ($_once) {
 			self::removeByClassFunctionAndEvent($this->getClass(), $this->getFunction(), $this->event, $this->getOption());
 		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -305,6 +301,15 @@ class listener {
 		$option = utils::setJsonAttr($this->option, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->option,$option);
 		$this->option = $option;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

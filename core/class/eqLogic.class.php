@@ -921,69 +921,67 @@ class eqLogic {
 	}
 	
 	public function save($_direct = false) {
-		if(!$this->_changed){
-			return true;
-		}
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
-		if ($this->getId() != '') {
-			$this->emptyCacheWidget();
-			$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
-		} else {
-			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
-		}
-		if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
-			$this->setDisplay('showObjectNameOnview', 1);
-		}
-		if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
-			$this->setDisplay('showObjectNameOndview', 1);
-		}
-		if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
-			$this->setDisplay('showObjectNameOnmview', 1);
-		}
-		if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-			$this->setDisplay('height', 'auto');
-		}
-		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-			$this->setDisplay('width', 'auto');
-		}
-		foreach (array('dashboard', 'mobile') as $key) {
-			if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
-				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
+		if($this->getChanged()){
+			if ($this->getId() != '') {
+				
+				$this->emptyCacheWidget();
+				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
+			} else {
+				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 			}
-			if ($this->getDisplay('layout::' . $key) == 'table') {
-				if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
-					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
-				}
+			if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
+				$this->setDisplay('showObjectNameOnview', 1);
 			}
-			foreach ($this->getCmd() as $cmd) {
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+			if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
+				$this->setDisplay('showObjectNameOndview', 1);
+			}
+			if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
+				$this->setDisplay('showObjectNameOnmview', 1);
+			}
+			if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+				$this->setDisplay('height', 'auto');
+			}
+			if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+				$this->setDisplay('width', 'auto');
+			}
+			foreach (array('dashboard', 'mobile') as $key) {
+				if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
+					$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+				if ($this->getDisplay('layout::' . $key) == 'table') {
+					if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
+						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
+						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+					}
 				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+				foreach ($this->getCmd() as $cmd) {
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+					}
 				}
 			}
 		}
-		
 		DB::save($this, $_direct);
-		$this->_changed = false;
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
 			$this->refreshWidget();
@@ -1762,6 +1760,15 @@ class eqLogic {
 	
 	public function setStatus($_key, $_value = null) {
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
 	}
 	
 }

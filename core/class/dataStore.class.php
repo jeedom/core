@@ -101,11 +101,7 @@ class dataStore {
 	}
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -230,6 +226,15 @@ class dataStore {
 		}
 		$this->_changed = utils::attrChanged($this->_changed,$this->value,$_value);
 		$this->value = $_value;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

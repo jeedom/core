@@ -391,14 +391,10 @@ class interactDef {
 	}
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		if ($this->getQuery() == '') {
 			throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
 		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -731,6 +727,15 @@ class interactDef {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
 		$this->actions = $actions;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

@@ -54,11 +54,7 @@ class note {
 	}
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -95,6 +91,15 @@ class note {
 	public function setText($_text) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->text,$_text);
 		$this->text = $_text;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

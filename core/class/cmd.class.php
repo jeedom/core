@@ -812,9 +812,6 @@ class cmd {
 	}
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
@@ -838,7 +835,6 @@ class cmd {
 			$this->setDisplay('generic_type', '');
 		}
 		DB::save($this);
-		$this->_changed = false;
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
 			$this->getEqLogic()->refreshWidget();
@@ -2105,6 +2101,15 @@ class cmd {
 	
 	public function setCache($_key, $_value = null) {
 		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

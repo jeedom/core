@@ -115,11 +115,7 @@ class scenarioElement {
 	/*     * *********************Méthodes d'instance************************* */
 	
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -521,6 +517,15 @@ class scenarioElement {
 				public function setOrder($_order) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 					$this->order = $_order;
+					return $this;
+				}
+				
+				public function getChanged() {
+					return $this->_changed;
+				}
+				
+				public function setChanged($_changed) {
+					$this->_changed = $_changed;
 					return $this;
 				}
 				

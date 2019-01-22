@@ -1526,11 +1526,7 @@ class scenarioExpression {
 	
 	public function save() {
 		$this->checkBackground();
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -1714,6 +1710,15 @@ class scenarioExpression {
 		if ($_scenario !== null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
 	}
 	
 }

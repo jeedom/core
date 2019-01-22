@@ -173,12 +173,21 @@ class DB {
 			if (!$_direct && method_exists($object, 'preUpdate')) {
 				$object->preUpdate();
 			}
-			list($sql, $parameters) = self::buildQuery($object);
-			if (!$_direct && method_exists($object, 'getId')) {
-				$parameters['id'] = $object->getId(); //override if necessary
+			$changed = true;
+			if(method_exists($object, 'getChanged')){
+				$changed = $object->getChanged();
 			}
-			$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
-			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			if($changed){
+				list($sql, $parameters) = self::buildQuery($object);
+				if (!$_direct && method_exists($object, 'getId')) {
+					$parameters['id'] = $object->getId(); //override if necessary
+				}
+				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			}
+			if(method_exists($object, 'setChanged')){
+				$object->setChanged(false);
+			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
 			}

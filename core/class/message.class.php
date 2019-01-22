@@ -157,11 +157,7 @@ class message {
 		}
 		event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 		if ($_writeMessage) {
-			if(!$this->_changed){
-				return true;
-			}
 			DB::save($this);
-			$this->_changed = false;
 			$params = array(
 				'#plugin#' => $this->getPlugin(),
 				'#message#' => $this->getMessage(),
@@ -248,6 +244,15 @@ class message {
 	public function setLogicalId($_logicalId) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
 		$this->logicalId = $_logicalId;
+		return $this;
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
 		return $this;
 	}
 	

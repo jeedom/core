@@ -219,11 +219,7 @@ class cron {
 	* @return boolean
 	*/
 	public function save() {
-		if(!$this->_changed){
-			return true;
-		}
 		DB::save($this, false, true);
-		$this->_changed = false;
 		return true;
 	}
 	
@@ -577,6 +573,15 @@ class cron {
 	
 	public function setCache($_key, $_value = null) {
 		cache::set('cronCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
 	}
 	
 }
