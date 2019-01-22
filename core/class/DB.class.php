@@ -184,6 +184,8 @@ class DB {
 				}
 				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
 				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			}else{
+				$res = true;
 			}
 			if(method_exists($object, 'setChanged')){
 				$object->setChanged(false);
@@ -195,7 +197,7 @@ class DB {
 		if (!$_direct && method_exists($object, 'postSave')) {
 			$object->postSave();
 		}
-		return null !== $res && false !== $res;
+		return (null !== $res && false !== $res);
 	}
 	
 	public static function refresh($object) {
