@@ -156,7 +156,7 @@ class scenarioSubElement {
 	
 	public function setType($_type) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
-		$this->type = $type;
+		$this->type = $_type;
 		return $this;
 	}
 	

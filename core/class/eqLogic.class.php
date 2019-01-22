@@ -1649,7 +1649,7 @@ class eqLogic {
 			$this->_needRefreshWidget = true;
 		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->tags,$_tags);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 	}
 	
