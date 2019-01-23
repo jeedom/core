@@ -154,8 +154,7 @@ function getObjectHtml(_object_id){
           $(this).wrap('<div class="grid-stack-item" data-gs-x="'+$(this).data('gs-x')+'" data-gs-y="'+$(this).data('gs-y')+'" data-gs-width="'+width+'" data-gs-height="'+height+'"></div>');
         }
       });
-      $('.eqLogic-widget').css('height','auto');
-      $('.eqLogic-widget').css('width','auto');
+      $('.eqLogic-widget').css('height','auto').css('overflow','hidden').css('width','auto');
       $('.eqLogic-widget').addClass('grid-stack-item-content');
       $('#div_ob'+_object_id).gridstack();
       $('#div_ob'+_object_id).find('.grid-stack-item').data('gs-locked',0);
@@ -169,7 +168,7 @@ function getObjectHtml(_object_id){
             id :items[i].el.find('.eqLogic').attr('data-eqlogic_id'),
             display : {
               'dashboard-grid-width' : items[i].width,
-              'dashboard-grid-height' :items[i].x.height,
+              'dashboard-grid-height' :items[i].height,
               'dashboard-grid-pos-y' : items[i].y,
               'dashboard-grid-pos-x' :items[i].x
             }
@@ -177,6 +176,7 @@ function getObjectHtml(_object_id){
         }
         jeedom.eqLogic.setOrder({
           eqLogics: eqLogics,
+          global : false,
           error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
           }
