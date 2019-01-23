@@ -689,6 +689,10 @@ class eqLogic {
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
 			'#generic_type#' => $this->getGenericType(),
+			'#grid-pos-x#' => $this->getDisplay($version.'-grid-pos-x',''),
+			'#grid-pos-y#' => $this->getDisplay($version.'-grid-pos-y',''),
+			'#grid-witdh#' => $this->getDisplay($version.'-grid-width',2),
+			'#grid-height#' => $this->getDisplay($version.'-grid-height',2),
 		);
 		
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {

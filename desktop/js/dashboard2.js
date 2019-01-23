@@ -140,36 +140,48 @@ function getObjectHtml(_object_id){
       }catch(err) {
         console.log(err);
       }
-      setTimeout(function(){
-        //positionEqLogic();
-        $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
-        $("input").click(function() { $(this).focus(); });
-        $("textarea").click(function() { $(this).focus(); });
-        $("select").click(function() { $(this).focus(); });
-        
-        $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
-          var i = 0;
-          var j = 0;
-          $(this).find( ".eqLogic-widget" ).each(function(){
-            $(this).wrap( '<div class="grid-stack-item" data-gs-x="'+i+'" data-gs-y="'+j+'" data-gs-width="2" data-gs-height="2"></div>');
-            i += 2;
-            if(i>=12){
-              j += 2;
-              i=0;
+      $('#div_ob'+_object_id).disableSelection();
+      $("input").click(function() { $(this).focus(); });
+      $("textarea").click(function() { $(this).focus(); });
+      $("select").click(function() { $(this).focus(); });
+      var auto_pos = [];
+      $('#div_ob'+_object_id).find(".eqLogic-widget").each(function(){
+        var width = ($(this).data('gs-width')!=undefined) ? $(this).data('gs-width') : 2;
+        var height = ($(this).data('gs-height')!=undefined) ? $(this).data('gs-height') : 2;
+        if($(this).data('gs-x') === '' || $(this).data('gs-y') === '' || $(this).data('gs-x') == undefined || $(this).data('gs-y') == undefined){
+          $(this).wrap('<div class="grid-stack-item" data-gs-auto-position="1" data-gs-width="'+width+'" data-gs-height="'+ height +'"></div>');
+        }else{
+          $(this).wrap('<div class="grid-stack-item" data-gs-x="'+$(this).data('gs-x')+'" data-gs-y="'+$(this).data('gs-y')+'" data-gs-width="'+width+'" data-gs-height="'+height+'"></div>');
+        }
+      });
+      $('.eqLogic-widget').css('height','auto');
+      $('.eqLogic-widget').css('width','auto');
+      $('.eqLogic-widget').addClass('grid-stack-item-content');
+      $('#div_ob'+_object_id).gridstack();
+      $('#div_ob'+_object_id).find('.grid-stack-item').data('gs-locked',0);
+      $('#div_ob'+_object_id).off('change').on('change', function(event, items) {
+        if(items == undefined || items.length == 0){
+          return;
+        }
+        var eqLogics = [];
+        for(var i in items){
+          eqLogics.push({
+            id :items[i].el.find('.eqLogic').attr('data-eqlogic_id'),
+            display : {
+              'dashboard-grid-width' : items[i].width,
+              'dashboard-grid-height' :items[i].x.height,
+              'dashboard-grid-pos-y' : items[i].y,
+              'dashboard-grid-pos-x' :items[i].x
             }
-          });
-          
-          $('.eqLogic-widget').css('height','auto')
-          $('.eqLogic-widget').css('width','auto')
-          $('.eqLogic-widget').addClass('grid-stack-item-content');
-          var options = {
-            verticalMargin: 10,
-            horizontalMargin: 10
-          };
-          $(this).gridstack(options);
+          })
+        }
+        jeedom.eqLogic.setOrder({
+          eqLogics: eqLogics,
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          }
         });
-        
-      },10);
+      });
     }
   });
 }
