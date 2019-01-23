@@ -688,6 +688,7 @@ class eqLogic {
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
+			'#generic_type#' => $this->getGenericType(),
 		);
 		
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {

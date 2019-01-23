@@ -1071,7 +1071,8 @@ class cmd {
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 			'#version#' => $_version,
-			'#eqLogic_id#' => $this->getEqLogic()->getId(),
+			'#eqLogic_id#' => $this->getEqLogic_id(),
+			'#generic_type#' => $this->getGeneric_type(),
 			'#hideCmdName#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
