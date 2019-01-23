@@ -6,14 +6,14 @@
   </center>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-     jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
-     $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-     if (_options.display_value == '1') {
-       $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ferme"></i>');
-     }else {
-      $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ouverte"></i>');
+      jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+      $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+      if (_options.display_value == '1') {
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ferme"></i>');
+      }else {
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-fenetre-ouverte"></i>');
+      }
     }
-  }
-  jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-</script>
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+  </script>
 </div>
