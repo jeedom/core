@@ -1,6 +1,16 @@
 Cette page permet de voir tous les rapports qui ont été généré par l'action report (voir documentation des scénarios).
 
-Son utilisation est très simple vous selectionnez si vous voulez voir : 
+# Qu'est qu'un rapport ?
+
+Un rapport est une capture d'écran de l'interface de Jeedom à un instant T (la capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation).
+
+Vous pouvez le faire sur des vues, design, page de panel....
+
+Elle se déclenche à partir d'un scénarion avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram....)
+
+# Utilisation
+
+Son utilisation est très simple vous selectionnez si vous voulez voir :
 
 -   les rapports des vues
 -   les rapports des degins

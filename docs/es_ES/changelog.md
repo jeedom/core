@@ -6,7 +6,7 @@ Changelog
 =====
 
 -   Possibilité de supprimer une variable.
--   Ajout d'un affichage 3D.
+-   Ajout d'un affichage 3D (beta)
 -   Refonte du système de backup cloud (backup incrémental et chiffré).
 -   Ajout d'un système de prise de note intégré (dans Analyse -> Note).
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
@@ -20,7 +20,6 @@ Changelog
 -   Ajout d'un action "Remise à zero des SI" sur les scénarios
 -   Possibilité d'ajouter des images en fond sur les vues
 -   Possibilité d'ajouter des images en fond sur les objets
--   Ajout d'un thème Jeedom
 -   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 -   Amélioration du support des () dans le calcul d'expressions
 -   Possibilité d'éditer les scénarios en mode text/json
@@ -31,8 +30,10 @@ Changelog
 -   Optimisations
 -   Possibilité de consulter les logs en version mobile (wepapp)
 -   Ajout d'une action tag dans les scénarios (voir documentation)
--   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscree=1" dans l'url
+-   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
 -   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+-   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
+-   Possibilité de supprimer un élément à partir de la configuration du design
 
 3.2.12
 =====
