@@ -23,6 +23,19 @@ class utils {
 	/*     * *************************Attributs****************************** */
 
 	/*     * ***********************Methode static*************************** */
+	
+	public static function attrChanged($_changed,$_old,$_new){
+		if($_changed){
+			return true;
+		}
+		if(is_array($_old)){
+			$_old = json_encode($_old);
+		}
+		if(is_array($_new)){
+			$_new = json_encode($_new);
+		}
+		return ($_old != $_new);
+	}
 
 	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
