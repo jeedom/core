@@ -822,7 +822,6 @@ class scenario {
 					if ($mc->getValue() != '') {
 						return $mc->getValue();
 					}
-					
 					$version = jeedom::versionAlias($_version);
 					$replace = array(
 						'#id#' => $this->getId(),
@@ -1332,9 +1331,9 @@ class scenario {
 				* @param type $_withoutScenarioName
 				* @return string
 				*/
-				public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
+				public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false,$_object_name = true) {
 					$name = '';
-					if (is_numeric($this->getObject_id()) && is_object($this->getObject())) {
+					if ($_object_name && is_numeric($this->getObject_id()) && is_object($this->getObject())) {
 						$object = $this->getObject();
 						if ($_tag) {
 							if ($object->getDisplay('tagColor') != '') {
