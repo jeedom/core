@@ -35,7 +35,7 @@ class eqLogic {
 	protected $timeout = 0;
 	protected $category;
 	protected $display;
-	protected $order;
+	protected $order = 9999;
 	protected $comment;
 	protected $tags;
 	protected $_debug = false;
