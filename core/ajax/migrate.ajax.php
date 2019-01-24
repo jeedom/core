@@ -57,6 +57,10 @@ try {
 			ajax::success(init('stepValues'));
 		}
 	}
+	if (init('action') == 'renameImage'){
+		$renameImage = migrate::renameImage();
+		ajax::success($renameImage);
+	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */

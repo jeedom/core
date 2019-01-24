@@ -52,6 +52,7 @@ class migrate {
 			}else{
               	exec('sudo umount '.$mediaLink);
               	exec('sudo mkdir '.$mediaLink);
+              	exec('sudo mkdir '.$mediaLink.'/Backup');
 				exec('sudo mount -t vfat /dev/'.$usb.' '.$mediaLink);
 				if((migrate::freeSpaceUsb()/1024) > $minSize){
 					$statut = 'ok';
@@ -65,7 +66,7 @@ class migrate {
 	}
 	
 	public static function backupToUsb() { 
-		$mediaLink = '/media/migrate';
+		$mediaLink = '/media/migrate/Backup';
 		log::remove('migrate');
 	    $backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
@@ -79,7 +80,7 @@ class migrate {
 		$tailleBackup = filesize($backup_dir.'/'.$lienBackup);
 		exec('sudo rsync --progress '.$backup_dir.'/'.$lienBackup.' '.$mediaLink.'/'.$lienBackup. ' >'.log::getPathToLog('migrate').' 2>&1');
 		$tailleBackupFin = filesize($mediaLink.'/'.$lienBackup);
-		if($tailleBackup <= $tailleBackupFin){
+		if($tailleBackup == $tailleBackupFin){
 			return 'ok';
 		}else{
 			return 'nok';
@@ -96,15 +97,21 @@ class migrate {
 		$urlArray = $jsonrpc->getResult();
 		$url = $urlArray['url'];
 		$size = $urlArray['size'];
-		$freespace = migrate::freeSpaceUsb()*1024;
 		exec('sudo pkill -9 wget');
 		exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
-		$sizeafter = $freespace - migrate::freeSpaceUsb();
-		if($sizeafter >= $size){
+		$sizeFile = filesize($mediaLink.'/backupJeedomDownload.tar.gz');
+		if($sizeFile == $size){
 			return 'ok';
 		}else{
 			return 'nok';
 		}
+	}
+	
+	public static function renameImage(){
+		$mediaLink = '/media/migrate';
+		exec('sudo mv '.$mediaLink.'/backupJeedomDownload.tar.gz '.$mediaLink.'/backupJeedom.tar.gz');
+		log::remove('migrate');
+		return 'ok';
 	}
 	
 	public static function freeSpaceUsb(){
