@@ -25,7 +25,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 2}}</span>
 		<div id="contenuWithStepTwo" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepUn.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepDeux.jpg" />
 			</div>
 			<div id="contenuText" class="backup">
 				<span id="contenuTextSpan" class="TextBackup">Backup lancé merci de patienter...</span>
@@ -40,7 +40,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 3}}</span>
 		<div id="contenuWithStepTree" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepUn.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextImage">Téléchargement de l'image Jeedom.</span>
@@ -52,6 +52,17 @@ if (!isConnect('admin')) {
 	</div>
 	<div id="step4">
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
+		<div id="contenuWithStepFor" class="zoomIn contenuWith">
+			<div id="contenuImage">
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
+			</div>
+			<div id="contenuText" class="imageUp">
+				<span id="contenuTextSpan" class="TextMigrate">Migration de votre Jeedom</span>
+			<div id="contenuTextSpan" class="progress">
+			<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+</div>
+		</div>
+		</div>
 	</div>
 </div>
 
@@ -72,7 +83,13 @@ if (!isConnect('admin')) {
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div id="div_reboot_jeedom" style="display:none;">
+	<script type="text/javascript" id="reboot_jeedom"></script>
+</div>
+
 <script>
+var rebooti = '0';
+var testjeedom = '0';
 
 returnStep();
 
@@ -243,6 +260,11 @@ function getJeedomLog(_autoUpdate, _log) {
 									if(pourcentage == 99){
 										_autoUpdate = 0;
 									}
+								}
+								if(data.result[i].indexOf("Downloaded: 1 files") != -1){
+									_autoUpdate = 0;
+									$('.TextImage').text('Image Téléchargé et validé !');
+									renameImage();
 								}	
 		                    }
 	                    }
@@ -341,6 +363,37 @@ function UpImage(go){
 	}
 }
 
+function renameImage(){
+	$.ajax({
+        type: 'POST',
+        url: 'core/ajax/migrate.ajax.php',
+        data: {
+            action: 'renameImage'
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result){
+        	GoReload();
+        }
+	});
+}
+
+function GoReload(){
+	setStep('4');
+	$('#step1').hide();
+	$('#step2').hide();
+	$('#step3').hide();
+	$('.progress-bar').width('0%');
+	$('.progress-bar').text('0%');
+	$('#step4').show();
+	$('#contenuWithStepFor').addClass('animated');
+	jeedom.rebootSystem();
+	setInterval('page_rebootjs(rebooti)', 15000);
+}
+
 function setStep(stepValue){
 	$.ajax({
         type: 'POST',
@@ -392,12 +445,14 @@ function returnStep(){
 				        	case '2' :
 				        		$('#modalReloadStep').modal('show');
 				        		stepReload = 2;
-					        	//stepTwo();
 				        	break;
 				        	case '3' :
 				        		$('#modalReloadStep').modal('show');
-					        	//UpImage(1);
 					        	stepReload = 3;
+				        	break;
+				        	case '4' :
+				        		$('#modalReloadStep').modal('show');
+					        	stepReload = 4;
 				        	break;
 			        	}
 			        }
@@ -407,6 +462,35 @@ function returnStep(){
 	});
 }
 
+function refresh() {
+	$.ajax({
+		url: "desktop/js/rebootjs.js?t="+Date.now(),
+		success:function(retour){
+			$('reboot_jeedom').html(retour);
+		}
+	});
+}
+
+function page_rebootjs(rebooti){
+		refresh();
+		if(rebooti=='1'){
+			$('.TextMigrate').text('Votre Jeedom viens de redémarrer');
+		}else{
+			testjeedom++;
+			if(testjeedom > '70'){
+				$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
+				$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
+			}
+		}
+	}
+
+	function reboot_jeedom(rebooti){
+		$('.TextMigrate').text('Merci de patienter...<br />Jeedom est en cours de Migration');
+		$('.progress-bar').width('5%');
+		$('.progress-bar').text('5%');
+		setInterval('page_rebootjs(rebooti)', 15000);
+	}
+
 $('#bt_reprendre').on('click', function() {
 	if(stepReload !== null){
 		switch(stepReload){
@@ -415,6 +499,9 @@ $('#bt_reprendre').on('click', function() {
         	break;
         	case 3 :
 	        	UpImage(1);
+        	break;
+        	case 4 :
+	        	GoReload();
         	break;
     	}
 		$('#modalReloadStep').modal('hide');
