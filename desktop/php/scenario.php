@@ -79,7 +79,7 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[-1] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 120px;margin-left : 10px;' . $opacity . '" >';
+					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
 					echo '<img src="core/img/scenario.png" height="45" width="40" />';
 					echo "<br>";
 					echo '<span class="name" style="position:relative; word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -103,7 +103,7 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[$group['group']] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 120px;margin-left : 10px;' . $opacity . '" >';
+					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
 					echo '<img src="core/img/scenario.png" height="45" width="40" />';
 					echo '<br/>';
 					echo '<span class="name" style="position:relative;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
