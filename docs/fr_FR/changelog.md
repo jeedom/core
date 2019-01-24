@@ -35,6 +35,7 @@ Changelog
 -   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 -   Possibilité de supprimer un élément à partir de la configuration du design
 -   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
+-   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
 
 3.2.12
 =====

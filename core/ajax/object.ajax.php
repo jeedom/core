@@ -146,14 +146,16 @@ try {
 				$object = jeeObject::byId(init('id'));
 				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 			}
-			foreach ($eqLogics as $eqLogic) {
-				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
-					continue;
+			if(count($eqLogics) > 0){
+				foreach ($eqLogics as $eqLogic) {
+					if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+						continue;
+					}
+					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+						continue;
+					}
+					$html[$eqLogics->getOrder()] = $eqLogic->toHtml(init('version'));
 				}
-				if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
-					continue;
-				}
-				$html[$eqLogic->getOrder()] = $eqLogic->toHtml(init('version'));
 			}
 			$scenarios = scenario::byObjectId(init('id'),false,true);
 			if(count($scenarios) > 0){
