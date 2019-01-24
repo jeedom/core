@@ -154,7 +154,7 @@ try {
 					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
 						continue;
 					}
-					$html[$eqLogics->getOrder()] = $eqLogic->toHtml(init('version'));
+					$html[$eqLogic->getOrder()] = $eqLogic->toHtml(init('version'));
 				}
 			}
 			$scenarios = scenario::byObjectId(init('id'),false,true);
