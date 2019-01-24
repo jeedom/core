@@ -114,6 +114,24 @@ class migrate {
 		return 'ok';
 	}
 	
+	public static function finalisation(){
+		$mediaLink = '/media/migrate';
+		$mediaLinkBackup = $mediaLink.'/Backup';
+		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
+			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
+		} else {
+			$backup_dir = config::byKey('backup::path');
+		}
+		log::remove('migrate');
+		exec('sudo rsync --progress '.$mediaLinkBackup.'/* '.$backup_dir.' >'.log::getPathToLog('migrate').' 2>&1');
+		$backups = jeedom::listBackup();
+	    foreach ($backups as $backup) {
+		    	$lienBackup = $backup;
+	    }
+	    jeedom::restore($lienBackup);
+		return 'ok';
+	}
+	
 	public static function freeSpaceUsb(){
 		$mediaLink = '/media/migrate';
 		return disk_free_space($mediaLink)/1024;
