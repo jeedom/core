@@ -139,7 +139,7 @@ try {
 			}
 			ajax::success($return);
 		} else {
-			$htmls = array();
+			$html = array();
 			if (init('summary') == '') {
 				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
 			} else {
