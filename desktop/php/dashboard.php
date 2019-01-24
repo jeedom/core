@@ -51,22 +51,12 @@ include_file('desktop', 'dashboard', 'css');
 	</div>
 </div>
 <?php
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-		echo '<div class="col-lg-8 col-md-7 col-sm-5" id="div_displayObject">';
-	} else {
-		echo '<div class="col-lg-10 col-md-9 col-sm-7" id="div_displayObject">';
-	}
+if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
+	echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
 } else {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-		echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
-	} else {
-		echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
-	}
+	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 }
-?>
-<i class='fa fa-cogs pull-right cursor' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault') ?>' title="{{Afficher/Masquer les scénarios}}"></i>
-<?php if (init('category', 'all') == 'all') {?>
+if (init('category', 'all') == 'all') {?>
 	<i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
 <?php } ?>
 <i class='fa fa-sort-amount-desc pull-right cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
@@ -133,7 +123,6 @@ include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js')
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-	
 	foreach ($allObject as $value) {
 		if ($value->getId() != $object->getId()) {
 			continue;
@@ -154,22 +143,5 @@ include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js')
 	}
 	?>
 </div>
-</div>
-<?php
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario">';
-} else {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;">';
-}
-?>
-<legend><i class="fas fa-history"></i> {{Scénarios}}</legend>
-<?php
-foreach (scenario::all() as $scenario) {
-	if ($scenario->getIsVisible() == 0) {
-		continue;
-	}
-	echo $scenario->toHtml('dashboard');
-}
-?>
 </div>
 </div>

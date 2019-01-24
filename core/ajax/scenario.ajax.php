@@ -66,6 +66,23 @@ try {
 		ajax::success($return);
 	}
 	
+	if (init('action') == 'setOrder') {
+		unautorizedInDemo();
+		$scenarios = json_decode(init('scenarios'), true);
+		foreach ($scenarios as $scenario_json) {
+			if (!isset($scenario_json['id']) || trim($scenario_json['id']) == '') {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_json['id']);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			utils::a2o($scenario, $scenario_json);
+			$scenario->save(true);
+		}
+		ajax::success();
+	}
+	
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
