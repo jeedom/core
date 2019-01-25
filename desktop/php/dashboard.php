@@ -57,58 +57,11 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 }
 if (init('category', 'all') == 'all') {?>
-	<i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
+	<a class="pull-right btn btn-default btn-sm" id="bt_editDashboardWidgetOrder" data-mode="0"><i class="fas fa-pencil-alt"></i></a>
 <?php } ?>
-<i class='fa fa-sort-amount-desc pull-right cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
-<i class='fa fa-picture-o cursor pull-right' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
-<div style="witdh:100%; display: none;" class="categorieHidden">
-	<div style="witdh:45%; float:left;">
-		<div class="demo">
-			<select id="sel_eqLogicCategory">
-				<?php
-				if (init('category', 'all') == 'all') {
-					echo '<option value="all" selected> {{Toute}}</option>';
-				} else {
-					echo '<option value="all"> {{Toute}}</option>';
-				}
-				foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
-					if (init('category', 'all') == $key) {
-						echo '<option value="' . $key . '" selected> {{' . $value['name'] . '}}</option>';
-					} else {
-						echo '<option value="' . $key . '"> {{' . $value['name'] . '}}</option>';
-					}
-				}
-				?>
-			</select>
-		</div>
-	</div>
-	<div style="witdh:45%; float:left;">
-		<div class="demo2">
-			<select id="sel_eqLogicTags">
-				<?php
-				if (init('tag', 'all') == 'all') {
-					echo '<option value="all" selected> {{Tous}}</option>';
-				} else {
-					echo '<option value="all"> {{Tous}}</option>';
-				}
-				$knowTags = eqLogic::getAllTags();
-				foreach ($knowTags as $tag) {
-					if (init('tag', 'all') == $tag) {
-						echo '<option value="' . $tag . '" selected> ' . $tag . '</option>';
-					} else {
-						echo '<option value="' . $tag . '"> ' . $tag . '</option>';
-					}
-				}
-				?>
-			</select>
-		</div>
-	</div>
-</div>
-<?php
-include_file('desktop', 'dashboard', 'js');
-include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');
-include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');
-?>
+<input class='form-control input-sm' id="in_searchWidget" style="width:calc(100% - 80px);display:inline-block;" placeholder="{{Rechercher}}"/>
+<a class="pull-left btn btn-default btn-sm" id="bt_displayObject" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class='fa fa-picture-o'></i></a>
+<?php include_file('desktop', 'dashboard', 'js'); ?>
 <div class="row" >
 	<?php
 	if (init('object_id') != '') {
