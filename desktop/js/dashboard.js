@@ -55,6 +55,17 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       $(this).hide();
     }
   });
+  $('.scenario-widget').each(function(){
+    var match = false;
+    if(match || $(this).find('.widget-name').text().toLowerCase().indexOf(search.toLowerCase()) >= 0){
+      match = true;
+    }
+    if(match){
+      $(this).show();
+    }else{
+      $(this).hide();
+    }
+  });
   $('.div_displayEquipement').packery();
 });
 
