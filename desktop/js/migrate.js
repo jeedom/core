@@ -1,97 +1,55 @@
-<?php
-if (!isConnect('admin')) {
-	throw new Exception(__('401 - Accès non autorisé', __FILE__));
-}
-?>
-<div id="contenu">
-	<div id="step1">
-		<span class="titleStep animated slideInLeft"><i class="fas fa-hdd"></i> {{Etape 1}}</span>
-		<div id="contenuWithStepOne" class="animated zoomIn contenuWith">
-			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepUn.jpg" />
-			</div>
-			<div id="contenuText" class="debut">
-				<span id="contenuTextSpan">Insérer une clé USB de plus de 8Go<br /> dans votre Jeedom et cliquer sur <i class="fas fa-arrow-circle-right
-"></i>.</span>
-				<div id="nextDiv">
-					<i class="next fas fa-arrow-circle-right" id="bt_next"></i>
-				</div>
-			</div>
-			<div id="contenuText" class="usb" style="display:none;">
-		</div>
-		</div>
-	</div>
-	<div id="step2">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 2}}</span>
-		<div id="contenuWithStepTwo" class="zoomIn contenuWith">
-			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepDeux.jpg" />
-			</div>
-			<div id="contenuText" class="backup">
-				<span id="contenuTextSpan" class="TextBackup">Backup lancé merci de patienter...</span>
-			<div id="contenuTextSpan" class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-</div>
-		</div>
-		</div>
-		</div>
-	</div>
-	<div id="step3">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 3}}</span>
-		<div id="contenuWithStepTree" class="zoomIn contenuWith">
-			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
-			</div>
-			<div id="contenuText" class="imageUp">
-				<span id="contenuTextSpan" class="TextImage">Téléchargement de l'image Jeedom.</span>
-			<div id="contenuTextSpan" class="progress">
-			<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-</div>
-		</div>
-		</div>
-	</div>
-	<div id="step4">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
-		<div id="contenuWithStepFor" class="zoomIn contenuWith">
-			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
-			</div>
-			<div id="contenuText" class="imageUp">
-				<span id="contenuTextSpan" class="TextMigrate">Migration de votre Jeedom</span>
-			<div id="contenuTextSpan" class="progress">
-			<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-</div>
-		</div>
-		</div>
-	</div>
-</div>
+/* VARIABLE */
 
-<div class="modal fade" tabindex="-1" role="dialog" id="modalReloadStep">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{{Reprendre la restauration}}</h4>
-      </div>
-      <div class="modal-body">
-        <p>{{Pour reprendre votre restauration cliquez sur "Reprendre".}}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="bt_close" data-dismiss="modal">{{Fermer}}</button>
-        <button type="button" class="btn btn-primary" id="bt_reprendre">{{Reprendre}}</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+var rebooti = '0';
+var testjeedom = '0';
+var persiste = 0;
+var netoyage = 0;
+var migrateGo = 0;
+var pourcentageBar = 0;
+var stepReload = null;
 
-<div id="div_reboot_jeedom" style="display:none;">
-	<script type="text/javascript" id="reboot_jeedom"></script>
-</div>
 
-<script>
+/* on test si on a déjà une migration en cours */
 returnStep();
 
+
+/* BOUTON ONCLICK */
+
 $('#bt_next').on('click', function() {
-$.ajax({
+	testUsb();
+});
+
+$('#bt_reprendre').on('click', function() {
+	if(stepReload !== null){
+		switch(stepReload){
+        	case 2 :
+	        	stepTwo();
+        	break;
+        	case 3 :
+	        	UpImage(1);
+        	break;
+        	case 4 :
+	        	GoReload();
+        	break;
+        	case 5 :
+	        	finalisation();
+        	break;
+    	}
+		$('#modalReloadStep').modal('hide');
+	}else{
+		$('#modalReloadStep').modal('hide');
+	}
+});
+
+$('#bt_close').on('click', function() {
+	setStep(1);
+});
+
+
+/* FONCTION */
+
+function testUsb(){
+	$.ajax({
         type: 'POST',
         url: 'core/ajax/migrate.ajax.php',
         data: {
@@ -135,20 +93,7 @@ $.ajax({
         	}
         }
 	});
-});
-
-
-/* VARIABLE */
-
-var rebooti = '0';
-var testjeedom = '0';
-var persiste = 0;
-var netoyage = 0;
-var migrateGo = 0;
-var pourcentageBar = 0;
-var stepReload = null;
-
-/* FONCTION */
+}
 
 function stepTwo(){
 	setStep('2');
@@ -317,6 +262,8 @@ function UpImage(go){
 		migrateGo = 1;
 		$('#step1').hide();
 		$('#step2').hide();
+		$('#step4').hide();
+		$('#step5').hide();
 		$('.progress-bar').width('0%');
 		$('.progress-bar').text('0%');
 		$('#step3').show();
@@ -326,6 +273,8 @@ function UpImage(go){
 		setStep('3');
 		$('#step1').hide();
 		$('#step2').hide();
+		$('#step4').hide();
+		$('#step5').hide();
 		$('.progress-bar').width('0%');
 		$('.progress-bar').text('0%');
 		$('#step3').show();
@@ -381,6 +330,7 @@ function GoReload(){
 	$('#step1').hide();
 	$('#step2').hide();
 	$('#step3').hide();
+	$('#step5').hide();
 	$('.progress-bar').width('0%');
 	$('.progress-bar').text('0%');
 	pourcentageBar = 0;
@@ -391,7 +341,7 @@ function GoReload(){
 }
 
 function finalisation(){
-	setStep('4');
+	setStep('5');
 	$('#step1').hide();
 	$('#step2').hide();
 	$('#step3').hide();
@@ -507,57 +457,26 @@ function refresh() {
 }
 
 function page_rebootjs(rebooti){
-		refresh();
-		if(rebooti=='1'){
-			$('.TextMigrate').text('Votre Jeedom viens de redémarrer');
-			finalisation();
-		}else{
-			testjeedom++;
-			pourcentageBar = pourcentageBar+2;
-			$('.progress-bar').width(pourcentageBar+'%');
-			$('.progress-bar').text(pourcentageBar+'%');
-			if(testjeedom > '80'){
-				$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
-				$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
-			}
+	refresh();
+	if(rebooti=='1'){
+		$('.TextMigrate').text('Votre Jeedom viens de redémarrer');
+		finalisation();
+	}else{
+		testjeedom++;
+		pourcentageBar = pourcentageBar+2;
+		$('.progress-bar').width(pourcentageBar+'%');
+		$('.progress-bar').text(pourcentageBar+'%');
+		if(testjeedom > '80'){
+			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
+			$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
 		}
 	}
+}
 
-	function reboot_jeedom(rebooti){
-		$('.TextMigrate').text('Merci de patienter...<br />Jeedom est en cours de Migration');
-		$('.progress-bar').width('5%');
-		$('.progress-bar').text('5%');
-		pourcentageBar = 5;
-		setInterval('page_rebootjs(rebooti)', 15000);
-	}
-
-$('#bt_reprendre').on('click', function() {
-	if(stepReload !== null){
-		switch(stepReload){
-        	case 2 :
-	        	stepTwo();
-        	break;
-        	case 3 :
-	        	UpImage(1);
-        	break;
-        	case 4 :
-	        	GoReload();
-        	break;
-        	case 5 :
-	        	finalisation();
-        	break;
-    	}
-		$('#modalReloadStep').modal('hide');
-	}else{
-		$('#modalReloadStep').modal('hide');
-	}
-});
-
-$('#bt_close').on('click', function() {
-	setStep(1);
-});
-
-</script>
-<?php
-include_file('desktop', 'imageMaj', 'css');
-?>
+function reboot_jeedom(rebooti){
+	$('.TextMigrate').text('Merci de patienter...<br />Jeedom est en cours de Migration');
+	$('.progress-bar').width('5%');
+	$('.progress-bar').text('5%');
+	pourcentageBar = 5;
+	setInterval('page_rebootjs(rebooti)', 15000);
+}
