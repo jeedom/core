@@ -32,6 +32,7 @@ $(function(){
 
 $('#in_searchWidget').off('keyup').on('keyup',function(){
   var search = $(this).value();
+  $('.div_object:not(.hideByObjectSel)').show();
   if(search == ''){
     $('.eqLogic-widget').show();
     $('.scenario-widget').show();
@@ -67,6 +68,12 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     }
   });
   $('.div_displayEquipement').packery();
+  $('.div_displayEquipement').each(function(){
+    var count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
+    if(count == 0){
+      $(this).closest('.div_object').hide();
+    }
+  })
 });
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
@@ -256,6 +263,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
 });
 
 $('.li_object').on('click',function(){
+  $('.div_object').removeClass('hideByObjectSel');
   var object_id = $(this).find('a').attr('data-object_id');
   if($('.div_object[data-object_id='+object_id+']').html() != undefined){
     jeedom.object.getImgPath({
@@ -274,11 +282,13 @@ $('.li_object').on('click',function(){
 
 function displayChildObject(_object_id,_recursion){
   if(_recursion === false){
+    $('.div_object').addClass('hideByObjectSel');
     $('.div_object').hide();
   }
   $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false});
   $('.div_object[data-father_id='+_object_id+']').each(function(){
     $(this).show({effect : 'drop',queue : false});
+    $(this).find('.div_displayEquipement').packery();
     displayChildObject($(this).attr('data-object_id'),true);
   });
 }
