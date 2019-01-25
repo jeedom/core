@@ -685,6 +685,7 @@ class eqLogic {
 			'#version#' => $_version,
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
+			'#eqType#' => $this->getEqType_name(),
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
