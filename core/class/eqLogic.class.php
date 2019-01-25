@@ -1395,9 +1395,6 @@ class eqLogic {
 		if (isset($_data['node']['eqLogic' . $this->getId()])) {
 			return;
 		}
-		if ($_level > 0) {
-			return $_data;
-		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
