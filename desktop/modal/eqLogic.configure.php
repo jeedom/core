@@ -424,12 +424,12 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="form-group">
-					<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+					<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
 					<div class="col-xs-2">
 						<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
 					</input>
 				</div>
-				<label class="col-xs-2 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+				<label class="col-xs-3 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
 				<div class="col-xs-2">
 					<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
 				</div>
@@ -441,14 +441,13 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="form-group">
-				<label class="col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+				<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger (en minutes)}}</label>
 				<div class="col-xs-2">
-					<input class="eqLogicAttr form-control" data-l1key="timeout"/>
-				</input>{{(en minutes)}}
+					<input class="eqLogicAttr form-control" data-l1key="timeout" />
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <div role="tabpanel" class="tab-pane" id="eqLogic_comment">
 	<br/>
