@@ -61,7 +61,11 @@ try {
 		$renameImage = migrate::renameImage();
 		ajax::success($renameImage);
 	}
-	
+	if (init('action') == 'finalisation'){
+		$finalisation = migrate::finalisation();
+		ajax::success($finalisation);
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

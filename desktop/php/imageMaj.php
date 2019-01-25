@@ -88,9 +88,6 @@ if (!isConnect('admin')) {
 </div>
 
 <script>
-var rebooti = '0';
-var testjeedom = '0';
-
 returnStep();
 
 $('#bt_next').on('click', function() {
@@ -143,6 +140,8 @@ $.ajax({
 
 /* VARIABLE */
 
+var rebooti = '0';
+var testjeedom = '0';
 var persiste = 0;
 var netoyage = 0;
 var migrateGo = 0;
@@ -257,15 +256,11 @@ function getJeedomLog(_autoUpdate, _log) {
 				                    $('.progress-bar').width(pourcentage+'%');
 									$('.progress-bar').text(pourcentage+'%');
 									pourcentageBar = pourcentage;
-									if(pourcentage == 99){
-										_autoUpdate = 0;
-									}
-								}
-								if(data.result[i].indexOf("Downloaded: 1 files") != -1){
+								}	
+		                    }else if(data.result[i].indexOf("Downloaded: 1 files") != -1){
 									_autoUpdate = 0;
 									$('.TextImage').text('Image Téléchargé et validé !');
 									renameImage();
-								}	
 		                    }
 	                    }
 					}
@@ -388,10 +383,46 @@ function GoReload(){
 	$('#step3').hide();
 	$('.progress-bar').width('0%');
 	$('.progress-bar').text('0%');
+	pourcentageBar = 0;
 	$('#step4').show();
 	$('#contenuWithStepFor').addClass('animated');
 	jeedom.rebootSystem();
-	setInterval('page_rebootjs(rebooti)', 15000);
+	reboot_jeedom(rebooti);
+}
+
+function finalisation(){
+	setStep('4');
+	$('#step1').hide();
+	$('#step2').hide();
+	$('#step3').hide();
+	$('#step4').hide();
+	$('.progress-bar').width('0%');
+	$('.progress-bar').text('0%');
+	pourcentageBar = 0;
+	$('#step5').show();
+	$('#contenuWithStepFive').addClass('animated');
+	$.ajax({
+        type: 'POST',
+        url: 'core/ajax/migrate.ajax.php',
+        data: {
+            action: 'finalisation'
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result){
+        	if(result.result == 'ok'){
+	        	//setTimeout('window.location.replace("index.php?v=d&p=dashboard")', 4000);
+				//setStep(1);
+				getJeedomLog(1, 'migrate');
+        	}else{
+	        	alert('erreur');
+        	}
+        	
+        }
+	});
 }
 
 function setStep(stepValue){
@@ -454,6 +485,10 @@ function returnStep(){
 				        		$('#modalReloadStep').modal('show');
 					        	stepReload = 4;
 				        	break;
+				        	case '5' :
+				        		$('#modalReloadStep').modal('show');
+					        	stepReload = 5;
+				        	break;
 			        	}
 			        }
 				});
@@ -475,9 +510,13 @@ function page_rebootjs(rebooti){
 		refresh();
 		if(rebooti=='1'){
 			$('.TextMigrate').text('Votre Jeedom viens de redémarrer');
+			finalisation();
 		}else{
 			testjeedom++;
-			if(testjeedom > '70'){
+			pourcentageBar = pourcentageBar+2;
+			$('.progress-bar').width(pourcentageBar+'%');
+			$('.progress-bar').text(pourcentageBar+'%');
+			if(testjeedom > '80'){
 				$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
 				$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
 			}
@@ -488,6 +527,7 @@ function page_rebootjs(rebooti){
 		$('.TextMigrate').text('Merci de patienter...<br />Jeedom est en cours de Migration');
 		$('.progress-bar').width('5%');
 		$('.progress-bar').text('5%');
+		pourcentageBar = 5;
 		setInterval('page_rebootjs(rebooti)', 15000);
 	}
 
@@ -502,6 +542,9 @@ $('#bt_reprendre').on('click', function() {
         	break;
         	case 4 :
 	        	GoReload();
+        	break;
+        	case 5 :
+	        	finalisation();
         	break;
     	}
 		$('#modalReloadStep').modal('hide');
