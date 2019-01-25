@@ -128,6 +128,7 @@ function initEquipment(_object_id) {
   
   
   $('#in_searchWidget').off('keyup').on('keyup',function(){
+    $('.div_displayEquipement').show();
     var search = $(this).value();
     if(search == ''){
       $('.eqLogic-widget').show();
@@ -164,6 +165,12 @@ function initEquipment(_object_id) {
       }
     });
     $('.objectHtml').packery();
+    $('.objectHtml').each(function(){
+      var count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
+      if(count == 0){
+        $(this).closest('.div_displayEquipement').hide();
+      }
+    })
   });
   
 }
