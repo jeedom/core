@@ -386,7 +386,7 @@ if (init('rescue', 0) == 0) {
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
 													<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle" ></i> {{Rapport de bug}}</a>
 												<?php } else {?>
-													<a class="bt_reportBug cursor"><i class="fas fa-exclamation-circle" ></i> {{Demande de support}}</a>
+													<a class="bt_reportBug"><i class="fas fa-exclamation-circle" ></i> {{Demande de support}}</a>
 												<?php } ?>
 											</li>
 										<?php } ?>
