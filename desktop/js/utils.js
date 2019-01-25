@@ -164,6 +164,20 @@ $('body').on( "show", ".modal",function () {
 
 /************************Help*************************/
 
+setInterval(function () {
+  var date = new Date();
+  date.setTime(date.getTime() + clientServerDiffDatetime);
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var seconde = date.getSeconds();
+  var horloge = (hour < 10) ? '0' + hour : hour;
+  horloge += ':';
+  horloge += (minute < 10) ? '0' + minute : minute;
+  horloge += ':';
+  horloge += (seconde < 10) ? '0' + seconde : seconde;
+  $('#horloge').text(horloge);
+}, 1000);
+
 if (isset(jeedom_langage)) {
   bootbox.setDefaults({
     locale: jeedom_langage.substr(0, 2),

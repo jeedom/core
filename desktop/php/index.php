@@ -240,7 +240,7 @@ if (init('rescue', 0) == 0) {
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
+						<a class="navbar-brand hidden-xs" href="<?php echo $homeLink; ?>">
 							<img src="<?php echo $configs['product_image'] ?>" height="30" style="position: relative; top:-5px;"/>
 						</a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -393,6 +393,11 @@ if (init('rescue', 0) == 0) {
 										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
 										<li><a href="#" id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
 									</ul>
+								</li>
+								<li>
+									<a href="#" style="cursor:default;" class="hidden-xs">
+										<span id="horloge"><?php echo date('H:i:s'); ?></span>
+									</a>
 								</li>
 								<li class="hidden-xs">
 									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
