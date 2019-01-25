@@ -1,0 +1,79 @@
+body{
+	background: linear-gradient(180deg, rgba(147,204,1,0.6), rgba(147,204,1,1));
+	transition: all .5s;
+}
+#contenu{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+.titleStep{
+	font-size: 50px;
+	font-weight: bold;
+	font: 'San Francisco', Helvetica, Arial, san-serif;
+	color: #FFFFFFB3;
+	margin-top: 2%;
+	margin-left: 2%;
+}
+#step1{
+	width: 100%;
+	height: 100%;
+}
+.contenuWith{
+	width: 40%;
+	height: 60%;
+	margin: 2% auto;
+	background-color: #FFFFFF;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: : 2%;
+}
+#contenuImage{
+	width: 100%;
+	height: 70%;
+	margin-top: 0px;
+}
+#contenuImageSrc{
+	width: 100%;
+	height: 100%;
+	margin-top: 0px;
+}
+#contenuText{
+	width: 100%;
+	height: 30%;
+	margin-bottom: 0px;
+}
+#contenuTextSpan{
+	display: block;
+	margin-top: 8%;
+	text-align: center;
+	font-size: 120%;
+	font-weight: bold;
+	font: 'San Francisco', Helvetica, Arial, san-serif;
+	color: #000000B3;
+}
+.next{
+	font-size: 50px;
+	color:rgba(147,204,1,1);
+}
+#nextDiv{
+	width: 100px;
+	height: 100px;
+	margin-right: -45px;
+	float: right;
+}
+#step2{
+	display:none;
+}
+#step3{
+	display:none;
+}
+#step4{
+	display:none;
+}
+#step5{
+	display:none;
+}
+.progress{
+	width: 80%;
+	margin-left: 10%;
+}
