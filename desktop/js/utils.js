@@ -164,6 +164,20 @@ $('body').on( "show", ".modal",function () {
 
 /************************Help*************************/
 
+setInterval(function () {
+  var date = new Date();
+  date.setTime(date.getTime() + clientServerDiffDatetime);
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var seconde = date.getSeconds();
+  var horloge = (hour < 10) ? '0' + hour : hour;
+  horloge += ':';
+  horloge += (minute < 10) ? '0' + minute : minute;
+  horloge += ':';
+  horloge += (seconde < 10) ? '0' + seconde : seconde;
+  $('#horloge').text(horloge);
+}, 1000);
+
 if (isset(jeedom_langage)) {
   bootbox.setDefaults({
     locale: jeedom_langage.substr(0, 2),
@@ -598,10 +612,14 @@ function chooseIcon(_callback) {
 }
 
 
-function positionEqLogic(_id,_preResize) {
+function positionEqLogic(_id,_preResize,_scenario) {
   if(_id != undefined){
-    var eqLogic = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
-    eqLogic.css('margin','0px').css('padding','0px');
+    if(_scenario){
+      var widget = $('.scenario-widget[data-scenario_id='+_id+']');
+    }else{
+      var widget = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
+    }
+    widget.css('margin','0px').css('padding','0px');
     if($(this).width() == 0){
       $(this).width('auto');
     }
@@ -609,16 +627,16 @@ function positionEqLogic(_id,_preResize) {
       $(this).height('auto');
     }
     if(init(_preResize,true)){
-      eqLogic.width(Math.floor(eqLogic.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
-      eqLogic.height(Math.floor(eqLogic.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
+      widget.width(Math.floor(widget.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
+      widget.height(Math.floor(widget.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
     }
-    eqLogic.width(Math.ceil(eqLogic.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
-    eqLogic.height(Math.ceil(eqLogic.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
-    eqLogic.addClass(eqLogic.attr('data-category'));
-    eqLogic.css('margin',widget_margin+'px');
+    widget.width(Math.ceil(widget.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
+    widget.height(Math.ceil(widget.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
+    widget.addClass(widget.attr('data-category'));
+    widget.css('margin',widget_margin+'px');
   }else{
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition)').each(function () {
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
       if($(this).width() == 0){
         $(this).width('auto');
       }
@@ -629,8 +647,8 @@ function positionEqLogic(_id,_preResize) {
       $(this).height(Math.ceil($(this).height() / widget_height_step) * widget_height_step - (2 * widget_margin));
       $(this).addClass($(this).attr('data-category'));
     });
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition)').css('margin',widget_margin+'px');
-    $('.eqLogic-widget').addClass('jeedomAlreadyPosition');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',widget_margin+'px');
+    $('.eqLogic-widget,.scenario-widget').addClass('jeedomAlreadyPosition');
   }
 }
 
@@ -659,6 +677,7 @@ function saveWidgetDisplay(_params){
   }
   var cmds = [];
   var eqLogics = [];
+  var scenarios = [];
   $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function(){
     var eqLogic = $(this);
     order = 1;
@@ -686,17 +705,23 @@ function saveWidgetDisplay(_params){
   if(init(_params['dashboard']) == 1){
     $('.div_displayEquipement').each(function(){
       order = 1;
-      $(this).find('.eqLogic-widget').each(function(){
-        var eqLogic = {id :$(this).attr('data-eqlogic_id')}
-        eqLogic.display = {};
-        eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
-        eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
-        if($(this).attr('data-order') != undefined){
-          eqLogic.order = $(this).attr('data-order');
-        }else{
-          eqLogic.order = order;
+      $(this).find('.eqLogic-widget,.scenario-widget').each(function(){
+        if($(this).hasClass('eqLogic-widget')){
+          var eqLogic = {id :$(this).attr('data-eqlogic_id')}
+          eqLogic.display = {};
+          eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
+          eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
+          eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order;
+          eqLogics.push(eqLogic);
         }
-        eqLogics.push(eqLogic);
+        if($(this).hasClass('scenario-widget')){
+          var scenario = {id :$(this).attr('data-scenario_id')}
+          scenario.display = {};
+          scenario.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
+          scenario.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
+          scenario.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order;
+          scenarios.push(scenario);
+        }
         order++;
       });
     });
@@ -714,8 +739,13 @@ function saveWidgetDisplay(_params){
         });
       }
     });
-  }
-  if(init(_params['view']) == 1){
+    jeedom.scenario.setOrder({
+      scenarios: scenarios,
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      }
+    });
+  } else if(init(_params['view']) == 1){
     $('.eqLogicZone').each(function(){
       order = 1;
       $(this).find('.eqLogic-widget').each(function(){

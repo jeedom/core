@@ -51,74 +51,17 @@ include_file('desktop', 'dashboard', 'css');
 	</div>
 </div>
 <?php
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-		echo '<div class="col-lg-8 col-md-7 col-sm-5" id="div_displayObject">';
-	} else {
-		echo '<div class="col-lg-10 col-md-9 col-sm-7" id="div_displayObject">';
-	}
+if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
+	echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
 } else {
-	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
-		echo '<div class="col-lg-10 col-md-9 col-sm-8" id="div_displayObject">';
-	} else {
-		echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
-	}
+	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 }
-?>
-<i class='fa fa-cogs pull-right cursor' id='bt_displayScenario' data-display='<?php echo $_SESSION['user']->getOptions('displayScenarioByDefault') ?>' title="{{Afficher/Masquer les scénarios}}"></i>
-<?php if (init('category', 'all') == 'all') {?>
-	<i class="fas fa-pencil-alt pull-right cursor" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;"></i>
+if (init('category', 'all') == 'all') {?>
+	<a class="pull-right btn btn-default btn-sm" id="bt_editDashboardWidgetOrder" data-mode="0"><i class="fas fa-pencil-alt"></i></a>
 <?php } ?>
-<i class='fa fa-sort-amount-desc pull-right cursor' id='bt_categorieHidden' title="{{Trier vos équipements}}"></i>
-<i class='fa fa-picture-o cursor pull-right' id='bt_displayObject' data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"></i>
-<div style="witdh:100%; display: none;" class="categorieHidden">
-	<div style="witdh:45%; float:left;">
-		<div class="demo">
-			<select id="sel_eqLogicCategory">
-				<?php
-				if (init('category', 'all') == 'all') {
-					echo '<option value="all" selected> {{Toute}}</option>';
-				} else {
-					echo '<option value="all"> {{Toute}}</option>';
-				}
-				foreach (jeedom::getConfiguration('eqLogic:category', true) as $key => $value) {
-					if (init('category', 'all') == $key) {
-						echo '<option value="' . $key . '" selected> {{' . $value['name'] . '}}</option>';
-					} else {
-						echo '<option value="' . $key . '"> {{' . $value['name'] . '}}</option>';
-					}
-				}
-				?>
-			</select>
-		</div>
-	</div>
-	<div style="witdh:45%; float:left;">
-		<div class="demo2">
-			<select id="sel_eqLogicTags">
-				<?php
-				if (init('tag', 'all') == 'all') {
-					echo '<option value="all" selected> {{Tous}}</option>';
-				} else {
-					echo '<option value="all"> {{Tous}}</option>';
-				}
-				$knowTags = eqLogic::getAllTags();
-				foreach ($knowTags as $tag) {
-					if (init('tag', 'all') == $tag) {
-						echo '<option value="' . $tag . '" selected> ' . $tag . '</option>';
-					} else {
-						echo '<option value="' . $tag . '"> ' . $tag . '</option>';
-					}
-				}
-				?>
-			</select>
-		</div>
-	</div>
-</div>
-<?php
-include_file('desktop', 'dashboard', 'js');
-include_file('3rdparty', 'jquery.isotope/isotope.pkgd.min', 'js');
-include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js');
-?>
+<input class='form-control input-sm' id="in_searchWidget" style="width:calc(100% - 80px);display:inline-block;" placeholder="{{Rechercher}}"/>
+<a class="pull-left btn btn-default btn-sm" id="bt_displayObject" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class='fa fa-picture-o'></i></a>
+<?php include_file('desktop', 'dashboard', 'js'); ?>
 <div class="row" >
 	<?php
 	if (init('object_id') != '') {
@@ -133,7 +76,6 @@ include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js')
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
-	
 	foreach ($allObject as $value) {
 		if ($value->getId() != $object->getId()) {
 			continue;
@@ -154,22 +96,5 @@ include_file('3rdparty', 'jquery.multi-column-select/multi-column-select', 'js')
 	}
 	?>
 </div>
-</div>
-<?php
-if ($_SESSION['user']->getOptions('displayScenarioByDefault') == 1) {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario">';
-} else {
-	echo '<div class="col-lg-2 col-md-2 col-sm-3" id="div_displayScenario" style="display:none;">';
-}
-?>
-<legend><i class="fas fa-history"></i> {{Scénarios}}</legend>
-<?php
-foreach (scenario::all() as $scenario) {
-	if ($scenario->getIsVisible() == 0) {
-		continue;
-	}
-	echo $scenario->toHtml('dashboard');
-}
-?>
 </div>
 </div>

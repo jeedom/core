@@ -35,7 +35,7 @@ class eqLogic {
 	protected $timeout = 0;
 	protected $category;
 	protected $display;
-	protected $order;
+	protected $order = 9999;
 	protected $comment;
 	protected $tags;
 	protected $_debug = false;
@@ -688,7 +688,7 @@ class eqLogic {
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
-			'#generic_type#' => $this->getGenericType(),
+			'#generic_type#' => $this->getGenericType()
 		);
 		
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {

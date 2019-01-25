@@ -1,52 +1,51 @@
-<div class="scenario nd2-card" data-scenario_id="#id#" data-version="#version#" style="min-height: 190px;margin : 0px;">
-   <center>
+<div class="scenario scenario-widget" data-scenario_id="#id#" data-version="#version#" style="margin : 0px;">
+  <center>
     <div class="card-title has-supporting-text">
-        <h3 class="card-primary-title">#shortname#</h3>
-        <h5 class="card-subtitle">#treename#</h5>
+      <h3 class="card-primary-title widget-name">#shortname#</h3>
     </div>
     <div class="card-supporting-text has-title">
-        <span class="state" style="font-size: 2em;">#icon#</span>
+      <span class="state" style="font-size: 2em;">#icon#</span>
     </div>
     <div class="card-action">
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></i></a>
-  </div>
-</center>
-<script>
+    </div>
+  </center>
+  <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
-        $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-spinner fa-spin"></i>');
-        jeedom.scenario.changeState({
-            id: $(this).closest('.scenario').attr('data-scenario_id'),
-            state: $(this).attr('data-state'),
-            error: function(error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-                $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>');
-                setTimeout(function() {
-                 $('.scenario[data-scenario_id=#id#] .state').empty();
-             }, 3000);
-            }
-        });
+      $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-spinner fa-spin"></i>');
+      jeedom.scenario.changeState({
+        id: $(this).closest('.scenario').attr('data-scenario_id'),
+        state: $(this).attr('data-state'),
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>');
+          setTimeout(function() {
+            $('.scenario[data-scenario_id=#id#] .state').empty();
+          }, 3000);
+        }
+      });
     });
     jeedom.scenario.update['#id#'] =function(_options){
-       $('.scenario[data-scenario_id=#id#] .state').empty();
-       $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
-       if (_options.isActive == '1') {
-         if (_options.state == 'in progress') {
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+      $('.scenario[data-scenario_id=#id#] .state').empty();
+      $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
+      if (_options.isActive == '1') {
+        if (_options.state == 'in progress') {
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
         }else if (_options.state == 'error') {
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
         }else if (_options.state == 'stop') {
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
-            $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
         }
-    } else {
+      } else {
         $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
+      }
     }
-}
-jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#'});
-</script>
+    jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#'});
+  </script>
 </div>

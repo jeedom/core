@@ -35,6 +35,7 @@ class scenario {
 	private $object_id = null;
 	private $isVisible = 1;
 	private $display;
+	private $order = 9999;
 	private $description;
 	private $configuration;
 	private $type = 'expert';
@@ -235,6 +236,7 @@ class scenario {
 		if ($_onlyVisible) {
 			$sql .= ' AND isVisible = 1';
 		}
+		$sql .= ' ORDER BY `order`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
@@ -820,7 +822,6 @@ class scenario {
 					if ($mc->getValue() != '') {
 						return $mc->getValue();
 					}
-					
 					$version = jeedom::versionAlias($_version);
 					$replace = array(
 						'#id#' => $this->getId(),
@@ -834,6 +835,8 @@ class scenario {
 						'#lastLaunch#' => $this->getLastLaunch(),
 						'#scenarioLink#' => $this->getLinkToConfiguration(),
 						'#version#' => $_version,
+						'#height#' => $this->getDisplay('height', 'auto'),
+						'#width#' => $this->getDisplay('width', 'auto'),
 					);
 					if (!isset(self::$_templateArray)) {
 						self::$_templateArray = array();
@@ -1328,9 +1331,9 @@ class scenario {
 				* @param type $_withoutScenarioName
 				* @return string
 				*/
-				public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false) {
+				public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false,$_object_name = true) {
 					$name = '';
-					if (is_numeric($this->getObject_id()) && is_object($this->getObject())) {
+					if ($_object_name && is_numeric($this->getObject_id()) && is_object($this->getObject())) {
 						$object = $this->getObject();
 						if ($_tag) {
 							if ($object->getDisplay('tagColor') != '') {
@@ -1666,6 +1669,23 @@ class scenario {
 				public function setMode($_mode) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->mode,$_mode);
 					$this->mode = $_mode;
+					return $this;
+				}
+				/**
+				*
+				* @return type
+				*/
+				public function getOrder() {
+					return $this->order;
+				}
+				/**
+				*
+				* @param type $mode
+				* @return $this
+				*/
+				public function setOrder($_order) {
+					$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+					$this->order = $_order;
 					return $this;
 				}
 				/**

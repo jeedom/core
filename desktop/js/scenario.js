@@ -110,12 +110,10 @@ $('#in_treeSearch').keyup(function () {
 $('#in_searchScenario').keyup(function () {
   var search = $(this).value();
   if(search == ''){
-    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show();
     $('.scenarioListContainer').packery();
     return;
   }
-  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.scenarioDisplayCard').hide();
   $('.scenarioDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
