@@ -124,13 +124,21 @@ try {
 						if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
 							continue;
 						}
-						$html[$eqLogic->getOrder()] = $eqLogic->toHtml(init('version'));
+						$order = $eqLogic->getOrder();
+						while(isset($html[$order])){
+							$order++;
+						}
+						$html[$order] = $eqLogic->toHtml(init('version'));
 					}
 				}
 				$scenarios = scenario::byObjectId($id,false,true);
 				if(count($scenarios) > 0){
 					foreach ($scenarios as $scenario) {
-						$html[$scenario->getOrder()] = $scenario->toHtml(init('version'));
+						$order = $scenario->getOrder();
+						while(isset($html[$order])){
+							$order++;
+						}
+						$html[$order] = $scenario->toHtml(init('version'));
 					}
 				}
 				ksort($html);
@@ -154,13 +162,21 @@ try {
 					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
 						continue;
 					}
-					$html[$eqLogic->getOrder()] = $eqLogic->toHtml(init('version'));
+					$order = $eqLogic->getOrder();
+					while(isset($html[$order])){
+						$order++;
+					}
+					$html[$order] = $eqLogic->toHtml(init('version'));
 				}
 			}
 			$scenarios = scenario::byObjectId(init('id'),false,true);
 			if(count($scenarios) > 0){
 				foreach ($scenarios as $scenario) {
-					$html[$scenario->getOrder()] = $scenario->toHtml(init('version'));
+					$order = $scenario->getOrder();
+					while(isset($html[$order])){
+						$order++;
+					}
+					$html[$order] = $scenario->toHtml(init('version'));
 				}
 			}
 			ksort($html);
