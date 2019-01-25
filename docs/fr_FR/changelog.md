@@ -36,6 +36,7 @@ Changelog
 -   Possibilité de supprimer un élément à partir de la configuration du design
 -   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
 -   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
+-   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget) 
 
 3.2.12
 =====
