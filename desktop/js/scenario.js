@@ -125,6 +125,12 @@ $('#in_searchScenario').keyup(function () {
   $('.scenarioListContainer').packery();
 });
 
+$('#bt_chooseIcon').on('click', function () {
+  chooseIcon(function (_icon) {
+    $('.scenarioAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  });
+});
+
 $('.scenarioAttr[data-l1key=group]').autocomplete({
   source: function (request, response, url) {
     $.ajax({

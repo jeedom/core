@@ -80,7 +80,11 @@ if (is_array($scenarioListGroup)) {
 				foreach ($scenarios[-1] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
-					echo '<img src="core/img/scenario.png" height="45" width="40" />';
+					if($scenario->getDisplay('icon') != ''){
+						echo '<span style="font-size:3em;"'.$scenario->getDisplay('icon').'</span>';
+					}else{
+						echo '<img src="core/img/scenario.png" height="45" width="40" />';
+					}
 					echo "<br>";
 					echo '<span class="name" style="position:relative; word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 					echo '</div>';
@@ -104,7 +108,11 @@ if (is_array($scenarioListGroup)) {
 				foreach ($scenarios[$group['group']] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
-					echo '<img src="core/img/scenario.png" height="45" width="40" />';
+					if($scenario->getDisplay('icon') != ''){
+						echo '<span style="font-size:3em;"'.$scenario->getDisplay('icon').'</span>';
+					}else{
+						echo '<img src="core/img/scenario.png" height="45" width="40" />';
+					}
 					echo '<br/>';
 					echo '<span class="name" style="position:relative;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 					echo '</div>';
@@ -194,13 +202,17 @@ if (is_array($scenarioListGroup)) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Multi lancement}}</label>
+								<label class="col-xs-5 control-label">{{Multi-lancement}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
 								</div>
-								<label class="col-xs-4 control-label">{{Mode synchrone}}</label>
+								<label class="col-xs-2 control-label">{{Synchrone}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
+								</div>
+								<label class="col-xs-2 control-label">{{Timeline}}</label>
+								<div class="col-xs-1">
+									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
 								</div>
 							</div>
 							<div class="form-group">
@@ -214,9 +226,12 @@ if (is_array($scenarioListGroup)) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Suivre dans la timeline}}</label>
-								<div class="col-xs-1">
-									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
+								<label class="col-xs-5 control-label">{{Icône}}</label>
+								<div class="col-xs-3">
+									<div class="scenarioAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+								</div>
+								<div class="col-xs-4">
+									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 								</div>
 							</div>
 						</fieldset>
