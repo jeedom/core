@@ -1683,7 +1683,7 @@ class eqLogic {
 			$this->_needRefreshWidget = true;
 		}
 		$category = utils::setJsonAttr($this->category, $_key, $_value);
-		$this->_changed = ($this->_changed || $this->tags != $_tags);
+		$this->_changed = ($this->_changed || $this->category != $category);
 		$this->category = $category;
 		return $this;
 	}
