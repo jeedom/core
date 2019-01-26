@@ -280,7 +280,7 @@ class listener {
 	
 	public function setEvent($_event) {
 		$event = json_encode($_event, JSON_UNESCAPED_UNICODE);
-		$this->_changed = utils::attrChanged($this->_changed,$this->event,$_event);
+		$this->_changed = utils::attrChanged($this->_changed,$this->event,$event);
 		$this->event = $event;
 		return $this;
 	}
