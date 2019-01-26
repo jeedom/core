@@ -15,6 +15,7 @@ Son utilisation est très simple vous selectionnez si vous voulez voir :
 -   les rapports des vues
 -   les rapports des degins
 -   les rapports des panels des plugins
+- les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
 
 Ensuite vous selectionner le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
 

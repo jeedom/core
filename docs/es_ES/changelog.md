@@ -34,6 +34,9 @@ Changelog
 -   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
 -   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 -   Possibilité de supprimer un élément à partir de la configuration du design
+-   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
+-   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
+-   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget) 
 
 3.2.12
 =====
