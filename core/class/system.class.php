@@ -32,11 +32,9 @@ class system {
 	/*     * ***********************Methode static*************************** */
 
 	public static function loadCommand() {
-		if (file_exists(dirname(__FILE__) . '/../../config/system_cmd.json')) {
-			$content = file_get_contents(dirname(__FILE__) . '/../../config/system_cmd.json');
-			if (is_json($content)) {
-				self::$_command['custom'] = json_decode($content, true);
-			}
+		if (file_exists(dirname(__FILE__) . '/../config/system_cmd.json')) {
+			$content = file_get_contents(dirname(__FILE__) . '/../config/system_cmd.json');
+			self::$_command['custom'] = json_decode($content, true);
 		}
 		return self::$_command;
 	}
