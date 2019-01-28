@@ -57,14 +57,14 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 }
 ?>
-<div style="position:fixed;width:82%;z-index:999">
+<div style="position:fixed;width:82%;z-index:999;">
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<a class="pull-right btn btn-default btn-sm" id="bt_editDashboardWidgetOrder" data-mode="0"><i class="fas fa-pencil-alt"></i></a>
 	<?php } ?>
 	<input class='form-control input-sm' id="in_searchWidget" style="width:calc(100% - 80px);display:inline-block;" placeholder="{{Rechercher}}"/>
 	<a class="pull-left btn btn-default btn-sm" id="bt_displayObject" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class='fa fa-picture-o'></i></a>
-</div><br/>
+</div><br/><br/>
 <?php include_file('desktop', 'dashboard', 'js'); ?>
 <div class="row" >
 	<?php
