@@ -57,7 +57,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	echo '<div class="col-lg-12 col-md-12 col-sm-12" id="div_displayObject">';
 }
 ?>
-<div style="position:fixed;width:82%;z-index:9999">
+<div style="position:fixed;width:82%;z-index:999">
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<a class="pull-right btn btn-default btn-sm" id="bt_editDashboardWidgetOrder" data-mode="0"><i class="fas fa-pencil-alt"></i></a>

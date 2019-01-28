@@ -61,10 +61,8 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 					</select>
 				</div>
 			</div>
-			
 		</div>
 	</div>
-	
 	<div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
@@ -104,6 +102,9 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 
 <script>
 $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
+if(getUrlVars('m') !== false){
+	$('.ticketAttr[data-l1key=category]').value('plugin::'+getUrlVars('m'));
+}
 
 $('#bt_sendBugReport').on('click', function () {
 	var ticket = $('#form_reportBug').getValues('.ticketAttr')[0];
