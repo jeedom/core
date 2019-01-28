@@ -201,10 +201,28 @@ function getJeedomLog(_autoUpdate, _log) {
 				                    $('.progress-bar').width(pourcentage+'%');
 									$('.progress-bar').text(pourcentage+'%');
 									pourcentageBar = pourcentage;
+									var filterVal = 'blur('+(10-Number(pourcentage/10))+'px)';
+									console.log(filterVal);
+									$('.imageUpBlur').css({
+										'filter': filterVal,
+			                            '-webkit-filter': filterVal,
+			                            '-moz-filter': filterVal,
+			                            '-o-filter': filterVal,
+			                            '-ms-filter': filterVal
+									});
 								}	
 		                    }else if(data.result[i].indexOf("Downloaded: 1 files") != -1){
 									_autoUpdate = 0;
 									$('.TextImage').text('Image Téléchargé et validé !');
+									var filterVal = 'blur(0)';
+									console.log(filterVal);
+									$('.imageUpBlur').css({
+										'filter': filterVal,
+			                            '-webkit-filter': filterVal,
+			                            '-moz-filter': filterVal,
+			                            '-o-filter': filterVal,
+			                            '-ms-filter': filterVal
+									});
 									renameImage();
 		                    }
 	                    }
@@ -257,6 +275,7 @@ function backupToUsb(){
 
 function UpImage(go){
 	pourcentage = 0;
+	var filterVal = 'blur(10px)';
 	if(go == 1){
 		setStep('3');
 		migrateGo = 1;
@@ -267,6 +286,13 @@ function UpImage(go){
 		$('.progress-bar').width('0%');
 		$('.progress-bar').text('0%');
 		$('#step3').show();
+		$('.imageUpBlur').css({
+			'filter': filterVal,
+            '-webkit-filter': filterVal,
+            '-moz-filter': filterVal,
+            '-o-filter': filterVal,
+            '-ms-filter': filterVal
+		});
 		$('#contenuWithStepTree').addClass('animated');
 		getJeedomLog(1, 'migrate');
 	}else{
@@ -277,6 +303,13 @@ function UpImage(go){
 		$('#step5').hide();
 		$('.progress-bar').width('0%');
 		$('.progress-bar').text('0%');
+		$('.imageUpBlur').css({
+			'filter': filterVal,
+            '-webkit-filter': filterVal,
+            '-moz-filter': filterVal,
+            '-o-filter': filterVal,
+            '-ms-filter': filterVal
+		});
 		$('#step3').show();
 		$('#contenuWithStepTree').addClass('animated');
 		$.ajax({
@@ -463,7 +496,7 @@ function page_rebootjs(rebooti){
 		finalisation();
 	}else{
 		testjeedom++;
-		pourcentageBar = pourcentageBar+2;
+		pourcentageBar = pourcentageBar+1;
 		$('.progress-bar').width(pourcentageBar+'%');
 		$('.progress-bar').text(pourcentageBar+'%');
 		if(testjeedom > '80'){
@@ -474,7 +507,7 @@ function page_rebootjs(rebooti){
 }
 
 function reboot_jeedom(rebooti){
-	$('.TextMigrate').text('Merci de patienter...<br />Jeedom est en cours de Migration');
+	$('.TextMigrate').text('Merci de patienter... Jeedom est en cours de Migration');
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
