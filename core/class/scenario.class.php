@@ -1786,10 +1786,7 @@ class scenario {
 				* @param type $_default
 				* @return type
 				*/
-				public function getTimeout($_default = null) {
-					if ($this->timeout == '' || !is_numeric($this->timeout)) {
-						return $_default;
-					}
+				public function getTimeout($_default = 0) {
 					return $this->timeout;
 				}
 				/**
@@ -1798,8 +1795,8 @@ class scenario {
 				* @return $this
 				*/
 				public function setTimeout($_timeout) {
-					if ($_timeout == '' || is_nan(intval($_timeout)) || $_timeout < 1) {
-						$_timeout = '';
+					if ($_timeout === '' || is_nan(intval($_timeout)) || $_timeout < 1) {
+						$_timeout = 0;
 					}
 					$this->_changed = utils::attrChanged($this->_changed,$this->timeout,$_timeout);
 					$this->timeout = $_timeout;
