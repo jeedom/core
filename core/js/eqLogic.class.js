@@ -323,6 +323,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
         var gridstack =  eqLogic.hasClass('grid-stack-item-content');
+        var visible = eqLogic.is(":visible");
         var uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
@@ -357,6 +358,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
         eqLogic.css('transform-origin',transform_origin);
         eqLogic.css('transform',transform);
         eqLogic.css('z-index',zindex);
+        if(!visible){
+          eqLogic.hide();
+        }
         eqLogic.trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");

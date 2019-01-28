@@ -540,7 +540,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:100px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
+		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:180px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name" style="text-align : center;"><span style="font-size : 1em;">' . $this->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		} else {
@@ -685,6 +685,7 @@ class eqLogic {
 			'#version#' => $_version,
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
+			'#eqType#' => $this->getEqType_name(),
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
@@ -1682,7 +1683,7 @@ class eqLogic {
 			$this->_needRefreshWidget = true;
 		}
 		$category = utils::setJsonAttr($this->category, $_key, $_value);
-		$this->_changed = ($this->_changed || $this->tags != $_tags);
+		$this->_changed = utils::attrChanged($this->_changed,$this->category, $category);
 		$this->category = $category;
 		return $this;
 	}
