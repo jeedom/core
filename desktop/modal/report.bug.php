@@ -104,6 +104,10 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 
 <script>
 $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href);
+	
+if(getUrlVars('m') !== false){
+	$('.ticketAttr[data-l1key=category]').value('plugin::'+getUrlVars('m'));
+}
 
 $('#bt_sendBugReport').on('click', function () {
 	var ticket = $('#form_reportBug').getValues('.ticketAttr')[0];
