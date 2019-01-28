@@ -329,9 +329,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
         }
         eqLogic.empty().html(html.children());
         eqLogic.attr("class", html.attr("class"));
-        if(gridstack){
-          eqLogic.addClass('grid-stack-item-content');
-        }
         var top =  eqLogic.css('top');
         var left =  eqLogic.css('left');
         var width =  eqLogic.css('width');
