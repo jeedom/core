@@ -1,12 +1,12 @@
 <span class="cmd reportModeHidden cmd-widget" style="display: inline !important;margin-right: 2px;" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-    <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#" style="background-color:#cmdColor# !important;border-color : transparent !important;margin-top: 2px;">#name_display#</a>
-    <script>
-        $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
-            jeedom.cmd.execute({id: '#id#'});
-        });
-        if ($('.cmd[data-cmd_uid=#uid#]:last').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != 'other'
-                && $('.cmd[data-cmd_uid=#uid#]:last').prev().css('display') != 'block') {
-            $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
-        }
-    </script>
+  <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#" style="background-color:#cmdColor# !important;border-color : transparent !important;margin-top: 2px;">#name_display#</a>
+  <script>
+    $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
+      jeedom.cmd.execute({id: '#id#'});
+    });
+    if ($('.cmd[data-cmd_uid=#uid#]:last').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != 'other'
+    && $('.cmd[data-cmd_uid=#uid#]:last').prev().css('display') != 'block') {
+      $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
+    }
+  </script>
 </span>

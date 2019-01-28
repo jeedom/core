@@ -1,16 +1,12 @@
-Voici la partie la plus importante dans la domotique : les scénarios.
-Véritable cerveau de la domotique, c’est ce qui permet d’interagir avec
-le monde réel de manière "intelligente".
+Here is the most important part in home automation: scenarios. Real core of the automation, it is what allows to interact with the real world in a smart way.
 
-La page de gestion des Scénarios
-================================
+Scenario management page
+=========================
 
-Gestion
--------
+Management
+-------------------
 
-Pour y accéder, rien de plus simple, il suffit d’aller sur Outils ->
-Scénarios. Vous y trouverez la liste des scénarios de votre Jeedom ainsi
-que des fonctions pour les gérer au mieux :
+It's easy to reach it, simply go to Tools -> Scenarios. You will find the list of scenarios in Jeedom and some features to manage them:
 
 -   **Ajouter** : Permet de créer un scénario. La procédure est décrite
     dans le chapitre suivant.
@@ -32,8 +28,8 @@ que des fonctions pour les gérer au mieux :
 -   **Testeur d’expression** : Permet d’executer un test sur une
     expression de votre choix et d’en afficher le résultat.
 
-Mes scénarios
--------------
+My scenarios
+------------------
 
 Vous trouverez dans cette partie la **liste des scénarios** que vous
 avez créés. Ils sont classés suivant les **groupes** que vous avez
@@ -47,8 +43,8 @@ votre profil, vous pouvez le laisser toujours visible). Vous pourrez
 alors **chercher**votre scénario, mais aussi en**ajouter** un par ce
 menu.
 
-Edition d’un scénario
-=====================
+Edition of scenario
+================
 
 Après avoir cliqué sur **Ajouter**, vous devez choisir le nom de votre
 scénario et vous êtes redirigés vers la page de ses paramètres généraux.

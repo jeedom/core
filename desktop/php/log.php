@@ -24,21 +24,21 @@ natcasesort($list_logfile);
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-foreach ($list_logfile as $file) {
-	$hasErr = 0;
-	$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
-	if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-		$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
-	} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-		$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
-	}
-	if ($file == $logfile) {
-		echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
-	} else {
-		echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
-	}
-}
-?>
+				foreach ($list_logfile as $file) {
+					$hasErr = 0;
+					$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
+					if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+						$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
+					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+						$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
+					}
+					if ($file == $logfile) {
+						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
+					} else {
+						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
+					}
+				}
+				?>
 			</ul>
 		</div>
 	</div>

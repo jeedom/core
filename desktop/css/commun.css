@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+.center{
+  text-align:center;
+}
+
 .row.row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;

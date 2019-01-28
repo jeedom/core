@@ -289,7 +289,7 @@
         "Monitoring": "Monitoring",
         "Multimédia": "Multimedia",
         "Organisation": "Organization",
-        "Programmation": "Schedule",
+        "Programmation": "Programming",
         "Sécurité": "Security",
         "Météo": "Weather",
         "Bien-être": "Wellbeing",
@@ -825,7 +825,7 @@
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "Interactions list",
-        "Sauvegarde effectuée avec succès": "Backup successfully completed",
+        "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Deletion successfully completed",
         "Tester les interactions": "Test interactions",
         "Sauvegarde réussie avec succès": "Backup successfully completed",
@@ -1010,7 +1010,7 @@
         "Sauvegarder": "Save"
     },
     "desktop/js/scenarioAssist.js": {
-        "Sauvegarde effectuée avec succès": "Backup successfully completed",
+        "Sauvegarde effectuée avec succès": "Successfully saved",
         "Ajout d'un nouveau scénario": "Adding a new scenario",
         "Nom": "Name",
         "Nom de votre scénario": "Scenario name",
@@ -1141,7 +1141,7 @@
         "Ajouter bloc": "Add block"
     },
     "desktop/js/scenario.js": {
-        "Sauvegarde effectuée avec succès": "Backup successfully completed",
+        "Sauvegarde effectuée avec succès": "Successfully saved",
         "Ajout d'un nouveau scénario": "Adding a new scenario",
         "Nom": "Name",
         "Nom de votre scénario": "Scenario name",
@@ -1535,7 +1535,7 @@
     },
     "core/js/plugin.template.js": {
         "Configuration du plugin": "Plugin setup",
-        "Sauvegarde effectuée avec succès": "Backup successfully completed",
+        "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Deletion successfully completed",
         "Nom de la copie de l'équipement ?": "Name of device copy?",
         "Etes-vous sûr de vouloir supprimer l\\'équipement": "Do you really want to delete this device",
@@ -2158,7 +2158,7 @@
         "Taille sur le dashboard (1 à 12)": "Size on the dashboard (1 to 12)"
     },
     "desktop/js/object.js": {
-        "Sauvegarde effectuée avec succès": "Backup successfully completed",
+        "Sauvegarde effectuée avec succès": "Successfully saved",
         "Suppression effectuée avec succès": "Deletion successfully completed",
         "Veuillez d\\'abord sélectionner un objet": "Please select an object first",
         "Etes-vous sûr de vouloir supprimer l\\'objet": "Do you really want to delete this object",

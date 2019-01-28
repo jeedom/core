@@ -35,16 +35,17 @@ class eqLogic {
 	protected $timeout = 0;
 	protected $category;
 	protected $display;
-	protected $order;
+	protected $order = 9999;
 	protected $comment;
 	protected $tags;
 	protected $_debug = false;
 	protected $_object = null;
-	private static $_templateArray = array();
 	protected $_needRefreshWidget = false;
 	protected $_timeoutUpdated = false;
 	protected $_batteryUpdated = false;
-	protected $_cmds = array();
+	protected $_changed = false;
+	
+	private static $_templateArray = array();
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -452,6 +453,14 @@ class eqLogic {
 		return $text;
 	}
 	
+	public static function byString($_string) {
+		$eqLogic = self::byId(str_replace('#', '', self::fromHumanReadable($_string)));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
+		}
+		return $eqLogic;
+	}
+	
 	public static function clearCacheWidget() {
 		foreach (self::all() as $eqLogic) {
 			$eqLogic->emptyCacheWidget();
@@ -531,7 +540,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:100px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
+		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" style="min-width:180px;min-height:150px;background-color:' . $color . '" id="' . $idAttr . '">';
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name" style="text-align : center;"><span style="font-size : 1em;">' . $this->getName() . '</span><br/><span style="font-size: 0.95em;position:relative;top:-5px;cursor:default;">' . $object_name . '</span></div>';
 		} else {
@@ -676,9 +685,11 @@ class eqLogic {
 			'#version#' => $_version,
 			'#alert_name#' => '',
 			'#alert_icon#' => '',
+			'#eqType#' => $this->getEqType_name(),
 			'#custom_layout#' => ($this->widgetPossibility('custom::layout')) ? 'allowLayout' : '',
 			'#tag#' => $tagsValue,
 			'#data-tags#' => $this->getTags(),
+			'#generic_type#' => $this->getGenericType()
 		);
 		
 		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
@@ -915,69 +926,74 @@ class eqLogic {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
-		if ($this->getId() != '') {
-			$this->emptyCacheWidget();
-			$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
-		} else {
-			$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
-		}
-		if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
-			$this->setDisplay('showObjectNameOnview', 1);
-		}
-		if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
-			$this->setDisplay('showObjectNameOndview', 1);
-		}
-		if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
-			$this->setDisplay('showObjectNameOnmview', 1);
-		}
-		if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-			$this->setDisplay('height', 'auto');
-		}
-		if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
-			$this->setDisplay('width', 'auto');
-		}
-		foreach (array('dashboard', 'mobile') as $key) {
-			if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
-				$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
+		if($this->getChanged()){
+			if ($this->getId() != '') {
+				
+				$this->emptyCacheWidget();
+				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
+			} else {
+				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 			}
-			if ($this->getDisplay('layout::' . $key) == 'table') {
-				if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
-					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-					$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
-				}
+			if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
+				$this->setDisplay('showObjectNameOnview', 1);
 			}
-			foreach ($this->getCmd() as $cmd) {
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+			if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
+				$this->setDisplay('showObjectNameOndview', 1);
+			}
+			if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
+				$this->setDisplay('showObjectNameOnmview', 1);
+			}
+			if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+				$this->setDisplay('height', 'auto');
+			}
+			if ($this->getDisplay('width', -1) == -1 || intval($this->getDisplay('height')) < 2) {
+				$this->setDisplay('width', 'auto');
+			}
+			foreach (array('dashboard', 'mobile') as $key) {
+				if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
+					$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+				if ($this->getDisplay('layout::' . $key) == 'table') {
+					if ($this->getDisplay('layout::' . $key . '::table::nbLine') == '') {
+						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
+						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+					}
 				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
-				}
-				if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
-					$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+				foreach ($this->getCmd() as $cmd) {
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::column') != '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $cmd->getDisplay('layout::' . $key . '::table::cmd::column'));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1) > $this->getDisplay('layout::' . $key . '::table::nbLine', 1)) {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $this->getDisplay('layout::' . $key . '::table::nbLine', 1));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1) > $this->getDisplay('layout::' . $key . '::table::nbColumn', 1)) {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', $this->getDisplay('layout::' . $key . '::table::nbColumn', 1));
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', 1);
+					}
+					if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
+						$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
+					}
 				}
 			}
 		}
-		
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
+			$this->_needRefreshWidget = false;
 			$this->refreshWidget();
 		}
 		if ($this->_batteryUpdated) {
+			$this->_batteryUpdated = false;
 			$this->batteryStatus();
 		}
 		if ($this->_timeoutUpdated) {
+			$this->_timeoutUpdated = false;
 			if ($this->getTimeout() == null) {
 				foreach (message::byPluginLogicalId('core', 'noMessage' . $this->getId()) as $message) {
 					$message->remove();
@@ -1380,9 +1396,6 @@ class eqLogic {
 		if (isset($_data['node']['eqLogic' . $this->getId()])) {
 			return;
 		}
-		if ($this->getIsEnable() == 0 && $_level > 0) {
-			return $_data;
-		}
 		$_level++;
 		if ($_level > $_drill) {
 			return $_data;
@@ -1394,6 +1407,7 @@ class eqLogic {
 			'height' => 60,
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 			'image' => $this->getImage(),
+			'isActive' => $this->getIsEnable(),
 			'title' => $this->getHumanName(),
 			'url' => $this->getLinkToConfiguration(),
 		);
@@ -1547,40 +1561,51 @@ class eqLogic {
 		return eqReal::byId($this->eqReal_id);
 	}
 	
-	public function setId($id) {
-		$this->id = $id;
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
 		return $this;
 	}
 	
-	public function setName($name) {
-		$name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $name);
-		$this->name = $name;
+	public function setName($_name) {
+		$_name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $_name);
+		if($_name != $this->name){
+			$this->_needRefreshWidget = true;
+			$this->_changed = true;
+		}
+		$this->name = $_name;
 		return $this;
 	}
 	
-	public function setLogicalId($logicalId) {
-		$this->logicalId = $logicalId;
+	public function setLogicalId($_logicalId) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
+		$this->logicalId = $_logicalId;
 		return $this;
 	}
 	
 	public function setObject_id($object_id = null) {
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		$object_id = (!is_numeric($object_id)) ? null : $object_id;
+		$this->_changed = utils::attrChanged($this->_changed,$this->object_id,$object_id);
+		$this->object_id = $object_id;
 		return $this;
 	}
 	
 	public function setEqType_name($eqType_name) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->eqType_name,$eqType_name);
 		$this->eqType_name = $eqType_name;
 		return $this;
 	}
 	
-	public function setEqReal_id($eqReal_id) {
-		$this->eqReal_id = $eqReal_id;
+	public function setEqReal_id($_eqReal_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->eqReal_id,$_eqReal_id);
+		$this->eqReal_id = $_eqReal_id;
 		return $this;
 	}
 	
 	public function setIsVisible($_isVisible) {
 		if ($this->isVisible != $_isVisible) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$this->isVisible = $_isVisible;
 		return $this;
@@ -1589,6 +1614,7 @@ class eqLogic {
 	public function setIsEnable($_isEnable) {
 		if ($this->isEnable != $_isEnable) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 			if ($_isEnable) {
 				$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
 			}
@@ -1607,7 +1633,9 @@ class eqLogic {
 				$this->_batteryUpdated = True;
 			}
 		}
-		$this->configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->configuration = $configuration;
 		return $this;
 	}
 	
@@ -1619,7 +1647,9 @@ class eqLogic {
 		if ($this->getDisplay($_key) != $_value) {
 			$this->_needRefreshWidget = true;
 		}
-		$this->display = utils::setJsonAttr($this->display, $_key, $_value);
+		$display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->display = $display;
 	}
 	
 	public function getTimeout($_default = null) {
@@ -1634,7 +1664,8 @@ class eqLogic {
 			$_timeout = null;
 		}
 		if ($_timeout != $this->getTimeout()) {
-			$this->_timeoutUpdated = True;
+			$this->_timeoutUpdated = true;
+			$this->_changed = true;
 		}
 		$this->timeout = $_timeout;
 		return $this;
@@ -1651,7 +1682,9 @@ class eqLogic {
 		if ($this->getCategory($_key) != $_value) {
 			$this->_needRefreshWidget = true;
 		}
-		$this->category = utils::setJsonAttr($this->category, $_key, $_value);
+		$category = utils::setJsonAttr($this->category, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->category, $category);
+		$this->category = $category;
 		return $this;
 	}
 	
@@ -1660,6 +1693,7 @@ class eqLogic {
 	}
 	
 	public function setGenericType($_generic_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->generic_type,$_generic_type);
 		$this->generic_type = $_generic_type;
 		return $this;
 	}
@@ -1669,6 +1703,7 @@ class eqLogic {
 	}
 	
 	public function setComment($_comment) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->comment,$_comment);
 		$this->comment = $_comment;
 		return $this;
 	}
@@ -1678,7 +1713,9 @@ class eqLogic {
 	}
 	
 	public function setTags($_tags) {
-		$this->tags = str_replace(array("'", '<', '>'), "", $_tags);
+		$_tags = str_replace(array("'", '<', '>'), "", $_tags);
+		$this->_changed = utils::attrChanged($this->_changed,$this->tags,$_tags);
+		$this->tags = $_tags;
 		return $this;
 	}
 	
@@ -1700,8 +1737,9 @@ class eqLogic {
 		return $this->order;
 	}
 	
-	public function setOrder($order) {
-		$this->order = $order;
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
 		return $this;
 	}
 	
@@ -1721,6 +1759,15 @@ class eqLogic {
 	
 	public function setStatus($_key, $_value = null) {
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
+	}
+	
+	public function getChanged() {
+		return $this->_changed;
+	}
+	
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
 	}
 	
 }

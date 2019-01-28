@@ -46,6 +46,26 @@ try {
 		ajax::success($freeSpaceUsb);
 	}
 	
+	if (init('action') == 'getStep') {
+		$valueMigrate = config::byKey('stepMigrate');
+		ajax::success($valueMigrate);
+	}
+	
+	if (init('action') == 'setStep') {
+		if(init('stepValues')){
+			config::save('stepMigrate', init('stepValues'));
+			ajax::success(init('stepValues'));
+		}
+	}
+	if (init('action') == 'renameImage'){
+		$renameImage = migrate::renameImage();
+		ajax::success($renameImage);
+	}
+	if (init('action') == 'finalisation'){
+		$finalisation = migrate::finalisation();
+		ajax::success($finalisation);
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

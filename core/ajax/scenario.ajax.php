@@ -1,31 +1,31 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
+	
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
+	
 	ajax::init();
-
+	
 	if (init('action') == 'changeState') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
@@ -36,26 +36,26 @@ try {
 		}
 		switch (init('state')) {
 			case 'start':
-				if (!$scenario->getIsActive()) {
-					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
-				}
-				$scenario->launch('user', 'Scénario lancé manuellement', 0);
-				break;
+			if (!$scenario->getIsActive()) {
+				throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
+			}
+			$scenario->launch('user', 'Scénario lancé manuellement', 0);
+			break;
 			case 'stop':
-				$scenario->stop();
-				break;
+			$scenario->stop();
+			break;
 			case 'deactivate':
-				$scenario->setIsActive(0);
-				$scenario->save();
-				break;
+			$scenario->setIsActive(0);
+			$scenario->save();
+			break;
 			case 'activate':
-				$scenario->setIsActive(1);
-				$scenario->save();
-				break;
+			$scenario->setIsActive(1);
+			$scenario->save();
+			break;
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'listScenarioHtml') {
 		$return = array();
 		foreach (scenario::all() as $scenario) {
@@ -65,7 +65,24 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
+	if (init('action') == 'setOrder') {
+		unautorizedInDemo();
+		$scenarios = json_decode(init('scenarios'), true);
+		foreach ($scenarios as $scenario_json) {
+			if (!isset($scenario_json['id']) || trim($scenario_json['id']) == '') {
+				continue;
+			}
+			$scenario = scenario::byId($scenario_json['id']);
+			if (!is_object($scenario)) {
+				continue;
+			}
+			utils::a2o($scenario, $scenario_json);
+			$scenario->save(true);
+		}
+		ajax::success();
+	}
+	
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
@@ -77,11 +94,11 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'getTemplate') {
 		ajax::success(scenario::getTemplate());
 	}
-
+	
 	if (init('action') == 'convertToTemplate') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
@@ -101,7 +118,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'removeTemplate') {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../config/scenario';
@@ -110,7 +127,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'loadTemplateDiff') {
 		$path = __DIR__ . '/../config/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
@@ -121,20 +138,42 @@ try {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
+					$return[$match[0]] = '';
 					$cmd = null;
 					try {
 						$cmd = cmd::byString($match[0]);
-						$return[$match[0]] = '#' . $cmd->getHumanName() . '#';
+						if(is_object($cmd)){
+							$return[$match[0]] = '#' . $cmd->getHumanName() . '#';
+						}
 					} catch (Exception $e) {
-						$return[$match[0]] = '';
+						
 					}
-
+				}
+			}
+			preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
+			if (count($matches) > 0) {
+				foreach ($matches as $match) {
+					$return[$match[0]] = '';
+					try {
+						$eqLogic = eqLogic::byString($match[0]);
+						if(is_object($cmd)){
+							$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
+						}
+					} catch (Exception $e) {
+						
+					}
+				}
+			}
+			preg_match_all("/variable\((.*?)\)/", $line, $matches, PREG_SET_ORDER);
+			if (count($matches) > 0) {
+				foreach ($matches as $match) {
+					$return[$match[1]] = $match[1];
 				}
 			}
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../config/scenario';
@@ -176,7 +215,7 @@ try {
 		$scenario_db->save();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'all') {
 		$scenarios = scenario::all();
 		$return = array();
@@ -187,7 +226,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'saveAll') {
 		unautorizedInDemo();
 		$scenarios = json_decode(init('scenarios'), true);
@@ -203,7 +242,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'autoCompleteGroup') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -214,7 +253,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'toHtml') {
 		if (init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
@@ -228,9 +267,7 @@ try {
 			}
 			$return = array();
 			foreach ($scenarios as $scenario) {
-				if ($scenario->getIsVisible() == 1) {
-					$return[] = $scenario->toHtml(init('version'));
-				}
+				$return[] = $scenario->toHtml(init('version'));
 			}
 			ajax::success($return);
 		} else {
@@ -241,7 +278,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -257,7 +294,7 @@ try {
 		$scenario->remove();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'emptyLog') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -274,7 +311,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'copy') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -286,7 +323,7 @@ try {
 		}
 		ajax::success(utils::o2a($scenario->copy(init('name'))));
 	}
-
+	
 	if (init('action') == 'get') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
@@ -299,10 +336,10 @@ try {
 		foreach ($scenario->getElement() as $element) {
 			$return['elements'][] = $element->getAjaxElement();
 		}
-
+		
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -318,7 +355,7 @@ try {
 				break;
 			}
 		}
-
+		
 		$has_return = 0;
 		foreach (array('scenario_return') as $keyword) {
 			if (strpos(init('scenario'), $keyword) !== false) {
@@ -326,7 +363,7 @@ try {
 				break;
 			}
 		}
-
+		
 		$scenario_ajax = json_decode(init('scenario'), true);
 		if (isset($scenario_ajax['id'])) {
 			$scenario_db = scenario::byId($scenario_ajax['id']);
@@ -355,7 +392,7 @@ try {
 		$scenario_db->save();
 		ajax::success(utils::o2a($scenario_db));
 	}
-
+	
 	if (init('action') == 'actionToHtml') {
 		if (init('params') != '' && is_json(init('params'))) {
 			$return = array();
@@ -377,7 +414,7 @@ try {
 		}
 		ajax::success(scenarioExpression::getExpressionOptions(init('expression'), init('option')));
 	}
-
+	
 	if (init('action') == 'templateupload') {
 		unautorizedInDemo();
 		$uploaddir = __DIR__ . '/../../core/config/scenario/';
@@ -404,9 +441,9 @@ try {
 			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
-
+		
 	}
-
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

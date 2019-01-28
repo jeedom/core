@@ -83,16 +83,14 @@ div.vis-item,div.vis-item-content {
 			
 			<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;">
 				<div class="row">
-					<div class="col-lg-4 col-sm-12" style="margin-top:2px;">
-						<center>
-							<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="far fa-trash-alt"></i> {{Vider}}</a>
-							<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
-							<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
-							<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i> {{Ok}}</a>
-						</center>
+					<div class="col-lg-4 col-sm-12 center">
+						<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="far fa-trash-alt"></i> {{Vider}}</a>
+						<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
+						<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
+						<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i> {{Ok}}</a>
 					</div>
-					<div class="col-lg-3 col-sm-12"  style="margin-top:2px;">
-						<select class="form-control" id="sel_groupingType">
+					<div class="col-lg-3 col-sm-12">
+						<select class="form-control input-sm" id="sel_groupingType">
 							<option value="">{{Aucun groupement}}</option>
 							<option value="sum::hour">{{Somme par heure}}</option>
 							<option value="average::hour">{{Moyenne par heure}}</option>
@@ -116,18 +114,16 @@ div.vis-item,div.vis-item-content {
 							<option value="high::year">{{Maximum par année}}</option>
 						</select>
 					</div>
-					<div class="col-lg-2 col-sm-12" style="margin-top:2px;">
-						<select class="form-control" id="sel_chartType">
+					<div class="col-lg-2 col-sm-12">
+						<select class="form-control input-sm" id="sel_chartType">
 							<option value="line">{{Ligne}}</option>
 							<option value="areaspline">{{Areaspline}}</option>
 							<option value="column">{{Barre}}</option>
 						</select>
 					</div>
-					<div class="col-lg-3 col-sm-12" style="margin-top:2px;">
-						<center>
-							<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
-							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-						</center>
+					<div class="col-lg-3 col-sm-12 center">
+						<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
+						<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 					</div>
 				</div>
 				<div id="div_graph" style="margin-top: 50px;height:calc(100% - 130px)"></div>
@@ -138,7 +134,7 @@ div.vis-item,div.vis-item-content {
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
 		<br/>
 		<div class="row form-group">
-			<div class="col-sm-12">
+			<div class="col-lg-3 col-sm-12 center">
 				<div class="btn-group" role="group" aria-label="...">
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="h">H</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
@@ -147,10 +143,14 @@ div.vis-item,div.vis-item-content {
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
 				</div>
-				<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
-				<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineCommand"><i class="fas fa-cogs"></i> {{Commandes}}</a>
-				<a class="btn btn-sm btn-default pull-right" id="bt_configureTimelineScenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a>
-				<select class="form-control pull-right" id="sel_pluginsTimeline" style="width: 140px;">
+				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
+			</div>
+			<div class="col-lg-3 col-sm-12 center">
+				<a class="btn btn-sm btn-default" id="bt_configureTimelineCommand"><i class="fas fa-cogs"></i> {{Commandes}}</a>
+				<a class="btn btn-sm btn-default" id="bt_configureTimelineScenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a>
+			</div>
+			<div class="col-lg-3 col-sm-12">
+				<select class="form-control input-sm" id="sel_pluginsTimeline">
 					<option value="all">{{Tous (Plugins)}}</option>
 					<?php
 					foreach (plugin::listPlugin() as $plugin) {
@@ -158,7 +158,7 @@ div.vis-item,div.vis-item-content {
 					}
 					?>
 				</select>
-				<select class="form-control pull-right" id="sel_categoryTimeline" style="width: 170px;">
+				<select class="form-control input-sm" id="sel_categoryTimeline">
 					<option value="all">{{Tous (Catégories)}}</option>
 					<?php
 					foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
@@ -166,7 +166,9 @@ div.vis-item,div.vis-item-content {
 					}
 					?>
 				</select>
-				<select class="form-control pull-right" id="sel_objectsTimeline" style="width: 140px;">
+			</div>
+			<div class="col-lg-3 col-sm-12">
+				<select class="form-control input-sm" id="sel_objectsTimeline">
 					<option value="all">{{Tous (Objets)}}</option>
 					<?php
 					foreach (jeeObject::all() as $object) {
@@ -174,20 +176,21 @@ div.vis-item,div.vis-item-content {
 					}
 					?>
 				</select>
-				<select class="form-control pull-right" id="sel_typesTimeline" style="width: 140px;">
+				<select class="form-control input-sm" id="sel_typesTimeline">
 					<option value="all">{{Tous (Types)}}</option>
 					<option value="cmd">{{Commandes}}</option>
 					<option value="scenario">{{Scénarios}}</option>
 				</select>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div id="div_visualization"></div>
-			</div>
-		</div>
-		
 	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div id="div_visualization"></div>
+		</div>
+	</div>
+	
+</div>
 </div>
 
 <?php include_file("desktop", "history", "js");?>

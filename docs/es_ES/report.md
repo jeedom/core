@@ -1,17 +1,28 @@
 Esta página permite ver todos los informes generados por la acción del informe (véase la documentación del escenario).
 
-Su uso es muy sencillo seleccionando si se quiere ver : 
+# Qu'est qu'un rapport ?
 
--   ver informes de las vistas
--   los informes de los diseños
--   Los informes del panel de plugins
+Un rapport est une capture d'écran de l'interface de Jeedom à un instant T (la capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation).
 
-A continuación, seleccione el nombre del informe en cuestión y verá todas las fechas de los informes en memoria
+Vous pouvez le faire sur des vues, design, page de panel....
 
-> **Importante**
+Elle se déclenche à partir d'un scénarion avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram....)
+
+# Utilisation
+
+Son utilisation est très simple vous selectionnez si vous voulez voir :
+
+-   les rapports des vues
+-   les rapports des degins
+-   les rapports des panels des plugins
+- les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
+
+Ensuite vous selectionner le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
+
+> **Important**
 >
-> El borrado automático se realiza de forma predeterminada para los informes con más de 30 días de antigüedad (puede configurar este retardo en la configuración de Jeedom).
+> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
 
-Una vez seleccionado el informe, podrá verlo aparecer, descargarlo de nuevo o borrarlo.
+Une fois le rapport selectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
 
-También puede eliminar todas las copias de seguridad de un informe determinado
+Vous pouvez aussi supprimer toute les sauvegardes d'un rapport donné

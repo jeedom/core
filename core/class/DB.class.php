@@ -1,50 +1,50 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* ------------------------------------------------------------ Inclusions */
 
 class DB {
 	/*     * **************  Constantes  ***************** */
-
+	
 	const FETCH_TYPE_ROW = 0;
 	const FETCH_TYPE_ALL = 1;
-
+	
 	/*     * **************  Attributs  ***************** */
-
+	
 	private $connection;
 	private $lastConnection;
 	private static $sharedInstance;
 	private static $fields = array();
-
+	
 	/*     * **************  Fonctions statiques  ***************** */
-
+	
 	private function __construct() {
 		global $CONFIG;
 		$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
 	}
-
+	
 	public static function getLastInsertId() {
 		if (!isset(self::$sharedInstance)) {
 			throw new Exception('DB : Aucune connection active - impossible d\'avoir le dernier ID inséré');
 		}
 		return self::$sharedInstance->connection->lastInsertId();
 	}
-
+	
 	public static function getConnection() {
 		if (!isset(self::$sharedInstance)) {
 			self::$sharedInstance = new self();
@@ -61,7 +61,7 @@ class DB {
 		self::$sharedInstance->lastConnection = strtotime('now');
 		return self::$sharedInstance->connection;
 	}
-
+	
 	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
 		$bind_params = '';
 		foreach ($_params as $value) {
@@ -75,13 +75,12 @@ class DB {
 		} else {
 			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type);
 		}
-
+		
 	}
-
+	
 	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
 		$stmt = self::getConnection()->prepare($_query);
 		$res = NULL;
-
 		if ($stmt != false && $stmt->execute($_params) != false) {
 			if ($_fetchType == self::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
@@ -97,18 +96,17 @@ class DB {
 				}
 			}
 		}
-
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 		}
 		return $res;
 	}
-
+	
 	public function __clone() {
 		trigger_error('DB : Cloner cet objet n\'est pas permis', E_USER_ERROR);
 	}
-
+	
 	public static function optimize() {
 		$tables = self::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
 		foreach ($tables as $table) {
@@ -117,26 +115,26 @@ class DB {
 			self::Prepare('OPTIMIZE TABLE `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		}
 	}
-
+	
 	public static function beginTransaction() {
 		self::getConnection()->beginTransaction();
 	}
-
+	
 	public static function commit() {
 		self::getConnection()->commit();
 	}
-
+	
 	public static function rollBack() {
 		self::getConnection()->rollBack();
 	}
-
+	
 	/**
-	 * Saves an entity inside the repository. If the entity is new a new row
-	 * will be created. If the entity is not new the row will be updated.
-	 *
-	 * @param object $object
-	 * @return boolean
-	 */
+	* Saves an entity inside the repository. If the entity is new a new row
+	* will be created. If the entity is not new the row will be updated.
+	*
+	* @param object $object
+	* @return boolean
+	*/
 	public static function save($object, $_direct = false, $_replace = false) {
 		if (!$_direct && method_exists($object, 'preSave')) {
 			$object->preSave();
@@ -175,12 +173,23 @@ class DB {
 			if (!$_direct && method_exists($object, 'preUpdate')) {
 				$object->preUpdate();
 			}
-			list($sql, $parameters) = self::buildQuery($object);
-			if (!$_direct && method_exists($object, 'getId')) {
-				$parameters['id'] = $object->getId(); //override if necessary
+			$changed = true;
+			if(method_exists($object, 'getChanged')){
+				$changed = $object->getChanged();
 			}
-			$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
-			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			if($changed){
+				list($sql, $parameters) = self::buildQuery($object);
+				if (!$_direct && method_exists($object, 'getId')) {
+					$parameters['id'] = $object->getId(); //override if necessary
+				}
+				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			}else{
+				$res = true;
+			}
+			if(method_exists($object, 'setChanged')){
+				$object->setChanged(false);
+			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
 			}
@@ -188,9 +197,9 @@ class DB {
 		if (!$_direct && method_exists($object, 'postSave')) {
 			$object->postSave();
 		}
-		return null !== $res && false !== $res;
+		return (null !== $res && false !== $res);
 	}
-
+	
 	public static function refresh($object) {
 		if (!self::getField($object, 'id')) {
 			throw new Exception('DB ne peut rafraîchir l\'objet sans son ID');
@@ -198,7 +207,7 @@ class DB {
 		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . self::buildField(get_class($object)) .
 		' FROM `' . self::getTableName($object) . '` ' .
-			' WHERE ';
+		' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
 				$sql .= '`' . $field . '`=:' . $field . ' AND ';
@@ -223,13 +232,13 @@ class DB {
 		}
 		return true;
 	}
-
+	
 	/**
-	 * Retourne une liste d'objets ou un objet en fonction de filtres
-	 * @param $_filters Filtres à appliquer
-	 * @param $_object Objet sur lequel appliquer les filtres
-	 * @return Objet ou liste d'objets correspondant à la requête
-	 */
+	* Retourne une liste d'objets ou un objet en fonction de filtres
+	* @param $_filters Filtres à appliquer
+	* @param $_object Objet sur lequel appliquer les filtres
+	* @return Objet ou liste d'objets correspondant à la requête
+	*/
 	public static function getWithFilter(array $_filters, $_object) {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
@@ -266,7 +275,7 @@ class DB {
 							$value = '%' . $value . '%';
 						}
 					}
-
+					
 					$where .= $property . ' ' . $operatorInformation['value'] . ' :' . $property . ' AND ';
 					$values[$property] = $value;
 					break;
@@ -280,13 +289,13 @@ class DB {
 		// si values contient id, on sait qu'il n'y aura au plus qu'une valeur
 		return self::Prepare($query . ';', $values, in_array('id', $values) ? self::FETCH_TYPE_ROW : self::FETCH_TYPE_ALL);
 	}
-
+	
 	/**
-	 * Deletes an entity.
-	 *
-	 * @param object $object
-	 * @return boolean
-	 */
+	* Deletes an entity.
+	*
+	* @param object $object
+	* @return boolean
+	*/
 	public static function remove($object) {
 		if (method_exists($object, 'preRemove')) {
 			if ($object->preRemove() === false) {
@@ -295,11 +304,16 @@ class DB {
 		}
 		list($sql, $parameters) = self::buildQuery($object);
 		$sql = 'DELETE FROM `' . self::getTableName($object) . '` WHERE ';
-		foreach ($parameters as $field => $value) {
-			if ($value != '') {
-				$sql .= '`' . $field . '`=:' . $field . ' AND ';
-			} else {
-				unset($parameters[$field]);
+		if(isset($parameters['id'])){
+			$sql .= '`id`=:id AND ';
+			$parameters = array('id' => $parameters['id']);
+		}else{
+			foreach ($parameters as $field => $value) {
+				if ($value != '') {
+					$sql .= '`' . $field . '`=:' . $field . ' AND ';
+				} else {
+					unset($parameters[$field]);
+				}
 			}
 		}
 		$sql .= '1';
@@ -313,19 +327,19 @@ class DB {
 		}
 		return null !== $res && false !== $res;
 	}
-
+	
 	public static function checksum($_table) {
 		$sql = 'CHECKSUM TABLE ' . $_table;
 		$result = self::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['Checksum'];
 	}
-
+	
 	/**
-	 * Lock an entity.
-	 *
-	 * @param object $object
-	 * @return boolean
-	 */
+	* Lock an entity.
+	*
+	* @param object $object
+	* @return boolean
+	*/
 	public static function lock($object) {
 		if (method_exists($object, 'preLock')) {
 			if ($object->preLock() === false) {
@@ -348,26 +362,26 @@ class DB {
 		}
 		return null !== $res && false !== $res;
 	}
-
+	
 	/**
-	 * Returns the name of the table where to save entities.
-	 *
-	 * @return string
-	 */
+	* Returns the name of the table where to save entities.
+	*
+	* @return string
+	*/
 	private static function getTableName($object) {
 		if (method_exists($object, 'getTableName')) {
 			return $object->getTableName();
 		}
 		return get_class($object);
 	}
-
+	
 	/**
-	 *
-	 *
-	 * @param type $object
-	 * @return type
-	 * @throws RuntimeException
-	 */
+	*
+	*
+	* @param type $object
+	* @return type
+	* @throws RuntimeException
+	*/
 	private static function getFields($object) {
 		$table = is_string($object) ? $object : self::getTableName($object);
 		if (isset(self::$fields[$table])) {
@@ -387,15 +401,15 @@ class DB {
 		}
 		return self::$fields[$table];
 	}
-
+	
 	/**
-	 * Forces the value of a field of a given object, even if this field is
-	 * not accessible.
-	 *
-	 * @param object $object The entity to alter
-	 * @param string $field The name of the member to alter
-	 * @param mixed $value The value to give to the member
-	 */
+	* Forces the value of a field of a given object, even if this field is
+	* not accessible.
+	*
+	* @param object $object The entity to alter
+	* @param string $field The name of the member to alter
+	* @param mixed $value The value to give to the member
+	*/
 	private static function setField($object, $field, $value) {
 		$method = 'set' . ucfirst($field);
 		if (method_exists($object, $method)) {
@@ -411,15 +425,15 @@ class DB {
 			$property->setAccessible(false);
 		}
 	}
-
+	
 	/**
-	 * Builds the elements for an SQL query. It will return two lists, the
-	 * first being the list of parts "key=:key" to inject in the SQL, the
-	 * second being the mapping of these parameters to the values.
-	 *
-	 * @param type $object
-	 * @return type
-	 */
+	* Builds the elements for an SQL query. It will return two lists, the
+	* first being the list of parts "key=:key" to inject in the SQL, the
+	* second being the mapping of these parameters to the values.
+	*
+	* @param type $object
+	* @return type
+	*/
 	private static function buildQuery($object) {
 		$parameters = array();
 		$sql = array();
@@ -429,16 +443,16 @@ class DB {
 		}
 		return array($sql, $parameters);
 	}
-
+	
 	/**
-	 * Returns the value of a field of a given object. It'll try to use a
-	 * getter first if defined. If not defined, we'll use the reflection API.
-	 *
-	 * @param type $object
-	 * @param type $field
-	 * @return type
-	 * @throws RuntimeException if the getter is not defined
-	 */
+	* Returns the value of a field of a given object. It'll try to use a
+	* getter first if defined. If not defined, we'll use the reflection API.
+	*
+	* @param type $object
+	* @param type $field
+	* @return type
+	* @throws RuntimeException if the getter is not defined
+	*/
 	private static function getField($object, $field) {
 		$retval = null;
 		$method = 'get' . ucfirst($field);
@@ -458,13 +472,13 @@ class DB {
 		}
 		return $retval;
 	}
-
+	
 	/**
-	 * Returns the reflection class for the given object.
-	 *
-	 * @param  object $object
-	 * @return ReflectionClass
-	 */
+	* Returns the reflection class for the given object.
+	*
+	* @param  object $object
+	* @return ReflectionClass
+	*/
 	private static function getReflectionClass($object) {
 		$reflections = array();
 		$uuid = spl_object_hash($object);
@@ -473,7 +487,7 @@ class DB {
 		}
 		return $reflections[$uuid];
 	}
-
+	
 	public static function buildField($_class, $_prefix = '') {
 		$fields = array();
 		foreach (self::getFields($_class) as $field) {
@@ -487,5 +501,5 @@ class DB {
 		}
 		return implode(', ', $fields);
 	}
-
+	
 }

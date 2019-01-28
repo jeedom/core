@@ -1,0 +1,356 @@
+@font-face {
+  font-family: 'jeedomapp';
+  src:  url('fonts/jeedomapp.eot');
+  src:  url('fonts/jeedomapp.eot') format('embedded-opentype'),
+    url('fonts/jeedomapp.ttf') format('truetype'),
+    url('fonts/jeedomapp.woff') format('woff'),
+    url('fonts/jeedomapp.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="jeedomapp-"], [class*=" jeedomapp-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'jeedomapp';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.jeedomapp-portail-action2:before {
+  content: "\e968";
+}
+.jeedomapp-garage-action2:before {
+  content: "\e969";
+}
+.jeedomapp-electric-action2:before {
+  content: "\e965";
+}
+.jeedomapp-ampoule-action2:before {
+  content: "\e966";
+}
+.jeedomapp-volet-action2:before {
+  content: "\e967";
+}
+.jeedomapp-triselect:before {
+  content: "\e960";
+}
+.jeedomapp-rond01:before {
+  content: "\e961";
+}
+.jeedomapp-rond02:before {
+  content: "\e962";
+}
+.jeedomapp-miniplus:before {
+  content: "\e963";
+}
+.jeedomapp-ou:before {
+  content: "\e964";
+}
+.jeedomapp-ouvrants:before {
+  content: "\e95d";
+}
+.jeedomapp-fenetre-ferme:before {
+  content: "\e95b";
+}
+.jeedomapp-fenetre-ouverte:before {
+  content: "\e95c";
+}
+.jeedomapp-cache:before {
+  content: "\e951";
+}
+.jeedomapp-visible:before {
+  content: "\e952";
+}
+.jeedomapp-visible2:before {
+  content: "\e953";
+}
+.jeedomapp-settings:before {
+  content: "\e94c";
+}
+.jeedomapp-slide:before {
+  content: "\e94d";
+}
+.jeedomapp-dash01:before {
+  content: "\e902";
+}
+.jeedomapp-dash01title:before {
+  content: "\e954";
+}
+.jeedomapp-dash04:before {
+  content: "\e903";
+}
+.jeedomapp-dash04title:before {
+  content: "\e955";
+}
+.jeedomapp-dash12:before {
+  content: "\e904";
+}
+.jeedomapp-dash12title:before {
+  content: "\e956";
+}
+.jeedomapp-dash-favoris16:before {
+  content: "\e94a";
+}
+.jeedomapp-dash-favoris16title:before {
+  content: "\e94b";
+}
+.jeedomapp-dirB:before {
+  content: "\e932";
+}
+.jeedomapp-dirD:before {
+  content: "\e933";
+}
+.jeedomapp-dirDB:before {
+  content: "\e934";
+}
+.jeedomapp-dirDH:before {
+  content: "\e935";
+}
+.jeedomapp-dirG:before {
+  content: "\e936";
+}
+.jeedomapp-dirGB:before {
+  content: "\e937";
+}
+.jeedomapp-dirGH:before {
+  content: "\e938";
+}
+.jeedomapp-dirH:before {
+  content: "\e939";
+}
+.jeedomapp-alarme:before {
+  content: "\e92d";
+}
+.jeedomapp-camera:before {
+  content: "\e92e";
+}
+.jeedomapp-kodi:before {
+  content: "\e92f";
+}
+.jeedomapp-meteo:before {
+  content: "\e930";
+}
+.jeedomapp-thermostat:before {
+  content: "\e931";
+}
+.jeedomapp-information:before {
+  content: "\e922";
+}
+.jeedomapp-plugin:before {
+  content: "\e923";
+}
+.jeedomapp-action:before {
+  content: "\e924";
+}
+.jeedomapp-moins:before {
+  content: "\e925";
+}
+.jeedomapp-plus:before {
+  content: "\e926";
+}
+.jeedomapp-playerpause:before {
+  content: "\e927";
+}
+.jeedomapp-playerplay:before {
+  content: "\e928";
+}
+.jeedomapp-playerstop:before {
+  content: "\e929";
+}
+.jeedomapp-audiospeak:before {
+  content: "\e909";
+}
+.jeedomapp-audiosub:before {
+  content: "\e912";
+}
+.jeedomapp-photo:before {
+  content: "\e92a";
+}
+.jeedomapp-preset:before {
+  content: "\e957";
+}
+.jeedomapp-preset2:before {
+  content: "\e958";
+}
+.jeedomapp-folder:before {
+  content: "\e92b";
+}
+.jeedomapp-done:before {
+  content: "\e913";
+}
+.jeedomapp-audiodown:before {
+  content: "\e914";
+}
+.jeedomapp-audiomute:before {
+  content: "\e915";
+}
+.jeedomapp-audiomute2:before {
+  content: "\e916";
+}
+.jeedomapp-audioup:before {
+  content: "\e917";
+}
+.jeedomapp-circlevalidation:before {
+  content: "\e918";
+}
+.jeedomapp-circlestop:before {
+  content: "\e92c";
+}
+.jeedomapp-circlevalidation2:before {
+  content: "\e91d";
+}
+.jeedomapp-circleaudiodown:before {
+  content: "\e919";
+}
+.jeedomapp-circleaudioup:before {
+  content: "\e91a";
+}
+.jeedomapp-circlemute:before {
+  content: "\e91b";
+}
+.jeedomapp-circlemute2:before {
+  content: "\e91c";
+}
+.jeedomapp-fleche-bas-line:before {
+  content: "\e91e";
+}
+.jeedomapp-fleche-droite-line:before {
+  content: "\e91f";
+}
+.jeedomapp-fleche-gauche-line:before {
+  content: "\e920";
+}
+.jeedomapp-fleche-haut-line:before {
+  content: "\e921";
+}
+.jeedomapp-sun:before {
+  content: "\e94e";
+}
+.jeedomapp-wind:before {
+  content: "\e94f";
+}
+.jeedomapp-weather:before {
+  content: "\e911";
+}
+.jeedomapp-home-line:before {
+  content: "\e910";
+}
+.jeedomapp-humidity:before {
+  content: "\e90f";
+}
+.jeedomapp-fire:before {
+  content: "\e900";
+}
+.jeedomapp-reload-fail:before {
+  content: "\e95f";
+}
+.jeedomapp-reload-manuel:before {
+  content: "\e95e";
+}
+.jeedomapp-reload:before {
+  content: "\e901";
+}
+.jeedomapp-ampoule-on:before {
+  content: "\e93a";
+}
+.jeedomapp-ampoule-off:before {
+  content: "\e93b";
+}
+.jeedomapp-volet-ferme:before {
+  content: "\e93c";
+}
+.jeedomapp-volet-ouvert:before {
+  content: "\e93d";
+}
+.jeedomapp-portail-ferme:before {
+  content: "\e93e";
+}
+.jeedomapp-portail-ouvert:before {
+  content: "\e93f";
+}
+.jeedomapp-garage-ferme:before {
+  content: "\e96a";
+}
+.jeedomapp-garage-ouvert:before {
+  content: "\e96c";
+}
+.jeedomapp-porte-ferme:before {
+  content: "\e940";
+}
+.jeedomapp-porte-ouverte:before {
+  content: "\e941";
+}
+.jeedomapp-prise:before {
+  content: "\e943";
+}
+.jeedomapp-prise-off:before {
+  content: "\e950";
+}
+.jeedomapp-prise-off2:before {
+  content: "\e942";
+}
+.jeedomapp-lock-home:before {
+  content: "\e944";
+}
+.jeedomapp-lock-ferme:before {
+  content: "\e945";
+}
+.jeedomapp-lock-ouvert:before {
+  content: "\e946";
+}
+.jeedomapp-lock-partiel:before {
+  content: "\e947";
+}
+.jeedomapp-lock-partiel-cercle:before {
+  content: "\e959";
+}
+.jeedomapp-lock-other:before {
+  content: "\e95a";
+}
+.jeedomapp-in:before {
+  content: "\e905";
+}
+.jeedomapp-out:before {
+  content: "\e906";
+}
+.jeedomapp-night:before {
+  content: "\e907";
+}
+.jeedomapp-plane:before {
+  content: "\e908";
+}
+.jeedomapp-thermo-froid:before {
+  content: "\e948";
+}
+.jeedomapp-temperature:before {
+  content: "\e90a";
+}
+.jeedomapp-thermo-chaud:before {
+  content: "\e949";
+}
+.jeedomapp-home-jeedom:before {
+  content: "\e90b";
+}
+.jeedomapp-piece-jeedom:before {
+  content: "\e90c";
+}
+.jeedomapp-scenario-jeedom:before {
+  content: "\e90d";
+}
+.jeedomapp-design-jeedom:before {
+  content: "\e90e";
+}
+.jeedomapp-alerte2:before {
+  content: "\e601";
+}
+.jeedomapp-bell:before {
+  content: "\e606";
+}

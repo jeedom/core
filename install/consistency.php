@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
 	header("Statut: 404 Page non trouvée");
@@ -38,70 +38,70 @@ if (isset($argv)) {
 
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
-
+	
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		config::save('object:summary',
-			array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'door' => array('key' => 'door', 'name' => 'Porte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-porte-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'windows' => array('key' => 'windows', 'name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-fenetre-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'shutter' => array('key' => 'shutter', 'name' => 'Volet', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-volet-ouvert"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'light' => array('key' => 'light', 'name' => 'Lumière', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-lumiere-on"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'outlet' => array('key' => 'outlet', 'name' => 'Prise', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-prise"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
-				'temperature' => array('key' => 'temperature', 'name' => 'Température', 'calcul' => 'avg', 'icon' => '<i class="icon divers-thermometer31"></i>', 'unit' => '°C', 'allowDisplayZero' => true),
-				'humidity' => array('key' => 'humidity', 'name' => 'Humidité', 'calcul' => 'avg', 'icon' => '<i class="fa fa-tint"></i>', 'unit' => '%', 'allowDisplayZero' => true),
-				'luminosity' => array('key' => 'luminosity', 'name' => 'Luminosité', 'calcul' => 'avg', 'icon' => '<i class="icon meteo-soleil"></i>', 'unit' => 'lx', 'allowDisplayZero' => false),
-				'power' => array('key' => 'power', 'name' => 'Puissance', 'calcul' => 'sum', 'icon' => '<i class="fa fa-bolt"></i>', 'unit' => 'W', 'allowDisplayZero' => false),
-			)
-		);
-	}
+		array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'motion' => array('key' => 'motion', 'name' => 'Mouvement', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-mouvement"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'door' => array('key' => 'door', 'name' => 'Porte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-porte-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'windows' => array('key' => 'windows', 'name' => 'Fenêtre', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-fenetre-ouverte"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'shutter' => array('key' => 'shutter', 'name' => 'Volet', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-volet-ouvert"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'light' => array('key' => 'light', 'name' => 'Lumière', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-lumiere-on"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'outlet' => array('key' => 'outlet', 'name' => 'Prise', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-prise"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),
+		'temperature' => array('key' => 'temperature', 'name' => 'Température', 'calcul' => 'avg', 'icon' => '<i class="icon divers-thermometer31"></i>', 'unit' => '°C', 'allowDisplayZero' => true),
+		'humidity' => array('key' => 'humidity', 'name' => 'Humidité', 'calcul' => 'avg', 'icon' => '<i class="fa fa-tint"></i>', 'unit' => '%', 'allowDisplayZero' => true),
+		'luminosity' => array('key' => 'luminosity', 'name' => 'Luminosité', 'calcul' => 'avg', 'icon' => '<i class="icon meteo-soleil"></i>', 'unit' => 'lx', 'allowDisplayZero' => false),
+		'power' => array('key' => 'power', 'name' => 'Puissance', 'calcul' => 'sum', 'icon' => '<i class="fa fa-bolt"></i>', 'unit' => 'W', 'allowDisplayZero' => false),
+	)
+);
+}
 
-	$crons = cron::all();
-	if (is_array($crons)) {
-		if (class_exists('Cron\CronExpression')) {
-			foreach ($crons as $cron) {
-				$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
-				try {
-					if (!$c->isDue()) {
-						$c->getNextRunDate();
-					}
-				} catch (Exception $ex) {
-					echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu';
-					$cron->remove();
+$crons = cron::all();
+if (is_array($crons)) {
+	if (class_exists('Cron\CronExpression')) {
+		foreach ($crons as $cron) {
+			$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+			try {
+				if (!$c->isDue()) {
+					$c->getNextRunDate();
 				}
+			} catch (Exception $ex) {
+				echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu';
+				$cron->remove();
 			}
 		}
 	}
+}
 
-	$cron = cron::byClassAndFunction('jeedom', 'persist');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
+$cron = cron::byClassAndFunction('jeedom', 'persist');
+if (is_object($cron)) {
+	$cron->remove();
+}
 
-	$cron = cron::byClassAndFunction('history', 'historize');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-	$cron = cron::byClassAndFunction('cmd', 'collect');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
+$cron = cron::byClassAndFunction('history', 'historize');
+if (is_object($cron)) {
+	$cron->remove();
+}
+$cron = cron::byClassAndFunction('cmd', 'collect');
+if (is_object($cron)) {
+	$cron->remove();
+}
 
-	$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
+$cron = cron::byClassAndFunction('jeedom', 'updateSystem');
+if (is_object($cron)) {
+	$cron->remove();
+}
 
-	$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
+$cron = cron::byClassAndFunction('jeedom', 'checkAndCollect');
+if (is_object($cron)) {
+	$cron->remove();
+}
 
-	$cron = cron::byClassAndFunction('DB', 'optimize');
-	if (is_object($cron)) {
-		$cron->remove();
-	}
-
+$cron = cron::byClassAndFunction('DB', 'optimize');
+if (is_object($cron)) {
+	$cron->remove();
+}
+if(method_exists('utils','attrChanged')){
 	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
 	if (!is_object($cron)) {
 		echo "Create plugin::cronDaily\n";
@@ -114,7 +114,7 @@ try {
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('jeedom', 'backup');
 	if (!is_object($cron)) {
 		echo "Create jeedom::backup\n";
@@ -127,7 +127,7 @@ try {
 		$cron->setTimeout(60);
 		$cron->save();
 	}
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
 	if (!is_object($cron)) {
 		echo "Create plugin::cronHourly\n";
@@ -140,7 +140,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('scenario', 'check');
 	if (!is_object($cron)) {
 		echo "Create scenario::check\n";
@@ -153,7 +153,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('scenario', 'control');
 	if (!is_object($cron)) {
 		echo "Create scenario::control\n";
@@ -166,7 +166,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cronDaily\n";
@@ -179,7 +179,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('jeedom', 'cronHourly');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cronHourly\n";
@@ -192,7 +192,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('jeedom', 'cron5');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cron5\n";
@@ -205,7 +205,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cron\n";
@@ -217,7 +217,7 @@ try {
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'cron');
 	if (!is_object($cron)) {
 		echo "Create plugin::cron\n";
@@ -229,7 +229,7 @@ try {
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'cron5');
 	if (!is_object($cron)) {
 		echo "Create plugin::cron5\n";
@@ -241,7 +241,7 @@ try {
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'cron15');
 	if (!is_object($cron)) {
 		echo "Create plugin::cron15\n";
@@ -253,7 +253,7 @@ try {
 	$cron->setTimeout(15);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'cron30');
 	if (!is_object($cron)) {
 		echo "Create plugin::cron30\n";
@@ -265,7 +265,7 @@ try {
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
 	if (!is_object($cron)) {
 		echo "Create plugin::checkDeamon\n";
@@ -277,7 +277,7 @@ try {
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('cache', 'persist');
 	if (!is_object($cron)) {
 		echo "Create cache::persist\n";
@@ -289,7 +289,7 @@ try {
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('history', 'archive');
 	if (!is_object($cron)) {
 		echo "Create history::archive\n";
@@ -301,7 +301,7 @@ try {
 	$cron->setTimeout(240);
 	$cron->setDeamon(0);
 	$cron->save();
-
+	
 	$cron = cron::byClassAndFunction('plugin', 'heartbeat');
 	if (!is_object($cron)) {
 		echo "Create plugin::heartbeat\n";
@@ -314,7 +314,7 @@ try {
 	$cron->setDeamon(0);
 	$cron->setTimeout(10);
 	$cron->save();
-
+	
 	if (!file_exists(__DIR__ . '/../plugins')) {
 		mkdir(__DIR__ . '/../plugins');
 	}
@@ -325,7 +325,7 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-
+	
 	config::save('hardware_name', '');
 	if (config::byKey('api') == '') {
 		config::save('api', config::genKey());
@@ -336,37 +336,35 @@ try {
 	if (file_exists(__DIR__ . '/../script/ngrok')) {
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
-
+	
 	foreach (eqLogic::all() as $eqLogic) {
 		try {
 			$eqLogic->emptyCacheWidget();
 		} catch (Exception $e) {
-
+			
 		}
 	}
-
+	
 	try {
 		foreach (object::all() as $object) {
 			$object->save();
 		}
 	} catch (Exception $exc) {
-
+		
 	}
-
+	
 	foreach (cmd::all() as $cmd) {
-		$change = false;
 		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
 			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
-			$change = true;
 		}
-		if ($change) {
-			$cmd->save();
-		}
+		$cmd->save();
 	}
+}
 
-	if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
-		copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
-	}
+
+if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
+	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
+}
 } catch (Exception $e) {
 	echo "Error : ";
 	echo $e->getMessage();
