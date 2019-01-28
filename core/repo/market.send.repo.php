@@ -104,36 +104,26 @@ if (init('type') == 'plugin') {
         <div class="col-lg-6">
           <input class="form-control input category marketAttr" data-l1key="categorie" >
           <select class="form-control widget category" data-l1key="categorie" style="display: none;">
-            <option>{{Alarme diverse}}</option>
-            <option>{{Audio/Vidéo}}</option>
-            <option>{{Automatisme}}</option>
-            <option>{{Autre}}</option>
-            <option>{{Energie}}</option>
-            <option>{{High tech}}</option>
-            <option>{{Humidité}}</option>
-            <option>{{Lumière}}</option>
-            <option>{{Météo}}</option>
-            <option>{{Ouverture}}</option>
-            <option>{{Présence}}</option>
-            <option>{{Température}}</option>
-            <option>{{Vie}}</option>
+            <?php
+            foreach (repo_market::distinctCategorie('widget') as $id => $category) {
+              if (trim($category) != '' && is_numeric($id)) {
+                echo '<option value="' . $category . '">';
+                echo $category;
+                echo '</option>';
+              }
+            }
+            ?>
           </select>
           <select class="form-control plugin category" data-l1key="categorie" style="display: none;">
-            <option>{{Autre}}</option>
-            <option>{{Communication}}</option>
-            <option>{{Confort}}</option>
-            <option>{{Energie}}</option>
-            <option>{{Météo}}</option>
-            <option>{{Monitoring}}</option>
-            <option>{{Multimédia}}</option>
-            <option>{{Nature}}</option>
-            <option>{{Objets connectés}}</option>
-            <option>{{Organisation}}</option>
-            <option>{{passerelle domotique}}</option>
-            <option>{{Programmation}}</option>
-            <option>{{Protocole domotique}}</option>
-            <option>{{Santé}}</option>
-            <option>{{Sécurité}}</option>
+            <?php
+            global $JEEDOM_INTERNAL_CONFIG;
+            foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
+              echo '<option value="' . $key . '"';
+              echo (is_object($plugin) && $plugin->getCategory() == $key) ? 'selected >' : '>';
+              echo $value['name'];
+              echo '</option>';
+            }
+            ?>
           </select>
         </div>
       </div>
@@ -239,7 +229,7 @@ if (is_object($market)) {
 
   $('body').setValues(market_display_info, '.marketAttr');
   if(market_display_info.id != ''){
-    $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="https://jeedom.fr/market/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
+    $('#span_directLinkWidget').value('{{Ou en cliquant }}<a href="https://jeedom.com/market/index.php?v=d&p=addMarket&id='+market_display_info.id+'" target="_blank" >{{ici}}</a>');
   }else{
     $('#span_directLinkWidget').value('');
   }
