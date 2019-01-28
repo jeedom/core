@@ -27,6 +27,7 @@ try {
 		$return['product_name'] = config::byKey('product_name');
 		$return['product_icon'] = config::byKey('product_icon');
 		$return['product_image'] = config::byKey('product_image');
+		$return['widget_margin'] = config::byKey('widget::margin');
 		$return['serverDatetime'] = getmicrotime();
 		if (!isConnect()) {
 			$return['connected'] = false;

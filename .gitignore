@@ -9,6 +9,8 @@ ui
 test.php
 core/config/common.config.php
 .remote-sync.json
+core2019-light
+core2019-dark
 
 /plugins
 
