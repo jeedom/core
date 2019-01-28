@@ -73,7 +73,6 @@ $(function () {
     }
   }
   
-  
   webappCache.addEventListener('cached', updateCacheEvent, false);
   webappCache.addEventListener('checking', updateCacheEvent, false);
   webappCache.addEventListener('downloading', updateCacheEvent, false);
@@ -171,6 +170,7 @@ function initApplication(_reinit) {
         user_id = data.result.user_id;
         plugins = data.result.plugins;
         userProfils = data.result.userProfils;
+        widget_margin =  data.result.widget_margin;
         jeedom.init();
         var include = ['core/js/core.js'];
         
@@ -376,11 +376,9 @@ function notify(_title, _text) {
 function setTileSize(_filter) {
   $(_filter).each(function () {
     if (!$(this).hasClass('noResize')) {
-      if($(this).hasClass('col2')){
-        $(this).width(deviceInfo.bSize * 2 + 4);
-      }else{
-        $(this).width(deviceInfo.bSize);
-      }
+      $(this).css('margin','0px').css('padding','0px');
+      $(this).width(deviceInfo.bSize * 2);
+      $(this).css('margin',widget_margin+'px');
     }
   });
 }
