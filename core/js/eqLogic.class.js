@@ -322,7 +322,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
-        var gridstack =  eqLogic.hasClass('grid-stack-item-content');
         var visible = eqLogic.is(":visible");
         var uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
@@ -344,14 +343,10 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var transform =  eqLogic.css('transform');
         var zindex =  eqLogic.css('z-index');
         eqLogic.attr("style", html.attr("style"));
-        if(gridstack){
-          eqLogic.css('height','auto').css('overflow','hidden').css('width','auto');
-        }else{
-          eqLogic.css('top',top);
-          eqLogic.css('left',left);
-          eqLogic.css('width',width);
-          eqLogic.css('height',height);
-        }
+        eqLogic.css('top',top);
+        eqLogic.css('left',left);
+        eqLogic.css('width',width);
+        eqLogic.css('height',height);
         eqLogic.css('margin',margin);
         eqLogic.css('padding',padding);
         eqLogic.css('position',position);
@@ -366,7 +361,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
           setTileSize('.eqLogic');
         } else {
-          if (!gridstack && typeof editWidgetMode == 'function') {
+          if (typeof editWidgetMode == 'function') {
             editWidgetMode();
           }
         }
