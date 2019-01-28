@@ -22,7 +22,7 @@ $(function(){
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path){
-          $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
+          $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
         }
       });
     }
@@ -264,7 +264,7 @@ $('.li_object').on('click',function(){
     jeedom.object.getImgPath({
       id : object_id,
       success : function(_path){
-        $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
+        $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
       }
     });
     $('.li_object').removeClass('active');

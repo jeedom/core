@@ -94,7 +94,7 @@ function setBackgroundImage(_image){
   $('.backgroundforJeedom').css('background-position','');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
   if(_image != ''){
-    $('.backgroundforJeedom').css('background-image','url("'+_image+'")');
+    $('.backgroundforJeedom').css('background-image','url("'+_image+'") !important');
   }
 }
 

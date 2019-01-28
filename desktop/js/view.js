@@ -1,26 +1,26 @@
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
- $('#div_pageContainer').on('click','.bt_gotoViewZone',function(){
+$('#div_pageContainer').on('click','.bt_gotoViewZone',function(){
   var top = $('.div_displayViewContainer').scrollTop()+ $('.div_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60;
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500);
 });
 
 
- function fullScreen(_mode) {
+function fullScreen(_mode) {
   if(_mode){
     $('header').hide();
     $('footer').hide();
@@ -52,12 +52,12 @@ if (view_id != '') {
     },
     success: function (html) {
       setTimeout(function(){
-       if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
-        $('.backgroundforJeedom').css('background-image','url("'+ html.raw.img+'")');
-      }else{
-       $('.backgroundforJeedom').css('background-image','url("")');
-     }
-   },1);
+        if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+          $('.backgroundforJeedom').css('background-image','url("'+ html.raw.img+'") !important');
+        }else{
+          $('.backgroundforJeedom').css('background-image','url("")');
+        }
+      },1);
       try {
         var summary = '';
         for(var i in html.raw.viewZone){
@@ -67,7 +67,7 @@ if (view_id != '') {
       }catch(err) {
         console.log(err);
       }
-
+      
       try {
         $('.div_displayView:last').empty().html(html.html);
       }catch(err) {
@@ -98,7 +98,7 @@ if (view_id != '') {
           container.on( 'layoutComplete', orderItems );
           container.on( 'dragItemPositioned', orderItems );
         });
-
+        
         $('.eqLogicZone .eqLogic-widget').draggable('disable');
         $('#bt_editViewWidgetOrder').off('click').on('click',function(){
           if($(this).attr('data-mode') == 1){
@@ -107,12 +107,12 @@ if (view_id != '') {
             editWidgetMode(0);
             $(this).css('color','black');
           }else{
-           $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
-           $(this).attr('data-mode',1);
-           editWidgetMode(1);
-           $(this).css('color','rgb(46, 176, 75)');
-         }
-       });
+            $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'});
+            $(this).attr('data-mode',1);
+            editWidgetMode(1);
+            $(this).css('color','rgb(46, 176, 75)');
+          }
+        });
         if (getUrlVars('fullscreen') == 1) {
           fullScreen(true);
         }
@@ -151,27 +151,27 @@ function editWidgetMode(_mode,_save){
     return;
   }
   if(_mode == 0 || _mode == '0'){
-   if(!isset(_save) || _save){
-    saveWidgetDisplay({view : 1});
+    if(!isset(_save) || _save){
+      saveWidgetDisplay({view : 1});
+    }
+    if( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0){
+      $('.eqLogicZone .eqLogic-widget').draggable('disable');
+      $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy');
+    }
+  }else{
+    $('.eqLogicZone .eqLogic-widget').draggable('enable');
+    
+    $( ".eqLogicZone .eqLogic-widget.allowResize").resizable({
+      grid: [ 2, 2 ],
+      resize: function( event, ui ) {
+        positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+        ui.element.closest('.eqLogicZone').packery();
+      },
+      stop: function( event, ui ) {
+        positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+        ui.element.closest('.eqLogicZone').packery();
+      }
+    });
   }
-  if( $('.eqLogicZone .eqLogic-widget.ui-draggable').length > 0){
-   $('.eqLogicZone .eqLogic-widget').draggable('disable');
-   $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy');
- }
-}else{
- $('.eqLogicZone .eqLogic-widget').draggable('enable');
-
- $( ".eqLogicZone .eqLogic-widget.allowResize").resizable({
-  grid: [ 2, 2 ],
-  resize: function( event, ui ) {
-   positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
-   ui.element.closest('.eqLogicZone').packery();
- },
- stop: function( event, ui ) {
-  positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
-  ui.element.closest('.eqLogicZone').packery();
-}
-});
-}
-editWidgetCmdMode(_mode);
+  editWidgetCmdMode(_mode);
 }

@@ -67,14 +67,15 @@ if (is_array($scenarioListGroup)) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 		} else {
 			echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
-			echo '<div class="panel-group" id="accordionScenar">';
+			echo '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo 'Aucun - ' . count($scenarios[-1]) . ' scénario(s)';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenario" href="#config_none" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 				echo '</h3>';
 				echo '</div>';
+				echo '<div id="config_none" class="panel-collapse collapse">';
 				echo '<div class="panel-body">';
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[-1] as $scenario) {
@@ -92,7 +93,9 @@ if (is_array($scenarioListGroup)) {
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
+				echo '</div>';
 			}
+			$i = 0;
 			foreach ($scenarioListGroup as $group) {
 				if ($group['group'] == '') {
 					continue;
@@ -100,9 +103,10 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScenario" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ' . count($scenarios[$group['group']]) . ' scénario(s)</a>';
 				echo '</h3>';
 				echo '</div>';
+				echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
 				echo '<div class="panel-body">';
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[$group['group']] as $scenario) {
@@ -120,6 +124,8 @@ if (is_array($scenarioListGroup)) {
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
+				echo '</div>';
+				$i += 1;
 			}
 			echo '</div>';
 		}
