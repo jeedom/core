@@ -442,6 +442,7 @@ function GoReload(){
 	pourcentageBar = 0;
 	$('#step4').show();
 	$('#contenuWithStepFor').addClass('animated');
+	$('#jqueryLoadingDiv').html('');
 	jeedom.rebootSystem();
 	reboot_jeedom(rebooti);
 }
