@@ -52,7 +52,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
 		<div id="contenuWithStepFor" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre Jeedom}}</span>
@@ -67,10 +67,10 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 5}}</span>
 		<div id="contenuWithStepFive" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepCinq.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
-				<span id="contenuTextSpan" class="TextMigrate">{{Recuperation de votre Backup}}</span>
+				<span id="contenuTextSpan" class="TextFinalisation">{{Finalisation}}</span>
 				<div id="contenuTextSpan" class="progress">
 					<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 </div>
@@ -92,6 +92,25 @@ if (!isConnect('admin')) {
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="bt_close" data-dismiss="modal">{{Fermer}}</button>
         <button type="button" class="btn btn-primary" id="bt_reprendre">{{Reprendre}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalFinalStep">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{Réinstallation de votre Backup}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{Voulez-vous réinstaller votre Backup sur cette Jeedom ou bien repartir de zero ?}}</p>
+        <p>{{Votre backup est disponible sur votre Jeedom dans tout les cas.}}</p>
+        <p>{{Si vous choisissez "zero" n'oubliez pas que vos identifiant sont admin/admin}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="bt_zero">{{Zero}}</button>
+        <button type="button" class="btn btn-primary" id="bt_backup">{{Récupérer mon Backup}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
