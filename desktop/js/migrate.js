@@ -178,8 +178,8 @@ function getJeedomLog(_autoUpdate, _log) {
 	                        $('.TextFinalisation').text('Début du backup !');
 	                    	$('.progress-bar').width('92%');
 							$('.progress-bar').text('92%');
-	                    }elseif(data.result[i].indexOf('[START BACKUP]') != -1 && FinalDown == 1){
-		                    
+	                    }else if(data.result[i].indexOf('[START BACKUP]') != -1 && FinalDown == 2){
+		                    _autoUpdate = 0
 	                    }
                     }else{
 	                    if(data.result[i].indexOf('[END BACKUP SUCCESS]') != -1){
@@ -478,6 +478,7 @@ function finalisation(go){
 	        	getJeedomLog(1, 'update');
 	        }
 		});
+	}
 }
 
 function final(){
