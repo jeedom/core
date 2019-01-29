@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 ?>
 <div style="display: none;" id="div_noteManagementAlert"></div>
 <div class="row row-overflow">
-	<div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
+	<div id="div_notes" class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
 		<div class="bs-sidebar">
 			<ul class="nav nav-list bs-sidenav list-group" id="ul_noteList">
 
