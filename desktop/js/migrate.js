@@ -588,10 +588,10 @@ function page_rebootjs(rebooti){
 		finalisation();
 	}else{
 		testjeedom++;
-		pourcentageBar = pourcentageBar+1;
+		pourcentageBar = pourcentageBar+10;
 		$('.progress-bar').width(pourcentageBar+'%');
 		$('.progress-bar').text(pourcentageBar+'%');
-		if(testjeedom > '80'){
+		if(pourcentageBar > '80'){
 			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
 			$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
 		}
@@ -603,5 +603,5 @@ function reboot_jeedom(rebooti){
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
-	setInterval('page_rebootjs(rebooti)', 15000);
+	setInterval('page_rebootjs(rebooti)', 300000);
 }
