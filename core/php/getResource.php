@@ -15,9 +15,8 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-use MatthiasMullie\Minify;
-require_once __DIR__ . '/core.inc.php';
-$file = __DIR__ . '/../../' . init('file');
+require_once dirname(__FILE__) . '/core.inc.php';
+$file = dirname(__FILE__) . '/../../' . init('file');
 $pathinfo = pathinfo($file);
 if ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css') {
 	die();
@@ -49,12 +48,12 @@ if (file_exists($file)) {
 	}
 	if ($pathinfo['extension'] == 'js') {
 		if (strpos($file, '3rdparty') !== false) {
-			echo (new Minify\JS($file))->minify();
+			echo file_get_contents($file);
 		} else {
-			echo translate::exec((new Minify\JS($file))->minify(), init('file'), true);
+			echo translate::exec(file_get_contents($file), init('file'), true);
 		}
 	} elseif ($pathinfo['extension'] == 'css') {
-		echo (new Minify\CSS($file))->minify();
+		echo file_get_contents($file);
 	}
 	exit;
 }

@@ -15,7 +15,6 @@ $(document).ajaxStop(function () {
 });
 
 $(function () {
-  
   MESSAGE_NUMBER = null;
   nbActiveAjaxRequest = 0;
   utid = Date.now();
