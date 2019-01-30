@@ -182,10 +182,10 @@ if (is_array($scenarioListGroup)) {
 							<div class="form-group">
 								<label class="col-xs-5 control-label"></label>
 								<label>
-									{{Actif}} <input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+									{{Actif}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isActive">
 								</label>
 								<label>
-									{{Visible}} <input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+									{{Visible}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
 								</label>
 							</div>
 							<div class="form-group">
@@ -208,13 +208,21 @@ if (is_array($scenarioListGroup)) {
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-xs-5 control-label">{{Log}}</label>
+								<div class="col-xs-6">
+									<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
+										<option value="default">{{Défaut}}</option>
+										<option value="none">{{Aucun}}</option>
+										<option value="realtime">{{Temps réel}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-xs-5 control-label">{{Multi-lancement}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Synchrone}}</label>
+								<label class="col-xs-2 control-label">{{Synchrone}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
 								</div>
@@ -226,18 +234,8 @@ if (is_array($scenarioListGroup)) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-xs-5 control-label">{{Log}}</label>
-								<div class="col-xs-6">
-									<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
-										<option value="default">{{Défaut}}</option>
-										<option value="none">{{Aucun}}</option>
-										<option value="realtime">{{Temps réel}}</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-xs-5 control-label">{{Icône}}</label>
-								<div class="col-xs-1">
+								<div class="col-xs-3">
 									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 								</div>
 								<div class="col-xs-3">
