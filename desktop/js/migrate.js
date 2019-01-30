@@ -601,9 +601,9 @@ function refresh() {
 	});
 }
 
-function page_rebootjs(rebooti){
+function page_rebootjs(){
 	refresh();
-	if(rebooti=='1'){
+	if(rebooti == '1'){
 		$('.TextMigrate').text('Votre Jeedom viens de redémarrer, Merci de patienter le premier redemarrage peux prendre jusqu\'à 5 minutes');
 		$('.progress-bar').width('90%');
 		$('.progress-bar').text('90%');
@@ -619,7 +619,9 @@ function page_rebootjs(rebooti){
 			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
 			$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
 		}
-		setTimeout(function(){page_rebootjs(rebooti)}, 150000);
+		setTimeout(function(){
+				page_rebootjs();
+			}, 150000);
 	}
 }
 
@@ -628,5 +630,5 @@ function reboot_jeedom(rebooti){
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
-	page_rebootjs(rebooti);
+	page_rebootjs();
 }
