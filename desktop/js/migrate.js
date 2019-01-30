@@ -444,7 +444,9 @@ function GoReload(){
 	$('#contenuWithStepFor').addClass('animated');
 	$('#jqueryLoadingDiv').html('');
 	jeedom.rebootSystem();
-	reboot_jeedom(rebooti);
+	setTimeout(function(){
+		reboot_jeedom(rebooti);
+	},5000);
 }
 
 function finalisation(go){
