@@ -52,7 +52,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
 		<div id="contenuWithStepFor" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre Jeedom}}</span>
