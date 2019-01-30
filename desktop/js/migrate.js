@@ -445,8 +445,8 @@ function GoReload(){
 	$('#jqueryLoadingDiv').html('');
 	jeedom.rebootSystem();
 	setTimeout(function(){
-		reboot_jeedom(rebooti);
-	},5000);
+		reboot_jeedom();
+	},20000);
 }
 
 function finalisation(go){
@@ -625,7 +625,7 @@ function page_rebootjs(){
 	}
 }
 
-function reboot_jeedom(rebooti){
+function reboot_jeedom(){
 	$('.TextMigrate').text('Merci de patienter... Jeedom est en cours de Migration');
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
