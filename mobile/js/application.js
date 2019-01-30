@@ -374,11 +374,13 @@ function notify(_title, _text) {
 
 function setTileSize(_filter) {
   $(_filter).each(function () {
-    if (!$(this).hasClass('noResize')) {
-      $(this).css('margin','0px').css('padding','0px');
+    $(this).css('margin','0px').css('padding','0px');
+    if($(this).hasClass('col2')){
       $(this).width(deviceInfo.bSize * 2);
-      $(this).css('margin',widget_margin+'px');
+    }else{
+      $(this).width(deviceInfo.bSize-widget_margin);
     }
+    $(this).css('margin',widget_margin+'px');
   });
 }
 
