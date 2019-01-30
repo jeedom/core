@@ -212,11 +212,15 @@ if (is_array($scenarioListGroup)) {
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
 								</div>
-								<label class="col-xs-2 control-label">{{Synchrone}}</label>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-5 control-label">{{Synchrone}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
 								</div>
-								<label class="col-xs-2 control-label">{{Timeline}}</label>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-5 control-label">{{Timeline}}</label>
 								<div class="col-xs-1">
 									<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
 								</div>
@@ -233,11 +237,11 @@ if (is_array($scenarioListGroup)) {
 							</div>
 							<div class="form-group">
 								<label class="col-xs-5 control-label">{{Icône}}</label>
+								<div class="col-xs-1">
+									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+								</div>
 								<div class="col-xs-3">
 									<div class="scenarioAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
-								</div>
-								<div class="col-xs-4">
-									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 								</div>
 							</div>
 						</fieldset>
