@@ -187,7 +187,7 @@ if (isset(jeedom_langage)) {
 //Display report bug
 $("#md_reportBug").dialog({
   autoOpen: false,
-  modal: false,
+  modal: true,
   closeText: '',
   height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
   width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
