@@ -1,6 +1,12 @@
 Changelog 
 =========
 
+3.2.14
+=====
+
+- Préparation pour éviter une erreur lors du passage en 3.3.X
+- Correction d'un soucis lors d'une demande de support pour les plugins tierces
+
 3.2.12
 =====
 
