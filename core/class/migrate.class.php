@@ -109,7 +109,7 @@ class migrate {
 		if($fileExiste !== 0){
 			$sizeFileExiste = filesize($fileExiste);
 			if($sizeFileExiste == $size){
-				exec('mv '.$fileExiste.' '.$mediaLink.'/backupJeedom.tar.gz');
+				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/backupJeedom.tar.gz');
 				return 'fileExist';
 			}else{
 				exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
