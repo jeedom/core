@@ -1,18 +1,19 @@
 <div class="scenario scenario-widget" data-scenario_id="#id#" data-version="#version#" style="margin : 0px;">
   <center>
-    <div class="card-title has-supporting-text">
+    <span class="widget-name">
       <h3 class="card-primary-title widget-name">#shortname#</h3>
-    </div>
-    <div class="card-supporting-text has-title">
-      <span class="state" style="font-size: 2em;">#icon#</span>
-    </div>
-    <div class="card-action">
-      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
-      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
-      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
-      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></i></a>
-    </div>
+    </span>
   </center>
+  <center>
+    <span class="state" style="font-size: 2em;">#icon#</span>
+  </center>
+  <center>
+    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
+    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
+    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
+    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></a>
+  </center>
+  <br/>
   <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
       $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-spinner fa-spin"></i>');
