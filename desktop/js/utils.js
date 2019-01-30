@@ -409,25 +409,6 @@ function linkify(inputText) {
 }
 
 function initRowOverflow() {
-  if(screen.width < 768){
-    var col = $('.row-overflow > div').first();
-    col.addClass('collapse');
-    if(col.attr('id') == undefined){
-      var id = col.uniqueId();
-    }
-    if($('#bt_displayFullMenuOnMobile').html() == undefined){
-      $('.row-overflow').before('<a class="btn btn-default btn-sm" data-toggle="collapse" id="bt_displayFullMenuOnMobile" style="width:100%;margin-top:3px;"><i class="fas fa-arrow-circle-left"> {{Menu}}</i></a>');
-      $('#bt_displayFullMenuOnMobile').on('click',function(){
-        if($(this).find('i').attr('class').search('left') != -1){
-          $(this).find('i').removeClass('fa-arrow-circle-left').addClass('fa-arrow-circle-down');
-        }else{
-          $(this).find('i').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-left');
-        }
-      });
-    }
-    $('#bt_displayFullMenuOnMobile').attr('data-target','#'+col.attr('id'));
-    return;
-  }
   var hWindow = $(window).outerHeight() - $('header').outerHeight() - $('#div_alert').outerHeight()-5;
   if($('#div_alert').outerHeight() > 0){
     hWindow -= 10;
