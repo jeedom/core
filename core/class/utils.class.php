@@ -69,7 +69,7 @@ class utils {
 					$value = $property->getValue($_object);
 					$property->setAccessible(false);
 				}
-				$array[$name] = is_json($value, $value);
+				$array[$name] = ($value === null) ? null : is_json($value, $value);
 			}
 		}
 		return $array;
