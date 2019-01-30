@@ -660,8 +660,8 @@ function saveWidgetDisplay(_params){
         $(this).find('.eqLogic-widget').each(function(){
          var eqLogic = {id :$(this).attr('data-eqlogic_id')}
          eqLogic.display = {};
-         eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
-         eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
+         eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
+         eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
          if($(this).attr('data-order') != undefined){
             eqLogic.order = $(this).attr('data-order');
         }else{
@@ -692,8 +692,8 @@ function saveWidgetDisplay(_params){
         $(this).find('.eqLogic-widget').each(function(){
          var eqLogic = {id :$(this).attr('data-eqlogic_id')}
          eqLogic.display = {};
-         eqLogic.display.width =  Math.floor($(this).width() / 2) * 2 + 'px';
-         eqLogic.display.height = Math.floor($(this).height() / 2) * 2+ 'px';
+         eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
+         eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
          eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id');
          eqLogic.order = order;
          eqLogics.push(eqLogic);
