@@ -172,51 +172,29 @@ $("#bt_changeAllScenarioState,#bt_changeAllScenarioState2").off('click').on('cli
 });
 
 $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) {
-  bootbox.dialog({
-    title: "{{Ajout d'un nouveau scénario}}",
-    message: '<div class="row">  ' +
-    '<div class="col-md-12"> ' +
-    '<form class="form-horizontal" onsubmit="return false;"> ' +
-    '<div class="form-group"> ' +
-    '<label class="col-md-4 control-label">{{Nom}}</label> ' +
-    '<div class="col-md-4"> ' +
-    '<input id="in_scenarioAddName" type="text" placeholder="{{Nom de votre scénario}}" class="form-control input-md"> ' +
-    '</div> ' +
-    '</div> ' +
-    '</form> </div>  </div>',
-    buttons: {
-      "Annuler": {
-        className: "btn-default",
-        callback: function () {
-        }
-      },
-      success: {
-        label: "D'accord",
-        className: "btn-primary",
-        callback: function () {
-          jeedom.scenario.save({
-            scenario: {name: $('#in_scenarioAddName').val(), type: $("input[name=cbScenarioType]:checked").val()},
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (data) {
-              var vars = getUrlVars();
-              var url = 'index.php?';
-              for (var i in vars) {
-                if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-                  url += i + '=' + vars[i].replace('#', '') + '&';
-                }
-              }
-              url += 'id=' + data.id + '&saveSuccessFull=1';
-              if(tab !== null){
-                url += tab;
-              }
-              modifyWithoutSave = false;
-              loadPage(url);
+  bootbox.prompt("Nom du scénario ?", function (result) {
+    if (result !== null) {
+      jeedom.scenario.save({
+        scenario: {name: result},
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          var vars = getUrlVars();
+          var url = 'index.php?';
+          for (var i in vars) {
+            if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
+              url += i + '=' + vars[i].replace('#', '') + '&';
             }
-          });
+          }
+          url += 'id=' + data.id + '&saveSuccessFull=1';
+          if(tab !== null){
+            url += tab;
+          }
+          modifyWithoutSave = false;
+          loadPage(url);
         }
-      },
+      });
     }
   });
 });
