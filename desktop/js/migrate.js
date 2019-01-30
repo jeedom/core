@@ -473,7 +473,7 @@ function finalisation(go){
 		pourcentageBar = 0;
 		$('#step5').show();
 		$('#contenuWithStepFive').addClass('animated');
-		jeedom.update.doAll({
+		jeedom.update({
 			error: function (request, status, error) {
 	        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
 	        },

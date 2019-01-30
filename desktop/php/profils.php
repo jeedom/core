@@ -5,14 +5,24 @@ if (!isConnect()) {
 	@session_start();
 	$_SESSION['user']->refresh();
 	@session_write_close();
-	$homePage = array(
+	$homePageDesktop = array(
 		'core::dashboard' => '{{Dashboard}}',
 		'core::view' => '{{Vue}}',
 		'core::plan' => '{{Design}}',
+		'core::plan3d' => '{{Design 3D}}',
+	);
+	$homePageMobile = array(
+		'core::dashboard' => '{{Dashboard}}',
+		'core::view' => '{{Vue}}',
+		'core::plan' => '{{Design}}',
+		'core::plan3d' => '{{Design 3D}}',
 	);
 	foreach (plugin::listPlugin() as $pluginList) {
-		if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '') {
-			$homePage[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
+		if ($pluginList->isActive() == 1 && $pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
+			$homePageDesktop[$pluginList->getId() . '::' . $pluginList->getDisplay()] = $pluginList->getName();
+		}
+		if ($pluginList->isActive() == 1 && $pluginList->getMobile() != '' && config::byKey('displayMobilePanel', $pluginList->getId(), 0) != 0) {
+			$homePageMobile[$pluginList->getId() . '::' . $pluginList->getMobile()] = $pluginList->getName();
 		}
 	}
 	?>
@@ -131,7 +141,7 @@ if (!isConnect()) {
 							<div class="col-sm-2">
 								<select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
 									<?php
-									foreach ($homePage as $key => $value) {
+									foreach ($homePageDesktop as $key => $value) {
 										echo "<option value='$key'>$value</option>";
 									}
 									?>
@@ -142,7 +152,7 @@ if (!isConnect()) {
 								<select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
 									<option value="home">{{Accueil}}</option>
 									<?php
-									foreach ($homePage as $key => $value) {
+									foreach ($homePageMobile as $key => $value) {
 										echo "<option value='$key'>$value</option>";
 									}
 									?>
@@ -235,6 +245,39 @@ if (!isConnect()) {
 							<label class="col-sm-3 control-label">{{Plein écran}}</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<form class="form-horizontal">
+					<fieldset>
+						<legend><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}</legend>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">{{Desktop}}</label>
+							<div class="col-sm-2">
+								<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan3d">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
+									}
+									?>
+								</select>
+							</div>
+							<label class="col-sm-1 control-label">{{Mobile}}</label>
+							<div class="col-sm-2">
+								<select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan3d">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
+									}
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">{{Plein écran}}</label>
+							<div class="col-sm-1">
+								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 							</div>
 						</div>
 					</fieldset>
