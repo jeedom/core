@@ -50,10 +50,10 @@ class migrate {
 			}elseif($iSDn > 1){
 				$statut = 'sdaNumSup';
 			}else{
-              	exec('sudo umount '.$mediaLink);
-              	exec('sudo mkdir '.$mediaLink);
-              	exec('sudo mkdir '.$mediaLink.'/Backup');
+              			exec('sudo umount '.$mediaLink);
+              			exec('sudo mkdir '.$mediaLink);
 				exec('sudo mount -t vfat /dev/'.$usb.' '.$mediaLink);
+              			exec('sudo mkdir '.$mediaLink.'/Backup');
 				if((migrate::freeSpaceUsb()/1024) > $minSize){
 					$statut = 'ok';
 				}else{
@@ -126,6 +126,7 @@ class migrate {
 	}
 	
 	public static function finalisation(){
+		migrate::usbTry();
 		$mediaLink = '/media/migrate';
 		$mediaLinkBackup = $mediaLink.'/Backup';
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
