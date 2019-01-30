@@ -16,14 +16,14 @@ disabled are grayed out.
 > from your profile always leave it visible). Here the menu
 > allows to have the list of plugins sorted by categories.
 
-By clicking on a plugin you access its configuration. At the top you
-find the name of the plugin, then parentheses its name in Jeedom
-(ID) and finally the type of version installed (stable, beta).
+En cliquant sur un plugin, vous accédez à sa configuration. En haut, vous
+retrouvez le nom du plugin, puis entre parenthèses, son nom dans Jeedom
+(ID) et enfin, le type de version installée (stable, beta).
 
 > **Important**
 >
-> When downloading a plugin this one is deactivated by default.
-> So you have to activate it on your own.
+> Lors du téléchargement d’un plugin, celui-ci est désactivé par défaut.
+> Il faut donc que vous l’activiez par vous-même.
 
 At the top right, some buttons:
 
@@ -37,10 +37,10 @@ At the top right, some buttons:
 
 -   **Details**: allows to find the plugin page on the market
 
--   **Delete**: Removes the plugin from your Jeedom. Attention this
+-   **Supprimer** : Supprime le plugin de votre Jeedom. Attention, cela
     also permanently removes all the equipment from this plugin
 
-Below left is a state area with:
+En dessous à gauche, on retrouve une zone état avec :
 
 -   **Status**: allows to see the status of the plugin (active / inactive)
 
@@ -56,170 +56,177 @@ Below left is a state area with:
 -   **License**: Indicates the license of the plugin that will usually be
     AGPL
 
-On the right we find the Log zone which allows to define the log level
-specific to the plugin (we find this same possibility in
-Administation → Configuration on the logs tab, at the bottom of the page).
+A droite, on retrouve la zone Log qui permet de définir 
 
-If the plugin has dependencies and / or a daemon these zones
-additional items are displayed under the areas listed above.
+-   le niveau de logs spécifique au plugin (on retrouve cette même possibilité dans
+Administation → Configuration sur l’onglet logs, en bas de page)
 
-Dependencies:
+-   de voir les logs du plugin
 
--   **Name**: usually will be local
+-   Heartbeat : toute les 5 mins, Jeedom regarde si au moins un équipement du plugin a communiqué dans les X dernières minutes (si vous voulez désactiver la fonctionnalité, il suffit de mettre 0)
 
--   **Status**: will tell you if the dependencies are OK or KO
+-   Redemarrer démon : si le hertbeat tombe en erreur alors Jeedom va redémarrer le démon
 
--   **Installation**: will install or reinstall the
-    dependencies (if you do not do it manually and they are
-    KO, Jeedom will do it himself after a while)
+Si le plugin possède des dépendances et/ou un démon, ces zones
+supplémentaires s’affichent sous les zones citées ci-dessus.
 
--   **Last installation**: date of last installation of
-    outbuildings
+Dépendances :
 
-Demon:
+-   **Nom** : généralement sera local
 
--   **Name**: usually will be local
+-   **Statut** : vous dira si les dépendances sont OK ou KO
 
--   **Status**: will tell you if the daemon is OK or KO
+-   **Installation** : permettra d’installer ou réinstaller les
+    dépendances (si vous ne le faites pas manuellement et qu’elles sont
+    KO, Jeedom s’en chargera de lui-même au bout d’un moment)
 
--   **Configuration**: will be OK if all the criteria for the daemon
-    turn together or give the cause of blocking
+-   **Dernière installation** : date de la dernière installation des
+    dépendances
 
--   **(Re) Start**: start or restart the daemon
+Démon :
 
--   **Stop**: allows to stop the demon (Only in case
-    automatic management is disabled)
+-   **Nom** : généralement sera local
 
--   **Automatic management**: allows to activate or deactivate the management
-    automatically (which allows Jeedom to manage the daemon and the
-    restart if necessary, unless against indication it is advisable to
-    leave automatic management active)
+-   **Statut** : vous dira si le démon est OK ou KO
 
--   **Last launch**: date of last demon launch
+-   **Configuration** : sera OK si tous les critères pour que le démon
+    tourne sont réunis ou donnera la cause du blocage
 
-> **Tip**
->
-> Some plugins have a configuration part. If so, she
-> will appear under the dependencies and demon areas described above.
-> In this case, it is necessary to refer to the documentation of the plugin in
-> question to know how to configure it.
+-   **(Re)Démarrer** : permet de lancer ou relancer le démon
 
-Below we find an area features. This one allows to see
-if the plugin uses a Jeedom core function such as:
+-   **Arrêter** : permet d’arrêter le démon (Uniquement dans le cas où
+    la gestion automatique est désactivée)
 
--   **Interact**: specific interactions
+-   **Gestion automatique** : permet d’activer ou désactiver la gestion
+    automatique (ce qui permet à Jeedom de gérer lui même le démon et le
+    relancer si besoin. Sauf contre indication, il est conseillé de
+    laisser la gestion automatique active)
 
--   **Cron**: a cron per minute
-
--   **Cron5**: one cron every 5 minutes
-
--   **Cron15**: every 15 minutes
-
--   **Cron30**: every 30 minutes
-
--   **CronHourly**: every hour
-
--   **CronDaily**: every day
+-   **Dernier lancement** : date du dernier lancement du démon
 
 > **Tip**
 >
-> If the plugin uses one of these functions. You will specifically
-> forbid him to do so by unchecking the box "activate" which will be
-> present next.
+> Certains plugins ont une partie configuration. Si tel est le cas, elle
+> apparaîtra sous les zones dépendances et démon décrites ci-dessus.
+> Dans ce cas, il faut se référer à la documentation du plugin en
+> question pour savoir comment le configurer.
 
-Finally we can find a Panel section that will allow to activate or
-disable panel display on the dashboard or mobile if the
-plugin offers one.
+En dessous, on retrouve une zone fonctionnalités. Celle-ci permet de voir
+si le plugin utilise une des fonctions core Jeedom tel que :
 
-Installing a plugin
+-   **Interact** : des interactions spécifiques
+
+-   **Cron** : un cron à la minute
+
+-   **Cron5** : un cron toutes les 5 minutes
+
+-   **Cron15** : un cron toutes les 15 minutes
+
+-   **Cron30** : un cron toutes les 30 minutes
+
+-   **CronHourly** : un cron toutes les heures
+
+-   **CronDaily** : un cron journalier
+
+> **Tip**
+>
+> Si le plugin utilise une de ces fonctions, vous pourrez spécifiquement
+> lui interdire de le faire en décochant la case "activer" qui sera
+> présente à côté.
+
+Enfin, on peut retrouver une section Panel qui permettra d’activer ou
+désactiver l’affichage du panel sur le dashboard ou en mobile si le
+plugin en propose un.
+
+Installation d’un plugin 
 ========================
 
-To install a new plugin just click on the button
-"Market" (and that Jeedom is connected to the Internet). After a short time
-loading you will get the page.
+Pour installer un nouveau plugin, il suffit de cliquer sur le bouton
+"Market" (et que Jeedom soit relié à Internet). Après un petit temps de
+chargement, vous obtiendrez la page.
 
 > **Tip**
 >
-> You must have entered the information of your account of the market in
-> administration (Configuration → Updates → Market tab) in order to
-> find the plugins you have already bought for example.
+> Vous devez avoir saisi les informations de votre compte du Market dans
+> l’administration (Configuration→Mises à jour→Onglet market) afin de
+> retrouver les plugins que vous avez déjà achetés par exemple.
 
-At the top of the window you have filters:
+En haut de la fenêtre, vous avez des filtres :
 
--   **Free / Paid**: allows to display only the free or
-    the paying ones.
+-   **Gratuit/Payant** : permet d’afficher uniquement les gratuits ou
+    les payants.
 
--   **Official / Advisor**: only show plugins
-    officials or advisers
+-   **Officiel/Conseillé** : permet d’afficher uniquement les plugins
+    officiels ou les conseillés
 
--   **Installed / Uninstalled**: only show plugins
-    installed or not installed
+-   **Installé/Non installé** : permet d’afficher uniquement les plugins
+    installés ou non installés
 
--   **Category** drop-down menu: displays only
-    some categories of plugins
+-   **Menu déroulant Catégorie** : permet d’afficher uniquement
+    certaines catégories de plugins
 
--   **Search**: allows to search for a plugin (in the name or the
-    description of it)
+-   **Rechercher** : permet de rechercher un plugin (dans le nom ou la
+    description de celui-ci)
 
--   **Username**: Displays the username used for the
-    connection to the Market as well as the status of the connection
+-   **Nom d’utilisateur** : affiche le nom d’utilisateur utilisé pour la
+    connexion au Market ainsi que le statut de la connexion
 
 > **Tip**
 >
-> The small cross resets the filter concerned
+> La petite croix permet de réinitialiser le filtre concerné
 
-Once you have found the plugin you want, just click on
-this one to make appear his file. This card gives you a lot
-information about the plugin, including:
+Une fois que vous avez trouvé le plugin voulu, il suffit de cliquer sur
+celui-ci pour faire apparaître sa fiche. Cette fiche vous donne beaucoup
+d’informations sur le plugin, notamment :
 
--   If it is official / recommended or is it obsolete (you really need
-    avoid installing obsolete plugins)
+-   S’il est officiel/recommandé ou s’il est obsolète (il faut vraiment
+    éviter d’installer des plugins obsolètes)
 
--   4 actions:
+-   4 actions :
 
-    -   **Install stable**: allows to install the plugin in its
-        stable version
+    -   **Installer stable** : permet d’installer le plugin dans sa
+        version stable
 
-    -   **Install beta**: allows to install the plugin in its
-        beta version (only for betatestors)
+    -   **Installer beta** : permet d’installer le plugin dans sa
+        version beta (seulement pour les betatesteurs)
 
-    -   **Install pro**: allows to install the pro version (very
-        little used)
+    -   **Installer pro** : permet d’installer la version pro (très
+        peu utilisé)
 
-    -   **Delete**: If the plugin is currently installed, this
-        button allows to delete it
+    -   **Supprimer** : si le plugin est actuellement installé, ce
+        bouton permet de le supprimer
 
-Below, you will find the description of the plugin, the compatibility
-(if Jeedom detects an incompatibility, it will signal it to you), the opinions
-on the plugin (here you can note it) and information
-(the author, the person who made the last
-day, a link to the doc, the number of downloads). On the right
-you find a button "Changelog" that allows you to have everything
-change history, a "Documentation" button that returns
-to the plugin documentation. Then you have the language available
-and the various information on the date of the latest stable release.
+En dessous, vous retrouvez la description du plugin, la compatibilité
+(si Jeedom détecte une incompatibilité, il vous le signalera), les avis
+sur le plugin (vous pouvez ici le noter) et des informations
+complémentaires (l’auteur, la personne ayant fait la dernière mise à
+jour, un lien vers la doc, le nombre de téléchargements). Sur la droite
+vous retrouvez un bouton "Changelog" qui vous permet d’avoir tout
+l’historique des modifications, un bouton "Documentation" qui renvoie
+vers la documentation du plugin. Ensuite vous avez la langue disponible
+et les diverses informations sur la date de la dernière version stable.
 
 > **Important**
 >
-> It is not really recommended to put a beta plugin on a
-> Jeedom non beta, a lot of worries of operation can in
-> result.
+> Il n’est vraiment pas recommandé de mettre un plugin beta sur un
+> Jeedom non beta, beaucoup de soucis de fonctionnement peuvent en
+> résulter.
 
 > **Important**
 >
-> Some plugins are paying, in this case the plugin plug you
-> will offer to buy it, once done it is necessary to wait for a
-> ten minutes (payment validation time), then return
-> on the plugin plug to install it normally.
+> Certains plugins sont payants, dans ce cas la fiche du plugin vous
+> proposera de l’acheter. Une fois cela fait, il faut attendre une
+> dizaine de minutes (temps de validation du paiement), puis retourner
+> sur la fiche du plugin pour l’installer normalement.
 
 > **Tip**
 >
-> You can also add a plugin to Jeedom from a file or
-> from a Github repository. For this, it is necessary, in the configuration of
-> Jeedom, activate the appropriate function in the section "Updates and
-> files. "It will then be possible, by putting the mouse all to
-> left, and by displaying the menu of the plugin page, click
-> on "Add from another source". You can then choose the
-> source "File". Attention, in the case of adding by a file
-> zip, the name of the zip must be the same as the plugin ID and as soon as
-> Opening the ZIP a plugin \ _info folder must be present.
+> Vous pouvez aussi ajouter un plugin à Jeedom à partir d’un fichier ou
+> depuis un dépôt Github. Pour cela, il faut, dans la configuration de
+> Jeedom, activer la fonction adéquate dans la partie "Mises à jour et
+> fichiers". Il sera ensuite possible, en mettant la souris tout à
+> gauche, et en faisant apparaître le menu de la page plugin, de cliquer
+> sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la
+> source "Fichier". Attention, dans le cas de l’ajout par un fichier
+> zip, le nom du zip doit être le même que l’ID du plugin et dès
+> l’ouverture du ZIP un dossier plugin\_info doit être présent.

@@ -4,8 +4,8 @@ director
 
 Accesible por la Administración → Usuarios.
 
-En haut à droite vous avez un bouton pour ajouter un utilisateur, un
-pour sauvegarder et un bouton pour ouvrir un accès au support.
+En la parte superior derecha tienes un botón para añadir un usuario, otro
+para guardar y un botón para abrir el acceso a soporte.
 
 A continuación tiene una tabla:
 

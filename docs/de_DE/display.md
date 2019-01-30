@@ -21,6 +21,8 @@ affichés sur cette page. \* **Rechercher** : Permet de rechercher un
 élément particulier. Ce peut être le nom d’un équipement, d’une commande
 ou le nom du plugin par lequel a été créé l’équipement.
 
+Vous avez aussi un bouton "Historique des suppressions" qui vous permettra d'afficher l'historique des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur supprimés.
+
 Les cadres objet 
 ----------------
 
@@ -148,6 +150,8 @@ l’équipement ainsi que ses commandes :
 
 -   **Dernière mise à jour** : Date de dernière communication
     avec l’équipement.
+
+-   **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le dashboard de faire des filtre personalisés
 
 En dessous vous retrouvez un tableau avec la liste des commandes de
 l’équipement avec, pour chacune, un lien vers leur configuration.
@@ -435,7 +439,7 @@ Onglet Configuration
         suivant : `#value#` pour la valeur de la commande, `#cmd_name#`
         pour le nom de la commande, `#cmd_id#` pour l’identifiant unique
         de la commande, `#humanname#` pour le nom complet de la commande
-        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`)
+        (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement
 
 ### Pour une commande action : 
 

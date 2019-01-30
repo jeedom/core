@@ -118,7 +118,7 @@ Una vez conectado, este es el comando para realizar:
 
 Los ajustes posibles son:
 
--   **`mode`** : `force`, pour lancer une mise à jour en mode forcé (ne
+-   **`modo`** : `forzado`, para ejecutar una actualización en modo forzado (no 
     hace caso omiso de los errores).
 
 -   **`version`** seguido por el número de versión para volver a aplicar

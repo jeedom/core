@@ -11,8 +11,8 @@ relativa a los equipos en el centro:
 
 -   órdenes huérfanos
 
-La lengüeta de la batería
-==================
+La pestaña Baterías
+====================
 
 Se puede ver en esta pestaña lista de sus módulos de batería
 su nivel restante (el color de la baldosa depende de ese nivel), la
