@@ -15,6 +15,10 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+$('.backgroundforJeedom').css('background-position','bottom right');
+$('.backgroundforJeedom').css('background-size','auto');
+$('.backgroundforJeedom').css('background-repeat','no-repeat');
+
 tab = null;
 var url = document.location.toString();
 if (url.match('#')) {
