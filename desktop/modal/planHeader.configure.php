@@ -11,104 +11,120 @@ sendVarToJS('id', $planHeader->getId());
 sendVarToJS('planHeader', utils::o2a($planHeader));
 ?>
 <div id="div_alertPlanHeaderConfigure"></div>
-
-<div id="div_planHeaderConfigure">
-	<form class="form-horizontal">
-		<fieldset>
-			<legend><i class="fas fa-cog"></i> {{Général}}<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a></legend>
-			<input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Nom}}</label>
-				<div class="col-lg-2">
-					<input class="planHeaderAttr form-control" data-l1key="name" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Fond transparent}}</label>
-				<div class="col-lg-2">
-					<input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="backgroundTransparent" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Couleur de fond}}</label>
-				<div class="col-lg-2">
-					<input type="color" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="backgroundColor" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Code d'accès}}</label>
-				<div class="col-lg-2">
-					<input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Icône}}</label>
-				<div class="col-lg-2">
-					<div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-					<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Image}}</label>
-				<div class="col-lg-8">
-					<span class="btn btn-default btn-file">
-						<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
-					</span>
-					<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-	<form class="form-horizontal">
-		<fieldset>
-			<legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
-				<div class="col-lg-4">
-					<input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
-					x
-					<input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-	<form class="form-horizontal">
-		<fieldset>
-			<legend><i class="icon techno-fleches"></i> {{Composant}}</legend>
-			<table class="table table-condensed table-bordered">
-				<thead>
-					<tr>
-						<th>{{ID}}</th>
-						<th>{{Type}}</th>
-						<th>{{ID du lien}}</th>
-						<th>{{Action}}</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					foreach ($planHeader->getPlan() as $plan) {
-						echo '<tr  class="plan" data-id="'.$plan->getId().'">';
-						echo '<td>';
-						echo $plan->getId();
-						echo '</td>';
-						echo '<td>';
-						echo $plan->getLink_type();
-						echo '</td>';
-						echo '<td>';
-						echo $plan->getLink_id();
-						echo '</td>';
-						echo '<td>';
-						echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-						echo '</td>';
-						echo '</tr>';
-					}
-					?>
-				</tbody>
-			</table>
-		</fieldset>
-	</form>
+<ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
+	<li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
+	<a class='btn btn-success btn-sm pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+</ul>
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="main">
+		<div id="div_planHeaderConfigure">
+			<form class="form-horizontal">
+				<fieldset>
+					<legend><i class="fas fa-cog"></i> {{Général}}</legend>
+					<input type="text"  class="planHeaderAttr form-control" data-l1key="id" style="display: none;"/>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Nom}}</label>
+						<div class="col-lg-2">
+							<input class="planHeaderAttr form-control" data-l1key="name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Fond transparent}}</label>
+						<div class="col-lg-2">
+							<input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="backgroundTransparent" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Couleur de fond}}</label>
+						<div class="col-lg-2">
+							<input type="color" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="backgroundColor" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
+						<div class="col-lg-2">
+							<input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-2">
+							<div class="planHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
+						</div>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Image}}</label>
+						<div class="col-lg-8">
+							<span class="btn btn-default btn-file">
+								<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+							</span>
+							<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			<form class="form-horizontal">
+				<fieldset>
+					<legend><i class="icon techno-fleches"></i> {{Tailles}}</legend>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Taille (LxH)}}</label>
+						<div class="col-lg-4">
+							<input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key="desktopSizeX" style="width: 80px;display: inline-block;"/>
+							x
+							<input class="form-control input-sm planHeaderAttr" data-l1key='configuration' data-l2key='desktopSizeY' style="width: 80px;display: inline-block;"/>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="components">
+		<form class="form-horizontal">
+			<fieldset>
+				<table class="table table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>{{ID}}</th>
+							<th>{{Type}}</th>
+							<th>{{ID du lien}}</th>
+							<th>{{Lien}}</th>
+							<th>{{Action}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						foreach ($planHeader->getPlan() as $plan) {
+							echo '<tr  class="plan" data-id="'.$plan->getId().'">';
+							echo '<td>';
+							echo $plan->getId();
+							echo '</td>';
+							echo '<td>';
+							echo $plan->getLink_type();
+							echo '</td>';
+							echo '<td>';
+							echo $plan->getLink_id();
+							echo '</td>';
+							echo '<td>';
+							$link = $plan->	getLink();
+							if(is_object($link)){
+								echo $link->getHumanName();
+							}
+							echo '</td>';
+							echo '<td>';
+							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '</td>';
+							echo '</tr>';
+						}
+						?>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+	</div>
 </div>
 
 <script>
