@@ -604,7 +604,7 @@ class history {
 						if ($c == 0) {
 							return -1;
 						}
-						$currentValue = $cmd->execCmd();
+						$currentValue = $histories[0]->getValue();
 						if (is_numeric($_value)) {
 							$currentValue = round($currentValue, $_decimal);
 						}
@@ -633,10 +633,8 @@ class history {
 							}
 							//different state as current:
 							if ($_value != $currentValue && $i > 0) {
-								$prevValue = $histories[$i - 1]->getValue();
 								$nextValue = $histories[$i + 1]->getValue();
 								if (is_numeric($_value)) {
-									$prevValue = round($prevValue, $_decimal);
 									$nextValue = round($nextValue, $_decimal);
 								}
 								if ($_value == $value && $_value != $nextValue && isset($histories[$i - 1])) {
