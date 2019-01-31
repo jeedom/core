@@ -604,7 +604,7 @@ class history {
 						if ($c == 0) {
 							return -1;
 						}
-						$currentValue = $histories[0]->getValue();
+						$currentValue = $cmd->execCmd();
 						if (is_numeric($_value)) {
 							$currentValue = round($currentValue, $_decimal);
 						}
