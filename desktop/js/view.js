@@ -51,13 +51,11 @@ if (view_id != '') {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (html) {
-      setTimeout(function(){
-        if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
-          $('.backgroundforJeedom').css('background-image','url("'+ html.raw.img+'") !important');
-        }else{
-          $('.backgroundforJeedom').css('background-image','url("")');
-        }
-      },1);
+      if(isset(html.raw) && isset(html.raw.img) && html.raw.img != ''){
+        setBackgroundImg(html.raw.img);
+      }else{
+        setBackgroundImg('');
+      }
       try {
         var summary = '';
         for(var i in html.raw.viewZone){

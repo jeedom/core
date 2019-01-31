@@ -473,31 +473,35 @@ function finalisation(go){
 		pourcentageBar = 0;
 		$('#step5').show();
 		$('#contenuWithStepFive').addClass('animated');
+		console.log('Finalisation Activé');
 		$.ajax({
-	        type: 'POST',
-	        url: 'core/ajax/user.ajax.php',
-	        data: {
-	            action: 'login',
-	            username: 'admin',
-	            password: 'admin'
-	        },
-	        dataType: 'json',
-	        global: false,
-	        error: function (request, status, error) {
-	        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-	        },
-	        success: function (result){
-	        	jeedom.update({
+			type: 'POST',
+			url: 'core/ajax/user.ajax.php',
+			data: {
+			    action: 'login',
+			    username: 'admin',
+			    password: 'admin'
+			},
+			dataType: 'json',
+			global: false,
+			error: function (request, status, error) {
+				console.log('Ajax User Error');
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (result){
+				console.log('Succes Login ;)');
+				jeedom.update({
 					error: function (request, status, error) {
-			        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			        },
-			        success: function (result){
-			        	$('.progress-bar').width('1%');
-						$('.progress-bar').text('1%');
-			        	getJeedomLog(1, 'update');
-			        }
+						console.log('Error Update');
+						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (result){
+						$('.progress-bar').width('1%');
+							$('.progress-bar').text('1%');
+						getJeedomLog(1, 'update');
+					}
 				});
-	        }
+			}
 		});
 	}
 }
