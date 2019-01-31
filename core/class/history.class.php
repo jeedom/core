@@ -630,6 +630,9 @@ class history {
 									$duration += strtotime($histories[$i - 1]->getDatetime()) - strtotime($date);
 									return $duration;
 								}
+								if ($_value != $nextValue) {
+									return $duration;
+								}
 							}
 							//different state as current:
 							if ($_value != $currentValue && $i > 0) {
