@@ -443,10 +443,12 @@ function GoReload(){
 	$('#step4').show();
 	$('#contenuWithStepFor').addClass('animated');
 	$('#jqueryLoadingDiv').html('');
-	jeedom.rebootSystem();
+	setTimeout(function(){
+		jeedom.rebootSystem();
+	}, 5000);
 	setTimeout(function(){
 		reboot_jeedom();
-	},20000);
+	},30000);
 }
 
 function finalisation(go){
