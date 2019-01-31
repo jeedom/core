@@ -25,8 +25,8 @@ if (is_array($scenarioListGroup)) {
 
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
+		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 			<div class="cursor" id="bt_addScenario2" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
 				<i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;"></i>
 				<br>
