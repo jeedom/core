@@ -91,6 +91,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							<th>{{ID}}</th>
 							<th>{{Type}}</th>
 							<th>{{ID du lien}}</th>
+							<th>{{Lien}}</th>
 							<th>{{Action}}</th>
 						</tr>
 					</thead>
@@ -106,6 +107,12 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo '</td>';
 							echo '<td>';
 							echo $plan->getLink_id();
+							echo '</td>';
+							echo '<td>';
+							$link = $plan->	getLink();
+							if(is_object($link)){
+								echo $link->getHumanName();
+							}
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
