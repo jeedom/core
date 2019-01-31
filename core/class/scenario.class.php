@@ -868,38 +868,31 @@ class scenario {
 				*/
 				public function getIcon($_only_class = false) {
 					if ($_only_class) {
-						if ($this->getIsActive() == 1) {
-							switch ($this->getState()) {
-								case 'in progress':
-								return 'fa fa-spinner fa-spin';
-								case 'error':
-								return 'fa fa-exclamation-triangle';
-								default:
-								if (strpos($this->getDisplay('icon'), '<i') === 0) {
-									return str_replace(array('<i', 'class=', '"', '/>'), '', $this->getDisplay('icon'));
-								}
-								return 'fa fa-check';
+						switch ($this->getState()) {
+							case 'in progress':
+							return 'fa fa-spinner fa-spin';
+							case 'error':
+							return 'fa fa-exclamation-triangle';
+							default:
+							if (strpos($this->getDisplay('icon'), '<i') === 0) {
+								return str_replace(array('<i', 'class=', '"', '/>'), '', $this->getDisplay('icon'));
 							}
-						} else {
-							return 'fa fa-times';
+							return 'fa fa-check';
 						}
-					} else {
-						if ($this->getIsActive() == 1) {
-							switch ($this->getState()) {
-								case 'in progress':
-								return '<i class="fa fa-spinner fa-spin"></i>';
-								case 'error':
-								return '<i class="fa fa-exclamation-triangle"></i>';
-								default:
-								if (strpos($this->getDisplay('icon'), '<i') === 0) {
-									return $this->getDisplay('icon');
-								}
-								return '<i class="fa fa-check"></i>';
-							}
-						} else {
-							return '<i class="fa fa-times"></i>';
-						}
+						return 'fa fa-times';
 					}
+					switch ($this->getState()) {
+						case 'in progress':
+						return '<i class="fa fa-spinner fa-spin"></i>';
+						case 'error':
+						return '<i class="fa fa-exclamation-triangle"></i>';
+						default:
+						if ($this->getDisplay('icon') != '') {
+							return $this->getDisplay('icon');
+						}
+						return '<i class="fa fa-check"></i>';
+					}
+					return '<i class="fa fa-times"></i>';
 				}
 				/**
 				*
@@ -948,7 +941,7 @@ class scenario {
 					$this->emptyCacheWidget();
 					if ($this->_changeState) {
 						$this->_changeState = false;
-						event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch()));
+						event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'icon' => $this->getIcon()));
 					}
 					return true;
 				}

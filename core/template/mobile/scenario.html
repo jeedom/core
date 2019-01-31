@@ -5,7 +5,7 @@
     </span>
   </center>
   <center>
-    <span class="state" style="font-size: 2em;">#icon#</span>
+    <span class="state" style="font-size: 3em;">#icon#</span>
   </center>
   <center>
     <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
@@ -23,14 +23,11 @@
         error: function(error) {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
           $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>');
-          setTimeout(function() {
-            $('.scenario[data-scenario_id=#id#] .state').empty();
-          }, 3000);
         }
       });
     });
     jeedom.scenario.update['#id#'] =function(_options){
-      $('.scenario[data-scenario_id=#id#] .state').empty();
+      $('.scenario[data-scenario_id=#id#] .state').empty().append(_options.icon);
       $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
       if (_options.isActive == '1') {
         if (_options.state == 'in progress') {
@@ -47,6 +44,6 @@
         $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
       }
     }
-    jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#'});
+    jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#',icon:'#icon#'});
   </script>
 </div>
