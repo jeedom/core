@@ -445,8 +445,8 @@ function GoReload(){
 	$('#jqueryLoadingDiv').html('');
 	jeedom.rebootSystem();
 	setTimeout(function(){
-		reboot_jeedom(rebooti);
-	},5000);
+		reboot_jeedom();
+	},20000);
 }
 
 function finalisation(go){
@@ -473,12 +473,30 @@ function finalisation(go){
 		pourcentageBar = 0;
 		$('#step5').show();
 		$('#contenuWithStepFive').addClass('animated');
-		jeedom.update({
-			error: function (request, status, error) {
+		$.ajax({
+	        type: 'POST',
+	        url: 'core/ajax/user.ajax.php',
+	        data: {
+	            action: 'login',
+	            username: 'admin',
+	            password: 'admin'
+	        },
+	        dataType: 'json',
+	        global: false,
+	        error: function (request, status, error) {
 	        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
 	        },
 	        success: function (result){
-	        	getJeedomLog(1, 'update');
+	        	jeedom.update({
+					error: function (request, status, error) {
+			        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			        },
+			        success: function (result){
+			        	$('.progress-bar').width('1%');
+						$('.progress-bar').text('1%');
+			        	getJeedomLog(1, 'update');
+			        }
+				});
 	        }
 		});
 	}
@@ -583,11 +601,15 @@ function refresh() {
 	});
 }
 
-function page_rebootjs(rebooti){
+function page_rebootjs(){
 	refresh();
-	if(rebooti=='1'){
-		$('.TextMigrate').text('Votre Jeedom viens de redémarrer');
-		finalisation();
+	if(rebooti == '1'){
+		$('.TextMigrate').text('Votre Jeedom viens de redémarrer, Merci de patienter le premier redemarrage peux prendre jusqu\'à 5 minutes');
+		$('.progress-bar').width('90%');
+		$('.progress-bar').text('90%');
+		setTimeout(function(){
+			finalisation();
+		}, 300000);
 	}else{
 		testjeedom++;
 		pourcentageBar = pourcentageBar+10;
@@ -597,13 +619,16 @@ function page_rebootjs(rebooti){
 			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
 			$('.TextMigrate').text('Migration en Cours... merci de ne surtout pas débrancher votre Jeedom');
 		}
+		setTimeout(function(){
+				page_rebootjs();
+			}, 150000);
 	}
 }
 
-function reboot_jeedom(rebooti){
+function reboot_jeedom(){
 	$('.TextMigrate').text('Merci de patienter... Jeedom est en cours de Migration');
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
-	setInterval('page_rebootjs(rebooti)', 300000);
+	page_rebootjs();
 }

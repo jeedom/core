@@ -187,7 +187,7 @@ if (isset(jeedom_langage)) {
 //Display report bug
 $("#md_reportBug").dialog({
   autoOpen: false,
-  modal: false,
+  modal: true,
   closeText: '',
   height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
   width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
@@ -222,7 +222,7 @@ $("#md_pageHelp").dialog({
 
 $("#md_modal").dialog({
   autoOpen: false,
-  modal: false,
+  modal: true,
   closeText: '',
   height: (jQuery(window).height() - 100),
   width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
@@ -239,7 +239,7 @@ $("#md_modal").dialog({
 
 $("#md_modal2").dialog({
   autoOpen: false,
-  modal: false,
+  modal: true,
   closeText: '',
   height: (jQuery(window).height() - 150),
   width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,

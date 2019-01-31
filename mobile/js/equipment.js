@@ -98,6 +98,7 @@ function initEquipment(_object_id) {
             console.log(err);
           }
           setTileSize('.eqLogic');
+          setTileSize('.scenario');
           setTimeout(function () {
             $('.div_displayEquipement .objectHtml').packery({gutter :0});
           }, 10);
@@ -105,6 +106,7 @@ function initEquipment(_object_id) {
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create');
           jeedom.object.summaryUpdate([{object_id:_object_id}]);
           setTileSize('.eqLogic');
+          setTileSize('.scenario');
           setTimeout(function () {
             $('#div_displayEquipement > .objectHtml').packery({gutter :0});
           }, 10);
@@ -119,6 +121,7 @@ function initEquipment(_object_id) {
   $(window).on("orientationchange", function (event) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
+    setTileSize('.scenario');
     if(_object_id == 'all'){
       $('.div_displayEquipement > .objectHtml').packery({gutter :0});
     }else{
