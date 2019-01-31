@@ -7,25 +7,25 @@ sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::buildTree(null, false);
 ?>
 <div class="row row-overflow">
-	<div class="col-xs-12" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<div id="div_resumeObjectList" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="objectListContainer">
 			<div class="cursor" id="bt_addObject2" style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
 				<br/>
-				<center style='margin-top:-14px;'>
-					<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;margin-top:5px;"></i>
+				<center>
+					<i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;margin-top:5px;"></i>
 				</center>
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
 			</div>
 			<div class="cursor bt_showObjectSummary" style="text-align: center;  height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
 				<br/>
-				<center style='margin-top:-14px;'>
-					<i class="fas fa-list" style="font-size : 6em;color:#337ab7;margin-top:5px;"></i>
+				<center>
+					<i class="fas fa-list" style="font-size : 5em;color:#337ab7;margin-top:5px;"></i>
 				</center>
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
-		
+
 		<legend><i class="fas fa-picture-o"></i>  {{Mes objets}}</legend>
 		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchObject" />
 		<div class="objectListContainer">
@@ -33,7 +33,7 @@ $allObject = jeeObject::buildTree(null, false);
 			foreach ($allObject as $object) {
 				echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\' style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
 				echo "<center style='margin-top:10px;'>";
-				echo str_replace('></i>', ' style="font-size : 6em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>'));
+				echo str_replace('></i>', ' style="font-size : 5em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>'));
 				echo "</center>";
 				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center class="name">' . $object->getName() . '</center></span><br/>';
 				echo '<center style="font-size :0.7em">';
@@ -44,18 +44,18 @@ $allObject = jeeObject::buildTree(null, false);
 			?>
 		</div>
 	</div>
-	
+
 	<div class="col-xs-12 object" style="display: none;" id="div_conf">
 		<a class="btn btn-success pull-right" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
 		<a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 		<a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 		</ul>
-		
+
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
@@ -148,7 +148,7 @@ $allObject = jeeObject::buildTree(null, false);
 					if (count(config::byKey('object:summary')) == 0) {
 						echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 					} else {
-						
+
 						?>
 						<form class="form-horizontal">
 							<fieldset>
@@ -234,6 +234,5 @@ $allObject = jeeObject::buildTree(null, false);
 			</div>
 		</div>
 	</div>
-	
+
 	<?php include_file("desktop", "object", "js");?>
-	
