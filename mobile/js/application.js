@@ -88,12 +88,19 @@ $(function () {
 });
 
 
-function setBackgroundImage(_image){
+function setBackgroundImage(_path){
+  if(isset(userProfils) && isset(userProfils.hideBackgroundImg) && userProfils.hideBackgroundImg == 1){
+    return;
+  }
   $('.backgroundforJeedom').css('background-image','');
   $('.backgroundforJeedom').css('background-position','');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
-  if(_image != ''){
-    $('.backgroundforJeedom').css('background-image','url("'+_image+'") !important');
+  if(_path != ''){
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
+  }else{
+    document.body.style.setProperty('--dashBkg-url','url("")');
+    $('.backgroundforJeedom').css('background-image','url("") !important');
   }
 }
 

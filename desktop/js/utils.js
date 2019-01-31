@@ -62,12 +62,19 @@ function loadPage(_url,_noPushHistory){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
+  setBackgroundImg('');
   $('.backgroundforJeedom').css('background-image','');
+  $('.backgroundforJeedom').css('background-position','center center');
+  $('.backgroundforJeedom').css('background-repeat','no-repeat');
+  $('.backgroundforJeedom').css('background-size','cover');
   jeedomBackgroundImg = null;
   $('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     initPage();
     $('body').trigger('jeedom_page_load');
+    if(jeedomBackgroundImg !== null){
+      setBackgroundImg(jeedomBackgroundImg);
+    }
   });
   return;
 }
@@ -366,10 +373,26 @@ $('body').on('click','.objectSummaryParent',function(){
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
 });
 initPage();
+if(jeedomBackgroundImg != null){
+  setBackgroundImg(jeedomBackgroundImg);
+}
 setTimeout(function(){
   $('body').trigger('jeedom_page_load');
 }, 1);
 });
+
+function setBackgroundImg(_path){
+  if(isset(userProfils) && isset(userProfils.hideBackgroundImg) && userProfils.hideBackgroundImg == 1){
+    return;
+  }
+  if(_path == ''){
+    document.body.style.setProperty('--dashBkg-url','url("")');
+    $('.backgroundforJeedom').css('background-image','url("") !important');
+  }else{
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+  }
+}
 
 function initTextArea(){
   $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {

@@ -2,11 +2,10 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+sendVarToJs('jeedomBackgroundImg', 'core/img/background/object.png');
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::buildTree(null, false);
 ?>
-
-
 <div class="row row-overflow">
 	<div class="col-xs-12" id="div_resumeObjectList" style="border-left: solid 1px #EEE; padding-left: 25px;">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>

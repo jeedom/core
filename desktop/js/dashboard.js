@@ -22,11 +22,10 @@ $(function(){
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path){
-          $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+          setBackgroundImg(_path);
         }
       });
     }
-    
   },1);
 });
 
@@ -264,7 +263,7 @@ $('.li_object').on('click',function(){
     jeedom.object.getImgPath({
       id : object_id,
       success : function(_path){
-        $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+        setBackgroundImg(_path);
       }
     });
     $('.li_object').removeClass('active');

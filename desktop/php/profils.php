@@ -71,6 +71,12 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Masquer les images de fond}}</label>
+								<div class="col-sm-1">
+									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideBackgroundImg"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Graphique Desktop}}</label>
 								<div class="col-sm-3">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
