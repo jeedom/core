@@ -12,86 +12,91 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 ?>
 <div id="div_alertplan3dHeaderConfigure"></div>
 
-
-<div id="div_plan3dHeaderConfigure">
-	<form class="form-horizontal">
-		<fieldset>
-			<legend><i class="fas fa-cog"></i> {{Général}}
-				<a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigureplan3dHeader'><i class="fas fa-times"></i> {{Supprimer}}</a>
-				<a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigureplan3dHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
-			</legend>
-			<input type="text"  class="plan3dHeaderAttr form-control" data-l1key="id" style="display: none;"/>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Nom}}</label>
-				<div class="col-lg-2">
-					<input class="plan3dHeaderAttr form-control" data-l1key="name" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Code d'accès}}</label>
-				<div class="col-lg-2">
-					<input type="password" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Icône}}</label>
-				<div class="col-lg-2">
-					<div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
-				</div>
-				<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-					<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-4 control-label">{{Model 3D}}</label>
-				<div class="col-lg-8">
-					<span class="btn btn-default btn-file">
-						<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
-					</span>
-				</div>
-			</div>
+<ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
+	<li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
+	<a class='btn btn-danger btn-sm pull-right cursor' style="color: white;" id='bt_removeConfigureplan3dHeader'><i class="fas fa-times"></i> {{Supprimer}}</a>
+	<a class='btn btn-success btn-sm pull-right cursor' style="color: white;" id='bt_saveConfigureplan3dHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+</ul>
+<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="main">
+		<div id="div_plan3dHeaderConfigure">
+			<form class="form-horizontal">
+				<fieldset>
+					<input type="text"  class="plan3dHeaderAttr form-control" data-l1key="id" style="display: none;"/>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Nom}}</label>
+						<div class="col-lg-2">
+							<input class="plan3dHeaderAttr form-control" data-l1key="name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
+						<div class="col-lg-2">
+							<input type="password" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Icône}}</label>
+						<div class="col-lg-2">
+							<div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
+						</div>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Model 3D}}</label>
+						<div class="col-lg-8">
+							<span class="btn btn-default btn-file">
+								<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
+							</span>
+						</div>
+					</div>
+				</fieldset>
+			</form>
 		</div>
-	</fieldset>
-</form>
-<form class="form-horizontal">
-	<fieldset>
-		<legend><i class="icon techno-fleches"></i> {{Composant}}</legend>
-		<table class="table table-condensed table-bordered">
-			<thead>
-				<tr>
-					<th>{{ID}}</th>
-					<th>{{Nom object}}</th>
-					<th>{{Type}}</th>
-					<th>{{ID du lien}}</th>
-					<th>{{Action}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				foreach ($plan3dHeader->getPlan3d() as $plan3d) {
-					echo '<tr  class="plan" data-id="'.$plan3d->getId().'">';
-					echo '<td>';
-					echo $plan3d->getId();
-					echo '</td>';
-					echo '<td>';
-					echo $plan3d->getName();
-					echo '</td>';
-					echo '<td>';
-					echo $plan3d->getLink_type();
-					echo '</td>';
-					echo '<td>';
-					echo jeedom::toHumanReadable($plan3d->getLink_id());
-					echo '</td>';
-					echo '<td>';
-					echo '<a class="btn btn-danger btn-xs bt_removePlan3dComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-					echo '</td>';
-					echo '</tr>';
-				}
-				?>
-			</tbody>
-		</table>
-	</fieldset>
-</form>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="components">
+		<form class="form-horizontal">
+			<fieldset>
+				<table class="table table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>{{ID}}</th>
+							<th>{{Nom object}}</th>
+							<th>{{Type}}</th>
+							<th>{{ID du lien}}</th>
+							<th>{{Action}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						foreach ($plan3dHeader->getPlan3d() as $plan3d) {
+							echo '<tr  class="plan" data-id="'.$plan3d->getId().'">';
+							echo '<td>';
+							echo $plan3d->getId();
+							echo '</td>';
+							echo '<td>';
+							echo $plan3d->getName();
+							echo '</td>';
+							echo '<td>';
+							echo $plan3d->getLink_type();
+							echo '</td>';
+							echo '<td>';
+							echo jeedom::toHumanReadable($plan3d->getLink_id());
+							echo '</td>';
+							echo '<td>';
+							echo '<a class="btn btn-danger btn-xs bt_removePlan3dComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '</td>';
+							echo '</tr>';
+						}
+						?>
+					</tbody>
+				</table>
+			</fieldset>
+		</form>
+	</div>
 </div>
 
 <script>
