@@ -62,7 +62,6 @@ function loadPage(_url,_noPushHistory){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
-  setBackgroundImg('');
   $('.backgroundforJeedom').css('background-image','');
   $('.backgroundforJeedom').css('background-position','center center');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
@@ -387,14 +386,10 @@ function setBackgroundImg(_path){
   }
   if(_path == ''){
     document.body.style.setProperty('--dashBkg-url','url("")');
-    $('.backgroundforJeedom').css('background-image','url("") !important');
+    $('.backgroundforJeedom').css('background-image','url("")');
   }else{
-    setTimeout(function(){
-      console.log('coucou')
-      $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
-    }, 3000);
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
-    
   }
 }
 
