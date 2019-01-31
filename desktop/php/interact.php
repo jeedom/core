@@ -19,24 +19,24 @@ if (is_array($interactListGroup)) {
 		<div class="interactListContainer">
 			<div class="cursor" id="bt_addInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
 				<center>
-					<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
+					<i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;"></i>
 				</center>
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
 			</div>
 			<div class="cursor" id="bt_regenerateInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
 				<center>
-					<i class="fas fa-refresh" style="font-size : 6em;color:#f0ad4e;"></i>
+					<i class="fas fa-refresh" style="font-size : 5em;color:#f0ad4e;"></i>
 				</center>
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#f0ad4e"><center>{{Regénérer}}</center></span>
 			</div>
 			<div class="cursor" id="bt_testInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
 				<center>
-					<i class="fas fa-comment" style="font-size : 6em;color:#337ab7;"></i>
+					<i class="fas fa-comment" style="font-size : 5em;color:#337ab7;"></i>
 				</center>
 				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Tester}}</center></span>
 			</div>
 		</div>
-		
+
 		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
 		<?php
 		if (count($totalInteract) == 0) {
@@ -98,13 +98,13 @@ if (is_array($interactListGroup)) {
 		}
 		?>
 	</div>
-	
+
 	<div class="interact col-xs-12" style="display: none;" id="div_conf">
 		<a class="btn btn-default pull-right" id="bt_duplicate"><i class="far fa-files-o"></i> {{Dupliquer}}</a>
 		<a class="btn btn-danger pull-right" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 		<a class="btn btn-success pull-right" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
 		<a class="btn btn-default displayInteracQuery pull-right"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
@@ -112,7 +112,7 @@ if (is_array($interactListGroup)) {
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 	</ul>
-	
+
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
@@ -257,7 +257,7 @@ if (is_array($interactListGroup)) {
 							?>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-sm-3 control-label">{{Limiter aux catégories}}</label>
 						<div class="col-sm-9">
@@ -295,18 +295,18 @@ if (is_array($interactListGroup)) {
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="actiontab">
 			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 			<br/><br/>
 			<form class="form-horizontal">
 				<fieldset>
-					
+
 					<div id="div_action"></div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-	
+
 	<?php include_file('desktop', 'interact', 'js');?>
-	
+
