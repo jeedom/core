@@ -7,13 +7,13 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
 <a class="btn btn-default" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
-<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width: 100%">
+<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
     <thead>
         <tr>
             <th data-sorter="input">{{Nom}}</th>
             <th data-sorter="input">{{Valeur}}</th>
             <th>{{Utilisée dans}}</th>
-            <th data-sorter="false" data-filter="false" style="min-width: 100px;">{{Action}}</th>
+            <th data-sorter="false" data-filter="false">{{Action}}</th>
         </tr>
     </thead>
     <tbody>
@@ -100,10 +100,10 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
              for (var i in data) {
                 tr += '<tr data-dataStore_id="' + data[i].id + '">';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" style="width:400px" value="' + data[i].key + '" disabled />';
+                tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
                 tr += '</td>';
                 tr += '<td>';
-                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" style="width:400px" value="' + data[i].value + '" />';
+                tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';
                 tr += '</td>';
                 tr += '<td>';
                 for(var j in data[i].usedBy.scenario){
@@ -119,7 +119,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
                     tr += '<span class="label label-primary">'+data[i].usedBy.interactDef[j]+'</span> ';
                 }
                 tr += '</td>';
-                tr += '<td>';
+                tr += '<td style="min-width:120px; width:120px;">';
                 tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
                 tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="far fa-trash-alt"></i></a>';
                 tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
