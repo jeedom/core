@@ -372,16 +372,18 @@ if (!isConnect()) {
 							<tbody>
 								<?php
 								$sessions = listSession();
-								foreach ($sessions as $id => $session) {
-									if ($session['user_id'] != $_SESSION['user']->getId()) {
-										continue;
+								if(count($sessions) > 0){
+									foreach ($sessions as $id => $session) {
+										if ($session['user_id'] != $_SESSION['user']->getId()) {
+											continue;
+										}
+										echo '<tr data-id="' . $id . '">';
+										echo '<td>' . $id . '</td>';
+										echo '<td>' . $session['ip'] . '</td>';
+										echo '<td>' . $session['datetime'] . '</td>';
+										echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+										echo '</tr>';
 									}
-									echo '<tr data-id="' . $id . '">';
-									echo '<td>' . $id . '</td>';
-									echo '<td>' . $session['ip'] . '</td>';
-									echo '<td>' . $session['datetime'] . '</td>';
-									echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
-									echo '</tr>';
 								}
 								?>
 							</tbody>
