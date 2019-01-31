@@ -83,7 +83,7 @@ class plan3dHeader {
 	}
 	
 	public function getPlan3d() {
-		return plan3d::by3dHeaderId($this->getId());
+		return plan3d::byPlan3dHeaderId($this->getId());
 	}
 	
 	/*     * **********************Getteur Setteur*************************** */
