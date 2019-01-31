@@ -15,8 +15,8 @@ if (is_array($interactListGroup)) {
 ?>
 <div class="row row-overflow">
 	<div id="interactThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
+		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="interactListContainer">
-			<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 			<div class="cursor" id="bt_addInteract2" style=" height : 120px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 140px;margin-left : 10px;" >
 				<center>
 					<i class="fas fa-plus-circle" style="font-size : 6em;color:#94ca02;"></i>
