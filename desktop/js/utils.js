@@ -389,8 +389,12 @@ function setBackgroundImg(_path){
     document.body.style.setProperty('--dashBkg-url','url("")');
     $('.backgroundforJeedom').css('background-image','url("") !important');
   }else{
+    setTimeout(function(){
+      console.log('coucou')
+      $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+    }, 3000);
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
-    $('.backgroundforJeedom').css('background-image','url("'+_path+'") !important');
+    
   }
 }
 
