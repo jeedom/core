@@ -104,13 +104,13 @@ if (!isConnect('admin')) {
         <h4 class="modal-title">{{Réinstallation de votre Backup}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{Voulez-vous réinstaller votre Backup sur cette Jeedom ou bien repartir de zero ?}}</p>
-        <p>{{Votre backup est disponible sur votre Jeedom dans tout les cas.}}</p>
-        <p>{{Si vous choisissez "zero" n'oubliez pas que vos identifiant sont admin/admin}}</p>
+        <p>{{Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?}}</p>
+        <p>{{Votre backup est disponible sur votre Jeedom dans tous les cas.}}</p>
+        <p>{{Si vous choisissez "zéro" n'oubliez pas que vos identifiants sont admin/admin}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="bt_zero">{{Zero}}</button>
-        <button type="button" class="btn btn-primary" id="bt_backup">{{Récupérer mon Backup}}</button>
+        <button type="button" class="btn btn-default" id="bt_zero">{{Zéro}}</button>
+        <button type="button" class="btn btn-primary" id="bt_backup">{{Installer mon Backup}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
