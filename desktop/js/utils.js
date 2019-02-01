@@ -71,7 +71,13 @@ $('#div_pageContainer').add("#div_pageContainer *").off();
 $.hideAlert();
 $('.bt_pluginTemplateShowSidebar').remove();
 removeContextualFunction();
-$('#div_pageContainer').empty().load(_url+'&ajax=1',function(){
+       if(_url.indexOf('#') == -1){
+    var url = _url+'&ajax=1';
+  }else{
+    var n=_url.lastIndexOf("#");
+    var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
+  }
+$('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     var title = getUrlVars('p');
     if(title !== false){
