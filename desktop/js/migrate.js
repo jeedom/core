@@ -495,7 +495,8 @@ function finalisation(go){
 					type: 'POST',
 					url: 'core/ajax/update.ajax.php',
 					data: {
-					    action: 'updateAll'
+					    action: 'updateAll',
+					    options: "{'core': 1}"
 					},
 					dataType: 'json',
 					global: false,
