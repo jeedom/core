@@ -7,16 +7,16 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-     $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
-     $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
-     $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
-      jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
+      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
+      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
+      $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
+        jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
+      });
+    }
+    $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
+      jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
     });
-   }
-   $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
-    jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
-  });
-   jeedom.cmd.update['#id#']({display_value:'#state#'});
-
- </script>
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    
+  </script>
 </div>
