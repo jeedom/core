@@ -443,10 +443,12 @@ function GoReload(){
 	$('#step4').show();
 	$('#contenuWithStepFor').addClass('animated');
 	$('#jqueryLoadingDiv').html('');
-	jeedom.rebootSystem();
+	setTimeout(function(){
+		jeedom.rebootSystem();
+	}, 5000);
 	setTimeout(function(){
 		reboot_jeedom();
-	},20000);
+	},30000);
 }
 
 function finalisation(go){
@@ -463,7 +465,6 @@ function finalisation(go){
 		$('#contenuWithStepFive').addClass('animated');
 		getJeedomLog(1, 'update');
 	}else{
-		setStep('5');
 		$('#step1').hide();
 		$('#step2').hide();
 		$('#step3').hide();
@@ -490,14 +491,21 @@ function finalisation(go){
 			},
 			success: function (result){
 				console.log('Succes Login ;)');
-				jeedom.update({
+				$.ajax({
+					type: 'POST',
+					url: 'core/ajax/update.ajax.php',
+					data: {
+					    action: 'updateAll'
+					},
+					dataType: 'json',
+					global: false,
 					error: function (request, status, error) {
 						console.log('Error Update');
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (result){
 						$('.progress-bar').width('1%');
-							$('.progress-bar').text('1%');
+						$('.progress-bar').text('1%');
 						getJeedomLog(1, 'update');
 					}
 				});
@@ -507,6 +515,7 @@ function finalisation(go){
 }
 
 function final(){
+	setStep('5');
 	$.ajax({
         type: 'POST',
         url: 'core/ajax/migrate.ajax.php',

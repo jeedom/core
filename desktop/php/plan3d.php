@@ -8,12 +8,12 @@ if (init('plan3d_id') == '') {
 	if ($_SESSION['user']->getOptions('defaultDesktopPlan3d') != '') {
 		$plan3dHeader = plan3dHeader::byId($_SESSION['user']->getOptions('defaultDesktopPlan3d'));
 	}
-	if (!is_object($plan3dHeader)) {
+	if (!is_object($plan3dHeader) && isset($list_plan3dHeader[0])) {
 		$plan3dHeader = $list_plan3dHeader[0];
 	}
 } else {
 	$plan3dHeader = plan3dHeader::byId(init('plan3d_id'));
-	if (!is_object($plan3dHeader)) {
+	if (!is_object($plan3dHeader) && isset($list_plan3dHeader[0])) {
 		$plan3dHeader = $list_plan3dHeader[0];
 	}
 }
@@ -36,7 +36,7 @@ if (init('fullscreen') != 1) {
 	</div>
 </div>
 <div class="col-lg-2 bs-sidebar" id="div_colMenu">
-<div id="div_btEdit" style="display: none;">
+	<div id="div_btEdit" style="display: none;">
 		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure"><i class="fas fa-cogs"></i></a>
 		<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd"><i class="fas fa-plus"></i></a>
 		<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fas fa-eye"></i></a>
@@ -45,18 +45,18 @@ if (init('fullscreen') != 1) {
 		<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fas fa-pencil-alt"></i></a>
 		<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fas fa-desktop"></i></a>
 	</legend>
-
+	
 	<ul id="ul_plan3d" class="nav nav-list bs-sidenav">
 		<?php
-$plan3dHeaders = plan3dHeader::all();
-foreach ($plan3dHeaders as $li_plan3dHeader) {
-	if ($li_plan3dHeader->getId() == $plan3dHeader->getId()) {
-		echo '<li class="cursor active" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
-	} else {
-		echo '<li class="cursor" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
-	}
-}
-?>
+		$plan3dHeaders = plan3dHeader::all();
+		foreach ($plan3dHeaders as $li_plan3dHeader) {
+			if ($li_plan3dHeader->getId() == $plan3dHeader->getId()) {
+				echo '<li class="cursor active" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
+			} else {
+				echo '<li class="cursor" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
+			}
+		}
+		?>
 	</ul>
 </div>
 </div>
