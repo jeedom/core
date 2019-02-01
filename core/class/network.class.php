@@ -412,12 +412,6 @@ class network {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}
-		if (!network::test('internal')) {
-			network::checkConf('internal');
-		}
-		if (!network::test('external')) {
-			network::checkConf('external');
-		}
 		if (!jeedom::isCapable('sudo') || jeedom::getHardwareName() == 'docker') {
 			return;
 		}
