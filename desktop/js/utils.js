@@ -66,6 +66,7 @@ function loadPage(_url,_noPushHistory){
   $('.backgroundforJeedom').css('background-position','center center');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
   $('.backgroundforJeedom').css('background-size','cover');
+  setBackgroundImg('');
   jeedomBackgroundImg = null;
   $('#div_pageContainer').empty().load(url,function(){
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));

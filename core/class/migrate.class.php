@@ -68,6 +68,7 @@ class migrate {
 	public static function backupToUsb() { 
 		$mediaLink = '/media/migrate/Backup';
 		log::remove('migrate');
+		exec('sudo rm '.$mediaLink.'/*');
 	    $backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
