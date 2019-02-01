@@ -1,6 +1,11 @@
 Changelog 
 =========
 
+3.2.15
+=====
+
+- Correction d'un bug lors de la sauvegarde d'un équipement
+
 3.2.14
 =====
 
