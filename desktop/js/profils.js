@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -18,7 +17,7 @@
  var url = document.location.toString();
  if (url.match('#')) {
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
-} 
+}
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
     window.location.hash = e.target.hash;
 })
@@ -88,10 +87,14 @@ $('#bt_genUserKeyAPI').on('click',function(){
 $('.userAttr[data-l1key=options][data-l2key=bootstrap_theme]').on('change', function () {
     if($(this).value() == ''){
         $('#div_imgThemeDesktop').html('<img src="core/img/theme_default.png" height="300" class="img-thumbnail" />');
-    }else{
-        $('#div_imgThemeDesktop').html('<img src="core/themes/' + $(this).value() + '/desktop/preview.png" height="300" class="img-thumbnail" />');
+    } else {
+        url = 'core/themes/' + $(this).value() + '/desktop/preview.png';
+        if (UrlExists(url)) {
+            $('#div_imgThemeDesktop').html('<img src="' + url + '" height="300" class="img-thumbnail" />');
+        } else {
+            $('#div_imgThemeDesktop').html('');
+        }
     }
-    
 });
 
 jeedom.user.get({
@@ -144,7 +147,7 @@ $('#bt_removeAllRegisterDevice').on('click',function(){
 
 
 $('.bt_deleteSession').on('click',function(){
-   var id = $(this).closest('tr').attr('data-id'); 
+   var id = $(this).closest('tr').attr('data-id');
    jeedom.user.deleteSession({
     id : id,
     error: function (error) {
@@ -155,3 +158,11 @@ $('.bt_deleteSession').on('click',function(){
     }
 });
 });
+
+function UrlExists(url)
+{
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!=404;
+}
