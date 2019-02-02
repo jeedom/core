@@ -6,7 +6,7 @@ if (!isConnect('admin')) {
 
 <br/>
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#cron" role="tab" data-toggle="tab"><i class="fas fa-motorcycle"></i> {{Cron}}</a></li>
+    <li role="presentation" class="active"><a href="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock-o"></i> {{Cron}}</a></li>
     <li role="presentation"><a href="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
 </ul>
 
