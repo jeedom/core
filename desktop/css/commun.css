@@ -389,3 +389,14 @@ input[type=checkbox] {
 .highcharts-table-caption{
   display: none;
 }
+
+.ui-dialog, .ui-dialog-content {
+    box-sizing: content-box !important;
+}
+.ui-dialog .ui-resizable-se {
+  width: 18px !important;
+  height: 18px !important;
+  right: 3px !important;
+  bottom: 3px !important;
+  background-color: rgb(255, 255, 255) !important;
+}
