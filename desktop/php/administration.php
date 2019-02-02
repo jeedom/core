@@ -1337,23 +1337,25 @@ if (init('rescue', 0) == 0) {
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<div class="form-group">
+					<div class="col-lg-12 form-group">
 						<label class="col-lg-4 col-md-3 col-sm-4 col-xs-4 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<div class="col-lg-2 col-md-4 col-sm-5 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-3 col-sm-4 col-xs-4 control-label">{{Seuil des piles}}</label>
-						<label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
-						<div class="col-xs-1">
-							<input class="configKey form-control" data-l1key="battery::danger" />
+					<div class="col-lg-12 form-group">
+						<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">{{Seuil des piles}}</label>
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 eqLogicAttr label label-danger" style="font-size : 1.4em">{{Danger}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+								<input class="configKey form-control" data-l1key="battery::danger" />
+							</div>
+							<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 label label-warning" style="font-size : 1.4em">{{Warning}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+								<input class="configKey form-control" data-l1key="battery::warning" />
+							</div>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 label label-success" style="font-size : 1.4em">{{Ok}}</label>
 						</div>
-						<label class="col-xs-1 label label-warning" style="font-size : 1.4em">{{Warning}}</label>
-						<div class="col-xs-1">
-							<input class="configKey form-control" data-l1key="battery::warning" />
-						</div>
-						<label class="col-xs-1 label label-success" style="font-size : 1.4em">{{Ok}}</label>
 					</div>
 				</fieldset>
 			</form>
