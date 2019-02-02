@@ -397,12 +397,12 @@ input[type=checkbox] {
 }
 
 .ui-dialog, .ui-dialog-content {
-    box-sizing: content-box !important;
+    box-sizing: content-box;
 }
 .ui-dialog .ui-resizable-se {
-  width: 18px !important;
-  height: 18px !important;
-  right: 3px !important;
-  bottom: 3px !important;
-  background-color: rgb(255, 255, 255) !important;
+  width: 18px;
+  height: 18px;
+  right: 3px;
+  bottom: 3px;
+  background-color: rgb(255, 255, 255);
 }
