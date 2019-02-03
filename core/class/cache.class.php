@@ -60,7 +60,8 @@ class cache {
 	public static function stats($_details = false) {
 		$return = self::getCache()->getStats();
 		$return['count'] = __('Inconnu', __FILE__);
-		if (config::byKey('cache::engine') == 'FilesystemCache') {
+		$engine = config::byKey('cache::engine');
+		if ($engine == 'FilesystemCache') {
 			$return['count'] = 0;
 			foreach (ls(self::getFolder()) as $folder) {
 				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
@@ -70,6 +71,8 @@ class cache {
 					$return['count']++;
 				}
 			}
+		} else if($engine == 'RedisCache') {
+			$return['count'] = self::$cache->getRedis()->dbSize();
 		}
 		if ($_details) {
 			$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
