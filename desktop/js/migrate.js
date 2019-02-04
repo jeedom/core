@@ -52,8 +52,7 @@ $('#bt_zero').on('click', function() {
 	setStep(1);
 	$('.progress-bar').width('100%');
 	$('.progress-bar').text('100%');
-	window.location.replace("index.php?v=d&p=logout");
-	
+	window.location.replace("index.php?v=d&logout=1");	
 });
 
 $('#bt_backup').on('click', function() {
