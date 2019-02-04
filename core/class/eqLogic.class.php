@@ -629,6 +629,7 @@ class eqLogic {
 	}
 	
 	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
@@ -653,6 +654,13 @@ class eqLogic {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
+		$translate_category = '';
+		foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+			if ($this->getCategory($key, 0) == 1) {
+				$translate_category .= __($value['name'],__FILE__).',';
+			}
+		}
+		$translate_category = trim($translate_category,',');
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -660,6 +668,7 @@ class eqLogic {
 			'#hideEqLogicName#' => '',
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
+			'#translate_category#' => $translate_category,
 			'#color#' => '#ffffff',
 			'#border#' => 'none',
 			'#border-radius#' => '0px',
