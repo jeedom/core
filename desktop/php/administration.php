@@ -232,8 +232,8 @@ $lastKnowDate = $cache->getValue();
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API HTTP}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::http::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
@@ -243,8 +243,8 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API JSONRPC}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
@@ -254,8 +254,8 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API TTS}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::tts::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
@@ -266,8 +266,8 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
-						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
+						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['api']; ?></span>
 								<span class="input-group-btn">
@@ -278,8 +278,8 @@ $lastKnowDate = $cache->getValue();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
-						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
+						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
 								<span class="input-group-btn">
@@ -287,8 +287,8 @@ $lastKnowDate = $cache->getValue();
 								</span>
 							</div>
 						</div>
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::pro::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="disable">{{Désactivé}}</option>
@@ -296,8 +296,8 @@ $lastKnowDate = $cache->getValue();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
-						<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
+						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
 								<span class="input-group-btn">
@@ -305,8 +305,8 @@ $lastKnowDate = $cache->getValue();
 								</span>
 							</div>
 						</div>
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::market::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="disable">{{Désactivé}}</option>
@@ -315,34 +315,34 @@ $lastKnowDate = $cache->getValue();
 					</div>
 					<hr/>
 					<?php
-if (init('rescue', 0) == 0) {
-	foreach (plugin::listPlugin(true) as $plugin) {
-		if (config::byKey('api', $plugin->getId()) == '') {
-			continue;
-		}
-		echo '<div class="form-group">';
-		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
-		echo '<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6">';
-		echo '<div class="input-group">';
-		echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
-		echo '<span class="input-group-btn">';
-		echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
-		echo '</span>';
-		echo '</div>';
-		echo '</div>';
-		echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Accès API}}</label>';
-		echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">';
-		echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
-		echo '<option value="enable">{{Activé}}</option>';
-		echo '<option value="whiteip">{{IP blanche}}</option>';
-		echo '<option value="localhost">{{Localhost}}</option>';
-		echo '<option value="disable">{{Désactivé}}</option>';
-		echo '</select>';
-		echo '</div>';
-		echo '</div>';
-	}
-}
-?>
+						if (init('rescue', 0) == 0) {
+							foreach (plugin::listPlugin(true) as $plugin) {
+								if (config::byKey('api', $plugin->getId()) == '') {
+									continue;
+								}
+								echo '<div class="form-group">';
+								echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
+								echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
+								echo '<div class="input-group">';
+								echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
+								echo '<span class="input-group-btn">';
+								echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
+								echo '</span>';
+								echo '</div>';
+								echo '</div>';
+								echo '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
+								echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
+								echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
+								echo '<option value="enable">{{Activé}}</option>';
+								echo '<option value="whiteip">{{IP blanche}}</option>';
+								echo '<option value="localhost">{{Localhost}}</option>';
+								echo '<option value="disable">{{Désactivé}}</option>';
+								echo '</select>';
+								echo '</div>';
+								echo '</div>';
+							}
+						}
+					?>
 				</fieldset>
 			</form>
 		</div>
@@ -377,17 +377,17 @@ if (init('rescue', 0) == 0) {
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Utilisateur}}</label>
 						<div class="col-sm-1">
 							<?php
-global $CONFIG;
-echo $CONFIG['db']['username'];
-?>
+								global $CONFIG;
+								echo $CONFIG['db']['username'];
+							?>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 						<div class="col-sm-1">
 							<?php
-echo $CONFIG['db']['password'];
-?>
+								echo $CONFIG['db']['password'];
+							?>
 						</div>
 					</div>
 				</fieldset>
@@ -468,9 +468,9 @@ echo $CONFIG['db']['password'];
 								</div>
 							</div>
 						</div>
-					<?php } else {
-	echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
-}?>
+						<?php } else {
+							echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
+						}?>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
