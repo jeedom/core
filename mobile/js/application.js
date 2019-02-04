@@ -89,7 +89,7 @@ $(function () {
 
 
 function setBackgroundImage(_path){
-  if(userProfils != undefined && userProfils.hideBackgroundImg  != undefined && userProfils.hideBackgroundImg == 1){
+  if(typeof userProfils == 'undefined' || typeof userProfils.hideBackgroundImg  == 'undefined' || userProfils.hideBackgroundImg == 1){
     return;
   }
   $('.backgroundforJeedom').css('background-image','');
