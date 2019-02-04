@@ -701,28 +701,15 @@ class jeeObject {
 	}
 	
 	public function getImgLink() {
-		if ($this->getImage('data') == '') {
+		if ($this->getImage('sha512') == '') {
 			return '';
 		}
-		$dir = __DIR__ . '/../../core/img/object';
-		if (!file_exists($dir)) {
-			mkdir($dir);
-		}
-		if ($this->getImage('sha512') == '') {
-			$this->setImage('sha512', sha512($this->getImage('data')));
-			$this->save();
-		}
-		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
-		$filepath = $dir . '/' . $filename;
-		if (!file_exists($filepath)) {
-			file_put_contents($filepath, base64_decode($this->getImage('data')));
-		}
-		return 'core/img/object/' . $filename;
+		$filename = 'object'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
+		return 'data/object/' . $filename;
 	}
 	
 	public function toArray() {
 		$return = utils::o2a($this, true);
-		unset($return['image']);
 		$return['img'] = $this->getImgLink();
 		return $return;
 	}
