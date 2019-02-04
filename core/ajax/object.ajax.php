@@ -268,11 +268,22 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
+		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'*');
+		if(count($files)  > 0){
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/'.$file);
+			}
+		}
 		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('data', base64_encode(file_get_contents($_FILES['file']['tmp_name'])));
 		$object->setImage('sha512', sha512($object->getImage('data')));
+		
+		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
+		$filepath = __DIR__ . '/../../data/object/' . $filename;
+		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
+		if(!file_exists($filepath)){
+			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
+		}
 		$object->save();
-		@rrmdir(__DIR__ . '/../../core/img/object');
 		ajax::success();
 	}
 	

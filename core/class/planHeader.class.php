@@ -116,24 +116,12 @@ class planHeader {
 	}
 	
 	public function displayImage() {
-		if ($this->getImage('data') == '') {
+		if ($this->getImage('sha512') == '') {
 			return '';
 		}
-		$dir = __DIR__ . '/../../core/img/plan';
-		if (!file_exists($dir)) {
-			mkdir($dir);
-		}
-		if ($this->getImage('sha512') == '') {
-			$this->setImage('sha512', sha512($this->getImage('data')));
-			$this->save();
-		}
-		$filename = $this->getImage('sha512') . '.' . $this->getImage('type');
-		$filepath = $dir . '/' . $filename;
-		if (!file_exists($filepath)) {
-			file_put_contents($filepath, base64_decode($this->getImage('data')));
-		}
 		$size = $this->getImage('size');
-		return '<img style="z-index:997" src="core/img/plan/' . $filename . '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '">';
+		$filename = 'planHeader'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
+		return '<img style="z-index:997" src="data/plan/' . $filename . '" data-sixe_y="' . $size[1] . '" data-sixe_x="' . $size[0] . '">';
 	}
 	
 	public function getPlan() {

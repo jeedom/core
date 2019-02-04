@@ -18,6 +18,9 @@ data/*
 !data/.htaccess
 !data/php
 !data/3d
+!data/view
+!data/object
+!data/plan
 !data/custom
 data/3d/*
 !3d/.htaccess
