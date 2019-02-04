@@ -52,6 +52,9 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     if(match ||($(this).attr('data-eqType') != undefined && $(this).attr('data-eqType').toLowerCase().indexOf(search.toLowerCase()) >= 0)){
       match = true;
     }
+    if(match ||($(this).attr('data-translate-category') != undefined && $(this).attr('data-translate-category').toLowerCase().indexOf(search.toLowerCase()) >= 0)){
+      match = true;
+    }
     if(match){
       $(this).show();
     }else{

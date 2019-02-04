@@ -332,7 +332,7 @@ class repo_market {
 		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 		$results = explode("\n", com_shell::execute($cmd));
 		foreach ($results as $line) {
-			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false) {
+			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false && strpos($line, 'Complète') === false && strpos($line, 'Incrémentale') === false) {
 				continue;
 			}
 			$return[] = trim(substr($line, 0, -1));

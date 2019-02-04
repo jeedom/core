@@ -32,6 +32,10 @@ body {
   background-position: center center;
 }
 
+legend:first-letter {
+    text-transform: uppercase;
+}
+
 .btn:hover {
   opacity: 0.7;
 }
@@ -313,6 +317,12 @@ body {
   float: none !important;
 }
 
+#table_dataStore {
+  width: 100% !important;
+}
+#table_dataStore th {
+  min-width: 130px;
+}
 
 input[type=checkbox] {
   position: relative;
@@ -384,4 +394,15 @@ input[type=checkbox] {
 
 .highcharts-table-caption{
   display: none;
+}
+
+.ui-dialog, .ui-dialog-content {
+    box-sizing: content-box;
+}
+.ui-dialog .ui-resizable-se {
+  width: 18px;
+  height: 18px;
+  right: 3px;
+  bottom: 3px;
+  background-color: rgb(255, 255, 255);
 }

@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -44,6 +43,12 @@
         matchBrackets: true,
         viewportMargin: Infinity
     });
+   hmenu = $('header.navbar').height();
+   hcontainer = $('#div_pageContainer').height();
+   hwin = $(window).height();
+   h = hwin - (hmenu + hcontainer) + 300;
+   editorDesktopJS.setSize(null, h);
+   editorDesktopCSS.setSize(null, h);
 }, 1);
 
  $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function (e) {
@@ -63,6 +68,8 @@
             viewportMargin: Infinity
         });
     }
+   editorMobileCSS.setSize(null, h);
+   editorMobileJS.setSize(null, h);
 });
 
  $('.saveCustom').on('click', function () {
