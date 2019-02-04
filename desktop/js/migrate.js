@@ -645,4 +645,6 @@ function reboot_jeedom(){
 	pourcentageBar = 5;
 	page_rebootjs();
 	setcookie('jeedom_token', '', time() - 365 * 24 * 3600, "/", '', false, true);
+	setcookie('PHPSESSID', '', time() - 365 * 24 * 3600, "/", '', false, true);
+	setcookie('sess_id', '', time() - 365 * 24 * 3600, "/", '', false, true);
 }
