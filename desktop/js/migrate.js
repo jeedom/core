@@ -644,4 +644,5 @@ function reboot_jeedom(){
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
 	page_rebootjs();
+	setcookie('jeedom_token', '', time() - 365 * 24 * 3600, "/", '', false, true);
 }
