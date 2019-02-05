@@ -14,6 +14,10 @@ Es accesible a través de Inicio → Dashboard
 
 Une fois votre model 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
 
+> **IMPORTANT**
+>
+> Les fichiers doivent etre à la racine du zip est pas dans un sous-dossier
+
 > **ATTENTION**
 >
 > Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est gros plus long sera le temps de rendu dans Jeedom.
@@ -22,7 +26,7 @@ Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 
 
 Jeedom va automatiquement passer sur le nouveau design 3D, il faut repasser en mode édition et cliquer sur les petites roues crantées.
 
-Vous pouvez à partir de cette écran : 
+Vous pouvez à partir de cette écran :
 
 - Cambiar el nombre de su diseño
 - Añadir un código de acceso
@@ -33,7 +37,7 @@ Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre
 
 > **ATTENTION**
 >
-> Jeedom autorise l'import d'un fichier de 150mo maximum ! 
+> Jeedom autorise l'import d'un fichier de 150mo maximum !
 
 > **ATTENTION**
 >
@@ -50,7 +54,7 @@ Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre
 >
 > La configuration ne peut se faire qu'en mode édition
 
-Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va amener une fenêtre où vous pourrez : 
+Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va amener une fenêtre où vous pourrez :
 
 - Indique un tipo de enlace (actualmente sólo existe Dispositivo)
 - Le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre l'équipment
@@ -85,7 +89,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
     - Activar: activa la traslación al abrir (tipo Puerta/Ventana corredera)
     - Dirección: dirección en la que debe moverse la puerta/ventana (usted tiene arriba/abajo/derecha/izquierda)
     - Répéter : par défaut la Porte/Fenêtre bouge d'une fois sa dimension dans le sens donné mais vous pouvez augmenter cette valeur
-- Ocultar cuando la puerta/ventana está abierta
+- Masquer quand la Porte/Fenêtre est ouverte
     - Habilitar: Oculta el elemento si la puerta/ventana está abierta.
 - Color
     - Color apertura: si la casilla está marcada, el elemento tomará este color si la puerta/ventana está abierta.
@@ -101,7 +105,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 
 ## Couleur conditionnelle
 
-Permet de donner la couleur choisie à l'élément si la condition est valide. Vous pouvez mettre autant de couleurs/conditions que vous voulez. 
+Permet de donner la couleur choisie à l'élément si la condition est valide. Vous pouvez mettre autant de couleurs/conditions que vous voulez.
 
 > **Tip**
 >
