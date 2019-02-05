@@ -1,6 +1,11 @@
 Changelog 
 =========
 
+3.2.16
+=====
+
+- Correction d'un bug lors de l'installation de dépendance de certain plugins sur smart
+
 3.2.15
 =====
 
