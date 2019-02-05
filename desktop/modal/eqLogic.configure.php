@@ -424,16 +424,16 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="form-group">
-					<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger}}</label>
+					<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em;line-height: 34px">{{Danger}}</label>
 					<div class="col-xs-2">
 						<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
 					</input>
 				</div>
-				<label class="col-xs-3 label label-warning" style="font-size : 1.8em">{{Warning}}</label>
+				<label class="col-xs-3 label label-warning" style="font-size : 1.8em;line-height: 34px">{{Warning}}</label>
 				<div class="col-xs-2">
 					<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
 				</div>
-				<label class="col-xs-2 label label-success" style="font-size : 1.8em">{{Ok}}</label>
+				<label class="col-xs-2 label label-success" style="font-size : 1.8em;line-height: 34px">{{Ok}}</label>
 			</div>
 		</div>
 	</div>
@@ -441,7 +441,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="form-group">
-				<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em">{{Danger (en minutes)}}</label>
+				<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em;line-height: 34px">{{Danger (en minutes)}}</label>
 				<div class="col-xs-2">
 					<input class="eqLogicAttr form-control" data-l1key="timeout" />
 				</div>

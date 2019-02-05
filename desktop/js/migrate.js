@@ -52,8 +52,7 @@ $('#bt_zero').on('click', function() {
 	setStep(1);
 	$('.progress-bar').width('100%');
 	$('.progress-bar').text('100%');
-	window.location.replace("index.php?v=d&p=logout");
-	
+	window.location.replace("index.php?v=d&logout=1");	
 });
 
 $('#bt_backup').on('click', function() {
@@ -645,4 +644,7 @@ function reboot_jeedom(){
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
 	page_rebootjs();
+	setcookie('jeedom_token', '', time() - 365 * 24 * 3600, "/", '', false, true);
+	setcookie('PHPSESSID', '', time() - 365 * 24 * 3600, "/", '', false, true);
+	setcookie('sess_id', '', time() - 365 * 24 * 3600, "/", '', false, true);
 }
