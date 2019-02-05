@@ -41,6 +41,22 @@ Changelog
 -   Affichage des widgets mobile en une seule colonne
 -   Ajout de la gestion des démons sur le moteur de tache
 
+3.2.16
+=====
+
+- Correction d'un bug lors de l'installation de dépendance de certain plugins sur smart
+
+3.2.15
+=====
+
+- Correction d'un bug lors de la sauvegarde d'un équipement
+
+3.2.14
+=====
+
+- Préparation pour éviter une erreur lors du passage en 3.3.X
+- Correction d'un soucis lors d'une demande de support pour les plugins tierces
+
 3.2.12
 =====
 
