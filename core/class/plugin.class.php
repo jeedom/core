@@ -617,6 +617,9 @@ class plugin {
 					if (exec('which at | wc -l') == 0) {
 						exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
 					}else{
+						if(!file_exists($cmd['log'])){
+							touch($cmd['log']);
+						}
 						exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
 					}
 					sleep(1);
