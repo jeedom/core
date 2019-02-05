@@ -380,6 +380,9 @@ function notify(_title, _text) {
 }
 
 function setTileSize(_filter) {
+  if(typeof widget_margin == 'undefined'){
+    widget_margin = 4;
+  }
   $(_filter).each(function () {
     $(this).css('margin','0px').css('padding','0px');
     if($(this).hasClass('col2')){
