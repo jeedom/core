@@ -69,6 +69,7 @@ function loadPage(_url,_noPushHistory){
   setBackgroundImg('');
   jeedomBackgroundImg = null;
   $('#div_pageContainer').empty().load(url,function(){
+    $('body').attr('data-page',getUrlVars('p'));
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     initPage();
     $('body').trigger('jeedom_page_load');
@@ -87,6 +88,7 @@ $(function () {
   $.alertTrigger = function(){
     initRowOverflow();
   }
+  $('body').attr('data-page',getUrlVars('p'));
   
   window.addEventListener('popstate', function (event){
     if(event.state === null){
