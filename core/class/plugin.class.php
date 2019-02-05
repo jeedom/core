@@ -553,7 +553,14 @@ class plugin {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
 					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+						if (exec('which at | wc -l') == 0) {
+						exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					}else{
+						if(!file_exists($cmd['log'])){
+							touch($cmd['log']);
+						}
+						exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
+					}
 					sleep(1);
 				} else {
 					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
