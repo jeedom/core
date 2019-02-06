@@ -598,6 +598,8 @@ function returnStep(){
 				        		$('#modalReloadStep').modal('show');
 					        	stepReload = 5;
 				        	break;
+						default:
+							$('#modalFirstStep').modal('show');
 			        	}
 			        }
 				});
