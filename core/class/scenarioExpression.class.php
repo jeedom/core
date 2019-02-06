@@ -294,6 +294,39 @@ class scenarioExpression {
 		}
 	}
 	
+	function color_gradient($_from_color, $_to_color, $_min,$_max,$_value) {
+		$graduations = $_max - $_min;
+		$graduations--;
+		$startcol = str_replace("#", "", $_from_color);
+		$endcol = str_replace("#", "", $_to_color);
+		$RedOrigin = hexdec(substr($startcol, 0, 2));
+		$GrnOrigin = hexdec(substr($startcol, 2, 2));
+		$BluOrigin = hexdec(substr($startcol, 4, 2));
+		if ($graduations >= 2) {
+			$GradientSizeRed = (hexdec(substr($endcol, 0, 2)) - $RedOrigin) / $graduations;
+			$GradientSizeGrn = (hexdec(substr($endcol, 2, 2)) - $GrnOrigin) / $graduations;
+			$GradientSizeBlu = (hexdec(substr($endcol, 4, 2)) - $BluOrigin) / $graduations;
+			for ($i = 0; $i <= $graduations; $i++) {
+				$RetVal[$i] = strtoupper("#" . str_pad(dechex($RedOrigin + ($GradientSizeRed * $i)), 2, '0', STR_PAD_LEFT) .
+				str_pad(dechex($GrnOrigin + ($GradientSizeGrn * $i)), 2, '0', STR_PAD_LEFT) .
+				str_pad(dechex($BluOrigin + ($GradientSizeBlu * $i)), 2, '0', STR_PAD_LEFT));
+			}
+		} elseif ($graduations == 1) {
+			$RetVal[] = $_from_color;
+			$RetVal[] = $_to_color;
+		} else {
+			$RetVal[] = $_from_color;
+		}
+		$value = round($_value);
+		if(isset($RetVal[$value])){
+			return $RetVal[$value];
+		}
+		if($_value <= $_min){
+			return $RetVal[0];
+		}
+		return $RetVal[count($RetVal) - 1];
+	}
+	
 	public static function maxBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {

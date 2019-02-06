@@ -40,6 +40,7 @@ Changelog
 -   Possibilité de mettre une icone sur les sénarios
 -   Affichage des widgets mobile en une seule colonne
 -   Ajout de la gestion des démons sur le moteur de tache
+-   Ajout de la fonction color_gradient dans les scénarios
 
 3.2.16
 =====
