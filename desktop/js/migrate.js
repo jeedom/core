@@ -480,7 +480,8 @@ function finalisation(go){
 			data: {
 			    action: 'login',
 			    username: 'admin',
-			    password: 'admin'
+			    password: 'admin',
+			    storeConnection : 1
 			},
 			dataType: 'json',
 			global: false,
