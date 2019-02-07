@@ -716,26 +716,31 @@ class scenario {
 					if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 						return false;
 					}
-					if($this->getState() == 'starting'){
+					echo $this->getState();
+					switch ($this->getState()) {
+						case 'starting':
 						if($this->getConfiguration('allowMultiInstance',0) == 0){
 							return false;
 						}
-						if(($this->getCache('startingTime')+5)>strtotime('now')){
+						if(($this->getCache('startingTime')+2)>strtotime('now')){
 							$i = 0;
 							while($this->getState() == 'starting'){
 								sleep(1);
-								if($i>5){
+								if($i>2){
 									break;
 								}
 							}
 						}
+						case 'in progress':
+						if($this->getConfiguration('allowMultiInstance',0) == 0){
+							return false;
+						}
 					}
+					$this->setCache(array('startingTime' =>strtotime('now'),'state' => 'starting'));
 					if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 						$this->setLog(__('Lancement du scénario en mode synchrone', __FILE__));
 						return $this->execute($_trigger, $_message);
 					} else {
-						$this->setState('starting');
-						$this->setCache('startingTime',strtotime('now'));
 						if (count($this->getTags()) != '') {
 							$this->setCache('tags', $this->getTags());
 						}
