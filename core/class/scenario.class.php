@@ -271,7 +271,7 @@ class scenario {
 			$trigger = 'schedule';
 			if (jeedom::isDateOk()) {
 				foreach ($scenarios as $key => &$scenario) {
-					if ($scenario->getState() != 'in progress') {
+					if ($scenario->getState() != 'in progress' || $scenario->getConfiguration('allowMultiInstance',0) == 1) {
 						if (!$scenario->isDue()) {
 							unset($scenarios[$key]);
 						}
@@ -716,6 +716,27 @@ class scenario {
 					if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 						return false;
 					}
+					echo $this->getState();
+					switch ($this->getState()) {
+						case 'starting':
+						if($this->getConfiguration('allowMultiInstance',0) == 0){
+							return false;
+						}
+						if(($this->getCache('startingTime')+2)>strtotime('now')){
+							$i = 0;
+							while($this->getState() == 'starting'){
+								sleep(1);
+								if($i>2){
+									break;
+								}
+							}
+						}
+						case 'in progress':
+						if($this->getConfiguration('allowMultiInstance',0) == 0){
+							return false;
+						}
+					}
+					$this->setCache(array('startingTime' =>strtotime('now'),'state' => 'starting'));
 					if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 						$this->setLog(__('Lancement du scénario en mode synchrone', __FILE__));
 						return $this->execute($_trigger, $_message);
@@ -869,6 +890,8 @@ class scenario {
 				public function getIcon($_only_class = false) {
 					if ($_only_class) {
 						switch ($this->getState()) {
+							case 'starting':
+							return 'fas fa-hourglass-start';
 							case 'in progress':
 							return 'fa fa-spinner fa-spin';
 							case 'error':
@@ -882,6 +905,8 @@ class scenario {
 						return 'fa fa-times';
 					}
 					switch ($this->getState()) {
+						case 'starting':
+						return '	<i class="fas fa-hourglass-start"></i>';
 						case 'in progress':
 						return '<i class="fa fa-spinner fa-spin"></i>';
 						case 'error':
