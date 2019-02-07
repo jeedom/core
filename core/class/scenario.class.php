@@ -716,7 +716,6 @@ class scenario {
 					if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 						return false;
 					}
-					echo $this->getState();
 					switch ($this->getState()) {
 						case 'starting':
 						if($this->getConfiguration('allowMultiInstance',0) == 0){
