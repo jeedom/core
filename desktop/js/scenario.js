@@ -790,23 +790,26 @@ function printScenario(_id) {
       case 'error' :
       $('#bt_stopScenario').hide();
       $('#span_ongoing').text('{{Erreur}}');
-      $('#span_ongoing').removeClass('label-info label-danger label-success').addClass('label-warning');
+      $('#span_ongoing').removeClass('label-info label-danger label-success label-info').addClass('label-warning');
       break;
       case 'on' :
       $('#bt_stopScenario').show();
       $('#span_ongoing').text('{{Actif}}');
-      $('#span_ongoing').removeClass('label-info label-danger label-warning').addClass('label-success');
+      $('#span_ongoing').removeClass('label-info label-danger label-warning label-info').addClass('label-success');
       break;
+      case 'starting' :
+      $('#bt_stopScenario').show();
+      $('#span_ongoing').text('{{Démarrage}}');
+      $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-warning');
       case 'in progress' :
       $('#bt_stopScenario').show();
       $('#span_ongoing').text('{{En cours}}');
-      $('#span_ongoing').addClass('label-success');
-      $('#span_ongoing').removeClass('label-success label-danger label-warning').addClass('label-info');
+      $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-info');
       break;
       case 'stop' :
       $('#bt_stopScenario').hide();
       $('#span_ongoing').text('{{Arrêté}}');
-      $('#span_ongoing').removeClass('label-info label-success label-warning').addClass('label-danger');
+      $('#span_ongoing').removeClass('label-info label-success label-warning label-info').addClass('label-danger');
       break;
     }
   }
