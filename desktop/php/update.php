@@ -23,7 +23,8 @@ if (!isConnect('admin')) {
 				<tr>
 					<th data-sorter="false" style="width:50px;"></th>
 					<th>{{Nom}}</th>
-					<th>{{Version}}</th>
+					<th>{{Version installé}}</th>
+					<th>{{Dernière version}}</th>
 					<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
@@ -38,7 +39,8 @@ if (!isConnect('admin')) {
 				<tr>
 					<th data-sorter="false" style="width:50px;"></th>
 					<th>{{Nom}}</th>
-					<th>{{Version}}</th>
+					<th>{{Version installé}}</th>
+					<th>{{Dernière version}}</th>
 					<th data-sorter="false" data-filter="false">{{Options}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
