@@ -116,6 +116,25 @@ if (!isConnect('admin')) {
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modalFirstStep">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{Informations Importantes}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{- Il vous faut une clé USB de plus de 8Go.}}</p>
+	<p>{{- Il vous faut etre sur le meme reseau Local que votre Jeedom.}}</p>
+	<p>{{- Accéder à votre Jeedom depuis sont adresse interne.}}</p>
+	<p>{{- Pouvoir laisser cette page ouverte au minimum 1h30.}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{C'est Partie}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div id="div_reboot_jeedom" style="display:none;">
 	<script type="text/javascript" id="reboot_jeedom"></script>
 </div>

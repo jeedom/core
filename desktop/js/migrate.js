@@ -480,7 +480,8 @@ function finalisation(go){
 			data: {
 			    action: 'login',
 			    username: 'admin',
-			    password: 'admin'
+			    password: 'admin',
+			    storeConnection : 1
 			},
 			dataType: 'json',
 			global: false,
@@ -597,6 +598,8 @@ function returnStep(){
 				        		$('#modalReloadStep').modal('show');
 					        	stepReload = 5;
 				        	break;
+						default:
+							$('#modalFirstStep').modal('show');
 			        	}
 			        }
 				});

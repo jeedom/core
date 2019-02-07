@@ -1,27 +1,27 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class plugin {
 	/*     * *************************Attributs****************************** */
-
+	
 	private $id;
 	private $name;
 	private $description;
@@ -46,9 +46,9 @@ class plugin {
 	private $functionality = array();
 	private static $_cache = array();
 	private static $_enable = null;
-
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function byId($_id) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id])) {
@@ -122,11 +122,11 @@ class plugin {
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
 	}
-
+	
 	public static function getPathById($_id) {
 		return __DIR__ . '/../../plugins/' . $_id . '/plugin_info/info.json';
 	}
-
+	
 	public function getPathToConfigurationById() {
 		if (file_exists(__DIR__ . '/../../plugins/' . $this->id . '/plugin_info/configuration.php')) {
 			return 'plugins/' . $this->id . '/plugin_info/configuration.php';
@@ -134,14 +134,14 @@ class plugin {
 			return '';
 		}
 	}
-
+	
 	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true, $_nameOnly = false) {
 		$listPlugin = array();
 		if ($_activateOnly) {
 			$sql = "SELECT plugin
-            FROM config
-            WHERE `key`='active'
-            AND `value`='1'";
+			FROM config
+			WHERE `key`='active'
+			AND `value`='1'";
 			$results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 			if ($_nameOnly) {
 				foreach ($results as $result) {
@@ -204,7 +204,7 @@ class plugin {
 			}
 		}
 	}
-
+	
 	public static function getTranslation($_plugin, $_language) {
 		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
 		if (!file_exists($dir)) {
@@ -219,7 +219,7 @@ class plugin {
 		}
 		return array();
 	}
-
+	
 	public static function saveTranslation($_plugin, $_language, $_translation) {
 		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
 		if (!file_exists($dir)) {
@@ -227,7 +227,7 @@ class plugin {
 		}
 		file_put_contents($dir . '/' . $_language . '.json', json_encode($_translation, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 	}
-
+	
 	public static function orderPlugin($a, $b) {
 		$al = strtolower($a->name);
 		$bl = strtolower($b->name);
@@ -236,7 +236,7 @@ class plugin {
 		}
 		return ($al > $bl) ? +1 : -1;
 	}
-
+	
 	public static function heartbeat() {
 		foreach (self::listPlugin(true) as $plugin) {
 			try {
@@ -265,11 +265,11 @@ class plugin {
 					}
 				}
 			} catch (Exception $e) {
-
+				
 			}
 		}
 	}
-
+	
 	public static function cron() {
 		$cache = cache::byKey('plugin::cron::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -294,7 +294,7 @@ class plugin {
 		}
 		cache::set('plugin::cron::inprogress', 0);
 	}
-
+	
 	public static function cron5() {
 		$cache = cache::byKey('plugin::cron5::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -319,7 +319,7 @@ class plugin {
 		}
 		cache::set('plugin::cron5::inprogress', 0);
 	}
-
+	
 	public static function cron15() {
 		$cache = cache::byKey('plugin::cron15::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -344,7 +344,7 @@ class plugin {
 		}
 		cache::set('plugin::cron15::inprogress', 0);
 	}
-
+	
 	public static function cron30() {
 		$cache = cache::byKey('plugin::cron30::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -369,7 +369,7 @@ class plugin {
 		}
 		cache::set('plugin::cron30::inprogress', 0);
 	}
-
+	
 	public static function cronDaily() {
 		$cache = cache::byKey('plugin::cronDaily::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -394,7 +394,7 @@ class plugin {
 		}
 		cache::set('plugin::cronDaily::inprogress', 0);
 	}
-
+	
 	public static function cronHourly() {
 		$cache = cache::byKey('plugin::cronHourly::inprogress');
 		if ($cache->getValue(0) > 3) {
@@ -419,7 +419,7 @@ class plugin {
 		}
 		cache::set('plugin::cronHourly::inprogress', 0);
 	}
-
+	
 	public static function start() {
 		foreach (self::listPlugin(true) as $plugin) {
 			$plugin->deamon_start(false, true);
@@ -435,7 +435,7 @@ class plugin {
 			}
 		}
 	}
-
+	
 	public static function stop() {
 		foreach (self::listPlugin(true) as $plugin) {
 			$plugin->deamon_stop();
@@ -451,7 +451,7 @@ class plugin {
 			}
 		}
 	}
-
+	
 	public static function checkDeamon() {
 		foreach (self::listPlugin(true) as $plugin) {
 			if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
@@ -462,7 +462,7 @@ class plugin {
 				try {
 					$plugin->dependancy_install();
 				} catch (Exception $e) {
-
+					
 				}
 			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
 				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
@@ -474,13 +474,13 @@ class plugin {
 			try {
 				$plugin->deamon_start(false, true);
 			} catch (Exception $e) {
-
+				
 			}
 		}
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	public function report($_format = 'pdf', $_parameters = array()) {
 		if ($this->getDisplay() == '') {
 			throw new Exception(__('Vous ne pouvez pas faire de rapport sur un plugin sans panneau', __FILE__));
@@ -493,7 +493,7 @@ class plugin {
 		}
 		return report::generate($url, 'plugin', $this->getId(), $_format, $_parameters);
 	}
-
+	
 	public function isActive() {
 		if (self::$_enable === null) {
 			self::$_enable = config::getPluginEnable();
@@ -503,7 +503,7 @@ class plugin {
 		}
 		return 0;
 	}
-
+	
 	public function callInstallFunction($_function, $_direct = false) {
 		if (!$_direct) {
 			return $this->launch($_function, true);
@@ -534,7 +534,7 @@ class plugin {
 			}
 		}
 	}
-
+	
 	public function dependancy_info($_refresh = false) {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
@@ -578,10 +578,10 @@ class plugin {
 		return $return;
 	}
 	/**
-	 *
-	 * @return null
-	 * @throws Exception
-	 */
+	*
+	* @return null
+	* @throws Exception
+	*/
 	public function dependancy_install() {
 		$plugin_id = $this->getId();
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
@@ -614,7 +614,14 @@ class plugin {
 					$this->deamon_stop();
 					message::add($plugin_id, __('Attention : installation des dépendances lancée', __FILE__));
 					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-					exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					if (exec('which at | wc -l') == 0) {
+						exec(system::getCmdSudo() . '/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1 &');
+					}else{
+						if(!file_exists($cmd['log'])){
+							touch($cmd['log']);
+						}
+						exec('echo "/bin/bash ' . $script . ' >> ' . $cmd['log'] . ' 2>&1" | '.system::getCmdSudo().' at now');
+					}
 					sleep(1);
 				} else {
 					log::add($plugin_id, 'error', __('Veuillez exécuter le script : ', __FILE__) . '/bin/bash ' . $script);
@@ -627,7 +634,7 @@ class plugin {
 		$cache->remove();
 		return;
 	}
-
+	
 	public function deamon_changeAutoMode($_mode) {
 		config::save('deamonAutoMode', $_mode, $this->getId());
 		$plugin_id = $this->getId();
@@ -636,9 +643,9 @@ class plugin {
 		}
 	}
 	/**
-	 *
-	 * @return array
-	 */
+	*
+	* @return array
+	*/
 	public function deamon_info() {
 		$plugin_id = $this->getId();
 		if ($this->getHasOwnDeamon() != 1 || !method_exists($plugin_id, 'deamon_info')) {
@@ -677,7 +684,7 @@ class plugin {
 		$return['last_launch'] = config::byKey('lastDeamonLaunchTime', $this->getId(), __('Inconnue', __FILE__));
 		return $return;
 	}
-
+	
 	public function deamon_start($_forceRestart = false, $_auto = false) {
 		$plugin_id = $this->getId();
 		if ($_forceRestart) {
@@ -716,7 +723,7 @@ class plugin {
 			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin : ', __FILE__) . $e->getMessage());
 		}
 	}
-
+	
 	public function deamon_stop() {
 		$plugin_id = $this->getId();
 		try {
@@ -732,7 +739,7 @@ class plugin {
 			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin : ', __FILE__) . $e->getMessage());
 		}
 	}
-
+	
 	public function setIsEnable($_state) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
@@ -754,9 +761,9 @@ class plugin {
 						$eqLogic->setIsVisible(0);
 						$eqLogic->save();
 					} catch (Exception $e) {
-
+						
 					} catch (Error $e) {
-
+						
 					}
 				}
 			}
@@ -773,9 +780,9 @@ class plugin {
 					$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
 					$eqLogic->save();
 				} catch (Exception $e) {
-
+					
 				} catch (Error $e) {
-
+					
 				}
 			}
 		}
@@ -783,7 +790,7 @@ class plugin {
 			if ($_state == 1) {
 				log::add($this->getId(), 'info', 'Début d\'activation du plugin');
 				$this->deamon_stop();
-
+				
 				$deamon_info = $this->deamon_info();
 				sleep(1);
 				log::add($this->getId(), 'info', 'Info sur le démon : ' . print_r($deamon_info, true));
@@ -826,7 +833,7 @@ class plugin {
 		}
 		return true;
 	}
-
+	
 	public function launch($_function, $_callInstallFunction = false) {
 		if ($_function == '') {
 			throw new Exception('La fonction à lancer ne peut être vide');
@@ -849,11 +856,11 @@ class plugin {
 		}
 		return true;
 	}
-
+	
 	public function getUpdate() {
 		return update::byTypeAndLogicalId('plugin', $this->getId());
 	}
-
+	
 	public function getPathImgIcon() {
 		if (file_exists(__DIR__ . '/../../plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png')) {
 			return 'plugins/' . $this->getId() . '/plugin_info/' . $this->getId() . '_icon.png';
@@ -869,7 +876,7 @@ class plugin {
 		}
 		return 'core/img/no-image-plugin.png';
 	}
-
+	
 	public function getLogList() {
 		$return = array();
 		foreach (ls(log::getPathToLog(''), '*') as $log) {
@@ -881,25 +888,25 @@ class plugin {
 				$return[] = $log;
 				continue;
 			}
-
+			
 		}
 		return $return;
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	public function getName() {
 		return $this->name;
 	}
-
+	
 	public function getDescription() {
 		return nl2br($this->description);
 	}
-
+	
 	public function getInfo($_name = '', $_default = '') {
 		if (count($this->info) == 0) {
 			$update = update::byLogicalId($this->id);
@@ -915,124 +922,124 @@ class plugin {
 		}
 		return $this->info;
 	}
-
+	
 	public function getAuthor() {
 		return $this->author;
 	}
-
+	
 	public function getRequire() {
 		return $this->require;
 	}
-
+	
 	public function getCategory() {
 		return $this->category;
 	}
-
+	
 	public function getLicense() {
 		return $this->license;
 	}
-
+	
 	public function getFilepath() {
 		return $this->filepath;
 	}
-
+	
 	public function getInstallation() {
 		return nl2br($this->installation);
 	}
-
+	
 	public function getIndex() {
 		return $this->index;
 	}
-
+	
 	public function getInclude() {
 		return $this->include;
 	}
-
+	
 	public function getDisplay() {
 		return $this->display;
 	}
-
+	
 	public function setDisplay($display) {
 		$this->display = $display;
 		return $this;
 	}
-
+	
 	public function getMobile() {
 		return $this->mobile;
 	}
-
+	
 	public function setMobile($mobile) {
 		$this->mobile = $mobile;
 		return $this;
 	}
-
+	
 	public function getEventjs() {
 		return $this->eventjs;
 	}
-
+	
 	public function setEventjs($eventjs) {
 		$this->eventjs = $eventjs;
 		return $this;
 	}
-
+	
 	public function getHasDependency() {
 		return $this->hasDependency;
 	}
-
+	
 	public function setHasDependency($hasDependency) {
 		$this->hasDependency = $hasDependency;
 		return $this;
 	}
-
+	
 	public function getHasOwnDeamon() {
 		return $this->hasOwnDeamon;
 	}
-
+	
 	public function setHasOwnDeamony($hasOwnDeamon) {
 		$this->hasOwnDeamon = $hasOwnDeamon;
 		return $this;
 	}
-
+	
 	public function getMaxDependancyInstallTime() {
 		return $this->maxDependancyInstallTime;
 	}
-
+	
 	public function setMaxDependancyInstallTime($maxDependancyInstallTime) {
 		$this->maxDependancyInstallTime = $maxDependancyInstallTime;
 		return $this;
 	}
-
+	
 	public function getIssue() {
 		return $this->issue;
 	}
-
+	
 	public function setIssue($issue) {
 		$this->issue = $issue;
 		return $this;
 	}
-
+	
 	public function getChangelog() {
 		if ($this->changelog == '') {
 			return $this->getInfo('changelog');
 		}
 		return $this->changelog;
 	}
-
+	
 	public function setChangelog($changelog) {
 		$this->changelog = $changelog;
 		return $this;
 	}
-
+	
 	public function getDocumentation() {
 		if ($this->documentation == '') {
 			return $this->getInfo('doc');
 		}
 		return $this->documentation;
 	}
-
+	
 	public function setDocumentation($documentation) {
 		$this->documentation = $documentation;
 		return $this;
 	}
-
+	
 }
