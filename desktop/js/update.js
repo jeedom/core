@@ -223,7 +223,8 @@ function addUpdate(_update) {
     tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
   }
   tr += '</td>';
-  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;" title="{{Dernière version : }}'+_update.remoteVersion+'"></span></td>';
+  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;"></span></td>';
+  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="remoteVersion" style="font-size:0.8em;cursor:default;"></span></td>';
   tr += '<td style="width:180px;cursor:default;">';
   if (_update.type != 'core') {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
