@@ -716,21 +716,23 @@ class scenario {
 					if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 						return false;
 					}
-					switch ($this->getState()) {
-						case 'starting':
+					$state = $this->getState();
+					if($state == 'starting'){
 						if($this->getConfiguration('allowMultiInstance',0) == 0){
 							return false;
 						}
 						if(($this->getCache('startingTime')+2)>strtotime('now')){
 							$i = 0;
-							while($this->getState() == 'starting'){
+							while($state == 'starting'){
 								sleep(1);
-								if($i>2){
+								$state = $this->getState();
+								if($i>5){
 									break;
 								}
 							}
 						}
-						case 'in progress':
+					}
+					if($state == 'in progress'){
 						if($this->getConfiguration('allowMultiInstance',0) == 0){
 							return false;
 						}
@@ -786,6 +788,9 @@ class scenario {
 						if ($this->getConfiguration('timeline::enable')) {
 							jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
 						}
+					}
+					if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
+						return;
 					}
 					if (count($this->getTags()) == 0) {
 						$this->setLog('Start : ' . trim($_message, "'") . '.');
