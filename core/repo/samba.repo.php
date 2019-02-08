@@ -163,7 +163,7 @@ class repo_samba {
 		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			if ($timelimit > strtotime($file['datetime'])) {
-				log::add('samba','debug','Del file to old : '.print_r($file,true));
+				echo 'Delete backup too old : '.json_encode($file);
 				$cmd = self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
 				com_shell::execute($cmd);
 			}
