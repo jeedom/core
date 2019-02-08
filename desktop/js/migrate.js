@@ -496,7 +496,7 @@ function finalisation(go){
 					url: 'core/ajax/update.ajax.php',
 					data: {
 					    action: 'updateAll',
-					    options: "{'core': 1}"
+					    options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
 					},
 					dataType: 'json',
 					global: false,
