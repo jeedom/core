@@ -490,7 +490,7 @@ function finalisation(go){
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
 			},
 			success: function (result){
-				console.log('Succes Login ;)');
+				console.log('Succes Login ;) > '+result);
 				$.ajax({
 					type: 'POST',
 					url: 'core/ajax/update.ajax.php',
