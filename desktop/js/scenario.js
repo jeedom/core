@@ -28,70 +28,72 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 })
 
 $(function(){
-  $.contextMenu('destroy', $('.nav.nav-tabs'));
-  jeedom.scenario.all({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (scenarios) {
-      //get groups:
-      scenarioGroups = []
-      for(i=0; i<scenarios.length; i++)
-      {
-        group = scenarios[i].group
-        if (group == "") group = 'Aucun'
-        group = group[0].toUpperCase() + group.slice(1)
-        scenarioGroups.push(group)
-      }
-      scenarioGroups = Array.from(new Set(scenarioGroups))
-      scenarioGroups.sort()
-
-      //set list of scenarios per groups:
-      scenarioList = []
-      for(i=0; i<scenarioGroups.length; i++)
-      {
-        group = scenarioGroups[i]
-        scenarioList[group] = []
-        for(j=0; j<scenarios.length; j++)
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.scenario.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (scenarios) {
+        //get groups:
+        scenarioGroups = []
+        for(i=0; i<scenarios.length; i++)
         {
-          sc = scenarios[j]
-          scGroup = sc.group
-          if (scGroup == "") scGroup = 'Aucun'
-          if (scGroup.toLowerCase() != group.toLowerCase()) continue
-          scenarioList[group].push([sc.name, sc.id])
+          group = scenarios[i].group
+          if (group == "") group = 'Aucun'
+          group = group[0].toUpperCase() + group.slice(1)
+          scenarioGroups.push(group)
         }
-      }
+        scenarioGroups = Array.from(new Set(scenarioGroups))
+        scenarioGroups.sort()
 
-      //set context menu!
-      var contextmenuitems = {}
-      for (var group in scenarioList) {
-        groupScenarios = scenarioList[group]
-        items = {}
-        for (var index in groupScenarios) {
-          sc = groupScenarios[index]
-          scName = sc[0]
-          scId = sc[1]
-          items[scId] = {'name': scName}
+        //set list of scenarios per groups:
+        scenarioList = []
+        for(i=0; i<scenarioGroups.length; i++)
+        {
+          group = scenarioGroups[i]
+          scenarioList[group] = []
+          for(j=0; j<scenarios.length; j++)
+          {
+            sc = scenarios[j]
+            scGroup = sc.group
+            if (scGroup == "") scGroup = 'Aucun'
+            if (scGroup.toLowerCase() != group.toLowerCase()) continue
+            scenarioList[group].push([sc.name, sc.id])
+          }
         }
-        contextmenuitems[group] = {'name':group, 'items':items}
+
+        //set context menu!
+        var contextmenuitems = {}
+        for (var group in scenarioList) {
+          groupScenarios = scenarioList[group]
+          items = {}
+          for (var index in groupScenarios) {
+            sc = groupScenarios[index]
+            scName = sc[0]
+            scId = sc[1]
+            items[scId] = {'name': scName}
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          className: 'scenario-context-menu',
+          callback: function(key, options) {
+              url = 'index.php?v=d&p=scenario&id=' + key;
+              if (document.location.toString().match('#')) {
+                url += '#' + document.location.toString().split('#')[1];
+              }
+              loadPage(url);
+          },
+          items: contextmenuitems
+        })
       }
-
-      $('.nav.nav-tabs').contextMenu({
-        selector: 'li',
-        autoHide: true,
-        className: 'scenario-context-menu',
-        callback: function(key, options) {
-            url = 'index.php?v=d&p=scenario&id=' + key;
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
-            }
-            loadPage(url);
-        },
-        items: contextmenuitems
-      })
-    }
-
-  })
+    })
+  }
+  catch(err) {}
 })
 
 editor = [];
