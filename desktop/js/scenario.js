@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -26,6 +25,73 @@ if (url.match('#')) {
 }
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
+})
+
+$(function(){
+  $.contextMenu('destroy', $('.nav.nav-tabs'));
+  jeedom.scenario.all({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (scenarios) {
+      //get groups:
+      scenarioGroups = []
+      for(i=0; i<scenarios.length; i++)
+      {
+        group = scenarios[i].group
+        if (group == "") group = 'Aucun'
+        group = group[0].toUpperCase() + group.slice(1)
+        scenarioGroups.push(group)
+      }
+      scenarioGroups = Array.from(new Set(scenarioGroups))
+      scenarioGroups.sort()
+
+      //set list of scenarios per groups:
+      scenarioList = []
+      for(i=0; i<scenarioGroups.length; i++)
+      {
+        group = scenarioGroups[i]
+        scenarioList[group] = []
+        for(j=0; j<scenarios.length; j++)
+        {
+          sc = scenarios[j]
+          scGroup = sc.group
+          if (scGroup == "") scGroup = 'Aucun'
+          if (scGroup.toLowerCase() != group.toLowerCase()) continue
+          scenarioList[group].push([sc.name, sc.id])
+        }
+      }
+
+      //set context menu!
+      var contextmenuitems = {}
+      for (var group in scenarioList) {
+        groupScenarios = scenarioList[group]
+        items = {}
+        for (var index in groupScenarios) {
+          sc = groupScenarios[index]
+          scName = sc[0]
+          scId = sc[1]
+          items[scId] = {'name': scName}
+        }
+        contextmenuitems[group] = {'name':group, 'items':items}
+      }
+
+      $('.nav.nav-tabs').contextMenu({
+        selector: 'li',
+        autoHide: true,
+        className: 'scenario-context-menu',
+        callback: function(key, options) {
+            url = 'index.php?v=d&p=scenario&id=' + key;
+            if (document.location.toString().match('#')) {
+              url += '#' + document.location.toString().split('#')[1];
+            }
+            loadPage(url);
+        },
+        items: contextmenuitems
+      })
+    }
+
+  })
 })
 
 editor = [];
@@ -354,7 +420,7 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  
+
   if($(this).children("i").hasClass('fa-chevron-right')){
     $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.subElement').next().css('display','table');
@@ -374,7 +440,7 @@ $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', 
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  
+
   if($(this).children("i").hasClass('fa-chevron-right')){
     $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.subElement').next().css('display','table');
@@ -507,7 +573,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
         '</div> </div>' +
         '</form> </div>  </div>';
       }
-      
+
       bootbox.dialog({
         title: "{{Ajout d'un nouveau scénario}}",
         message: message,
@@ -679,7 +745,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
-  
+
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
@@ -760,7 +826,7 @@ function setEditor() {
         });
       }, 1);
     }
-    
+
   });
 }
 
@@ -829,7 +895,7 @@ function printScenario(_id) {
       $('#div_pageContainer').setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
-      
+
       $('#div_scenarioElement').empty();
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
@@ -865,7 +931,7 @@ function printScenario(_id) {
           addSchedule(data.schedule);
         }
       }
-      
+
       if(data.elements.length == 0){
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span style=\'color:#767676;font-size:1.2em;font-weight: bold;\'>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }
@@ -987,7 +1053,7 @@ function addExpression(_expression) {
     retour += '       <button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '    </span>';
     retour += '</div>';
-    
+
     break;
     case 'element' :
     retour += '<div class="col-xs-12" style="padding-right: 0px; padding-left: 0px;">';
@@ -1015,7 +1081,7 @@ function addExpression(_expression) {
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;margin-right : 0px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
-    
+
     retour += '</div>';
     retour += '<div class="col-xs-4" style="margin-top: 4px"><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
@@ -1093,7 +1159,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '  <legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}';
     retour += ' </legend>';
     retour += '  </div>';
-    
+
     retour += '  <div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
       retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
@@ -1109,7 +1175,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-    
+
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1138,7 +1204,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1164,7 +1230,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'for' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1209,7 +1275,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-    
+
     break;
     case 'at' :
     retour += '  <input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1257,7 +1323,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"> </div>';
-    
+
     break;
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1296,7 +1362,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
-    
+
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1344,13 +1410,13 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-  
+
   pColor++;
   if (pColor > 4) {
     pColor = 0;
   }
   var color = pColor;
-  
+
   var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 0px;background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
@@ -1435,7 +1501,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-  
+
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -1457,7 +1523,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-      
+
     });
     element.subElements.push(subElement);
   });
