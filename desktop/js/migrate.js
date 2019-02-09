@@ -475,42 +475,61 @@ function finalisation(go){
 		$('#contenuWithStepFive').addClass('animated');
 		console.log('Finalisation Activé');
 		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/user.ajax.php',
-			data: {
-			    action: 'login',
-			    username: 'admin',
-			    password: 'admin',
-			    storeConnection : 1
-			},
-			dataType: 'json',
-			global: false,
-			error: function (request, status, error) {
-				console.log('Ajax User Error');
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function (result){
-				console.log('Succes Login ;)');
-				$.ajax({
+		    type: 'POST',
+		    url: 'core/ajax/jeedom.ajax.php',
+		    data: {
+		      action: 'getInfoApplication'
+		    },
+		    dataType: 'json',
+		    error: function (request, status, error) {
+		      confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
+		    },
+		    success: function (data) {
+			    $.ajaxSetup({
+				  type: "POST",
+				  data: {
+				    jeedom_token: data.result.jeedom_token
+				  }
+				})
+			    $.ajax({
 					type: 'POST',
-					url: 'core/ajax/update.ajax.php',
+					url: 'core/ajax/user.ajax.php',
 					data: {
-					    action: 'updateAll',
-					    options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
+					    action: 'login',
+					    username: 'admin',
+					    password: 'admin',
+					    storeConnection : 1
 					},
 					dataType: 'json',
 					global: false,
 					error: function (request, status, error) {
-						console.log('Error Update');
+						console.log('Ajax User Error');
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (result){
-						$('.progress-bar').width('1%');
-						$('.progress-bar').text('1%');
-						getJeedomLog(1, 'update');
+						console.log('Succes Login ;) > '+result);
+						$.ajax({
+							type: 'POST',
+							url: 'core/ajax/update.ajax.php',
+							data: {
+							    action: 'updateAll',
+							    options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
+							},
+							dataType: 'json',
+							global: false,
+							error: function (request, status, error) {
+								console.log('Error Update');
+								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+							},
+							success: function (result){
+								$('.progress-bar').width('1%');
+								$('.progress-bar').text('1%');
+								getJeedomLog(1, 'update');
+							}
+						});
 					}
 				});
-			}
+		    }
 		});
 	}
 }
