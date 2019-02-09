@@ -80,6 +80,7 @@ $(function(){
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
+          zIndex: 9999,
           className: 'scenario-context-menu',
           callback: function(key, options) {
             url = 'index.php?v=d&p=scenario&id=' + key;
