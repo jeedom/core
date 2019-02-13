@@ -47,6 +47,10 @@ body{
     text-shadow: initial;
 }
 
+.scenario-widget .changeScenarioState {
+    background-color: #9ba6a7;
+}
+
 .scenario-widget :after {
    content: none;
 }
