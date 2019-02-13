@@ -123,8 +123,8 @@ legend:first-letter {
   color : white;
 }
 
-.scenario-widget a{
-  color : white;
+.scenario-widget .widget-name a{
+  color: white;
 }
 
 .cmd-widget{
