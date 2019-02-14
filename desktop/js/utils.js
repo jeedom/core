@@ -375,6 +375,17 @@ $('#bt_messageModal').on('click',function(){
 $('body').on('click','.objectSummaryParent',function(){
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
 });
+
+
+$('body').on('click','#bt_switchTheme',function(){
+  var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
+  if($('#bootstrap_theme_css').attr('href') == theme){
+    theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+  }
+  $('#bootstrap_theme_css').attr('href', theme);
+  $('#bootstrap_theme_css').attr('data-nochange',1);
+});
+
 initPage();
 changeThemeAuto();
 if(jeedomBackgroundImg != null){
@@ -401,16 +412,19 @@ function changeThemeAuto(){
   var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
   if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
-    var theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+    theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
   }
   if($('#bootstrap_theme_css').attr('href') != theme){
     $('#bootstrap_theme_css').attr('href', theme);
   }
   setInterval(function () {
+    if($('#bootstrap_theme_css').attr('data-nochange') == 1){
+      return;
+    }
     var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
     var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
     if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
-      var theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+      theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
     }
     if($('#bootstrap_theme_css').attr('href') != theme){
       $('#bootstrap_theme_css').attr('href', theme);

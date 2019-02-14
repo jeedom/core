@@ -382,6 +382,7 @@ if (init('rescue', 0) == 0) {
 									</a>
 									<ul class="dropdown-menu">
 										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Profil}} <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
 										<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 										<?php if (isConnect('admin')) { ?>
 											<li>

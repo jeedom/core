@@ -51,6 +51,15 @@ $(function () {
     page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true);
   });
   
+  $('body').on('click','#bt_switchTheme',function(){
+    var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+    if($('#jQMnDColor').attr('href') == theme){
+      theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+    }
+    $('#jQMnDColor').attr('href', theme);
+    $('#jQMnDColor').attr('data-nochange',1);
+  });
+  
   var webappCache = window.applicationCache;
   
   
@@ -176,6 +185,9 @@ function changeThemeAuto(_ambiantLight){
         $('#jQMnDColor').attr('href', theme);
       }
       setInterval(function () {
+        if($('#jQMnDColor').attr('data-nochange') == 1){
+          return;
+        }
         var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
         var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
         if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
