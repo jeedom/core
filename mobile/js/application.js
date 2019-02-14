@@ -129,6 +129,45 @@ function isset() {
   return!0
 }
 
+function enableChangeThemeByAmbientLight(){
+  if ('AmbientLightSensor' in window) {
+    const sensor = new AmbientLightSensor();
+    sensor.onreading = () => {
+      if(typeof userProfils == 'undefined'){
+        return;
+      }
+      if(typeof userProfils.mobile_theme_color_night == 'undefined' || typeof userProfils.mobile_theme_color == 'undefined'){
+        return;
+      }
+      if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
+        return;
+      }
+      if(sensor.illuminance < 400 && sensor.illuminance > 300){
+        return;
+      }
+      var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+      if(sensor.illuminance < 300){
+        var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+      }
+      if($('#jQMnDColor').attr('href') != theme){
+        setTimeout(function(){
+          if(sensor.illuminance < 400 && sensor.illuminance > 300){
+            return;
+          }
+          var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+          if(sensor.illuminance < 300){
+            var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+          }
+          if($('#jQMnDColor').attr('href') != theme){
+            $('#jQMnDColor').attr('href', theme);
+          }
+        }, 500);
+      }
+    };
+    sensor.start();
+  }
+}
+
 function initApplication(_reinit) {
   $.ajax({
     type: 'POST',
@@ -181,31 +220,7 @@ function initApplication(_reinit) {
         var include = ['core/js/core.js'];
         
         if(typeof userProfils.mobile_useAmbientLight != undefined && userProfils.mobile_useAmbientLight == 1){
-          if ('AmbientLightSensor' in window) {
-            const sensor = new AmbientLightSensor();
-            sensor.onreading = () => {
-              if(typeof userProfils == 'undefined'){
-                return;
-              }
-              if(typeof userProfils.mobile_theme_color_night == 'undefined' || typeof userProfils.mobile_theme_color == 'undefined'){
-                return;
-              }
-              if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
-                return;
-              }
-              if(sensor.illuminance < 400 && sensor.illuminance > 300){
-                return;
-              }
-              var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
-              if(sensor.illuminance < 300){
-                var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
-              }
-              if($('#jQMnDColor').attr('href') != theme){
-                $('#jQMnDColor').attr('href', theme);
-              }
-            };
-            sensor.start();
-          }
+          enableChangeThemeByAmbientLight();
         }
         
         if (isset(userProfils) && userProfils != null) {
