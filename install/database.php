@@ -37,7 +37,7 @@ function databaseAnalyzer_database($_database){
 
 function databaseAnalyzer_table($_table){
   $describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
-  $return =  array($_table['name'] => array('status' => 'ok','fields' => array()));
+  $return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'sql' => ''));
   if(count($describes) == 0){
     $return = array($_table['name'] => array(
       'status' => 'nok',

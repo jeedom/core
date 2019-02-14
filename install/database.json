@@ -503,59 +503,6 @@
       ]
     },
     {
-      "name": "gsh_devices",
-      "fields": [
-        {
-          "name": "id",
-          "type": "int(11)",
-          "null": "NO",
-          "key": "PRI",
-          "default": null,
-          "extra": "auto_increment"
-        },
-        {
-          "name": "enable",
-          "type": "tinyint(1)",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "link_type",
-          "type": "varchar(127)",
-          "null": "YES",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "link_id",
-          "type": "int(11)",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "type",
-          "type": "varchar(255)",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "options",
-          "type": "text",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        }
-      ]
-    },
-    {
       "name": "history",
       "fields": [
         {
