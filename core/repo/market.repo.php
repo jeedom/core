@@ -389,9 +389,9 @@ class repo_market {
 			if (file_exists('/etc/debian_version')) {
 				$deb_version = file_get_contents('/etc/debian_version');
 				if (version_compare($deb_version, '9', '>=')) {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bstretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
 				} else {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bjessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
 				}
 			}
 		}
