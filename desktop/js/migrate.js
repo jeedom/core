@@ -538,22 +538,46 @@ function finalisation(go){
 }
 
 function final(){
-	setStep('5');
-	$.ajax({
-        type: 'POST',
-        url: 'core/ajax/migrate.ajax.php',
-        data: {
-            action: 'finalisation'
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (result){
-        	$('#modalFinalStep').modal('show');
-        }
-	});
+	if(Maj == 0){
+		Maj = 1;
+		$.ajax({
+			type: 'POST',
+			url: 'core/ajax/update.ajax.php',
+			data: {
+			    action: 'updateAll',
+			    options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
+			},
+			dataType: 'json',
+			global: false,
+			error: function (request, status, error) {
+				console.log('Error Update');
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (result){
+				console.log('Update lancé > '+JSON.stringify(result));
+				$('.progress-bar').width('1%');
+				$('.progress-bar').text('1%');
+				getJeedomLog(1, 'update');
+			}
+		});
+	}else{
+		setStep('5');
+		$.ajax({
+		type: 'POST',
+		url: 'core/ajax/migrate.ajax.php',
+		data: {
+		    action: 'finalisation'
+		},
+		dataType: 'json',
+		global: false,
+		error: function (request, status, error) {
+			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function (result){
+			$('#modalFinalStep').modal('show');
+		}
+		});
+	}
 }
 
 function setStep(stepValue){
