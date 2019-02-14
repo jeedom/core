@@ -104,8 +104,8 @@ $('#in_specificCommand').keypress(function(e) {
       success : function(log){
         $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
         $('#div_commandResult').append(dbGenerateTableFromResponse(log));
-        if($('.bt_dbCommand[data-command="'+command+'"]').html() == undefined){
-          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>');
+        if($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined){
+          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>');
         }
         var kids = $('#ul_listSqlHistory').children();
         if (kids.length >= 10) {
