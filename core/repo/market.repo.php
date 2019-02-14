@@ -445,12 +445,6 @@ class repo_market {
 		if (config::byKey('market::monitoringName') == '') {
 			return false;
 		}
-		if (config::byKey('market::monitoringPskIdentity') == '') {
-			return false;
-		}
-		if (config::byKey('market::monitoringPsk') == '') {
-			return false;
-		}
 		return true;
 	}
 	
