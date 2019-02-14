@@ -130,18 +130,18 @@ function isset() {
 }
 
 function changeThemeAuto(_ambiantLight){
+  if(typeof userProfils == 'undefined'){
+    return;
+  }
+  if(typeof userProfils.mobile_theme_color_night == 'undefined' || typeof userProfils.mobile_theme_color == 'undefined'){
+    return;
+  }
+  if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
+    return;
+  }
   if (_ambiantLight && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.onreading = () => {
-      if(typeof userProfils == 'undefined'){
-        return;
-      }
-      if(typeof userProfils.mobile_theme_color_night == 'undefined' || typeof userProfils.mobile_theme_color == 'undefined'){
-        return;
-      }
-      if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
-        return;
-      }
       if(sensor.illuminance < 400 && sensor.illuminance > 300){
         return;
       }

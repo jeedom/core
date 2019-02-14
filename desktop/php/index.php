@@ -97,7 +97,7 @@ if (init('rescue', 0) == 0) {
 	} else {
 		try {
 			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
-				include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.css');
+				echo '<link id="bootstrap_theme_css" href="core/themes/'.$_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/'.$_SESSION['user']->getOptions('bootstrap_theme').'.css" rel="stylesheet">';
 			} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
 				include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
 			} else {

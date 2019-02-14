@@ -173,6 +173,7 @@ $('body').on( "show", ".modal",function () {
 
 /************************Help*************************/
 
+
 setInterval(function () {
   var date = new Date();
   date.setTime(date.getTime() + clientServerDiffDatetime);
@@ -185,12 +186,6 @@ setInterval(function () {
   horloge += ':';
   horloge += (seconde < 10) ? '0' + seconde : seconde;
   $('#horloge').text(horloge);
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-  if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
-    
-  }else{
-    
-  }
 }, 1000);
 
 if (isset(jeedom_langage)) {
@@ -381,6 +376,7 @@ $('body').on('click','.objectSummaryParent',function(){
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
 });
 initPage();
+changeThemeAuto();
 if(jeedomBackgroundImg != null){
   setBackgroundImg(jeedomBackgroundImg);
 }
@@ -388,6 +384,36 @@ setTimeout(function(){
   $('body').trigger('jeedom_page_load');
 }, 1);
 });
+
+function changeThemeAuto(){
+  if(typeof userProfils == 'undefined'){
+    return;
+  }
+  if(typeof userProfils.bootstrap_theme == 'undefined' || typeof userProfils.bootstrap_theme_night == 'undefined'){
+    return;
+  }
+  if(userProfils.bootstrap_theme == userProfils.bootstrap_theme_night){
+    return;
+  }
+  var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
+  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+  if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
+    var theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+  }
+  if($('#bootstrap_theme_css').attr('href') != theme){
+    $('#bootstrap_theme_css').attr('href', theme);
+  }
+  setInterval(function () {
+    var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
+    var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+    if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
+      var theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+    }
+    if($('#bootstrap_theme_css').attr('href') != theme){
+      $('#bootstrap_theme_css').attr('href', theme);
+    }
+  }, 60000);
+}
 
 function setBackgroundImg(_path){
   if(isset(userProfils) && isset(userProfils.hideBackgroundImg) && userProfils.hideBackgroundImg == 1){
