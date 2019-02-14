@@ -59,22 +59,7 @@ $('#bt_zero').on('click', function() {
 $('#bt_backup').on('click', function() {
 	$('#modalFinalStep').modal('hide');
 	setStep(1);
-	$.ajax({
-        type: 'POST',
-        url: 'core/ajax/migrate.ajax.php',
-        data: {
-            action: 'GoBackupInstall'
-        },
-        dataType: 'json',
-        global: false,
-        error: function (request, status, error) {
-        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (result){
-        	FinalDown = 1;
-        	getJeedomLog(1, 'backup');
-        }
-	});
+	installBackup();
 });
 
 
@@ -578,6 +563,25 @@ function final(){
 		}
 		});
 	}
+}
+
+function installBackup(){
+	$.ajax({
+        type: 'POST',
+        url: 'core/ajax/migrate.ajax.php',
+        data: {
+            action: 'GoBackupInstall'
+        },
+        dataType: 'json',
+        global: false,
+        error: function (request, status, error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (result){
+        	FinalDown = 1;
+        	getJeedomLog(1, 'backup');
+        }
+	});	
 }
 
 function setStep(stepValue){
