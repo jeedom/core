@@ -2,6 +2,13 @@
 Changelog
 =========
 
+4.0.0
+=====
+
+- Refonte des themes
+- Possibilité de changer de theme automatiquement en fonction de l'heure
+- En mobile le theme peut changer en fonction de la luminosité (attention necessite d'activer generic extra sensor dans chrome, page chrome://flags)
+
 3.3.0
 =====
 
