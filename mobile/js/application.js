@@ -139,7 +139,7 @@ function changeThemeAuto(_ambiantLight){
   if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
     return;
   }
-  if (_ambiantLight && 'AmbientLightSensor' in window) {
+  if (userProfils.mobile_theme_useAmbientLight && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.onreading = () => {
       if(sensor.illuminance < 400 && sensor.illuminance > 300){
@@ -166,24 +166,26 @@ function changeThemeAuto(_ambiantLight){
     };
     sensor.start();
   }else{
-    var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
-    var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-    if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
-      var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
-    }
-    if($('#jQMnDColor').attr('href') != theme){
-      $('#jQMnDColor').attr('href', theme);
-    }
-    setInterval(function () {
+    if (userProfils.theme_changeAccordingTime){
       var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
       var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-      if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
+      if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
         var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
       }
       if($('#jQMnDColor').attr('href') != theme){
         $('#jQMnDColor').attr('href', theme);
       }
-    }, 60000);
+      setInterval(function () {
+        var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+        var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+        if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
+          var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+        }
+        if($('#jQMnDColor').attr('href') != theme){
+          $('#jQMnDColor').attr('href', theme);
+        }
+      }, 60000);
+    }
   }
 }
 
@@ -237,9 +239,11 @@ function initApplication(_reinit) {
         widget_margin =  data.result.widget_margin;
         jeedom.init();
         var include = ['core/js/core.js'];
-        
-        if(typeof userProfils.mobile_useAmbientLight == undefined){
-          userProfils.mobile_useAmbientLight = 0
+        if(typeof userProfils.mobile_theme_useAmbientLight == undefined){
+          userProfils.mobile_theme_useAmbientLight = 0
+        }
+        if(typeof userProfils.theme_changeAccordingTime == undefined){
+          userProfils.theme_changeAccordingTime = 0
         }
         if (isset(userProfils) && userProfils != null) {
           if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
@@ -253,7 +257,7 @@ function initApplication(_reinit) {
             include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
           }
         }
-        changeThemeAuto(userProfils.mobile_useAmbientLight);
+        changeThemeAuto();
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
             include.push('mobile/custom/custom.css');

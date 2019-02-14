@@ -389,6 +389,9 @@ function changeThemeAuto(){
   if(typeof userProfils == 'undefined'){
     return;
   }
+  if(typeof userProfils.theme_changeAccordingTime == 'undefined' || userProfils.theme_changeAccordingTime == 0){
+    return;
+  }
   if(typeof userProfils.bootstrap_theme == 'undefined' || typeof userProfils.bootstrap_theme_night == 'undefined'){
     return;
   }

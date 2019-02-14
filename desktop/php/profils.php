@@ -42,7 +42,7 @@ if (!isConnect()) {
 					<form class="form-horizontal">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Desktop Jour}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
 										<option value="">Défaut</option>
@@ -55,7 +55,7 @@ if (!isConnect()) {
 										?>
 									</select>
 								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nuit}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme_night">
 										<option value="">Défaut</option>
@@ -70,7 +70,7 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Couleur sur mobile Jour}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
 										<?php
@@ -82,7 +82,7 @@ if (!isConnect()) {
 										?>
 									</select>
 								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nuit}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color_night">
 										<?php
@@ -106,7 +106,11 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Utiliser le capteur de luminosité en mobile}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="theme_changeAccordingTime"/>
+								</div>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_theme_useAmbientLight"/>
 								</div>
