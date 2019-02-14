@@ -38,13 +38,26 @@ if (!isConnect()) {
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="themetab">
 				<br/>
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<form class="form-horizontal">
 						<fieldset>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Desktop}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Desktop Jour}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
+										<option value="">Défaut</option>
+										<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
+										}
+										?>
+									</select>
+								</div>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nuit}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme_night">
 										<option value="">Défaut</option>
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
@@ -57,8 +70,8 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Couleur sur mobile jour}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Couleur sur mobile Jour}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
@@ -69,10 +82,8 @@ if (!isConnect()) {
 										?>
 									</select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Couleur sur mobile nuit}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nuit}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color_night">
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
@@ -85,14 +96,20 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Masquer les images de fond}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Utiliser le capteur de luminosité}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_useAmbientLight"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideBackgroundImg"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Graphique Desktop}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Graphique Desktop}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
 										<option value="">Défaut</option>
 										<option value="dark-blue">Dark-blue</option>
@@ -107,8 +124,8 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Graphique mobile}}</label>
-								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Graphique mobile}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
 										<option value="">Défaut</option>
 										<option value="dark-blue">Dark-blue</option>
@@ -125,8 +142,8 @@ if (!isConnect()) {
 							<?php
 							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 								echo '<div class="form-group">';
-								echo '<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Opacité des widgets}} ' . $value['name'] . '</label>';
-								echo '<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">';
+								echo '<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité des widgets}} ' . $value['name'] . '</label>';
+								echo '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
 								echo '<input type="number" min="0" max="1" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity::' . $key . '"/>';
 								echo '</div>';
 								echo '</div>';
