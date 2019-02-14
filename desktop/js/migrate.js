@@ -473,7 +473,7 @@ function finalisation(go){
 		pourcentageBar = 0;
 		$('#step5').show();
 		$('#contenuWithStepFive').addClass('animated');
-		console.log('Finalisation Activé');
+		console.log('function Finalisation');
 		$.ajax({
 		    type: 'POST',
 		    url: 'core/ajax/jeedom.ajax.php',
@@ -485,6 +485,7 @@ function finalisation(go){
 		      confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
 		    },
 		    success: function (data) {
+			    console.log('getInfoApplication > '+JSON.stringify(data));
 			    $.ajaxSetup({
 				  type: "POST",
 				  data: {
@@ -507,7 +508,7 @@ function finalisation(go){
 						$('#div_alert').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (result){
-						console.log('Succes Login ;) > '+result);
+						console.log('Succes Login ;) > '+JSON.stringify(result));
 						$.ajax({
 							type: 'POST',
 							url: 'core/ajax/update.ajax.php',
@@ -522,6 +523,7 @@ function finalisation(go){
 								$('#div_alert').showAlert({message: error.message, level: 'danger'});
 							},
 							success: function (result){
+								console.log('Update lancé > '+JSON.stringify(result));
 								$('.progress-bar').width('1%');
 								$('.progress-bar').text('1%');
 								getJeedomLog(1, 'update');
@@ -666,6 +668,7 @@ function reboot_jeedom(){
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
 	page_rebootjs();
+	console.log('reboot de la Jeedom supression des cookies');
 	setcookie('jeedom_token', '', time() - 365 * 24 * 3600, "/", '', false, true);
 	setcookie('PHPSESSID', '', time() - 365 * 24 * 3600, "/", '', false, true);
 	setcookie('sess_id', '', time() - 365 * 24 * 3600, "/", '', false, true);
