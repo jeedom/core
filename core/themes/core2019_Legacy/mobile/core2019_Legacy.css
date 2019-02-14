@@ -127,7 +127,7 @@ legend {
 	background:  var(--el-defaultColor) !important;
 	height: 5px;
 }
-.ui-slider-handle {
+a.ui-slider-handle {
 	border-radius: 1em !important;
 }
 
