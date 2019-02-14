@@ -315,7 +315,6 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
-		$sql .= ' ORDER BY `datetime` ASC';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		
 		$sql = 'DELETE FROM historyArch
@@ -326,7 +325,6 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
-		$sql .= ' ORDER BY `datetime` ASC';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return true;
 	}
