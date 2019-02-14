@@ -145,7 +145,7 @@ class migrate {
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
 	    }
-	    jeedom::restore($lienBackup);
+	    jeedom::restore('backup/'.$lienBackup, true);
 	    return 'ok';
 	}
 	
