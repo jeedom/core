@@ -84,8 +84,8 @@ $('#in_specificCommand').keypress(function(e) {
       success : function(log){
         $('#h3_executeCommand').empty().append('{{Commande : }}'+command);
         $('#pre_commandResult').append(log);
-        if($('.bt_systemCommand[data-command="'+command+'"]').html() == undefined){
-          $('#ul_listSystemHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="'+command+'">'+command+'</a></li>');
+        if($('.bt_systemCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined){
+          $('#ul_listSystemHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>');
         }
         var kids = $('#ul_listSystemHistory').children();
         if (kids.length >= 10) {
