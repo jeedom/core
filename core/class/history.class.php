@@ -279,6 +279,39 @@ class history {
 				ORDER BY `datetime` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
+	
+	public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
+		$values = array(
+			'cmd_id' => $_cmd_id,
+		);
+		if ($_startTime !== null) {
+			$values['startTime'] = $_startTime;
+		}
+		if ($_endTime !== null) {
+			$values['endTime'] = $_endTime;
+		}
+		
+		$sql = 'DELETE FROM history
+		WHERE cmd_id=:cmd_id ';
+		if ($_startTime !== null) {
+			$sql .= ' AND datetime>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND datetime<=:endTime';
+		}
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		
+		$sql = 'DELETE FROM historyArch
+		WHERE cmd_id=:cmd_id ';
+		if ($_startTime !== null) {
+			$sql .= ' AND `datetime`>=:startTime';
+		}
+		if ($_endTime !== null) {
+			$sql .= ' AND `datetime`<=:endTime';
+		}
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		return true;
+	}
 
 	public static function getPlurality($_cmd_id, $_startTime = null, $_endTime = null, $_period = 'day', $_offset = 0) {
 		$values = array(
