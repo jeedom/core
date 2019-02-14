@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
 	header("Statut: 404 Page non trouvée");
@@ -46,7 +46,6 @@ if (init('cron_id') != '') {
 	if (!is_object($cron)) {
 		die();
 	}
-
 	try {
 		$cron->setState('run');
 		$cron->setPID(getmypid());
@@ -94,7 +93,6 @@ if (init('cron_id') != '') {
 				die();
 			}
 		} else {
-
 			$function = $cron->getFunction();
 			if (function_exists($function)) {
 				if ($cron->getDeamon() == 0) {
@@ -155,7 +153,7 @@ if (init('cron_id') != '') {
 			$logicalId = $cron->getName() . '::' . $e->getCode();
 		}
 		echo '[Erreur] ' . $cron->getName() . ' : ' . log::exception($e);
-
+		
 		if (isset($class) && $class != '') {
 			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
 		} else if (isset($function) && $function != '') {
@@ -185,10 +183,10 @@ if (init('cron_id') != '') {
 		die();
 	}
 	$started = jeedom::isStarted();
-
+	
 	set_time_limit(59);
 	cron::setPidFile();
-
+	
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
@@ -215,11 +213,11 @@ if (init('cron_id') != '') {
 			}
 			switch ($cron->getState()) {
 				case 'starting':
-					$cron->run();
-					break;
+				$cron->run();
+				break;
 				case 'stoping':
-					$cron->halt();
-					break;
+				$cron->halt();
+				break;
 			}
 		} catch (Exception $e) {
 			if ($cron->getOnce() != 1) {

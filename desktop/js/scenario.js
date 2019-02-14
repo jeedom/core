@@ -823,6 +823,7 @@ function setEditor() {
       setTimeout(function () {
         editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
           lineNumbers: true,
+          lineWrapping: true,
           mode: 'text/x-php',
           matchBrackets: true,
           viewportMargin : Infinity

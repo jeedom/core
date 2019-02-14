@@ -122,11 +122,7 @@ function initEquipment(_object_id) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
     setTileSize('.scenario');
-    if(_object_id == 'all'){
-      $('.div_displayEquipement > .objectHtml').packery({gutter :0});
-    }else{
-      $('#div_displayEquipement > .objectHtml').packery({gutter :0});
-    }
+    $('#div_displayEquipement > .objectHtml').packery({gutter :0});
   });
   
   

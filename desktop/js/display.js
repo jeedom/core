@@ -122,6 +122,7 @@ $('.configureCmd').on('click',function(){
 $('#in_search').on('keyup',function(){
   var search = $(this).value().toLowerCase();
   $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
+  $('.eqLogic').show();
   $('.cmdSortable').hide();
   if(search == ''){
     return;

@@ -389,9 +389,9 @@ class repo_market {
 			if (file_exists('/etc/debian_version')) {
 				$deb_version = file_get_contents('/etc/debian_version');
 				if (version_compare($deb_version, '9', '>=')) {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+stretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bstretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
 				} else {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/3.4/debian/pool/main/z/zabbix-release/zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
+					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bjessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
 				}
 			}
 		}
@@ -411,13 +411,6 @@ class repo_market {
 		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
 		$cmd .= system::getCmdSudo() . ' echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
 		$cmd .= system::getCmdSudo() . ' echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-		if (!isset($matches[0]) || !isset($matches[0][0]) || version_compare($matches[0][0], '3.0.0') >= 0) {
-			$cmd .= system::getCmdSudo() . ' echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
-		}
 		if (!file_exists('/var/log/zabbix')) {
 			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix;';
 		}
@@ -450,12 +443,6 @@ class repo_market {
 			return false;
 		}
 		if (config::byKey('market::monitoringName') == '') {
-			return false;
-		}
-		if (config::byKey('market::monitoringPskIdentity') == '') {
-			return false;
-		}
-		if (config::byKey('market::monitoringPsk') == '') {
 			return false;
 		}
 		return true;

@@ -33,7 +33,7 @@ class scenario {
 	private $_log;
 	private $timeout = 0;
 	private $object_id = null;
-	private $isVisible = 1;
+	private $isVisible = 0;
 	private $display;
 	private $order = 9999;
 	private $description;
@@ -331,8 +331,8 @@ class scenario {
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
 			return;
 		}
-		if (is_numeric($_options['second']) && $_options['second'] > 0) {
-			sleep($_options['second']);
+		if (is_numeric($_options['second']) && $_options['second'] > intval(date('s'))) {
+			sleep($_options['second'] - intval(date('s')));
 		}
 		$scenarioElement->getSubElement('do')->execute($scenario);
 		$scenario->setLog(__('************FIN sous tâche**************', __FILE__));
