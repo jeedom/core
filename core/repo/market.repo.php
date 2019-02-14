@@ -411,13 +411,6 @@ class repo_market {
 		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
 		$cmd .= system::getCmdSudo() . ' echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
 		$cmd .= system::getCmdSudo() . ' echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-		if (!isset($matches[0]) || !isset($matches[0][0]) || version_compare($matches[0][0], '3.0.0') >= 0) {
-			$cmd .= system::getCmdSudo() . ' echo "TLSConnect=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSAccept=psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSPSKIdentity=' . config::byKey('market::monitoringPskIdentity') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "TLSPSKFile=/etc/zabbix/zabbix_psk" >> /etc/zabbix/zabbix_agentd.conf;';
-			$cmd .= system::getCmdSudo() . ' echo "' . config::byKey('market::monitoringPsk') . '" > /etc/zabbix/zabbix_psk;';
-		}
 		if (!file_exists('/var/log/zabbix')) {
 			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix;';
 		}
