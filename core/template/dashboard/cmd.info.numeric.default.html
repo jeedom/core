@@ -22,7 +22,7 @@
                     }
                 },
                 type: 'solidgauge',
-                height : 95,
+                height : 92,
                 plotBackgroundColor: null,
                 plotBackgroundImage: null,
                 backgroundColor: null,
@@ -42,7 +42,7 @@
                 endAngle: 90,
                 background: {
                     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
+                    innerRadius: '90%',
                     outerRadius: '100%',
                     shape: 'arc'
                 }
@@ -89,6 +89,8 @@
                 series: [{
                     name: '',
                     data: [Math.round(parseFloat('#state#') * 10) / 10],
+                  	radius: 92,
+            		innerRadius: 72,
                     dataLabels: {
                         format: '<span style="color : white;">{y}</span> <span style="font-size:10px;color:white">#unite#</span>'
                     },
