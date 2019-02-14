@@ -61,6 +61,10 @@ try {
 		$renameImage = migrate::renameImage();
 		ajax::success($renameImage);
 	}
+	if (init('action') == 'GoBackupInstall'){
+		$GoBackupInstall = migrate::GoBackupInstall();
+		ajax::success($GoBackupInstall);
+	}
 	if (init('action') == 'finalisation'){
 		$finalisation = migrate::finalisation();
 		ajax::success($finalisation);

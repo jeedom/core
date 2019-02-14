@@ -50,10 +50,10 @@ class migrate {
 			}elseif($iSDn > 1){
 				$statut = 'sdaNumSup';
 			}else{
-              	exec('sudo umount '.$mediaLink);
-              	exec('sudo mkdir '.$mediaLink);
-              	exec('sudo mkdir '.$mediaLink.'/Backup');
+              			exec('sudo umount '.$mediaLink);
+              			exec('sudo mkdir '.$mediaLink);
 				exec('sudo mount -t vfat /dev/'.$usb.' '.$mediaLink);
+              			exec('sudo mkdir '.$mediaLink.'/Backup');
 				if((migrate::freeSpaceUsb()/1024) > $minSize){
 					$statut = 'ok';
 				}else{
@@ -68,6 +68,7 @@ class migrate {
 	public static function backupToUsb() { 
 		$mediaLink = '/media/migrate/Backup';
 		log::remove('migrate');
+		exec('sudo rm '.$mediaLink.'/*');
 	    $backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
@@ -98,12 +99,23 @@ class migrate {
 		$url = $urlArray['url'];
 		$size = $urlArray['size'];
 		exec('sudo pkill -9 wget');
-		exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
-		$sizeFile = filesize($mediaLink.'/backupJeedomDownload.tar.gz');
-		if($sizeFile == $size){
-			return 'ok';
-		}else{
-			return 'nok';
+		$fileExiste = 0;
+		if(file_exists($mediaLink.'/backupJeedom.tar.gz.installed')){
+			$fileExiste = $mediaLink.'/backupJeedom.tar.gz.installed';
+		}elseif(file_exists($mediaLink.'/backupJeedom.tar.gz')){
+			$fileExiste = $mediaLink.'/backupJeedom.tar.gz';
+		}elseif(file_exists($mediaLink.'/backupJeedomDownload.tar.gz')){
+			$fileExiste = $mediaLink.'/backupJeedomDownload.tar.gz';
+		}
+		if($fileExiste !== 0){
+			$sizeFileExiste = filesize($fileExiste);
+			if($sizeFileExiste == $size){
+				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/backupJeedom.tar.gz');
+				return 'fileExist';
+			}else{
+				exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+				return 'telechargement';
+			}
 		}
 	}
 	
@@ -115,6 +127,7 @@ class migrate {
 	}
 	
 	public static function finalisation(){
+		migrate::usbTry();
 		$mediaLink = '/media/migrate';
 		$mediaLinkBackup = $mediaLink.'/Backup';
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
@@ -124,12 +137,16 @@ class migrate {
 		}
 		log::remove('migrate');
 		exec('sudo rsync --progress '.$mediaLinkBackup.'/* '.$backup_dir.' >'.log::getPathToLog('migrate').' 2>&1');
+		return 'ok';
+	}
+	
+	public static function GoBackupInstall(){
 		$backups = jeedom::listBackup();
 	    foreach ($backups as $backup) {
 		    	$lienBackup = $backup;
 	    }
 	    jeedom::restore($lienBackup);
-		return 'ok';
+	    return 'ok';
 	}
 	
 	public static function freeSpaceUsb(){

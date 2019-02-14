@@ -52,7 +52,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
 		<div id="contenuWithStepFor" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
+				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre Jeedom}}</span>
@@ -104,13 +104,32 @@ if (!isConnect('admin')) {
         <h4 class="modal-title">{{Réinstallation de votre Backup}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{Voulez-vous réinstaller votre Backup sur cette Jeedom ou bien repartir de zero ?}}</p>
-        <p>{{Votre backup est disponible sur votre Jeedom dans tout les cas.}}</p>
-        <p>{{Si vous choisissez "zero" n'oubliez pas que vos identifiant sont admin/admin}}</p>
+        <p>{{Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?}}</p>
+        <p>{{Votre backup est disponible sur votre Jeedom dans tous les cas.}}</p>
+        <p>{{Si vous choisissez "zéro" n'oubliez pas que vos identifiants sont admin/admin}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="bt_zero">{{Zero}}</button>
-        <button type="button" class="btn btn-primary" id="bt_backup">{{Récupérer mon Backup}}</button>
+        <button type="button" class="btn btn-default" id="bt_zero">{{Zéro}}</button>
+        <button type="button" class="btn btn-primary" id="bt_backup">{{Installer mon Backup}}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalFirstStep">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{Informations Importantes}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{- Il vous faut une clé USB de plus de 8Go.}}</p>
+	<p>{{- Il vous faut etre sur le meme reseau Local que votre Jeedom.}}</p>
+	<p>{{- Accéder à votre Jeedom depuis sont adresse interne.}}</p>
+	<p>{{- Pouvoir laisser cette page ouverte au minimum 1h30.}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{C'est Partie}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
