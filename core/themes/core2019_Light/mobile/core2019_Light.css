@@ -134,7 +134,7 @@ legend {
 	background:  var(--el-defaultColor) !important;
 	height: 5px;
 }
-.ui-slider-handle {
+a.ui-slider-handle {
 	border-radius: 1em !important;
 	background-color: var(--link-color) !important;
 	background: linear-gradient(var(--link-color), var(--link-color)) fixed !important;
