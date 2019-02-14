@@ -1,0 +1,1606 @@
+/*
+
+Theme Core 2019
+By KiboOst for Jeedom
+
+*/
+
+@import url("normalize.min.css");
+@import url("colors.css");
+
+
+* {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  cursor: default;
+}
+body {
+  font-family: 'Roboto' !important;
+  background-color: var(--bg-color);
+  color: var(--txt-color) !important;
+  border-radius: 0 !important;
+  border: none;
+  background-repeat : no-repeat;
+  background-size:cover;
+  background-position: center center;
+  margin: 0 !important;
+  scrollbar-color: var(--form-bg-color) var(--bg-color) !important;
+}
+.backgroundforJeedom {
+  background-image: var(--dashBkg-url) !important;
+  background-color: transparent !important;
+}
+.ui-widget-overlay.ui-front {
+  background: rgba(10,10,10,1);
+}
+/* links */
+a,
+a i,
+a > span,
+.badge,
+a.btn,
+.btn,
+.btn > * {
+   cursor: pointer !important;
+}
+a,
+span.cursor > i,
+i.cursor {
+  color: var(--link-color) !important;
+}
+a:hover,
+a:active,
+a:focus {
+  color: var(--linkHover-color) !important;
+  text-decoration: none !important;
+  outline: none;
+}
+a > img:hover {
+  opacity: 0.75;
+}
+
+span.cursor > i:hover,
+i.cursor:hover,
+i.cursor:active,
+i.cursor:focus {
+  color: var(--linkHover-color) !important;
+  outline: none;
+}
+.context-menu-root  {
+  z-index: 9999 !important;
+}
+/* legend */
+legend {
+  font-family: "Roboto" !important;
+  font-size: 18px;
+  background: transparent !important;
+  border-bottom: none;
+  margin-top: 20px;
+}
+legend:first-letter {
+    text-transform: uppercase;
+}
+:not([data-page=display])legend {
+  color: var(--link-color) !important;
+}
+/* résumé domo */
+[data-page=display] legend a,
+[data-page=display] legend i {
+  color: inherit !important;
+}
+[data-page=display] #div_pageContainer > div.row-same-height > div {
+  padding: 0 0.5em !important;
+}
+[data-page=display] #div_pageContainer > div.row-same-height > div > div {
+  padding: 0.1em 0.5em;
+}
+[data-page=display] #div_pageContainer ul > li {
+  margin: 1px 0 !important;
+}
+
+#interfacetab legend {
+  padding-top: 20px;
+}
+
+/* object title on dashboard */
+.div_object legend {
+  text-align: center !important;
+  color: var(--txt-color);
+  background-color: transparent !important;
+  margin-top: 10px;
+}
+/* legend on equipements pages */
+:not(.div_object) > legend {
+  text-align: left !important;
+  color: var(--txt-color);
+  text-align: center;
+  border-left: 4px solid var(--logo-primary-color);
+  margin: 12px 5px !important;
+  padding: 5px 0 5px 5px !important;
+  line-height: 1em !important;
+}
+:not(.div_object) > legend > i {
+  padding-right: 5px
+}
+
+[data-page=display] legend {
+  border-left: none;
+}
+
+/* legend in scenarios */
+.element legend {
+  background-color: transparent !important;
+  color: var(--sc-lightTxt-color) !important;
+  text-align: center;
+  margin: 0 !important;
+  min-width: 5.5em;
+}
+
+
+/* time on time widgets too low */
+.timeCmd.label {
+  color: var(--txt-color);
+  background: linear-gradient(var(--bg-color), var(--bg-color)) fixed !important;
+  padding: 0 0.5em !important;
+}
+
+
+/* all icons same width, buttons colors */
+.eqLogic-widget .btn-default,
+.input-group-addon,
+.scenario-widget .btn-default {
+  background-color: var(--btn-default-color) !important;
+  background: linear-gradient(var(--btn-default-color), var(--btn-default-color)) fixed !important;
+  min-width: 32px !important;
+}
+.eqLogic-widget .btn,
+.scenario-widget .btn,
+#bt_editDashboardWidgetOrder,
+#bt_displayObject {
+  background-color: var(--btnEq-default-color) !important;
+  background: linear-gradient(var(--btnEq-default-color), var(--btnEq-default-color)) fixed !important;
+  min-width: 32px !important;
+}
+
+
+
+/* dashboard equipments text color */
+.tableCmd,
+.highcharts-axis-title > tspan,
+.cmd-widget > center {
+  fill: var(--txt-color) !important;
+  color: var(--txt-color);
+}
+.iconCmd {
+  margin-top: 5px !important;
+  top: 0 !important;
+}
+.iconCmd > i {
+  color: var(--link-color) !important;
+}
+
+/* summary */
+.objectSummaryParent {
+  color: var(--txt-color) !important;
+  font-size: 12px;
+}
+
+/* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
+.eqLogic-widget i.fa-refresh {
+  margin-right: calc((var(--border-radius)/4) + 5px)  !important;
+}
+#div_displayObject .eqLogic:not(.col-xs-12),
+:not(.batteryListContainer) > .eqLogic-widget {
+  background-color: var(--eq-bg-color) !important;
+  color: var(--txt-color) !important;
+}
+
+#div_displayObject > a {
+  background-color: var(--btnEq-default-color) !important;
+}
+
+.eqLogic-widget > .widget-name a,
+.scenario-widget > .widget-name a,
+.eqLogic-widget > .refresh .fa,
+.eqLogic-widget > .fa-refresh,
+.eqLogic-widget > span:first-child.statusCmd i {
+  color: var(--eqTitle-color) !important;
+  font-size: 16px !important;
+}
+.eqLogic-widget > .widget-name a:hover,
+.scenario-widget > .widget-name a:hover,
+.eqLogic-widget > .refresh .fa:hover,
+.eqLogic-widget > .fa-refresh:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+
+.scenario.scenario-widget .widget-name {
+  background-color: var(--cat-scenario-color) !important;
+}
+
+[data-category=security]>.widget-name {
+  background-color: var(--cat-security-color) !important;
+}
+[data-category=heating]>.widget-name {
+  background-color: var(--cat-heating-color) !important;
+}
+[data-category=automatism]>.widget-name {
+  background-color: var(--cat-automatism-color) !important;
+}
+[data-category=light]>.widget-name {
+  background-color: var(--cat-light-color) !important;
+}
+[data-category=multimedia]>.widget-name {
+  background-color: var(--cat-multimedia-color) !important;
+}
+[data-category=energy]>.widget-name {
+  background-color: var(--cat-energy-color) !important;
+}
+[data-category='']>.widget-name {
+  background-color: var(--cat-other-color) !important;
+}
+:not(.batteryListContainer) > .eqLogic-widget:not([data-category])>.widget-name {
+  background-color: var(--cat-other-color) !important;
+}
+
+/* ___________________________________________________________NAVBAR */
+header a.navbar-brand {
+  background-image: url(logo-jeedom.svg) !important;
+  background-size: 60px !important;
+  background-repeat: no-repeat;
+  background-position: 10px 7px;
+  height: 50px;
+  width: 90px;
+}
+a.navbar-brand > img {
+  display: none;
+}
+header .navbar-toggle {
+  border: none;
+  margin-top: 2px;
+  background: transparent !important;
+}
+.navbar-toggle .icon-bar {
+  height: 3px;
+}
+
+.navbar {
+  border: none;
+  font-family: 'Roboto';
+}
+.navbar,
+.navbar-collapse,
+.dropdown-menu,
+.dropdown>a,
+.dropdown>a:hover {
+  background-color: var(--eq-bg-color) !important;
+  border: none;
+}
+.nav .open > a,
+.dropdown-menu > li > a:hover {
+  background-color: var(--bg-color) !important;
+}
+
+.element .dropdown-submenu.open>a,
+.element .dropdown-menu>li>a:focus,
+.element .dropdown-menu>li>a:hover {
+  background-color: var(--btn-default-color) !important;
+  cursor: pointer !important;
+}
+.element .dropdown-menu li a{
+  font-size : 12px !important;
+  line-height: 15px;
+}
+
+.dropdown-menu>li>a>i {
+  margin-right: 7px !important;
+}
+.dropdown-menu .divider{
+  background-color: var(--el-defaultColor) !important;
+}
+.navbar-nav > li > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.navbar {
+  min-height: 50px;
+  height: 50px;
+}
+button .fas.fa-plus-circle {
+  font-size: 10px;
+}
+.caret {
+  border-width: 5px;
+}
+/* ___________________________________________________________DIVERS */
+/* hack for horizontal sliders alone, like shutter position but not scripts sliders */
+.verticalAlign > center > [data-subtype=slider]:nth-child(2) {
+  top: 20px !important;
+}
+
+#div_displayLogList .fa.fa-check {
+  color: var(--logo-primary-color) !important;
+}
+
+[data-subtype=slider] > div > span,
+span[style*="transform: translate(-50%, 150%)"] {
+  color: var(--link-color);
+  background: linear-gradient(transparent, transparent) fixed !important;
+  background-color: transparent !important;
+  transform: translate(calc(100% + 20px)) !important;
+}
+
+select.selectCmd {
+  border: 0;
+  vertical-align: middle;
+  height: 2em;
+}
+
+/* top buttons on pages */
+#div_resumeObjectList > .objectListContainer:first-of-type,
+#scenarioThumbnailDisplay > .scenarioListContainer:first-of-type,
+#interactThumbnailDisplay > .interactListContainer:first-of-type,
+#div_resumePluginList > .pluginListContainer:first-of-type,
+.eqLogicThumbnailDisplay > .eqLogicThumbnailContainer:first-of-type {
+  min-height: 110px !important;
+}
+
+.eqLogicAction:not(.btn):not(i):not([role=tab]):not([data-action=returnToThumbnailDisplay]),
+.eqLogicDisplayCard,
+.eqLogicThumbnailContainer div,
+.interactDisplayCard,
+.interactListContainer div,
+.objectListContainer div,
+.pluginListContainer div,
+.scenarioDisplayCard,
+.scenarioListContainer div,
+.widgetDisplayCard {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: .85em!important;
+  padding-top: 0!important;
+
+}
+.objectListContainer div.cursor,
+.interactListContainer div.cursor,
+.scenarioListContainer div.cursor,
+.pluginListContainer div.cursor,
+.eqLogicDisplayCard div.cursor {
+  margin-bottom: 5px !important;
+  padding: 5px !important;
+
+}
+.objectListContainer div.cursor > center > i,
+.interactListContainer div.cursor > center > i,
+.scenarioListContainer div.cursor > center  > i,
+.pluginListContainer div.cursor > center > i,
+.eqLogicThumbnailContainer div.cursor > center > i,
+.eqLogicThumbnailContainer div.cursor > i {
+  font-size: 3.5em !important;
+}
+.objectListContainer > div.cursor,
+.interactListContainer > div.cursor,
+.scenarioListContainer > div.cursor,
+.pluginListContainer > div.cursor,
+.eqLogicThumbnailContainer > div.cursor {
+  width : 145px !important;
+}
+
+
+.scenarioDisplayCard > img {
+  width: 65px;
+  height: 65px;
+}
+.pluginListContainer div.cursor > center > img {
+  width: 100px !important;
+  padding-top: 15px;
+}
+.eqLogicThumbnailContainer div.cursor > center > img,
+.eqLogicThumbnailContainer div.cursor img {
+  width: 75px !important;
+  height: auto !important;
+  padding-top: 15px;
+}
+.eqLogicDisplayCard > img {
+  width: 65px;
+  height: 70px;
+}
+.eqLogicDisplayCard {
+  margin-bottom: 10px !important;
+  height: 170px !important;
+}
+
+
+
+/* market */
+div[data-market_type=plugin] {
+  background-color: var(--form-bg-color) !important;
+}
+div[data-market_type=plugin]:hover {
+  background-color: var(--el-defaultColor) !important;
+}
+
+pre {
+  color: var(--txt-color);
+  background-color: var(--eq-bg-color);
+  border: none;
+}
+
+.row-same-height {
+  padding: 1em;
+}
+
+.lazy {
+  border: none !important;
+}
+
+/* context menus */
+.context-menu-list {
+  padding: 0 !important;
+  border: none !important;
+  background: var(--bg-modal-color) !important;
+}
+.context-menu-separator {
+  border-bottom: 1px solid var(--bg-color) !important;
+}
+.context-menu-item {
+  color: var(--txt-color) !important;
+  background: var(--bg-modal-color) !important;
+}
+.context-menu-item:not(.context-menu-disabled) span {
+  cursor: pointer !important;
+}
+.context-menu-disabled {
+  color: var(--placeholder-color) !important;
+  cursor: default !important;
+}
+.context-menu-item:not(.context-menu-disabled)::before {
+  color: var(--txt-color) !important;
+}
+.context-menu-submenu::after {
+  border-left-color: var(--txt-color) !important;
+  font-size: 22px !important;
+}
+.context-menu-item:not(.context-menu-disabled):hover {
+  background: var(--btnEq-default-color) !important;
+}
+.context-menu-disabled,
+.context-menu-disabled::before {
+  color: var(--btnEq-default-color) !important;
+}
+.context-menu-disabled::after {
+  border-left-color: var(--btnEq-default-color) !important;
+}
+
+
+/* ___________________________________________________________COLORS */
+.label-info {
+  font-weight: normal;
+  background-color: var(--lb-info-color);
+}
+.alert {
+  border: none !important;
+}
+.alert-info {
+  color: var(--txt-color);
+  background-color: var(--al-info-color);
+  border: none;
+}
+.alert-success {
+  color: var(--linkHoverLight-color);
+  background-color: var(--al-success-color);
+  border: none;
+}
+.alert-warning {
+  color: var(--txt-color);
+  background-color: var(--al-warning-color);
+  border: none;
+}
+.alert-danger {
+  color: var(--sc-lightTxt-color);
+  background-color: var(--al-danger-color);
+  border: none;
+}
+
+.state,
+.cmd {
+  color: var(--link-color) !important;
+}
+p.state {
+  color: var(--txt-color) !important;
+}
+
+.cursor * {
+  cursor: pointer;
+}
+
+/* résumé */
+li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
+.row .objectSummaryParent{ font-size : 14px !important; }
+
+/* ___________________________________________________________BUTTONS */
+
+#config #eqlogictab .label.label-danger,
+#config #eqlogictab .label.label-warning,
+#config #eqlogictab .label.label-success {
+  line-height: 17.15px !important;
+  height: 34px;
+  padding-top: 5px !important;
+  padding-left: 0 !important;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btn,
+.btn:focus,
+.btn:active,
+.eqLogic-widget .btn:not(.btn-circle) {
+  color: var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important; /*override commun.css */
+  background-color: var(--btn-default-color) !important;
+  border: none !important;
+}
+.btn:hover {
+  color: var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  opacity: 1 !important;
+}
+
+.btn-sm {
+  height: 30px;
+}
+
+.element .btn,
+.element .btn:focus,
+.element .btn:active,
+.element .dropdown-menu {
+  color: var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+
+.btn-default {
+  color: var(--linkHover-color) !important;
+}
+.btn-default:not(.btn) {
+  background-color: var(--btn-default-color) !important;
+  border: none !important;
+}
+
+.btn-info {
+  color: var(--bg-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  background-color: rgb(80, 140, 180) !important;
+  border: none;
+}
+.btn-warning {
+  color: var(--bg-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  background-color: rgb(230, 150, 40) !important;
+  border: none;
+}
+.btn-danger {
+  color: var(--bg-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  background-color: rgb(180, 60, 50) !important;
+  border: none;
+}
+.btn-primary,
+.label-primary {
+  color: var(--bg-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  background-color: rgb(40, 100, 170) !important;
+  border: none;
+}
+.btn-success {
+  color: var(--bg-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  background-color: rgb(80, 160, 80) !important;
+  border: none;
+}
+
+.btn-info:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+
+button {
+  margin-right: 3px;
+}
+button:focus {
+  outline:0 !important;
+}
+
+/* dropdown select alternative */
+.form-group button.dropdown-toggle {
+  color: var(--txt-color) !important;
+  -webkit-text-fill-color: var(--txt-color) !important;
+  background: var(--form-bg-color) !important;
+  text-align: left;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+}
+.form-group button.dropdown-toggle:hover {
+  color: var(--txt-color) !important;
+  -webkit-text-fill-color: var(--txt-color) !important;
+}
+.form-group button.dropdown-toggle:focus,
+.form-group button.dropdown-toggle a:focus {
+  color: var(--txt-color) !important;
+}
+.form-group button.dropdown-toggle .caret {
+  color: var(--txt-color) !important;
+  position: absolute;
+  top: 45% !important;
+  right: 10px;
+  border-width: 6px;
+}
+.form-group .dropdown.open > button {
+  color: var(--txt-color)  !important;
+  -webkit-text-fill-color: var(--txt-color)  !important; /*override commun.css */
+  background: var(--form-bg-color) !important;
+}
+
+
+
+/* buttons on eq widgets */
+.eqLogic.eqLogic-widget .btn,
+#div_displayObject .btn {
+  color: var(--link-color) !important;
+  -webkit-text-fill-color: var(--link-color) !important; /*override commun.css */
+}
+.eqLogic.eqLogic-widget .btn:hover,
+#div_displayObject .btn:hover {
+  color: var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important; /*override commun.css */
+}
+
+/* ___________________________________________________________PANELS */
+div.panel {
+  border : none;
+}
+#md_modal .panel-heading {
+  padding: 6px 12px;
+  border: none;
+}
+:not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
+  background-color: var(--eq-bg-color) !important;
+}
+.panel {
+  color: var(--txt-color) !important;
+  background-color: var(--eq-bg-color) !important;
+  border-color: var(--el-defaultColor) !important;
+  border: none !important;
+}
+
+/*
+#md_modal .panel-body {
+  border-left: 2px solid var(--logo-primary-color) !important;
+}
+*/
+
+.panel-default > .panel-heading,
+.panel-collapse > .panel-body {
+  border: none !important;
+}
+.panel-success .panel-heading {
+  color: var(--linkHoverLight-color);
+  background-color: var(--al-success-color);
+}
+.panel-primary .panel-heading {
+  color: var(--linkHoverLight-color);
+}
+.panel-info .panel-heading {
+  color: var(--linkHoverLight-color);
+  background-color: var(--al-info-color);
+}
+.panel-warning .panel-heading {
+  color: var(--txt-color);
+  background-color: var(--al-warning-color);
+}
+.panel-danger .panel-heading {
+  color: var(--sc-lightTxt-color);
+  background-color: var(--al-danger-color);
+}
+
+.panel-body,
+.list-group li {
+  background-color: var(--panel-bg-color) !important;
+}
+
+/* ___________________________________________________________FORMS */
+::-moz-color-swatch {
+  border: none;
+  border-color: transparent;
+}
+::-webkit-color-swatch {
+  border: none;
+}
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control > span,
+.form-group span {
+  top: 0 !important;
+}
+.form-group {
+  margin-bottom: 10px;
+  vertical-align: middle !important;
+}
+
+.control-label {
+  padding-top: 0!important;
+}
+
+.form-control {
+  font-size: 12px !important;
+  border: none !important;
+  cursor: text;
+}
+
+.form-control::placeholder {
+  color: var(--placeholder-color);
+}
+
+fieldset > div {
+  padding-left: 1em;
+}
+
+[class*="col-"] {
+  position: relative;
+  min-height: 1px;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+  border: none !important;
+}
+
+/* scenarios fields */
+.form-control.expressionAttr:not([data-l2key=graphColor]),
+input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
+select.expressionAttr:not([data-l2key=graphColor]),
+textarea.expressionAttr:not([data-l2key=graphColor]) {
+  color: var(--sc-formTxt-color);
+  background: var(--sc-form-color)!important;
+  border: 0 !important;
+}
+input:focus, textarea:focus {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.input-group-addon {
+  color: var(--sc-lightTxt-color);
+  background: var(--sc-formTxt-color) !important;
+  border: none;
+}
+
+.expressions,
+.element,
+.expression.noSortable,
+.expressions .expression.sortable > div {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.expressions .expression {
+  padding-right: 0 !important;
+}
+.element .subElement.noSortable legend,
+.subElement legend {
+  margin-left: -10px !important;
+  padding-left: 25px !important;
+}
+i.bt_removeElement{
+  padding-right: 3px !important;
+}
+i.bt_sortable {
+  padding-left: 8px !important;
+  top: 0 !important;
+}
+
+.subElement {
+  position: relative !important;
+}
+.subElementAttr {
+  position: absolute !important;
+}
+.subElement input[type=checkbox] {
+  margin-top: 0 !important;
+}
+
+
+#div_editScenario #generaltab textarea,
+#div_noteManagerDisplay textarea {
+  resize: vertical !important;
+}
+
+/* commands */
+.form-control:not(.btn):not(.expressionAttr),
+input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
+textarea:not(.expressionAttr) {
+  background: var(--form-bg-color) !important;
+  color: var(--txt-color) !important;
+  border: 0 !important;
+  border-image-width: 0 !important;
+  margin : 0;
+}
+input.knob {
+  color: var(--txt-color) !important;
+}
+select.input-sm {
+  line-height: 1em;
+}
+.subElement i {
+  color: var(--sc-lightTxt-color) !important;
+}
+.expression.sortable {
+  padding-left: 0 !important;
+}
+
+input[type="color"] {
+  padding: 0 !important;
+}
+
+.checkbox-inline > input[type=checkbox] {
+  margin-left: -20px !important;
+  margin-right: 10px !important;
+  margin-bottom: 10px;
+}
+.checkbox-inline {
+  padding-left: 20px;
+}
+
+.checkbox-inline.disabled,
+.checkbox.disabled label,
+.radio-inline.disabled,
+.radio.disabled label,
+fieldset[disabled] .checkbox label,
+fieldset[disabled] .checkbox-inline,
+fieldset[disabled] .radio label,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] input[type=checkbox],
+fieldset[disabled] input[type=radio],
+input[type=checkbox].disabled,
+input[type=checkbox][disabled],
+input[type=radio].disabled,
+input[type=radio][disabled] {
+  cursor: not-allowed
+}
+
+/*
+select:not([data-l2key=graphColor]):not(.expressionAttr):not(select) {
+  color: var(--txt-color) !important;
+  background-color: var(--form-bg-color) !important;
+  border: none;
+}
+.eqLogic.eqLogic-widget select {
+  background-color: transparent !important;
+}
+select:not([data-l2key=graphColor]) option {
+  color: var(--txt-color) !important;
+  background-color: var(--form-bg-color) !important;
+}
+*/
+input[type="checkbox"]:not(.subElementAttr) {
+  top: 2px !important;
+  margin-right: 1rem !important;
+}
+
+
+/* custom universal select */
+select {
+  cursor: pointer !important;
+}
+div[data-subtype=select] {
+  color: var(--link-color) !important;
+  position: relative;
+  overflow: hidden !important;
+}
+:not(.form-group) > div[data-subtype=select] {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+div[data-subtype=select] select {
+  color: var(--link-color) !important;
+  font-weight: bold !important;
+  background-color: transparent !important;
+  border: 0;
+  text-overflow: '';
+  border: none !important;
+  padding: 0 !important;
+  padding-left: 10px !important;
+  width: 100% !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer !important;
+}
+div[data-subtype=select]::before,
+div[data-subtype=select]::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+div[data-subtype=select]::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  font-size: 20px;
+  line-height: 22px;
+  right: 1em;
+  top: 18%;
+  margin: 0 !important;
+}
+div[data-subtype=select] select option {
+  margin: 40px;
+  background-color: var(--btnEq-default-color) !important;
+  color: var(--link-color) !important;
+}
+div[data-subtype=select][data-version=dplan] {
+  font-size: 20px; /* no zoom on iOS */
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateZ(0px);
+}
+
+select option {
+  color: var(--link-color) !important;
+  background-color: var(--eq-bg-color) !important;
+}
+select optgroup {
+  color: var(--txt-color) !important;
+  background: var(--bg-modal-color) !important;
+}
+
+
+/* custom checkbox ! */
+.input-group-btn {
+  font-size: 16px !important;
+}
+.has-success .checkbox-inline {
+  color: var(--link-color) !important;
+}
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: inline-block;
+  padding: 0;
+  width: 15px !important;
+  height: 15px;
+  border-radius: 0 !important;
+  background: var(--form-bg-color);
+  color: var(--linkHover-color);
+  font-weight: normal !important;
+}
+.element input[type=checkbox],
+.element input[type=radio] {
+  color: var(--linkHoverLight-color);
+  background: var(--sc-formTxt-color) !important;
+}
+input[type=radio] {
+  -webkit-border-radius: 1em !important;
+  margin-top: 1px !important;
+}
+input[type=checkbox]:checked:after {
+  content: '\2714' !important;
+  position: absolute;
+  left: 2px;
+  top: -4px;
+}
+input[type=radio]:checked {
+  background: var(--txt-color) !important;
+  -webkit-background-size: 28px 28px;
+}
+
+
+/* ___________________________________________________________TABS */
+.tab-content {
+  background-color: var(--panel-bg-color)!important;
+  padding-bottom: 20px !important;
+}
+ul.nav.nav-tabs li,
+.nav-tabs > li > a {
+  background-color: var(--form-bg-color) !important;
+  margin-right: 0 !important;
+  border-top: none !important;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li > a:hover {
+  background-color: var(--panel-bg-color) !important;
+  color: var(--link-color) !important;
+  border-top : 3px var(--logo-primary-color) solid !important;
+}
+.nav-tabs,
+.nav-tabs * {
+  border: none !important;
+  border-image-width: 0 !important;
+  border-image-width: 0 !important;
+}
+
+
+/* ___________________________________________________________TABLES */
+#table_dataStore {
+  width: 100% !important;
+}
+
+.table > tbody > tr > th {
+  border: none !important;
+}
+
+i.tablesorter-icon {
+  background-image: none !important;
+}
+i.tablesorter-icon::before {
+  font-family: jeedomapp;
+  content: "\e920\e91f" !important;
+  font-style: normal;
+}
+
+table.table,
+table.table .table {
+  font-size: 14px !important;
+  background-color: transparent !important;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  font-size: 14px !important;
+}
+.table > tbody > tr > td {
+  border-top-color: transparent !important;
+}
+.table > thead > tr > th {
+  border-bottom: none;
+}
+
+.tablesorter-bootstrap tfoot td,
+.tablesorter-bootstrap tfoot th,
+.tablesorter-bootstrap thead td,
+.tablesorter-bootstrap thead th,
+.tablesorter-bootstrap>tbody>tr.even>td,
+.tablesorter-bootstrap>tbody>tr.odd>td,
+.tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
+.tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
+  background-color: transparent!important;
+}
+.table-striped>tbody>tr:nth-of-type(2n+1),
+.table > thead > tr {
+  background-color: var(--panel-bg-color)!important;
+}
+
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
+  background-color: var(--bg-color) !important;
+}
+
+tr.tablesorter-filter-row td {
+  background-color: var(--bg-color) !important;
+}
+
+.table-bordered,
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+  border: none !important;
+}
+
+/*
+#table_cmd tbody tr.cmd:nth-child(n) {
+  border-top: 1px solid var(--form-bg-color) !important;
+}
+*/
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: none !important;
+  color: var(--txt-color) !important;
+}
+
+.tablesorter-filter-row {
+  background-color: var(--btn-default-color)!important;
+}
+
+.tableCmd .cmd-widget {
+  margin-right: 6px !important;
+}
+
+.divIconSel {
+  border: none !important;
+}
+.well {
+  padding: 1em;
+  margin-bottom: 0.5em;
+  background-color: var(--bg-color);
+  border: none;
+}
+
+.well blockquote {
+  border-color: #ddd;
+}
+
+.well-lg {
+  padding: 24px;
+  border-radius: none
+}
+
+.well-sm {
+  padding: 9px;
+  border-radius: none
+}
+
+hr {
+  border-top-color: var(--form-bg-color);
+}
+
+.tablesorter-filter {
+  opacity: 0.45 !important;
+}
+
+/* ___________________________________________________________FLOATING BARS */
+
+#jqueryLoadingDiv {
+  color: var(--txt-color)!important
+}
+
+.col-lg-9.col-md-8.col-sm-7 {
+  border-left-width: 0 !important;
+}
+
+/* main div border left screen */
+#div_resumeObjectList,
+#div_resumePluginList,
+#interactThumbnailDisplay,
+#scenarioThumbnailDisplay,
+#div_confPlugin,
+.eqLogicThumbnailDisplay {
+  border-left: none !important;
+}
+
+.bs-sidebar .label,
+.bs-sidebar .label > i {
+  font-size: 14px;
+  display: inline-block;
+}
+.bs-sidebar .label > i {
+  color: inherit !important;
+}
+.bs-sidenav > br {
+  display: inline;
+}
+.div_smallSideBar,
+.bs-sidebar > ul {
+  background-color: var(--bg-color) !important;
+}
+.bs-sidebar ul span {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.li_object a span:not(:first-child) {
+  float: left !important;
+}
+.li_object a,
+.li_object a span {
+  float: left !important;
+  padding-left: 2px;
+}
+
+.bs-sidebar .nav > li > a:not(.pull-right) {
+  width: 100% !important;
+}
+
+.bs-sidebar .nav li a:hover,
+.bs-sidebar .nav li a:focus,
+.bs-sidebar .nav li a:active {
+  background-color: var(--btnEq-default-color) !important;
+}
+.bs-sidebar .nav > .active a {
+  width: 100% !important;
+  border-right-color: var(--logo-primary-color) !important;
+  border-right-width: thick !important;
+}
+
+.scenario-widget {
+  background-color: var(--btn-default-color) !important;
+}
+.scenario-widget.scenario {
+  background-color: var(--eq-bg-color) !important;
+}
+#div_displayScenario > legend {
+  font-size: 16px;
+}
+
+#div_notes {
+  margin-top: 38px !important;
+}
+
+#ul_noteList {
+  padding: 0 !important;
+}
+#ul_noteList .li_noteDisplay {
+  background-color: var(--form-bg-color) !important;
+}
+#ul_noteList .li_noteDisplay a:active,
+#ul_noteList .li_noteDisplay a:focus,
+#ul_noteList .li_noteDisplay a:hover{
+  background-color: var(--eq-bg-color) !important;
+}
+
+/* ___________________________________________________________HIGHCHARTS */
+/* arc gauges and sliders */
+.highcharts-pane { stroke-width: 0; fill: var(--el-defaultColor); }
+.highcharts-data-label > span > span { font-size: 12px !important; color: var(--txt-color) !important;}
+.highcharts-color-0 { fill: var(--link-color); }
+.ui-slider-handle {
+  font-size: 1em;
+  border-radius: 1em !important;
+  background-color: var(--link-color) !important;
+  cursor: pointer !important;
+}
+.ui-slider-handle:active,
+.ui-slider-handle:focus,
+.ui-slider-handle:hover {
+  background-color: var(--linkHover-color) !important;
+  outline: none;
+}
+.ui-slider-horizontal{ height: 5px !important;}
+.ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
+
+/* less space under arc gauges */
+.gauge.cursor{ height: 85px !important; }
+.container-fluid.cmd-widget { min-height: 85px !important; }
+
+.action_colorpicker_change {
+  padding: 0 !important;
+  border: none !important;
+}
+h4.modal-title {
+  font-size: 14px;
+}
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+  fill: var(--link-color) !important;
+  font-weight: normal !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  fill: var(--txt-color) !important;
+  font-weight: normal !important;
+  font-style: italic;
+}
+
+
+.highcharts-background {
+  fill: var(--eq-bg-color) !important;
+}
+.gauge .highcharts-background {
+  fill: transparent !important;
+}
+.highcharts-range-selector-buttons > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-container {
+  color: var(--txt-color) !important;
+}
+.highcharts-plot-band {
+  fill: var(--bg-color) !important;
+}
+.highcharts-grid-line {
+  stroke: var(--eq-bg-color);
+}
+.highcharts-button-box {
+  fill: var(--el-defaultColor) !important;
+}
+.highcharts-button > text,
+.highcharts-button-disabled > text{
+  fill: var(--link-color) !important;
+}
+.highcharts-axis-labels > text {
+  fill: var(--link-color) !important;
+}
+
+path.highcharts-graph {
+  stroke-width: 1;
+}
+
+
+/* ___________________________________________________________DIALOGS */
+#md_modal {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+:not(.elfinder-dialog).ui-dialog {
+  box-shadow: 0px 0px 0px 1500px var(--shd-color) !important;
+}
+.modal-header {
+  border-bottom-width: 0 !important;
+}
+.modal-content {
+  background-color: var(--bg-modal-color)!important
+}
+.modal-footer {
+  border-top-color: var(--bg-color)!important
+}
+.close {
+  color: var(--link-color) !important;
+  opacity: 0.75;
+}
+.close:hover {
+  opacity: 1;
+}
+
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+  color: var(--txt-color) !important;
+  background-color: var(--btn-default-color)!important;
+  border: none!important;
+}
+.ui-dialog-buttonset .ui-button:not(:first-child) {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--btn-default-color)!important;
+  border: none!important;
+}
+
+.ui-dialog {
+  background-color: var(--eq-bg-color);
+}
+.ui-dialog .ui-dialog-titlebar {
+  border-bottom: none !important;
+  background-color: var(--txt-color) !important;
+}
+.ui-dialog .ui-dialog-title {
+  color: var(--bg-color) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.ui-dialog, .ui-dialog-content {
+    box-sizing: content-box !important;
+}
+.ui-dialog .ui-resizable-se {
+  width: 20px !important;
+  height:20px !important;
+  right: -2px !important;
+  bottom: -2px !important;
+  background-color: var(--bg-modal-color) !important;
+}
+
+
+.ui-state-active .ui-icon,
+.ui-widget-header .ui-icon {
+  background-image: var(--url-iconsDark)!important;
+}
+.ui-dialog-content {
+  padding: 13px !important;
+  padding-right: 13px !important;
+}
+.ui-dialog-content > div:not(.alert) {
+  background: transparent !important;
+}
+.ui-widget-content:not(.slider){
+  color: var(--txt-color)!important;
+  background: var(--bg-modal-color)!important;
+  border: none!important;
+  padding: 0em;
+}
+.ui-resizable-handle.ui-icon {
+  background-image: var(--url-iconsLight)!important;
+}
+.ui-button:hover {
+  opacity: 0.65;
+}
+.ui-dialog-titlebar-close {
+  opacity: 0.5 !important;
+  text-shadow: none !important;
+  font-size: 30px !important;
+}
+.ui-dialog-titlebar-close:hover {
+  opacity: 1 !important;
+}
+
+.fancybox-skin {
+  background-color: var(--bg-color) !important;
+}
+
+/* Designs */
+.nav>li>a:focus,
+.nav>li>a:hover {
+    text-decoration: none;
+    background-color: var(--eq-bg-color)
+}
+
+
+/* ___________________________________________________________CodeMirror */
+.CodeMirror,
+.CodeMirror-code,
+.CodeMirror-sizer {
+  background: var(--sc-form-color)!important;
+  color: var(--sc-formTxt-color)!important;
+  border: none !important;
+}
+.CodeMirror-gutters {
+  background: var(--form-bg-color)!important;
+  border-right: 0;
+  border: none !important;
+}
+.CodeMirror-selected {
+  background: var(--txt-color)!important;
+}
+
+.elfinder-dialog-title {
+  color: var(--bg-color) !important;
+  font-weight: bold;
+}
+.elfinder-contextmenu-item {
+  color: var(--sc-formTxt-color) !important;
+  font-size: 14px;
+}
+
+
+.elfinder-cwd-wrapper {
+  color: var(--txt-color) !important;
+}
+.elfinder-cwd-view-list table {
+  background-color: var(--sc-formTxt-color)  !important;
+  color: var(--sc-lightTxt-color);
+}
+.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:hover {
+  background-color: var(--placeholder-color)  !important;
+}
+.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(2n) {
+  background-color: var(--sc-formTxt-color)  !important;
+}
+.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(2n):hover {
+  background-color: var(--placeholder-color)  !important;
+}
+.elfinder-cwd-view-list table .elfinder-cwd-file.ui-selected,
+.elfinder-cwd-view-list table .elfinder-cwd-file.ui-selected:nth-child(2n) {
+  background-color: var(--placeholder-color) !important;
+}
+
+#elfinder,
+.ui-widget-content.elfinder-buttonset {
+  background-image: none !important;
+  background: none !important;
+}
+
+
+/* hihgly special */
+div[id^=__lpform_] { /*lastpass*/
+  display: none;
+}
+
+
+
+/* ___________________________________________________________MEDIA QUERIES */
+@media screen and (min-width: 992px) {
+  #div_resumeObjectList > .objectListContainer:first-of-type,
+  #scenarioThumbnailDisplay > .scenarioListContainer:first-of-type,
+  #interactThumbnailDisplay > .interactListContainer:first-of-type,
+  #div_resumePluginList > .pluginListContainer:first-of-type,
+  .eqLogicThumbnailDisplay > .eqLogicThumbnailContainer:first-of-type {
+    height: 110px !important;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  :root {
+    --lineheight: 1.4em;
+  }
+
+  body {
+    line-height: var(--lineheight) !important;
+    font-size: 14px !important;
+  }
+
+  .btn,
+  tbody > tr > td{
+    font-size: 12px !important;
+  }
+
+  .expression .col-xs-1 {
+    width: 6.5em !important;
+  }
+  .expressionOptions {
+    width: 55% !important;
+    align-content: right !important;
+  }
+
+  #div_editScenario ul.nav.nav-tabs {
+    margin-top: 30px !important;
+  }
+  .nav:not(.nav-pills),
+  .dropdown-menu > li {
+    font-size: 12px !important;
+  }
+  .form-control,
+  .btn,
+  .label {
+    font-size: 11px !important;
+  }
+  .panel {
+    font-size: 14px !important;
+  }
+  .panel-title,
+  legend {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .objectListContainer div.cursor > center > i,
+  .interactListContainer div.cursor > center > i,
+  .scenarioListContainer div.cursor > center  > i,
+  .pluginListContainer div.cursor > center > i,
+  .eqLogicThumbnailContainer div.cursor > center > i,
+  .eqLogicThumbnailContainer div.cursor > i {
+    font-size: 2.5em !important;
+  }
+  .hidden-xs {
+    display: none !important;
+  }
+
+}
+
+/* rounded! */
+::-moz-color-swatch {
+  border-radius: var(--border-radius) !important;
+}
+::-webkit-color-swatch {
+  border-radius: var(--border-radius) !important;
+}
+
+.eqLogic-widget,
+.scenario-widget {
+  border-radius: var(--border-radius) !important;
+}
+.eqLogic-widget .widget-name,
+.scenario-widget .widget-name,
+.panel,
+.panel-heading {
+  border-top-left-radius: var(--border-radius) !important;
+  border-top-right-radius: var(--border-radius) !important;
+}
+.panel,
+.panel-body,
+.panel-heading {
+  border-bottom-left-radius: var(--border-radius) !important;
+  border-bottom-right-radius: var(--border-radius) !important;
+}
+.btn,
+input,
+select,
+textarea,
+.label,
+.input-group-addon,
+.market,
+button {
+  border-radius: var(--border-radius) !important;
+}
+.ui-dialog {
+  border-radius: var(--border-radius) !important;
+}
+
+.nav.nav-tabs li:first-child,
+.nav.nav-tabs li:first-child a {
+  border-top-left-radius: var(--border-radius) !important;
+}
+.nav.nav-tabs li:last-child,
+.nav.nav-tabs li:last-child a {
+  border-top-right-radius: var(--border-radius) !important;
+}
+.tab-content {
+  border-bottom-left-radius: var(--border-radius) !important;
+  border-bottom-right-radius: var(--border-radius) !important;
+}

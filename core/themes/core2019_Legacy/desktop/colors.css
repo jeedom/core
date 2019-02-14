@@ -1,0 +1,55 @@
+/*
+
+Theme Core 2019
+By KiboOst for Jeedom
+
+*/
+:root {
+  --lineheight : 1.42em;
+  /* keet it as rem even when zero!!*/
+  --border-radius: 0rem;
+
+  --dashBkg-url: url("");
+  --logo-primary-color: rgb(150, 201, 39);
+  --bg-color: rgb(238, 239, 241);
+  --bg-modal-color: rgb(248, 248, 248);
+
+  --txt-color: rgb(115, 115, 115);
+  --link-color: rgb(103, 103, 103);
+  --linkHover-color: rgb(140, 140, 148);
+  --linkHoverLight-color: rgb(254, 254, 254);
+  --placeholder-color: rgb(160, 160, 160);
+
+  --sc-form-color: rgba(245, 245, 245, 0.85);
+  --sc-formTxt-color: rgb(75, 75, 75);
+  --sc-lightTxt-color: rgb(240, 240, 240);
+
+  --el-defaultColor: rgb(200, 200, 200);
+  --eq-bg-color: rgb(255, 255, 255);
+  --form-bg-color: rgb(220, 220, 220);
+  --btnEq-default-color: rgb(220, 220, 220);
+  --btn-default-color: rgb(100, 100, 100);
+  --panel-bg-color: rgb(243, 241, 242);
+
+  --eqTitle-color: rgb(240, 240, 240);
+
+  --cat-security-color: rgba(180, 40, 40, 1);
+  --cat-heating-color: rgba(60, 115, 165, 1);
+  --cat-automatism-color: rgba(135, 135, 135, 1);
+  --cat-light-color: rgba(220, 135, 25, 1);
+  --cat-multimedia-color: rgba(65, 90, 125, 1);
+  --cat-energy-color: rgba(58, 165, 72, 1);
+  --cat-other-color: rgba(58, 120, 85, 1);
+  --cat-scenario-color: rgba(80, 80, 84, 1);
+
+  --url-iconsDark: url(ui-icons-white.png);
+  --url-iconsLight: url(ui-icons-black.png);
+
+  --lb-info-color: rgb(150, 200, 240);
+  --al-info-color: rgb(120, 185, 250);
+  --al-success-color: rgb(110, 200, 110);
+  --al-warning-color: rgb(250, 200, 120);
+  --al-danger-color: rgb(190, 0, 0);
+  
+  --shd-color: rgba(0, 0, 0, 0.5);
+}
