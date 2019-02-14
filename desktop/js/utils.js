@@ -185,6 +185,12 @@ setInterval(function () {
   horloge += ':';
   horloge += (seconde < 10) ? '0' + seconde : seconde;
   $('#horloge').text(horloge);
+  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+  if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
+    
+  }else{
+    
+  }
 }, 1000);
 
 if (isset(jeedom_langage)) {

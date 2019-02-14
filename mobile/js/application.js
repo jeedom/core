@@ -129,8 +129,8 @@ function isset() {
   return!0
 }
 
-function enableChangeThemeByAmbientLight(){
-  if ('AmbientLightSensor' in window) {
+function changeThemeAuto(_ambiantLight){
+  if (_ambiantLight && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.onreading = () => {
       if(typeof userProfils == 'undefined'){
@@ -165,6 +165,25 @@ function enableChangeThemeByAmbientLight(){
       }
     };
     sensor.start();
+  }else{
+    var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+    var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+    if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
+      var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+    }
+    if($('#jQMnDColor').attr('href') != theme){
+      $('#jQMnDColor').attr('href', theme);
+    }
+    setInterval(function () {
+      var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+      var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+      if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
+        var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+      }
+      if($('#jQMnDColor').attr('href') != theme){
+        $('#jQMnDColor').attr('href', theme);
+      }
+    }, 60000);
   }
 }
 
@@ -219,10 +238,9 @@ function initApplication(_reinit) {
         jeedom.init();
         var include = ['core/js/core.js'];
         
-        if(typeof userProfils.mobile_useAmbientLight != undefined && userProfils.mobile_useAmbientLight == 1){
-          enableChangeThemeByAmbientLight();
+        if(typeof userProfils.mobile_useAmbientLight == undefined){
+          userProfils.mobile_useAmbientLight = 0
         }
-        
         if (isset(userProfils) && userProfils != null) {
           if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
             $('#jQMnDColor').attr('href', 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css');
@@ -235,6 +253,7 @@ function initApplication(_reinit) {
             include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');
           }
         }
+        changeThemeAuto(userProfils.mobile_useAmbientLight);
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
             include.push('mobile/custom/custom.css');

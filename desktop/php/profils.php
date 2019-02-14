@@ -96,9 +96,19 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Utiliser le capteur de luminosité}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Heure mode jour}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_useAmbientLight"/>
+									<input type="time" class="userAttr form-control" data-l1key="options" data-l2key="theme_start_day_hour"/>
+								</div>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+									<input type="time" class="userAttr form-control" data-l1key="options" data-l2key="theme_end_day_hour"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Utiliser le capteur de luminosité en mobile}}</label>
+								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_theme_useAmbientLight"/>
 								</div>
 							</div>
 							<div class="form-group">
