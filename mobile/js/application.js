@@ -15,6 +15,36 @@ $(document).ajaxStop(function () {
 });
 
 $(function () {
+  if ( 'AmbientLightSensor' in window ) {
+    const sensor = new AmbientLightSensor();
+    sensor.onreading = () => {
+      if(typeof userProfils == 'undefined'){
+        return;
+      }
+      if(typeof userProfils.mobile_theme_color_night == 'undefined'){
+        return;
+      }
+      if(typeof userProfils.mobile_theme_color == 'undefined'){
+        return;
+      }
+      if(userProfils.mobile_theme_color == userProfils.mobile_theme_color_night){
+        return;
+      }
+      if(sensor.illuminance < 400 && sensor.illuminance > 300){
+        return;
+      }
+      var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
+      if(sensor.illuminance < 300){
+        var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
+      }
+      if($('#jQMnDColor').attr('href') != theme){
+        $('#jQMnDColor').attr('href', theme);
+      }
+    };
+    sensor.start();
+  }
+  
+  
   MESSAGE_NUMBER = null;
   nbActiveAjaxRequest = 0;
   utid = Date.now();
@@ -184,6 +214,9 @@ function initApplication(_reinit) {
           if (isset(userProfils.mobile_theme_color) && userProfils.mobile_theme_color != '') {
             $('#jQMnDColor').attr('href', 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css');
             include.push( 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.js');
+          }
+          if (isset(userProfils.mobile_theme_color_night) && userProfils.mobile_theme_color_night != '') {
+            include.push( 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color_night + '.js');
           }
           if (isset(userProfils.mobile_highcharts_theme) && userProfils.mobile_highcharts_theme != '') {
             include.push('3rdparty/highstock/themes/' + userProfils.mobile_highcharts_theme + '.js');

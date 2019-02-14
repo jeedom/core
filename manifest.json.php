@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 ?>
 {
   "short_name": "<?php echo config::byKey('product_name'); ?>",
-  "background_color": "#94ca02",
+  "background_color": "#ffffff",
   "theme_color": "#94ca02",
   "name": "<?php echo config::byKey('product_name'); ?>",
   "gcm_sender_id": "103953800507",

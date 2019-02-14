@@ -35,7 +35,7 @@ if (!isConnect()) {
 			<li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
 		</ul>
 		
-		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;"> 
+		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="themetab">
 				<br/>
 				<div class="col-sm-6">
@@ -57,9 +57,23 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Couleur sur mobile}}</label>
+								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Couleur sur mobile jour}}</label>
 								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
+										<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
+										}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-5 col-md-6 col-sm-7 col-xs-12 control-label">{{Couleur sur mobile nuit}}</label>
+								<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color_night">
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
