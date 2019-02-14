@@ -33,7 +33,7 @@ class scenario {
 	private $_log;
 	private $timeout = 0;
 	private $object_id = null;
-	private $isVisible = 1;
+	private $isVisible = 0;
 	private $display;
 	private $order = 9999;
 	private $description;
