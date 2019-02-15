@@ -8,6 +8,17 @@ By KiboOst for Jeedom
 @import url("colors.css");
 
 /* _____________________________GLOBAL */
+::-moz-color-swatch {
+  border: none;
+  border-color: transparent;
+}
+::-webkit-color-swatch {
+  border: none;
+}
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
 * {
 	box-shadow: none !important;
 	text-shadow: none !important;
