@@ -570,6 +570,22 @@ class DB {
 				}
 			}
 		}
+		foreach ($describes as $describe) {
+			$found = false;
+			foreach ($_table['fields'] as $field) {
+				if($describe['Field'] == $field['name']){
+					$found = true;
+					break;
+				}
+			}
+			if(!$found){
+				$return[$_table['name']]['fields'][$describe['Field']] = array(
+					'status' => 'nok',
+					'message' => 'Should not exist',
+					'sql' => 'ALTER TABLE `'.$_table['name'].'` DROP `'.$describe['Field'].'`'
+				);
+			}
+		}
 		$showIndexes = self::prepareIndexCompare(DB::Prepare('show index from `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL));
 		foreach ($_table['indexes'] as $index) {
 			$found = false;
@@ -587,6 +603,22 @@ class DB {
 					'sql' => ''
 				);
 				$return[$_table['name']]['indexes'][$index['Key_name']]['sql']	.= self::buildDefinitionIndex($index,$_table['name']);
+			}
+		}
+		foreach ($showIndexes as $showIndex) {
+			$found = false;
+			foreach ($_table['indexes'] as $index) {
+				if($showIndex['Key_name'] == $index['Key_name']){
+					$found = true;
+					break;
+				}
+			}
+			if(!$found){
+				$return[$_table['name']]['indexes'][$showIndex['Key_name']] = array(
+					'status' => 'nok',
+					'message' => 'Should not exist',
+					'sql' => 'ALTER TABLE `'.$_table['name'].'` DROP INDEX `'.$showIndex['Key_name'].'`;'
+				);
 			}
 		}
 		return $return;

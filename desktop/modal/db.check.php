@@ -59,7 +59,7 @@ $result = DB::compareDatabase($database);
       }
       echo '</td>';
       echo '<td>';
-      echo $sql;
+      echo str_replace(';;',';',$sql);
       echo '</td>';
       echo '<td>';
       if($sql != ''){
