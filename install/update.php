@@ -348,6 +348,7 @@ try {
 			echo "Check jeedom database...";
 			$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
 			$result = DB::compareDatabase($database);
+			$error = '';
 			foreach ($result as $tname => $tinfo) {
 				if( $tinfo['sql'] != ''){
 					try {

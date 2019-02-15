@@ -1978,7 +1978,7 @@
         },
         {
           "name": "profils",
-          "type": "varchar(37)",
+          "type": "varchar(127)",
           "null": "NO",
           "key": "",
           "default": "admin",

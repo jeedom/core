@@ -52,6 +52,7 @@ try {
 	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
 	$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
 	$result = DB::compareDatabase($database);
+	$error = '';
 	echo "Installation de la base de données...";
 	foreach ($result as $tname => $tinfo) {
 		if( $tinfo['sql'] != ''){
