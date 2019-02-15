@@ -519,9 +519,13 @@ function finalisation(go){
 							},
 							success: function (result){
 								console.log('Update lancé > '+JSON.stringify(result));
-								$('.progress-bar').width('1%');
-								$('.progress-bar').text('1%');
-								getJeedomLog(1, 'update');
+								if(result.result == ""){
+								    $('.progress-bar').width('1%');
+								    $('.progress-bar').text('1%');
+								    getJeedomLog(1, 'update');
+								}else{
+								    finalisation();	
+								}
 							}
 						});
 					}
