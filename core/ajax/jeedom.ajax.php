@@ -146,6 +146,38 @@ try {
 		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
 	}
 	
+	if (init('action') == 'dbcorrectTable') {
+		unautorizedInDemo();
+		$database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true);
+		$result = DB::compareDatabase($database);
+		$error = '';
+		foreach ($result as $tname => $tinfo) {
+			if(init('table') != 'all' && $tname != init('table')){
+				continue;
+			}
+			if( $tinfo['sql'] != ''){
+				try {
+					DB::prepare($tinfo['sql'], array());
+				} catch (\Exception $e) {
+					$error .= $e->getMessage()."\n";
+				}
+			}
+			foreach ($tinfo['fields'] as $fname => $finfo) {
+				if( $finfo['sql'] != ''){
+					try {
+						DB::prepare($finfo['sql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
+					}
+				}
+			}
+		}
+		if($error != ''){
+			throw new \Exception($error);
+		}
+		ajax::success();
+	}
+	
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}

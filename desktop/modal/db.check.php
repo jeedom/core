@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../install/database.php";
 $database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true);
 $result = DB::compareDatabase($database);
 ?>
+<div style="display: none;" id="div_dbCheckAlert"></div>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -13,6 +14,7 @@ $result = DB::compareDatabase($database);
       <th>{{Status}}</th>
       <th>{{Champs}}</th>
       <th>{{SQL}}</th>
+      <th>{{Action}}</th>
     </tr>
   </thead>
   <tbody>
@@ -40,10 +42,33 @@ $result = DB::compareDatabase($database);
       echo '<td>';
       echo $sql;
       echo '</td>';
+      echo '<td>';
+      if($sql != ''){
+        echo '<a class="btn btn-sm btn-warning bt_correctTable" data-table="'.$tname.'">{{Corriger}}</a>';
+      }
+      echo '</td>';
       echo '</tr>';
     }
-    
-    
     ?>
   </tbody>
 </table>
+
+<script>
+$('.bt_correctTable').off('click').on('click',function(){
+  var el = $(this);
+  bootbox.confirm('{{Etes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?', function (result) {
+    if (result) {
+      jeedom.dbcorrectTable({
+        table : el.data('table'),
+        error : function(error){
+          $('#div_dbCheckAlert').showAlert({message: error.message, level: 'danger'});
+        },
+        success : function(){
+          $('#md_modal').dialog({title: "{{Vérification base de données}}"});
+          $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
+        }
+      });
+    }
+  });
+});
+</script>

@@ -657,7 +657,7 @@ $('#bt_accessDbAdministration').on('click',function(){
 });
 
 $('#bt_checkDatabase').on('click',function(){
-  $('#md_modal').dialog({title: "{{Administration base de données}}"});
+  $('#md_modal').dialog({title: "{{Vérification base de données}}"});
   $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
 });
 
