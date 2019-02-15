@@ -7,6 +7,8 @@ $database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'
 $result = DB::compareDatabase($database);
 ?>
 <div style="display: none;" id="div_dbCheckAlert"></div>
+<a class="btn btn-warning pull-right bt_correctTable" data-table="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
+<br/><br/>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -44,7 +46,7 @@ $result = DB::compareDatabase($database);
       echo '</td>';
       echo '<td>';
       if($sql != ''){
-        echo '<a class="btn btn-sm btn-warning bt_correctTable" data-table="'.$tname.'">{{Corriger}}</a>';
+        echo '<a class="btn btn-sm btn-warning bt_correctTable" data-table="'.$tname.'"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
       }
       echo '</td>';
       echo '</tr>';
