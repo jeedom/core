@@ -151,20 +151,20 @@ function changeThemeAuto(_ambiantLight){
   if (userProfils.mobile_theme_useAmbientLight && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.onreading = () => {
-      if(sensor.illuminance < 400 && sensor.illuminance > 300){
+      if(sensor.illuminance < 200 && sensor.illuminance > 100){
         return;
       }
       var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
-      if(sensor.illuminance < 300){
+      if(sensor.illuminance < 100){
         var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
       }
       if($('#jQMnDColor').attr('href') != theme){
         setTimeout(function(){
-          if(sensor.illuminance < 400 && sensor.illuminance > 300){
+          if(sensor.illuminance < 200 && sensor.illuminance > 100){
             return;
           }
           var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
-          if(sensor.illuminance < 300){
+          if(sensor.illuminance < 100){
             var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
           }
           if($('#jQMnDColor').attr('href') != theme){
