@@ -525,7 +525,7 @@ function finalisation(go){
 						});
 					}
 				});
-				    }, 1000);
+				    }, 3000);
 		    	}
 		});
 	}
