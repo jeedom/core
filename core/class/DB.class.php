@@ -538,7 +538,7 @@ class DB {
 			}
 			$return[$_table['name']]['sql'] .="\n".'primary key(';
 			foreach ($_table['fields'] as $field) {
-				if($field['key'] == 'PRI'){
+				if(isset($field['key']) && $field['key'] == 'PRI'){
 					$return[$_table['name']]['sql'] .='`'.$field['name'].'`,';
 				}
 			}
@@ -571,9 +571,6 @@ class DB {
 					'sql' => 'ALTER TABLE `'.$_table['name'].'` ADD `'.$field['name'].'`'
 				);
 				$return[$_table['name']]['fields'][$field['name']]['sql']	.= self::buildDefinitionField($field);
-				if($field['key'] == 'PRI'){
-					$return[$_table['name']]['fields'][$field['name']]['sql']	.=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
-				}
 			}
 		}
 		foreach ($describes as $describe) {
@@ -658,10 +655,6 @@ class DB {
 		if($_ref_field['null'] != $_real_field['Null']){
 			$return[$_ref_field['name']]['status'] = 'nok';
 			$return[$_ref_field['name']]['message'] = 'Null nok';
-		}
-		if($_ref_field['key'] != $_real_field['Key']){
-			$return[$_ref_field['name']]['status'] = 'nok';
-			$return[$_ref_field['name']]['message'] = 'Key nok';
 		}
 		if($_ref_field['default'] != $_real_field['Default']){
 			$return[$_ref_field['name']]['status'] = 'nok';
