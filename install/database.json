@@ -1979,7 +1979,7 @@
         {
           "name": "profils",
           "type": "varchar(127)",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": "admin",
           "extra": ""

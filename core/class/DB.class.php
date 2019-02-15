@@ -666,6 +666,9 @@ class DB {
 		}else{
 			$return .= ' NULL';
 		}
+		if($_field['default'] != ''){
+			$return .= ' DEFAULT "'.$_field['default'].'"';
+		}
 		if($_field['extra'] == 'auto_increment'){
 			$return .= ' AUTO_INCREMENT';
 		}
