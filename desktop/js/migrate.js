@@ -158,13 +158,16 @@ function getJeedomLog(_autoUpdate, _log) {
                 for (var i in data.result.reverse()) {
                     log += data.result[i]+"\n";
                     if(FinalDown > 0){
-                    	if(data.result[i].indexOf('[START BACKUP]') != -1 && FinalDown == 1){
+                    	if(data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1){
                     	    FinalDown++;
-	                    $('.TextFinalisation').text('{{Début du backup !}}');
+	                    $('.TextFinalisation').text('{{Début de la restauration du backup !}}');
 	                    $('.progress-bar').width('92%');
 			    $('.progress-bar').text('92%');
-	                }else if(data.result[i].indexOf('[START BACKUP]') != -1 && FinalDown == 2){
+	                }else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
 		            _autoUpdate = 0
+			    $('.progress-bar').width('100%');
+	          	    $('.progress-bar').text('100%');
+			    window.location.replace("index.php?v=d&logout=1");
 	                }
                     }else{
 	                if(data.result[i].indexOf('[END BACKUP SUCCESS]') != -1){
@@ -579,7 +582,7 @@ function installBackup(){
         },
         success: function (result){
         	FinalDown = 1;
-        	getJeedomLog(1, 'backup');
+        	getJeedomLog(1, 'restore');
         }
 	});	
 }
