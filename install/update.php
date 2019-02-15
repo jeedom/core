@@ -352,7 +352,7 @@ try {
 			foreach ($result as $tname => $tinfo) {
 				if( $tinfo['sql'] != ''){
 					try {
-						echo "Fix : ".$tinfo['sql']."\n";
+						echo "\nFix : ".$tinfo['sql'];
 						DB::prepare($tinfo['sql'], array());
 					} catch (\Exception $e) {
 						$error .= $e->getMessage()."\n";
@@ -362,7 +362,7 @@ try {
 					foreach ($tinfo['fields'] as $fname => $finfo) {
 						if( $finfo['sql'] != ''){
 							try {
-								echo "Fix : ".$finfo['sql']."\n";
+								echo "\nFix : ".$finfo['sql'];
 								DB::prepare($finfo['sql'], array());
 							} catch (\Exception $e) {
 								$error .= $e->getMessage()."\n";
@@ -374,7 +374,7 @@ try {
 					foreach ($tinfo['indexes'] as $iname => $iinfo) {
 						if( $iinfo['sql'] != ''){
 							try {
-								echo "Fix : ".$iinfo['sql']."\n";
+								echo "\nFix : ".$iinfo['sql'];
 								DB::prepare($iinfo['sql'], array());
 							} catch (\Exception $e) {
 								$error .= $e->getMessage()."\n";
@@ -384,7 +384,7 @@ try {
 				}
 			}
 			if($error != ''){
-				echo "***ERREUR*** ". $error;
+				echo "\n***ERREUR*** ". $error;
 			}
 		} catch (Exception $ex) {
 			echo "***ERREUR*** " . $ex->getMessage() . "\n";
