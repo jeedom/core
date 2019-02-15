@@ -161,8 +161,8 @@ function getJeedomLog(_autoUpdate, _log) {
                     	if(data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1){
                     	    FinalDown++;
 	                    $('.TextFinalisation').text('{{Début de la restauration du backup !}}');
-	                    $('.progress-bar').width('92%');
-			    $('.progress-bar').text('92%');
+	                    $('.progress-bar').width('95%');
+			    $('.progress-bar').text('95%');
 	                }else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
 		            _autoUpdate = 0
 			    $('.progress-bar').width('100%');
@@ -177,9 +177,13 @@ function getJeedomLog(_autoUpdate, _log) {
 			    backupToUsb();
 	                    _autoUpdate = 0;
 	                }if(data.result[i].indexOf('[END UPDATE SUCCESS]') != -1){
-	                    $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');
-	                    $('.progress-bar').width('90%');
-		            $('.progress-bar').text('90%');
+			    if(Maj == 0){    
+	                        $('.TextFinalisation').text('{{test de l\'image}}');
+			    }else{
+				 $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');   
+			    }
+	                    $('.progress-bar').width(Number(textProgress.substring(0, 2))+30+'%');
+		            $('.progress-bar').text(Number(textProgress.substring(0, 2))+30+'%');
 			    _autoUpdate = 0;
 		            final();
 	                }else if(data.result[i].indexOf('[END BACKUP ERROR]') != -1){
@@ -212,23 +216,23 @@ function getJeedomLog(_autoUpdate, _log) {
 		                if(telechargement == 0){
 		                    telechargement = 1;
 			            $('.TextFinalisation').text('{{Téléchargement de la mise à jours}}');
-				    $('.progress-bar').width('25%');
-				    $('.progress-bar').text('25%');
+				    $('.progress-bar').width('15%');
+				    $('.progress-bar').text('15%');
 		                }
 		            }
 			    if(data.result[i].indexOf("Cleaning folders") != -1){
 			    	if(Cleaning == 0){
 				    Cleaning = 1;
-				    $('.progress-bar').width('50%');
-				    $('.progress-bar').text('50%');
+				    $('.progress-bar').width('20%');
+				    $('.progress-bar').text('20%');
 				}
 			    }
 			    if(data.result[i].indexOf("Check update") != -1){
 			    	if(Cleaning == 0){
 				    Cleaning = 1;
 				    $('.TextFinalisation').text('{{Verification de la mise à jours.}}');
-				    $('.progress-bar').width('80%');
-				    $('.progress-bar').text('80%');
+				    $('.progress-bar').width('30%');
+				    $('.progress-bar').text('30%');
 				}
 			    }
 			}else if(_log == 'migrate'){
@@ -481,6 +485,7 @@ function finalisation(go){
 				    jeedom_token: data.result.jeedom_token
 				  }
 				})
+			    setTimeout(function(){
 			    $.ajax({
 					type: 'POST',
 					url: 'core/ajax/user.ajax.php',
@@ -520,7 +525,8 @@ function finalisation(go){
 						});
 					}
 				});
-		    }
+				    }, 1000);
+		    	}
 		});
 	}
 }
