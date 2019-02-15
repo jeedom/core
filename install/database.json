@@ -147,6 +147,98 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "eqLogic_id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "isHistorized",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "isHistorized"
+        },
+        {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "type"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "subtype",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "subType"
+        },
+        {
+          "Key_name": "eqLogic_id",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "eqLogic_id"
+        },
+        {
+          "Key_name": "value",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "value"
+        },
+        {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "order"
+        },
+        {
+          "Key_name": "logicalID",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "logicalId_eqLogicID",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "eqLogic_id"
+        },
+        {
+          "Key_name": "logicalId_eqLogicID",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "genericType_eqLogicID",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "genericType_eqLogicID",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "generic_type"
+        }
       ]
     },
     {
@@ -175,6 +267,20 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "key"
+        },
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "plugin"
         }
       ]
     },
@@ -261,6 +367,50 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "class_function_option",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "class"
+        },
+        {
+          "Key_name": "class_function_option",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "function"
+        },
+        {
+          "Key_name": "class_function_option",
+          "Non_unique": "0",
+          "Seq_in_index": "3",
+          "Column_name": "option"
+        },
+        {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "class"
+        },
+        {
+          "Key_name": "logicalId_Type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "class"
+        },
+        {
+          "Key_name": "deamon",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "deamon"
+        }
       ]
     },
     {
@@ -305,6 +455,32 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "type"
+        },
+        {
+          "Key_name": "UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "link_id"
+        },
+        {
+          "Key_name": "UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "3",
+          "Column_name": "key"
         }
       ]
     },
@@ -447,6 +623,92 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "object_id"
+        },
+        {
+          "Key_name": "eqTypeName",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "eqType_name"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "logical_id",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "logica_id_eqTypeName",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "logica_id_eqTypeName",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "eqType_name"
+        },
+        {
+          "Key_name": "object_id",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "object_id"
+        },
+        {
+          "Key_name": "timeout",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "timeout"
+        },
+        {
+          "Key_name": "eqReal_id",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "eqReal_id"
+        },
+        {
+          "Key_name": "logicalId",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "generic_type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "generic_type"
+        },
+        {
+          "Key_name": "tags",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "tags"
+        }
       ]
     },
     {
@@ -500,6 +762,50 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "logicalId",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "type"
+        },
+        {
+          "Key_name": "logicalId_Type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "logicalId"
+        },
+        {
+          "Key_name": "logicalId_Type",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "type"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        }
       ]
     },
     {
@@ -529,6 +835,26 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "datetime"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "cmd_id"
+        },
+        {
+          "Key_name": "fk_history5min_commands1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "cmd_id"
+        }
       ]
     },
     {
@@ -557,6 +883,26 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "cmd_id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "datetime"
+        },
+        {
+          "Key_name": "cmd_id_index",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "cmd_id"
         }
       ]
     },
@@ -643,6 +989,14 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        }
       ]
     },
     {
@@ -679,6 +1033,26 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "fk_sarahQuery_sarahDef1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "interactDef_id"
+        },
+        {
+          "Key_name": "query",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "query"
         }
       ]
     },
@@ -724,6 +1098,20 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "event",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "event"
         }
       ]
     },
@@ -778,6 +1166,26 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "plugin_logicalID",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "plugin"
+        },
+        {
+          "Key_name": "plugin_logicalID",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "logicalId"
+        }
       ]
     },
     {
@@ -806,6 +1214,14 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
         }
       ]
     },
@@ -876,6 +1292,32 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "fk_object_object1_idx1",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "father_id"
+        },
+        {
+          "Key_name": "position",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "position"
+        }
       ]
     },
     {
@@ -944,6 +1386,32 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "link_type"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "link_id"
+        },
+        {
+          "Key_name": "fk_plan_planHeader1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "planHeader_id"
         }
       ]
     },
@@ -1022,6 +1490,38 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "link_type_link_id",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "link_type"
+        },
+        {
+          "Key_name": "link_type_link_id",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "link_id"
+        },
+        {
+          "Key_name": "fk_3d_3dHeader1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "plan3dHeader_id"
+        }
       ]
     },
     {
@@ -1050,6 +1550,14 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
         }
       ]
     },
@@ -1087,6 +1595,14 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
         }
       ]
     },
@@ -1221,6 +1737,68 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "group"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "object_id"
+        },
+        {
+          "Key_name": "name",
+          "Non_unique": "0",
+          "Seq_in_index": "3",
+          "Column_name": "name"
+        },
+        {
+          "Key_name": "group",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "group"
+        },
+        {
+          "Key_name": "fk_scenario_object1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "object_id"
+        },
+        {
+          "Key_name": "trigger",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "trigger"
+        },
+        {
+          "Key_name": "mode",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "mode"
+        },
+        {
+          "Key_name": "modeTriger",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "mode"
+        },
+        {
+          "Key_name": "modeTriger",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "trigger"
+        }
       ]
     },
     {
@@ -1273,6 +1851,14 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
         }
       ]
     },
@@ -1343,6 +1929,20 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "fk_scenarioExpression_scenarioSubElement1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "scenarioSubElement_id"
+        }
       ]
     },
     {
@@ -1411,6 +2011,32 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "fk_scenarioSubElement_scenarioElement1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "scenarioElement_id"
+        },
+        {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "scenarioElement_id"
+        },
+        {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "type"
         }
       ]
     },
@@ -1489,6 +2115,20 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "status",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "status"
+        }
       ]
     },
     {
@@ -1558,6 +2198,14 @@
           "default": "1",
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        }
       ]
     },
     {
@@ -1610,6 +2258,20 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "name"
         }
       ]
     },
@@ -1664,6 +2326,50 @@
           "default": null,
           "extra": ""
         }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "viewZone_id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "2",
+          "Column_name": "link_id"
+        },
+        {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "Seq_in_index": "3",
+          "Column_name": "type"
+        },
+        {
+          "Key_name": "fk_data_zone1_idx",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "viewZone_id"
+        },
+        {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "order"
+        },
+        {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "Seq_in_index": "2",
+          "Column_name": "viewZone_id"
+        }
       ]
     },
     {
@@ -1716,6 +2422,20 @@
           "key": "",
           "default": null,
           "extra": ""
+        }
+      ],
+      "indexes": [
+        {
+          "Key_name": "PRIMARY",
+          "Non_unique": "0",
+          "Seq_in_index": "1",
+          "Column_name": "id"
+        },
+        {
+          "Key_name": "fk_zone_view1",
+          "Non_unique": "1",
+          "Seq_in_index": "1",
+          "Column_name": "view_id"
         }
       ]
     }

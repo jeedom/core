@@ -171,6 +171,15 @@ try {
 					}
 				}
 			}
+			foreach ($tinfo['indexes'] as $iname => $iinfo) {
+				if( $iinfo['sql'] != ''){
+					try {
+						DB::prepare($iinfo['sql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
+					}
+				}
+			}
 		}
 		if($error != ''){
 			throw new \Exception($error);

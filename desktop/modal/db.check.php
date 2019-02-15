@@ -2,10 +2,10 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-require_once __DIR__ . "/../../install/database.php";
 $database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true);
 $result = DB::compareDatabase($database);
 ?>
+
 <div style="display: none;" id="div_dbCheckAlert"></div>
 <a class="btn btn-warning pull-right bt_correctTable" data-table="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
 <br/><br/>
@@ -15,6 +15,7 @@ $result = DB::compareDatabase($database);
       <th>{{Table}}</th>
       <th>{{Status}}</th>
       <th>{{Champs}}</th>
+      <th>{{Index}}</th>
       <th>{{SQL}}</th>
       <th>{{Action}}</th>
     </tr>
@@ -22,7 +23,10 @@ $result = DB::compareDatabase($database);
   <tbody>
     <?php
     foreach ($result as $tname => $tinfo) {
-      $sql = $tinfo['sql'];
+      $sql = '';
+      if($tinfo['sql'] != ''){
+        $sql = $tinfo['sql'].';';
+      }
       echo '<tr>';
       echo '<td>';
       echo $tname;
@@ -37,8 +41,21 @@ $result = DB::compareDatabase($database);
         if($finfo['status'] == 'ok'){
           continue;
         }
-        $sql .= "\n".$finfo['sql'];
-        echo '<span class="label label-danger">'.$fname.'</span><br/>';
+        if($finfo['sql'] != ''){
+          $sql .= "\n".$finfo['sql'].';';
+        }
+        echo '<span class="label label-danger" title="'.$finfo['message'].'">'.$fname.'</span><br/>';
+      }
+      echo '</td>';
+      echo '<td>';
+      foreach ($tinfo['indexes'] as $iname => $iinfo) {
+        if($iinfo['status'] == 'ok'){
+          continue;
+        }
+        if($iinfo['sql'] != ''){
+          $sql .= "\n".$iinfo['sql'].';';
+        }
+        echo '<span class="label label-danger" title="'.$iinfo['message'].'">'.$iname.'</span><br/>';
       }
       echo '</td>';
       echo '<td>';

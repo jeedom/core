@@ -517,8 +517,14 @@ class DB {
 	
 	
 	function compareTable($_table){
-		$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
-		$return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'sql' => ''));
+		try {
+			$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
+		} catch (\Exception $e) {
+			$describes = array();
+		}
+		
+		
+		$return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'indexes' => array(),'sql' => ''));
 		if(count($describes) == 0){
 			$return = array($_table['name'] => array(
 				'status' => 'nok',
@@ -531,7 +537,14 @@ class DB {
 				$return[$_table['name']]['sql'] .= ',';
 			}
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
-			$return[$_table['name']]['sql'] .= ')';
+			$return[$_table['name']]['sql'] .= ');'."\n";
+			
+			$_table['indexes'] = self::prepareIndexCompare($_table['indexes']);
+			
+			foreach ($_table['indexes'] as $index) {
+				$return[$_table['name']]['sql'] .= "\n".self::buildDefinitionIndex($index,$_table['name']).';';
+			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],';');
 			return $return;
 		}
 		foreach ($_table['fields'] as $field) {
@@ -551,6 +564,45 @@ class DB {
 				);
 				$return[$_table['name']]['fields'][$field['name']]['sql']	.= self::buildDefinitionField($field);
 			}
+		}
+		$showIndexes = self::prepareIndexCompare(DB::Prepare('show index from `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL));
+		$_table['indexes'] = self::prepareIndexCompare($_table['indexes']);
+		foreach ($_table['indexes'] as $index) {
+			$found = false;
+			foreach ($showIndexes as $showIndex) {
+				if($showIndex['Key_name'] != $index['Key_name']){
+					continue;
+				}
+				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name']));
+				$found = true;
+			}
+			if(!$found){
+				$return[$_table['name']]['indexes'][$index['Key_name']] = array(
+					'status' => 'nok',
+					'message' => 'Not found',
+					'sql' => ''
+				);
+				$return[$_table['name']]['indexes'][$index['Key_name']]['sql']	.= self::buildDefinitionIndex($index,$_table['name']);
+			}
+		}
+		return $return;
+	}
+	
+	function prepareIndexCompare($indexes){
+		$return = array();
+		foreach ($indexes as $index) {
+			if($index['Key_name'] == 'PRIMARY'){
+				continue;
+			}
+			if(!isset($return[$index['Key_name']])){
+				$return[$index['Key_name']] = array(
+					'Key_name' => $index['Key_name'],
+					'Non_unique' => 0,
+					'columns' => array(),
+				);
+			}
+			$return[$index['Key_name']]['Non_unique'] = $index['Non_unique'];
+			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = $index['Column_name'];
 		}
 		return $return;
 	}
@@ -580,9 +632,22 @@ class DB {
 		if($return[$_ref_field['name']]['status'] == 'nok'){
 			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `'.$_table_name.'` MODIFY COLUMN `'.$_ref_field['name'].'` '.$_ref_field['type'];
 			$return[$_ref_field['name']]['sql'] .= self::buildDefinitionField($_ref_field);
-			if($_ref_field['key'] == 'PRI'){
-				$return[$_ref_field['name']]['sql'] .=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$_ref_field['name'].'`)';
-			}
+		}
+		return $return;
+	}
+	
+	function compareIndex($_ref_index,$_real_index,$_table_name){
+		$return = array($_ref_index['Key_name'] => array('status' => 'ok','sql' => ''));
+		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Non_unique nok';
+		}
+		if($_ref_index['columns'] != $_real_index['columns']){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
+		}
+		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
+			$return[$_ref_index['Key_name']]['sql'] = self::buildDefinitionIndex($_ref_index,$_table_name);
 		}
 		return $return;
 	}
@@ -597,6 +662,20 @@ class DB {
 		if($_field['extra'] == 'auto_increment'){
 			$return .= ' AUTO_INCREMENT';
 		}
+		return $return;
+	}
+	
+	function buildDefinitionIndex($_index,$_table_name){
+		if($_index['Non_unique'] == 0){
+			$return = 'CREATE UNIQUE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
+		}else{
+			$return = 'CREATE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
+		}
+		foreach ($_index['columns'] as $value) {
+			$return .= '`'.$value.'` ASC,';
+		}
+		$return = trim($return,',');
+		$return .= ')';
 		return $return;
 	}
 	
