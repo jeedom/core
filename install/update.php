@@ -358,7 +358,7 @@ try {
 						$error .= $e->getMessage()."\n";
 					}
 				}
-				if(count($tinfo['fields']) > 0){
+				if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
 					foreach ($tinfo['fields'] as $fname => $finfo) {
 						if( $finfo['sql'] != ''){
 							try {
@@ -370,7 +370,7 @@ try {
 						}
 					}
 				}
-				if(count($tinfo['indexes']) > 0){
+				if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
 					foreach ($tinfo['indexes'] as $iname => $iinfo) {
 						if( $iinfo['sql'] != ''){
 							try {

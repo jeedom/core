@@ -540,7 +540,7 @@ class DB {
 			$return[$_table['name']]['sql'] .= ');'."\n";
 			foreach ($_table['fields'] as $field) {
 				if($field['key'] == 'PRI'){
-					$return[$_table['name']]['sql'] .=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
+					$return[$_table['name']]['sql'] .=';ALTER TABLE `'.$_table['name']. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
 				}
 			}
 			foreach ($_table['indexes'] as $index) {
