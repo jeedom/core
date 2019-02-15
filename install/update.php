@@ -385,6 +385,8 @@ try {
 			}
 			if($error != ''){
 				echo "\n***ERREUR*** ". $error;
+			}else{
+				echo "OK\n";
 			}
 		} catch (Exception $ex) {
 			echo "***ERREUR*** " . $ex->getMessage() . "\n";
