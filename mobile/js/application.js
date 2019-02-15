@@ -190,7 +190,7 @@ function changeThemeAuto(_ambiantLight){
         }
         var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
         var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-        if(parseInt(userProfils.theme_start_day_hour.replace(':','')) >  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) <  currentTime){
+        if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
           var theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css';
         }
         if($('#jQMnDColor').attr('href') != theme){
