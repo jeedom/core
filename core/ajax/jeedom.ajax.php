@@ -162,21 +162,25 @@ try {
 					$error .= $e->getMessage()."\n";
 				}
 			}
-			foreach ($tinfo['fields'] as $fname => $finfo) {
-				if( $finfo['sql'] != ''){
-					try {
-						DB::prepare($finfo['sql'], array());
-					} catch (\Exception $e) {
-						$error .= $e->getMessage()."\n";
+			if(count($tinfo['fields']) > 0){
+				foreach ($tinfo['fields'] as $fname => $finfo) {
+					if( $finfo['sql'] != ''){
+						try {
+							DB::prepare($finfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
 					}
 				}
 			}
-			foreach ($tinfo['indexes'] as $iname => $iinfo) {
-				if( $iinfo['sql'] != ''){
-					try {
-						DB::prepare($iinfo['sql'], array());
-					} catch (\Exception $e) {
-						$error .= $e->getMessage()."\n";
+			if(count($tinfo['indexes']) > 0){
+				foreach ($tinfo['indexes'] as $iname => $iinfo) {
+					if( $iinfo['sql'] != ''){
+						try {
+							DB::prepare($iinfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
 					}
 				}
 			}
