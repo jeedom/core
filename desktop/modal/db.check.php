@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 require_once __DIR__ . "/../../install/database.php";
 $database = json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true);
-$result = databaseAnalyzer_database($database);
+$result = DB::compareDatabase($database);
 ?>
 <table class="table table-condensed">
   <thead>
