@@ -692,7 +692,7 @@ class DB {
 	}
 	
 	function buildDefinitionField($_field){
-		$return = '';
+		$return = ' '.$_field['type'];
 		if($_field['null'] == 'NO'){
 			$return .= ' NOT NULL';
 		}else{
