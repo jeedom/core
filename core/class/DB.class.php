@@ -532,7 +532,7 @@ class DB {
 				'sql' => 'CREATE TABLE IF NOT EXISTS '.'`'.$_table['name'].'` (',
 			));
 			foreach ($_table['fields'] as $field) {
-				$return[$_table['name']]['sql'] .="\n". '`'.$field['name'].'``';
+				$return[$_table['name']]['sql'] .="\n". '`'.$field['name'].'`';
 				$return[$_table['name']]['sql']	.= self::buildDefinitionField($field);
 				$return[$_table['name']]['sql'] .= ',';
 			}
