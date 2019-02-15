@@ -716,3 +716,18 @@ function reboot_jeedom(){
 	setcookie('PHPSESSID', '', time() - 365 * 24 * 3600, "/", '', false, true);
 	setcookie('sess_id', '', time() - 365 * 24 * 3600, "/", '', false, true);
 }
+
+function confirmOnLeave(msg) {
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
+        msg = msg || '';
+ 
+        // For IE and Firefox
+        if (e) {e.returnValue = msg;}
+ 
+        // For Chrome and Safari
+        return msg;
+    };
+}
+
+confirmOnLeave('{{Attention si vous fermez cette page la migration ne pourra s\'effectuer}}');
