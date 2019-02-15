@@ -50,10 +50,15 @@ try {
 		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
 	}
 	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
+	echo "Installation de la base de données...";
 	$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
 	$result = DB::compareDatabase($database);
 	$error = '';
-	echo "Installation de la base de données...";
+	try {
+		DB::prepare('ALTER DATABASE CHARACTER SET utf8 COLLATE utf8_unicode_ci', array());
+	} catch (\Exception $e) {
+		$error .= $e->getMessage()."\n";
+	}
 	foreach ($result as $tname => $tinfo) {
 		if( $tinfo['sql'] != ''){
 			try {

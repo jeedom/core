@@ -3,6 +3,7 @@
   "tables": [
     {
       "name": "cmd",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -234,6 +235,7 @@
     },
     {
       "name": "config",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "plugin",
@@ -264,6 +266,7 @@
     },
     {
       "name": "cron",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -381,6 +384,7 @@
     },
     {
       "name": "dataStore",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -437,6 +441,7 @@
     },
     {
       "name": "eqLogic",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -659,6 +664,7 @@
     },
     {
       "name": "eqReal",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -750,6 +756,7 @@
     },
     {
       "name": "history",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "cmd_id",
@@ -796,6 +803,7 @@
     },
     {
       "name": "historyArch",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "cmd_id",
@@ -928,6 +936,7 @@
     },
     {
       "name": "interactQuery",
+      "engine" : "MyISAM",
       "fields": [
         {
           "name": "id",
@@ -981,6 +990,7 @@
     },
     {
       "name": "listener",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1035,6 +1045,7 @@
     },
     {
       "name": "message",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1098,6 +1109,7 @@
     },
     {
       "name": "note",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1128,6 +1140,7 @@
     },
     {
       "name": "object",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1220,6 +1233,7 @@
     },
     {
       "name": "plan",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1306,6 +1320,7 @@
     },
     {
       "name": "plan3d",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1407,6 +1422,7 @@
     },
     {
       "name": "plan3dHeader",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1437,6 +1453,7 @@
     },
     {
       "name": "planHeader",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1475,6 +1492,7 @@
     },
     {
       "name": "scenario",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1655,6 +1673,7 @@
     },
     {
       "name": "scenarioElement",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1709,6 +1728,7 @@
     },
     {
       "name": "scenarioExpression",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1787,6 +1807,7 @@
     },
     {
       "name": "scenarioSubElement",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1873,6 +1894,7 @@
     },
     {
       "name": "update",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -1959,6 +1981,7 @@
     },
     {
       "name": "user",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -2029,6 +2052,7 @@
     },
     {
       "name": "view",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -2091,6 +2115,7 @@
     },
     {
       "name": "viewData",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
@@ -2170,6 +2195,7 @@
     },
     {
       "name": "viewZone",
+      "engine" : "InnoDB",
       "fields": [
         {
           "name": "id",
