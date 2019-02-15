@@ -218,6 +218,7 @@ function initApplication(_reinit) {
       insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, "256x256");
       insertHeader("apple-touch-icon-precomposed",JEEDOM_DATA.product_icon, "256x256");
       insertHeader("shortcut icon",JEEDOM_DATA.product_icon, "128x128");
+      insertHeader("icon",JEEDOM_DATA.product_icon, "128x128");
       insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 320px)");
       insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)");
       insertHeader("apple-touch-startup-image",JEEDOM_DATA.product_icon, null, "(device-width: 768px) and (orientation: portrait)");
