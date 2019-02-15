@@ -350,15 +350,6 @@
         }
       ],
       "indexes": {
-        "class_function_option": {
-          "Key_name": "class_function_option",
-          "Non_unique": "0",
-          "columns": {
-            "1": "class",
-            "2": "function",
-            "3": "option"
-          }
-        },
         "type": {
           "Key_name": "type",
           "Non_unique": "1",
@@ -979,13 +970,6 @@
             "1": "interactDef_id"
           }
         },
-        "query": {
-          "Key_name": "query",
-          "Non_unique": "1",
-          "columns": {
-            "1": "query"
-          }
-        }
       }
     },
     {
