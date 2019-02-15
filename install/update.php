@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
 	header("Statut: 404 Page non trouvée");
@@ -54,9 +54,9 @@ try {
 	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . json_encode($_GET) . "\n";
 	$curentVersion = config::byKey('version');
-
+	
 	/*         * ************************MISE A JOUR********************************** */
-
+	
 	try {
 		echo "Send begin of update event...";
 		jeedom::event('begin_update', true);
@@ -68,7 +68,7 @@ try {
 			echo '***ERROR***' . $e->getMessage();
 		}
 	}
-
+	
 	try {
 		if (init('plugins', 1) == 1 && init('force') != 1) {
 			echo "Check update...";
@@ -82,7 +82,7 @@ try {
 			echo '***ERROR***' . $e->getMessage();
 		}
 	}
-
+	
 	try {
 		echo "Check rights...";
 		jeedom::cleanFileSytemRight();
@@ -165,14 +165,14 @@ try {
 					throw new Exception('Unable to unzip file : ' . $tmp);
 				}
 				echo "OK\n";
-
+				
 				if (!file_exists($cibDir . '/core')) {
 					$files = ls($cibDir, '*');
 					if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'core')) {
 						$cibDir = $cibDir . '/' . $files[0];
 					}
 				}
-
+				
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
 					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
@@ -219,15 +219,15 @@ try {
 				}
 			}
 		}
-
+		
 		if (init('update::reapply') != '') {
 			$updateSql = __DIR__ . '/update/' . init('update::reapply') . '.sql';
 			if (file_exists($updateSql)) {
 				try {
 					echo "Disable constraint...";
 					$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-                                SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-                                SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+					SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+					SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
 					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 					echo "OK\n";
 				} catch (Exception $e) {
@@ -252,8 +252,8 @@ try {
 				try {
 					echo "Enable constraint...";
 					$sql = "SET SQL_MODE=@OLD_SQL_MODE;
-                                SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-                                SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+					SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+					SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
 					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 					echo "OK\n";
 				} catch (Exception $e) {
@@ -287,8 +287,8 @@ try {
 					try {
 						echo "Disable constraint...";
 						$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-                                    SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-                                    SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
+						SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+						SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo "OK\n";
 					} catch (Exception $e) {
@@ -313,8 +313,8 @@ try {
 					try {
 						echo "Enable constraint...";
 						$sql = "SET SQL_MODE=@OLD_SQL_MODE;
-                                    SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-                                    SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
+						SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+						SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
 						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 						echo "OK\n";
 					} catch (Exception $e) {
@@ -342,6 +342,51 @@ try {
 				$curentVersion = $nextVersion;
 				config::save('version', $curentVersion);
 			}
+		}
+		
+		try {
+			echo "Check jeedom database...";
+			$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
+			$result = DB::compareDatabase($database);
+			foreach ($result as $tname => $tinfo) {
+				if( $tinfo['sql'] != ''){
+					try {
+						echo "Fix : ".$tinfo['sql']."\n";
+						DB::prepare($tinfo['sql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
+					}
+				}
+				if(count($tinfo['fields']) > 0){
+					foreach ($tinfo['fields'] as $fname => $finfo) {
+						if( $finfo['sql'] != ''){
+							try {
+								echo "Fix : ".$finfo['sql']."\n";
+								DB::prepare($finfo['sql'], array());
+							} catch (\Exception $e) {
+								$error .= $e->getMessage()."\n";
+							}
+						}
+					}
+				}
+				if(count($tinfo['indexes']) > 0){
+					foreach ($tinfo['indexes'] as $iname => $iinfo) {
+						if( $iinfo['sql'] != ''){
+							try {
+								echo "Fix : ".$iinfo['sql']."\n";
+								DB::prepare($iinfo['sql'], array());
+							} catch (\Exception $e) {
+								$error .= $e->getMessage()."\n";
+							}
+						}
+					}
+				}
+			}
+			if($error != ''){
+				echo "***ERREUR*** ". $error;
+			}
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
 		}
 		try {
 			echo "Check jeedom consistency...";
@@ -378,7 +423,7 @@ try {
 	} catch (Exception $ex) {
 		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
-
+	
 	config::save('version', jeedom::version());
 } catch (Exception $e) {
 	if ($update) {
@@ -401,7 +446,7 @@ try {
 	}
 	echo "OK\n";
 } catch (Exception $e) {
-
+	
 }
 
 try {
@@ -409,7 +454,7 @@ try {
 	jeedom::event('end_update');
 	echo "OK\n";
 } catch (Exception $e) {
-
+	
 }
 echo "Update duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END UPDATE SUCCESS]\n";
