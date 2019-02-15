@@ -536,13 +536,13 @@ class DB {
 				$return[$_table['name']]['sql']	.= self::buildDefinitionField($field);
 				$return[$_table['name']]['sql'] .= ',';
 			}
-			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
-			$return[$_table['name']]['sql'] .= ');'."\n";
 			foreach ($_table['fields'] as $field) {
 				if($field['key'] == 'PRI'){
-					$return[$_table['name']]['sql'] .=';ALTER TABLE `'.$_table['name']. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
+					$return[$_table['name']]['sql'] .="\n".'primary key(`'.$field['name'].'`)';
 				}
 			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
+			$return[$_table['name']]['sql'] .= ');'."\n";
 			foreach ($_table['indexes'] as $index) {
 				$return[$_table['name']]['sql'] .= "\n".self::buildDefinitionIndex($index,$_table['name']).';';
 			}
@@ -666,7 +666,7 @@ class DB {
 			$return[$_ref_field['name']]['message'] = 'Extra nok';
 		}
 		if($return[$_ref_field['name']]['status'] == 'nok'){
-			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `'.$_table_name.'` MODIFY COLUMN `'.$_ref_field['name'].'` '.$_ref_field['type'];
+			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `'.$_table_name.'` MODIFY COLUMN `'.$_ref_field['name'].'` ';
 			$return[$_ref_field['name']]['sql'] .= self::buildDefinitionField($_ref_field);
 			if($_ref_field['key'] == 'PRI'){
 				$return[$_ref_field['name']]['sql'] .=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$_ref_field['name'].'`)';
