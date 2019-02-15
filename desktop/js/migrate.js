@@ -481,6 +481,7 @@ function finalisation(go){
 				    jeedom_token: data.result.jeedom_token
 				  }
 				})
+			    setTimeout(function(){
 			    $.ajax({
 					type: 'POST',
 					url: 'core/ajax/user.ajax.php',
@@ -520,7 +521,8 @@ function finalisation(go){
 						});
 					}
 				});
-		    }
+				    }, 1000);
+		    	}
 		});
 	}
 }
