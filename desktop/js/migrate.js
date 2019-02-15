@@ -182,6 +182,7 @@ function getJeedomLog(_autoUpdate, _log) {
 			    }else{
 				 $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');   
 			    }
+			    var textProgress = $('.progress-bar').text();
 	                    $('.progress-bar').width(Number(textProgress.substring(0, 2))+30+'%');
 		            $('.progress-bar').text(Number(textProgress.substring(0, 2))+30+'%');
 			    _autoUpdate = 0;
