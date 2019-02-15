@@ -11,6 +11,7 @@ var telechargement = 0;
 var Cleaning = 0;
 var FinalDown = 0;
 var Maj = 0;
+var End = 0;
 
 /* on test si on a déjà une migration en cours */
 returnStep();
@@ -49,8 +50,9 @@ $('#bt_close').on('click', function() {
 });
 
 $('#bt_zero').on('click', function() {
+	End = 1;
 	$('#modalFinalStep').modal('hide');
-	setStep(1);
+	setStep(0);
 	$('.progress-bar').width('100%');
 	$('.progress-bar').text('100%');
 	window.location.replace("index.php?v=d&logout=1");	
@@ -58,7 +60,7 @@ $('#bt_zero').on('click', function() {
 
 $('#bt_backup').on('click', function() {
 	$('#modalFinalStep').modal('hide');
-	setStep(1);
+	setStep(0);
 	installBackup();
 });
 
@@ -164,6 +166,7 @@ function getJeedomLog(_autoUpdate, _log) {
 	                    $('.progress-bar').width('95%');
 			    $('.progress-bar').text('95%');
 	                }else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
+			    End = 1;
 		            _autoUpdate = 0
 			    $('.progress-bar').width('100%');
 	          	    $('.progress-bar').text('100%');
@@ -719,6 +722,7 @@ function reboot_jeedom(){
 
 function confirmOnLeave(msg) {
     window.onbeforeunload = function (e) {
+	    if(End == 0){
         e = e || window.event;
         msg = msg || '';
  
@@ -727,6 +731,7 @@ function confirmOnLeave(msg) {
  
         // For Chrome and Safari
         return msg;
+	    }
     };
 }
 
