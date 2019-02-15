@@ -28,6 +28,7 @@ foreach ($tables as $table) {
       "Column_name"  => $index['Column_name']
     );
   }
+  $index_def = DB::prepareIndexCompare($index_def);
   $database['tables'][] = array(
     'name' => $table['Tables_in_jeedom'],
     'fields' => $fields,

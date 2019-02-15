@@ -1,3 +1,4 @@
+
 {
   "tables": [
     {
@@ -148,98 +149,88 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "eqLogic_id"
+          "columns": {
+            "1": "eqLogic_id",
+            "2": "name"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "name"
-        },
-        {
+        "isHistorized": {
           "Key_name": "isHistorized",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "isHistorized"
+          "columns": {
+            "1": "isHistorized"
+          }
         },
-        {
+        "type": {
           "Key_name": "type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "type"
+          "columns": {
+            "1": "type"
+          }
         },
-        {
+        "name": {
           "Key_name": "name",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         },
-        {
+        "subtype": {
           "Key_name": "subtype",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "subType"
+          "columns": {
+            "1": "subType"
+          }
         },
-        {
+        "eqLogic_id": {
           "Key_name": "eqLogic_id",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "eqLogic_id"
+          "columns": {
+            "1": "eqLogic_id"
+          }
         },
-        {
+        "value": {
           "Key_name": "value",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "value"
+          "columns": {
+            "1": "value"
+          }
         },
-        {
+        "order": {
           "Key_name": "order",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "order"
+          "columns": {
+            "1": "order"
+          }
         },
-        {
+        "logicalID": {
           "Key_name": "logicalID",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId"
+          }
         },
-        {
+        "logicalId_eqLogicID": {
           "Key_name": "logicalId_eqLogicID",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "eqLogic_id"
+          "columns": {
+            "1": "eqLogic_id",
+            "2": "logicalId"
+          }
         },
-        {
-          "Key_name": "logicalId_eqLogicID",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "logicalId"
-        },
-        {
+        "genericType_eqLogicID": {
           "Key_name": "genericType_eqLogicID",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
-        },
-        {
-          "Key_name": "genericType_eqLogicID",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "generic_type"
+          "columns": {
+            "1": "logicalId",
+            "2": "generic_type"
+          }
         }
-      ]
+      }
     },
     {
       "name": "config",
@@ -269,20 +260,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "key"
-        },
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "plugin"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "cron",
@@ -368,50 +346,38 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "class_function_option": {
           "Key_name": "class_function_option",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "class"
+          "columns": {
+            "1": "class",
+            "2": "function",
+            "3": "option"
+          }
         },
-        {
-          "Key_name": "class_function_option",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "function"
-        },
-        {
-          "Key_name": "class_function_option",
-          "Non_unique": "0",
-          "Seq_in_index": "3",
-          "Column_name": "option"
-        },
-        {
+        "type": {
           "Key_name": "type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "class"
+          "columns": {
+            "1": "class"
+          }
         },
-        {
+        "logicalId_Type": {
           "Key_name": "logicalId_Type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "class"
+          "columns": {
+            "1": "class"
+          }
         },
-        {
+        "deamon": {
           "Key_name": "deamon",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "deamon"
+          "columns": {
+            "1": "deamon"
+          }
         }
-      ]
+      }
     },
     {
       "name": "dataStore",
@@ -457,32 +423,17 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "UNIQUE": {
           "Key_name": "UNIQUE",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "type"
-        },
-        {
-          "Key_name": "UNIQUE",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "link_id"
-        },
-        {
-          "Key_name": "UNIQUE",
-          "Non_unique": "0",
-          "Seq_in_index": "3",
-          "Column_name": "key"
+          "columns": {
+            "1": "type",
+            "2": "link_id",
+            "3": "key"
+          }
         }
-      ]
+      }
     },
     {
       "name": "eqLogic",
@@ -624,92 +575,87 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name",
+            "2": "object_id"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "object_id"
-        },
-        {
+        "eqTypeName": {
           "Key_name": "eqTypeName",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "eqType_name"
+          "columns": {
+            "1": "eqType_name"
+          }
         },
-        {
+        "name": {
           "Key_name": "name",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         },
-        {
+        "logical_id": {
           "Key_name": "logical_id",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId"
+          }
         },
-        {
+        "logica_id_eqTypeName": {
           "Key_name": "logica_id_eqTypeName",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId",
+            "2": "eqType_name"
+          }
         },
-        {
-          "Key_name": "logica_id_eqTypeName",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "eqType_name"
-        },
-        {
+        "object_id": {
           "Key_name": "object_id",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "object_id"
+          "columns": {
+            "1": "object_id"
+          }
         },
-        {
+        "timeout": {
           "Key_name": "timeout",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "timeout"
+          "columns": {
+            "1": "timeout"
+          }
         },
-        {
+        "eqReal_id": {
           "Key_name": "eqReal_id",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "eqReal_id"
+          "columns": {
+            "1": "eqReal_id"
+          }
         },
-        {
+        "logicalId": {
           "Key_name": "logicalId",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId"
+          }
         },
-        {
+        "generic_type": {
           "Key_name": "generic_type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "generic_type"
+          "columns": {
+            "1": "generic_type"
+          }
         },
-        {
+        "tags": {
           "Key_name": "tags",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "tags"
+          "columns": {
+            "1": "tags"
+          }
         }
-      ]
+      }
     },
     {
       "name": "eqReal",
@@ -763,50 +709,44 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "name_UNIQUE": {
           "Key_name": "name_UNIQUE",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         },
-        {
+        "logicalId": {
           "Key_name": "logicalId",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId"
+          }
         },
-        {
+        "type": {
           "Key_name": "type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "type"
+          "columns": {
+            "1": "type"
+          }
         },
-        {
+        "logicalId_Type": {
           "Key_name": "logicalId_Type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "logicalId",
+            "2": "type"
+          }
         },
-        {
-          "Key_name": "logicalId_Type",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "type"
-        },
-        {
+        "name": {
           "Key_name": "name",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         }
-      ]
+      }
     },
     {
       "name": "history",
@@ -836,26 +776,23 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "datetime"
+          "columns": {
+            "1": "datetime",
+            "2": "cmd_id"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "cmd_id"
-        },
-        {
+        "fk_history5min_commands1_idx": {
           "Key_name": "fk_history5min_commands1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "cmd_id"
+          "columns": {
+            "1": "cmd_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "historyArch",
@@ -885,26 +822,23 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "cmd_id"
+          "columns": {
+            "1": "cmd_id",
+            "2": "datetime"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "datetime"
-        },
-        {
+        "cmd_id_index": {
           "Key_name": "cmd_id_index",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "cmd_id"
+          "columns": {
+            "1": "cmd_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "interactDef",
@@ -990,14 +924,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "interactQuery",
@@ -1035,26 +962,22 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "fk_sarahQuery_sarahDef1_idx": {
           "Key_name": "fk_sarahQuery_sarahDef1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "interactDef_id"
+          "columns": {
+            "1": "interactDef_id"
+          }
         },
-        {
+        "query": {
           "Key_name": "query",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "query"
+          "columns": {
+            "1": "query"
+          }
         }
-      ]
+      }
     },
     {
       "name": "listener",
@@ -1100,20 +1023,15 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "event": {
           "Key_name": "event",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "event"
+          "columns": {
+            "1": "event"
+          }
         }
-      ]
+      }
     },
     {
       "name": "message",
@@ -1167,26 +1085,16 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "plugin_logicalID": {
           "Key_name": "plugin_logicalID",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "plugin"
-        },
-        {
-          "Key_name": "plugin_logicalID",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "logicalId"
+          "columns": {
+            "1": "plugin",
+            "2": "logicalId"
+          }
         }
-      ]
+      }
     },
     {
       "name": "note",
@@ -1216,14 +1124,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "object",
@@ -1293,32 +1194,29 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "name_UNIQUE": {
           "Key_name": "name_UNIQUE",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         },
-        {
+        "fk_object_object1_idx1": {
           "Key_name": "fk_object_object1_idx1",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "father_id"
+          "columns": {
+            "1": "father_id"
+          }
         },
-        {
+        "position": {
           "Key_name": "position",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "position"
+          "columns": {
+            "1": "position"
+          }
         }
-      ]
+      }
     },
     {
       "name": "plan",
@@ -1388,32 +1286,23 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "link_type"
+          "columns": {
+            "1": "link_type",
+            "2": "link_id"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "link_id"
-        },
-        {
+        "fk_plan_planHeader1_idx": {
           "Key_name": "fk_plan_planHeader1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "planHeader_id"
+          "columns": {
+            "1": "planHeader_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "plan3d",
@@ -1491,38 +1380,30 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "name": {
           "Key_name": "name",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         },
-        {
+        "link_type_link_id": {
           "Key_name": "link_type_link_id",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "link_type"
+          "columns": {
+            "1": "link_type",
+            "2": "link_id"
+          }
         },
-        {
-          "Key_name": "link_type_link_id",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "link_id"
-        },
-        {
+        "fk_3d_3dHeader1_idx": {
           "Key_name": "fk_3d_3dHeader1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "plan3dHeader_id"
+          "columns": {
+            "1": "plan3dHeader_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "plan3dHeader",
@@ -1552,14 +1433,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "planHeader",
@@ -1597,14 +1471,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "scenario",
@@ -1738,68 +1605,53 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "name": {
           "Key_name": "name",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "group"
+          "columns": {
+            "1": "group",
+            "2": "object_id",
+            "3": "name"
+          }
         },
-        {
-          "Key_name": "name",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "object_id"
-        },
-        {
-          "Key_name": "name",
-          "Non_unique": "0",
-          "Seq_in_index": "3",
-          "Column_name": "name"
-        },
-        {
+        "group": {
           "Key_name": "group",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "group"
+          "columns": {
+            "1": "group"
+          }
         },
-        {
+        "fk_scenario_object1_idx": {
           "Key_name": "fk_scenario_object1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "object_id"
+          "columns": {
+            "1": "object_id"
+          }
         },
-        {
+        "trigger": {
           "Key_name": "trigger",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "trigger"
+          "columns": {
+            "1": "trigger"
+          }
         },
-        {
+        "mode": {
           "Key_name": "mode",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "mode"
+          "columns": {
+            "1": "mode"
+          }
         },
-        {
+        "modeTriger": {
           "Key_name": "modeTriger",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "mode"
-        },
-        {
-          "Key_name": "modeTriger",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "trigger"
+          "columns": {
+            "1": "mode",
+            "2": "trigger"
+          }
         }
-      ]
+      }
     },
     {
       "name": "scenarioElement",
@@ -1853,14 +1705,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "scenarioExpression",
@@ -1930,20 +1775,15 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "fk_scenarioExpression_scenarioSubElement1_idx": {
           "Key_name": "fk_scenarioExpression_scenarioSubElement1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "scenarioSubElement_id"
+          "columns": {
+            "1": "scenarioSubElement_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "scenarioSubElement",
@@ -2013,32 +1853,23 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "fk_scenarioSubElement_scenarioElement1_idx": {
           "Key_name": "fk_scenarioSubElement_scenarioElement1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "scenarioElement_id"
+          "columns": {
+            "1": "scenarioElement_id"
+          }
         },
-        {
+        "type": {
           "Key_name": "type",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "scenarioElement_id"
-        },
-        {
-          "Key_name": "type",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "type"
+          "columns": {
+            "1": "scenarioElement_id",
+            "2": "type"
+          }
         }
-      ]
+      }
     },
     {
       "name": "update",
@@ -2116,20 +1947,15 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "status": {
           "Key_name": "status",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "status"
+          "columns": {
+            "1": "status"
+          }
         }
-      ]
+      }
     },
     {
       "name": "user",
@@ -2199,14 +2025,7 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        }
-      ]
+      "indexes": []
     },
     {
       "name": "view",
@@ -2260,20 +2079,15 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "name_UNIQUE": {
           "Key_name": "name_UNIQUE",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "name"
+          "columns": {
+            "1": "name"
+          }
         }
-      ]
+      }
     },
     {
       "name": "viewData",
@@ -2327,50 +2141,32 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "unique": {
           "Key_name": "unique",
           "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "viewZone_id"
+          "columns": {
+            "1": "viewZone_id",
+            "2": "link_id",
+            "3": "type"
+          }
         },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "2",
-          "Column_name": "link_id"
-        },
-        {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "Seq_in_index": "3",
-          "Column_name": "type"
-        },
-        {
+        "fk_data_zone1_idx": {
           "Key_name": "fk_data_zone1_idx",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "viewZone_id"
+          "columns": {
+            "1": "viewZone_id"
+          }
         },
-        {
+        "order": {
           "Key_name": "order",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "order"
-        },
-        {
-          "Key_name": "order",
-          "Non_unique": "1",
-          "Seq_in_index": "2",
-          "Column_name": "viewZone_id"
+          "columns": {
+            "1": "order",
+            "2": "viewZone_id"
+          }
         }
-      ]
+      }
     },
     {
       "name": "viewZone",
@@ -2424,20 +2220,15 @@
           "extra": ""
         }
       ],
-      "indexes": [
-        {
-          "Key_name": "PRIMARY",
-          "Non_unique": "0",
-          "Seq_in_index": "1",
-          "Column_name": "id"
-        },
-        {
+      "indexes": {
+        "fk_zone_view1": {
           "Key_name": "fk_zone_view1",
           "Non_unique": "1",
-          "Seq_in_index": "1",
-          "Column_name": "view_id"
+          "columns": {
+            "1": "view_id"
+          }
         }
-      ]
+      }
     }
   ]
 }

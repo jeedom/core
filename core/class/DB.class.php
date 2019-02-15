@@ -538,9 +538,11 @@ class DB {
 			}
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
 			$return[$_table['name']]['sql'] .= ');'."\n";
-			
-			$_table['indexes'] = self::prepareIndexCompare($_table['indexes']);
-			
+			foreach ($_table['fields'] as $field) {
+				if($field['key'] == 'PRI'){
+					$return[$_table['name']]['sql'] .=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
+				}
+			}
 			foreach ($_table['indexes'] as $index) {
 				$return[$_table['name']]['sql'] .= "\n".self::buildDefinitionIndex($index,$_table['name']).';';
 			}
@@ -563,10 +565,12 @@ class DB {
 					'sql' => 'ALTER TABLE `'.$_table['name'].'` ADD `'.$field['name'].'`'
 				);
 				$return[$_table['name']]['fields'][$field['name']]['sql']	.= self::buildDefinitionField($field);
+				if($field['key'] == 'PRI'){
+					$return[$_table['name']]['fields'][$field['name']]['sql']	.=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$field['name'].'`)';
+				}
 			}
 		}
 		$showIndexes = self::prepareIndexCompare(DB::Prepare('show index from `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL));
-		$_table['indexes'] = self::prepareIndexCompare($_table['indexes']);
 		foreach ($_table['indexes'] as $index) {
 			$found = false;
 			foreach ($showIndexes as $showIndex) {
@@ -632,6 +636,9 @@ class DB {
 		if($return[$_ref_field['name']]['status'] == 'nok'){
 			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `'.$_table_name.'` MODIFY COLUMN `'.$_ref_field['name'].'` '.$_ref_field['type'];
 			$return[$_ref_field['name']]['sql'] .= self::buildDefinitionField($_ref_field);
+			if($_ref_field['key'] == 'PRI'){
+				$return[$_ref_field['name']]['sql'] .=';ALTER TABLE `'.$_table_name. '` ADD PRIMARY KEY(`'.$_ref_field['name'].'`)';
+			}
 		}
 		return $return;
 	}
