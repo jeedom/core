@@ -179,12 +179,15 @@ function getJeedomLog(_autoUpdate, _log) {
 	                }if(data.result[i].indexOf('[END UPDATE SUCCESS]') != -1){
 			    if(Maj == 0){    
 	                        $('.TextFinalisation').text('{{test de l\'image}}');
+				var textProgress = $('.progress-bar').text();
+	                        $('.progress-bar').width('50%');
+		                $('.progress-bar').text('50%');
 			    }else{
-				 $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');   
+				 $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');
+				 var textProgress = $('.progress-bar').text();
+	                         $('.progress-bar').width('70%');
+		                 $('.progress-bar').text('70%');
 			    }
-			    var textProgress = $('.progress-bar').text();
-	                    $('.progress-bar').width(Number(textProgress.substring(0, 2))+30+'%');
-		            $('.progress-bar').text(Number(textProgress.substring(0, 2))+30+'%');
 			    _autoUpdate = 0;
 		            final();
 	                }else if(data.result[i].indexOf('[END BACKUP ERROR]') != -1){
