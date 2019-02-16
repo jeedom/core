@@ -49,7 +49,7 @@ By KiboOst for Jeedom
 }
 
 .ui-header,
-.ui-page-theme-a .ui-bar-inherit {
+.ui-page-theme-a .ui-bar-inherit:not(.ui-slider-track) {
 	background-color: var(--bg-modal-color) !important;
 	color: var(--txt-color) !important;
 	box-shadow: none !important;
