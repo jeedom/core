@@ -1,17 +1,29 @@
-<div style="width:90px;min-height:80px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <center>
-    <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
-    <span style="font-size: 3.5em;" class="iconCmd"></span>
-  </center>
-  <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-      if (parseFloat(_options.display_value) >= 1) {
-       $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ouvert"></i>');
-     } else {
-       $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ferme"></i>');
-     }
-   }
-   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
- </script>
+<div style="min-width:55px; min-height:100px; position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+    <div style="width:55px; height:95px;" class="shuttergauge cursor #history#" data-cmd_id="#id#" >
+        <div style="#hideCmdName#">#name_display#</div>
+        <div class="shuttergauge-chart">
+            <div class="shuttergauge-bckg">
+                <div class="shuttergauge-value"></div>
+            </div>
+            <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
+        </div>
+    </div>
+    <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block" class="cmdStats">
+        <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
+    <script>
+        jeedom.cmd.update['#id#'] = function(_options){
+            height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+            height = 100 - (Math.round(parseFloat(height) * 10) / 10)
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge-state strong').first().text(_options.display_value)
+        }
+
+        if (is_numeric('#state#')) {
+            height = 100 - (#state# * 100 / (#maxValue#-#minValue#)) + #minValue#
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge .shuttergauge-value').height(height+'%')
+        } else {
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>')
+        }
+    </script>
 </div>
