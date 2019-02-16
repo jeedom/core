@@ -20,8 +20,7 @@
         }
 
         if (is_numeric('#state#')) {
-            height = 100 - (#state# * 100 / (#maxValue#-#minValue#)) + #minValue#
-            $('.cmd[data-cmd_uid=#uid#] .shuttergauge .shuttergauge-value').height(height+'%')
+            jeedom.cmd.update['#id#']({display_value:'#state#'});
         } else {
             $('.cmd[data-cmd_uid=#uid#] .shuttergauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>')
         }
