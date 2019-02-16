@@ -760,6 +760,9 @@ select.input-sm {
 input[type="color"] {
   padding: 0 !important;
 }
+input[type="time"] {
+  padding: 0px 12px !important;
+}
 
 .checkbox-inline > input[type=checkbox] {
   margin-left: -20px !important;
