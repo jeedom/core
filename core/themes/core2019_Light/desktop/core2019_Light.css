@@ -1263,10 +1263,6 @@ hr {
 .ui-slider-horizontal{ height: 5px !important;}
 .ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
 
-/* less space under arc gauges */
-.gauge.cursor{ height: 85px !important; }
-.container-fluid.cmd-widget { min-height: 85px !important; }
-
 .action_colorpicker_change {
   padding: 0 !important;
   border: none !important;
