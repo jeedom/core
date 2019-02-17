@@ -768,7 +768,7 @@ class DB {
 		}
 		foreach ($_index['columns'] as $value) {
 			$return .= '`'.$value['column'].'`';
-			if($_index['Sub_part'] != null){
+			if($value['Sub_part'] != null){
 				$return .= '('.$value['Sub_part'].')';
 			}
 			$return .= ' ASC,';
