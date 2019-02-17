@@ -52,6 +52,9 @@ $result = DB::compareDatabase($database);
         if($iinfo['status'] == 'ok'){
           continue;
         }
+        if(isset($iinfo['presql']) && $iinfo['presql'] != ''){
+          $sql .= "\n".$iinfo['sql'].';';
+        }
         if($iinfo['sql'] != ''){
           $sql .= "\n".$iinfo['sql'].';';
         }

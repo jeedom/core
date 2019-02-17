@@ -543,7 +543,7 @@ class DB {
 			}
 			if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
 				foreach ($tinfo['fields'] as $fname => $finfo) {
-					if(!isset($finfo['presql']) || trim($finfo['presql']) == ''){
+					if(!isset($finfo['sql']) || trim($finfo['sql']) == ''){
 						continue;
 					}
 					try {
@@ -558,7 +558,7 @@ class DB {
 			}
 			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
-					if(!isset($iinfo['presql']) || trim($iinfo['presql']) == ''){
+					if(!isset($iinfo['sql']) || trim($iinfo['sql']) == ''){
 						continue;
 					}
 					try {
