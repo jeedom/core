@@ -525,6 +525,20 @@ class DB {
 					$error .= $e->getMessage()."\n";
 				}
 			}
+			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+				foreach ($tinfo['indexes'] as $iname => $iinfo) {
+					if( $iinfo['presql'] != ''){
+						try {
+							if($_verbose){
+								echo "\nFix : ".$iinfo['presql'];
+							}
+							DB::prepare($iinfo['presql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
+					}
+				}
+			}
 			if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
 				foreach ($tinfo['fields'] as $fname => $finfo) {
 					if( $finfo['sql'] != ''){
@@ -728,7 +742,7 @@ class DB {
 	}
 	
 	function compareIndex($_ref_index,$_real_index,$_table_name){
-		$return = array($_ref_index['Key_name'] => array('status' => 'ok','sql' => ''));
+		$return = array($_ref_index['Key_name'] => array('status' => 'ok','presql' => '','sql' => ''));
 		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Non_unique nok';
@@ -738,8 +752,8 @@ class DB {
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
 		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
-			$return[$_ref_index['Key_name']]['sql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
-			$return[$_ref_index['Key_name']]['sql'] .= "\n".self::buildDefinitionIndex($_ref_index,$_table_name);
+			$return[$_ref_index['Key_name']]['presql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
+			$return[$_ref_index['Key_name']]['sql'] = "\n".self::buildDefinitionIndex($_ref_index,$_table_name);
 		}
 		return $return;
 	}
