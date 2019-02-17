@@ -75,8 +75,14 @@ By KiboOst for Jeedom
 	background-color: var(--form-bg-color) !important;
  	color: var(--txt-color) !important;
 }
+.ui-input-text {
+	padding: 1.5px !important;
+}
 .ui-input-text::after {
 	background-color: transparent;
+}
+.ui-input-text input {
+	text-align: center !important;
 }
 placeholder {
 	color: red !important;
