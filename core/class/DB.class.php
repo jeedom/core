@@ -507,6 +507,62 @@ class DB {
 	}
 	
 	/*************************DB ANALYZER***************************/
+	
+	function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+		$result = DB::compareDatabase($_database);
+		$error = '';
+		foreach ($result as $tname => $tinfo) {
+			if($_table != 'all' && $tname != $_table){
+				continue;
+			}
+			if( $tinfo['sql'] != ''){
+				try {
+					if($_verbose){
+						echo "\nFix : ".$tinfo['sql'];
+					}
+					DB::prepare($tinfo['sql'], array());
+				} catch (\Exception $e) {
+					$error .= $e->getMessage()."\n";
+				}
+			}
+			if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
+				foreach ($tinfo['fields'] as $fname => $finfo) {
+					if( $finfo['sql'] != ''){
+						try {
+							if($_verbose){
+								echo "\nFix : ".$finfo['sql'];
+							}
+							DB::prepare($finfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
+					}
+				}
+			}
+			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+				foreach ($tinfo['indexes'] as $iname => $iinfo) {
+					if( $iinfo['sql'] != ''){
+						try {
+							if($_verbose){
+								echo "\nFix : ".$iinfo['sql'];
+							}
+							DB::prepare($iinfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
+					}
+				}
+			}
+		}
+		if($error != ''){
+			if($_loop < 1){
+				return self::compareAndFix($_database,$_table,$_verbose,$_loop);
+			}
+			throw new \Exception($error);
+		}
+		return true;
+	}
+	
 	function compareDatabase($_database){
 		$return = array();
 		foreach ($_database['tables'] as $table) {

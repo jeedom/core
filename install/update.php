@@ -343,54 +343,6 @@ try {
 				config::save('version', $curentVersion);
 			}
 		}
-		
-		try {
-			echo "Check jeedom database...";
-			$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
-			$result = DB::compareDatabase($database);
-			$error = '';
-			foreach ($result as $tname => $tinfo) {
-				if( $tinfo['sql'] != ''){
-					try {
-						echo "\nFix : ".$tinfo['sql'];
-						DB::prepare($tinfo['sql'], array());
-					} catch (\Exception $e) {
-						$error .= $e->getMessage()."\n";
-					}
-				}
-				if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
-					foreach ($tinfo['fields'] as $fname => $finfo) {
-						if( $finfo['sql'] != ''){
-							try {
-								echo "\nFix : ".$finfo['sql'];
-								DB::prepare($finfo['sql'], array());
-							} catch (\Exception $e) {
-								$error .= $e->getMessage()."\n";
-							}
-						}
-					}
-				}
-				if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
-					foreach ($tinfo['indexes'] as $iname => $iinfo) {
-						if( $iinfo['sql'] != ''){
-							try {
-								echo "\nFix : ".$iinfo['sql'];
-								DB::prepare($iinfo['sql'], array());
-							} catch (\Exception $e) {
-								$error .= $e->getMessage()."\n";
-							}
-						}
-					}
-				}
-			}
-			if($error != ''){
-				echo "\n***ERREUR*** ". $error;
-			}else{
-				echo "OK\n";
-			}
-		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
-		}
 		try {
 			echo "Check jeedom consistency...";
 			require_once __DIR__ . '/consistency.php';

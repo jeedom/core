@@ -38,7 +38,15 @@ if (isset($argv)) {
 
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
-	
+	if(method_exists ('DB','compareAndFix')){
+		try {
+			echo "Check jeedom database...";
+			DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true),'all',true);
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		}
+	}
 	if (config::byKey('object:summary') == '' || !is_array(config::byKey('object:summary'))) {
 		config::save('object:summary',
 		array('security' => array('key' => 'security', 'name' => 'Alerte', 'calcul' => 'sum', 'icon' => '<i class="icon jeedom-alerte2"></i>', 'unit' => '', 'count' => 'binary', 'allowDisplayZero' => false),

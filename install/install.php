@@ -51,47 +51,10 @@ try {
 	}
 	echo "\nInstallation de Jeedom " . jeedom::version() . "\n";
 	echo "Installation de la base de données...";
-	$database = json_decode(file_get_contents(__DIR__.'/database.json'),true);
-	$result = DB::compareDatabase($database);
-	$error = '';
 	try {
-		DB::prepare('ALTER DATABASE CHARACTER SET utf8 COLLATE utf8_unicode_ci', array());
+		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
 	} catch (\Exception $e) {
-		$error .= $e->getMessage()."\n";
-	}
-	foreach ($result as $tname => $tinfo) {
-		if( $tinfo['sql'] != ''){
-			try {
-				DB::prepare($tinfo['sql'], array());
-			} catch (\Exception $e) {
-				$error .= $e->getMessage()."\n";
-			}
-		}
-		if(isset($tinfo['fields']) && count($tinfo['fields']) > 0){
-			foreach ($tinfo['fields'] as $fname => $finfo) {
-				if( $finfo['sql'] != ''){
-					try {
-						DB::prepare($finfo['sql'], array());
-					} catch (\Exception $e) {
-						$error .= $e->getMessage()."\n";
-					}
-				}
-			}
-		}
-		if(isset($tinfo['indexes']) && count($tinfo['indexes']) > 0){
-			foreach ($tinfo['indexes'] as $iname => $iinfo) {
-				if( $iinfo['sql'] != ''){
-					try {
-						DB::prepare($iinfo['sql'], array());
-					} catch (\Exception $e) {
-						$error .= $e->getMessage()."\n";
-					}
-				}
-			}
-		}
-	}
-	if($error != ''){
-		echo $error;
+		echo "***ERREUR*** " . $ex->getMessage() . "\n";
 	}
 	echo "OK\n";
 	echo "Post installation...\n";
