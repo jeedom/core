@@ -21,8 +21,8 @@ if (!isConnect('admin')) {
 		<table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
 			<thead>
 				<tr>
-					<th style="width:50px;"></th>
-					<th>{{Nom}}</th>
+					<th data-sorter="false" style="width:50px;"></th>
+					<th data-sorter="false">{{Nom}}</th>
 					<th data-sorter="false" data-filter="false">{{Version installée}}</th>
 					<th data-sorter="false" data-filter="false">{{Dernière version}}</th>
 					<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
@@ -37,8 +37,8 @@ if (!isConnect('admin')) {
 		<table class="table table-condensed table-bordered tablesorter" id="table_updateOther" style="margin-top: 5px;">
 			<thead>
 				<tr>
-					<th style="width:50px;"></th>
-					<th>{{Nom}}</th>
+					<th data-sorter="false" style="width:50px;"></th>
+					<th data-sorter="false">{{Nom}}</th>
 					<th data-sorter="false" data-filter="false">{{Version installée}}</th>
 					<th data-sorter="false" data-filter="false">{{Dernière version}}</th>
 					<th data-sorter="false" data-filter="false">{{Options}}</th>
