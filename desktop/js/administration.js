@@ -650,10 +650,15 @@ $('#bt_accessSystemAdministration').on('click',function(){
     $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
 });
 
-/**************************SYSTEM***********************************/
+/**************************Database***********************************/
 $('#bt_accessDbAdministration').on('click',function(){
     $('#md_modal').dialog({title: "{{Administration base de données}}"});
     $("#md_modal").load('index.php?v=d&modal=db.action').dialog('open');
+});
+
+$('#bt_checkDatabase').on('click',function(){
+  $('#md_modal').dialog({title: "{{Vérification base de données}}"});
+  $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
 });
 
 /**************************Summary***********************************/
