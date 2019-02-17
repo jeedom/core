@@ -5,7 +5,6 @@ By KiboOst for Jeedom
 
 */
 
-@import url("../../../../desktop/css/bootstrap.css");
 @import url("colors.css");
 
 
@@ -1319,12 +1318,14 @@ path.highcharts-graph {
 .hgauge,
 .vgauge,
 .shuttergauge {
-  position: relative;
+  position: relative !important;
   padding: 0;
-  display: table-cell;
+  display: table-cell !important;
+  color: var(--txt-color);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
+
 .hgauge-value,
 .vgauge-value,
 .shuttergauge-value {
@@ -1334,8 +1335,12 @@ path.highcharts-graph {
 .vgauge > div:first-child,
 .shuttergauge > div:first-child {
   text-align: center !important;
-  color: var(--txt-color) !important; /*remove in legacy*/
   font-size: 12px;
+}
+.hgauge > div:first-child:after {
+  content:'';
+  height: 10px;
+  display: table;
 }
 .hgauge-bckg,
 .vgauge-bckg {
@@ -1345,6 +1350,7 @@ path.highcharts-graph {
 .hgauge {
   text-align: left;
   vertical-align: middle;
+  top: 7px;
 }
 .vgauge,
 .shuttergauge {
@@ -1363,6 +1369,7 @@ path.highcharts-graph {
   text-align: center !important;
   width: 100% !important;
   font-size: 12px;
+  margin-top: 5px;
 }
 .vgauge-state,
 .shuttergauge-state {
@@ -1387,14 +1394,14 @@ path.highcharts-graph {
 }
 
 .shuttergauge-bckg {
-  width: 90%;
+  width: 75%;
   height: calc(100% - 38px);
-  margin-left: -45%;
+  margin-left: -38%;
   position: absolute;
   bottom: 18px;
-  border-top: 8px solid var(--el-defaultColor);
-  border-left: 5px solid var(--el-defaultColor);
-  border-right: 5px solid var(--el-defaultColor);
+  border-top: 6px solid var(--el-defaultColor);
+  border-left: 4px solid var(--el-defaultColor);
+  border-right: 4px solid var(--el-defaultColor);
 }
 
 .hgauge-value {
