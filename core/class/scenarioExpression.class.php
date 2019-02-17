@@ -805,24 +805,22 @@ class scenarioExpression {
 	}
 	
 	
-	public static function time_op($_time, $_value) {
+	public static function time_op($_time, $_value = 0 ) {
 		$_time = self::setTags($_time);
 		$_value = self::setTags($_value);
 		$_time = trim($_time);
-		$_time = str_replace(":","",$_time);
-		$_time = intval($_time);
-		if (($lg=strlen($_time)) < 4 ){
+		$t = explode(":",$_time);
+		if(count($t) >= 2) {
+			$_time = $t[0].sprintf("%02d",$t[1]);
+		}
+		if ( ($lg=strlen($_time)) < 4 ) {
 			$_time = str_repeat("0",4-$lg).$_time;
+		} else {
+			$_time = substr($_time,0,4);
 		}
 		$date = DateTime::createFromFormat('Gi', $_time);
 		if ($date === false) {
-			if ( strlen ( $_time ) == 5 ){
-				$_time = "0".$_time;
-			}
-			$date = DateTime::createFromFormat('Gis', $_time);
-			if ($date === false){
-				return -1;
-			}
+			return -1;
 		}
 		if ($_value > 0) {
 			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
