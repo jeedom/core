@@ -154,7 +154,9 @@ legend:first-letter {
   background: linear-gradient(var(--btn-default-color), var(--btn-default-color)) fixed !important;
   min-width: 32px !important;
 }
-
+.input-group-addon {
+  color: var(--linkHoverLight-color) !important;
+}
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   background-color: var(--btnEq-default-color) !important;

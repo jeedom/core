@@ -152,6 +152,9 @@ legend:first-letter {
   background: linear-gradient(var(--btn-default-color), var(--btn-default-color)) fixed !important;
   min-width: 32px !important;
 }
+.input-group-addon {
+  color: var(--linkHoverLight-color) !important;
+}
 .eqLogic-widget .btn,
 .scenario-widget .btn,
 #bt_editDashboardWidgetOrder,
@@ -160,8 +163,6 @@ legend:first-letter {
   background: linear-gradient(var(--btnEq-default-color), var(--btnEq-default-color)) fixed !important;
   min-width: 32px !important;
 }
-
-
 
 /* dashboard equipments text color */
 .tableCmd,
