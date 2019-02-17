@@ -45,7 +45,6 @@ if (!isConnect()) {
 								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
-										<option value="">Défaut</option>
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -58,7 +57,6 @@ if (!isConnect()) {
 								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme_night">
-										<option value="">Défaut</option>
 										<?php
 										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -96,7 +94,7 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Heure mode jour}}</label>
+								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème clair de}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<input type="time" class="userAttr form-control" data-l1key="options" data-l2key="theme_start_day_hour"/>
 								</div>
@@ -106,63 +104,21 @@ if (!isConnect()) {
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
+								<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="theme_changeAccordingTime"/>
 								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
+								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_theme_useAmbientLight"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
+								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
 								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideBackgroundImg"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Graphique Desktop}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="desktop_highcharts_theme">
-										<option value="">Défaut</option>
-										<option value="dark-blue">Dark-blue</option>
-										<option value="dark-green">Dark-green</option>
-										<option value="dark-unica">Dark-unica</option>
-										<option value="gray">Gray</option>
-										<option value="grid-light">Grid-light</option>
-										<option value="grid">Grid</option>
-										<option value="sand-signika">Sand-signika</option>
-										<option value="skies">Skies</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Graphique mobile}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_highcharts_theme">
-										<option value="">Défaut</option>
-										<option value="dark-blue">Dark-blue</option>
-										<option value="dark-green">Dark-green</option>
-										<option value="dark-unica">Dark-unica</option>
-										<option value="gray">Gray</option>
-										<option value="grid-light">Grid-light</option>
-										<option value="grid">Grid</option>
-										<option value="sand-signika">Sand-signika</option>
-										<option value="skies">Skies</option>
-									</select>
-								</div>
-							</div>
-							<?php
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<div class="form-group">';
-								echo '<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité des widgets}} ' . $value['name'] . '</label>';
-								echo '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
-								echo '<input type="number" min="0" max="1" class="userAttr form-control" data-l1key="options" data-l2key="widget::background-opacity::' . $key . '"/>';
-								echo '</div>';
-								echo '</div>';
-							}
-							?>
 						</fieldset>
 					</form>
 				</div>

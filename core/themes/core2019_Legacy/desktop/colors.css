@@ -7,7 +7,7 @@ By KiboOst for Jeedom
 :root {
   --lineheight : 1.42em;
   /* keet it as rem even when zero!!*/
-  --border-radius: 0rem;
+  --border-radius: 1rem;
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
