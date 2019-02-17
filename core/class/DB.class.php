@@ -697,7 +697,7 @@ class DB {
 				);
 			}
 			$return[$index['Key_name']]['Non_unique'] = $index['Non_unique'];
-			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = $index['Column_name'];
+			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = array('column'=> $index['Column_name'],'Sub_part' => $index['Sub_part']);
 		}
 		return $return;
 	}
@@ -767,7 +767,11 @@ class DB {
 			$return = 'CREATE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
 		}
 		foreach ($_index['columns'] as $value) {
-			$return .= '`'.$value.'` ASC,';
+			$return .= '`'.$value['column'].'`';
+			if($_index['Sub_part'] != null){
+				$return .= '('.$value['Sub_part'].')';
+			}
+			$return .= ' ASC,';
 		}
 		$return = trim($return,',');
 		$return .= ')';
