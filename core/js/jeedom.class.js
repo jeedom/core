@@ -296,6 +296,24 @@ jeedom.db = function (_params) {
   return 'Execute command : '+command;
 };
 
+jeedom.dbcorrectTable = function (_params) {
+  var paramsRequired = ['table'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'dbcorrectTable',
+    table : _params.table
+  };
+  $.ajax(paramsAJAX);
+};
 
 jeedom.rebootSystem = function (_params) {
   var paramsRequired = [];
