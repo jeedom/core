@@ -556,7 +556,7 @@ class DB {
 		}
 		if($error != ''){
 			if($_loop < 1){
-				return self::compareAndFix($_database,$_table,$_verbose,$_loop);
+				return self::compareAndFix($_database,$_table,$_verbose,($_loop + 1));
 			}
 			throw new \Exception($error);
 		}
