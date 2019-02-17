@@ -1,6 +1,6 @@
 <div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<div class="slider full-width-slider" style="width: 96%;text-align: right;min-width : 100px;" style="background-color:#cmdColor# !important;">
-		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" style="background-color:#cmdColor# !important;"/>
+	<div class="slider full-width-slider" style="width: 96%;text-align: right;min-width : 100px;" style="background-color:#cmdColor#;">
+		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" style="background-color:#cmdColor#;"/>
 	</div>
 	<script>
 		$("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
@@ -11,12 +11,4 @@
 			$(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
 		}
 	</script>
-	<style>
-		.cmd[data-cmd_uid="#uid#"] .ui-slider-handle{
-			background-color:#cmdColor# !important;
-		}
-		.cmd[data-cmd_uid="#uid#"] .ui-slider-bg{
-			background-color:#cmdColor# !important;
-		}
-	</style>
 </div>
