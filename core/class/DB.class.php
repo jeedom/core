@@ -738,7 +738,8 @@ class DB {
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
 		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
-			$return[$_ref_index['Key_name']]['sql'] = self::buildDefinitionIndex($_ref_index,$_table_name);
+			$return[$_ref_index['Key_name']]['sql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
+			$return[$_ref_index['Key_name']]['sql'] .= "\n".self::buildDefinitionIndex($_ref_index,$_table_name);
 		}
 		return $return;
 	}
