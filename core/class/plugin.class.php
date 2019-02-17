@@ -58,10 +58,12 @@ class plugin {
 			$_id = self::getPathById($_id);
 		}
 		if (!file_exists($_id)) {
+			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable : ' . $_id);
 		}
 		$data = json_decode(file_get_contents($_id), true);
 		if (!is_array($data)) {
+			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
 		}
 		$plugin = new plugin();
@@ -133,6 +135,17 @@ class plugin {
 		} else {
 			return '';
 		}
+	}
+	
+	public static function forceDisablePlugin($_id){
+		config::save('active', 0, $_id);
+		$values = array(
+			'eqType_name' => $_id,
+		);
+		$sql = 'UPDATE eqLogic
+		SET isEnable=0
+		WHERE eqType_name=:eqType_name';
+		DB::Prepare($sql, $values);
 	}
 	
 	public static function listPlugin($_activateOnly = false, $_orderByCaterogy = false, $_translate = true, $_nameOnly = false) {
