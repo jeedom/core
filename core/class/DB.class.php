@@ -508,7 +508,7 @@ class DB {
 	
 	/*************************DB ANALYZER***************************/
 	
-	function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
 		$result = DB::compareDatabase($_database);
 		$error = '';
 		foreach ($result as $tname => $tinfo) {
@@ -525,31 +525,49 @@ class DB {
 					$error .= $e->getMessage()."\n";
 				}
 			}
+			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+				foreach ($tinfo['indexes'] as $iname => $iinfo) {
+					if(!isset($iinfo['presql']) || trim($iinfo['presql']) == ''){
+						continue;
+					}
+					try {
+						if($_verbose){
+							echo "\nFix : ".$iinfo['presql'];
+						}
+						DB::prepare($iinfo['presql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
+					}
+				}
+				
+			}
 			if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
 				foreach ($tinfo['fields'] as $fname => $finfo) {
-					if( $finfo['sql'] != ''){
-						try {
-							if($_verbose){
-								echo "\nFix : ".$finfo['sql'];
-							}
-							DB::prepare($finfo['sql'], array());
-						} catch (\Exception $e) {
-							$error .= $e->getMessage()."\n";
+					if(!isset($finfo['presql']) || trim($finfo['presql']) == ''){
+						continue;
+					}
+					try {
+						if($_verbose){
+							echo "\nFix : ".$finfo['sql'];
 						}
+						DB::prepare($finfo['sql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
 					}
 				}
 			}
 			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
-					if( $iinfo['sql'] != ''){
-						try {
-							if($_verbose){
-								echo "\nFix : ".$iinfo['sql'];
-							}
-							DB::prepare($iinfo['sql'], array());
-						} catch (\Exception $e) {
-							$error .= $e->getMessage()."\n";
+					if(!isset($iinfo['presql']) || trim($iinfo['presql']) == ''){
+						continue;
+					}
+					try {
+						if($_verbose){
+							echo "\nFix : ".$iinfo['sql'];
 						}
+						DB::prepare($iinfo['sql'], array());
+					} catch (\Exception $e) {
+						$error .= $e->getMessage()."\n";
 					}
 				}
 			}
