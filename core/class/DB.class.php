@@ -692,13 +692,12 @@ class DB {
 			if(!isset($return[$index['Key_name']])){
 				$return[$index['Key_name']] = array(
 					'Key_name' => $index['Key_name'],
-					'Sub_part' => $index['Sub_part'],
 					'Non_unique' => 0,
 					'columns' => array(),
 				);
 			}
 			$return[$index['Key_name']]['Non_unique'] = $index['Non_unique'];
-			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = $index['Column_name'];
+			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = array('column'=> $index['Column_name'],'Sub_part' => $index['Sub_part']);
 		}
 		return $return;
 	}
@@ -738,10 +737,6 @@ class DB {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
-		if($_ref_index['Sub_part'] != $_real_index['Sub_part']){
-			$return[$_ref_index['Key_name']]['status'] = 'nok';
-			$return[$_ref_index['Key_name']]['message'] = 'Sub part nok';
-		}
 		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
 			$return[$_ref_index['Key_name']]['sql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
 			$return[$_ref_index['Key_name']]['sql'] .= "\n".self::buildDefinitionIndex($_ref_index,$_table_name);
@@ -772,9 +767,9 @@ class DB {
 			$return = 'CREATE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
 		}
 		foreach ($_index['columns'] as $value) {
-			$return .= '`'.$value.'`';
-			if($_index['Sub_part'] != null){
-				$return .= '('.$_index['Sub_part'].')';
+			$return .= '`'.$value['column'].'`';
+			if($value['Sub_part'] != null){
+				$return .= '('.$value['Sub_part'].')';
 			}
 			$return .= ' ASC,';
 		}
