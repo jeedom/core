@@ -53,7 +53,7 @@ $result = DB::compareDatabase($database);
           continue;
         }
         if(isset($iinfo['presql']) && $iinfo['presql'] != ''){
-          $sql .= "\n".$iinfo['sql'].';';
+          $sql .= "\n".$iinfo['presql'].';';
         }
         if($iinfo['sql'] != ''){
           $sql .= "\n".$iinfo['sql'].';';
