@@ -146,6 +146,12 @@ try {
 		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
 	}
 	
+	if (init('action') == 'dbcorrectTable') {
+		unautorizedInDemo();
+		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true),init('table'));
+		ajax::success();
+	}
+	
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}
