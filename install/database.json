@@ -1,2081 +1,2444 @@
+
 {
-  "tables":[
+  "tables": [
     {
-      "name":"cmd",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "cmd",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"eqLogic_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "eqLogic_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"eqType",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "eqType",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"logicalId",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "logicalId",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"template",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "template",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isHistorized",
-          "type":"varchar(45)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "isHistorized",
+          "type": "varchar(45)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"subType",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "subType",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"unite",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "unite",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isVisible",
-          "type":"int(11)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "isVisible",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         },
         {
-          "name":"value",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "value",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"html",
-          "type":"mediumtext",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "html",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"alert",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "alert",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"generic_type",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "generic_type",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"0",
-          "columns":{
-            "1":"eqLogic_id",
-            "2":"name"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "eqLogic_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "isHistorized":{
-          "Key_name":"isHistorized",
-          "Non_unique":"1",
-          "columns":{
-            "1":"isHistorized"
+        "isHistorized": {
+          "Key_name": "isHistorized",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "isHistorized",
+              "Sub_part": null
+            }
           }
         },
-        "type":{
-          "Key_name":"type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"type"
+        "type": {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "type",
+              "Sub_part": null
+            }
           }
         },
-        "name":{
-          "Key_name":"name",
-          "Non_unique":"1",
-          "columns":{
-            "1":"name"
+        "name": {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "subtype":{
-          "Key_name":"subtype",
-          "Non_unique":"1",
-          "columns":{
-            "1":"subType"
+        "subtype": {
+          "Key_name": "subtype",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "subType",
+              "Sub_part": null
+            }
           }
         },
-        "eqLogic_id":{
-          "Key_name":"eqLogic_id",
-          "Non_unique":"1",
-          "columns":{
-            "1":"eqLogic_id"
+        "eqLogic_id": {
+          "Key_name": "eqLogic_id",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "eqLogic_id",
+              "Sub_part": null
+            }
           }
         },
-        "value":{
-          "Key_name":"value",
-          "Non_unique":"1",
-          "columns":{
-            "1":"value"
+        "value": {
+          "Key_name": "value",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "value",
+              "Sub_part": null
+            }
           }
         },
-        "order":{
-          "Key_name":"order",
-          "Non_unique":"1",
-          "columns":{
-            "1":"order"
+        "order": {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "order",
+              "Sub_part": null
+            }
           }
         },
-        "logicalID":{
-          "Key_name":"logicalID",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId"
+        "logicalID": {
+          "Key_name": "logicalID",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         },
-        "logicalId_eqLogicID":{
-          "Key_name":"logicalId_eqLogicID",
-          "Non_unique":"1",
-          "columns":{
-            "1":"eqLogic_id",
-            "2":"logicalId"
+        "logicalId_eqLogicID": {
+          "Key_name": "logicalId_eqLogicID",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "eqLogic_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"config",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "config",
+      "fields": [
         {
-          "name":"plugin",
-          "type":"varchar(127)",
-          "null":"NO",
-          "key":"PRI",
-          "default":"core",
-          "extra":""
+          "name": "plugin",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "PRI",
+          "default": "core",
+          "extra": ""
         },
         {
-          "name":"key",
-          "type":"varchar(255)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":""
+          "name": "key",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"value",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "value",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"cron",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "cron",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"enable",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "enable",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"class",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "class",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"function",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "function",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"schedule",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "schedule",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"timeout",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "timeout",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"deamon",
-          "type":"int(11)",
-          "null":"YES",
-          "default":"0",
-          "extra":""
+          "name": "deamon",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": "0",
+          "extra": ""
         },
         {
-          "name":"deamonSleepTime",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "deamonSleepTime",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"option",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "option",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"once",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "once",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "type":{
-          "Key_name":"type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"class"
+      "indexes": {
+        "type": {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "class",
+              "Sub_part": null
+            }
           }
         },
-        "logicalId_Type":{
-          "Key_name":"logicalId_Type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"class"
+        "logicalId_Type": {
+          "Key_name": "logicalId_Type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "class",
+              "Sub_part": null
+            }
           }
         },
-        "deamon":{
-          "Key_name":"deamon",
-          "Non_unique":"1",
-          "columns":{
-            "1":"deamon"
+        "deamon": {
+          "Key_name": "deamon",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "deamon",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"dataStore",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "dataStore",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "link_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"key",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "key",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"value",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "value",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "UNIQUE":{
-          "Key_name":"UNIQUE",
-          "Non_unique":"0",
-          "columns":{
-            "1":"type",
-            "2":"link_id",
-            "3":"key"
+      "indexes": {
+        "UNIQUE": {
+          "Key_name": "UNIQUE",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "type",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "link_id",
+              "Sub_part": null
+            },
+            "3": {
+              "column": "key",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"eqLogic",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "eqLogic",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"logicalId",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "logicalId",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"object_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "object_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"eqType_name",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "eqType_name",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isVisible",
-          "type":"tinyint(1)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "isVisible",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"eqReal_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "eqReal_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isEnable",
-          "type":"tinyint(1)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "isEnable",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"status",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "status",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"timeout",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "timeout",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"category",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "category",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         },
         {
-          "name":"comment",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "comment",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"generic_type",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "generic_type",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"tags",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "tags",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"0",
-          "columns":{
-            "1":"name",
-            "2":"object_id"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "object_id",
+              "Sub_part": null
+            }
           }
         },
-        "eqTypeName":{
-          "Key_name":"eqTypeName",
-          "Non_unique":"1",
-          "columns":{
-            "1":"eqType_name"
+        "eqTypeName": {
+          "Key_name": "eqTypeName",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "eqType_name",
+              "Sub_part": null
+            }
           }
         },
-        "name":{
-          "Key_name":"name",
-          "Non_unique":"1",
-          "columns":{
-            "1":"name"
+        "name": {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "logical_id":{
-          "Key_name":"logical_id",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId"
+        "logical_id": {
+          "Key_name": "logical_id",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         },
-        "logica_id_eqTypeName":{
-          "Key_name":"logica_id_eqTypeName",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId",
-            "2":"eqType_name"
+        "logica_id_eqTypeName": {
+          "Key_name": "logica_id_eqTypeName",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "eqType_name",
+              "Sub_part": null
+            }
           }
         },
-        "object_id":{
-          "Key_name":"object_id",
-          "Non_unique":"1",
-          "columns":{
-            "1":"object_id"
+        "object_id": {
+          "Key_name": "object_id",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "object_id",
+              "Sub_part": null
+            }
           }
         },
-        "timeout":{
-          "Key_name":"timeout",
-          "Non_unique":"1",
-          "columns":{
-            "1":"timeout"
+        "timeout": {
+          "Key_name": "timeout",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "timeout",
+              "Sub_part": null
+            }
           }
         },
-        "eqReal_id":{
-          "Key_name":"eqReal_id",
-          "Non_unique":"1",
-          "columns":{
-            "1":"eqReal_id"
+        "eqReal_id": {
+          "Key_name": "eqReal_id",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "eqReal_id",
+              "Sub_part": null
+            }
           }
         },
-        "logicalId":{
-          "Key_name":"logicalId",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId"
+        "logicalId": {
+          "Key_name": "logicalId",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         },
-        "generic_type":{
-          "Key_name":"generic_type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"generic_type"
+        "generic_type": {
+          "Key_name": "generic_type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "generic_type",
+              "Sub_part": null
+            }
           }
         },
-        "tags":{
-          "Key_name":"tags",
-          "Non_unique":"1",
-          "columns":{
-            "1":"tags"
+        "tags": {
+          "Key_name": "tags",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "tags",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"eqReal",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "eqReal",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"logicalId",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "logicalId",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(45)",
-          "null":"YES",
-          "key":"UNI",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "UNI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(45)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(45)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"cat",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "cat",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "name_UNIQUE":{
-          "Key_name":"name_UNIQUE",
-          "Non_unique":"0",
-          "columns":{
-            "1":"name"
+      "indexes": {
+        "name_UNIQUE": {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "logicalId":{
-          "Key_name":"logicalId",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId"
+        "logicalId": {
+          "Key_name": "logicalId",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         },
-        "type":{
-          "Key_name":"type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"type"
+        "type": {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "type",
+              "Sub_part": null
+            }
           }
         },
-        "logicalId_Type":{
-          "Key_name":"logicalId_Type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"logicalId",
-            "2":"type"
+        "logicalId_Type": {
+          "Key_name": "logicalId_Type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "logicalId",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "type",
+              "Sub_part": null
+            }
           }
         },
-        "name":{
-          "Key_name":"name",
-          "Non_unique":"1",
-          "columns":{
-            "1":"name"
+        "name": {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"history",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "history",
+      "fields": [
         {
-          "name":"cmd_id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":""
+          "name": "cmd_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"datetime",
-          "type":"datetime",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":""
+          "name": "datetime",
+          "type": "datetime",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"value",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "value",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"0",
-          "columns":{
-            "1":"datetime",
-            "2":"cmd_id"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "datetime",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "cmd_id",
+              "Sub_part": null
+            }
           }
         },
-        "fk_history5min_commands1_idx":{
-          "Key_name":"fk_history5min_commands1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"cmd_id"
+        "fk_history5min_commands1_idx": {
+          "Key_name": "fk_history5min_commands1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "cmd_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"historyArch",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "historyArch",
+      "fields": [
         {
-          "name":"cmd_id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":""
+          "name": "cmd_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"datetime",
-          "type":"datetime",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":""
+          "name": "datetime",
+          "type": "datetime",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"value",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "value",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"0",
-          "columns":{
-            "1":"cmd_id",
-            "2":"datetime"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "cmd_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "datetime",
+              "Sub_part": null
+            }
           }
         },
-        "cmd_id_index":{
-          "Key_name":"cmd_id_index",
-          "Non_unique":"1",
-          "columns":{
-            "1":"cmd_id"
+        "cmd_id_index": {
+          "Key_name": "cmd_id_index",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "cmd_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"interactDef",
-      "fields":[
+      "name": "interactDef",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"enable",
-          "type":"int(11)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "enable",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         },
         {
-          "name":"query",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "query",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"reply",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "reply",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"person",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "person",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"options",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"filtres",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "filtres",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"group",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "group",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"actions",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "actions",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"interactQuery",
-      "engine":"MyISAM",
-      "fields":[
+      "name": "interactQuery",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"interactDef_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "interactDef_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"query",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "query",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"actions",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "actions",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "fk_sarahQuery_sarahDef1_idx":{
-          "Key_name":"fk_sarahQuery_sarahDef1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"interactDef_id"
+      "indexes": {
+        "fk_sarahQuery_sarahDef1_idx": {
+          "Key_name": "fk_sarahQuery_sarahDef1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "interactDef_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"listener",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "listener",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"class",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "class",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"function",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "function",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"event",
-          "type":"varchar(511)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "event",
+          "type": "varchar(511)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"option",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "option",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "event":{
-          "Key_name":"event",
-          "Non_unique":"1",
-          "columns":{
-            "1":"event"
+      "indexes": {
+        "event": {
+          "Key_name": "event",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "event",
+              "Sub_part": "255"
+            }
           }
         }
       }
     },
     {
-      "name":"message",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "message",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"date",
-          "type":"datetime",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "date",
+          "type": "datetime",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"logicalId",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "logicalId",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"plugin",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "plugin",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"message",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "message",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"action",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "action",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "plugin_logicalID":{
-          "Key_name":"plugin_logicalID",
-          "Non_unique":"1",
-          "columns":{
-            "1":"plugin",
-            "2":"logicalId"
+      "indexes": {
+        "plugin_logicalID": {
+          "Key_name": "plugin_logicalID",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "plugin",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "logicalId",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"note",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "note",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"text",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "text",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"object",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "object",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(45)",
-          "null":"NO",
-          "key":"UNI",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(45)",
+          "null": "NO",
+          "key": "UNI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"father_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "father_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isVisible",
-          "type":"tinyint(1)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "isVisible",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"position",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "position",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"image",
-          "type":"mediumtext",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "image",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "name_UNIQUE":{
-          "Key_name":"name_UNIQUE",
-          "Non_unique":"0",
-          "columns":{
-            "1":"name"
+      "indexes": {
+        "name_UNIQUE": {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "fk_object_object1_idx1":{
-          "Key_name":"fk_object_object1_idx1",
-          "Non_unique":"1",
-          "columns":{
-            "1":"father_id"
+        "fk_object_object1_idx1": {
+          "Key_name": "fk_object_object1_idx1",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "father_id",
+              "Sub_part": null
+            }
           }
         },
-        "position":{
-          "Key_name":"position",
-          "Non_unique":"1",
-          "columns":{
-            "1":"position"
+        "position": {
+          "Key_name": "position",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "position",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"plan",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "plan",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"planHeader_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "planHeader_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "link_type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "link_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"position",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "position",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"css",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "css",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"1",
-          "columns":{
-            "1":"link_type",
-            "2":"link_id"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "link_type",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "link_id",
+              "Sub_part": null
+            }
           }
         },
-        "fk_plan_planHeader1_idx":{
-          "Key_name":"fk_plan_planHeader1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"planHeader_id"
+        "fk_plan_planHeader1_idx": {
+          "Key_name": "fk_plan_planHeader1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "planHeader_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"plan3d",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "plan3d",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"plan3dHeader_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "plan3dHeader_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "link_type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_id",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "link_id",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"position",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "position",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"css",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "css",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "name":{
-          "Key_name":"name",
-          "Non_unique":"1",
-          "columns":{
-            "1":"name"
+      "indexes": {
+        "name": {
+          "Key_name": "name",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "link_type_link_id":{
-          "Key_name":"link_type_link_id",
-          "Non_unique":"1",
-          "columns":{
-            "1":"link_type",
-            "2":"link_id"
+        "link_type_link_id": {
+          "Key_name": "link_type_link_id",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "link_type",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "link_id",
+              "Sub_part": null
+            }
           }
         },
-        "fk_3d_3dHeader1_idx":{
-          "Key_name":"fk_3d_3dHeader1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"plan3dHeader_id"
+        "fk_3d_3dHeader1_idx": {
+          "Key_name": "fk_3d_3dHeader1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "plan3dHeader_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"plan3dHeader",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "plan3dHeader",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"planHeader",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "planHeader",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"image",
-          "type":"mediumtext",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "image",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"scenario",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "scenario",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"group",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "group",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isActive",
-          "type":"tinyint(1)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "isActive",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         },
         {
-          "name":"mode",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "mode",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"schedule",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "schedule",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"scenarioElement",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "scenarioElement",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"trigger",
-          "type":"varchar(511)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "trigger",
+          "type": "varchar(511)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"timeout",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "timeout",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"isVisible",
-          "type":"tinyint(1)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "isVisible",
+          "type": "tinyint(1)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         },
         {
-          "name":"object_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "object_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"description",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "description",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":"expert",
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": "expert",
+          "extra": ""
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "name":{
-          "Key_name":"name",
-          "Non_unique":"0",
-          "columns":{
-            "1":"group",
-            "2":"object_id",
-            "3":"name"
+      "indexes": {
+        "name": {
+          "Key_name": "name",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "group",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "object_id",
+              "Sub_part": null
+            },
+            "3": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         },
-        "group":{
-          "Key_name":"group",
-          "Non_unique":"1",
-          "columns":{
-            "1":"group"
+        "group": {
+          "Key_name": "group",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "group",
+              "Sub_part": null
+            }
           }
         },
-        "fk_scenario_object1_idx":{
-          "Key_name":"fk_scenario_object1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"object_id"
+        "fk_scenario_object1_idx": {
+          "Key_name": "fk_scenario_object1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "object_id",
+              "Sub_part": null
+            }
           }
         },
-        "trigger":{
-          "Key_name":"trigger",
-          "Non_unique":"1",
-          "columns":{
-            "1":"trigger"
+        "trigger": {
+          "Key_name": "trigger",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "trigger",
+              "Sub_part": "255"
+            }
           }
         },
-        "mode":{
-          "Key_name":"mode",
-          "Non_unique":"1",
-          "columns":{
-            "1":"mode"
+        "mode": {
+          "Key_name": "mode",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "mode",
+              "Sub_part": null
+            }
           }
         },
-        "modeTriger":{
-          "Key_name":"modeTriger",
-          "Non_unique":"1",
-          "columns":{
-            "1":"mode",
-            "2":"trigger"
+        "modeTriger": {
+          "Key_name": "modeTriger",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "mode",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "trigger",
+              "Sub_part": "255"
+            }
           }
         }
       }
     },
     {
-      "name":"scenarioElement",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "scenarioElement",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"options",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"log",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "log",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"scenarioExpression",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "scenarioExpression",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"scenarioSubElement_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "scenarioSubElement_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"subtype",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "subtype",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"expression",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "expression",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"options",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"log",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "log",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "fk_scenarioExpression_scenarioSubElement1_idx":{
-          "Key_name":"fk_scenarioExpression_scenarioSubElement1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"scenarioSubElement_id"
+      "indexes": {
+        "fk_scenarioExpression_scenarioSubElement1_idx": {
+          "Key_name": "fk_scenarioExpression_scenarioSubElement1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "scenarioSubElement_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"scenarioSubElement",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "scenarioSubElement",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"scenarioElement_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "scenarioElement_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"subtype",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "subtype",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"options",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"log",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "log",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "fk_scenarioSubElement_scenarioElement1_idx":{
-          "Key_name":"fk_scenarioSubElement_scenarioElement1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"scenarioElement_id"
+      "indexes": {
+        "fk_scenarioSubElement_scenarioElement1_idx": {
+          "Key_name": "fk_scenarioSubElement_scenarioElement1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "scenarioElement_id",
+              "Sub_part": null
+            }
           }
         },
-        "type":{
-          "Key_name":"type",
-          "Non_unique":"1",
-          "columns":{
-            "1":"scenarioElement_id",
-            "2":"type"
+        "type": {
+          "Key_name": "type",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "scenarioElement_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "type",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"update",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "update",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"logicalId",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "logicalId",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"localVersion",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "localVersion",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"remoteVersion",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "remoteVersion",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"source",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":"market",
-          "extra":""
+          "name": "source",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": "market",
+          "extra": ""
         },
         {
-          "name":"status",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "status",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "status":{
-          "Key_name":"status",
-          "Non_unique":"1",
-          "columns":{
-            "1":"status"
+      "indexes": {
+        "status": {
+          "Key_name": "status",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "status",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"user",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "user",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"login",
-          "type":"varchar(45)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "login",
+          "type": "varchar(45)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"profils",
-          "type":"varchar(127)",
-          "null":"NO",
-          "default":"admin",
-          "extra":""
+          "name": "profils",
+          "type": "varchar(127)",
+          "null": "NO",
+          "key": "",
+          "default": "admin",
+          "extra": ""
         },
         {
-          "name":"password",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "password",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"options",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"hash",
-          "type":"varchar(255)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "hash",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"rights",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "rights",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"enable",
-          "type":"int(11)",
-          "null":"YES",
-          "default":"1",
-          "extra":""
+          "name": "enable",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": "1",
+          "extra": ""
         }
       ],
-      "indexes":[
-        
-      ]
+      "indexes": []
     },
     {
-      "name":"view",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "view",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "key":"UNI",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "UNI",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"display",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"image",
-          "type":"mediumtext",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "image",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "name_UNIQUE":{
-          "Key_name":"name_UNIQUE",
-          "Non_unique":"0",
-          "columns":{
-            "1":"name"
+      "indexes": {
+        "name_UNIQUE": {
+          "Key_name": "name_UNIQUE",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "name",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"viewData",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "viewData",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"order",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"viewZone_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "viewZone_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"link_id",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "link_id",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "unique":{
-          "Key_name":"unique",
-          "Non_unique":"0",
-          "columns":{
-            "1":"viewZone_id",
-            "2":"link_id",
-            "3":"type"
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "viewZone_id",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "link_id",
+              "Sub_part": null
+            },
+            "3": {
+              "column": "type",
+              "Sub_part": null
+            }
           }
         },
-        "fk_data_zone1_idx":{
-          "Key_name":"fk_data_zone1_idx",
-          "Non_unique":"1",
-          "columns":{
-            "1":"viewZone_id"
+        "fk_data_zone1_idx": {
+          "Key_name": "fk_data_zone1_idx",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "viewZone_id",
+              "Sub_part": null
+            }
           }
         },
-        "order":{
-          "Key_name":"order",
-          "Non_unique":"1",
-          "columns":{
-            "1":"order",
-            "2":"viewZone_id"
+        "order": {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "order",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "viewZone_id",
+              "Sub_part": null
+            }
           }
         }
       }
     },
     {
-      "name":"viewZone",
-      "engine":"InnoDB",
-      "fields":[
+      "name": "viewZone",
+      "fields": [
         {
-          "name":"id",
-          "type":"int(11)",
-          "null":"NO",
-          "key":"PRI",
-          "default":null,
-          "extra":"auto_increment"
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
         },
         {
-          "name":"view_id",
-          "type":"int(11)",
-          "null":"NO",
-          "default":null,
-          "extra":""
+          "name": "view_id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"type",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "type",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"name",
-          "type":"varchar(127)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "name",
+          "type": "varchar(127)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"position",
-          "type":"int(11)",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "position",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         },
         {
-          "name":"configuration",
-          "type":"text",
-          "null":"YES",
-          "default":null,
-          "extra":""
+          "name": "configuration",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
-      "indexes":{
-        "fk_zone_view1":{
-          "Key_name":"fk_zone_view1",
-          "Non_unique":"1",
-          "columns":{
-            "1":"view_id"
+      "indexes": {
+        "fk_zone_view1": {
+          "Key_name": "fk_zone_view1",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "view_id",
+              "Sub_part": null
+            }
           }
         }
       }
