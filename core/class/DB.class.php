@@ -505,5 +505,272 @@ class DB {
 		}
 		return implode(', ', $fields);
 	}
+	
+	/*************************DB ANALYZER***************************/
+	
+	function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+		$result = DB::compareDatabase($_database);
+		$error = '';
+		foreach ($result as $tname => $tinfo) {
+			if($_table != 'all' && $tname != $_table){
+				continue;
+			}
+			if( $tinfo['sql'] != ''){
+				try {
+					if($_verbose){
+						echo "\nFix : ".$tinfo['sql'];
+					}
+					DB::prepare($tinfo['sql'], array());
+				} catch (\Exception $e) {
+					$error .= $e->getMessage()."\n";
+				}
+			}
+			if(isset($tinfo['fields']) &&  count($tinfo['fields']) > 0){
+				foreach ($tinfo['fields'] as $fname => $finfo) {
+					if( $finfo['sql'] != ''){
+						try {
+							if($_verbose){
+								echo "\nFix : ".$finfo['sql'];
+							}
+							DB::prepare($finfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
+					}
+				}
+			}
+			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+				foreach ($tinfo['indexes'] as $iname => $iinfo) {
+					if( $iinfo['sql'] != ''){
+						try {
+							if($_verbose){
+								echo "\nFix : ".$iinfo['sql'];
+							}
+							DB::prepare($iinfo['sql'], array());
+						} catch (\Exception $e) {
+							$error .= $e->getMessage()."\n";
+						}
+					}
+				}
+			}
+		}
+		if($error != ''){
+			if($_loop < 1){
+				return self::compareAndFix($_database,$_table,$_verbose,$_loop);
+			}
+			throw new \Exception($error);
+		}
+		return true;
+	}
+	
+	function compareDatabase($_database){
+		$return = array();
+		foreach ($_database['tables'] as $table) {
+			$return = array_merge($return,self::compareTable($table));
+		}
+		return $return;
+	}
+	
+	
+	function compareTable($_table){
+		try {
+			$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
+		} catch (\Exception $e) {
+			$describes = array();
+		}
+		
+		
+		$return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'indexes' => array(),'sql' => ''));
+		if(count($describes) == 0){
+			$return = array($_table['name'] => array(
+				'status' => 'nok',
+				'message' => 'Not found',
+				'sql' => 'CREATE TABLE IF NOT EXISTS '.'`'.$_table['name'].'` (',
+			));
+			foreach ($_table['fields'] as $field) {
+				$return[$_table['name']]['sql'] .="\n". '`'.$field['name'].'`';
+				$return[$_table['name']]['sql']	.= self::buildDefinitionField($field);
+				$return[$_table['name']]['sql'] .= ',';
+			}
+			$return[$_table['name']]['sql'] .="\n".'primary key(';
+			foreach ($_table['fields'] as $field) {
+				if(isset($field['key']) && $field['key'] == 'PRI'){
+					$return[$_table['name']]['sql'] .='`'.$field['name'].'`,';
+				}
+			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
+			$return[$_table['name']]['sql'] .=')';
+			$return[$_table['name']]['sql'] .= ')'."\n";
+			if(!isset($_table['engine'])){
+				$_table['engine'] = 'InnoDB';
+			}
+			$return[$_table['name']]['sql'] .= ' ENGINE '.$_table['engine'].";\n";
+			foreach ($_table['indexes'] as $index) {
+				$return[$_table['name']]['sql'] .= "\n".self::buildDefinitionIndex($index,$_table['name']).';';
+			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],';');
+			return $return;
+		}
+		foreach ($_table['fields'] as $field) {
+			$found = false;
+			foreach ($describes as $describe) {
+				if($describe['Field'] != $field['name']){
+					continue;
+				}
+				$return[$_table['name']]['fields'] = array_merge($return[$_table['name']]['fields'],self::compareField($field,$describe,$_table['name']));
+				$found = true;
+			}
+			if(!$found){
+				$return[$_table['name']]['fields'][$field['name']] = array(
+					'status' => 'nok',
+					'message' => 'Not found',
+					'sql' => 'ALTER TABLE `'.$_table['name'].'` ADD `'.$field['name'].'`'
+				);
+				$return[$_table['name']]['fields'][$field['name']]['sql']	.= self::buildDefinitionField($field);
+			}
+		}
+		foreach ($describes as $describe) {
+			$found = false;
+			foreach ($_table['fields'] as $field) {
+				if($describe['Field'] == $field['name']){
+					$found = true;
+					break;
+				}
+			}
+			if(!$found){
+				$return[$_table['name']]['fields'][$describe['Field']] = array(
+					'status' => 'nok',
+					'message' => 'Should not exist',
+					'sql' => 'ALTER TABLE `'.$_table['name'].'` DROP `'.$describe['Field'].'`'
+				);
+			}
+		}
+		$showIndexes = self::prepareIndexCompare(DB::Prepare('show index from `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL));
+		foreach ($_table['indexes'] as $index) {
+			$found = false;
+			foreach ($showIndexes as $showIndex) {
+				if($showIndex['Key_name'] != $index['Key_name']){
+					continue;
+				}
+				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name']));
+				$found = true;
+			}
+			if(!$found){
+				$return[$_table['name']]['indexes'][$index['Key_name']] = array(
+					'status' => 'nok',
+					'message' => 'Not found',
+					'sql' => ''
+				);
+				$return[$_table['name']]['indexes'][$index['Key_name']]['sql']	.= self::buildDefinitionIndex($index,$_table['name']);
+			}
+		}
+		foreach ($showIndexes as $showIndex) {
+			$found = false;
+			foreach ($_table['indexes'] as $index) {
+				if($showIndex['Key_name'] == $index['Key_name']){
+					$found = true;
+					break;
+				}
+			}
+			if(!$found){
+				$return[$_table['name']]['indexes'][$showIndex['Key_name']] = array(
+					'status' => 'nok',
+					'message' => 'Should not exist',
+					'sql' => 'ALTER TABLE `'.$_table['name'].'` DROP INDEX `'.$showIndex['Key_name'].'`;'
+				);
+			}
+		}
+		return $return;
+	}
+	
+	function prepareIndexCompare($indexes){
+		$return = array();
+		foreach ($indexes as $index) {
+			if($index['Key_name'] == 'PRIMARY'){
+				continue;
+			}
+			if(!isset($return[$index['Key_name']])){
+				$return[$index['Key_name']] = array(
+					'Key_name' => $index['Key_name'],
+					'Non_unique' => 0,
+					'columns' => array(),
+				);
+			}
+			$return[$index['Key_name']]['Non_unique'] = $index['Non_unique'];
+			$return[$index['Key_name']]['columns'][$index['Seq_in_index']] = $index['Column_name'];
+		}
+		return $return;
+	}
+	
+	function compareField($_ref_field,$_real_field,$_table_name){
+		$return = array($_ref_field['name'] => array('status' => 'ok','sql' => ''));
+		if($_ref_field['type'] != $_real_field['Type']){
+			$return[$_ref_field['name']]['status'] = 'nok';
+			$return[$_ref_field['name']]['message'] = 'Type nok';
+		}
+		if($_ref_field['null'] != $_real_field['Null']){
+			$return[$_ref_field['name']]['status'] = 'nok';
+			$return[$_ref_field['name']]['message'] = 'Null nok';
+		}
+		if($_ref_field['default'] != $_real_field['Default']){
+			$return[$_ref_field['name']]['status'] = 'nok';
+			$return[$_ref_field['name']]['message'] = 'Default nok';
+		}
+		if($_ref_field['extra'] != $_real_field['Extra']){
+			$return[$_ref_field['name']]['status'] = 'nok';
+			$return[$_ref_field['name']]['message'] = 'Extra nok';
+		}
+		if($return[$_ref_field['name']]['status'] == 'nok'){
+			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `'.$_table_name.'` MODIFY COLUMN `'.$_ref_field['name'].'` ';
+			$return[$_ref_field['name']]['sql'] .= self::buildDefinitionField($_ref_field);
+		}
+		return $return;
+	}
+	
+	function compareIndex($_ref_index,$_real_index,$_table_name){
+		$return = array($_ref_index['Key_name'] => array('status' => 'ok','sql' => ''));
+		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Non_unique nok';
+		}
+		if($_ref_index['columns'] != $_real_index['columns']){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
+		}
+		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
+			$return[$_ref_index['Key_name']]['sql'] = self::buildDefinitionIndex($_ref_index,$_table_name);
+		}
+		return $return;
+	}
+	
+	function buildDefinitionField($_field){
+		$return = ' '.$_field['type'];
+		if($_field['null'] == 'NO'){
+			$return .= ' NOT NULL';
+		}else{
+			$return .= ' NULL';
+		}
+		if($_field['default'] != ''){
+			$return .= ' DEFAULT "'.$_field['default'].'"';
+		}
+		if($_field['extra'] == 'auto_increment'){
+			$return .= ' AUTO_INCREMENT';
+		}
+		return $return;
+	}
+	
+	function buildDefinitionIndex($_index,$_table_name){
+		if($_index['Non_unique'] == 0){
+			$return = 'CREATE UNIQUE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
+		}else{
+			$return = 'CREATE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
+		}
+		foreach ($_index['columns'] as $value) {
+			$return .= '`'.$value.'` ASC,';
+		}
+		$return = trim($return,',');
+		$return .= ')';
+		return $return;
+	}
 
 }
