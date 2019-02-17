@@ -140,6 +140,7 @@ legend {
 }
 a.ui-slider-handle {
 	border-radius: 1em !important;
+  background-color: var(--link-color) !important;
 }
 
 div > center,
@@ -302,6 +303,51 @@ path.highcharts-graph {
   stroke-width: 1;
 }
 
+/* ___________________________________________________________GAUGES */
+.shuttergauge {
+  position: relative;
+  padding: 0;
+  display: table-cell;
+  font-family: "noto", sans-serif;;
+  font-weight: 400;
+}
+
+.shuttergauge-value {
+  background: var(--linkHoverLight-color);
+}
+
+.shuttergauge > div:first-child {
+  text-align: center !important;
+  font-size: 16px;
+}
+
+.shuttergauge {
+  top: 7px;
+}
+.shuttergauge-chart {
+  display: inline-block;
+  text-align: center !important;
+}
+
+.shuttergauge-state {
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.shuttergauge-bckg {
+  width: 46px;
+  height: calc(100% - 52px);
+  margin-left: -28px;
+  position: absolute;
+  bottom: 18px;
+  border-top: 6px solid var(--el-defaultColor) !important;
+  border-left: 4px solid var(--el-defaultColor) !important;
+  border-right: 4px solid var(--el-defaultColor) !important;
+}
 
 /* rounded! */
 ::-moz-color-swatch {
