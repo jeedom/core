@@ -1,16 +1,19 @@
-<div class="cmd" data-type="info" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
-	<center>
-		<div style="font-size : 12px;#hideCmdName#">#name_display#</div>
-		<span style="font-size: 3em;" class="iconCmd"></span>
-	</center>
-	<script>
-		jeedom.cmd.update['#id#'] = function(_options){
-			if (parseFloat(_options.display_value) >= 1) {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ouvert"></i>');
-			} else {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-volet-ferme"></i>');
-			}
-		}
-		jeedom.cmd.update['#id#']({display_value:'#state#'});
-	</script>
+<div class="cmd shuttergauge" data-type="info" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+        <div style="#hideCmdName#">#name_display#</div>
+        <div class="shuttergauge-chart" style="min-height:85px;">
+            <div class="shuttergauge-bckg">
+                <div class="shuttergauge-value"></div>
+            </div>
+            <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
+        </div>
+    <script>
+        jeedom.cmd.update['#id#'] = function(_options){
+            height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+            height = 100 - (Math.round(parseFloat(height) * 10) / 10)
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
+            $('.cmd[data-cmd_uid=#uid#] .shuttergauge-state strong').first().text(_options.display_value)
+        }
+
+        jeedom.cmd.update['#id#']({display_value:'#state#'});
+    </script>
 </div>
