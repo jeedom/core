@@ -88,25 +88,6 @@ if (init('rescue', 0) == 0) {
 	var serverDatetime = <?php echo getmicrotime(); ?>;
 	</script>
 	<?php
-	if (!isConnect()) {
-		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
-			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
-		} else {
-			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-		}
-	} else {
-		try {
-			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
-				echo '<link id="bootstrap_theme_css" href="core/themes/'.$_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/'.$_SESSION['user']->getOptions('bootstrap_theme').'.css" rel="stylesheet">';
-			} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
-				include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
-			} else {
-				include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-			}
-		} catch (Exception $e) {
-			include_file('3rdparty', 'bootstrap/css/bootstrap.min', 'css');
-		}
-	}
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('desktop', 'commun', 'css');
@@ -174,12 +155,23 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'animate/animate', 'css');
 	include_file('3rdparty', 'animate/animate', 'js');
-	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
-		if (file_exists(__DIR__ . '/../custom/custom.css')) {
-			include_file('desktop', '', 'custom.css');
+	if (!isConnect()) {
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+		} else {
+			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
 		}
-		if (file_exists(__DIR__ . '/../custom/custom.js')) {
-			include_file('desktop', '', 'custom.js');
+	} else {
+		try {
+			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
+				echo '<link id="bootstrap_theme_css" href="core/themes/'.$_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/'.$_SESSION['user']->getOptions('bootstrap_theme').'.css" rel="stylesheet">';
+			} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
+				include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+			} else {
+				echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
+			}
+		} catch (Exception $e) {
+			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
 		}
 	}
 	try {
@@ -210,7 +202,16 @@ if (init('rescue', 0) == 0) {
 		}
 	} catch (Exception $e) {
 		
-	} 	?>
+	}
+	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
+		if (file_exists(__DIR__ . '/../custom/custom.css')) {
+			include_file('desktop', '', 'custom.css');
+		}
+		if (file_exists(__DIR__ . '/../custom/custom.js')) {
+			include_file('desktop', '', 'custom.js');
+		}
+	}
+	?>
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
