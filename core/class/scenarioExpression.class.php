@@ -804,26 +804,25 @@ class scenarioExpression {
 		}
 	}
 	
+	
 	public static function time_op($_time, $_value) {
 		$_time = self::setTags($_time);
 		$_value = self::setTags($_value);
-		$_time = ltrim($_time, 0);
-		switch (strlen($_time)) {
-			case 1:
-			$date = DateTime::createFromFormat('Gi', '000' . intval(trim($_time)));
-			break;
-			case 2:
-			$date = DateTime::createFromFormat('Gi', '00' . intval(trim($_time)));
-			break;
-			case 3:
-			$date = DateTime::createFromFormat('Gi', '0' . intval(trim($_time)));
-			break;
-			default:
-			$date = DateTime::createFromFormat('Gi', intval(trim($_time)));
-			break;
+		$_time = trim($_time);
+		$_time = str_replace(":","",$_time);
+		$_time = intval($_time);
+		if (($lg=strlen($_time)) < 4 ){
+			$_time = str_repeat("0",4-$lg).$_time;
 		}
+		$date = DateTime::createFromFormat('Gi', $_time);
 		if ($date === false) {
-			return -1;
+			if ( strlen ( $_time ) == 5 ){
+				$_time = "0".$_time;
+			}
+			$date = DateTime::createFromFormat('Gis', $_time);
+			if ($date === false){
+				return -1;
+			}
 		}
 		if ($_value > 0) {
 			$date->add(new DateInterval('PT' . abs($_value) . 'M'));
@@ -832,6 +831,7 @@ class scenarioExpression {
 		}
 		return $date->format('Gi');
 	}
+	
 	
 	public static function time_between($_time, $_start, $_end) {
 		$_time = self::setTags($_time);
