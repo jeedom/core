@@ -554,7 +554,7 @@ class DB {
 				}
 			}
 		}
-		if($error != ''){
+		if(trim($error) != ''){
 			if($_loop < 1){
 				return self::compareAndFix($_database,$_table,$_verbose,($_loop + 1));
 			}
