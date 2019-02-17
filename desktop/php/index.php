@@ -229,7 +229,7 @@ if (init('rescue', 0) == 0) {
 		sendVarToJS('widget_width_step', $configs['widget::step::width']);
 		sendVarToJS('widget_height_step', $configs['widget::step::height']);
 		sendVarToJS('widget_margin', $configs['widget::margin']);
-		if (count($eventjs_plugin) > 0) {
+		if (isset($eventjs_plugin) && count($eventjs_plugin) > 0) {
 			foreach ($eventjs_plugin as $value) {
 				try {
 					include_file('desktop', 'event', 'js', $value);
