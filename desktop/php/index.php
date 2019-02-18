@@ -50,7 +50,7 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
-			
+
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
@@ -208,7 +208,7 @@ if (init('rescue', 0) == 0) {
 		}
 		?>
 		<?php if (init('rescue', 0) == 0) { ?>
-			<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand hidden-xs" href="<?php echo $homeLink; ?>">
@@ -220,7 +220,7 @@ if (init('rescue', 0) == 0) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<center><span class="visible-xs-inline-block" style="margin-top:20px; font-size:0.8em !important;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
+						<center><span class="visible-xs-inline-block" style="margin-top:20px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -380,7 +380,7 @@ if (init('rescue', 0) == 0) {
 				</header>
 			<?php } ?>
 			<?php if (init('rescue', 0) == 1) {?>
-				<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+				<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -450,4 +450,3 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	
