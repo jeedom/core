@@ -35,6 +35,9 @@ $(function(){
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (scenarios) {
+        if(scenarios.length == 0){
+          return;
+        }
         //get groups:
         scenarioGroups = []
         for(i=0; i<scenarios.length; i++)
