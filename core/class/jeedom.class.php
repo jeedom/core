@@ -45,10 +45,9 @@ class jeedom {
 			'widget::margin'
 		);
 		$return = config::byKeys($key);
-		if(date('Gi')>$return['theme_start_day_hour'] && date('Gi')<$return['theme_end_day_hour']){
-			$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
-			$return['current_mobile_theme'] = $return['mobile_theme_color'];
-		}else{
+		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
+		$return['current_mobile_theme'] = $return['mobile_theme_color'];
+		if($return['theme_changeAccordingTime'] == 1 &&(date('Gi')<$return['theme_start_day_hour'] || date('Gi')>$return['theme_end_day_hour'])){
 			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
