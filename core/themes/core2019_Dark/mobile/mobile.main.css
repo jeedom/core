@@ -1,0 +1,414 @@
+
+/* _____________________________GLOBAL */
+::-moz-color-swatch {
+  border: none;
+  border-color: transparent;
+}
+::-webkit-color-swatch {
+  border: none;
+}
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+* {
+	box-shadow: none !important;
+	text-shadow: none !important;
+	border: none !important;
+	border-radius: 0 !important;
+}
+.backgroundforJeedom {
+  background-image: var(--dashBkg-url) !important;
+  background-color: transparent !important;
+}
+
+.ui-link[data-title=Accueil] {
+	background: url(./jeedom_home.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 32px 32px;
+}
+.ui-link[data-title=Accueil] .fa-home::before {
+	content: '' !important;
+}
+
+.ui-overlay-a,
+.ui-page-theme-a,
+.ui-page-theme-a .ui-panel-wrapper {
+	background-color: var(--bg-color) !important;
+	color: var(--txt-color) !important;
+	box-shadow: none !important;
+}
+
+.ui-header,
+.ui-page-theme-a .ui-bar-inherit:not(.ui-slider-track) {
+	background-color: var(--bg-modal-color) !important;
+	color: var(--txt-color) !important;
+	box-shadow: none !important;
+}
+
+.ui-header > .ui-btn {
+	color: var(--txt-color) !important;
+}
+
+.cmdName {
+	font-size: 14px !important;
+	font-weight: normal !important;
+}
+.timeCmd {
+  color: var(--txt-color);
+  background: linear-gradient(var(--bg-color), var(--bg-color)) fixed !important;
+  font-size: 12.5px !important;
+  padding: 0 0.5em !important;
+}
+
+.form-control {
+	background-color: var(--form-bg-color) !important;
+ 	color: var(--txt-color) !important;
+}
+.ui-input-text {
+	padding: 1.5px !important;
+	background-color: transparent !important;
+}
+
+.eqLogic.eqLogic-widget .ui-input-text {
+	background-color: transparent !important;
+}
+
+.ui-input-text::after {
+	background-color: transparent !important;
+}
+.ui-input-text input {
+	text-align: center !important;
+	background-color: var(--form-bg-color);
+	color: var(--txt-color);
+}
+
+.ui-controlgroup-controls,
+.ui-controlgroup-controls .ui-input-text input {
+	background-color: transparent !important;
+}
+
+.ui-checkbox .ui-btn {
+  color: var(--link-color);
+	background: var(--form-bg-color) !important;
+}
+
+
+
+[data-category] .widget-name {
+	display:block;
+	min-height: 1.5em !important;
+}
+
+.widget-name,
+.widget-name span,
+.widget-name a {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: none;
+	color: var(--sc-lightTxt-color) !important;
+	font-size: 18px !important;
+}
+
+.eqLogic.eqLogic-widget,
+.scenario.scenario-widget  {
+	margin-top: 5px !important;
+	border: none !important;
+	font-size: 18px !important;
+}
+
+#in_searchWidget {
+	top: 62px;
+	padding-left: 5px;
+}
+
+.iconCmd > i {
+	color: var(--link-color) !important;
+	font-size: 1em !important;
+}
+.timeCmd {
+	background-color: var(--bg-color) !important;
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	font-size: 14px;
+}
+.statusCmd {
+	padding-top: 3px;
+}
+
+/* home grid buttons */
+.ui-page-theme-a .ui-btn.ui-btn-raised i,
+.ui-link i {
+	background: transparent !important;
+}
+
+
+.ui-page-theme-a .ui-btn.ui-btn-raised{
+	color: var(--link-color) !important;
+	background-color: var(--eq-bg-color) !important;
+}
+.ui-page-theme-a .ui-btn.ui-btn-raised:hover {
+	color: var(--txt-color) !important;
+	background-color: var(--btnEq-default-color) !important;
+}
+.ui-link i:hover {
+	color: var(--linkHover-color) !important;
+}
+:not(.cmd) a.ui-btn-raised:not(.ui-mini) > i:not(.fas) {
+	font-size: 2.5em !important;
+}
+
+
+/* bottom home menu */
+.ui-bottom-sheet-list .ui-bottom-sheet-link,
+.ui-bottom-sheet {
+	color: var(--link-color) !important;
+	background-color: var(--eq-bg-color) !important;
+}
+.ui-bottom-sheet-list .ui-bottom-sheet-link:hover,
+.ui-listview > li >a:hover {
+	background-color: var(--btnEq-default-color) !important;
+}
+
+.cmd a.ui-btn-raised > i {
+	font-size: 1.2em !important;
+}
+
+legend {
+	color: var(--link-color) !important;
+  background-color: transparent !important;
+  text-align: center;
+  margin-top: 1em !important;
+	margin-bottom: 0.5em !important;
+	border-bottom: none !important;
+	font-size: 22px !important;
+}
+.eqLogic-widget i.fa-refresh {
+  margin-right: calc((var(--border-radius)/4) + 3px)  !important;
+}
+
+.ui-slider-track,
+.ui-bar-a {
+	background:  var(--el-defaultColor) !important;
+	height: 5px;
+}
+a.ui-slider-handle {
+	border-radius: 1em !important;
+}
+
+div > center,
+div > center > div,
+.cmdName {
+	font-size: 16px !important;
+}
+
+
+/* select */
+.ui-select .ui-btn {
+	font-family: "noto";
+	font-weight: bold;
+	background-color: var(--form-bg-color) !important;
+}
+
+.eqLogic-widget .ui-select .ui-btn {
+	background-color: transparent !important;
+}
+
+.ui-select .ui-btn:hover {
+  background-color: var(--btnEq-default-color) !important;
+}
+select option {
+	color: var(--txt-color);
+	background-color: var(--bg-color);
+}
+
+
+/* buttons */
+a.action.ui-btn {
+	min-width: 15px;
+}
+.ui-slider-bg {
+	height: 5px;
+}
+.ui-mini i {
+	font-size: 16px !important;
+}
+
+
+/* ________________DIVERS */
+#in_searchWidget {
+	top: 62px;
+	padding-left: 5px;
+}
+
+.iconCmd > i {
+	font-size: 1em !important;
+}
+p.state {
+	font-size: 14px !important;
+}
+.timeCmd {
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	font-size: 14px;
+}
+.statusCmd {
+	padding-top: 3px;
+}
+
+
+
+.nd2Tabs li {
+	color: var(--txt-color);
+}
+.nd2Tabs li.nd2Tabs-active,
+.nd2Tabs li:hover,
+.nd2Tabs li:focus {
+	color: var(--txt-color);
+}
+
+
+/* ________________OTHERS */
+.ui-table-columntoggle-btn,
+.ui-table,
+#pre_globallog {
+  color: var(--txt-color) !important;
+	background: var(--bg-color);
+}
+
+/* ________________HIGHCHARTS */
+/* arc gauges and sliders */
+.highcharts-pane {
+	stroke-width: 0;
+}
+.highcharts-data-label > span > span {
+	font-size: 12px !important;
+}
+.highcharts-color-0 {
+	fill: var(--link-color);
+}
+.ui-slider-handle {
+  font-size: 1em;
+  border-radius: 1em !important;
+  cursor: pointer !important;
+}
+.ui-slider-horizontal{
+	height: 5px !important;
+}
+.ui-slider{
+	border:none !important;
+}
+
+/* less space under arc gauges */
+.gauge.cursor{ height: 85px !important; }
+.container-fluid.cmd-widget { min-height: 85px !important; }
+
+.action_colorpicker_change {
+  padding: 0 !important;
+  border: none !important;
+}
+h4.modal-title {
+  font-size: 14px;
+}
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+  font-weight: normal !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  font-weight: normal !important;
+  font-style: italic;
+}
+
+path.highcharts-graph {
+  stroke-width: 1;
+}
+
+
+/* ___________________________________________________________GAUGES */
+.shuttergauge {
+  position: relative;
+  padding: 0;
+  display: table-cell;
+  font-family: "noto", sans-serif;;
+  font-weight: 400;
+}
+
+.shuttergauge > div:first-child {
+  text-align: center !important;
+  font-size: 16px;
+}
+
+.shuttergauge {
+  top: 7px;
+}
+.shuttergauge-chart {
+  display: inline-block;
+  text-align: center !important;
+}
+
+.shuttergauge-state {
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.shuttergauge-bckg {
+  width: 46px;
+  height: calc(100% - 52px);
+  margin-left: -28px;
+  position: absolute;
+  bottom: 18px;
+}
+
+
+/* rounded! */
+::-moz-color-swatch {
+  border-radius: calc(var(--border-radius) * 2) !important;
+}
+.eqLogic-widget,
+.scenario-widget {
+  border-radius: var(--border-radius) !important;
+}
+.eqLogic-widget .widget-name,
+.scenario-widget .widget-name,
+.panel,
+.panel-heading {
+  border-top-left-radius: var(--border-radius)  !important;
+  border-top-right-radius: var(--border-radius)  !important;
+}
+.panel,
+.panel-body,
+.panel-heading {
+  border-bottom-left-radius: var(--border-radius)  !important;
+  border-bottom-right-radius: var(--border-radius)  !important;
+}
+.ui-btn,
+.ui-input-text,
+input,
+select,
+textarea,
+.label,
+.input-group-addon,
+.market,
+button {
+  border-radius: calc(var(--border-radius) * 2) !important;
+}
+.ui-dialog {
+  border-radius: calc(var(--border-radius) * 2) !important;
+}
+
+.nav.nav-tabs li:first-child,
+.nav.nav-tabs li:first-child a {
+  border-top-left-radius: calc(var(--border-radius) * 2)  !important;
+}
+.nav.nav-tabs li:last-child,
+.nav.nav-tabs li:last-child a {
+  border-top-right-radius: calc(var(--border-radius) * 2)  !important;
+}
+.tab-content {
+  border-bottom-left-radius: calc(var(--border-radius) * 2)  !important;
+  border-bottom-right-radius: calc(var(--border-radius) * 2)  !important;
+}
