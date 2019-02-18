@@ -2,7 +2,7 @@
   <div class="input-group input-group-sm" style="width: 100%">
     <input class="action_colorpicker_change form-control cursor" type="color">
     <span class="input-group-btn">
-      <a class="btn btn-default action_colorpicker_off" style="background-color:#cmdColor# !important;border-color : transparent !important;">Off</a>
+      <a class="btn btn-default action_colorpicker_off" style="background-color:#cmdColor#;border-color : transparent ;">Off</a>
     </span>
   </div>
   <script>
@@ -17,6 +17,6 @@
       jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
     });
     jeedom.cmd.update['#id#']({display_value:'#state#'});
-    
+
   </script>
 </div>
