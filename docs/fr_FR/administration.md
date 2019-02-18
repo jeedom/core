@@ -85,7 +85,7 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     laquelle vous pouvez lancer les commandes les plus utiles, notamment
     pour obtenir des informations sur le système.
     
-    **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
+-   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
     d'exploitation et de les éditer ou supprimer ou d'en créer. 
 
 -   **Base de données** : Permet d’accéder à la base de données
