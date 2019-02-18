@@ -374,7 +374,7 @@ if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
 	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 }
 } catch (Exception $e) {
-	echo "Error : ";
+	echo "\nError : ";
 	echo $e->getMessage();
 }
 echo "[END CONSISTENCY]\n";
