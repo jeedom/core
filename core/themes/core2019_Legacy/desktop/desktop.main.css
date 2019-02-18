@@ -44,20 +44,21 @@ a > img:hover {
   opacity: 0.75;
 }
 
-.btn,
-.btn:focus,
-.btn:active,
-.eqLogic-widget .btn:not(.btn-circle) {
+.btn:not(.cmdName),
+.btn:not(.cmdName):focus,
+.btn:not(.cmdName):active,
+.eqLogic-widget .btn:not(.btn-circle):not(.cmdName) {
   color: var(--linkHoverLight-color) !important;
   -webkit-text-fill-color: var(--linkHoverLight-color) !important; /*override commun.css */
   background-color: var(--btn-default-color) !important;
-  border: none !important;
 }
 .btn:hover {
   color: var(--linkHoverLight-color) !important;
   -webkit-text-fill-color: var(--linkHoverLight-color) !important;
-  opacity: 1 !important;
+  opacity: .85 !important;
 }
+
+
 
 span.cursor > i:hover,
 i.cursor:hover,
@@ -79,10 +80,9 @@ legend {
   background: transparent !important;
   border-bottom: none;
   margin-top: 20px;
+  margin-bottom: 0;
 }
-legend:first-letter {
-    text-transform: uppercase;
-}
+
 :not([data-page=display])legend {
   color: var(--link-color) !important;
 }
@@ -490,7 +490,7 @@ li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
   background-color: var(--sc-formTxt-color) !important;
 }
 
-.btn-default {
+.btn.btn-default {
   color: var(--linkHover-color) !important;
 }
 .btn-default:not(.btn) {
@@ -498,39 +498,39 @@ li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
   border: none !important;
 }
 
-.btn-info {
+.btn.btn-info {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(80, 140, 180) !important;
   border: none;
 }
-.btn-warning {
+.btn.btn-warning {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(230, 150, 40) !important;
   border: none;
 }
-.btn-danger {
+.btn.btn-danger {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(180, 60, 50) !important;
   border: none;
 }
-.btn-primary,
+.btn.btn-primary,
 .label-primary {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(40, 100, 170) !important;
   border: none;
 }
-.btn-success {
+.btn.btn-success {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(80, 160, 80) !important;
   border: none;
 }
 
-.btn-info:hover {
+.btn.btn-info:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
@@ -540,6 +540,10 @@ button {
 button:focus {
   outline:0 !important;
 }
+.btn-xs {
+  padding: 2px 6px;
+}
+
 /* dropdown select alternative */
 .form-group button.dropdown-toggle {
   color: var(--txt-color) !important;
@@ -812,7 +816,8 @@ input[type="checkbox"]:not(.subElementAttr) {
 
 
 /* custom universal select */
-select {
+select,
+input[type=color] {
   cursor: pointer !important;
 }
 div[data-subtype=select] {
