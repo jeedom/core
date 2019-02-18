@@ -365,13 +365,6 @@ class update {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
-						try {
-							$plugin->setIsEnable(0);
-						} catch (Exception $e) {
-							
-						} catch (Error $e) {
-							
-						}
 						foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
 							try {
 								$eqLogic->remove();
@@ -380,6 +373,13 @@ class update {
 							} catch (Error $e) {
 								
 							}
+						}
+						try {
+							$plugin->setIsEnable(0);
+						} catch (Exception $e) {
+							
+						} catch (Error $e) {
+							
 						}
 					}
 					config::remove('*', $this->getLogicalId());
