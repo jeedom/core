@@ -75,3 +75,7 @@ page). Dans ce tableau, on retrouve :
 # Listener
 
 Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évenement (mise à jour d'une commande...)
+
+# Démons
+
+Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de les arrêter ou les redémarrer.
