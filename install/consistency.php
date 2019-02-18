@@ -319,7 +319,7 @@ if(method_exists('utils','attrChanged')){
 		mkdir(__DIR__ . '/../plugins');
 	}
 	try {
-		echo 'Check filesystem right...';
+		echo "\nCheck filesystem right...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
