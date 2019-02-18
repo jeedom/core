@@ -11,6 +11,7 @@ var telechargement = 0;
 var Cleaning = 0;
 var FinalDown = 0;
 var Maj = 0;
+var End = 0;
 
 /* on test si on a déjà une migration en cours */
 returnStep();
@@ -49,8 +50,9 @@ $('#bt_close').on('click', function() {
 });
 
 $('#bt_zero').on('click', function() {
+	End = 1;
 	$('#modalFinalStep').modal('hide');
-	setStep(1);
+	setStep(0);
 	$('.progress-bar').width('100%');
 	$('.progress-bar').text('100%');
 	window.location.replace("index.php?v=d&logout=1");	
@@ -58,7 +60,7 @@ $('#bt_zero').on('click', function() {
 
 $('#bt_backup').on('click', function() {
 	$('#modalFinalStep').modal('hide');
-	setStep(1);
+	setStep(0);
 	installBackup();
 });
 
@@ -161,9 +163,10 @@ function getJeedomLog(_autoUpdate, _log) {
                     	if(data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1){
                     	    FinalDown++;
 	                    $('.TextFinalisation').text('{{Début de la restauration du backup !}}');
-	                    $('.progress-bar').width('92%');
-			    $('.progress-bar').text('92%');
+	                    $('.progress-bar').width('95%');
+			    $('.progress-bar').text('95%');
 	                }else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
+			    End = 1;
 		            _autoUpdate = 0
 			    $('.progress-bar').width('100%');
 	          	    $('.progress-bar').text('100%');
@@ -177,9 +180,17 @@ function getJeedomLog(_autoUpdate, _log) {
 			    backupToUsb();
 	                    _autoUpdate = 0;
 	                }if(data.result[i].indexOf('[END UPDATE SUCCESS]') != -1){
-	                    $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');
-	                    $('.progress-bar').width('90%');
-		            $('.progress-bar').text('90%');
+			    if(Maj == 0){    
+	                        $('.TextFinalisation').text('{{test de l\'image}}');
+				var textProgress = $('.progress-bar').text();
+	                        $('.progress-bar').width('50%');
+		                $('.progress-bar').text('50%');
+			    }else{
+				 $('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussi}}');
+				 var textProgress = $('.progress-bar').text();
+	                         $('.progress-bar').width('70%');
+		                 $('.progress-bar').text('70%');
+			    }
 			    _autoUpdate = 0;
 		            final();
 	                }else if(data.result[i].indexOf('[END BACKUP ERROR]') != -1){
@@ -212,23 +223,23 @@ function getJeedomLog(_autoUpdate, _log) {
 		                if(telechargement == 0){
 		                    telechargement = 1;
 			            $('.TextFinalisation').text('{{Téléchargement de la mise à jours}}');
-				    $('.progress-bar').width('25%');
-				    $('.progress-bar').text('25%');
+				    $('.progress-bar').width('15%');
+				    $('.progress-bar').text('15%');
 		                }
 		            }
 			    if(data.result[i].indexOf("Cleaning folders") != -1){
 			    	if(Cleaning == 0){
 				    Cleaning = 1;
-				    $('.progress-bar').width('50%');
-				    $('.progress-bar').text('50%');
+				    $('.progress-bar').width('20%');
+				    $('.progress-bar').text('20%');
 				}
 			    }
 			    if(data.result[i].indexOf("Check update") != -1){
 			    	if(Cleaning == 0){
 				    Cleaning = 1;
 				    $('.TextFinalisation').text('{{Verification de la mise à jours.}}');
-				    $('.progress-bar').width('80%');
-				    $('.progress-bar').text('80%');
+				    $('.progress-bar').width('30%');
+				    $('.progress-bar').text('30%');
 				}
 			    }
 			}else if(_log == 'migrate'){
@@ -481,6 +492,7 @@ function finalisation(go){
 				    jeedom_token: data.result.jeedom_token
 				  }
 				})
+			    setTimeout(function(){
 			    $.ajax({
 					type: 'POST',
 					url: 'core/ajax/user.ajax.php',
@@ -513,14 +525,19 @@ function finalisation(go){
 							},
 							success: function (result){
 								console.log('Update lancé > '+JSON.stringify(result));
-								$('.progress-bar').width('1%');
-								$('.progress-bar').text('1%');
-								getJeedomLog(1, 'update');
+								if(result.result == ""){
+								    $('.progress-bar').width('1%');
+								    $('.progress-bar').text('1%');
+								    getJeedomLog(1, 'update');
+								}else{
+								    finalisation();	
+								}
 							}
 						});
 					}
 				});
-		    }
+				    }, 3000);
+		    	}
 		});
 	}
 }
@@ -542,9 +559,6 @@ function final(){
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
 			},
 			success: function (result){
-				console.log('Update lancé > '+JSON.stringify(result));
-				$('.progress-bar').width('1%');
-				$('.progress-bar').text('1%');
 				getJeedomLog(1, 'update');
 			}
 		});
@@ -705,3 +719,20 @@ function reboot_jeedom(){
 	setcookie('PHPSESSID', '', time() - 365 * 24 * 3600, "/", '', false, true);
 	setcookie('sess_id', '', time() - 365 * 24 * 3600, "/", '', false, true);
 }
+
+function confirmOnLeave(msg) {
+    window.onbeforeunload = function (e) {
+	    if(End == 0){
+        e = e || window.event;
+        msg = msg || '';
+ 
+        // For IE and Firefox
+        if (e) {e.returnValue = msg;}
+ 
+        // For Chrome and Safari
+        return msg;
+	    }
+    };
+}
+
+confirmOnLeave('{{Attention si vous fermez cette page la migration ne pourra s\'effectuer}}');
