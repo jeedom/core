@@ -360,12 +360,6 @@ class user {
 		if (is_object(self::byLogin($this->getLogin()))) {
 			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
 		}
-		$this->setOptions('bootstrap_theme','core2019_Light');
-		$this->setOptions('bootstrap_theme_night','core2019_Dark');
-		$this->setOptions('mobile_theme_color','core2019_Light');
-		$this->setOptions('mobile_theme_color_night','core2019_Dark');
-		$this->setOptions('theme_start_day_hour','08:00');
-		$this->setOptions('theme_end_day_hour','20:00');
 	}
 	
 	public function preSave() {
