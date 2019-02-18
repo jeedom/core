@@ -29,105 +29,13 @@ if (!isConnect()) {
 	<div style="margin-top: 5px;">
 		<a class="btn btn-success pull-right" id="bt_saveProfils"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#themetab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Thèmes}}</a></li>
-			<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>
+			<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>
 			<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 			<li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
 		</ul>
 		
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-			<div role="tabpanel" class="tab-pane active" id="themetab">
-				<br/>
-				<div class="col-sm-12">
-					<form class="form-horizontal">
-						<fieldset>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme">
-										<?php
-										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="bootstrap_theme_night">
-										<?php
-										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color">
-										<?php
-										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<select class="userAttr form-control" data-l1key="options" data-l2key="mobile_theme_color_night">
-										<?php
-										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-											}
-										}
-										?>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème clair de}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<input type="time" class="userAttr form-control" data-l1key="options" data-l2key="theme_start_day_hour"/>
-								</div>
-								<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<input type="time" class="userAttr form-control" data-l1key="options" data-l2key="theme_end_day_hour"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
-								<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
-									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="theme_changeAccordingTime"/>
-								</div>
-								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="mobile_theme_useAmbientLight"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
-								<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-									<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="hideBackgroundImg"/>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-				</div>
-				<div class="col-sm-6">
-					<div class="img-responsive" id="div_imgThemeDesktop" style="height: 450px;"></div>
-				</div>
-			</div>
-			
-			<div role="tabpanel" class="tab-pane" id="interfacetab">
+			<div role="tabpanel" class="tab-pane active" id="interfacetab">
 				<br/>
 				<form class="form-horizontal">
 					<fieldset>

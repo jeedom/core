@@ -644,13 +644,8 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-		
-		$user_id = '';
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-			$user_id = $_SESSION['user']->getId();
-		}
 		if (!$_noCache) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
+			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if ($mc->getValue() != '') {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
@@ -785,9 +780,6 @@ class eqLogic {
 			}
 		}
 		$default_opacity = config::byKey('widget::background-opacity');
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity::' . $version, null) !== null) {
-			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity::' . $version);
-		}
 		$opacity = $this->getDisplay('background-opacity' . $version, $default_opacity);
 		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {
 			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
@@ -853,11 +845,7 @@ class eqLogic {
 	}
 	
 	public function postToHtml($_version, $_html) {
-		$user_id = '';
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-			$user_id = $_SESSION['user']->getId();
-		}
-		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
+		cache::set('widgetHtml' . $this->getId() . $_version, $_html);
 		return $_html;
 	}
 	

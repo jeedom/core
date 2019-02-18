@@ -378,9 +378,9 @@ $('body').on('click','.objectSummaryParent',function(){
 
 
 $('body').on('click','#bt_switchTheme',function(){
-  var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
+  var theme = 'core/themes/'+theme_config.default_bootstrap_theme_night+'/desktop/' + theme_config.default_bootstrap_theme_night + '.css';
   if($('#bootstrap_theme_css').attr('href') == theme){
-    theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+    theme = 'core/themes/'+theme_config.default_bootstrap_theme+'/desktop/' + theme_config.default_bootstrap_theme + '.css';
   }
   $('#bootstrap_theme_css').attr('href', theme);
   $('#bootstrap_theme_css').attr('data-nochange',1);
@@ -397,34 +397,26 @@ setTimeout(function(){
 });
 
 function changeThemeAuto(){
-  if(typeof userProfils == 'undefined'){
+  if(typeof theme_config == 'undefined'){
     return;
   }
-  if(typeof userProfils.theme_changeAccordingTime == 'undefined' || userProfils.theme_changeAccordingTime == 0){
+  if(typeof theme_config.theme_changeAccordingTime == 'undefined' || theme_config.theme_changeAccordingTime == 0){
     return;
   }
-  if(typeof userProfils.bootstrap_theme == 'undefined' || typeof userProfils.bootstrap_theme_night == 'undefined'){
+  if(typeof theme_config.default_bootstrap_theme == 'undefined' || typeof theme_config.default_bootstrap_theme_night == 'undefined'){
     return;
   }
-  if(userProfils.bootstrap_theme == userProfils.bootstrap_theme_night){
+  if(theme_config.default_bootstrap_theme == theme_config.default_bootstrap_theme_night){
     return;
-  }
-  var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-  if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
-    theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
-  }
-  if($('#bootstrap_theme_css').attr('href') != theme){
-    $('#bootstrap_theme_css').attr('href', theme);
   }
   setInterval(function () {
     if($('#bootstrap_theme_css').attr('data-nochange') == 1){
       return;
     }
-    var theme = 'core/themes/'+userProfils.bootstrap_theme_night+'/desktop/' + userProfils.bootstrap_theme_night + '.css';
+    var theme = 'core/themes/'+theme_config.default_bootstrap_theme_night+'/desktop/' + userProfils.default_bootstrap_theme_night + '.css';
     var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-    if(parseInt(userProfils.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(userProfils.theme_end_day_hour.replace(':','')) >  currentTime){
-      theme = 'core/themes/'+userProfils.bootstrap_theme+'/desktop/' + userProfils.bootstrap_theme + '.css';
+    if(parseInt(theme_config.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(theme_config.theme_end_day_hour.replace(':','')) >  currentTime){
+      theme = 'core/themes/'+theme_config.default_bootstrap_theme+'/desktop/' + theme_config.default_bootstrap_theme + '.css';
     }
     if($('#bootstrap_theme_css').attr('href') != theme){
       $('#bootstrap_theme_css').attr('href', theme);
@@ -682,13 +674,13 @@ function positionEqLogic(_id,_preResize,_scenario) {
       $(this).height('auto');
     }
     if(init(_preResize,true)){
-      widget.width(Math.floor(widget.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
-      widget.height(Math.floor(widget.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
+      widget.width(Math.floor(widget.width() / theme_config['widget::step::width']) * theme_config['widget::step::width'] - (2 * theme_config['widget::margin']));
+      widget.height(Math.floor(widget.height() / theme_config['widget::step::height']) * theme_config['widget::step::height'] - (2 * theme_config['widget::margin']));
     }
-    widget.width(Math.ceil(widget.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
-    widget.height(Math.ceil(widget.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
+    widget.width(Math.ceil(widget.width() / theme_config['widget::step::width']) * theme_config['widget::step::width'] - (2 * theme_config['widget::margin']));
+    widget.height(Math.ceil(widget.height() / theme_config['widget::step::height']) * theme_config['widget::step::height'] - (2 * theme_config['widget::margin']));
     widget.addClass(widget.attr('data-category'));
-    widget.css('margin',widget_margin+'px');
+    widget.css('margin',theme_config['widget::margin']+'px');
   }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -698,11 +690,11 @@ function positionEqLogic(_id,_preResize,_scenario) {
       if($(this).height() == 0){
         $(this).height('auto');
       }
-      $(this).width(Math.ceil($(this).width() / widget_width_step) * widget_width_step - (2 * widget_margin));
-      $(this).height(Math.ceil($(this).height() / widget_height_step) * widget_height_step - (2 * widget_margin));
+      $(this).width(Math.ceil($(this).width() / theme_config['widget::step::width']) * theme_config['widget::step::width'] - (2 * theme_config['widget::margin']));
+      $(this).height(Math.ceil($(this).height() / theme_config['widget::step::height']) * theme_config['widget::step::height'] - (2 * theme_config['widget::margin']));
       $(this).addClass($(this).attr('data-category'));
     });
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',widget_margin+'px');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',theme_config['widget::margin']+'px');
     $('.eqLogic-widget,.scenario-widget').addClass('jeedomAlreadyPosition');
   }
 }

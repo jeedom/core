@@ -26,6 +26,35 @@ class jeedom {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function getThemeConfig(){
+		$key = array(
+			'default_bootstrap_theme',
+			'default_bootstrap_theme_night',
+			'product_name',
+			'product_icon',
+			'product_image',
+			'enableCustomCss',
+			'mobile_theme_color',
+			'mobile_theme_color_night',
+			'theme_start_day_hour',
+			'theme_end_day_hour',
+			'theme_changeAccordingTime',
+			'hideBackgroundImg',
+			'widget::step::width',
+			'widget::step::height',
+			'widget::margin'
+		);
+		$return = config::byKeys($key);
+		if(date('Gi')>$return['theme_start_day_hour'] && date('Gi')<$return['theme_end_day_hour']){
+			$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
+			$return['current_mobile_theme'] = $return['mobile_theme_color'];
+		}else{
+			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
+			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
+		}
+		return $return;
+	}
+	
 	public static function addTimelineEvent($_event) {
 		file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
