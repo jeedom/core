@@ -4,7 +4,8 @@ if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cr
 }
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'widget::step::width', 'widget::step::height', 'widget::margin', 'product_name', 'product_icon', 'product_image'));
+$theme_config = jeedom::getThemeConfig();
+$configs = array_merge($theme_config,config::byKeys(array( 'language', 'jeedom::firstUse')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -217,6 +218,7 @@ if (init('rescue', 0) == 0) {
 	<div class="backgroundforJeedom"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
+	sendVarToJS('theme_config',$theme_config);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {
