@@ -1148,6 +1148,10 @@ hr {
 }
 
 /* ___________________________________________________________HIGHCHARTS */
+[data-page=history] .highcharts-grid-line {
+  stroke-width: 0.5;
+}
+
 /* arc gauges and sliders */
 .gauge .highcharts-pane { stroke-width: 0; fill: var(--el-defaultColor); }
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
@@ -1173,6 +1177,10 @@ hr {
 }
 h4.modal-title {
   font-size: 14px;
+}
+
+.highcharts-legend-item tspan {
+  cursor: pointer;
 }
 .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
   fill: var(--link-color) !important;
