@@ -8,6 +8,33 @@ By KiboOst for Jeedom
 @import url("mobile.main.css");
 @import url("colors.css");
 
+/* ___________________________________________________________DASHBOARD CATEGORIES coloring */
+
+[data-category=security] {
+  background-color: var(--cat-security-color) !important;
+}
+[data-category=heating] {
+  background-color: var(--cat-heating-color) !important;
+}
+[data-category=automatism]{
+  background-color: var(--cat-automatism-color) !important;
+}
+[data-category=light] {
+  background-color: var(--cat-light-color) !important;
+}
+[data-category=multimedia] {
+  background-color: var(--cat-multimedia-color) !important;
+}
+[data-category=energy] {
+  background-color: var(--cat-energy-color) !important;
+}
+[data-category=''] {
+  background-color: var(--cat-other-color) !important;
+}
+:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) {
+  background-color: var(--cat-other-color) !important;
+}
+
 
 /* ___________________________________________________________EQs */
 .ui-overlay-a,
