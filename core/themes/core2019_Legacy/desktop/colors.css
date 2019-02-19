@@ -33,13 +33,13 @@ By KiboOst for Jeedom
 
   --eqTitle-color: rgb(240, 240, 240);
 
-  --cat-security-color: rgba(180, 40, 40, 1);
-  --cat-heating-color: rgba(60, 115, 165, 1);
-  --cat-automatism-color: rgba(135, 135, 135, 1);
-  --cat-light-color: rgba(220, 135, 25, 1);
-  --cat-multimedia-color: rgba(65, 90, 125, 1);
-  --cat-energy-color: rgba(58, 165, 72, 1);
-  --cat-other-color: rgba(58, 120, 85, 1);
+  --cat-security-color: rgba(116, 92, 176, 1);
+  --cat-heating-color: rgba(41, 128, 185, 1);
+  --cat-automatism-color: rgba(128, 128, 128, 1);
+  --cat-light-color: rgba(243, 156, 18, 1);
+  --cat-multimedia-color: rgba(52, 73, 94, 1);
+  --cat-energy-color: rgba(46, 176, 75, 1);
+  --cat-other-color: rgba(25, 188, 156, 1);
   --cat-scenario-color: rgba(127, 140, 141,1);
 
   --url-iconsDark: url(ui-icons-white.png);

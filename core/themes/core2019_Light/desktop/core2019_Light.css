@@ -98,11 +98,9 @@ a:focus {
 .eqLogic.eqLogic-widget .btn,
 #div_displayObject .btn {
   color: var(--link-color) !important;
-  -webkit-text-fill-color: var(--link-color) !important; /*override commun.css */
 }
 .eqLogic.eqLogic-widget .btn:hover,
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important; /*override commun.css */
 }
 

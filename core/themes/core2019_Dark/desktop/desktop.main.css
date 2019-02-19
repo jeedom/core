@@ -49,12 +49,10 @@ a > img:hover {
 .btn:not(.cmdName):active,
 .eqLogic-widget .btn:not(.btn-circle):not(.cmdName) {
   color: var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important; /*override commun.css */
   background-color: var(--btn-default-color) !important;
 }
 .btn:hover {
   color: var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
   opacity: .85 !important;
 }
 
@@ -490,9 +488,6 @@ li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
   background-color: var(--sc-formTxt-color) !important;
 }
 
-.btn.btn-default {
-  color: var(--linkHover-color) !important;
-}
 .btn-default:not(.btn) {
   background-color: var(--btn-default-color) !important;
 }
