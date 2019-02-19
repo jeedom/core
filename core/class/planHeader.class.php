@@ -139,6 +139,7 @@ class planHeader {
 		$icon = findCodeIcon('fa-paint-brush');
 		$_data['node']['plan' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
+			'type' => __('Design',__FILE__),
 			'name' => substr($this->getName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],

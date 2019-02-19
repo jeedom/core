@@ -1389,7 +1389,7 @@ class eqLogic {
 		$_data['node']['eqLogic' . $this->getId()] = array(
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
-			'type' => 'eqLogic',
+			'type' => __('Equipement',__FILE__),
 			'width' => 60,
 			'height' => 60,
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',

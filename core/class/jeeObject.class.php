@@ -674,7 +674,7 @@ class jeeObject {
 		$icon = findCodeIcon($this->getDisplay('icon'));
 		$_data['node']['object' . $this->getId()] = array(
 			'id' => 'object' . $this->getId(),
-			'type' => 'object',
+			'type' => __('Objet',__FILE__),
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],

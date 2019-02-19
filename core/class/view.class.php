@@ -212,6 +212,7 @@ class view {
 		$icon = findCodeIcon('fa-picture-o');
 		$_data['node']['view' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
+			'type' => __('Vue',__FILE__),
 			'name' => substr($this->getName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],

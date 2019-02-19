@@ -613,6 +613,7 @@ class interactDef {
 		$icon = findCodeIcon('fa-comments-o');
 		$_data['node']['interactDef' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
+			'type' => __('Intéraction',__FILE__),
 			'name' => substr($this->getHumanName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],

@@ -1782,7 +1782,7 @@ class cmd {
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
-			'type' => 'cmd',
+			'type' => __('Commande',__FILE__),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',

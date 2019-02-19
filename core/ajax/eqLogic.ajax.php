@@ -276,17 +276,17 @@ try {
 	
 	if (init('action') == 'getUseBeforeRemove') {
 		$eqLogic = eqLogic::byId(init('id'));
-		$useds = $eqLogic->getLinkData();
-		$useds = $used['node'];
-		if(isset($useds['eqLogic'.$eqLogic->getId()])){
-			unset($useds['eqLogic'.$eqLogic->getId()]);
+		$used = $eqLogic->getLinkData();
+		$used = $used['node'];
+		if(isset($used['eqLogic'.$eqLogic->getId()])){
+			unset($used['eqLogic'.$eqLogic->getId()]);
 		}
 		foreach ($eqLogic->getCmd() as $cmd) {
-			if(isset($useds['cmd'.$cmd->getId()])){
-				unset($useds['cmd'.$cmd->getId()]);
+			if(isset($used['cmd'.$cmd->getId()])){
+				unset($used['cmd'.$cmd->getId()]);
 			}
 		}
-		ajax::success($useds);
+		ajax::success($used);
 	}
 	
 	if (init('action') == 'remove') {
