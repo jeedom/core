@@ -239,6 +239,11 @@ function initApplication(_reinit) {
         userProfils = data.result.userProfils;
         jeedom.init();
         var include = ['core/js/core.js'];
+        if(typeof JEEDOM_DATA != 'undefined' && typeof JEEDOM_DATA.css != 'undefined' && Object.keys(JEEDOM_DATA.css).length > 0){
+          for(var i in JEEDOM_DATA.css){
+            document.body.style.setProperty(i,JEEDOM_DATA.css[i]);
+          }
+        }
         if(typeof JEEDOM_DATA.mobile_theme_useAmbientLight == undefined){
           JEEDOM_DATA.mobile_theme_useAmbientLight = "0";
         }
