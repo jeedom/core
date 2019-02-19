@@ -704,22 +704,13 @@ class eqLogic {
 		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
-		$vcolor = 'cmdColor';
-		if ($version == 'mobile' || $_version == 'mview') {
-			$vcolor = 'mcmdColor';
-		}
 		$parameters = $this->getDisplay('parameters');
-		$replace['#cmd-background-color#'] = ($this->getPrimaryCategory() == '') ? jeedom::getConfiguration('eqLogic:category:default:' . $vcolor) : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		if (is_array($parameters) && isset($parameters['cmd-background-color'])) {
-			$replace['#cmd-background-color#'] = $parameters['cmd-background-color'];
-		}
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;
 			}
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
-		
 		if (is_array($this->widgetPossibility('parameters'))) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
 				if (!isset($parameter['allow_displayType'])) {
