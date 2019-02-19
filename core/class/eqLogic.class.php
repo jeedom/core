@@ -665,11 +665,7 @@ class eqLogic {
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
-			'#color#' => '#ffffff',
-			'#border#' => 'none',
-			'#border-radius#' => '0px',
 			'#style#' => '',
-			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
@@ -684,30 +680,11 @@ class eqLogic {
 			'#tags#' => $this->getTags(),
 			'#generic_type#' => $this->getGenericType()
 		);
-		
-		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
-			if (isset($_default['#background-color#'])) {
-				$replace['#background-color#'] = $_default['#background-color#'];
-			} else {
-				$replace['#background-color#'] = $this->getBackgroundColor($version);
-			}
-		} else {
-			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
-		}
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
 			$replace['#alert_name#'] = $alert['name'];
 			$replace['#alert_icon#'] = $alert['icon'];
 			$replace['#background-color#'] = $alert['color'];
-		}
-		if ($this->getDisplay('color-default' . $version, 1) != 1) {
-			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
-		}
-		if ($this->getDisplay('border-default' . $version, 1) != 1) {
-			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
-		}
-		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
-			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '0') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		if (!is_object($refresh_cmd)) {
