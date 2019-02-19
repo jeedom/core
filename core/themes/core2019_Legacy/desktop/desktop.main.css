@@ -495,39 +495,33 @@ li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
 }
 .btn-default:not(.btn) {
   background-color: var(--btn-default-color) !important;
-  border: none !important;
 }
 
 .btn.btn-info {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(80, 140, 180) !important;
-  border: none;
 }
 .btn.btn-warning {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(230, 150, 40) !important;
-  border: none;
 }
 .btn.btn-danger {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(180, 60, 50) !important;
-  border: none;
 }
 .btn.btn-primary,
 .label-primary {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(40, 100, 170) !important;
-  border: none;
 }
 .btn.btn-success {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: rgb(80, 160, 80) !important;
-  border: none;
 }
 
 .btn.btn-info:hover {
@@ -591,19 +585,8 @@ div.panel {
   color: var(--txt-color) !important;
   background-color: var(--eq-bg-color) !important;
   border-color: var(--el-defaultColor) !important;
-  border: none !important;
 }
 
-/*
-#md_modal .panel-body {
-  border-left: 2px solid var(--logo-primary-color) !important;
-}
-*/
-
-.panel-default > .panel-heading,
-.panel-collapse > .panel-body {
-  border: none !important;
-}
 .panel-success .panel-heading {
   color: var(--linkHoverLight-color);
   background-color: var(--al-success-color);
@@ -650,10 +633,6 @@ div.panel {
   vertical-align: middle !important;
 }
 
-.control-label {
-  padding-top: 0!important;
-}
-
 .form-control {
   font-size: 12px !important;
   border: none !important;
@@ -673,7 +652,6 @@ fieldset > div {
   min-height: 1px;
   padding-left: 1em !important;
   padding-right: 1em !important;
-  border: none !important;
 }
 
 /* scenarios fields */
@@ -1170,6 +1148,10 @@ hr {
 }
 
 /* ___________________________________________________________HIGHCHARTS */
+[data-page=history] .highcharts-grid-line {
+  stroke-width: 0.5;
+}
+
 /* arc gauges and sliders */
 .gauge .highcharts-pane { stroke-width: 0; fill: var(--el-defaultColor); }
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
@@ -1195,6 +1177,10 @@ hr {
 }
 h4.modal-title {
   font-size: 14px;
+}
+
+.highcharts-legend-item tspan {
+  cursor: pointer;
 }
 .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
   fill: var(--link-color) !important;
@@ -1365,6 +1351,7 @@ path.highcharts-graph {
 .close {
   color: var(--link-color) !important;
   opacity: 0.75;
+  border: none;
 }
 .close:hover {
   opacity: 1;
