@@ -39,6 +39,7 @@ class jeedom {
 			'theme_start_day_hour',
 			'theme_end_day_hour',
 			'theme_changeAccordingTime',
+			'mobile_theme_useAmbientLight',
 			'hideBackgroundImg',
 			'widget::step::width',
 			'widget::step::height',
