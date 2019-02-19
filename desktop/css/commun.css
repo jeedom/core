@@ -97,7 +97,6 @@ legend:first-letter {
   display: inline-block;
   vertical-align: top;
   color : white;
-  /*border-radius: 4px;*/
 }
 
 .eqLogic-widget .btn:not(.btn-circle){
@@ -169,13 +168,9 @@ legend:first-letter {
 }
 .form-signin input[type="text"] {
   margin-bottom: -1px;
-  /*border-bottom-left-radius: 0;*/
-  /*border-bottom-right-radius: 0;*/
 }
 .form-signin input[type="password"] {
   margin-bottom: 10px;
-  /*border-top-left-radius: 0;*/
-  /*border-top-right-radius: 0;*/
 }
 
 ::-webkit-scrollbar{
@@ -239,7 +234,6 @@ legend:first-letter {
   padding: 5px 5px;
   font-size: 12px;
   line-height: 1.5;
-  /*border-radius: 3px;*/
 }
 
 
@@ -259,7 +253,6 @@ legend:first-letter {
   padding: 6px 0 !important;
   font-size: 12px !important;
   line-height: 1.428571429 !important;
-  /*border-radius: 15px !important;*/
   color : white !important;
   background-color: transparent !important;
 }
@@ -269,7 +262,6 @@ legend:first-letter {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.33;
-  /*border-radius: 25px;*/
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -277,7 +269,6 @@ legend:first-letter {
   padding: 10px 16px;
   font-size: 24px;
   line-height: 1.33;
-  /*border-radius: 35px;*/
 }
 
 .btn-file {
@@ -311,7 +302,6 @@ legend:first-letter {
 .row-same-height {
   display: table;
   width: 100%;
-  /* fix overflow */
   table-layout: fixed;
 }
 .col-xs-height {
@@ -328,7 +318,6 @@ legend:first-letter {
 
 input[type=checkbox] {
   position: relative;
-  /*top: -0.375rem;*/
   margin: 0 1rem 0 0;
   cursor: pointer;
   display: inline-block;
