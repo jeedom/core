@@ -386,6 +386,13 @@ $('body').on('click','#bt_switchTheme',function(){
   $('#bootstrap_theme_css').attr('data-nochange',1);
 });
 
+if(typeof theme_config != 'undefined' && typeof theme_config.css != 'undefined' && Object.keys(theme_config.css).length > 0){
+  for(var i in theme_config.css){
+    console.log(i+' => '+theme_config.css[i]);
+    document.body.style.setProperty(i,theme_config.css[i]);
+  }
+}
+
 initPage();
 changeThemeAuto();
 if(jeedomBackgroundImg != null){

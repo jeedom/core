@@ -226,7 +226,6 @@ user::isBan();
 			</form>
 		</div>
 		
-		
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
 			<form class="form-horizontal">
@@ -762,12 +761,6 @@ user::isBan();
 					</div>
 					<legend>{{Widgets}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Opacité par défaut des widgets}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pas horizontal}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="numeric" class="configKey form-control" data-l1key="widget::step::width" />
@@ -785,22 +778,36 @@ user::isBan();
 							<input type="numeric" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
-					<legend>{{Catégorie}}</legend>
-					<div  style="margin-left:10px;">
-						<?php
-						foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
-							echo '<div class="form-group">';
-							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur}} '.$category['name'].'</label>';
-							echo '<div class="col-sm-2">';
-							echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
-							echo '</div>';
-							echo '<div class="col-sm-1">';
-							echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
-							echo '</div>';
-							echo '</div>';
-						}
-						?>
+					
+					<legend>{{Personalisation avancée}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
+						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Opacité par défaut des widgets}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Arrondi}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::border-radius" />
+						</div>
+					</div>
+					<?php
+					foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
+						echo '<div class="form-group">';
+						echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur}} '.$category['name'].'</label>';
+						echo '<div class="col-sm-2">';
+						echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
+						echo '</div>';
+						echo '</div>';
+					}
+					?>
 				</fieldset>
 			</form>
 		</div>
