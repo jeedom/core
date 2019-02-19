@@ -136,6 +136,7 @@ class dataStore {
 		$icon = findCodeIcon('fa-code');
 		$_data['node']['dataStore' . $this->getId()] = array(
 			'id' => 'dataStore' . $this->getId(),
+			'type' => 'variable',
 			'name' => $this->getKey(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
