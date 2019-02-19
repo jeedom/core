@@ -27,7 +27,7 @@ sendVarToJS('log_default_search', init('search', ''));
 <a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
 <input class="form-control pull-right" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 <br/><br/>
-<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 70px);with:100%;'></pre>
+<pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
 <script>
 jeedom.log.autoupdate({
 	log : log_display_name,
