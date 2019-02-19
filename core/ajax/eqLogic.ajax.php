@@ -276,7 +276,8 @@ try {
 	
 	if (init('action') == 'getUseBeforeRemove') {
 		$eqLogic = eqLogic::byId(init('id'));
-		$used = $eqLogic->getLinkData();
+		$data = array('node' => array(), 'link' => array());
+		$used = $eqLogic->getLinkData($data, 0, 2);
 		$used = $used['node'];
 		if(isset($used['eqLogic'.$eqLogic->getId()])){
 			unset($used['eqLogic'.$eqLogic->getId()]);
