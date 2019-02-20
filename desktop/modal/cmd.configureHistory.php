@@ -60,7 +60,7 @@ function addCommandHistory(_cmd){
     tr += '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />';
   }
   tr += '</td>';
-  tr += '<td>';
+  tr += '<td style="width:160px;">';
   tr += '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />';
   tr += '</td>';
   tr += '<td>';
