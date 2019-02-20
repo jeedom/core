@@ -225,6 +225,6 @@ $('.bt_setIsEnable').on('click',function(){
 });
 
 $('#bt_removeHistory').on('click',function(){
-  $('#md_modal').dialog({title: "{{Historique des supression}}"});
+  $('#md_modal').dialog({title: "{{Historique des supressions}}"});
   $('#md_modal').load('index.php?v=d&modal=remove.history').dialog('open');
 });
