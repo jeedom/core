@@ -201,6 +201,7 @@ class cron {
 		if ($this->getSchedule() == '') {
 			throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
 		}
+		$this->setSchedule(str_replace('*/ ','* ',$this->getSchedule()));
 		if ($this->getOption() == '' || count($this->getOption()) == 0) {
 			$cron = cron::byClassAndFunction($this->getClass(), $this->getFunction());
 			if (is_object($cron)) {
