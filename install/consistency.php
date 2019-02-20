@@ -68,7 +68,7 @@ $crons = cron::all();
 if (is_array($crons)) {
 	if (class_exists('Cron\CronExpression')) {
 		foreach ($crons as $cron) {
-			$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+			$c = new Cron\CronExpression(checkAndFixCron($cron->getSchedule()), new Cron\FieldFactory);
 			try {
 				if (!$c->isDue()) {
 					$c->getNextRunDate();
