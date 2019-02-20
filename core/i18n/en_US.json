@@ -814,7 +814,7 @@
         "Actions": "Actions",
         "Actif": "Active",
         "Mot(s) obligatoire": "Mandatory word (s)",
-        "Mot(s) obligatoire(s)": "Mandatory word (s)",
+        "Mot(s) obligatoire(s)": "Mandatory word(s)",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Replaces words with their synonyms when generating orders",
         "Liste des utilisateurs (identifiants) séparés par un |": "List of users (identifiers) separated by a |",
         "Limiter aux commandes appartenant aux objets": "Limit to commands belonging to objects",
