@@ -1,51 +1,51 @@
-    <?php
+<?php
 if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+  throw new Exception('{{401 - Accès non autorisé}}');
 }
 $count = array('history' => 0, 'timeline' => 0);
 $list_cmd = array();
 foreach (cmd::all() as $cmd) {
-	$info_cmd = utils::o2a($cmd);
-	$info_cmd['humanName'] = $cmd->getHumanName(true);
-	$eqLogic = $cmd->getEqLogic();
-	$info_cmd['plugins'] = $eqLogic->getEqType_name();
-	$list_cmd[] = $info_cmd;
-	if ($cmd->getIsHistorized() == 1) {
-		$count['history']++;
-	}
-	if ($cmd->getConfiguration('timeline::enable') == 1) {
-		$count['timeline']++;
-	}
+  $info_cmd = utils::o2a($cmd);
+  $info_cmd['humanName'] = $cmd->getHumanName(true);
+  $eqLogic = $cmd->getEqLogic();
+  $info_cmd['plugins'] = $eqLogic->getEqType_name();
+  $list_cmd[] = $info_cmd;
+  if ($cmd->getIsHistorized() == 1) {
+    $count['history']++;
+  }
+  if ($cmd->getConfiguration('timeline::enable') == 1) {
+    $count['timeline']++;
+  }
 }
 sendVarToJs('cmds_history_configure', $list_cmd);
 ?>
-  <div style="display: none;" id="md_cmdConfigureHistory"></div>
-    <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fas fa-check"></i> {{Valider}}</a>
-  <center><span class="label label-info" style="font-size: 1em;">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span></center>
+<div style="display: none;" id="md_cmdConfigureHistory"></div>
+<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fas fa-check"></i> {{Valider}}</a>
+<center><span class="label label-info" style="font-size: 1em;">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span></center>
 
-  <br/>
-  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
-   <thead>
+<br/>
+<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
+  <thead>
     <tr>
-     <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
-     <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fas fa-check"></i></a></th>
-     <th>{{Type}}</th>
-     <th>{{Nom}}</th>
-     <th>{{Plugin}}</th>
-     <th data-sorter="select-text">{{Mode de lissage}}</th>
-     <th data-sorter="select-text">{{Purge de l'historique si plus vieux}}</th>
-     <th data-sorter="false" data-filter="false">{{Action}}</th>
-   </tr>
- </thead>
- <tbody>
- </tbody>
+      <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
+      <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fas fa-check"></i></a></th>
+      <th>{{Type}}</th>
+      <th>{{Nom}}</th>
+      <th>{{Plugin}}</th>
+      <th data-sorter="select-text">{{Mode de lissage}}</th>
+      <th data-sorter="select-text">{{Purge de l'historique si plus vieux}}</th>
+      <th data-sorter="false" data-filter="false">{{Action}}</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
 </table>
 
 <script>
- initTableSorter();
- $("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
- table_history = [];
- for (var i in cmds_history_configure) {
+initTableSorter();
+$("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
+table_history = [];
+for (var i in cmds_history_configure) {
   table_history.push(addCommandHistory(cmds_history_configure[i]));
 }
 $('#table_cmdConfigureHistory tbody').empty().append(table_history);
@@ -144,16 +144,16 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
 
 $('#bt_canceltimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-   $(this).prop('checked', false);
-   $(this).closest('tr').attr('data-change','1');
- });
+    $(this).prop('checked', false);
+    $(this).closest('tr').attr('data-change','1');
+  });
 });
 
 $('#bt_applytimeline').on('click',function(){
   $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-   $(this).prop('checked', true);
-   $(this).closest('tr').attr('data-change','1');
- });
+    $(this).prop('checked', true);
+    $(this).closest('tr').attr('data-change','1');
+  });
 });
 
 </script>
