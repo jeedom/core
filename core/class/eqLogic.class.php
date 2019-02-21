@@ -709,10 +709,10 @@ class eqLogic {
 			$vcolor = 'mcmdColor';
 		}
 		$replace['#cmd-background-color#'] = ($this->getPrimaryCategory() == '') ? jeedom::getConfiguration('eqLogic:category:default:' . $vcolor) : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		$parameters = $this->getDisplay('parameters');
 		if (is_array($parameters) && isset($parameters['cmd-background-color'])) {
 			$replace['#cmd-background-color#'] = $parameters['cmd-background-color'];
 		}
-		$parameters = $this->getDisplay('parameters');
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;
