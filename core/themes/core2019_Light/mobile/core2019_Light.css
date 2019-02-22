@@ -74,6 +74,12 @@ p.state {
 }
 
 /* buttons */
+
+div.ui-header.ui-bar-inherit > a[data-rel=back]{
+	background-color: var(--btn-default-color) !important;
+}
+
+
 a.action.ui-btn {
 	background-color: var(--btn-default-color) !important;
 	color: var(--link-color) !important;
@@ -114,56 +120,56 @@ a.action.ui-btn {
 .tableCmd,
 .highcharts-axis-title > tspan,
 .cmd-widget > center {
-  fill: var(--txt-color) !important;
-  color: var(--txt-color);
+	fill: var(--txt-color) !important;
+	color: var(--txt-color);
 }
 
 /* ___________________________________________________________GAUGES */
 .shuttergauge-value {
-  background: var(--link-color);
+	background: var(--link-color);
 }
 .shuttergauge > div:first-child {
-  color: var(--txt-color) !important;
+	color: var(--txt-color) !important;
 }
 .shuttergauge-bckg {
-  border-top: 6px solid var(--el-defaultColor) !important;
-  border-left: 4px solid var(--el-defaultColor) !important;
-  border-right: 4px solid var(--el-defaultColor) !important;
+	border-top: 6px solid var(--el-defaultColor) !important;
+	border-left: 4px solid var(--el-defaultColor) !important;
+	border-right: 4px solid var(--el-defaultColor) !important;
 }
 
 .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-  fill: var(--link-color) !important;
+	fill: var(--link-color) !important;
 }
 .highcharts-legend-item.highcharts-legend-item-hidden text {
-  fill: var(--txt-color) !important;
+	fill: var(--txt-color) !important;
 }
 .highcharts-background {
-  fill: var(--eq-bg-color) !important;
+	fill: var(--eq-bg-color) !important;
 }
 .gauge .highcharts-background {
-  fill: transparent !important;
+	fill: transparent !important;
 }
 .highcharts-range-selector-buttons > text {
-  fill: var(--link-color) !important;
+	fill: var(--link-color) !important;
 }
 .highcharts-container {
-  color: var(--txt-color) !important;
+	color: var(--txt-color) !important;
 }
 .highcharts-plot-band {
-  fill: var(--bg-color) !important;
+	fill: var(--bg-color) !important;
 }
 .highcharts-grid-line {
-  stroke: var(--eq-bg-color);
+	stroke: var(--eq-bg-color);
 }
 .highcharts-button-box {
-  fill: var(--el-defaultColor) !important;
+	fill: var(--el-defaultColor) !important;
 }
 .highcharts-button > text,
 .highcharts-button-disabled > text{
-  fill: var(--link-color) !important;
+	fill: var(--link-color) !important;
 }
 .highcharts-axis-labels > text {
-  fill: var(--link-color) !important;
+	fill: var(--link-color) !important;
 }
 
 .highcharts-pane {
@@ -176,8 +182,8 @@ a.action.ui-btn {
 	fill: var(--link-color);
 }
 .ui-slider-handle {
-  background-color: var(--link-color) !important;
+	background-color: var(--link-color) !important;
 }
 .ui-slider-handle:hover {
-  background-color: var(--linkHover-color) !important;
+	background-color: var(--linkHover-color) !important;
 }
