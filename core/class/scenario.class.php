@@ -1057,7 +1057,7 @@ class scenario {
 						$calculatedDate_tmp = array('prevDate' => '', 'nextDate' => '');
 						foreach ($this->getSchedule() as $schedule) {
 							try {
-								$c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+								$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 								$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 								$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 							} catch (Exception $exc) {
@@ -1074,7 +1074,7 @@ class scenario {
 						}
 					} else {
 						try {
-							$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+							$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 							$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 							$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 						} catch (Exception $exc) {
@@ -1100,7 +1100,7 @@ class scenario {
 					if (is_array($this->getSchedule())) {
 						foreach ($this->getSchedule() as $schedule) {
 							try {
-								$c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+								$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 								try {
 									if ($c->isDue()) {
 										return true;
@@ -1130,7 +1130,7 @@ class scenario {
 						}
 					} else {
 						try {
-							$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+							$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 							try {
 								if ($c->isDue()) {
 									return true;
@@ -1480,6 +1480,7 @@ class scenario {
 					$_data['node']['scenario' . $this->getId()] = array(
 						'id' => 'scenario' . $this->getId(),
 						'name' => $this->getName(),
+						'type' => __('Scénario',__FILE__),
 						'fontweight' => ($_level == 1) ? 'bold' : 'normal',
 						'shape' => 'rect',
 						'width' => 40,

@@ -1369,3 +1369,7 @@ function sanitizeAccent($_message) {
 		}
 	}
 	
+	function checkAndFixCron($_cron){
+		return str_replace('*/ ','* ',$_cron);
+	}
+	

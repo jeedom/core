@@ -361,10 +361,10 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
 });
 
 if (sel_plugin_id != -1) {
-  if ($('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
-    $('#ul_plugin .li_plugin[data-plugin_id=' + sel_plugin_id + ']').click();
+  if ($('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
+    $('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').click();
   } else {
-    $('#ul_plugin .li_plugin:first').click();
+    $('.pluginDisplayCard:first').click();
   }
 }
 

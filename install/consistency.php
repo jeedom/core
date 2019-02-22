@@ -68,7 +68,7 @@ $crons = cron::all();
 if (is_array($crons)) {
 	if (class_exists('Cron\CronExpression')) {
 		foreach ($crons as $cron) {
-			$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+			$c = new Cron\CronExpression(checkAndFixCron($cron->getSchedule()), new Cron\FieldFactory);
 			try {
 				if (!$c->isDue()) {
 					$c->getNextRunDate();
@@ -327,7 +327,7 @@ if(method_exists('utils','attrChanged')){
 		mkdir(__DIR__ . '/../plugins');
 	}
 	try {
-		echo 'Check filesystem right...';
+		echo "\nCheck filesystem right...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -374,7 +374,7 @@ if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
 	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 }
 } catch (Exception $e) {
-	echo "Error : ";
+	echo "\nError : ";
 	echo $e->getMessage();
 }
 echo "[END CONSISTENCY]\n";

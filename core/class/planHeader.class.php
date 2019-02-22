@@ -85,6 +85,11 @@ class planHeader {
 			$planCopy->setPlanHeader_id($planHeaderCopy->getId());
 			$planCopy->save();
 		}
+		$filename1 = 'planHeader'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
+		if(file_exist(__DIR__.'/../../data/plan/'.$filename1)){
+			$filename2 = 'planHeader'.$planHeaderCopy->getId().'-'.$planHeaderCopy->getImage('sha512') . '.' . $planHeaderCopy->getImage('type');
+			copy(__DIR__.'/../../data/plan/'.$filename1,__DIR__.'/../../data/plan/'.$filename2);
+		}
 		return $planHeaderCopy;
 	}
 	
@@ -139,6 +144,7 @@ class planHeader {
 		$icon = findCodeIcon('fa-paint-brush');
 		$_data['node']['plan' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
+			'type' => __('Design',__FILE__),
 			'name' => substr($this->getName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],

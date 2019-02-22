@@ -644,13 +644,8 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $version, 1) == 0) {
 			return '';
 		}
-		
-		$user_id = '';
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-			$user_id = $_SESSION['user']->getId();
-		}
 		if (!$_noCache) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version . $user_id);
+			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if ($mc->getValue() != '') {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
@@ -670,11 +665,7 @@ class eqLogic {
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
-			'#color#' => '#ffffff',
-			'#border#' => 'none',
-			'#border-radius#' => '0px',
 			'#style#' => '',
-			'#max_width#' => '650px',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => '',
 			'#height#' => $this->getDisplay('height', 'auto'),
@@ -689,30 +680,11 @@ class eqLogic {
 			'#tags#' => $this->getTags(),
 			'#generic_type#' => $this->getGenericType()
 		);
-		
-		if ($this->getDisplay('background-color-default' . $version, 1) == 1) {
-			if (isset($_default['#background-color#'])) {
-				$replace['#background-color#'] = $_default['#background-color#'];
-			} else {
-				$replace['#background-color#'] = $this->getBackgroundColor($version);
-			}
-		} else {
-			$replace['#background-color#'] = ($this->getDisplay('background-color-transparent' . $version, 0) == 1) ? 'transparent' : $this->getDisplay('background-color' . $version, $this->getBackgroundColor($version));
-		}
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
 			$replace['#alert_name#'] = $alert['name'];
 			$replace['#alert_icon#'] = $alert['icon'];
 			$replace['#background-color#'] = $alert['color'];
-		}
-		if ($this->getDisplay('color-default' . $version, 1) != 1) {
-			$replace['#color#'] = $this->getDisplay('color' . $version, '#ffffff');
-		}
-		if ($this->getDisplay('border-default' . $version, 1) != 1) {
-			$replace['#border#'] = $this->getDisplay('border' . $version, 'none');
-		}
-		if ($this->getDisplay('border-radius-default' . $version, 1) != 1) {
-			$replace['#border-radius#'] = $this->getDisplay('border-radius' . $version, '0') . 'px';
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		if (!is_object($refresh_cmd)) {
@@ -736,8 +708,8 @@ class eqLogic {
 		if ($version == 'mobile' || $_version == 'mview') {
 			$vcolor = 'mcmdColor';
 		}
-		$parameters = $this->getDisplay('parameters');
 		$replace['#cmd-background-color#'] = ($this->getPrimaryCategory() == '') ? jeedom::getConfiguration('eqLogic:category:default:' . $vcolor) : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
+		$parameters = $this->getDisplay('parameters');
 		if (is_array($parameters) && isset($parameters['cmd-background-color'])) {
 			$replace['#cmd-background-color#'] = $parameters['cmd-background-color'];
 		}
@@ -747,7 +719,6 @@ class eqLogic {
 			}
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
-		
 		if (is_array($this->widgetPossibility('parameters'))) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
 				if (!isset($parameter['allow_displayType'])) {
@@ -783,15 +754,6 @@ class eqLogic {
 					break;
 				}
 			}
-		}
-		$default_opacity = config::byKey('widget::background-opacity');
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->getOptions('widget::background-opacity::' . $version, null) !== null) {
-			$default_opacity = $_SESSION['user']->getOptions('widget::background-opacity::' . $version);
-		}
-		$opacity = $this->getDisplay('background-opacity' . $version, $default_opacity);
-		if ($replace['#background-color#'] != 'transparent' && $opacity != '' && $opacity < 1) {
-			list($r, $g, $b) = sscanf($replace['#background-color#'], "#%02x%02x%02x");
-			$replace['#background-color#'] = 'rgba(' . $r . ',' . $g . ',' . $b . ',' . $opacity . ')';
 		}
 		return $replace;
 	}
@@ -853,11 +815,7 @@ class eqLogic {
 	}
 	
 	public function postToHtml($_version, $_html) {
-		$user_id = '';
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-			$user_id = $_SESSION['user']->getId();
-		}
-		cache::set('widgetHtml' . $this->getId() . $_version . $user_id, $_html);
+		cache::set('widgetHtml' . $this->getId() . $_version, $_html);
 		return $_html;
 	}
 	
@@ -1401,6 +1359,7 @@ class eqLogic {
 		$_data['node']['eqLogic' . $this->getId()] = array(
 			'id' => 'eqLogic' . $this->getId(),
 			'name' => $this->getName(),
+			'type' => __('Equipement',__FILE__),
 			'width' => 60,
 			'height' => 60,
 			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
@@ -1434,7 +1393,7 @@ class eqLogic {
 	}
 	
 	public function getUsedBy($_array = false) {
-		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
 		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));

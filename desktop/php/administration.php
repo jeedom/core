@@ -16,13 +16,14 @@ user::isBan();
 ?>
 <br/>
 <div id="config">
+	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs nav-primary" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-key"></i> {{API}}</a></li>
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
-		<li role="presentation"><a href="#widgettab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Tuiles}}</a></li>
+		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Interface}}</a></li>
 		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
 		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
 		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
@@ -34,7 +35,6 @@ user::isBan();
 		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a></li>
 	</ul>
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-		<br/><a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><br/>
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<br/>
 			<form class="form-horizontal">
@@ -225,7 +225,6 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
 		
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
@@ -677,16 +676,90 @@ user::isBan();
 			</form>
 		</div>
 		
-		<div role="tabpanel" class="tab-pane" id="widgettab">
+		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
+					<legend>{{Thème}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Opacité par défaut des widgets}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<select class="configKey form-control" data-l1key="default_bootstrap_theme">
+								<?php
+								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+									}
+								}
+								?>
+							</select>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<select class="configKey form-control" data-l1key="default_bootstrap_theme_night">
+								<?php
+								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+									}
+								}
+								?>
+							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<select class="configKey form-control" data-l1key="mobile_theme_color">
+								<?php
+								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+									}
+								}
+								?>
+							</select>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<select class="configKey form-control" data-l1key="mobile_theme_color_night">
+								<?php
+								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+									}
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème clair de}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="time" class="configKey form-control" data-l1key="theme_start_day_hour"/>
+						</div>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="time" class="configKey form-control" data-l1key="theme_end_day_hour"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
+						<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
+							<input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime"/>
+						</div>
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="checkbox" class="configKey" data-l1key="hideBackgroundImg"/>
+						</div>
+					</div>
+					<legend>{{Widgets}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pas horizontal}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -705,22 +778,36 @@ user::isBan();
 							<input type="numeric" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
-					<div  style="margin-left:10px;">
-						<?php
-						foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
-							echo '<legend>' . $category['name'] . '</legend>';
-							echo '<div class="form-group">';
-							echo '<label class="col-sm-3 control-label">{{Couleur}}</label>';
-							echo '<div class="col-sm-2">';
-							echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
-							echo '</div>';
-							echo '<div class="col-sm-1">';
-							echo '<a class="btn btn-default btn-sm bt_resetColor" data-l1key="eqLogic:category:' . $key . ':color" title="{{Remettre par défaut}}"><i class="fas fa-times"></i></a>';
-							echo '</div>';
-							echo '</div>';
-						}
-						?>
+					
+					<legend>{{Personalisation avancée}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
+						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Opacité par défaut des tuiles}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Arrondi}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="numeric" class="configKey form-control" data-l1key="widget::border-radius" />
+						</div>
+					</div>
+					<?php
+					foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
+						echo '<div class="form-group">';
+						echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur}} '.$category['name'].'</label>';
+						echo '<div class="col-sm-2">';
+						echo '<input type="color" class="configKey form-control cursor noSet input-sm" data-l1key="eqLogic:category:' . $key . ':color" value="' . $category['color'] . '" />';
+						echo '</div>';
+						echo '</div>';
+					}
+					?>
 				</fieldset>
 			</form>
 		</div>

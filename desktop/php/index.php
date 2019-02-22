@@ -4,7 +4,8 @@ if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cr
 }
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys(array('enableCustomCss', 'language', 'jeedom::firstUse', 'widget::step::width', 'widget::step::height', 'widget::margin', 'product_name', 'product_icon', 'product_image'));
+$theme_config = jeedom::getThemeConfig();
+$configs = array_merge($theme_config,config::byKeys(array( 'language', 'jeedom::firstUse')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -49,7 +50,7 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
-			
+
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
@@ -156,52 +157,21 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'animate/animate', 'css');
 	include_file('3rdparty', 'animate/animate', 'js');
 	if (!isConnect()) {
-		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
-			include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
+			echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
 		} else {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
 		}
 	} else {
 		try {
-			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.css')) {
-				echo '<link id="bootstrap_theme_css" href="core/themes/'.$_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/'.$_SESSION['user']->getOptions('bootstrap_theme').'.css" rel="stylesheet">';
-			} else if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme') . '.css')) {
-				include_file('core', config::byKey('default_bootstrap_theme') . '/desktop/' . config::byKey('default_bootstrap_theme'), 'themes.css');
+			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
+				echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
 			} else {
 				echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
 			}
 		} catch (Exception $e) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
 		}
-	}
-	try {
-		if (isConnect()) {
-			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
-				if (file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
-					include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.js');
-				}
-			}
-			if (init('rescue', 0) == 0 && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
-				try {
-					if (is_dir(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop')) {
-						if (file_exists(__DIR__ . '/../../core/themes/' . $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme') . '.js')) {
-							include_file('core', $_SESSION['user']->getOptions('bootstrap_theme') . '/desktop/' . $_SESSION['user']->getOptions('bootstrap_theme'), 'themes.js');
-						}
-					}
-				} catch (Exception $e) {
-					
-				}
-				if (init('rescue', 0) == 0 && $_SESSION['user']->getOptions('desktop_highcharts_theme') != '') {
-					try {
-						include_file('3rdparty', 'highstock/themes/' . $_SESSION['user']->getOptions('desktop_highcharts_theme'), 'js');
-					} catch (Exception $e) {
-						
-					}
-				}
-			}
-		}
-	} catch (Exception $e) {
-		
 	}
 	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 		if (file_exists(__DIR__ . '/../custom/custom.css')) {
@@ -218,6 +188,7 @@ if (init('rescue', 0) == 0) {
 	<div class="backgroundforJeedom"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
+	sendVarToJS('theme_config',$theme_config);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {
@@ -226,9 +197,6 @@ if (init('rescue', 0) == 0) {
 		sendVarToJS('user_isAdmin', isConnect('admin'));
 		sendVarToJS('user_login', $_SESSION['user']->getLogin());
 		sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
-		sendVarToJS('widget_width_step', $configs['widget::step::width']);
-		sendVarToJS('widget_height_step', $configs['widget::step::height']);
-		sendVarToJS('widget_margin', $configs['widget::margin']);
 		if (isset($eventjs_plugin) && count($eventjs_plugin) > 0) {
 			foreach ($eventjs_plugin as $value) {
 				try {
@@ -240,7 +208,7 @@ if (init('rescue', 0) == 0) {
 		}
 		?>
 		<?php if (init('rescue', 0) == 0) { ?>
-			<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand hidden-xs" href="<?php echo $homeLink; ?>">
@@ -252,7 +220,7 @@ if (init('rescue', 0) == 0) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<center><span class="visible-xs-inline-block" style="margin-top:20px; font-size:0.8em !important;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
+						<center><span class="visible-xs-inline-block" style="margin-top:20px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -412,7 +380,7 @@ if (init('rescue', 0) == 0) {
 				</header>
 			<?php } ?>
 			<?php if (init('rescue', 0) == 1) {?>
-				<header class="navbar navbar-fixed-top navbar-default reportModeHidden" style="margin-bottom: 0px !important;">
+				<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<a class="navbar-brand" href="<?php echo $homeLink; ?>">
@@ -482,4 +450,3 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	

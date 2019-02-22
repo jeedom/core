@@ -26,6 +26,67 @@ class jeedom {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function getThemeConfig(){
+		$key = array(
+			'default_bootstrap_theme',
+			'default_bootstrap_theme_night',
+			'product_name',
+			'product_icon',
+			'product_image',
+			'enableCustomCss',
+			'mobile_theme_color',
+			'mobile_theme_color_night',
+			'theme_start_day_hour',
+			'theme_end_day_hour',
+			'theme_changeAccordingTime',
+			'mobile_theme_useAmbientLight',
+			'hideBackgroundImg',
+			'widget::step::width',
+			'widget::step::height',
+			'widget::margin',
+			'interface::advance::enable'
+		);
+		$return = config::byKeys($key);
+		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
+		$return['current_mobile_theme'] = $return['mobile_theme_color'];
+		if($return['theme_changeAccordingTime'] == 1 && (date('Gi')<intval(str_replace(':','',$return['theme_start_day_hour'])) || date('Gi')>intval(str_replace(':','',$return['theme_end_day_hour'])))){
+			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
+			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
+		}
+		$return['css'] = array();
+		if($return['interface::advance::enable'] == 1){
+			$css_convert = array(
+				'widget::background-opacity' => '--widget-opacity',
+				'widget::border-radius' => '--border-radius',
+			);
+			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
+				$css_convert['eqLogic:category:' . $key . ':color'] = '--cat-'. $key .'-color';
+			}
+			$css = config::byKeys(array_keys($css_convert));
+			foreach ($css as $key => $value) {
+				if($value == ''){
+					continue;
+				}
+				if(isset($css_convert[$key])){
+					$return['css'][$css_convert[$key]] = $value;
+				}
+			}
+			if(count($return['css']) > 0){
+				foreach ($return['css'] as $key => &$value) {
+					switch ($key) {
+						case '--border-radius':
+						if($value == ''){
+							$value=0;
+						}
+						$value.='rem';
+						break;
+					}
+				}
+			}
+		}
+		return $return;
+	}
+	
 	public static function addTimelineEvent($_event) {
 		file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}

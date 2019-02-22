@@ -87,7 +87,7 @@ class cmd {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
 		}
-		$in = trim(implode(',', $_ids), ',');
+		$in = trim(str_replace(array(',,',', ,'),',',implode(',', $_ids)), ',');
 		if (!empty($in)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM cmd
@@ -1782,6 +1782,7 @@ class cmd {
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
+			'type' => __('Commande',__FILE__),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
 			'fontsize' => '1.5em',

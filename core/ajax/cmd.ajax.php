@@ -230,8 +230,13 @@ try {
 			if (!is_object($history)) {
 				throw new Exception(__('Aucun point ne correspond pour l\'historique : ', __FILE__) . init('cmd_id') . ' - ' . init('datetime'), init('oldValue'));
 			}
-			$history->setValue(init('value', null));
-			$history->save(null, true);
+			$value = init('value', null);
+			if ($value === '') {
+				$history->remove();
+			} else {
+				$history->setValue($value);
+				$history->save(null, true);
+			}
 			ajax::success();
 		}
 		

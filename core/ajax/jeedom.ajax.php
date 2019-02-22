@@ -23,11 +23,7 @@ try {
 	ajax::init(false);
 	
 	if (init('action') == 'getInfoApplication') {
-		$return = array();
-		$return['product_name'] = config::byKey('product_name');
-		$return['product_icon'] = config::byKey('product_icon');
-		$return['product_image'] = config::byKey('product_image');
-		$return['widget_margin'] = config::byKey('widget::margin');
+		$return = jeedom::getThemeConfig();
 		$return['serverDatetime'] = getmicrotime();
 		if (!isConnect()) {
 			$return['connected'] = false;
@@ -65,7 +61,7 @@ try {
 			}
 		}
 		$return['custom'] = array('js' => false, 'css' => false);
-		if (config::byKey('enableCustomCss', 'core', 1) == 1) {
+		if ($return['enableCustomCss'] == 1) {
 			$return['custom']['js'] = file_exists(__DIR__ . '/../../mobile/custom/custom.js');
 			$return['custom']['css'] = file_exists(__DIR__ . '/../../mobile/custom/custom.css');
 		}

@@ -7,7 +7,6 @@ sendVarToJS('sel_plugin_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 <div id='div_alertPluginConfiguration'></div>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="div_smallSideBar" id="bt_displayPluginList"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
 
 <div class="row row-overflow">
 	<div class="col-xs-12" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
