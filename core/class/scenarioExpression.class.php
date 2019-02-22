@@ -295,6 +295,11 @@ class scenarioExpression {
 	}
 	
 	function color_gradient($_from_color, $_to_color, $_min,$_max,$_value) {
+		if(!is_numeric($_value)){
+			$value = round(jeedom::evaluateExpression($_value));
+		}else{
+			$value = round($_value);
+		}
 		$graduations = $_max - $_min;
 		$graduations--;
 		$startcol = str_replace("#", "", $_from_color);
@@ -317,7 +322,6 @@ class scenarioExpression {
 		} else {
 			$RetVal[] = $_from_color;
 		}
-		$value = round($_value);
 		if(isset($RetVal[$value])){
 			return $RetVal[$value];
 		}
