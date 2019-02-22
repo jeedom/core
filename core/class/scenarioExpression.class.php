@@ -296,7 +296,7 @@ class scenarioExpression {
 	
 	function color_gradient($_from_color, $_to_color, $_min,$_max,$_value) {
 		if(!is_numeric($_value)){
-			$value = round(cmd::cmdToValue($_value));
+			$value = round(jeedom::evaluateExpression($_value));
 		}else{
 			$value = round($_value);
 		}
