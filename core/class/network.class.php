@@ -285,7 +285,9 @@ class network {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+		$create = false;
 		if (!is_object($openvpn)) {
+			$create = true;
 			$openvpn = new openvpn();
 			$openvpn->setName('DNS Jeedom');
 		}
@@ -300,7 +302,7 @@ class network {
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
-		$openvpn->save(true);
+		$openvpn->save($create);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
 		}
