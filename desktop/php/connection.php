@@ -53,6 +53,7 @@
 					<div class="resetPassword">
 					<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 					</div>
+					<br/>
 				</div>
 				<div id="register" tabindex="500" class="form-group">
 					<h3>CHANGER VOTRE MOT DE PASSE</h3>
