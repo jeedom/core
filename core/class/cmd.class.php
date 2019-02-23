@@ -128,7 +128,7 @@ class cmd {
 		if (is_array($_eqLogic_id)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM cmd
-			WHERE eqLogic_id IN (' .trim(str_replace(array(',,',', ,'),',' implode(',', $_eqLogic_id)),',') . ')';
+			WHERE eqLogic_id IN (' .trim(str_replace(array(',,',', ,'),',', implode(',', $_eqLogic_id)),',') . ')';
 		} else {
 			$values = array(
 				'eqLogic_id' => $_eqLogic_id,
@@ -175,7 +175,7 @@ class cmd {
 			$values = array();
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM cmd
-			WHERE generic_type IN (' . trim(str_replace(array(',,',', ,'),',' $in), ',') . ')';
+			WHERE generic_type IN (' . trim(str_replace(array(',,',', ,'),',', $in), ',') . ')';
 		} else {
 			$values = array(
 				'generic_type' => $_generic_type,
