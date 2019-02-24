@@ -66,7 +66,7 @@ if (is_array($crons)) {
 					$c->getNextRunDate();
 				}
 			} catch (Exception $ex) {
-				echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu';
+				echo "Suppression de  : " . $cron->getName() . ' car il n\'y a pas de lancement prévu'."\n";
 				$cron->remove();
 			}
 		}
