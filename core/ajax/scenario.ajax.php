@@ -108,7 +108,7 @@ try {
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
-		if (init('template') == '') {
+		if (trim(init('template')) == '' || trim(init('template')) == '.json') {
 			throw new Exception(__('Le nom du template ne peut être vide ', __FILE__));
 		}
 		$name = init('template');
