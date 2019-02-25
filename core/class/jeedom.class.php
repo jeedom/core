@@ -59,9 +59,6 @@ class jeedom {
 				'widget::background-opacity' => '--widget-opacity',
 				'widget::border-radius' => '--border-radius',
 			);
-			foreach (jeedom::getConfiguration('eqLogic:category') as $key => $category) {
-				$css_convert['eqLogic:category:' . $key . ':color'] = '--cat-'. $key .'-color';
-			}
 			$css = config::byKeys(array_keys($css_convert));
 			foreach ($css as $key => $value) {
 				if($value == ''){
