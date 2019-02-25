@@ -564,6 +564,7 @@ button:focus {
 .form-group button.dropdown-toggle:focus,
 .form-group button.dropdown-toggle a:focus {
   color: var(--txt-color) !important;
+  background-color: var(--form-bg-color) !important;
 }
 .form-group button.dropdown-toggle .caret {
   color: var(--txt-color) !important;
@@ -594,7 +595,6 @@ button:focus {
     overflow-x: hidden;
   z-index: 9999 !important;
 }
-
 
 /* ___________________________________________________________PANELS */
 div.panel {
