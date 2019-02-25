@@ -318,7 +318,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsSpecifics = {
     global: false,
     success: function (result) {
-      for(var i in result){
+       for(var i in result){
         var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
@@ -333,8 +333,14 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var left =  eqLogic.css('left');
         var width =  eqLogic.css('width');
         var height =  eqLogic.css('height');
-        var margin =  eqLogic.css('margin');
-        var padding =  eqLogic.css('padding');
+        var marginTop =  eqLogic.css('margin-top');
+        var marginBottom =  eqLogic.css('margin-bottom');
+        var marginLeft =  eqLogic.css('margin-left');
+        var marginRight =  eqLogic.css('margin-right');
+        var paddingTop =  eqLogic.css('padding-top');
+        var paddingBottom =  eqLogic.css('padding-bottom');
+        var paddingRight =  eqLogic.css('padding-left');
+        var paddingLeft =  eqLogic.css('padding-right');
         var position =  eqLogic.css('position');
         var transform_origin =  eqLogic.css('transform-origin');
         var transform =  eqLogic.css('transform');
@@ -344,8 +350,14 @@ jeedom.eqLogic.refreshValue = function (_params) {
         eqLogic.css('left',left);
         eqLogic.css('width',width);
         eqLogic.css('height',height);
-        eqLogic.css('margin',margin);
-        eqLogic.css('padding',padding);
+        eqLogic.css('margin-top',marginTop);
+        eqLogic.css('margin-bottom',marginBottom);
+        eqLogic.css('margin-left',marginLeft);
+        eqLogic.css('margin-right',marginRight);
+        eqLogic.css('padding-top',paddingTop);
+        eqLogic.css('padding-bottom',paddingBottom);
+        eqLogic.css('padding-left',paddingLeft);
+        eqLogic.css('padding-right',paddingRight);
         eqLogic.css('position',position);
         eqLogic.css('transform-origin',transform_origin);
         eqLogic.css('transform',transform);
