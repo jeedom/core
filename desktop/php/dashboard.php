@@ -24,7 +24,6 @@ foreach ($allObject as $value) {
 	}
 }
 sendVarToJs('rootObjectId', $object->getId());
-include_file('desktop', 'dashboard', 'css');
 ?>
 <div class="row row-overflow">
 	<?php
