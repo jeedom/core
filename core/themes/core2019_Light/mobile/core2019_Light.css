@@ -74,12 +74,6 @@ p.state {
 }
 
 /* buttons */
-
-div.ui-header.ui-bar-inherit > a[data-rel=back]{
-	background-color: var(--btn-default-color) !important;
-}
-
-
 a.action.ui-btn {
 	background-color: var(--btn-default-color) !important;
 	color: var(--link-color) !important;
