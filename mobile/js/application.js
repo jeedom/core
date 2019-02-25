@@ -14,6 +14,16 @@ $(document).ajaxStop(function () {
   }
 });
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
 $(function () {
   MESSAGE_NUMBER = null;
   nbActiveAjaxRequest = 0;
@@ -94,6 +104,8 @@ $(function () {
     
   }
 });
+
+
 
 function setBackgroundImage(_path){
   if(typeof JEEDOM_DATA == 'undefined' || typeof JEEDOM_DATA.hideBackgroundImg  == 'undefined' || JEEDOM_DATA.hideBackgroundImg == 1){
