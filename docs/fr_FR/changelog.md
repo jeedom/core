@@ -6,6 +6,9 @@ Changelog
 =====
 
 - Refonte des thèmes.
+- Ajout d'un widget horizontal (core).
+- Ajout d'un widget vertical (core).
+- Affichage du widget shutter (core) proportionnel à la valeur.
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
 
