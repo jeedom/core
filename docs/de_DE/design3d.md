@@ -6,7 +6,7 @@ Elle est accessible par Acceuil → Dashboard
 >
 > Über das Untermenü kann direkt zu einem 3D-Design gesprungen werden.
 
-# Importation du modèle 3D
+# Import von 3D-Modellen
 
 > **IMPORTANT**
 >
@@ -26,11 +26,11 @@ Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 
 
 Jeedom va automatiquement passer sur le nouveau design 3D, il faut repasser en mode édition et cliquer sur les petites roues crantées.
 
-Vous pouvez à partir de cette écran :
+Sie können von diesem Bildschirm aus :
 
 - Ändern Sie den Namen Ihres Designs
 - Fügen Sie einen Zugriffscode hinzu
-- Choisir une icone
+- Wählen Sie ein Symbol
 - Importer votre modèle 3D
 
 Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre fichier zip

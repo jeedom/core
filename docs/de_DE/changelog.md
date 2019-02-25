@@ -1,15 +1,15 @@
 
-Changelog
+Änderungsprotokoll
 =========
 
 3.3.0
 =====
 
 -   Möglichkeit, eine Variable zu löschen.
--   Ajout d'un affichage 3D (beta)
--   Refonte du système de backup cloud (backup incrémental et chiffré).
--   Ajout d'un système de prise de note intégré (dans Analyse -> Note).
--   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
+-   3D-Anzeige hinzugefügt (beta)
+-   Überholung des Cloud-Backup-Systems (inkrementelles und verschlüsseltes Backup).
+-    Integriertes Notizsystem hinzugefügt (in Analyse -> Notiz).
+-   Der Begriff Tag wurde auf dem Gerät hinzugefügt (befindet sich in der erweiterten Konfiguration des Geräts).
 -   Ajout d'un système d'historique sur la suppression des commandes, équipements, objets, vue, design, design 3d, scénario et utilisateur.
 -   Ajout de l'action jeedom_reboot pour lancer un redémarrage de Jeedom.
 -   Ajout d'option dans la fenêtre de génération de cron.
@@ -55,24 +55,24 @@ Changelog
 3.2.14
 =====
 
-- Préparation pour éviter une erreur lors du passage en 3.3.X
+- Vorbereitung zur Vermeidung eines Fehlers beim Umstellen auf 3.3.X
 - Correction d'un soucis lors d'une demande de support pour les plugins tierces
 
 3.2.12
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Optimisations
 
 3.2.11
 =====
 
-- Correction de bugs.
+- Fehlerkorrekturen
 
 3.2.10
 =====
 
-- Correction de bugs.
+- Fehlerkorrekturen
 - Amélioration de la synchronisation avec le market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
@@ -82,7 +82,7 @@ Changelog
 3.2.9
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -91,7 +91,7 @@ Changelog
 3.2.8
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
@@ -100,29 +100,29 @@ Changelog
 3.2.7
 =====
 
-- Correction de bugs
-- Mise à jour de la docs
+- Fehlerkorrekturen
+- Aktualisierung der Dokumentation
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
 
-- Correction de bugs
-- Mise à jour de la docs
+- Fehlerkorrekturen
+- Aktualisierung der Dokumentation
 - Uniformisation des noms de certaine commande dans les scénarios
-- Optimisation des performances
+- Leistungsoptimierung
 
 3.2.5
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Réactivation des interactions (inactive a cause de la mise à jour)
 
 3.2.4
 =====
 
-- Correction de bugs
+- Fehlerkorrekturen
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
@@ -219,7 +219,7 @@ Changelog
 
 -   JEED-124 : Corriger la gestion des timeouts des scénarios
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Possibilité de désactiver une interaction
 
@@ -246,12 +246,12 @@ Changelog
 3.1
 ===
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Optimisation globale de Jeedom (sur le chargement des classes de
     plugins, temps presque divisé par 3)
 
--   Support de Debian 9
+-   Support für Debian 9
 
 -   Mode onepage (changement de page sans recharger toute la page, juste
     la partie qui change)
@@ -426,7 +426,7 @@ Changelog
 -   Refonte de la configuration des droits utilisateurs (tout est sur la
     page de gestion des utilisateurs)
 
--   Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock
+-   Bibliotheken aktualisiert : jquery (in 3.0) , jquery mobile, hightstock
     et table sorter, font-awesome
 
 -   Grosse amélioration des designs:
@@ -622,7 +622,7 @@ Changelog
 2.4.5
 =====
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Optimisation de la vérification des mises à jour
 
@@ -653,7 +653,7 @@ Changelog
 -   Ajout dans les scénarios d’un bouton de choix d’équipement sur les
     commandes de type slider
 
--   Mise à jour de bootstrap en 2.3.7
+-   Bootstrap-Update in 2.3.7
 
 -   Ajout de la notion de résumé domotique (permet de connaitre d’un
     seul coup le nombre de lumières à ON, les porte ouvertes, les
@@ -679,7 +679,7 @@ Changelog
 2.3
 ---
 
--   Correction des filtres sur le market
+-   Korrektur der Filter auf dem Markt
 
 -   Correction des checkbox sur la page d’édition des vues (sur une
     zone graphique)
@@ -748,7 +748,7 @@ Changelog
 -   Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom
     du jeedom)
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Déplacement de tous les fichiers temporaire dans /tmp
 
@@ -852,7 +852,7 @@ Changelog
 2.2
 ---
 
--   Correction de bugs
+-   Fehlerkorrekturen
 
 -   Simplification de l’accès aux configurations des plugins à partir de
     la page santé
@@ -895,7 +895,7 @@ Changelog
 
 -   Optimisation du chargement du dashboard
 
--   Correction de nombreux warning
+-   Viele Warnungen behoben
 
 -   Possibilité lors d’un appel api à un scénario de passer des tags
     dans l’url
@@ -992,7 +992,7 @@ Changelog
 
 -   Optimisation du chargement du dashboard
 
--   Correction de nombreux warning
+-   Viele Warnungen behoben
 
 -   Possibilité lors d’un appel api à un scénario de passer des tags
     dans l’url
