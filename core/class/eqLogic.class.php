@@ -704,15 +704,6 @@ class eqLogic {
 		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
-		$vcolor = 'cmdColor';
-		if ($version == 'mobile' || $_version == 'mview') {
-			$vcolor = 'mcmdColor';
-		}
-		$replace['#cmd-background-color#'] = ($this->getPrimaryCategory() == '') ? jeedom::getConfiguration('eqLogic:category:default:' . $vcolor) : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-		$parameters = $this->getDisplay('parameters');
-		if (is_array($parameters) && isset($parameters['cmd-background-color'])) {
-			$replace['#cmd-background-color#'] = $parameters['cmd-background-color'];
-		}
 		if (is_array($parameters)) {
 			foreach ($parameters as $key => $value) {
 				$replace['#' . $key . '#'] = $value;
@@ -778,7 +769,7 @@ class eqLogic {
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$table['tag'][$tag] .= '<br/>';
 				}
-				$table['tag'][$tag] .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+				$table['tag'][$tag] .= $cmd->toHtml($_version, '');
 				$br_before = 0;
 				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 					$table['tag'][$tag] .= '<br/>';
@@ -798,7 +789,7 @@ class eqLogic {
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$cmd_html .= '<br/>';
 				}
-				$cmd_html .= $cmd->toHtml($_version, '', $replace['#cmd-background-color#']);
+				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
 				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 					$cmd_html .= '<br/>';
@@ -1004,15 +995,6 @@ class eqLogic {
 			$name .= '</strong>';
 		}
 		return $name;
-	}
-	
-	public function getBackgroundColor($_version = 'dashboard') {
-		$vcolor = ($_version == 'mobile') ? 'mcolor' : 'color';
-		$category = $this->getPrimaryCategory();
-		if ($category != '') {
-			return jeedom::getConfiguration('eqLogic:category:' . $category . ':' . $vcolor);
-		}
-		return jeedom::getConfiguration('eqLogic:category:default:' . $vcolor);
 	}
 	
 	public function getPrimaryCategory() {

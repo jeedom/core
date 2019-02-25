@@ -1052,7 +1052,7 @@ class cmd {
 		return $template;
 	}
 	
-	public function toHtml($_version = 'dashboard', $_options = '', $_cmdColor = null) {
+	public function toHtml($_version = 'dashboard', $_options = '') {
 		$version2 = jeedom::versionAlias($_version, false);
 		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
 			return '';
@@ -1105,18 +1105,6 @@ class cmd {
 			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
 		}
 		$template = $this->getWidgetTemplateCode($_version);
-		
-		if ($_cmdColor === null && $version != 'scenario') {
-			$eqLogic = $this->getEqLogic();
-			$vcolor = ($version == 'mobile') ? 'mcmdColor' : 'cmdColor';
-			if ($eqLogic->getPrimaryCategory() == '') {
-				$replace['#cmdColor#'] = jeedom::getConfiguration('eqLogic:category:default:' . $vcolor);
-			} else {
-				$replace['#cmdColor#'] = jeedom::getConfiguration('eqLogic:category:' . $eqLogic->getPrimaryCategory() . ':' . $vcolor);
-			}
-		} else {
-			$replace['#cmdColor#'] = $_cmdColor;
-		}
 		
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
