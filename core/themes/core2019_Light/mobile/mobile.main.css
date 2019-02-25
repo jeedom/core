@@ -1,4 +1,3 @@
-
 /* _____________________________GLOBAL */
 ::-moz-color-swatch {
   border: none;
@@ -94,8 +93,6 @@
 	background: var(--form-bg-color) !important;
 }
 
-
-
 [data-category] .widget-name {
 	display:block;
 	min-height: 1.5em !important;
@@ -144,7 +141,7 @@
 }
 
 
-.ui-page-theme-a .ui-btn.ui-btn-raised{
+.ui-page-theme-a .ui-btn.ui-btn-raised {
 	color: var(--link-color) !important;
 	background-color: var(--eq-bg-color) !important;
 }
@@ -237,6 +234,10 @@ a.action.ui-btn {
 
 
 /* ________________DIVERS */
+div.ui-header.ui-bar-inherit > a[data-rel=back]{
+	background-color: var(--btn-default-color) !important;
+}
+
 #in_searchWidget {
 	top: 62px;
 	padding-left: 5px;
@@ -366,7 +367,7 @@ path.highcharts-graph {
 
 /* rounded! */
 ::-moz-color-swatch {
-  border-radius: calc(var(--border-radius) * 2) !important;
+  border-radius: var(--border-radius) !important;
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -394,21 +395,21 @@ textarea,
 .input-group-addon,
 .market,
 button {
-  border-radius: calc(var(--border-radius) * 2) !important;
+  border-radius: var(--border-radius) !important;
 }
 .ui-dialog {
-  border-radius: calc(var(--border-radius) * 2) !important;
+  border-radius: var(--border-radius) !important;
 }
 
 .nav.nav-tabs li:first-child,
 .nav.nav-tabs li:first-child a {
-  border-top-left-radius: calc(var(--border-radius) * 2)  !important;
+  border-top-left-radius: var(--border-radius)  !important;
 }
 .nav.nav-tabs li:last-child,
 .nav.nav-tabs li:last-child a {
-  border-top-right-radius: calc(var(--border-radius) * 2)  !important;
+  border-top-right-radius: var(--border-radius)  !important;
 }
 .tab-content {
-  border-bottom-left-radius: calc(var(--border-radius) * 2)  !important;
-  border-bottom-right-radius: calc(var(--border-radius) * 2)  !important;
+  border-bottom-left-radius: var(--border-radius)  !important;
+  border-bottom-right-radius: var(--border-radius)  !important;
 }
