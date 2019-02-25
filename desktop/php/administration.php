@@ -680,7 +680,7 @@ user::isBan();
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
-					<legend>{{Thème}}</legend>
+					<legend>{{Thèmes}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -759,7 +759,7 @@ user::isBan();
 							<input type="checkbox" class="configKey" data-l1key="hideBackgroundImg"/>
 						</div>
 					</div>
-					<legend>{{Widgets}}</legend>
+					<legend>{{Tuiles}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Pas horizontal}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -779,7 +779,7 @@ user::isBan();
 						</div>
 					</div>
 					
-					<legend>{{Personalisation}}</legend>
+					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

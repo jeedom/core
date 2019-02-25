@@ -8,33 +8,71 @@ By KiboOst for Jeedom
 @import url("mobile.main.css");
 @import url("colors.css");
 
+
 /* ___________________________________________________________DASHBOARD CATEGORIES coloring */
 
-[data-category=security] {
+.eqLogic.eqLogic-widget[data-category=security] {
   background-color: var(--cat-security-color) !important;
 }
-[data-category=heating] {
+.eqLogic.eqLogic-widget[data-category=heating] {
   background-color: var(--cat-heating-color) !important;
 }
-[data-category=automatism]{
+.eqLogic.eqLogic-widget[data-category=automatism]{
   background-color: var(--cat-automatism-color) !important;
 }
-[data-category=light] {
+.eqLogic.eqLogic-widget[data-category=light] {
   background-color: var(--cat-light-color) !important;
 }
-[data-category=multimedia] {
+.eqLogic.eqLogic-widget[data-category=multimedia] {
   background-color: var(--cat-multimedia-color) !important;
 }
-[data-category=energy] {
+.eqLogic.eqLogic-widget[data-category=energy] {
   background-color: var(--cat-energy-color) !important;
 }
-[data-category=''] {
+.eqLogic.eqLogic-widget[data-category=''] {
   background-color: var(--cat-other-color) !important;
 }
 :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) {
   background-color: var(--cat-other-color) !important;
 }
 
+.eqLogic.eqLogic-widget[data-category=security] .ui-btn {
+  background-color: var(--cat-security-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=heating] .ui-btn {
+  background-color: var(--cat-heating-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=automatism] .ui-btn {
+  background-color: var(--cat-automatism-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=light] .ui-btn {
+  background-color: var(--cat-light-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=multimedia] .ui-btn {
+  background-color: var(--cat-multimedia-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=energy] .ui-btn {
+  background-color: var(--cat-energy-BtnColor) !important;
+}
+
+.scenario-widget.scenario .changeScenarioState,
+.scenario-widget.scenario .changeScenarioState i {
+  background-color: var(--cat-scenario-BtnColor) !important;
+  color: var(--cat-scenario-color) !important;
+}
+
+.eqLogic.eqLogic-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle),
+.scenario.scenario-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle) {
+  color: var(--linkHoverLight-color) !important;
+}
+.eqLogic.eqLogic-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle):hover,
+.scenario.scenario-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle):hover {
+  opacity: 0.7;
+}
+
+.eqLogic.eqLogic-widget .ui-btn.ui-slider-handle {
+  background-color: var(--linkHoverLight-color) !important;
+}
 
 /* ___________________________________________________________EQs */
 .ui-overlay-a,
@@ -57,19 +95,6 @@ p.state {
 
 
 /* buttons */
-a.action.ui-btn {
-  background-color: var(--btn-default-color) !important;
-  color: var(--link-color) !important;
-}
-.eqLogic.eqLogic-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle),
-.scenario.scenario-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle) {
-  color: var(--linkHoverLight-color) !important;
-}
-.eqLogic.eqLogic-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle):hover,
-.scenario.scenario-widget :not(.ui-select) > .ui-btn:not(.ui-slider-handle):hover {
-  opacity: 0.7;
-}
-
 .eqLogic.eqLogic-widget .ui-input-text input {
 	color: var(--linkHoverLight-color);
 }
@@ -131,10 +156,6 @@ a.action.ui-btn {
 
 .ui-checkbox {
   color: var(--link-color);
-}
-
-.eqLogic-widget .action.ui-btn.ui-btn-raised {
-  background: var(--btn-default-color) !important;
 }
 
 /* ___________________________________________________________GAUGES */

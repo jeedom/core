@@ -46,8 +46,7 @@ a > img:hover {
 
 .btn:not(.cmdName),
 .btn:not(.cmdName):focus,
-.btn:not(.cmdName):active,
-.eqLogic-widget .btn:not(.btn-circle):not(.cmdName) {
+.btn:not(.cmdName):active {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--btn-default-color) !important;
 }
@@ -55,8 +54,6 @@ a > img:hover {
   color: var(--linkHoverLight-color) !important;
   opacity: .85 !important;
 }
-
-
 
 span.cursor > i:hover,
 i.cursor:hover,

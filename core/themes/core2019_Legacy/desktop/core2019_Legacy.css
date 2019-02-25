@@ -63,6 +63,38 @@ a:focus {
   background-color: var(--cat-other-color) !important;
 }
 
+.scenario-widget.scenario {
+  background-color: var(--cat-scenario-color) !important;
+}
+.changeScenarioState,
+.changeScenarioState > i {
+  color: var(--cat-scenario-color) !important;
+}
+
+
+[data-category=security] .btn {
+  background-color: var(--cat-security-BtnColor) !important;
+}
+[data-category=heating] .btn {
+  background-color: var(--cat-heating-BtnColor) !important;
+}
+[data-category=automatism] .btn {
+  background-color: var(--cat-automatism-BtnColor) !important;
+}
+[data-category=light] .btn {
+  background-color: var(--cat-light-BtnColor) !important;
+}
+[data-category=multimedia] .btn {
+  background-color: var(--cat-multimedia-BtnColor) !important;
+}
+[data-category=energy] .btn {
+  background-color: var(--cat-energy-BtnColor) !important;
+}
+
+.scenario-widget.scenario .btn {
+  background-color: var(--cat-scenario-BtnColor) !important;
+}
+
 /* ___________________________________________________________DASHBOARD */
 
 #div_displayObject > a {
@@ -70,19 +102,6 @@ a:focus {
 }
 #div_displayObject > a > i {
   color: var(--link-color) !important;
-  -webkit-text-fill-color: var(--link-color) !important;
-}
-
-.scenario-widget.scenario {
-  background-color: var(--cat-scenario-color) !important;
-}
-.changeScenarioState,
-.changeScenarioState > i {
-  color: var(--cat-scenario-color) !important;
-  -webkit-text-fill-color: var(--cat-scenario-color) !important;
-}
-.scenario-widget.scenario .btn {
-  background-color: var(--linkHoverLight-color) !important;
 }
 
 .eqLogic-widget a,
