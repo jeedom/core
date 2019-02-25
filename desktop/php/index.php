@@ -295,7 +295,7 @@ if (init('rescue', 0) == 0) {
 								</li>
 								<li class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-										<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Configuration}}</span>
+										<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span>
 										<span class="caret"></span>
 									</a>
 									<?php if (isConnect('admin')) { ?>
@@ -319,10 +319,11 @@ if (init('rescue', 0) == 0) {
 												</ul>
 											</li>
 										<?php } ?>
-										
 										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préference}}</a></li>
+										<li role="separator" class="divider"></li>
 										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
 										<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
+										<li role="separator" class="divider"></li>
 										<?php if (isConnect('admin')) { ?>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
