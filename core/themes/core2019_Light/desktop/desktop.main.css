@@ -5,16 +5,10 @@ By KiboOst for Jeedom
 
 */
 
-* {
-  border-radius: 0 !important;
-  cursor: default;
-}
 body {
   font-family: 'Roboto' !important;
   background-color: var(--bg-color);
   color: var(--txt-color) !important;
-  border-radius: 0 !important;
-  border: none;
   background-repeat : no-repeat;
   background-size:cover;
   background-position: center center;
@@ -28,6 +22,7 @@ body {
 .ui-widget-overlay.ui-front {
   background: rgba(10,10,10,1);
 }
+
 /* links */
 a,
 a i,
@@ -35,7 +30,8 @@ a > span,
 .badge,
 a.btn,
 .btn,
-.btn > * {
+.btn > *,
+.ui-icon-closethick {
    cursor: pointer !important;
 }
 
@@ -141,7 +137,7 @@ legend {
 /* time on time widgets too low */
 .timeCmd.label {
   color: var(--txt-color);
-  background: linear-gradient(var(--bg-color), var(--bg-color)) fixed !important;
+  background: var(--bg-color);
   padding: 0 0.5em !important;
 }
 
@@ -176,6 +172,7 @@ legend {
 }
 
 .statusCmd {
+  color: var(--linkHoverLight-color);
   position: absolute;
   left: 5px;
   top: 3px;
@@ -282,7 +279,6 @@ button .fas.fa-plus-circle {
 [data-subtype=slider] > div > span,
 span[style*="transform: translate(-50%, 150%)"] {
   color: var(--link-color);
-  background: linear-gradient(transparent, transparent) fixed !important;
   background-color: transparent !important;
   transform: translate(calc(100% + 20px)) !important;
 }
@@ -1364,11 +1360,6 @@ path.highcharts-graph {
 }
 
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
-  color: var(--txt-color) !important;
-  background-color: var(--btn-default-color)!important;
-  border: none!important;
-}
-.ui-dialog-buttonset .ui-button:not(:first-child) {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--btn-default-color)!important;
   border: none!important;
@@ -1423,7 +1414,6 @@ path.highcharts-graph {
 }
 .ui-dialog-titlebar-close {
   opacity: 0.5 !important;
-  text-shadow: none !important;
   font-size: 30px !important;
 }
 .ui-dialog-titlebar-close:hover {
