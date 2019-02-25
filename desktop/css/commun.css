@@ -50,6 +50,39 @@ legend:first-letter {
   cursor : pointer;
 }
 
+/* eqlogic dragging */
+.eqLogic-widget {
+  float: left !important;
+}
+.grid:after {
+  content: '' !important;
+  display: block !important;
+  clear: both !important;
+}
+.eqLogic-widget:hover {
+  border-color: hsla(0, 0%, 100%, 0.5) !important;
+}
+.eqLogic-widget.is-dragging,
+.eqLogic-widget.is-positioning-post-drag {
+  background: #EA0 !important;
+  z-index: 2 !important; /* keep dragged item on top */
+}
+.eqLogic-widget.ui-draggable-dragging,
+.eqLogic-widget.is-positioning-post-drag {
+  background: #C90 !important;
+  z-index: 2 !important;
+}
+.packery-drop-placeholder {
+  outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
+  outline-offset: -6px !important;
+  -webkit-transition: -webkit-transform 0.2s !important;
+  transition: transform 0.2s !important;
+}
+.counterReorderJeedom {
+  color: white;
+}
+
+
 /* Themes for different contexts */
 .alert {
   border-left: 5px solid #F3E5A7;
