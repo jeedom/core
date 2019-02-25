@@ -704,11 +704,6 @@ class eqLogic {
 		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
-		if (is_array($parameters)) {
-			foreach ($parameters as $key => $value) {
-				$replace['#' . $key . '#'] = $value;
-			}
-		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
 		if (is_array($this->widgetPossibility('parameters'))) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
