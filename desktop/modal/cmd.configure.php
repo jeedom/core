@@ -6,15 +6,8 @@ $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
   throw new Exception('Commande non trouvé : ' . init('cmd_id'));
 }
-$cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
-/*foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
-if (!isset($cmdInfo['html'][$value]) || $cmdInfo['html'][$value] == '') {
-$cmdInfo['html'][$value] = $cmd->getWidgetTemplateCode($value);
-}
-}*/
 global $JEEDOM_INTERNAL_CONFIG;
-
-sendVarToJS('cmdInfo', $cmdInfo);
+sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
 sendVarToJS('cmdInfoSearchString', urlencode(str_replace('#', '', $cmd->getHumanName())));
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
