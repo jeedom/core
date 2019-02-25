@@ -179,6 +179,7 @@ legend {
 .statusCmd {
   position: absolute;
   left: 5px;
+  top: 3px;
   width: 30px;
   z-index: 1030;
 }
