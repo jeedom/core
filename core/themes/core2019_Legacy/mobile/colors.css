@@ -42,6 +42,15 @@ By KiboOst for Jeedom
   --cat-other-color: rgba(25, 188, 156, 1);
   --cat-scenario-color: rgba(127, 140, 141,1);
 
+  --cat-security-BtnColor: rgba(156, 132, 216, 1);
+  --cat-heating-BtnColor: rgba(81, 168, 225, 1);
+  --cat-automatism-BtnColor: rgba(168, 168, 168, 1);
+  --cat-light-BtnColor: rgba(248, 189, 65, 1);
+  --cat-multimedia-BtnColor: rgba(98, 120, 145, 1);
+  --cat-energy-BtnColor: rgba(86, 216, 115, 1);
+  --cat-other-BtnColor: rgba(65, 228, 196, 1);
+  --cat-scenario-BtnColor: rgba(230, 230, 235,1);
+
   --url-iconsDark: url(ui-icons-white.png);
   --url-iconsLight: url(ui-icons-black.png);
 
