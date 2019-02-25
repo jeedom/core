@@ -7,7 +7,6 @@ By KiboOst for Jeedom
 
 * {
   border-radius: 0 !important;
-  box-shadow: none !important;
   cursor: default;
 }
 body {
@@ -224,6 +223,10 @@ header .navbar-toggle {
   background-color: var(--eq-bg-color) !important;
   border: none;
 }
+.dropdown-menu,
+.dropdown-menu > ul {
+  z-index: 9999 !important;
+}
 .nav .open > a,
 .dropdown-menu > li > a:hover {
   background-color: var(--bg-color) !important;
@@ -246,6 +249,7 @@ header .navbar-toggle {
 .dropdown-menu .divider{
   background-color: var(--el-defaultColor) !important;
 }
+
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -569,6 +573,23 @@ button:focus {
   background: var(--form-bg-color) !important;
 }
 
+.input-group > .dropdown {
+  vertical-align: top !important;
+  display: table-cell;  
+}
+
+.dropdown.open > .scrollable-menu,
+.dropdown.open >.scrollable-menu:hover {
+  position: absolute;
+  z-index: 9999 !important;
+}
+.form-group .scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+  z-index: 9999 !important;
+}
+
 
 /* ___________________________________________________________PANELS */
 div.panel {
@@ -773,20 +794,6 @@ input[type=radio][disabled] {
   cursor: not-allowed
 }
 
-/*
-select:not([data-l2key=graphColor]):not(.expressionAttr):not(select) {
-  color: var(--txt-color) !important;
-  background-color: var(--form-bg-color) !important;
-  border: none;
-}
-.eqLogic.eqLogic-widget select {
-  background-color: transparent !important;
-}
-select:not([data-l2key=graphColor]) option {
-  color: var(--txt-color) !important;
-  background-color: var(--form-bg-color) !important;
-}
-*/
 input[type="checkbox"]:not(.subElementAttr) {
   top: 2px !important;
   margin-right: 1rem !important;
@@ -1005,12 +1012,6 @@ tr.tablesorter-filter-row td {
 .table-bordered>thead>tr>th {
   border: none !important;
 }
-
-/*
-#table_cmd tbody tr.cmd:nth-child(n) {
-  border-top: 1px solid var(--form-bg-color) !important;
-}
-*/
 
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   border: none !important;
