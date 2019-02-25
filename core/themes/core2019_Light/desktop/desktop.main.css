@@ -176,6 +176,13 @@ legend {
   color: var(--link-color) !important;
 }
 
+.statusCmd {
+  position: absolute;
+  left: 5px;
+  width: 30px;
+  z-index: 1030;
+}
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
