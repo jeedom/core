@@ -1,3 +1,7 @@
+/*
+Theme Core 2019 @Jeedom
+*/
+
 /* _____________________________GLOBAL */
 ::-moz-color-swatch {
   border: none;
@@ -147,7 +151,7 @@
 
 .ui-page-theme-a .ui-btn.ui-btn-raised {
 	color: var(--link-color) !important;
-	background-color: var(--eq-bg-color) !important;
+	background-color: var(--defaultBkg-color) !important;
 }
 .ui-page-theme-a .ui-btn.ui-btn-raised:hover {
 	color: var(--txt-color) !important;
@@ -165,7 +169,7 @@
 .ui-bottom-sheet-list .ui-bottom-sheet-link,
 .ui-bottom-sheet {
 	color: var(--link-color) !important;
-	background-color: var(--eq-bg-color) !important;
+	background-color: var(--defaultBkg-color) !important;
 }
 .ui-bottom-sheet-list .ui-bottom-sheet-link:hover,
 .ui-listview > li >a:hover {
