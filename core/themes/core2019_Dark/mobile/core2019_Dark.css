@@ -1,8 +1,5 @@
 /*
-
-Theme Core 2019
-By KiboOst for Jeedom
-
+Theme Core 2019 @Jeedom
 */
 
 @import url("mobile.main.css");
@@ -28,37 +25,37 @@ By KiboOst for Jeedom
 	color: var(--linkHoverLight-color) !important;
 }
 
-.eqLogic-widget,
+.eqLogic.eqLogic-widget,
 .scenario.scenario-widget {
-	background-color: var(--eq-bg-color) !important;
+	background-color: rgba(var(--eq-bg-color), var(--eq-opacity));
 }
 
 [data-category=security] .widget-name {
-	background-color: var(--cat-security-color) !important;
+	background-color: rgba(var(--cat-security-color), var(--eq-opacity));
 }
 [data-category=heating] .widget-name {
-	background-color: var(--cat-heating-color) !important;
+	background-color: rgba(var(--cat-heating-color), var(--eq-opacity));
 }
 [data-category=automatism] .widget-name {
-	background-color: var(--cat-automatism-color) !important;
+	background-color: rgba(var(--cat-automatism-color), var(--eq-opacity));
 }
 [data-category=light] .widget-name {
-	background-color: var(--cat-light-color) !important;
+	background-color: rgba(var(--cat-light-color), var(--eq-opacity));
 }
 [data-category=multimedia] .widget-name {
-	background-color: var(--cat-multimedia-color) !important;
+	background-color: rgba(var(--cat-multimedia-color), var(--eq-opacity));
 }
 [data-category=energy] .widget-name {
-	background-color: var(--cat-energy-color) !important;
+	background-color: rgba(var(--cat-energy-color), var(--eq-opacity));
 }
 [data-category=''] .widget-name {
-	background-color: var(--cat-other-color) !important;
+	background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
 .eqLogic-widget:not([data-category]) .widget-name{
-	background-color: var(--cat-other-color) !important;
+	background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
 .scenario-widget .widget-name {
-	background-color: var(--cat-scenario-color) !important;
+	background-color: rgba(var(--cat-scenario-color), var(--eq-opacity)) !important;
 }
 
 /* ___________________________________________________________EQs */
@@ -138,7 +135,7 @@ a.action.ui-btn {
 	fill: var(--txt-color) !important;
 }
 .highcharts-background {
-	fill: var(--eq-bg-color) !important;
+	fill: var(--defaultBkg-color) !important;
 }
 .gauge .highcharts-background {
 	fill: transparent !important;
@@ -153,7 +150,7 @@ a.action.ui-btn {
 	fill: var(--bg-color) !important;
 }
 .highcharts-grid-line {
-	stroke: var(--eq-bg-color);
+	stroke: var(--defaultBkg-color);
 }
 .highcharts-button-box {
 	fill: var(--el-defaultColor) !important;
