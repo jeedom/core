@@ -7,7 +7,7 @@
         <p id="phrase_login_btn"></p>
       </div>
       <div class="rgstr-btn splits">
-        <img style="display:block; margin-left:auto; margin-right:5%; width:45%;" src="<?php echo config::byKey('product_connection_image') ?>" class="img-responsive" />
+        <img class="img-responsive" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="display:block; margin: 10% 5% 10% auto; width:45%;">
       </div>
       <div class="wrapper">
         <div id="login" tabindex="503" class="form-group">
