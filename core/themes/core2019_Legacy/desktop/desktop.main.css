@@ -956,6 +956,7 @@ ul.nav.nav-tabs li,
   background-color: var(--panel-bg-color) !important;
   color: var(--link-color) !important;
   border-top : 3px var(--logo-primary-color) solid !important;
+  height: 40px;
 }
 .nav-tabs,
 .nav-tabs * {
@@ -1602,14 +1603,11 @@ button {
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  .nav:not(.nav-pills),
-  .dropdown-menu > li {
-    font-size: 12px !important;
-  }
+
   .form-control,
   .btn,
   .label {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   .panel {
     font-size: 14px !important;
