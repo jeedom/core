@@ -1,8 +1,5 @@
 /*
-
-Theme Core 2019
-By KiboOst for Jeedom
-
+Theme Core 2019 @Jeedom
 */
 
 @import url("desktop.main.css");
@@ -39,36 +36,36 @@ a:focus {
 /* ___________________________________________________________DASHBOARD CATEGORIES coloring */
 
 [data-category=security] {
-  background-color: var(--cat-security-color) !important;
+  background-color: rgba(var(--cat-security-color), var(--eq-opacity));
 }
 [data-category=heating] {
-  background-color: var(--cat-heating-color) !important;
+  background-color: rgba(var(--cat-heating-color), var(--eq-opacity));
 }
 [data-category=automatism]{
-  background-color: var(--cat-automatism-color) !important;
+  background-color: rgba(var(--cat-automatism-color), var(--eq-opacity));
 }
 [data-category=light] {
-  background-color: var(--cat-light-color) !important;
+  background-color: rgba(var(--cat-light-color), var(--eq-opacity));
 }
 [data-category=multimedia] {
-  background-color: var(--cat-multimedia-color) !important;
+  background-color: rgba(var(--cat-multimedia-color), var(--eq-opacity));
 }
 [data-category=energy] {
-  background-color: var(--cat-energy-color) !important;
+  background-color: rgba(var(--cat-energy-color), var(--eq-opacity));
 }
 [data-category=''] {
-  background-color: var(--cat-other-color) !important;
+  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
 :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) {
-  background-color: var(--cat-other-color) !important;
+  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
 
 .scenario-widget.scenario {
-  background-color: var(--cat-scenario-color) !important;
+  background-color: rgba(var(--cat-scenario-color), var(--eq-opacity)) !important;
 }
 .changeScenarioState,
 .changeScenarioState > i {
-  color: var(--cat-scenario-color) !important;
+  color: rgb(var(--cat-scenario-color));
 }
 
 
