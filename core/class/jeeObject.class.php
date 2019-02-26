@@ -459,9 +459,6 @@ class jeeObject {
 		if ($this->getConfiguration('tagTextColor') == '') {
 			$this->setConfiguration('tagTextColor', '#FFFFFF');
 		}
-		if ($this->getConfiguration('desktop::summaryTextColor') == '') {
-			$this->setConfiguration('desktop::summaryTextColor', '');
-		}
 		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
 			$this->setConfiguration('mobile::summaryTextColor', '');
 		}

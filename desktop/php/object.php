@@ -115,12 +115,6 @@ $allObject = jeeObject::buildTree(null, false);
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du résumé}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="desktop::summaryTextColor" />
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Image}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<span class="btn btn-default btn-file">
