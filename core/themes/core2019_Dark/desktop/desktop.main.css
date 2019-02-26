@@ -1,8 +1,5 @@
 /*
-
-Theme Core 2019
-By KiboOst for Jeedom
-
+Theme Core 2019 @Jeedom
 */
 
 body {
@@ -296,7 +293,7 @@ div[data-market_type=plugin]:hover {
 
 pre {
   color: var(--txt-color);
-  background-color: var(--eq-bg-color);
+  background-color: var(--defaultBkg-color);
   border: none;
 }
 
@@ -389,7 +386,7 @@ p.state {
 }
 
 /* résumé */
-li.alert-info.eqLogic { background-color: var(--eq-bg-color) !important; }
+li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
 .row .objectSummaryParent{ font-size : 14px !important; }
 
 /* ___________________________________________________________BUTTONS */
@@ -577,7 +574,7 @@ header .navbar-toggle {
 .dropdown-menu,
 .dropdown > a,
 .dropdown > a:hover {
-  background-color: var(--eq-bg-color) !important;
+  background-color: var(--defaultBkg-color) !important;
   border: none;
 }
 .dropdown-menu,
@@ -625,11 +622,11 @@ div.panel {
   border: none;
 }
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
-  background-color: var(--eq-bg-color) !important;
+  background-color: var(--defaultBkg-color) !important;
 }
 .panel {
   color: var(--txt-color) !important;
-  background-color: var(--eq-bg-color) !important;
+  background-color: var(--defaultBkg-color) !important;
   border-color: var(--el-defaultColor) !important;
 }
 
@@ -882,7 +879,7 @@ div[data-subtype=select][data-version=dplan] {
 
 select option {
   color: var(--link-color) !important;
-  background-color: var(--eq-bg-color) !important;
+  background-color: var(--defaultBkg-color) !important;
 }
 select optgroup {
   color: var(--txt-color) !important;
@@ -1147,12 +1144,6 @@ hr {
   border-right-width: thick !important;
 }
 
-.scenario-widget {
-  background-color: var(--btn-default-color) !important;
-}
-.scenario-widget.scenario {
-  background-color: var(--eq-bg-color) !important;
-}
 #div_displayScenario > legend {
   font-size: 16px;
 }
@@ -1170,7 +1161,7 @@ hr {
 #ul_noteList .li_noteDisplay a:active,
 #ul_noteList .li_noteDisplay a:focus,
 #ul_noteList .li_noteDisplay a:hover{
-  background-color: var(--eq-bg-color) !important;
+  background-color: var(--defaultBkg-color) !important;
 }
 
 /* ___________________________________________________________HIGHCHARTS */
@@ -1224,7 +1215,7 @@ h4.modal-title {
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
 .highcharts-background {
-  fill: var(--eq-bg-color) !important;
+  fill: var(--defaultBkg-color) !important;
 }
 .eqLogic-widget .highcharts-background {
   fill: transparent !important;
@@ -1390,7 +1381,7 @@ path.highcharts-graph {
 }
 
 .ui-dialog {
-  background-color: var(--eq-bg-color);
+  background-color: var(--defaultBkg-color);
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
@@ -1452,7 +1443,7 @@ path.highcharts-graph {
 .nav>li>a:focus,
 .nav>li>a:hover {
     text-decoration: none;
-    background-color: var(--eq-bg-color)
+    background-color: var(--defaultBkg-color)
 }
 
 
