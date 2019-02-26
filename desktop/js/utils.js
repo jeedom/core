@@ -460,6 +460,7 @@ function initPage(){
   initRowOverflow();
   initHelp();
   initTextArea();
+  initSelect();
   $('.nav-tabs a').on('click',function (e) {
     var scrollHeight = $(document).scrollTop();
     $(this).tab('show');
@@ -524,6 +525,27 @@ function initHelp(){
   $('.help').each(function(){
     if($(this).attr('data-help') != undefined){
       $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>');
+    }
+  });
+}
+
+function initSelect(){
+  $('.dropdown-menu a').click(function(){
+    selText = $(this).text() + '<span class="caret"></span>'
+    selValue = $(this).attr('data-value')
+    $(this).closest('.dropdown').find('button').html(selText)
+    $(this).closest('.dropdown').find('button').attr('value', selValue)
+  });
+  $('div.dropdown').each(function() {
+    button = $(this).find('button')
+    if (button) {
+      value = button.html().split('<span')[0].trim()
+      $(this).find('ul.dropdown-menu li a').each(function() {
+        if ($(this).attr('data-value') == value) {
+          button.html($(this).text() + '<span class="caret"></span>')
+          button.attr('value', $(this).attr('data-value'))
+        }
+      })
     }
   });
 }

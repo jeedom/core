@@ -19,30 +19,6 @@ if (url.match('#')) {
   $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
 }
 
-/* dropdowns */
-$('.dropdown-menu a').click(function(){
-  selText = $(this).text() + '<span class="caret"></span>'
-  selValue = $(this).attr('data-value')
-  $(this).closest('.dropdown').find('button').html(selText)
-  $(this).closest('.dropdown').find('button').attr('value', selValue)
-})
-$(document).ready(function() {
-    $('.form-group div.dropdown').each(function() {
-        button = $(this).find('button')
-        if (button) {
-            value = button.html().split('<span')[0].trim()
-            $(this).find('ul.dropdown-menu li a').each(function() {
-                if ($(this).attr('data-value') == value) {
-                    button.html($(this).text() + '<span class="caret"></span>')
-                    button.attr('value', $(this).attr('data-value'))
-                }
-            })
-        }
-    })
-})
-
-
-
 $('.nav-tabs.nav-primary a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -260,7 +236,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-
+  
   return false;
 });
 
@@ -570,7 +546,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-
+      
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
@@ -775,11 +751,17 @@ function addObjectSummary(_summary) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="calcul">';
-  tr += '<option value="sum">{{Somme}}</option>';
-  tr += '<option value="avg">{{Moyenne}}</option>';
-  tr += '<option value="text">{{Texte}}</option>';
-  tr += '</select>';
+  tr += '<div class="dropdown">';
+  tr += '<button class="btn btn-xs btn-default dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
+  tr += _summary.calcul;
+  tr += '<span class="caret"></span>';
+  tr += '</button>';
+  tr += '<ul class="dropdown-menu dropdown-menu-right">';
+  tr += '<li><a href="#" data-value="sum">{{Somme}}</a></li>';
+  tr += '<li><a href="#" data-value="avg">{{Moyenne}}</a></li>';
+  tr += '<li><a href="#" data-value="text">{{Texte}}</a></li>';
+  tr += '</ul>';
+  tr += '</div>';
   tr += '</td>';
   tr += '<td>';
   tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
@@ -789,10 +771,16 @@ function addObjectSummary(_summary) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="unit" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<select class="objectSummaryAttr form-control input-sm" data-l1key="count">';
-  tr += '<option value="">{{Aucun}}</option>';
-  tr += '<option value="binary">{{Binaire}}</option>';
-  tr += '</select>';
+  tr += '<div class="dropdown">';
+  tr += '<button class="btn btn-xs btn-default dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="count">';
+  tr += _summary.count;
+  tr += '<span class="caret"></span>';
+  tr += '</button>';
+  tr += '<ul class="dropdown-menu dropdown-menu-right">';
+  tr += '<li><a href="#" data-value="">{{Aucun}}</a></li>';
+  tr += '<li><a href="#" data-value="binary">{{Binaire}}</a></li>';
+  tr += '</ul>';
+  tr += '</div>';
   tr += '</td>';
   tr += '<td>';
   tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';
@@ -813,6 +801,7 @@ function addObjectSummary(_summary) {
   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
   }
+  initSelect();
   modifyWithoutSave = true;
 }
 
