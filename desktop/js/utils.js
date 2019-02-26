@@ -422,7 +422,7 @@ function changeThemeAuto(){
     if($('#bootstrap_theme_css').attr('data-nochange') == 1){
       return;
     }
-    var theme = 'core/themes/'+theme_config.default_bootstrap_theme_night+'/desktop/' + userProfils.default_bootstrap_theme_night + '.css';
+    var theme = 'core/themes/'+theme_config.default_bootstrap_theme_night+'/desktop/' + theme_config.default_bootstrap_theme_night + '.css';
     var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
     if(parseInt(theme_config.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(theme_config.theme_end_day_hour.replace(':','')) >  currentTime){
       theme = 'core/themes/'+theme_config.default_bootstrap_theme+'/desktop/' + theme_config.default_bootstrap_theme + '.css';
