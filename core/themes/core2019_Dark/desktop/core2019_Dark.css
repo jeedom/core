@@ -1,8 +1,5 @@
 /*
-
-Theme Core 2019
-By KiboOst for Jeedom
-
+Theme Core 2019 @Jeedom
 */
 
 @import url("desktop.main.css");
@@ -26,9 +23,13 @@ a:focus {
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
 :not(.batteryListContainer) > .eqLogic-widget {
-  background-color: var(--eq-bg-color) !important;
+  background-color: rgba(var(--eq-bg-color), var(--eq-opacity)) !important;
   color: var(--txt-color) !important;
 }
+.scenario-widget {
+  background-color: rgba(var(--eq-bg-color), var(--eq-opacity)) !important;
+}
+
 
 #div_displayObject > a {
   background-color: var(--btnEq-default-color) !important;
@@ -50,32 +51,32 @@ a:focus {
 }
 
 .scenario.scenario-widget .widget-name {
-  background-color: var(--cat-scenario-color) !important;
+  background-color: rgba(var(--cat-scenario-color), var(--eq-opacity)) !important;
 }
 
 [data-category=security]>.widget-name {
-  background-color: var(--cat-security-color) !important;
+  background-color: rgba(var(--cat-security-color), var(--eq-opacity));
 }
 [data-category=heating]>.widget-name {
-  background-color: var(--cat-heating-color) !important;
+  background-color: rgba(var(--cat-heating-color), var(--eq-opacity));
 }
 [data-category=automatism]>.widget-name {
-  background-color: var(--cat-automatism-color) !important;
+  background-color: rgba(var(--cat-automatism-color), var(--eq-opacity));
 }
 [data-category=light]>.widget-name {
-  background-color: var(--cat-light-color) !important;
+  background-color: rgba(var(--cat-light-color), var(--eq-opacity));
 }
 [data-category=multimedia]>.widget-name {
-  background-color: var(--cat-multimedia-color) !important;
+  background-color: rgba(var(--cat-multimedia-color), var(--eq-opacity));
 }
 [data-category=energy]>.widget-name {
-  background-color: var(--cat-energy-color) !important;
+  background-color: rgba(var(--cat-energy-color), var(--eq-opacity));
 }
 [data-category='']>.widget-name {
-  background-color: var(--cat-other-color) !important;
+  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
-:not(.batteryListContainer) > .eqLogic-widget:not([data-category])>.widget-name {
-  background-color: var(--cat-other-color) !important;
+:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name {
+  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
 }
 
 
