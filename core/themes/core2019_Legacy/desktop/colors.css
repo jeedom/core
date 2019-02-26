@@ -1,13 +1,11 @@
 /*
-
-Theme Core 2019
-By KiboOst for Jeedom
-
+Theme Core 2019 @Jeedom
 */
 :root {
   --lineheight : 1.42em;
   /* keet it as rem even when zero!!*/
   --border-radius: 1rem;
+  --eq-opacity: 1;
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
@@ -25,7 +23,7 @@ By KiboOst for Jeedom
   --sc-lightTxt-color: rgb(240, 240, 240);
 
   --el-defaultColor: rgb(200, 200, 200);
-  --eq-bg-color: rgb(255, 255, 255);
+  --defaultBkg-color: rgb(255, 255, 255);
   --form-bg-color: rgb(220, 220, 220);
   --btnEq-default-color: rgb(220, 220, 220);
   --btn-default-color: rgb(100, 100, 100);
@@ -33,23 +31,24 @@ By KiboOst for Jeedom
 
   --eqTitle-color: rgb(240, 240, 240);
 
-  --cat-security-color: rgba(116, 92, 176, 1);
-  --cat-heating-color: rgba(41, 128, 185, 1);
-  --cat-automatism-color: rgba(128, 128, 128, 1);
-  --cat-light-color: rgba(243, 156, 18, 1);
-  --cat-multimedia-color: rgba(52, 73, 94, 1);
-  --cat-energy-color: rgba(46, 176, 75, 1);
-  --cat-other-color: rgba(25, 188, 156, 1);
-  --cat-scenario-color: rgba(127, 140, 141,1);
+  --eq-bg-color: 255, 255, 255;
+  --cat-security-color: 116, 92, 176;
+  --cat-heating-color: 41, 128, 185;
+  --cat-automatism-color: 128, 128, 128;
+  --cat-light-color: 243, 156, 18;
+  --cat-multimedia-color: 52, 73, 94;
+  --cat-energy-color: 46, 176, 75;
+  --cat-other-color: 25, 188, 156;
+  --cat-scenario-color: 127, 140, 141;
 
-  --cat-security-BtnColor: rgba(156, 132, 216, 1);
-  --cat-heating-BtnColor: rgba(81, 168, 225, 1);
-  --cat-automatism-BtnColor: rgba(168, 168, 168, 1);
-  --cat-light-BtnColor: rgba(248, 189, 65, 1);
-  --cat-multimedia-BtnColor: rgba(98, 120, 145, 1);
-  --cat-energy-BtnColor: rgba(86, 216, 115, 1);
-  --cat-other-BtnColor: rgba(65, 228, 196, 1);
-  --cat-scenario-BtnColor: rgba(230, 230, 235,1);
+  --cat-security-BtnColor: rgb(156, 132, 216);
+  --cat-heating-BtnColor: rgb(81, 168, 225);
+  --cat-automatism-BtnColor: rgb(168, 168, 168);
+  --cat-light-BtnColor: rgb(248, 189, 65);
+  --cat-multimedia-BtnColor: rgb(98, 120, 145);
+  --cat-energy-BtnColor: rgb(86, 216, 115);
+  --cat-other-BtnColor: rgb(65, 228, 196);
+  --cat-scenario-BtnColor: rgb(230, 230, 235);
 
   --url-iconsDark: url(ui-icons-white.png);
   --url-iconsLight: url(ui-icons-black.png);
