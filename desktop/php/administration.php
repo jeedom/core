@@ -49,6 +49,156 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
+									<?php echo config::byKey('language'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="fr_FR">French</a></li>
+									<li><a href="#" data-value="en_US">English</a></li>
+									<li><a href="#" data-value="de_DE">German</a></li>
+									<li><a href="#" data-value="es_ES">Spanish</a></li>
+									<li><a href="#" data-value="ru_RU">Russian</a></li>
+									<li><a href="#" data-value="id_ID">Indonesian</a></li>
+									<li><a href="#" data-value="it_IT">Italian</a></li>
+									<li><a href="#" data-value="ja_JP">Japanese</a></li>
+									<li><a href="#" data-value="pt_PT">Portuguese</a></li>
+									<li><a href="#" data-value="tr">Turkish</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Générer les traductions}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
+						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
+									<?php echo config::byKey('timezone'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right scrollable-menu">
+									<li><a href="#" data-value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</a></li>
+									<li><a href="#" data-value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</a></li>
+									<li><a href="#" data-value="America/Adak">(GMT-10:00) Hawaii-Aleutian</a></li>
+									<li><a href="#" data-value="Etc/GMT+10">(GMT-10:00) Hawaii</a></li>
+									<li><a href="#" data-value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</a></li>
+									<li><a href="#" data-value="Pacific/Gambier">(GMT-09:00) Gambier Islands</a></li>
+									<li><a href="#" data-value="America/Anchorage">(GMT-09:00) Alaska</a></li>
+									<li><a href="#" data-value="America/Ensenada">(GMT-08:00) Tijuana, Baja California</a></li>
+									<li><a href="#" data-value="Etc/GMT+8">(GMT-08:00) Pitcairn Islands</a></li>
+									<li><a href="#" data-value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</a></li>
+									<li><a href="#" data-value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</a></li>
+									<li><a href="#" data-value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz, Mazatlan</a></li>
+									<li><a href="#" data-value="America/Dawson_Creek">(GMT-07:00) Arizona</a></li>
+									<li><a href="#" data-value="America/Belize">(GMT-06:00) Saskatchewan, Central America</a></li>
+									<li><a href="#" data-value="America/Cancun">(GMT-06:00) Guadalajara, Mexico City, Monterrey</a></li>
+									<li><a href="#" data-value="Chile/EasterIsland">(GMT-06:00) Easter Island</a></li>
+									<li><a href="#" data-value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</a></li>
+									<li><a href="#" data-value="America/New_York">(GMT-05:00) Eastern Time (US & Canada)</a></li>
+									<li><a href="#" data-value="America/Havana">(GMT-05:00) Cuba</a></li>
+									<li><a href="#" data-value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</a></li>
+									<li><a href="#" data-value="America/Caracas">(GMT-04:30) Caracas</a></li>
+									<li><a href="#" data-value="America/Santiago">(GMT-04:00) Santiago</a></li>
+									<li><a href="#" data-value="America/La_Paz">(GMT-04:00) La Paz</a></li>
+									<li><a href="#" data-value="Atlantic/Stanley">(GMT-04:00) Faukland Islands</a></li>
+									<li><a href="#" data-value="America/Campo_Grande">(GMT-04:00) Brazil</a></li>
+									<li><a href="#" data-value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</a></li>
+									<li><a href="#" data-value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</a></li>
+									<li><a href="#" data-value="America/Guadeloupe">(GMT-04:00) Guadeloupe</a></li>
+									<li><a href="#" data-value="America/St_Johns">(GMT-03:30) Newfoundland</a></li>
+									<li><a href="#" data-value="America/Araguaina">(GMT-03:00) UTC-3</a></li>
+									<li><a href="#" data-value="America/Montevideo">(GMT-03:00) Montevideo</a></li>
+									<li><a href="#" data-value="America/Miquelon">(GMT-03:00) Miquelon, St. Pierre</a></li>
+									<li><a href="#" data-value="America/Godthab">(GMT-03:00) Greenland</a></li>
+									<li><a href="#" data-value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires</a></li>
+									<li><a href="#" data-value="America/Sao_Paulo">(GMT-03:00) Brasilia</a></li>
+									<li><a href="#" data-value="America/Noronha">(GMT-02:00) Mid-Atlantic</a></li>
+									<li><a href="#" data-value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.</a></li>
+									<li><a href="#" data-value="Atlantic/Azores">(GMT-01:00) Azores</a></li>
+									<li><a href="#" data-value="Europe/Belfast">(GMT) Greenwich Mean Time : Belfast</a></li>
+									<li><a href="#" data-value="Europe/Dublin">(GMT) Greenwich Mean Time : Dublin</a></li>
+									<li><a href="#" data-value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</a></li>
+									<li><a href="#" data-value="Europe/London">(GMT) Greenwich Mean Time : London</a></li>
+									<li><a href="#" data-value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</a></li>
+									<li><a href="#" data-value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</a></li>
+									<li><a href="#" data-value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</a></li>
+									<li><a href="#" data-value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</a></li>
+									<li><a href="#" data-value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</a></li>
+									<li><a href="#" data-value="Africa/Algiers">(GMT+01:00) West Central Africa</a></li>
+									<li><a href="#" data-value="Africa/Windhoek">(GMT+01:00) Windhoek</a></li>
+									<li><a href="#" data-value="Asia/Beirut">(GMT+02:00) Beirut</a></li>
+									<li><a href="#" data-value="Africa/Cairo">(GMT+02:00) Cairo</a></li>
+									<li><a href="#" data-value="Asia/Gaza">(GMT+02:00) Gaza</a></li>
+									<li><a href="#" data-value="Africa/Blantyre">(GMT+02:00) Harare, Pretoria</a></li>
+									<li><a href="#" data-value="Asia/Jerusalem">(GMT+02:00) Jerusalem</a></li>
+									<li><a href="#" data-value="Europe/Minsk">(GMT+02:00) Minsk</a></li>
+									<li><a href="#" data-value="Asia/Damascus">(GMT+02:00) Syria</a></li>
+									<li><a href="#" data-value="Europe/Moscow">(GMT+03:00) Moscow, St. Petersburg, Volgograd</a></li>
+									<li><a href="#" data-value="Africa/Addis_Ababa">(GMT+03:00) Nairobi</a></li>
+									<li><a href="#" data-value="Asia/Tehran">(GMT+03:30) Tehran</a></li>
+									<li><a href="#" data-value="Asia/Dubai">(GMT+04:00) Abu Dhabi, Muscat</a></li>
+									<li><a href="#" data-value="Asia/Yerevan">(GMT+04:00) Yerevan</a></li>
+									<li><a href="#" data-value="Asia/Kabul">(GMT+04:30) Kabul</a></li>
+									<li><a href="#" data-value="Asia/Yekaterinburg">(GMT+05:00) Ekaterinburg</a></li>
+									<li><a href="#" data-value="Asia/Tashkent">(GMT+05:00) Tashkent</a></li>
+									<li><a href="#" data-value="Asia/Kolkata">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</a></li>
+									<li><a href="#" data-value="Asia/Katmandu">(GMT+05:45) Kathmandu</a></li>
+									<li><a href="#" data-value="Asia/Dhaka">(GMT+06:00) Astana, Dhaka</a></li>
+									<li><a href="#" data-value="Asia/Novosibirsk">(GMT+06:00) Novosibirsk</a></li>
+									<li><a href="#" data-value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)</a></li>
+									<li><a href="#" data-value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta</a></li>
+									<li><a href="#" data-value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</a></li>
+									<li><a href="#" data-value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</a></li>
+									<li><a href="#" data-value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</a></li>
+									<li><a href="#" data-value="Australia/Perth">(GMT+08:00) Perth</a></li>
+									<li><a href="#" data-value="Australia/Eucla">(GMT+08:45) Eucla</a></li>
+									<li><a href="#" data-value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</a></li>
+									<li><a href="#" data-value="Asia/Seoul">(GMT+09:00) Seoul</a></li>
+									<li><a href="#" data-value="Asia/Yakutsk">(GMT+09:00) Yakutsk</a></li>
+									<li><a href="#" data-value="Australia/Adelaide">(GMT+09:30) Adelaide</a></li>
+									<li><a href="#" data-value="Australia/Darwin">(GMT+09:30) Darwin</a></li>
+									<li><a href="#" data-value="Australia/Brisbane">(GMT+10:00) Brisbane</a></li>
+									<li><a href="#" data-value="Australia/Hobart">(GMT+10:00) Hobart</a></li>
+									<li><a href="#" data-value="Asia/Vladivostok">(GMT+10:00) Vladivostok</a></li>
+									<li><a href="#" data-value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</a></li>
+									<li><a href="#" data-value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</a></li>
+									<li><a href="#" data-value="Asia/Magadan">(GMT+11:00) Magadan</a></li>
+									<li><a href="#" data-value="Pacific/Norfolk">(GMT+11:30) Norfolk Island</a></li>
+									<li><a href="#" data-value="Asia/Anadyr">(GMT+12:00) Anadyr, Kamchatka</a></li>
+									<li><a href="#" data-value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</a></li>
+									<li><a href="#" data-value="Etc/GMT-12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</a></li>
+									<li><a href="#" data-value="Pacific/Chatham">(GMT+12:45) Chatham Islands</a></li>
+									<li><a href="#" data-value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</a></li>
+									<li><a href="#" data-value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<a class="btn btn-primary form-control" id="bt_forceSyncHour"><i class="fas fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
@@ -67,30 +217,6 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<select class="configKey form-control" data-l1key="language">
-								<option value="fr_FR">French</option>
-								<option value="en_US">English</option>
-								<option value="de_DE">German</option>
-								<option value="es_ES">Spanish</option>
-								<option value="ru_RU">Russian</option>
-								<option value="id_ID">Indonesian</option>
-								<option value="it_IT">Italian</option>
-								<option value="ja_JP">Japanese</option>
-								<option value="pt_PT">Portuguese</option>
-								<option value="tr">Turkish</option>
-							</select>
-						</div>
-						
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Générer les traductions}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
@@ -100,9 +226,8 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" >{{Dernière date connue}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<?php
-							
-							$cache = cache::byKey('hour');
-							$lastKnowDate = $cache->getValue();
+								$cache = cache::byKey('hour');
+								$lastKnowDate = $cache->getValue();
 							?>
 							<span class="label label-info" style="font-size : 1em;"><?php echo $lastKnowDate ?></span>
 						</div>
@@ -110,125 +235,10 @@ user::isBan();
 							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
-						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-							<select class="configKey form-control" data-l1key="timezone">
-								<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
-								<option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
-								<option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
-								<option value="Etc/GMT+10">(GMT-10:00) Hawaii</option>
-								<option value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</option>
-								<option value="Pacific/Gambier">(GMT-09:00) Gambier Islands</option>
-								<option value="America/Anchorage">(GMT-09:00) Alaska</option>
-								<option value="America/Ensenada">(GMT-08:00) Tijuana, Baja California</option>
-								<option value="Etc/GMT+8">(GMT-08:00) Pitcairn Islands</option>
-								<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
-								<option value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</option>
-								<option value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-								<option value="America/Dawson_Creek">(GMT-07:00) Arizona</option>
-								<option value="America/Belize">(GMT-06:00) Saskatchewan, Central America</option>
-								<option value="America/Cancun">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-								<option value="Chile/EasterIsland">(GMT-06:00) Easter Island</option>
-								<option value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</option>
-								<option value="America/New_York">(GMT-05:00) Eastern Time (US & Canada)</option>
-								<option value="America/Havana">(GMT-05:00) Cuba</option>
-								<option value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-								<option value="America/Caracas">(GMT-04:30) Caracas</option>
-								<option value="America/Santiago">(GMT-04:00) Santiago</option>
-								<option value="America/La_Paz">(GMT-04:00) La Paz</option>
-								<option value="Atlantic/Stanley">(GMT-04:00) Faukland Islands</option>
-								<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
-								<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
-								<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
-								<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
-								<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
-								<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
-								<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
-								<option value="America/Miquelon">(GMT-03:00) Miquelon, St. Pierre</option>
-								<option value="America/Godthab">(GMT-03:00) Greenland</option>
-								<option value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires</option>
-								<option value="America/Sao_Paulo">(GMT-03:00) Brasilia</option>
-								<option value="America/Noronha">(GMT-02:00) Mid-Atlantic</option>
-								<option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.</option>
-								<option value="Atlantic/Azores">(GMT-01:00) Azores</option>
-								<option value="Europe/Belfast">(GMT) Greenwich Mean Time : Belfast</option>
-								<option value="Europe/Dublin">(GMT) Greenwich Mean Time : Dublin</option>
-								<option value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</option>
-								<option value="Europe/London">(GMT) Greenwich Mean Time : London</option>
-								<option value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</option>
-								<option value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</option>
-								<option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-								<option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-								<option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-								<option value="Africa/Algiers">(GMT+01:00) West Central Africa</option>
-								<option value="Africa/Windhoek">(GMT+01:00) Windhoek</option>
-								<option value="Asia/Beirut">(GMT+02:00) Beirut</option>
-								<option value="Africa/Cairo">(GMT+02:00) Cairo</option>
-								<option value="Asia/Gaza">(GMT+02:00) Gaza</option>
-								<option value="Africa/Blantyre">(GMT+02:00) Harare, Pretoria</option>
-								<option value="Asia/Jerusalem">(GMT+02:00) Jerusalem</option>
-								<option value="Europe/Minsk">(GMT+02:00) Minsk</option>
-								<option value="Asia/Damascus">(GMT+02:00) Syria</option>
-								<option value="Europe/Moscow">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
-								<option value="Africa/Addis_Ababa">(GMT+03:00) Nairobi</option>
-								<option value="Asia/Tehran">(GMT+03:30) Tehran</option>
-								<option value="Asia/Dubai">(GMT+04:00) Abu Dhabi, Muscat</option>
-								<option value="Asia/Yerevan">(GMT+04:00) Yerevan</option>
-								<option value="Asia/Kabul">(GMT+04:30) Kabul</option>
-								<option value="Asia/Yekaterinburg">(GMT+05:00) Ekaterinburg</option>
-								<option value="Asia/Tashkent">(GMT+05:00) Tashkent</option>
-								<option value="Asia/Kolkata">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-								<option value="Asia/Katmandu">(GMT+05:45) Kathmandu</option>
-								<option value="Asia/Dhaka">(GMT+06:00) Astana, Dhaka</option>
-								<option value="Asia/Novosibirsk">(GMT+06:00) Novosibirsk</option>
-								<option value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)</option>
-								<option value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
-								<option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-								<option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
-								<option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
-								<option value="Australia/Perth">(GMT+08:00) Perth</option>
-								<option value="Australia/Eucla">(GMT+08:45) Eucla</option>
-								<option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
-								<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
-								<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
-								<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
-								<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
-								<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
-								<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
-								<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
-								<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
-								<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>
-								<option value="Asia/Magadan">(GMT+11:00) Magadan</option>
-								<option value="Pacific/Norfolk">(GMT+11:30) Norfolk Island</option>
-								<option value="Asia/Anadyr">(GMT+12:00) Anadyr, Kamchatka</option>
-								<option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
-								<option value="Etc/GMT-12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
-								<option value="Pacific/Chatham">(GMT+12:45) Chatham Islands</option>
-								<option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
-								<option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
-							</select>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-primary form-control" id="bt_forceSyncHour"><i class="fas fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
-						</div>
-					</div>
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
 			<form class="form-horizontal">
@@ -236,37 +246,55 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="form-control configKey" data-l1key="api::core::http::mode">
-								<option value="enable">{{Activé}}</option>
-								<option value="whiteip">{{IP blanche}}</option>
-								<option value="localhost">{{Localhost}}</option>
-								<option value="disable">{{Désactivé}}</option>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::http::mode">
+									<?php echo config::byKey('api::core::http::mode'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="enable">{{Activé}}</a></li>
+									<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>
+									<li><a href="#" data-value="localhost">{{Localhost}}</a></li>
+									<li><a href="#" data-value="disable">{{Désactivé}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
-								<option value="enable">{{Activé}}</option>
-								<option value="whiteip">{{IP blanche}}</option>
-								<option value="localhost">{{Localhost}}</option>
-								<option value="disable">{{Désactivé}}</option>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::jsonrpc::mode">
+									<?php echo config::byKey('api::core::jsonrpc::mode'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="enable">{{Activé}}</a></li>
+									<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>
+									<li><a href="#" data-value="localhost">{{Localhost}}</a></li>
+									<li><a href="#" data-value="disable">{{Désactivé}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="form-control configKey" data-l1key="api::core::tts::mode">
-								<option value="enable">{{Activé}}</option>
-								<option value="whiteip">{{IP blanche}}</option>
-								<option value="localhost">{{Localhost}}</option>
-								<option value="disable">{{Désactivé}}</option>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::tts::mode">
+									<?php echo config::byKey('api::core::tts::mode'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="enable">{{Activé}}</a></li>
+									<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>
+									<li><a href="#" data-value="localhost">{{Localhost}}</a></li>
+									<li><a href="#" data-value="disable">{{Désactivé}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
@@ -278,7 +306,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
@@ -291,10 +319,16 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="form-control configKey" data-l1key="api::core::pro::mode">
-								<option value="enable">{{Activé}}</option>
-								<option value="disable">{{Désactivé}}</option>
-							</select>
+							<div class="dropdown dropup">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::pro::mode">
+									<?php echo config::byKey('api::core::pro::mode'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="enable">{{Activé}}</a></li>
+									<li><a href="#" data-value="disable">{{Désactivé}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -309,10 +343,16 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="form-control configKey" data-l1key="api::core::market::mode">
-								<option value="enable">{{Activé}}</option>
-								<option value="disable">{{Désactivé}}</option>
-							</select>
+							<div class="dropdown dropup">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::market::mode">
+									<?php echo config::byKey('api::core::market::mode'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="enable">{{Activé}}</a></li>
+									<li><a href="#" data-value="disable">{{Désactivé}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<hr/>
@@ -334,12 +374,18 @@ user::isBan();
 							echo '</div>';
 							echo '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
 							echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
-							echo '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
-							echo '<option value="enable">{{Activé}}</option>';
-							echo '<option value="whiteip">{{IP blanche}}</option>';
-							echo '<option value="localhost">{{Localhost}}</option>';
-							echo '<option value="disable">{{Désactivé}}</option>';
-							echo '</select>';
+							echo '<div class="dropdown dropup">';
+							echo '<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::' . $plugin->getId() . '::mode">';
+							echo config::byKey('api::' . $plugin->getId() . '::mode');
+							echo '<span class="caret"></span>';
+							echo '</button>';
+							echo '<ul class="dropdown-menu dropdown-menu-right">';
+							echo '<li><a href="#" data-value="enable">{{Activé}}</a></li>';
+							echo '<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>';
+							echo '<li><a href="#" data-value="localhost">{{Localhost}}</a></li>';
+							echo '<li><a href="#" data-value="disable">{{Désactivé}}</a></li>';
+							echo '</ul>';
+							echo '</div>';
 							echo '</div>';
 							echo '</div>';
 						}
@@ -348,7 +394,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
@@ -401,7 +447,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="securitytab">
 			<br/>
 			<form class="form-horizontal">
@@ -504,7 +550,7 @@ user::isBan();
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
-					
+
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
@@ -539,7 +585,7 @@ user::isBan();
 							?>
 						</tbody>
 					</table>
-					
+
 				</fieldset>
 			</form>
 		</div>
@@ -553,11 +599,17 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<select class="configKey form-control" data-l1key="internalProtocol">
-									<option value="">{{Aucun}}</option>
-									<option value="http://">HTTP</option>
-									<option value="https://">HTTPS</option>
-								</select>
+								<div class="dropdown">
+									<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="internalProtocol">
+										<?php echo config::byKey('internalProtocol'); ?>
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li><a href="#" data-value="">{{Aucun}}</a></li>
+										<li><a href="#" data-value="http://">{{HTTP}}</a></li>
+										<li><a href="#" data-value="https://">{{HTTPS}}</a></li>
+									</ul>
+								</div>
 								<span class="input-group-addon">://</span>
 								<input type="text" class="configKey form-control" data-l1key="internalAddr" />
 								<span class="input-group-addon">:</span>
@@ -576,11 +628,17 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<select class="configKey form-control" data-l1key="externalProtocol">
-									<option value="">{{Aucun}}</option>
-									<option value="http://">HTTP</option>
-									<option value="https://">HTTPS</option>
-								</select>
+								<div class="dropdown">
+									<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="externalProtocol">
+										<?php echo config::byKey('externalProtocol'); ?>
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li><a href="#" data-value="">{{Aucun}}</a></li>
+										<li><a href="#" data-value="http://">{{HTTP}}</a></li>
+										<li><a href="#" data-value="https://">{{HTTPS}}</a></li>
+									</ul>
+								</div>
 								<span class="input-group-addon">://</span>
 								<input type="text" class="configKey form-control" data-l1key="externalAddr" />
 								<span class="input-group-addon">:</span>
@@ -671,14 +729,14 @@ user::isBan();
 								echo '</div>';
 								echo '</div>';
 							}
-							
+
 							?>
 						</div>
 					</div>
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
@@ -687,53 +745,77 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<select class="configKey form-control" data-l1key="default_bootstrap_theme">
-								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-									}
-								}
-								?>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme">
+									<?php echo config::byKey('default_bootstrap_theme'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+												echo '<li><a href="#" data-value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</a></li>';
+											}
+										}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<select class="configKey form-control" data-l1key="default_bootstrap_theme_night">
-								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-									}
-								}
-								?>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
+									<?php echo config::byKey('default_bootstrap_theme_night'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+												echo '<li><a href="#" data-value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</a></li>';
+											}
+										}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<select class="configKey form-control" data-l1key="mobile_theme_color">
-								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-									}
-								}
-								?>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color">
+									<?php echo config::byKey('mobile_theme_color'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+												echo '<li><a href="#" data-value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</a></li>';
+											}
+										}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<select class="configKey form-control" data-l1key="mobile_theme_color_night">
-								<?php
-								foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
-									if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-										echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
-									}
-								}
-								?>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
+									<?php echo config::byKey('mobile_theme_color_night'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+										foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+												echo '<li><a href="#" data-value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</a></li>';
+											}
+										}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -781,7 +863,7 @@ user::isBan();
 							<input type="numeric" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
-					
+
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer}}</label>
@@ -804,7 +886,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="commandtab">
 			<br/>
 			<legend>{{Historique}}</legend>
@@ -855,13 +937,19 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select  class="configKey form-control" data-l1key="history::defautShowPeriod" >
-								<option value="-6 month">{{6 mois}}</option>
-								<option value="-3 month">{{3 mois}}</option>
-								<option value="-1 month">{{1 mois}}</option>
-								<option value="-1 week">{{1 semaine}}</option>
-								<option value="-1 day">{{1 jour}}</option>
-							</select>
+							<div class="dropdown dropup">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="history::defautShowPeriod">
+									<?php echo config::byKey('history::defautShowPeriod'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="-6 month">{{6 mois}}</a></li>
+									<li><a href="#" data-value="-3 month">{{3 mois}}</a></li>
+									<li><a href="#" data-value="-1 month">{{1 mois}}</a></li>
+									<li><a href="#" data-value="-1 week">{{1 semaine}}</a></li>
+									<li><a href="#" data-value="-1 day">{{1 jour}}</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</fieldset>
@@ -878,7 +966,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="cachetab">
 			<br/>
 			<form class="form-horizontal">
@@ -886,9 +974,8 @@ user::isBan();
 					<div class="alert alert-info">
 						{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo config::byKey('product_name'); ?>
 					</div>
-					
 					<?php
-					$stats = cache::stats();
+						$stats = cache::stats();
 					?>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
@@ -901,15 +988,21 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<select type="text"  class="configKey form-control" data-l1key="cache::engine" >
-								<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
-								<?php if (class_exists('memcached')) {?>
-									<option value="MemcachedCache">{{Memcached}}</option>
-								<?php }?>
-								<?php if (class_exists('redis')) {?>
-									<option value="RedisCache">{{Redis}}</option>
-								<?php }?>
-							</select>
+							<div class="dropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="cache::engine">
+									<?php echo config::byKey('cache::engine'); ?>
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</a></li>
+									<?php if (class_exists('memcached')) {?>
+										<li><a href="#" data-value="MemcachedCache">{{Memcached}}</a></li>
+									<?php }?>
+									<?php if (class_exists('redis')) {?>
+										<li><a href="#" data-value="RedisCache">{{Redis}}</a></li>
+									<?php }?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="cacheEngine MemcachedCache">
@@ -961,7 +1054,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="interacttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1049,7 +1142,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -1061,7 +1154,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
@@ -1098,7 +1191,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 						</div>
 					</div>
-					
+
 					<legend>{{Couleurs}}</legend>
 					<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
@@ -1117,7 +1210,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="repporttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1137,8 +1230,8 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
-		
+
+
 		<div role="tabpanel" class="tab-pane" id="graphlinktab">
 			<br/>
 			<form class="form-horizontal">
@@ -1188,7 +1281,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="summarytab">
 			<br/>
 			<form class="form-horizontal">
@@ -1213,7 +1306,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="logtab">
 			<br/>
 			<form class="form-horizontal">
@@ -1255,12 +1348,12 @@ user::isBan();
 					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
-			
+
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Log}}</a></li>
 			</ul>
-			
+
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="log_alertes">
 					<form class="form-horizontal">
@@ -1293,7 +1386,7 @@ user::isBan();
 						</fieldset>
 					</form>
 				</div>
-				
+
 				<div role="tabpanel" class="tab-pane" id="log_log">
 					<form class="form-horizontal">
 						<fieldset>
@@ -1301,12 +1394,16 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="input-group form-control">
-										<select class="configKey form-control" data-l1key="log::engine">
-											<option value="StreamHandler">{{Defaut}}</option>
-											<option value="SyslogHandler">{{Syslog}}</option>
-											<option value="SyslogUdp">{{SyslogUdp}}</option>
-										</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::engine">
+											<?php echo config::byKey('log::engine'); ?>
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="StreamHandler">{{Defaut}}</a></li>
+											<li><a href="#" data-value="SyslogHandler">{{Syslog}}</a></li>
+											<li><a href="#" data-value="SyslogUdp">{{SyslogUdp}}</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
@@ -1347,18 +1444,22 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Niveau de log par défaut}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="input-group form-control">
-										<select class="configKey form-control" data-l1key="log::level">
-											<option value="100">{{Debug}}</option>
-											<option value="200">{{Info}}</option>
-											<option value="300">{{Warning}}</option>
-											<option value="400">{{Erreur}}</option>
-										</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::level">
+											<?php echo config::byKey('log::level'); ?>
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="100">{{Debug}}</a></li>
+											<li><a href="#" data-value="200">{{Info}}</a></li>
+											<li><a href="#" data-value="300">{{Warning}}</a></li>
+											<li><a href="#" data-value="400">{{Erreur}}</a></li>
+										</ul>
 									</div>
 								</div>
 							</div>
 							<?php
-							
+
 							$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 							foreach ($other_log as $name) {
 								echo '<form class="form-horizontal">';
@@ -1423,7 +1524,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="updatetab">
 			<br/>
 			<div class="row">
@@ -1434,30 +1535,41 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<select class="configKey form-control" data-l1key="core::repo::provider">
-										<option value="default">{{Défaut}}</option>
-										<?php
-										foreach ($repos as $key => $value) {
-											if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
-												continue;
-											}
-											if ($configs[$key . '::enable'] == 0) {
-												continue;
-											}
-											echo '<option value="' . $key . '">' . $value['name'] . '</option>';
-										}
-										?>
-									</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
+											<?php echo config::byKey('core::repo::provider'); ?>
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="default">{{Défaut}}</a></li>
+											<?php
+												foreach ($repos as $key => $value) {
+													if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
+														continue;
+													}
+													if ($configs[$key . '::enable'] == 0) {
+														continue;
+													}
+													echo '<li><a href="#" data-value="' . $key . '">' . $value['name'] . '</a></li>';
+												}
+											?>
+										</ul>
+									</div>
 								</div>
 							</div>
-							
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<select class="configKey form-control" data-l1key="core::branch">
-										<option value="beta">{{Beta (Plus d'accès au support)}}</option>
-										<option value="master">{{Stable}}</option>
-									</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
+											<?php echo config::byKey('core::branch'); ?>
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="beta">{{Beta (Plus d'accès au support)}}</a></li>
+											<li><a href="#" data-value="master">{{Stable}}</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -1472,7 +1584,6 @@ user::isBan();
 				<div class="col-sm-6">
 					<form class="form-horizontal">
 						<fieldset>
-							
 							<ul class="nav nav-tabs" role="tablist">
 								<?php
 								foreach ($repos as $key => $value) {
@@ -1507,24 +1618,30 @@ user::isBan();
 										$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 										switch ($parameter['type']) {
 											case 'checkbox':
-											echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-											break;
+												echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+												break;
 											case 'input':
-											echo '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-											break;
+												echo '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+												break;
 											case 'number':
-											echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-											break;
+												echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+												break;
 											case 'password':
-											echo '<input type="password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-											break;
+												echo '<input type="password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+												break;
 											case 'select':
-											echo '<select class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '">';
-											foreach ($parameter['values'] as $optkey => $optval) {
-												echo '<option value="' . $optkey . '">' . $optval . '</option>';
-											}
-											echo '</select>';
-											break;
+												echo '<div class="dropdown dropup">';
+												echo '<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="' . $key . '::' . $pKey . '">';
+												echo config::byKey($key . '::' . $pKey);
+												echo '<span class="caret"></span>';
+												echo '</button>';
+												echo '<ul class="dropdown-menu dropdown-menu-right">';
+												foreach ($parameter['values'] as $optkey => $optval) {
+													echo '<li><a href="#" data-value="' . $optkey . '">' . $optval . '</a></li>';
+												}
+												echo '</ul>';
+												echo '</div>';
+												break;
 										}
 										echo '</div>';
 										echo '</div>';
@@ -1547,4 +1664,4 @@ user::isBan();
 				</div>
 			</div>
 			<?php include_file("desktop", "administration", "js");?>
-			
+
