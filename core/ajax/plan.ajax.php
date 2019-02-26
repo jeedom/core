@@ -217,7 +217,7 @@ try {
 		$planHeader->setImage('type', str_replace('.', '', $extension));
 		$planHeader->setImage('size', $img_size);
 		$planHeader->setImage('sha512', sha512($planHeader->getImage('data')));
-		$filename = 'planHeader'.$view->getId().'-'.$view->getImage('sha512') . '.' . $view->getImage('type');
+		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
 		$filepath = __DIR__ . '/../../data/plan/' . $filename;
 		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
 		if(!file_exists($filepath)){
