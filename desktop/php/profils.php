@@ -271,7 +271,7 @@ if (!isConnect()) {
 				
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Sessions actives}}</legend>
+						<legend>{{Session(s) active(s)}}</legend>
 						<table class="table table-condensed table-bordered">
 							<thead>
 								<tr>
