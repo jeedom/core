@@ -186,86 +186,6 @@ legend {
   font-size: 12px;
 }
 
-
-/* ___________________________________________________________NAVBAR */
-header a.navbar-brand {
-  background-image: url(logo-jeedom.svg) !important;
-  background-size: 60px !important;
-  background-repeat: no-repeat;
-  background-position: 10px 7px;
-  height: 50px;
-  width: 90px;
-}
-a.navbar-brand > img {
-  display: none;
-}
-header .navbar-toggle {
-  border: none;
-  margin-top: 2px;
-  background: transparent !important;
-}
-.navbar-toggle .icon-bar {
-  height: 3px;
-}
-
-.navbar {
-  border: none;
-  font-family: 'Roboto';
-}
-.navbar,
-.navbar-collapse,
-.dropdown-menu,
-.dropdown>a,
-.dropdown>a:hover {
-  background-color: var(--eq-bg-color) !important;
-  border: none;
-}
-.dropdown-menu,
-.dropdown-menu > ul {
-  z-index: 9999 !important;
-}
-.nav .open > a,
-.dropdown-menu > li > a:hover {
-  background-color: var(--bg-color) !important;
-}
-
-.element .dropdown-submenu.open>a,
-.element .dropdown-menu>li>a:focus,
-.element .dropdown-menu>li>a:hover {
-  background-color: var(--btn-default-color) !important;
-  cursor: pointer !important;
-}
-.element .dropdown-menu li a{
-  font-size : 12px !important;
-  line-height: 15px;
-}
-
-.dropdown-menu>li>a>i {
-  margin-right: 7px !important;
-}
-.dropdown-menu .divider{
-  background-color: var(--el-defaultColor) !important;
-}
-
-.dropdown img {
-  width: 20px;
-  display: inline-block;
-}
-
-.navbar-nav > li > a {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-.navbar {
-  min-height: 50px;
-  height: 50px;
-}
-button .fas.fa-plus-circle {
-  font-size: 10px;
-}
-.caret {
-  border-width: 5px;
-}
 /* ___________________________________________________________DIVERS */
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
 .verticalAlign > center > [data-subtype=slider]:nth-child(2) {
@@ -544,32 +464,32 @@ button:focus {
 }
 
 /* dropdown select alternative */
-.form-group button.dropdown-toggle {
+.dropdown button.dropdown-toggle {
   color: var(--txt-color) !important;
   -webkit-text-fill-color: var(--txt-color) !important;
   background: var(--form-bg-color) !important;
   text-align: left;
   width: 100%;
-  height: 34px;
+  height: 32px;
   padding: 6px 12px;
 }
-.form-group button.dropdown-toggle:hover {
+.dropdown button.dropdown-toggle:hover {
   color: var(--txt-color) !important;
   -webkit-text-fill-color: var(--txt-color) !important;
 }
-.form-group button.dropdown-toggle:focus,
-.form-group button.dropdown-toggle a:focus {
+.dropdown button.dropdown-toggle:focus,
+.dropdown button.dropdown-toggle a:focus {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }
-.form-group button.dropdown-toggle .caret {
+.dropdown button.dropdown-toggle .caret {
   color: var(--txt-color) !important;
   position: absolute;
   top: 45% !important;
   right: 10px;
   border-width: 6px;
 }
-.form-group .dropdown.open > button {
+.dropdown.open > button {
   color: var(--txt-color)  !important;
   -webkit-text-fill-color: var(--txt-color)  !important; /*override commun.css */
   background: var(--form-bg-color) !important;
@@ -581,15 +501,119 @@ button:focus {
 }
 
 .dropdown.open > .scrollable-menu,
-.dropdown.open >.scrollable-menu:hover {
+.dropdown.open > .scrollable-menu:hover {
   position: absolute;
   z-index: 9999 !important;
 }
-.form-group .scrollable-menu {
+.scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
   z-index: 9999 !important;
+}
+
+/* scenarios dropdowns */
+.element button.dropdown-toggle {
+  color:  var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+  height: 22px;
+  padding-left: 5px;
+  padding-top: 3px;
+}
+.element button.dropdown-toggle:hover {
+  color: var(--sc-lightTxt-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+}
+.element button.dropdown-toggle:focus,
+.element button.dropdown-toggle a:focus {
+  color:  var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+.element button.dropdown-toggle > .caret {
+  color:  var(--linkHoverLight-color) !important;
+  right: 3px;
+  top: 9px !important;
+}
+.element .dropdown-submenu.open > a,
+.element .dropdown-menu > li > a:focus,
+.element .dropdown-menu > li > a:hover {
+  background-color: var(--btn-default-color) !important;
+}
+.element .dropdown-menu li a {
+  font-size : 12px !important;
+  line-height: 15px;
+}
+
+
+/* ___________________________________________________________NAVBAR */
+header a.navbar-brand {
+  background-image: url(logo-jeedom.svg) !important;
+  background-size: 60px !important;
+  background-repeat: no-repeat;
+  background-position: 10px 7px;
+  height: 50px;
+  width: 90px;
+}
+a.navbar-brand > img {
+  display: none;
+}
+header .navbar-toggle {
+  border: none;
+  margin-top: 2px;
+  background: transparent !important;
+}
+.navbar-toggle .icon-bar {
+  height: 3px;
+}
+
+.navbar {
+  border: none;
+  font-family: 'Roboto';
+}
+.navbar,
+.navbar-collapse,
+.dropdown-menu,
+.dropdown > a,
+.dropdown > a:hover {
+  background-color: var(--eq-bg-color) !important;
+  border: none;
+}
+.dropdown-menu,
+.dropdown-menu > ul {
+  z-index: 9999 !important;
+}
+.nav .open > a,
+.dropdown-menu > li > a:hover {
+  background-color: var(--bg-color) !important;
+}
+
+.dropdown-menu > li > a > i {
+  margin-right: 7px !important;
+}
+.dropdown-menu .divider{
+  background-color: var(--el-defaultColor) !important;
+}
+
+.dropdown img {
+  width: 20px;
+  display: inline-block;
+}
+
+.navbar-nav > li > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.navbar {
+  min-height: 50px;
+  height: 50px;
+}
+button .fas.fa-plus-circle {
+  font-size: 10px;
+}
+.caret {
+  border-width: 5px;
 }
 
 /* ___________________________________________________________PANELS */
@@ -1528,7 +1552,14 @@ button {
   border-radius: var(--border-radius) !important;
 }
 .ui-dialog {
-  border-radius: var(--border-radius) !important;
+  border-top-left-radius: var(--border-radius) !important;
+  border-top-right-radius: var(--border-radius) !important;
+  border-bottom-right-radius: var(--border-radius) !important;
+  border-bottom-left-radius: var(--border-radius) !important;
+}
+.ui-dialog-titlebar {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
 }
 
 .nav.nav-tabs li:first-child,
