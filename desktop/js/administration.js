@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -19,6 +18,31 @@ var url = document.location.toString();
 if (url.match('#')) {
   $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
 }
+
+/* dropdowns */
+$('.dropdown-menu a').click(function(){
+  selText = $(this).text() + '<span class="caret"></span>'
+  selValue = $(this).attr('data-value')
+  $(this).closest('.dropdown').find('button').html(selText)
+  $(this).closest('.dropdown').find('button').attr('value', selValue)
+})
+$(document).ready(function() {
+    $('.form-group div.dropdown').each(function() {
+        button = $(this).find('button')
+        if (button) {
+            value = button.html().split('<span')[0].trim()
+            $(this).find('ul.dropdown-menu li a').each(function() {
+                if ($(this).attr('data-value') == value) {
+                    button.html($(this).text() + '<span class="caret"></span>')
+                    button.attr('value', $(this).attr('data-value'))
+                }
+            })
+        }
+    })
+})
+
+
+
 $('.nav-tabs.nav-primary a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -236,7 +260,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-  
+
   return false;
 });
 
@@ -546,7 +570,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      
+
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
