@@ -161,6 +161,9 @@ function changeThemeAuto(_ambiantLight){
   if (JEEDOM_DATA.mobile_theme_useAmbientLight == "1" && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor();
     sensor.onreading = () => {
+      if($('#jQMnDColor').attr('data-nochange') == 1){
+        return;
+      }
       if(sensor.illuminance < 200 && sensor.illuminance > 50){
         return;
       }
