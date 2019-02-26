@@ -1527,8 +1527,7 @@ div[id^=__lpform_] { /*lastpass*/
   border-top-right-radius: var(--border-radius) !important;
 }
 .panel,
-.panel-body,
-.panel-heading {
+.panel-body {
   border-bottom-left-radius: var(--border-radius) !important;
   border-bottom-right-radius: var(--border-radius) !important;
 }
