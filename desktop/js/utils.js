@@ -163,8 +163,7 @@ $(function () {
 }
 /*********************Gestion des dialogs********************************/
 
-$.fn.modal.Constructor.prototype.enforceFocus = function () {
-};
+$.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
 $('body').on( "show", ".modal",function () {
   document.activeElement.blur();
