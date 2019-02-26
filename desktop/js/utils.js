@@ -161,16 +161,18 @@ $(function () {
     $(this).parent().toggleClass('open');
   });
 }
-/*********************Gestion de l'heure********************************/
+/*********************Gestion des dialogs********************************/
 
-$.fn.modal.Constructor.prototype.enforceFocus = function () {
-};
+$.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
 $('body').on( "show", ".modal",function () {
   document.activeElement.blur();
   $(this).find(".modal-body :input:visible:first").focus();
 });
 
+$('body').on('focusin','.bootbox-input', function (e) {
+  e.stopPropagation();
+});
 /************************Help*************************/
 
 setInterval(function () {
