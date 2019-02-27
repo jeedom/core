@@ -36,7 +36,8 @@ body {
   background-position: center center;
 }
 
-legend:first-letter {
+legend:first-letter,
+.cmdName:first-letter {
     text-transform: uppercase;
 }
 
