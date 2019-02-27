@@ -91,12 +91,11 @@ if (init('rescue', 0) == 0) {
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
-	include_file('desktop', 'commun', 'css');
-	include_file('core', 'core', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
+	include_file('desktop', 'commun', 'css');
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
