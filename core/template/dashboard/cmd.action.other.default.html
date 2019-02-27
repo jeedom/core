@@ -1,5 +1,5 @@
 <span class="cmd reportModeHidden cmd-widget" style="display: inline;margin-right: 2px;" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#" style="margin-top: 2px;">#name_display#</a>
+  <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#">#name_display#</a>
   <script>
     $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
       jeedom.cmd.execute({id: '#id#'});
