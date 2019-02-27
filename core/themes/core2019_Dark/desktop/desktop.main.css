@@ -149,6 +149,7 @@ legend {
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   min-width: 32px !important;
+  max-height: 30px;
 }
 
 /* dashboard equipments text color */
