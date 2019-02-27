@@ -872,10 +872,9 @@ div[data-subtype=select]::after {
 }
 div[data-subtype=select]::after { /*  Custom dropdown arrow */
   content: "\25BC";
-  font-size: 20px;
-  line-height: 22px;
-  right: 1em;
-  top: 18%;
+  font-size: 14px;
+  right: 2px;
+  top: 25%;
   margin: 0 !important;
 }
 div[data-subtype=select] select option {
