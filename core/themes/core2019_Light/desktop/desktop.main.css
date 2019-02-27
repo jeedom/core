@@ -1266,7 +1266,6 @@ path.highcharts-graph {
   padding: 0;
   display: table-cell !important;
   color: var(--txt-color);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
