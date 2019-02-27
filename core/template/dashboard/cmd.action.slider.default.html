@@ -1,26 +1,26 @@
 <span class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-    <div class="cmdName" style="font-weight: bold;font-size : 12px;#hideCmdName#">#name_display#</div>
-	<div style="display:inline-block;">
+  <div class="cmdName" style="#hideCmdName#">#name_display#</div>
+  <div style="display:inline-block;">
     <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
-	<span class="value#uid#" style="display:none; font-weight:bold;position: absolute;z-index: 1;padding: 2px 5px 2px 5px;border-radius:5px;top: 50%;left: 50%;transform: translate(-50%, 50%);"></span>
-	</div>
-    <script>
-        $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
-        jeedom.cmd.update['#id#'] = function(_options){
-            $(".cmd[data-cmd_id=#id#] .slider").slider({
-                min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
-                max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
-                value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
-				slide: function(event, ui) {
-				$(".value#uid#").show()
-    $(".value#uid#").html(ui.value);
-  }
-            })
+    <span class="value#uid#" style="display:none; font-weight:bold;position: absolute;z-index: 1;padding: 2px 5px 2px 5px;border-radius:5px;top: 50%;left: 50%;transform: translate(-50%, 50%);"></span>
+  </div>
+  <script>
+    $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
+    jeedom.cmd.update['#id#'] = function(_options){
+      $(".cmd[data-cmd_id=#id#] .slider").slider({
+        min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
+        max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
+        value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
+        slide: function(event, ui) {
+          $(".value#uid#").show()
+          $(".value#uid#").html(ui.value);
         }
-        jeedom.cmd.update['#id#']({display_value:'#state#'});
-        $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
-            jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
-			$(".value#uid#").hide();
-        });
-    </script>
+      })
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
+      $(".value#uid#").hide();
+    });
+  </script>
 </span>
