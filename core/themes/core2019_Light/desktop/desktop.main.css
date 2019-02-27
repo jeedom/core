@@ -137,14 +137,6 @@ legend {
   padding: 0 0.5em !important;
 }
 
-.cmdName {
-  font-size: 12px;
-}
-.btn.action {
-  margin-top: 2px;
-}
-
-
 .input-group-addon {
   color: var(--linkHoverLight-color) !important;
 }
@@ -166,9 +158,23 @@ legend {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
 }
+
+.cmdName {
+  font-size: 12px;
+}
+.btn.action {
+  margin-top: 2px;
+}
+.cmd.refresh {
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
 .iconCmd {
   margin-top: 5px !important;
   top: 0 !important;
+  font-size: 2.5em;
+  font-weight: bold;
 }
 .iconCmd > i {
   color: var(--link-color) !important;
