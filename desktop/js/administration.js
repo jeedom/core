@@ -58,11 +58,17 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
   $('.cacheEngine').hide();
+  if($(this).value() == ''){
+    return;
+  }
   $('.cacheEngine.'+$(this).value()).show();
 });
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
   $('.logEngine').hide();
+  if($(this).value() == ''){
+    return;
+  }
   $('.logEngine.'+$(this).value()).show();
 });
 
