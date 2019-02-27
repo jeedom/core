@@ -162,6 +162,7 @@ legend {
 
 .cmdName {
   font-size: 12px;
+  font-weight: bold;
 }
 .btn.action {
   margin-top: 2px;
