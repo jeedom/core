@@ -3,7 +3,6 @@ Theme Core 2019 @Jeedom
 */
 
 body {
-  font-family: 'Roboto' !important;
   background-color: var(--bg-color);
   color: var(--txt-color) !important;
   background-repeat : no-repeat;
@@ -136,6 +135,13 @@ legend {
   color: var(--txt-color);
   background: var(--bg-color);
   padding: 0 0.5em !important;
+}
+
+.cmdName {
+  font-size: 12px;
+}
+.btn.action {
+  margin-top: 2px;
 }
 
 
@@ -406,6 +412,10 @@ li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
   height: 30px;
 }
 
+.eqLogic-widget .btn:not(.btn-circle){
+  font-weight: bold;
+}
+
 .element .btn,
 .element .btn:focus,
 .element .btn:active,
@@ -565,10 +575,6 @@ header .navbar-toggle {
   height: 3px;
 }
 
-.navbar {
-  border: none;
-  font-family: 'Roboto';
-}
 .navbar,
 .navbar-collapse,
 .dropdown-menu,
@@ -1424,7 +1430,6 @@ path.highcharts-graph {
 }
 .ui-resizable-handle.ui-icon {
   background-image: var(--url-iconsLight)!important;
-  background-color: transparent !important;
 }
 .ui-button:hover {
   opacity: 0.65;
@@ -1435,10 +1440,6 @@ path.highcharts-graph {
 }
 .ui-dialog-titlebar-close:hover {
   opacity: 1 !important;
-}
-
-.ui-dialog .ui-dialog-buttonpane {
-	box-shadow: none;
 }
 
 .fancybox-skin {
