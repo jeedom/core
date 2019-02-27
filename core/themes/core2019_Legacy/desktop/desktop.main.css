@@ -1188,10 +1188,11 @@ hr {
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
 .highcharts-color-0 { fill: var(--link-color); }
 .ui-slider-handle {
-  font-size: 1em;
-  border-radius: 1em !important;
+  font-size: 14px;
+  border-radius: 8px !important;
   background-color: var(--link-color) !important;
   cursor: pointer !important;
+  top: -5px !important;
 }
 .ui-slider-handle:active,
 .ui-slider-handle:focus,
