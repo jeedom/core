@@ -50,7 +50,7 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
-
+			
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
@@ -109,7 +109,6 @@ if (init('rescue', 0) == 0) {
 	})
 	</script>
 	<?php
-	include_file('3rdparty', 'font-noto/font-noto', 'css');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 	include_file('core', 'core', 'js');
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -453,3 +452,4 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
+	
