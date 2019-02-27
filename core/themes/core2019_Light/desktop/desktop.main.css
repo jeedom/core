@@ -149,6 +149,7 @@ legend {
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   min-width: 32px !important;
+  max-height: 30px;
 }
 
 /* dashboard equipments text color */
@@ -871,10 +872,9 @@ div[data-subtype=select]::after {
 }
 div[data-subtype=select]::after { /*  Custom dropdown arrow */
   content: "\25BC";
-  font-size: 20px;
-  line-height: 22px;
-  right: 1em;
-  top: 18%;
+  font-size: 14px;
+  right: 2px;
+  top: 25%;
   margin: 0 !important;
 }
 div[data-subtype=select] select option {
@@ -1266,7 +1266,6 @@ path.highcharts-graph {
   padding: 0;
   display: table-cell !important;
   color: var(--txt-color);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
