@@ -75,6 +75,9 @@ class jeedom {
 						if($value == ''){
 							$value=0;
 						}
+						if($value > 1){
+							$value = 1;
+						}
 						$value.='rem';
 						break;
 					}
