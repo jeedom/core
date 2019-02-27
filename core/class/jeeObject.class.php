@@ -22,16 +22,16 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class jeeObject {
 	/*     * *************************Attributs****************************** */
 	
-	private $id;
-	private $name;
-	private $father_id = null;
-	private $isVisible = 1;
-	private $position;
-	private $configuration;
-	private $display;
-	private $image;
-	private $_child = array();
-	private $_changed = false;
+	protected $id;
+	protected $name;
+	protected $father_id = null;
+	protected $isVisible = 1;
+	protected $position;
+	protected $configuration;
+	protected $display;
+	protected $image;
+	protected $_child = array();
+	protected $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
