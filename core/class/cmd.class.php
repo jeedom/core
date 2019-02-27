@@ -597,6 +597,7 @@ class cmd {
 	}
 	
 	public static function availableWidget($_version) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		$path = __DIR__ . '/../template/' . $_version;
 		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 		$return = array();
@@ -627,6 +628,13 @@ class cmd {
 					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
 						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget');
 					}
+				}
+			}
+		}
+		foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'] as $type => $data1) {
+			foreach ($data1 as $subtype => $data2) {
+				foreach ($data2 as $name => $data3) {
+					$return[$type][$subtype][$name] = array('name' => $name, 'location' => 'core');
 				}
 			}
 		}
@@ -1020,11 +1028,21 @@ class cmd {
 	}
 	
 	public function getWidgetTemplateCode($_version = 'dashboard', $_noCustom = false) {
+		global $JEEDOM_INTERNAL_CONFIG;
 		$version = jeedom::versionAlias($_version);
 		if (!$_noCustom && $this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
 			return $this->getHtml($_version);
 		}
-		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
+		$replace = null;
+		if(isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()]) &&
+		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()]) &&
+		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')])){
+			$template_conf = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')];
+			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
+			$replace = $template_conf['replace'];
+		}else{
+			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
+		}
 		$template = '';
 		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
 			$template = getTemplate('core', $version, $template_name);
@@ -1048,6 +1066,9 @@ class cmd {
 			self::$_templateArray[$version . '::' . $template_name] = $template;
 		} else {
 			$template = self::$_templateArray[$version . '::' . $template_name];
+		}
+		if($replace != null && is_array($replace)){
+			$template = str_replace(array_keys($replace),$replace,$template);
 		}
 		return $template;
 	}

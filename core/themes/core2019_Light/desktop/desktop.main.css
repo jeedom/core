@@ -3,7 +3,6 @@ Theme Core 2019 @Jeedom
 */
 
 body {
-  font-family: 'Roboto' !important;
   background-color: var(--bg-color);
   color: var(--txt-color) !important;
   background-repeat : no-repeat;
@@ -138,7 +137,6 @@ legend {
   padding: 0 0.5em !important;
 }
 
-
 .input-group-addon {
   color: var(--linkHoverLight-color) !important;
 }
@@ -151,6 +149,7 @@ legend {
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   min-width: 32px !important;
+  max-height: 30px;
 }
 
 /* dashboard equipments text color */
@@ -160,9 +159,24 @@ legend {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
 }
+
+.cmdName {
+  font-size: 12px;
+  font-weight: bold;
+}
+.btn.action {
+  margin-top: 2px;
+}
+.cmd.refresh {
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
 .iconCmd {
   margin-top: 5px !important;
   top: 0 !important;
+  font-size: 2.5em;
+  font-weight: bold;
 }
 .iconCmd > i {
   color: var(--link-color) !important;
@@ -406,6 +420,10 @@ li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
   height: 30px;
 }
 
+.eqLogic-widget .btn:not(.btn-circle){
+  font-weight: bold;
+}
+
 .element .btn,
 .element .btn:focus,
 .element .btn:active,
@@ -565,10 +583,6 @@ header .navbar-toggle {
   height: 3px;
 }
 
-.navbar {
-  border: none;
-  font-family: 'Roboto';
-}
 .navbar,
 .navbar-collapse,
 .dropdown-menu,
@@ -859,10 +873,9 @@ div[data-subtype=select]::after {
 }
 div[data-subtype=select]::after { /*  Custom dropdown arrow */
   content: "\25BC";
-  font-size: 20px;
-  line-height: 22px;
-  right: 1em;
-  top: 18%;
+  font-size: 14px;
+  right: 2px;
+  top: 25%;
   margin: 0 !important;
 }
 div[data-subtype=select] select option {
@@ -1254,7 +1267,6 @@ path.highcharts-graph {
   padding: 0;
   display: table-cell !important;
   color: var(--txt-color);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
@@ -1424,7 +1436,6 @@ path.highcharts-graph {
 }
 .ui-resizable-handle.ui-icon {
   background-image: var(--url-iconsLight)!important;
-  background-color: transparent !important;
 }
 .ui-button:hover {
   opacity: 0.65;
@@ -1435,10 +1446,6 @@ path.highcharts-graph {
 }
 .ui-dialog-titlebar-close:hover {
   opacity: 1 !important;
-}
-
-.ui-dialog .ui-dialog-buttonpane {
-	box-shadow: none;
 }
 
 .fancybox-skin {

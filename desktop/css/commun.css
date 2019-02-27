@@ -5,10 +5,12 @@ html {
 }
 
 body {
-  font-family: 'noto', sans-serif !important;
+  font-family: 'Roboto' !important;
   font-size: 1.42em;
+  line-height: 1.42857143;
   padding-top: 50px;
   height: 100%;
+  box-sizing: border-box;
 }
 
 .center{
@@ -34,7 +36,8 @@ body {
   background-position: center center;
 }
 
-legend:first-letter {
+legend:first-letter,
+.cmdName:first-letter {
     text-transform: uppercase;
 }
 
@@ -58,9 +61,6 @@ legend:first-letter {
   content: '' !important;
   display: block !important;
   clear: both !important;
-}
-.eqLogic-widget:hover {
-  border-color: hsla(0, 0%, 100%, 0.5) !important;
 }
 .eqLogic-widget.is-dragging,
 .eqLogic-widget.is-positioning-post-drag {
@@ -117,7 +117,6 @@ legend:first-letter {
 }
 
 .pull-left{
-  float: left;
   margin-right: 5px;
 }
 
@@ -125,40 +124,11 @@ legend:first-letter {
   margin-top: 5px;
 }
 
-.eqLogic-widget{
-  background-color: #19bc9c;
-  display: inline-block;
-  vertical-align: top;
-  color : white;
-}
-
-.eqLogic-widget .btn:not(.btn-circle){
-  border : none !important;
-  color : white !important;
-  font-weight: bold;
-}
-
 .view-link-widget,.plan-link-widget{
   padding: 3px;
   margin: 3px;
   display: inline-block;
   vertical-align: top;
-}
-
-.eqLogic-widget a{
-  color:inherit;
-}
-
-.scenario-widget{
-  background-color: #7f8c8d;
-  display: inline-block;
-  position : relative;
-  vertical-align: top;
-  color : white;
-}
-
-.scenario-widget .widget-name a{
-  color: white;
 }
 
 .cmd-widget{
