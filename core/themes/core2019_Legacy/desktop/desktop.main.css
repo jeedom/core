@@ -570,6 +570,9 @@ button .fas.fa-plus-circle {
 }
 
 /* ___________________________________________________________NAVBAR */
+.navbar {
+  background-color: var(--defaultBkg-color) !important;
+}
 header a.navbar-brand {
   background-image: url(logo-jeedom.svg) !important;
   background-size: 60px !important;
