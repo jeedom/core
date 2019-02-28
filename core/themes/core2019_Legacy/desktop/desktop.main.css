@@ -281,27 +281,23 @@ select.selectCmd {
   position: absolute;
   text-align: center;
   min-height: 123px !important;
-
 }
-.scenarioDisplayCard .name  {
+.scenarioDisplayCard .name {
   top: 10px !important;
   position: relative;
   word-break: break-all;
   white-space: pre-wrap;
   word-wrap: break-word;
+  display: block !important;
+  font-family: "Roboto";
+  font-size: 12px;
+  line-height: 22px !important;
 }
-.scenarioDisplayCard .label {
-  line-height: 30px !important;
-}
-.scenarioDisplayCard > .icon {
+.scenarioDisplayCard .icon {
   font-size: 3.8em !important;
 }
-.scenarioDisplayCard > .icon.jeedom-clap_cinema {
+.scenarioDisplayCard .icon.noicon {
   color: var(--logo-primary-color);
-}
-.scenarioDisplayCard > img {
-  width: 55px !important;
-  height: 55px !important;
 }
 
 
@@ -1617,8 +1613,13 @@ button {
 .input-group input,
 .input-group select,
 .input-group textarea,
-.input-group .input-group-addon,
-.input-group ::-moz-color-swatch{
+.input-group .input-group-addon {
+  border-radius: 0 !important;
+}
+.input-group ::-moz-color-swatch {
+  border-radius: 0 !important;
+}
+.input-group ::-webkit-color-swatch {
   border-radius: 0 !important;
 }
 .input-group .roundedLeft {
