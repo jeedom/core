@@ -1409,14 +1409,6 @@ path.highcharts-graph {
 .ui-dialog, .ui-dialog-content {
     box-sizing: content-box !important;
 }
-.ui-dialog .ui-resizable-se {
-  width: 20px !important;
-  height:20px !important;
-  right: -2px !important;
-  bottom: -2px !important;
-  background-color: var(--bg-modal-color) !important;
-}
-
 
 .ui-state-active .ui-icon,
 .ui-widget-header .ui-icon {
@@ -1436,7 +1428,8 @@ path.highcharts-graph {
   padding: 0em;
 }
 .ui-resizable-handle.ui-icon {
-  background-image: var(--url-iconsLight)!important;
+  background-image: none !important;
+  background-color: transparent !important;
 }
 .ui-button:hover {
   opacity: 0.65;
@@ -1451,6 +1444,10 @@ path.highcharts-graph {
 
 .fancybox-skin {
   background-color: var(--bg-color) !important;
+}
+
+.ui-helper-clearfix {
+  box-shadow: none !important;
 }
 
 /* Designs */
