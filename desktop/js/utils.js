@@ -161,6 +161,18 @@ $(function () {
     $(this).parent().toggleClass('open');
   });
 }
+
+$('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open a',function(){
+  if ($(this).closest('.dropdown-submenu').is(':hover')) {
+    return;
+  }
+  $(this).trigger('mouseenter');
+})
+
+$('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',function(){
+  $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
+})
+
 /*********************Gestion des dialogs********************************/
 
 $.fn.modal.Constructor.prototype.enforceFocus = function () {};
