@@ -1174,9 +1174,9 @@ function addSubElement(_subElement, _pColor) {
     
     retour += '<div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
-      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
+      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
     }else{
-      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i><i class="fas fa-ban fa-stack-2x text-danger"></i></span></a>';
+      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i><i class="fas fa-ban fa-stack-2x text-danger"></i></span></a>';
     }
     retour += '</div>';
     retour += '<div class="expressions" style="display:table-cell;">';
