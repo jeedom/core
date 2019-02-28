@@ -1,22 +1,22 @@
 <div class="input-group input-group-sm" style="width: 100%">
-    <span class="input-group-addon" id="basic-addon1" style="width: 100px">{{Design}}</span>
-    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+  <span class="input-group-addon roundedLeft" id="basic-addon1" style="width: 100px">{{Design}}</span>
+  <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#"></select>
 </div>
 <script>
-    jeedom.plan.allHeader({
-        error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (plans) {
-            var options = '';
-            for (var i in plans) {
-                options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
-            }
-            $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
-
-            if ('#plan_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
-                $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
-            }
-        }
-    });
+  jeedom.plan.allHeader({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (plans) {
+      var options = '';
+      for (var i in plans) {
+        options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
+      }
+      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
+      
+      if ('#plan_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
+      }
+    }
+  });
 </script>

@@ -1,11 +1,11 @@
 <div style="height: 20px;">
-<span class="expressionAttr" data-l1key="options" data-l2key="icon" data-cmd_id="#id#" data-uid="#uid#" style="width: 20px;font-size: 1.3em;margin-left : 10px;position: relative; top: 4px;">#icon#</span>
-<a class="btn btn-default bt_chooseIcon cursor btn-sm" data-cmd_id="#id#" data-uid="#uid#" style="display : inline-block;margin-left : 60px;"><i class="fa fa-flag"></i> {{Rechercher icône}}</a>
-<script>
+  <span class="expressionAttr" data-l1key="options" data-l2key="icon" data-cmd_id="#id#" data-uid="#uid#" style="width: 20px;font-size: 1.3em;margin-left : 10px;position: relative; top: 4px;">#icon#</span>
+  <a class="btn btn-default bt_chooseIcon cursor btn-sm" data-cmd_id="#id#" data-uid="#uid#" style="display : inline-block;margin-left : 60px;"><i class="fa fa-flag"></i> {{Rechercher icône}}</a>
+  <script>
     $('.bt_chooseIcon[data-uid=#uid#]').off().on('click', function() {
-        chooseIcon(function(_icon) {
-            $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon);
-        });
+      chooseIcon(function(_icon) {
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon);
+      });
     });
-</script>
+  </script>
 </div>
