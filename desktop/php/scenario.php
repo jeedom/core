@@ -79,7 +79,7 @@ if (is_array($scenarioListGroup)) {
 					if($scenario->getDisplay('icon') != ''){
 						echo '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="jeedom-clap_cinema"></i></span>';
+						echo '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 					}
 					echo "<br>";
 					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
@@ -112,7 +112,7 @@ if (is_array($scenarioListGroup)) {
 					if($scenario->getDisplay('icon') != ''){
 						echo '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="jeedom-clap_cinema"></i></span>';
+						echo '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
 					}
 					echo '<br/>';
 					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
