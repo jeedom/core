@@ -457,16 +457,22 @@ function savePluginConfig(_param) {
       alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
+      if (!isset(_param)){
+        _param = {};
+      }
       alert_div_plugin_configuration.showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
       modifyWithoutSave = false;
       var postSave = $('#span_plugin_id').text()+'_postSaveConfiguration';
       if (typeof window[postSave] == 'function'){
         window[postSave]();
       }
-      if (isset(_param) && typeof _param.success == 'function'){
+      if (typeof _param.success == 'function'){
         _param.success(0);
       }
-      if(!isset(_param) || !isset(_param.relaunchDeamon) || _param.relaunchDeamon){
+      if($('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').html() != undefined){
+        _param.relaunchDeamon = $('#div_plugin_configuration .saveParam[data-l1key=relaunchDeamon]').value();
+      }
+      if(!isset(_param.relaunchDeamon) || _param.relaunchDeamon != '0'){
         jeedom.plugin.deamonStart({
           id : $('#span_plugin_id').text(),
           slave_id: 0,
