@@ -80,7 +80,7 @@ sendVarToJS('id', $plan3d->getId());
 				</select>
 			</div>
 		</div>
-
+		
 		<!---*********************************TEXT************************************** -->
 		<div class="form-group specificity specificity_text">
 			<label class="col-lg-4 control-label">{{Texte}}</label>
@@ -133,14 +133,14 @@ sendVarToJS('id', $plan3d->getId());
 				<input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::space::z"/>
 			</div>
 		</div>
-
+		
 		<!---*********************************DOOR************************************** -->
-
+		
 		<ul class="nav nav-tabs  specificity specificity_door" role="tablist">
 			<li role="presentation" class="active"><a href="#tab_door_window" aria-controls="tab_door_window" role="tab" data-toggle="tab">{{Fênetre/Porte}}</a></li>
 			<li role="presentation"><a href="#tab_door_shutter" aria-controls="tab_door_shutter" role="tab" data-toggle="tab">{{Volet}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content  specificity specificity_door">
 			<div role="tabpanel" class="tab-pane active" id="tab_door_window">
 				<br/>
@@ -181,7 +181,7 @@ sendVarToJS('id', $plan3d->getId());
 						</select>
 					</div>
 				</div>
-
+				
 				<legend>{{Translation}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Activer}}</label>
@@ -204,7 +204,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="text" class="plan3dAttr form-control translate" data-l1key="configuration" data-l2key="3d::widget::door::translate::repeat"/>
 					</div>
 				</div>
-
+				
 				<legend>{{Masquer quand la porte/fenêtre est ouverte}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Activer}}</label>
@@ -212,7 +212,7 @@ sendVarToJS('id', $plan3d->getId());
 						<input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::hide"/>
 					</div>
 				</div>
-
+				
 				<legend>{{Couleur}}</legend>
 				<div class="form-group specificity specificity_door">
 					<label class="col-lg-4 control-label">{{Couleur ouverte}}</label>
@@ -263,177 +263,177 @@ sendVarToJS('id', $plan3d->getId());
 				</div>
 			</div>
 		</div>
-
+		
 		<script>
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').on('change',function(){
-				$('.specificity.specificity_door .rotate').attr('disabled',false);
-				if($(this).value() != 1){
-					$('.specificity.specificity_door .rotate').attr('disabled','disabled');
-				}
-			});
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]').on('change',function(){
-				$('.specificity.specificity_door .translate').attr('disabled',false);
-				if($(this).value() != 1){
-					$('.specificity.specificity_door .translate').attr('disabled','disabled');
-				}
-			});
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').on('change',function(){
+			$('.specificity.specificity_door .rotate').attr('disabled',false);
+			if($(this).value() != 1){
+				$('.specificity.specificity_door .rotate').attr('disabled','disabled');
+			}
+		});
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]').on('change',function(){
+			$('.specificity.specificity_door .translate').attr('disabled',false);
+			if($(this).value() != 1){
+				$('.specificity.specificity_door .translate').attr('disabled','disabled');
+			}
+		});
 		</script>
-
+		
 		<!---*********************************conditionalColor************************************** -->
 		<div class="specificity specificity_conditionalColor">
 			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addCondition"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
 			<div id="div_conditionColor"></div>
 		</div>
 		<script>
-			$('#bt_addCondition').on('click',function(){
-				addConditionalColor({})
+		$('#bt_addCondition').on('click',function(){
+			addConditionalColor({})
+		});
+		
+		$('#fd_plan3dConfigure').off('click','.bt_removeConditionalColor').on('click','.bt_removeConditionalColor',  function (event) {
+			$(this).closest('.conditionalColor').remove();
+		});
+		
+		$('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalColor').on('click','.listCmdInfoConditionalColor',  function (event) {
+			var el = $(this).closest('.conditionalColor').find('.conditionalColorAttr[data-l1key=cmd]');
+			jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+				el.atCaret('insert',result.human);
 			});
-
-			$('#fd_plan3dConfigure').off('click','.bt_removeConditionalColor').on('click','.bt_removeConditionalColor',  function (event) {
-				$(this).closest('.conditionalColor').remove();
-			});
-
-			$('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalColor').on('click','.listCmdInfoConditionalColor',  function (event) {
-				var el = $(this).closest('.conditionalColor').find('.conditionalColorAttr[data-l1key=cmd]');
-				jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
-					el.atCaret('insert',result.human);
-				});
-			});
-
-			function addConditionalColor(_conditionalColor) {
-				if (!isset(_conditionalColor)) {
-					_conditionalColor = {};
-				}
-				var div = '<div class="conditionalColor">';
-				div += '<div class="form-group">';
-				div += '<label class="col-sm-1 control-label">{{Condition}}</label>';
-				div += '<div class="col-sm-9">';
-				div += '<div class="input-group">';
-				div += '<span class="input-group-btn">';
-				div += '<a class="btn btn-default bt_removeConditionalColor btn-sm"><i class="fas fa-minus-circle"></i></a>';
-				div += '</span>';
-				div += '<input class="conditionalColorAttr form-control input-sm" data-l1key="cmd" />';
-				div += '<span class="input-group-btn">';
-				div += '<a class="btn btn-sm listCmdInfoConditionalColor btn-default"><i class="fas fa-list-alt"></i></a>';
-				div += '</span>';
-				div += '</div>';
-				div += '</div>';
-				div += '<label class="col-sm-1 control-label">{{Couleur}}</label>';
-				div += '<div class="col-sm-1">';
-				div += '<input type="color" class="conditionalColorAttr form-control input-sm" data-l1key="color" />';
-				div += '</div>';
-				div += '</div>';
-				$('#div_conditionColor').append(div);
-				$('#div_conditionColor .conditionalColor:last').setValues(_conditionalColor, '.conditionalColorAttr');
+		});
+		
+		function addConditionalColor(_conditionalColor) {
+			if (!isset(_conditionalColor)) {
+				_conditionalColor = {};
 			}
-
-			$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+			var div = '<div class="conditionalColor">';
+			div += '<div class="form-group">';
+			div += '<label class="col-sm-1 control-label">{{Condition}}</label>';
+			div += '<div class="col-sm-9">';
+			div += '<div class="input-group">';
+			div += '<span class="input-group-btn">';
+			div += '<a class="btn btn-default bt_removeConditionalColor btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+			div += '</span>';
+			div += '<input class="conditionalColorAttr form-control input-sm" data-l1key="cmd" />';
+			div += '<span class="input-group-btn">';
+			div += '<a class="btn btn-sm listCmdInfoConditionalColor btn-default roundedRight"><i class="fas fa-list-alt"></i></a>';
+			div += '</span>';
+			div += '</div>';
+			div += '</div>';
+			div += '<label class="col-sm-1 control-label">{{Couleur}}</label>';
+			div += '<div class="col-sm-1">';
+			div += '<input type="color" class="conditionalColorAttr form-control input-sm" data-l1key="color" />';
+			div += '</div>';
+			div += '</div>';
+			$('#div_conditionColor').append(div);
+			$('#div_conditionColor .conditionalColor:last').setValues(_conditionalColor, '.conditionalColorAttr');
+		}
+		
+		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 		</script>
 	</fieldset>
 </form>
 
 <script>
 
-	$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').on('change',function(){
-		$('.specificity').hide();
-		$('.specificity.specificity_'+$(this).value()).show();
+$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').on('change',function(){
+	$('.specificity').hide();
+	$('.specificity.specificity_'+$(this).value()).show();
+});
+
+$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').trigger('change');
+
+$('#fd_plan3dConfigure').off('click','#bt_selEqLogic').on('click','#bt_selEqLogic',  function (event) {
+	jeedom.eqLogic.getSelectModal({}, function (result) {
+		$('.plan3dAttr[data-l1key=link_id]').value(result.human);
 	});
+});
 
-	$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').trigger('change');
-
-	$('#fd_plan3dConfigure').off('click','#bt_selEqLogic').on('click','#bt_selEqLogic',  function (event) {
-		jeedom.eqLogic.getSelectModal({}, function (result) {
-			$('.plan3dAttr[data-l1key=link_id]').value(result.human);
-		});
+$('#fd_plan3dConfigure').off('click','#bt_selCmd').on('click','#bt_selCmd',  function (event) {
+	jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="cmd::state"]').value(result.human);
 	});
+});
 
-	$('#fd_plan3dConfigure').off('click','#bt_selCmd').on('click','#bt_selCmd',  function (event) {
-		jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="cmd::state"]').value(result.human);
-		});
+$('#fd_plan3dConfigure').off('click','#bt_selWindow').on('click','#bt_selWindow',  function (event) {
+	jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::window"]').value(result.human);
 	});
+});
 
-	$('#fd_plan3dConfigure').off('click','#bt_selWindow').on('click','#bt_selWindow',  function (event) {
-		jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::window"]').value(result.human);
-		});
+$('#fd_plan3dConfigure').off('click','#bt_selShutter').on('click','#bt_selShutter',  function (event) {
+	jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::shutter"]').value(result.human);
 	});
+});
 
-	$('#fd_plan3dConfigure').off('click','#bt_selShutter').on('click','#bt_selShutter',  function (event) {
-		jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::shutter"]').value(result.human);
-		});
+$('#fd_plan3dConfigure').off('click','#bt_addTextCommand').on('click','#bt_addTextCommand',  function (event) {
+	jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+		$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::text::text"]').atCaret('insert',result.human);
 	});
+});
 
-	$('#fd_plan3dConfigure').off('click','#bt_addTextCommand').on('click','#bt_addTextCommand',  function (event) {
-		jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
-			$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::text::text"]').atCaret('insert',result.human);
-		});
+$('#bt_saveConfigurePlan3d').on('click', function () {
+	var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr');
+	if(!isset(plan3ds[0].configuration)){
+		plan3ds[0].configuration = {};
+	}
+	plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = $('#div_conditionColor .conditionalColor').getValues('.conditionalColorAttr');
+	jeedom.plan3d.save({
+		plan3ds: plan3ds,
+		error: function (error) {
+			$('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function () {
+			$('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close");
+			if(typeof refresh3dObject == 'function'){
+				refresh3dObject();
+			}
+		},
 	});
+});
 
-	$('#bt_saveConfigurePlan3d').on('click', function () {
-		var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr');
-		if(!isset(plan3ds[0].configuration)){
-			plan3ds[0].configuration = {};
-		}
-		plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = $('#div_conditionColor .conditionalColor').getValues('.conditionalColorAttr');
-		jeedom.plan3d.save({
-			plan3ds: plan3ds,
-			error: function (error) {
-				$('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function () {
-				$('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close");
-				if(typeof refresh3dObject == 'function'){
-					refresh3dObject();
-				}
-			},
-		});
+$('#bt_removeConfigurePlan3d').on('click',function(){
+	var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr');
+	if(!isset(plan3ds[0].configuration)){
+		plan3ds[0].configuration = {};
+	}
+	jeedom.plan3d.remove({
+		id: plan3ds[0].id,
+		error: function (error) {
+			$('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function () {
+			$('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close");
+			if(typeof refresh3dObject == 'function'){
+				refresh3dObject();
+			}
+		},
 	});
+});
 
-	$('#bt_removeConfigurePlan3d').on('click',function(){
-		var plan3ds = $('#fd_plan3dConfigure').getValues('.plan3dAttr');
-		if(!isset(plan3ds[0].configuration)){
-			plan3ds[0].configuration = {};
-		}
-		jeedom.plan3d.remove({
-			id: plan3ds[0].id,
-			error: function (error) {
-				$('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function () {
-				$('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close");
-				if(typeof refresh3dObject == 'function'){
-					refresh3dObject();
-				}
-			},
-		});
-	});
-
-	if (isset(id) && id != '') {
-		$.ajax({
-			type: "POST",
-			url: "core/ajax/plan3d.ajax.php",
-			data: {
-				action: "get",
-				id: id
-			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error, $('#div_alertPlan3dConfigure'));
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alertPlan3dConfigure').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				$('#fd_plan3dConfigure').setValues(data.result, '.plan3dAttr');
-				if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalColor::condition'])) {
-					for (var i in data.result.configuration['3d::widget::conditionalColor::condition']) {
-						addConditionalColor(data.result.configuration['3d::widget::conditionalColor::condition'][i]);
-					}
+if (isset(id) && id != '') {
+	$.ajax({
+		type: "POST",
+		url: "core/ajax/plan3d.ajax.php",
+		data: {
+			action: "get",
+			id: id
+		},
+		dataType: 'json',
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error, $('#div_alertPlan3dConfigure'));
+		},
+		success: function (data) {
+			if (data.state != 'ok') {
+				$('#div_alertPlan3dConfigure').showAlert({message: data.result, level: 'danger'});
+				return;
+			}
+			$('#fd_plan3dConfigure').setValues(data.result, '.plan3dAttr');
+			if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalColor::condition'])) {
+				for (var i in data.result.configuration['3d::widget::conditionalColor::condition']) {
+					addConditionalColor(data.result.configuration['3d::widget::conditionalColor::condition'][i]);
 				}
 			}
-		});
-	}
+		}
+	});
+}
 </script>

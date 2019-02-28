@@ -55,7 +55,7 @@ if (is_array($scenarioListGroup)) {
 				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
 			</div>
 		</div>
-
+		
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 		<?php
 		if (count($totalScenario) == 0) {
@@ -128,7 +128,7 @@ if (is_array($scenarioListGroup)) {
 		}
 		?>
 	</div>
-
+	
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
 		<a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
 		<a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
@@ -144,7 +144,7 @@ if (is_array($scenarioListGroup)) {
 		<a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}</a>
 		<a class="btn btn-default btn-sm pull-right bt_addScenarioElement"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}</a>
 		<span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
-
+		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>
@@ -253,14 +253,14 @@ if (is_array($scenarioListGroup)) {
 							<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
 							<div class="col-sm-9 col-xs-6">
 								<div class="input-group">
-									<select class="form-control scenarioAttr input-sm" data-l1key="mode">
+									<select class="form-control scenarioAttr input-sm roundedLeft" data-l1key="mode">
 										<option value="provoke">{{Provoqué}}</option>
 										<option value="schedule">{{Programmé}}</option>
 										<option value="all">{{Les deux}}</option>
 									</select>
 									<span class="input-group-btn">
 										<a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}</a>
-										<a class="btn btn-default btn-sm" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+										<a class="btn btn-default btn-sm roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
 									</span>
 								</div>
 							</div>
@@ -275,7 +275,7 @@ if (is_array($scenarioListGroup)) {
 							<div class="scheduleMode"></div>
 						</div>
 						<div class="provokeMode provokeDisplay" style="display: none;">
-
+							
 						</div>
 					</form>
 				</div>
@@ -286,7 +286,7 @@ if (is_array($scenarioListGroup)) {
 			<div id="div_scenarioElement" class="element" style="padding-bottom: 70px;"></div>
 		</div>
 	</div>
-
+	
 </div>
 </div>
 
@@ -334,31 +334,31 @@ if (is_array($scenarioListGroup)) {
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription action" style="display:none;">
 					Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 					Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription in" style="display:none;">
 					Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription at" style="display:none;">
 					A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription code" style="display:none;">
 					Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
 				</div>
-
+				
 				<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
 					Permet de commenter votre scénario.
 				</div>
-
+				
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>

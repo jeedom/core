@@ -343,12 +343,12 @@ function addAction(_action, _type, _name) {
   div += '<div class="col-sm-5">';
   div += '<div class="input-group input-group-sm">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="expressionAttr form-control cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>';
-  div += '<a class="btn btn-default btn-sm listCmdAction" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';

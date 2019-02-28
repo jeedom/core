@@ -8,9 +8,9 @@ if (!isConnect('admin')) {
 <form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
 		<span class="input-group-addon" style="width: 100px">{{Demande}}</span>
-		<input class="form-control" id="in_testInteractQuery">
+		<input class="form-control roundedLeft" id="in_testInteractQuery">
 		<span class="input-group-btn">
-			<a class="btn btn-default" id="bt_executeInteractOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
+			<a class="btn btn-default roundedRight" id="bt_executeInteractOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
 </form>
@@ -20,29 +20,29 @@ if (!isConnect('admin')) {
 
 <script>
 
-	$('#in_testInteractQuery').keypress(function(e) {
-		if(e.which == 13) {
-			$('#bt_executeInteractOk').trigger('click');
-		}
-	});
+$('#in_testInteractQuery').keypress(function(e) {
+	if(e.which == 13) {
+		$('#bt_executeInteractOk').trigger('click');
+	}
+});
 
-	$('#bt_executeInteractOk').on('click',function(){
-		if($('#in_testInteractQuery').value() == ''){
-			$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'});
-			return;
-		}
-		jeedom.interact.execute({
-			query: $('#in_testInteractQuery').value(),
-			error: function (error) {
-				$('#div_alertInteractTest').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function (data) {
-				$('#div_interactTestResult').empty();
-				for(var i in data){
-					$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fas fa-comment"></i> '+i+' => '+data[i]+'</div>');
-				}
-
+$('#bt_executeInteractOk').on('click',function(){
+	if($('#in_testInteractQuery').value() == ''){
+		$('#div_alertInteractTest').showAlert({message: '{{La demande ne peut être vide}}', level: 'danger'});
+		return;
+	}
+	jeedom.interact.execute({
+		query: $('#in_testInteractQuery').value(),
+		error: function (error) {
+			$('#div_alertInteractTest').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function (data) {
+			$('#div_interactTestResult').empty();
+			for(var i in data){
+				$('#div_interactTestResult').append('<div class="alert alert-info"><i class="fas fa-comment"></i> '+i+' => '+data[i]+'</div>');
 			}
-		});
+			
+		}
 	});
+});
 </script>

@@ -346,9 +346,9 @@ if (!isConnect()) {
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de notification utilisateur}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<div class="input-group">
-									<input type="text" class="userAttr form-control" data-l1key="options" data-l2key="notification::cmd" />
+									<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
+										<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
 									</span>
 								</div>
 							</div>

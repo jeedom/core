@@ -266,12 +266,12 @@ function addSummaryInfo(_el, _summary) {
   div += '<div class="col-sm-4 has-success">';
   div += '<div class="input-group">';
   div += '<span class="input-group-btn">';
-  div += '<input type="checkbox" class="summaryAttr checkbox-inline" data-l1key="enable" checked title="{{Activer}}" />';
+  div += '<input type="checkbox" class="summaryAttr checkbox-inline roundedLeft" data-l1key="enable" checked title="{{Activer}}" />';
   div += '<a class="btn btn-default bt_removeSummary btn-sm"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="summaryAttr form-control input-sm" data-l1key="cmd" />';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm listCmdInfo btn-success"><i class="fas fa-list-alt"></i></a>';
+  div += '<a class="btn btn-sm listCmdInfo btn-success roundedRight"><i class="fas fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';

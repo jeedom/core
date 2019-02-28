@@ -1005,11 +1005,11 @@ function addTrigger(_trigger) {
   div += '<label class="col-xs-3 control-label">{{Evénement}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="trigger" value="' + _trigger.replace(/"/g,'&quot;') + '" >';
+  div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g,'&quot;') + '" >';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>';
   div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>';
-  div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
@@ -1022,10 +1022,10 @@ function addSchedule(_schedule) {
   div += '<label class="col-xs-3 control-label">{{Programmation}}</label>';
   div += '<div class="col-xs-9">';
   div += '<div class="input-group">';
-  div += '<input class="scenarioAttr input-sm form-control" data-l1key="schedule" value="' + _schedule.replace(/"/g,'&quot;') + '">';
+  div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="schedule" value="' + _schedule.replace(/"/g,'&quot;') + '">';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm cursor helpSelectCron"><i class="fas fa-question-circle"></i></a>';
-  div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule roundedRight"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
@@ -1051,11 +1051,11 @@ function addExpression(_expression) {
       _expression.expression = _expression.expression.replace(/"/g, '&quot;');
     }
     retour += '<div class="input-group input-group-sm" style="width: 100%; padding-top: 5px;">';
-    retour += '<textarea class="expressionAttr form-control" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
+    retour += '<textarea class="expressionAttr form-control roundedLeft" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
     retour += '<span class="input-group-btn">';
     retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression tooltips"  title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
     retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression tooltips"  title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
-    retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
+    retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips roundedRight"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
     
@@ -1090,12 +1090,12 @@ function addExpression(_expression) {
     retour += '</div>';
     retour += '<div class="col-xs-4" style="margin-top: 4px"><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
-    retour += '<button class="btn btn-default bt_removeExpression" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>';
+    retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>';
     retour += '</span>';
     retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression).replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
-    retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';
+    retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';
     retour += '</span>';
     retour += '</div></div>';
     var actionOption_id = uniqId();

@@ -299,9 +299,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey"><?php echo $configs['api']; ?></span>
+								<span class="span_apikey roundedLeft"><?php echo $configs['api']; ?></span>
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-refresh"></i></a>
 								</span>
 							</div>
 						</div>
@@ -311,9 +311,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey"><?php echo $configs['apipro']; ?></span>
+								<span class="span_apikey roundedLeft"><?php echo $configs['apipro']; ?></span>
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="pro"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-refresh"></i></a>
 								</span>
 							</div>
 						</div>
@@ -335,9 +335,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey"><?php echo $configs['apimarket']; ?></span>
+								<span class="span_apikey roundedLeft"><?php echo $configs['apimarket']; ?></span>
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
 								</span>
 							</div>
 						</div>
@@ -366,9 +366,9 @@ user::isBan();
 							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
 							echo '<div class="input-group">';
-							echo '<span class="span_apikey">' . config::byKey('api', $plugin->getId()) . '</span>';
+							echo '<span class="span_apikey roundedLeft">' . config::byKey('api', $plugin->getId()) . '</span>';
 							echo '<span class="input-group-btn">';
-							echo '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
+							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
 							echo '</span>';
 							echo '</div>';
 							echo '</div>';
@@ -600,7 +600,7 @@ user::isBan();
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<div class="dropdown">
-									<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="internalProtocol">
+									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="internalProtocol">
 										<?php echo config::byKey('internalProtocol'); ?>
 										<span class="caret"></span>
 									</button>
@@ -615,7 +615,7 @@ user::isBan();
 								<span class="input-group-addon">:</span>
 								<input type="number" class="configKey form-control" data-l1key="internalPort" />
 								<span class="input-group-addon">/</span>
-								<input type="text" class="configKey form-control" data-l1key="internalComplement" />
+								<input type="text" class="configKey form-control roundedRight" data-l1key="internalComplement" />
 							</div>
 						</div>
 					</div>
@@ -629,7 +629,7 @@ user::isBan();
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<div class="dropdown">
-									<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="externalProtocol">
+									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="externalProtocol">
 										<?php echo config::byKey('externalProtocol'); ?>
 										<span class="caret"></span>
 									</button>
@@ -644,7 +644,7 @@ user::isBan();
 								<span class="input-group-addon">:</span>
 								<input type="number" class="configKey form-control" data-l1key="externalPort" />
 								<span class="input-group-addon">/</span>
-								<input type="text" class="configKey form-control" data-l1key="externalComplement" />
+								<input type="text" class="configKey form-control roundedRight" data-l1key="externalComplement" />
 							</div>
 						</div>
 					</div>
@@ -1071,14 +1071,14 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
 								<span class="input-group-addon">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
 								<span class="input-group-addon">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
 								<span class="input-group-addon">> {{3 mots}}</span>
-								<input type="text" class="configKey form-control" data-l1key="interact::confidence"/>
+								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::confidence"/>
 							</div>
 						</div>
 					</div>
@@ -1086,14 +1086,14 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh1"/>
 								<span class="input-group-addon">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh2"/>
 								<span class="input-group-addon">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh3"/>
 								<span class="input-group-addon">{{4 mots}}</span>
-								<input type="text" class="configKey form-control" data-l1key="interact::weigh4"/>
+								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::weigh4"/>
 							</div>
 						</div>
 					</div>
@@ -1151,9 +1151,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<div class="input-group">
-								<input type="text"  class="configKey form-control" data-l1key="interact::warnme::defaultreturncmd" />
+								<input type="text"  class="configKey form-control roundedLeft" data-l1key="interact::warnme::defaultreturncmd" />
 								<span class="input-group-btn">
-									<a class="btn btn-default cursor bt_selectWarnMeCmd" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
+									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
 								</span>
 							</div>
 						</div>
@@ -1319,34 +1319,26 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre maximum d'évènements}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<div class="input-group">
-								<input type="text" class="configKey form-control" data-l1key="timeline::maxevent"/>
-							</div>
+							<input type="text" class="configKey form-control" data-l1key="timeline::maxevent"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Supprimer tous les évènements}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<div class="input-group">
-								<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fas fa-trash"></i> {{Supprimer}}</a>
-							</div>
+							<a type="text" class="btn btn-danger" id="bt_removeTimelineEvent" ><i class="fas fa-trash"></i> {{Supprimer}}</a>
 						</div>
 					</div>
 					<legend>{{Messages}}</legend>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
 						<div class="col-sm-1">
-							<div class="input-group">
-								<input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
-							</div>
+							<input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Action sur message}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="input-group">
-								<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-							</div>
+							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
 					<div id="div_actionOnMessage"></div>
@@ -1368,18 +1360,16 @@ user::isBan();
 								echo '<div class="form-group">';
 								echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
 								echo '<div class="col-sm-1">';
-								echo '<div class="input-group">';
 								echo '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
-								echo '</div>';
 								echo '</div>';
 								echo '</div>';
 								echo '<div class="form-group">';
 								echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
 								echo '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
 								echo '<div class="input-group">';
-								echo '<input type="text"  class="configKey form-control" data-l1key="alert::' . $level . 'Cmd" />';
+								echo '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
 								echo '<span class="input-group-btn">';
-								echo '<a class="btn btn-default cursor bt_selectAlertCmd" title="Rechercher une commande" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+								echo '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" title="Rechercher une commande" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
 								echo '</span>';
 								echo '</div>';
 								echo '</div>';
@@ -1415,7 +1405,7 @@ user::isBan();
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Adresse syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<div class="input-group form-control">
+										<div class="form-control">
 											<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
 										</div>
 									</div>
@@ -1423,7 +1413,7 @@ user::isBan();
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Port syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<div class="input-group form-control">
+										<div class="form-control">
 											<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
 										</div>
 									</div>
@@ -1432,7 +1422,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Format des logs}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="input-group form-control">
+									<div class="form-control">
 										<input type="text" class="configKey form-control" data-l1key="log::formatter" />
 									</div>
 								</div>
@@ -1440,7 +1430,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="input-group form-control">
+									<div class="form-control">
 										<input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
 									</div>
 								</div>
