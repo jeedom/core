@@ -158,6 +158,7 @@ legend {
 .cmd-widget > center {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
+  font-weight: bold;
 }
 
 .cmdName {
@@ -561,6 +562,12 @@ button:focus {
   line-height: 15px;
 }
 
+button .fas.fa-plus-circle {
+  font-size: 10px;
+}
+.caret {
+  border-width: 5px;
+}
 
 /* ___________________________________________________________NAVBAR */
 header a.navbar-brand {
@@ -583,8 +590,6 @@ header .navbar-toggle {
   height: 3px;
 }
 
-.navbar,
-.navbar-collapse,
 .dropdown-menu,
 .dropdown > a,
 .dropdown > a:hover {
@@ -620,11 +625,14 @@ header .navbar-toggle {
   min-height: 50px;
   height: 50px;
 }
-button .fas.fa-plus-circle {
-  font-size: 10px;
+
+header.navbar,
+.nav.navbar-nav .dropdown {
+  box-sizing: border-box;
+  border-bottom: 3px solid var(--bg-color) !important;
 }
-.caret {
-  border-width: 5px;
+header.navbar {
+  box-sizing:unset;
 }
 
 /* ___________________________________________________________PANELS */
@@ -1367,6 +1375,9 @@ path.highcharts-graph {
   padding-left: 15px !important;
   padding-right: 15px !important;
 }
+#div_confPlugin {
+  height: auto !important;
+}
 :not(.elfinder-dialog).ui-dialog {
   box-shadow: 0px 0px 0px 1500px var(--shd-color) !important;
 }
@@ -1422,11 +1433,20 @@ path.highcharts-graph {
   background: transparent !important;
 }
 .ui-widget-content:not(.slider){
-  color: var(--txt-color)!important;
-  background: var(--bg-modal-color)!important;
+  color: var(--txt-color) !important;
+  background: transparent !important;
   border: none!important;
   padding: 0em;
 }
+
+.ui-dialog .ui-dialog-buttonpane {
+  margin: 0;
+}
+.ui-dialog .ui-dialog-content,
+.ui-dialog .ui-dialog-buttonpane {
+  background-color: var(--bg-modal-color) !important;
+}
+
 .ui-resizable-handle.ui-icon {
   background-image: none !important;
   background-color: transparent !important;
@@ -1575,6 +1595,11 @@ button {
   border-bottom-left-radius: var(--border-radius) !important;
   border-bottom-right-radius: var(--border-radius) !important;
 }
+
+data-page=display] div.object > div {
+  border-radius: var(--border-radius) !important;
+}
+
 
 /* ___________________________________________________________MEDIA QUERIES */
 @media screen and (min-width: 992px) {
