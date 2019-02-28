@@ -668,12 +668,15 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
 /**************** Scheduler **********************/
 
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
+  $('#bt_addSchedule').removeClass('roundedRight');
+  $('#bt_addTrigger').removeClass('roundedRight');
   if ($(this).value() == 'schedule' || $(this).value() == 'all') {
     $('.scheduleDisplay').show();
     $('#bt_addSchedule').show();
   } else {
     $('.scheduleDisplay').hide();
     $('#bt_addSchedule').hide();
+    $('#bt_addTrigger').addClass('roundedRight');
   }
   if ($(this).value() == 'provoke' || $(this).value() == 'all') {
     $('.provokeDisplay').show();
@@ -681,6 +684,10 @@ $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
   } else {
     $('.provokeDisplay').hide();
     $('#bt_addTrigger').hide();
+    $('#bt_addSchedule').addClass('roundedRight');
+  }
+  if($(this).value() == 'all'){
+    $('#bt_addSchedule').addClass('roundedRight');
   }
 });
 
