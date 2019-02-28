@@ -53,8 +53,10 @@ i.cursor:focus {
   color: var(--linkHover-color) !important;
   outline: none;
 }
-.context-menu-root  {
+.context-menu-root,
+.context-menu-list {
   z-index: 9999 !important;
+  box-shadow: none;
 }
 .btn {
   border: none;
