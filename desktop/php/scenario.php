@@ -75,14 +75,14 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[-1] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
+					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
 					if($scenario->getDisplay('icon') != ''){
-						echo '<span style="font-size:3em;"'.$scenario->getDisplay('icon').'</span>';
+						echo '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<img src="core/img/scenario.png" height="45" width="40" />';
+						echo '<img src="core/img/scenario.png"/>';
 					}
 					echo "<br>";
-					echo '<span class="name" style="position:relative; word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 					echo '</div>';
 				}
 				echo '</div>';
@@ -108,14 +108,14 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="scenarioListContainer">';
 				foreach ($scenarios[$group['group']] as $scenario) {
 					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="text-align: center; min-height : 85px;margin-bottom : 5px;padding : 5px;border-radius: 2px;width : 130px;margin-left : 10px;' . $opacity . '" >';
+					echo '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
 					if($scenario->getDisplay('icon') != ''){
-						echo '<span style="font-size:3em;"'.$scenario->getDisplay('icon').'</span>';
+						echo '<span>'.$scenario->getDisplay('icon').'</span>';
 					}else{
-						echo '<img src="core/img/scenario.png" height="45" width="40" />';
+						echo '<img src="core/img/scenario.png"/>';
 					}
 					echo '<br/>';
-					echo '<span class="name" style="position:relative;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+					echo '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
 					echo '</div>';
 				}
 				echo '</div>';
