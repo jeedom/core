@@ -304,12 +304,12 @@ function addActionOnMessage(_action) {
   div += '<div class="col-sm-4">';
   div += '<div class="input-group">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default bt_removeAction btn-sm"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>';
-  div += '<a class="btn btn-default btn-sm listCmdAction"><i class="fas fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight"><i class="fas fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
