@@ -495,9 +495,6 @@ li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
   color: var(--linkHoverLight-color) !important;
 }
 
-button {
-  margin-right: 3px;
-}
 button:focus {
   outline:0 !important;
 }
@@ -1654,7 +1651,7 @@ button {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
-data-page=display] div.object > div {
+[data-page=display] div.object > div {
   border-radius: var(--border-radius) !important;
 }
 
