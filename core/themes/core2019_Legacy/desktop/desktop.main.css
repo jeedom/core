@@ -172,6 +172,10 @@ legend {
   margin-top: 2px;
   margin-right: 2px;
 }
+.label {
+  font-size: 12px !important;
+  font-weight: normal;
+}
 
 .iconCmd {
   margin-top: 5px !important;
@@ -272,15 +276,41 @@ select.selectCmd {
   width : 145px !important;
 }
 
+.scenarioDisplayCard.cursor {
+  margin-left: 0 !important;
+  position: absolute;
+  text-align: center;
+  min-height: 123px !important;
 
-.scenarioDisplayCard > img {
-  width: 65px;
-  height: 65px;
 }
+.scenarioDisplayCard .name  {
+  top: 10px !important;
+  position: relative;
+  word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.scenarioDisplayCard .label {
+  line-height: 30px !important;
+}
+.scenarioDisplayCard > .icon {
+  font-size: 3.8em !important;
+}
+.scenarioDisplayCard > .icon.jeedom-clap_cinema {
+  color: var(--logo-primary-color);
+}
+.scenarioDisplayCard > img {
+  width: 55px !important;
+  height: 55px !important;
+}
+
+
 .pluginListContainer div.cursor > center > img {
   width: 100px !important;
   padding-top: 15px;
 }
+
+
 .eqLogicThumbnailContainer div.cursor > center > img,
 .eqLogicThumbnailContainer div.cursor img {
   width: 75px !important;
@@ -513,7 +543,7 @@ button:focus {
 
 .input-group > .dropdown {
   vertical-align: top !important;
-  display: table-cell;  
+  display: table-cell;
 }
 
 .dropdown.open > .scrollable-menu,
@@ -900,7 +930,12 @@ div[data-subtype=select][data-version=dplan] {
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateZ(0px);
 }
-
+select,
+input[type=text] {
+  border: 0 !important;
+  background: var(--form-bg-color) !important;
+  padding: 6px 12px !important;
+}
 select option {
   color: var(--link-color) !important;
   background-color: var(--defaultBkg-color) !important;
@@ -1557,14 +1592,16 @@ div[id^=__lpform_] { /*lastpass*/
 .scenario-widget .widget-name,
 .panel,
 .panel-heading {
-  border-top-left-radius: var(--border-radius) !important;
-  border-top-right-radius: var(--border-radius) !important;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
-.panel,
+
+.panel {
+  border-radius: var(--border-radius) !important;
+}
 .panel-body {
-  border-bottom-left-radius: var(--border-radius) !important;
-  border-bottom-right-radius: var(--border-radius) !important;
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
+
 .btn,
 input,
 select,
@@ -1575,28 +1612,41 @@ textarea,
 button {
   border-radius: var(--border-radius) !important;
 }
+
+.input-group .btn,
+.input-group input,
+.input-group select,
+.input-group textarea,
+.input-group .input-group-addon,
+.input-group ::-moz-color-swatch{
+  border-radius: 0 !important;
+}
+.input-group .roundedLeft {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.input-group .roundedRight {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  margin-right: 3px !important;
+}
+
+
 .ui-dialog {
-  border-top-left-radius: var(--border-radius) !important;
-  border-top-right-radius: var(--border-radius) !important;
-  border-bottom-right-radius: var(--border-radius) !important;
-  border-bottom-left-radius: var(--border-radius) !important;
+  border-radius: var(--border-radius) !important;
 }
 .ui-dialog-titlebar {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
 
 .nav.nav-tabs li:first-child,
 .nav.nav-tabs li:first-child a {
-  border-top-left-radius: var(--border-radius) !important;
+  border-radius: var(--border-radius) 0 0 0 !important;
 }
 .nav.nav-tabs li:last-child,
 .nav.nav-tabs li:last-child a {
-  border-top-right-radius: var(--border-radius) !important;
+  border-radius: 0 var(--border-radius) 0 0 !important;
 }
 .tab-content {
-  border-bottom-left-radius: var(--border-radius) !important;
-  border-bottom-right-radius: var(--border-radius) !important;
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
 data-page=display] div.object > div {
