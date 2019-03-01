@@ -16,16 +16,17 @@ if (!isConnect('admin')) {
 	<div role="tabpanel" class="tab-pane active" id="cron">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-default roundedLeft" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a><a class="btn btn-default" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a><a class="btn btn-success roundedRight" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<?php
+				if (config::byKey('enableCron') == 0) {
+					echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fas fa-check"></i> {{Activer le système cron}}</a>';
+				} else {
+					echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fas fa-times"></i> {{Désactiver le système cron}}</a>';
+				}
+				?>
+				<a class="btn btn-default btn-sm" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a><a class="btn btn-default btn-sm" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
 			</span>
 		</div>
-		<?php
-		if (config::byKey('enableCron') == 0) {
-			echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fas fa-check"></i> {{Activer le système cron}}</a>';
-		} else {
-			echo '<a class="btn btn-danger pull-right" id="bt_changeCronState" data-state="0" style="margin-top: 5px;"><i class="fas fa-times"></i> {{Désactiver le système cron}}</a>';
-		}
-		?>
+		
 		<br/><br/><br/>
 		<table id="table_cron" class="table table-bordered table-condensed" >
 			<thead>

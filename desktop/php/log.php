@@ -46,9 +46,9 @@ natcasesort($list_logfile);
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="input-group pull-right" style="display:inline-flex">
-					<input class="form-control roundedLeft" style="max-width:150px;" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
+					<input class="form-control roundedLeft input-sm" style="max-width:150px;" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
 					<span class="input-group-btn">
-						<a class="btn btn-warning" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-warning" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}</a><a class="btn btn-danger" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a><a class="btn btn-danger roundedRight" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
+						<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
 					</span>
 				</div>
 			</div>

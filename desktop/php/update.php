@@ -8,7 +8,7 @@ if (!isConnect('admin')) {
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a class="btn btn-success roundedLeft" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-info" id="bt_checkAllUpdate"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a><a href="#" class="btn btn-default roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+		<a class="btn btn-success btn-sm roundedLeft" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a><a href="#" class="btn btn-default btn-sm roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 	</span>
 </div>
 <br/><br/>
