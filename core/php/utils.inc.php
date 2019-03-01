@@ -1283,3 +1283,7 @@ function unautorizedInDemo() {
 		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 	}
 }
+
+function checkAndFixCron($_cron){
+		return str_replace('*/ ','* ',$_cron);
+}
