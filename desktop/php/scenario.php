@@ -130,7 +130,7 @@ if (is_array($scenarioListGroup)) {
 	</div>
 	
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
-		<div class="input-group pull-right" style="display:inline">
+		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
 				<a class="btn btn-default btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}
