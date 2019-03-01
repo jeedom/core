@@ -53,10 +53,11 @@ Theme Core 2019 @Jeedom
   --url-iconsDark: url(ui-icons-white.png);
   --url-iconsLight: url(ui-icons-black.png);
 
-  --lb-info-color: rgb(150, 200, 240);
-  --al-info-color: rgb(120, 185, 250);
-  --al-success-color: rgb(110, 200, 110);
-  --al-warning-color: rgb(250, 200, 120);
+  --lb-info-color: rgb(110, 180, 240);
+  --al-info-color: rgb(100, 160, 230);
+  --al-primary-color:  rgb(60, 120, 180);
+  --al-success-color: rgb(80, 170, 80);
+  --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(190, 0, 0);
   
   --shd-color: rgba(0, 0, 0, 0.5);
