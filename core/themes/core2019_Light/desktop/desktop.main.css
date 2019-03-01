@@ -336,7 +336,7 @@ div[data-market_type=plugin]:hover {
 
 pre {
   color: var(--txt-color);
-  background-color: var(--defaultBkg-color);
+  background-color: var(--form-bg-color);
   border: none;
 }
 
@@ -1618,7 +1618,8 @@ textarea,
 .label,
 .input-group-addon,
 .market,
-button {
+button,
+pre {
   border-radius: var(--border-radius) !important;
 }
 
