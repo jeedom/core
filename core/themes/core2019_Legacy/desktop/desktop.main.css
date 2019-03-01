@@ -433,7 +433,10 @@ p.state {
 }
 
 /* résumé */
-li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
+li.alert-info.eqLogic {
+  color: var(--txt-color);
+  background-color: var(--defaultBkg-color) !important;
+}
 .row .objectSummaryParent{ font-size : 14px !important; }
 
 /* ___________________________________________________________BUTTONS */
