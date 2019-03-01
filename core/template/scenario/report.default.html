@@ -41,8 +41,12 @@
 </div>
 <script>
   $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function(){
+    $(this).closest('select').removeClass('roundedRight')
     $('.type[data-uid=#uid#]').hide();
     $('.'+$(this).value()+'[data-uid=#uid#]').show();
+    if($(this).value() == 'eqAnalyse'){
+      $(this).closest('select').addClass('roundedRight')
+    }
   });
   
   jeedom.view.all({
