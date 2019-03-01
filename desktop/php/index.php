@@ -50,7 +50,7 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
-			
+
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
@@ -268,9 +268,9 @@ if (init('rescue', 0) == 0) {
 									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
-										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
-										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
+										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
+										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
 									</ul>
 								</li>
 							<?php } ?>
@@ -280,12 +280,11 @@ if (init('rescue', 0) == 0) {
 									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
 									<?php if (isConnect('admin')) {	?>
 										<li><a href="index.php?v=d&p=report"><i class="fas fa-newspaper-o"></i> {{Rapport}}</a></li>
-										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
 									<?php } ?>
 									<li class="divider"></li>
 									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
 									<?php if (isConnect('admin')) { ?>
-										
+										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
 										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
@@ -354,7 +353,7 @@ if (init('rescue', 0) == 0) {
 							$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
 							<li>
 								<a href="#" id="bt_messageModal">
-									<span class="badge" id="span_nbMessage" title="{{Nombre de messages}}" style="background-color : #ec971f;<?php echo $displayMessage; ?>">
+									<span class="badge btn btn-warning" id="span_nbMessage" title="{{Nombre de messages}}" style="<?php echo $displayMessage; ?>">
 										<?php echo $nbMessage; ?>
 									</span>
 								</a>
@@ -364,12 +363,12 @@ if (init('rescue', 0) == 0) {
 								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
 								<li>
 									<a href="index.php?v=d&p=update">
-										<span class="badge" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="background-color : #c9302c;<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
+										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 									</li>
 								<?php } ?>
 								<li class="hidden-xs"><a href="#" style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li>
-									<a href="#" style="cursor:default;" class="hidden-xs">
+									<a href="index.php?v=d&p=administration#generaltab" class="hidden-xs">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
 								</li>
@@ -452,4 +451,4 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	
+

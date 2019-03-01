@@ -4,10 +4,11 @@ if (!isConnect('admin')) {
 }
 ?>
 <br/>
-<i class="fas fa-clock-o" style="cursor:default;"></i> <span style="cursor:default;">{{Dernière vérification : }}</span><span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;cursor:default;"></span>
-<a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-<a class="btn btn-info pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a>
-<a href="#" class="btn btn-default pull-right" id="bt_updateJeedom" style="margin-top:5px;"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+<i class="fas fa-clock-o"></i> <span>{{Dernière vérification : }}</span>
+<span class="label label-info" id="span_lastUpdateCheck"></span>
+<a class="btn btn-success pull-right" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+<a class="btn btn-info pull-right" id="bt_checkAllUpdate"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a>
+<a href="#" class="btn btn-default pull-right" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 <br/><br/>
 
 <ul class="nav nav-tabs" role="tablist">
