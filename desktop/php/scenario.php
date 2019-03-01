@@ -147,8 +147,9 @@ if (is_array($scenarioListGroup)) {
 				<a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}</a>
 				<a class="btn btn-default btn-sm pull-right bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}</a>
 			</span>
+			<span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 		</div>
-		<span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
+		
 		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
