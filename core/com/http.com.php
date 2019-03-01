@@ -1,27 +1,27 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* ------------------------------------------------------------ Inclusions */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class com_http {
 	/*     * ***********************Attributs************************* */
-
+	
 	private $url;
 	private $username = '';
 	private $password = '';
@@ -37,24 +37,24 @@ class com_http {
 	private $noReportError = false;
 	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
-
+	
 	/*     * ********************Fonctions statiques********************* */
-
+	
 	public function __construct($_url = '', $_username = '', $_password = '') {
 		$this->url = $_url;
 		$this->username = $_username;
 		$this->password = $_password;
 	}
-
+	
 	/*     * ************* Fonctions ************************************ */
-
+	
 	/**
-	 *
-	 * @param int $_timeout
-	 * @param int $_maxRetry
-	 * @return string
-	 * @throws Exception
-	 */
+	*
+	* @param int $_timeout
+	* @param int $_maxRetry
+	* @return string
+	* @throws Exception
+	*/
 	public function exec($_timeout = 2, $_maxRetry = 3) {
 		$nbRetry = 0;
 		while ($nbRetry < $_maxRetry) {
@@ -127,122 +127,122 @@ class com_http {
 		$ch = null;
 		return $response;
 	}
-
+	
 	public function getPing() {
 		return $this->ping;
 	}
-
+	
 	public function getNoSslCheck() {
 		return $this->noSslCheck;
 	}
-
+	
 	public function setPing($ping) {
 		$this->ping = $ping;
 		return $this;
 	}
-
+	
 	public function setNoSslCheck($noSslCHeck) {
 		$this->noSslCheck = $noSslCHeck;
 		return $this;
 	}
-
+	
 	public function getLogError() {
 		return $this->logError;
 	}
-
+	
 	public function setLogError($logError) {
 		$this->logError = $logError;
 		return $this;
 	}
-
+	
 	public function getSleepTime() {
 		return $this->sleepTime;
 	}
-
+	
 	public function setSleepTime($sleepTime) {
 		$this->sleepTime = $sleepTime * 1000000;
 		return $this;
 	}
-
+	
 	public function getPost() {
 		return $this->post;
 	}
-
+	
 	public function setPost($post) {
 		$this->post = $post;
 		return $this;
 	}
-
+	
 	public function getHeader() {
 		return $this->header;
 	}
-
+	
 	public function setHeader($header) {
 		$this->header = $header;
 		return $this;
 	}
-
+	
 	public function getCookiesession() {
 		return $this->cookiesession;
 	}
-
+	
 	public function setCookiesession($cookiesession) {
 		$this->cookiesession = $cookiesession;
 		return $this;
 	}
-
+	
 	public function getAllowEmptyReponse() {
 		return $this->allowEmptyReponse;
 	}
-
+	
 	public function setAllowEmptyReponse($allowEmptyReponse) {
 		$this->allowEmptyReponse = $allowEmptyReponse;
 		return $this;
 	}
-
+	
 	public function getNoReportError() {
 		return $this->noReportError;
 	}
-
+	
 	public function setNoReportError($noReportError) {
 		$this->noReportError = $noReportError;
 		return $this;
 	}
-
+	
 	public function getUrl() {
 		return $this->url;
 	}
-
+	
 	public function setUrl($url) {
 		$this->url = $url;
 		return $this;
 	}
-
+	
 	public function getCURLOPT_HTTPAUTH() {
 		return $this->CURLOPT_HTTPAUTH;
 	}
-
+	
 	public function setCURLOPT_HTTPAUTH($CURLOPT_HTTPAUTH) {
 		$this->CURLOPT_HTTPAUTH = $CURLOPT_HTTPAUTH;
 		return $this;
 	}
-
+	
 	public function getPut() {
 		return $this->put;
 	}
-
+	
 	public function setPut($put) {
 		$this->put = $put;
 		return $this;
 	}
-
+	
 	public function getUserAgent() {
 		return $this->userAgent;
 	}
-
+	
 	public function setUserAgent($userAgent) {
 		$this->userAgent = $userAgent;
 		return $this;
 	}
-
+	
 }
