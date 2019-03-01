@@ -130,19 +130,24 @@ if (is_array($scenarioListGroup)) {
 	</div>
 	
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
-		<a class="btn btn-default btn-sm pull-right" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
-		<a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
-		<a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>
-		<a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i></a>
-		<a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}</a>
-		<a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
-		<a class="btn btn-default btn-sm pull-right" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i></a>
-		<a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-		<a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-		<a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}</a>
-		<a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}</a>
-		<a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}</a>
-		<a class="btn btn-default btn-sm pull-right bt_addScenarioElement"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}</a>
+		
+		<div class="input-group pull-right">
+			<span class="input-group-btn">
+				<a class="btn btn-default btn-sm pull-right roundedRight" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i></a>
+				<a class="btn btn-default btn-sm pull-right" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i></a>
+				<a class="btn btn-default btn-sm pull-right" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i></a>
+				<a class="btn btn-default btn-sm pull-right" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i></a>
+				<a class="btn btn-danger btn-sm pull-right" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}</a>
+				<a class="btn btn-default btn-sm pull-right" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+				<a class="btn btn-default btn-sm pull-right" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i></a>
+				<a class="btn btn-success btn-sm pull-right" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+				<a class="btn btn-danger btn-sm pull-right" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-warning btn-sm pull-right" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}</a>
+				<a class="btn btn-primary btn-sm pull-right bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}</a>
+				<a class="btn btn-primary btn-sm pull-right" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}</a>
+				<a class="btn btn-default btn-sm pull-right bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}</a>
+			</span>
+		</div>
 		<span id="span_ongoing" class="label pull-right" style="font-size : 1em;position:relative;top:5px;"></span>
 		
 		<ul class="nav nav-tabs" role="tablist">
