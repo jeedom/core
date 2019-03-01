@@ -55,9 +55,9 @@ $plugins_list = plugin::listPlugin(false, true);
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
 			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
-			<span id="span_plugin_market" class="pull-right"></span>
-			<span id="span_plugin_delete" class="pull-right"></span>
-			<span id="span_plugin_doc" class="pull-right"></span>
+			<div class="input-group pull-right" style="display:inline-flex">
+				<span class="input-group-btn" id="span_right_button"></span>
+			</div>
 		</legend>
 		
 		<div class="row">

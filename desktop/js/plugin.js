@@ -101,29 +101,25 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_deamon').closest('.panel').show();
         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id);
       }
-      
-      $('#span_plugin_market').empty();
+      $('#span_right_button').append('<a class="btn btn-default btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-refresh"></i> {{Rafraichir}}</a>');
       if (isset(data.status) && isset(data.status.owner)) {
         for(var i in data.status.owner){
           if(data.status.owner[i] != 1){
             continue;
           }
-          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload-alt"></i> {{Envoyer sur le}} '+i+'</a> ');
+          $('#span_right_button').append('<a class="btn btn-warning btn-sm sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload-alt"></i> {{Envoyer sur le}} '+i+'</a>');
         }
       }
-      $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a> ');
-      $('#span_plugin_doc').empty();
-      $('#span_plugin_doc').append('<a class="btn btn-default btn-xs bt_refreshPluginInfo"><i class="fas fa-refresh"></i> {{Rafraichir}}</a> ');
       if(isset(data.documentation) && data.documentation != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.documentation+'"><i class="fas fa-book"></i> {{Documentation}}</a> ');
+        $('#span_right_button').append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.documentation+'"><i class="fas fa-book"></i> {{Documentation}}</a>');
       }
       if(isset(data.changelog) && data.changelog != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ');
+        $('#span_right_button').append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a>');
       }
       if(isset(data.info.display) && data.info.display != ''){
-        $('#span_plugin_doc').append('<a class="btn btn-primary btn-xs" target="_blank" href="'+data.info.display+'"><i class="fas fa-book"></i> {{Détails}}</a> ');
+        $('#span_right_button').append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.info.display+'"><i class="fas fa-book"></i> {{Détails}}</a>');
       }
-      
+      $('#span_right_button').append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
       if (data.checkVersion != -1) {
         $('#span_plugin_require').html('<span>' + data.require + '</span>');
       } else {
@@ -324,7 +320,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
   return false;
 });
 
-$('#span_plugin_delete').delegate('.removePlugin','click',function(){
+$('#span_right_button').delegate('.removePlugin','click',function(){
   var _el = $(this);
   bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
     if (result) {
