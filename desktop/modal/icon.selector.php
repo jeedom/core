@@ -30,6 +30,9 @@ if (!isConnect()) {
 <?php
 foreach (ls('core/css/icon', '*') as $dir) {
 	if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
+      	$fontfile = 'core/css/icon/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
+        if (!file_exists($fontfile)) continue;
+
 		$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
 		$research = strtolower(str_replace('/', '', $dir));
 		preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);

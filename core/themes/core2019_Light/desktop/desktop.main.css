@@ -53,8 +53,10 @@ i.cursor:focus {
   color: var(--linkHover-color) !important;
   outline: none;
 }
-.context-menu-root  {
+.context-menu-root,
+.context-menu-list {
   z-index: 9999 !important;
+  box-shadow: none;
 }
 .btn {
   border: none;
@@ -281,27 +283,23 @@ select.selectCmd {
   position: absolute;
   text-align: center;
   min-height: 123px !important;
-
 }
-.scenarioDisplayCard .name  {
+.scenarioDisplayCard .name {
   top: 10px !important;
   position: relative;
   word-break: break-all;
   white-space: pre-wrap;
   word-wrap: break-word;
+  display: block !important;
+  font-family: "Roboto";
+  font-size: 12px;
+  line-height: 22px !important;
 }
-.scenarioDisplayCard .label {
-  line-height: 30px !important;
-}
-.scenarioDisplayCard > .icon {
+.scenarioDisplayCard .icon {
   font-size: 3.8em !important;
 }
-.scenarioDisplayCard > .icon.jeedom-clap_cinema {
+.scenarioDisplayCard .icon.noicon {
   color: var(--logo-primary-color);
-}
-.scenarioDisplayCard > img {
-  width: 55px !important;
-  height: 55px !important;
 }
 
 
@@ -499,9 +497,6 @@ li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
   color: var(--linkHoverLight-color) !important;
 }
 
-button {
-  margin-right: 3px;
-}
 button:focus {
   outline:0 !important;
 }
@@ -786,6 +781,10 @@ input:focus, textarea:focus {
 .expressions .expression {
   padding-right: 0 !important;
 }
+.expressionOptions .input-group:first-child {
+  margin-bottom: 4px;
+}
+
 .element .subElement.noSortable legend,
 .subElement legend {
   margin-left: -10px !important;
@@ -1617,8 +1616,13 @@ button {
 .input-group input,
 .input-group select,
 .input-group textarea,
-.input-group .input-group-addon,
-.input-group ::-moz-color-swatch{
+.input-group .input-group-addon {
+  border-radius: 0 !important;
+}
+.input-group ::-moz-color-swatch {
+  border-radius: 0 !important;
+}
+.input-group ::-webkit-color-swatch {
   border-radius: 0 !important;
 }
 .input-group .roundedLeft {
@@ -1649,7 +1653,7 @@ button {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
-data-page=display] div.object > div {
+[data-page=display] div.object > div {
   border-radius: var(--border-radius) !important;
 }
 

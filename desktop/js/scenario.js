@@ -668,12 +668,15 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
 /**************** Scheduler **********************/
 
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
+  $('#bt_addSchedule').removeClass('roundedRight');
+  $('#bt_addTrigger').removeClass('roundedRight');
   if ($(this).value() == 'schedule' || $(this).value() == 'all') {
     $('.scheduleDisplay').show();
     $('#bt_addSchedule').show();
   } else {
     $('.scheduleDisplay').hide();
     $('#bt_addSchedule').hide();
+    $('#bt_addTrigger').addClass('roundedRight');
   }
   if ($(this).value() == 'provoke' || $(this).value() == 'all') {
     $('.provokeDisplay').show();
@@ -681,6 +684,10 @@ $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
   } else {
     $('.provokeDisplay').hide();
     $('#bt_addTrigger').hide();
+    $('#bt_addSchedule').addClass('roundedRight');
+  }
+  if($(this).value() == 'all'){
+    $('#bt_addSchedule').addClass('roundedRight');
   }
 });
 
@@ -1167,9 +1174,9 @@ function addSubElement(_subElement, _pColor) {
     
     retour += '<div style="display:table-cell; width: 35px;vertical-align: top; padding-top: 5px;">';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
-      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
+      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i></span></a>';
     }else{
-      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips pull-right" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i><i class="fas fa-ban fa-stack-2x text-danger"></i></span></a>';
+      retour += '<a style="height : 30px;" class="btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span class="fa-stack"><i class="fas fa-refresh fa-stack-1x"></i><i class="fas fa-ban fa-stack-2x text-danger"></i></span></a>';
     }
     retour += '</div>';
     retour += '<div class="expressions" style="display:table-cell;">';

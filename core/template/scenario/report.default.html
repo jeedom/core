@@ -1,5 +1,5 @@
 <div class="input-group input-group-sm" style="width: 100%">
-  <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Exporter}}</span>
+  <span class="input-group-addon roundedLeft" id="basic-addon1" style="width:100px;">{{Exporter}}</span>
   <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#">
     <option value="view">{{Vue}}</option>
     <option value="plan">{{Design}}</option>
@@ -13,10 +13,10 @@
   <select class="expressionAttr form-control input-sm type plan" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
   
   <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
-  <select class="expressionAttr form-control input-sm type plugin" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 </div>
 <div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
-  <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Exporter en}}</span>
+  <span class="input-group-addon roundedLeft" id="basic-addon1" style="width:100px;">{{Exporter en}}</span>
   <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="export_type" data-cmd_id="#id#" data-uid="#uid#">
     <option value="png">{{PNG}}</option>
     <option value="pdf">{{PDF}}</option>
@@ -26,18 +26,18 @@
   <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Commandes}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-btn">
-    <button class="btn btn-default listEquipementInfo" type="button" title="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
+    <button class="btn btn-default listEquipementInfo roundedRight" type="button" title="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fa fa-list-alt"></i></button>
   </span>
 </div>
 <div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
-  <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Largeur  (px)}}</span>
+  <span class="input-group-addon roundedLeft" id="basic-addon1" style="width:100px;">{{Largeur  (px)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="width" placeholder="1280" value="#width#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" id="basic-addon1" style="width:100px;">{{Hauteur (px)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="height" placeholder="720" value="#height#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" id="basic-addon1" style="width:90px;">{{Delai (ms)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="10000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" id="basic-addon1" style="width:90px;">{{Option(s)}}</span>
-  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="arg" value="#arg#" data-cmd_id="#id#" data-uid="#uid#"/>
+  <input class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="arg" value="#arg#" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 <script>
   $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function(){

@@ -95,7 +95,6 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
-	include_file('desktop', 'commun', 'css');
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
@@ -154,6 +153,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'animate/animate', 'css');
 	include_file('3rdparty', 'animate/animate', 'js');
+	include_file('desktop', 'commun', 'css');
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
