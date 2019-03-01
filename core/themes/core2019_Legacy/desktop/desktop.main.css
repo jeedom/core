@@ -788,8 +788,11 @@ input:focus, textarea:focus {
 .expressions .expression {
   padding-right: 0 !important;
 }
-.expressionOptions .input-group:first-child {
-  margin-bottom: 4px;
+.expressionOptions .input-group {
+  margin-bottom: 2px;
+}
+.expressionOptions .input-group.input-group-sm:last-child {
+  margin-bottom: 0 !important;
 }
 
 .element .subElement.noSortable legend,
