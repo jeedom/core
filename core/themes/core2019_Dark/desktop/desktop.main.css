@@ -395,22 +395,26 @@ pre {
 .alert {
   border: none !important;
 }
-.alert-info {
-  color: var(--txt-color);
+.alert-info,
+.label-info {
+  color: var(--linkHoverLight-color);
   background-color: var(--al-info-color);
   border: none;
 }
-.alert-success {
+.alert-success,
+.label-success {
   color: var(--linkHoverLight-color);
   background-color: var(--al-success-color);
   border: none;
 }
-.alert-warning {
-  color: var(--txt-color);
+.alert-warning,
+.label-warning {
+  color: var(--linkHoverLight-color);
   background-color: var(--al-warning-color);
   border: none;
 }
-.alert-danger {
+.alert-danger,
+.label-danger {
   color: var(--sc-lightTxt-color);
   background-color: var(--al-danger-color);
   border: none;
@@ -469,28 +473,28 @@ li.alert-info.eqLogic { background-color: var(--defaultBkg-color) !important; }
 .btn.btn-info {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-  background-color: rgb(80, 140, 180) !important;
+  background-color: var(--al-info-color) !important;
 }
 .btn.btn-warning {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-  background-color: rgb(230, 150, 40) !important;
+  background-color: var(--al-warning-color) !important;
 }
 .btn.btn-danger {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-  background-color: rgb(180, 60, 50) !important;
+  background-color: var(--al-danger-color) !important;
 }
 .btn.btn-primary,
 .label-primary {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-  background-color: rgb(40, 100, 170) !important;
+  background-color: var(--al-primary-color) !important;
 }
 .btn.btn-success {
   color: var(--bg-color) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-  background-color: rgb(80, 160, 80) !important;
+  background-color: var(--al-success-color) !important;
 }
 
 .btn.btn-info:hover {
