@@ -848,19 +848,19 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::step::width" />
+							<input type="number" class="configKey form-control" data-l1key="widget::step::width" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::step::height" />
+							<input type="number" class="configKey form-control" data-l1key="widget::step::height" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Marge}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::margin" />
+							<input type="number" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
 					
@@ -878,13 +878,13 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité par défaut des tuiles}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::background-opacity" />
+							<input type="number" step="0.1" class="configKey form-control" data-l1key="widget::background-opacity" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="numeric" class="configKey form-control" data-l1key="widget::border-radius" />
+							<input type="number" step="0.1" class="configKey form-control" data-l1key="widget::border-radius" />
 						</div>
 					</div>
 				</fieldset>
