@@ -6,9 +6,11 @@ if (!isConnect('admin')) {
 <br/>
 <i class="fas fa-clock-o"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
-<a class="btn btn-success pull-right" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-<a class="btn btn-info pull-right" id="bt_checkAllUpdate"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a>
-<a href="#" class="btn btn-default pull-right" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+<div class="input-group pull-right" style="display:inline-flex">
+	<span class="input-group-btn">
+		<a class="btn btn-success roundedLeft" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-info" id="bt_checkAllUpdate"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a><a href="#" class="btn btn-default roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+	</span>
+</div>
 <br/><br/>
 
 <ul class="nav nav-tabs" role="tablist">

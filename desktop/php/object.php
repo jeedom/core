@@ -46,9 +46,11 @@ $allObject = jeeObject::buildTree(null, false);
 	</div>
 	
 	<div class="col-xs-12 object" style="display: none;" id="div_conf">
-		<a class="btn btn-success pull-right" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-		<a class="btn btn-danger pull-right" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-		<a class="btn btn-default pull-right" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a>
+		<div class="input-group pull-right" style="display:inline-flex">
+			<span class="input-group-btn">
+				<a class="btn btn-default roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+			</span>
+		</div>
 		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>

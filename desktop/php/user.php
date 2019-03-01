@@ -11,19 +11,22 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 	<div class="tab-pane" id="user">
 		<br/>
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
-			<a class="btn btn-success btn-xs pull-right" id="bt_saveUser"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
-			<?php if (config::byKey('ldap::enable') != '1') {
-				$user = user::byLogin('jeedom_support');
-				if (!is_object($user)) {
-					echo ' <a class="btn btn-success btn-xs pull-right" id="bt_supportAccess" data-enable="1"><i class="fas fa-user"></i> {{Activer accès support}}</a>';
-				} else {
-					echo ' <a class="btn btn-danger btn-xs pull-right" id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}</a>';
-				}
-				?>
-				
-				<a class="btn btn-warning btn-xs  pull-right" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
-			<?php }
-			?>
+			<div class="input-group pull-right" style="display:inline-flex">
+				<span class="input-group-btn">
+					<a class="btn btn-warning btn-xs roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}</a>
+					<?php if (config::byKey('ldap::enable') != '1') {
+						$user = user::byLogin('jeedom_support');
+						if (!is_object($user)) {
+							echo '<a class="btn btn-success btn-xs " id="bt_supportAccess" data-enable="1"><i class="fas fa-user"></i> {{Activer accès support}}</a>';
+						} else {
+							echo '<a class="btn btn-danger btn-xs " id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}</a>';
+						}
+						?>
+						<a class="btn btn-success btn-xs roundedRight" id="bt_saveUser"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+					<?php }
+					?>
+				</span>
+			</div>
 		</legend>
 		<table class="table table-condensed table-bordered" id="table_user">
 			<thead>

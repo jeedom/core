@@ -13,12 +13,11 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
 <div style="display: none;" id="md_displayCmdConfigure"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}</a>
+<div class="input-group pull-right" style="display:inline-flex">
+  <span class="input-group-btn">
+    <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+  </span>
+</div>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>

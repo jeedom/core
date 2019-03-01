@@ -26,12 +26,14 @@ if(init('log','event') == 'event'){
 	}
 }
 ?>
+<span class="label label-info" id="span_lastUpdateCheck"></span>
+<div class="input-group pull-right" style="display:inline-flex">
+	<input class="form-control roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+	<span class="input-group-btn">
+		<a class="btn btn-warning" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-warning" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}</a><a class="btn btn-danger roundedRight" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
+	</span>
+</div>
 
-<a class="btn btn-danger pull-right" id="bt_logdisplayremoveLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
-<a class="btn btn-warning pull-right" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}</a>
-<a class="btn btn-success pull-right" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
-<a class="btn btn-warning pull-right" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
-<input class="form-control pull-right" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 <br/><br/>
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
 <script>

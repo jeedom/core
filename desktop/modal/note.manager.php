@@ -13,9 +13,11 @@ if (!isConnect('admin')) {
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8" style="border-left: solid 1px #EEE; padding-left: 25px;overflow-y:hidden;overflow-x:hidden;">
-		<a class="btn btn-danger btn-xs pull-right" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-		<a class="btn btn-success btn-xs pull-right" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a>
-		<a class="btn btn-success btn-xs pull-right" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+		<div class="input-group pull-right" style="display:inline-flex">
+			<span class="input-group-btn">
+				<a class="btn btn-default btn-xs roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}</a><a class="btn btn-success btn-xs" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-xs roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+			</span>
+		</div>
 		<br/><br/>
 		<div id="div_noteManagerDisplay">
 			<input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>

@@ -10,10 +10,12 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
 <?php echo '<span style="font-weight: bold;font-size:1.5em;">' . $scenario->getHumanName() . '</span>'; ?>
-<input class="form-control pull-right" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
-<a class="btn btn-warning pull-right" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
-<a class="btn btn-danger pull-right" id="bt_scenarioLogEmpty"><i class="fas fa-trash"></i> {{Vider le log}}</a>
-<a class="btn btn-success pull-right" id="bt_scenarioLogDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
+<div class="input-group pull-right" style="display:inline-flex">
+	<input class="form-control roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+	<span class="input-group-btn">
+		<a class="btn btn-warning" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success" id="bt_scenarioLogDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-danger roundedRight" id="bt_scenarioLogEmpty"><i class="fas fa-trash"></i> {{Vider le log}}</a>
+	</span>
+</div>
 <br/><br/>
 <pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
 

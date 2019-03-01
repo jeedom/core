@@ -11,12 +11,11 @@ sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
 sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->getHumanName())));
 ?>
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
-
-<a class="btn btn-success pull-right btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-danger pull-right btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a>
+<div class="input-group pull-right" style="display:inline-flex">
+	<span class="input-group-btn">
+		<a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
+	</span>
+</div>
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>

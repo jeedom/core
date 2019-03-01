@@ -14,9 +14,11 @@ if (!isConnect('admin')) {
 
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="cron">
-		<a class="btn btn-success pull-right" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-		<a class="btn btn-default pull-right" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-		<a class="btn btn-default pull-right" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
+		<div class="input-group pull-right" style="display:inline-flex">
+			<span class="input-group-btn">
+				<a class="btn btn-default roundedLeft" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a><a class="btn btn-default" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a><a class="btn btn-success roundedRight" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+			</span>
+		</div>
 		<?php
 		if (config::byKey('enableCron') == 0) {
 			echo '<a class="btn btn-success pull-right" id="bt_changeCronState" data-state="1" style="margin-top: 5px;"><i class="fas fa-check"></i> {{Activer le système cron}}</a>';
