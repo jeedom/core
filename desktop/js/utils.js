@@ -173,6 +173,12 @@ $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',fun
   $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
 })
 
+
+$('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu:first').stop(true, true).delay(200).fadeIn(500);
+}, function() {
+  $(this).find('.dropdown-menu:first').stop(true, true).delay(200).fadeOut(500);
+});
 /*********************Gestion des dialogs********************************/
 
 $.fn.modal.Constructor.prototype.enforceFocus = function () {};
