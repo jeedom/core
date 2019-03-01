@@ -81,12 +81,12 @@ div.vis-item,div.vis-item-content {
 				</ul>
 			</div>
 			
-			<div class="col-lg-9 col-md-8 col-sm-7" style="border-left: solid 1px #EEE; padding-left: 25px;">
+			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-4 col-sm-12 center">
 						<a class="btn btn-warning btn-sm" id='bt_clearGraph'><i class="far fa-trash-alt"></i> {{Vider}}</a>
-						<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['start'] ?>"/>
-						<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;top:1px;" value="<?php echo $date['end'] ?>"/>
+						<input id="in_startDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;" value="<?php echo $date['start'] ?>"/>
+						<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 100px;position:relative;" value="<?php echo $date['end'] ?>"/>
 						<a class="btn btn-success btn-sm" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i> {{Ok}}</a>
 					</div>
 					<div class="col-lg-3 col-sm-12">
@@ -135,15 +135,15 @@ div.vis-item,div.vis-item-content {
 		<br/>
 		<div class="row form-group">
 			<div class="col-lg-3 col-sm-12 center">
-				<div class="btn-group" role="group" aria-label="...">
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="h">H</a>
+				<div class="input-group btn-group" role="group" aria-label="...">
+					<a class="btn btn-sm btn-default bt_timelineZoom roundedLeft" data-zoom="h">H</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="w">S</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="m">M</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
+					<a class="btn btn-sm btn-success roundedRight" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 				</div>
-				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
 			</div>
 			<div class="col-lg-3 col-sm-12 center">
 				<a class="btn btn-sm btn-default" id="bt_configureTimelineCommand"><i class="fas fa-cogs"></i> {{Commandes}}</a>
