@@ -801,11 +801,7 @@ class scenarioExpression {
 		} catch (Exception $e) {
 			$result = $_value;
 		}
-		if ($_decimal == 0) {
-			return ceil(floatval(str_replace(',', '.', $result)));
-		} else {
-			return round(floatval(str_replace(',', '.', $result)), $_decimal);
-		}
+		return round(floatval(str_replace(',', '.', $result)), $_decimal);
 	}
 	
 	
