@@ -52,6 +52,10 @@ Theme Core 2019 @Jeedom
 	font-size: 14px !important;
 	font-weight: normal !important;
 }
+.cmdName:first-letter {
+    text-transform: uppercase;
+}
+
 .timeCmd {
   color: var(--txt-color);
   background: linear-gradient(var(--bg-color), var(--bg-color)) fixed !important;
@@ -85,6 +89,7 @@ Theme Core 2019 @Jeedom
 	color: var(--txt-color);
 	padding: 5px !important;
 	border: none;
+	text-shadow: none !important;
 }
 .eqLogic.eqLogic-widget .ui-input-text input[type=color],
 .action_colorpicker_change {
@@ -100,6 +105,9 @@ Theme Core 2019 @Jeedom
 .ui-checkbox .ui-btn {
   color: var(--link-color);
 	background: var(--form-bg-color) !important;
+}
+.ui-controlgroup-controls .ui-btn {
+	box-shadow: none !important;
 }
 
 [data-category] .widget-name {
@@ -221,10 +229,13 @@ legend {
 	color: var(--link-color) !important;
   background-color: transparent !important;
   text-align: center;
-  margin-top: 1em !important;
-	margin-bottom: 0.5em !important;
+  margin-top: 0.7em !important;
+	margin-bottom: 0.2em !important;
 	border-bottom: none !important;
 	font-size: 22px !important;
+}
+.nd2-card {
+	margin: 0 !important;
 }
 .eqLogic-widget i.fa-refresh {
   margin-right: calc((var(--border-radius)/4) + 3px)  !important;
