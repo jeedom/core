@@ -866,7 +866,11 @@ user::isBan();
 					
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Avancé}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
+						</div>
+						<span class="col-lg-2 col-md-3 col-sm-3 col-xs-6"></span>
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 							<a class="btn btn-default form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Personnalisation avancée</a>
 						</div>
