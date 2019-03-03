@@ -30,7 +30,6 @@ body{
     background-color: #19bc9c;
     color : white;
     vertical-align: top;
-    text-shadow: initial !important;
     padding-bottom: 10px;
 }
 
@@ -62,7 +61,8 @@ body{
     display: none;
 }
 .full-width-slider .ui-slider-track {
-    margin-left: 15px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 legend{ 
