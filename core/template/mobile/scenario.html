@@ -28,7 +28,7 @@
       $('.scenario[data-scenario_id=#id#] .state').empty().append(_options.icon);
       $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
       if (_options.isActive == '1') {
-        if (_options.state == 'in progress') {
+        if (_options.state == 'in progress' || _options.state == 'starting') {
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
         }else if (_options.state == 'error') {
