@@ -603,6 +603,9 @@ class cmd {
 		$return = array();
 		foreach ($files as $file) {
 			$informations = explode('.', $file);
+			if(stripos($informations[3],'icon') !== false){
+				continue;
+			}
 			if (!isset($return[$informations[1]])) {
 				$return[$informations[1]] = array();
 			}
@@ -634,6 +637,12 @@ class cmd {
 		foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'] as $type => $data1) {
 			foreach ($data1 as $subtype => $data2) {
 				foreach ($data2 as $name => $data3) {
+					if(!isset($return[$type])){
+						$return[$type] = array();
+					}
+					if(!isset($return[$type][$subtype])){
+						$return[$type][$subtype] = array();
+					}
 					$return[$type][$subtype][$name] = array('name' => $name, 'location' => 'core');
 				}
 			}
