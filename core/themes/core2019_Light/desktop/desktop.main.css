@@ -1252,7 +1252,7 @@ hr {
 }
 
 /* arc gauges and sliders */
-.gauge .highcharts-pane { stroke-width: 0; fill: var(--el-defaultColor); }
+.gauge .highcharts-pane { fill: var(--el-defaultColor); }
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
 .highcharts-color-0 { fill: var(--link-color); }
 .ui-slider-handle {
