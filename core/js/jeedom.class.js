@@ -20,6 +20,7 @@ function jeedom() {
 jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
+jeedom.theme = {};
 
 if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;

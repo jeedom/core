@@ -1,8 +1,8 @@
 $(function () {
   var style = '<style>';
   var widget_shadow = true;
-  if(typeof theme_config != 'undefined'){
-    if(typeof theme_config['widget::shadow'] != 'undefined' && theme_config['widget::shadow'] == '1'){
+  if(typeof jeedom.theme != 'undefined'){
+    if(typeof jeedom.theme['widget::shadow'] != 'undefined' && jeedom.theme['widget::shadow'] == '1'){
       widget_shadow = false;
     }
   }

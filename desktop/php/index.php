@@ -4,8 +4,8 @@ if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cr
 }
 include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
-$theme_config = jeedom::getThemeConfig();
-$configs = array_merge($theme_config,config::byKeys(array( 'language', 'jeedom::firstUse')));
+$jeedom_theme = jeedom::getThemeConfig();
+$configs = array_merge($jeedom_theme,config::byKeys(array( 'language', 'jeedom::firstUse')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -154,10 +154,10 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'animate/animate', 'js');
 	include_file('desktop', 'commun', 'css');
 	if (!isConnect()) {
-		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
-			echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
-			if(file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.js')){
-				include_file('core', $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'], 'themes.js');
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom.theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.css')) {
+			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom.theme['current_desktop_theme'].'/desktop/'.$jeedom.theme['current_desktop_theme'].'.css" rel="stylesheet">';
+			if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.js')){
+				include_file('core', $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'], 'themes.js');
 			}
 		} else {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
@@ -165,10 +165,10 @@ if (init('rescue', 0) == 0) {
 		}
 	} else {
 		try {
-			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
-				echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
-				if(file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.js')){
-					include_file('core', $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'], 'themes.js');
+			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.css')) {
+				echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom.theme['current_desktop_theme'].'/desktop/'.$jeedom.theme['current_desktop_theme'].'.css" rel="stylesheet">';
+				if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.js')){
+					include_file('core', $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'], 'themes.js');
 				}
 			} else {
 				echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
@@ -197,7 +197,7 @@ if (init('rescue', 0) == 0) {
 	<div class="backgroundforJeedom"></div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);
-	sendVarToJS('theme_config',$theme_config);
+	sendVarToJS('jeedom.theme',$jeedom_theme);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {

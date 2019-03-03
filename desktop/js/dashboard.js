@@ -189,7 +189,7 @@ function getObjectHtml(_object_id){
           var container = $(this).packery({
             itemSelector: ".eqLogic-widget,.scenario-widget",
             gutter : 0,
-            columnWidth: parseInt(theme_config['widget::step::width'])
+            columnWidth: parseInt(jeedom.theme['widget::step::width'])
           });
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);

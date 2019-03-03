@@ -14,8 +14,8 @@
   <a id="bt_login_validate" href="#" class="ui-btn ui-corner-all ui-btn-raised clr-primary waves-effect waves-button">{{Connexion}}</a>
 </div>
 <script>
-  if(isset(JEEDOM_DATA) && isset(JEEDOM_DATA.product_image)){
-    $('#img_loginImg').attr('src',JEEDOM_DATA.product_image);
+  if(isset(jeedom.theme) && isset(jeedom.theme.product_image)){
+    $('#img_loginImg').attr('src',jeedom.theme.product_image);
   }
   $('#in_login_username').on('focusout change keypress',function(){
     jeedom.user.useTwoFactorAuthentification({
