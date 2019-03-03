@@ -888,7 +888,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ombre sous les tuiles}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver l'ombre sous les tuiles}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::shadow" />
 						</div>
