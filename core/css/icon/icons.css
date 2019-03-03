@@ -2,9 +2,9 @@
   font-family: 'animal';
   src:url('animal/fonts/animal.eot');
   src:url('animal/fonts/animal.eot') format('embedded-opentype'),
-    url('animal/fonts/animal.woff') format('woff'),
-    url('animal/fonts/animal.ttf') format('truetype'),
-    url('animal/fonts/animal.svg') format('svg');
+  url('animal/fonts/animal.woff') format('woff'),
+  url('animal/fonts/animal.ttf') format('truetype'),
+  url('animal/fonts/animal.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -40,9 +40,9 @@
   font-family: 'divers';
   src:url('divers/fonts/divers.eot');
   src:url('divers/fonts/divers.eot') format('embedded-opentype'),
-    url('divers/fonts/divers.woff') format('woff'),
-    url('divers/fonts/divers.ttfz') format('truetype'),
-    url('divers/fonts/divers.svg') format('svg');
+  url('divers/fonts/divers.woff') format('woff'),
+  url('divers/fonts/divers.ttfz') format('truetype'),
+  url('divers/fonts/divers.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -85,9 +85,9 @@
   font-family: 'fashion';
   src:url('fashion/fonts/fashion.eot');
   src:url('fashion/fonts/fashion.eot') format('embedded-opentype'),
-    url('fashion/fonts/fashion.woff') format('woff'),
-    url('fashion/fonts/fashion.ttf') format('truetype'),
-    url('fashion/fonts/fashion.svg') format('svg');
+  url('fashion/fonts/fashion.woff') format('woff'),
+  url('fashion/fonts/fashion.ttf') format('truetype'),
+  url('fashion/fonts/fashion.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -123,9 +123,9 @@
   font-family: 'jeedom';
   src:url('jeedom/fonts/jeedom.eot');
   src:url('jeedom/fonts/jeedom.eot') format('embedded-opentype'),
-    url('jeedom/fonts/jeedom.woff') format('woff'),
-    url('jeedom/fonts/jeedom.ttf') format('truetype'),
-    url('jeedom/fonts/jeedom.svg') format('svg');
+  url('jeedom/fonts/jeedom.woff') format('woff'),
+  url('jeedom/fonts/jeedom.ttf') format('truetype'),
+  url('jeedom/fonts/jeedom.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -197,9 +197,9 @@
   font-family: 'jeedom2';
   src:url('jeedom2/fonts/jeedom2.eot');
   src:url('jeedom2/fonts/jeedom2.eot') format('embedded-opentype'),
-    url('jeedom2/fonts/jeedom2.woff') format('woff'),
-    url('jeedom2/fonts/jeedom2.ttf') format('truetype'),
-    url('jeedom2/fonts/jeedom2.svg') format('svg');
+  url('jeedom2/fonts/jeedom2.woff') format('woff'),
+  url('jeedom2/fonts/jeedom2.ttf') format('truetype'),
+  url('jeedom2/fonts/jeedom2.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -260,17 +260,6 @@
 .jeedom2-plante_temp2:before {content: "\e62b";}
 .jeedom2-plante_temp3:before {content: "\e62c";}
 .jeedom2-visiophone:before {content: "\e62d";}
-.jeedom2-chauffe_eau.path1:before {content: "\e62e"; color: rgb(0, 0, 0);}
-.jeedom2-chauffe_eau.path2:before {content: "\e62f"; margin-left: -1.4140625em; color: rgb(255, 255, 255);}
-.jeedom2-chauffe_eau_on.path1:before {content: "\e630"; color: rgb(0, 0, 0);}
-.jeedom2-chauffe_eau_on.path2:before {content: "\e631"; margin-left: -1.4140625em; color: rgb(255, 255, 255);}
-.jeedom2-chauffe_eau_on.path3:before {content: "\e632"; margin-left: -1.4140625em; color: rgb(0, 0, 0);}
-.jeedom2-compteur_eau.path1:before {content: "\e633"; color: rgb(0, 0, 0);}
-.jeedom2-compteur_eau.path2:before {content: "\e634"; margin-left: -1.4140625em; color: rgb(255, 255, 255);}
-.jeedom2-compteur_eau.path3:before {content: "\e635"; margin-left: -1.4140625em; color: rgb(0, 0, 0);}
-.jeedom2-compteur_eau.path4:before {content: "\e636"; margin-left: -1.4140625em; color: rgb(0, 0, 0);}
-.jeedom2-compteur_eau.path5:before {content: "\e637"; margin-left: -1.4140625em; color: rgb(0, 0, 0);}
-.jeedom2-compteur_eau.path6:before {content: "\e638"; margin-left: -1.4140625em; color: rgb(0, 0, 0);}
 .jeedom2-compteur_elec_hc:before {content: "\e639";}
 .jeedom2-compteur_elec_hp:before {content: "\e63a";}
 .jeedom2-home:before {content: "\e63b";}
@@ -288,9 +277,9 @@
   font-family: 'jeedomapp';
   src:  url('jeedomapp/fonts/jeedomapp.eot');
   src:  url('jeedomapp/fonts/jeedomapp.eot') format('embedded-opentype'),
-    url('jeedomapp/fonts/jeedomapp.ttf') format('truetype'),
-    url('jeedomapp/fonts/jeedomapp.woff') format('woff'),
-    url('jeedomapp/fonts/jeedomapp.svg') format('svg');
+  url('jeedomapp/fonts/jeedomapp.ttf') format('truetype'),
+  url('jeedomapp/fonts/jeedomapp.woff') format('woff'),
+  url('jeedomapp/fonts/jeedomapp.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -422,9 +411,9 @@
   font-family: 'loisir';
   src:url('loisir/fonts/loisir.eot');
   src:url('loisir/fonts/loisir.eot') format('embedded-opentype'),
-    url('loisir/fonts/loisir.woff') format('woff'),
-    url('loisir/fonts/loisir.ttf') format('truetype'),
-    url('loisir/fonts/loisir.svg') format('svg');
+  url('loisir/fonts/loisir.woff') format('woff'),
+  url('loisir/fonts/loisir.ttf') format('truetype'),
+  url('loisir/fonts/loisir.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -463,9 +452,9 @@
   font-family: 'maison';
   src:url('maison/fonts/maison.eot');
   src:url('maison/fonts/maison.eot') format('embedded-opentype'),
-    url('maison/fonts/maison.woff') format('woff'),
-    url('maison/fonts/maison.ttf') format('truetype'),
-    url('maison/fonts/maison.svg') format('svg');
+  url('maison/fonts/maison.woff') format('woff'),
+  url('maison/fonts/maison.ttf') format('truetype'),
+  url('maison/fonts/maison.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -544,9 +533,9 @@
   font-family: 'meteo';
   src:url('meteo/fonts/meteo.eot');
   src:url('meteo/fonts/meteo.eot') format('embedded-opentype'),
-    url('meteo/fonts/meteo.woff') format('woff'),
-    url('meteo/fonts/meteo.ttf') format('truetype'),
-    url('meteo/fonts/meteo.svg') format('svg');
+  url('meteo/fonts/meteo.woff') format('woff'),
+  url('meteo/fonts/meteo.ttf') format('truetype'),
+  url('meteo/fonts/meteo.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -579,9 +568,9 @@
   font-family: 'nature';
   src:url('nature/fonts/nature.eot');
   src:url('nature/fonts/nature.eot0') format('embedded-opentype'),
-    url('nature/fonts/nature.woff') format('woff'),
-    url('nature/fonts/nature.ttf') format('truetype'),
-    url('nature/fonts/nature.svg') format('svg');
+  url('nature/fonts/nature.woff') format('woff'),
+  url('nature/fonts/nature.ttf') format('truetype'),
+  url('nature/fonts/nature.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -623,9 +612,9 @@
   font-family: 'nourriture';
   src:url('nourriture/fonts/nourriture.eot');
   src:url('nourriture/fonts/nourriture.eot') format('embedded-opentype'),
-    url('nourriture/fonts/nourriture.woff') format('woff'),
-    url('nourriture/fonts/nourriture.ttf') format('truetype'),
-    url('nourriture/fonts/nourriture.svg') format('svg');
+  url('nourriture/fonts/nourriture.woff') format('woff'),
+  url('nourriture/fonts/nourriture.ttf') format('truetype'),
+  url('nourriture/fonts/nourriture.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -665,9 +654,9 @@
   font-family: 'personne';
   src:url('personne/fonts/personne.eot');
   src:url('personne/fonts/personne.eot') format('embedded-opentype'),
-    url('personne/fonts/personne.woff') format('woff'),
-    url('personne/fonts/personne.ttf') format('truetype'),
-    url('personne/fonts/personne.svg') format('svg');
+  url('personne/fonts/personne.woff') format('woff'),
+  url('personne/fonts/personne.ttf') format('truetype'),
+  url('personne/fonts/personne.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -705,9 +694,9 @@
   font-family: 'securite';
   src:url('securite/fonts/securite.eot');
   src:url('securite/fonts/securite.eot') format('embedded-opentype'),
-    url('securite/fonts/securite.woff') format('woff'),
-    url('securite/fonts/securite.ttf') format('truetype'),
-    url('securite/fonts/securite.svg') format('svg');
+  url('securite/fonts/securite.woff') format('woff'),
+  url('securite/fonts/securite.ttf') format('truetype'),
+  url('securite/fonts/securite.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -731,9 +720,9 @@
   font-family: 'techno';
   src:url('techno/fonts/techno.eoty');
   src:url('techno/fonts/techno.eot') format('embedded-opentype'),
-    url('techno/fonts/techno.woff') format('woff'),
-    url('techno/fonts/techno.ttf') format('truetype'),
-    url('techno/fonts/techno.svg') format('svg');
+  url('techno/fonts/techno.woff') format('woff'),
+  url('techno/fonts/techno.ttf') format('truetype'),
+  url('techno/fonts/techno.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -799,9 +788,9 @@
   font-family: 'transport';
   src:url('transport/fonts/transport.eot');
   src:url('transport/fonts/transport.eot') format('embedded-opentype'),
-    url('transport/fonts/transport.woff') format('woff'),
-    url('transport/fonts/transport.ttf') format('truetype'),
-    url('transport/fonts/transport.svg') format('svg');
+  url('transport/fonts/transport.woff') format('woff'),
+  url('transport/fonts/transport.ttf') format('truetype'),
+  url('transport/fonts/transport.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
