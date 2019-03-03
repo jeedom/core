@@ -2,9 +2,9 @@
 	font-family: 'jeedom2';
 	src:url('fonts/jeedom2.eot');
 	src:url('fonts/jeedom2.eot') format('embedded-opentype'),
-		url('fonts/jeedom2.woff') format('woff'),
-		url('fonts/jeedom2.ttf') format('truetype'),
-		url('fonts/jeedom2.svg') format('svg');
+	url('fonts/jeedom2.woff') format('woff'),
+	url('fonts/jeedom2.ttf') format('truetype'),
+	url('fonts/jeedom2.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -17,7 +17,7 @@
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
-
+	
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -207,61 +207,6 @@
 	content: "\e62d";
 }
 
-.jeedom2-chauffe_eau.path1:before {
-	content: "\e62e";
-	color: rgb(0, 0, 0);
-}
-.jeedom2-chauffe_eau.path2:before {
-	content: "\e62f";
-	margin-left: -1.4140625em;
-	color: rgb(255, 255, 255);
-}
-
-.jeedom2-chauffe_eau_on.path1:before {
-	content: "\e630";
-	color: rgb(0, 0, 0);
-}
-.jeedom2-chauffe_eau_on.path2:before {
-	content: "\e631";
-	margin-left: -1.4140625em;
-	color: rgb(255, 255, 255);
-}
-.jeedom2-chauffe_eau_on.path3:before {
-	content: "\e632";
-	margin-left: -1.4140625em;
-	color: rgb(0, 0, 0);
-}
-
-.jeedom2-compteur_eau.path1:before {
-	content: "\e633";
-	color: rgb(0, 0, 0);
-}
-.jeedom2-compteur_eau.path2:before {
-	content: "\e634";
-	margin-left: -1.4140625em;
-	color: rgb(255, 255, 255);
-}
-.jeedom2-compteur_eau.path3:before {
-	content: "\e635";
-	margin-left: -1.4140625em;
-	color: rgb(0, 0, 0);
-}
-.jeedom2-compteur_eau.path4:before {
-	content: "\e636";
-	margin-left: -1.4140625em;
-	color: rgb(0, 0, 0);
-}
-.jeedom2-compteur_eau.path5:before {
-	content: "\e637";
-	margin-left: -1.4140625em;
-	color: rgb(0, 0, 0);
-}
-.jeedom2-compteur_eau.path6:before {
-	content: "\e638";
-	margin-left: -1.4140625em;
-	color: rgb(0, 0, 0);
-}
-
 .jeedom2-compteur_elec_hc:before {
 	content: "\e639";
 }
@@ -301,4 +246,3 @@
 .jeedom2-case:before {
 	content: "\e642";
 }
-
