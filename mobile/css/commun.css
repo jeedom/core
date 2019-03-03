@@ -68,9 +68,7 @@ body{
 legend{ 
     color: #3eb249;
     background-color: transparent;
-    border-bottom: 1px solid #ddd;
     font-size: 1.2em;
-    padding-bottom: .2em;
     margin: 0 0 .7375em;
     width : 100%;
 }
