@@ -154,10 +154,10 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'animate/animate', 'js');
 	include_file('desktop', 'commun', 'css');
 	if (!isConnect()) {
-		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom.theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.css')) {
-			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom.theme['current_desktop_theme'].'/desktop/'.$jeedom.theme['current_desktop_theme'].'.css" rel="stylesheet">';
-			if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.js')){
-				include_file('core', $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'], 'themes.js');
+		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
+			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css" rel="stylesheet">';
+			if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.js')){
+				include_file('core',$jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'], 'themes.js');
 			}
 		} else {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
@@ -165,10 +165,10 @@ if (init('rescue', 0) == 0) {
 		}
 	} else {
 		try {
-			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.css')) {
-				echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom.theme['current_desktop_theme'].'/desktop/'.$jeedom.theme['current_desktop_theme'].'.css" rel="stylesheet">';
-				if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'] . '.js')){
-					include_file('core', $jeedom.theme['current_desktop_theme'] . '/desktop/' . $jeedom.theme['current_desktop_theme'], 'themes.js');
+			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
+				echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css" rel="stylesheet">';
+				if(file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.js')){
+					include_file('core', $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'], 'themes.js');
 				}
 			} else {
 				echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
