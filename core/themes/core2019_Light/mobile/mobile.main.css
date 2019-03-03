@@ -8,18 +8,12 @@ Theme Core 2019 @Jeedom
   border-color: transparent;
 }
 ::-webkit-color-swatch {
-  border: none;
+  border: none !important;
 }
 ::-webkit-color-swatch-wrapper {
   padding: 0;
 }
 
-* {
-	box-shadow: none !important;
-	text-shadow: none !important;
-	border: none !important;
-	border-radius: 0 !important;
-}
 .backgroundforJeedom {
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
@@ -65,26 +59,37 @@ Theme Core 2019 @Jeedom
   padding: 0 0.5em !important;
 }
 
+.ui-shadow,
+.nd2-card {
+	box-shadow: none;
+}
+
 .form-control {
 	background-color: var(--form-bg-color) !important;
  	color: var(--txt-color) !important;
 }
-.ui-input-text {
-	padding: 1.5px !important;
-	background-color: transparent !important;
-}
 
-.eqLogic.eqLogic-widget .ui-input-text {
-	background-color: transparent !important;
+.eqLogic.eqLogic-widget .ui-input-text :not(textarea) {
+	padding: 0 !important;
+	background-color: transparent;
+	box-shadow: none !important;
+	
 }
-
 .ui-input-text::after {
 	background-color: transparent !important;
 }
-.ui-input-text input {
-	text-align: center !important;
-	background-color: var(--form-bg-color);
+.eqLogic.eqLogic-widget .ui-input-text input,
+.eqLogic.eqLogic-widget textarea {
+	text-align: left !important;
+	background: var(--form-bg-color) !important;
 	color: var(--txt-color);
+	padding: 5px !important;
+	border: none;
+}
+.eqLogic.eqLogic-widget .ui-input-text input[type=color],
+.action_colorpicker_change {
+  padding: 0 !important;
+  border: none !important;
 }
 
 .ui-controlgroup-controls,
@@ -119,9 +124,9 @@ Theme Core 2019 @Jeedom
 	font-size: 18px !important;
 }
 
-#in_searchWidget {
-	top: 62px;
-	padding-left: 5px;
+.iconCmd {
+  font-size: 3em;
+  font-weight: bold;
 }
 
 .iconCmd > i {
@@ -142,6 +147,32 @@ Theme Core 2019 @Jeedom
 	z-index: 1030;
 }
 
+.cmdName {
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+.btn.action {
+  margin-top: 2px;
+}
+.cmd.refresh {
+  margin-top: 2px;
+  margin-right: 2px;
+}
+.label {
+  font-size: 12px !important;
+  font-weight: normal;
+}
+.full-width-slider {
+	width: 100% !important;
+	
+}
+p.state {
+	font-size: 14px !important;
+}
+
+
+
+
 /* home grid buttons */
 .ui-page-theme-a .ui-btn.ui-btn-raised i,
 .ui-link i {
@@ -152,6 +183,7 @@ Theme Core 2019 @Jeedom
 .ui-page-theme-a .ui-btn.ui-btn-raised {
 	color: var(--link-color) !important;
 	background-color: var(--defaultBkg-color) !important;
+	box-shadow: none;
 }
 .ui-page-theme-a .ui-btn.ui-btn-raised:hover {
 	color: var(--txt-color) !important;
@@ -202,13 +234,6 @@ a.ui-slider-handle {
 	border-radius: 1em !important;
 }
 
-div > center,
-div > center > div,
-.cmdName {
-	font-size: 16px !important;
-}
-
-
 /* select */
 .ui-select .ui-btn {
 	font-family: "noto";
@@ -250,23 +275,6 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 	top: 62px;
 	padding-left: 5px;
 }
-
-.iconCmd > i {
-	font-size: 1em !important;
-}
-p.state {
-	font-size: 14px !important;
-}
-.timeCmd {
-	padding-left: 5px !important;
-	padding-right: 5px !important;
-	font-size: 14px;
-}
-.statusCmd {
-	padding-top: 3px;
-}
-
-
 
 .nd2Tabs li {
 	color: var(--txt-color);
@@ -313,10 +321,6 @@ p.state {
 .gauge.cursor{ height: 85px !important; }
 .container-fluid.cmd-widget { min-height: 85px !important; }
 
-.action_colorpicker_change {
-  padding: 0 !important;
-  border: none !important;
-}
 h4.modal-title {
   font-size: 14px;
 }
