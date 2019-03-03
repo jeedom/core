@@ -866,11 +866,7 @@ user::isBan();
 					
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
-						</div>
-						<span class="col-lg-2 col-md-3 col-sm-3 col-xs-6"></span>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Avancé}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 							<a class="btn btn-default form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Personnalisation avancée</a>
 						</div>
@@ -885,6 +881,12 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::border-radius" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ombre sous les tuiles}}</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="checkbox" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::shadow" />
 						</div>
 					</div>
 				</fieldset>

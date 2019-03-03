@@ -44,7 +44,7 @@ class jeedom {
 			'widget::step::width',
 			'widget::step::height',
 			'widget::margin',
-			'interface::advance::enable'
+			'widget::shadow'
 		);
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
@@ -54,36 +54,35 @@ class jeedom {
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
 		$return['css'] = array();
-		if($return['interface::advance::enable'] == 1){
-			$css_convert = array(
-				'widget::background-opacity' => '--eq-opacity',
-				'widget::border-radius' => '--border-radius',
-			);
-			$css = config::byKeys(array_keys($css_convert));
-			foreach ($css as $key => $value) {
-				if($value == ''){
-					continue;
-				}
-				if(isset($css_convert[$key])){
-					$return['css'][$css_convert[$key]] = $value;
-				}
+		$css_convert = array(
+			'widget::background-opacity' => '--eq-opacity',
+			'widget::border-radius' => '--border-radius',
+		);
+		$css = config::byKeys(array_keys($css_convert));
+		foreach ($css as $key => $value) {
+			if($value == ''){
+				continue;
 			}
-			if(count($return['css']) > 0){
-				foreach ($return['css'] as $key => &$value) {
-					switch ($key) {
-						case '--border-radius':
-						if($value == ''){
-							$value=0;
-						}
-						if($value > 1){
-							$value = 1;
-						}
-						$value.='rem';
-						break;
+			if(isset($css_convert[$key])){
+				$return['css'][$css_convert[$key]] = $value;
+			}
+		}
+		if(count($return['css']) > 0){
+			foreach ($return['css'] as $key => &$value) {
+				switch ($key) {
+					case '--border-radius':
+					if($value == ''){
+						$value=0;
 					}
+					if($value > 1){
+						$value = 1;
+					}
+					$value.='rem';
+					break;
 				}
 			}
 		}
+		
 		return $return;
 	}
 	

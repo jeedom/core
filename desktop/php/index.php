@@ -50,7 +50,6 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
-			
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			foreach ($category as $pluginList) {
@@ -157,18 +156,27 @@ if (init('rescue', 0) == 0) {
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
+			if(file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.js')){
+				include_file('core', $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'], 'themes.js');
+			}
 		} else {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
+			include_file('core', 'core2019_Light/desktop/core2019_Light', 'themes.js');
 		}
 	} else {
 		try {
 			if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.css')) {
 				echo '<link id="bootstrap_theme_css" href="core/themes/'.$theme_config['current_desktop_theme'].'/desktop/'.$theme_config['current_desktop_theme'].'.css" rel="stylesheet">';
+				if(file_exists(__DIR__ . '/../../core/themes/' . $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'] . '.js')){
+					include_file('core', $theme_config['current_desktop_theme'] . '/desktop/' . $theme_config['current_desktop_theme'], 'themes.js');
+				}
 			} else {
 				echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
+				include_file('core', 'core2019_Light/desktop/core2019_Light', 'themes.js');
 			}
 		} catch (Exception $e) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css" rel="stylesheet">';
+			include_file('core', 'core2019_Light/desktop/core2019_Light', 'themes.js');
 		}
 	}
 	if(init('report') == 1){
