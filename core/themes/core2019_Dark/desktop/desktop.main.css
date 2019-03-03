@@ -19,7 +19,7 @@ body {
   background: rgba(10,10,10,1);
 }
 
-/* links */
+/* ___________________________LINKS */
 a,
 a i,
 a > span,
@@ -61,7 +61,9 @@ i.cursor:focus {
 .btn {
   border: none;
 }
-/* legend */
+
+
+/* ___________________________LEGENDS */
 legend {
   font-family: "Roboto" !important;
   font-size: 18px;
@@ -74,10 +76,15 @@ legend {
 :not([data-page=display])legend {
   color: var(--link-color) !important;
 }
+
+
 /* résumé domo */
 [data-page=display] legend a,
 [data-page=display] legend i {
   color: inherit !important;
+}
+[data-page=display] legend {
+  border-left: none;
 }
 [data-page=display] #div_pageContainer > div.row-same-height > div {
   padding: 0 0.5em !important;
@@ -114,21 +121,17 @@ legend {
   padding-right: 5px
 }
 
-[data-page=display] legend {
-  border-left: none;
-}
-
-.eqLogic-widget i.fa-refresh {
-  margin-right: calc((var(--border-radius)/4) + 5px)  !important;
-}
-
-/* legend in scenarios */
 .element legend {
   background-color: transparent !important;
   color: var(--sc-lightTxt-color) !important;
   text-align: center;
   margin: 0 !important;
   min-width: 5.5em;
+}
+
+/* ___________________________DASHBOARD */
+.eqLogic-widget i.fa-refresh {
+  margin-right: calc((var(--border-radius)/4) + 5px)  !important;
 }
 
 
@@ -392,6 +395,10 @@ pre {
   font-weight: normal;
   background-color: var(--lb-info-color);
 }
+.btn_closeAlert {
+  color: var(--linkHoverLight-color) !important;
+  font-size: 16px !important;
+}
 .alert {
   border: none !important;
 }
@@ -512,6 +519,9 @@ button:focus {
 }
 
 /* dropdown select alternative */
+.dropdown-menu {
+  font-size: 12px;
+}
 .dropdown button.dropdown-toggle {
   color: var(--txt-color) !important;
   -webkit-text-fill-color: var(--txt-color) !important;
@@ -604,6 +614,9 @@ button .fas.fa-plus-circle {
 /* ___________________________________________________________NAVBAR */
 .navbar {
   background-color: var(--defaultBkg-color) !important;
+}
+.nav .dropdown-menu {
+  font-size: 14px;
 }
 header a.navbar-brand {
   background-image: url(logo-jeedom.svg) !important;
@@ -1009,7 +1022,7 @@ input[type=radio]:checked {
 /* ___________________________________________________________TABS */
 .tab-content {
   background-color: var(--panel-bg-color)!important;
-  padding-bottom: 20px !important;
+  padding-bottom: 2px !important;
 }
 ul.nav.nav-tabs li,
 .nav-tabs > li > a {
@@ -1686,7 +1699,6 @@ pre {
   }
 
   body {
-    line-height: var(--lineheight) !important;
     font-size: 14px !important;
   }
 
