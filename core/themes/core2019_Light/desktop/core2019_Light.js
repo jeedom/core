@@ -13,5 +13,4 @@ $(function () {
       $('html > head').append($(style));
     }
   }
-  
 });
