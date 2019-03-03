@@ -94,7 +94,7 @@ if (config::byKey('enableCron', 'core', 1, true) == 0) {
 } else {
 	echo "OK\n";
 }
-echo "Vérifie si scenario est actif...";
+echo "Vérifie si scénario est actif...";
 if (config::byKey('enableScenario') == 0) {
 	echo "NOK\n";
 } else {
@@ -120,7 +120,7 @@ foreach (cron::all() as $cron) {
 echo "\n**************************************************\n";
 echo "*                 DATE                           *";
 echo "\n**************************************************\n";
-echo "Vérifie si la date de Jeedom est bonne...";
+echo "Vérifie si la date de Jeedom est correcte...";
 if (jeedom::isDateOk()) {
 	echo "OK";
 } else {
