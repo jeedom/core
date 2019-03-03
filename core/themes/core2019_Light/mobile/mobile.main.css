@@ -170,7 +170,12 @@ p.state {
 	font-size: 14px !important;
 }
 
-
+.objectSummaryParent {
+	font-size: 18px;
+}
+.objectSummaryglobal .objectSummaryParent {
+	font-size: 14px;
+}
 
 
 /* home grid buttons */
