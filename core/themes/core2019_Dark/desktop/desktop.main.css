@@ -168,7 +168,7 @@ legend {
 .btn {
   border: none;
 }
-.input-group .btn {
+[data-page=dashboard] .input-group .btn {
   padding-top: 4px !important;
 }
 
