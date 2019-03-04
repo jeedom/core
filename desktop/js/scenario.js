@@ -450,39 +450,13 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
 });
 
 $('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  
   if($(this).children("i").hasClass('fa-chevron-right')){
     $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.subElement').next().css('display','table');
-  }
-  else
-  {
-    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
-    {
+  }else  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)    {
       alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-    }
-    else
-    {
-      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-      $(this).closest('.subElement').next().css('display','none');
-    }
-  }
-});
-
-$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  
-  if($(this).children("i").hasClass('fa-chevron-right')){
-    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
-    $(this).closest('.subElement').next().css('display','table');
-  }
-  else
-  {
-    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)
-    {
-      alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-    }
-    else
-    {
+    }else{
       $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
       $(this).closest('.subElement').next().css('display','none');
     }
@@ -843,7 +817,9 @@ function updateSortable() {
 
 function updateElseToggle() {
   $('.subElementElse').each(function () {
-    if ($(this).parent().css('display')=='table') $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    if ($(this).parent().css('display')=='table'){
+      $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    }
   });
 }
 
@@ -1221,11 +1197,12 @@ function addSubElement(_subElement, _pColor) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div style="display:table-cell; width: 125px;vertical-align: top; padding-left: 15px;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>';
-    retour += '<button class="btn btn-xs btn-default bt_addSinon" type="button" id="addSinon" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '<div class="input-group">';
+    retour += '<span class="input-group-btn">';
+    retour += '<button class="btn btn-xs btn-default bt_addSinon" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
     retour += '<i class="fas fa-chevron-right"></i>';
     retour += '</button>';
-    retour += '<div class="dropdown" style="display : inline-block;">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+    retour += '<button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
     retour += '<span class="caret"></span>';
     retour += '</button>';
@@ -1233,7 +1210,8 @@ function addSubElement(_subElement, _pColor) {
     retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '</ul>';
-    retour += '</div><p> </p>';
+    retour += '</span>';
+    retour += '</div>';
     retour += '</div>';
     retour += '<div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
     retour += '<div class="sortable empty" style="height : 30px;"></div>';
