@@ -1656,7 +1656,20 @@ pre {
   border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
   margin-right: 3px !important;
 }
-
+.roundedLeft::-moz-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.roundedRight::-moz-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  margin-right: 3px !important;
+}
+.roundedLeft::-webkit-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.roundedRight::-webkit-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  margin-right: 3px !important;
+}
 
 .ui-dialog {
   border-radius: var(--border-radius) !important;
