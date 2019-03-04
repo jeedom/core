@@ -488,3 +488,10 @@ pre {
 .tab-content {
 	border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
+
+#in_searchWidget {
+	border-radius: 0 0 0 var(--border-radius) !important;
+}
+#bt_eraseSearchInput {
+	border-radius: 0 0 var(--border-radius) 0 !important;
+}
