@@ -134,10 +134,15 @@ span.cursor > i:hover {
 .input-group-addon,
 .scenario-widget .btn-default,
 .eqLogic-widget .btn,
-.scenario-widget .btn,
+.scenario-widget .btn {
+  color: var(--linkHoverLight-color) !important;
+}
+
+#bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
-  color: var(--linkHoverLight-color) !important;
+  color: var(--txt-color) !important;
+  background-color: var(--form-bg-color) !important;
 }
 
 div[data-subtype=select],
