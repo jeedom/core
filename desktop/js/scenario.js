@@ -378,6 +378,32 @@ $('#bt_scenarioTab').on('click',function(){
 
 /*******************Element***********************/
 
+$('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
+  var checkbox = $(this);
+  var element = checkbox.closest('.element');
+  if(checkbox.value() == 1){
+    element.removeClass('disableElement');
+  }else{
+    element.addClass('disableElement');
+  }
+  var subElement =checkbox.closest('.element').find('.subElement:not(.noSortable)');
+  if(checkbox.value() == 1){
+    subElement.find('.expressions').removeClass('disableSubElement');
+  }else{
+    subElement.find('.expressions').addClass('disableSubElement');
+  }
+});
+
+$('#div_pageContainer').off('change','.expressionAttr[data-l1key=options][data-l2key=enable]').on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function(){
+  var checkbox = $(this);
+  var element = checkbox.closest('.expression');
+  if(checkbox.value() == 1){
+    element.removeClass('disableSubElement');
+  }else{
+    element.addClass('disableSubElement');
+  }
+});
+
 $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
   var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
   jeedom.getCronSelectModal({},function (result) {
@@ -951,6 +977,8 @@ function printScenario(_id) {
       for (var i in data.elements) {
         $('#div_scenarioElement').append(addElement(data.elements[i]));
       }
+      $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change');
+      $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change');
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,

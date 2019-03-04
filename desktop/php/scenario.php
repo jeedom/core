@@ -21,6 +21,12 @@ if (is_array($scenarioListGroup)) {
 	border: 1px solid #eee;
 	height: auto;
 }
+.disableElement{
+	background-color: #797E80 !important;
+}
+.disableSubElement{
+	background-color: #BDC3C7 !important;
+}
 </style>
 
 <div class="row row-overflow">
