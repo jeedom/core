@@ -1,4 +1,9 @@
-<input class="form-control" id="in_searchWidget" placeholder="{{Rechercher}}" style="background:white;position:fixed;z-index:9999;top: 62px;width: calc(100% + 5px);left:-5px;padding-left:10px;" />
+<div id="searchContainer">
+    <input class="form-control roundedLeft" id="in_searchWidget" placeholder="{{Rechercher}}">
+    <a id="bt_eraseSearchInput" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight">
+        <i class="fa fa-times"></i>
+    </a>
+</div>
 <br/>
 <div id="div_displayEquipement" style="height: 100%;"></div>
 <script src="core/php/getJS.php?file=mobile/js/equipment.js"></script>
