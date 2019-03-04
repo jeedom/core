@@ -41,8 +41,8 @@ Theme Core 2019 @Jeedom
   --cat-other-color: 58, 90, 85;
   --cat-scenario-color: 65, 70, 76;
 
-  --url-iconsDark: url(ui-icons-black.png);
-  --url-iconsLight: url(ui-icons-white.png);
+  --url-iconsDark: url(../img/ui-icons-black.png);
+  --url-iconsLight: url(../img/ui-icons-white.png);
 
   --lb-info-color: rgb(80, 160, 180);
   --al-info-color: rgb(90, 130, 190);
