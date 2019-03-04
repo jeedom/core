@@ -995,6 +995,7 @@ select:focus {
 
 input[type=checkbox],
 input[type=radio] {
+  font-size: 14px !important;
   display: inline-block;
   padding: 0;
   width: 15px !important;
@@ -1017,7 +1018,7 @@ input[type=checkbox]:checked:after {
   content: '\2714' !important;
   position: absolute;
   left: 2px;
-  top: -4px;
+  top: -3px;
 }
 input[type=radio]:checked {
   background: var(--txt-color) !important;
