@@ -58,9 +58,7 @@ i.cursor:focus {
   z-index: 9999 !important;
   box-shadow: none;
 }
-.btn {
-  border: none;
-}
+
 
 
 /* ___________________________LEGENDS */
@@ -151,6 +149,7 @@ legend {
 .scenario-widget .btn-default,
 .eqLogic-widget .btn,
 .scenario-widget .btn,
+#bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   min-width: 32px !important;
@@ -164,6 +163,13 @@ legend {
   fill: var(--txt-color) !important;
   color: var(--txt-color);
   font-weight: bold;
+}
+
+.btn {
+  border: none;
+}
+.input-group .btn {
+  padding-top: 4px !important;
 }
 
 .cmdName {
