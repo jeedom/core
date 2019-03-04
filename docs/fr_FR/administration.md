@@ -88,16 +88,18 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
 -   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
     d'exploitation et de les éditer ou supprimer ou d'en créer. 
 
--   **Base de données** : Permet d’accéder à la base de données
+-   **Base de données** : Administration / Lancer : Permet d’accéder à la base de données
     de Jeedom. Vous pouvez alors lancer des commandes dans le champs
     du haut. Deux paramètres s’affichent, en dessous, pour information :
-
+    Vérification / Lancer : Permet de lancer une vérification sur la base de données
+    de Jeedom et de corriger si nécessaire les erreurs
+    
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
         la base de données,
 
     -   **Mot de passe** : mot de passe d’accès à la base de données
         utilisée par Jeedom.
-
+    
 Sécurité 
 ========
 
