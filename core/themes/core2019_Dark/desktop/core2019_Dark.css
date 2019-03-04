@@ -89,6 +89,7 @@ a:focus {
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
+#bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
   background-color: var(--btnEq-default-color) !important;
