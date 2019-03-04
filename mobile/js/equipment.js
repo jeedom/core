@@ -61,7 +61,7 @@ function initEquipment(_object_id) {
       findChildren(_object_id);
       _object_id = JSON.stringify(childList);
     }
-    
+
     jeedom.object.toHtml({
       id: _object_id,
       version: 'mobile',
@@ -113,21 +113,21 @@ function initEquipment(_object_id) {
             $('#div_displayEquipement > .objectHtml').packery({gutter :0});
           }, 10);
         }
-        
+
       }
     });
   } else {
     $('#bottompanel').panel('open');
   }
-  
+
   $(window).on("orientationchange", function (event) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
     setTileSize('.scenario');
     $('#div_displayEquipement > .objectHtml').packery({gutter :0});
   });
-  
-  
+
+
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').show();
     var search = $(this).value();
@@ -179,9 +179,10 @@ function initEquipment(_object_id) {
       }
     })
   });
-  
-  
+
+
   $('#bt_eraseSearchInput').off('click').on('click',function(){
-    $('#in_searchWidget').value('');
+    $('#in_searchWidget').val('');
+    $('#in_searchWidget').keyup();
   })
 }
