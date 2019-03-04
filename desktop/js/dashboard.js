@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -102,6 +101,11 @@ $('#bt_displayObject').on('click', function () {
   }
 });
 
+$('#bt_resetDashboardSearch').on('click', function () {
+  $('#in_searchWidget').val('')
+  $('#in_searchWidget').keyup();
+})
+
 function editWidgetMode(_mode,_save){
   if(!isset(_mode)){
     if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
@@ -121,7 +125,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').css('box-shadow','');
-    
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -184,7 +188,7 @@ function getObjectHtml(_object_id){
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-        
+
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery({
             itemSelector: ".eqLogic-widget,.scenario-widget",
