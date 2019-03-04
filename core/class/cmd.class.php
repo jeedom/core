@@ -603,6 +603,9 @@ class cmd {
 		$return = array();
 		foreach ($files as $file) {
 			$informations = explode('.', $file);
+			if(count($informations) < 4){
+				continue;
+			}
 			if(stripos($informations[3],'icon') !== false){
 				continue;
 			}
