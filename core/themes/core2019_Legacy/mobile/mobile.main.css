@@ -179,13 +179,16 @@ p.state {
 }
 .full-width-slider {
 	width: 100% !important;
-	
 }
+
 .objectSummaryParent {
 	font-size: 18px;
 }
 .objectSummaryglobal .objectSummaryParent {
-	font-size: 14px;
+	font-size: 12px;
+}
+#bottompanel_objectList .objectSummaryParent {
+	font-size: 12px !important;
 }
 
 
