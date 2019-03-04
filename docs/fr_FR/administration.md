@@ -93,6 +93,7 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     du haut. 
     Vérification / Lancer : Permet de lancer une vérification sur la base de données
     de Jeedom et de corriger si nécessaire les erreurs
+    
     Deux paramètres s’affichent, en dessous, pour information :
     
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
