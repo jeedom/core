@@ -42,26 +42,6 @@ Theme Core 2019 @Jeedom
 	color: var(--txt-color) !important;
 }
 
-.cmdName {
-	font-size: 14px !important;
-	font-weight: normal !important;
-}
-.cmdName:first-letter {
-    text-transform: uppercase;
-}
-
-.timeCmd {
-  color: var(--txt-color);
-  background: linear-gradient(var(--bg-color), var(--bg-color)) fixed !important;
-  font-size: 12.5px !important;
-  padding: 0 0.5em !important;
-}
-
-.ui-shadow,
-.nd2-card {
-	box-shadow: none;
-}
-
 .form-control {
 	background-color: var(--form-bg-color) !important;
  	color: var(--txt-color) !important;
@@ -128,20 +108,26 @@ Theme Core 2019 @Jeedom
 	font-size: 18px !important;
 }
 
+
+.ui-shadow,
+.nd2-card {
+	box-shadow: none;
+}
+
 .iconCmd {
   font-size: 3em;
   font-weight: bold;
 }
-
 .iconCmd > i {
 	color: var(--link-color) !important;
 	font-size: 1em !important;
 }
 .timeCmd {
+	color: var(--txt-color);
 	background-color: var(--bg-color) !important;
 	padding-left: 5px !important;
 	padding-right: 5px !important;
-	font-size: 14px;
+	font-size: 12.5px;
 }
 .statusCmd {
 	position: absolute;
@@ -154,8 +140,19 @@ Theme Core 2019 @Jeedom
   font-size: 14px !important;
   font-weight: bold !important;
 }
+.cmdName:first-letter {
+    text-transform: uppercase;
+}
 .state {
   font-size: 18px !important;
+}
+.state i {
+  font-size: 50px !important;
+	padding: 5px;
+}
+.scenario-widget .state {
+	padding-top: 12px;
+	line-height: 50px !important;
 }
 p.state {
 	font-size: 14px !important;
