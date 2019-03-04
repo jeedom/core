@@ -100,7 +100,7 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
         la base de données,
 
     -   **Mot de passe** : mot de passe d’accès à la base de données
-        utilisée par Jeedom.
+        utilisé par Jeedom.
     
 Sécurité 
 ========
@@ -123,7 +123,7 @@ LDAP
 -   **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD
 
 -   **Champs recherche utilisateur** : champs de recherche du
-    login utilisateur. En général uid pour LDAP, samaccountname pour
+    login utilisateur. En général uid pour LDAP, SamAccountName pour
     Windows AD
 
 -   **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des
@@ -224,7 +224,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
     la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
     gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    aucun réseau). Vous pouvez aussi y préciser la plage d'ip local sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker)
+    aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker)
 
 -   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
     besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
@@ -235,13 +235,13 @@ externe** (depuis un autre réseau notamment depuis Internet).
 
     -   **Statut DNS** : statut du DNS HTTP
 
-    -   **Gestion** : permet d’arrêter et relancer le service DNS
+    -   **Gestion** : permet d’arrêter et relancer le service DNS Jeedom
 
 > **Important**
 >
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la
 > configuration du pare-feu et du filtre parental de votre box Internet
-> (sur livebox il faut par exemple le pare-feu en moyen).
+> (sur livebox il faut par exemple le pare-feu en niveau moyen).
 
 Couleurs 
 ========
