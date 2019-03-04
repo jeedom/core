@@ -1700,6 +1700,10 @@ pre {
   border-radius: var(--border-radius) !important;
 }
 
+ul.dropdown-menu {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+
 
 /* ___________________________________________________________MEDIA QUERIES */
 @media screen and (min-width: 992px) {
