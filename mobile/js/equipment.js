@@ -180,4 +180,8 @@ function initEquipment(_object_id) {
     })
   });
   
+  
+  $('#bt_eraseSearchInput').off('click').on('click',function(){
+    $('#in_searchWidget').value('');
+  })
 }
