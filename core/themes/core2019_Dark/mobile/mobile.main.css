@@ -90,11 +90,13 @@ Theme Core 2019 @Jeedom
 	padding: 5px !important;
 	border: none;
 	text-shadow: none !important;
+	min-height: 20px;
 }
 .eqLogic.eqLogic-widget .ui-input-text input[type=color],
 .action_colorpicker_change {
   padding: 0 !important;
   border: none !important;
+	min-height: 32px
 }
 
 .ui-controlgroup-controls,
@@ -154,10 +156,15 @@ Theme Core 2019 @Jeedom
 	padding-top: 3px;
 	z-index: 1030;
 }
-
 .cmdName {
   font-size: 14px !important;
   font-weight: bold !important;
+}
+.state {
+  font-size: 18px !important;
+}
+p.state {
+	font-size: 14px !important;
 }
 .btn.action {
   margin-top: 2px;
@@ -174,10 +181,6 @@ Theme Core 2019 @Jeedom
 	width: 100% !important;
 	
 }
-p.state {
-	font-size: 14px !important;
-}
-
 .objectSummaryParent {
 	font-size: 18px;
 }
@@ -393,7 +396,7 @@ path.highcharts-graph {
 }
 
 
-/* rounded! */
+/* ___________________________________________________________ROUNDING */
 ::-moz-color-swatch {
   border-radius: var(--border-radius) !important;
 }
@@ -405,15 +408,14 @@ path.highcharts-graph {
 .scenario-widget .widget-name,
 .panel,
 .panel-heading {
-  border-top-left-radius: var(--border-radius)  !important;
-  border-top-right-radius: var(--border-radius)  !important;
+  border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
 .panel,
 .panel-body,
 .panel-heading {
-  border-bottom-left-radius: var(--border-radius)  !important;
-  border-bottom-right-radius: var(--border-radius)  !important;
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
+
 .ui-btn,
 .ui-input-text,
 input,
@@ -422,9 +424,31 @@ textarea,
 .label,
 .input-group-addon,
 .market,
-button {
+button,
+pre {
   border-radius: var(--border-radius) !important;
 }
+.ui-controlgroup .ui-btn,
+.ui-controlgroupinput,
+.ui-controlgroup select,
+.ui-controlgroup textarea,
+.ui-controlgroup .input-group-addon {
+  border-radius: 0 !important;
+}
+.ui-controlgroup ::-moz-color-swatch {
+  border-radius: 0 !important;
+}
+.ui-controlgroup ::-webkit-color-swatch {
+  border-radius: 0 !important;
+}
+.ui-controlgroup .roundedLeft {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.ui-controlgroup .roundedRight {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  margin-right: 3px !important;
+}
+
 .ui-dialog {
   border-radius: var(--border-radius) !important;
 }
@@ -438,6 +462,5 @@ button {
   border-top-right-radius: var(--border-radius)  !important;
 }
 .tab-content {
-  border-bottom-left-radius: var(--border-radius)  !important;
-  border-bottom-right-radius: var(--border-radius)  !important;
+	border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
