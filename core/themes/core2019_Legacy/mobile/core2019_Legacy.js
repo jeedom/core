@@ -6,6 +6,6 @@ $(function () {
     }
   }
   if(widget_shadow){
-    themePath = 'core/themes/' + jeedom.theme['default_bootstrap_theme'] + '/mobile'
+    themePath = 'core/themes/' + jeedom.theme['mobile_theme_color'] + '/mobile'
     $('head').append('<link rel="stylesheet" type="text/css" href="'+themePath+'/shadows.css">');  }
 })
