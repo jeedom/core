@@ -1470,7 +1470,7 @@ class scenario {
 					if (isset($_data['node']['scenario' . $this->getId()])) {
 						return;
 					}
-					if ($_level > 1) {
+					if ($_level > 2) {
 						return $_data;
 					}
 					$_level++;
