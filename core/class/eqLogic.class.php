@@ -1692,7 +1692,26 @@ class eqLogic {
 	}
 	
 	public function setStatus($_key, $_value = null) {
+		global $JEEDOM_INTERNAL_CONFIG;
+		$changed = false;
+		if(is_array($_key)){
+			foreach ($_key as $key => $value) {
+				if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$key])){
+					$changed = ($this->getStatus($key) != $value);
+				}
+				if($changed){
+					break;
+				}
+			}
+		}else{
+			if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$_key])){
+				$changed = ($this->getStatus($_key) !== $_value);
+			}
+		}
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
+		if($changed){
+			$this->refreshWidget();
+		}
 	}
 	
 	public function getChanged() {
