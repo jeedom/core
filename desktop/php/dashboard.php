@@ -66,7 +66,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		<a id="bt_resetDashboardSearch" class="btn btn-default"><i class="fas fa-times"></i></a>
 	</div>
 	<?php
-		if (init('category', 'all') == 'all') {?>
+	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
 			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn btn-default roundedRight"><i class="fas fa-pencil-alt"></i></a>
 		</div>
