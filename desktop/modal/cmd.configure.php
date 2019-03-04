@@ -511,9 +511,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       $html = array();
       foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
         if ($cmd->getHtml($value) == '') {
-          $html[$value] = $cmd->getWidgetTemplateCode($value);
+          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getWidgetTemplateCode($value));
         }else{
-          $html[$value] = $cmd->getHtml($value);
+          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getHtml($value));
         }
       }
       ?>
@@ -822,6 +822,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   
   
   <script>
+  $('#ta_codeDashboard').value($('#ta_codeDashboard').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeDview').value($('#ta_codeDview').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeDplan').value($('#ta_codeDplan').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeMobile').value($('#ta_codeMobile').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeMview').value($('#ta_codeMview').value().replace(/textarea\$\>/gi, 'textarea>'));
   $("#md_cmdConfigureSelectMultiple").dialog({
     closeText: '',
     autoOpen: false,
