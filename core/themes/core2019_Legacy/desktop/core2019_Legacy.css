@@ -111,12 +111,12 @@ span.cursor > i:hover {
   opacity: 0.7 !important;
 }
 
-.state,
-p.state,
-.iconCmd > i,
-.cmd,
-.cmd-widget > center,
-.cmd-widget .history {
+[data-page=dashboard] .state,
+[data-page=dashboard] p.state,
+[data-page=dashboard] .iconCmd > i,
+[data-page=dashboard] .cmd,
+[data-page=dashboard] .cmd-widget > center,
+[data-page=dashboard] .cmd-widget .history {
   color: var(--linkHoverLight-color) !important;
 }
 
