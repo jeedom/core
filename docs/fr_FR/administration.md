@@ -90,9 +90,10 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
 
 -   **Base de données** : Administration / Lancer : Permet d’accéder à la base de données
     de Jeedom. Vous pouvez alors lancer des commandes dans le champs
-    du haut. Deux paramètres s’affichent, en dessous, pour information :
+    du haut. 
     Vérification / Lancer : Permet de lancer une vérification sur la base de données
     de Jeedom et de corriger si nécessaire les erreurs
+    Deux paramètres s’affichent, en dessous, pour information :
     
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
         la base de données,
