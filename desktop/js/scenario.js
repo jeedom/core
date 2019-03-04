@@ -1199,10 +1199,11 @@ function addSubElement(_subElement, _pColor) {
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{ALORS}}</legend>';
     retour += '<div class="input-group">';
     retour += '<span class="input-group-btn">';
-    retour += '<button class="btn btn-xs btn-default bt_addSinon" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '<button class="btn btn-xs btn-default bt_addSinon roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
     retour += '<i class="fas fa-chevron-right"></i>';
     retour += '</button>';
-    retour += '<button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+    retour += '<div class="dropdown" style="display : inline-block;">';
+    retour += '<button class="btn btn-sm btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
     retour += '<span class="caret"></span>';
     retour += '</button>';
@@ -1210,6 +1211,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
     retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
     retour += '</ul>';
+    retour += '</div>';
     retour += '</span>';
     retour += '</div>';
     retour += '</div>';
