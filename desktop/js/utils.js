@@ -254,9 +254,9 @@ $("#md_modal").dialog({
   autoOpen: false,
   modal: true,
   closeText: '',
-  height: (jQuery(window).height() - 250),
+  height: (jQuery(window).height() - 125),
   width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-  position: {my: 'center bottom-150', at: 'center bottom', of: window},
+  position: {my: 'center bottom-50', at: 'center bottom', of: window},
   open: function () {
     $("body").css({overflow: 'hidden'});
     $(this).closest( ".ui-dialog" ).find(":button").blur();
@@ -271,9 +271,9 @@ $("#md_modal2").dialog({
   autoOpen: false,
   modal: true,
   closeText: '',
-  height: (jQuery(window).height() - 250),
+  height: (jQuery(window).height() - 125),
   width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-  position: {my: 'center bottom-150', at: 'center bottom',  of: window},
+  position: {my: 'center bottom-50', at: 'center bottom',  of: window},
   open: function () {
     $("body").css({overflow: 'hidden'});
     $(this).closest( ".ui-dialog" ).find(":button").blur();
