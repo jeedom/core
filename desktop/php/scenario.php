@@ -61,7 +61,7 @@ if (is_array($scenarioListGroup)) {
 				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
 			</div>
 		</div>
-		
+
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 		<?php
 		if (count($totalScenario) == 0) {
@@ -134,7 +134,7 @@ if (is_array($scenarioListGroup)) {
 		}
 		?>
 	</div>
-	
+
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -197,14 +197,19 @@ if (is_array($scenarioListGroup)) {
 							<div class="form-group">
 								<label class="col-xs-5 control-label" >{{Objet parent}}</label>
 								<div class="col-xs-6">
-									<select class="scenarioAttr form-control" data-l1key="object_id">
-										<option value="">{{Aucun}}</option>
-										<?php
-										foreach (jeeObject::all() as $object) {
-											echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-										}
-										?>
-									</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="object_id">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="">{{Aucun}}</a></li>
+											<?php
+											foreach (jeeObject::all() as $object) {
+												echo '<li><a href="#" data-value="' . $object->getId() . '">' . $object->getName() . '</a></li>';
+											}
+											?>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -216,11 +221,16 @@ if (is_array($scenarioListGroup)) {
 							<div class="form-group">
 								<label class="col-xs-5 control-label">{{Log}}</label>
 								<div class="col-xs-6">
-									<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">
-										<option value="default">{{Défaut}}</option>
-										<option value="none">{{Aucun}}</option>
-										<option value="realtime">{{Temps réel}}</option>
-									</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="configuration" data-l2key="logmode">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="default">{{Défaut}}</a></li>
+											<li><a href="#" data-value="none">{{Aucun}}</a></li>
+											<li><a href="#" data-value="realtime">{{Temps réel}}</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -262,11 +272,16 @@ if (is_array($scenarioListGroup)) {
 							<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
 							<div class="col-sm-9 col-xs-6">
 								<div class="input-group">
-									<select class="form-control scenarioAttr input-sm roundedLeft" data-l1key="mode">
-										<option value="provoke">{{Provoqué}}</option>
-										<option value="schedule">{{Programmé}}</option>
-										<option value="all">{{Les deux}}</option>
-									</select>
+									<div class="dropdown">
+										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mode">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#" data-value="provoke">{{Provoqué}}</a></li>
+											<li><a href="#" data-value="schedule">{{Programmé}}</a></li>
+											<li><a href="#" data-value="all">{{Les deux}}</a></li>
+										</ul>
+									</div>
 									<span class="input-group-btn">
 										<a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
 										</a><a class="btn btn-default btn-sm roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
@@ -284,7 +299,7 @@ if (is_array($scenarioListGroup)) {
 							<div class="scheduleMode"></div>
 						</div>
 						<div class="provokeMode provokeDisplay" style="display: none;">
-							
+
 						</div>
 					</form>
 				</div>
@@ -295,7 +310,7 @@ if (is_array($scenarioListGroup)) {
 			<div id="div_scenarioElement" class="element" style="padding-bottom: 70px;"></div>
 		</div>
 	</div>
-	
+
 </div>
 </div>
 
@@ -343,31 +358,31 @@ if (is_array($scenarioListGroup)) {
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription action" style="display:none;">
 					Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 					Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription in" style="display:none;">
 					Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription at" style="display:none;">
 					A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription code" style="display:none;">
 					Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
 					Permet de commenter votre scénario.
 				</div>
-				
+
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
