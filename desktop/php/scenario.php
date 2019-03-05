@@ -21,14 +21,6 @@ if (is_array($scenarioListGroup)) {
 	border: 1px solid #eee;
 	height: auto;
 }
-.disableElement,
-.element .disableSubElement {
-	opacity: 0.5;
-}
-.disableElement input[type=checkbox][data-l2key=enable],
-.element .disableSubElement input[type=checkbox][data-l2key=enable] {
-	background-color: red !important;
-}
 </style>
 
 <div class="row row-overflow">
