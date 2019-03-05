@@ -109,20 +109,15 @@ legend {
 :not(.div_object) > legend {
   text-align: left !important;
   font-size: 17px;
-  color: var(--txt-color);
+  color: var(--link-color);
   text-align: center;
-  /*border-left: 3px solid var(--logo-primary-color);*/
+  border-left: 3px solid var(--logo-primary-color);
   margin: 12px 5px !important;
   padding: 5px 0 5px 5px !important;
   line-height: 1em !important;
 }
-:not(.div_object) > legend:first-letter {
-  font-weight: bold;
-  color: var(--logo-primary-color);
-  font-size: 18px;
-}
 :not(.div_object) > legend > i {
-  padding-right: 5px
+  padding-right: 3px
 }
 
 .element legend {
