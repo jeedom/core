@@ -38,7 +38,6 @@ class scenario {
 	private $order = 9999;
 	private $description;
 	private $configuration;
-	private $type = 'expert';
 	private static $_templateArray;
 	private $_elements = array();
 	private $_changeState = false;
@@ -1660,27 +1659,7 @@ class scenario {
 				public function setLastLaunch($lastLaunch) {
 					$this->setCache('lastLaunch', $lastLaunch);
 				}
-				/**
-				*
-				* @return type
-				*/
-				public function getType() {
-					return $this->type;
-				}
-				/**
-				*
-				* @param type $type
-				* @return $this
-				*/
-				public function setType($_type) {
-					$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
-					$this->type = $_type;
-					return $this;
-				}
-				/**
-				*
-				* @return type
-				*/
+				
 				public function getMode() {
 					return $this->mode;
 				}

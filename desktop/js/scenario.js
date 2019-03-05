@@ -995,7 +995,6 @@ function saveScenario() {
   if(typeof scenario.schedule == 'undefined'){
     scenario.schedule = '';
   }
-  scenario.type = "expert";
   var elements = [];
   $('#div_scenarioElement').children('.element').each(function () {
     elements.push(getElement($(this)));
