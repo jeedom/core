@@ -76,41 +76,29 @@ class scenario {
 	* Renvoie tous les objets scenario
 	* @return [] scenario object scenario
 	*/
-	public static function all($_group = '', $_type = null) {
+	public static function all($_group = '') {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			INNER JOIN object ob ON s.object_id=ob.id';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' WHERE `type`=:type';
-			}
-			$sql .= ' ORDER BY ob.name,s.group, s.name';
+			INNER JOIN object ob ON s.object_id=ob.id
+			ORDER BY ob.name,s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			if (!is_array($result1)) {
 				$result1 = array();
 			}
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
-			WHERE s.object_id IS NULL';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' AND `type`=:type';
-			}
-			$sql .= ' ORDER BY s.group, s.name';
+			WHERE s.object_id IS NULL
+			ORDER BY s.group, s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2);
 		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id
-			WHERE (`group` IS NULL OR `group` = "")';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' AND `type`=:type';
-			}
-			$sql .= ' ORDER BY s.group, s.name';
+			WHERE (`group` IS NULL OR `group` = "")
+			ORDER BY s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			if (!is_array($result1)) {
 				$result1 = array();
@@ -118,12 +106,8 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE (`group` IS NULL OR `group` = "")
-			AND s.object_id IS NULL';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' AND `type`=:type';
-			}
-			$sql .= ' ORDER BY  s.name';
+			AND s.object_id IS NULL
+			ORDER BY  s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2);
 		} else {
@@ -133,22 +117,14 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			INNER JOIN object ob ON s.object_id=ob.id
-			WHERE `group`=:group';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' AND `type`=:type';
-			}
-			$sql .= ' ORDER BY ob.name,s.group, s.name';
+			WHERE `group`=:group
+			ORDER BY ob.name,s.group, s.name';
 			$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
 			WHERE `group`=:group
-			AND s.object_id IS NULL';
-			if ($_type !== null) {
-				$values['type'] = $_type;
-				$sql .= ' AND `type`=:type';
-			}
-			$sql .= ' ORDER BY s.group, s.name';
+			AND s.object_id IS NULL
+			ORDER BY s.group, s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2);
 		}
