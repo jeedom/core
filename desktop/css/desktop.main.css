@@ -208,6 +208,12 @@ legend {
   z-index: 1030;
 }
 
+.li_log i {
+  float: left;
+  margin-top: 8px;
+  color: var(--logo-primary-color) !important;
+}
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
@@ -218,10 +224,6 @@ legend {
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
 .verticalAlign > center > [data-subtype=slider]:nth-child(2) {
   top: 20px !important;
-}
-
-#div_displayLogList .fa.fa-check {
-  color: var(--logo-primary-color) !important;
 }
 
 [data-subtype=slider] > div > span,
