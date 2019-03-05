@@ -93,7 +93,7 @@ div.vis-item,div.vis-item-content {
 						</div>
 					</div>
 					<div class="col-lg-8 col-sm-12">
-						<div class="input-group input-group-sm">
+						<div class="input-group input-group-sm pull-right">
 							<span> {{Variation}} <input type="checkbox" id="cb_derive" /></span>
 							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 							<div class="dropdown">
@@ -136,7 +136,7 @@ div.vis-item,div.vis-item-content {
 									<li><a href="#" data-value="column">{{Barre}}</a></li>
 								</ul>
 							</div>
-							<a class="btn btn-warning roundedRight" id='bt_clearGraph' >
+							<a class="btn btn-warning roundedRight" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
 								<i class="fa fa-times"></i> {{Affichage}}
 							</a>
 						</div>
