@@ -105,11 +105,11 @@ if (!isConnect()) {
     {{Permet de supprimer la programmation de tous les blocs DANS et A du scénario}}
 </div>
 
-<div class="alert alert-info mod_actionValue_selDescription event">
+<div class="alert alert-info mod_actionValue_selDescription event" style="display:none;">
     {{Permet de pousser une valeur dans une commande de type information de maniere arbitraire}}
 </div>
 
-<div class="alert alert-info mod_actionValue_selDescription tag">
+<div class="alert alert-info mod_actionValue_selDescription tag" style="display:none;">
     {{Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
 </div>
 

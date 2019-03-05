@@ -13,12 +13,11 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
 <div style="display: none;" id="md_displayCmdConfigure"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a>
-<a class="btn btn-default pull-right btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}</a>
+<div class="input-group pull-right" style="display:inline-flex">
+  <span class="input-group-btn">
+    <a class="btn btn-default roundedLeft btn-sm" id="bt_cmdConfigureTest"><i class="fas fa-rss"></i> {{Tester}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a><a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}</a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+  </span>
+</div>
 <div role="tabpanel">
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#cmd_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
@@ -512,9 +511,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       $html = array();
       foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
         if ($cmd->getHtml($value) == '') {
-          $html[$value] = $cmd->getWidgetTemplateCode($value);
+          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getWidgetTemplateCode($value));
         }else{
-          $html[$value] = $cmd->getHtml($value);
+          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getHtml($value));
         }
       }
       ?>
@@ -823,6 +822,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   
   
   <script>
+  $('#ta_codeDashboard').value($('#ta_codeDashboard').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeDview').value($('#ta_codeDview').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeDplan').value($('#ta_codeDplan').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeMobile').value($('#ta_codeMobile').value().replace(/textarea\$\>/gi, 'textarea>'));
+  $('#ta_codeMview').value($('#ta_codeMview').value().replace(/textarea\$\>/gi, 'textarea>'));
   $("#md_cmdConfigureSelectMultiple").dialog({
     closeText: '',
     autoOpen: false,
@@ -1183,12 +1187,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     div += '<div class="col-sm-4">';
     div += '<div class="input-group">';
     div += '<span class="input-group-btn">';
-    div += '<a class="btn btn-default btn-sm bt_removeAction" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
+    div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
     div += '</span>';
     div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
     div += '<span class="input-group-btn">';
     div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
-    div += '<a class="btn btn-default btn-sm listCmd" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
+    div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
     div += '</span>';
     div += '</div>';
     div += '</div>';

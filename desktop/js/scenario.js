@@ -980,6 +980,12 @@ function printScenario(_id) {
 function saveScenario() {
   $.hideAlert();
   var scenario = $('#div_pageContainer').getValues('.scenarioAttr')[0];
+  if(typeof scenario.trigger == 'undefined'){
+    scenario.trigger = '';
+  }
+  if(typeof scenario.schedule == 'undefined'){
+    scenario.schedule = '';
+  }
   scenario.type = "expert";
   var elements = [];
   $('#div_scenarioElement').children('.element').each(function () {
