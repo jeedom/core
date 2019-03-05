@@ -581,12 +581,13 @@ button.dropdown-toggle {
 
 /* scenarios dropdowns */
 .element button.dropdown-toggle {
+  font-size:12px;
   color:  var(--linkHoverLight-color) !important;
   -webkit-text-fill-color: var(--linkHoverLight-color) !important;
   background-color: var(--sc-formTxt-color) !important;
   height: 22px;
   padding-left: 5px;
-  padding-top: 3px;
+  padding-top: 2px;
 }
 .element button.dropdown-toggle:hover {
   color: var(--sc-lightTxt-color) !important;
