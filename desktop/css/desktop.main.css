@@ -525,8 +525,11 @@ button:focus {
 }
 
 /* dropdown select alternative */
+button.dropdown-toggle {
+  font-size: 14px;
+}
 .dropdown-menu {
-  font-size: 12px;
+  font-size: 14px;
 }
 .dropdown button.dropdown-toggle {
   color: var(--txt-color) !important;
@@ -570,9 +573,9 @@ button:focus {
   z-index: 9999 !important;
 }
 .scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
   z-index: 9999 !important;
 }
 
@@ -623,14 +626,6 @@ button .fas.fa-plus-circle {
 }
 .nav .dropdown-menu {
   font-size: 14px;
-}
-header a.navbar-brand {
-  background-image: url(logo-jeedom.svg) !important;
-  background-size: 60px !important;
-  background-repeat: no-repeat;
-  background-position: 10px 7px;
-  height: 50px;
-  width: 90px;
 }
 a.navbar-brand > img {
   display: none;
@@ -753,7 +748,7 @@ div.panel {
 }
 
 .form-control {
-  font-size: 12px !important;
+  font-size: 14px !important;
   border: none !important;
   cursor: text;
 }

@@ -2,8 +2,17 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("desktop.main.css");
+@import url("../../../../desktop/css/desktop.main.css");
 @import url("colors.css");
+
+header a.navbar-brand {
+  background-image: url(logo-jeedom.svg) !important;
+  background-size: 60px !important;
+  background-repeat: no-repeat;
+  background-position: 10px 7px;
+  height: 50px;
+  width: 90px;
+}
 
 a,
 span.cursor > i,

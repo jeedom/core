@@ -9,7 +9,7 @@ Theme Core 2019 @Jeedom
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
-  --bg-color: rgb(35, 36, 38);
+  --bg-color: rgb(35, 36, 37);
   --bg-modal-color: rgb(45, 47, 49);
 
   --txt-color: rgb(180, 180, 180);
@@ -22,16 +22,16 @@ Theme Core 2019 @Jeedom
   --sc-formTxt-color: rgb(62, 62, 62);
   --sc-lightTxt-color: rgb(230, 230, 230);
 
-  --el-defaultColor: rgb(30, 30, 30);
+  --el-defaultColor: rgb(38, 38, 38);
   --defaultBkg-color: rgb(50, 51, 51);
-  --form-bg-color: rgb(55, 55, 55);
+  --form-bg-color: rgb(59, 59, 59);
   --btnEq-default-color: rgb(71, 72, 75);
   --btn-default-color: rgb(71, 72, 75);
   --panel-bg-color: rgb(44, 44, 44);
 
   --eqTitle-color: rgb(240, 240, 240);
 
-  --eq-bg-color: 45, 45, 45;
+  --eq-bg-color: 51, 52, 51;
   --cat-security-color: 145, 65, 60;
   --cat-heating-color: 46, 98, 138;
   --cat-automatism-color: 100, 100, 100;
@@ -41,8 +41,8 @@ Theme Core 2019 @Jeedom
   --cat-other-color: 58, 90, 85;
   --cat-scenario-color: 65, 70, 76;
 
-  --url-iconsDark: url(ui-icons-black.png);
-  --url-iconsLight: url(ui-icons-white.png);
+  --url-iconsDark: url(../img/ui-icons-black.png);
+  --url-iconsLight: url(../img/ui-icons-white.png);
 
   --lb-info-color: rgb(80, 160, 180);
   --al-info-color: rgb(90, 130, 190);

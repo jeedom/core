@@ -2,8 +2,8 @@
   <center class="widget-name">
     #shortname#
   </center>
-  <center>
-    <span class="state" style="font-size: 3em;">#icon#</span>
+  <center class="state">
+    #icon#
   </center>
   <center>
     <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
@@ -11,7 +11,6 @@
     <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
     <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></a>
   </center>
-  <br/>
   <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
       $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-spinner fa-spin"></i>');
