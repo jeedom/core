@@ -480,6 +480,7 @@ function initPage(){
   initRowOverflow();
   initHelp();
   initTextArea();
+  initSelect();
   $('.nav-tabs a').on('click',function (e) {
     var scrollHeight = $(document).scrollTop();
     $(this).tab('show');
@@ -487,6 +488,13 @@ function initPage(){
     setTimeout(function() {
       $(window).scrollTop(scrollHeight);
     }, 0);
+  });
+}
+
+function initSelect(){
+  $('body').off('click','.dropdown-menu a').on('click','.dropdown-menu a',function(){
+    $(this).closest('.dropdown').find('button').html($(this).text() + '<span class="caret"></span>')
+    $(this).closest('.dropdown').find('button').attr('value', $(this).attr('data-value'))
   });
 }
 
