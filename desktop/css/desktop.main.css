@@ -652,6 +652,9 @@ header .navbar-toggle {
 .dropdown-menu > ul {
   z-index: 9999 !important;
 }
+ul.dropdown-menu {
+  border-bottom: 2px solid var(--logo-primary-color);
+}
 .nav .open > a,
 .dropdown-menu > li > a:hover {
   background-color: var(--bg-color) !important;
