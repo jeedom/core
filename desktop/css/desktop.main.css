@@ -527,6 +527,7 @@ button:focus {
 /* dropdown select alternative */
 button.dropdown-toggle {
   font-size: 14px;
+  min-width: 50px;
 }
 .dropdown-menu {
   font-size: 14px;
