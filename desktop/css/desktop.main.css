@@ -851,10 +851,6 @@ i.bt_sortable {
 .expressions .sortable-placeholder{
   background-color: #94CA02;
 }
-.CodeMirror {
-  border: 1px solid #eee;
-  height: auto;
-}
 
 #div_editScenario #generaltab textarea,
 #div_noteManagerDisplay textarea {
@@ -1580,6 +1576,11 @@ path.highcharts-graph {
 
 
 /* ___________________________________________________________CodeMirror */
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+}
+
 .CodeMirror,
 .CodeMirror-code,
 .CodeMirror-sizer {
@@ -1594,6 +1595,12 @@ path.highcharts-graph {
 }
 .CodeMirror-selected {
   background: var(--txt-color)!important;
+}
+
+[data-page=custom] .CodeMirror,
+[data-page=custom] .CodeMirror textarea,
+[data-page=custom] .CodeMirror-gutters {
+  height: 100% !important;
 }
 
 .elfinder-dialog-title {
