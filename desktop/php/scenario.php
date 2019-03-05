@@ -13,16 +13,6 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
-<style>
-.expressions .sortable-placeholder{
-	background-color: #94CA02;
-}
-.CodeMirror {
-	border: 1px solid #eee;
-	height: auto;
-}
-</style>
-
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
