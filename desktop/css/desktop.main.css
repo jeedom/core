@@ -261,7 +261,7 @@ select.selectCmd {
   border: none !important;
   border-radius: 0 !important;
   background: transparent !important;
-  font-size: .85em!important;
+  font-size: 14px!important;
   padding-top: 0!important;
 
 }
@@ -272,7 +272,6 @@ select.selectCmd {
 .eqLogicDisplayCard div.cursor {
   margin-bottom: 5px !important;
   padding: 5px !important;
-
 }
 .objectListContainer div.cursor > center > i,
 .interactListContainer div.cursor > center > i,
@@ -280,7 +279,7 @@ select.selectCmd {
 .pluginListContainer div.cursor > center > i,
 .eqLogicThumbnailContainer div.cursor > center > i,
 .eqLogicThumbnailContainer div.cursor > i {
-  font-size: 3.5em !important;
+  font-size: 3em !important;
 }
 .objectListContainer > div.cursor,
 .interactListContainer > div.cursor,
@@ -1302,7 +1301,7 @@ hr {
   border: none !important;
 }
 h4.modal-title {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .highcharts-legend-item tspan {
@@ -1478,11 +1477,11 @@ path.highcharts-graph {
 }
 .close {
   color: var(--link-color) !important;
-  opacity: 0.75;
+  opacity: 1;
   border: none;
 }
 .close:hover {
-  opacity: 1;
+  opacity: 0.75;
 }
 
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
@@ -1557,11 +1556,11 @@ path.highcharts-graph {
   opacity: 0.65;
 }
 .ui-dialog-titlebar-close {
-  opacity: 0.5 !important;
+  opacity: 1 !important;
   font-size: 30px !important;
 }
 .ui-dialog-titlebar-close:hover {
-  opacity: 1 !important;
+  opacity: 0.75 !important;
 }
 
 .fancybox-skin {
