@@ -46,7 +46,11 @@ function loadPage(_url,_noPushHistory){
     _url = _url.slice(0, -1);
   }
   if(!isset(_noPushHistory) || _noPushHistory == false){
-    window.history.pushState('','', _url._url(0, s.indexOf('#')));
+    if(_url.indexOf('#') != -1){
+      window.history.pushState('','', _url._url(0, _url.indexOf('#')));
+    }else{
+      window.history.pushState('','', _url);
+    }
   }
   if(isset(bootbox)){
     bootbox.hideAll();

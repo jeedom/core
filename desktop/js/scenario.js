@@ -302,16 +302,31 @@ $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) 
 
 $("#bt_testScenario,#bt_testScenario2").off('click').on('click', function () {
   $.hideAlert();
-  jeedom.scenario.changeState({
-    id: $('.scenarioAttr[data-l1key=id]').value(),
-    state: 'start',
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function () {
-      $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
-    }
-  });
+  if(event.ctrlKey) {
+    saveScenario(function(){
+      jeedom.scenario.changeState({
+        id: $('.scenarioAttr[data-l1key=id]').value(),
+        state: 'start',
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function () {
+          $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
+        }
+      });
+    });
+  }else{
+    jeedom.scenario.changeState({
+      id: $('.scenarioAttr[data-l1key=id]').value(),
+      state: 'start',
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function () {
+        $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
+      }
+    });
+  }
 });
 
 $("#bt_copyScenario").off('click').on('click', function () {
@@ -986,7 +1001,7 @@ function printScenario(_id) {
   });
 }
 
-function saveScenario() {
+function saveScenario(_callback) {
   $.hideAlert();
   var scenario = $('#div_pageContainer').getValues('.scenarioAttr')[0];
   if(typeof scenario.trigger == 'undefined'){
@@ -1012,6 +1027,9 @@ function saveScenario() {
         url += '#' + document.location.toString().split('#')[1];
       }
       loadPage(url);
+      if(typeof _callback == 'function'){
+        _callback();
+      }
     }
   });
 }
