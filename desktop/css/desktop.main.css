@@ -1334,7 +1334,7 @@ h4.modal-title {
 }
 
 path.highcharts-graph {
-  stroke-width: 1;
+  stroke-width: 1.5;
 }
 
 
@@ -1507,6 +1507,22 @@ path.highcharts-graph {
   background: transparent !important;
   border: none!important;
   padding: 0em;
+}
+
+/* history datepicker */
+.hasDatepicker {
+  cursor: pointer;
+}
+#ui-datepicker-div {
+  background: var(--bg-color) !important;
+}
+#ui-datepicker-div .ui-datepicker-header a {
+  color: red !important;
+  background: var(--link-color);
+}
+#ui-datepicker-div .ui-state-hover {
+  color: var(--linkHoverLight-color) !important;
+  background: var(--link-color);
 }
 
 .ui-dialog .ui-dialog-buttonpane {
