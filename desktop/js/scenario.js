@@ -302,10 +302,11 @@ $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) 
 
 $("#bt_testScenario,#bt_testScenario2").off('click').on('click', function () {
   $.hideAlert();
+  var scenario_id = $('.scenarioAttr[data-l1key=id]').value();
   if(event.ctrlKey) {
     saveScenario(function(){
       jeedom.scenario.changeState({
-        id: $('.scenarioAttr[data-l1key=id]').value(),
+        id: scenario_id,
         state: 'start',
         error: function (error) {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});

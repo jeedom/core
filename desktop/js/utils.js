@@ -47,7 +47,7 @@ function loadPage(_url,_noPushHistory){
   }
   if(!isset(_noPushHistory) || _noPushHistory == false){
     if(_url.indexOf('#') != -1){
-      window.history.pushState('','', _url._url(0, _url.indexOf('#')));
+      window.history.pushState('','', _url.substring(0, _url.indexOf('#')));
     }else{
       window.history.pushState('','', _url);
     }
