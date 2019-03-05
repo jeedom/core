@@ -26,11 +26,11 @@ natcasesort($list_logfile);
 				<?php
 				foreach ($list_logfile as $file) {
 					$hasErr = 0;
-					$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
+					$flag = '<i class="fa fa-check"></i>';
 					if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
+						$flag = '<i class="fa fa-exclamation-triangle"></i>';
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
+						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}
 					if ($file == $logfile) {
 						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';

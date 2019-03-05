@@ -108,15 +108,16 @@ legend {
 /* legend on equipements pages */
 :not(.div_object) > legend {
   text-align: left !important;
-  color: var(--txt-color);
+  font-size: 17px;
+  color: var(--link-color);
   text-align: center;
-  border-left: 4px solid var(--logo-primary-color);
+  border-left: 3px solid var(--logo-primary-color);
   margin: 12px 5px !important;
   padding: 5px 0 5px 5px !important;
   line-height: 1em !important;
 }
 :not(.div_object) > legend > i {
-  padding-right: 5px
+  padding-right: 3px
 }
 
 .element legend {
@@ -207,6 +208,12 @@ legend {
   z-index: 1030;
 }
 
+.li_log i {
+  float: left;
+  margin-top: 8px;
+  color: var(--logo-primary-color) !important;
+}
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
@@ -217,10 +224,6 @@ legend {
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
 .verticalAlign > center > [data-subtype=slider]:nth-child(2) {
   top: 20px !important;
-}
-
-#div_displayLogList .fa.fa-check {
-  color: var(--logo-primary-color) !important;
 }
 
 [data-subtype=slider] > div > span,
@@ -650,6 +653,9 @@ header .navbar-toggle {
 .dropdown-menu,
 .dropdown-menu > ul {
   z-index: 9999 !important;
+}
+ul.dropdown-menu {
+  border-bottom: 2px solid var(--logo-primary-color);
 }
 .nav .open > a,
 .dropdown-menu > li > a:hover {
@@ -1328,7 +1334,7 @@ h4.modal-title {
 }
 
 path.highcharts-graph {
-  stroke-width: 1;
+  stroke-width: 1.5;
 }
 
 
@@ -1501,6 +1507,22 @@ path.highcharts-graph {
   background: transparent !important;
   border: none!important;
   padding: 0em;
+}
+
+/* history datepicker */
+.hasDatepicker {
+  cursor: pointer;
+}
+#ui-datepicker-div {
+  background: var(--bg-color) !important;
+}
+#ui-datepicker-div .ui-datepicker-header a {
+  color: red !important;
+  background: var(--link-color);
+}
+#ui-datepicker-div .ui-state-hover {
+  color: var(--linkHoverLight-color) !important;
+  background: var(--link-color);
 }
 
 .ui-dialog .ui-dialog-buttonpane {
