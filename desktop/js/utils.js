@@ -495,6 +495,7 @@ function initSelect(){
   $('body').off('click','.dropdown-menu a').on('click','.dropdown-menu a',function(){
     $(this).closest('.dropdown').find('button').html($(this).text() + '<span class="caret"></span>')
     $(this).closest('.dropdown').find('button').attr('value', $(this).attr('data-value'))
+    $(this).closest('.dropdown').find('button').trigger('change');
   });
 }
 
