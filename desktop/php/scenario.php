@@ -142,7 +142,7 @@ if (is_array($scenarioListGroup)) {
 				<a class="btn btn-default btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}
 				</a><a class="btn btn-primary btn-sm" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}
 				</a><a class="btn btn-primary btn-sm bt_showExpressionTest"><i class="fas fa-check"></i> {{Expression}}
-				</a><a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.}}'><i class="fas fa-gamepad"></i> {{Exécuter}}
+				</a><a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.CTRL+click pour sauvegarder, executer et ouvrir la log}}'><i class="fas fa-gamepad"></i> {{Exécuter}}
 				</a><a class="btn btn-danger btn-sm" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-default btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>

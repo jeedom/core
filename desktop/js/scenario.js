@@ -313,6 +313,8 @@ $("#bt_testScenario,#bt_testScenario2").off('click').on('click', function () {
         },
         success: function () {
           $('#div_alert').showAlert({message: '{{Lancement du scénario réussi}}', level: 'success'});
+          $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
+          $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id).dialog('open');
         }
       });
     });
