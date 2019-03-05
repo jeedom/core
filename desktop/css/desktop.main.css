@@ -840,6 +840,22 @@ i.bt_sortable {
   margin-top: 0 !important;
 }
 
+.disableElement,
+.element .disableSubElement {
+  opacity: 0.5;
+}
+.disableElement input[type=checkbox][data-l2key=enable],
+.element .disableSubElement input[type=checkbox][data-l2key=enable] {
+  background-color: red !important;
+}
+
+.expressions .sortable-placeholder{
+  background-color: #94CA02;
+}
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+}
 
 #div_editScenario #generaltab textarea,
 #div_noteManagerDisplay textarea {
