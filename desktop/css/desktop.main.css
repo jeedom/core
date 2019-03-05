@@ -347,7 +347,7 @@ div[data-market_type=plugin]:hover {
 }
 
 pre {
-  color: var(--txt-color);
+  color: var(--link-color);
   background-color: var(--form-bg-color);
   border: none;
 }
