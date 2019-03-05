@@ -300,7 +300,7 @@ $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) 
   });
 });
 
-$("#bt_testScenario,#bt_testScenario2").off('click').on('click', function () {
+$("#bt_testScenario,#bt_testScenario2").off('click').on('click', function (event) {
   $.hideAlert();
   var scenario_id = $('.scenarioAttr[data-l1key=id]').value();
   if(event.ctrlKey) {
