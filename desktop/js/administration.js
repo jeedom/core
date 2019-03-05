@@ -807,7 +807,6 @@ function addObjectSummary(_summary) {
   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');
   }
-  initSelect();
   modifyWithoutSave = true;
 }
 

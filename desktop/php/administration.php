@@ -21,7 +21,7 @@ user::isBan();
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Interface}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
-
+		
 		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-file"></i> {{Logs}}</a></li>
 		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
 		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-table"></i> {{Résumés}}</a></li>
@@ -29,7 +29,7 @@ user::isBan();
 		<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-newspaper-o"></i> {{Rapports}}</a></li>
 		<li role="presentation"><a href="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-sitemap"></i> {{Liens}}</a></li>
 		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
-
+		
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a>
 		</li>
@@ -53,7 +53,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="language">
-									<?php echo config::byKey('language'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -82,7 +81,6 @@ user::isBan();
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="timezone">
-									<?php echo config::byKey('timezone'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right scrollable-menu">
@@ -238,7 +236,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
 			<form class="form-horizontal">
@@ -248,7 +246,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::http::mode">
-									<?php echo config::byKey('api::core::http::mode'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -265,7 +262,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::jsonrpc::mode">
-									<?php echo config::byKey('api::core::jsonrpc::mode'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -282,7 +278,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::tts::mode">
-									<?php echo config::byKey('api::core::tts::mode'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -294,7 +289,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
@@ -306,7 +301,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
@@ -321,7 +316,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<div class="dropdown dropup">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::pro::mode">
-									<?php echo config::byKey('api::core::pro::mode'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -345,7 +339,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<div class="dropdown dropup">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::market::mode">
-									<?php echo config::byKey('api::core::market::mode'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -376,7 +369,6 @@ user::isBan();
 							echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
 							echo '<div class="dropdown dropup">';
 							echo '<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::' . $plugin->getId() . '::mode">';
-							echo config::byKey('api::' . $plugin->getId() . '::mode');
 							echo '<span class="caret"></span>';
 							echo '</button>';
 							echo '<ul class="dropdown-menu dropdown-menu-right">';
@@ -394,7 +386,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
@@ -447,7 +439,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="securitytab">
 			<br/>
 			<form class="form-horizontal">
@@ -550,7 +542,7 @@ user::isBan();
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
-
+					
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
@@ -585,7 +577,7 @@ user::isBan();
 							?>
 						</tbody>
 					</table>
-
+					
 				</fieldset>
 			</form>
 		</div>
@@ -601,7 +593,6 @@ user::isBan();
 							<div class="input-group">
 								<div class="dropdown">
 									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="internalProtocol">
-										<?php echo config::byKey('internalProtocol'); ?>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -630,7 +621,6 @@ user::isBan();
 							<div class="input-group">
 								<div class="dropdown">
 									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="externalProtocol">
-										<?php echo config::byKey('externalProtocol'); ?>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -729,14 +719,14 @@ user::isBan();
 								echo '</div>';
 								echo '</div>';
 							}
-
+							
 							?>
 						</div>
 					</div>
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
@@ -747,7 +737,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme">
-									<?php echo config::byKey('default_bootstrap_theme'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -765,7 +754,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
-									<?php echo config::byKey('default_bootstrap_theme_night'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -785,7 +773,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color">
-									<?php echo config::byKey('mobile_theme_color'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -803,7 +790,6 @@ user::isBan();
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
-									<?php echo config::byKey('mobile_theme_color_night'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -863,7 +849,7 @@ user::isBan();
 							<input type="number" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
-
+					
 					<legend>{{Personnalisation}}</legend>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info">Activer la personnalisation pour écraser les paramètres par défaut des thèmes.</div>
 					<div class="form-group">
@@ -897,7 +883,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="commandtab">
 			<br/>
 			<legend>{{Historique}}</legend>
@@ -950,7 +936,6 @@ user::isBan();
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<div class="dropdown dropup">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="history::defautShowPeriod">
-									<?php echo config::byKey('history::defautShowPeriod'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -977,7 +962,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="cachetab">
 			<br/>
 			<form class="form-horizontal">
@@ -1001,7 +986,6 @@ user::isBan();
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<div class="dropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="cache::engine">
-									<?php echo config::byKey('cache::engine'); ?>
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -1065,7 +1049,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interacttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1153,7 +1137,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -1165,7 +1149,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
@@ -1202,7 +1186,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 						</div>
 					</div>
-
+					
 					<legend>{{Couleurs}}</legend>
 					<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
@@ -1221,7 +1205,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="repporttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1241,8 +1225,8 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
-
+		
+		
 		<div role="tabpanel" class="tab-pane" id="graphlinktab">
 			<br/>
 			<form class="form-horizontal">
@@ -1292,7 +1276,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="summarytab">
 			<br/>
 			<form class="form-horizontal">
@@ -1317,7 +1301,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="logtab">
 			<br/>
 			<form class="form-horizontal">
@@ -1351,12 +1335,12 @@ user::isBan();
 					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
-
+			
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Log}}</a></li>
 			</ul>
-
+			
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="log_alertes">
 					<form class="form-horizontal">
@@ -1387,7 +1371,7 @@ user::isBan();
 						</fieldset>
 					</form>
 				</div>
-
+				
 				<div role="tabpanel" class="tab-pane" id="log_log">
 					<form class="form-horizontal">
 						<fieldset>
@@ -1397,7 +1381,6 @@ user::isBan();
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<div class="dropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::engine">
-											<?php echo config::byKey('log::engine'); ?>
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -1443,7 +1426,6 @@ user::isBan();
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<div class="dropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::level">
-											<?php echo config::byKey('log::level'); ?>
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -1456,7 +1438,7 @@ user::isBan();
 								</div>
 							</div>
 							<?php
-
+							
 							$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 							foreach ($other_log as $name) {
 								echo '<form class="form-horizontal">';
@@ -1521,7 +1503,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="updatetab">
 			<br/>
 			<div class="row">
@@ -1534,7 +1516,6 @@ user::isBan();
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<div class="dropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
-											<?php echo config::byKey('core::repo::provider'); ?>
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -1559,7 +1540,6 @@ user::isBan();
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<div class="dropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
-											<?php echo config::byKey('core::branch'); ?>
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -1631,7 +1611,6 @@ user::isBan();
 											case 'select':
 											echo '<div class="dropdown dropup">';
 											echo '<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="' . $key . '::' . $pKey . '">';
-											echo config::byKey($key . '::' . $pKey);
 											echo '<span class="caret"></span>';
 											echo '</button>';
 											echo '<ul class="dropdown-menu dropdown-menu-right">';
@@ -1663,3 +1642,4 @@ user::isBan();
 				</div>
 			</div>
 			<?php include_file("desktop", "administration", "js");?>
+			
