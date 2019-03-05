@@ -21,11 +21,13 @@ if (is_array($scenarioListGroup)) {
 	border: 1px solid #eee;
 	height: auto;
 }
-.disableElement{
-	background-color: #797E80 !important;
+.disableElement,
+.element .disableSubElement {
+	opacity: 0.5;
 }
-.disableSubElement{
-	background-color: #BDC3C7 !important;
+.disableElement input[type=checkbox][data-l2key=enable],
+.element .disableSubElement input[type=checkbox][data-l2key=enable] {
+	background-color: red !important;
 }
 </style>
 
