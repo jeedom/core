@@ -42,8 +42,11 @@ function loadPage(_url,_noPushHistory){
     unload_page();
   }
   $(".ui-dialog-content").dialog("close");
+  if(_url.endsWith('#')){
+    _url = _url.slice(0, -1);
+  }
   if(!isset(_noPushHistory) || _noPushHistory == false){
-    window.history.pushState('','', _url);
+    window.history.pushState('','', _url._url(0, s.indexOf('#')));
   }
   if(isset(bootbox)){
     bootbox.hideAll();
