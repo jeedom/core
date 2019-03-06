@@ -183,6 +183,9 @@ jeedom.cmd.execute = function(_params) {
 };
 
 jeedom.cmd.test = function(_params) {
+  if(typeof _params.alert == 'undefined'){
+    _params.alert = '#div_alert';
+  }
   var paramsRequired = ['id'];
   var paramsSpecifics = {
     global: false,
@@ -194,7 +197,7 @@ jeedom.cmd.test = function(_params) {
           cache: 0,
           notify: false,
           success: function(result) {
-            bootbox.confirm('{{Résultat de la commande : }}' + result, function() {});
+            $(_params.alert).showAlert({message: '{{Résultat de la commande : }}' + result,level: 'success'});
           }
         });
         break;
@@ -205,16 +208,10 @@ jeedom.cmd.test = function(_params) {
             id: _params.id,
             cache: 0,
             error: function(error) {
-              $('#div_alert').showAlert({
-                message: error.message,
-                level: 'danger'
-              });
+              $(_params.alert).showAlert({message: error.message,level: 'danger'});
             },
             success: function() {
-              $('#div_alert').showAlert({
-                message: '{{Action exécutée avec succès}}',
-                level: 'success'
-              });
+              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
@@ -230,16 +227,10 @@ jeedom.cmd.test = function(_params) {
             },
             cache: 0,
             error: function(error) {
-              $('#div_alert').showAlert({
-                message: error.message,
-                level: 'danger'
-              });
+              $(_params.alert).showAlert({message: error.message,level: 'danger'});
             },
             success: function() {
-              $('#div_alert').showAlert({
-                message: '{{Action exécutée avec succès}}',
-                level: 'success'
-              });
+              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
@@ -251,16 +242,10 @@ jeedom.cmd.test = function(_params) {
             },
             cache: 0,
             error: function(error) {
-              $('#div_alert').showAlert({
-                message: error.message,
-                level: 'danger'
-              });
+              $(_params.alert).showAlert({message: error.message,level: 'danger'});
             },
             success: function() {
-              $('#div_alert').showAlert({
-                message: '{{Action exécutée avec succès}}',
-                level: 'success'
-              });
+              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
@@ -272,16 +257,10 @@ jeedom.cmd.test = function(_params) {
             },
             cache: 0,
             error: function(error) {
-              $('#div_alert').showAlert({
-                message: error.message,
-                level: 'danger'
-              });
+              $(_params.alert).showAlert({message: error.message,level: 'danger'});
             },
             success: function() {
-              $('#div_alert').showAlert({
-                message: '{{Action exécutée avec succès}}',
-                level: 'success'
-              });
+              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
@@ -300,10 +279,7 @@ jeedom.cmd.test = function(_params) {
               });
             },
             success: function() {
-              $('#div_alert').showAlert({
-                message: '{{Action exécutée avec succès}}',
-                level: 'success'
-              });
+              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
