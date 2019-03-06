@@ -40,7 +40,7 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.con
 });
 
 
-$('#div_pageContainer').delegate('.enableRepository', 'change', function () {
+$('#div_pageContainer').off('change','.enableRepository').on('change','.enableRepository', function () {
   if($(this).value() == 1){
     $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
   }else{

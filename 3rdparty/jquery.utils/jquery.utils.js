@@ -380,38 +380,26 @@ function is_array(a) {
               if(init(_value) === ''){
                 return;
               }
-              if($(this).hasClass('bootstrapSwitch')){
-                $(this).bootstrapSwitch('destroy');
-                $(this).prop('checked', (init(_value) == 1) ? true : false);
-                $(this).bootstrapSwitch();
-                $(this).trigger('switchChange.bootstrapSwitch');
-              }else{
-                $(this).prop('checked', (init(_value) == 1) ? true : false);
-              }
+              $(this).prop('checked', (init(_value) == 1) ? true : false);
             } else  if ($(this).attr('type') == 'radio') {
               $(this).prop('checked', (init(_value) == 1) ? true : false);
             } else {
               $(this).val(init(_value));
             }
-          }
-          if ($(this).is('select')) {
+          }else if ($(this).is('select')) {
             if (init(_value) == '') {
               $(this).val('');
               $(this).find('option:first').attr('selected',true);
             } else {
               $(this).val(init(_value));
             }
-          }
-          if ($(this).is('textarea')) {
+          }else if ($(this).is('textarea')) {
             $(this).val(init(_value));
-          }
-          if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
+          }else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
             $(this).html(init(_value));
-          }
-          if ($(this).is('pre')) {
+          }else  if ($(this).is('pre')) {
             $(this).html(init(_value));
-          }
-          if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
+          }else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
             var button = $(this);
             $(this).closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
               if ($(this).attr('data-value') == _value) {
@@ -420,6 +408,7 @@ function is_array(a) {
               }
             });
           }
+          $(this).trigger('change');
         }
       } else {
         var value = '';
@@ -442,7 +431,6 @@ function is_array(a) {
           value = $(this).val();
         }
         return value;
-        
       }
     };
     
