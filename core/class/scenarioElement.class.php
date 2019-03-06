@@ -63,7 +63,7 @@ class scenarioElement {
 				$subElement_db = new scenarioSubElement();
 			}
 			if (!isset($subElement_db) || !is_object($subElement_db)) {
-				throw new Exception(__('Elément inconnu. Vérifiez l\'ID : ', __FILE__) . $subElement_ajax['id']);
+				throw new Exception(__('Sous-élément inconnu. Vérifiez l\'ID : ', __FILE__) . $subElement_ajax['id']);
 			}
 			utils::a2o($subElement_db, $subElement_ajax);
 			$subElement_db->setScenarioElement_id($element_db->getId());
