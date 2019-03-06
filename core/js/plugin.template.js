@@ -100,9 +100,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
   if($('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').html() != undefined){
     $('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').addClass('active');
   }
-  if (!url.match('#')) {
-    $('.nav-tabs a[href="#eqlogictab"]').click();
-  }
+  $('.nav-tabs a:not(.eqLogicAction):first').click();
   $.showLoading();
   jeedom.eqLogic.print({
     type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
