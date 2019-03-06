@@ -3,13 +3,13 @@ Theme Core 2019 @Jeedom
 */
 
 body {
-  background-color: var(--bg-color);
+  background-color: rgb(var(--bg-color));
   color: var(--txt-color) !important;
   background-repeat : no-repeat;
   background-size:cover;
   background-position: center center;
   margin: 0 !important;
-  scrollbar-color: var(--form-bg-color) var(--bg-color) !important;
+  scrollbar-color: var(--form-bg-color) rgb(var(--bg-color)) !important;
 }
 .backgroundforJeedom {
   background-image: var(--dashBkg-url) !important;
@@ -28,7 +28,7 @@ a.btn,
 .btn,
 .btn > *,
 .ui-icon-closethick {
-   cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 a > img:hover {
@@ -137,7 +137,7 @@ legend {
 /* time on time widgets too low */
 .timeCmd.label {
   color: var(--txt-color);
-  background: var(--bg-color);
+  background: rgb(var(--bg-color));
   padding: 0 0.5em !important;
 }
 
@@ -271,7 +271,7 @@ select.selectCmd {
   background: transparent !important;
   font-size: 14px!important;
   padding-top: 0!important;
-
+  
 }
 .objectListContainer div.cursor,
 .interactListContainer div.cursor,
@@ -374,7 +374,7 @@ pre {
   background: var(--bg-modal-color) !important;
 }
 .context-menu-separator {
-  border-bottom: 1px solid var(--bg-color) !important;
+  border-bottom: 1px solid rgb(var(--bg-color)) !important;
 }
 .context-menu-item {
   color: var(--txt-color) !important;
@@ -497,28 +497,28 @@ li.alert-info.eqLogic {
 }
 
 .btn.btn-info {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-info-color) !important;
 }
 .btn.btn-warning {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-warning-color) !important;
 }
 .btn.btn-danger {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-danger-color) !important;
 }
 .btn.btn-primary,
 .label-primary {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-primary-color) !important;
 }
 .btn.btn-success {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-success-color) !important;
 }
@@ -666,7 +666,7 @@ ul.dropdown-menu {
 }
 .nav .open > a,
 .dropdown-menu > li > a:hover {
-  background-color: var(--bg-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 .dropdown-menu > li > a > i {
@@ -693,7 +693,7 @@ ul.dropdown-menu {
 header.navbar,
 .nav.navbar-nav .dropdown {
   box-sizing: border-box;
-  border-bottom: 3px solid var(--bg-color) !important;
+  border-bottom: 3px solid rgb(var(--bg-color)) !important;
 }
 header.navbar {
   box-sizing:unset;
@@ -1129,11 +1129,11 @@ th {
 }
 
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
-  background-color: var(--bg-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 tr.tablesorter-filter-row td {
-  background-color: var(--bg-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 .table-bordered,
@@ -1165,7 +1165,7 @@ tr.tablesorter-filter-row td {
 .well {
   padding: 1em;
   margin-bottom: 0.5em;
-  background-color: var(--bg-color);
+  background-color: rgb(var(--bg-color));
   border: none;
 }
 
@@ -1224,7 +1224,7 @@ hr {
 }
 .div_smallSideBar,
 .bs-sidebar > ul {
-  background-color: var(--bg-color) !important;
+  background-color: rgba(var(--bg-color), var(--opacity)) !important;
 }
 .bs-sidebar ul span {
   margin-top: 2px;
@@ -1339,7 +1339,7 @@ h4.modal-title {
   color: var(--txt-color) !important;
 }
 .highcharts-plot-band {
-  fill: var(--bg-color) !important;
+  fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-button-box {
   fill: var(--el-defaultColor) !important;
@@ -1477,7 +1477,7 @@ path.highcharts-graph {
   background-color: var(--bg-modal-color)!important
 }
 .modal-footer {
-  border-top-color: var(--bg-color)!important
+  border-top-color: rgb(var(--bg-color))!important
 }
 .close {
   color: var(--link-color) !important;
@@ -1506,12 +1506,12 @@ path.highcharts-graph {
   background-color: var(--txt-color) !important;
 }
 .ui-dialog .ui-dialog-title {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 .ui-dialog, .ui-dialog-content {
-    box-sizing: content-box !important;
+  box-sizing: content-box !important;
 }
 
 .ui-state-active .ui-icon,
@@ -1537,7 +1537,7 @@ path.highcharts-graph {
   cursor: pointer;
 }
 #ui-datepicker-div {
-  background: var(--bg-color) !important;
+  background: rgb(var(--bg-color)) !important;
 }
 #ui-datepicker-div .ui-datepicker-header a {
   color: red !important;
@@ -1572,7 +1572,7 @@ path.highcharts-graph {
 }
 
 .fancybox-skin {
-  background-color: var(--bg-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 .ui-helper-clearfix {
@@ -1582,8 +1582,8 @@ path.highcharts-graph {
 /* Designs */
 .nav>li>a:focus,
 .nav>li>a:hover {
-    text-decoration: none;
-    background-color: var(--defaultBkg-color)
+  text-decoration: none;
+  background-color: var(--defaultBkg-color)
 }
 
 
@@ -1616,7 +1616,7 @@ path.highcharts-graph {
 }
 
 .elfinder-dialog-title {
-  color: var(--bg-color) !important;
+  color: rgb(var(--bg-color)) !important;
   font-weight: bold;
 }
 .elfinder-contextmenu-item {
@@ -1774,16 +1774,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -1791,11 +1791,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -1822,5 +1822,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }

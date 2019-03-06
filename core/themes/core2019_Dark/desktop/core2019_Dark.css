@@ -32,11 +32,11 @@ a:focus {
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
 :not(.batteryListContainer) > .eqLogic-widget {
-  background-color: rgba(var(--eq-bg-color), var(--eq-opacity)) !important;
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   color: var(--txt-color) !important;
 }
 .scenario-widget {
-  background-color: rgba(var(--eq-bg-color), var(--eq-opacity)) !important;
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
 }
 
 
@@ -60,32 +60,32 @@ a:focus {
 }
 
 .scenario.scenario-widget .widget-name {
-  background-color: rgba(var(--cat-scenario-color), var(--eq-opacity)) !important;
+  background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
 }
 
 [data-category=security]>.widget-name {
-  background-color: rgba(var(--cat-security-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-security-color), var(--opacity));
 }
 [data-category=heating]>.widget-name {
-  background-color: rgba(var(--cat-heating-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-heating-color), var(--opacity));
 }
 [data-category=automatism]>.widget-name {
-  background-color: rgba(var(--cat-automatism-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-automatism-color), var(--opacity));
 }
 [data-category=light]>.widget-name {
-  background-color: rgba(var(--cat-light-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-light-color), var(--opacity));
 }
 [data-category=multimedia]>.widget-name {
-  background-color: rgba(var(--cat-multimedia-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
 [data-category=energy]>.widget-name {
-  background-color: rgba(var(--cat-energy-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-energy-color), var(--opacity));
 }
 [data-category='']>.widget-name {
-  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-other-color), var(--opacity));
 }
 :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name {
-  background-color: rgba(var(--cat-other-color), var(--eq-opacity));
+  background-color: rgba(var(--cat-other-color), var(--opacity));
 }
 
 

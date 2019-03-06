@@ -5,7 +5,7 @@ Theme Core 2019 @Jeedom
   --lineheight : 1.42em;
   /* keet it as rem even when zero!!*/
   --border-radius: 0rem;
-  --eq-opacity: 1;
+  --opacity: 1;
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);

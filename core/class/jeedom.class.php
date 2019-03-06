@@ -57,8 +57,8 @@ class jeedom {
 		$return['css'] = array();
 		if($return['interface::advance::enable'] == 1){
 			$css_convert = array(
-				'widget::background-opacity' => '--eq-opacity',
-				'widget::border-radius' => '--border-radius',
+				'css::background-opacity' => '--opacity',
+				'css::border-radius' => '--border-radius',
 			);
 			$css = config::byKeys(array_keys($css_convert));
 			foreach ($css as $key => $value) {

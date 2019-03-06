@@ -863,21 +863,21 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité des tuiles}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparance}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::background-opacity" />
+							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::border-radius" />
+							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver les ombres}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="checkbox" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="widget::shadow" />
+							<input type="checkbox" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::shadow" />
 						</div>
 					</div>
 				</fieldset>
