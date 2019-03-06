@@ -211,7 +211,15 @@ legend {
 .li_log i {
   float: left;
   margin-top: 8px;
-  color: var(--logo-primary-color) !important;
+}
+.li_log i.fa-check {
+  color: var(--logo-primary-color);
+}
+.li_log i.fa-exclamation-triangle {
+  color: var(--al-danger-color);
+}
+.li_log i.fa-exclamation-circle {
+  color: var(--al-warning-color);
 }
 
 /* summary */
