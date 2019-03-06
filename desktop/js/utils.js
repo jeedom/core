@@ -291,6 +291,23 @@ $("#md_modal2").dialog({
   }
 });
 
+$("#md_modal3").dialog({
+  autoOpen: false,
+  modal: true,
+  closeText: '',
+  height: (jQuery(window).height() - 125),
+  width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+  position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+  open: function () {
+    $("body").css({overflow: 'hidden'});
+    $(this).closest( ".ui-dialog" ).find(":button").blur();
+  },
+  beforeClose: function (event, ui) {
+    $("body").css({overflow: 'inherit'});
+    $("#md_modal3").empty();
+  }
+});
+
 $('#bt_jeedomAbout').on('click', function () {
   $('#md_modal').dialog({title: "{{A propos}}"});
   $('#md_modal').load('index.php?v=d&modal=about').dialog('open');

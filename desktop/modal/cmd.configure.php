@@ -171,13 +171,21 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
                 </div>
               </div>
-              <div class="iconeGeneric">
+              <div class="iconeGeneric form-group">
                 <label class="col-xs-4 control-label">{{Icône}}</label>
                 <div class="col-xs-4">
                   <span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
                   <a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
                 </div>
               </div>
+              <?php if($cmd->getIsHistorized() == 1){ ?>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Historique}}</label>
+                  <div class="col-xs-4">
+                    <a class="btn btn-default btn-sm" id="bt_cmdConfigureShowHistory"><i class="fas fa-history"></i> {{Voir}}</a>
+                  </div>
+                </div>
+              <?php } ?>
             </fieldset>
           </form>
         </div>
@@ -862,12 +870,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   
   $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
   $('#bt_cmdConfigureRawObject').off('click').on('click',function(){
-    $('#md_modal2').dialog({title: "{{Informations}}"});
-    $("#md_modal2").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
+    $('#md_modal3').dialog({title: "{{Informations}}"});
+    $("#md_modal3").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
   });
   $('#bt_cmdConfigureGraph').on('click', function () {
-    $('#md_modal2').dialog({title: "{{Graphique des liens}}"});
-    $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
+    $('#md_modal3').dialog({title: "{{Graphique des liens}}"});
+    $("#md_modal3").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
   });
   
   $('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
@@ -1263,8 +1271,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   });
   
   $('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
-    $('#md_modal2').dialog({title: "{{Logs}}"});
-    $('#md_modal2').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
+    $('#md_modal3').dialog({title: "{{Logs}}"});
+    $('#md_modal3').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
+  });
+  
+  $('#bt_cmdConfigureShowHistory').on( 'click',function () {
+    $('#md_modal3').dialog({title: "Historique"});
+    $("#md_modal3").load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open');
   });
   
   $('#bt_cmdConfigureTest').on('click',function(){

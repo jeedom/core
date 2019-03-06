@@ -445,6 +445,7 @@ if (init('rescue', 0) == 0) {
 				</div>
 				<div id="md_modal"></div>
 				<div id="md_modal2"></div>
+				<div id="md_modal3"></div>
 				<div id="md_pageHelp" style="display: none;" title="Aide">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
