@@ -74,6 +74,10 @@ try {
 	
 	ajax::init(true);
 	
+	if (init('action') == 'version') {
+		ajax::success(jeedom::version());
+	}
+	
 	if (init('action') == 'getDocumentationUrl') {
 		$plugin = null;
 		if (init('plugin') != '' || init('plugin') == 'false') {
