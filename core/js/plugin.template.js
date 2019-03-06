@@ -55,10 +55,12 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 var url = document.location.toString();
 if (url.match('#')) {
   if(url.split('#')[1] == ''){
-    $('.nav-tabs a:not(.eqLogicAction):first').click()
+    $('.nav-tabs a:not(.eqLogicAction):first').click();
   }else{
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').click();
   }
+}else{
+  $('.nav-tabs a:not(.eqLogicAction):first').click();
 }
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
