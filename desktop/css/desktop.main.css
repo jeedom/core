@@ -19,7 +19,8 @@ body {
   background: rgba(10,10,10,1);
 }
 
-/* ___________________________LINKS */
+
+/* __________________________________________________________________________________________________________LINKS */
 a,
 a i,
 a > span,
@@ -61,7 +62,8 @@ i.cursor:focus {
 
 
 
-/* ___________________________LEGENDS */
+
+/* __________________________________________________________________________________________________________LEGENDS */
 legend {
   font-family: "Roboto" !important;
   font-size: 18px;
@@ -120,15 +122,10 @@ legend {
   padding-right: 3px
 }
 
-.element legend {
-  background-color: transparent !important;
-  color: var(--sc-lightTxt-color) !important;
-  text-align: center;
-  margin: 0 !important;
-  min-width: 5.5em;
-}
 
-/* ___________________________DASHBOARD */
+
+
+/* __________________________________________________________________________________________________________DASHBOARD */
 .eqLogic-widget i.fa-refresh {
   margin-right: calc((var(--border-radius)/4) + 5px)  !important;
 }
@@ -228,7 +225,10 @@ legend {
   font-size: 12px;
 }
 
-/* ___________________________________________________________DIVERS */
+
+
+
+/* __________________________________________________________________________________________________________DIVERS */
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
 .verticalAlign > center > [data-subtype=slider]:nth-child(2) {
   top: 20px !important;
@@ -271,7 +271,7 @@ select.selectCmd {
   background: transparent !important;
   font-size: 14px!important;
   padding-top: 0!important;
-  
+
 }
 .objectListContainer div.cursor,
 .interactListContainer div.cursor,
@@ -321,12 +321,10 @@ select.selectCmd {
   color: var(--logo-primary-color);
 }
 
-
 .pluginListContainer div.cursor > center > img {
   width: 100px !important;
   padding-top: 15px;
 }
-
 
 .eqLogicThumbnailContainer div.cursor > center > img,
 .eqLogicThumbnailContainer div.cursor img {
@@ -342,7 +340,6 @@ select.selectCmd {
   margin-bottom: 10px !important;
   height: 170px !important;
 }
-
 
 
 /* market */
@@ -406,7 +403,9 @@ pre {
 }
 
 
-/* ___________________________________________________________COLORS */
+
+
+/* __________________________________________________________________________________________________________COLORS */
 .label-info {
   font-weight: normal;
   background-color: var(--lb-info-color);
@@ -462,8 +461,10 @@ li.alert-info.eqLogic {
 }
 .row .objectSummaryParent{ font-size : 14px !important; }
 
-/* ___________________________________________________________BUTTONS */
 
+
+
+/* __________________________________________________________________________________________________________BUTTONS */
 #config #eqlogictab .label.label-danger,
 #config #eqlogictab .label.label-warning,
 #config #eqlogictab .label.label-success {
@@ -481,15 +482,6 @@ li.alert-info.eqLogic {
 
 .eqLogic-widget .btn:not(.btn-circle){
   font-weight: bold;
-}
-
-.element .btn,
-.element .btn:focus,
-.element .btn:active,
-.element .dropdown-menu {
-  color: var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
-  background-color: var(--sc-formTxt-color) !important;
 }
 
 .btn-default:not(.btn) {
@@ -590,41 +582,6 @@ button.dropdown-toggle {
   z-index: 9999 !important;
 }
 
-/* scenarios dropdowns */
-.element button.dropdown-toggle {
-  font-size:12px;
-  color:  var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
-  background-color: var(--sc-formTxt-color) !important;
-  height: 22px;
-  padding-left: 5px;
-  padding-top: 2px;
-}
-.element button.dropdown-toggle:hover {
-  color: var(--sc-lightTxt-color) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
-}
-.element button.dropdown-toggle:focus,
-.element button.dropdown-toggle a:focus {
-  color:  var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
-  background-color: var(--sc-formTxt-color) !important;
-}
-.element button.dropdown-toggle > .caret {
-  color:  var(--linkHoverLight-color) !important;
-  right: 3px;
-  top: 9px !important;
-}
-.element .dropdown-submenu.open > a,
-.element .dropdown-menu > li > a:focus,
-.element .dropdown-menu > li > a:hover {
-  background-color: var(--btn-default-color) !important;
-}
-.element .dropdown-menu li a {
-  font-size : 12px !important;
-  line-height: 15px;
-}
-
 button .fas.fa-plus-circle {
   font-size: 10px;
 }
@@ -632,7 +589,10 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
-/* ___________________________________________________________NAVBAR */
+
+
+
+/* __________________________________________________________________________________________________________NAVBAR */
 .navbar {
   background-color: var(--defaultBkg-color) !important;
 }
@@ -665,7 +625,8 @@ ul.dropdown-menu {
   border-bottom: 2px solid var(--el-defaultColor);
 }
 .nav .open > a,
-.dropdown-menu > li > a:hover {
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
   background-color: rgb(var(--bg-color)) !important;
 }
 
@@ -699,7 +660,10 @@ header.navbar {
   box-sizing:unset;
 }
 
-/* ___________________________________________________________PANELS */
+
+
+
+/* __________________________________________________________________________________________________________PANELS */
 div.panel {
   border : none;
 }
@@ -741,7 +705,10 @@ div.panel {
   background-color: var(--panel-bg-color) !important;
 }
 
-/* ___________________________________________________________FORMS */
+
+
+
+/* __________________________________________________________________________________________________________FORMS */
 ::-moz-color-swatch {
   border: none;
   border-color: transparent;
@@ -783,88 +750,6 @@ fieldset > div {
   padding-right: 1em !important;
 }
 
-/* scenarios fields */
-.form-control.expressionAttr:not([data-l2key=graphColor]),
-input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
-select.expressionAttr:not([data-l2key=graphColor]),
-textarea.expressionAttr:not([data-l2key=graphColor]) {
-  color: var(--sc-formTxt-color);
-  background: var(--sc-form-color)!important;
-  border: 0 !important;
-}
-input:focus, textarea:focus {
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-}
-.input-group-addon {
-  color: var(--sc-lightTxt-color);
-  background: var(--sc-formTxt-color) !important;
-  border: none;
-}
-
-.element .cursor {
-  color: var(--linkHoverLight-color) !important;
-}
-
-.expressions,
-.element,
-.expression.noSortable,
-.expressions .expression.sortable > div {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.expressions .expression {
-  padding-right: 0 !important;
-}
-.expressionOptions .input-group {
-  margin-bottom: 2px;
-}
-.expressionOptions .input-group.input-group-sm:last-child {
-  margin-bottom: 0 !important;
-}
-
-.element .subElement.noSortable legend,
-.subElement legend {
-  margin-left: -10px !important;
-  padding-left: 25px !important;
-}
-i.bt_removeElement{
-  padding-right: 3px !important;
-}
-i.bt_sortable {
-  padding-left: 8px !important;
-  top: 0 !important;
-}
-
-.subElement {
-  position: relative !important;
-}
-.subElementAttr {
-  position: absolute !important;
-}
-.subElement input[type=checkbox] {
-  margin-top: 0 !important;
-}
-
-.disableElement,
-.element .disableSubElement {
-  opacity: 0.5 !important;
-}
-.disableElement input[type=checkbox][data-l2key=enable],
-.element .disableSubElement input[type=checkbox][data-l2key=enable] {
-  background-color: red !important;
-}
-
-.expressions .sortable-placeholder{
-  background-color: #94CA02;
-}
-
-#div_editScenario #generaltab textarea,
-#div_noteManagerDisplay textarea {
-  resize: vertical !important;
-}
-
 /* commands */
 .form-control:not(.btn):not(.expressionAttr),
 input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
@@ -881,9 +766,7 @@ input.knob {
 select.input-sm {
   line-height: 1em;
 }
-.subElement i {
-  color: var(--sc-lightTxt-color) !important;
-}
+
 .expression.sortable {
   padding-left: 0 !important;
 }
@@ -894,7 +777,16 @@ input[type="color"] {
 input[type="time"] {
   padding: 0px 12px !important;
 }
-
+input:focus, textarea:focus {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.input-group-addon {
+  color: var(--sc-lightTxt-color);
+  background: var(--sc-formTxt-color) !important;
+  border: none;
+}
 .checkbox-inline > input[type=checkbox] {
   margin-left: -20px !important;
   margin-right: 10px !important;
@@ -920,12 +812,6 @@ input[type=radio].disabled,
 input[type=radio][disabled] {
   cursor: not-allowed
 }
-
-input[type="checkbox"]:not(.subElementAttr) {
-  top: 2px !important;
-  margin-right: 1rem !important;
-}
-
 
 /* custom universal select */
 select,
@@ -1027,11 +913,6 @@ input[type=radio] {
   color: var(--linkHover-color);
   font-weight: normal !important;
 }
-.element input[type=checkbox],
-.element input[type=radio] {
-  color: var(--linkHoverLight-color);
-  background: var(--sc-formTxt-color) !important;
-}
 input[type=radio] {
   -webkit-border-radius: 1em !important;
   margin-top: 1px !important;
@@ -1048,7 +929,9 @@ input[type=radio]:checked {
 }
 
 
-/* ___________________________________________________________TABS */
+
+
+/* __________________________________________________________________________________________________________TABS */
 .tab-content {
   background-color: var(--panel-bg-color)!important;
   padding-bottom: 2px !important;
@@ -1076,7 +959,9 @@ ul.nav.nav-tabs li,
 }
 
 
-/* ___________________________________________________________TABLES */
+
+
+/* __________________________________________________________________________________________________________TABLES */
 #table_dataStore {
   width: 100% !important;
 }
@@ -1191,7 +1076,156 @@ hr {
   opacity: 0.45 !important;
 }
 
-/* ___________________________________________________________FLOATING BARS */
+
+
+
+/* __________________________________________________________________________________________________________SCENARIO */
+.element legend {
+  background-color: transparent !important;
+  color: var(--sc-lightTxt-color) !important;
+  text-align: center;
+  margin: 0 !important;
+  min-width: 5.5em;
+}
+
+.element .btn,
+.element .btn:focus,
+.element .btn:active,
+.element .dropdown-menu {
+  color: var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+
+/* scenarios dropdowns */
+.element button.dropdown-toggle {
+  font-size:12px;
+  color:  var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+  height: 22px;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+.element button.dropdown-toggle:hover {
+  color: var(--sc-lightTxt-color) !important;
+  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+}
+.element button.dropdown-toggle:focus,
+.element button.dropdown-toggle a:focus {
+  color:  var(--linkHoverLight-color) !important;
+  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+.element button.dropdown-toggle > .caret {
+  color:  var(--linkHoverLight-color) !important;
+  right: 3px;
+  top: 9px !important;
+}
+.element .dropdown-submenu.open > a,
+.element .dropdown-menu > li > a:focus,
+.element .dropdown-menu > li > a:hover {
+  background-color: var(--btn-default-color) !important;
+}
+.element .dropdown-menu li a {
+  font-size : 12px !important;
+  line-height: 15px;
+}
+
+
+/* scenarios fields */
+.form-control.expressionAttr:not([data-l2key=graphColor]),
+input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
+select.expressionAttr:not([data-l2key=graphColor]),
+textarea.expressionAttr:not([data-l2key=graphColor]) {
+  color: var(--sc-formTxt-color);
+  background: var(--sc-form-color)!important;
+  border: 0 !important;
+}
+
+.element .cursor {
+  color: var(--linkHoverLight-color) !important;
+}
+
+.expressions,
+.element,
+.expression.noSortable,
+.expressions .expression.sortable > div {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.expressions .expression {
+  padding-right: 0 !important;
+}
+.expressionOptions .input-group {
+  margin-bottom: 2px;
+}
+.expressionOptions .input-group.input-group-sm:last-child {
+  margin-bottom: 0 !important;
+}
+
+.element .subElement.noSortable legend,
+.subElement legend {
+  margin-left: -10px !important;
+  padding-left: 25px !important;
+}
+i.bt_removeElement{
+  padding-right: 3px !important;
+}
+i.bt_sortable {
+  padding-left: 8px !important;
+  top: 0 !important;
+}
+
+.subElement {
+  position: relative !important;
+}
+.subElementAttr {
+  position: absolute !important;
+}
+.subElement input[type=checkbox] {
+  margin-top: 0 !important;
+}
+
+.disableElement,
+.element .disableSubElement {
+  opacity: 0.5 !important;
+}
+.disableElement input[type=checkbox][data-l2key=enable],
+.element .disableSubElement input[type=checkbox][data-l2key=enable] {
+  background-color: red !important;
+}
+
+.expressions .sortable-placeholder{
+  background-color: #94CA02;
+}
+
+#div_editScenario #generaltab textarea,
+#div_noteManagerDisplay textarea {
+  resize: vertical !important;
+}
+
+
+.subElement i {
+  color: var(--sc-lightTxt-color) !important;
+}
+
+
+input[type="checkbox"]:not(.subElementAttr) {
+  top: 2px !important;
+  margin-right: 1rem !important;
+}
+
+.element input[type=checkbox],
+.element input[type=radio] {
+  color: var(--linkHoverLight-color);
+  background: var(--sc-formTxt-color) !important;
+}
+
+
+
+
+/* __________________________________________________________________________________________________________FLOATING BARS */
 
 #jqueryLoadingDiv {
   color: var(--txt-color)!important
@@ -1275,7 +1309,10 @@ hr {
   background-color: var(--defaultBkg-color) !important;
 }
 
-/* ___________________________________________________________HIGHCHARTS */
+
+
+
+/* __________________________________________________________________________________________________________HIGHCHARTS */
 [data-page=history] .highcharts-grid-line {
   stroke-width: 0.5;
 }
@@ -1357,7 +1394,9 @@ path.highcharts-graph {
 }
 
 
-/* ___________________________________________________________GAUGES */
+
+
+/* __________________________________________________________________________________________________________GAUGES */
 .hgauge,
 .vgauge,
 .shuttergauge {
@@ -1459,7 +1498,10 @@ path.highcharts-graph {
   bottom: 0;
 }
 
-/* ___________________________________________________________DIALOGS */
+
+
+
+/* __________________________________________________________________________________________________________DIALOGS */
 #md_modal {
   padding-left: 15px !important;
   padding-right: 15px !important;
@@ -1587,7 +1629,9 @@ path.highcharts-graph {
 }
 
 
-/* ___________________________________________________________CodeMirror */
+
+
+/* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
   border: 1px solid #eee;
   height: auto;
@@ -1652,13 +1696,15 @@ path.highcharts-graph {
   background: none !important;
 }
 
-
 /* hihgly special */
 div[id^=__lpform_] { /*lastpass*/
   display: none;
 }
 
-/* ___________________________________________________________ROUNDING */
+
+
+
+/* __________________________________________________________________________________________________________ROUNDING */
 ::-moz-color-swatch {
   border-radius: var(--border-radius) !important;
 }
@@ -1759,7 +1805,9 @@ ul.dropdown-menu {
 }
 
 
-/* ___________________________________________________________MEDIA QUERIES */
+
+
+/* __________________________________________________________________________________________________________MEDIA QUERIES */
 @media screen and (min-width: 992px) {
   #div_resumeObjectList > .objectListContainer:first-of-type,
   #scenarioThumbnailDisplay > .scenarioListContainer:first-of-type,
@@ -1774,16 +1822,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -1791,11 +1839,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -1822,5 +1870,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
