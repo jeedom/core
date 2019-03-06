@@ -38,7 +38,6 @@
     success: function(data) {
       $('.li_log.active a').html($('.li_log.active').attr('data-log') + ' (0 Ko)');
       $('.li_log.active i').removeClass().addClass('fa fa-check');
-      $('.li_log.active i').css('color','green');
       if($('#bt_globalLogStopStart').attr('data-state') == 0){
         $('#bt_globalLogStopStart').click();
       }
