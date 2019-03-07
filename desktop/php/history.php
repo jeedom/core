@@ -31,7 +31,7 @@ div.vis-item,div.vis-item-content {
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
 					<li>
-						<div class="input-group input-group-sm" style="width: 100%">
+						<div class="input-group input-group-sm">
 							<textarea class="form-control input-sm roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
 							<span class="input-group-btn">
 								<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
@@ -43,7 +43,7 @@ div.vis-item,div.vis-item-content {
 				</ul>
 				<ul id="ul_history" class="nav nav-list bs-sidenav">
 					<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
-						<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="position:relatif; top:-5px;padding: 5px 10px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+						<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 					</li>
 					<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
 					<?php
@@ -85,8 +85,8 @@ div.vis-item,div.vis-item-content {
 				<div class="row">
 					<div class="col-lg-4 col-sm-12 center">
 						<div class="input-group input-group-sm">
-							<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="display : inline-block; width: 90px;position:relative;" value="<?php echo $date['start'] ?>"/>
-							<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 90px;position:relative;" value="<?php echo $date['end'] ?>"/>
+							<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
+							<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
 							<a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
 								<i class="fas fa-check"></i>
 							</a>
@@ -97,7 +97,7 @@ div.vis-item,div.vis-item-content {
 							<span> {{Variation}} <input type="checkbox" id="cb_derive" /></span>
 							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 							<div class="dropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle roundedLeft" type="button" data-toggle="dropdown" id="sel_groupingType" style="display : inline-block; width: 180px;position:relative;">
+								<button class="btn btn-xs btn-default dropdown-toggle roundedLeft" type="button" data-toggle="dropdown" id="sel_groupingType" style="width: 180px;">
 									{{Aucun groupement}}
 									<span class="caret"></span>
 								</button>
@@ -126,7 +126,7 @@ div.vis-item,div.vis-item-content {
 								</ul>
 							</div>
 							<div class="dropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sel_chartType" style="display : inline-block; width: 100px;position:relative;">
+								<button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
 									{{Ligne}}
 									<span class="caret"></span>
 								</button>
