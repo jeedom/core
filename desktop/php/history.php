@@ -9,14 +9,6 @@ $date = array(
 	'end' => date('Y-m-d'),
 );
 ?>
-<style>
-div.vis-item,div.vis-item-content {
-	background-color: white;
-	border-color: #D7D7D7;
-	padding:0px !important;
-	margin:0px !important;
-}
-</style>
 
 <ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
