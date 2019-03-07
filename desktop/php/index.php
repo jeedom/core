@@ -338,7 +338,9 @@ if (init('rescue', 0) == 0) {
 										<?php } ?>
 										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préference}}</a></li>
 										<li role="separator" class="divider"></li>
-										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
+										<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
+											<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
+										<?php } ?>
 										<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php if (isConnect('admin')) { ?>
