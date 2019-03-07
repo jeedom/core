@@ -75,6 +75,9 @@ function loadPage(_url,_noPushHistory){
   setBackgroundImg('');
   jeedomBackgroundImg = null;
   $('#div_pageContainer').empty().load(url,function(){
+    if (_url.match('#')) {
+      $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click');
+    }
     $('body').attr('data-page',getUrlVars('p'));
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'));
     initPage();
