@@ -32,7 +32,8 @@ class config {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(dirname(__FILE__) . '/../../core/config/default.config.ini', true);
 				if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
-					self::$defaultConfiguration[$_plugin] = array_merge(self::$defaultConfiguration[$_plugin], parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true));
+					$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
+					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'],$custom['core']);
 				}
 			} else {
 				$filename = dirname(__FILE__) . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
