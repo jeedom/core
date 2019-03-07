@@ -9,12 +9,12 @@ Theme Core 2019 @Jeedom
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
-  --bg-color: 35, 36, 37;
+  --bg-color: 34, 35, 36;
   --bg-modal-color: rgb(45, 47, 49);
 
-  --txt-color: rgb(180, 180, 180);
-  --link-color: rgb(210, 210, 210);
-  --linkHover-color: rgb(236, 236, 236);
+  --txt-color: rgb(170, 170, 170);
+  --link-color: rgb(200, 200, 200);
+  --linkHover-color: rgb(238, 238, 238);
   --linkHoverLight-color: rgb(250, 250, 250);
   --placeholder-color: rgb(115, 115, 115);
 
@@ -22,16 +22,16 @@ Theme Core 2019 @Jeedom
   --sc-formTxt-color: rgb(62, 62, 62);
   --sc-lightTxt-color: rgb(230, 230, 230);
 
-  --el-defaultColor: rgb(38, 38, 38);
+  --el-defaultColor: rgb(28, 28, 28);
   --defaultBkg-color: rgb(50, 51, 51);
-  --form-bg-color: rgb(59, 59, 59);
-  --btnEq-default-color: rgb(71, 72, 75);
-  --btn-default-color: rgb(71, 72, 75);
+  --form-bg-color: rgb(53, 53, 53);
+  --btnEq-default-color: rgb(67, 67, 68);
+  --btn-default-color: rgb(69, 70, 72);
   --panel-bg-color: rgb(44, 44, 44);
 
   --eqTitle-color: rgb(240, 240, 240);
 
-  --eq-bg-color: 51, 52, 51;
+  --eq-bg-color: 44, 44, 44;
   --cat-security-color: 145, 65, 60;
   --cat-heating-color: 46, 98, 138;
   --cat-automatism-color: 100, 100, 100;
