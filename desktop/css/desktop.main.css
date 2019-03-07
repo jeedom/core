@@ -471,6 +471,22 @@ li.alert-info.eqLogic {
 }
 .row .objectSummaryParent{ font-size : 14px !important; }
 
+.ui-slider-handle:active,
+.ui-slider-handle:focus,
+.ui-slider-handle:hover {
+  background-color: var(--linkHover-color) !important;
+  outline: none;
+}
+.ui-slider-horizontal{ height: 5px !important;}
+.ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
+
+.action_colorpicker_change {
+  padding: 0 !important;
+  border: none !important;
+}
+h4.modal-title {
+  font-size: 16px;
+}
 
 
 
@@ -599,7 +615,12 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
-
+#historytab .label.displayObject:hover {
+  opacity: 0.65;
+}
+#historytab .label.displayObject i:hover {
+  color: inherit !important;
+}
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
@@ -1323,10 +1344,6 @@ input[type="checkbox"]:not(.subElementAttr) {
 
 
 /* __________________________________________________________________________________________________________HIGHCHARTS */
-[data-page=history] .highcharts-grid-line {
-  stroke-width: 0.5;
-}
-
 /* arc gauges and sliders */
 .gauge .highcharts-pane { fill: var(--el-defaultColor); }
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
@@ -1337,22 +1354,6 @@ input[type="checkbox"]:not(.subElementAttr) {
   background-color: var(--link-color) !important;
   cursor: pointer !important;
   top: -5px !important;
-}
-.ui-slider-handle:active,
-.ui-slider-handle:focus,
-.ui-slider-handle:hover {
-  background-color: var(--linkHover-color) !important;
-  outline: none;
-}
-.ui-slider-horizontal{ height: 5px !important;}
-.ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
-
-.action_colorpicker_change {
-  padding: 0 !important;
-  border: none !important;
-}
-h4.modal-title {
-  font-size: 16px;
 }
 
 .highcharts-legend-item tspan {
@@ -1374,7 +1375,7 @@ h4.modal-title {
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
 .highcharts-background {
-  fill: var(--defaultBkg-color) !important;
+  fill: var(--panel-bg-color) !important;
 }
 .eqLogic-widget .highcharts-background {
   fill: transparent !important;
@@ -1398,7 +1399,10 @@ h4.modal-title {
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
 }
-
+[data-page=history] .highcharts-yaxis-grid .highcharts-grid-line {
+  stroke-width: 0.2;
+  stroke: var(--link-color) !important;
+}
 path.highcharts-graph {
   stroke-width: 1.5;
 }
