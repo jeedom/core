@@ -349,6 +349,16 @@ div[data-market_type=plugin] {
 div[data-market_type=plugin]:hover {
   background-color: var(--el-defaultColor) !important;
 }
+.glyphicon {
+  font-family: "Roboto";
+}
+.glyphicon-star::before {
+  content: "★";
+}
+.glyphicon-star-empty::before {
+  content: "☆";
+}
+
 
 pre {
   color: var(--link-color);
