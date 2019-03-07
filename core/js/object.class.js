@@ -81,7 +81,6 @@ jeedom.object.all = function(_params) {
     return;
   }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.async =  _params.async || true;
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'all',
