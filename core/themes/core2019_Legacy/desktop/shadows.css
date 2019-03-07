@@ -28,6 +28,5 @@
 }
 
 .nav.navbar-nav ul {
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
