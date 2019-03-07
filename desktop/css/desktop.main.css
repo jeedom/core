@@ -1575,6 +1575,10 @@ path.highcharts-graph {
 }
 
 /* history datepicker */
+.xdsoft_datetimepicker,
+.xdsoft_datetimepicker .blue-gradient-button {
+  font-family: "Roboto";
+}
 .hasDatepicker {
   cursor: pointer;
 }
