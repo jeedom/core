@@ -449,6 +449,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     }
     setEditor();
     updateSortable();
+    updateElseToggle();
     $('#md_addElement').modal('hide');
   });
 });
