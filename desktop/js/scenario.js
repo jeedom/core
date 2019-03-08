@@ -481,6 +481,16 @@ $('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', 
   }
 });
 
+$('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
+  if($(this).children('i').hasClass('fa-eye')){
+    $(this).children('i').removeClass('fa-eye').addClass('fa-eye-slash');
+    $(this).closest('.element').addClass('elementCollapse');
+  }else{
+    $(this).children('i').addClass('fa-eye').removeClass('fa-eye-slash');
+    $(this).closest('.element').removeClass('elementCollapse');
+  }
+});
+
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   $(this).closest('.expression').remove();
   updateSortable();
