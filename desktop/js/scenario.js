@@ -396,45 +396,7 @@ $('#bt_scenarioTab').on('click',function(){
 
 /*******************Element***********************/
 
-$('#div_scenarioElement').off('click','.bt_hideElement').on('click','.bt_hideElement',function(){
-  var subElement = $(this).closest('.element').children('.subElement');
-  if(subElement.is(':visible')){
-    subElement.each(function(){
-      if($(this).is(':visible')){
-        $(this).attr('data-previousState',1)
-      }else{
-        $(this).attr('data-previousState',0)
-      }
-    });
-    subElement.hide();
-  }else{
-    subElement.each(function(){
-      if($(this).attr('data-previousState') == undefined){
-        $(this).show();
-      }else if($(this).attr('data-previousState') == '1'){
-        $(this).show();
-      }
-    });
-  }
-});
-
-
-$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  if($(this).children("i").hasClass('fa-chevron-right')){
-    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
-    $(this).closest('.subElement').next().css('display','table');
-  }else  {
-    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0){
-      $('#div_alert').showAlert({message: "{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}", level: 'danger'});
-    }else{
-      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-      $(this).closest('.subElement').next().css('display','none');
-    }
-  }
-});
-
-
-$('#div_pageContainer').off('change','.elementAttr[data-l1key=options][data-l2key=enable]').on('change','.elementAttr[data-l1key=options][data-l2key=enable]',function(){
+$('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
   var checkbox = $(this);
   var element = checkbox.closest('.element');
   if(checkbox.value() == 1){
@@ -503,6 +465,20 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
+});
+
+$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
+  if($(this).children("i").hasClass('fa-chevron-right')){
+    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.subElement').next().css('display','table');
+  }else  {
+    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)    {
+      alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
+    }else{
+      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
+      $(this).closest('.subElement').next().css('display','none');
+    }
+  }
 });
 
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
@@ -798,6 +774,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
+  
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
@@ -994,7 +971,7 @@ function printScenario(_id) {
       for (var i in data.elements) {
         $('#div_scenarioElement').append(addElement(data.elements[i]));
       }
-      $('.elementAttr[data-l1key=options][data-l2key=enable]').trigger('change');
+      $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change');
       $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change');
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
@@ -1135,6 +1112,7 @@ function addExpression(_expression) {
     break;
     case 'action' :
     retour += '<div class="col-xs-1" style="margin-top: 4px">';
+    retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" style="margin-right: 5px; "></i>';
     if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked style="margin-top : 9px;margin-right : 0px;" title="{{Décocher pour désactiver l\'action}}"/>';
     } else {
@@ -1212,6 +1190,12 @@ function addSubElement(_subElement, _pColor) {
     case 'if' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable" style="position:relative;top:5px;"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 50px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{SI}}';
@@ -1232,6 +1216,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '  </div>';
+    retour += '  <div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     
     break;
     case 'then' :
@@ -1296,6 +1281,12 @@ function addSubElement(_subElement, _pColor) {
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{DE 1 A}}</legend>';
@@ -1307,10 +1298,17 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
     case 'in' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 120px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{DANS (min)}}</legend>';
@@ -1322,11 +1320,18 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     
     break;
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{A (Hmm)}}</legend>';
@@ -1338,6 +1343,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1368,6 +1374,12 @@ function addSubElement(_subElement, _pColor) {
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{CODE}}</legend>';
@@ -1380,10 +1392,12 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; "><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
     case 'comment' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div style="display:table-cell; width: 15px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
     retour += '</div>';
     retour += '<div class="expressions" style="display:table-cell; padding-bottom: 10px; background-color: ' + listColor[_pColor] + ';">';
     retour += '<div class="sortable empty" style="height : 30px;"></div>';
@@ -1393,10 +1407,18 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += addExpression(expression);
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
+    
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div style="display:table-cell; width: 30px;vertical-align: top; padding-top: 5px;">';
+    retour += '<i class="fas fa-arrows-alt-v pull-left cursor bt_sortable"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }else{
+      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" style="margin-right : 0px;"/>';
+    }
     retour += '</div>';
     retour += '<div style="display:table-cell; width: 85px;vertical-align: top;">';
     retour += '<legend style="margin-bottom: 0px; color : white;border : none;">{{ACTION}}</legend><br/>';
@@ -1419,6 +1441,7 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
+    retour += '<div style="display:table-cell; width: 15px; vertical-align: top;"><i class="fas fa-minus-circle pull-right cursor bt_removeElement" style="position : relative;z-index : 2;"></i></div>';
     break;
   }
   retour += '</div>';
@@ -1443,14 +1466,6 @@ function addElement(_element) {
   var div = '<div class="element" style="color : white;padding-right : 7px;padding-left : 7px;padding-bottom : 0px;padding-top : 2px;margin-bottom : 0px;background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
-  div += '<i class="fas fa-arrows-alt-v cursor bt_sortable" style="margin-right: 5px;"></i>';
-  div += '<i class="bt_hideElement far fa-eye" style="margin-right: 5px;"></i>';
-  if (!isset(_element.options) || !isset(_element.options.enable) || _element.options.enable == 1) {
-    div += '<input type="checkbox" class="elementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}"/>';
-  } else {
-    div += '<input type="checkbox" class="elementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'action}}"/>';
-  }
-  div += '<i class="fas fa-minus-circle pull-right cursor bt_removeElement"></i>';
   switch (_element.type) {
     case 'if' :
     if (isset(_element.subElements) && isset(_element.subElements)) {
