@@ -1606,7 +1606,7 @@ user::isBan();
 											echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'password':
-											echo '<input type="password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											echo '<input type="password" autocomplete="new-password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'select':
 											echo '<div class="dropdown dropup">';
