@@ -1368,6 +1368,13 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   padding-left: 0 !important;
 }
 
+/* fx */
+#div_scenarioElement > .element:hover {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  transition: margin 0.8s cubic-bezier(.25,.8,.25,1);
+}
+
 
 /* collapsing */
 .elementCollapse {
