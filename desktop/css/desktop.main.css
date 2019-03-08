@@ -1338,6 +1338,8 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   min-height: 85px;
 }
 
+
+
 .element .subElementFields {
   width: 105px !important;
   margin-top: 0;
@@ -1369,11 +1371,17 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 
 /* fx */
-#div_scenarioElement > .element:hover {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  transition: margin 0.8s cubic-bezier(.25,.8,.25,1);
+/*
+#div_scenarioElement > .element:not(:hover) {
+  /opacity: 0.9;
 }
+#div_scenarioElement > .element:not(.elementCollapse):hover {
+  /margin: 20px 0 20px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  z-index: 5;
+  transition: all 0.6s cubic-bezier(.25,.8,.25,1);
+}
+*/
 
 
 /* collapsing */
@@ -1382,9 +1390,10 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   max-height: 28px;
   margin-bottom: 0;
 }
+.elementCollapse .subElement:not(:first-of-type),
 .elementCollapse .expressions,
-.elementCollapse .subElementFields{
-  display: none;
+.elementCollapse .subElementFields {
+  display: none !important;
 }
 
 .element .legendHidden {
