@@ -101,6 +101,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_deamon').closest('.panel').show();
         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id);
       }
+      $('#span_right_button').empty();
       $('#span_right_button').append('<a class="btn btn-default btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-refresh"></i> {{Rafraichir}}</a>');
       if (isset(data.status) && isset(data.status.owner)) {
         for(var i in data.status.owner){
