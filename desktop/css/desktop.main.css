@@ -630,6 +630,9 @@ button .fas.fa-plus-circle {
 .nav .dropdown-menu {
   font-size: 14px;
 }
+.nav.navbar-nav .dropdown-submenu ul li a {
+  padding-right: 30px;
+}
 a.navbar-brand > img {
   display: none;
 }
