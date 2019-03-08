@@ -11,6 +11,10 @@ Changelog
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
+- Ajout d'un bouton pour vider le cache des widgets
+- Amélioration du menu
+- Possibilité en faisant un ctrl + click sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher la log
+
 
 3.3.0
 =====
