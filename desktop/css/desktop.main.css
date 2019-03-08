@@ -1273,30 +1273,29 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   color: var(--linkHoverLight-color) !important;
   opacity: 0.7;
 }
-.element .bt_repeat {
-  position: absolute;
-  top: 4px;
-  left: 42px;
-  margin: 0;
-  padding: 0;
-  width: 16px!important;
-  height: 16px!important;
-}
-.element .bt_repeat i {
-  font-size: 10px !important;
-}
-.element .subElementAttr[data-l1key=options][data-l2key=enable] {
-  margin: 5px 3px 0 3px !important;
-  top: 0
+.element .bt_sortable {
+  margin-left: 3px;
 }
 .element .bt_collapse {
   position: absolute;
-  top: 4px;
-  left: 28px;
+  top: 3px;
+  left: 16px;
+  margin: 0;
+}
+.element .subElementAttr[data-l1key=options][data-l2key=enable] {
+  margin: 5px 3px 0 3px !important;
+  top: 0;
+  left: 33px;
+}
+.element .bt_repeat {
+  position: absolute;
+  top: 1px;
+  left: 56px;
   margin: 0;
   padding: 0;
-  width: 16px!important;
-  height: 16px!important;
+}
+.element .bt_repeat i {
+  font-size: 10px !important;
 }
 .bt_removeElement {
   position: absolute;
@@ -1304,11 +1303,13 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   right: 0;
 }
 
-
-.element .subElement:first-of-type legend {
-  margin: 0 0 0 20px !important;
+.element .subElement legend {
+  margin: 0 0 0 30px !important;
 }
-.element .subElement.subElementIF:first-of-type legend {
+.element .subElement:first-of-type legend {
+  margin: 0 0 0 30px !important;
+}
+.element .subElement.subElementIF legend {
   margin: 0 0 0 59px !important;
 }
 
@@ -1343,10 +1344,11 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element .subElementFields .dropdown {
   width: 90px !important;
   line-height: 18px !important;
-  height: 24px !important;
+  height: 21px !important;
 }
-.element .bt_addSinon {
+.element .bt_showElse {
   line-height: 18px !important;
+  height: 22px;
 }
 
 
