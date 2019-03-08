@@ -1114,6 +1114,7 @@ hr {
 
 
 /* __________________________________________________________________________________________________________SCENARIO */
+
 .element legend {
   background-color: transparent !important;
   color: var(--sc-lightTxt-color) !important;
@@ -1175,6 +1176,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   color: var(--sc-formTxt-color);
   background: var(--sc-form-color)!important;
   border: 0 !important;
+  font-size: 12px !important;
 }
 
 .element .cursor {
@@ -1190,35 +1192,19 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 .expressions .expression {
   padding-right: 0 !important;
+  margin-bottom: 1px;
 }
-.expressionOptions .input-group {
-  margin-bottom: 2px;
-}
-.expressionOptions .input-group.input-group-sm:last-child {
+.expressions .expression:last-child {
   margin-bottom: 0 !important;
+}
+.element .expressionOptions .input-group {
+  margin-bottom: 2px;
 }
 
 .element .subElement.noSortable legend,
 .subElement legend {
   margin-left: -10px !important;
   padding-left: 25px !important;
-}
-i.bt_removeElement{
-  padding-right: 3px !important;
-}
-i.bt_sortable {
-  padding-left: 8px !important;
-  top: 0 !important;
-}
-
-.subElement {
-  position: relative !important;
-}
-.subElementAttr {
-  position: absolute !important;
-}
-.subElement input[type=checkbox] {
-  margin-top: 0 !important;
 }
 
 .disableElement,
@@ -1240,36 +1226,23 @@ i.bt_sortable {
 }
 
 
-.subElement i {
-  color: var(--sc-lightTxt-color) !important;
-}
-
-
-input[type="checkbox"]:not(.subElementAttr) {
-  top: 2px !important;
-  margin-right: 1rem !important;
-}
-
-.element input[type=checkbox],
-.element input[type=radio] {
-  color: var(--linkHoverLight-color);
-  background: var(--sc-formTxt-color) !important;
-}
-
-
-/*TESTINGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+/*    __DESIGN__    */
 .element legend {
   border-left: none
 }
 .element {
   position: relative;
   width: 100%;
-  margin-bottom: 1px;
+  margin-bottom: 1.2px;
 }
 
 .subElement {
+  position: relative !important;
   display: table;
   width: 100%;
+}
+.subElementAttr {
+  position: absolute !important;
 }
 
 .subElementCOMMENT .expression textarea {
@@ -1288,13 +1261,15 @@ input[type="checkbox"]:not(.subElementAttr) {
 
 .element .bt_sortable,
 .element .bt_hideElement,
-.element .bt_removeElement {
+.element .bt_removeElement,
+.element .bt_collapse {
   color: var(--linkHoverLight-color) !important;
   margin: 5px 3px 0 0;
 }
 .element .bt_sortable:hover,
 .element .bt_hideElement:hover,
-.element .bt_removeElement:hover {
+.element .bt_removeElement:hover,
+.element .bt_collapse:hover {
   color: var(--linkHoverLight-color) !important;
   opacity: 0.7;
 }
@@ -1313,6 +1288,15 @@ input[type="checkbox"]:not(.subElementAttr) {
 .element .subElementAttr[data-l1key=options][data-l2key=enable] {
   margin: 5px 3px 0 3px !important;
   top: 0
+}
+.element .bt_collapse {
+  position: absolute;
+  top: 4px;
+  left: 28px;
+  margin: 0;
+  padding: 0;
+  width: 16px!important;
+  height: 16px!important;
 }
 .bt_removeElement {
   position: absolute;
@@ -1335,7 +1319,8 @@ input[type="checkbox"]:not(.subElementAttr) {
 .element subElementDO {
   height: 95px;
 }
-.element .subElementTHEN .expressions {
+.element .subElementTHEN .expressions,
+.element .subElementELSE .expressions {
   margin-top: -128px;
 }
 .element .subElementACTION .expressions {
