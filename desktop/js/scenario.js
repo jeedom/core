@@ -486,11 +486,11 @@ $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', 
   if($(this).children('i').hasClass('fa-eye')){
     $(this).children('i').removeClass('fa-eye').addClass('fa-eye-slash');
     $(this).closest('.element').addClass('elementCollapse');
-    $(this).value(1);
+    $(this).attr('value',1);
   }else{
     $(this).children('i').addClass('fa-eye').removeClass('fa-eye-slash');
     $(this).closest('.element').removeClass('elementCollapse');
-    $(this).value(0);
+    $(this).attr('value',0);
   }
 });
 
