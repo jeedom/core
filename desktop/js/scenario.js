@@ -47,7 +47,7 @@ $(function(){
         }
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
-
+        
         //set list of scenarios per groups:
         scenarioList = []
         for(i=0; i<scenarioGroups.length; i++)
@@ -63,7 +63,7 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
-
+        
         //set context menu!
         var contextmenuitems = {}
         for (var group in scenarioList) {
@@ -77,7 +77,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -467,17 +467,17 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   updateSortable();
 });
 
-$('#div_pageContainer').off('click','.bt_addSinon').on( 'click','.bt_addSinon', function (event) {
-  if($(this).children("i").hasClass('fa-chevron-right')){
-    $(this).children("i").removeClass('fa-chevron-right').addClass('fa-chevron-down');
-    $(this).closest('.subElement').next().css('display','table');
-  }else  {
-    if($(this).closest('.subElement').next().children('.expressions').children('.expression').length>0)    {
-      alert("{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}");
-    }else{
-      $(this).children("i").removeClass('fa-chevron-down').addClass('fa-chevron-right');
-      $(this).closest('.subElement').next().css('display','none');
+$('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', function (event) {
+  if($(this).children('i').hasClass('fa-chevron-right')){
+    $(this).children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+    $(this).closest('.element').children('.subElementELSE').show();
+  }else{
+    if($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length>0){
+      $.showAlert({message:"{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}", level: 'danger'})
+      return;
     }
+    $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+    $(this).closest('.element').children('.subElementELSE').hide();
   }
 });
 
@@ -595,7 +595,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
         '</div> </div>' +
         '</form> </div>  </div>';
       }
-
+      
       bootbox.dialog({
         title: "{{Ajout d'un nouveau scénario}}",
         message: message,
@@ -774,7 +774,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
-
+  
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
@@ -834,9 +834,9 @@ function updateSortable() {
 }
 
 function updateElseToggle() {
-  $('.subElementElse').each(function () {
-    if ($(this).parent().css('display')=='table'){
-      $(this).parent().prev().find('.bt_addSinon:first').children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  $('.subElementELSE:visible').each(function () {
+    if($(this).children('.expressions').children('.expression').length == 0){
+      $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
     }
   });
 }
@@ -858,7 +858,7 @@ function setEditor() {
         });
       }, 1);
     }
-
+    
   });
 }
 
@@ -927,7 +927,7 @@ function printScenario(_id) {
       $('#div_pageContainer').setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
-
+      
       $('#div_scenarioElement').empty();
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
@@ -963,14 +963,16 @@ function printScenario(_id) {
           addSchedule(data.schedule);
         }
       }
-
+      
       if(data.elements.length == 0){
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }
       actionOptions = []
+      var elements = '';
       for (var i in data.elements) {
-        $('#div_scenarioElement').append(addElement(data.elements[i]));
+        elements += addElement(data.elements[i]);
       }
+      $('#div_scenarioElement').append(elements);
       $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change');
       $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change');
       jeedom.cmd.displayActionsOption({
@@ -995,9 +997,11 @@ function printScenario(_id) {
       taAutosize();
       setTimeout(function () {
         setEditor();
+        updateElseToggle();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
+        updateElseToggle();
         modifyWithoutSave = false;
       }, 1000);
     }
@@ -1095,7 +1099,7 @@ function addExpression(_expression) {
     retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips roundedRight"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
-
+    
     break;
     case 'element' :
     retour += '<div class="col-xs-12" >';
@@ -1123,7 +1127,7 @@ function addExpression(_expression) {
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
-
+    
     retour += '</div>';
     retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
@@ -1178,39 +1182,39 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-
+  
   blocClass = '';
   switch (_subElement.type) {
     case 'if':
-      blocClass = 'subElementIF';
-      break;
+    blocClass = 'subElementIF';
+    break;
     case 'then':
-      blocClass = 'subElementTHEN';
-      break;
+    blocClass = 'subElementTHEN';
+    break;
     case 'else':
-      blocClass = 'subElementELSE';
-      break;
+    blocClass = 'subElementELSE';
+    break;
     case 'for':
-      blocClass = 'subElementFOR';
-      break;
+    blocClass = 'subElementFOR';
+    break;
     case 'in':
-      blocClass = 'subElementIN';
-      break;
+    blocClass = 'subElementIN';
+    break;
     case 'at':
-      blocClass = 'subElementAT';
-      break;
+    blocClass = 'subElementAT';
+    break;
     case 'do':
-      blocClass = 'subElementDO';
-      break;
+    blocClass = 'subElementDO';
+    break;
     case 'code':
-      blocClass = 'subElementCODE';
-      break;
+    blocClass = 'subElementCODE';
+    break;
     case 'comment':
-      blocClass = 'subElementCOMMENT';
-      break;
+    blocClass = 'subElementCOMMENT';
+    break;
     case 'action':
-      blocClass = 'subElementACTION';
-      break;
+    blocClass = 'subElementACTION';
+    break;
   }
   var retour = '<div class="subElement ' + blocClass + ' ' + noSortable + '">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
@@ -1231,7 +1235,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '<legend >{{SI}}';
     retour += '</legend>';
     retour += '</div>';
-
+    
     retour += '<div >';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
       retour += '<a class="bt_repeat btn btn-default btn-xs cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-refresh"></i></span></a>';
@@ -1247,15 +1251,15 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
+    
     break;
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ALORS}}</legend>';
     retour += '<div class="input-group">';
-    retour += '<button class="bt_addSinon btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-chevron-right"></i>';
+    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+    retour += '<i class="fas fa-chevron-down"></i>';
     retour += '</button>';
     retour += '<span class="input-group-btn">';
     retour += '<div class="dropdown" >';
@@ -1280,7 +1284,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '</div>';
     retour += '<div > </div>';
-
+    
     break;
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1305,7 +1309,7 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
-
+    
     break;
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1350,7 +1354,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
+    
     break;
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1397,7 +1401,7 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
-
+    
     break;
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1439,7 +1443,7 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
+    
     break;
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
@@ -1487,13 +1491,13 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-
+  
   pColor++;
   if (pColor > 4) {
     pColor = 0;
   }
   var color = pColor;
-
+  
   var div = '<div class="element" style="background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
@@ -1578,7 +1582,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-
+  
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -1600,7 +1604,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-
+      
     });
     element.subElements.push(subElement);
   });
