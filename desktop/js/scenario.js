@@ -1138,6 +1138,7 @@ function addExpression(_expression) {
     break;
     case 'action' :
     retour += '<div class="col-xs-1" >';
+    retour += '<legend class="legendHidden">ACTION</legend>';
     retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>';
     if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  title="{{Décocher pour désactiver l\'action}}"/>';
