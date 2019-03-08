@@ -1314,7 +1314,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 
 .element .subElementTHEN,
-.element .subElementELSE{
+.element .subElementELSE {
   height: 55px;
 }
 .element subElementDO {
@@ -1329,6 +1329,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 .element .subElementDO .expressions {
   margin-top: -126px;
+}
+.element .subElementIN .expressions {
+  margin-top: -26px;
 }
 
 .element {
