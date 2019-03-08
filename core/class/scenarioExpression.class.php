@@ -135,6 +135,24 @@ class scenarioExpression {
 			$name = $_action['options']['name'];
 			$value = $_action['options']['value'];
 			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $value;
+		} elseif ($_action['cmd'] == 'equipement') {
+			$name = eqLogic::toHumanReadable($_action['options']['eqLogic']);
+			$action = $_action['options']['action'];
+			switch ($_action['options']['action']) {
+				case 'activate':
+				$action = __('Activation de',__FILE__);
+				break;
+				case 'deactivate':
+				$action = __('Désactivation de',__FILE__);
+				break;
+				case 'hide':
+				$action = __('Masquage de',__FILE__);
+				break;
+				case 'show':
+				$action = __('Affichage de',__FILE__);
+				break;
+			}
+			$return .= $action.' : ' . $name;
 		} elseif (is_object(cmd::byId(str_replace('#', '', $_action['cmd'])))) {
 			$cmd = cmd::byId(str_replace('#', '', $_action['cmd']));
 			$eqLogic = $cmd->getEqLogic();
