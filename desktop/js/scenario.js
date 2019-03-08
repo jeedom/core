@@ -847,7 +847,7 @@ function updateSortable() {
 }
 
 function updateElseToggle() {
-  $('.subElementELSE:visible').each(function () {
+  $('.subElementELSE').each(function () {
     if($(this).children('.expressions').children('.expression').length == 0){
       $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
     }
@@ -1021,11 +1021,9 @@ function printScenario(_id) {
       taAutosize();
       setTimeout(function () {
         setEditor();
-        updateElseToggle();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
-        updateElseToggle();
         modifyWithoutSave = false;
       }, 1000);
     }
