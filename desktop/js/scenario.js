@@ -484,11 +484,11 @@ $('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', 
 
 $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
   if($(this).children('i').hasClass('fa-eye')){
-    $(this).children('i').removeClass('fa-eye').addClass('fa-eye-slash');
+    $(this).children('i').removeClass('far fa-eye').addClass('fas fa-eye-slash');
     $(this).closest('.element').addClass('elementCollapse');
     $(this).attr('value',1);
   }else{
-    $(this).children('i').addClass('fa-eye').removeClass('fa-eye-slash');
+    $(this).children('i').addClass('far fa-eye').removeClass('fas fa-eye-slash');
     $(this).closest('.element').removeClass('elementCollapse');
     $(this).attr('value',0);
   }
