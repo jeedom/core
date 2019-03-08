@@ -14,11 +14,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 actionOptions = [];
-var url = document.location.toString();
-if (url.match('#')) {
-  $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').click();
-}
-
 $('.nav-tabs.nav-primary a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
