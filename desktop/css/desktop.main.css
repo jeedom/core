@@ -1257,6 +1257,170 @@ input[type="checkbox"]:not(.subElementAttr) {
 }
 
 
+/*TESTINGGGGGGGGGGGGGGGGGGGGGGGGGG*/
+.element legend {
+  border-left: none
+}
+.element {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1px;
+}
+
+.subElement {
+  display: table;
+  width: 100%;
+}
+
+.subElementCOMMENT .expression textarea {
+  border-radius: 0 !important;
+  margin-top: 5px !important;
+}
+
+.element input[type=checkbox],
+.element input[type=radio] {
+  top: 2px;
+  color: var(--linkHoverLight-color);
+  background: var(--sc-formTxt-color) !important;
+  margin-right: 0 !important;
+  margin: 0 5px 0 5px;
+}
+
+.element .bt_sortable,
+.element .bt_hideElement,
+.element .bt_removeElement {
+  color: var(--linkHoverLight-color) !important;
+  margin: 5px 3px 0 0;
+}
+.element .bt_sortable:hover,
+.element .bt_hideElement:hover,
+.element .bt_removeElement:hover {
+  color: var(--linkHoverLight-color) !important;
+  opacity: 0.7;
+}
+.element .bt_repeat {
+  position: absolute;
+  top: 4px;
+  left: 42px;
+  margin: 0;
+  padding: 0;
+  width: 16px!important;
+  height: 16px!important;
+}
+.element .bt_repeat i {
+  font-size: 10px !important;
+}
+.element .subElementAttr[data-l1key=options][data-l2key=enable] {
+  margin: 5px 3px 0 3px !important;
+  top: 0
+}
+.bt_removeElement {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+.element .subElement:first-of-type legend {
+  margin: 0 0 0 20px !important;
+}
+.element .subElement.subElementIF:first-of-type legend {
+  margin: 0 0 0 59px !important;
+}
+
+.element .subElementTHEN,
+.element .subElementELSE{
+  height: 55px;
+}
+.element subElementDO {
+  height: 95px;
+}
+.element .subElementTHEN .expressions {
+  margin-top: -128px;
+}
+.element .subElementACTION .expressions {
+  margin-top: -120px;
+}
+.element .subElementDO .expressions {
+  margin-top: -126px;
+}
+
+.element {
+  min-height: 85px;
+}
+
+.element .subElementFields {
+  width: 105px !important;
+  margin-top: 0;
+  margin-bottom: 30px;
+  padding-bottom: 50px !important;
+}
+.element .subElementFields .dropdown {
+  width: 90px !important;
+  line-height: 18px !important;
+  height: 24px !important;
+}
+.element .bt_addSinon {
+  line-height: 18px !important;
+}
+
+
+.subElement .expressions {
+  padding-left: 125px !important;
+}
+.element .subElementIF .expressions,
+.element .subElementAT .expressions,
+.element .subElementFOR .expressions {
+  margin: -44px 25px 0 0px !important;
+}
+.subElementCODE .expressions,
+.subElementCOMMENT .expressions{
+  padding-left: 0 !important;
+}
+
+
+
+
+
+/* COLLAPSED
+.element .collapsed{
+  min-height: 32px;
+}
+.element .collapsed .subElement {
+  display: table-caption;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
