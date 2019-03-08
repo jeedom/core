@@ -160,6 +160,13 @@ $("#bt_flushCache").on('click', function (event) {
   flushCache();
 });
 
+$("#bt_flushWidgetCache").on('click', function (event) {
+  $.hideAlert();
+  flushWidgetCache();
+});
+
+
+
 $("#bt_clearJeedomLastDate").on('click', function (event) {
   $.hideAlert();
   clearJeedomDate();
@@ -504,6 +511,20 @@ function flushCache() {
     }
   });
 }
+
+function flushWidgetCache() {
+  jeedom.cache.flushWidget({
+    error: function (error) {
+      $('#div_alert').showAlert({message: data.result, level: 'danger'});
+    },
+    success: function (data) {
+      updateCacheStats();
+      $('#div_alert').showAlert({message: '{{Cache vidé}}', level: 'success'});
+    }
+  });
+}
+
+
 
 function cleanCache() {
   jeedom.cache.clean({

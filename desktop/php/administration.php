@@ -1041,6 +1041,12 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider le cache des widgets}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-warning" id="bt_flushWidgetCache"><i class="fas fa-trash"></i> {{Vider}}</a>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input class="configKey form-control" data-l1key="event::waitPollingTime"/>

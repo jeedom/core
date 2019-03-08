@@ -344,14 +344,14 @@ if(method_exists('utils','attrChanged')){
 	if (file_exists(__DIR__ . '/../script/ngrok')) {
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
-	
-	foreach (eqLogic::all() as $eqLogic) {
-		try {
-			$eqLogic->emptyCacheWidget();
-		} catch (Exception $e) {
-			
-		}
+	try {
+		cache::flushWidget();
+	} catch (Exception $e) {
+		
+	} catch (Error $e) {
+		
 	}
+	
 	
 	try {
 		foreach (object::all() as $object) {
