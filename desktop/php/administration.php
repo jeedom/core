@@ -51,7 +51,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="language">
 									<span class="caret"></span>
 								</button>
@@ -79,7 +79,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="timezone">
 									<span class="caret"></span>
 								</button>
@@ -244,7 +244,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::http::mode">
 									<span class="caret"></span>
 								</button>
@@ -260,7 +260,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::jsonrpc::mode">
 									<span class="caret"></span>
 								</button>
@@ -276,7 +276,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::tts::mode">
 									<span class="caret"></span>
 								</button>
@@ -591,7 +591,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<div class="dropdown">
+								<div class="dropdown dynDropdown">
 									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="internalProtocol">
 										<span class="caret"></span>
 									</button>
@@ -619,7 +619,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<div class="dropdown">
+								<div class="dropdown dynDropdown">
 									<button class="btn btn-xs btn-default dropdown-toggle configKey roundedLeft" type="button" data-toggle="dropdown" data-l1key="externalProtocol">
 										<span class="caret"></span>
 									</button>
@@ -735,7 +735,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme">
 									<span class="caret"></span>
 								</button>
@@ -752,7 +752,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
 									<span class="caret"></span>
 								</button>
@@ -771,7 +771,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color">
 									<span class="caret"></span>
 								</button>
@@ -788,7 +788,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
 									<span class="caret"></span>
 								</button>
@@ -984,7 +984,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="cache::engine">
 									<span class="caret"></span>
 								</button>
@@ -1385,7 +1385,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="dropdown">
+									<div class="dropdown dynDropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::engine">
 											<span class="caret"></span>
 										</button>
@@ -1430,7 +1430,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Niveau de log par défaut}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<div class="dropdown">
+									<div class="dropdown dynDropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="log::level">
 											<span class="caret"></span>
 										</button>
@@ -1520,7 +1520,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<div class="dropdown">
+									<div class="dropdown dynDropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
 											<span class="caret"></span>
 										</button>
@@ -1544,7 +1544,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<div class="dropdown">
+									<div class="dropdown dynDropdown">
 										<button class="btn btn-xs btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
 											<span class="caret"></span>
 										</button>

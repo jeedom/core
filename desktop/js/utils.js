@@ -507,7 +507,7 @@ function initPage(){
   initRowOverflow();
   initHelp();
   initTextArea();
-  initSelect();
+  initDropdowns();
   $('.nav-tabs a').on('click',function (e) {
     var scrollHeight = $(document).scrollTop();
     $(this).tab('show');
@@ -518,8 +518,8 @@ function initPage(){
   });
 }
 
-function initSelect(){
-  $('body').off('click','.dropdown-menu a').on('click','.dropdown-menu a',function(){
+function initDropdowns(){
+  $('body').off('click','.dynDropdown .dropdown-menu a').on('click','.dynDropdown .dropdown-menu a',function(){
     $(this).closest('.dropdown').find('button').html($(this).text() + '<span class="caret"></span>')
     $(this).closest('.dropdown').find('button').attr('value', $(this).attr('data-value'))
     $(this).closest('.dropdown').find('button').trigger('change');

@@ -18,7 +18,7 @@ $date = array(
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-
+		
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -72,7 +72,7 @@ $date = array(
 					?>
 				</ul>
 			</div>
-
+			
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-4 col-sm-12 center">
@@ -88,7 +88,7 @@ $date = array(
 						<div class="input-group input-group-sm pull-right">
 							<span> {{Variation}} <input type="checkbox" id="cb_derive" /></span>
 							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle roundedLeft" type="button" data-toggle="dropdown" id="sel_groupingType" style="width: 180px;">
 									{{Aucun groupement}}
 									<span class="caret"></span>
@@ -117,7 +117,7 @@ $date = array(
 									<li><a href="#" data-value="high::year">{{Maximum par année}}</a></li>
 								</ul>
 							</div>
-							<div class="dropdown">
+							<div class="dropdown dynDropdown">
 								<button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
 									{{Ligne}}
 									<span class="caret"></span>
@@ -196,7 +196,7 @@ $date = array(
 			<div id="div_visualization"></div>
 		</div>
 	</div>
-
+	
 </div>
 </div>
 
