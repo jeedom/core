@@ -20,98 +20,98 @@ Theme Core 2019 @Jeedom
 }
 
 .ui-link[data-title=Accueil] .fa-home::before {
-	content: '' !important;
+  content: '' !important;
 }
 
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper {
-	background-color: var(--bg-color) !important;
-	color: var(--txt-color) !important;
-	box-shadow: none !important;
+  background-color: rgb(var(--bg-color)) !important;
+  color: var(--txt-color) !important;
+  box-shadow: none !important;
 }
 
 .ui-header,
 .ui-page-theme-a .ui-bar-inherit:not(.ui-slider-track) {
-	background-color: var(--bg-modal-color) !important;
-	color: var(--txt-color) !important;
-	box-shadow: none !important;
+  background-color: var(--bg-modal-color) !important;
+  color: var(--txt-color) !important;
+  box-shadow: none !important;
 }
 
 .ui-header > .ui-btn {
-	color: var(--txt-color) !important;
+  color: var(--txt-color) !important;
 }
 
 .form-control {
-	background-color: var(--form-bg-color) !important;
- 	color: var(--txt-color) !important;
+  background-color: var(--form-bg-color) !important;
+  color: var(--txt-color) !important;
 }
 
 .eqLogic.eqLogic-widget .ui-input-text :not(textarea) {
-	padding: 0 !important;
-	background-color: transparent;
-	box-shadow: none !important;
-	
+  padding: 0 !important;
+  background-color: transparent;
+  box-shadow: none !important;
+  
 }
 .ui-input-text::after {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 .eqLogic.eqLogic-widget .ui-input-text input,
 .eqLogic.eqLogic-widget textarea {
-	text-align: left !important;
-	background: var(--form-bg-color) !important;
-	color: var(--txt-color);
-	padding: 5px !important;
-	border: none;
-	text-shadow: none !important;
-	min-height: 20px;
+  text-align: left !important;
+  background: var(--form-bg-color) !important;
+  color: var(--txt-color);
+  padding: 5px !important;
+  border: none;
+  text-shadow: none !important;
+  min-height: 20px;
 }
 .eqLogic.eqLogic-widget .ui-input-text input[type=color],
 .action_colorpicker_change {
   padding: 0 !important;
   border: none !important;
-	min-height: 32px
+  min-height: 32px
 }
 
 .ui-controlgroup-controls,
 .ui-controlgroup-controls .ui-input-text input {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .ui-checkbox .ui-btn {
   color: var(--link-color);
-	background: var(--form-bg-color) !important;
+  background: var(--form-bg-color) !important;
 }
 .ui-controlgroup-controls .ui-btn {
-	box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 [data-category] .widget-name {
-	display:block;
-	min-height: 1.5em !important;
+  display:block;
+  min-height: 1.5em !important;
 }
 
 .widget-name,
 .widget-name span,
 .widget-name a {
-	pointer-events: none;
-	cursor: default;
-	text-decoration: none;
-	color: var(--sc-lightTxt-color) !important;
-	font-size: 18px !important;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: var(--sc-lightTxt-color) !important;
+  font-size: 18px !important;
 }
 
 .eqLogic.eqLogic-widget,
 .scenario.scenario-widget  {
-	margin-top: 5px !important;
-	border: none !important;
-	font-size: 18px !important;
+  margin-top: 5px !important;
+  border: none !important;
+  font-size: 18px !important;
 }
 
 
 .ui-shadow,
 .nd2-card {
-	box-shadow: none;
+  box-shadow: none;
 }
 
 .iconCmd {
@@ -119,46 +119,46 @@ Theme Core 2019 @Jeedom
   font-weight: bold;
 }
 .iconCmd > i {
-	color: var(--link-color) !important;
-	font-size: 1em !important;
+  color: var(--link-color) !important;
+  font-size: 1em !important;
 }
 .timeCmd {
-	color: var(--txt-color);
-	background-color: var(--bg-color) !important;
-	padding-left: 5px !important;
-	padding-right: 5px !important;
-	font-size: 12.5px;
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color)) !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  font-size: 12.5px;
 }
 .statusCmd {
-	position: absolute;
-	left: 5px;
-	width: 30px;
-	padding-top: 3px;
-	z-index: 1030;
+  position: absolute;
+  left: 5px;
+  width: 30px;
+  padding-top: 3px;
+  z-index: 1030;
 }
 .cmdName {
   font-size: 14px !important;
   font-weight: bold !important;
 }
 .cmdName:first-letter {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .state {
   font-size: 18px !important;
 }
 .state i {
   font-size: 50px !important;
-	padding: 5px;
+  padding: 5px;
 }
 .scenario-widget .state {
-	padding-top: 12px;
-	line-height: 50px !important;
+  padding-top: 12px;
+  line-height: 50px !important;
 }
 .scenario-widget center:last-of-type {
-	margin-bottom: 14px;
+  margin-bottom: 14px;
 }
 p.state {
-	font-size: 14px !important;
+  font-size: 14px !important;
 }
 .btn.action {
   margin-top: 2px;
@@ -172,70 +172,70 @@ p.state {
   font-weight: normal;
 }
 .full-width-slider {
-	width: 100% !important;
+  width: 100% !important;
 }
 
 .objectSummaryParent {
-	font-size: 18px;
+  font-size: 18px;
 }
 .objectSummaryglobal .objectSummaryParent {
-	font-size: 12px;
+  font-size: 12px;
 }
 #bottompanel_objectList .objectSummaryParent {
-	font-size: 12px !important;
+  font-size: 12px !important;
 }
 
 
 /* home grid buttons */
 .ui-page-theme-a .ui-btn.ui-btn-raised i,
 .ui-link i {
-	background: transparent !important;
+  background: transparent !important;
 }
 
 
 .ui-page-theme-a .ui-btn.ui-btn-raised {
-	color: var(--link-color) !important;
-	background-color: var(--defaultBkg-color) !important;
-	box-shadow: none;
+  color: var(--link-color) !important;
+  background-color: var(--defaultBkg-color) !important;
+  box-shadow: none;
 }
 .ui-page-theme-a .ui-btn.ui-btn-raised:hover {
-	color: var(--txt-color) !important;
-	background-color: var(--btnEq-default-color) !important;
+  color: var(--txt-color) !important;
+  background-color: var(--btnEq-default-color) !important;
 }
 .ui-link i:hover {
-	color: var(--linkHover-color) !important;
+  color: var(--linkHover-color) !important;
 }
 :not(.cmd) a.ui-btn-raised:not(.ui-mini) > i:not(.fas) {
-	font-size: 2.5em !important;
+  font-size: 2.5em !important;
 }
 
 
 /* bottom home menu */
 .ui-bottom-sheet-list .ui-bottom-sheet-link,
 .ui-bottom-sheet {
-	color: var(--link-color) !important;
-	background-color: var(--defaultBkg-color) !important;
+  color: var(--link-color) !important;
+  background-color: var(--defaultBkg-color) !important;
 }
 .ui-bottom-sheet-list .ui-bottom-sheet-link:hover,
 .ui-listview > li >a:hover {
-	background-color: var(--btnEq-default-color) !important;
+  background-color: var(--btnEq-default-color) !important;
 }
 
 .cmd a.ui-btn-raised > i {
-	font-size: 1.2em !important;
+  font-size: 1.2em !important;
 }
 
 legend {
-	color: var(--link-color) !important;
+  color: var(--link-color) !important;
   background-color: transparent !important;
   text-align: center;
   margin-top: 0.7em !important;
-	margin-bottom: 0.2em !important;
-	border-bottom: none !important;
-	font-size: 22px !important;
+  margin-bottom: 0.2em !important;
+  border-bottom: none !important;
+  font-size: 22px !important;
 }
 .nd2-card {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 .eqLogic-widget i.fa-refresh {
   margin-right: calc((var(--border-radius)/4) + 3px)  !important;
@@ -243,81 +243,81 @@ legend {
 
 .ui-slider-track,
 .ui-bar-a {
-	background:  var(--el-defaultColor) !important;
-	height: 5px;
+  background:  var(--el-defaultColor) !important;
+  height: 5px;
 }
 a.ui-slider-handle {
-	border-radius: 1em !important;
+  border-radius: 1em !important;
 }
 
 /* select */
 .ui-select .ui-btn {
-	font-family: "noto";
-	font-weight: bold;
-	background-color: var(--form-bg-color) !important;
+  font-family: "noto";
+  font-weight: bold;
+  background-color: var(--form-bg-color) !important;
 }
 
 .eqLogic-widget .ui-select .ui-btn {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .ui-select .ui-btn:hover {
   background-color: var(--btnEq-default-color) !important;
 }
 select option {
-	color: var(--txt-color);
-	background-color: var(--bg-color);
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color));
 }
 
 
 /* buttons */
 a.action.ui-btn {
-	min-width: 15px;
+  min-width: 15px;
 }
 .ui-slider-bg {
-	height: 5px;
+  height: 5px;
 }
 .ui-mini i {
-	font-size: 16px !important;
+  font-size: 16px !important;
 }
 
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
-	background-color: var(--btn-default-color) !important;
+  background-color: var(--btn-default-color) !important;
 }
 
 #searchContainer {
-	width: 100%;
-	z-index: 9000;
+  width: 100%;
+  z-index: 9000;
 }
 #in_searchWidget {
-	position:fixed;
-	top: 65px;
-	left: 0;
-	padding-left: 5px;
-	height: 35px;
-	width: calc(100% - 38px);
-	z-index: 9000;
+  position:fixed;
+  top: 65px;
+  left: 0;
+  padding-left: 5px;
+  height: 35px;
+  width: calc(100% - 38px);
+  z-index: 9000;
 }
 #bt_eraseSearchInput {
-	position: fixed;
-	top: 65px;
-	right: -5px;
-	margin:0;
-	z-index: 9000;
-	background: var(--form-bg-color) !important;
-	box-shadow: none;
+  position: fixed;
+  top: 65px;
+  right: -5px;
+  margin:0;
+  z-index: 9000;
+  background: var(--form-bg-color) !important;
+  box-shadow: none;
 }
 
 
 .nd2Tabs li {
-	color: var(--txt-color);
+  color: var(--txt-color);
 }
 .nd2Tabs li.nd2Tabs-active,
 .nd2Tabs li:hover,
 .nd2Tabs li:focus {
-	color: var(--txt-color);
+  color: var(--txt-color);
 }
 
 
@@ -326,19 +326,19 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 .ui-table,
 #pre_globallog {
   color: var(--txt-color) !important;
-	background: var(--bg-color);
+  background: rgb(var(--bg-color));
 }
 
 /* ________________HIGHCHARTS */
 /* arc gauges and sliders */
 .highcharts-pane {
-	stroke-width: 0;
+  stroke-width: 0;
 }
 .highcharts-data-label > span > span {
-	font-size: 12px !important;
+  font-size: 12px !important;
 }
 .highcharts-color-0 {
-	fill: var(--link-color);
+  fill: var(--link-color);
 }
 .ui-slider-handle {
   font-size: 1em;
@@ -346,10 +346,10 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   cursor: pointer !important;
 }
 .ui-slider-horizontal{
-	height: 5px !important;
+  height: 5px !important;
 }
 .ui-slider{
-	border:none !important;
+  border:none !important;
 }
 
 /* less space under arc gauges */
@@ -480,12 +480,12 @@ pre {
   border-top-right-radius: var(--border-radius)  !important;
 }
 .tab-content {
-	border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
 #in_searchWidget {
-	border-radius: 0 0 0 var(--border-radius) !important;
+  border-radius: 0 0 0 var(--border-radius) !important;
 }
 #bt_eraseSearchInput {
-	border-radius: 0 0 var(--border-radius) 0 !important;
+  border-radius: 0 0 var(--border-radius) 0 !important;
 }
