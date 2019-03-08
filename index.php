@@ -1,25 +1,25 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 try {
 	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
 		header("location: install/setup.php");
 	}
-
+	
 	if (!isset($_GET['v'])) {
 		$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
 		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet"))
@@ -67,16 +67,18 @@ try {
 							$title = $plugin->getName() . ' - Jeedom';
 						}
 					} catch (Exception $e) {
-
+						
 					} catch (Error $e) {
-
+						
 					}
 				} else if (init('p') != '') {
 					$title = ucfirst(init('p')) . ' - ' . config::byKey('product_name');
 				}
-				echo '<script>';
-				echo 'document.title = "' . $title . '"';
-				echo '</script>';
+				if(init('p') != 'message'){
+					echo '<script>';
+					echo 'document.title = "' . $title . '"';
+					echo '</script>';
+				}
 				include_file('core', 'authentification', 'php');
 				include_file('desktop', init('p'), 'php', init('m'));
 			} catch (Exception $e) {
