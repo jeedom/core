@@ -1369,10 +1369,8 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 /* collapsing */
 .elementCollapse {
   min-height: 28px;
+  max-height: 28px;
   margin-bottom: 0;
-}
-.elementCollapse .subElement {
-  display: table-caption;
 }
 .elementCollapse .expressions,
 .elementCollapse .subElementFields{
@@ -1385,7 +1383,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .elementCollapse .legendHidden {
   position: absolute;
   display: inline !important;
-  left: 0;
+  left: 0
 }
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
@@ -1747,10 +1745,10 @@ path.highcharts-graph {
 }
 
 div.vis-item,div.vis-item-content {
-	background-color: white;
-	border-color: #D7D7D7;
-	padding:0px !important;
-	margin:0px !important;
+  background-color: white;
+  border-color: #D7D7D7;
+  padding:0px !important;
+  margin:0px !important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
