@@ -1366,49 +1366,27 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 
 
-
-
-
-/* COLLAPSED
-.element .collapsed{
-  min-height: 32px;
+/* collapsing */
+.elementCollapse {
+  min-height: 28px;
+  margin-bottom: 0;
 }
-.element .collapsed .subElement {
+.elementCollapse .subElement {
   display: table-caption;
 }
-*/
+.elementCollapse .expressions,
+.elementCollapse .subElementFields{
+  display: none;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.element .legendHidden {
+  display: none !important;
+}
+.elementCollapse .legendHidden {
+  position: absolute;
+  display: inline !important;
+  left: 0;
+}
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
 
