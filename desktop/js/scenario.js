@@ -1479,6 +1479,11 @@ function addSubElement(_subElement, _pColor) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 1){
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+    }else{
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" data-l1key="options" data-l2key="collapse" value="1"><i class="fas fa-eye-slash"></i></a>';
+    }
     retour += '</div>';
     retour += '<div>';
     retour += '<legend >{{COMMENTAIRE}}</legend>';
