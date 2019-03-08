@@ -363,9 +363,9 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sur de vouloir faire les mises à jour ?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes vous sur de vouloir mettre à jour cet objet ?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Etes vous sur de vouloir supprimer cet objet ?",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L\\'opération est réussie",
         "L\\'opération a échoué": "L\\'opération a échoué",
         "Dernière mise à jour du core : ": "Dernière mise à jour du core : ",
@@ -405,7 +405,7 @@
     "core\/class\/interactQuery.class.php": {
         "J'ai une correspondance  : ": "J'ai une correspondance  : ",
         " avec ": " avec ",
-        "Correspondance trop éloigné : ": "Correspondance trop éloigné : ",
+        "Correspondance trop éloigné : ": "Correspondance trop éloignée : ",
         "Désolé je n'ai pas compris": "Désolé je n'ai pas compris",
         "Désolé je n'ai pas compris la demande": "Désolé je n'ai pas compris la demande",
         "Désolé je ne comprends pas la demande": "Désolé je ne comprends pas la demande",
