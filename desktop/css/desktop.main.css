@@ -1671,7 +1671,7 @@ path.highcharts-graph {
 .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
   cursor: pointer;
   color: var(--txt-color);
-  background-color: var(--btn-default-color);
+  background-color: var(--form-bg-color);
   padding: 2px 5px;
   border: none;
 }
@@ -1684,13 +1684,12 @@ path.highcharts-graph {
 .-sew-list-container {
   cursor: pointer;
   color: var(--txt-color);
-  background-color: var(--btn-default-color);
+  background-color: var(--form-bg-color);
   border: none;
-  z-index: 200;
 }
 .-sew-list-container ul li {
   border: none;
-  background-color: var(--btn-default-color);
+  background-color: var(--form-bg-color);
 }
 .-sew-list-container ul li:hover {
   color: var(--linkHoverLight-color);
@@ -1737,8 +1736,11 @@ path.highcharts-graph {
 
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
   color: var(--linkHoverLight-color) !important;
-  background-color: var(--btn-default-color)!important;
+  background-color: var(--al-success-color)!important;
   border: none!important;
+}
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
+  background-color: var(--btn-default-color)!important;
 }
 
 .ui-dialog {
