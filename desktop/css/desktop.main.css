@@ -1327,10 +1327,11 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element .subElementELSE .expressions {
   margin-top: -128px;
 }
-.element .subElementTHEN .CodeMirror,
-.element .subElementELSE .CodeMirror {
+
+.subElement .subElementCODE .expression {
   margin-top: 8px;
 }
+
 .element .subElementACTION .expressions {
   margin-top: -76px;
 }
