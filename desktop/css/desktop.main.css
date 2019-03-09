@@ -1681,6 +1681,22 @@ path.highcharts-graph {
   border: none;
 }
 
+.-sew-list-container {
+  cursor: pointer;
+  color: var(--txt-color);
+  background-color: var(--btn-default-color);
+  border: none;
+  z-index: 200;
+}
+.-sew-list-container ul li {
+  border: none;
+  background-color: var(--btn-default-color);
+}
+.-sew-list-container ul li:hover {
+  color: var(--linkHoverLight-color);
+  background-color: var(--sc-formTxt-color);
+}
+
 #md_modal {
   padding-left: 15px !important;
   padding-right: 15px !important;
