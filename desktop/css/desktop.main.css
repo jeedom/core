@@ -1317,15 +1317,12 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element .subElementELSE {
   height: 55px;
 }
-.element subElementDO {
-  height: 95px;
-}
 .element .subElementTHEN .expressions,
 .element .subElementELSE .expressions {
   margin-top: -128px;
 }
 .element .subElementACTION .expressions {
-  margin-top: -120px;
+  margin-top: -76px;
 }
 .element .subElementDO .expressions {
   margin-top: -126px;
@@ -1335,10 +1332,11 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 
 .element {
-  min-height: 85px;
+  min-height: 82px;
 }
-
-
+.subElementDO {
+  min-height: 185px !important;
+}
 
 .element .subElementFields {
   width: 105px !important;
@@ -1356,6 +1354,12 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   height: 22px;
 }
 
+.element > .subElementACTION > .subElementFields > .dropdown {
+  margin-top: -20px;
+}
+.element > .subElementACTION > .subElementFields {
+  padding-bottom: 20px !important;
+}
 
 .subElement .expressions {
   padding-left: 125px !important;
@@ -1369,19 +1373,6 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .subElementCOMMENT .expressions{
   padding-left: 0 !important;
 }
-
-/* fx */
-/*
-#div_scenarioElement > .element:not(:hover) {
-  /opacity: 0.9;
-}
-#div_scenarioElement > .element:not(.elementCollapse):hover {
-  /margin: 20px 0 20px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,.25);
-  z-index: 5;
-  transition: all 0.6s cubic-bezier(.25,.8,.25,1);
-}
-*/
 
 
 /* collapsing */
