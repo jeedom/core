@@ -133,7 +133,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 
 <?php if (count($market->getImg('screenshot')) > 0) {
 	?>
-  <div style='padding:25px;'>
+  <div style='padding:25px;margin: 0 5px;width: calc(100% - 20px);'>
     <div class="variable-width" style="height : 200px;">
       <?php
 foreach ($market->getImg('screenshot') as $screenshot) {
