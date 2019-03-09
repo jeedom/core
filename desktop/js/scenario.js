@@ -1016,11 +1016,11 @@ function printScenario(_id) {
       updateSortable();
       setAutocomplete();
       updateElseToggle();
-      updateElementCollpase();
       $('#div_editScenario').show();
       taAutosize();
       setTimeout(function () {
         setEditor();
+        updateElementCollpase();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
