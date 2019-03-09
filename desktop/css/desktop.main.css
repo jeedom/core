@@ -1178,6 +1178,12 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   border: 0 !important;
   font-size: 12px !important;
 }
+.element textarea.expressionAttr:not([data-l2key=graphColor]) {
+  font-weight: bold;
+}
+.subElementCOMMENT textarea {
+  font-weight: normal !important;
+}
 
 .element .cursor {
   color: var(--linkHoverLight-color) !important;
