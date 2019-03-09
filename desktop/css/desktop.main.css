@@ -1667,6 +1667,20 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________DIALOGS */
+.ui-autocomplete .ui-menu-item-wrapper,
+.ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
+  cursor: pointer;
+  color: var(--txt-color);
+  background-color: var(--btn-default-color);
+  padding: 2px 5px;
+  border: none;
+}
+.ui-autocomplete .ui-menu-item-wrapper:hover {
+  color: var(--linkHoverLight-color);
+  background-color: var(--sc-formTxt-color);
+  border: none;
+}
+
 #md_modal {
   padding-left: 15px !important;
   padding-right: 15px !important;
