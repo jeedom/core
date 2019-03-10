@@ -124,17 +124,17 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
-    $('.div_displayEquipement .eqLogic-widget').css('box-shadow','');
-    
+    $('.div_displayEquipement .eqLogic-widget').css('border','');
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
     if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
-    $('.div_displayEquipement .scenario-widget').css('box-shadow','');
+    $('.div_displayEquipement .scenario-widget').css('border','');
   }else{
-    $('.div_displayEquipement .eqLogic-widget').css('box-shadow','0 0 4px rgba(147,204,1,.14), 0 10px 16px rgba(147,204,1,.30)');
+    $('.div_displayEquipement .eqLogic-widget').css('border','1px dashed var(--logo-primary-color)');
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
     $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
       resize: function( event, ui ) {
@@ -146,7 +146,7 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     });
-    $('.div_displayEquipement .scenario-widget').css('box-shadow','0 0 4px rgba(147,204,1,.14), 0 10px 16px rgba(147,204,1,.30)');
+    $('.div_displayEquipement .scenario-widget').css('border','1px dashed var(--logo-primary-color)');
     $('.div_displayEquipement .scenario-widget').draggable('enable');
     $( ".div_displayEquipement .scenario-widget.allowResize").resizable({
       resize: function( event, ui ) {
@@ -188,7 +188,7 @@ function getObjectHtml(_object_id){
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-        
+
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery({
             itemSelector: ".eqLogic-widget,.scenario-widget",
