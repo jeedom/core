@@ -1264,15 +1264,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   margin-bottom: 1.2px;
 }
 
-.subElement {
-  position: relative !important;
-  display: table;
-  width: 100%;
-}
 .subElementAttr {
   position: absolute !important;
 }
-
 .subElementCOMMENT .expression textarea {
   border-radius: 0 !important;
   margin-top: 5px !important;
@@ -1353,15 +1347,15 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .subElement .subElementCODE .expression {
   margin-top: 8px;
 }
-
-.element .subElementACTION .expressions {
-  margin-top: -76px;
+.element > .subElementACTION > .expressions {
+ margin-top: -76px;
 }
-.element .subElementDO .expressions {
+.element > .subElementDO > .expressions {
   margin-top: -126px;
 }
-.element .subElementIN .expressions {
+.element > .subElementIN > .expressions {
   margin-top: -26px;
+  margin-right: 25px;
 }
 
 .element {
@@ -1377,6 +1371,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   margin-bottom: 30px;
   padding-bottom: 50px !important;
 }
+.element .subElementFields .input-group {
+  display: inline-flex;
+} 
 .element .subElementFields .dropdown {
   width: 90px !important;
   font-size: 0 !important;
@@ -1385,10 +1382,6 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   height: 22px !important;
 }
 
-.subElementFields .input-group {
-  display: inline-flex;
-} 
-
 .element > .subElementACTION > .subElementFields > .dropdown {
   margin-top: -20px;
 }
@@ -1396,9 +1389,15 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   padding-bottom: 20px !important;
 }
 
-.subElement .expressions {
-  padding-left: 125px !important;
+.subElement {
+  position: relative !important;
+  display: table;
+  width: 100%;
 }
+.subElement .expressions {
+  padding-left: 112px !important;
+}
+
 .element .subElementIF .expressions,
 .element .subElementAT .expressions,
 .element .subElementFOR .expressions {
