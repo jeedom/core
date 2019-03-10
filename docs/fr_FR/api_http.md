@@ -28,7 +28,7 @@ Voici l’URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
 -   **id** : correspond à l’id de votre scénario. L’ID se trouve sur la
-    page du scénario concerné, dans "outils" → "Scénarios", une fois le
+    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
     scénario sélectionné, à côté du nom de l’onglet "Général". Autre
     moyen de le retrouver : dans "Outils" → "Scénarios", cliquez sur
     "Vue d’ensemble".
@@ -39,7 +39,7 @@ Voici l’URL =
     activer le scénario.
 
 -   **tags** \[optionnel\] : si l’action est "start", vous pouvez passer
-    des tags au scénario (voir la documentation sur les scénarii) sous
+    des tags au scénario (voir la documentation sur les scénarios) sous
     la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un
     espace et %3D à = )
 
