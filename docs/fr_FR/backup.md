@@ -96,7 +96,7 @@ ou restauration), si vous en avez lancé une.
 > **Tip**
 >
 > Lors d’une réinstallation de Jeedom et en ayant pris l’abonnement de
-> sauvegarde vers le cloud du market, vous devez renseigner votre compte
+> sauvegarde vers le cloud du Market, vous devez renseigner votre compte
 > Market sur votre nouveau Jeedom (Administration→Configuration→Onglet
 > Mises à jour) puis venir ici pour lancer la restauration.
 
