@@ -83,7 +83,7 @@ legend {
 [data-page=display] legend i {
   color: inherit !important;
 }
-[data-page=display] legend {
+[data-page=display] .object legend {
   border-left: none;
 }
 [data-page=display] #div_pageContainer > div.row-same-height > div {
@@ -94,6 +94,12 @@ legend {
 }
 [data-page=display] #div_pageContainer ul > li {
   margin: 1px 0 !important;
+}
+[data-page=display] .object div {
+  background-color: var(--bg-modal-color);
+}
+[data-page=display] #in_search {
+  margin-left: 15px;
 }
 
 #interfacetab legend {
