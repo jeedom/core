@@ -73,6 +73,12 @@ legend{
   width : 100%;
 }
 
+legend,
+.ui-input-text input,
+.ui-input-search input {
+  text-shadow: none;
+}
+
 .break{
   position:absolute;
   background:var(--txt-color);
