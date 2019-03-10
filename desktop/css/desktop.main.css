@@ -1204,7 +1204,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 .expressions .expression {
   padding-right: 0 !important;
-  margin-bottom: 1px;
+  margin-bottom: 1.1px;
 }
 .expressions .expression:last-child {
   margin-bottom: 0 !important;
