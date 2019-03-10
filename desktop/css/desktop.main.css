@@ -1827,12 +1827,23 @@ div.vis-item,div.vis-item-content {
 .ui-button:hover {
   opacity: 0.65;
 }
-.ui-dialog-titlebar-close {
-  opacity: 1 !important;
-  font-size: 30px !important;
+
+button.ui-dialog-titlebar-close:before {
+  content: "X";
 }
-.ui-dialog-titlebar-close:hover {
+button.ui-dialog-titlebar-close {
+  color: var(--bg-color) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  font-family: "Roboto";
+  font-size: 14px !important;
+  opacity: 1 !important;
+}
+button.ui-dialog-titlebar-close:hover {
   opacity: 0.75 !important;
+}
+.ui-icon-closethick {
+  display:none !important;
 }
 
 .fancybox-skin {
