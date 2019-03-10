@@ -39,19 +39,19 @@ Changelog
 -   Possibilité d'éditer les scénarios en mode text/json.
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom.
 -   Possibilité d'ajouter des options dans les rapports.
--   Ajout d'un heartbeat par plugin et de red"marrage automatique de démon en cas de soucis.
+-   Ajout d'un heartbeat par plugin et de redémarrage automatique de démon en cas de soucis.
 -   Ajout des listeners sur la page de moteur de tâches.
 -   Optimisations.
 -   Possibilité de consulter les logs en version mobile (wepapp).
 -   Ajout d'une action tag dans les scénarios (voir documentation).
--   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url.
--   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement).
--   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines).
+-   Possibilité d'avoir une vue en plein écran en ajoutant "&fullscreen=1" dans l'url.
+-   Ajout de lastCommunication dans les scénarios (pour avoir la date de dernière communication d'un équipement).
+-   Mise à jour en temps réel des graphiques (simple, pas ceux calculés ou les timelines).
 -   Possibilité de supprimer un élément à partir de la configuration du design.
 -   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement).
 -   Les widgets scénarios sont maintenant affichés par défaut sur le dashboard
 -   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de Jeedom, onglet widget).
--   Possibilité de mettre une icone sur les sénarios.
+-   Possibilité de mettre une icône sur les sénarios.
 -   Affichage des widgets mobile en une seule colonne
 -   Ajout de la gestion des démons sur le moteur de tâches
 -   Ajout de la fonction color_gradient dans les scénarios
@@ -59,7 +59,7 @@ Changelog
 3.2.16
 =====
 
-- Correction d'un bug lors de l'installation de dépendances de certains plugins sur Smart
+- Correction d'un bug lors de l'installation des dépendances de certains plugins sur Smart
 
 3.2.15
 =====
@@ -87,7 +87,7 @@ Changelog
 =====
 
 - Correction de bugs.
-- Amélioration de la synchronisation avec le market.
+- Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
 - Optimisation du calcul du graphique de liens et de l'utilisation des variables.
