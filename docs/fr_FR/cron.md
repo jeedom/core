@@ -1,5 +1,5 @@
 Il informe de toutes les tâches applicatives Jeedom qui tournent sur le
-serveur. Ce menu est à utiliser en connaissance de cause, ou à la
+serveur. Ce menu est à utiliser en connaissance de cause ou à la
 demande du support technique.
 
 > **Important**
