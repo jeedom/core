@@ -18,6 +18,15 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-size','auto');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
+document.addEventListener('keydown', function(event) {
+  if ((27 === event.which) || (13 === event.which))
+  {
+      event.preventDefault()
+      $(event).blur()
+  }
+})
+
+
 tab = null;
 var url = document.location.toString();
 if (url.match('#')) {
@@ -173,6 +182,7 @@ $('.accordion-toggle').off('click').on('click', function () {
     $('.scenarioListContainer').packery();
   },100);
 });
+
 
 $("#div_tree").jstree({
   "plugins": ["search"]
@@ -491,6 +501,7 @@ $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', 
     $(this).children('i').addClass('fa-eye').removeClass('fa-eye-slash');
     $(this).closest('.element').removeClass('elementCollapse');
     $(this).attr('value',0);
+    setEditor();
   }
 });
 
@@ -881,7 +892,6 @@ function setEditor() {
         });
       }, 1);
     }
-
   });
 }
 
@@ -1016,11 +1026,11 @@ function printScenario(_id) {
       updateSortable();
       setAutocomplete();
       updateElseToggle();
+      updateElementCollpase();
       $('#div_editScenario').show();
       taAutosize();
       setTimeout(function () {
         setEditor();
-        updateElementCollpase();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
