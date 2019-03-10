@@ -19,7 +19,6 @@ $('.backgroundforJeedom').css('background-size','auto');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
 document.addEventListener('keydown', function(event) {
-	console.log(event)
   if ((27 === event.which) || (13 === event.which))
   {
       event.preventDefault()
