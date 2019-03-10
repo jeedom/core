@@ -1121,6 +1121,16 @@ hr {
 
 /* __________________________________________________________________________________________________________SCENARIO */
 
+.scBlocColor0 { background-color: var(--scBloc-color0); }
+.scBlocColor1 { background-color: var(--scBloc-color1); }
+.scBlocColor2 { background-color: var(--scBloc-color2); }
+.scBlocColor3 { background-color: var(--scBloc-color3); }
+.scBlocColor4 { background-color: var(--scBloc-color4); }
+.scBlocColor5 { background-color: var(--scBloc-color5); }
+.scBlocColor6 { background-color: var(--scBloc-color6); }
+.scBlocColor7 { background-color: var(--scBloc-color7); }
+.scBlocColor8 { background-color: var(--scBloc-color8); }
+
 .element legend {
   background-color: transparent !important;
   color: var(--sc-lightTxt-color) !important;
