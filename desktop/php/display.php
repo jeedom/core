@@ -53,9 +53,9 @@ foreach ($objects as $object) {
 	<label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactif}}</label>
 </span>
 <center>
-	<span class="label label-default" style="font-size : 1em;cursor : default;">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
-	<span class="label label-info" style="font-size : 1em;cursor : default;">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
-	<span class="label label-primary" style="font-size : 1em;cursor : default;">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
+	<span class="label label-default">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
+	<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
+	<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 </center>
 <br/>
 <a class="btn btn-danger btn-sm" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
@@ -63,12 +63,13 @@ foreach ($objects as $object) {
 <a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}</a>
 <a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}</a>
 <a class="btn btn-warning btn-sm bt_setIsEnable" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
+<span></span>
 <br/>
 <br/>
 <div class="row">
 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">
 		<div style="margin-bottom: 1em; padding:0.2em 0.5em;">
-			<legend style="cursor : default"><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
+			<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
 			<ul class="eqLogicSortable">
 				<?php
 				foreach ($eqLogics[-1] as $eqLogic) {
@@ -85,7 +86,7 @@ foreach ($objects as $object) {
 					echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
 					echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 					echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-					
+
 					echo '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
@@ -108,11 +109,11 @@ foreach ($objects as $object) {
 		}
 		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
 		echo '<div style="margin-bottom: 1em; padding:0.2em 0.5em; background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
-		echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . ';cursor : default">' . $object->getDisplay('icon') . '  ' . $object->getName();
+		echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
 		echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 		echo '<i style="position:relative;top : 3px;" class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 		echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
-		
+
 		echo '</legend>';
 		echo '<ul class="eqLogicSortable">';
 		foreach ($eqLogics[$object->getId()] as $eqLogic) {
@@ -158,7 +159,6 @@ foreach ($objects as $object) {
 		echo '</div>';
 	}
 	?>
-	
-	
+
+
 	<?php include_file('desktop', 'display', 'js');?>
-	
