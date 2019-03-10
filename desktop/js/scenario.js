@@ -484,7 +484,7 @@ $('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', 
     $(this).closest('.element').children('.subElementELSE').show();
   }else{
     if($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length>0){
-      $.showAlert({message:"{{Le bloc Sinon ne peut être supprimé s'il contient des éléments}}", level: 'danger'})
+      $('#div_alert').showAlert({message:"{{Le bloc Sinon ne peut être supprimé s'il contient des éléments.}}", level: 'danger'})
       return;
     }
     $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
@@ -1280,6 +1280,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '<a class="bt_repeat cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
     }
     retour += '</div>';
+
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1288,8 +1289,8 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '  </div>';
     retour += '  <div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
     break;
+
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1320,9 +1321,8 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
-    retour += '<div > </div>';
-
     break;
+
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1346,8 +1346,8 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
-
     break;
+
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1375,6 +1375,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
+
     case 'in' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1401,8 +1402,8 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
     break;
+
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1430,6 +1431,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
+
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1453,8 +1455,8 @@ function addSubElement(_subElement, _pColor) {
       }
     }
     retour += '</div>';
-
     break;
+
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1483,6 +1485,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
+
     case 'comment' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div>';
@@ -1505,8 +1508,8 @@ function addSubElement(_subElement, _pColor) {
     retour += addExpression(expression);
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
-
     break;
+
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
