@@ -37,7 +37,7 @@ else
 	echo "OK"
 fi
 
-echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Vérifie le cron de jeedom..."
+echo -n "[$(date +%d-%m-%Y\ %H:%M:%S)] Vérifie le cron de Jeedom..."
 if [ $(crontab -l | grep jeeCron | wc -l) -lt 1 ]; then
 	if [ ! -f /etc/cron.d/jeedom ]; then
 		echo 'NOK'
