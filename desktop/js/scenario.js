@@ -108,9 +108,6 @@ $(function(){
 })
 
 editor = [];
-
-listColor = ['#16a085', '#27ae60', '#2980b9', '#745cb0', '#f39c12', '#d35400', '#c0392b', '#2c3e50', '#7f8c8d'];
-listColorStrong = ['#12846D', '#229351', '#246F9E', '#634F96', '#D88811', '#B74600', '#A53026', '#1D2935', '#687272'];
 pColor = 0;
 
 autoCompleteCondition = [
@@ -147,7 +144,7 @@ autoCompleteCondition = [
   {val: 'name(type,commande)'},
   {val: 'value(commande)'},
   {val: 'lastCommunication(equipement)'},
-  {val:'color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'}
+  {val: 'color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'}
 ];
 autoCompleteAction = ['tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
@@ -1313,7 +1310,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</span>';
     retour += '</div>';
     retour += '</div>';
-    retour += '<div class="expressions" style="background-color: ' + listColor[_pColor] + ';">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
@@ -1338,7 +1335,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</ul>';
     retour += '</div>';
     retour += '</div>';
-    retour += ' <div class="expressions" style="background-color: ' + listColor[_pColor] + '; border-top :1px solid ' + listColorStrong[_pColor] + '">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
@@ -1447,7 +1444,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</ul>';
     retour += '</div>';
     retour += '</div>';
-    retour += '<div class="expressions" style="background-color: ' + listColor[_pColor] + ';">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
@@ -1475,7 +1472,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<legend >{{CODE}}</legend>';
     retour += '</div>';
-    retour += '<div class="expressions" style="background-color: ' + listColor[_pColor] + ';">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1499,7 +1496,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<legend >{{COMMENTAIRE}}</legend>';
     retour += '</div>';
-    retour += '<div class="expressions" style="background-color: ' + listColor[_pColor] + ';">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1539,7 +1536,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</ul>';
     retour += '</div>';
     retour += '</div>';
-    retour += '<div class="expressions" style="background-color: ' + listColor[_pColor] + ';">';
+    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
     retour += '<div class="sortable empty" ></div>';
     if (isset(_subElement.expressions)) {
       for (var k in _subElement.expressions) {
@@ -1568,8 +1565,8 @@ function addElement(_element) {
     pColor = 0;
   }
   var color = pColor;
+  var div = '<div class="element ' + 'scBlocColor' + color + '">';
 
-  var div = '<div class="element" style="background-color : ' + listColorStrong[color] + '; border :1px solid ' + listColorStrong[color] + '">';
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
