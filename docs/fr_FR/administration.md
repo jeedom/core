@@ -169,7 +169,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 > port ou l’IP de Jeedom réellement. Pour cela il faut se connecter en
 > SSH et éditer le fichier /etc/network/interfaces pour l’IP et les
 > fichiers etc/apache2/sites-available/default et
-> etc/apache2/sites-available/default\_ssl (pour le HTTPS).Cependant, en
+> etc/apache2/sites-available/default\_ssl (pour le HTTPS). Cependant, en
 > cas de mauvaise manipulation de votre Jeedom, l’équipe Jeedom ne
 > pourra être tenue pour responsable et pourra refuser toute demande de
 > support.
@@ -248,7 +248,7 @@ Couleurs
 
 La colorisation des widgets est effectuée en fonction de la catégorie à
 laquelle appartient l’équipement. Parmi les catégories on retrouve le
-chauffage, Sécurité, Energie, lumière, Automatisme, Multimedia, Autre…​
+Chauffage, Sécurité, Energie, Lumière, Automatisme, Multimedia, Autre…​
 
 Pour chaque catégorie, on pourra différencier les couleurs de la version
 desktop et de la version mobile. On peut alors changer :
@@ -724,7 +724,7 @@ Dépôt servant à relier Jeedom au market, il est vivement conseillé
 d’utiliser ce dépôt. Attention : toute demande de support pourra être
 refusée si vous utilisez un autre dépôt que celui-ci.
 
--   **Adresse** : Adresse du Market.
+-   **Adresse** : Adresse du Market.(https://www.jeedom.com/market)
 
 -   **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
 
@@ -732,9 +732,9 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit etre unique pour chaque Jeedom sous risque qu'il s'écrase entre eux)
 
--   **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le recuperer. Sans celui-ci vous ne pourrez restorer votre Jeedom
+-   **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le récuperer. Sans celui-ci vous ne pourrez plus restaurer votre Jeedom.
 
--   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémentale (qui n'envoi que les difference). Il est recommandé d'en faire 1 par mois
+-   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémental (qui n'envoie que les différences). Il est recommandé d'en faire 1 par mois
 
 ### Samba 
 
