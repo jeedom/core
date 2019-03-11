@@ -51,15 +51,15 @@ Theme Core 2019 @Jeedom
   --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(190, 0, 0);
   
-  --scBloc-color1: rgb(174,163,146);
-  --scBloc-color2: rgb(156,148,138);
-  --scBloc-color3: rgb(140,136,130);
-  --scBloc-color4: rgb(122,118,118);
-  --scBloc-color5: rgb(112,108,100);
-  --scBloc-color6: rgb(96, 96, 98);
-  --scBloc-color7: rgb(90, 92, 96);
-  --scBloc-color8: rgb(84, 88, 92);
-  --scBloc-color0: rgb(81, 85, 88);
+  --scBloc-color1: rgb(172,163,148);
+  --scBloc-color2: rgb(158,148,138);
+  --scBloc-color3: rgb(142,134,128);
+  --scBloc-color4: rgb(124,118,118);
+  --scBloc-color5: rgb(111,109,108);
+  --scBloc-color6: rgb(98, 98, 102);
+  --scBloc-color7: rgb(88, 90, 94);
+  --scBloc-color8: rgb(80, 85, 88);
+  --scBloc-color0: rgb(75, 78, 82);
   
   --shd-color: rgba(0, 0, 0, 0.5);
 }
