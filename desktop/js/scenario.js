@@ -20,15 +20,15 @@ $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
 
 document.addEventListener('keydown', function(event) {
-    //in expression input or textarea:
-    if (event.target.classList.contains('expressionAttr'))
+  //in expression input or textarea:
+  if (event.target.classList.contains('expressionAttr'))
+  {
+    if ((27 === event.which) || (13 === event.which))
     {
-        if ((27 === event.which) || (13 === event.which))
-        {
-          event.preventDefault()
-          $(event.target).blur()
-        }
+      event.preventDefault()
+      $(event.target).blur()
     }
+  }
 })
 
 tab = null;
@@ -60,7 +60,7 @@ $(function(){
         }
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
-
+        
         //set list of scenarios per groups:
         scenarioList = []
         for(i=0; i<scenarioGroups.length; i++)
@@ -76,7 +76,7 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
-
+        
         //set context menu!
         var contextmenuitems = {}
         for (var group in scenarioList) {
@@ -90,7 +90,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -402,6 +402,7 @@ $('#bt_scenarioTab').on('click',function(){
   setTimeout(function(){
     setEditor();
     taAutosize();
+    updateElseToggle();
   }, 50);
 });
 
@@ -620,7 +621,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
         '</div> </div>' +
         '</form> </div>  </div>';
       }
-
+      
       bootbox.dialog({
         title: "{{Ajout d'un nouveau scénario}}",
         message: message,
@@ -799,7 +800,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
-
+  
 });
 
 $('#bt_graphScenario').off('click').on('click', function () {
@@ -859,7 +860,7 @@ function updateSortable() {
 }
 
 function updateElseToggle() {
-  $('.subElementELSE').each(function () {
+  $('.subElementELSE:visible').each(function () {
     if($(this).children('.expressions').children('.expression').length == 0){
       $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
     }
@@ -961,7 +962,7 @@ function printScenario(_id) {
       $('#div_pageContainer').setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
-
+      
       $('#div_scenarioElement').empty();
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
@@ -997,7 +998,7 @@ function printScenario(_id) {
           addSchedule(data.schedule);
         }
       }
-
+      
       if(data.elements.length == 0){
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }
@@ -1031,10 +1032,12 @@ function printScenario(_id) {
       $('#div_editScenario').show();
       taAutosize();
       setTimeout(function () {
+        updateElseToggle();
         setEditor();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
+        updateElseToggle();
         modifyWithoutSave = false;
       }, 1000);
     }
@@ -1132,7 +1135,7 @@ function addExpression(_expression) {
     retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips roundedRight"  title="{{Rechercher d\'un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
-
+    
     break;
     case 'element' :
     retour += '<div class="col-xs-12" >';
@@ -1160,7 +1163,7 @@ function addExpression(_expression) {
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
-
+    
     retour += '</div>';
     retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
@@ -1215,7 +1218,7 @@ function addSubElement(_subElement, _pColor) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-
+  
   blocClass = '';
   switch (_subElement.type) {
     case 'if':
@@ -1273,7 +1276,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '<legend >{{SI}}';
     retour += '</legend>';
     retour += '</div>';
-
+    
     retour += '<div >';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
       retour += '<a class="bt_repeat cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-refresh"></i></span></a>';
@@ -1281,7 +1284,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '<a class="bt_repeat cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
     }
     retour += '</div>';
-
+    
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1291,7 +1294,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '  </div>';
     retour += '  <div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1323,7 +1326,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '</div>';
     break;
-
+    
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1348,7 +1351,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '</div>';
     break;
-
+    
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1376,7 +1379,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'in' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1404,7 +1407,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1432,7 +1435,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1457,7 +1460,7 @@ function addSubElement(_subElement, _pColor) {
     }
     retour += '</div>';
     break;
-
+    
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1486,7 +1489,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'comment' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div>';
@@ -1510,7 +1513,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</div>';
     retour += '<div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" ></i></div>';
     break;
-
+    
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1563,14 +1566,14 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-
+  
   pColor++;
   if (pColor > 4) {
     pColor = 0;
   }
   var color = pColor;
   var div = '<div class="element ' + 'scBlocColor' + color + '">';
-
+  
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
@@ -1654,7 +1657,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-
+  
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -1676,7 +1679,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-
+      
     });
     element.subElements.push(subElement);
   });
