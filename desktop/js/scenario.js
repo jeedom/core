@@ -467,10 +467,23 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
 });
 
 $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
-  if ($(this).closest('.expression').length != 0) {
-    $(this).closest('.expression').remove();
-  } else {
-    $(this).closest('.element').remove();
+  var button = $(this);
+  if(event.ctrlKey) {
+    if (button.closest('.expression').length != 0) {
+      button.closest('.expression').remove();
+    } else {
+      button.closest('.element').remove();
+    }
+  }else{
+    bootbox.confirm("Etes vous sur de vouloir supprimer cet élément ?", function (result) {
+      if (result) {
+        if (button.closest('.expression').length != 0) {
+          button.closest('.expression').remove();
+        } else {
+          button.closest('.element').remove();
+        }
+      }
+    });
   }
 });
 
