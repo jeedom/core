@@ -1121,15 +1121,15 @@ hr {
 
 /* __________________________________________________________________________________________________________SCENARIO */
 
-.scBlocColor0 { background-color: var(--scBloc-color0); }
-.scBlocColor1 { background-color: var(--scBloc-color1); }
-.scBlocColor2 { background-color: var(--scBloc-color2); }
-.scBlocColor3 { background-color: var(--scBloc-color3); }
-.scBlocColor4 { background-color: var(--scBloc-color4); }
-.scBlocColor5 { background-color: var(--scBloc-color5); }
-.scBlocColor6 { background-color: var(--scBloc-color6); }
-.scBlocColor7 { background-color: var(--scBloc-color7); }
-.scBlocColor8 { background-color: var(--scBloc-color8); }
+.scBlocColor0 { background-color: var(--scBloc-color0); border: 1px solid var(--scBloc-color0); border-right: none;}
+.scBlocColor1 { background-color: var(--scBloc-color1); border: 1px solid var(--scBloc-color1); border-right: none;}
+.scBlocColor2 { background-color: var(--scBloc-color2); border: 1px solid var(--scBloc-color2); border-right: none;}
+.scBlocColor3 { background-color: var(--scBloc-color3); border: 1px solid var(--scBloc-color3); border-right: none;}
+.scBlocColor4 { background-color: var(--scBloc-color4); border: 1px solid var(--scBloc-color4); border-right: none;}
+.scBlocColor5 { background-color: var(--scBloc-color5); border: 1px solid var(--scBloc-color5); border-right: none;}
+.scBlocColor6 { background-color: var(--scBloc-color6); border: 1px solid var(--scBloc-color6); border-right: none;}
+.scBlocColor7 { background-color: var(--scBloc-color7); border: 1px solid var(--scBloc-color7); border-right: none;}
+.scBlocColor8 { background-color: var(--scBloc-color8); border: 1px solid var(--scBloc-color8); border-right: none;}
 
 .element legend {
   background-color: transparent !important;
@@ -1183,7 +1183,6 @@ hr {
   line-height: 15px;
 }
 
-
 /* scenarios fields */
 .form-control.expressionAttr:not([data-l2key=graphColor]),
 input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
@@ -1206,48 +1205,12 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element .expressionOptions input {
   font-weight: normal;
 }
-
 .element .cursor {
   color: var(--linkHoverLight-color) !important;
 }
-
-.expressions,
-.element,
-.expression.noSortable,
-.expressions .expression.sortable > div {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.expressions .expression {
-  padding-right: 0 !important;
-  margin-bottom: 1.1px;
-}
-.expressions .expression:last-child {
-  margin-bottom: 0 !important;
-}
-.element .expressionOptions .input-group {
-  margin-bottom: 2px;
-}
-
-.element .subElement.noSortable legend,
-.subElement legend {
-  margin-left: -10px !important;
-  padding-left: 25px !important;
-}
-
-.disableElement,
-.element .disableSubElement {
-  opacity: 0.5 !important;
-}
-.disableElement input[type=checkbox][data-l2key=enable],
-.element .disableSubElement input[type=checkbox][data-l2key=enable] {
-  background-color: red !important;
-}
-
 .expressions .sortable-placeholder{
   background-color: #94CA02;
 }
-
 #div_editScenario #generaltab textarea,
 #div_noteManagerDisplay textarea {
   resize: vertical !important;
@@ -1263,18 +1226,28 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   width: 100%;
   margin-bottom: 1.2px;
 }
-
-.subElementAttr {
-  position: absolute !important;
+.expressions,
+.element,
+.expression.noSortable,
+.expressions .expression.sortable > div {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
-.subElementCOMMENT .expression textarea {
-  border-radius: 0 !important;
-  margin-top: 5px !important;
+.expressions .expression {
+  padding-right: 0 !important;
+  margin-bottom: 1.1px;
+}
+.element .expressionOptions .input-group {
+  margin-bottom: 2px;
+}
+.element .subElement.noSortable legend,
+.subElement legend {
+  padding-left: 25px !important;
 }
 
 .element input[type=checkbox],
 .element input[type=radio] {
-  top: 2px;
+  top: 3px;
   color: var(--linkHoverLight-color);
   background: var(--sc-formTxt-color) !important;
   margin-right: 0 !important;
@@ -1296,7 +1269,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   opacity: 0.7;
 }
 .element .bt_sortable {
-  margin-left: 3px;
+  position: absolute;
+  top: 1px;
+  left: 3px;
 }
 .element .bt_collapse {
   position: absolute;
@@ -1324,7 +1299,16 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   top: 0;
   right: 0;
 }
-
+.element .subElementFields .dropdown {
+  width: 90px !important;
+  font-size: 0 !important;
+}
+.element .bt_showElse {
+  height: 22px !important;
+}
+.element .subElementAttr {
+  position: absolute !important;
+}
 .element .subElement legend {
   margin: 0 0 0 30px !important;
 }
@@ -1334,82 +1318,86 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element .subElement.subElementIF legend {
   margin: 0 0 0 59px !important;
 }
-
-.element .subElementTHEN,
-.element .subElementELSE {
-  height: 55px;
-}
-.element .subElementTHEN .expressions,
-.element .subElementELSE .expressions {
-  margin-top: -128px;
-}
-
-.subElement .subElementCODE .expression {
-  margin-top: 8px;
-}
-.element > .subElementACTION > .expressions {
- margin-top: -76px;
-}
-.element > .subElementDO > .expressions {
-  margin-top: -126px;
-}
-.element > .subElementIN > .expressions {
-  margin-top: -26px;
-  margin-right: 25px;
-}
-
 .element {
-  min-height: 82px;
-}
-.subElementDO {
-  min-height: 185px !important;
+  min-height: 52px;
 }
 
-.element .subElementFields {
-  width: 105px !important;
-  margin-top: 0;
-  margin-bottom: 30px;
-  padding-bottom: 50px !important;
-}
+
 .element .subElementFields .input-group {
   display: inline-flex;
-} 
-.element .subElementFields .dropdown {
-  width: 90px !important;
-  font-size: 0 !important;
 }
-.element .bt_showElse {
-  height: 22px !important;
+.expression.sortable .col-xs-1 input:first-of-type {
+  margin-left: 20px;
 }
-
-.element > .subElementACTION > .subElementFields > .dropdown {
-  margin-top: -20px;
-}
-.element > .subElementACTION > .subElementFields {
-  padding-bottom: 20px !important;
-}
-
 .subElement {
   position: relative !important;
   display: table;
   width: 100%;
 }
 .subElement .expressions {
-  padding-left: 112px !important;
+  padding-left: 125px !important;
+}
+.subElementCOMMENT .expression textarea {
+  border-radius: 0 !important;
 }
 
-.element .subElementIF .expressions,
-.element .subElementAT .expressions,
-.element .subElementFOR .expressions {
-  margin: -44px 25px 0 0px !important;
+.element .subElementTHEN,
+.element .subElementELSE {
+  height: 55px;
 }
-.subElementCODE .expressions,
-.subElementCOMMENT .expressions{
+.element > .subElementIN > .expressions {
+  margin-top: -26px;
+  margin-right: 25px;
+}
+.element > .subElementACTION > .subElementFields > .dropdown {
+  margin-top: -20px;
+}
+.element .subElementCODE .expressions,
+.element .subElementCOMMENT .expressions{
   padding-left: 0 !important;
 }
 
 
-/* collapsing */
+
+.element .subElementFields {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px !important;
+  height: 0;
+}
+.element >.subElementIF >.expressions,
+.element .subElementAT .expressions,
+.element .subElementFOR .expressions {
+  margin: -25px 25px 0 0px !important;
+}
+.element > .subElementTHEN > .expressions {
+  margin-top: 4px !important
+}
+.element > .subElementACTION > .expressions {
+  margin-top: 28px !important
+}
+.element .subElementDO {
+  height: 50px;
+  min-height: 50px !important;
+}
+.subElementDO .expressions {
+  margin-top: 4px !important
+}
+
+
+
+
+/* Disabled */
+.disableElement,
+.element .disableSubElement {
+  opacity: 0.5 !important;
+}
+.disableElement input[type=checkbox][data-l2key=enable],
+.element .disableSubElement input[type=checkbox][data-l2key=enable] {
+  background-color: red !important;
+}
+
+/* Collapsed */
 .elementCollapse {
   min-height: 28px;
   max-height: 28px;
