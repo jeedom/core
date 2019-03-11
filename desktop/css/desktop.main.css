@@ -1419,7 +1419,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 /* __________________________________________________________________________________________________________FLOATING BARS */
 
 #jqueryLoadingDiv {
-  color: var(--txt-color)!important
+  color: var(--link-color)!important
 }
 
 .col-lg-9.col-md-8.col-sm-7 {
