@@ -1438,7 +1438,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .eqLogicThumbnailDisplay {
   border-left: none !important;
 }
-
+.bs-sidebar {
+  background: rgba(var(--bg-color), var(--opacity)) !important;;
+}
 .bs-sidebar .label,
 .bs-sidebar .label > i {
   font-size: 14px;
@@ -1570,7 +1572,15 @@ path.highcharts-graph {
   stroke-width: 1.5;
 }
 
-
+#div_graphLinkRenderer g {
+  fill: var(--txt-color);
+}
+#div_graphLinkRenderer g text:not(:first-of-type){
+  font-size: 1.5em;
+}
+#div_graphLinkRenderer line {
+  stroke-width: 1.5px !important;
+}
 
 
 /* __________________________________________________________________________________________________________GAUGES */
