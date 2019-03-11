@@ -11,16 +11,18 @@ Changelog
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
-- Ajout d'un bouton pour vider le cache des widgets
-- Amélioration du menu
-- Possibilité en faisant un ctrl + click sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher la log
+- Ajout d'un bouton pour vider le cache des widgets.
+- Amélioration du menu.
+- Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
+- Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
+- Possibilité de condenser les blocs de scénario.
 
 
 3.3.0
 =====
 
 -   Possibilité de supprimer une variable.
--   Ajout d'un affichage 3D (beta)
+-   Ajout d'un affichage 3D (beta).
 -   Refonte du système de backup cloud (backup incrémental et chiffré).
 -   Ajout d'un système de prise de notes intégré (dans Analyse -> Notes).
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
