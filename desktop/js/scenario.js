@@ -862,7 +862,7 @@ function updateSortable() {
 function updateElseToggle() {
   $('.subElementELSE:visible').each(function () {
     if($(this).children('.expressions').children('.expression').length == 0){
-      $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
+      $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').trigger('click');
     }
   });
 }
