@@ -1581,7 +1581,7 @@ function addElement(_element) {
   }
   
   pColor++;
-  if (pColor > 9) {
+  if (pColor > 8) {
     pColor = 0;
   }
   var color = pColor;
