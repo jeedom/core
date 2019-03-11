@@ -21,10 +21,8 @@ $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
 document.addEventListener('keydown', function(event) {
   //in expression input or textarea:
-  if (event.target.classList.contains('expressionAttr'))
-  {
-    if ((27 === event.which) || (13 === event.which))
-    {
+  if (event.target.classList.contains('expressionAttr')){
+    if ((27 === event.which) || (13 === event.which)){
       event.preventDefault()
       $(event.target).blur()
     }
@@ -60,8 +58,6 @@ $(function(){
         }
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
-        
-        //set list of scenarios per groups:
         scenarioList = []
         for(i=0; i<scenarioGroups.length; i++)
         {
@@ -76,7 +72,6 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
-        
         //set context menu!
         var contextmenuitems = {}
         for (var group in scenarioList) {
@@ -838,19 +833,19 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 /**************** Initialisation **********************/
 
-$('#div_pageContainer').on('change','.scenarioAttr',  function () {
+$('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').on('change','.expressionAttr',  function () {
+$('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').on('change','.elementAttr',  function () {
+$('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').on('change', '.subElementAttr', function () {
+$('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr', function () {
   modifyWithoutSave = true;
 });
 
