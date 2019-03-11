@@ -1,8 +1,8 @@
 Doc un peu particulière car elle va traiter uniquement de votre page
-profil du market.
+profil du Market.
 
 Disponible en allant sur votre nom d’utilisateur puis profil à partir du
-market (un peu comme sur Jeedom).
+Market (un peu comme sur Jeedom).
 
 Celle-ci se décompose en plusieurs parties :
 
@@ -14,17 +14,17 @@ profil :
 
 -   **Profil**
 
-    -   **Login** : Votre login sur le market, il ne peut être changé
+    -   **Login** : Votre login sur le Market, il ne peut être changé
 
     -   **Nom** : Votre nom (cette information n’est utile que pour
-        rendre les mails plus sympa)
+        rendre les emails plus sympa)
 
     -   **Prénom** : Votre prénom (cette information n’est utile que
-        pour rendre les mails plus sympa)
+        pour rendre les emails plus sympa)
 
     -   **Nom d’utilisateur sur le forum** : Votre pseudo sur le forum
 
-    -   **Email** : Votre mail
+    -   **Email** : Votre email
 
     -   **Langue** : Votre langue
 
@@ -35,25 +35,25 @@ Pour les développeurs :
 
 -   **Nom d’utilisateur sur le forum** : Votre pseudo sur le forum
 
--   **Email public** : Votre mail pour recevoir des éventuelles
+-   **Email public** : Votre email pour recevoir des éventuelles
     communications de notre part
 
--   **Compte paypal** : Votre mail de compte Paypal (uniquement utilisé
-    pour payer les developpeurs)
+-   **Compte paypal** : Votre email de compte Paypal (uniquement utilisé
+    pour payer les développeurs)
 
 Pour les pros :
 
--   **Compte mail installateur** : Votre mail de contact pro
+-   **Compte email installateur** : Votre email de contact pro
 
 -   **Destinataire des demandes de support** : savoir qui recevra les
-    mails de support (client final, installateur ou les deux)
+    emails de support (client final, installateur ou les deux)
 
     -   **CGU**
 
 -   **Utilisateur** : conditions générales d’utilisation (attention à
     bien les lire car elles vous engage)
 
--   **Developpeur** : conditions générales d’utilisation pour les
+-   **Développeur** : conditions générales d’utilisation pour les
     développeurs
 
     -   **Tickets**
@@ -62,10 +62,10 @@ Pour les pros :
     ainsi que votre limite
 
 -   **Support** : bouton pour envoyer une demande de support (accessible
-    aussi par le point d’exclamation en haut à droite sur le market ou
+    aussi par le point d’exclamation en haut à droite sur le Market ou
     sur votre Jeedom)
 
-    -   **Accés aux betas**
+    -   **Accès aux betas**
 
 -   **Activer l’accès aux plugins beta** : permet d’activer l’accès aux
     plugins betas (attention cela vous interdira tout accès au support)
@@ -96,7 +96,7 @@ Mes Jeedoms
 
 > **Tip**
 >
-> Il est possible que le market vous demande parfois de remettre à zéro
+> Il est possible que le Market vous demande parfois de remettre à zéro
 > vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il
 > vous demande
 
@@ -116,17 +116,17 @@ Mes Jeedoms
 
     -   **URL** : liste les différentes URL d’accès au Jeedom.
 
-    -   **Serveur DNS** : vous indique si le serveur DNS auquel vous
+    -   **Serveur DNS** : vous indique le serveur DNS auquel vous
         êtes rattachés
 
     -   **Statut du DNS** : permet de voir le statut du DNS
 
     -   **Date de création** : date de création de ce Jeedom sur votre
-        compte market (pour rappel cela se fait automatiquement lorsque
-        vous le liez au market)
+        compte Market (pour rappel cela se fait automatiquement lorsque
+        vous le liez au Market)
 
     -   **Dernière mise à jour** : dernière communication du Jeedom avec
-        le market
+        le Market
 
     -   **Hardware** : Nom du hardware du Jeedom
 
@@ -140,7 +140,7 @@ Mes backups
 ===========
 
 Sur cette onglet vous pouvez consulter les backups présents sur le
-market et en télécharger un. En dessous vous avez accès au lien pour
+Market et en télécharger un. En dessous vous avez accès au lien pour
 acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
 
 Mes SMS/Appels 
@@ -158,7 +158,7 @@ mail de facture ou de reçu
 
 > **Important**
 >
-> Si vous achetez un plugin officiel vous recevez une facture. En
+> Si vous achetez un plugin officiel vous recevrez une facture. En
 > revanche pour un plugin tiers c’est un reçu, pour la facture il faut
 > la demander au développeur
 
