@@ -1219,7 +1219,7 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 
 /*    __DESIGN__    */
 .element legend {
-  border-left: none
+  border-left: none;
 }
 .element {
   position: relative;
@@ -1413,7 +1413,8 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .elementCollapse .legendHidden {
   position: absolute;
   display: inline !important;
-  left: 0
+  left: 25px;
+  padding-left: 0 !important;
 }
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
