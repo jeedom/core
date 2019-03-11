@@ -873,9 +873,11 @@ function updateSortable() {
 }
 
 function updateElseToggle() {
-  $('.subElementELSE:visible').each(function () {
-    if($(this).children('.expressions').children('.expression').length == 0){
-      $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').trigger('click');
+  $('.subElementELSE').each(function () {
+    if(!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-chevron-right')){
+      if($(this).children('.expressions').children('.expression').length == 0){
+        $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
+      }
     }
   });
 }
@@ -1011,7 +1013,6 @@ function printScenario(_id) {
           addSchedule(data.schedule);
         }
       }
-      
       if(data.elements.length == 0){
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }
@@ -1038,19 +1039,17 @@ function printScenario(_id) {
           taAutosize();
         }
       });
+      $('#div_editScenario').show();
       updateSortable();
       setAutocomplete();
-      updateElseToggle();
       updateElementCollpase();
-      $('#div_editScenario').show();
+      updateElseToggle();
       taAutosize();
       setTimeout(function () {
-        updateElseToggle();
         setEditor();
       }, 100);
       modifyWithoutSave = false;
       setTimeout(function () {
-        updateElseToggle();
         modifyWithoutSave = false;
       }, 1000);
     }
