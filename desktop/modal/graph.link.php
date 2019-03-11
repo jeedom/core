@@ -98,8 +98,12 @@ function render(){
 			.attr('alignment-baseline','central')
 			.attr('text-anchor','middle')
 			.text(String.fromCodePoint(parseInt(node.data.icon, 16)));
-			text.attr("y",node.data.texty);
+			text.attr("y",node.data.texty*1.5);
 			text.attr("x",node.data.textx);
+          	if(typeof node.data.type != 'undefined' && node.data.type == 'Objet') {
+              text.attr("font-size", "1.5em");
+              img.attr("font-size", "3em");
+            }
 		}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape) != ''){
 			img = Viva.Graph.svg(node.data.shape)
 			.attr("width", node.data.width)
@@ -148,7 +152,7 @@ function render(){
 		return Viva.Graph.svg('line')
 		.attr('stroke', '#B7B7B7')
 		.attr('stroke-dasharray', link.data.dashvalue)
-		.attr('stroke-width', '2px')
+		.attr('stroke-width', '1.5px')
 	});
 	var renderer = Viva.Graph.View.renderer(graph, {
 		layout: layout,
