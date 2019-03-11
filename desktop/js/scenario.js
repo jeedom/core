@@ -18,14 +18,18 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-size','auto');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
-document.addEventListener('keydown', function(event) {
-  if ((27 === event.which) || (13 === event.which))
-  {
-      event.preventDefault()
-      $(event.target).blur()
-  }
-})
 
+document.addEventListener('keydown', function(event) {
+    //in expression input or textarea:
+    if (event.target.classList.contains('expressionAttr'))
+    {
+        if ((27 === event.which) || (13 === event.which))
+        {
+          event.preventDefault()
+          $(event.target).blur()
+        }
+    }
+})
 
 tab = null;
 var url = document.location.toString();
