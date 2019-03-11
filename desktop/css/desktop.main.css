@@ -1575,12 +1575,7 @@ path.highcharts-graph {
 #div_graphLinkRenderer g {
   fill: var(--txt-color);
 }
-#div_graphLinkRenderer g text:not(:first-of-type){
-  font-size: 1.5em;
-}
-#div_graphLinkRenderer line {
-  stroke-width: 1.5px !important;
-}
+
 
 
 /* __________________________________________________________________________________________________________GAUGES */
