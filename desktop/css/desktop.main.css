@@ -1224,7 +1224,6 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .element {
   position: relative;
   width: 100%;
-  margin-bottom: 1.2px;
 }
 .expressions,
 .element,
@@ -1401,7 +1400,6 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .elementCollapse {
   min-height: 28px;
   max-height: 28px;
-  margin-bottom: 0;
 }
 .elementCollapse .subElement:not(:first-of-type),
 .elementCollapse .expressions,
