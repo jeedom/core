@@ -119,7 +119,7 @@ legend {
   font-size: 17px;
   color: var(--link-color);
   text-align: center;
-  border-left: 2px solid var(--logo-primary-color);
+  border-left: 2.5px solid var(--logo-primary-color);
   margin: 12px 5px !important;
   padding: 5px 0 5px 5px !important;
   line-height: 1em !important;
@@ -320,7 +320,7 @@ select.selectCmd {
   font-size: 12px;
   line-height: 22px !important;
 }
-.scenarioDisplayCard .icon {
+.scenarioDisplayCard > span > i {
   font-size: 3.8em !important;
 }
 .scenarioDisplayCard .icon.noicon {
