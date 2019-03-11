@@ -967,7 +967,9 @@ input[type=radio]:checked {
   background: var(--txt-color) !important;
   -webkit-background-size: 28px 28px;
 }
-
+input[type=checkbox].summaryAttr {
+  margin-top: -20px;
+}
 
 
 
