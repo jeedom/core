@@ -58,7 +58,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'devicecommunication' => array('name' => 'Objets connectés', 'icon' => 'fa-language'),
 			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fa-sliders'),
 			'wellness' => array('name' => 'Confort', 'icon' => 'fa-user'),
-			'monitoring' => array('name' => 'Monitoring', 'icon' => 'fa-tachometer-alt'),
+			'monitoring' => array('name' => 'Monitoring', 'icon' => 'fas fa-tachometer-alt'),
 			'health' => array('name' => 'Santé', 'icon' => 'icon loisir-runner5'),
 			'nature' => array('name' => 'Nature', 'icon' => 'icon nature-leaf32'),
 			'automatisation' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
