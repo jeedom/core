@@ -99,6 +99,8 @@ try {
 				$page = 'view';
 			} else if (init('page') == 'plan') {
 				$page = 'design';
+			}else if (init('page') == 'plan3d') {
+				$page = 'design3d';
 			}
 			ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
 		}
