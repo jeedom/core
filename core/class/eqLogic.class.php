@@ -539,7 +539,7 @@ class eqLogic {
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name"><span>' . $this->getName() . '</span><br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name">' . $this->getName() . '<br/><span>' . $object_name . '</span></div>';
 		} else {
 			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $this->getName() . '</a><br/><span>' . $object_name . '</span></div>';
 		}
