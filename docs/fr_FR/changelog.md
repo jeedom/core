@@ -18,44 +18,44 @@ Changelog
 - Possibilité de condenser les blocs de scénario.
 
 
-3.3.0
+3.3.16
 =====
 
 -   Possibilité de supprimer une variable.
--   Ajout d'un affichage 3D (beta).
+-   Ajout d'un affichage 3D (beta)
 -   Refonte du système de backup cloud (backup incrémental et chiffré).
--   Ajout d'un système de prise de notes intégré (dans Analyse -> Notes).
+-   Ajout d'un système de prise de note intégré (dans Analyse -> Note).
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
 -   Ajout d'un système d'historique sur la suppression des commandes, équipements, objets, vue, design, design 3d, scénario et utilisateur.
 -   Ajout de l'action jeedom_reboot pour lancer un redémarrage de Jeedom.
--   Ajout d'options dans la fenêtre de génération de cron.
+-   Ajout d'option dans la fenêtre de génération de cron.
 -   Un message est maintenant ajouté si une expression invalide est trouvée lors de l’exécution d'un scénario.
--   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par Jeedom (cas lors du stockage du nom de la commande dans une variable).
+-   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable).
 -   Ajout d'un bouton pour rafraichir les messages du centre message.
 -   Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scénario, pause...).
--   Ajout d'une action "Remise à zéro des SI" sur les scénarios.
--   Possibilité d'ajouter des images en fond sur les vues.
--   Possibilité d'ajouter des images en fond sur les objets.
--   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin.
--   Amélioration du support des () dans le calcul d'expressions.
--   Possibilité d'éditer les scénarios en mode text/json.
--   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom.
--   Possibilité d'ajouter des options dans les rapports.
--   Ajout d'un heartbeat par plugin et de redémarrage automatique de démon en cas de soucis.
--   Ajout des listeners sur la page de moteur de tâches.
--   Optimisations.
--   Possibilité de consulter les logs en version mobile (wepapp).
--   Ajout d'une action tag dans les scénarios (voir documentation).
--   Possibilité d'avoir une vue en plein écran en ajoutant "&fullscreen=1" dans l'url.
--   Ajout de lastCommunication dans les scénarios (pour avoir la date de dernière communication d'un équipement).
--   Mise à jour en temps réel des graphiques (simple, pas ceux calculés ou les timelines).
--   Possibilité de supprimer un élément à partir de la configuration du design.
--   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement).
--   Les widgets scénarios sont maintenant affichés par défaut sur le dashboard
--   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de Jeedom, onglet widget).
--   Possibilité de mettre une icône sur les sénarios.
+-   Ajout d'un action "Remise à zero des SI" sur les scénarios
+-   Possibilité d'ajouter des images en fond sur les vues
+-   Possibilité d'ajouter des images en fond sur les objets
+-   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
+-   Amélioration du support des () dans le calcul d'expressions
+-   Possibilité d'éditer les scénarios en mode text/json
+-   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
+-   Possibilitée d'ajouter des options dans les rapports
+-   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
+-   Ajout des listeners sur la page de moteur de tâche
+-   Optimisations
+-   Possibilité de consulter les logs en version mobile (wepapp)
+-   Ajout d'une action tag dans les scénarios (voir documentation)
+-   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
+-   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+-   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
+-   Possibilité de supprimer un élément à partir de la configuration du design
+-   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
+-   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
+-   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget)
+-   Possibilité de mettre une icone sur les sénarios
 -   Affichage des widgets mobile en une seule colonne
--   Ajout de la gestion des démons sur le moteur de tâches
+-   Ajout de la gestion des démons sur le moteur de tache
 -   Ajout de la fonction color_gradient dans les scénarios
 
 3.2.16
