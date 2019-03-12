@@ -250,7 +250,7 @@ legend {
   position: relative;
   font-family: "Roboto";
   color: var(--txt-color);
-  width: 200px !important;
+  width: 180px !important;
   height: 180px !important;
 }
 #battery .eqLogic-widget .widget-name {
