@@ -118,7 +118,10 @@ legend {
   text-align: center !important;
   color: var(--txt-color);
   background-color: transparent !important;
-  margin-top: 10px;
+  margin-top: 12px;
+}
+.div_object legend > span {
+  margin-left:10px;
 }
 /* legend on equipements pages */
 :not(.div_object) > legend {
