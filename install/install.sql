@@ -284,7 +284,6 @@ CREATE TABLE IF NOT EXISTS `object` (
                         `order` INT NULL,
                         `image` MEDIUMTEXT NULL,
                         `configuration` TEXT NULL,
-                        `image` MEDIUMTEXT NULL,
                         PRIMARY KEY (`id`),
                         UNIQUE INDEX `name_UNIQUE` (`name` ASC))
                         ENGINE = InnoDB
