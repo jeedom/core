@@ -168,7 +168,7 @@ Voici les différents types de blocs disponibles :
 
 -   **Commentaire** : Permet d’ajouter des commentaires à son scénario.
 
-Chacun de ces blocs a ces options pour mieux les manipuler :
+Chacun de ces blocs a ses options pour mieux les manipuler :
 
 -   La case à cocher, à gauche, permet de désactiver complètement le
     bloc sans pour autant le supprimer.
