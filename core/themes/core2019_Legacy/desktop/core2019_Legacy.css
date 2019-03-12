@@ -182,3 +182,27 @@ div[data-subtype=select] select {
 span[style*="transform: translate(-50%, 150%)"] {
   color: var(--linkHoverLight-color);
 }
+
+/* analyse equipment */
+#battery .eqLogic-widget {
+  color: var(--linkHoverLight-color);
+}
+#battery .eqLogic-widget .widget-name span {
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color));
+}
+#battery .eqLogic-widget.critical { 
+  background-color: var(--al-danger-color);
+}
+#battery .eqLogic-widget.warning { 
+  background-color: var(--al-warning-color);
+}
+#battery .eqLogic-widget.good { 
+  background-color: var(--al-success-color);
+}
+#battery .eqLogic-widget .jeedom-batterie {
+  color: var(--linkHoverLight-color);
+}
+#battery .eqLogic-widget .batteryLevel {
+  color: var(--linkHoverLight-color);
+}
