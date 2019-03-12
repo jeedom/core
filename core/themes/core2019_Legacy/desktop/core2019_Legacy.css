@@ -162,7 +162,7 @@ span.cursor > i:hover {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color));
 }
-#battery .eqLogic-widget.critical { 
+#battery .eqLogic-widget.critical {
   background-color: var(--al-danger-color);
 }
 #battery .eqLogic-widget.warning { 
@@ -171,8 +171,8 @@ span.cursor > i:hover {
 #battery .eqLogic-widget.good { 
   background-color: var(--al-success-color);
 }
-#battery .eqLogic-widget .jeedom-batterie {
-  color: var(--linkHoverLight-color);
+#battery .eqLogic-widget .jeedom-batterie i {
+  color: var(--linkHoverLight-color) !important;
 }
 #battery .eqLogic-widget .batteryLevel {
   color: var(--linkHoverLight-color);
