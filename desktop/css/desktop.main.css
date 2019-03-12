@@ -231,8 +231,58 @@ legend {
   font-size: 12px;
 }
 
-
-
+/* analyse equipment */
+#battery {
+  margin-bottom: 40px !important;
+}
+#battery .eqLogic-widget {
+  position: relative;
+  font-family: "Roboto";
+  color: var(--txt-color);
+  width: 200px !important;
+  height: 180px !important;
+}
+#battery .eqLogic-widget .widget-name {
+  text-align: center;
+}
+#battery .eqLogic-widget .widget-name span {
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color));
+  opacity: .8;
+  padding: 0 4px;
+}
+#battery .eqLogic-widget.critical .widget-name { 
+  background-color: var(--al-danger-color);
+}
+#battery .eqLogic-widget.warning .widget-name { 
+  background-color: var(--al-warning-color);
+}
+#battery .eqLogic-widget.good .widget-name { 
+  background-color: var(--al-success-color);
+}
+#battery .eqLogic-widget .jeedom-batterie {
+  color: var(--link-color);
+  font-size: 2.5em;
+  width: 100%;
+  margin-top: -18px;
+  margin-bottom: -25px;
+}
+#battery .eqLogic-widget .jeedom-batterie i {
+  font-size: 2.5em;
+}
+#battery .eqLogic-widget .batteryLevel {
+  color: var(--link-color);
+  font-size: 1.3em;
+  font-weight: bold;
+}
+#battery .pluginName {
+  padding-left: 8px;
+  font-size: 14px;
+}
+#battery .eqLogic-widget .batteryTime {
+  clear: left;
+  padding-left: 5px;
+}
 
 /* __________________________________________________________________________________________________________DIVERS */
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
