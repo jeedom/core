@@ -139,9 +139,6 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-.eqLogic-widget i.fa-refresh {
-  margin-right: calc((var(--border-radius)/4) + 5px)  !important;
-}
 .widget-name span.warning {
   margin-right: 5px;
   color: var(--linkHoverLight-color);
