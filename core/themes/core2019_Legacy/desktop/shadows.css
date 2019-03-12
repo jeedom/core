@@ -10,6 +10,13 @@
  z-index: 5;
 }
 
+#battery .eqLogic-widget {
+  box-shadow: 0 2px 2px rgba(0,0,0,.2);
+}
+#battery .eqLogic-widget:hover {
+  box-shadow: 0 6px 22px rgba(0,0,0,.35);
+}
+
 .panel {
  box-shadow: 0 2px 2px rgba(0,0,0,.1);
  z-index: 0;
