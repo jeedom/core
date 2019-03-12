@@ -1,5 +1,5 @@
-body{
-  font-family: 'noto', sans-serif !important;
+body {
+  font-family: 'Roboto', sans-serif !important;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -23,6 +23,9 @@ body{
 
 .eqLogic-widget .ui-btn{
   margin-bottom : 5px;
+}
+.ui-btn {
+  font-family: 'Roboto' !important;
 }
 
 .eqLogic-widget{
