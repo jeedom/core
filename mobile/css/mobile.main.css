@@ -290,8 +290,7 @@ a.action.ui-btn {
   font-family: "Roboto";
   font-size: 14px !important;
   color: var(--txt-color);
-  width: 200px !important;
-  height: 180px !important;
+  padding-bottom: 10px !important;
 }
 #div_displayBattery .eqLogic-widget .widget-name {
   text-align: center;
