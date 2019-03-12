@@ -19,6 +19,13 @@ body {
   background: rgba(10,10,10,1);
 }
 
+#div_alert {
+  width: 100%;
+  padding: 5px 35px 7px 15px;
+  margin: 5px 0px;
+  max-height: calc(100% - 100px);
+  z-index: 9999;
+}
 
 /* __________________________________________________________________________________________________________LINKS */
 a,
