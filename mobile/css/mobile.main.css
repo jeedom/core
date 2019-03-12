@@ -329,6 +329,15 @@ a.action.ui-btn {
 #div_displayBattery .eqLogic-widget .jeedom-batterie i {
   font-size: 60px !important;
 }
+#div_displayBattery .eqLogic-widget.critical .jeedom-batterie i {
+  color: var(--al-danger-color);
+}
+#div_displayBattery .eqLogic-widget.warning .jeedom-batterie i {
+  color: var(--al-warning-color);
+}
+#div_displayBattery .eqLogic-widget.good .jeedom-batterie i {
+  color: var(--al-success-color);
+}
 #div_displayBattery .eqLogic-widget .batteryLevel {
   color: var(--link-color);
   font-size: 16px;
