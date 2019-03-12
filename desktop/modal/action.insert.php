@@ -17,7 +17,7 @@ if (!isConnect()) {
         <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
         <option value="ask">{{Faire une demande}}</option>
         <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
-        <option value="jeedom_reboot">{{Reémarrer}} <?php echo config::byKey('product_name'); ?></option>
+        <option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
         <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
         <option value="icon" class="scenarioOnly">{{Icône}}</option>
         <option value="alert">{{Alerte}}</option>
