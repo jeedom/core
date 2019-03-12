@@ -97,6 +97,9 @@ Theme Core 2019 @Jeedom
 #div_displayBattery .eqLogic-widget .jeedom-batterie {
   color: var(--eqTitle-color);
 }
+#div_displayBattery .eqLogic-widget .jeedom-batterie i {
+  color: var(--eqTitle-color) !important;
+}
 #div_displayBattery .eqLogic-widget .batteryLevel {
   color: var(--eqTitle-color);
 }
