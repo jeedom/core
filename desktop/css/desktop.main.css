@@ -235,8 +235,9 @@ legend {
 }
 
 /* analyse equipment */
-#battery {
-  margin-bottom: 40px !important;
+#battery,
+#alertEqlogic {
+  margin-bottom: 20px !important;
 }
 #battery .eqLogic-widget {
   position: relative;

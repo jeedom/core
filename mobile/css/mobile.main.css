@@ -281,6 +281,60 @@ a.action.ui-btn {
   font-size: 16px !important;
 }
 
+/* analyse equipment */
+#div_displayBattery {
+  margin-bottom: 40px !important;
+}
+#div_displayBattery .eqLogic-widget {
+  position: relative;
+  font-family: "Roboto";
+  font-size: 14px !important;
+  color: var(--txt-color);
+  padding-bottom: 10px !important;
+}
+#div_displayBattery .eqLogic-widget .widget-name {
+  text-align: center;
+  font-size: 18px !important;
+}
+#div_displayBattery .eqLogic-widget .widget-name span {
+  color: var(--txt-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
+  font-size: 14px !important;
+  opacity: .8;
+  padding: 0 4px;
+}
+#div_displayBattery .eqLogic-widget.critical .widget-name { 
+  background-color: var(--al-danger-color);
+}
+#div_displayBattery .eqLogic-widget.warning .widget-name { 
+  background-color: var(--al-warning-color);
+}
+#div_displayBattery .eqLogic-widget.good .widget-name { 
+  background-color: var(--al-success-color);
+}
+#div_displayBattery .eqLogic-widget .jeedom-batterie {
+  color: var(--link-color);
+  font-size: 80px !important;
+  width: 100%;
+  margin-top: -18px;
+  margin-bottom: -25px;
+}
+#div_displayBattery .eqLogic-widget .jeedom-batterie i {
+  font-size: 80px !important;
+}
+#div_displayBattery .eqLogic-widget .batteryLevel {
+  color: var(--link-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+#div_displayBattery .pluginName {
+  padding-left: 8px;
+}
+#div_displayBattery .eqLogic-widget .batteryTime {
+  clear: left;
+  padding-left: 5px;
+}
+
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
@@ -426,6 +480,12 @@ path.highcharts-graph {
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
+
+#div_displayBattery .eqLogic-widget .widget-name span {
+  border-radius: var(--border-radius) !important;
+}
+
+
 .panel,
 .panel-body,
 .panel-heading {

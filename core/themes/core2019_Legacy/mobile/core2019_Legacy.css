@@ -2,7 +2,7 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("mobile.main.css");
+@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
 
 .ui-link[data-title=Accueil] {
@@ -80,6 +80,27 @@ Theme Core 2019 @Jeedom
 .eqLogic.eqLogic-widget .ui-btn.ui-slider-handle {
   background-color: var(--linkHoverLight-color) !important;
 }
+
+/* analyse equipment */
+#div_displayBattery .eqLogic-widget {
+  color: var(--eqTitle-color);
+}
+#div_displayBattery .eqLogic-widget.critical { 
+  background-color: var(--al-danger-color);
+}
+#div_displayBattery .eqLogic-widget.warning { 
+  background-color: var(--al-warning-color);
+}
+#div_displayBattery .eqLogic-widget.good { 
+  background-color: var(--al-success-color);
+}
+#div_displayBattery .eqLogic-widget .jeedom-batterie {
+  color: var(--eqTitle-color);
+}
+#div_displayBattery .eqLogic-widget .batteryLevel {
+  color: var(--eqTitle-color);
+}
+
 
 /* ___________________________________________________________EQs */
 .ui-overlay-a,

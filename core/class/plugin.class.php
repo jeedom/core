@@ -806,7 +806,7 @@ class plugin {
 
 				$deamon_info = $this->deamon_info();
 				sleep(1);
-				log::add($this->getId(), 'info', 'Info sur le démon : ' . print_r($deamon_info, true));
+				log::add($this->getId(), 'info', 'Info sur le démon : ' . json_encode($deamon_info));
 				if ($deamon_info['state'] == 'ok') {
 					$this->deamon_stop();
 				}
