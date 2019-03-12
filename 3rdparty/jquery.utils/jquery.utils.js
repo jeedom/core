@@ -301,10 +301,6 @@ function is_array(a) {
         }
         if (options.show) {
           $(this).show();
-          $(this).css('padding', '5px 35px 8px 15px');
-          $(this).css('margin', '5px 0');
-          $(this).css('max-height', $(window).height() - 100 + 'px');
-          $(this).css('z-index', '9999');
         }
         
         if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
