@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `object` (
       `display` TEXT NULL,
       `order` INT NULL DEFAULT '9999',
       `comment` TEXT NULL,
+      `tags` VARCHAR(255) NULL,
       PRIMARY KEY (`id`),
       UNIQUE INDEX `unique` (`name` ASC, `object_id` ASC),
       INDEX `eqTypeName` (`eqType_name` ASC),
