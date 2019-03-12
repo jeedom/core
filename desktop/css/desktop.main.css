@@ -2009,7 +2009,8 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 .eqLogic-widget,
-.scenario-widget {
+.scenario-widget,
+#div_alert {
   border-radius: var(--border-radius) !important;
 }
 .eqLogic-widget .widget-name,
