@@ -1024,7 +1024,7 @@ class eqLogic {
 		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
 			return;
 		}
-		if ($_pourcent == '') {
+		if ($_pourcent === '') {
 			$_pourcent = $this->getStatus('battery');
 			$_datetime = $this->getStatus('batteryDatetime');
 		}
@@ -1036,7 +1036,7 @@ class eqLogic {
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($_pourcent != '' && $_pourcent < $danger_threshold) {
+		if ($_pourcent !== '' && $_pourcent < $danger_threshold) {
 			$prevStatus = $this->getStatus('batterydanger', 0);
 			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
@@ -1061,7 +1061,7 @@ class eqLogic {
 					}
 				}
 			}
-		} else if ($_pourcent != '' && $_pourcent < $warning_threshold) {
+		} else if ($_pourcent !== '' && $_pourcent < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
 			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'Le module ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
