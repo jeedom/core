@@ -109,22 +109,23 @@ a:focus {
   color: var(--link-color) !important;
 }
 
-.eqLogic-widget a,
+.eqLogic.eqLogic-widget a,
 span.cursor > i:hover {
   color: var(--linkHoverLight-color) !important;
 }
-.eqLogic-widget a:hover,
+.eqLogic.eqLogic-widget a:hover,
 .scenario-widget a:hover,
 .cmd-widget i:hover {
   opacity: 0.7 !important;
 }
 
-[data-page=dashboard] .state,
-[data-page=dashboard] p.state,
-[data-page=dashboard] .iconCmd > i,
-[data-page=dashboard] .cmd,
-[data-page=dashboard] .cmd-widget > center,
-[data-page=dashboard] .cmd-widget .history {
+.eqLogic.eqLogic-widget .state,
+.scenario-widget .state,
+.eqLogic.eqLogic-widget p.state,
+.eqLogic.eqLogic-widget .iconCmd > i,
+.eqLogic.eqLogic-widget .cmd,
+.eqLogic.eqLogic-widget .cmd-widget > center,
+.eqLogic.eqLogic-widget .cmd-widget .history {
   color: var(--linkHoverLight-color) !important;
 }
 
@@ -151,6 +152,30 @@ span.cursor > i:hover {
 #bt_displayObject {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
+}
+
+/* analyse equipment */
+#battery .eqLogic-widget {
+  color: var(--linkHoverLight-color);
+}
+#battery .eqLogic-widget .widget-name span {
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color));
+}
+#battery .eqLogic-widget.critical { 
+  background-color: var(--al-danger-color);
+}
+#battery .eqLogic-widget.warning { 
+  background-color: var(--al-warning-color);
+}
+#battery .eqLogic-widget.good { 
+  background-color: var(--al-success-color);
+}
+#battery .eqLogic-widget .jeedom-batterie {
+  color: var(--linkHoverLight-color);
+}
+#battery .eqLogic-widget .batteryLevel {
+  color: var(--linkHoverLight-color);
 }
 
 div[data-subtype=select],
@@ -180,29 +205,5 @@ div[data-subtype=select] select {
 
 [data-subtype=slider] > div > span,
 span[style*="transform: translate(-50%, 150%)"] {
-  color: var(--linkHoverLight-color);
-}
-
-/* analyse equipment */
-#battery .eqLogic-widget {
-  color: var(--linkHoverLight-color);
-}
-#battery .eqLogic-widget .widget-name span {
-  color: var(--txt-color);
-  background-color: rgb(var(--bg-color));
-}
-#battery .eqLogic-widget.critical { 
-  background-color: var(--al-danger-color);
-}
-#battery .eqLogic-widget.warning { 
-  background-color: var(--al-warning-color);
-}
-#battery .eqLogic-widget.good { 
-  background-color: var(--al-success-color);
-}
-#battery .eqLogic-widget .jeedom-batterie {
-  color: var(--linkHoverLight-color);
-}
-#battery .eqLogic-widget .batteryLevel {
   color: var(--linkHoverLight-color);
 }
