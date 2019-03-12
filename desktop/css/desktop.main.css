@@ -251,7 +251,7 @@ legend {
   font-family: "Roboto";
   color: var(--txt-color);
   width: 180px !important;
-  height: 180px !important;
+  height: 155px !important;
 }
 #battery .eqLogic-widget .widget-name {
   text-align: center;
@@ -273,13 +273,21 @@ legend {
 }
 #battery .eqLogic-widget .jeedom-batterie {
   color: var(--link-color);
-  font-size: 2.5em;
-  width: 100%;
-  margin-top: -18px;
-  margin-bottom: -25px;
+  margin-top: -12px;
+  margin-bottom: -20px;
 }
 #battery .eqLogic-widget .jeedom-batterie i {
-  font-size: 2.5em;
+  vertical-align: middle;
+  font-size: 75px !important;
+}
+#battery .eqLogic-widget .jeedom-batterie span {
+  position: relative;
+  display: inline-block;
+  font-family: "Roboto";
+  color: var(--link-color);
+  font-size: 18px;
+  font-weight: bold;
+  top: 3px;
 }
 #battery .eqLogic-widget.critical .jeedom-batterie i {
   color: var(--al-danger-color);
@@ -289,11 +297,6 @@ legend {
 }
 #battery .eqLogic-widget.good .jeedom-batterie i {
   color: var(--al-success-color);
-}
-#battery .eqLogic-widget .batteryLevel {
-  color: var(--link-color);
-  font-size: 1.3em;
-  font-weight: bold;
 }
 #battery .pluginName {
   padding-left: 8px;
