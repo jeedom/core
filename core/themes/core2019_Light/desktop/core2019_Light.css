@@ -31,7 +31,7 @@ a:focus {
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
-:not(.batteryListContainer) > .eqLogic-widget {
+.eqLogic-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   color: var(--txt-color) !important;
 }
@@ -114,3 +114,4 @@ a:focus {
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
 }
+
