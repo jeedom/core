@@ -235,8 +235,9 @@ legend {
 }
 
 /* analyse equipment */
-#battery {
-  margin-bottom: 40px !important;
+#battery,
+#alertEqlogic {
+  margin-bottom: 20px !important;
 }
 #battery .eqLogic-widget {
   position: relative;
@@ -2008,7 +2009,8 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 .eqLogic-widget,
-.scenario-widget {
+.scenario-widget,
+#div_alert {
   border-radius: var(--border-radius) !important;
 }
 .eqLogic-widget .widget-name,

@@ -1249,7 +1249,7 @@
       "Rechercher": "Rechercher",
       "Vider les logs": "Vider les logs",
       "Télécharger": "Télécharger",
-      "Log vidés avec succès": "Log vidés avec succès",
+      "Logs vidés avec succès": "Logs vidés avec succès",
       "Vider le log": "Vider le log",
       "Log vidé avec succès": "Log vidé avec succès"
     },
@@ -1706,7 +1706,7 @@
       "Programmation": "Programmation",
       "Timeout (min)": "Timeout (min)",
       "Dernier lancement": "Dernier lancement",
-      "Derniere durée": "Derniere durée",
+      "Dernière durée": "Dernière durée",
       "Statut": "Statut",
       "Activer le système cron": "Activer le système cron",
       "Dernière durée": "Dernière durée"
@@ -2248,7 +2248,7 @@
       "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
       "Taille": "Taille",
       "Utilisation": "Utilisation",
-      "Informations complementaires": "Informations complementaires",
+      "Informations complémentaires": "Informations complémentaires",
       "Langue disponible": "Langue disponible",
       "Market": "Market",
       "Conseillé": "Conseillé",
@@ -2508,7 +2508,7 @@
       "- que la question n'a pas déjà été posée sur le <a href='https:\/\/jeedom.com\/forum'>forum<\/a>": "- que la question n'a pas déjà été posée sur le <a href='https:\/\/jeedom.com\/forum'>forum<\/a>",
       "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais",
       "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>": "- que la réponse n'est pas déjà dans la <a href='https:\/\/jeedom.github.io\/documentation'>documentation<\/a>",
-      "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.",
+      "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celui-ci est public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https:\/\/jeedom.atlassian.net\/issues\/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici<\/a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.",
       "Etape 2 : Catégorie et type de la demande": "Etape 2 : Catégorie et type de la demande",
       "Type": "Type",
       "Aucun": "Aucun",
@@ -2697,7 +2697,7 @@
       "Chargement...": "Chargement..."
     },
     "desktop\/3d.php": {
-      "Plan 3d inconnu. Verifier l'id": "Plan 3d inconnu. Verifier l'id"
+      "Plan 3d inconnu. Vérifier l'id": "Plan 3d inconnu. Vérifier l'id"
     },
     "desktop\/php\/system.php": {
       "Rechercher": "Rechercher",
@@ -2770,7 +2770,7 @@
       "Ajouter": "Ajouter",
       "Note crée avec succès": "Note crée avec succès",
       "Note sauvegardée avec succès": "Note sauvegardée avec succès",
-      "Etês vous sur de vouloir supprimer la note : ": "Etês vous sur de vouloir supprimer la note : ",
+      "Etês vous sûr de vouloir supprimer la note : ": "Etês vous sûr de vouloir supprimer la note : ",
       "Note supprimée avec succès": "Note supprimée avec succès",
       "Note créée avec succès": "Note créée avec succès"
     },

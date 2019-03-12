@@ -9,7 +9,7 @@ Theme Core 2019 @Jeedom
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
-  --bg-color: 34, 35, 36;
+  --bg-color: 38, 38, 38;
   --bg-modal-color: rgb(45, 47, 49);
 
   --txt-color: rgb(178, 178, 178);
@@ -22,16 +22,16 @@ Theme Core 2019 @Jeedom
   --sc-formTxt-color: rgb(62, 62, 62);
   --sc-lightTxt-color: rgb(230, 230, 230);
 
-  --el-defaultColor: rgb(28, 28, 28);
+  --el-defaultColor: rgb(30, 32, 33);
   --defaultBkg-color: rgb(50, 51, 51);
   --form-bg-color: rgb(53, 53, 53);
-  --btnEq-default-color: rgb(67, 67, 68);
+  --btnEq-default-color: rgb(62, 62, 62);
   --btn-default-color: rgb(69, 70, 72);
   --panel-bg-color: rgb(44, 44, 44);
 
   --eqTitle-color: rgb(240, 240, 240);
 
-  --eq-bg-color: 44, 44, 44;
+  --eq-bg-color: 42, 42, 42;
   --cat-security-color: 145, 65, 60;
   --cat-heating-color: 46, 98, 138;
   --cat-automatism-color: 100, 100, 100;
@@ -50,6 +50,16 @@ Theme Core 2019 @Jeedom
   --al-success-color: rgb(50, 130, 60);
   --al-warning-color: rgb(195, 125, 40);
   --al-danger-color: rgb(160, 50, 50);
+  
+  --scBloc-color1: rgb(130,120,102);
+  --scBloc-color2: rgb(122,112,100);
+  --scBloc-color3: rgb(110,102, 98);
+  --scBloc-color4: rgb(100, 96, 96);
+  --scBloc-color5: rgb(86, 86, 85);
+  --scBloc-color6: rgb(74, 76, 78);
+  --scBloc-color7: rgb(65, 69, 71);
+  --scBloc-color8: rgb(60, 64, 67);
+  --scBloc-color0: rgb(48, 51, 54);
 
   --shd-color: rgba(15, 15, 15, 0.85);
 }
