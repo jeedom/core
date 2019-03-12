@@ -543,8 +543,10 @@ class eqLogic {
 		} else {
 			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $this->getName() . '</a><br/><span>' . $object_name . '</span></div>';
 		}
-		$html .= '<center class="jeedom-batterie"><i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%"></i></center>';
-		$html .= '<center class="batteryLevel"><span>' . $this->getStatus('battery', -2) . '%</span></center>';
+		$html .= '<center class="jeedom-batterie">';
+		$html .= '<i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%"></i>';
+		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
+		$html .= '</center>';
 		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
 		if ($this->getConfiguration('battery_type', '') != '') {
 			$html .= '<span class="pull-right" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
