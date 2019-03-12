@@ -1354,15 +1354,19 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 }
 .element .bt_repeat {
   position: absolute;
-  top: 1px;
+  top: 2px;
   left: 56px;
   margin: 0;
   padding: 0;
 }
 .element .bt_repeat i {
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
-.bt_removeElement {
+.element .bt_repeat i.text-danger {
+  color: var(--al-warning-color);
+  font-size: 14px !important;
+}
+.element .bt_removeElement {
   position: absolute;
   top: 0;
   right: 0;
@@ -1456,13 +1460,21 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 
 
 /* Disabled */
-.disableElement,
+.element:not(.disableElement),
+.element :not(.disableSubElement) {
+  opacity: 1 !important;
+  transition-property: opacity;
+  transition-duration: 0.6s;
+}
+.element .disableElement,
 .element .disableSubElement {
-  opacity: 0.5 !important;
+  opacity: 0.65 !important;
+  transition-property: opacity;
+  transition-duration: 0.6s;
 }
 .disableElement input[type=checkbox][data-l2key=enable],
 .element .disableSubElement input[type=checkbox][data-l2key=enable] {
-  background-color: red !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 /* Collapsed */
@@ -1475,7 +1487,6 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
 .elementCollapse .subElementFields {
   display: none !important;
 }
-
 .element .legendHidden {
   display: none !important;
 }
@@ -1484,6 +1495,9 @@ textarea.expressionAttr:not([data-l2key=graphColor]) {
   display: inline !important;
   left: 25px;
   padding-left: 0 !important;
+}
+.elementCollapse .bt_collapse {
+  color: rgb(var(--bg-color)) !important;
 }
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
