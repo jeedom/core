@@ -135,7 +135,10 @@ legend {
 .eqLogic-widget i.fa-refresh {
   margin-right: calc((var(--border-radius)/4) + 5px)  !important;
 }
-
+.widget-name span.warning {
+  margin-right: 5px;
+  color: var(--linkHoverLight-color);
+}
 
 /* time on time widgets too low */
 .timeCmd.label {
@@ -2013,6 +2016,10 @@ div[id^=__lpform_] { /*lastpass*/
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+
+#battery .eqLogic-widget .widget-name span {
+  border-radius: var(--border-radius) !important;
 }
 
 .panel {
