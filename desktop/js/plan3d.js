@@ -372,20 +372,19 @@ jeedom3d.text.reset = function(_info,_object){
 }
 
 jeedom3d.text.create = function(_info,_object) {
-  if(!_info.additionalData.cmds){
-    return;
-  }
   var text = jeedom3d.text.generate(_info,_object,_info.additionalData.text);
   scene.add(text);
   jeedom3d.text.data[_object.uuid] = text.uuid;
-  for(var i in _info.additionalData.cmds){
-    cmd_id = _info.additionalData.cmds[i];
-    if(!CMDS[cmd_id]){
-      CMDS[cmd_id] = {'text' :  []};
-    }else if(!CMDS[cmd_id]['text']){
-      CMDS[cmd_id]['text'] = [];
+  if(_info.additionalData.cmds){
+    for(var i in _info.additionalData.cmds){
+      cmd_id = _info.additionalData.cmds[i];
+      if(!CMDS[cmd_id]){
+        CMDS[cmd_id] = {'text' :  []};
+      }else if(!CMDS[cmd_id]['text']){
+        CMDS[cmd_id]['text'] = [];
+      }
+      CMDS[cmd_id]['text'].push({text : text,info:_info,object : _object});
     }
-    CMDS[cmd_id]['text'].push({text : text,info:_info,object : _object});
   }
 };
 
