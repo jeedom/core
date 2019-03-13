@@ -71,7 +71,7 @@ sendVarToJS('view', utils::o2a($view));
 
     $('#bt_removeBackgroundImage').off('click').on('click', function () {
       jeedom.view.removeImage({
-        view: view.id,
+        id: view.id,
         error: function (error) {
             $('#div_alertViewConfigure').showAlert({message: error.message, level: 'danger'});
         },
