@@ -701,6 +701,8 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
+-   **Redémarrer Jeedom** (jeedom_reboot) : Demande à Jeedom de redémarrer.
+
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
     pour une interaction par exemple.
 
