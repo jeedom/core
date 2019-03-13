@@ -247,7 +247,7 @@ try {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
 		$object->setImage('data', '');
-		$object->setImage('sha1', '');
+		$object->setImage('sha512', '');
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
 		ajax::success();
