@@ -4,21 +4,6 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<style>
-.viewZone{
-	padding: 9.5px;
-	margin: 0 0px 5px;
-	font-size: 13px;
-	line-height: 20px;
-	background-color: #f5f5f5;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0,0,0,0.15);
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-</style>
-
 <div class="row row-overflow">
 	<div class="col-lg-2 col-md-3 col-sm-4">
 		<div class="bs-sidebar">
@@ -36,9 +21,9 @@ if (!isConnect('admin')) {
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="col-lg-10 col-md-9 col-sm-8" style="display: none;" id="div_view">
-		<legend style="height: 35px;">
+		<legend>
 			{{Edition}}
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
@@ -46,10 +31,10 @@ if (!isConnect('admin')) {
 				</span>
 			</div>
 		</legend>
-		
+
 		<div id="div_viewZones" style="margin-top: 10px;"></div>
 	</div>
-	
+
 </div>
 
 <div class="modal fade" id="md_addEditviewZone">
