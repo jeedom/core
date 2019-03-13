@@ -162,6 +162,9 @@ class repo_samba {
 	public static function cleanBackupFolder() {
 		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
+			if($file['filename'] == '..' || $file['filename'] == '.'){
+				continue;
+			}
 			if ($timelimit > strtotime($file['datetime'])) {
 				echo 'Delete backup too old : '.json_encode($file);
 				$cmd = self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
