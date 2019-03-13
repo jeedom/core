@@ -181,10 +181,10 @@ try {
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		$planHeader->setImage('data', '');
-		$planHeader->setImage('sha1', '');
+		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
+		$planHeader->setImage('sha512', '');
 		$planHeader->save();
-		@rrmdir(__DIR__ . '/../../core/img/plan');
+		@unlink( __DIR__ . '/../../data/plan/' . $filename);
 		ajax::success();
 	}
 	
