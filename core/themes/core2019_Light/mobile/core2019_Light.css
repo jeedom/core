@@ -108,7 +108,8 @@ a.action.ui-btn {
 	color: var(--linkHover-color) !important;
 }
 
-.fa-refresh,
+.eqLogic.eqLogic-widget .fa-refresh,
+.scenario.scenario-widget .fa-refresh,
 .statusCmd > i {
 	color: var(--eqTitle-color) !important;
 }
