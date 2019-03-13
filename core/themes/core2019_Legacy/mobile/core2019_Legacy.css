@@ -40,7 +40,7 @@ Theme Core 2019 @Jeedom
 }
 
 .scenario-widget {
-	background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
+  background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
 }
 
 .eqLogic.eqLogic-widget[data-category=security] .ui-btn {
@@ -127,7 +127,7 @@ p.state {
 
 /* buttons */
 .eqLogic.eqLogic-widget .ui-input-text input {
-	color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color);
 }
 
 .objectSummaryParent {
@@ -168,22 +168,22 @@ p.state {
 
 /* select */
 .ui-select .ui-btn {
-	background-color: var(--linkHoverLight-color) !important;
-	color: var(--linkHover-color) !important;
+  background-color: var(--linkHoverLight-color) !important;
+  color: var(--linkHover-color) !important;
 }
 .ui-select .ui-btn:hover {
-	background-color: var(--sc-form-color) !important;
+  background-color: var(--sc-form-color) !important;
   opacity: 0.5;
-	color: var(--linkHover-color);
+  color: var(--linkHover-color);
 }
 .ui-select option {
-	background-color: var(--bg-modal-color) !important;
-	color: var(--link-color);
+  background-color: var(--bg-modal-color) !important;
+  color: var(--link-color);
 }
 
 .eqLogic.eqLogic-widget .ui-select .ui-btn {
-	background-color: transparent !important;
-	color: var(--linkHoverLight-color) !important;
+  background-color: transparent !important;
+  color: var(--linkHoverLight-color) !important;
 }
 
 .ui-checkbox {
@@ -222,7 +222,7 @@ p.state {
   color: var(--txt-color) !important;
 }
 .highcharts-plot-band {
-  fill: var(--bg-color) !important;
+  fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-grid-line {
   stroke: var(--defaultBkg-color);
