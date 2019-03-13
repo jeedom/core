@@ -302,7 +302,7 @@ a.action.ui-btn {
 }
 #div_displayBattery .eqLogic-widget .widget-name {
   text-align: center;
-  font-size: 16.5px !important;
+  font-size: 16px !important;
 }
 #div_displayBattery .eqLogic-widget .widget-name span {
   color: var(--txt-color) !important;
@@ -349,6 +349,7 @@ a.action.ui-btn {
 }
 #div_displayBattery .pluginName {
   padding-left: 8px;
+  font-weight: bold;
 }
 #div_displayBattery .eqLogic-widget .batteryTime {
   clear: left;
