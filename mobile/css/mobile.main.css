@@ -363,7 +363,7 @@ a.action.ui-btn {
   color: var(--al-success-color);
 }
 #div_displayBattery .pluginName {
-  padding-left: 8px;
+  padding-left: 5px;
   font-weight: bold;
 }
 #div_displayBattery .eqLogic-widget .batteryTime {
