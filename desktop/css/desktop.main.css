@@ -454,6 +454,14 @@ pre {
   border: none !important;
 }
 
+.viewZone{
+	padding: 9.5px;
+	margin: 0 0px 5px;
+	font-size: 13px;
+	line-height: 20px;
+	background: var(--bg-modal-color);
+}
+
 /* context menus */
 .context-menu-list {
   padding: 0 !important;
@@ -993,6 +1001,10 @@ select option {
 select optgroup {
   color: var(--txt-color) !important;
   background: var(--bg-modal-color) !important;
+}
+
+.input-xs {
+  padding: 0 5px !important;
 }
 
 
