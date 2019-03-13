@@ -782,7 +782,11 @@ function displayPlan(_code) {
                 $('.div_displayObject').width($('.div_displayObject img').attr('data-sixe_x')).height($('.div_displayObject img').attr('data-sixe_y'));
                 $('.div_displayObject img').css('height', ($('.div_displayObject img').attr('data-sixe_y')) + 'px').css('width', ($('.div_displayObject img').attr('data-sixe_x')) + 'px');
             }
-            $('.div_backgroundPlan').height($('.div_displayObject').height());
+            if($('body').height() > $('.div_displayObject').height()){
+              $('.div_backgroundPlan').height($('body').height());
+            }else{
+              $('.div_backgroundPlan').height($('.div_displayObject').height());
+            }
             $('.div_grid').width($('.div_displayObject').width()).height($('.div_displayObject').height());
             if(deviceInfo.type != 'desktop'){
                 $('meta[name="viewport"]').prop('content', 'width=' + $('.div_displayObject').width() + ',height=' + $('.div_displayObject').height());
