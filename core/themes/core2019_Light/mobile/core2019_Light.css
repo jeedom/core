@@ -153,7 +153,7 @@ a.action.ui-btn {
 	color: var(--txt-color) !important;
 }
 .highcharts-plot-band {
-	fill: var(--bg-color) !important;
+	fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-grid-line {
 	stroke: var(--defaultBkg-color);
