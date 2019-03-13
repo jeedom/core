@@ -169,8 +169,7 @@ try {
 		if (!is_object($view)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		$view->setImage('data', '');
-		$view->setImage('sha1', '');
+		$view->setImage('sha512', '');
 		$view->save();
 		@rrmdir(__DIR__ . '/../../core/img/view');
 		ajax::success();
