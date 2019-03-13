@@ -301,6 +301,7 @@ legend {
 #battery .pluginName {
   padding-left: 8px;
   font-size: 14px;
+  font-weight: bold;
 }
 #battery .eqLogic-widget .batteryTime {
   clear: left;
