@@ -18,6 +18,12 @@
 $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
+$(function(){
+  $('.packeryContainer').packery({
+    itemSelector: ".object",
+    gutter : 0}
+  );
+});
 
 $( ".eqLogicSortable" ).sortable({
   connectWith: ".eqLogicSortable",
@@ -89,6 +95,10 @@ $('.showCmd').on('click',function(){
     $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
     $(this).closest('.eqLogic').find('.cmdSortable').hide();
   }
+  $('.packeryContainer').packery({
+    itemSelector: ".object",
+    gutter : 0}
+  );
 });
 
 $('.showEqLogic').on('click',function(){
@@ -99,6 +109,10 @@ $('.showEqLogic').on('click',function(){
     $(this).removeClass('fa-chevron-down').addClass('fa-chevron-right');
     $(this).closest('.object').find('.eqLogic').hide();
   }
+  $('.packeryContainer').packery({
+    itemSelector: ".object",
+    gutter : 0}
+  );
 });
 
 $('#cb_actifDisplay').on('change',function(){

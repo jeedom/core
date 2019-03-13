@@ -66,7 +66,7 @@ foreach ($objects as $object) {
 <span></span>
 <br/>
 <br/>
-<div class="row">
+<div class="row packeryContainer">
 	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">
 		<div style="margin-bottom: 1em; padding:0.2em 0.5em;">
 			<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
@@ -86,7 +86,7 @@ foreach ($objects as $object) {
 					echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
 					echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 					echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-
+					
 					echo '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
@@ -101,19 +101,15 @@ foreach ($objects as $object) {
 		</div>
 	</div>
 	<?php
-	$i = 1;
 	foreach ($objects as $object) {
 		$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
-		if ($i == 0) {
-			echo '<div class="row">';
-		}
 		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
 		echo '<div style="margin-bottom: 1em; padding:0.2em 0.5em; background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
 		echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
 		echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 		echo '<i style="position:relative;top : 3px;" class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 		echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
-
+		
 		echo '</legend>';
 		echo '<ul class="eqLogicSortable">';
 		foreach ($eqLogics[$object->getId()] as $eqLogic) {
@@ -142,23 +138,8 @@ foreach ($objects as $object) {
 		echo '</ul>';
 		echo '</div>';
 		echo '</div>';
-		$i++;
-		if ($i > 2) {
-			$i = 0;
-		}
-		if ($i == 0) {
-			echo '</div>';
-		}
-	}
-	if ($i != 0) {
-		while ($i <= 2) {
-			echo '<div class="col-xs-4">';
-			echo '</div>';
-			$i++;
-		}
-		echo '</div>';
 	}
 	?>
+</div>
 
-
-	<?php include_file('desktop', 'display', 'js');?>
+<?php include_file('desktop', 'display', 'js');?>
