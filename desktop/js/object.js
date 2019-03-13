@@ -72,7 +72,7 @@ $('#in_searchObject').keyup(function () {
 
 $('#bt_removeBackgroundImage').off('click').on('click', function () {
   jeedom.object.removeImage({
-    view: $('.objectAttr[data-l1key=id]').value(),
+    id: $('.objectAttr[data-l1key=id]').value(),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
