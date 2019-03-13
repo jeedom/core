@@ -299,7 +299,7 @@ legend {
   color: var(--al-success-color);
 }
 #battery .pluginName {
-  padding-left: 8px;
+  padding-left: 5px;
   font-size: 14px;
   font-weight: bold;
 }
