@@ -2,6 +2,12 @@
 Changelog
 =========
 
+
+3.3.17
+=====
+
+- Correction d'une erreur sur les backups samba
+
 3.3.16
 =====
 
