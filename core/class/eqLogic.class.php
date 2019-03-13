@@ -557,9 +557,9 @@ class eqLogic {
 			$html .= '<i class="icon techno-fingerprint41 pull-right" title="Seuil manuel défini"></i>';
 		}
 		if ($batteryTime != 'NA') {
-			$html .= '<i class="icon divers-calendar2 pull-right" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) (' . $batteryTime . ')"> ('.$batterySince.'j)</i>';
+			$html .= '<i class="icon divers-calendar2" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) (' . $batteryTime . ')"></i><span> ('.$batterySince.'j)</span>';
 		} else {
-			$html .= '<i class="icon divers-calendar2 pull-right" title="Pas de date de changement de pile(s) renseignée"></i>';
+			$html .= '<i class="icon divers-calendar2" title="Pas de date de changement de pile(s) renseignée"></i>';
 		}
 		$html .= '</span>';
 		$html .= '</div>';
