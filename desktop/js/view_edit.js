@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -252,7 +251,7 @@ function addEditviewZone(_viewZone) {
     if (init(_viewZone.emplacement) == '') {
         var id = $('#div_viewZones .viewZone').length;
         var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone'+id+'">';
-        div += '<legend style="height: 35px;"><span class="viewZoneAttr" data-l1key="name"></span>';
+        div += '<legend><span class="viewZoneAttr" data-l1key="name"></span>';
         div += '<a class="btn btn-danger btn-xs pull-right bt_removeviewZone"><i class="far fa-trash-alt"></i> Supprimer</a>';
         div += ' <a class="btn btn-warning btn-xs pull-right bt_editviewZone"><i class="fas fa-pencil-alt"></i> Editer</a>';
         if (init(_viewZone.type, 'widget') == 'graph') {
@@ -262,85 +261,85 @@ function addEditviewZone(_viewZone) {
         div += '<a class="btn btn-primary btn-xs pull-right bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> Ajouter colonne</a>';
     }else{
      div += '<a class="btn btn-primary btn-xs pull-right bt_addViewWidget"><i class="fas fa-plus-circle"></i> Ajouter Widget</a>';
- }
- div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
- div += '<option value="12">{{Largeur}} 12</option>';
- div += '<option value="11">{{Largeur}} 11</option>';
- div += '<option value="10">{{Largeur}} 10</option>';
- div += '<option value="9">{{Largeur}} 9</option>';
- div += '<option value="8">{{Largeur}} 8</option>';
- div += '<option value="7">{{Largeur}} 7</option>';
- div += '<option value="6">{{Largeur}} 6</option>';
- div += '<option value="5">{{Largeur}} 5</option>';
- div += '<option value="4">{{Largeur}} 4</option>';
- div += '<option value="3">{{Largeur}} 3</option>';
- div += '<option value="2">{{Largeur}} 2</option>';
- div += '<option value="1">{{Largeur}} 1</option>';
- div += '</select>';
- if (init(_viewZone.type, 'widget') == 'graph') {
-    div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
-    div += '<option value="30 min">{{30 min}}</option>';
-    div += '<option value="1 hour">{{1 heure}}</option>';
-    div += '<option value="1 day">{{Jour}}</option>';
-    div += '<option value="7 days">{{Semaine}}</option>';
-    div += '<option value="1 month">{{Mois}}</option>';
-    div += '<option value="1 year">{{Année}}</option>';
-    div += '<option value="all">{{Tous}}</option>';
-    div += '</select>';
-}
-div += '</legend>';
-div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type">';
-if (init(_viewZone.type, 'widget') == 'graph') {
-    div += '<table class="table table-condensed div_viewData">';
-    div += '<thead>';
-    div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
-    div += '</thead>';
-    div += '<tbody>';
-    div += '</tbody>';
-    div += '</table>';
-}else if (init(_viewZone.type, 'widget') == 'table') {
-  if (init(_viewZone.configuration.nbcol) == '') {
-    _viewZone.configuration.nbcol = 2;
-}
-if (init(_viewZone.configuration.nbline) == '') {
-    _viewZone.configuration.nbline = 2;
-}
-div += '<table class="table table-condensed div_viewData">';
-div += '<thead>';
-div += '<tr>';
-div += '<td></td>';
-for(i=0;i<_viewZone.configuration.nbcol;i++){
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>';
-}
-div += '</thead>';
-div += '<tbody>';
-for(j=0;j<_viewZone.configuration.nbline;j++){
-    div += '<tr class="viewData">';
-    div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
-    for(i=0;i<_viewZone.configuration.nbcol;i++){
-        div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
     }
-    div += '</tr>';
-}
-div += '</tbody>';
-div += '</table>';
-}else{
+     div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
+     div += '<option value="12">{{Largeur}} 12</option>';
+     div += '<option value="11">{{Largeur}} 11</option>';
+     div += '<option value="10">{{Largeur}} 10</option>';
+     div += '<option value="9">{{Largeur}} 9</option>';
+     div += '<option value="8">{{Largeur}} 8</option>';
+     div += '<option value="7">{{Largeur}} 7</option>';
+     div += '<option value="6">{{Largeur}} 6</option>';
+     div += '<option value="5">{{Largeur}} 5</option>';
+     div += '<option value="4">{{Largeur}} 4</option>';
+     div += '<option value="3">{{Largeur}} 3</option>';
+     div += '<option value="2">{{Largeur}} 2</option>';
+     div += '<option value="1">{{Largeur}} 1</option>';
+     div += '</select>';
+     if (init(_viewZone.type, 'widget') == 'graph') {
+        div += '<select class="pull-right viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">';
+        div += '<option value="30 min">{{30 min}}</option>';
+        div += '<option value="1 hour">{{1 heure}}</option>';
+        div += '<option value="1 day">{{Jour}}</option>';
+        div += '<option value="7 days">{{Semaine}}</option>';
+        div += '<option value="1 month">{{Mois}}</option>';
+        div += '<option value="1 year">{{Année}}</option>';
+        div += '<option value="all">{{Tous}}</option>';
+        div += '</select>';
+    }
+    div += '</legend>';
+    div += '<input style="display : none;" class="viewZoneAttr" data-l1key="type">';
+    if (init(_viewZone.type, 'widget') == 'graph') {
+        div += '<table class="table table-condensed div_viewData">';
+        div += '<thead>';
+        div += '<tr><th></th><th>{{Nom}}</th><th>{{Couleur}}</th><th>{{Type}}</th><th>{{Groupement}}</th><th>{{Echelle}}</th><th>{{Escalier}}</th><th>{{Empiler}}</th><th>{{Variation}}</th></tr>';
+        div += '</thead>';
+        div += '<tbody>';
+        div += '</tbody>';
+        div += '</table>';
+    }else if (init(_viewZone.type, 'widget') == 'table') {
+      if (init(_viewZone.configuration.nbcol) == '') {
+        _viewZone.configuration.nbcol = 2;
+    }
+    if (init(_viewZone.configuration.nbline) == '') {
+        _viewZone.configuration.nbline = 2;
+    }
     div += '<table class="table table-condensed div_viewData">';
     div += '<thead>';
-    div += '<tr><th></th><th>{{Nom}}</th></tr>';
+    div += '<tr>';
+    div += '<td></td>';
+    for(i=0;i<_viewZone.configuration.nbcol;i++){
+        div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>';
+    }
     div += '</thead>';
     div += '<tbody>';
+    for(j=0;j<_viewZone.configuration.nbline;j++){
+        div += '<tr class="viewData">';
+        div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
+        for(i=0;i<_viewZone.configuration.nbcol;i++){
+            div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
+        }
+        div += '</tr>';
+    }
     div += '</tbody>';
     div += '</table>';
-}
-div += '</div>';
-$('#div_viewZones').append(div);
-$('#div_viewZones .viewZone:last').setValues(_viewZone,'.viewZoneAttr');
-$("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", cursor: "move", items: ".viewData", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-} else {
-    $('#' + _viewZone.emplacement).find('.viewZoneAttr[data-l1key=name]').html(_viewZone.name);
-}
-}
+    }else{
+        div += '<table class="table table-condensed div_viewData">';
+        div += '<thead>';
+        div += '<tr><th></th><th>{{Nom}}</th></tr>';
+        div += '</thead>';
+        div += '<tbody>';
+        div += '</tbody>';
+        div += '</table>';
+    }
+    div += '</div>';
+    $('#div_viewZones').append(div);
+    $('#div_viewZones .viewZone:last').setValues(_viewZone,'.viewZoneAttr');
+    $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", cursor: "move", items: ".viewData", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+    } else {
+        $('#' + _viewZone.emplacement).find('.viewZoneAttr[data-l1key=name]').html(_viewZone.name);
+    }
+    }
 
 $('#div_viewZones').on('click','.bt_addViewTable',function(){
     var table = $(this).closest('.viewZone').find('table.div_viewData');
