@@ -189,7 +189,22 @@ p.state {
   font-size: 12px !important;
 }
 
-
+#table_cron td,
+#table_deamon td,
+#table_health td {
+  font-size: 13px;
+  padding: 0;
+}
+#table_cron td a,
+#table_deamon td a,
+#table_health td a {
+  width: 12px;
+  padding: 6px;
+}
+#table_cron td a i,
+#table_deamon td a i {
+  font-size: 12px !important;
+}
 /* home grid buttons */
 .ui-page-theme-a .ui-btn.ui-btn-raised i,
 .ui-link i {
