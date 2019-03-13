@@ -218,11 +218,9 @@ class plan3d {
 		}
 		if ($this->getLink_type() == 'eqLogic') {
 			if ($this->getConfiguration('3d::widget') == 'text') {
-				if (is_object($cmd) && $cmd->getType() == 'info') {
-					$return['text'] = scenarioExpression::setTags($this->getConfiguration('3d::widget::text::text'));
-					preg_match_all("/#([0-9]*)#/", $this->getConfiguration('3d::widget::text::text'), $matches);
-					$return['cmds'] = $matches[1];
-				}
+				$return['text'] = scenarioExpression::setTags($this->getConfiguration('3d::widget::text::text'));
+				preg_match_all("/#([0-9]*)#/", $this->getConfiguration('3d::widget::text::text'), $matches);
+				$return['cmds'] = $matches[1];
 			}
 			if ($this->getConfiguration('3d::widget') == 'door') {
 				$return['cmds'] = array(str_replace('#', '', $this->getConfiguration('3d::widget::door::window')), str_replace('#', '', $this->getConfiguration('3d::widget::door::shutter')));
