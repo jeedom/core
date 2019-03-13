@@ -358,16 +358,29 @@ jeedom3d.light.update = function(_options) {
 /***************************************TEXT***************************/
 
 jeedom3d.text = function() {};
+jeedom3d.text.data = {};
+
+jeedom3d.text.reset = function(_info,_object){
+  if(!jeedom3d.text.data[_object.uuid]){
+    return;
+  }
+  for(var j in scene.children){
+    if(scene.children[j].uuid == jeedom3d.text.data[_object.uuid]){
+      scene.remove(scene.children[j]);
+    }
+  }
+}
 
 jeedom3d.text.create = function(_info,_object) {
-  if(!_info.additionalData.cmd_id){
+  if(!_info.additionalData.cmds){
     return;
   }
   var text = jeedom3d.text.generate(_info,_object,_info.additionalData.text);
   scene.add(text);
+  jeedom3d.text.data[_object.uuid] = text.uuid;
   for(var i in _info.additionalData.cmds){
     cmd_id = _info.additionalData.cmds[i];
-    if(! CMDS[cmd_id]){
+    if(!CMDS[cmd_id]){
       CMDS[cmd_id] = {'text' :  []};
     }else if(!CMDS[cmd_id]['text']){
       CMDS[cmd_id]['text'] = [];
