@@ -548,9 +548,6 @@ class eqLogic {
 		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
 		$html .= '</center>';
 		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
-		if ($this->getConfiguration('battery_type', '') != '') {
-			$html .= '<span class="pull-right" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
-		}
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
 		$html .= '<span class="pull-left batteryTime">';
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
@@ -562,6 +559,9 @@ class eqLogic {
 			$html .= '<i class="icon divers-calendar2" title="Pas de date de changement de pile(s) renseignée"></i>';
 		}
 		$html .= '</span>';
+		if ($this->getConfiguration('battery_type', '') != '') {
+			$html .= '<span class="pull-right" title="Piles">' . $this->getConfiguration('battery_type', '') . '</span>';
+		}
 		$html .= '</div>';
 		return $html;
 	}
