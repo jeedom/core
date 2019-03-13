@@ -395,7 +395,7 @@ select.selectCmd {
   line-height: 22px !important;
 }
 .scenarioDisplayCard > span > i {
-  font-size: 3.8em !important;
+  font-size: 3em !important;
 }
 .scenarioDisplayCard .icon.noicon {
   color: var(--logo-primary-color);
@@ -2063,6 +2063,7 @@ div[id^=__lpform_] { /*lastpass*/
 }
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+  padding: 12px 0 0 5px;
 }
 
 .btn,
