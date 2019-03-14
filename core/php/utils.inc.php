@@ -941,6 +941,7 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
+	$_string = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
 	if (strpos($_string, '"') !== false || strpos($_string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
 		$r = preg_match_all($regex, $_string, $matches);
@@ -951,8 +952,7 @@ function evaluate($_string) {
 	} else {
 		$c = 0;
 	}
-	$expr = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
-	$expr = str_replace('==', '=', $expr);
+	$expr = str_replace('==', '=', $_string);
 	$expr = str_replace('=', '==', $expr);
 	$expr = str_replace('<==', '<=', $expr);
 	$expr = str_replace('>==', '>=', $expr);
