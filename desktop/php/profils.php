@@ -40,19 +40,19 @@ foreach (plugin::listPlugin() as $pluginList) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
+						<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}</label>
+						<div class="col-sm-1 col-xs-6">
+							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-4 col-xs-6 control-label">{{Afficher les menus}}</label>
 						<div class="col-sm-1 col-xs-6">
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-6 control-label">{{Panneau des objets sur le Dashboard}}</label>
-						<div class="col-sm-1 col-xs-6">
-							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-4 col-xs-12 control-label">{{Page par défaut}}</label>
+						<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
@@ -76,7 +76,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-12 control-label">{{Objet par défaut}}</label>
+						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
@@ -101,7 +101,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-12 control-label">{{Vue par défaut}}</label>
+						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
@@ -131,7 +131,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-12 control-label">{{Design par défaut}}</label>
+						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
@@ -154,14 +154,14 @@ foreach (plugin::listPlugin() as $pluginList) {
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-6 control-label">{{Design Plein écran}}</label>
+						<label class="col-sm-4 col-xs-6 control-label">{{Designs Plein écran}}</label>
 						<div class="col-sm-1 col-xs-6">
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlanFullScreen" />
 						</div>
 					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-12 control-label">{{Design 3D par défaut}}</label>
+						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan3d">
@@ -184,7 +184,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-6 control-label">{{Design 3D Plein écran}}</label>
+						<label class="col-sm-4 col-xs-6 control-label">{{Designs 3D Plein écran}}</label>
 						<div class="col-sm-1 col-xs-6">
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 						</div>
