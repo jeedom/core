@@ -309,7 +309,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-		
+
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -336,16 +336,16 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="form-group">
-					<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em;line-height: 34px">{{Danger}}</label>
+					<label class="col-xs-3 eqLogicAttr label label-danger">{{Danger}}</label>
 					<div class="col-xs-2">
 						<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
 					</input>
 				</div>
-				<label class="col-xs-3 label label-warning" style="font-size : 1.8em;line-height: 34px">{{Warning}}</label>
+				<label class="col-xs-3 eqLogicAttr label label-warning">{{Warning}}</label>
 				<div class="col-xs-2">
 					<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
 				</div>
-				<label class="col-xs-2 label label-success" style="font-size : 1.8em;line-height: 34px">{{Ok}}</label>
+				<label class="col-xs-2 eqLogicAttr label label-success">{{Ok}}</label>
 			</div>
 		</div>
 	</div>
@@ -353,7 +353,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="form-group">
-				<label class="col-xs-3 eqLogicAttr label label-danger" style="font-size : 1.8em;line-height: 34px">{{Danger (en minutes)}}</label>
+				<label class="col-xs-3 eqLogicAttr label label-danger">{{Danger (en minutes)}}</label>
 				<div class="col-xs-2">
 					<input class="eqLogicAttr form-control" data-l1key="timeout" />
 				</div>
@@ -446,7 +446,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-						
+
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -562,7 +562,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-	
+
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
