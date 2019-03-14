@@ -454,8 +454,20 @@ pre {
   border: none !important;
 }
 
+.viewZone{
+	padding: 9.5px;
+	margin: 0 0px 5px;
+	font-size: 13px;
+	line-height: 20px;
+	background: var(--bg-modal-color);
+}
+
 /* context menus */
+.context-menu-layer {
+  z-index: 5000 !important;
+}
 .context-menu-list {
+  z-index: 12000 !important;
   padding: 0 !important;
   border: none !important;
   background: var(--bg-modal-color) !important;
@@ -993,6 +1005,10 @@ select option {
 select optgroup {
   color: var(--txt-color) !important;
   background: var(--bg-modal-color) !important;
+}
+
+.input-xs {
+  padding: 0 5px !important;
 }
 
 
