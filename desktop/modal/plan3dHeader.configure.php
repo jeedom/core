@@ -53,6 +53,18 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 							</span>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Couleur du fond}}</label>
+						<div class="col-lg-2">
+							<input type="color" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="backgroundColor" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Puissance eclairage général (0.4 defaut)}}</label>
+						<div class="col-lg-2">
+							<input type="number" min="0" step="0.1" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="globalLightPower" />
+						</div>
+					</div>
 				</fieldset>
 			</form>
 		</div>
