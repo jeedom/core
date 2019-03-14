@@ -1763,7 +1763,7 @@ path.highcharts-graph {
   height: calc(100% - 32px);
   margin-left: -7px;
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
 }
 
 .shuttergauge-bckg {
