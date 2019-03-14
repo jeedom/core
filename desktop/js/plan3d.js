@@ -186,6 +186,8 @@ function display3d(_id){
       scene.background = new THREE.Color( 0xaaaaaa );;
       camera = new THREE.PerspectiveCamera(45,SCREEN_WIDTH/SCREEN_HEIGHT,0.1,99999999);
       scene.add(camera);
+      var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.3);
+      scene.add(hemiLight);
       renderer = new THREE.WebGLRenderer({antialias: true});
       renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
       container.appendChild( renderer.domElement );
