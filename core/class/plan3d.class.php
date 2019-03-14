@@ -274,6 +274,32 @@ class plan3d {
 					}
 				}
 			}
+			if ($this->getConfiguration('3d::widget') == 'conditionalShow') {
+				$return['show'] = true;
+				$return['cmds'] = array();
+				$conditions = $this->getConfiguration('3d::widget::conditionalShow::condition');
+				if (!is_array($conditions) || count($conditions) == 0) {
+					return $return;
+				}
+				foreach ($conditions as $condition) {
+					if (!isset($condition['cmd'])) {
+						continue;
+					}
+					preg_match_all("/#([0-9]*)#/", $condition['cmd'], $matches);
+					foreach ($matches[1] as $cmd_id) {
+						$return['cmds'][] = $cmd_id;
+					}
+				}
+				foreach ($conditions as $condition) {
+					if (!isset($condition['cmd'])) {
+						continue;
+					}
+					if (jeedom::evaluateExpression($condition['cmd'])) {
+						$return['show'] = false;
+						return $return;
+					}
+				}
+			}
 		} else if ($this->getLink_type() == 'scenario') {
 			
 		} else if ($this->getLink_type() == 'cmd') {
