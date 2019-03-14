@@ -286,7 +286,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       log_conf += '<input class="configKey form-control" data-l1key="heartbeat::delay::' + data.id + '" />';
       log_conf += '</div>';
       if(data.hasOwnDeamon){
-        log_conf += '<label class="col-sm-3 control-label">{{Redemarrer démon}}</label>';
+        log_conf += '<label class="col-sm-3 control-label">{{Redémarrer démon}}</label>';
         log_conf += '<div class="col-sm-2">';
         log_conf += '<input type="checkbox" class="configKey" data-l1key="heartbeat::restartDeamon::' + data.id + '" />';
         log_conf += '</div>';
