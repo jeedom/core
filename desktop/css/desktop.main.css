@@ -222,7 +222,7 @@ legend {
 }
 .cmdStats,
 div.cmd > div.center-block {
-  font-size: 12px;
+  font-size: 12px !important;
   margin-top: 5px;
   color: var(--txt-color) !important;
 }
