@@ -30,7 +30,10 @@ class report {
 		shell_exec('find ' . __DIR__ . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
 	}
 
-	public static function generate($_url, $_type, $_name, $_format = 'pdf', $_parameter = array()) {
+	public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
+		if(!is_string($_format)){
+			$_format = 'png';
+		}
 		$out = __DIR__ . '/../../data/report/';
 		$out .= $_type . '/';
 		$out .= $_name . '/';
