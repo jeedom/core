@@ -12,6 +12,7 @@ $report_path = __DIR__ . '/../../data/report/';
 				<li class="cursor li_type active" data-type="view"><a>{{Vues}}</a></li>
 				<li class="cursor li_type" data-type="plan"><a>{{Design}}</a></li>
 				<li class="cursor li_type" data-type="plugin"><a>{{Plugin}}</a></li>
+				<li class="cursor li_type" data-type="other"><a>{{Equipement}}</a></li>
 			</ul>
 		</div>
 
