@@ -712,7 +712,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
       }
       CMDS[cmd_id]['conditionalColor'].push({object : _object,info:_info});
     }
-    jeedom3d.conditionalColor.update({state : _info.additionalData.state, cmd_id : cmd_id,object : _object});
+    jeedom3d.conditionalColor.update({color : _info.additionalData.color, cmd_id : cmd_id,object : _object});
   };
   
   jeedom3d.conditionalColor.update = function(_options) {
@@ -722,9 +722,6 @@ jeedom3d.text.generate = function(_options,_object,_text){
         continue;
       }
       if(_options.color){
-        if(data.additionalData.color == ''){
-          continue;
-        }
         if(!jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid]){
           jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid] = {r:conditionalColor[i].object.material.color.r,g:conditionalColor[i].object.material.color.g,b:conditionalColor[i].object.material.color.b};
         }
@@ -742,6 +739,54 @@ jeedom3d.text.generate = function(_options,_object,_text){
               jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid] = {r:conditionalColor[i].object.material.color.r,g:conditionalColor[i].object.material.color.g,b:conditionalColor[i].object.material.color.b};
             }
             conditionalColor[i].object.material.color.set(new THREE.Color(data.additionalData.color));
+          }
+        });
+      }
+    }
+  }
+  
+  /***************************************CONDITIONAL SHOW***************************/
+  
+  jeedom3d.conditionalShow = function() {};
+  
+  jeedom3d.conditionalShow.reset = function(_info,_object){
+    _object.visible = true;
+  }
+  
+  jeedom3d.conditionalShow.create = function(_info,_object) {
+    console.log('Conditation show create')
+    console.log(_info)
+    console.log(_object)
+    for(var i in _info.additionalData.cmds){
+      cmd_id = _info.additionalData.cmds[i];
+      if(!CMDS[cmd_id]){
+        CMDS[cmd_id] = {'conditionalShow' :  []};
+      }else if(!CMDS[cmd_id]['conditionalShow']){
+        CMDS[cmd_id]['conditionalShow'] = [];
+      }
+      CMDS[cmd_id]['conditionalShow'].push({object : _object,info:_info});
+    }
+    jeedom3d.conditionalShow.update({show : _info.additionalData.show, cmd_id : cmd_id,object : _object});
+  };
+  
+  jeedom3d.conditionalShow.update = function(_options) {
+    var conditionalShow = CMDS[_options.cmd_id]['conditionalShow']
+    for(var i in conditionalShow){
+      if(_options.object && _options.object != conditionalShow[i].object){
+        continue;
+      }
+      if(typeof _options.show != 'undefined'){
+        _options.object.visible =  _options.show;
+      }else{
+        jeedom.plan3d.byId({
+          id: conditionalShow[i].info.id,
+          global:false,
+          async : false,
+          success: function (data) {
+            if(typeof data.additionalData.show == 'undefined'){
+              return;
+            }
+            conditionalShow[i].object.visible =  data.additionalData.show;
           }
         });
       }

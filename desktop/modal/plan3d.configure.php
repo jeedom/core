@@ -53,6 +53,7 @@ sendVarToJS('id', $plan3d->getId());
 					<option value="text">{{Texte}}</option>
 					<option value="door">{{Porte/Fenêtre}}</option>
 					<option value="conditionalColor">{{Couleur conditionnel}}</option>
+					<option value="conditionalShow">{{Affichage conditionnel}}</option>
 				</select>
 			</div>
 		</div>
@@ -329,6 +330,56 @@ sendVarToJS('id', $plan3d->getId());
 		
 		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 		</script>
+		
+		
+		<!---*********************************conditionalShow************************************** -->
+		<div class="specificity specificity_conditionalShow">
+			<legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addConditionShow"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
+			<div id="div_conditionShow"></div>
+		</div>
+		<script>
+		$('#bt_addConditionShow').on('click',function(){
+			addConditionalShow({})
+		});
+		
+		$('#fd_plan3dConfigure').off('click','.bt_removeConditionalShow').on('click','.bt_removeConditionalShow',  function (event) {
+			$(this).closest('.conditionalShow').remove();
+		});
+		
+		$('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalShow').on('click','.listCmdInfoConditionalShow',  function (event) {
+			var el = $(this).closest('.conditionalShow').find('.conditionalShowAttr[data-l1key=cmd]');
+			jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function (result) {
+				el.atCaret('insert',result.human);
+			});
+		});
+		
+		function addConditionalShow(_conditionalShow) {
+			if (!isset(_conditionalShow)) {
+				_conditionalShow = {};
+			}
+			var div = '<div class="conditionalShow">';
+			div += '<div class="form-group">';
+			div += '<label class="col-sm-1 control-label">{{Masqué si}}</label>';
+			div += '<div class="col-sm-9">';
+			div += '<div class="input-group">';
+			div += '<span class="input-group-btn">';
+			div += '<a class="btn btn-default bt_removeConditionalShow btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+			div += '</span>';
+			div += '<input class="conditionalShowAttr form-control input-sm" data-l1key="cmd" />';
+			div += '<span class="input-group-btn">';
+			div += '<a class="btn btn-sm listCmdInfoConditionalShow btn-default roundedRight"><i class="fas fa-list-alt"></i></a>';
+			div += '</span>';
+			div += '</div>';
+			div += '</div>';
+			div += '</div>';
+			$('#div_conditionShow').append(div);
+			$('#div_conditionShow .conditionalShow:last').setValues(_conditionalShow, '.conditionalShowAttr');
+		}
+		
+		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+		</script>
+		
+		
 	</fieldset>
 </form>
 
@@ -377,6 +428,7 @@ $('#bt_saveConfigurePlan3d').on('click', function () {
 		plan3ds[0].configuration = {};
 	}
 	plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = $('#div_conditionColor .conditionalColor').getValues('.conditionalColorAttr');
+	plan3ds[0].configuration['3d::widget::conditionalShow::condition'] = $('#div_conditionShow .conditionalShow').getValues('.conditionalShowAttr');
 	jeedom.plan3d.save({
 		plan3ds: plan3ds,
 		error: function (error) {
@@ -431,6 +483,11 @@ if (isset(id) && id != '') {
 			if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalColor::condition'])) {
 				for (var i in data.result.configuration['3d::widget::conditionalColor::condition']) {
 					addConditionalColor(data.result.configuration['3d::widget::conditionalColor::condition'][i]);
+				}
+			}
+			if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalShow::condition'])) {
+				for (var i in data.result.configuration['3d::widget::conditionalShow::condition']) {
+					addConditionalShow(data.result.configuration['3d::widget::conditionalShow::condition'][i]);
 				}
 			}
 		}
