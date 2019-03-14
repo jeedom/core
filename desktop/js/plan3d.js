@@ -183,9 +183,19 @@ function display3d(_id){
       THREE.Vector3.XAxis = new THREE.Vector3( 1, 0, 0 );
       container =  document.getElementById("div_display3d");
       scene = new THREE.Scene();
-      scene.background = new THREE.Color( 0xaaaaaa );;
+      if(data.configuration.backgroundColor && data.configuration.backgroundColor != '#000000'){
+        scene.background = new THREE.Color( data.configuration.backgroundColor );
+      }else{
+        scene.background = new THREE.Color( 0xaaaaaa );
+      }
       camera = new THREE.PerspectiveCamera(45,SCREEN_WIDTH/SCREEN_HEIGHT,0.1,99999999);
       scene.add(camera);
+      if(data.configuration.globalLightPower){
+        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, data.configuration.globalLightPower);
+      }else{
+        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.3);
+      }
+      scene.add(hemiLight);
       renderer = new THREE.WebGLRenderer({antialias: true});
       renderer.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
       container.appendChild( renderer.domElement );
