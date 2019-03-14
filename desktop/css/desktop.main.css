@@ -811,6 +811,9 @@ div.panel {
   background-color: var(--defaultBkg-color) !important;
   border-color: var(--el-defaultColor) !important;
 }
+.panel-title {
+  color: var(--txt-color) !important;
+}
 
 .panel-success .panel-heading {
   color: var(--linkHoverLight-color);
