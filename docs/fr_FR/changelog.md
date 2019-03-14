@@ -3,6 +3,10 @@ Changelog
 =========
 
 
+3.3.18
+=====
+- Correction de bugs
+
 3.3.17
 =====
 
