@@ -44,7 +44,6 @@ Changelog
 -   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
 -   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget)
 -   Possibilité de mettre une icone sur les sénarios
--   Affichage des widgets mobile en une seule colonne
 -   Ajout de la gestion des démons sur le moteur de tache
 -   Ajout de la fonction color_gradient dans les scénarios
 
