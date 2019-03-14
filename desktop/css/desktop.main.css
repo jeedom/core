@@ -862,9 +862,11 @@ div.panel {
 }
 
 .form-control {
+  color: var(--txt-color);
   font-size: 14px !important;
   border: none !important;
   cursor: text;
+  background: var(--form-bg-color) !important;
 }
 
 .form-control::placeholder {
@@ -913,6 +915,9 @@ input:focus, textarea:focus {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+}
+.input-group {
+  margin-bottom: 1.2px;
 }
 .input-group-addon {
   color: var(--sc-lightTxt-color);
@@ -1282,10 +1287,10 @@ hr {
 }
 
 /* scenarios fields */
-.form-control.expressionAttr:not([data-l2key=graphColor]),
-input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
-select.expressionAttr:not([data-l2key=graphColor]),
-textarea.expressionAttr:not([data-l2key=graphColor]) {
+.element .form-control.expressionAttr:not([data-l2key=graphColor]),
+.element input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
+.element select.expressionAttr:not([data-l2key=graphColor]),
+.element textarea.expressionAttr:not([data-l2key=graphColor]) {
   color: var(--sc-formTxt-color);
   background: var(--sc-form-color)!important;
   border: 0 !important;
