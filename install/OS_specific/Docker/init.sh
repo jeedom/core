@@ -41,7 +41,7 @@ if [ -f /var/www/html/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/stable/install/install.sh -O /root/install.sh
+	wget https://raw.githubusercontent.com/jeedom/core/master/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
 	/root/install.sh -s 6
 fi
