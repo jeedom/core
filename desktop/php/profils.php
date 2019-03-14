@@ -44,6 +44,11 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<div class="col-sm-1 col-xs-6">
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
 						</div>
+						<div class="col-sm-3 col-xs-6">
+						</div>
+						<div class="col-sm-2 col-xs-6">
+							<a class="btn btn-primary form-control" href="index.php?v=d&amp;p=administration#interfacetab"><i class="fas fa-wrench"></i>&nbsp;&nbsp;{{Interface Système}}</a>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-6 control-label">{{Afficher les menus}}</label>
@@ -55,48 +60,68 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="homePage">
-								<?php
-								foreach ($homePageDesktop as $key => $value) {
-									echo "<option value='$key'>$value</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePage">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach ($homePageDesktop as $key => $value) {
+										echo '<li><a href="#" data-value="'.$key.'">'.$value.'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="homePageMobile">
-								<option value="home">{{Accueil}}</option>
-								<?php
-								foreach ($homePageMobile as $key => $value) {
-									echo "<option value='$key'>$value</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePageMobile">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="home">{{Accueil}}</a></li>
+									<?php
+									foreach ($homePageMobile as $key => $value) {
+										echo '<li><a href="#" data-value="'.$key.'">'.$value.'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardObject">
-								<?php
-								foreach (jeeObject::all() as $object) {
-									echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardObject">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (jeeObject::all() as $object) {
+										echo '<li><a href="#" data-value="'.$object->getId().'">'.$object->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileObject">
-								<option value='all'>{{Tout}}</option>
-								<?php
-								foreach (jeeObject::all() as $object) {
-									echo "<option value='" . $object->getId() . "'>" . $object->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileObject">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="#" data-value="all">{{Tout}}</a></li>
+									<?php
+									foreach (jeeObject::all() as $object) {
+										echo '<li><a href="#" data-value="'.$object->getId().'">'.$object->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<hr class="hrPrimary">
@@ -104,23 +129,33 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDesktopView">
-								<?php
-								foreach (view::all() as $view) {
-									echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDesktopView">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (view::all() as $view) {
+										echo '<li><a href="#" data-value="'.$view->getId().'">'.$view->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobileView">
-								<?php
-								foreach (view::all() as $view) {
-									echo "<option value='" . $view->getId() . "'>" . $view->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileView">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (view::all() as $view) {
+										echo '<li><a href="#" data-value="'.$view->getId().'">'.$view->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -134,23 +169,33 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan">
-								<?php
-								foreach (planHeader::all() as $plan) {
-									echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (planHeader::all() as $plan) {
+										echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan">
-								<?php
-								foreach (planHeader::all() as $plan) {
-									echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (planHeader::all() as $plan) {
+										echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -164,23 +209,33 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}</label>
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultDashboardPlan3d">
-								<?php
-								foreach (plan3dHeader::all() as $plan) {
-									echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan3d">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
-							<select class="userAttr form-control" data-l1key="options" data-l2key="defaultMobilePlan3d">
-								<?php
-								foreach (plan3dHeader::all() as $plan) {
-									echo "<option value='" . $plan->getId() . "'>" . $plan->getName() . "</option>";
-								}
-								?>
-							</select>
+							<div class="dropdown dynDropdown">
+								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan3d">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
+									}
+									?>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
