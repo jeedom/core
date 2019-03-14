@@ -220,6 +220,12 @@ legend {
   width: 30px;
   z-index: 1030;
 }
+.cmdStats,
+div.cmd > div.center-block {
+  font-size: 12px;
+  margin-top: 5px;
+  color: var(--txt-color) !important;
+}
 
 .li_log i {
   float: left;
