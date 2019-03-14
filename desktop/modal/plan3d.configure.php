@@ -2,7 +2,11 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plan3d = plan3d::byName3dHeaderId(init('name'), init('plan3dHeader_id'));
+if(init('id') != ''){
+	$plan3d = plan3d::byId(init('id'));
+}else{
+	$plan3d = plan3d::byName3dHeaderId(init('name'), init('plan3dHeader_id'));
+}
 if (!is_object($plan3d)) {
 	$plan3d = new plan3d();
 	$plan3d->setName(init('name'));

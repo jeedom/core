@@ -88,6 +88,7 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-danger btn-xs bt_removePlan3dComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '<a class="btn btn-default btn-xs bt_configurePlan3dComposant pull-right"><i class="fas fa-gear"></i> {{Configuration}}</a>';
 							echo '</td>';
 							echo '</tr>';
 						}
@@ -112,6 +113,12 @@ $('.bt_removePlan3dComposant').off('click').on('click',function(){
 			tr.remove();
 		}
 	});
+});
+
+$('.bt_configurePlan3dComposant').off('click').on('click',function(){
+	var tr = $(this).closest('tr');
+	$('#md_modal2').dialog({title: "{{Configuration du composant}}"});
+	$('#md_modal2').load('index.php?v=d&modal=plan3d.configure&id='+tr.attr('data-id')).dialog('open');
 });
 
 $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){

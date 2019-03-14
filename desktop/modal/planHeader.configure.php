@@ -115,7 +115,8 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							}
 							echo '</td>';
 							echo '<td>';
-							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a> ';
+							echo '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-gear"></i> {{Configuration}}</a>';
 							echo '</td>';
 							echo '</tr>';
 						}
@@ -140,6 +141,12 @@ $('.bt_removePlanComposant').off('click').on('click',function(){
 			tr.remove();
 		}
 	});
+});
+
+$('.bt_configurePlanComposant').off('click').on('click',function(){
+	var tr = $(this).closest('tr');
+	$('#md_modal2').dialog({title: "{{Configuration du composant}}"});
+	$('#md_modal2').load('index.php?v=d&modal=plan.configure&id='+tr.attr('data-id')).dialog('open');
 });
 
 $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick',function(){

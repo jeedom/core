@@ -391,7 +391,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         icon:'fa-cogs',
         callback: function(key, opt){
           savePlan(false,false);
-          $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+          $('#md_modal').dialog({title: "{{Configuration du composant}}"});
           $('#md_modal').load('index.php?v=d&modal=plan.configure&id='+$(this).attr('data-plan_id')).dialog('open');
         }
       },
