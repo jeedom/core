@@ -60,6 +60,11 @@ Vous permet de définir certains comportements de l’interface :
 
     -   **Plein écran** : affichage par défaut en plein écran lors de
         l’arrivée sur les designs
+        
+-   **Dashboard**
+
+    -   **Déplier le panneau des objets** : permet de rendre visible par
+        défaut le menu des objets (à gauche) sur le dashboard
 
 -   **Vue**
 
