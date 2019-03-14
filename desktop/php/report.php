@@ -12,53 +12,54 @@ $report_path = __DIR__ . '/../../data/report/';
 				<li class="cursor li_type active" data-type="view"><a>{{Vues}}</a></li>
 				<li class="cursor li_type" data-type="plan"><a>{{Design}}</a></li>
 				<li class="cursor li_type" data-type="plugin"><a>{{Plugin}}</a></li>
+				<li class="cursor li_type" data-type="other"><a>{{Equipement}}</a></li>
 			</ul>
 		</div>
-
+		
 		<div class="bs-sidebar reportType view">
 			<ul id="ul_view" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-picture-o"></i> {{Vues}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-foreach (view::all() as $view) {
-	$number = count(ls($report_path . '/view/' . $view->getId(), '*'));
-	echo '<li class="cursor li_reportType" data-type="view" data-id="' . $view->getId() . '"><a>' . $view->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
-}
-?>
+				foreach (view::all() as $view) {
+					$number = count(ls($report_path . '/view/' . $view->getId(), '*'));
+					echo '<li class="cursor li_reportType" data-type="view" data-id="' . $view->getId() . '"><a>' . $view->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
+				}
+				?>
 			</ul>
 		</div>
-
+		
 		<div class="bs-sidebar reportType plan" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Design}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-foreach (planHeader::all() as $plan) {
-	$number = count(ls($report_path . '/plan/' . $plan->getId(), '*'));
-	echo '<li class="cursor li_reportType" data-type="plan" data-id="' . $plan->getId() . '"><a>' . $plan->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
-}
-?>
+				foreach (planHeader::all() as $plan) {
+					$number = count(ls($report_path . '/plan/' . $plan->getId(), '*'));
+					echo '<li class="cursor li_reportType" data-type="plan" data-id="' . $plan->getId() . '"><a>' . $plan->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
+				}
+				?>
 			</ul>
 		</div>
-
-
+		
+		
 		<div class="bs-sidebar reportType plugin" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Design}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
-foreach (plugin::listPlugin(true) as $plugin) {
-	if ($plugin->getDisplay() == '') {
-		continue;
-	}
-	$number = count(ls($report_path . '/plugin/' . $plugin->getId(), '*'));
-	echo '<li class="cursor li_reportType" data-type="plugin" data-id="' . $plugin->getId() . '"><a>' . $plugin->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
-}
-?>
+				foreach (plugin::listPlugin(true) as $plugin) {
+					if ($plugin->getDisplay() == '') {
+						continue;
+					}
+					$number = count(ls($report_path . '/plugin/' . $plugin->getId(), '*'));
+					echo '<li class="cursor li_reportType" data-type="plugin" data-id="' . $plugin->getId() . '"><a>' . $plugin->getName() . ' (<span class="number">' . $number . '</span>)</a></li>';
+				}
+				?>
 			</ul>
 		</div>
 	</div>
-
+	
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_report" class="nav nav-list bs-sidenav">
@@ -67,7 +68,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			</ul>
 		</div>
 	</div>
-
+	
 	<div class="col-lg-8 col-md-6 col-sm-6" style="margin-top : 4px;display:none;" id="div_reportForm">
 		<form class="form-horizontal">
 			<fieldset>
@@ -109,14 +110,14 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				<div class="form-group">
 					<label class="col-sm-2 col-xs-2 control-label">{{Aperçu}}</label>
 					<div class="col-sm-10 col-xs-10" id="div_imgreport">
-
+						
 					</div>
 				</div>
 			</fieldset>
 		</form>
-
+		
 	</div>
-
+	
 </div>
 
 
