@@ -1133,6 +1133,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
       },
       success: function () {
+        modifyWithoutSave = false;
         $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
       }
     });
