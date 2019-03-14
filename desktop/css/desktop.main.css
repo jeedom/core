@@ -562,6 +562,12 @@ p.state {
   cursor: pointer;
 }
 
+hr.hrPrimary {
+  border-top: 1px solid var(--logo-primary-color);
+  width: 15%;
+  opacity: 0.5;
+}
+
 /* résumé */
 li.alert-info.eqLogic {
   color: var(--txt-color);
@@ -885,6 +891,9 @@ fieldset > div {
   min-height: 1px;
   padding-left: 1em !important;
   padding-right: 1em !important;
+}
+[class*="col-xs-"] {
+  margin-bottom: 4px;
 }
 
 /* commands */
