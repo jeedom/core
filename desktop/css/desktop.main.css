@@ -564,7 +564,7 @@ p.state {
 
 hr.hrPrimary {
   border-top: 1px solid var(--logo-primary-color);
-  width: 15%;
+  width: 5%;
   opacity: 0.5;
 }
 
