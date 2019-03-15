@@ -86,7 +86,7 @@ class planHeader {
 			$planCopy->save();
 		}
 		$filename1 = 'planHeader'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
-		if(file_exist(__DIR__.'/../../data/plan/'.$filename1)){
+		if(file_exists(__DIR__.'/../../data/plan/'.$filename1)){
 			$filename2 = 'planHeader'.$planHeaderCopy->getId().'-'.$planHeaderCopy->getImage('sha512') . '.' . $planHeaderCopy->getImage('type');
 			copy(__DIR__.'/../../data/plan/'.$filename1,__DIR__.'/../../data/plan/'.$filename2);
 		}
