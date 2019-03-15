@@ -523,7 +523,7 @@ pre {
   font-size: 16px !important;
 }
 .alert {
-  border: none !important;
+  padding: 7px !important;
 }
 .alert-info,
 .label-info {
