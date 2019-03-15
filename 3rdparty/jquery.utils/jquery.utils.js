@@ -302,7 +302,6 @@ function is_array(a) {
         if (options.show) {
           $(this).show();
         }
-        
         if ($(this).offset().top - $(window).scrollTop() < $(this).height()) {
           $('html, body').animate({
             scrollTop: $(this).offset().top - 60
@@ -334,6 +333,9 @@ function is_array(a) {
       $('#jqAlertSpacer' + $(this).attr('id')).remove();
       $(this).text('').hide();
       $.alertTrigger();
+      if(typeof initRowOverflow == 'function'){
+        initRowOverflow();
+      }
       return $(this);
     };
     
@@ -342,6 +344,9 @@ function is_array(a) {
         $('.jqAlert').text('');
         $('.jqAlert').hide();
         $.alertTrigger();
+        if(typeof initRowOverflow == 'function'){
+          initRowOverflow();
+        }
       }
     };
     
