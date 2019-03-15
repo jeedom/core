@@ -59,6 +59,9 @@ class translate {
 			return 'core';
 		}
 		preg_match_all('/plugins\/(.*?)\//m', $_name, $matches, PREG_SET_ORDER, 0);
+		if(isset($matches[0]) && isset($matches[0][1])){
+			return $matches[0][1];
+		}
 		if (!isset($matches[1])) {
 			return 'core';
 		}
