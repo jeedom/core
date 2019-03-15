@@ -81,6 +81,10 @@ if (!isConnect()) {
 	{{Envoi l'ordre à Jeedom de s'éteindre}}
 </div>
 
+<div class="alert alert-info mod_actionValue_selDescription jeedom_reboot" style="display:none;">
+	{{Envoi l'ordre à Jeedom de redémarrer}}
+</div>
+
 <div class="alert alert-info mod_actionValue_selDescription scenario_return" style="display:none;">
 	{{Retourne un texte ou une valeur pour une interaction par exemple}}
 </div>
