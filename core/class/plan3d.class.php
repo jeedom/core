@@ -236,7 +236,11 @@ class plan3d {
 				if ($return['state'] > 0) {
 					$cmd = cmd::byId(str_replace('#', '', $this->getConfiguration('3d::widget::door::shutter')));
 					if (is_object($cmd) && $cmd->getType() == 'info') {
-						if ($cmd->execCmd()) {
+						$cmd_value = $cmd->execCmd();
+						if ($cmd->getSubType() == 'binary' && $cmd->getDisplay('invertBinary') == 1) {
+							$cmd_value = ($cmd_value == 1) ? 0 : 1;
+						}
+						if ($cmd_value) {
 							$return['state'] = 2;
 						}
 					}
