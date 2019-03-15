@@ -101,21 +101,6 @@ legend:first-letter,
 
 
 /* Themes for different contexts */
-.alert {
-  border-left: 5px solid #F3E5A7;
-}
-
-.alert-danger {
-  border-left: 5px solid #DFAAA9;
-}
-
-.alert-info {
-  border-left: 5px solid #B3D7EF;
-}
-.alert-success {
-  border-left: 5px solid #94C680;
-}
-
 .btn-black {
   color:white;
   background-color:#373737;
