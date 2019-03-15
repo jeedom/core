@@ -100,7 +100,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'lock' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lock-ferme','#icon_off#' => 'icon jeedom-lock-ouvert')),
 					'presence' => array('template' => 'icon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-mouvement')),
 					'prise' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-prise','#icon_off#' => 'fa fa-times')),
-					'shutter' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-volet-ferme','#icon_off#' => 'icon jeedom-volet-ouvert')),
 					'window' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-fenetre-ferme','#icon_off#' => 'icon jeedom-fenetre-ouverte')),
 					'timeDoor' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'icon jeedom-porte-ferme','#icon_off#' => 'icon jeedom-porte-ouverte')),
 					'timePresence' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-mouvement')),
