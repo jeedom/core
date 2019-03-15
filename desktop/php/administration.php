@@ -859,7 +859,7 @@ user::isBan();
 						</div>
 						<span class="col-lg-2 col-md-3 col-sm-3 col-xs-6"></span>
 						<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-							<a class="btn btn-default form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Personnalisation avancée</a>
+							<a class="btn btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;Personnalisation avancée</a>
 						</div>
 					</div>
 					<div class="form-group">
