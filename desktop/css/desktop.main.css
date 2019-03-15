@@ -1583,10 +1583,6 @@ hr {
 .bs-sidebar > ul {
   background-color: rgba(var(--bg-color), var(--opacity)) !important;
 }
-.bs-sidebar ul span {
-  margin-top: 2px;
-  margin-bottom: 2px;
-}
 
 .li_object a span:not(:first-child) {
   float: left !important;
@@ -1600,7 +1596,6 @@ hr {
 .bs-sidebar .nav > li > a:not(.pull-right) {
   width: 100% !important;
 }
-
 .bs-sidebar .nav li a:hover,
 .bs-sidebar .nav li a:focus,
 .bs-sidebar .nav li a:active {
