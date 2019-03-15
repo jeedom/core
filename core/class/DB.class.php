@@ -182,7 +182,11 @@ class DB {
 				if (!$_direct && method_exists($object, 'getId')) {
 					$parameters['id'] = $object->getId(); //override if necessary
 				}
-				$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				if ($_replace) {
+					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				}else{
+					$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+				}
 				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			}else{
 				$res = true;
