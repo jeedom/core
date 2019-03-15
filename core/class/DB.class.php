@@ -26,44 +26,43 @@ class DB {
 	
 	/*     * **************  Attributs  ***************** */
 	
-	private $connection;
-	private $lastConnection;
-	private static $sharedInstance;
+	private static $connection;
+	private static $lastConnection;
 	private static $fields = array();
 	
 	/*     * **************  Fonctions statiques  ***************** */
 	
-	private function __construct() {
+	private function initConnection() {
 		global $CONFIG;
 		if(isset($CONFIG['db']['unix_socket'])) {
-			$this->connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+			self::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
 		} else {
-			$this->connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
+			self::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', PDO::ATTR_PERSISTENT => true));
 		}
 	}
 	
 	public static function getLastInsertId() {
-		if (!isset(self::$sharedInstance)) {
+		if (!isset(self::$connection)) {
 			throw new Exception('DB : Aucune connection active - impossible d\'avoir le dernier ID inséré');
 		}
-		return self::$sharedInstance->connection->lastInsertId();
+		return self::$connection->lastInsertId();
 	}
 	
 	public static function getConnection() {
-		if (!isset(self::$sharedInstance)) {
-			self::$sharedInstance = new self();
-		} else if (self::$sharedInstance->lastConnection + 120 < strtotime('now')) {
+		if(self::$connection == null){
+			self::initConnection();
+		}else if (self::$lastConnection + 120 < strtotime('now')) {
 			try {
-				$result = @self::$sharedInstance->connection->query('select 1;');
+				$result = @self::$connection->query('select 1;');
 				if (!$result) {
-					self::$sharedInstance = new self();
+					self::initConnection();
 				}
 			} catch (Exception $e) {
-				self::$sharedInstance = new self();
+				self::initConnection();
 			}
 		}
-		self::$sharedInstance->lastConnection = strtotime('now');
-		return self::$sharedInstance->connection;
+		self::$lastConnection = strtotime('now');
+		return self::$connection;
 	}
 	
 	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
