@@ -29,9 +29,8 @@ foreach (plugin::listPlugin() as $pluginList) {
 <div style="margin-top: 5px;">
 	<a class="btn btn-success pull-right btn-sm" id="bt_saveProfils"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>
+		<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
-		<li role="presentation"><a href="#notificationtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Notifications}}</a></li>
 	</ul>
 
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -39,6 +38,8 @@ foreach (plugin::listPlugin() as $pluginList) {
 			<br>
 			<form class="form-horizontal">
 				<fieldset>
+					<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
+
 					<div class="form-group">
 						<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}</label>
 						<div class="col-sm-1 col-xs-6">
@@ -244,6 +245,22 @@ foreach (plugin::listPlugin() as $pluginList) {
 							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 						</div>
 					</div>
+
+
+					<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
+					<div class="form-group">
+						<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}</label>
+						<div class="col-sm-3 col-xs-12">
+							<div class="input-group">
+								<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
+								<span class="input-group-btn">
+									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
+								</span>
+							</div>
+						</div>
+						<div class="col-sm-4 col-xs-12 alert alert-info">Commande par défaut pour vous joindre (commande de type message).</div>
+					</div>
+
 				<fieldset>
 			</form>
 		</div>
@@ -365,24 +382,6 @@ foreach (plugin::listPlugin() as $pluginList) {
 			</form>
 		</div>
 
-		<div role="tabpanel" class="tab-pane" id="notificationtab">
-			<br/>
-			<form class="form-horizontal">
-				<fieldset>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de notification utilisateur}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<div class="input-group">
-								<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
-								<span class="input-group-btn">
-									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
-								</span>
-							</div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
 	</div>
 </div>
 <?php include_file("desktop", "profils", "js");?>
