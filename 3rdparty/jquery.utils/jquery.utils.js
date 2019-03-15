@@ -295,7 +295,7 @@ function is_array(a) {
         $(this).empty();
         $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
         $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-        $(this).addClass('alert jqAlert');
+        $(this).addClass('jqAlert');
         if (options.level != '') {
           $(this).addClass('alert-' + options.level);
         }
