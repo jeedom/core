@@ -26,7 +26,7 @@ class DB {
 	
 	/*     * **************  Attributs  ***************** */
 	
-	private static $connection;
+	private static $connection = null;
 	private static $lastConnection;
 	private static $fields = array();
 	
@@ -42,10 +42,7 @@ class DB {
 	}
 	
 	public static function getLastInsertId() {
-		if (!isset(self::$connection)) {
-			throw new Exception('DB : Aucune connection active - impossible d\'avoir le dernier ID inséré');
-		}
-		return self::$connection->lastInsertId();
+		return self::getConnection()->lastInsertId();
 	}
 	
 	public static function getConnection() {
