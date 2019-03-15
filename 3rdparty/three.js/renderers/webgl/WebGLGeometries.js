@@ -6,7 +6,7 @@ import { Uint16BufferAttribute, Uint32BufferAttribute } from '../../core/BufferA
 import { BufferGeometry } from '../../core/BufferGeometry.js';
 import { arrayMax } from '../../utils.js';
 
-function WebGLGeometries( gl, attributes, info ) {
+function WebGLGeometries( gl, attributes, infoMemory ) {
 
 	var geometries = {};
 	var wireframeAttributes = {};
@@ -32,7 +32,18 @@ function WebGLGeometries( gl, attributes, info ) {
 
 		delete geometries[ geometry.id ];
 
-		var attribute = wireframeAttributes[ buffergeometry.id ];
+		// TODO Remove duplicate code
+
+		var attribute = wireframeAttributes[ geometry.id ];
+
+		if ( attribute ) {
+
+			attributes.remove( attribute );
+			delete wireframeAttributes[ geometry.id ];
+
+		}
+
+		attribute = wireframeAttributes[ buffergeometry.id ];
 
 		if ( attribute ) {
 
@@ -43,7 +54,7 @@ function WebGLGeometries( gl, attributes, info ) {
 
 		//
 
-		info.memory.geometries --;
+		infoMemory.geometries --;
 
 	}
 
@@ -73,7 +84,7 @@ function WebGLGeometries( gl, attributes, info ) {
 
 		geometries[ geometry.id ] = buffergeometry;
 
-		info.memory.geometries ++;
+		infoMemory.geometries ++;
 
 		return buffergeometry;
 

@@ -31,8 +31,7 @@ var UniformsLib = {
 		envMap: { value: null },
 		flipEnvMap: { value: - 1 },
 		reflectivity: { value: 1.0 },
-		refractionRatio: { value: 0.98 },
-		maxMipLevel: { value: 0 }
+		refractionRatio: { value: 0.98 }
 
 	},
 
@@ -179,17 +178,6 @@ var UniformsLib = {
 		opacity: { value: 1.0 },
 		size: { value: 1.0 },
 		scale: { value: 1.0 },
-		map: { value: null },
-		uvTransform: { value: new Matrix3() }
-
-	},
-
-	sprite: {
-
-		diffuse: { value: new Color( 0xeeeeee ) },
-		opacity: { value: 1.0 },
-		center: { value: new Vector2( 0.5, 0.5 ) },
-		rotation: { value: 0.0 },
 		map: { value: null },
 		uvTransform: { value: new Matrix3() }
 

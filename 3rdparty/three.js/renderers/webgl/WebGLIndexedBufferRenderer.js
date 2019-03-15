@@ -2,7 +2,7 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
-function WebGLIndexedBufferRenderer( gl, extensions, info, capabilities ) {
+function WebGLIndexedBufferRenderer( gl, extensions, infoRender ) {
 
 	var mode;
 
@@ -25,34 +25,32 @@ function WebGLIndexedBufferRenderer( gl, extensions, info, capabilities ) {
 
 		gl.drawElements( mode, count, type, start * bytesPerElement );
 
-		info.update( count, mode );
+		infoRender.calls ++;
+		infoRender.vertices += count;
+
+		if ( mode === gl.TRIANGLES ) infoRender.faces += count / 3;
+		else if ( mode === gl.POINTS ) infoRender.points += count;
 
 	}
 
 	function renderInstances( geometry, start, count ) {
 
-		var extension;
+		var extension = extensions.get( 'ANGLE_instanced_arrays' );
 
-		if ( capabilities.isWebGL2 ) {
+		if ( extension === null ) {
 
-			extension = gl;
-
-		} else {
-
-			var extension = extensions.get( 'ANGLE_instanced_arrays' );
-
-			if ( extension === null ) {
-
-				console.error( 'THREE.WebGLIndexedBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.' );
-				return;
-
-			}
+			console.error( 'THREE.WebGLIndexedBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.' );
+			return;
 
 		}
 
-		extension[ capabilities.isWebGL2 ? 'drawElementsInstanced' : 'drawElementsInstancedANGLE' ]( mode, count, type, start * bytesPerElement, geometry.maxInstancedCount );
+		extension.drawElementsInstancedANGLE( mode, count, type, start * bytesPerElement, geometry.maxInstancedCount );
 
-		info.update( count, mode, geometry.maxInstancedCount );
+		infoRender.calls ++;
+		infoRender.vertices += count * geometry.maxInstancedCount;
+
+		if ( mode === gl.TRIANGLES ) infoRender.faces += geometry.maxInstancedCount * count / 3;
+		else if ( mode === gl.POINTS ) infoRender.points += geometry.maxInstancedCount * count;
 
 	}
 

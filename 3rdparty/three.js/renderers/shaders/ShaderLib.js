@@ -1,9 +1,8 @@
 import { ShaderChunk } from './ShaderChunk.js';
-import { mergeUniforms } from './UniformsUtils.js';
+import { UniformsUtils } from './UniformsUtils.js';
 import { Vector3 } from '../../math/Vector3.js';
 import { UniformsLib } from './UniformsLib.js';
 import { Color } from '../../math/Color.js';
-import { Matrix3 } from '../../math/Matrix3.js';
 
 /**
  * @author alteredq / http://alteredqualia.com/
@@ -15,7 +14,7 @@ var ShaderLib = {
 
 	basic: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.specularmap,
 			UniformsLib.envmap,
@@ -31,7 +30,7 @@ var ShaderLib = {
 
 	lambert: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.specularmap,
 			UniformsLib.envmap,
@@ -52,7 +51,7 @@ var ShaderLib = {
 
 	phong: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.specularmap,
 			UniformsLib.envmap,
@@ -79,7 +78,7 @@ var ShaderLib = {
 
 	standard: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.envmap,
 			UniformsLib.aomap,
@@ -105,27 +104,9 @@ var ShaderLib = {
 
 	},
 
-	matcap: {
-
-		uniforms: mergeUniforms( [
-			UniformsLib.common,
-			UniformsLib.bumpmap,
-			UniformsLib.normalmap,
-			UniformsLib.displacementmap,
-			UniformsLib.fog,
-			{
-				matcap: { value: null }
-			}
-		] ),
-
-		vertexShader: ShaderChunk.meshmatcap_vert,
-		fragmentShader: ShaderChunk.meshmatcap_frag
-
-	},
-
 	points: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.points,
 			UniformsLib.fog
 		] ),
@@ -137,7 +118,7 @@ var ShaderLib = {
 
 	dashed: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.fog,
 			{
@@ -154,7 +135,7 @@ var ShaderLib = {
 
 	depth: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.displacementmap
 		] ),
@@ -166,7 +147,7 @@ var ShaderLib = {
 
 	normal: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.bumpmap,
 			UniformsLib.normalmap,
@@ -181,29 +162,6 @@ var ShaderLib = {
 
 	},
 
-	sprite: {
-
-		uniforms: mergeUniforms( [
-			UniformsLib.sprite,
-			UniformsLib.fog
-		] ),
-
-		vertexShader: ShaderChunk.sprite_vert,
-		fragmentShader: ShaderChunk.sprite_frag
-
-	},
-
-	background: {
-
-		uniforms: {
-			uvTransform: { value: new Matrix3() },
-			t2D: { value: null },
-		},
-
-		vertexShader: ShaderChunk.background_vert,
-		fragmentShader: ShaderChunk.background_frag
-
-	},
 	/* -------------------------------------------------------------------------
 	//	Cube map shader
 	 ------------------------------------------------------------------------- */
@@ -234,7 +192,7 @@ var ShaderLib = {
 
 	distanceRGBA: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.common,
 			UniformsLib.displacementmap,
 			{
@@ -251,7 +209,7 @@ var ShaderLib = {
 
 	shadow: {
 
-		uniforms: mergeUniforms( [
+		uniforms: UniformsUtils.merge( [
 			UniformsLib.lights,
 			UniformsLib.fog,
 			{
@@ -269,7 +227,7 @@ var ShaderLib = {
 
 ShaderLib.physical = {
 
-	uniforms: mergeUniforms( [
+	uniforms: UniformsUtils.merge( [
 		ShaderLib.standard.uniforms,
 		{
 			clearCoat: { value: 0 },

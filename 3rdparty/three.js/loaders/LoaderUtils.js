@@ -24,18 +24,19 @@ var LoaderUtils = {
 
 		}
 
-		// Merges multi-byte utf-8 characters.
-		return decodeURIComponent( escape( s ) );
+		return s;
 
 	},
 
 	extractUrlBase: function ( url ) {
 
-		var index = url.lastIndexOf( '/' );
+		var parts = url.split( '/' );
 
-		if ( index === - 1 ) return './';
+		if ( parts.length === 1 ) return './';
 
-		return url.substr( 0, index + 1 );
+		parts.pop();
+
+		return parts.join( '/' ) + '/';
 
 	}
 

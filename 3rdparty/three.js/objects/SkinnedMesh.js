@@ -1,20 +1,16 @@
+import { Mesh } from './Mesh.js';
+import { Vector4 } from '../math/Vector4.js';
+import { Skeleton } from './Skeleton.js';
+import { Bone } from './Bone.js';
+import { Matrix4 } from '../math/Matrix4.js';
+
 /**
  * @author mikael emtinger / http://gomo.se/
  * @author alteredq / http://alteredqualia.com/
  * @author ikerr / http://verold.com
  */
 
-import { Mesh } from './Mesh.js';
-import { Matrix4 } from '../math/Matrix4.js';
-import { Vector4 } from '../math/Vector4.js';
-
 function SkinnedMesh( geometry, material ) {
-
-	if ( geometry && geometry.isGeometry ) {
-
-		console.error( 'THREE.SkinnedMesh no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.' );
-
-	}
 
 	Mesh.call( this, geometry, material );
 
@@ -24,6 +20,13 @@ function SkinnedMesh( geometry, material ) {
 	this.bindMatrix = new Matrix4();
 	this.bindMatrixInverse = new Matrix4();
 
+	var bones = this.initBones();
+	var skeleton = new Skeleton( bones );
+
+	this.bind( skeleton, this.matrixWorld );
+
+	this.normalizeSkinWeights();
+
 }
 
 SkinnedMesh.prototype = Object.assign( Object.create( Mesh.prototype ), {
@@ -31,6 +34,66 @@ SkinnedMesh.prototype = Object.assign( Object.create( Mesh.prototype ), {
 	constructor: SkinnedMesh,
 
 	isSkinnedMesh: true,
+
+	initBones: function () {
+
+		var bones = [], bone, gbone;
+		var i, il;
+
+		if ( this.geometry && this.geometry.bones !== undefined ) {
+
+			// first, create array of 'Bone' objects from geometry data
+
+			for ( i = 0, il = this.geometry.bones.length; i < il; i ++ ) {
+
+				gbone = this.geometry.bones[ i ];
+
+				// create new 'Bone' object
+
+				bone = new Bone();
+				bones.push( bone );
+
+				// apply values
+
+				bone.name = gbone.name;
+				bone.position.fromArray( gbone.pos );
+				bone.quaternion.fromArray( gbone.rotq );
+				if ( gbone.scl !== undefined ) bone.scale.fromArray( gbone.scl );
+
+			}
+
+			// second, create bone hierarchy
+
+			for ( i = 0, il = this.geometry.bones.length; i < il; i ++ ) {
+
+				gbone = this.geometry.bones[ i ];
+
+				if ( ( gbone.parent !== - 1 ) && ( gbone.parent !== null ) && ( bones[ gbone.parent ] !== undefined ) ) {
+
+					// subsequent bones in the hierarchy
+
+					bones[ gbone.parent ].add( bones[ i ] );
+
+				} else {
+
+					// topmost bone, immediate child of the skinned mesh
+
+					this.add( bones[ i ] );
+
+				}
+
+			}
+
+		}
+
+		// now the bones are part of the scene graph and children of the skinned mesh.
+		// let's update the corresponding matrices
+
+		this.updateMatrixWorld( true );
+
+		return bones;
+
+	},
 
 	bind: function ( skeleton, bindMatrix ) {
 
@@ -59,30 +122,56 @@ SkinnedMesh.prototype = Object.assign( Object.create( Mesh.prototype ), {
 
 	normalizeSkinWeights: function () {
 
-		var vector = new Vector4();
+		var scale, i;
 
-		var skinWeight = this.geometry.attributes.skinWeight;
+		if ( this.geometry && this.geometry.isGeometry ) {
 
-		for ( var i = 0, l = skinWeight.count; i < l; i ++ ) {
+			for ( i = 0; i < this.geometry.skinWeights.length; i ++ ) {
 
-			vector.x = skinWeight.getX( i );
-			vector.y = skinWeight.getY( i );
-			vector.z = skinWeight.getZ( i );
-			vector.w = skinWeight.getW( i );
+				var sw = this.geometry.skinWeights[ i ];
 
-			var scale = 1.0 / vector.manhattanLength();
+				scale = 1.0 / sw.manhattanLength();
 
-			if ( scale !== Infinity ) {
+				if ( scale !== Infinity ) {
 
-				vector.multiplyScalar( scale );
+					sw.multiplyScalar( scale );
 
-			} else {
+				} else {
 
-				vector.set( 1, 0, 0, 0 ); // do something reasonable
+					sw.set( 1, 0, 0, 0 ); // do something reasonable
+
+				}
 
 			}
 
-			skinWeight.setXYZW( i, vector.x, vector.y, vector.z, vector.w );
+		} else if ( this.geometry && this.geometry.isBufferGeometry ) {
+
+			var vec = new Vector4();
+
+			var skinWeight = this.geometry.attributes.skinWeight;
+
+			for ( i = 0; i < skinWeight.count; i ++ ) {
+
+				vec.x = skinWeight.getX( i );
+				vec.y = skinWeight.getY( i );
+				vec.z = skinWeight.getZ( i );
+				vec.w = skinWeight.getW( i );
+
+				scale = 1.0 / vec.manhattanLength();
+
+				if ( scale !== Infinity ) {
+
+					vec.multiplyScalar( scale );
+
+				} else {
+
+					vec.set( 1, 0, 0, 0 ); // do something reasonable
+
+				}
+
+				skinWeight.setXYZW( i, vec.x, vec.y, vec.z, vec.w );
+
+			}
 
 		}
 

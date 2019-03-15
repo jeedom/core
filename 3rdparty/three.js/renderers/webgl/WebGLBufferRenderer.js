@@ -2,7 +2,7 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
-function WebGLBufferRenderer( gl, extensions, info, capabilities ) {
+function WebGLBufferRenderer( gl, extensions, infoRender ) {
 
 	var mode;
 
@@ -16,34 +16,44 @@ function WebGLBufferRenderer( gl, extensions, info, capabilities ) {
 
 		gl.drawArrays( mode, start, count );
 
-		info.update( count, mode );
+		infoRender.calls ++;
+		infoRender.vertices += count;
+
+		if ( mode === gl.TRIANGLES ) infoRender.faces += count / 3;
+		else if ( mode === gl.POINTS ) infoRender.points += count;
 
 	}
 
 	function renderInstances( geometry, start, count ) {
 
-		var extension;
+		var extension = extensions.get( 'ANGLE_instanced_arrays' );
 
-		if ( capabilities.isWebGL2 ) {
+		if ( extension === null ) {
 
-			extension = gl;
-
-		} else {
-
-			extension = extensions.get( 'ANGLE_instanced_arrays' );
-
-			if ( extension === null ) {
-
-				console.error( 'THREE.WebGLBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.' );
-				return;
-
-			}
+			console.error( 'THREE.WebGLBufferRenderer: using THREE.InstancedBufferGeometry but hardware does not support extension ANGLE_instanced_arrays.' );
+			return;
 
 		}
 
-		extension[ capabilities.isWebGL2 ? 'drawArraysInstanced' : 'drawArraysInstancedANGLE' ]( mode, start, count, geometry.maxInstancedCount );
+		var position = geometry.attributes.position;
 
-		info.update( count, mode, geometry.maxInstancedCount );
+		if ( position.isInterleavedBufferAttribute ) {
+
+			count = position.data.count;
+
+			extension.drawArraysInstancedANGLE( mode, 0, count, geometry.maxInstancedCount );
+
+		} else {
+
+			extension.drawArraysInstancedANGLE( mode, start, count, geometry.maxInstancedCount );
+
+		}
+
+		infoRender.calls ++;
+		infoRender.vertices += count * geometry.maxInstancedCount;
+
+		if ( mode === gl.TRIANGLES ) infoRender.faces += geometry.maxInstancedCount * count / 3;
+		else if ( mode === gl.POINTS ) infoRender.points += geometry.maxInstancedCount * count;
 
 	}
 

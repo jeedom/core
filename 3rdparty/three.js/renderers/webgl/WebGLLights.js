@@ -100,25 +100,13 @@ function UniformsCache() {
 
 }
 
-var count = 0;
-
 function WebGLLights() {
 
 	var cache = new UniformsCache();
 
 	var state = {
 
-		id: count ++,
-
-		hash: {
-			stateID: - 1,
-			directionalLength: - 1,
-			pointLength: - 1,
-			spotLength: - 1,
-			rectAreaLength: - 1,
-			hemiLength: - 1,
-			shadowsLength: - 1
-		},
+		hash: '',
 
 		ambient: [ 0, 0, 0 ],
 		directional: [],
@@ -212,7 +200,7 @@ function WebGLLights() {
 
 				uniforms.coneCos = Math.cos( light.angle );
 				uniforms.penumbraCos = Math.cos( light.angle * ( 1 - light.penumbra ) );
-				uniforms.decay = light.decay;
+				uniforms.decay = ( light.distance === 0 ) ? 0.0 : light.decay;
 
 				uniforms.shadow = light.castShadow;
 
@@ -236,11 +224,13 @@ function WebGLLights() {
 
 				var uniforms = cache.get( light );
 
-				// (a) intensity is the total visible light emitted
-				//uniforms.color.copy( color ).multiplyScalar( intensity / ( light.width * light.height * Math.PI ) );
+				// (a) intensity controls irradiance of entire light
+				uniforms.color
+					.copy( color )
+					.multiplyScalar( intensity / ( light.width * light.height ) );
 
-				// (b) intensity is the brightness of the light
-				uniforms.color.copy( color ).multiplyScalar( intensity );
+				// (b) intensity controls the radiance per light area
+				// uniforms.color.copy( color ).multiplyScalar( intensity );
 
 				uniforms.position.setFromMatrixPosition( light.matrixWorld );
 				uniforms.position.applyMatrix4( viewMatrix );
@@ -273,7 +263,7 @@ function WebGLLights() {
 
 				uniforms.color.copy( light.color ).multiplyScalar( light.intensity );
 				uniforms.distance = light.distance;
-				uniforms.decay = light.decay;
+				uniforms.decay = ( light.distance === 0 ) ? 0.0 : light.decay;
 
 				uniforms.shadow = light.castShadow;
 
@@ -324,13 +314,8 @@ function WebGLLights() {
 		state.point.length = pointLength;
 		state.hemi.length = hemiLength;
 
-		state.hash.stateID = state.id;
-		state.hash.directionalLength = directionalLength;
-		state.hash.pointLength = pointLength;
-		state.hash.spotLength = spotLength;
-		state.hash.rectAreaLength = rectAreaLength;
-		state.hash.hemiLength = hemiLength;
-		state.hash.shadowsLength = shadows.length;
+		// TODO (sam-g-steel) why aren't we using join
+		state.hash = directionalLength + ',' + pointLength + ',' + spotLength + ',' + rectAreaLength + ',' + hemiLength + ',' + shadows.length;
 
 	}
 

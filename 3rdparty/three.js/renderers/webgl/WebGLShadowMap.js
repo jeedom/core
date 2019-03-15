@@ -3,7 +3,7 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
-import { FrontSide, BackSide, DoubleSide, RGBAFormat, NearestFilter, PCFShadowMap, RGBADepthPacking, NoBlending } from '../../constants.js';
+import { FrontSide, BackSide, DoubleSide, RGBAFormat, NearestFilter, PCFShadowMap, RGBADepthPacking } from '../../constants.js';
 import { WebGLRenderTarget } from '../WebGLRenderTarget.js';
 import { MeshDepthMaterial } from '../../materials/MeshDepthMaterial.js';
 import { MeshDistanceMaterial } from '../../materials/MeshDistanceMaterial.js';
@@ -33,8 +33,6 @@ function WebGLShadowMap( _renderer, _objects, maxTextureSize ) {
 		_distanceMaterials = new Array( _NumberOfMaterialVariants ),
 
 		_materialCache = {};
-
-	var shadowSide = { 0: BackSide, 1: FrontSide, 2: DoubleSide };
 
 	var cubeDirections = [
 		new Vector3( 1, 0, 0 ), new Vector3( - 1, 0, 0 ), new Vector3( 0, 0, 1 ),
@@ -93,6 +91,9 @@ function WebGLShadowMap( _renderer, _objects, maxTextureSize ) {
 
 	this.type = PCFShadowMap;
 
+	this.renderReverseSided = true;
+	this.renderSingleSided = true;
+
 	this.render = function ( lights, scene, camera ) {
 
 		if ( scope.enabled === false ) return;
@@ -100,12 +101,12 @@ function WebGLShadowMap( _renderer, _objects, maxTextureSize ) {
 
 		if ( lights.length === 0 ) return;
 
-		var currentRenderTarget = _renderer.getRenderTarget();
-
+		// TODO Clean up (needed in case of contextlost)
+		var _gl = _renderer.context;
 		var _state = _renderer.state;
 
 		// Set GL state for depth map.
-		_state.setBlending( NoBlending );
+		_state.disable( _gl.BLEND );
 		_state.buffers.color.setClear( 1, 1, 1, 1 );
 		_state.buffers.depth.setTest( true );
 		_state.setScissorTest( false );
@@ -258,8 +259,6 @@ function WebGLShadowMap( _renderer, _objects, maxTextureSize ) {
 
 		scope.needsUpdate = false;
 
-		_renderer.setRenderTarget( currentRenderTarget );
-
 	};
 
 	function getDepthMaterial( object, material, isPointLight, lightPositionWorld, shadowCameraNear, shadowCameraFar ) {
@@ -351,7 +350,22 @@ function WebGLShadowMap( _renderer, _objects, maxTextureSize ) {
 		result.visible = material.visible;
 		result.wireframe = material.wireframe;
 
-		result.side = ( material.shadowSide != null ) ? material.shadowSide : shadowSide[ material.side ];
+		var side = material.side;
+
+		if ( scope.renderSingleSided && side == DoubleSide ) {
+
+			side = FrontSide;
+
+		}
+
+		if ( scope.renderReverseSided ) {
+
+			if ( side === FrontSide ) side = BackSide;
+			else if ( side === BackSide ) side = FrontSide;
+
+		}
+
+		result.side = side;
 
 		result.clipShadows = material.clipShadows;
 		result.clippingPlanes = material.clippingPlanes;

@@ -464,6 +464,7 @@ jeedom3d.text.generate = function(_options,_object,_text){
     var backgroundColor = parameters.hasOwnProperty("backgroundColor") ? parameters["backgroundColor"] : { r: 255, g: 255, b: 255, a: 1.0 };
     var textColor = parameters.hasOwnProperty("textColor") ?	parameters["textColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
     var canvas = document.createElement('canvas');
+    
     var context = canvas.getContext('2d');
     context.font = "Bold " + fontsize + "px " + fontface;
     var texts = message.split('\n');

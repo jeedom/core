@@ -14,7 +14,7 @@ function ImageLoader( manager ) {
 
 Object.assign( ImageLoader.prototype, {
 
-	crossOrigin: 'anonymous',
+	crossOrigin: 'Anonymous',
 
 	load: function ( url, onLoad, onProgress, onError ) {
 
@@ -46,10 +46,7 @@ Object.assign( ImageLoader.prototype, {
 
 		var image = document.createElementNS( 'http://www.w3.org/1999/xhtml', 'img' );
 
-		function onImageLoad() {
-
-			image.removeEventListener( 'load', onImageLoad, false );
-			image.removeEventListener( 'error', onImageError, false );
+		image.addEventListener( 'load', function () {
 
 			Cache.add( url, this );
 
@@ -57,22 +54,24 @@ Object.assign( ImageLoader.prototype, {
 
 			scope.manager.itemEnd( url );
 
-		}
+		}, false );
 
-		function onImageError( event ) {
+		/*
+		image.addEventListener( 'progress', function ( event ) {
 
-			image.removeEventListener( 'load', onImageLoad, false );
-			image.removeEventListener( 'error', onImageError, false );
+			if ( onProgress ) onProgress( event );
+
+		}, false );
+		*/
+
+		image.addEventListener( 'error', function ( event ) {
 
 			if ( onError ) onError( event );
 
-			scope.manager.itemError( url );
 			scope.manager.itemEnd( url );
+			scope.manager.itemError( url );
 
-		}
-
-		image.addEventListener( 'load', onImageLoad, false );
-		image.addEventListener( 'error', onImageError, false );
+		}, false );
 
 		if ( url.substr( 0, 5 ) !== 'data:' ) {
 

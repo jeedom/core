@@ -37,13 +37,11 @@ ImageBitmapLoader.prototype = {
 
 	},
 
-	load: function ( url, onLoad, onProgress, onError ) {
+	load: function load( url, onLoad, onProgress, onError ) {
 
 		if ( url === undefined ) url = '';
 
 		if ( this.path !== undefined ) url = this.path + url;
-
-		url = this.manager.resolveURL( url );
 
 		var scope = this;
 
@@ -85,12 +83,10 @@ ImageBitmapLoader.prototype = {
 
 			if ( onError ) onError( e );
 
-			scope.manager.itemError( url );
 			scope.manager.itemEnd( url );
+			scope.manager.itemError( url );
 
 		} );
-
-		scope.manager.itemStart( url );
 
 	},
 

@@ -2,65 +2,66 @@
  * Uniform Utilities
  */
 
-export function cloneUniforms( src ) {
+var UniformsUtils = {
 
-	var dst = {};
+	merge: function ( uniforms ) {
 
-	for ( var u in src ) {
+		var merged = {};
 
-		dst[ u ] = {};
+		for ( var u = 0; u < uniforms.length; u ++ ) {
 
-		for ( var p in src[ u ] ) {
+			var tmp = this.clone( uniforms[ u ] );
 
-			var property = src[ u ][ p ];
+			for ( var p in tmp ) {
 
-			if ( property && ( property.isColor ||
-				property.isMatrix3 || property.isMatrix4 ||
-				property.isVector2 || property.isVector3 || property.isVector4 ||
-				property.isTexture ) ) {
-
-				dst[ u ][ p ] = property.clone();
-
-			} else if ( Array.isArray( property ) ) {
-
-				dst[ u ][ p ] = property.slice();
-
-			} else {
-
-				dst[ u ][ p ] = property;
+				merged[ p ] = tmp[ p ];
 
 			}
 
 		}
 
-	}
+		return merged;
 
-	return dst;
+	},
 
-}
+	clone: function ( uniforms_src ) {
 
-export function mergeUniforms( uniforms ) {
+		var uniforms_dst = {};
 
-	var merged = {};
+		for ( var u in uniforms_src ) {
 
-	for ( var u = 0; u < uniforms.length; u ++ ) {
+			uniforms_dst[ u ] = {};
 
-		var tmp = cloneUniforms( uniforms[ u ] );
+			for ( var p in uniforms_src[ u ] ) {
 
-		for ( var p in tmp ) {
+				var parameter_src = uniforms_src[ u ][ p ];
 
-			merged[ p ] = tmp[ p ];
+				if ( parameter_src && ( parameter_src.isColor ||
+					parameter_src.isMatrix3 || parameter_src.isMatrix4 ||
+					parameter_src.isVector2 || parameter_src.isVector3 || parameter_src.isVector4 ||
+					parameter_src.isTexture ) ) {
+
+					uniforms_dst[ u ][ p ] = parameter_src.clone();
+
+				} else if ( Array.isArray( parameter_src ) ) {
+
+					uniforms_dst[ u ][ p ] = parameter_src.slice();
+
+				} else {
+
+					uniforms_dst[ u ][ p ] = parameter_src;
+
+				}
+
+			}
 
 		}
 
+		return uniforms_dst;
+
 	}
 
-	return merged;
+};
 
-}
-
-// Legacy
-
-var UniformsUtils = { clone: cloneUniforms, merge: mergeUniforms };
 
 export { UniformsUtils };

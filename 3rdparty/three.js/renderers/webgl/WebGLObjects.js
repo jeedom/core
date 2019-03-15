@@ -2,13 +2,13 @@
  * @author mrdoob / http://mrdoob.com/
  */
 
-function WebGLObjects( geometries, info ) {
+function WebGLObjects( geometries, infoRender ) {
 
 	var updateList = {};
 
 	function update( object ) {
 
-		var frame = info.render.frame;
+		var frame = infoRender.frame;
 
 		var geometry = object.geometry;
 		var buffergeometry = geometries.get( object, geometry );
@@ -33,7 +33,7 @@ function WebGLObjects( geometries, info ) {
 
 	}
 
-	function dispose() {
+	function clear() {
 
 		updateList = {};
 
@@ -42,7 +42,7 @@ function WebGLObjects( geometries, info ) {
 	return {
 
 		update: update,
-		dispose: dispose
+		clear: clear
 
 	};
 

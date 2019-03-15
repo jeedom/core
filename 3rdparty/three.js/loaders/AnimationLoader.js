@@ -19,7 +19,6 @@ Object.assign( AnimationLoader.prototype, {
 		var scope = this;
 
 		var loader = new FileLoader( scope.manager );
-		loader.setPath( scope.path );
 		loader.load( url, function ( text ) {
 
 			onLoad( scope.parse( JSON.parse( text ) ) );
@@ -41,13 +40,6 @@ Object.assign( AnimationLoader.prototype, {
 		}
 
 		onLoad( animations );
-
-	},
-
-	setPath: function ( value ) {
-
-		this.path = value;
-		return this;
 
 	}
 

@@ -24,7 +24,13 @@ import { Color } from '../math/Color.js';
  * @author alteredq / http://alteredqualia.com/
  */
 
-function Loader() {}
+function Loader() {
+
+	this.onLoadStart = function () {};
+	this.onLoadProgress = function () {};
+	this.onLoadComplete = function () {};
+
+}
 
 Loader.Handlers = {
 
@@ -61,13 +67,7 @@ Loader.Handlers = {
 
 Object.assign( Loader.prototype, {
 
-	crossOrigin: 'anonymous',
-
-	onLoadStart: function () {},
-
-	onLoadProgress: function () {},
-
-	onLoadComplete: function () {},
+	crossOrigin: undefined,
 
 	initMaterials: function ( materials, texturePath, crossOrigin ) {
 
@@ -253,7 +253,7 @@ Object.assign( Loader.prototype, {
 						json.normalMap = loadTexture( value, m.mapNormalRepeat, m.mapNormalOffset, m.mapNormalWrap, m.mapNormalAnisotropy );
 						break;
 					case 'mapNormalFactor':
-						json.normalScale = value;
+						json.normalScale = [ value, value ];
 						break;
 					case 'mapNormalRepeat':
 					case 'mapNormalOffset':

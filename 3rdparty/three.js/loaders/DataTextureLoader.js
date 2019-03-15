@@ -28,18 +28,18 @@ Object.assign( DataTextureLoader.prototype, {
 
 		var loader = new FileLoader( this.manager );
 		loader.setResponseType( 'arraybuffer' );
-		loader.setPath( this.path );
+
 		loader.load( url, function ( buffer ) {
 
 			var texData = scope._parser( buffer );
 
 			if ( ! texData ) return;
 
-			if ( texData.image !== undefined ) {
+			if ( undefined !== texData.image ) {
 
 				texture.image = texData.image;
 
-			} else if ( texData.data !== undefined ) {
+			} else if ( undefined !== texData.data ) {
 
 				texture.image.width = texData.width;
 				texture.image.height = texData.height;
@@ -47,32 +47,32 @@ Object.assign( DataTextureLoader.prototype, {
 
 			}
 
-			texture.wrapS = texData.wrapS !== undefined ? texData.wrapS : ClampToEdgeWrapping;
-			texture.wrapT = texData.wrapT !== undefined ? texData.wrapT : ClampToEdgeWrapping;
+			texture.wrapS = undefined !== texData.wrapS ? texData.wrapS : ClampToEdgeWrapping;
+			texture.wrapT = undefined !== texData.wrapT ? texData.wrapT : ClampToEdgeWrapping;
 
-			texture.magFilter = texData.magFilter !== undefined ? texData.magFilter : LinearFilter;
-			texture.minFilter = texData.minFilter !== undefined ? texData.minFilter : LinearMipMapLinearFilter;
+			texture.magFilter = undefined !== texData.magFilter ? texData.magFilter : LinearFilter;
+			texture.minFilter = undefined !== texData.minFilter ? texData.minFilter : LinearMipMapLinearFilter;
 
-			texture.anisotropy = texData.anisotropy !== undefined ? texData.anisotropy : 1;
+			texture.anisotropy = undefined !== texData.anisotropy ? texData.anisotropy : 1;
 
-			if ( texData.format !== undefined ) {
+			if ( undefined !== texData.format ) {
 
 				texture.format = texData.format;
 
 			}
-			if ( texData.type !== undefined ) {
+			if ( undefined !== texData.type ) {
 
 				texture.type = texData.type;
 
 			}
 
-			if ( texData.mipmaps !== undefined ) {
+			if ( undefined !== texData.mipmaps ) {
 
 				texture.mipmaps = texData.mipmaps;
 
 			}
 
-			if ( texData.mipmapCount === 1 ) {
+			if ( 1 === texData.mipmapCount ) {
 
 				texture.minFilter = LinearFilter;
 
@@ -86,13 +86,6 @@ Object.assign( DataTextureLoader.prototype, {
 
 
 		return texture;
-
-	},
-
-	setPath: function ( value ) {
-
-		this.path = value;
-		return this;
 
 	}
 
