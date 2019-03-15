@@ -537,7 +537,7 @@ function linkify(inputText) {
 }
 
 function initRowOverflow() {
-  var hWindow = $(window).outerHeight() - $('header').outerHeight();
+  var hWindow = $(window).outerHeight() - $('header').outerHeight() - 5;
   if($('#div_alert').is(':visible')){
     hWindow -= ($('#div_alert').outerHeight() + 20);
   }
