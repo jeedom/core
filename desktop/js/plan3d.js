@@ -764,9 +764,6 @@ jeedom3d.text.generate = function(_options,_object,_text){
   }
   
   jeedom3d.conditionalShow.create = function(_info,_object) {
-    console.log('Conditation show create')
-    console.log(_info)
-    console.log(_object)
     for(var i in _info.additionalData.cmds){
       cmd_id = _info.additionalData.cmds[i];
       if(!CMDS[cmd_id]){
