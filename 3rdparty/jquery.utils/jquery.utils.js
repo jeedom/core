@@ -310,6 +310,9 @@ function is_array(a) {
         
         $(this).find('.btn_closeAlert').on('click', function () {
           $(this).closest('.jqAlert').hide();
+          if(typeof initRowOverflow == 'function'){
+            initRowOverflow();
+          }
         });
         if(typeof initRowOverflow == 'function'){
           initRowOverflow();
