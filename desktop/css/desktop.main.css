@@ -522,7 +522,7 @@ pre {
   color: var(--linkHoverLight-color) !important;
   font-size: 16px !important;
 }
-.alert {
+:not(#div_alert).alert {
   padding: 7px !important;
 }
 .alert-info,
