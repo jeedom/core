@@ -2089,6 +2089,11 @@ div[id^=__lpform_] { /*lastpass*/
 .alert {
   border-radius: var(--border-radius) !important;
 }
+
+[data-page=health] td.alert {
+  border-radius: 0 !important;
+}
+
 .eqLogic-widget .widget-name,
 .scenario-widget .widget-name,
 .panel,
