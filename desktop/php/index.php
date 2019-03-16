@@ -378,11 +378,11 @@ if (init('rescue', 0) == 0) {
 									</li>
 								<?php } ?>
 								<li class="hidden-xs"><a href="#" style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
-								<li>
-									<a id="bt_navTime" href="index.php?v=d&p=administration#generaltab" class="hidden-xs horloge">
-										<span id="horloge"><?php echo date('H:i:s'); ?></span>
+								<li class="hidden-xs navTime">
+									<span id="horloge"><?php echo date('H:i:s'); ?></span>
+									<a href="index.php?v=d&p=administration#generaltab">
+										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 									</a>
-									<span class="hidden-xs cmdName"><?php echo config::byKey('name'); ?></span>
 								</li>
 								<li class="hidden-xs">
 									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
