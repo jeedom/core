@@ -2091,7 +2091,7 @@ div[id^=__lpform_] { /*lastpass*/
   border-radius: var(--border-radius) !important;
 }
 
-[data-page=health] td.alert {
+td.alert {
   border-radius: 0 !important;
 }
 
