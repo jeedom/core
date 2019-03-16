@@ -183,7 +183,7 @@ class DB {
 					$parameters['id'] = $object->getId(); //override if necessary
 				}
 				if ($_replace) {
-					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
 				}else{
 					$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
 				}
