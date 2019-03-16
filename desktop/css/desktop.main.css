@@ -177,16 +177,6 @@ legend {
   font-weight: bold;
 }
 
-.btn {
-  border: none;
-}
-.btn.btn-default {
-  height: 34px;
-}
-[data-page=dashboard] .input-group .btn {
-  padding-top: 4px !important;
-}
-
 .cmdName {
   font-size: 12px;
   font-weight: bold;
@@ -666,8 +656,18 @@ label.eqLogicAttr.label {
 button:focus {
   outline:0 !important;
 }
+.btn {
+  border: none;
+}
+.btn.btn-default {
+  height: 34px;
+}
 .btn-xs {
+  height: 22px !important;
   padding: 2px 6px;
+}
+[data-page=dashboard] .input-group .btn {
+  padding-top: 4px !important;
 }
 
 /* dropdown select alternative */
