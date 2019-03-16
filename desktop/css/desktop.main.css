@@ -592,6 +592,7 @@ li.alert-info.eqLogic {
 .ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
 
 .action_colorpicker_change {
+  width: 35px !important;
   padding: 0 !important;
   border: none !important;
 }
