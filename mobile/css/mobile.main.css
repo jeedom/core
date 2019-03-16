@@ -272,6 +272,11 @@ legend {
 .nd2-card {
   margin: 0 !important;
 }
+.nd2-card .card-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  color:  var(--link-color);
+}
 .eqLogic-widget i.fa-refresh {
   margin-right: calc((var(--border-radius)/4) + 3px)  !important;
 }
@@ -287,7 +292,7 @@ a.ui-slider-handle {
 
 /* select */
 .ui-select .ui-btn {
-  font-family: "noto";
+  font-family: "Roboto";
   font-weight: bold;
   background-color: var(--form-bg-color) !important;
 }
@@ -405,7 +410,8 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #bt_eraseSearchInput {
   position: fixed;
   top: 65px;
-  right: -5px;
+  height: 19px;
+  right: -4px;
   margin:0;
   z-index: 9000;
   background: var(--form-bg-color) !important;
