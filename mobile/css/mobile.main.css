@@ -72,6 +72,7 @@ Theme Core 2019 @Jeedom
 }
 .eqLogic.eqLogic-widget .ui-input-text input[type=color],
 .action_colorpicker_change {
+  width: 34px;
   padding: 0 !important;
   border: none !important;
   min-height: 32px
@@ -169,7 +170,6 @@ p.state {
 }
 .cmd.refresh {
   margin-top: 2px;
-  margin-right: 2px;
 }
 .label {
   font-size: 12px !important;
@@ -178,7 +178,6 @@ p.state {
 .full-width-slider {
   width: 100% !important;
 }
-
 .objectSummaryParent {
   font-size: 15px;
 }
@@ -230,7 +229,20 @@ p.state {
 .ui-mini {
   font-size: 12px;
   font-weight: bold !important;
+  line-height: 15px !important;
 }
+
+.eqLogic.eqLogic-widget .controlgroup-textinput {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 32px !important;
+  margin: 0;
+}
+.eqLogic.eqLogic-widget .ui-controlgroup-controls a.ui-btn {
+  height: 16px !important;
+  margin: 0;
+}
+
 
 
 /* bottom home menu */
@@ -553,11 +565,26 @@ pre {
 .ui-controlgroup ::-webkit-color-swatch {
   border-radius: 0 !important;
 }
+.ui-controlgroup .roundedLeft::-moz-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.ui-controlgroup .roundedLeft::-webkit-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.ui-controlgroup .roundedRight::-moz-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+}
+.ui-controlgroup .roundedRight::-webkit-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+}
+
 .ui-controlgroup .roundedLeft,
+.ui-controlgroup-controls .ui-first-child,
 .roundedLeft {
   border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
 }
 .ui-controlgroup .roundedRight,
+.ui-controlgroup-controls .ui-last-child,
 .roundedRight {
   border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
   margin-right: 3px !important;
