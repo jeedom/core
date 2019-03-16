@@ -430,7 +430,10 @@ class jeedom {
 			return false;
 		}
 		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
-			return self::apiAccess($_apikey);
+			if($_plugin != 'core'){
+				return self::apiAccess($_apikey);
+			}
+			return false;
 		}
 		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey == $_apikey) {
@@ -446,7 +449,7 @@ class jeedom {
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}
-		if($_plugin != 'core' && $_plugin != 'proapi'){
+		if($_plugin != 'core'){
 			return self::apiAccess($_apikey);
 		}
 		return false;
