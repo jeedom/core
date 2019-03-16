@@ -186,6 +186,9 @@ legend {
 .btn {
   border: none;
 }
+.btn.btn-default {
+  height: 34px;
+}
 [data-page=dashboard] .input-group .btn {
   padding-top: 4px !important;
 }
