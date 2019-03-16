@@ -19,23 +19,20 @@ user::isBan();
 	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs nav-primary" role="tablist" style="max-width:calc(100% - 150px);">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
-		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-tint"></i> {{Interface}}</a></li>
-		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
-
-		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-file"></i> {{Logs}}</a></li>
-		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
-		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-table"></i> {{Résumés}}</a></li>
-		<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-svg"></i> {{Equipements}}</a></li>
-		<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-newspaper-o"></i> {{Rapports}}</a></li>
-		<li role="presentation"><a href="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-sitemap"></i> {{Liens}}</a></li>
-		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
-
-		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
-		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a>
-		</li>
-		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
-		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-key"></i> {{API}}</a></li>
-		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
+		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Interface}}</a></li>
+		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
+		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file"></i> {{Logs}}</a></li>
+		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
+		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-table"></i> {{Résumés}}</a></li>
+		<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-svg"></i> {{Equipements}}</a></li>
+		<li role="presentation"><a href="#repporttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-newspaper-o"></i> {{Rapports}}</a></li>
+		<li role="presentation"><a href="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-sitemap"></i> {{Liens}}</a></li>
+		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
+		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
+		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a></li>
+		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
+		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key"></i> {{API}}</a></li>
+		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
 	</ul>
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
@@ -199,7 +196,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareName() ?></span>
+							<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
@@ -208,7 +205,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-							<span class="label label-info" style="font-size : 1em;"><?php echo jeedom::getHardwareKey() ?></span>
+							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
@@ -227,7 +224,7 @@ user::isBan();
 							$cache = cache::byKey('hour');
 							$lastKnowDate = $cache->getValue();
 							?>
-							<span class="label label-info" style="font-size : 1em;"><?php echo $lastKnowDate ?></span>
+							<span class="label label-info"><?php echo $lastKnowDate ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
@@ -705,7 +702,7 @@ user::isBan();
 								echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 								echo '<div class="col-xs-8">';
 								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-									echo '<span class="label label-success" style="font-size : 1em;">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+									echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 								} else {
 									echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 								}
@@ -977,7 +974,7 @@ user::isBan();
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<?php
-							echo '<span class="label label-primary" style="font-size:1em;"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
+							echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> ' . __('objets', __FILE__) . '</span>';
 							?>
 						</div>
 					</div>
