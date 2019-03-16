@@ -430,10 +430,13 @@ class jeedom {
 			return false;
 		}
 		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
-			return false;
+			return self::apiAccess($_apikey);
 		}
 		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey == $_apikey) {
+			if($_plugin != 'core' && $_plugin != 'proapi'){
+				return self::apiAccess($_apikey);
+			}
 			return true;
 		}
 		$user = user::byHash($_apikey);
