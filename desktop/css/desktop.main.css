@@ -66,12 +66,6 @@ i.cursor:focus {
   z-index: 9999 !important;
   box-shadow: none;
 }
-#bt_navTime {
-  padding: 5px 0 0 0 !important;
-  margin: 0 !important;
-  text-align: center;
-}
-
 
 
 /* __________________________________________________________________________________________________________LEGENDS */
@@ -818,7 +812,16 @@ header.navbar {
   box-sizing:unset;
 }
 
-
+.navbar-nav > li.navTime {
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+.navbar-nav > li.navTime > a  {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
 
 
 /* __________________________________________________________________________________________________________PANELS */
