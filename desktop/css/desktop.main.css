@@ -241,6 +241,13 @@ div.cmd > div.center-block {
   color: var(--al-warning-color);
 }
 
+.list-group-item {
+  background-color: var(--defaultBkg-color);
+}
+.list-group-item-success {
+  background-color: var(--al-success-color);
+}
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
