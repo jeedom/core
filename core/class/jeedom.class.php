@@ -434,9 +434,6 @@ class jeedom {
 		}
 		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey == $_apikey) {
-			if($_plugin != 'core' && $_plugin != 'proapi'){
-				return self::apiAccess($_apikey);
-			}
 			return true;
 		}
 		$user = user::byHash($_apikey);
@@ -448,6 +445,9 @@ class jeedom {
 			$_USER_GLOBAL = $user;
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
+		}
+		if($_plugin != 'core' && $_plugin != 'proapi'){
+			return self::apiAccess($_apikey);
 		}
 		return false;
 	}
