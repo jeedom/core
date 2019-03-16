@@ -1115,6 +1115,9 @@ ul.nav.nav-tabs li,
   margin-right: 0 !important;
   border-top: none !important;
 }
+.nav-tabs > li > a {
+  padding: 10px 6px;
+}
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover,
