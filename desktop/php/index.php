@@ -293,7 +293,7 @@ if (init('rescue', 0) == 0) {
 									<li class="divider"></li>
 									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
 									<?php if (isConnect('admin')) { ?>
-										
+
 										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
 										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
@@ -379,9 +379,10 @@ if (init('rescue', 0) == 0) {
 								<?php } ?>
 								<li class="hidden-xs"><a href="#" style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li>
-									<a href="index.php?v=d&p=administration#generaltab" class="hidden-xs">
+									<a id="bt_navTime" href="index.php?v=d&p=administration#generaltab" class="hidden-xs horloge">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
+									<span class="hidden-xs cmdName"><?php echo config::byKey('name'); ?></span>
 								</li>
 								<li class="hidden-xs">
 									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
@@ -463,4 +464,3 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	
