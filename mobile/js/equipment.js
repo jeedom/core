@@ -86,7 +86,7 @@ function initEquipment(_object_id) {
             }
             div += '<span>'+icon+'</span> '+objects_info[id].name;
             div += '</legend>';
-            div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>';
+            div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>';
             div += '<div class="objectHtml">';
             div += html[i]
             div += '</div>';
@@ -105,7 +105,7 @@ function initEquipment(_object_id) {
             $('.div_displayEquipement .objectHtml').packery({gutter :0});
           }, 10);
         } else{
-          $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text" style="padding:4px;font-size:0.6em;"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create');
+          $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create');
           jeedom.object.summaryUpdate([{object_id:_object_id}]);
           setTileSize('.eqLogic');
           setTileSize('.scenario');
