@@ -36,41 +36,41 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 	<div role="tabpanel" class="tab-pane active" id="eqLogic_information">
 		<br/>
 		<div class="row">
-			<div class="col-sm-4" >
+			<div class="col-sm-6" >
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{ID}}</label>
+							<label class="col-sm-7 control-label">{{ID}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Nom}}</label>
+							<label class="col-sm-7 control-label">{{Nom}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{ID logique}}</label>
+							<label class="col-sm-7 control-label">{{ID logique}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{ID de l'objet}}</label>
+							<label class="col-sm-7 control-label">{{ID de l'objet}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="object_id" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Date de création}}</label>
+							<label class="col-sm-7 control-label">{{Date de création}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Date de changement de pile(s)}}</label>
+							<label class="col-sm-7 control-label">{{Date de changement de pile(s)}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime" style="font-size : 1em;"></span>
 							</div>
@@ -78,7 +78,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 					</fieldset>
 				</form>
 			</div>
-			<div class="col-sm-4" >
+			<div class="col-sm-6" >
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
@@ -92,25 +92,25 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Type}}</label>
+							<label class="col-sm-6 control-label">{{Type}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Tentative échouée}}</label>
+							<label class="col-sm-6 control-label">{{Tentative échouée}}</label>
 							<div class="col-sm-4">
 								<span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Date de dernière communication}}</label>
+							<label class="col-sm-6 control-label">{{Date de dernière communication}}</label>
 							<div class="col-sm-4">
 								<span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Dernière mise à jour}}</label>
+							<label class="col-sm-6 control-label">{{Dernière mise à jour}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime" style="font-size : 1em;"></span>
 							</div>
@@ -118,10 +118,10 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 					</fieldset>
 				</form>
 			</div>
-			<div class="col-sm-4" >
+			<div class="col-sm-12" >
 				<div class="form-group">
-					<label class="col-sm-2 control-label">{{Tag}}</label>
-					<div class="col-sm-10">
+					<label class="col-sm-1 control-label">{{Tag(s)}}</label>
+					<div class="col-sm-11">
 						<input class="eqLogicAttr form-control" data-l1key="tags" />
 					</div>
 				</div>
@@ -320,8 +320,8 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{{Type de batterie}}</label>
-							<div class="col-sm-3">
+							<label class="col-sm-3 control-label">{{Type}}</label>
+							<div class="col-sm-6">
 								<input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
 							</div>
 							<div class="col-sm-3">
