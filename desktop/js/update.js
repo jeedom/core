@@ -125,7 +125,7 @@ $('#table_update,#table_updateOther').delegate('.checkUpdate', 'click', function
       printUpdate();
     }
   });
-  
+
 });
 
 function getJeedomLog(_autoUpdate, _log) {
@@ -216,42 +216,42 @@ function addUpdate(_update) {
     labelClass = 'label-warning';
   }
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-  tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.8em;text-transform: uppercase;"></span>';
+  tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="text-transform: uppercase;"></span>';
   tr += '</td>';
   tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span>';
   if(_update.configuration && _update.configuration.version){
     tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
   }
   tr += '</td>';
-  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion" style="font-size:0.8em;cursor:default;"></span></td>';
-  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="remoteVersion" style="font-size:0.8em;cursor:default;"></span></td>';
+  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion"></span></td>';
+  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="remoteVersion"></span></td>';
   tr += '<td style="width:180px;cursor:default;">';
   if (_update.type != 'core') {
-    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span style="font-size:0.9em;">{{Ne pas mettre à jour}}</span>';
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span>{{Ne pas mettre à jour}}</span>';
   }
   tr += '</td>';
   tr += '<td>';
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-      tr += '<a class="btn btn-default btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+      tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ';
     }
   }else{
-    tr += '<a class="btn btn-default btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank" style="margin-bottom : 5px;"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+    tr += '<a class="btn btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
   }
   if (_update.type != 'core') {
     if (_update.status == 'update') {
-      tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Mettre à jour}}"><i class="fas fa-refresh"></i> {{Mettre à jour}}</a> ';
+      tr += '<a class="btn btn-info btn-xs update" title="{{Mettre à jour}}"><i class="fas fa-refresh"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
-      tr += '<a class="btn btn-info btn-xs update" style="margin-bottom : 5px;" title="{{Re-installer}}"><i class="fas fa-refresh"></i> {{Reinstaller}}</a> ';
+      tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-refresh"></i> {{Reinstaller}}</a> ';
     }
   }
-  tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fas fa-check"></i> {{Vérifier}}</a>';
+  tr += '<a class="btn btn-info btn-xs pull-right checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
   if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
+    tr += '<a class="btn btn-danger btn-xs pull-right remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
   }
   tr += '</td>';
   tr += '</tr>';
-  
+
   if(_update.type == 'core' || _update.type == 'plugin'){
     $('#table_update').append(tr);
     $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
