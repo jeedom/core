@@ -400,7 +400,8 @@ div[class*="ListContainer"] div.cursor > center > i,
   color: var(--logo-primary-color);
 }
 
-.pluginDisplayCard {
+.pluginDisplayCard,
+.objectDisplayCard {
   height: 130px;
   min-height: 130px !important;
 }
@@ -1115,7 +1116,7 @@ input[type=radio]:checked {
   -webkit-background-size: 28px 28px;
 }
 input[type=checkbox].summaryAttr {
-  margin-top: -20px;
+  margin-top: -12px;
 }
 
 
