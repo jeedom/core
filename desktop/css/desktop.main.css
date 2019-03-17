@@ -658,9 +658,11 @@ button:focus {
 }
 .btn {
   border: none;
+  padding: 6px 8px;
 }
 .btn.btn-default {
   height: 34px;
+  padding: 8px;
 }
 .btn-xs {
   height: 22px !important;
