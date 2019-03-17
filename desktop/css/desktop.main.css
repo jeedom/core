@@ -664,6 +664,9 @@ button:focus {
   height: 34px;
   padding: 8px;
 }
+.eqLogic.eqLogic-widget .btn.btn-default {
+  padding: 6px;
+}
 .btn-xs {
   height: 22px !important;
   padding: 2px 6px;
