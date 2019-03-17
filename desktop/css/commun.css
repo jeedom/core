@@ -115,12 +115,12 @@ legend:first-letter,
 
 .pull-right{
   float: right;
-  margin-left: 5px;
-  padding-right: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .pull-left{
-  margin-right: 5px;
+  margin-right: 3px;
 }
 
 .form-actions{
