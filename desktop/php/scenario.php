@@ -181,7 +181,7 @@ if (is_array($scenarioListGroup)) {
 								<label class="col-xs-5 control-label" >{{Objet parent}}</label>
 								<div class="col-xs-6">
 									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="object_id">
+										<button class="btn btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="object_id">
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -205,7 +205,7 @@ if (is_array($scenarioListGroup)) {
 								<label class="col-xs-5 control-label">{{Log}}</label>
 								<div class="col-xs-6">
 									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="configuration" data-l2key="logmode">
+										<button class="btn btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="configuration" data-l2key="logmode">
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
@@ -256,7 +256,7 @@ if (is_array($scenarioListGroup)) {
 							<div class="col-sm-9 col-xs-6">
 								<div class="input-group">
 									<div class="dropdown dynDropdown">
-										<button class="btn btn-xs btn-default dropdown-toggle roundedLeft scenarioAttr" type="button" data-toggle="dropdown" data-l1key="mode">
+										<button class="btn btn-default dropdown-toggle roundedLeft scenarioAttr" type="button" data-toggle="dropdown" data-l1key="mode">
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
