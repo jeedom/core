@@ -148,6 +148,11 @@ Theme Core 2019 @Jeedom
 .cmdName:first-letter {
   text-transform: uppercase;
 }
+.cmdName i {
+  font-size: 16px !important;
+  padding: 5px 8px;
+  min-width: 30px;
+}
 .state {
   font-size: 16px !important;
 }
