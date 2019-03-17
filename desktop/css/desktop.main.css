@@ -335,48 +335,45 @@ select.selectCmd {
 #interactThumbnailDisplay > .interactListContainer:first-of-type,
 #div_resumePluginList > .pluginListContainer:first-of-type,
 .eqLogicThumbnailDisplay > .eqLogicThumbnailContainer:first-of-type {
-  min-height: 110px !important;
+  min-height: 115px !important;
+}
+
+div[class*="ListContainer"] > div.cursor,
+.eqLogicThumbnailContainer > div.cursor {
+  width : 145px !important;
+  font-size: 14px !important;
+}
+
+div[class*="ListContainer"] i {
+  font-size: 38px !important;
+}
+div[class*="ListContainer"] .objectSummaryParent i {
+  font-size: 12px !important;
 }
 
 .eqLogicAction:not(.btn):not(i):not([role=tab]):not([data-action=returnToThumbnailDisplay]),
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
 .interactDisplayCard,
-.interactListContainer div,
-.objectListContainer div,
-.pluginListContainer div,
+div[class*="ListContainer"] div,
 .scenarioDisplayCard,
-.scenarioListContainer div,
-.widgetDisplayCard {
+.widgetDisplayCard,
+.pluginDisplayCard {
   border: none !important;
   border-radius: 0 !important;
   background: transparent !important;
-  font-size: 14px!important;
   padding-top: 0!important;
-
+  text-align: center;
 }
-.objectListContainer div.cursor,
-.interactListContainer div.cursor,
-.scenarioListContainer div.cursor,
-.pluginListContainer div.cursor,
+div[class*="ListContainer"] div.cursor,
 .eqLogicDisplayCard div.cursor {
   margin-bottom: 5px !important;
   padding: 5px !important;
 }
-.objectListContainer div.cursor > center > i,
-.interactListContainer div.cursor > center > i,
-.scenarioListContainer div.cursor > center  > i,
-.pluginListContainer div.cursor > center > i,
+div[class*="ListContainer"] div.cursor > center > i,
 .eqLogicThumbnailContainer div.cursor > center > i,
 .eqLogicThumbnailContainer div.cursor > i {
-  font-size: 3em !important;
-}
-.objectListContainer > div.cursor,
-.interactListContainer > div.cursor,
-.scenarioListContainer > div.cursor,
-.pluginListContainer > div.cursor,
-.eqLogicThumbnailContainer > div.cursor {
-  width : 145px !important;
+  margin-bottom: 20px;
 }
 
 .scenarioDisplayCard.cursor {
@@ -403,8 +400,12 @@ select.selectCmd {
   color: var(--logo-primary-color);
 }
 
+.pluginDisplayCard {
+  height: 130px;
+  min-height: 130px !important;
+}
 .pluginListContainer div.cursor > center > img {
-  width: 100px !important;
+  width: 90px !important;
   padding-top: 15px;
 }
 
@@ -549,6 +550,19 @@ pre {
   color: var(--sc-lightTxt-color);
   background-color: var(--al-danger-color);
   border: none;
+}
+
+.info {
+  color: var(--al-info-color);
+}
+.success {
+  color: var(--logo-primary-color);
+}
+.warning {
+  color: var(--al-warning-color);
+}
+.danger {
+  color: var(--al-danger-color);
 }
 
 .state,
