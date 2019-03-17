@@ -243,73 +243,6 @@ div.cmd > div.center-block {
   font-size: 12px;
 }
 
-/* analyse equipment */
-#battery,
-#alertEqlogic {
-  margin-bottom: 20px !important;
-}
-#battery .eqLogic-widget {
-  position: relative;
-  font-family: "Roboto";
-  color: var(--txt-color);
-  width: 180px !important;
-  height: 155px !important;
-}
-#battery .eqLogic-widget .widget-name {
-  text-align: center;
-}
-#battery .eqLogic-widget .widget-name span {
-  color: var(--txt-color);
-  background-color: rgb(var(--bg-color));
-  opacity: .8;
-  padding: 0 4px;
-}
-#battery .eqLogic-widget.critical .widget-name { 
-  background-color: var(--al-danger-color);
-}
-#battery .eqLogic-widget.warning .widget-name { 
-  background-color: var(--al-warning-color);
-}
-#battery .eqLogic-widget.good .widget-name { 
-  background-color: var(--al-success-color);
-}
-#battery .eqLogic-widget .jeedom-batterie {
-  color: var(--link-color);
-  margin-top: -12px;
-  margin-bottom: -20px;
-}
-#battery .eqLogic-widget .jeedom-batterie i {
-  vertical-align: middle;
-  font-size: 75px !important;
-}
-#battery .eqLogic-widget .jeedom-batterie span {
-  position: relative;
-  display: inline-block;
-  font-family: "Roboto";
-  color: var(--link-color);
-  font-size: 18px;
-  font-weight: bold;
-  top: 3px;
-}
-#battery .eqLogic-widget.critical .jeedom-batterie i {
-  color: var(--al-danger-color);
-}
-#battery .eqLogic-widget.warning .jeedom-batterie i {
-  color: var(--al-warning-color);
-}
-#battery .eqLogic-widget.good .jeedom-batterie i {
-  color: var(--al-success-color);
-}
-#battery .pluginName {
-  padding-left: 5px;
-  font-size: 14px;
-  font-weight: bold;
-}
-#battery .eqLogic-widget .batteryTime {
-  clear: left;
-  padding-left: 5px;
-}
-
 /* __________________________________________________________________________________________________________DIVERS */
 /* hack for horizontal sliders alone, like shutter position but not scripts sliders */
 .verticalAlign > center > [data-subtype=slider]:nth-child(2) {
@@ -338,14 +271,15 @@ select.selectCmd {
   min-height: 115px !important;
 }
 
+/* object/scenario/interact/plugin pages */
+
 div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
   width : 145px !important;
   font-size: 14px !important;
 }
 
-div[class*="ListContainer"] i,
-.eqLogicThumbnailContainer i {
+div[class*="ListContainer"] i {
   font-size: 38px !important;
 }
 div[class*="ListContainer"] .objectSummaryParent i {
@@ -449,6 +383,76 @@ div[data-market_type=plugin]:hover {
   content: "☆";
 }
 
+/* analyse equipment */
+#battery,
+#alertEqlogic {
+  margin-bottom: 20px !important;
+}
+#battery .eqLogic-widget {
+  position: relative;
+  font-family: "Roboto";
+  color: var(--txt-color);
+  width: 180px !important;
+  height: 155px !important;
+}
+#battery .eqLogic-widget .widget-name {
+  text-align: center;
+}
+#battery .eqLogic-widget .widget-name span {
+  color: var(--txt-color);
+  background-color: rgb(var(--bg-color)) !important;
+  opacity: .8;
+  padding: 0 4px;
+}
+#battery .eqLogic-widget.critical .widget-name { 
+  background-color: var(--al-danger-color) !important;
+}
+#battery .eqLogic-widget.warning .widget-name { 
+  background-color: var(--al-warning-color) !important;
+}
+#battery .eqLogic-widget.good .widget-name { 
+  background-color: var(--al-success-color) !important;
+}
+#battery .eqLogic-widget .jeedom-batterie {
+  color: var(--link-color);
+  margin-top: -12px;
+  margin-bottom: -20px;
+}
+#battery .eqLogic-widget .jeedom-batterie i {
+  vertical-align: middle;
+  font-size: 75px !important;
+}
+#battery .eqLogic-widget .jeedom-batterie span {
+  position: relative;
+  display: inline-block;
+  font-family: "Roboto";
+  color: var(--link-color);
+  font-size: 18px;
+  font-weight: bold;
+  top: 3px;
+}
+#battery .eqLogic-widget.critical .jeedom-batterie i {
+  color: var(--al-danger-color);
+}
+#battery .eqLogic-widget.warning .jeedom-batterie i {
+  color: var(--al-warning-color);
+}
+#battery .eqLogic-widget.good .jeedom-batterie i {
+  color: var(--al-success-color);
+}
+#battery .pluginName {
+  padding-left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+#battery .eqLogic-widget .batteryTime {
+  clear: left;
+  padding-left: 5px;
+  font-size: 14px;
+}
+#battery .eqLogic-widget .batteryTime i {
+  font-size: 16px !important;
+}
 
 pre {
   color: var(--link-color);
