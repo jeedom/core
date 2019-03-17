@@ -843,7 +843,7 @@ div.panel {
   border-color: var(--el-defaultColor) !important;
 }
 .panel-title {
-  color: var(--txt-color) !important;
+  color: var(--linkHoverLight-color) !important;
 }
 
 .panel-success .panel-heading {
