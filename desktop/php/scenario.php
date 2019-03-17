@@ -266,8 +266,8 @@ if (is_array($scenarioListGroup)) {
 										</ul>
 									</div>
 									<span class="input-group-btn">
-										<a class="btn btn-default btn-sm" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
-										</a><a class="btn btn-default btn-sm roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+										<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
+										</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
 									</span>
 								</div>
 							</div>
