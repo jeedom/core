@@ -361,7 +361,7 @@ class plugin {
 	public static function cron30() {
 		$cache = cache::byKey('plugin::cron30::inprogress');
 		if ($cache->getValue(0) > 3) {
-			message::add('core', __('La tache plugin::cron30 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron30::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+			message::add('core', __('La tache plugin::cron30 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron30::last')->getValue() . __('. Nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
 		cache::set('plugin::cron30::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -386,7 +386,7 @@ class plugin {
 	public static function cronDaily() {
 		$cache = cache::byKey('plugin::cronDaily::inprogress');
 		if ($cache->getValue(0) > 3) {
-			message::add('core', __('La tache plugin::cronDaily n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronDaily::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+			message::add('core', __('La tache plugin::cronDaily n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronDaily::last')->getValue() . __('. Nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
 		cache::set('plugin::cronDaily::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -411,7 +411,7 @@ class plugin {
 	public static function cronHourly() {
 		$cache = cache::byKey('plugin::cronHourly::inprogress');
 		if ($cache->getValue(0) > 3) {
-			message::add('core', __('La tache plugin::cronHourly n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronHourly::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+			message::add('core', __('La tache plugin::cronHourly n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronHourly::last')->getValue() . __('. Nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
 		cache::set('plugin::cronHourly::inprogress', $cache->getValue(0) + 1);
 		foreach (self::listPlugin(true) as $plugin) {
@@ -720,7 +720,7 @@ class plugin {
 						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ', __FILE__) . date("Y-m-d H:i:s", $info['datetime']));
 					}
 					if (config::byKey('deamonRestartNumber', $plugin_id, 0) > 3) {
-						log::add($plugin_id, 'error', __('Attention je pense qu\'il y a un soucis avec le démon que j\'ai relancé plus de 3 fois consecutivement', __FILE__));
+						log::add($plugin_id, 'error', __('Attention, je pense qu\'il y a un soucis avec le démon que j\'ai relancé plus de 3 fois consécutivement', __FILE__));
 					}
 					if (!$_forceRestart) {
 						config::save('deamonRestartNumber', config::byKey('deamonRestartNumber', $plugin_id, 0) + 1, $plugin_id);
