@@ -70,7 +70,7 @@ usort($list, function ($a, $b) {
 					foreach (eqLogic::all() as $eqLogic) {
 						foreach ($eqLogic->getCmd('info') as $cmd) {
 							if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
-								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
+								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
 								echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
 								$actions = '';
 								foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
@@ -86,7 +86,7 @@ usort($list, function ($a, $b) {
 						}
 						foreach ($eqLogic->getCmd('action') as $cmd) {
 							if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
-								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
+								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
 								$actions = '';
 								foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
 									$actions .= scenarioExpression::humanAction($actionCmd) . '|';
@@ -99,7 +99,7 @@ usort($list, function ($a, $b) {
 								echo '</tr>';
 							}
 							if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
-								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
+								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
 								$actions = '';
 								foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
 									$actions .= scenarioExpression::humanAction($actionCmd) . '|';
@@ -116,7 +116,7 @@ usort($list, function ($a, $b) {
 								if ($cmd->getConfiguration('actionCodeAccess')) {
 									$code = ' avec code';
 								}
-								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
+								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 								echo 'Confirmation de l\'action' . $code;
 								echo '</td>';
 								echo '<td>';
@@ -125,7 +125,7 @@ usort($list, function ($a, $b) {
 								echo '</tr>';
 							}
 							if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
-								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
+								echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 								echo 'Code de confirmation de l\'action';
 								echo '</td>';
 								echo '<td>';
@@ -181,7 +181,7 @@ usort($list, function ($a, $b) {
 							$hasSomeAlerts += 1;
 						}
 						if ($hasSomeAlerts != 0) {
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '" style="text-decoration: none;">' . $eqLogic->getHumanName(true) . '</a></td>';
+							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td>';
 							echo '<td>';
 							foreach ($listCmds as $cmdalert) {
 								foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
