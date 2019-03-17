@@ -14,7 +14,7 @@ if (is_array($interactListGroup)) {
 }
 ?>
 <div class="row row-overflow">
-	<div id="interactThumbnailDisplay" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="interactListContainer">
 			<div class="cursor success" id="bt_addInteract2">
