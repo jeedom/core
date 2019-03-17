@@ -62,7 +62,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePage">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePage">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -77,7 +77,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePageMobile">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePageMobile">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -96,7 +96,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardObject">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardObject">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -111,7 +111,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileObject">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileObject">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -131,7 +131,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDesktopView">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDesktopView">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -146,7 +146,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileView">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileView">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -171,7 +171,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -186,7 +186,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -211,7 +211,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan3d">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan3d">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -226,7 +226,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 						<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
 						<div class="col-sm-2 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-xs btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan3d">
+								<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan3d">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
