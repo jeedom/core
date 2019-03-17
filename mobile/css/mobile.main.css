@@ -399,25 +399,32 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   z-index: 9000;
 }
 #in_searchWidget {
-  position:fixed;
+  position: fixed;
   top: 65px;
   left: 0;
   padding-left: 5px;
   height: 35px;
   width: calc(100% - 38px);
   z-index: 9000;
+  box-sizing: border-box; 
 }
 #bt_eraseSearchInput {
   position: fixed;
   top: 65px;
-  height: 19px;
-  right: -4px;
-  margin:0;
-  z-index: 9000;
+  height: 35px;
+  right: -1px;
+  line-height: 15px;
+  margin: 0;
   background: var(--form-bg-color) !important;
   box-shadow: none;
+  z-index: 9000;
+  box-sizing: border-box; 
 }
-
+#bt_eraseSearchInput i {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 5px !important;
+}
 
 .nd2Tabs li {
   color: var(--txt-color);
