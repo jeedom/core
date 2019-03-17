@@ -1141,7 +1141,9 @@ ul.nav.nav-tabs li,
   border-image-width: 0 !important;
   border-image-width: 0 !important;
 }
-
+.nav-tabs > li > a[aria-controls=home] {
+  padding: 10px 14px;
+}
 
 
 
