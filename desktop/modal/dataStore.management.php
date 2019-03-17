@@ -122,7 +122,7 @@ $(function() {
 					tr += '<td style="min-width:120px; width:120px;">';
 					tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore" style="color : white"><i class="fas fa-check"></i></a>';
 					tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore" style="color : white"><i class="far fa-trash-alt"></i></a>';
-					tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
+					tr += '<a class="btn pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
 					tr += '</td>';
 					tr += '</tr>';
 				}
