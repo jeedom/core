@@ -140,11 +140,6 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-.widget-name span.warning {
-  margin-right: 5px;
-  color: var(--linkHoverLight-color);
-}
-
 /* time on time widgets too low */
 .timeCmd.label {
   color: var(--txt-color);
@@ -364,6 +359,16 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 .eqLogicDisplayCard span {
   font-size: 12px !important;
+}
+
+.eqLogic.eqLogic-widget .widget-name span.warning i {
+  margin-right: 5px;
+  color: var(--linkHoverLight-color);
+  font-size: 14px !important;
+}
+
+div.cmdListContainer .tablesorter i {
+  font-size: 14px !important;
 }
 
 /* market */
