@@ -59,16 +59,16 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 
 <div class="input-group">
 	<div class="input-group-btn">
-		<a id="bt_displayObject" class="btn btn-default roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="fa fa-picture-o"></i></a>
+		<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="fa fa-picture-o"></i></a>
 	</div>
-	<input class="form-control input-sm" id="in_searchWidget" placeholder="Rechercher">
+	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
-		<a id="bt_resetDashboardSearch" class="btn btn-default"><i class="fas fa-times"></i></a>
+		<a id="bt_resetDashboardSearch" class="btn"><i class="fas fa-times"></i></a>
 	</div>
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
-			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn btn-default roundedRight"><i class="fas fa-pencil-alt"></i></a>
+			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn roundedRight"><i class="fas fa-pencil-alt"></i></a>
 		</div>
 	<?php } ?>
 </div>
