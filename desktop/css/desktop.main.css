@@ -959,8 +959,8 @@ input.knob {
   color: var(--txt-color) !important;
 }
 .input-sm {
-  line-height: 1em;
-  height: 28px;
+  line-height: 16px !important;
+  height: 28px !important;
 }
 
 .expression.sortable {
