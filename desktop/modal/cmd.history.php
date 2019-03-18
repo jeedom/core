@@ -10,10 +10,12 @@ $date = array(
 <div class="md_history">
 	<div class="row">
 		<div class="col-lg-4 col-sm-12 center">
-			<div class="input-group-btn input-group-sm">
-				<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="display : inline-block; width: 150px;" value="<?php echo $date['start']; ?>"/>
-				<input id="in_endDate" class="form-control input-sm in_datepicker" style="display : inline-block; width: 150px;" value="<?php echo $date['end']; ?>"/>
-				<a class="btn btn-success btn-sm tooltips roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher}}">{{Ok}}</a>
+			<div class="input-group input-group-sm">
+				<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
+				<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
+				<a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
+					<i class="fas fa-check"></i>
+				</a>
 			</div>
 		</div>
 		<div class="col-lg-8 col-sm-12">
@@ -60,7 +62,7 @@ $date = array(
 					</ul>
 				</div>
 				<div class="dropdown dynDropdown">
-					<button class="btn btn-default dropdown-toggle roundRight" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
+					<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
 						{{Ligne}}
 						<span class="caret"></span>
 					</button>
