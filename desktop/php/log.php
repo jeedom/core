@@ -32,10 +32,22 @@ natcasesort($list_logfile);
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}
+					$fsize = filesize('log/' . $file);
+					if ( $fsize <= 1 )	{
+						$fsizelog = '';
+					}else{
+						if ( $fsize < 1024 ){
+							$fsizelog = $fsize .' o';
+						}else if ( $fsize < 1048576){
+							$fsizelog = round($fsize / 1024,1) .' Ko';
+						}else{
+							$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+						}
+					}
 					if ($file == $logfile) {
-						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
+						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . $fsizelog . ')</a></li>';
 					} else {
-						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
+						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . $fsizelog . ')</a></li>';
 					}
 				}
 				?>
