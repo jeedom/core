@@ -11,14 +11,12 @@ $allObject = jeeObject::buildTree(null, false);
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="objectListContainer">
 			<div class="cursor success" id="bt_addObject2">
-				<br/>
 				<center>
 					<i class="fas fa-plus-circle"></i>
 				</center>
 				<span><center>Ajouter</center></span>
 			</div>
 			<div class="cursor bt_showObjectSummary info" >
-				<br/>
 				<center>
 					<i class="fas fa-list"></i>
 				</center>
