@@ -1,40 +1,36 @@
 <?php
+
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
+  header("Statut: 404 Page non trouvée");
+  header('HTTP/1.0 404 Not Found');
+  $_SERVER['REDIRECT_STATUS'] = 404;
+  echo "<h1>404 Non trouvé</h1>";
+  echo "La page que vous demandez ne peut être trouvée.";
+  exit();
+}
 require_once __DIR__ . '/../core/config/common.config.php';
 require_once __DIR__ . '/../core/class/DB.class.php';
-
-$tables = DB::Prepare('show tables;',array(),DB::FETCH_TYPE_ALL);
-$database = array();
-$database['tables'] = array();
-foreach ($tables as $table) {
-  $describes = DB::Prepare('describe `'.$table['Tables_in_jeedom'].'`',array(),DB::FETCH_TYPE_ALL);
-  $fields = array();
-  foreach ($describes as $describe) {
-    $fields[] = array(
-      'name' => $describe['Field'],
-      "type"  => $describe['Type'],
-      "null"  => $describe['Null'],
-      "key"  => $describe['Key'],
-      "default"  => $describe['Default'],
-      "extra"  => $describe['Extra'],
-    );
-  }
-  $indexes = DB::Prepare('show index from `'.$table['Tables_in_jeedom'].'`',array(),DB::FETCH_TYPE_ALL);
-  $index_def = array();
-  foreach ($indexes as $index) {
-    $index_def[] = array(
-      "Key_name"  => $index['Key_name'],
-      'Non_unique' => $index['Non_unique'],
-      "Seq_in_index"  => $index['Seq_in_index'],
-      "Sub_part"  => $index['Sub_part'],
-      "Column_name"  => $index['Column_name']
-    );
-  }
-  $index_def = DB::prepareIndexCompare($index_def);
-  $database['tables'][] = array(
-    'name' => $table['Tables_in_jeedom'],
-    'fields' => $fields,
-    'indexes' => $index_def,
-  );
+echo "[START CHECK AND FIX DB]\n";
+try {
+  DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
+} catch (\Exception $e) {
+  echo "***ERREUR*** " . $ex->getMessage() . "\n";
 }
-echo json_encode($database, JSON_PRETTY_PRINT);
+echo "[END CHECK AND FIX DB]\n";
 ?>
