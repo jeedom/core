@@ -37,17 +37,17 @@ natcasesort($list_logfile);
 						$fsizelog = '';
 					}else{
 						if ( $fsize < 1024 ){
-							$fsizelog = $fsize .' o';
+							$fsizelog = '('.$fsize .' o)';
 						}else if ( $fsize < 1048576){
-							$fsizelog = round($fsize / 1024,1) .' Ko';
+							$fsizelog = '('.round($fsize / 1024,1) .' Ko)';
 						}else{
-							$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+							$fsizelog = '('.round($fsize / 1048576 ,1) .' Mo)';
 						}
 					}
 					if ($file == $logfile) {
-						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . $fsizelog . ')</a></li>';
+						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' ' . $fsizelog . '</a></li>';
 					} else {
-						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . $fsizelog . ')</a></li>';
+						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' ' . $fsizelog . '</a></li>';
 					}
 				}
 				?>
