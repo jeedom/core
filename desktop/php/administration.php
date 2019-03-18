@@ -42,7 +42,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help">{{Version}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							v<?php echo jeedom::version(); ?>
+							<span class="label label-info">v<?php echo jeedom::version(); ?></span>
 						</div>
 					</div>
 					<div class="form-group">
