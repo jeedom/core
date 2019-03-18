@@ -565,6 +565,9 @@ pre {
   border: none;
 }
 
+.logoPrimary {
+  color: var(--logo-primary-color);
+}
 .info {
   color: var(--al-info-color);
 }
