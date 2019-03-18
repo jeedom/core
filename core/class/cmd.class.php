@@ -1630,6 +1630,13 @@ class cmd {
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 	
+	public function getTemporalAvg($_startTime, $_endTime) {
+		if ($this->getType() != 'info' || $this->getType() == 'string') {
+			return array();
+		}
+		return history::getTemporalAvg($this->getId(), $_startTime, $_endTime);
+	}
+	
 	public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
 	}
