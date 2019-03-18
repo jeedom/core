@@ -690,6 +690,11 @@ button:focus {
   padding: 2px 6px;
 }
 
+.badge {
+  padding: 6px 7px;
+  height: 22px;
+}
+
 /* dropdown select alternative */
 button.dropdown-toggle {
   font-size: 14px;
