@@ -1518,9 +1518,20 @@ class scenarioExpression {
 						$cmd->execCmd($cmd_parameters);
 					}
 				} elseif ($this->getExpression() == 'tag') {
-					$tags = $scenario->getTags();
-					$tags['#' . $options['name'] . '#'] = $options['value'];
-					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $options['value']);
+						$tags = $scenario->getTags();
+					$options['value'] = self::setTags($options['value'], $scenario);
+					try {
+						$result = evaluate($options['value']);
+						if (!is_numeric($result)) {
+							$result = $options['value'];
+						}
+					} catch (Exception $ex) {
+						$result = $options['value'];
+					} catch (Error $ex) {
+						$result = $options['value'];
+					}
+					$tags['#' . $options['name'] . '#'] = $result;
+					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $result);
 					$scenario->setTags($tags);
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
