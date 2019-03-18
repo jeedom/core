@@ -409,6 +409,28 @@ class history {
 			$sql .= ' ORDER BY `datetime` ASC ';
 			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
+	
+		public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime){
+			$histories = self::all($_cmd_id, $_startTime, $_endTime);
+			$result = null;
+			$start = null;
+			$cTime = null;
+			$cValue = null;
+			$sum = 0;
+			foreach ($histories as $history) {
+				if($start == null){
+					$cValue = $history->getValue();
+					$cTime = strtotime($history->getDatetime());
+					$start = $cTime;
+					continue;
+				}
+				$sum += $cValue * (strtotime($history->getDatetime()) - $cTime);
+				$cValue = $history->getValue();
+				$cTime = strtotime($history->getDatetime());
+			}
+			$result = $sum / ($cTime - $start);
+			return $result;
+		}
 		
 		public static function getStatistique($_cmd_id, $_startTime, $_endTime) {
 			$values = array(
