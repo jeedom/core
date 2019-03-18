@@ -277,6 +277,7 @@ div[class*="ListContainer"] > div.cursor,
 div[class*="ListContainer"] i,
 .eqLogicThumbnailContainer  i {
   font-size: 38px !important;
+  font-weight: 900;
 }
 div[class*="ListContainer"] .objectSummaryParent i {
   font-size: 12px !important;
@@ -297,7 +298,8 @@ div[class*="ListContainer"] div,
   text-align: center;
 }
 div[class*="ListContainer"] div.cursor,
-.eqLogicDisplayCard div.cursor {
+.eqLogicDisplayCard div.cursor,
+.eqLogicThumbnailContainer div.eqLogicAction {
   margin-bottom: 5px !important;
   padding: 5px !important;
 }
