@@ -253,6 +253,7 @@ class repo_market {
 		}
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' --tempdir '.$base_dir . '/tmp';
 		$cmd .= ' ' . $base_dir . '  "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		try {
@@ -265,11 +266,10 @@ class repo_market {
 				self::backup_clean();
 			}
 			system::kill('duplicity');
-			shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
+			shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir . '/tmp/duplicity*');
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
 			com_shell::execute($cmd);
 		}
-		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 	}
 	
 	public static function backup_errorAnalyzed($_error) {
@@ -329,8 +329,12 @@ class repo_market {
 		$cmd .= ' --timeout 60';
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
-		shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
-		$results = explode("\n", com_shell::execute($cmd));
+		try {
+			$results = explode("\n", com_shell::execute($cmd));
+		} catch (\Exception $e) {
+			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
+			$results = explode("\n", com_shell::execute($cmd));
+		}
 		foreach ($results as $line) {
 			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false && strpos($line, 'Complète') === false && strpos($line, 'Incrémentale') === false) {
 				continue;
@@ -352,6 +356,7 @@ class repo_market {
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
+		$base_dir = realpath(__DIR__ . '/../../');
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
@@ -359,6 +364,7 @@ class repo_market {
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --num-retries 1';
+		$cmd .= ' --tempdir '.$base_dir . '/tmp';
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		$cmd .= ' ' . $restore_dir;
