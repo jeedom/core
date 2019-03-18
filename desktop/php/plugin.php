@@ -9,7 +9,7 @@ $plugins_list = plugin::listPlugin(false, true);
 <div id='div_alertPluginConfiguration'></div>
 
 <div class="row row-overflow">
-	<div class="col-xs-12" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<div class="col-xs-12" id="div_resumePluginList">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="pluginListContainer">
 			<div class="cursor success" id="bt_addPluginFromOtherSource">
@@ -51,7 +51,7 @@ $plugins_list = plugin::listPlugin(false, true);
 			?>
 		</div>
 	</div>
-	<div class="col-xs-12" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+	<div class="col-xs-12" id="div_confPlugin" style="padding-left: 25px;display: none;">
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
 			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
