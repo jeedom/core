@@ -291,7 +291,6 @@ div[class*="ListContainer"] div,
 .widgetDisplayCard,
 .pluginDisplayCard {
   border: none !important;
-  border-radius: 0 !important;
   background: transparent !important;
   padding-top: 0!important;
   text-align: center;
