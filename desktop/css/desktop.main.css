@@ -283,7 +283,6 @@ div[class*="ListContainer"] .objectSummaryParent i {
   font-size: 12px !important;
 }
 
-.eqLogicAction:not(.btn):not(i):not([role=tab]):not([data-action=returnToThumbnailDisplay]),
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
 .interactDisplayCard,
