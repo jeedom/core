@@ -156,26 +156,27 @@ span.cursor > i:hover {
 
 /* analyse equipment */
 #battery .eqLogic-widget {
-  color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color) !important;
 }
 #battery .eqLogic-widget .widget-name span {
-  color: var(--txt-color);
-  background-color: rgb(var(--bg-color));
+  color: var(--txt-color) !important;
+  background-color: rgb(var(--bg-color)) !important;
 }
 #battery .eqLogic-widget.critical {
-  background-color: var(--al-danger-color);
+  background-color: var(--al-danger-color) !important;
 }
 #battery .eqLogic-widget.warning { 
-  background-color: var(--al-warning-color);
+  background-color: var(--al-warning-color) !important;
 }
 #battery .eqLogic-widget.good { 
-  background-color: var(--al-success-color);
+  background-color: var(--al-success-color) !important;
 }
-#battery .eqLogic-widget .jeedom-batterie i {
+#battery .eqLogic-widget .jeedom-batterie i,
+#battery .eqLogic-widget .jeedom-batterie span {
   color: var(--linkHoverLight-color) !important;
 }
 #battery .eqLogic-widget .batteryLevel {
-  color: var(--linkHoverLight-color);
+  color: var(--linkHoverLight-color) !important;
 }
 
 div[data-subtype=select],
