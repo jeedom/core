@@ -286,7 +286,7 @@ div[class*="ListContainer"] .objectSummaryParent i {
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
 .interactDisplayCard,
-div[class*="ListContainer"] div,
+div[class*="ListContainer"]:not(.batteryListContainer)  div,
 .scenarioDisplayCard,
 .widgetDisplayCard,
 .pluginDisplayCard {
