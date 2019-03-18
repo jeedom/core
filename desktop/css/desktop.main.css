@@ -570,7 +570,7 @@ pre {
   color: var(--al-info-color);
 }
 .success {
-  color: var(--al-success-color);
+  color: var(--bt-success-color);
 }
 .warning {
   color: var(--al-warning-color);
