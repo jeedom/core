@@ -26,7 +26,7 @@ if (isConnect()) {
 if (init('rescue', 0) == 1) {
 	$homeLink = 'index.php?v=d&p=system&rescue=1';
 }
-$title = 'Jeedom';
+$title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
@@ -55,7 +55,7 @@ if (init('rescue', 0) == 0) {
 			foreach ($category as $pluginList) {
 				if ($pluginList->getId() == init('m')) {
 					$plugin = $pluginList;
-					$title = $plugin->getName() . ' - Jeedom';
+					$title = $plugin->getName() . ' - '.config::byKey('product_name');
 				}
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
 				if ($pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
@@ -293,7 +293,7 @@ if (init('rescue', 0) == 0) {
 									<li class="divider"></li>
 									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
 									<?php if (isConnect('admin')) { ?>
-
+										
 										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
 										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
 										<li class="divider"></li>
@@ -464,3 +464,4 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
+	
