@@ -274,7 +274,8 @@ div[class*="ListContainer"] > div.cursor,
   font-size: 14px !important;
 }
 
-div[class*="ListContainer"] i {
+div[class*="ListContainer"] i,
+.eqLogicThumbnailContainer  i {
   font-size: 38px !important;
 }
 div[class*="ListContainer"] .objectSummaryParent i {
@@ -567,7 +568,7 @@ pre {
   color: var(--al-info-color);
 }
 .success {
-  color: var(--logo-primary-color);
+  color: var(--al-success-color);
 }
 .warning {
   color: var(--al-warning-color);
