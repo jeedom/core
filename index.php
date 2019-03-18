@@ -59,12 +59,12 @@ try {
 			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
 		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
 			try {
-				$title = 'Jeedom';
+				$title = config::byKey('product_name');
 				if (init('m') != '') {
 					try {
 						$plugin = plugin::byId(init('m'));
 						if (is_object($plugin)) {
-							$title = $plugin->getName() . ' - Jeedom';
+							$title = $plugin->getName() . ' - '.config::byKey('product_name');
 						}
 					} catch (Exception $e) {
 
