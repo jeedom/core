@@ -279,6 +279,9 @@ div[class*="ListContainer"] i,
   font-size: 38px !important;
   font-weight: 900;
 }
+div[class*="ListContainer"] i[class*=jeedom-batt] {
+  font-weight: normal;
+}
 div[class*="ListContainer"] .objectSummaryParent i {
   font-size: 12px !important;
 }
