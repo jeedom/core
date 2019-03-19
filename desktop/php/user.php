@@ -68,7 +68,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						echo '<td>' . $session['login'] . '</td>';
 						echo '<td>' . $session['ip'] . '</td>';
 						echo '<td>' . $session['datetime'] . '</td>';
-						echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fa fa-sign-out"></i> {{Déconnecter}}</a></td>';
+						echo '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
 						echo '</tr>';
 					}
 				}

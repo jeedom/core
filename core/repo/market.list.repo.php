@@ -213,7 +213,7 @@ function displayWidgetSubtype($_name) {
 					?>
 				</select>
 				<input class="form-control input-sm" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
-				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fa fa-search"></i></a>
+				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
 			</span>
 		</div>
 		<?php
@@ -232,7 +232,7 @@ function displayWidgetSubtype($_name) {
 </div>
 <?php
 if ($name !== null && strpos($name, '$') !== false) {
-	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fa fa-arrow-circle-left"></i> {{Retour}}</a>';
+	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fas fa-arrow-circle-left"></i> {{Retour}}</a>';
 }
 ?>
 
@@ -340,7 +340,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 		if ($market->getCost() > 0) {
 			echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
 			if ($market->getPurchase() == 1) {
-				echo ' <i class="fa fa-check-circle"></i>';
+				echo ' <i class="fas fa-check-circle"></i>';
 			} else {
 				if ($market->getCost() != $market->getRealCost()) {
 					echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';

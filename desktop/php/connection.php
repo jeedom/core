@@ -28,7 +28,7 @@
             <input type="checkbox" style="top: -11px;" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
           </div>
           <div class="submit">
-            <button class="dark btn-lg" id="bt_login_validate"><i class="fa fa-sign-in" ></i> {{Connexion}}</button>
+            <button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt" ></i> {{Connexion}}</button>
           </div>
           <div class="resetPassword">
             <a href="https://jeedom.github.io/documentation/howto/fr_FR/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
@@ -36,7 +36,7 @@
         </div>
         <div id="market" tabindex="502" class="form-group" style="display:none;">
           <h3>Je n'ai pas de compte Market</h3>
-          <button class="dark btn-lg" id="bt_compte_market"><i class="fa fa-sign-in" ></i> {{En créer un !}}</button>
+          <button class="dark btn-lg" id="bt_compte_market"><i class="fas fa-sign-in-alt" ></i> {{En créer un !}}</button>
           <hr align=center size=2 width="70%">
           <h3>J'ai un compte market</h3>
           <div class="mail">
@@ -48,7 +48,7 @@
             <label>{{Mot de passe}}</label>
           </div>
           <div class="submit">
-            <button class="dark btn-lg" id="bt_login_validate_market"><i class="fa fa-sign-in" ></i> {{Connecter Jeedom au Market}}</button>
+            <button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt" ></i> {{Connecter Jeedom au Market}}</button>
           </div>
           <div class="resetPassword">
             <a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>

@@ -16,7 +16,7 @@ user::isBan();
 ?>
 <br/>
 <div id="config">
-	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs nav-primary" role="tablist" style="max-width:calc(100% - 150px);">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Interface}}</a></li>
