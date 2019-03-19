@@ -86,7 +86,7 @@ if (is_array($interactListGroup)) {
 					foreach ($interacts[$group['group']] as $interact) {
 						$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 						echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
-						echo '<img src="core/img/interaction.png" height="90" width="85" />';
+						echo '<img src="core/img/interaction.png"/>';
 						echo "<br>";
 						echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
 						echo '</div>';
