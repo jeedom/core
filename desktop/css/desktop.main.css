@@ -494,6 +494,9 @@ pre {
   color: var(--txt-color) !important;
   background: var(--bg-modal-color) !important;
 }
+.context-menu-item i {
+  color: var(--txt-color) !important;
+}
 .context-menu-item span {
   font-weight: normal !important;
 }
