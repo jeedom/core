@@ -240,9 +240,9 @@ function addUpdate(_update) {
   }
   if (_update.type != 'core') {
     if (_update.status == 'update') {
-      tr += '<a class="btn btn-info btn-xs update" title="{{Mettre à jour}}"><i class="fas fa-refresh"></i> {{Mettre à jour}}</a> ';
+      tr += '<a class="btn btn-info btn-xs update" title="{{Mettre à jour}}"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
-      tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-refresh"></i> {{Reinstaller}}</a> ';
+      tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-sync"></i> {{Reinstaller}}</a> ';
     }
   }
   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
