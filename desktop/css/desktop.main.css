@@ -160,6 +160,16 @@ legend {
   min-width: 32px !important;
   max-height: 30px;
 }
+.eqLogic-widget .cmd.refresh {
+  margin-top: 2px;
+  margin-right: 5px !important;
+}
+.eqLogic-widget .cmd.refresh i {
+  color: var(--eqTitle-color) !important;
+}
+.eqLogic-widget .cmd.refresh i:hover {
+  color: var(--linkHoverLight-color) !important;
+}
 
 /* dashboard equipments text color */
 .tableCmd,
@@ -176,10 +186,6 @@ legend {
 }
 .btn.action {
   margin-top: 2px;
-}
-.cmd.refresh {
-  margin-top: 2px;
-  margin-right: 5px !important;
 }
 .label {
   font-size: 12px !important;
