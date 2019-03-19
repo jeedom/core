@@ -727,6 +727,10 @@ button.dropdown-toggle {
   height: 32px;
   padding: 6px 12px;
 }
+.dropdown button.dropdown-toggle.btn-sm {
+  height: 28px;
+  padding: 3px 12px;
+}
 .dropdown button.dropdown-toggle:hover {
   color: var(--txt-color) !important;
   -webkit-text-fill-color: var(--txt-color) !important;
