@@ -247,7 +247,7 @@ if (init('rescue', 0) == 0) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoView"><i class="fas fa-picture-o"></i> {{Vue}}</a>
+										<a data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php	foreach (view::all() as $view_menu) {
 												echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
@@ -277,8 +277,8 @@ if (init('rescue', 0) == 0) {
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
-										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
+										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
+										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
 										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 									</ul>
@@ -287,9 +287,9 @@ if (init('rescue', 0) == 0) {
 							<li class="dropdown cursor">
 								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
+									<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
 									<?php if (isConnect('admin')) {	?>
-										<li><a href="index.php?v=d&p=report"><i class="fas fa-newspaper-o"></i> {{Rapport}}</a></li>
+										<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
 										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
 									<?php } ?>
 									<li class="divider"></li>
@@ -322,8 +322,8 @@ if (init('rescue', 0) == 0) {
 											<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
 												<ul class="dropdown-menu">
 													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-													<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-													<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+													<li><a href="index.php?v=d&p=backup"><i class="far fa-save"></i> {{Sauvegardes}}</a></li>
+													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 													<?php if(jeedom::getHardwareName() == 'smart'){
 														echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
 													} ?>
@@ -332,7 +332,7 @@ if (init('rescue', 0) == 0) {
 													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 													<li class="divider"></li>
 													<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
-														echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-repeat"></i> {{Redémarrer}}</a></li>';
+														echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
 														echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
 													} ?>
 												</ul>
