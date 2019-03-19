@@ -166,6 +166,7 @@ legend {
 }
 .eqLogic-widget .cmd.refresh i {
   color: var(--eqTitle-color) !important;
+  font-size: 12px;
 }
 .eqLogic-widget .cmd.refresh i:hover {
   color: var(--linkHoverLight-color) !important;
