@@ -124,7 +124,7 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
-    $('.div_displayEquipement .eqLogic-widget').css('border','');
+    $('.div_displayEquipement .eqLogic-widget').css('outline','').css('outline-offset','');
     
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
@@ -132,9 +132,9 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
-    $('.div_displayEquipement .scenario-widget').css('border','');
+    $('.div_displayEquipement .scenario-widget').css('outline','').css('outline-offset','');
   }else{
-    $('.div_displayEquipement .eqLogic-widget').css('border','1px dashed var(--logo-primary-color)');
+    $('.div_displayEquipement .eqLogic-widget').css('outline','1px dashed var(--logo-primary-color)').css('outline-offset','-1px');
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
     $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
       resize: function( event, ui ) {
@@ -146,7 +146,7 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     });
-    $('.div_displayEquipement .scenario-widget').css('border','1px dashed var(--logo-primary-color)');
+    $('.div_displayEquipement .scenario-widget').css('outline','1px dashed var(--logo-primary-color)').css('outline-offset','-1px');
     $('.div_displayEquipement .scenario-widget').draggable('enable');
     $( ".div_displayEquipement .scenario-widget.allowResize").resizable({
       resize: function( event, ui ) {
