@@ -257,17 +257,7 @@ select.selectCmd {
   height: 2em;
 }
 
-/* top buttons on pages */
-#div_resumeObjectList > .objectListContainer:first-of-type,
-#scenarioThumbnailDisplay > .scenarioListContainer:first-of-type,
-#interactThumbnailDisplay > .interactListContainer:first-of-type,
-#div_resumePluginList > .pluginListContainer:first-of-type,
-.eqLogicThumbnailDisplay > .eqLogicThumbnailContainer:first-of-type {
-  min-height: 115px !important;
-}
-
 /* object/scenario/interact/plugin pages */
-
 div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
   width : 145px !important;
@@ -2262,16 +2252,6 @@ ul.dropdown-menu {
 
 
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
-@media screen and (min-width: 992px) {
-  #div_resumeObjectList > .objectListContainer:first-of-type,
-  #scenarioThumbnailDisplay > .scenarioListContainer:first-of-type,
-  #interactThumbnailDisplay > .interactListContainer:first-of-type,
-  #div_resumePluginList > .pluginListContainer:first-of-type,
-  .eqLogicThumbnailDisplay > .eqLogicThumbnailContainer:first-of-type {
-    height: 110px !important;
-  }
-}
-
 @media screen and (max-width: 1280px) {
   :root {
     --lineheight: 1.4em;
