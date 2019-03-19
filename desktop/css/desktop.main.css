@@ -570,9 +570,6 @@ pre {
 .logoPrimary {
   color: var(--logo-primary-color);
 }
-.logoSecondary {
-  color: var(--logo-secondary-color);
-}
 .info {
   color: var(--al-info-color);
 }
@@ -1578,13 +1575,15 @@ hr {
 
 /* Disabled */
 .element:not(.disableElement),
-.element :not(.disableSubElement) {
+.element:not(.disableSubElement),
+.eqLogicDisplayCard:not(.disableCard) {
   opacity: 1 !important;
   transition-property: opacity;
   transition-duration: 0.6s;
 }
 .element .disableElement,
-.element .disableSubElement {
+.element .disableSubElement,
+.eqLogicDisplayCard.disableCard {
   opacity: 0.65 !important;
   transition-property: opacity;
   transition-duration: 0.6s;
