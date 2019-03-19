@@ -175,6 +175,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'animate/animate', 'css');
 	include_file('3rdparty', 'animate/animate', 'js');
+    include_file('desktop', 'future', 'css');
 	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 		if (file_exists(__DIR__ . '/../custom/custom.css')) {
 			include_file('desktop', '', 'custom.css');
