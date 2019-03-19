@@ -190,9 +190,7 @@ function getObjectHtml(_object_id){
         $("select").click(function() { $(this).focus(); });
         
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
-          var container = $(this).packery({
-            itemSelector: ".eqLogic-widget,.scenario-widget",
-          });
+          var container = $(this).packery();
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);
           var itemElems =  container.find('.scenario-widget').draggable();

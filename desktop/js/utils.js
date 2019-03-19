@@ -723,11 +723,7 @@ function chooseIcon(_callback) {
 
 function positionEqLogic(_id,_preResize,_scenario) {
   if(_id != undefined){
-    if(_scenario){
-      var widget = $('.scenario-widget[data-scenario_id='+_id+']');
-    }else{
-      var widget = $('.eqLogic-widget[data-eqlogic_id='+_id+']');
-    }
+    var widget = (_scenario) ? $('.scenario-widget[data-scenario_id='+_id+']') : $('.eqLogic-widget[data-eqlogic_id='+_id+']');
     widget.css('margin','0px').css('padding','0px');
     if($(this).width() == 0){
       $(this).width('auto');
