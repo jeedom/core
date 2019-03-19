@@ -570,6 +570,9 @@ pre {
 .logoPrimary {
   color: var(--logo-primary-color);
 }
+.logoSecondary {
+  color: var(--logo-secondary-color);
+}
 .info {
   color: var(--al-info-color);
 }
