@@ -1,0 +1,132 @@
+:root {
+  --lineheight : 1.42em;
+  /* keet it as rem even when zero!!*/
+  --border-radius: 0rem;
+  --opacity: 1;
+
+  --logo-primary-color: rgb(150, 201, 39);
+  --logo-secondary-color: rgb(69, 68, 73);
+
+  --txt-color: rgb(115, 115, 115);
+  --link-color: rgb(90, 90, 90);
+  --linkHover-color: rgb(140, 140, 148);
+  --linkHoverLight-color: rgb(254, 254, 254);
+  --placeholder-color: rgb(160, 160, 160);
+
+  --sc-form-color: rgba(248, 250, 256, 0.85);
+  --sc-formTxt-color: rgb(75, 75, 75);
+  --sc-lightTxt-color: rgb(240, 240, 240);
+
+  --el-defaultColor: rgb(200, 200, 200);
+  --defaultBkg-color: rgb(250, 250, 250);
+  --form-bg-color: rgb(224, 226, 226);
+  --btnEq-default-color: rgb(220, 220, 220);
+  --btn-default-color: rgb(100, 100, 100);
+  --panel-bg-color: rgb(240, 241, 242);
+
+  --lb-info-color: rgb(110, 180, 240);
+  --al-info-color: rgb(100, 160, 230);
+  --al-primary-color:  rgb(60, 120, 180);
+  --al-success-color: rgb(80, 170, 80);
+  --al-warning-color: rgb(240, 160, 40);
+  --al-danger-color: rgb(190, 0, 0);
+  --bt-success-color: rgb(150, 201, 39);
+}
+
+.eqLogicThumbnailContainer .label {
+  font-size: 12px !important;
+  font-weight: normal;
+}
+
+.eqLogicThumbnailContainer .logoPrimary {
+  color: var(--logo-primary-color);
+}
+.eqLogicThumbnailContainer .logoSecondary {
+  color: var(--logo-secondary-color);
+}
+.eqLogicThumbnailContainer .info {
+  color: var(--al-info-color);
+}
+.eqLogicThumbnailContainer .success {
+  color: var(--bt-success-color);
+}
+.eqLogicThumbnailContainer .warning {
+  color: var(--al-warning-color);
+}
+.eqLogicThumbnailContainer .danger {
+  color: var(--al-danger-color);
+}
+
+.eqLogicThumbnailContainer > div.cursor {
+  width : 145px !important;
+  font-size: 14px !important;
+}
+
+.eqLogicThumbnailContainer  i {
+  font-size: 38px !important;
+  font-weight: 900;
+}
+
+.eqLogicDisplayCard,
+.eqLogicThumbnailContainer div {
+  border: none !important;
+  background: transparent !important;
+  padding-top: 0!important;
+  text-align: center;
+}
+.eqLogicDisplayCard div.cursor,
+.eqLogicThumbnailContainer div.cursor {
+  margin-bottom: 5px !important;
+  padding: 5px !important;
+}
+.eqLogicThumbnailContainer div.cursor > center > i,
+.eqLogicThumbnailContainer div.cursor > i {
+  margin-bottom: 20px;
+}
+
+.pluginDisplayCard,
+.objectDisplayCard {
+  height: 130px;
+  min-height: 130px !important;
+}
+.pluginListContainer div.cursor > center > img,
+.interactListContainer div.cursor > img {
+  width: 90px !important;
+  padding-top: 15px;
+}
+
+.eqLogicThumbnailContainer div.cursor > center > img,
+.eqLogicThumbnailContainer div.cursor img {
+  width: 75px !important;
+  height: auto !important;
+  padding-top: 15px;
+}
+.eqLogicDisplayCard {
+  margin-bottom: 10px !important;
+  height: 170px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.eqLogicDisplayCard > img {
+  width: 65px;
+  max-width: 65px;
+  height: auto;
+  vertical-align: baseline;
+}
+.eqLogicDisplayCard span {
+  font-size: 12px !important;
+}
+
+.eqLogic.eqLogic-widget .widget-name span.warning i {
+  margin-right: 5px;
+  color: var(--linkHoverLight-color);
+  font-size: 14px !important;
+}
+
+div.cmdListContainer .tablesorter i {
+  font-size: 14px !important;
+}
+
+
+
+
