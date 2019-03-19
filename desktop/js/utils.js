@@ -936,7 +936,7 @@ function editWidgetCmdMode(_mode){
         items: {
           configuration: {
             name: "{{Configuration avancée}}",
-            icon : 'fa-cog',
+            icon : 'fas fa-cog',
             callback: function(key, opt){
               saveWidgetDisplay()
               $('#md_modal').dialog({title: "{{Configuration du widget}}"});
@@ -946,7 +946,7 @@ function editWidgetCmdMode(_mode){
           sep1 : "---------",
           layoutDefaut: {
             name: "{{Defaut}}",
-            icon : 'fa-square-o',
+            icon : 'fas fa-square',
             disabled:function(key, opt) {
               return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table');
             },
@@ -965,7 +965,7 @@ function editWidgetCmdMode(_mode){
           },
           layoutTable: {
             name: "{{Table}}",
-            icon : 'fa-table',
+            icon : 'fas fa-table',
             disabled:function(key, opt) {
               return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table');
             },
@@ -985,7 +985,7 @@ function editWidgetCmdMode(_mode){
           sep2 : "---------",
           addTableColumn: {
             name: "{{Ajouter colonne}}",
-            icon : 'fa-plus',
+            icon : 'fas fa-plus',
             disabled:function(key, opt) {
               return !$(this).hasClass('eqLogic_layout_table');
             },
@@ -1004,7 +1004,7 @@ function editWidgetCmdMode(_mode){
           },
           addTableLine: {
             name: "{{Ajouter ligne}}",
-            icon : 'fa-plus',
+            icon : 'fas fa-plus',
             disabled:function(key, opt) {
               return !$(this).hasClass('eqLogic_layout_table');
             },
@@ -1023,7 +1023,7 @@ function editWidgetCmdMode(_mode){
           },
           removeTableColumn: {
             name: "{{Supprimer colonne}}",
-            icon : 'fa-minus',
+            icon : 'fas fa-minus',
             disabled:function(key, opt) {
               return !$(this).hasClass('eqLogic_layout_table');
             },
@@ -1042,7 +1042,7 @@ function editWidgetCmdMode(_mode){
           },
           removeTableLine: {
             name: "{{Supprimer ligne}}",
-            icon : 'fa-minus',
+            icon : 'fas fa-minus',
             disabled:function(key, opt) {
               return !$(this).hasClass('eqLogic_layout_table');
             },
