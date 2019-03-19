@@ -59,7 +59,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 
 <div class="input-group">
 	<div class="input-group-btn">
-		<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="fa fa-picture-o"></i></a>
+		<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i></a>
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
