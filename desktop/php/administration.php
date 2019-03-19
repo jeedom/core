@@ -347,7 +347,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-					<hr/>
+					<hr class="hrPrimary">
 					<?php
 					if (init('rescue', 0) == 0) {
 						foreach (plugin::listPlugin(true) as $plugin) {
