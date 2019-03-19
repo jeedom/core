@@ -2,7 +2,6 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
 
 .ui-link[data-title=Accueil] {
