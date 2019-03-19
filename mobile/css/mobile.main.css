@@ -282,9 +282,6 @@ legend {
   padding: 0 !important;
   color:  var(--link-color);
 }
-.eqLogic-widget i.fa-refresh {
-  margin-right: calc((var(--border-radius)/4) + 3px)  !important;
-}
 
 .ui-slider-track,
 .ui-bar-a {
