@@ -25,18 +25,21 @@ natcasesort($list_logfile);
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 				foreach ($list_logfile as $file) {
-					$hasErr = 0;
+					$fsize = filesize('log/' . $file);
+          				if ( $fsize <= 1 ) { // un fichier vidé par Jeedom contient un espace
+          				  continue;
+          				}
+          				if ( $fsize < 1024 ) $fsizelog = "$fsize o";
+          				else if ( $fsize < 1048576) $fsizelog = round($fsize / 1024,1) .' Ko';
+          				else $fsizelog = round($fsize / 1048576 ,1) .' Mo';
+          				$fsizelog = " ($fsizelog)"; 
 					$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
-					if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
 					}
-					if ($file == $logfile) {
-						echo '<li class="cursor li_log active" data-log="' . $file . '" >' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
-					} else {
-						echo '<li class="cursor li_log" data-log="' . $file . '">' . $flag . '<a>' . $file . ' (' . round(filesize('log/' . $file) / 1024) . ' Ko)</a></li>';
-					}
+          				echo '<li class="cursor li_log ' .(($file == $logfile)?'active':'') .'" data-log="' . $file . '" >' . $flag . '<a>' . $file . $fsizelog . '</a></li>';
 				}
 				?>
 			</ul>
