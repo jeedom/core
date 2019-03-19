@@ -300,7 +300,7 @@ div[class*="ListContainer"]:not(.batteryListContainer)  div,
 }
 div[class*="ListContainer"] div.cursor,
 .eqLogicDisplayCard div.cursor,
-.eqLogicThumbnailContainer div.eqLogicAction {
+.eqLogicThumbnailContainer div.cursor {
   margin-bottom: 5px !important;
   padding: 5px !important;
 }
