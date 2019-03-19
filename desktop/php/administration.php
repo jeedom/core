@@ -1552,10 +1552,10 @@ user::isBan();
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="#" data-value="alpha">{{Alpha (Plus d'accès au support)}}</a></li>
-											<li><a href="#" data-value="beta">{{Beta (Plus d'accès au support)}}</a></li>
-											<li><a href="#" data-value="release">{{Release (Plus d'accès au support)}}</a></li>
 											<li><a href="#" data-value="master">{{Stable}}</a></li>
+											<li><a href="#" data-value="release">{{Release (Pas de support)}}</a></li>
+											<li><a href="#" data-value="beta">{{Beta (Pas de support)}}</a></li>
+											<li><a href="#" data-value="alpha">{{Alpha (Pas de support)}}</a></li>
 										</ul>
 									</div>
 								</div>
