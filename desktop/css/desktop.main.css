@@ -1971,7 +1971,7 @@ path.highcharts-graph {
   border: none!important;
 }
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
-  background-color: var(--btn-default-color)!important;
+  background-color: var(--al-warning-color)!important;
 }
 
 .ui-dialog {
