@@ -67,40 +67,43 @@ foreach ($objects as $object) {
 <br/>
 <br/>
 <div class="row packeryContainer">
-	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">
-		<div style="margin-bottom: 1em; padding:0.2em 0.5em;">
-			<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>
-			<ul class="eqLogicSortable">
-				<?php
-				foreach ($eqLogics[-1] as $eqLogic) {
-					echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-					echo '<input type="checkbox" class="cb_selEqLogic" /> ';
-					echo $eqLogic->getName() . ' ';
-					echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
-					if ($eqLogic->getIsEnable() != 1) {
-						echo '<i class="fas fa-times" title="{{Non actif}}"></i> ';
-					}
-					if ($eqLogic->getIsVisible() != 1) {
-						echo '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-					}
-					echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
-					echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-					
-					echo '<ul class="cmdSortable" style="display:none;" >';
-					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
-						echo '<i class="fas fa-cog pull-right configureCmd"></i>';
-						echo '</li>';
-					}
-					echo '</ul>';
-					echo '</li>';
-				}
-				?>
-			</ul>
-		</div>
-	</div>
 	<?php
+	if (count($eqLogics[-1]) > 0) {
+		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">';
+		echo '<div style="margin-bottom: 1em; padding:0.2em 0.5em;">';
+		echo '<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>';
+		echo '<ul class="eqLogicSortable">';
+			
+		foreach ($eqLogics[-1] as $eqLogic) {
+			echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+			echo '<input type="checkbox" class="cb_selEqLogic" /> ';
+			echo $eqLogic->getName() . ' ';
+			echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+			if ($eqLogic->getIsEnable() != 1) {
+				echo '<i class="fas fa-times" title="{{Non actif}}"></i> ';
+			}
+			if ($eqLogic->getIsVisible() != 1) {
+				echo '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+			}
+			echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
+			echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+			echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+			
+			echo '<ul class="cmdSortable" style="display:none;" >';
+			foreach ($cmds[$eqLogic->getId()] as $cmd) {
+				echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
+				echo '<i class="fas fa-cog pull-right configureCmd"></i>';
+				echo '</li>';
+			}
+			echo '</ul>';
+			echo '</li>';
+		}
+			
+		echo '</ul>';
+		echo '</div>';
+		echo '</div>';
+	}
+
 	foreach ($objects as $object) {
 		$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
 		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
