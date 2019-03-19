@@ -205,7 +205,7 @@ user::isBan();
 							<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -214,7 +214,7 @@ user::isBan();
 							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -227,7 +227,7 @@ user::isBan();
 							<span class="label label-info"><?php echo $lastKnowDate ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 				</fieldset>
@@ -293,7 +293,7 @@ user::isBan();
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['api']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -305,7 +305,7 @@ user::isBan();
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apipro']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -328,7 +328,7 @@ user::isBan();
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apimarket']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -358,7 +358,7 @@ user::isBan();
 							echo '<div class="input-group">';
 							echo '<input class="span_apikey roundedLeft form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
 							echo '<span class="input-group-btn">';
-							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
+							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 							echo '</span>';
 							echo '</div>';
 							echo '</div>';
