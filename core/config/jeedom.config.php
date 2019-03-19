@@ -104,6 +104,12 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'timeDoor' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'icon jeedom-porte-ferme','#icon_off#' => 'icon jeedom-porte-ouverte')),
 					'timePresence' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-mouvement')),
 					'timeWindow' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'icon jeedom-fenetre-ferme','#icon_off#' => 'icon jeedom-fenetre-ouverte')),
+				),
+				'numeric'=>array(
+					'testMultistate' => array('template' => 'multistate','test' => array(
+						array('operation' => '_options.display_value > 1','state' => 'fa fa-check'),
+						array('operation' => '_options.display_value > 70','state' => 'icon jeedom-porte-ferme')
+					)),
 				)
 			)
 		),

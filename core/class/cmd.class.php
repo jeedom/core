@@ -1052,6 +1052,12 @@ class cmd {
 			$template_conf = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
 			$replace = $template_conf['replace'];
+			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
+				$replace['#test#'] = '';
+				foreach ($template_conf['test'] as $test) {
+					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.$test['state'].'\'}';
+				}
+			}
 		}else{
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
 		}
