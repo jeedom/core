@@ -51,7 +51,7 @@ if (is_array($scenarioListGroup)) {
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
+			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchScenario" />';
 			echo '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
 				echo '<div class="panel panel-default">';

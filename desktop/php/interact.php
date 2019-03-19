@@ -42,7 +42,7 @@ if (is_array($interactListGroup)) {
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchInteract" />';
+			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
 			echo '<div class="panel-group" id="accordionInteract">';
 			if (count($interacts[-1]) > 0) {
 				echo '<div class="panel panel-default">';

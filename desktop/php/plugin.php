@@ -36,7 +36,7 @@ $plugins_list = plugin::listPlugin(false, true);
 			?>
 		</div>
 		<legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchPlugin" />
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchPlugin" />
 		<div class="pluginListContainer">
 			<?php
 			foreach (plugin::listPlugin() as $plugin) {
