@@ -361,6 +361,7 @@ div[class*="ListContainer"] div.cursor > center > i,
   width: 65px;
   max-width: 65px;
   height: auto;
+  vertical-align: baseline;
 }
 .eqLogicDisplayCard span {
   font-size: 12px !important;
