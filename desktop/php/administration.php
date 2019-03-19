@@ -1071,13 +1071,13 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
-								<span class="input-group-addon">{{2 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
-								<span class="input-group-addon">{{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
-								<span class="input-group-addon">> {{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">> {{3 mots}}</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::confidence"/>
 							</div>
 						</div>
@@ -1086,13 +1086,13 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh1"/>
-								<span class="input-group-addon">{{2 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh2"/>
-								<span class="input-group-addon">{{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh3"/>
-								<span class="input-group-addon">{{4 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{4 mots}}</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::weigh4"/>
 							</div>
 						</div>
