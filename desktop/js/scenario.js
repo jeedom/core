@@ -1042,7 +1042,7 @@ function addSchedule(_schedule) {
 }
 
 function addExpression(_expression) {
-  if (!isset(_expression.type) || _expression.type == '') {
+  if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
     return '';
   }
   var sortable = 'sortable';
