@@ -339,7 +339,8 @@ div[class*="ListContainer"] div.cursor > center > i,
   height: 130px;
   min-height: 130px !important;
 }
-.pluginListContainer div.cursor > center > img {
+.pluginListContainer div.cursor > center > img,
+.interactListContainer div.cursor > img {
   width: 90px !important;
   padding-top: 15px;
 }
