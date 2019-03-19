@@ -80,7 +80,7 @@ if ($market->getPurchase() == 1) {
 	$allowVersion = $market->getAllowVersion();
 	foreach ($allowVersion as $branch) {
 		if ($market->getStatus($branch) == 1) {
-			echo ' <a class="btn btn-default bt_installFromMarket" data-version="' . $branch . '" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer}} ' . $branch . '</a>';
+			echo ' <a class="btn btn-default bt_installFromMarket" data-version="' . $branch . '" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fas fa-plus-circle"></i> {{Installer}} ' . $branch . '</a>';
 		}
 	}
 } else if ($market->getPrivate() == 1) {
