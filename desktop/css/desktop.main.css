@@ -1939,6 +1939,14 @@ path.highcharts-graph {
 .modal-content {
   background-color: var(--bg-modal-color)!important
 }
+
+.modal-footer button[data-bb-handler=cancel] {
+  background-color: var(--al-warning-color)!important;
+}
+.modal-footer button[data-bb-handler=confirm] {
+  background-color: var(--al-success-color)!important;
+}
+
 .modal-footer {
   border-top-color: rgb(var(--bg-color))!important
 }
