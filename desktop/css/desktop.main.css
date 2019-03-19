@@ -1939,7 +1939,12 @@ path.highcharts-graph {
 .modal-content {
   background-color: var(--bg-modal-color)!important
 }
-
+.modal-footer {
+  border-top-color: rgb(var(--bg-color))!important
+}
+.modal-footer .btn-default {
+  height: 32px;
+}
 .modal-footer button[data-bb-handler=cancel] {
   background-color: var(--al-warning-color)!important;
 }
@@ -1947,12 +1952,6 @@ path.highcharts-graph {
   background-color: var(--al-success-color)!important;
 }
 
-.modal-footer {
-  border-top-color: rgb(var(--bg-color))!important
-}
-.modal-footer .btn-default {
-  height: 32px;
-}
 .close {
   color: var(--link-color) !important;
   opacity: 1;
@@ -2029,11 +2028,16 @@ path.highcharts-graph {
   background: var(--link-color);
 }
 
-div.vis-item,div.vis-item-content {
+div.vis-item,
+div.vis-item-content {
   background-color: white;
   border-color: #D7D7D7;
   padding:0px !important;
   margin:0px !important;
+}
+.vis-timeline,
+.vis-timeline div {
+  border-color: var(--placeholder-color) !important;
 }
 
 .ui-dialog .ui-dialog-buttonpane {
