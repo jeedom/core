@@ -106,10 +106,12 @@ a:focus {
 
 /* buttons on eq widgets */
 .eqLogic.eqLogic-widget .btn,
+.scenario.scenario-widget .btn,
 #div_displayObject .btn {
   color: var(--link-color) !important;
 }
 .eqLogic.eqLogic-widget .btn:hover,
+.scenario.scenario-widget .btn:hover,
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
 }
