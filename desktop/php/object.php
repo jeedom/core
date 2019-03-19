@@ -25,7 +25,7 @@ $allObject = jeeObject::buildTree(null, false);
 		</div>
 
 		<legend><i class="fas fa-picture-o"></i>  {{Mes objets}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchObject" />
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchObject" style="margin-bottom:4px;"/>
 		<div class="objectListContainer">
 			<?php
 			foreach ($allObject as $object) {
