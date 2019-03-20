@@ -25,9 +25,6 @@ Theme Core 2019 @Jeedom
 .ui-btn {
 	color: var(--link-color) !important;
 }
-.ui-btn i:hover {
-	color: var(--linkHoverLight-color) !important;
-}
 
 .eqLogic.eqLogic-widget,
 .scenario.scenario-widget {
