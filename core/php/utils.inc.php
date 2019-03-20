@@ -1209,6 +1209,7 @@ function sanitizeAccent($_message) {
 	
 	function findCodeIcon($_icon) {
 		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
 		
 		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');

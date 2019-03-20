@@ -1845,7 +1845,7 @@ class cmd {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper-o');
+		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper');
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
