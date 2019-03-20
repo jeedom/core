@@ -126,7 +126,12 @@ class cache {
 			break;
 			case 'RedisCache':
 			$redis = new Redis();
-			$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+			$redisAddr = config::byKey('cache::redisaddr');
+			if (strncmp($redisAddr, '/', 1) === 0) {
+				$redis->connect($redisAddr);
+			} else {
+				$redis->connect($redisAddr, config::byKey('cache::redisport'));
+			}
 			self::$cache = new \Doctrine\Common\Cache\RedisCache();
 			self::$cache->setRedis($redis);
 			break;
@@ -171,8 +176,6 @@ class cache {
 			}
 		}
 	}
-	
-	
 	
 	public static function search() {
 		return array();
