@@ -105,6 +105,7 @@ Theme Core 2019 @Jeedom
 
 
 /* ___________________________________________________________EQs */
+.eqLogic.eqLogic-widget,
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
@@ -112,7 +113,8 @@ Theme Core 2019 @Jeedom
 	color: var(--linkHoverLight-color) !important;
 }
 
-.iconCmd > i {
+.cmd .iconCmd i,
+.iconCmd i {
   color: var(--linkHoverLight-color) !important;
 }
 p.state {
