@@ -606,7 +606,7 @@ class cmd {
 			if(count($informations) < 4){
 				continue;
 			}
-			if(stripos($informations[3],'icon') !== false || stripos($informations[3],'multistate') !== false){
+			if(stripos($informations[3],'tmpl') !== false){
 				continue;
 			}
 			if (!isset($return[$informations[1]])) {
@@ -1081,7 +1081,11 @@ class cmd {
 		if(isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])){
 			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
-			$replace = $template_conf['replace'];
+			if(isset($template_conf['replace'])){
+				$replace = $template_conf['replace'];
+			}else{
+				$replace = array();
+			}
 			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
 				$replace['#test#'] = '';
 				foreach ($template_conf['test'] as &$test) {
