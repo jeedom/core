@@ -18,6 +18,10 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+})
+
 if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }

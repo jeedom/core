@@ -19,6 +19,10 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+})
+
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $('.displayInteracQuery').on('click', function () {
