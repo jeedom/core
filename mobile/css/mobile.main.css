@@ -344,8 +344,10 @@ a.action.ui-btn {
   color: var(--txt-color) !important;
   background-color: rgb(var(--bg-color)) !important;
   font-size: 12.5px !important;
+  position: relative;
   opacity: .8;
   padding: 0 4px;
+  top: -3px;
 }
 #div_displayBattery .eqLogic-widget.critical .widget-name { 
   background-color: var(--al-danger-color);
