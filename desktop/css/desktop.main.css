@@ -409,8 +409,10 @@ div[data-market_type=plugin]:hover {
 #battery .eqLogic-widget .widget-name span {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color)) !important;
+  position: relative;
   opacity: .8;
   padding: 0 4px;
+  top: -2px !important;
 }
 #battery .eqLogic-widget.critical .widget-name { 
   background-color: var(--al-danger-color) !important;
