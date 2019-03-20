@@ -77,38 +77,38 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'widgets' => array(
 			'action' => array(
 				'other'=>array(
-					'light' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lumiere-on','#icon_off#' => 'icon jeedom-lumiere-off')),
-					'circle' => array('template' => 'icon','replace' => array('#icon_on#' => 'fa fa-circle','#icon_off#' => 'fa fa-circle-thin')),
-					'fan' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-ventilo','#icon_off#' => 'fa fa-times')),
-					'garageBarrierOperator' => array('template' => 'icon',array('#icon_on#' => 'icon jeedom-garage-ferme fa-2x','#icon_off#' => 'icon jeedom-garage-ouvert fa-stack-2x')),
-					'lock' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lock-ferme','#icon_off#' => 'icon jeedom-lock-ouvert')),
-					'prise' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-prise','#icon_off#' => 'fa fa-times')),
-					'sprinkle' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon nature-watering1','#icon_off#' => 'fas fa-times'))
+					'light' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-lumiere-on"></i>','#icon_off#' => '<i class="icon jeedom-lumiere-off"></i>')),
+					'circle' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="fas fa-circle"></i>','#icon_off#' => '<i class="fas fa-circle-thin"></i>')),
+					'fan' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-ventilo"></i>','#icon_off#' => '<i class="fas fa-times"></i>')),
+					'garageBarrierOperator' => array('template' => 'icon',array('#icon_on#' => '<i class="icon jeedom-garage-ferme fa-2x"></i>','#icon_off#' => '<i class="icon jeedom-garage-ouvert fa-stack-2x"></i>')),
+					'lock' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-lock-ferme"></i>','#icon_off#' => '<i class="icon jeedom-lock-ouvert"></i>')),
+					'prise' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-prise"></i>','#icon_off#' => '<i class="fas fa-times"></i>')),
+					'sprinkle' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon nature-watering1"></i>','#icon_off#' => '<i class="fas fa-times"></i>'))
 				),
 				'slider'=>array(
-					'light' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lumiere-on','#icon_off#' => 'icon jeedom-lumiere-off')),
-					'shutter' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-volet-ferme','#icon_off#' => 'icon jeedom-volet-ouvert')),
+					'light' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-lumiere-on"></i>','#icon_off#' => '<i class="icon jeedom-lumiere-off"></i>')),
+					'shutter' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-volet-ferme"></i>','#icon_off#' => '<i class="icon jeedom-volet-ouvert"></i>')),
 				)
 			),
 			'info' => array(
 				'binary'=>array(
-					'default' => array('template' => 'icon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'fa fa-times')),
-					'alert' => array('template' => 'icon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-alerte2')),
-					'door' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-porte-ferme','#icon_off#' => 'icon jeedom-porte-ouverte')),
-					'heat' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-feu','#icon_off#' => 'fa fa-times')),
-					'light' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lumiere-on','#icon_off#' => 'icon jeedom-lumiere-off')),
-					'lock' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-lock-ferme','#icon_off#' => 'icon jeedom-lock-ouvert')),
-					'presence' => array('template' => 'icon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-mouvement')),
-					'prise' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-prise','#icon_off#' => 'fa fa-times')),
-					'window' => array('template' => 'icon','replace' => array('#icon_on#' => 'icon jeedom-fenetre-ferme','#icon_off#' => 'icon jeedom-fenetre-ouverte')),
-					'timeDoor' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'icon jeedom-porte-ferme','#icon_off#' => 'icon jeedom-porte-ouverte')),
-					'timePresence' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'fa fa-check','#icon_off#' => 'icon jeedom-mouvement')),
-					'timeWindow' => array('template' => 'timeIcon','replace' => array('#icon_on#' => 'icon jeedom-fenetre-ferme','#icon_off#' => 'icon jeedom-fenetre-ouverte')),
+					'default' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="fas fa-check"></i>','#icon_off#' => '<i class="fas fa-times"></i>')),
+					'alert' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="fas fa-check"></i>','#icon_off#' => '<i class="icon jeedom-alerte2"></i>')),
+					'door' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-porte-ferme"></i>','#icon_off#' => '<i class="icon jeedom-porte-ouverte"></i>')),
+					'heat' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-feu"></i>','#icon_off#' => '<i class="fas fa-times"></i>')),
+					'light' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-lumiere-on"></i>','#icon_off#' => '<i class="icon jeedom-lumiere-off"></i>')),
+					'lock' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-lock-ferme"></i>','#icon_off#' => '<i class="icon jeedom-lock-ouvert"></i>')),
+					'presence' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="fas fa-check"></i>','#icon_off#' => '<i class="icon jeedom-mouvement"></i>')),
+					'prise' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-prise"></i>','#icon_off#' => '<i class="fas fa-times"></i>')),
+					'window' => array('template' => 'icon','replace' => array('#icon_on#' => '<i class="icon jeedom-fenetre-ferme"></i>','#icon_off#' => '<i class="icon jeedom-fenetre-ouverte"></i>')),
+					'timeDoor' => array('template' => 'timeIcon','replace' => array('#icon_on#' => '<i class="icon jeedom-porte-ferme"></i>','#icon_off#' => '<i class="icon jeedom-porte-ouverte"></i>')),
+					'timePresence' => array('template' => 'timeIcon','replace' => array('#icon_on#' => '<i class="fas fa-check"></i>','#icon_off#' => '<i class="icon jeedom-mouvement"></i>')),
+					'timeWindow' => array('template' => 'timeIcon','replace' => array('#icon_on#' => '<i class="icon jeedom-fenetre-ferme"></i>','#icon_off#' => '<i class="icon jeedom-fenetre-ouverte"></i>')),
 				),
 				'numeric'=>array(
 					'testMultistate' => array('template' => 'multistate','test' => array(
-						array('operation' => '_options.display_value > 1','state' => 'fa fa-check'),
-						array('operation' => '_options.display_value > 70','state' => 'icon jeedom-porte-ferme')
+						array('operation' => '#value# > 1','state' => '<i class="fa fa-check"></i>'),
+						array('operation' => '#value# > 70','state' => '<i class="icon jeedom-porte-ferme"></i>')
 					)),
 				)
 			)
