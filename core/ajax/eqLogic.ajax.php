@@ -125,7 +125,7 @@ try {
 	}
 	
 	if (init('action') == 'listByType') {
-		ajax::success(utils::a2o(eqLogic::byType(init('type'))));
+		ajax::success(utils::o2a(eqLogic::byType(init('type'))));
 	}
 	
 	if (init('action') == 'listByObjectAndCmdType') {
