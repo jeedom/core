@@ -1312,7 +1312,7 @@ function addSubElement(_subElement, _pColor) {
     retour += '</button>';
     retour += '<span class="input-group-btn">';
     retour += '<div class="dropdown" >';
-    retour += '<button class="btn btn-sm btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
     retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
     retour += '<span class="caret"></span>';
     retour += '</button>';
