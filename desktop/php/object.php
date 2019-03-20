@@ -71,14 +71,19 @@ $allObject = jeeObject::buildTree(null, false);
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<select class="form-control objectAttr" data-l1key="father_id">
-									<option value="">{{Aucun}}</option>
-									<?php
-									foreach ($allObject as $object) {
-										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-									}
-									?>
-								</select>
+								<div class="dropdown dynDropdown">
+									<button class="btn btn-default dropdown-toggle objectAttr" type="button" data-toggle="dropdown" data-l1key="father_id">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li><a href="#" data-value="">{{Aucun}}</a></li>
+										<?php
+										foreach ($allObject as $object) {
+											echo '<li><a href="#" data-value="' . $object->getId() . '">' . $object->getName() . '</a></li>';
+										}
+										?>
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
