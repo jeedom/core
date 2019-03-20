@@ -15,7 +15,7 @@ echo '</script>';
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes}}</label>
                         <div class="col-sm-8 col-xs-6">
-                            <a class="btn btn-success bt_backupJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="fas fa-floppy-o"></i> {{Lancer}}</a>
+                            <a class="btn btn-success bt_backupJeedom" style="width:150px;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -43,26 +43,26 @@ echo '</script>';
                 <fieldset>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>
-                        <div class="col-sm-6 col-xs-6">
+                        <div class="col-sm-8 col-xs-6">
                             <select class="form-control" id="sel_restoreBackup"> </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-warning" id="bt_restoreJeedom"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>
+                            <a class="btn btn-warning" id="bt_restoreJeedom" style="width:150px;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Supprimer la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-danger" id="bt_removeBackup"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
+                            <a class="btn btn-danger" id="bt_removeBackup" style="width:150px;"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Envoyer une sauvegarde}}</label>
                         <div class="col-sm-8 col-xs-6">
-                            <span class="btn btn-default btn-file">
+                            <span class="btn btn-default btn-file" style="width:150px;">
                                 <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadBackup" type="file" name="file" data-url="core/ajax/jeedom.ajax.php?action=backupupload&jeedom_token=<?php echo ajax::getToken(); ?>">
                             </span>
                         </div>
@@ -70,7 +70,7 @@ echo '</script>';
                     <div class="form-group">
                         <label class="col-sm-4 col-xs-6 control-label">{{Télécharger la sauvegarde}}</label>
                         <div class="col-sm-4 col-xs-6">
-                            <a class="btn btn-success" id="bt_downloadBackup"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
+                            <a class="btn btn-success" id="bt_downloadBackup" style="width:150px;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
                         </div>
                     </div>
                 </fieldset>
@@ -96,7 +96,7 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '</div>';
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Sauvegardes disponibles}}</label>';
-	echo '<div class="col-sm-6 col-xs-6">';
+	echo '<div class="col-sm-8 col-xs-6">';
 	echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
 	echo '<option>{{Chargement...}}</option>';
 	echo '</select>';
@@ -108,7 +108,7 @@ foreach (update::listRepo() as $rkey => $value) {
 	echo '<div class="form-group">';
 	echo '<label class="col-sm-4 col-xs-6 control-label">{{Restaurer la sauvegarde}}</label>';
 	echo '<div class="col-sm-4 col-xs-6">';
-	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '"><i class="fas fa-refresh fa-spin" style="display : none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>';
+	echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:150px;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer}}</a>';
 	echo '</div>';
 	echo '</div>';
 	echo '</fieldset>';
