@@ -606,7 +606,7 @@ class cmd {
 			if(count($informations) < 4){
 				continue;
 			}
-			if(stripos($informations[3],'icon') !== false){
+			if(stripos($informations[3],'icon') !== false || stripos($informations[3],'multistate') !== false){
 				continue;
 			}
 			if (!isset($return[$informations[1]])) {
