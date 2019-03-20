@@ -650,6 +650,25 @@ class cmd {
 				}
 			}
 		}
+		foreach (plugin::listPlugin(true,false,false) as $plugin) {
+			if (!method_exists($plugin->getId(), 'templateWidget')) {
+				continue;
+			}
+			$plugin_id = $plugin->getId();
+			foreach ($plugin_id::templateWidget() as $type => $data1) {
+				foreach ($data1 as $subtype => $data2) {
+					foreach ($data2 as $name => $data3) {
+						if(!isset($return[$type])){
+							$return[$type] = array();
+						}
+						if(!isset($return[$type][$subtype])){
+							$return[$type][$subtype] = array();
+						}
+						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId());
+					}
+				}
+			}
+		}
 		return $return;
 	}
 	
@@ -1046,10 +1065,21 @@ class cmd {
 			return $this->getHtml($_version);
 		}
 		$replace = null;
-		if(isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()]) &&
-		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()]) &&
-		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')])){
-			$template_conf = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')];
+		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
+		$widget_name = $this->getTemplate($version, 'default');
+		if(strpos($this->getTemplate($version, 'default'),'::') !== false){
+			$name = explode('::',$this->getTemplate($version, 'default'));
+			if($name[0] != 'core' && $name[0] != 'custom'){
+				$widget_name = $name[1];
+				$plugin_id  = $name[0];
+				if (method_exists($plugin_id, 'templateWidget')) {
+					$widget_template = $plugin_id::templateWidget();
+				}
+			}
+		}
+		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
+		if(isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])){
+			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
 			$replace = $template_conf['replace'];
 			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
@@ -1059,8 +1089,6 @@ class cmd {
 					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.$test['state'].'\'}';
 				}
 			}
-		}else{
-			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
 		}
 		$template = '';
 		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {

@@ -680,7 +680,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                           if ($widget['name'] == 'default') {
                             continue;
                           }
-                          echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+                          echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
                         }
                       }
                       ?>
@@ -699,7 +699,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                           if ($widget['name'] == 'default') {
                             continue;
                           }
-                          echo '<option value="' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+                          echo '<option value="'.$widget['location'].'::' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
                         }
                       }
                       ?>
