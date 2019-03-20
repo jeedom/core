@@ -9,14 +9,14 @@
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>');
                 }
             } else {
                 if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-times"></i>');
                 }
             }
         }

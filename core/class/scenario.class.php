@@ -657,7 +657,7 @@ class scenario {
 					$object = $scenario->getObject();
 					$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 					$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
-					. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fa fa-file-text-o pull-right cursor bt_scenarioLog"></i> <i class="fa fa-share pull-right cursor bt_gotoScenario"></i></div>'
+					. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fas fa-file-text-alt pull-right cursor bt_scenarioLog"></i> <i class="fas fa-share pull-right cursor bt_gotoScenario"></i></div>'
 					. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
 					. '</div>';
 					return $return;
@@ -872,31 +872,31 @@ class scenario {
 							case 'starting':
 							return 'fas fa-hourglass-start';
 							case 'in progress':
-							return 'fa fa-spinner fa-spin';
+							return 'fas fa-spinner fa-spin';
 							case 'error':
-							return 'fa fa-exclamation-triangle';
+							return 'fas fa-exclamation-triangle';
 							default:
 							if (strpos($this->getDisplay('icon'), '<i') === 0) {
 								return str_replace(array('<i', 'class=', '"', '/>'), '', $this->getDisplay('icon'));
 							}
-							return 'fa fa-check';
+							return 'fas fa-check';
 						}
-						return 'fa fa-times';
+						return 'fas fa-times';
 					}
 					switch ($this->getState()) {
 						case 'starting':
 						return '	<i class="fas fa-hourglass-start"></i>';
 						case 'in progress':
-						return '<i class="fa fa-spinner fa-spin"></i>';
+						return '<i class="fas fa-spinner fa-spin"></i>';
 						case 'error':
-						return '<i class="fa fa-exclamation-triangle"></i>';
+						return '<i class="fas fa-exclamation-triangle"></i>';
 						default:
 						if ($this->getDisplay('icon') != '') {
 							return $this->getDisplay('icon');
 						}
-						return '<i class="fa fa-check"></i>';
+						return '<i class="fas fa-check"></i>';
 					}
-					return '<i class="fa fa-times"></i>';
+					return '<i class="fas fa-times"></i>';
 				}
 				/**
 				*

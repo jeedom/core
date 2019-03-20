@@ -742,7 +742,7 @@ class cmd {
 		
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
 			. '</div>';
 		} else {
@@ -751,7 +751,7 @@ class cmd {
 				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
 			}
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
 			. '</div>';
 		}
@@ -1225,11 +1225,11 @@ class cmd {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 						$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
 						if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
-							$replace['#tendance#'] = 'fa fa-arrow-up';
+							$replace['#tendance#'] = 'fas fa-arrow-up';
 						} else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
-							$replace['#tendance#'] = 'fa fa-arrow-down';
+							$replace['#tendance#'] = 'fas fa-arrow-down';
 						} else {
-							$replace['#tendance#'] = 'fa fa-minus';
+							$replace['#tendance#'] = 'fas fa-minus';
 						}
 					}
 				}

@@ -26,9 +26,9 @@ natcasesort($list_logfile);
 				<?php
 				foreach ($list_logfile as $file) {
 					$hasErr = 0;
-					$flag = '<i class="fa fa-check"></i>';
+					$flag = '<i class="fas fa-check"></i>';
 					if (shell_exec('grep -c -E "\[ERROR\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-triangle"></i>';
+						$flag = '<i class="fas fa-exclamation-triangle"></i>';
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}

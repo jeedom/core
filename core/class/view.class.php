@@ -56,6 +56,9 @@ class view {
 		$viewDatas = array_merge($viewDatas, viewData::searchByConfiguration($search));
 		foreach ($viewDatas as $viewData) {
 			$viewZone = $viewData->getviewZone();
+			if(!is_object($viewZone)){
+				continue;
+			}
 			$view = $viewZone->getView();
 			$return[$view->getId()] = $view;
 		}

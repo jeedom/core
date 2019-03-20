@@ -3,9 +3,9 @@
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			if (_options.display_value == '1') {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
+				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>');
 			}else {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
+				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-times"></i>');
 			}
 			$('.cmd[data-cmd_id=#id#]').css('background-color', '');
 			if(_options.alertLevel == 'warning'){

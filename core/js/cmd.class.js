@@ -53,7 +53,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
                 setTimeout(function() {
                   eqLogic.find('.statusCmd').empty();
                 }, 3000);
@@ -74,7 +74,7 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
                   setTimeout(function() {
                     eqLogic.find('.statusCmd').empty();
                   }, 3000);
@@ -99,7 +99,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
                 setTimeout(function() {
                   eqLogic.find('.statusCmd').empty();
                 }, 3000);
@@ -120,7 +120,7 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
                   setTimeout(function() {
                     eqLogic.find('.statusCmd').empty();
                   }, 3000);
@@ -138,7 +138,7 @@ jeedom.cmd.execute = function(_params) {
             });
           }
           if (notify) {
-            eqLogic.find('.statusCmd').empty().append('<i class="fa fa-times"></i>');
+            eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
             setTimeout(function() {
               eqLogic.find('.statusCmd').empty();
             }, 3000);

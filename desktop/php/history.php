@@ -129,7 +129,7 @@ $date = array(
 								</ul>
 							</div>
 							<a class="btn btn-warning roundedRight" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
-								<i class="fa fa-times"></i> {{Affichage}}
+								<i class="fas fa-times"></i> {{Affichage}}
 							</a>
 						</div>
 					</div>

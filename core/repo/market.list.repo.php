@@ -168,14 +168,14 @@ function displayWidgetSubtype($_name) {
 		<?php if (init('type', 'plugin') == 'plugin') {?>
 			<div class="input-group input-group-sm">
 				<span class="input-group-btn">
-					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fas fa-times"></i></a>
 				</span>
 			</div>
 		<?php }
 		?>
 		<div class="input-group input-group-sm">
 			<span class="input-group-btn">
-				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
+				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fas fa-times"></i></a>
 			</span>
 		</div>
 		<div class="input-group input-group-sm">
@@ -216,9 +216,9 @@ function displayWidgetSubtype($_name) {
 			echo '<span class="label label-info pull-right">' . config::byKey('market::username');
 			try {
 				repo_market::test();
-				echo ' <i class="fa fa-check"></i>';
+				echo ' <i class="fas fa-check"></i>';
 			} catch (Exception $e) {
-				echo ' <i class="fa fa-times"></i>';
+				echo ' <i class="fas fa-times"></i>';
 			}
 			echo '</span>';
 		}
@@ -292,7 +292,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 			}
 		}
 		if (is_object($update)) {
-			echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
+			echo '<i class="fas fa-check" style="position : absolute; right : 5px;"></i>';
 		}
 		
 		echo "<br/><center>";
