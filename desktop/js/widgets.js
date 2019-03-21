@@ -232,3 +232,20 @@ $("#bt_saveWidgets").on('click', function (event) {
   });
   return false;
 });
+
+$('#bt_removeWidgets').on('click', function (event) {
+  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce widget ?}}', function (result) {
+    if (result) {
+      jeedom.widgets.remove({
+        id: $('.widgetsAttr[data-l1key=id]').value(),
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          modifyWithoutSave = false;
+          window.location = 'index.php?v=d&p=widgets&removeSuccessFull=1';
+        }
+      });
+    }
+  });
+});
