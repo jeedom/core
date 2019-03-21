@@ -80,9 +80,10 @@ $(function(){
             tab = null
             if (document.location.toString().match('#')) {
               tab = '#' + document.location.toString().split('#')[1];
+              tab = $('a[href="' + tab + '"]')
             }
-            $('.eqLogicDisplayCard[data-eqLogic_id="'+key+'"]').click()
-            if (tab) $('a[href="'+tab+'"]').click()
+            $('.eqLogicDisplayCard[data-eqLogic_id="' + key + '"]').click()
+            if (tab) tab.click()
           },
           items: contextmenuitems
         })
