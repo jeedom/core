@@ -437,11 +437,13 @@ class cmd {
 			return $_input;
 		}
 		$cmds = self::byIds($matches[1]);
-		foreach ($cmds as $cmd) {
-			if (isset($replace['#' . $cmd->getId() . '#'])) {
-				continue;
+		if(is_array($cmds) && count($cmds) > 0){
+			foreach ($cmds as $cmd) {
+				if (isset($replace['#' . $cmd->getId() . '#'])) {
+					continue;
+				}
+				$replace['#' . $cmd->getId() . '#'] = '#' . $cmd->getHumanName() . '#';
 			}
-			$replace['#' . $cmd->getId() . '#'] = '#' . $cmd->getHumanName() . '#';
 		}
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
