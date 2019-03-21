@@ -35,7 +35,13 @@ if (isset($argv)) {
 		}
 	}
 }
-
+try {
+	if(file_exists(__DIR__.'/database.php')){
+		exec('php ' . __DIR__.'/database.php');
+	}
+} catch (Exception $ex) {
+	echo "***ERREUR*** " . $ex->getMessage() . "\n";
+}
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 	
