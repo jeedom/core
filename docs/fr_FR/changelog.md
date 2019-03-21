@@ -2,6 +2,10 @@
 Changelog
 =========
 
+3.3.19
+=====
+- Correction de bugs (en particulier lors de l'update)
+
 
 3.3.18
 =====
