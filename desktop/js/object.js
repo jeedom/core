@@ -34,11 +34,11 @@ $(function(){
         }
         var contextmenuitems = {}
         for(i=0; i<_objects.length; i++)
-          {
-            ob = _objects[i]
-            contextmenuitems[ob.id] = {'name': ob.name}
-          }
-
+        {
+          ob = _objects[i]
+          contextmenuitems[ob.id] = {'name': ob.name}
+        }
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -102,7 +102,6 @@ $('#in_searchObject').keyup(function () {
   $('.objectDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this)
       $(this).closest('.objectDisplayCard').show();
     }
   });
@@ -128,7 +127,7 @@ function loadObjectConfiguration(_id){
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
   }catch(error) {
-
+    
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
@@ -146,7 +145,6 @@ function loadObjectConfiguration(_id){
   $('.objectDisplayCard[data-object_id='+_id+']').addClass('active');
   $('#div_conf').show();
   $('#div_resumeObjectList').hide();
-  $(this).addClass('active');
   jeedom.object.byId({
     id: _id,
     cache: false,
@@ -176,7 +174,7 @@ function loadObjectConfiguration(_id){
               $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
             }
           }
-
+          
         }
       }
       modifyWithoutSave = false;

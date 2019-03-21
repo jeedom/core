@@ -2,11 +2,102 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
+global $JEEDOM_INTERNAL_CONFIG;
 ?>
-
-
-
-
-
-
-<?php include_file("desktop", "widgets", "js");?>
+<div class="row row-overflow">
+  <div id="div_widgetsList" class="col-xs-12">
+    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+    <div class="widgetsListContainer">
+      <div class="cursor success" id="bt_addWidgets">
+        <center>
+          <i class="fas fa-plus-circle"></i>
+        </center>
+        <span><center>{{Ajouter}}</center></span>
+      </div>
+    </div>
+    
+    <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
+    <input class="form-control" placeholder="{{Rechercher}}" id="in_searchWidgets" style="margin-bottom:4px;"/>
+    <div class="widgetsListContainer">
+      <?php
+      foreach (widgets::all() as $widgets) {
+        echo '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widgets->getId() . '">';
+        echo '<i class="fas fa-image"></i>';
+        echo "<br/>";
+        echo '<span class="name">' . $widgets->getName() . '</span><br/>';
+        echo '</div>';
+      }
+      ?>
+    </div>
+  </div>
+  
+  <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
+    <div class="input-group pull-right" style="display:inline-flex">
+      <span class="input-group-btn">
+        <a class="btn btn-success btn-sm roundedLeft" id="bt_saveWidgets"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+      </span>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+      <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
+    </ul>
+    <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+      <div role="tabpanel" class="tab-pane active" id="widgetstab">
+        <br/>
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="form-group">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom du widgets}}</label>
+              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
+                <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Type}}</label>
+              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <select class="form-control widgetsAttr" data-l1key="type">
+                  <?php
+                  foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+                    echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</a></li>';
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sous-Type}}</label>
+              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <select class="form-control widgetsAttr" data-l1key="subtype">
+                  <?php
+                  foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+                    foreach ($value['subtype'] as $skey => $svalue) {
+                      echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</a></li>';
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Template}}</label>
+              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <select class="form-control widgetsAttr" data-l1key="template">
+                  <?php
+                  foreach (widgets::listTemplate() as $type => $values) {
+                    foreach ($values as $subtype => $name) {
+                      echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'"><a>'.str_replace('tmpl','',$name).'</a></li>';
+                    }
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <?php include_file("desktop", "widgets", "js");?>
+  

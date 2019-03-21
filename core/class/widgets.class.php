@@ -24,6 +24,8 @@ class widgets {
   
   private $id;
   private $name;
+  private $type;
+  private $subtype;
   private $template;
   private $replace;
   private $test;
@@ -47,6 +49,30 @@ class widgets {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
   
+  public static function listTemplate(){
+    $return = array();
+    $files = ls(__DIR__ . '/../template/dashboard', 'cmd.*', false, array('files', 'quiet'));
+    foreach ($files as $file) {
+      $informations = explode('.', $file);
+      if(count($informations) < 4){
+        continue;
+      }
+      if(stripos($informations[3],'tmpl') === false){
+        continue;
+      }
+      if (!isset($return[$informations[1]])) {
+        $return[$informations[1]] = array();
+      }
+      if (!isset($return[$informations[1]][$informations[2]])) {
+        $return[$informations[1]][$informations[2]] = array();
+      }
+      if (isset($informations[3])) {
+        $return[$informations[1]][$informations[2]] = $informations[3];
+      }
+    }
+    return $return;
+  }
+  
   /*     * *********************Méthodes d'instance************************* */
   
   public function save() {
@@ -68,6 +94,18 @@ class widgets {
     return $this->name;
   }
   
+  public function getType() {
+    return $this->type;
+  }
+  
+  public function getSubtype() {
+    return $this->subtype;
+  }
+  
+  public function getTemplate() {
+    return $this->template;
+  }
+  
   public function getReplace($_key = '', $_default = '') {
     return utils::getJsonAttr($this->replace, $_key, $_default);
   }
@@ -86,6 +124,24 @@ class widgets {
     $_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
+    return $this;
+  }
+  
+  public function setType($_type) {
+    $this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+    $this->type = $_type;
+    return $this;
+  }
+  
+  public function setSubtype($_subtype) {
+    $this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
+    $this->subtype = $_subtype;
+    return $this;
+  }
+  
+  public function setTemplate($_template) {
+    $this->_changed = utils::attrChanged($this->_changed,$this->template,$_template);
+    $this->template = $_template;
     return $this;
   }
   

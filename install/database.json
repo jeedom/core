@@ -2447,9 +2447,25 @@
           "extra": ""
         },
         {
+          "name": "type",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "subtype",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "template",
           "type": "varchar(255)",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
