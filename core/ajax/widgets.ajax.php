@@ -58,6 +58,9 @@ try {
     ajax::success(utils::o2a($widgets));
   }
   
+  if (init('action') == 'getTemplateConfiguration') {
+    ajax::success(widgets::getTemplateConfiguration(init('template')));
+  }
   
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

@@ -648,7 +648,7 @@ class eqLogic {
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if ($mc->getValue() != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				//		return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$translate_category = '';

@@ -7,9 +7,9 @@
     jeedom.cmd.update['#id#'] =function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
       if (_options.display_value == '1') {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('#icon_on#');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
       }else {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('#icon_off#');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
       }
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});

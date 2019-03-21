@@ -670,6 +670,15 @@ class cmd {
 				}
 			}
 		}
+		foreach (widgets::all() as $widgets) {
+			if(!isset($return[$widgets->getType()])){
+				$return[$widgets->getType()] = array();
+			}
+			if(!isset($return[$widgets->getType()][$widgets->getSubtype()])){
+				$return[$widgets->getType()][$widgets->getSubtype()] = array();
+			}
+			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom');
+		}
 		return $return;
 	}
 	
@@ -1067,7 +1076,23 @@ class cmd {
 		$widget_name = $this->getTemplate($version, 'default');
 		if(strpos($this->getTemplate($version, 'default'),'::') !== false){
 			$name = explode('::',$this->getTemplate($version, 'default'));
-			if($name[0] != 'core' && $name[0] != 'custom'){
+			if($name[0] == 'custom'){
+				$widget = widgets::byTypeSubtypeAndName($this->getType(),$this->getSubType(),$name[1]);
+				if(is_object($widget)){
+					$widget_name = $name[1];
+					$widget_template = array(
+						$this->getType() => array(
+							$this->getSubType() => array(
+								$name[1] => array(
+									'replace' => $widget->getReplace(),
+									'test' => $widget->getTest(),
+									'template' => $widget->getTemplate()
+								)
+							)
+						)
+					);
+				}
+			}elseif($name[0] != 'core'){
 				$widget_name = $name[1];
 				$plugin_id  = $name[0];
 				if (method_exists($plugin_id, 'templateWidget')) {
@@ -1088,7 +1113,7 @@ class cmd {
 				$replace['#test#'] = '';
 				foreach ($template_conf['test'] as &$test) {
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
-					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.$test['state'].'\'}';
+					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.str_replace("'","\'",$test['state']).'\'}';
 				}
 			}
 		}

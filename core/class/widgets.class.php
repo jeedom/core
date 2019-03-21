@@ -49,6 +49,20 @@ class widgets {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
   
+  public static function byTypeSubtypeAndName($_type, $_subtype, $_name) {
+    $values = array(
+      'type' => $_type,
+      'subtype' => $_subtype,
+      'name' => $_name,
+    );
+    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+    FROM widgets
+    WHERE type=:type
+    AND subtype=:subtype
+    AND name=:name';
+    return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+  }
+  
   public static function listTemplate(){
     $return = array();
     $files = ls(__DIR__ . '/../template/dashboard', 'cmd.*', false, array('files', 'quiet'));
@@ -70,6 +84,23 @@ class widgets {
         $return[$informations[1]][$informations[2]] = $informations[3];
       }
     }
+    return $return;
+  }
+  
+  public static function getTemplateConfiguration($_template){
+    if(!file_exists(__DIR__ . '/../template/dashboard/'.$_template.'.html')){
+      return;
+    }
+    $return = array('test' => false);
+    $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+    if(strpos($template,'#test#') !== false){
+      $return['test'] = true;
+    }
+    preg_match_all("/#_([a-zA-Z_]*)_#/", $template, $matches);
+    if (count($matches[1]) == 0) {
+      return $return ;
+    }
+    $return['replace'] = $matches[1];
     return $return;
   }
   

@@ -10,14 +10,14 @@
           $('.cmd[data-cmd_id=#id#]').hide();
         }else{
           $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('#icon_on#');
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           $('.cmd[data-cmd_id=#id#]').hide();
         }else{
           $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('#icon_off#');
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
         }
       }
     }

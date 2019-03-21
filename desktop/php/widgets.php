@@ -46,6 +46,7 @@ global $JEEDOM_INTERNAL_CONFIG;
         <br/>
         <form class="form-horizontal">
           <fieldset>
+            <legend>{{Général}}</legend>
             <div class="form-group">
               <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom du widgets}}</label>
               <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -59,7 +60,7 @@ global $JEEDOM_INTERNAL_CONFIG;
                 <select class="form-control widgetsAttr" data-l1key="type">
                   <?php
                   foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                    echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</a></li>';
+                    echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</option>';
                   }
                   ?>
                 </select>
@@ -69,35 +70,47 @@ global $JEEDOM_INTERNAL_CONFIG;
               <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sous-Type}}</label>
               <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                 <select class="form-control widgetsAttr" data-l1key="subtype">
-                  <?php
-                  foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                    foreach ($value['subtype'] as $skey => $svalue) {
-                      echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</a></li>';
+                  <option value="" data-default="1"><a></option>
+                    <?php
+                    foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+                      foreach ($value['subtype'] as $skey => $svalue) {
+                        echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+                      }
                     }
-                  }
-                  ?>
-                </select>
+                    ?>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Template}}</label>
-              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                <select class="form-control widgetsAttr" data-l1key="template">
-                  <?php
-                  foreach (widgets::listTemplate() as $type => $values) {
-                    foreach ($values as $subtype => $name) {
-                      echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'"><a>'.str_replace('tmpl','',$name).'</a></li>';
-                    }
-                  }
-                  ?>
-                </select>
-              </div>
-            </div>
-          </fieldset>
-        </form>
+              <div class="form-group">
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Template}}</label>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                  <select class="form-control widgetsAttr" data-l1key="template">
+                    <option value="" data-default="1"><a></option>
+                      <?php
+                      foreach (widgets::listTemplate() as $type => $values) {
+                        foreach ($values as $subtype => $name) {
+                          echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.str_replace('tmpl','',$name).'</option>';
+                        }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <legend>{{Remplacement}}</legend>
+                <div id="div_templateReplace">
+                  
+                </div>
+                <legend>{{Test}}
+                  <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                </legend>
+                <div id="div_templateTest">
+                  
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <?php include_file("desktop", "widgets", "js");?>
-  
+      
+      <?php include_file("desktop", "widgets", "js");?>
+      
