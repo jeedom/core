@@ -68,8 +68,13 @@ body {
 }
 
 .pull-right {
+  float: right;
   padding-right: 5px;
 }
+.pull-left {
+ float:left
+}
+
 .dot1{
   -webkit-animation: loading 6s infinite;
   -moz-animation: loading 6s infinite;
