@@ -36,7 +36,6 @@ class cmd {
 	protected $configuration;
 	protected $template;
 	protected $display;
-	protected $html;
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $alert;
@@ -1060,12 +1059,9 @@ class cmd {
 		return $value;
 	}
 	
-	public function getWidgetTemplateCode($_version = 'dashboard', $_noCustom = false) {
+	public function getWidgetTemplateCode($_version = 'dashboard') {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$version = jeedom::versionAlias($_version);
-		if (!$_noCustom && $this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
-			return $this->getHtml($_version);
-		}
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
 		$widget_name = $this->getTemplate($version, 'default');
@@ -2016,22 +2012,6 @@ class cmd {
 	
 	public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
-	}
-	
-	public function getHtml($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->html, $_key, $_default);
-	}
-	
-	public function setHtml($_key, $_value) {
-		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
-			$_value = '';
-		}
-		if ($this->getHtml($_key) != $_value) {
-			$this->_needRefreshWidget = true;
-			$this->_changed = true;
-		}
-		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
-		return $this;
 	}
 	
 	public function getTemplate($_key = '', $_default = '') {

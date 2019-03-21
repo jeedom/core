@@ -35,11 +35,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       <li role="presentation"><a href="#cmd_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
     <?php }
     ?>
-    <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
-      ?>
-      <li role="presentation"><a href="#cmd_html" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-code-fork"></i> {{Code}}</a></li>
-    <?php }
-    ?>
   </ul>
   
   <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
@@ -520,102 +515,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       <?php }
       ?>
     </div>
-    <?php if ($cmd->widgetPossibility('custom::htmlCode')) {
-      $html = array();
-      foreach (array('dashboard', 'mobile', 'dview', 'mview', 'dplan') as $value) {
-        if ($cmd->getHtml($value) == '') {
-          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getWidgetTemplateCode($value));
-        }else{
-          $html[$value] = str_replace('textarea>','textarea$>',$cmd->getHtml($value));
-        }
-      }
-      ?>
-      <div role="tabpanel" class="tab-pane" id="cmd_html">
-        <br/>
-        <a class="btn btn-warning btn-sm pull-right" id="bt_reinitHtmlCode" style="position:relative;top:-3px;"><i class="fas fa-times"></i> {{Réinitialiser la personnalisation}}</a>
-        <div class="form-group">
-          <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer la personnalisation du widget}}</label>
-          <div class="col-xs-2">
-            <input type="checkbox" class="cmdAttr" data-l1key="html" data-l2key="enable" />
-          </div>
-        </div>
-        <br/>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a role="button" id="bt_codeDashboard" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  {{Dashboard}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <textarea class="cmdAttr" id="ta_codeDashboard" data-l1key="html" data-l2key="dashboard" style="width: 100%;height: 350px"><?php echo $html['dashboard']; ?></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
-              <h4 class="panel-title">
-                <a class="collapsed" id="bt_codeDview" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  {{Vue dashboard}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
-                <textarea class="cmdAttr" id="ta_codeDview" data-l1key="html" data-l2key="dview" style="width: 100%;height: 350px"><?php echo $html['dview']; ?></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-              <h4 class="panel-title">
-                <a class="collapsed" id="bt_codeDplan" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  {{Design}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
-                <textarea class="cmdAttr" id="ta_codeDplan" data-l1key="html" data-l2key="dplan" style="width: 100%;height: 350px"><?php echo $html['dplan']; ?></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-              <h4 class="panel-title">
-                <a class="collapsed" id="bt_codeMobile" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  {{Mobile}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body">
-                <textarea class="cmdAttr" id="ta_codeMobile" data-l1key="html" data-l2key="mobile" style="width: 100%;height: 350px"><?php echo $html['mobile']; ?></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFive">
-              <h4 class="panel-title">
-                <a class="collapsed" id="bt_codeMview" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                  {{Vue mobile}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
-                <textarea class="cmdAttr" id="ta_codeMview" data-l1key="html" data-l2key="mview" style="width: 100%;height: 350px"><?php echo $html['mview']; ?></textarea>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    <?php }
-    ?>
     <?php if ($cmd->getType() == 'info') {
       ?>
       <div role="tabpanel" class="tab-pane" id="cmd_alert">

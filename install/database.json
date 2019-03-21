@@ -125,14 +125,6 @@
           "extra": ""
         },
         {
-          "name": "html",
-          "type": "mediumtext",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
           "name": "alert",
           "type": "text",
           "null": "YES",
