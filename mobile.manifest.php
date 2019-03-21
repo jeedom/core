@@ -44,7 +44,6 @@ if (file_exists(__DIR__ . '/mobile/custom/custom.js')) {
 
 $other_file = array(
 	'core/php/icon.inc.php',
-	'3rdparty/jquery.mobile/css/font-awesome.min.css',
 	'3rdparty/jquery.mobile/jquery.mobile.min.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.css',
 	'3rdparty/jquery.mobile/css/fonts.css',
@@ -52,13 +51,11 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
-	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
 	'3rdparty/font-awesome5/css/fontawesome-all.min.css',
 	'3rdparty/jquery.mobile/images/ajax-loader.gif',
 	'core/img/logo-jeedom-petit-nom-couleur-128x128.png',
 	'core/img/logo-jeedom-sans-nom-couleur-25x25.png',
 	'3rdparty/font-awesome5/webfonts/fa-solid-900.woff2',
-	'3rdparty/jquery.mobile/css/fonts/fontawesome-webfont.woff2?v=4.3.0',
 	'3rdparty/roboto/Roboto-Black.ttf',
 	'3rdparty/roboto/Roboto-BlackItalic.ttf',
 	'3rdparty/roboto/Roboto-Bold.ttf',
