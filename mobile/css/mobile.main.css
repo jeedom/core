@@ -13,15 +13,85 @@ Theme Core 2019 @Jeedom
 ::-webkit-color-swatch-wrapper {
   padding: 0;
 }
+@keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-moz-keyframes loading {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-webkit-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-ms-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-o-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+
+body {
+  font-family: 'Roboto', sans-serif !important;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.backgroundforJeedom{
+  width:100%;
+  height:calc(100% - 65px);
+  position: fixed;
+  z-index: -1;
+  opacity : 0.35;
+  top : 65px;
+  background-size:cover;
+  background-position: center center;
+  background-image: var(--dashBkg-url) !important;
+  background-color: transparent !important;
+}
+
+#pagecontainer{
+  background-color: transparent !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.ui-btn {
+  font-family: 'Roboto' !important;
+}
 
 .pull-right {
   padding-right: 5px;
 }
-
-.backgroundforJeedom {
-  background-image: var(--dashBkg-url) !important;
-  background-color: transparent !important;
+.dot1{
+  -webkit-animation: loading 6s infinite;
+  -moz-animation: loading 6s infinite;
+  -ms-animation: loading 6s infinite;
+  -o-animation: loading 6s infinite;
+  animation: loading 6s infinite;
 }
+.dot2{
+  -webkit-animation: loading 6s 0.5s infinite;
+  -moz-animation: loading 6s 0.5s infinite;
+  -ms-animation: loading 6s 0.5s infinite;
+  -o-animation: loading 6s 0.5s infinite;
+  animation: loading 6s 0.5s infinite;
+}
+.dot3{
+  -webkit-animation: loading 6s 1s infinite;
+  -moz-animation: loading 6s 1s infinite;
+  -ms-animation: loading 6s 1s infinite;
+  -o-animation: loading 6s 1s infinite;
+  animation: loading 6s 1s infinite;
+}
+
 
 .ui-link[data-title=Accueil] .fa-home::before {
   content: '' !important;
@@ -50,6 +120,9 @@ Theme Core 2019 @Jeedom
   background-color: var(--form-bg-color) !important;
   color: var(--txt-color) !important;
 }
+.ui-input-text::after {
+  background-color: transparent !important;
+}
 
 .eqLogic.eqLogic-widget .ui-input-text :not(textarea) {
   padding: 0 !important;
@@ -57,8 +130,11 @@ Theme Core 2019 @Jeedom
   box-shadow: none !important;
   
 }
-.ui-input-text::after {
-  background-color: transparent !important;
+.eqLogic-widget,
+.scenario-widget {
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 10px;
 }
 .eqLogic.eqLogic-widget .ui-input-text input,
 .eqLogic.eqLogic-widget textarea {
@@ -76,6 +152,9 @@ Theme Core 2019 @Jeedom
   padding: 0 !important;
   border: none !important;
   min-height: 32px
+}
+.eqLogic-widget .ui-btn{
+  margin-bottom : 5px;
 }
 
 .ui-controlgroup-controls,
@@ -189,6 +268,13 @@ p.state {
 .full-width-slider {
   width: 100% !important;
 }
+.full-width-slider input {
+  display: none;
+}
+.full-width-slider .ui-slider-track {
+  margin-left: 8px;
+  margin-right: 8px;
+}
 .objectSummaryParent {
   font-size: 15px;
 }
@@ -271,11 +357,17 @@ legend {
   color: var(--link-color) !important;
   background-color: transparent !important;
   text-align: center;
-  margin-top: 0.7em !important;
-  margin-bottom: 0.2em !important;
+  margin: 0.7em 0 0.2em 0;
   border-bottom: none !important;
   font-size: 22px !important;
+  width : 100%;
 }
+legend,
+.ui-input-text input,
+.ui-input-search input {
+  text-shadow: none;
+}
+
 .nd2-card {
   margin: 0 !important;
 }
@@ -292,6 +384,13 @@ legend {
 }
 a.ui-slider-handle {
   border-radius: 1em !important;
+}
+
+.break{
+  position:absolute;
+  background:var(--txt-color);
+  width:20px;
+  height:3px;
 }
 
 /* select */
@@ -546,6 +645,10 @@ path.highcharts-graph {
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+.eqLogic-widget :after,
+.scenario-widget :after {
+  content: none;
 }
 
 #div_displayBattery .eqLogic-widget .widget-name span {
