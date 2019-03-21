@@ -732,11 +732,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   <div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
   
   <script>
-  $('#ta_codeDashboard').value($('#ta_codeDashboard').value().replace(/textarea\$\>/gi, 'textarea>'));
-  $('#ta_codeDview').value($('#ta_codeDview').value().replace(/textarea\$\>/gi, 'textarea>'));
-  $('#ta_codeDplan').value($('#ta_codeDplan').value().replace(/textarea\$\>/gi, 'textarea>'));
-  $('#ta_codeMobile').value($('#ta_codeMobile').value().replace(/textarea\$\>/gi, 'textarea>'));
-  $('#ta_codeMview').value($('#ta_codeMview').value().replace(/textarea\$\>/gi, 'textarea>'));
   $("#md_cmdConfigureSelectMultiple").dialog({
     closeText: '',
     autoOpen: false,
@@ -913,85 +908,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
   editorCodeMview = null;
   editorCodeDashboard = null;
   
-  $('#bt_codeDashboard').one('click',function(){
-    setTimeout(function () {
-      editorCodeDashboard = CodeMirror.fromTextArea(document.getElementById("ta_codeDashboard"), {
-        lineNumbers: true,
-        mode: "text/javascript",
-        matchBrackets: true,
-        viewportMargin: Infinity
-      });
-    }, 1);
-  });
-  
-  $('#bt_codeDview').one('click',function(){
-    setTimeout(function () {
-      editorCodeDview = CodeMirror.fromTextArea(document.getElementById("ta_codeDview"), {
-        lineNumbers: true,
-        mode: "text/javascript",
-        matchBrackets: true,
-        viewportMargin: Infinity
-      });
-    }, 1);
-  });
-  
-  $('#bt_codeDplan').one('click',function(){
-    setTimeout(function () {
-      editorCodeDplan = CodeMirror.fromTextArea(document.getElementById("ta_codeDplan"), {
-        lineNumbers: true,
-        mode: "text/javascript",
-        matchBrackets: true,
-        viewportMargin: Infinity
-      });
-    }, 1);
-  });
-  
-  $('#bt_codeMobile').one('click',function(){
-    setTimeout(function () {
-      editorCodeMobile = CodeMirror.fromTextArea(document.getElementById("ta_codeMobile"), {
-        lineNumbers: true,
-        mode: "text/javascript",
-        matchBrackets: true,
-        viewportMargin: Infinity
-      });
-    }, 1);
-  });
-  
-  $('#bt_codeMview').one('click',function(){
-    setTimeout(function () {
-      editorCodeMview = CodeMirror.fromTextArea(document.getElementById("ta_codeMview"), {
-        lineNumbers: true,
-        mode: "text/javascript",
-        matchBrackets: true,
-        viewportMargin: Infinity
-      });
-    }, 1);
-  });
-  
-  $('#bt_reinitHtmlCode').on('click',function(){
-    $('#ta_codeDashboard').value('');
-    $('#ta_codeDview').value('');
-    $('#ta_codeDplan').value('');
-    $('#ta_codeMobile').value('');
-    $('#ta_codeMview').value('');
-    if(editorCodeDashboard != null){
-      editorCodeDashboard.setValue('');
-    }
-    if(editorCodeDview != null){
-      editorCodeDview.setValue('');
-    }
-    if(editorCodeDplan != null){
-      editorCodeDplan.setValue('');
-    }
-    if(editorCodeMobile != null){
-      editorCodeMobile.setValue('');
-    }
-    if(editorCodeMview != null){
-      editorCodeMview.setValue('');
-    }
-    $('#md_displayCmdConfigure').showAlert({message: '{{Opération effectuée avec succès, n\'oubliez pas de sauvegarder}}', level: 'success'});
-  });
-  
   
   $('#bt_cmdConfigureSave').on('click', function () {
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
@@ -1010,26 +926,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     }
     cmd.configuration.actionCheckCmd = {};
     cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
-    
     cmd.configuration.jeedomPreExecCmd = $('#div_actionPreExecCmd .actionPreExecCmd').getValues('.expressionAttr');
-    
     cmd.configuration.jeedomPostExecCmd = $('#div_actionPostExecCmd .actionPostExecCmd').getValues('.expressionAttr');
-    
-    if(editorCodeDashboard != null){
-      cmd.html.dashboard = editorCodeDashboard.getValue();
-    }
-    if(editorCodeDview != null){
-      cmd.html.dview = editorCodeDview.getValue();
-    }
-    if(editorCodeDplan != null){
-      cmd.html.dplan = editorCodeDplan.getValue();
-    }
-    if(editorCodeMobile != null){
-      cmd.html.mobile = editorCodeMobile.getValue();
-    }
-    if(editorCodeMview != null){
-      cmd.html.mview = editorCodeMview.getValue();
-    }
     jeedom.cmd.save({
       cmd: cmd,
       error: function (error) {
