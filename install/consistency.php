@@ -37,7 +37,8 @@ if (isset($argv)) {
 }
 try {
 	if(file_exists(__DIR__.'/database.php')){
-		shell_exec('php ' . __DIR__.'/database.php');
+		$output = shell_exec('php ' . __DIR__.'/database.php');
+		echo $output;
 	}
 } catch (Exception $ex) {
 	echo "***ERREUR*** " . $ex->getMessage() . "\n";
