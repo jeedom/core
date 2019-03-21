@@ -1076,10 +1076,10 @@ class cmd {
 		$widget_name = $this->getTemplate($version, 'default');
 		if(strpos($this->getTemplate($version, 'default'),'::') !== false){
 			$name = explode('::',$this->getTemplate($version, 'default'));
+			$widget_name = $name[1];
 			if($name[0] == 'custom'){
 				$widget = widgets::byTypeSubtypeAndName($this->getType(),$this->getSubType(),$name[1]);
 				if(is_object($widget)){
-					$widget_name = $name[1];
 					$widget_template = array(
 						$this->getType() => array(
 							$this->getSubType() => array(
@@ -1093,7 +1093,6 @@ class cmd {
 					);
 				}
 			}elseif($name[0] != 'core'){
-				$widget_name = $name[1];
 				$plugin_id  = $name[0];
 				if (method_exists($plugin_id, 'templateWidget')) {
 					$widget_template = $plugin_id::templateWidget();
