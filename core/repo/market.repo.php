@@ -226,9 +226,11 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
-		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		self::backup_createFolderIsNotExist();
 		$base_dir = realpath(__DIR__ . '/../../');
+		if(!file_exists($base_dir . '/tmp'){
+			mkdir($base_dir . '/tmp');
+		}
 		$excludes = array(
 			$base_dir . '/tmp',
 			$base_dir . '/log',
