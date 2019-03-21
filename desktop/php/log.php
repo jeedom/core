@@ -39,11 +39,11 @@ natcasesort($list_logfile);
 					if($fsizelog != ''){
 						$fsizelog = ' ('.$fsizelog.')';
 					}
-					$flag = '<i class="fa fa-check" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:green;"></i>';
+					$flag = '<i class="fa fa-check"></i>';
 					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-triangle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:red;"></i>';
+						$flag = '<i class="fa fa-exclamation-triangle"></i>';
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-circle" style="font-weight: bold;float:left;display:inline;margin-top:8px;color:orange;"></i>';
+						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}
 					echo '<li class="cursor li_log ' .(($file == $logfile)?'active':'') .'" data-log="' . $file . '" >' . $flag . '<a>' . $file . $fsizelog . '</a></li>';
 				}

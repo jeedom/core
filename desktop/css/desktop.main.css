@@ -1894,6 +1894,10 @@ hr {
 
 .bs-sidebar .nav > li > a:not(.pull-right) {
   width: 100% !important;
+  padding: 2px 5px;
+}
+.bs-sidebar .nav > li > i {
+  padding-right: 5px;
 }
 .bs-sidebar .nav li a:hover,
 .bs-sidebar .nav li a:focus,
