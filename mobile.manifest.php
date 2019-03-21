@@ -51,9 +51,7 @@ $other_file = array(
 	'3rdparty/jquery.mobile/css/flexboxgrid.min.css',
 	'3rdparty/jquery.mobile/css/material-design-iconic-font.min.css',
 	'3rdparty/waves/waves.min.css',
-	'core/css/core.css',
 	'3rdparty/jquery.utils/jquery.utils.css',
-	'mobile/css/commun.css',
 	'3rdparty/font-awesome/fonts/fontawesome-webfont.woff2',
 	'3rdparty/font-awesome/css/font-awesome.min.css',
 	'3rdparty/font-awesome5/css/fontawesome-all.min.css',
@@ -75,7 +73,7 @@ $other_file = array(
 	'3rdparty/roboto/Roboto-ThinItalic.ttf',
 	'3rdparty/roboto/roboto.css',
 	'3rdparty/jquery.mobile/css/fonts/roboto/Roboto-Medium-webfont.woff',
-
+	
 );
 if (file_exists(__DIR__ . '/mobile/custom/custom.css')) {
 	$other_file[] = 'mobile/custom/custom.css';
