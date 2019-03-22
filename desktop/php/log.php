@@ -28,16 +28,14 @@ natcasesort($list_logfile);
 					$fsize = filesize('log/' . $file);
 					
 					if ($fsize < 2){
-						$fsizelog = '';
-					}else if ($fsize < 1024){
+						continue;
+					}
+					if ($fsize < 1024){
 						$fsizelog = $fsize.' o';
 					}else if ( $fsize < 1048576){
 						$fsizelog = round($fsize / 1024,1) .' Ko';
 					}else{
 						$fsizelog = round($fsize / 1048576 ,1) .' Mo';
-					}
-					if($fsizelog != ''){
-						$fsizelog = ' ('.$fsizelog.')';
 					}
 					$flag = '<i class="fa fa-check"></i>';
 					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
