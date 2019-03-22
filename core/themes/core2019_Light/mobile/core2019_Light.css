@@ -138,6 +138,7 @@ a.action.ui-btn {
 }
 .highcharts-background {
 	fill: var(--defaultBkg-color) !important;
+	fill-opacity: var(--opacity);
 }
 .gauge .highcharts-background {
 	fill: transparent !important;

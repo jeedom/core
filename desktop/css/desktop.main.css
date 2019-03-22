@@ -137,7 +137,7 @@ i.cursor:focus {
 /* __________________________________________________________________________________________________________LEGENDS */
 legend:first-letter,
 .cmdName:first-letter {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 legend {
@@ -530,13 +530,13 @@ div[data-market_type=plugin]:hover {
   padding: 0 4px;
   top: -2px !important;
 }
-#battery .eqLogic-widget.critical .widget-name { 
+#battery .eqLogic-widget.critical .widget-name {
   background-color: var(--al-danger-color) !important;
 }
-#battery .eqLogic-widget.warning .widget-name { 
+#battery .eqLogic-widget.warning .widget-name {
   background-color: var(--al-warning-color) !important;
 }
-#battery .eqLogic-widget.good .widget-name { 
+#battery .eqLogic-widget.good .widget-name {
   background-color: var(--al-success-color) !important;
 }
 #battery .eqLogic-widget .jeedom-batterie {
@@ -595,11 +595,11 @@ pre {
 }
 
 .viewZone{
-	padding: 9.5px;
-	margin: 0 0px 5px;
-	font-size: 13px;
-	line-height: 20px;
-	background: var(--bg-modal-color);
+  padding: 9.5px;
+  margin: 0 0px 5px;
+  font-size: 13px;
+  line-height: 20px;
+  background: var(--bg-modal-color);
 }
 .view-link-widget,
 .plan-link-widget {
@@ -1969,6 +1969,7 @@ hr {
 
 .highcharts-background {
   fill: var(--panel-bg-color) !important;
+  fill-opacity: var(--opacity);
 }
 .eqLogic-widget .highcharts-background {
   fill: transparent !important;
@@ -2186,7 +2187,7 @@ path.highcharts-graph {
   color: var(--txt-color);
   background-color: var(--form-bg-color);
   border: none;
-   z-index: 3;
+  z-index: 3;
 }
 .-sew-list-container ul li {
   border: none;
@@ -2564,16 +2565,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2581,11 +2582,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -2612,5 +2613,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }

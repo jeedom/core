@@ -42,6 +42,10 @@ body {
   user-select: none;
 }
 
+.nd2-card{
+  background-color: rgba(var(--bg-color), var(--opacity))  !important;
+}
+
 .backgroundforJeedom{
   width:100%;
   height:calc(100% - 65px);
@@ -72,7 +76,7 @@ body {
   padding-right: 5px;
 }
 .pull-left {
- float:left
+  float:left
 }
 
 .dot1{
@@ -453,13 +457,13 @@ a.action.ui-btn {
   padding: 0 4px;
   top: -3px;
 }
-#div_displayBattery .eqLogic-widget.critical .widget-name { 
+#div_displayBattery .eqLogic-widget.critical .widget-name {
   background-color: var(--al-danger-color);
 }
-#div_displayBattery .eqLogic-widget.warning .widget-name { 
+#div_displayBattery .eqLogic-widget.warning .widget-name {
   background-color: var(--al-warning-color);
 }
-#div_displayBattery .eqLogic-widget.good .widget-name { 
+#div_displayBattery .eqLogic-widget.good .widget-name {
   background-color: var(--al-success-color);
 }
 #div_displayBattery .eqLogic-widget .jeedom-batterie {
@@ -516,7 +520,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   height: 35px;
   width: calc(100% - 38px);
   z-index: 9000;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 #bt_eraseSearchInput {
   position: fixed;
@@ -528,7 +532,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   background: var(--form-bg-color) !important;
   box-shadow: none;
   z-index: 9000;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 #bt_eraseSearchInput i {
   margin: 0 !important;
