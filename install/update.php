@@ -221,49 +221,6 @@ try {
 		}
 		
 		if (init('update::reapply') != '') {
-			$updateSql = __DIR__ . '/update/' . init('update::reapply') . '.sql';
-			if (file_exists($updateSql)) {
-				try {
-					echo "Disable constraint...";
-					$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-					SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-					SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
-					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-					echo "OK\n";
-				} catch (Exception $e) {
-					if (init('force') != 1) {
-						throw $e;
-					} else {
-						echo '***ERROR***' . $e->getMessage();
-					}
-				}
-				try {
-					echo "Update database into : " . init('update::reapply') . "\n";
-					$sql = file_get_contents($updateSql);
-					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-					echo "OK\n";
-				} catch (Exception $e) {
-					if (init('force') != 1) {
-						throw $e;
-					} else {
-						echo '***ERROR***' . $e->getMessage();
-					}
-				}
-				try {
-					echo "Enable constraint...";
-					$sql = "SET SQL_MODE=@OLD_SQL_MODE;
-					SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-					SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
-					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-					echo "OK\n";
-				} catch (Exception $e) {
-					if (init('force') != 1) {
-						throw $e;
-					} else {
-						echo '***ERROR***' . $e->getMessage();
-					}
-				}
-			}
 			$updateScript = __DIR__ . '/update/' . init('update::reapply') . '.php';
 			if (file_exists($updateScript)) {
 				try {
@@ -282,49 +239,6 @@ try {
 		} else {
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
 				$nextVersion = incrementVersion($curentVersion);
-				$updateSql = __DIR__ . '/update/' . $nextVersion . '.sql';
-				if (file_exists($updateSql)) {
-					try {
-						echo "Disable constraint...";
-						$sql = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-						SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-						SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';";
-						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-						echo "OK\n";
-					} catch (Exception $e) {
-						if (init('force') != 1) {
-							throw $e;
-						} else {
-							echo '***ERROR***' . $e->getMessage();
-						}
-					}
-					try {
-						echo "Update database into : " . $nextVersion . "...";
-						$sql = file_get_contents($updateSql);
-						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-						echo "OK\n";
-					} catch (Exception $e) {
-						if (init('force') != 1) {
-							throw $e;
-						} else {
-							echo '***ERREUR*** ' . $e->getMessage();
-						}
-					}
-					try {
-						echo "Enable constraint...";
-						$sql = "SET SQL_MODE=@OLD_SQL_MODE;
-						SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-						SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;";
-						DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-						echo "OK\n";
-					} catch (Exception $e) {
-						if (init('force') != 1) {
-							throw $e;
-						} else {
-							echo '***ERROR***' . $e->getMessage();
-						}
-					}
-				}
 				$updateScript = __DIR__ . '/update/' . $nextVersion . '.php';
 				if (file_exists($updateScript)) {
 					try {
