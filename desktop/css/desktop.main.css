@@ -1048,7 +1048,13 @@ div.panel {
 .panel-title {
   color: var(--linkHoverLight-color) !important;
 }
-
+.panel-body,
+.list-group li {
+  background-color: var(--panel-bg-color) !important;
+}
+.panel-body {
+  padding: 12px 0 0 5px;
+}
 .panel-success .panel-heading {
   color: var(--linkHoverLight-color);
   background-color: var(--al-success-color);
@@ -1068,14 +1074,6 @@ div.panel {
   color: var(--sc-lightTxt-color);
   background-color: var(--al-danger-color);
 }
-
-.panel-body,
-.list-group li {
-  background-color: var(--panel-bg-color) !important;
-}
-
-
-
 
 /* __________________________________________________________________________________________________________FORMS */
 ::-moz-color-swatch {
@@ -1493,10 +1491,9 @@ tr.tablesorter-filter-row td {
   border: none !important;
 }
 .well {
-  padding: 1em;
-  margin-bottom: 0.5em;
+  padding: 20px;
+  margin-bottom: 20px;
   background-color: rgb(var(--bg-color));
-  border: none;
 }
 
 .well blockquote {
@@ -2480,7 +2477,6 @@ td.alert {
 }
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
-  padding: 12px 0 0 5px;
 }
 
 .btn,
