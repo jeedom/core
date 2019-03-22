@@ -1882,6 +1882,9 @@ hr {
 .bs-sidebar > ul {
   background-color: rgba(var(--bg-color), var(--opacity)) !important;
 }
+.bs-sidebar li.active {
+  border-right: 3px solid var(--logo-primary-color) !important;
+}
 
 .li_object a span:not(:first-child) {
   float: left !important;
