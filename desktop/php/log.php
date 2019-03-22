@@ -37,6 +37,7 @@ natcasesort($list_logfile);
 					}else{
 						$fsizelog = round($fsize / 1048576 ,1) .' Mo';
 					}
+					$fsizelog = ' ('.$fsizelog.')';
 					$flag = '<i class="fa fa-check"></i>';
 					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-triangle"></i>';
