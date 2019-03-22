@@ -26,6 +26,10 @@ a:focus {
   outline: none;
 }
 
+.panel-default .panel-title {
+  color: var(--linkHover-color) !important;
+}
+
 
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
@@ -111,4 +115,3 @@ a:focus {
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
 }
-
