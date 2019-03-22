@@ -52,15 +52,11 @@ natcasesort($list_logfile);
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8">
-		<div class="row">
-			<div class="col-lg-12">
-				<a class="btn btn-danger pull-right" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
-				<a class="btn btn-danger pull-right" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>
-				<a class="btn btn-warning pull-right" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}</a>
-				<a class="btn btn-success pull-right" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
-				<a class="btn btn-warning pull-right" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
-				<input style="max-width: 150px;" class="form-control pull-right" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
-			</div>
+		
+		<div class="input-group pull-right" style="display:inline-flex">
+			<span class="input-group-btn">
+				<input style="width: 150px;" class="form-control roundedLeft" id="in_globalLogSearch" placeholder="{{Rechercher}}" /><a class="btn btn-warning" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-warning" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}</a><a class="btn btn-danger" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}</a><a class="btn btn-danger roundedLeft" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
+			</span>
 		</div>
 		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 50px);width:100%;margin-top: 5px;'></pre>
 	</div>
