@@ -383,7 +383,7 @@ select.selectCmd {
 /* object/scenario/interact/plugin pages */
 div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
-  width : 145px !important;
+  width : 130px !important;
   font-size: 14px !important;
 }
 
@@ -423,6 +423,11 @@ div[class*="ListContainer"] div.cursor > center > i,
   margin-bottom: 20px;
 }
 
+.scenarioDisplayCard {
+  height: 125px !important;
+  overflow: hidden;
+}
+
 .scenarioDisplayCard.cursor {
   margin-left: 0 !important;
   position: absolute;
@@ -432,14 +437,13 @@ div[class*="ListContainer"] div.cursor > center > i,
 .scenarioDisplayCard .name {
   top: 10px !important;
   position: relative;
-  word-break: break-all;
-  white-space: pre-wrap;
-  word-wrap: break-word;
   display: block !important;
   font-family: "Roboto";
   font-size: 12px;
   line-height: 22px !important;
 }
+
+
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
@@ -454,8 +458,8 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 .pluginListContainer div.cursor > center > img,
 .interactListContainer div.cursor > img {
-  width: 90px !important;
-  padding-top: 15px;
+  width: 75px !important;
+  padding-top: 5px;
 }
 
 .eqLogicThumbnailContainer div.cursor > center > img,
@@ -466,13 +470,14 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 .eqLogicDisplayCard {
   margin-bottom: 10px !important;
-  height: 170px !important;
+  height: 155px !important;
   padding: 0 !important;
   margin: 0 !important;
+  overflow: hidden;
 }
-.eqLogicDisplayCard > img {
-  width: 65px;
-  max-width: 65px;
+.eqLogicDisplayCard img {
+  width: 75px;
+  max-width: 75px;
   height: auto;
   vertical-align: baseline;
 }
