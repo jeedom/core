@@ -334,14 +334,17 @@ p.state {
   line-height: 15px !important;
 }
 
-.eqLogic.eqLogic-widget .controlgroup-textinput {
+.eqLogic.eqLogic-widget .controlgroup-textinput,
+.eqLogic.eqLogic-widget .controlgroup-textinput > input[type=text] {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   height: 32px !important;
   margin: 0;
 }
+
 .eqLogic.eqLogic-widget .ui-controlgroup-controls a.ui-btn {
-  height: 16px !important;
+  height: 32px !important;
+  box-sizing: border-box;
   margin: 0;
 }
 
