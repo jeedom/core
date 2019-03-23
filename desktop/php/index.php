@@ -287,20 +287,21 @@ if (init('rescue', 0) == 0) {
 							<li class="dropdown cursor">
 								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
-									<?php if (isConnect('admin')) {	?>
-										<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
-										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
-									<?php } ?>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
+								<?php } ?>
+								<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
+									<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
+								<?php } ?>
+								<li class="divider"></li>
+								<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
 									<li class="divider"></li>
-									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
-									<?php if (isConnect('admin')) { ?>
-										
-										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
-										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
-										<li class="divider"></li>
-										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
-									<?php } ?>
+									<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
+								<?php } ?>
 								</ul>
 							</li>
 							<?php if (isConnect('admin')) { ?>
@@ -466,4 +467,3 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	
