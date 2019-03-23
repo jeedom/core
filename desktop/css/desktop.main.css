@@ -427,7 +427,6 @@ div[class*="ListContainer"] div.cursor > center > i,
   height: 125px !important;
   overflow: hidden;
 }
-
 .scenarioDisplayCard.cursor {
   margin-left: 0 !important;
   position: absolute;
@@ -442,8 +441,6 @@ div[class*="ListContainer"] div.cursor > center > i,
   font-size: 12px;
   line-height: 22px !important;
 }
-
-
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
@@ -470,7 +467,7 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 .eqLogicDisplayCard {
   margin-bottom: 10px !important;
-  height: 155px !important;
+  height: 168px !important;
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden;
