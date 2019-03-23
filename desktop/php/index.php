@@ -41,6 +41,7 @@ if (init('rescue', 0) == 0) {
 	$plugins_list = plugin::listPlugin(true, true);
 	$eventjs_plugin = array();
 	if (count($plugins_list) > 0) {
+		$categories = array();
 		foreach ($plugins_list as $category_name => $category) {
 			$icon = '';
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
@@ -50,19 +51,32 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
+			$plugins = array();
+			foreach ($category as $pluginList) {
+				array_push($plugins, array($pluginList->getName(), $pluginList));
+			}
+			sort($plugins);
+			array_push($categories, array($name, $icon, $plugins));
+		}
+		sort($categories);
+		foreach ($categories as $cat) {
+			$name = $cat[0];
+			$icon = $cat[1];
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
-			foreach ($category as $pluginList) {
-				if ($pluginList->getId() == init('m')) {
-					$plugin = $pluginList;
-					$title = $plugin->getName() . ' - '.config::byKey('product_name');
+			$plugins = $cat[2];
+			foreach ($plugins as $pluginAr) {
+				$pluginObj = $pluginAr[1];
+				if ($pluginObj->getId() == init('m')) {
+					$plugin = $pluginObj;
+					$title = $pluginObj->getName() . ' - '.config::byKey('product_name');
 				}
-				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
-				if ($pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
-					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
+					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				}
-				if ($pluginList->getEventjs() == 1) {
-					$eventjs_plugin[] = $pluginList->getId();
+				if ($pluginObj->getEventjs() == 1) {
+					$eventjs_plugin[] = $pluginObj->getId();
 				}
 			}
 			$plugin_menu .= '</ul>';
