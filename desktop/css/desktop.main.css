@@ -1009,6 +1009,7 @@ ul.dropdown-menu {
 }
 .nav.navbar-nav i {
   width: 16px;
+  text-align: center;
 }
 
 header.navbar,
