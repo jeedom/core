@@ -131,7 +131,7 @@ class message {
 			return;
 		}
 		if ($this->getLogicalId() == '') {
-			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
+			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());	/*
 			$values = array(
 				'message' => $this->getMessage(),
 				'plugin' => $this->getPlugin(),
@@ -140,8 +140,8 @@ class message {
 			FROM message
 			WHERE plugin=:plugin
 			AND message=:message';
-			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		} else {
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);		*/
+		} //else {
 			$values = array(
 				'logicalId' => $this->getLogicalId(),
 				'plugin' => $this->getPlugin(),
@@ -151,7 +151,7 @@ class message {
 			WHERE plugin=:plugin
 			AND logicalId=:logicalId';
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		}
+		//}
 		if ($result['count(*)'] != 0) {
 			return;
 		}
