@@ -71,6 +71,7 @@ function loadTemplateConfiguration(_template,_data){
     success: function (data) {
       $('#div_templateReplace').empty();
       if(typeof data.replace != 'undefined' && data.replace.length > 0){
+        $('.type_replace').show();
         var replace = '';
         for(var i in data.replace){
           replace += '<div class="form-group">';
@@ -86,9 +87,16 @@ function loadTemplateConfiguration(_template,_data){
           replace += '</div>';
         }
         $('#div_templateReplace').append(replace);
+      }else{
+        $('.type_replace').hide();
       }
       if(typeof _data != 'undefined'){
         $('.widgets').setValues(_data, '.widgetsAttr');
+      }
+      if(data.test){
+        $('.type_test').show();
+      }else{
+        $('.type_test').hide();
       }
     }
   });

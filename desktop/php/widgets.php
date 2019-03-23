@@ -96,16 +96,12 @@ global $JEEDOM_INTERNAL_CONFIG;
                     </select>
                   </div>
                 </div>
-                <legend>{{Remplacement}}</legend>
-                <div id="div_templateReplace">
-                  
-                </div>
-                <legend>{{Test}}
+                <legend class="type_replace">{{Remplacement}}</legend>
+                <div id="div_templateReplace" class="type_replace"></div>
+                <legend class="type_test">{{Test}}
                   <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
                 </legend>
-                <div id="div_templateTest">
-                  
-                </div>
+                <div id="div_templateTest" class="type_test"></div>
               </fieldset>
             </form>
           </div>
