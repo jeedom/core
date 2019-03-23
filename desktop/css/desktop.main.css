@@ -237,7 +237,7 @@ legend {
 }
 .eqLogic-widget .cmd.refresh i {
   color: var(--eqTitle-color) !important;
-  font-size: 12px;
+  font-size: 12px !important;
 }
 .eqLogic-widget .cmd.refresh i:hover {
   color: var(--linkHoverLight-color) !important;
@@ -402,7 +402,7 @@ div[class*="ListContainer"] .objectSummaryParent i {
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
 .interactDisplayCard,
-div[class*="ListContainer"]:not(.batteryListContainer)  div,
+div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div,
 .scenarioDisplayCard,
 .widgetDisplayCard,
 .pluginDisplayCard {
@@ -427,6 +427,7 @@ div[class*="ListContainer"] div.cursor > center > i,
   height: 125px !important;
   overflow: hidden;
 }
+
 .scenarioDisplayCard.cursor {
   margin-left: 0 !important;
   position: absolute;
@@ -441,6 +442,8 @@ div[class*="ListContainer"] div.cursor > center > i,
   font-size: 12px;
   line-height: 22px !important;
 }
+
+
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
