@@ -124,19 +124,19 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
-    $('.div_displayEquipement .eqLogic-widget').css('outline','').css('outline-offset','');
-    
+    $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
     if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
-    $('.div_displayEquipement .scenario-widget').css('outline','').css('outline-offset','');
+    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
   }else{
-    $('.div_displayEquipement .eqLogic-widget').css('outline','1px dashed var(--logo-primary-color)').css('outline-offset','-1px');
+    $('.div_displayEquipement .eqLogic-widget').addClass('editingMode');
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-    $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+    $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
         ui.element.closest('.div_displayEquipement').packery();
@@ -146,9 +146,9 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     });
-    $('.div_displayEquipement .scenario-widget').css('outline','1px dashed var(--logo-primary-color)').css('outline-offset','-1px');
+    $('.div_displayEquipement .scenario-widget').addClass('editingMode');
     $('.div_displayEquipement .scenario-widget').draggable('enable');
-    $( ".div_displayEquipement .scenario-widget.allowResize").resizable({
+    $('.div_displayEquipement .scenario-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
         ui.element.closest('.div_displayEquipement').packery();
@@ -188,7 +188,7 @@ function getObjectHtml(_object_id){
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-        
+
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery();
           var itemElems =  container.find('.eqLogic-widget').draggable();
