@@ -1903,13 +1903,10 @@ hr {
   color: inherit !important;
 }
 .bs-sidenav {
-  padding: 10px;
+  padding: 5px;
 }
 .bs-sidenav > br {
   display: inline;
-}
-.bs-sidenav li {
-  padding: 2px;
 }
 .div_smallSideBar,
 .bs-sidebar > ul {
@@ -1917,6 +1914,27 @@ hr {
 }
 .bs-sidebar li.active {
   border-right: 3px solid var(--logo-primary-color) !important;
+}
+.bs-sidebar .nav > li > a:not(.btn) {
+  width: 100% !important;
+  padding: 2px 5px;
+}
+.bs-sidebar .nav > li > i {
+  padding-right: 5px;
+}
+.bs-sidebar .nav li:hover,
+.bs-sidebar .nav li:focus,
+.bs-sidebar .nav li:active  {
+  background-color: var(--btnEq-default-color) !important;
+}
+.bs-sidenav .cmdList li > a {
+  display: inline-block;
+  width: 100%;
+}
+.bs-sidebar .nav > .active a {
+  width: 100% !important;
+  border-right-color: var(--logo-primary-color) !important;
+  border-right-width: thick !important;
 }
 
 .li_object a span:not(:first-child) {
@@ -1926,24 +1944,6 @@ hr {
 .li_object a span {
   float: left !important;
   padding-left: 2px;
-}
-
-.bs-sidebar .nav > li > a:not(.pull-right) {
-  width: 100% !important;
-  padding: 2px 5px;
-}
-.bs-sidebar .nav > li > i {
-  padding-right: 5px;
-}
-.bs-sidebar .nav li a:hover,
-.bs-sidebar .nav li a:focus,
-.bs-sidebar .nav li a:active {
-  background-color: var(--btnEq-default-color) !important;
-}
-.bs-sidebar .nav > .active a {
-  width: 100% !important;
-  border-right-color: var(--logo-primary-color) !important;
-  border-right-width: thick !important;
 }
 
 #div_displayScenario > legend {
