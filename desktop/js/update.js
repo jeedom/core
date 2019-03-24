@@ -208,24 +208,28 @@ function printUpdate() {
 }
 
 function addUpdate(_update) {
+  _update.status = _update.status.toUpperCase();
   var labelClass = 'label-success';
   if(init(_update.status) == ''){
-    _update.status = 'ok';
+    _update.status = 'OK';
   }
-  if (_update.status == 'update'){
+  if (_update.status == 'UPDATE'){
     labelClass = 'label-warning';
   }
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
-  tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="text-transform: uppercase;"></span>';
+  tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
-  tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span>';
+  tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
   if(_update.configuration && _update.configuration.version){
-    tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
+    updClass = 'label-warning';
+    if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success';
+    if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
+    tr += ' <span class="label '+updClass+'">'+_update.configuration.version+'</span>';
   }
   tr += '</td>';
   tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion"></span></td>';
   tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="remoteVersion"></span></td>';
-  tr += '<td style="width:180px;cursor:default;">';
+  tr += '<td style="width:180px;">';
   if (_update.type != 'core') {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span>{{Ne pas mettre à jour}}</span>';
   }
@@ -239,7 +243,7 @@ function addUpdate(_update) {
     tr += '<a class="btn btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
   }
   if (_update.type != 'core') {
-    if (_update.status == 'update') {
+    if (_update.status == 'UPDATE') {
       tr += '<a class="btn btn-info btn-xs update" title="{{Mettre à jour}}"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> ';
     }else if (_update.type != 'core') {
       tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-sync"></i> {{Reinstaller}}</a> ';
