@@ -1031,7 +1031,7 @@ header.navbar {
   padding: 0 !important;
   margin: 0 !important;
   text-align: center !important;
-  
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1493,6 +1493,9 @@ tr.tablesorter-filter-row td {
   background-color: var(--btn-default-color)!important;
 }
 
+.tableCmd {
+  min-width: 100%;
+}
 .tableCmd .cmd-widget {
   margin-right: 6px !important;
 }
@@ -2575,16 +2578,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2592,11 +2595,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2623,5 +2626,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
