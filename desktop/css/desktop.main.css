@@ -363,9 +363,13 @@ div.cmd > div.center-block {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
-/* hack for horizontal sliders alone, like shutter position but not scripts sliders */
-.verticalAlign > center > [data-subtype=slider]:nth-child(2) {
-  top: 20px !important;
+.editingMode {
+  box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
+}
+.verticalAlign {
+  position: relative;
+  transform: translateY(calc(-50%));
+  top: calc(50% - 15px);
 }
 
 [data-subtype=slider] > div > span,
