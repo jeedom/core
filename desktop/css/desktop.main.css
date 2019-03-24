@@ -480,14 +480,25 @@ div[class*="ListContainer"] div.cursor > center > i,
   margin: 0 !important;
   overflow: hidden;
 }
+.eqLogicDisplayCard .name {
+  word-break: keep-all !important;
+  font-size: 12px !important;
+  position: relative;
+  top: 3px !important;
+}
+.eqLogicDisplayCard > span.name > center > strong {
+  position: relative;
+  top: 5px !important;
+  display: block;
+  height: 36px;
+  overflow: hidden;
+}
 .eqLogicDisplayCard img {
-  width: 75px;
+  width: 75px !important;
   max-width: 75px;
+  max-height: 95px;
   height: auto;
   vertical-align: baseline;
-}
-.eqLogicDisplayCard span {
-  font-size: 12px !important;
 }
 
 .eqLogic.eqLogic-widget .widget-name span.warning i {
