@@ -10,12 +10,12 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      width = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      width = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       width = Math.round(parseFloat(width) * 10) / 10
-      $('.cmd[data-cmd_uid=#uid#] .hgauge .hgauge-value').width(width)
+      $('.cmd[data-cmd_uid=#uid#] .hgauge .hgauge-value').width(width+'%')
       $('.cmd[data-cmd_uid=#uid#] .hgauge-state strong').first().text(_options.display_value)
     }
-    
+
     if (is_numeric('#state#')) {
       jeedom.cmd.update['#id#']({display_value:'#state#'});
     } else {
