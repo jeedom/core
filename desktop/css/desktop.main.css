@@ -259,6 +259,7 @@ legend {
   margin-right: 5px;
 }
 .pull-left {
+  float: left!important;
   margin-right: 3px;
 }
 .cmdName {
@@ -271,6 +272,10 @@ legend {
 .label {
   font-size: 12px !important;
   font-weight: normal;
+  padding: 4px 12px;
+}
+.label:empty {
+  display: none;
 }
 
 .iconCmd {
