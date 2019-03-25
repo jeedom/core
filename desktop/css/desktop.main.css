@@ -212,7 +212,6 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-/* time on time widgets too low */
 .timeCmd.label {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
@@ -223,6 +222,11 @@ legend {
 
 .input-group-addon {
   color: var(--linkHoverLight-color) !important;
+}
+
+.eqLogic-widget,
+.scenario-widget {
+  overflow: hidden;
 }
 
 .eqLogic-widget .btn-default,
@@ -436,8 +440,8 @@ div[class*="ListContainer"] div.cursor > center > i,
   margin-bottom: 20px;
 }
 
-.scenarioDisplayCard {
-  height: 125px !important;
+div[class*="DisplayCard"] {
+  height: 135px !important;
   overflow: hidden;
 }
 
@@ -447,13 +451,14 @@ div[class*="ListContainer"] div.cursor > center > i,
   text-align: center;
   min-height: 123px !important;
 }
-.scenarioDisplayCard .name {
-  top: 10px !important;
+div[class*="DisplayCard"] .name {
+  top: 5px !important;
   position: relative;
   display: block !important;
   font-family: "Roboto";
   font-size: 12px;
-  line-height: 22px !important;
+  font-weight: 700;
+  line-height: 18px !important;
 }
 
 
@@ -2488,11 +2493,6 @@ div[id^=__lpform_] { /*lastpass*/
 }
 ::-webkit-color-swatch {
   border-radius: var(--border-radius) !important;
-}
-
-.eqLogic-widget,
-.scenario-widget {
-  overflow: hidden;
 }
 
 .eqLogic-widget,
