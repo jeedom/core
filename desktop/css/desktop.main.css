@@ -460,7 +460,9 @@ div[class*="DisplayCard"] .name {
   font-weight: 700;
   line-height: 18px !important;
 }
-
+div[class*="DisplayCard"] .name > .label {
+  line-height: 24px !important;
+}
 
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
