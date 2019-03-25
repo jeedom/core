@@ -374,7 +374,7 @@ div.cmd > div.center-block {
 .verticalAlign {
   position: relative;
   transform: translateY(calc(-50%));
-  top: calc(50% - 5px);
+  top: calc(50% - 10px);
   z-index: -1;
 }
 
@@ -2036,11 +2036,11 @@ path.highcharts-graph {
 }
 /* design */
 .div_grid {
-	z-index : 998;
-	background-size: 15px 15px;
-	background-image:
-	 repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
-	 repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
+  z-index : 998;
+  background-size: 15px 15px;
+  background-image:
+  repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
+  repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
 }
 
 /* /// view data table */
@@ -2599,16 +2599,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2616,11 +2616,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -2647,5 +2647,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
