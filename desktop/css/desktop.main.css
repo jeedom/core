@@ -216,6 +216,8 @@ legend {
 .timeCmd.label {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
+  position: relative;
+  top: -5px;
   padding: 0 0.5em !important;
 }
 
