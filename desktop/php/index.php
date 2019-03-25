@@ -164,8 +164,6 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
-	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('3rdparty', 'animate/animate', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	if (!isConnect()) {
@@ -293,8 +291,8 @@ if (init('rescue', 0) == 0) {
 										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
-										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 										<li><a href="index.php?v=d&p=widgets"><i class="fas fa-camera-retro"></i> {{Widgets}}</a></li>
+										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>										
 									</ul>
 								</li>
 							<?php } ?>
