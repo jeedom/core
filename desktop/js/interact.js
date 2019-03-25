@@ -115,11 +115,21 @@ $('#in_searchInteract').keyup(function () {
   $('.interactDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this)
       $(this).closest('.interactDisplayCard').show();
     }
   });
   $('.interactListContainer').packery();
+});
+
+$('#bt_openAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='false']").each(function(){
+    $(this).click()
+  })
+});
+$('#bt_closeAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='true']").each(function(){
+    $(this).click()
+  })
 });
 
 $("#div_listInteract").trigger('resize');
