@@ -374,8 +374,12 @@ div.cmd > div.center-block {
 .verticalAlign {
   position: relative;
   transform: translateY(calc(-50%));
-  top: calc(50% - 15px);
+  top: calc(50% - 7px);
   z-index: -1;
+}
+.verticalAlign table.tableCmd {
+  position: relative;
+  top: -7px;
 }
 
 [data-subtype=slider] > div > span,
