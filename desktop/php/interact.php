@@ -36,19 +36,28 @@ if (is_array($interactListGroup)) {
 				<span ><center>{{Tester}}</center></span>
 			</div>
 		</div>
-		
+
 		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
 		<?php
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
+			echo '<div class="input-group" style="margin-bottom:5px;">';
+				echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+				echo '</div>';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+				echo '</div>';
+			echo '</div>';
+
 			echo '<div class="panel-group" id="accordionInteract">';
 			if (count($interacts[-1]) > 0) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_aucun">Aucun - ';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_aucun">Aucun - ';
 				$c = count($interacts[-1]);
 				echo $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
 				echo '</h3>';
@@ -75,7 +84,7 @@ if (is_array($interactListGroup)) {
 					echo '<div class="panel panel-default">';
 					echo '<div class="panel-heading">';
 					echo '<h3 class="panel-title">';
-					echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_' . $i . '">' . $group['group'] . ' - ';
+					echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
 					$c = count($interacts[$group['group']]);
 					echo $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
 					echo '</h3>';
@@ -102,14 +111,14 @@ if (is_array($interactListGroup)) {
 		}
 		?>
 	</div>
-	
+
 	<div class="interact col-xs-12" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span></a><a class="btn btn-sm" id="bt_duplicate"><i class="far fa-files-o"></i> {{Dupliquer}}</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Enregistrer}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
@@ -117,7 +126,7 @@ if (is_array($interactListGroup)) {
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 	</ul>
-	
+
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
@@ -262,7 +271,7 @@ if (is_array($interactListGroup)) {
 							?>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<label class="col-sm-3 control-label">{{Limiter aux catégories}}</label>
 						<div class="col-sm-9">
@@ -300,18 +309,18 @@ if (is_array($interactListGroup)) {
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="actiontab">
 			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 			<br/><br/>
 			<form class="form-horizontal">
 				<fieldset>
-					
+
 					<div id="div_action"></div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-	
+
 	<?php include_file('desktop', 'interact', 'js');?>
-	
+
