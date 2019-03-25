@@ -151,7 +151,7 @@ function addTest(_test){
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default bt_removeTest btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-default bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
   div += '</div>';
