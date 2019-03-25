@@ -1510,11 +1510,14 @@ tr.tablesorter-filter-row td {
   background-color: var(--btn-default-color)!important;
 }
 
-.tableCmd {
+table.tableCmd {
   min-width: 100%;
 }
-.tableCmd .cmd-widget {
+table.tableCmd .cmd-widget {
   margin-right: 6px !important;
+}
+table.tableCmd td {
+  vertical-align: top !important;
 }
 
 .divIconSel {
