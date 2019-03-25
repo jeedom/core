@@ -538,10 +538,14 @@ class eqLogic {
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
+
+		$eqName = $this->getName();
+		if (strlen($eqName) > 25) $eqName = substr($eqName,0,25)."...";
+
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name">' . $this->getName() . '<br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name">' . $eqName . '<br/><span>' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $this->getName() . '</a><br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '" title="'.$this->getName().'">' . $eqName . '</a><br/><span>' . $object_name . '</span></div>';
 		}
 		$html .= '<center class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . ' tooltips" title="' . $this->getStatus('battery', -2) . '%"></i>';
@@ -658,10 +662,12 @@ class eqLogic {
 			}
 		}
 		$translate_category = trim($translate_category,',');
+		$eqName = $this->getName();
+		if (strlen($eqName) > 25) $eqName = substr($eqName,0,25)."...";
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#name_display#' => $this->getName(),
+			'#name_display#' => $eqName,
 			'#hideEqLogicName#' => '',
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
