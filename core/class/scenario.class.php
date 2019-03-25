@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenario {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $isActive = 1;
@@ -46,9 +46,9 @@ class scenario {
 	private $_tags = array();
 	private $_do = true;
 	private $_changed = false;
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	/**
 	* Renvoie un objet scenario
 	* @param int  $_id id du scenario voulu
@@ -63,7 +63,7 @@ class scenario {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byString($_string) {
 		$scenario = self::byId(str_replace('#scenario', '', self::fromHumanReadable($_string)));
 		if (!is_object($scenario)) {
@@ -71,7 +71,7 @@ class scenario {
 		}
 		return $scenario;
 	}
-	
+
 	/**
 	* Renvoie tous les objets scenario
 	* @return [] scenario object scenario
@@ -263,7 +263,7 @@ class scenario {
 		}
 		return true;
 	}
-	
+
 	public static function control() {
 		foreach (scenario::all() as $scenario) {
 			if ($scenario->getState() != 'in progress') {
@@ -281,7 +281,7 @@ class scenario {
 			}
 		}
 	}
-	
+
 	/**
 	*
 	* @param array $_options
@@ -330,21 +330,21 @@ class scenario {
 				$ids['expression'] = array_merge($ids['expression'], $result['expression']);
 			}
 		}
-		
+
 		$sql = 'DELETE FROM scenarioExpression WHERE id NOT IN (-1';
 			foreach ($ids['expression'] as $expression_id) {
 			$sql .= ',' . $expression_id;
 			}
 			$sql .= ')';
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-			
+
 			$sql = 'DELETE FROM scenarioSubElement WHERE id NOT IN (-1';
 				foreach ($ids['subelement'] as $subelement_id) {
 				$sql .= ',' . $subelement_id;
 				}
 				$sql .= ')';
 				DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
-				
+
 				$sql = 'DELETE FROM scenarioElement WHERE id NOT IN (-1';
 					foreach ($ids['element'] as $element_id) {
 					$sql .= ',' . $element_id;
@@ -352,7 +352,7 @@ class scenario {
 					$sql .= ')';
 					DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 				}
-				
+
 				public static function consystencyCheck($_needsReturn = false) {
 					$return = array();
 					foreach (self::all() as $scenario) {
@@ -400,7 +400,7 @@ class scenario {
 						return $return;
 					}
 				}
-				
+
 				/**
 				* @name byObjectNameGroupNameScenarioName()
 				* @param object $_object_name
@@ -412,7 +412,7 @@ class scenario {
 					$values = array(
 						'scenario_name' => html_entity_decode($_scenario_name),
 					);
-					
+
 					if ($_object_name == __('Aucun', __FILE__)) {
 						if ($_group_name == __('Aucun', __FILE__)) {
 							$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
@@ -449,7 +449,7 @@ class scenario {
 					}
 					return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 				}
-				
+
 				/**
 				* @name toHumanReadable()
 				* @param object $_input
@@ -527,7 +527,7 @@ class scenario {
 						return $_input;
 					}
 					$text = $_input;
-					
+
 					preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 					if (count($matches) == 4) {
 						$countMatches = count($matches[0]);
@@ -540,7 +540,7 @@ class scenario {
 							}
 						}
 					}
-					
+
 					return $text;
 				}
 				/**
@@ -594,13 +594,13 @@ class scenario {
 				public static function getTemplate($_template = '') {
 					$path = __DIR__ . '/../config/scenario';
 					if (isset($_template) && $_template != '') {
-						
+
 					}
 					return ls($path, '*.json', false, array('files', 'quiet'));
 				}
-				
+
 				/*     * *************************MARKET**************************************** */
-				
+
 				public static function shareOnMarket(&$market) {
 					$moduleFile = __DIR__ . '/../config/scenario/' . $market->getLogicalId() . '.json';
 					if (!file_exists($moduleFile)) {
@@ -636,15 +636,15 @@ class scenario {
 						throw new Exception('Impossible de décompresser l\'archive zip : ' . $_path);
 					}
 				}
-				
+
 				public static function removeFromMarket(&$market) {
 					trigger_error('This method is deprecated', E_USER_DEPRECATED);
 				}
-				
+
 				public static function listMarketObject() {
 					return array();
 				}
-				
+
 				public static function timelineDisplay($_event) {
 					$return = array();
 					$return['date'] = $_event['datetime'];
@@ -662,7 +662,7 @@ class scenario {
 					. '</div>';
 					return $return;
 				}
-				
+
 				/*     * *********************Méthodes d'instance************************* */
 				/**
 				*
@@ -751,7 +751,7 @@ class scenario {
 						$this->persistLog();
 						return;
 					}
-					
+
 					$cmd = cmd::byId(str_replace('#', '', $_trigger));
 					if (is_object($cmd)) {
 						log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
@@ -823,7 +823,7 @@ class scenario {
 						return $mc->getValue();
 					}
 					$version = jeedom::versionAlias($_version);
-					$name = ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName();
+					$name = ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName();
 					$replace = array(
 						'#id#' => $this->getId(),
 						'#state#' => $this->getState(),
@@ -1008,7 +1008,7 @@ class scenario {
 					$dataStore->save();
 					return true;
 				}
-				
+
 				public function getData($_key, $_private = false, $_default = '') {
 					if ($_private) {
 						$dataStore = dataStore::byTypeLinkIdKey('scenario', $this->getId(), $_key);
@@ -1034,9 +1034,9 @@ class scenario {
 								$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 								$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 							} catch (Exception $exc) {
-								
+
 							} catch (Error $exc) {
-								
+
 							}
 							if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 								$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -1051,9 +1051,9 @@ class scenario {
 							$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 							$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 						} catch (Exception $exc) {
-							
+
 						} catch (Error $exc) {
-							
+
 						}
 					}
 					return $calculatedDate;
@@ -1079,9 +1079,9 @@ class scenario {
 										return true;
 									}
 								} catch (Exception $e) {
-									
+
 								} catch (Error $e) {
-									
+
 								}
 								try {
 									$prev = $c->getPreviousRunDate()->getTimestamp();
@@ -1096,9 +1096,9 @@ class scenario {
 									return true;
 								}
 							} catch (Exception $e) {
-								
+
 							} catch (Error $e) {
-								
+
 							}
 						}
 					} else {
@@ -1109,9 +1109,9 @@ class scenario {
 									return true;
 								}
 							} catch (Exception $e) {
-								
+
 							} catch (Error $e) {
-								
+
 							}
 							try {
 								$prev = $c->getPreviousRunDate()->getTimestamp();
@@ -1126,9 +1126,9 @@ class scenario {
 								return true;
 							}
 						} catch (Exception $exc) {
-							
+
 						} catch (Error $exc) {
-							
+
 						}
 					}
 					return false;
@@ -1175,7 +1175,7 @@ class scenario {
 								$retry++;
 							}
 						}
-						
+
 						if ($this->running()) {
 							system::kill("scenario_id=" . $this->getId() . ' ');
 							sleep(1);
@@ -1512,17 +1512,17 @@ class scenario {
 					}
 					return $return;
 				}
-				
+
 				public function clearLog() {
 					$this->_log = '';
 				}
-				
+
 				public function resetRepeatIfStatus() {
 					foreach ($this->getElement() as $element) {
 						$element->resetRepeatIfStatus();
 					}
 				}
-				
+
 				/*     * **********************Getteur Setteur*************************** */
 				/**
 				*
@@ -1633,7 +1633,7 @@ class scenario {
 				public function setLastLaunch($lastLaunch) {
 					$this->setCache('lastLaunch', $lastLaunch);
 				}
-				
+
 				public function getMode() {
 					return $this->mode;
 				}
@@ -1964,15 +1964,14 @@ class scenario {
 				public function setCache($_key, $_value = null) {
 					cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 				}
-				
+
 				public function getChanged() {
 					return $this->_changed;
 				}
-				
+
 				public function setChanged($_changed) {
 					$this->_changed = $_changed;
 					return $this;
 				}
-				
+
 			}
-			
