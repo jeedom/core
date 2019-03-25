@@ -85,17 +85,14 @@ function initEquipment(_object_id) {
           }
           setTileSize('.eqLogic');
           setTileSize('.scenario');
-          setTimeout(function () {
-            $('.div_displayEquipement .objectHtml').packery({gutter :0});
-          }, 10);
+          $('.div_displayEquipement .objectHtml').packery({gutter :0});
         } else{
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create');
           jeedom.object.summaryUpdate([{object_id:_object_id}]);
           setTileSize('.eqLogic');
           setTileSize('.scenario');
-          setTimeout(function () {
-            $('#div_displayEquipement > .objectHtml').packery({gutter :0});
-          }, 10);
+          $('#div_displayEquipement > .objectHtml').packery({gutter :0});
+          $('#div_displayEquipement > .objectHtml').packery({gutter :0});
         }
         
       }
