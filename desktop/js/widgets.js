@@ -151,7 +151,7 @@ function addTest(_test){
   div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-default bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+  div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>';
   div += '</span>';
   div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
   div += '</div>';
@@ -160,7 +160,7 @@ function addTest(_test){
   div += '<div class="input-group">';
   div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state" placeholder="Résultat si test ok"/>';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
