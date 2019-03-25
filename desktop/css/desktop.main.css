@@ -2491,6 +2491,11 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 .eqLogic-widget,
+.scenario-widget {
+  overflow: hidden;
+}
+
+.eqLogic-widget,
 .scenario-widget,
 #div_alert,
 .alert {
