@@ -25,7 +25,7 @@ if (is_array($interactListGroup)) {
 			</div>
 			<div class="cursor warning" id="bt_regenerateInteract2">
 				<center>
-					<i class="fas fa-refresh"></i>
+					<i class="fas fa-sync"></i>
 				</center>
 				<span><center>{{Regénérer}}</center></span>
 			</div>
