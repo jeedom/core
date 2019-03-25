@@ -1024,6 +1024,7 @@ ul.dropdown-menu {
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 15px;
+  background: transparent !important;
 }
 .nav.navbar-nav ul li a i {
   display: inline-flex;
