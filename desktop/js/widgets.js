@@ -62,6 +62,10 @@ $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', func
   });
 });
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function loadTemplateConfiguration(_template,_data){
   jeedom.widgets.getTemplateConfiguration({
     template:_template,
@@ -75,12 +79,12 @@ function loadTemplateConfiguration(_template,_data){
         var replace = '';
         for(var i in data.replace){
           replace += '<div class="form-group">';
-          replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+data.replace[i]+'</label>';
+          replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", ""))+'</label>';
           replace += '<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">';
           replace += '<div class="input-group">';
           replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
           replace += '<span class="input-group-btn">';
-          replace += '<a class="btn btn-sm chooseIcon roundedRight">{{Icone}}</a>';
+          replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
           replace += '</span>';
           replace += '</div>';
           replace += '</div>';
@@ -156,7 +160,7 @@ function addTest(_test){
   div += '<div class="input-group">';
   div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state" placeholder="Résultat si test ok"/>';
   div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm chooseIcon roundedRight">{{Icone}}</a>';
+  div += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
