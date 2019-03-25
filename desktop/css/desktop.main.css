@@ -810,29 +810,24 @@ label.eqLogicAttr.label {
 }
 
 .btn.btn-info {
-  color: rgb(var(--bg-color)) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-info-color) !important;
 }
 .btn.btn-warning {
-  color: rgb(var(--bg-color)) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-warning-color) !important;
 }
 .btn.btn-danger {
-  color: rgb(var(--bg-color)) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-danger-color) !important;
 }
 .btn.btn-primary,
 .label-primary {
-  color: rgb(var(--bg-color)) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-primary-color) !important;
 }
 .btn.btn-success {
-  color: rgb(var(--bg-color)) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-success-color) !important;
 }
 
@@ -873,7 +868,6 @@ button.dropdown-toggle {
 }
 .dropdown button.dropdown-toggle {
   color: var(--txt-color) !important;
-  -webkit-text-fill-color: var(--txt-color) !important;
   background: var(--form-bg-color) !important;
   text-align: left;
   width: 100%;
@@ -886,7 +880,6 @@ button.dropdown-toggle {
 }
 .dropdown button.dropdown-toggle:hover {
   color: var(--txt-color) !important;
-  -webkit-text-fill-color: var(--txt-color) !important;
 }
 .dropdown button.dropdown-toggle:focus,
 .dropdown button.dropdown-toggle a:focus {
@@ -902,7 +895,6 @@ button.dropdown-toggle {
 }
 .dropdown.open > button {
   color: var(--txt-color)  !important;
-  -webkit-text-fill-color: var(--txt-color)  !important; /*override commun.css */
   background: var(--form-bg-color) !important;
 }
 
@@ -1579,7 +1571,6 @@ hr {
 .element .btn:active,
 .element .dropdown-menu {
   color: var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
   background-color: var(--sc-formTxt-color) !important;
 }
 
@@ -1587,7 +1578,6 @@ hr {
 .element button.dropdown-toggle {
   font-size:12px;
   color:  var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
   background-color: var(--sc-formTxt-color) !important;
   height: 22px;
   padding-left: 5px;
@@ -1595,12 +1585,10 @@ hr {
 }
 .element button.dropdown-toggle:hover {
   color: var(--sc-lightTxt-color) !important;
-  -webkit-text-fill-color: var(--sc-lightTxt-color) !important;
 }
 .element button.dropdown-toggle:focus,
 .element button.dropdown-toggle a:focus {
   color:  var(--linkHoverLight-color) !important;
-  -webkit-text-fill-color: var(--linkHoverLight-color) !important;
   background-color: var(--sc-formTxt-color) !important;
 }
 .element button.dropdown-toggle > .caret {
@@ -1614,6 +1602,7 @@ hr {
   background-color: var(--btn-default-color) !important;
 }
 .element .dropdown-menu li a {
+  color: var(--linkHoverLight-color) !important;
   font-size : 12px !important;
   line-height: 15px;
 }
