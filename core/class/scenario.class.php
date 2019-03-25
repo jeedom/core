@@ -823,15 +823,13 @@ class scenario {
 						return $mc->getValue();
 					}
 					$version = jeedom::versionAlias($_version);
+					$name = ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName();
 					$replace = array(
 						'#id#' => $this->getId(),
 						'#state#' => $this->getState(),
 						'#isActive#' => $this->getIsActive(),
-						'#name#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getHumanName(),
-						'#shortname#' => ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName(),
-						'#treename#' => $this->getHumanName(false, false, false, false, true),
+						'#name#' => (strlen($name) <25) ?$name : substr($name,0,25)."...",
 						'#icon#' => $this->getIcon(),
-						'#lastLaunch#' => $this->getLastLaunch(),
 						'#lastLaunch#' => $this->getLastLaunch(),
 						'#scenarioLink#' => $this->getLinkToConfiguration(),
 						'#version#' => $_version,
