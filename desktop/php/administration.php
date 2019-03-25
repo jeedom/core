@@ -867,7 +867,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparance}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
 						</div>
