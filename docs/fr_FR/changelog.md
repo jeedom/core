@@ -6,16 +6,20 @@ Changelog
 =====
 
 - Refonte des thèmes.
+- Possibilité de changer de thème automatiquement en fonction de l'heure.
+- En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.
-- Possibilité de changer de thème automatiquement en fonction de l'heure.
-- En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
 - Ajout d'un bouton pour vider le cache des widgets.
 - Amélioration et réorganisation du menu principal.
+- Amélioration et réorganisation des configurations.
 - Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
 - Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
 - Possibilité de condenser les blocs de scénario.
+- Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
+- Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
+- Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide de plugin).
 
 
 3.3.16

@@ -2,7 +2,6 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
 
 .ui-link[data-title=Accueil] {
@@ -94,18 +93,19 @@ Theme Core 2019 @Jeedom
 #div_displayBattery .eqLogic-widget.good { 
   background-color: var(--al-success-color);
 }
-#div_displayBattery .eqLogic-widget .jeedom-batterie {
-  color: var(--eqTitle-color);
-}
+#div_displayBattery .eqLogic-widget .jeedom-batterie,
+#div_displayBattery .eqLogic-widget .jeedom-batterie span,
 #div_displayBattery .eqLogic-widget .jeedom-batterie i {
   color: var(--eqTitle-color) !important;
 }
+
 #div_displayBattery .eqLogic-widget .batteryLevel {
   color: var(--eqTitle-color);
 }
 
 
 /* ___________________________________________________________EQs */
+.eqLogic.eqLogic-widget,
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
@@ -113,7 +113,8 @@ Theme Core 2019 @Jeedom
 	color: var(--linkHoverLight-color) !important;
 }
 
-.iconCmd > i {
+.cmd .iconCmd i,
+.iconCmd i {
   color: var(--linkHoverLight-color) !important;
 }
 p.state {

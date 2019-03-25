@@ -1,4 +1,4 @@
-<div style="min-width:65px; min-height:100px; position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+<div style="min-width:65px;  position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
   <div style="width:65px; height:95px;" class="shuttergauge cursor #history#" data-cmd_id="#id#" >
     <div  class="cmdName" style="#hideCmdName#">#name_display#</div>
     <div class="shuttergauge-chart">
@@ -13,12 +13,12 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-state strong').first().text(_options.display_value)
     }
-    
+
     if (is_numeric('#state#')) {
       jeedom.cmd.update['#id#']({display_value:'#state#'});
     } else {

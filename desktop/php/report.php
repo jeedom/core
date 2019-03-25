@@ -70,7 +70,7 @@ $report_path = __DIR__ . '/../../data/report/';
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_report" class="nav nav-list bs-sidenav">
-				<li class="nav-header"><i class="fas fa-newspaper-o"></i> {{Rapport}}</li>
+				<li class="nav-header"><i class="fas fa-newspaper"></i> {{Rapport}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			</ul>
 		</div>

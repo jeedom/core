@@ -9,13 +9,14 @@ Theme Core 2019 @Jeedom
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
+  --logo-secondary-color: rgb(189, 188, 190);
   --bg-color: 32, 32, 32;
   --bg-modal-color: rgb(40, 41, 42);
 
-  --txt-color: rgb(178, 178, 178);
-  --link-color: rgb(207, 207, 207);
-  --linkHover-color: rgb(238, 238, 238);
-  --linkHoverLight-color: rgb(250, 250, 250);
+  --txt-color: rgb(172, 172, 172);
+  --link-color: rgb(195, 195, 195);
+  --linkHover-color: rgb(228, 228, 228);
+  --linkHoverLight-color: rgb(245, 245, 245);
   --placeholder-color: rgb(115, 115, 115);
 
   --sc-form-color: rgba(220, 220, 220, 0.85);
@@ -49,7 +50,8 @@ Theme Core 2019 @Jeedom
   --al-primary-color:  rgb(50, 110, 160);
   --al-success-color: rgb(50, 130, 60);
   --al-warning-color: rgb(195, 125, 40);
-  --al-danger-color: rgb(160, 50, 50);
+  --al-danger-color: rgb(185, 58, 62);
+  --bt-success-color: rgb(150, 201, 39);
   
   --scBloc-color1: rgb(130,120,102);
   --scBloc-color2: rgb(122,112,100);

@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -17,6 +16,48 @@
 $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
+
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+})
+
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.object.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (_objects) {
+        if(_objects.length == 0){
+          return;
+        }
+        var contextmenuitems = {}
+        for(i=0; i<_objects.length; i++)
+        {
+          ob = _objects[i]
+          contextmenuitems[ob.id] = {'name': ob.name}
+        }
+        
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'object-context-menu',
+          callback: function(key, options) {
+            url = 'index.php?v=d&p=object&id=' + key;
+            if (document.location.toString().match('#')) {
+              url += '#' + document.location.toString().split('#')[1];
+            }
+            loadPage(url);
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
 
 if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -61,7 +102,6 @@ $('#in_searchObject').keyup(function () {
   $('.objectDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this)
       $(this).closest('.objectDisplayCard').show();
     }
   });
@@ -105,7 +145,6 @@ function loadObjectConfiguration(_id){
   $('.objectDisplayCard[data-object_id='+_id+']').addClass('active');
   $('#div_conf').show();
   $('#div_resumeObjectList').hide();
-  $(this).addClass('active');
   jeedom.object.byId({
     id: _id,
     cache: false,

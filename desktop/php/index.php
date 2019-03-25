@@ -26,7 +26,7 @@ if (isConnect()) {
 if (init('rescue', 0) == 1) {
 	$homeLink = 'index.php?v=d&p=system&rescue=1';
 }
-$title = 'Jeedom';
+$title = config::byKey('product_name');
 if (init('p') == '' && isConnect()) {
 	redirect($homeLink);
 }
@@ -41,6 +41,7 @@ if (init('rescue', 0) == 0) {
 	$plugins_list = plugin::listPlugin(true, true);
 	$eventjs_plugin = array();
 	if (count($plugins_list) > 0) {
+		$categories = array();
 		foreach ($plugins_list as $category_name => $category) {
 			$icon = '';
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
@@ -50,19 +51,32 @@ if (init('rescue', 0) == 0) {
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'])) {
 				$name = $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['name'];
 			}
+			$plugins = array();
+			foreach ($category as $pluginList) {
+				array_push($plugins, array($pluginList->getName(), $pluginList));
+			}
+			sort($plugins);
+			array_push($categories, array($name, $icon, $plugins));
+		}
+		sort($categories);
+		foreach ($categories as $cat) {
+			$name = $cat[0];
+			$icon = $cat[1];
 			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
-			foreach ($category as $pluginList) {
-				if ($pluginList->getId() == init('m')) {
-					$plugin = $pluginList;
-					$title = $plugin->getName() . ' - Jeedom';
+			$plugins = $cat[2];
+			foreach ($plugins as $pluginAr) {
+				$pluginObj = $pluginAr[1];
+				if ($pluginObj->getId() == init('m')) {
+					$plugin = $pluginObj;
+					$title = $pluginObj->getName() . ' - '.config::byKey('product_name');
 				}
-				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getIndex() . '"><img class="img-responsive" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
-				if ($pluginList->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginList->getId(), 0) != 0) {
-					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginList->getId() . '&p=' . $pluginList->getDisplay() . '"><img class="img-responsive" src="' . $pluginList->getPathImgIcon() . '" /> ' . $pluginList->getName() . '</a></li>';
+				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
+					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				}
-				if ($pluginList->getEventjs() == 1) {
-					$eventjs_plugin[] = $pluginList->getId();
+				if ($pluginObj->getEventjs() == 1) {
+					$eventjs_plugin[] = $pluginObj->getId();
 				}
 			}
 			$plugin_menu .= '</ul>';
@@ -150,9 +164,8 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
-	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('3rdparty', 'animate/animate', 'js');
-	include_file('desktop', 'commun', 'css');
+	include_file('desktop', 'bootstrap', 'css');
+	include_file('desktop', 'desktop.main', 'css');
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css" rel="stylesheet">';
@@ -245,7 +258,7 @@ if (init('rescue', 0) == 0) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoView"><i class="fas fa-picture-o"></i> {{Vue}}</a>
+										<a data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php	foreach (view::all() as $view_menu) {
 												echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
@@ -275,30 +288,32 @@ if (init('rescue', 0) == 0) {
 								<li class="dropdown cursor">
 									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="index.php?v=d&p=object"><i class="fas fa-picture-o"></i> {{Objets}}</a></li>
-										<li><a href = "index.php?v=d&p=scenario"><i class = "fa fa-cogs"></i> {{Scénarios}}</a></li>
+										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
+										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
-										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
+										<li><a href="index.php?v=d&p=widgets"><i class="fas fa-camera-retro"></i> {{Widgets}}</a></li>
+										<li><a href="#" id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>										
 									</ul>
 								</li>
 							<?php } ?>
 							<li class="dropdown cursor">
 								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="index.php?v=d&p=history"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
-									<?php if (isConnect('admin')) {	?>
-										<li><a href="index.php?v=d&p=report"><i class="fas fa-newspaper-o"></i> {{Rapport}}</a></li>
-										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
-									<?php } ?>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
+								<?php } ?>
+								<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
+									<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
+								<?php } ?>
+								<li class="divider"></li>
+								<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
+								<?php if (isConnect('admin')) { ?>
+									<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
 									<li class="divider"></li>
-									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
-									<?php if (isConnect('admin')) { ?>
-
-										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
-										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
-										<li class="divider"></li>
-										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
-									<?php } ?>
+									<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
+								<?php } ?>
 								</ul>
 							</li>
 							<?php if (isConnect('admin')) { ?>
@@ -320,8 +335,8 @@ if (init('rescue', 0) == 0) {
 											<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
 												<ul class="dropdown-menu">
 													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-													<li><a href="index.php?v=d&p=backup"><i class="fas fa-floppy-o"></i> {{Sauvegardes}}</a></li>
-													<li><a href="index.php?v=d&p=update"><i class="fas fa-refresh"></i> {{Centre de mise à jour}}</a></li>
+													<li><a href="index.php?v=d&p=backup"><i class="far fa-save"></i> {{Sauvegardes}}</a></li>
+													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 													<?php if(jeedom::getHardwareName() == 'smart'){
 														echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
 													} ?>
@@ -330,7 +345,7 @@ if (init('rescue', 0) == 0) {
 													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 													<li class="divider"></li>
 													<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
-														echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-repeat"></i> {{Redémarrer}}</a></li>';
+														echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
 														echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
 													} ?>
 												</ul>
@@ -412,7 +427,7 @@ if (init('rescue', 0) == 0) {
 								<li><a href="index.php?v=d&p=database&rescue=1"><i class="fas fa-database"></i> {{Database}}</a></li>
 								<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fas fa-indent"></i> {{Editeur}}</a></li>
 								<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pen-square"></i> {{Personnalisation}}</a></li>
-								<li><a href="index.php?v=d&p=backup&rescue=1"><i class="fas fa-floppy-o"></i> {{Sauvegarde}}</a></li>
+								<li><a href="index.php?v=d&p=backup&rescue=1"><i class="far fa-save"></i> {{Sauvegarde}}</a></li>
 								<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 								<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
 							</ul>

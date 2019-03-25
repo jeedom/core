@@ -9,6 +9,7 @@ Theme Core 2019 @Jeedom
   
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
+  --logo-secondary-color: rgb(69, 68, 73);
   --bg-color: 235, 235, 238;
   --bg-modal-color: rgb(247, 248, 248);
   
@@ -50,6 +51,7 @@ Theme Core 2019 @Jeedom
   --al-success-color: rgb(80, 170, 80);
   --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(190, 0, 0);
+  --bt-success-color: rgb(150, 201, 39);
   
   --scBloc-color1: rgb(172,163,148);
   --scBloc-color2: rgb(158,148,138);

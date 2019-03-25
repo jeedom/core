@@ -85,19 +85,19 @@ Paramètres :
 API JSON Objet
 ==============
 
-object::all
+jeeObject::all
 -----------
 
 Retourne la liste de tous les objets
 
-object::full
+jeeObject::full
 ------------
 
 Retourne la liste de tous les objets, avec pour chaque objet tous ses
 équipements et pour chaque équipement toutes ses commandes ainsi que les
 états de celles-ci (pour les commandes de type info)
 
-object::fullById
+jeeObject::fullById
 ----------------
 
 Retourne un objet avec tous ses équipements et pour chaque équipement
@@ -108,7 +108,7 @@ Paramètres :
 
 -   int id
 
-object::byId
+jeeObject::byId
 ------------
 
 Retourne l’objet spécifié
@@ -117,14 +117,14 @@ Paramètres:
 
 -   int id
 
-object::fullById
+jeeObject::fullById
 ----------------
 
 Retourne un objet, ses équipements et pour chaque équipement toutes ses
 commandes ainsi que les états de cellse-ci (pour les commandes de type
 info)
 
-object::save
+jeeObject::save
 ------------
 
 Retourne l’objet spécifié
@@ -715,7 +715,7 @@ Récupération de la liste des objets :
 
 ``` {.php}
 $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
-if($jsonrpc->sendRequest('object::all', array())){
+if($jsonrpc->sendRequest('jeeObject::all', array())){
     print_r($jsonrpc->getResult());
 }else{
     echo $jsonrpc->getError();

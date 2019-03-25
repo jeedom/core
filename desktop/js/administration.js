@@ -244,7 +244,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-  
+
   return false;
 });
 
@@ -568,7 +568,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      
+
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
@@ -774,8 +774,12 @@ function addObjectSummary(_summary) {
   tr += '</td>';
   tr += '<td>';
   tr += '<div class="dropdown">';
-  tr += '<button class="btn btn-xs btn-default dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
-  tr += _summary.calcul;
+  tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
+  if(isset(_summary) && isset(_summary.calcul)) {
+    tr += _summary.calcul;
+  } else {
+    tr += 'Somme';
+  }
   tr += '<span class="caret"></span>';
   tr += '</button>';
   tr += '<ul class="dropdown-menu dropdown-menu-right">';
@@ -786,7 +790,7 @@ function addObjectSummary(_summary) {
   tr += '</div>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<a class="objectSummaryAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
+  tr += '<a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
   tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span>';
   tr += '</td>';
   tr += '<td>';
@@ -794,8 +798,12 @@ function addObjectSummary(_summary) {
   tr += '</td>';
   tr += '<td>';
   tr += '<div class="dropdown">';
-  tr += '<button class="btn btn-xs btn-default dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="count">';
-  tr += _summary.count;
+  tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="count">';
+  if(isset(_summary) && isset(_summary.count)) {
+    tr += _summary.count;
+  } else {
+    tr += 'Aucun';
+  }
   tr += '<span class="caret"></span>';
   tr += '</button>';
   tr += '<ul class="dropdown-menu dropdown-menu-right">';

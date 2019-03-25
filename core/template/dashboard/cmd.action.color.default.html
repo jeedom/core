@@ -1,5 +1,5 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div class="input-group input-group-sm" style="width: 100%">
+<div class="cmd cmd-widget" style="width:80px; padding-top:5px;" data-type="action" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="input-group input-group-sm" style="width:72px">
     <input class="action_colorpicker_change form-control cursor roundedLeft" type="color">
     <span class="input-group-btn">
       <a class="btn btn-default action_colorpicker_off roundedRight">Off</a>
@@ -17,6 +17,5 @@
       jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
     });
     jeedom.cmd.update['#id#']({display_value:'#state#'});
-
   </script>
 </div>

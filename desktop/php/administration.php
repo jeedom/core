@@ -1,22 +1,21 @@
 <?php
-if (!isConnect('admin')) {
-	throw new Exception('{{401 - Accès non autorisé}}');
-}
+	if (!isConnect('admin')) {
+		throw new Exception('{{401 - Accès non autorisé}}');
+	}
 
-$repos = update::listRepo();
-
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
-foreach ($repos as $key => $value) {
-	$keys[] = $key . '::enable';
-}
-global $JEEDOM_INTERNAL_CONFIG;
-$configs = config::byKeys($keys);
-sendVarToJS('ldapEnable', $configs['ldap::enable']);
-user::isBan();
+	$repos = update::listRepo();
+	$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
+	foreach ($repos as $key => $value) {
+		$keys[] = $key . '::enable';
+	}
+	global $JEEDOM_INTERNAL_CONFIG;
+	$configs = config::byKeys($keys);
+	sendVarToJS('ldapEnable', $configs['ldap::enable']);
+	user::isBan();
 ?>
 <br/>
 <div id="config">
-	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+	<a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs nav-primary" role="tablist" style="max-width:calc(100% - 150px);">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Interface}}</a></li>
@@ -30,7 +29,7 @@ user::isBan();
 		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone"></i> {{Interactions}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt"></i> {{Securité}}</a></li>
 		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a></li>
-		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-hdd-o"></i> {{Cache}}</a></li>
+		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-hdd"></i> {{Cache}}</a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key"></i> {{API}}</a></li>
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal"></i> {{OS/DB}}</a></li>
 	</ul>
@@ -39,6 +38,12 @@ user::isBan();
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help">{{Version}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<span class="label label-info">v<?php echo jeedom::version(); ?></span>
+						</div>
+					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}">{{Nom de votre}} <?php echo config::byKey('product_name'); ?></label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
@@ -73,6 +78,7 @@ user::isBan();
 							<input type="checkbox" class="configKey" data-l1key="generateTranslation" title="{{Option pour les développeurs permettant à}} <?php echo config::byKey('product_name'); ?> {{de générer les phrases à traduire}}" />
 						</div>
 					</div>
+					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
@@ -193,13 +199,14 @@ user::isBan();
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 						</div>
 					</div>
+					<hr class="hrPrimary">
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -208,13 +215,7 @@ user::isBan();
 							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
+							<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -227,7 +228,7 @@ user::isBan();
 							<span class="label label-info"><?php echo $lastKnowDate ?></span>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-refresh"></i> {{Remise à zéro}}</a>
+							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
 						</div>
 					</div>
 				</fieldset>
@@ -291,9 +292,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey roundedLeft"><?php echo $configs['api']; ?></span>
+								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['api']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -303,9 +304,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey roundedLeft"><?php echo $configs['apipro']; ?></span>
+								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apipro']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -326,9 +327,9 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<span class="span_apikey roundedLeft"><?php echo $configs['apimarket']; ?></span>
+								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apimarket']; ?>" />
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-refresh"></i></a>
+									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
 								</span>
 							</div>
 						</div>
@@ -345,7 +346,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-					<hr/>
+					<hr class="hrPrimary">
 					<?php
 					if (init('rescue', 0) == 0) {
 						foreach (plugin::listPlugin(true) as $plugin) {
@@ -356,9 +357,9 @@ user::isBan();
 							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
 							echo '<div class="input-group">';
-							echo '<span class="span_apikey roundedLeft">' . config::byKey('api', $plugin->getId()) . '</span>';
+							echo '<input class="span_apikey roundedLeft form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
 							echo '<span class="input-group-btn">';
-							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-refresh"></i></a>';
+							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 							echo '</span>';
 							echo '</div>';
 							echo '</div>';
@@ -515,6 +516,12 @@ user::isBan();
 						echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 					}?>
 					<legend>{{Connexion}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
+						</div>
+					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -860,7 +867,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparance}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
 						</div>
@@ -1065,13 +1072,13 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
-								<span class="input-group-addon">{{2 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence2"/>
-								<span class="input-group-addon">{{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::confidence3"/>
-								<span class="input-group-addon">> {{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">> {{3 mots}}</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::confidence"/>
 							</div>
 						</div>
@@ -1080,13 +1087,13 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<span class="input-group-addon roundedLeft">{{1 mot}}</span>
+								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh1"/>
-								<span class="input-group-addon">{{2 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{2 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh2"/>
-								<span class="input-group-addon">{{3 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{3 mots}}</span>
 								<input type="text" class="configKey form-control" data-l1key="interact::weigh3"/>
-								<span class="input-group-addon">{{4 mots}}</span>
+								<span class="input-group-addon" style="width:90px">{{4 mots}}</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="interact::weigh4"/>
 							</div>
 						</div>
@@ -1228,7 +1235,6 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
 
 		<div role="tabpanel" class="tab-pane" id="graphlinktab">
 			<br/>
@@ -1479,6 +1485,7 @@ user::isBan();
 				</div>
 			</div>
 		</div>
+
 		<div role="tabpanel" class="tab-pane" id="eqlogictab">
 			<br/>
 			<form class="form-horizontal">
@@ -1546,10 +1553,10 @@ user::isBan();
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="#" data-value="alpha">{{Alpha (Plus d'accès au support)}}</a></li>
-											<li><a href="#" data-value="beta">{{Beta (Plus d'accès au support)}}</a></li>
-											<li><a href="#" data-value="release">{{Release (Plus d'accès au support)}}</a></li>
 											<li><a href="#" data-value="master">{{Stable}}</a></li>
+											<li><a href="#" data-value="release">{{Release (Pas de support)}}</a></li>
+											<li><a href="#" data-value="beta">{{Beta (Pas de support)}}</a></li>
+											<li><a href="#" data-value="alpha">{{Alpha (Pas de support)}}</a></li>
 										</ul>
 									</div>
 								</div>
@@ -1644,4 +1651,8 @@ user::isBan();
 					</div>
 				</div>
 			</div>
-			<?php include_file("desktop", "administration", "js");?>
+		</div>
+	</div>
+</div>
+
+<?php include_file("desktop", "administration", "js");?>

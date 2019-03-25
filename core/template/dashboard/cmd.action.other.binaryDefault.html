@@ -1,4 +1,4 @@
-<div style="width:90px;min-height:80px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div style="width:90px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
     <center>
         <span class="iconCmd"></span>
     </center>
@@ -9,14 +9,14 @@
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>');
                 }
             } else {
                 if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-times"></i>');
                 }
             }
         }

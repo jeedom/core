@@ -80,7 +80,7 @@ if ($market->getPurchase() == 1) {
 	$allowVersion = $market->getAllowVersion();
 	foreach ($allowVersion as $branch) {
 		if ($market->getStatus($branch) == 1) {
-			echo ' <a class="btn btn-default bt_installFromMarket" data-version="' . $branch . '" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fa fa-plus-circle"></i> {{Installer}} ' . $branch . '</a>';
+			echo ' <a class="btn btn-default bt_installFromMarket" data-version="' . $branch . '" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fas fa-plus-circle"></i> {{Installer}} ' . $branch . '</a>';
 		}
 	}
 } else if ($market->getPrivate() == 1) {
@@ -104,7 +104,7 @@ echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market
 }
 if (is_object($update)) {
 	?>
-  <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+  <a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 <?php }
 ?>
 <br/><br/>
@@ -153,8 +153,8 @@ foreach ($market->getImg('screenshot') as $screenshot) {
 <div class='row'>
   <div class='col-sm-6'>
     <legend>{{Description}}
-      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fa fa-book"></i> {{Documentation}}</a>
-      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fa fa-book"></i> {{Changelog}}</a>
+      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
+      <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
       <br/>
     </legend>
     <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>

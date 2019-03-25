@@ -2,7 +2,6 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../desktop/css/desktop.main.css");
 @import url("colors.css");
 
 header a.navbar-brand {
@@ -27,6 +26,10 @@ a:focus {
   outline: none;
 }
 
+.panel-default .panel-title {
+  color: var(--linkHover-color) !important;
+}
+
 
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
@@ -46,16 +49,12 @@ a:focus {
 
 .eqLogic-widget > .widget-name a,
 .scenario-widget > .widget-name a,
-.eqLogic-widget > .refresh .fa,
-.eqLogic-widget > .fa-refresh,
 .eqLogic-widget > span:first-child.statusCmd i {
   color: var(--eqTitle-color) !important;
   font-size: 16px !important;
 }
 .eqLogic-widget > .widget-name a:hover,
-.scenario-widget > .widget-name a:hover,
-.eqLogic-widget > .refresh .fa:hover,
-.eqLogic-widget > .fa-refresh:hover {
+.scenario-widget > .widget-name a:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
@@ -107,11 +106,12 @@ a:focus {
 
 /* buttons on eq widgets */
 .eqLogic.eqLogic-widget .btn,
+.scenario.scenario-widget .btn,
 #div_displayObject .btn {
   color: var(--link-color) !important;
 }
 .eqLogic.eqLogic-widget .btn:hover,
+.scenario.scenario-widget .btn:hover,
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
 }
-

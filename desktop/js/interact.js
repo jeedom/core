@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -18,6 +17,79 @@
 $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
+
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+})
+
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.interact.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (interacts) {
+        if(interacts.length == 0){
+          return;
+        }
+        interactGroups = []
+        for(i=0; i<interacts.length; i++){
+          group = interacts[i].group
+          if (group == "") group = 'Aucun'
+          group = group[0].toUpperCase() + group.slice(1)
+          interactGroups.push(group)
+        }
+        interactGroups = Array.from(new Set(interactGroups))
+        interactGroups.sort()
+        interactList = []
+        for(i=0; i<interactGroups.length; i++)
+        {
+          group = interactGroups[i]
+          interactList[group] = []
+          for(j=0; j<interacts.length; j++)
+          {
+            sc = interacts[j]
+            scGroup = sc.group
+            if (scGroup == "") scGroup = 'Aucun'
+            if (scGroup.toLowerCase() != group.toLowerCase()) continue
+            if (sc.name == "") sc.name = sc.query
+            interactList[group].push([sc.name, sc.id])
+          }
+        }
+        //set context menu!
+        var contextmenuitems = {}
+        for (var group in interactList) {
+          groupinteracts = interactList[group]
+          items = {}
+          for (var index in groupinteracts) {
+            sc = groupinteracts[index]
+            scName = sc[0]
+            scId = sc[1]
+            items[scId] = {'name': scName}
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'interact-context-menu',
+          callback: function(key, options) {
+            url = 'index.php?v=d&p=interact&id=' + key;
+            if (document.location.toString().match('#')) {
+              url += '#' + document.location.toString().split('#')[1];
+            }
+            loadPage(url);
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
 
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
@@ -43,11 +115,21 @@ $('#in_searchInteract').keyup(function () {
   $('.interactDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this)
       $(this).closest('.interactDisplayCard').show();
     }
   });
   $('.interactListContainer').packery();
+});
+
+$('#bt_openAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='false']").each(function(){
+    $(this).click()
+  })
+});
+$('#bt_closeAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='true']").each(function(){
+    $(this).click()
+  })
 });
 
 $("#div_listInteract").trigger('resize');

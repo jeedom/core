@@ -24,7 +24,7 @@ $date = array(
 				<ul class="nav nav-list bs-sidenav">
 					<li>
 						<div class="input-group input-group-sm">
-							<textarea class="form-control input-sm roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
+							<textarea class="form-control roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
 							<span class="input-group-btn">
 								<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
 								</a><a class="btn btn-success" id="bt_displayCalculHistory"><i class="fas fa-check"></i>
@@ -129,7 +129,7 @@ $date = array(
 								</ul>
 							</div>
 							<a class="btn btn-warning roundedRight" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
-								<i class="fa fa-times"></i> {{Affichage}}
+								<i class="fas fa-times"></i> {{Affichage}}
 							</a>
 						</div>
 					</div>
@@ -149,7 +149,7 @@ $date = array(
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="m">M</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
 					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
-					<a class="btn btn-sm btn-success roundedRight" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
+					<a class="btn btn-sm btn-success roundedRight" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-12 center">

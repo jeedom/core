@@ -41,27 +41,11 @@ function initEquipment(_object_id) {
     });
     summary = '';
     var childList = [_object_id];
-    var initObject = '';
     if(_object_id.indexOf(':') != -1){
       temp = _object_id.split(':');
       _object_id = temp[0];
       summary = temp[1];
     }
-    function findChildren(_object_id) {
-      if (_object_id in objectMapping){
-        initObject = _object_id;
-        for (var children in objectMapping[_object_id]){
-          var childId1 = parseInt(objectMapping[_object_id][children]);
-          childList.push(childId1);
-          findChildren(childId1);
-        }
-      }
-    }
-    if (_object_id in objectMapping){
-      findChildren(_object_id);
-      _object_id = JSON.stringify(childList);
-    }
-
     jeedom.object.toHtml({
       id: _object_id,
       version: 'mobile',
@@ -70,7 +54,7 @@ function initEquipment(_object_id) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (html) {
-        if((_object_id == 'all' || _object_id == '' || initObject != '')){
+        if((_object_id == 'all' || _object_id == '')){
           var div = '';
           summaries= [];
           for(var i in html){
@@ -101,33 +85,30 @@ function initEquipment(_object_id) {
           }
           setTileSize('.eqLogic');
           setTileSize('.scenario');
-          setTimeout(function () {
-            $('.div_displayEquipement .objectHtml').packery({gutter :0});
-          }, 10);
+          $('.div_displayEquipement .objectHtml').packery({gutter :0});
         } else{
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create');
           jeedom.object.summaryUpdate([{object_id:_object_id}]);
           setTileSize('.eqLogic');
           setTileSize('.scenario');
-          setTimeout(function () {
-            $('#div_displayEquipement > .objectHtml').packery({gutter :0});
-          }, 10);
+          $('#div_displayEquipement > .objectHtml').packery({gutter :0});
+          $('#div_displayEquipement > .objectHtml').packery({gutter :0});
         }
-
+        
       }
     });
   } else {
     $('#bottompanel').panel('open');
   }
-
+  
   $(window).on("orientationchange", function (event) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
     setTileSize('.scenario');
     $('#div_displayEquipement > .objectHtml').packery({gutter :0});
   });
-
-
+  
+  
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').show();
     var search = $(this).value();
@@ -179,8 +160,8 @@ function initEquipment(_object_id) {
       }
     })
   });
-
-
+  
+  
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('');
     $('#in_searchWidget').keyup();

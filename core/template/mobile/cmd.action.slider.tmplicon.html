@@ -23,10 +23,10 @@
     jeedom.cmd.update['#id#'] = function(_options){
       $(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
       if (parseInt(_options.display_value) > 0) {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="#icon_on#""></i>');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
         $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
       }else {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="#icon_off#"></i>');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
         $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
       }
     }

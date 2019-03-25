@@ -2,7 +2,6 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("../../../../mobile/css/mobile.main.css");
 @import url("colors.css");
 
 .ui-link[data-title=Accueil] {
@@ -25,9 +24,6 @@ Theme Core 2019 @Jeedom
 
 .ui-btn {
 	color: var(--link-color) !important;
-}
-.ui-btn i:hover {
-	color: var(--linkHoverLight-color) !important;
 }
 
 .eqLogic.eqLogic-widget,
@@ -142,6 +138,7 @@ a.action.ui-btn {
 }
 .highcharts-background {
 	fill: var(--defaultBkg-color) !important;
+	fill-opacity: var(--opacity);
 }
 .gauge .highcharts-background {
 	fill: transparent !important;

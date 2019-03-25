@@ -9,14 +9,14 @@ $plugins_list = plugin::listPlugin(false, true);
 <div id='div_alertPluginConfiguration'></div>
 
 <div class="row row-overflow">
-	<div class="col-xs-12" id="div_resumePluginList" style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<div class="col-xs-12" id="div_resumePluginList">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="pluginListContainer">
-			<div class="cursor" id="bt_addPluginFromOtherSource" style="background-color : #ffffff; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+			<div class="cursor success" id="bt_addPluginFromOtherSource">
 				<center>
-					<i class="fas fa-plus" style="font-size : 5em;color:#94ca02;"></i>
+					<i class="fas fa-plus"></i>
 				</center>
-				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Plugins}}</center></span>
+				<span><center>{{Plugins}}</center></span>
 			</div>
 			<?php
 			foreach (update::listRepo() as $key => $value) {
@@ -26,24 +26,24 @@ $plugins_list = plugin::listPlugin(false, true);
 				if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
 					continue;
 				}
-				echo '<div class="cursor displayStore" data-repo="' . $key . '" style="background-color : #ffffff; height : 130px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
+				echo '<div class="cursor displayStore success" data-repo="' . $key . '">
 				<center>
-				<i class="fas fa-shopping-cart" style="font-size : 5em;color:#94ca02;"></i>
+				<i class="fas fa-shopping-cart"></i>
 				</center>
-				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>' . $value['name'] . '</center></span>
+				<span><center>' . $value['name'] . '</center></span>
 				</div>';
 			}
 			?>
 		</div>
 		<legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchPlugin" />
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchPlugin" />
 		<div class="pluginListContainer">
 			<?php
 			foreach (plugin::listPlugin() as $plugin) {
 				$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-				echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
+				echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
 				echo '<center>';
-				echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
+				echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
 				echo '</center>';
 				echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
 				echo '</div>';
@@ -51,7 +51,7 @@ $plugins_list = plugin::listPlugin(false, true);
 			?>
 		</div>
 	</div>
-	<div class="col-xs-12" id="div_confPlugin" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+	<div class="col-xs-12" id="div_confPlugin" style="padding-left: 25px;display: none;">
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
 			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
@@ -59,7 +59,7 @@ $plugins_list = plugin::listPlugin(false, true);
 				<span class="input-group-btn" id="span_right_button"></span>
 			</div>
 		</legend>
-		
+
 		<div class="row">
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-default">
@@ -101,13 +101,13 @@ $plugins_list = plugin::listPlugin(false, true);
 							</fieldset>
 						</form>
 						<div class="form-actions">
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-success">
@@ -126,27 +126,27 @@ $plugins_list = plugin::listPlugin(false, true);
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="panel panel-primary">
 			<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-map"></i> {{Installation}}</h3></div>
 			<div class="panel-body">
 				<span id="span_plugin_installation"></span>
 			</div>
 		</div>
-		
+
 		<div class="panel panel-primary">
 			<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
 				<a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
 			</h3></div>
 			<div class="panel-body">
 				<div id="div_plugin_configuration"></div>
-				
+
 				<div class="form-actions">
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-primary" id="div_functionalityPanel">
@@ -177,7 +177,7 @@ $plugins_list = plugin::listPlugin(false, true);
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 

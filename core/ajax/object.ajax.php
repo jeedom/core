@@ -242,7 +242,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$object = object::byId(init('id'));
+		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
@@ -258,7 +258,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$object = object::byId(init('id'));
+		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}

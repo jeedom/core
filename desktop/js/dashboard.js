@@ -124,7 +124,7 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
-    $('.div_displayEquipement .eqLogic-widget').css('border','');
+    $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
 
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
@@ -132,11 +132,11 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
-    $('.div_displayEquipement .scenario-widget').css('border','');
+    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
   }else{
-    $('.div_displayEquipement .eqLogic-widget').css('border','1px dashed var(--logo-primary-color)');
+    $('.div_displayEquipement .eqLogic-widget').addClass('editingMode');
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
-    $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
+    $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
         ui.element.closest('.div_displayEquipement').packery();
@@ -146,9 +146,9 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     });
-    $('.div_displayEquipement .scenario-widget').css('border','1px dashed var(--logo-primary-color)');
+    $('.div_displayEquipement .scenario-widget').addClass('editingMode');
     $('.div_displayEquipement .scenario-widget').draggable('enable');
-    $( ".div_displayEquipement .scenario-widget.allowResize").resizable({
+    $('.div_displayEquipement .scenario-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
         ui.element.closest('.div_displayEquipement').packery();
@@ -190,11 +190,7 @@ function getObjectHtml(_object_id){
         $("select").click(function() { $(this).focus(); });
 
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
-          var container = $(this).packery({
-            itemSelector: ".eqLogic-widget,.scenario-widget",
-            gutter : 0,
-            columnWidth: parseInt(jeedom.theme['widget::step::width'])
-          });
+          var container = $(this).packery();
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);
           var itemElems =  container.find('.scenario-widget').draggable();

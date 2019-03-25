@@ -125,14 +125,6 @@
           "extra": ""
         },
         {
-          "name": "html",
-          "type": "mediumtext",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
           "name": "alert",
           "type": "text",
           "null": "YES",
@@ -2429,6 +2421,87 @@
           "columns": {
             "1": {
               "column": "view_id",
+              "Sub_part": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "widgets",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "type",
+          "type": "varchar(27)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "subtype",
+          "type": "varchar(27)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "template",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "replace",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "test",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "unique": {
+          "Key_name": "unique",
+          "Non_unique": "0",
+          "columns": {
+            "1": {
+              "column": "type",
+              "Sub_part": null
+            },
+            "2": {
+              "column": "subtype",
+              "Sub_part": null
+            },
+            "3": {
+              "column": "name",
               "Sub_part": null
             }
           }

@@ -26,7 +26,7 @@ sendVarToJS('rootPath', $rootPath);
 	</div>
 	
 	<div class="col-lg-8">
-		<legend><i class="fas fa-edit"></i> {{Edition}}
+		<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn">
 					<a class="btn btn-xs roundedLeft" id="bt_createFile" style="position: relative;top:4px;"><i class="far fa-file"></i> {{Nouveau}}</a><a class="btn btn-success btn-xs" id="bt_saveFile" style="position: relative;top:4px;"><i class="fas fa-check"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-xs roundedRight" id="bt_deleteFile" style="position: relative;top:4px;"><i class="fas fa-times"></i> {{Supprimer}}</a>

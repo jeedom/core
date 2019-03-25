@@ -35,7 +35,14 @@ if (isset($argv)) {
 		}
 	}
 }
-
+try {
+	if(file_exists(__DIR__.'/database.php')){
+		$output = shell_exec('php ' . __DIR__.'/database.php');
+		echo $output;
+	}
+} catch (Exception $ex) {
+	echo "***ERREUR*** " . $ex->getMessage() . "\n";
+}
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 	if(method_exists ('DB','compareAndFix')){
@@ -354,7 +361,7 @@ if(method_exists('utils','attrChanged')){
 	
 	
 	try {
-		foreach (object::all() as $object) {
+		foreach (jeeObject::all() as $object) {
 			$object->save();
 		}
 	} catch (Exception $exc) {

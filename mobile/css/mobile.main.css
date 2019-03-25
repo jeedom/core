@@ -3,6 +3,17 @@ Theme Core 2019 @Jeedom
 */
 
 /* _____________________________GLOBAL */
+::-webkit-scrollbar{
+  width:8px;
+  height:8px;
+}
+::-webkit-scrollbar-track-piece{
+  background-color:transparent
+}
+::-webkit-scrollbar-thumb{
+  background: var(--btnEq-default-color)
+}
+
 ::-moz-color-swatch {
   border: none;
   border-color: transparent;
@@ -13,15 +24,95 @@ Theme Core 2019 @Jeedom
 ::-webkit-color-swatch-wrapper {
   padding: 0;
 }
-
-.pull-right {
-  padding-right: 5px;
+@keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-moz-keyframes loading {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-webkit-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-ms-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
+}
+@-o-keyframes "loading" {
+  from { left: 0; }
+  to { left: 100%; }
 }
 
-.backgroundforJeedom {
+body {
+  font-family: 'Roboto', sans-serif !important;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  scrollbar-color: var(--form-bg-color) rgb(var(--bg-color)) !important;
+}
+
+.nd2-card{
+  background-color: rgba(var(--bg-color), var(--opacity))  !important;
+}
+
+.backgroundforJeedom{
+  width:100%;
+  height:calc(100% - 65px);
+  position: fixed;
+  z-index: -1;
+  opacity : 0.35;
+  top : 65px;
+  background-size:cover;
+  background-position: center center;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
+
+#pagecontainer{
+  background-color: transparent !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.ui-btn {
+  font-family: 'Roboto' !important;
+}
+
+.pull-right {
+  float: right;
+  padding-right: 5px;
+}
+.pull-left {
+  float:left
+}
+
+.dot1{
+  -webkit-animation: loading 6s infinite;
+  -moz-animation: loading 6s infinite;
+  -ms-animation: loading 6s infinite;
+  -o-animation: loading 6s infinite;
+  animation: loading 6s infinite;
+}
+.dot2{
+  -webkit-animation: loading 6s 0.5s infinite;
+  -moz-animation: loading 6s 0.5s infinite;
+  -ms-animation: loading 6s 0.5s infinite;
+  -o-animation: loading 6s 0.5s infinite;
+  animation: loading 6s 0.5s infinite;
+}
+.dot3{
+  -webkit-animation: loading 6s 1s infinite;
+  -moz-animation: loading 6s 1s infinite;
+  -ms-animation: loading 6s 1s infinite;
+  -o-animation: loading 6s 1s infinite;
+  animation: loading 6s 1s infinite;
+}
+
 
 .ui-link[data-title=Accueil] .fa-home::before {
   content: '' !important;
@@ -37,8 +128,8 @@ Theme Core 2019 @Jeedom
 
 .ui-header,
 .ui-page-theme-a .ui-bar-inherit:not(.ui-slider-track) {
+  color: var(--link-color) !important;
   background-color: var(--bg-modal-color) !important;
-  color: var(--txt-color) !important;
   box-shadow: none !important;
 }
 
@@ -50,6 +141,9 @@ Theme Core 2019 @Jeedom
   background-color: var(--form-bg-color) !important;
   color: var(--txt-color) !important;
 }
+.ui-input-text::after {
+  background-color: transparent !important;
+}
 
 .eqLogic.eqLogic-widget .ui-input-text :not(textarea) {
   padding: 0 !important;
@@ -57,8 +151,11 @@ Theme Core 2019 @Jeedom
   box-shadow: none !important;
   
 }
-.ui-input-text::after {
-  background-color: transparent !important;
+.eqLogic-widget,
+.scenario-widget {
+  display: inline-block;
+  vertical-align: top;
+  padding-bottom: 10px;
 }
 .eqLogic.eqLogic-widget .ui-input-text input,
 .eqLogic.eqLogic-widget textarea {
@@ -76,6 +173,9 @@ Theme Core 2019 @Jeedom
   padding: 0 !important;
   border: none !important;
   min-height: 32px
+}
+.eqLogic-widget .ui-btn{
+  margin-bottom : 5px;
 }
 
 .ui-controlgroup-controls,
@@ -143,7 +243,6 @@ Theme Core 2019 @Jeedom
 }
 .cmdName {
   font-size: 14px !important;
-  font-weight: bold !important;
 }
 .cmdName:first-letter {
   text-transform: uppercase;
@@ -176,12 +275,26 @@ p.state {
 .cmd.refresh {
   margin-top: 2px;
 }
+.cmd.refresh i {
+  font-size: 12px;
+  color: var(--sc-lightTxt-color) !important;
+}
+.cmd.refresh i:hover {
+  color: var(--linkHoverLight-color) !important;
+}
 .label {
   font-size: 12px !important;
   font-weight: normal;
 }
 .full-width-slider {
   width: 100% !important;
+}
+.full-width-slider input {
+  display: none;
+}
+.full-width-slider .ui-slider-track {
+  margin-left: 8px;
+  margin-right: 8px;
 }
 .objectSummaryParent {
   font-size: 15px;
@@ -221,14 +334,10 @@ p.state {
   background-color: var(--defaultBkg-color) !important;
   box-shadow: none;
 }
-.ui-page-theme-a .ui-btn.ui-btn-raised:hover {
-  color: var(--txt-color) !important;
-  background-color: var(--btnEq-default-color) !important;
-}
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
 }
-:not(.cmd) a.ui-btn-raised:not(.ui-mini) > i:not(.fas) {
+:not(.cmd) a.ui-btn-raised:not(.ui-mini) > i {
   font-size: 2.5em !important;
 }
 .ui-mini {
@@ -237,14 +346,17 @@ p.state {
   line-height: 15px !important;
 }
 
-.eqLogic.eqLogic-widget .controlgroup-textinput {
+.eqLogic.eqLogic-widget .controlgroup-textinput,
+.eqLogic.eqLogic-widget .controlgroup-textinput > input[type=text] {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   height: 32px !important;
   margin: 0;
 }
+
 .eqLogic.eqLogic-widget .ui-controlgroup-controls a.ui-btn {
-  height: 16px !important;
+  height: 32px !important;
+  box-sizing: border-box;
   margin: 0;
 }
 
@@ -269,11 +381,17 @@ legend {
   color: var(--link-color) !important;
   background-color: transparent !important;
   text-align: center;
-  margin-top: 0.7em !important;
-  margin-bottom: 0.2em !important;
+  margin: 0.7em 0 0.2em 0;
   border-bottom: none !important;
   font-size: 22px !important;
+  width : 100%;
 }
+legend,
+.ui-input-text input,
+.ui-input-search input {
+  text-shadow: none;
+}
+
 .nd2-card {
   margin: 0 !important;
 }
@@ -281,9 +399,6 @@ legend {
   margin: 0 !important;
   padding: 0 !important;
   color:  var(--link-color);
-}
-.eqLogic-widget i.fa-refresh {
-  margin-right: calc((var(--border-radius)/4) + 3px)  !important;
 }
 
 .ui-slider-track,
@@ -293,6 +408,13 @@ legend {
 }
 a.ui-slider-handle {
   border-radius: 1em !important;
+}
+
+.break{
+  position:absolute;
+  background:var(--txt-color);
+  width:20px;
+  height:3px;
 }
 
 /* select */
@@ -345,16 +467,18 @@ a.action.ui-btn {
   color: var(--txt-color) !important;
   background-color: rgb(var(--bg-color)) !important;
   font-size: 12.5px !important;
+  position: relative;
   opacity: .8;
   padding: 0 4px;
+  top: -3px;
 }
-#div_displayBattery .eqLogic-widget.critical .widget-name { 
+#div_displayBattery .eqLogic-widget.critical .widget-name {
   background-color: var(--al-danger-color);
 }
-#div_displayBattery .eqLogic-widget.warning .widget-name { 
+#div_displayBattery .eqLogic-widget.warning .widget-name {
   background-color: var(--al-warning-color);
 }
-#div_displayBattery .eqLogic-widget.good .widget-name { 
+#div_displayBattery .eqLogic-widget.good .widget-name {
   background-color: var(--al-success-color);
 }
 #div_displayBattery .eqLogic-widget .jeedom-batterie {
@@ -411,19 +535,19 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   height: 35px;
   width: calc(100% - 38px);
   z-index: 9000;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 #bt_eraseSearchInput {
   position: fixed;
   top: 65px;
   height: 35px;
-  right: -1px;
+  right: 0;
   line-height: 15px;
   margin: 0;
   background: var(--form-bg-color) !important;
   box-shadow: none;
   z-index: 9000;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 #bt_eraseSearchInput i {
   margin: 0 !important;
@@ -545,6 +669,10 @@ path.highcharts-graph {
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+.eqLogic-widget :after,
+.scenario-widget :after {
+  content: none;
 }
 
 #div_displayBattery .eqLogic-widget .widget-name span {

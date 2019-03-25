@@ -1,4 +1,4 @@
-<div style="width:90px;min-height:62px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div style="width:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <center>
     <div  class="cmdName" style="#hideCmdName#">#name_display#</div>
     <span class="iconCmd"></span>
@@ -7,9 +7,9 @@
     jeedom.cmd.update['#id#'] =function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
       if (_options.display_value == '1') {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="#icon_on#"></i>');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
       }else {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="#icon_off#"></i>');
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
       }
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});

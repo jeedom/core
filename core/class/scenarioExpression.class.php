@@ -130,11 +130,11 @@ class scenarioExpression {
 				$name = $scenario->getName();
 			}
 			$action = $_action['options']['action'];
-			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $action;
+			$return .= __('Scénario : ', __FILE__) . $name . ' <i class="fas fa-arrow-right"></i> ' . $action;
 		} elseif ($_action['cmd'] == 'variable') {
 			$name = $_action['options']['name'];
 			$value = $_action['options']['value'];
-			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fa fa-arrow-right"></i> ' . $value;
+			$return .= __('Variable : ', __FILE__) . $name . ' <i class="fas fa-arrow-right"></i> ' . $value;
 		} elseif ($_action['cmd'] == 'equipement') {
 			$name = eqLogic::toHumanReadable($_action['options']['eqLogic']);
 			$action = $_action['options']['action'];
@@ -1535,8 +1535,19 @@ class scenarioExpression {
 					}
 				} elseif ($this->getExpression() == 'tag') {
 					$tags = $scenario->getTags();
-					$tags['#' . $options['name'] . '#'] = $options['value'];
-					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $options['value']);
+					$options['value'] = self::setTags($options['value'], $scenario);
+					try {
+						$result = evaluate($options['value']);
+						if (!is_numeric($result)) {
+							$result = $options['value'];
+						}
+					} catch (Exception $ex) {
+						$result = $options['value'];
+					} catch (Error $ex) {
+						$result = $options['value'];
+					}
+					$tags['#' . $options['name'] . '#'] = $result;
+					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $result);
 					$scenario->setTags($tags);
 				} else {
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));

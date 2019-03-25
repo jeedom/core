@@ -98,12 +98,15 @@ function render(){
 			.attr('alignment-baseline','central')
 			.attr('text-anchor','middle')
 			.text(String.fromCodePoint(parseInt(node.data.icon, 16)));
+			if(node.data.fontfamily == 'Font Awesome 5 Free'){
+				img.attr('class','fas');
+			}
 			text.attr("y",node.data.texty*1.5);
 			text.attr("x",node.data.textx);
-          	if(typeof node.data.type != 'undefined' && node.data.type == 'Objet') {
-              text.attr("font-size", "1.5em");
-              img.attr("font-size", "3em");
-            }
+			if(typeof node.data.type != 'undefined' && node.data.type == 'Objet') {
+				text.attr("font-size", "1.5em");
+				img.attr("font-size", "3em");
+			}
 		}else if(typeof node.data.shape != 'undefined' && $.trim(node.data.shape) != ''){
 			img = Viva.Graph.svg(node.data.shape)
 			.attr("width", node.data.width)

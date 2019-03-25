@@ -17,32 +17,32 @@ if (is_array($scenarioListGroup)) {
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer">
-			<div class="cursor" id="bt_addScenario2" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>{{Ajouter}}</center></span>
+			<div class="cursor success" id="bt_addScenario2">
+				<center><i class="fas fa-plus-circle"></i></center>
+				<span><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
-				<div class="cursor" id="bt_changeAllScenarioState2" data-state="1" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-					<center><i class="fas fa-check" style="font-size : 5em;color:#5cb85c;"></i></center>
-					<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#5cb85c"><center>{{Activer scénarios}}</center></span>
+				<div class="cursor success" id="bt_changeAllScenarioState2" data-state="1">
+					<center><i class="fas fa-check"></i></center>
+					<span><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
-				<div class="cursor" id="bt_changeAllScenarioState2" data-state="0" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-					<center><i class="fas fa-times" style="font-size : 5em;color:#d9534f;"></i></center>
-					<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#d9534f"><center>{{Désactiver scénarios}}</center></span>
+				<div class="cursor danger" id="bt_changeAllScenarioState2" data-state="0">
+					<center><i class="fas fa-times"></i></center>
+					<span><center>{{Désactiver scénarios}}</center></span>
 				</div>
 			<?php } ?>
-			<div class="cursor" id="bt_displayScenarioVariable2" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-eye" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Voir variables}}</center></span>
+			<div class="cursor info " id="bt_displayScenarioVariable2">
+				<center><i class="fas fa-eye"></i></center>
+				<span><center>{{Voir variables}}</center></span>
 			</div>
-			<div class="cursor bt_showScenarioSummary" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-list" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Vue d'ensemble}}</center></span>
+			<div class="cursor info  bt_showScenarioSummary">
+				<center><i class="fas fa-list"></i></center>
+				<span><center>{{Vue d'ensemble}}</center></span>
 			</div>
-			<div class="cursor bt_showExpressionTest" style="text-align: center; height : 100px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 170px;margin-left : 10px;" >
-				<center><i class="fas fa-check" style="font-size : 5em;color:#337ab7;"></i></center>
-				<span style="position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7"><center>{{Testeur d'expression}}</center></span>
+			<div class="cursor info  bt_showExpressionTest">
+				<center><i class="fas fa-check"></i></center>
+				<span><center>{{Testeur d'expression}}</center></span>
 			</div>
 		</div>
 
@@ -51,13 +51,22 @@ if (is_array($scenarioListGroup)) {
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchScenario" />';
+			echo '<div class="input-group" style="margin-bottom:5px;">';
+				echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+				echo '</div>';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+				echo '</div>';
+			echo '</div>';
+
 			echo '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_none" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 				echo '</h3>';
 				echo '</div>';
 				echo '<div id="config_none" class="panel-collapse collapse">';
@@ -88,7 +97,7 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
 				$c = count($scenarios[$group['group']]);
 				echo $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 				echo '</h3>';
@@ -130,7 +139,7 @@ if (is_array($scenarioListGroup)) {
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
 				</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa fa-share"></i>
+				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fas fa-share"></i>
 				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i>
 				</a><a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.CTRL+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> {{Exécuter}}
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}

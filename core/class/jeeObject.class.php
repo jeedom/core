@@ -78,9 +78,30 @@ class jeeObject {
 		$sql .= ' ORDER BY position';
 		if ($_all === false) {
 			$sql .= ' LIMIT 1';
-			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			if(!is_object($result)){
+				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+				FROM object';
+				if ($_onlyVisible) {
+					$sql .= ' WHERE isVisible = 1';
+				}
+				$sql .= ' ORDER BY position';
+				$sql .= ' LIMIT 1';
+				$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+			}
+			return $result;
 		}
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if(count($result) == 0){
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM object';
+			if ($_onlyVisible) {
+				$sql .= ' WHERE isVisible = 1';
+			}
+			$sql .= ' ORDER BY position';
+			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		}
+		return $result;
 	}
 	
 	public static function buildTree($_object = null, $_visible = true) {

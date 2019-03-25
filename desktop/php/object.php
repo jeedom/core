@@ -4,41 +4,36 @@ if (!isConnect('admin')) {
 }
 sendVarToJs('jeedomBackgroundImg', 'core/img/background/object.png');
 sendVarToJS('select_id', init('id', '-1'));
-$allObject = jeeObject::buildTree(null, false);
+$allObject = jeeObject::all();
 ?>
 <div class="row row-overflow">
-	<div id="div_resumeObjectList" class="col-xs-12" style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="objectListContainer">
-			<div class="cursor" id="bt_addObject2" style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-				<br/>
+			<div class="cursor success" id="bt_addObject2">
 				<center>
-					<i class="fas fa-plus-circle" style="font-size : 5em;color:#94ca02;margin-top:5px;"></i>
+					<i class="fas fa-plus-circle"></i>
 				</center>
-				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#94ca02"><center>Ajouter</center></span>
+				<span><center>{{Ajouter}}</center></span>
 			</div>
-			<div class="cursor bt_showObjectSummary" style="text-align: center;  height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
-				<br/>
+			<div class="cursor bt_showObjectSummary info" >
 				<center>
-					<i class="fas fa-list" style="font-size : 5em;color:#337ab7;margin-top:5px;"></i>
+					<i class="fas fa-list"></i>
 				</center>
-				<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;color:#337ab7">{{Vue d'ensemble}}</span>
+				<span>{{Vue d'ensemble}}</span>
 			</div>
 		</div>
 		
-		<legend><i class="fas fa-picture-o"></i>  {{Mes objets}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" style="margin-bottom:4px;" id="in_searchObject" />
+		<legend><i class="fas fa-image"></i>  {{Mes objets}}</legend>
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchObject" style="margin-bottom:4px;"/>
 		<div class="objectListContainer">
 			<?php
 			foreach ($allObject as $object) {
-				echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\' style=" height : 160px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-				echo "<center style='margin-top:10px;'>";
-				echo str_replace('></i>', ' style="font-size : 5em;color:#767676;"></i>', $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>'));
-				echo "</center>";
-				echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center class="name">' . $object->getName() . '</center></span><br/>';
-				echo '<center style="font-size :0.7em">';
+				echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
+				echo $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>');
+				echo "<br/>";
+				echo '<span class="name">' . $object->getName() . '</span><br/>';
 				echo $object->getHtmlSummary();
-				echo "</center>";
 				echo '</div>';
 			}
 			?>
@@ -73,14 +68,19 @@ $allObject = jeeObject::buildTree(null, false);
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<select class="form-control objectAttr" data-l1key="father_id">
-									<option value="">{{Aucun}}</option>
-									<?php
-									foreach ($allObject as $object) {
-										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-									}
-									?>
-								</select>
+								<div class="dropdown dynDropdown">
+									<button class="btn btn-default dropdown-toggle objectAttr" type="button" data-toggle="dropdown" data-l1key="father_id">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li><a href="#" data-value="">{{Aucun}}</a></li>
+										<?php
+										foreach ($allObject as $object) {
+											echo '<li><a href="#" data-value="' . $object->getId() . '">' . $object->getName() . '</a></li>';
+										}
+										?>
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">

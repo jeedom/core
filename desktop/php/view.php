@@ -60,7 +60,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<i class='fa fa-picture-o cursor pull-left bt_displayView reportModeHidden hidden-xs' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i><br>
+<i class='far fa-image cursor pull-left bt_displayView reportModeHidden hidden-xs' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i><br>
 <legend>{{Vue}} <?php
 echo $view->getName();
 ?>

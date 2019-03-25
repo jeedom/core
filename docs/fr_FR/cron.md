@@ -74,7 +74,7 @@ page). Dans ce tableau, on retrouve :
 
 # Listener
 
-Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évenement (mise à jour d'une commande...)
+Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évènement (mise à jour d'une commande...)
 
 # Démons
 

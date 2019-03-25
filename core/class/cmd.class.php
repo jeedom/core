@@ -36,7 +36,6 @@ class cmd {
 	protected $configuration;
 	protected $template;
 	protected $display;
-	protected $html;
 	protected $value = null;
 	protected $isVisible = 1;
 	protected $alert;
@@ -437,11 +436,13 @@ class cmd {
 			return $_input;
 		}
 		$cmds = self::byIds($matches[1]);
-		foreach ($cmds as $cmd) {
-			if (isset($replace['#' . $cmd->getId() . '#'])) {
-				continue;
+		if(is_array($cmds) && count($cmds) > 0){
+			foreach ($cmds as $cmd) {
+				if (isset($replace['#' . $cmd->getId() . '#'])) {
+					continue;
+				}
+				$replace['#' . $cmd->getId() . '#'] = '#' . $cmd->getHumanName() . '#';
 			}
-			$replace['#' . $cmd->getId() . '#'] = '#' . $cmd->getHumanName() . '#';
 		}
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
@@ -606,7 +607,7 @@ class cmd {
 			if(count($informations) < 4){
 				continue;
 			}
-			if(stripos($informations[3],'icon') !== false){
+			if(stripos($informations[3],'tmpl') !== false){
 				continue;
 			}
 			if (!isset($return[$informations[1]])) {
@@ -649,6 +650,34 @@ class cmd {
 					$return[$type][$subtype][$name] = array('name' => $name, 'location' => 'core');
 				}
 			}
+		}
+		foreach (plugin::listPlugin(true,false,false) as $plugin) {
+			if (!method_exists($plugin->getId(), 'templateWidget')) {
+				continue;
+			}
+			$plugin_id = $plugin->getId();
+			foreach ($plugin_id::templateWidget() as $type => $data1) {
+				foreach ($data1 as $subtype => $data2) {
+					foreach ($data2 as $name => $data3) {
+						if(!isset($return[$type])){
+							$return[$type] = array();
+						}
+						if(!isset($return[$type][$subtype])){
+							$return[$type][$subtype] = array();
+						}
+						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId());
+					}
+				}
+			}
+		}
+		foreach (widgets::all() as $widgets) {
+			if(!isset($return[$widgets->getType()])){
+				$return[$widgets->getType()] = array();
+			}
+			if(!isset($return[$widgets->getType()][$widgets->getSubtype()])){
+				$return[$widgets->getType()][$widgets->getSubtype()] = array();
+			}
+			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom');
 		}
 		return $return;
 	}
@@ -723,7 +752,7 @@ class cmd {
 		
 		if ($_event['subtype'] == 'action') {
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:#F5A9BC;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['options'] . '<div/>'
 			. '</div>';
 		} else {
@@ -732,7 +761,7 @@ class cmd {
 				$backgroundColor = ($_event['value'] == 0 ? '#ff8693' : '#c1e5bd');
 			}
 			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fa fa-cogs pull-right cursor bt_configureCmd"></i></div>'
+			. '<div style="background-color:' . $backgroundColor . ';padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
 			. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">' . $_event['value'] . '<div/>'
 			. '</div>';
 		}
@@ -1039,21 +1068,53 @@ class cmd {
 		return $value;
 	}
 	
-	public function getWidgetTemplateCode($_version = 'dashboard', $_noCustom = false) {
+	public function getWidgetTemplateCode($_version = 'dashboard') {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$version = jeedom::versionAlias($_version);
-		if (!$_noCustom && $this->getHtml('enable', 0) == 1 && $this->getHtml($_version) != '') {
-			return $this->getHtml($_version);
-		}
 		$replace = null;
-		if(isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()]) &&
-		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()]) &&
-		isset($JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')])){
-			$template_conf = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'][$this->getType()][$this->getSubType()][$this->getTemplate($version, 'default')];
+		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
+		$widget_name = $this->getTemplate($version, 'default');
+		if(strpos($this->getTemplate($version, 'default'),'::') !== false){
+			$name = explode('::',$this->getTemplate($version, 'default'));
+			$widget_name = $name[1];
+			if($name[0] == 'custom'){
+				$widget = widgets::byTypeSubtypeAndName($this->getType(),$this->getSubType(),$name[1]);
+				if(is_object($widget)){
+					$widget_template = array(
+						$this->getType() => array(
+							$this->getSubType() => array(
+								$name[1] => array(
+									'replace' => $widget->getReplace(),
+									'test' => $widget->getTest(),
+									'template' => $widget->getTemplate()
+								)
+							)
+						)
+					);
+				}
+			}elseif($name[0] != 'core'){
+				$plugin_id  = $name[0];
+				if (method_exists($plugin_id, 'templateWidget')) {
+					$widget_template = $plugin_id::templateWidget();
+				}
+			}
+		}
+		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
+		if(isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])){
+			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
-			$replace = $template_conf['replace'];
-		}else{
-			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $this->getTemplate($version, 'default');
+			if(isset($template_conf['replace'])){
+				$replace = $template_conf['replace'];
+			}else{
+				$replace = array();
+			}
+			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
+				$replace['#test#'] = '';
+				foreach ($template_conf['test'] as &$test) {
+					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
+					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.str_replace("'","\'",$test['state']).'\'}';
+				}
+			}
 		}
 		$template = '';
 		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
@@ -1186,11 +1247,11 @@ class cmd {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 						$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
 						if ($tendance > config::byKey('historyCalculTendanceThresholddMax')) {
-							$replace['#tendance#'] = 'fa fa-arrow-up';
+							$replace['#tendance#'] = 'fas fa-arrow-up';
 						} else if ($tendance < config::byKey('historyCalculTendanceThresholddMin')) {
-							$replace['#tendance#'] = 'fa fa-arrow-down';
+							$replace['#tendance#'] = 'fas fa-arrow-down';
 						} else {
-							$replace['#tendance#'] = 'fa fa-minus';
+							$replace['#tendance#'] = 'fas fa-minus';
 						}
 					}
 				}
@@ -1630,6 +1691,13 @@ class cmd {
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 	
+	public function getTemporalAvg($_startTime, $_endTime) {
+		if ($this->getType() != 'info' || $this->getType() == 'string') {
+			return array();
+		}
+		return history::getTemporalAvg($this->getId(), $_startTime, $_endTime);
+	}
+	
 	public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
 	}
@@ -1799,7 +1867,7 @@ class cmd {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper-o');
+		$icon = ($this->getType() == 'info') ? findCodeIcon('fa-eye') : findCodeIcon('fa-hand-paper');
 		$_data['node']['cmd' . $this->getId()] = array(
 			'id' => 'cmd' . $this->getId(),
 			'name' => $this->getName(),
@@ -1968,22 +2036,6 @@ class cmd {
 	
 	public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
-	}
-	
-	public function getHtml($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->html, $_key, $_default);
-	}
-	
-	public function setHtml($_key, $_value) {
-		if (in_array($_key, array('dashboard', 'mobile', 'dview', 'mview', 'dplan')) && $this->getWidgetTemplateCode($_key, true) == $_value) {
-			$_value = '';
-		}
-		if ($this->getHtml($_key) != $_value) {
-			$this->_needRefreshWidget = true;
-			$this->_changed = true;
-		}
-		$this->html = utils::setJsonAttr($this->html, $_key, $_value);
-		return $this;
 	}
 	
 	public function getTemplate($_key = '', $_default = '') {

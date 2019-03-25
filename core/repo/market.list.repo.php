@@ -168,19 +168,14 @@ function displayWidgetSubtype($_name) {
 		<?php if (init('type', 'plugin') == 'plugin') {?>
 			<div class="input-group input-group-sm">
 				<span class="input-group-btn">
-					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fa fa-times"></i></a>
+					<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('cost') == 'free') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'free'); ?>">{{Gratuit}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('cost') == 'paying') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('cost', 'paying'); ?>">{{Payant}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('cost', ''); ?>"><i class="fas fa-times"></i></a>
 				</span>
 			</div>
 		<?php }
 		?>
 		<div class="input-group input-group-sm">
 			<span class="input-group-btn">
-				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
-			</span>
-		</div>
-		<div class="input-group input-group-sm">
-			<span class="input-group-btn">
-				<a class="btn btn-default bt_installFilter roundedLeft" data-state="-1">{{Installé}}</a><a class="btn btn-default bt_installFilter" data-state="1">{{Non installé}}</a><a class="btn btn-default bt_installFilter roundedRight" data-state="0"><i class="fa fa-times"></i></a>
+				<a class="btn btn-default bt_pluginFilter roundedLeft <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a><a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a><a class="btn btn-default bt_pluginFilter roundedRight" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fas fa-times"></i></a>
 			</span>
 		</div>
 		<div class="input-group input-group-sm">
@@ -213,7 +208,7 @@ function displayWidgetSubtype($_name) {
 					?>
 				</select>
 				<input class="form-control input-sm" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
-				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fa fa-search"></i></a>
+				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
 			</span>
 		</div>
 		<?php
@@ -221,9 +216,9 @@ function displayWidgetSubtype($_name) {
 			echo '<span class="label label-info pull-right">' . config::byKey('market::username');
 			try {
 				repo_market::test();
-				echo ' <i class="fa fa-check"></i>';
+				echo ' <i class="fas fa-check"></i>';
 			} catch (Exception $e) {
-				echo ' <i class="fa fa-times"></i>';
+				echo ' <i class="fas fa-times"></i>';
 			}
 			echo '</span>';
 		}
@@ -232,7 +227,7 @@ function displayWidgetSubtype($_name) {
 </div>
 <?php
 if ($name !== null && strpos($name, '$') !== false) {
-	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fa fa-arrow-circle-left"></i> {{Retour}}</a>';
+	echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fas fa-arrow-circle-left"></i> {{Retour}}</a>';
 }
 ?>
 
@@ -267,13 +262,13 @@ if ($name !== null && strpos($name, '$') !== false) {
 			$first = false;
 			$nCategory++;
 		}
-
+		
 		$install = 'notInstall';
 		if (!is_object($update)) {
 			$install = 'install';
 		}
 		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 220px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-
+		
 		if ($market->getType() != 'widget') {
 			if ($market->getCertification() == 'Officiel') {
 				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Officiel.png" /></div>';
@@ -288,7 +283,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
 			}
 		}
-
+		
 		if ($market->getType() == 'widget') {
 			if (strpos($market->getName(), 'mobile.') !== false) {
 				echo '<i class="fa fa-mobile" style="position: absolute;top: 15px;left: 21px;" title="{{Widget pour la version mobile}}"></i>';
@@ -297,9 +292,9 @@ if ($name !== null && strpos($name, '$') !== false) {
 			}
 		}
 		if (is_object($update)) {
-			echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
+			echo '<i class="fas fa-check" style="position : absolute; right : 5px;"></i>';
 		}
-
+		
 		echo "<br/><center>";
 		$default_image = 'core/img/no_image.gif';
 		switch ($market->getType()) {
@@ -313,20 +308,20 @@ if ($name !== null && strpos($name, '$') !== false) {
 			$default_image = 'core/img/no-image-script.png';
 			break;
 		}
-
+		
 		$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 		if ($market->getType() == 'widget') {
 			echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" style="margin-left: 20px;border: 1px solid #C5C5C5;border-radius:5px; padding: 3px" />';
 		} else {
 			echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" />';
 		}
-
+		
 		echo "</center>";
-
+		
 		echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
-
+		
 		echo '<span style="position : absolute;bottom : 25px;right : 12px;font-size : 0.7em;color:#999999;"><span style="font-size : 0.8em;">{{par}}</span> ' . $market->getAuthor() . '</span>';
-
+		
 		$note = $market->getRating();
 		echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
 		for ($i = 1; $i < 6; $i++) {
@@ -340,7 +335,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 		if ($market->getCost() > 0) {
 			echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
 			if ($market->getPurchase() == 1) {
-				echo ' <i class="fa fa-check-circle"></i>';
+				echo ' <i class="fas fa-check-circle"></i>';
 			} else {
 				if ($market->getCost() != $market->getRealCost()) {
 					echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
@@ -371,43 +366,43 @@ if ($name !== null && strpos($name, '$') !== false) {
 <script>
 $(function () {
 	$('.pluginContainer').packery();
-
+	
 	$("img.lazy").lazyload({
 		event: "sporty"
 	});
 	$("img.lazy").trigger("sporty");
 	initTableSorter();
-
+	
 	setTimeout(function () {
 		$('#table_market tbody tr.install').hide();
 	}, 500);
-
+	
 	$('.bt_pluginFilter').on('click', function () {
 		$('#md_modal').load($(this).attr('data-href'));
 	});
-
+	
 	$('#sel_categorie').on('change', function () {
 		$('#md_modal').load($(this).attr('data-href') + '&categorie=' + encodeURI($(this).value()));
 	});
-
+	
 	$('#bt_search').on('click', function () {
 		$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
 	});
-
+	
 	$('#in_search').keypress(function (e) {
 		if (e.which == 13) {
 			$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
 		}
 	});
-
+	
 	$('#bt_returnMarketList').on('click', function () {
 		$('#md_modal').load($(this).attr('data-href'));
 	});
-
+	
 	$('.marketMultiple').on('click',function(){
 		$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI('.'+$(this).attr('data-market_name')));
 	});
-
+	
 	$('.bt_installFilter').on('click', function () {
 		$('.bt_installFilter').removeClass('btn-primary');
 		$('.pluginContainer').show();
@@ -436,7 +431,7 @@ $(function () {
 			}
 		});
 	});
-
+	
 	$('.market').on('click', function () {
 		$('#md_modal2').dialog({title: "{{Market Jeedom}}"});
 		$('#md_modal2').load('index.php?v=d&modal=update.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')+'&repo=market').dialog('open');
