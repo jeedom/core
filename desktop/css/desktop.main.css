@@ -374,7 +374,7 @@ div.cmd > div.center-block {
 .verticalAlign {
   position: relative;
   transform: translateY(calc(-50%));
-  top: calc(50% - 8px);
+  top: 50%;
   z-index: -1;
 }
 .verticalAlign table.tableCmd {
