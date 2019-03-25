@@ -51,13 +51,22 @@ if (is_array($scenarioListGroup)) {
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
 		} else {
-			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchScenario" />';
+			echo '<div class="input-group" style="margin-bottom:5px;">';
+				echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+				echo '</div>';
+				echo '<div class="input-group-btn">';
+						echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+				echo '</div>';
+			echo '</div>';
+
 			echo '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_none" style="text-decoration:none;">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">Aucun - ' . count($scenarios[-1]) . ' scénario(s)</a>';
 				echo '</h3>';
 				echo '</div>';
 				echo '<div id="config_none" class="panel-collapse collapse">';
@@ -88,7 +97,7 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
 				$c = count($scenarios[$group['group']]);
 				echo $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 				echo '</h3>';
