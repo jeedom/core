@@ -461,10 +461,12 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 
 div[class*="DisplayCard"] {
-  height: 135px !important;
+  height: 138px !important;
   overflow: hidden;
 }
-
+.eqLogicThumbnailContainer .eqLogicDisplayCard {
+  height: 175px !important;
+}
 .scenarioDisplayCard.cursor {
   margin-left: 0 !important;
   position: absolute;
@@ -521,7 +523,7 @@ div[class*="DisplayCard"] .name > .label {
   position: relative;
   top: 3px !important;
 }
-.eqLogicDisplayCard > span.name > center > strong {
+.eqLogicDisplayCard > span.name strong {
   position: relative;
   top: 5px !important;
   display: block;
