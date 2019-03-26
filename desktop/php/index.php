@@ -166,6 +166,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
+
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css" rel="stylesheet">';
