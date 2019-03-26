@@ -1,3 +1,7 @@
+<?php
+	include_file('3rdparty', 'animate/animate', 'css');
+	include_file('3rdparty', 'animate/animate', 'js');
+?>
 <div id="wrap">
   <div style="display: none;width : 100%" id="div_alert"></div>
   <div class="bodyLogin">
