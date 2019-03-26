@@ -636,6 +636,7 @@ class eqLogic {
 	
 	public function preToHtml($_version = 'dashboard', $_default = array(), $_noCache = false) {
 		global $JEEDOM_INTERNAL_CONFIG;
+		$_version = jeedom::versionAlias($_version);
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
@@ -645,13 +646,9 @@ class eqLogic {
 		if (!$this->getIsEnable()) {
 			return '';
 		}
-		if ($this->getDisplay('showOn' . $_version, 1) == 0) {
-			return '';
-		}
-		$_version = jeedom::versionAlias($_version);
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
-			if ($mc->getValue() != '') {
+			if (trim($mc->getValue()) != '') {
 				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
