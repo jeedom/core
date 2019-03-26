@@ -85,7 +85,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				),
 				'slider'=>array(
 					'light' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
-					'shutter' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-volet-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-volet-ouvert\'></i>')),
 				)
 			),
 			'info' => array(
