@@ -327,6 +327,7 @@ div.cmd > div.center-block {
   padding: 0 !important;
   width: 100% !important;
 }
+
 .cmd-widget {
   display: inline-block;
   position : relative;
@@ -423,8 +424,8 @@ div[class*="ListContainer"] > div.cursor,
   font-size: 14px !important;
 }
 
-div[class*="ListContainer"] i,
-.eqLogicThumbnailContainer  i {
+div[class*="ListContainer"] .cursor i,
+.eqLogicThumbnailContainer .cursor i {
   font-size: 38px !important;
   font-weight: 900;
 }
@@ -447,7 +448,7 @@ div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) 
   padding-top: 0!important;
   text-align: center;
 }
-div[class*="ListContainer"] div.cursor,
+div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div.cursor,
 .eqLogicDisplayCard div.cursor,
 .eqLogicThumbnailContainer div.cursor {
   margin-bottom: 5px !important;
@@ -571,7 +572,7 @@ div[data-market_type=plugin]:hover {
   position: relative;
   font-family: "Roboto";
   color: var(--txt-color);
-  width: 180px !important;
+  width: 190px !important;
   height: 155px !important;
 }
 #battery .eqLogic-widget .widget-name {
@@ -629,7 +630,7 @@ div[data-market_type=plugin]:hover {
 #battery .eqLogic-widget .batteryTime {
   clear: left;
   padding-left: 5px;
-  font-size: 14px;
+  font-size: 12px;
 }
 #battery .eqLogic-widget .batteryTime i {
   font-size: 16px !important;
