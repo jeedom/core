@@ -202,7 +202,7 @@ usort($list, function ($a, $b) {
 							echo '</td>';
 							echo '<td>';
 							if ($eqLogic->getConfiguration('battery_danger_threshold', '') != '') {
-								echo '<label class="col-xs-6 eqLogicAttr label label-danger" style="font-size : 0.8em">{{Danger}} ' . $eqLogic->getConfiguration('battery_danger_threshold', '') . ' % </label>';
+								echo '<label class="col-xs-6 label label-danger" style="font-size : 0.8em">{{Danger}} ' . $eqLogic->getConfiguration('battery_danger_threshold', '') . ' % </label>';
 							}
 							if ($eqLogic->getConfiguration('battery_warning_threshold', '') != '') {
 								echo '<label class="col-xs-6 label label-warning" style="font-size : 0.8em;">{{Warning}} ' . $eqLogic->getConfiguration('battery_warning_threshold', '') . ' % </label>';
