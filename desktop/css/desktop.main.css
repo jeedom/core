@@ -236,8 +236,8 @@ legend {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
   position: relative;
-  top: -5px;
-  padding: 0 0.5em !important;
+  padding: 2px 5px !important;
+  display: block;
 }
 
 .input-group-addon {
