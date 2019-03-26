@@ -2,6 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
+	include_file('3rdparty', 'animate/animate', 'css');
+	include_file('3rdparty', 'animate/animate', 'js');
 ?>
 <div id="contenu">
 	<div id="step1">
