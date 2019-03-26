@@ -1,11 +1,11 @@
-<div style="min-width:115px;  position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div style="width:95px;" class="hgauge cursor #history#" data-cmd_id="#id#" >
+<div class="tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+  <div class="horizontalWidget hgauge cursor #history#" data-cmd_id="#id#" >
     <div class="cmdName" style="#hideCmdName#">#name_display#</div>
     <div class="hgauge-bckg"></div>
     <div class="hgauge-value"></div>
     <div class="hgauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
-  <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block" class="cmdStats">
+  <div style="#displayHistory#" class="col-xs-12 center-block" class="cmdStats">
     <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <script>
@@ -20,10 +20,6 @@
       $('.cmd[data-cmd_uid=#uid#] .hgauge-state strong').first().text(_options.display_value)
     }
 
-    if (is_numeric('#state#')) {
-      jeedom.cmd.update['#id#']({display_value:'#state#'});
-    } else {
-      $('.cmd[data-cmd_uid=#uid#] .hgauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>')
-    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
   </script>
 </div>

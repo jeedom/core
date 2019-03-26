@@ -217,16 +217,19 @@ legend {
   width: 90px;
   height: 90px;
   padding: 0;
+  top: 0 !important;
 }
 .horizontalWidget {
-  width: 115px;
+  width: 120px;
   height: 60px;
   padding: 0;
+  top: 0 !important;
 }
 .verticalWidget {
   width: 75px;
-  height: 80px;
+  height: 75px;
   padding: 0;
+  top: 0 !important;
 }
 
 .timeCmd.label {
@@ -2220,9 +2223,9 @@ path.highcharts-graph {
 }
 
 .shuttergauge-bckg {
-  width: 75%;
-  height: calc(100% - 38px);
-  margin-left: -38%;
+  width: 55%;
+  height: calc(100% - 37px);
+  margin-left: -29%;
   position: absolute;
   bottom: 18px;
   border-top: 6px solid var(--el-defaultColor);
