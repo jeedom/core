@@ -2233,6 +2233,13 @@ path.highcharts-graph {
   border-right: 4px solid var(--el-defaultColor);
 }
 
+.shuttergauge .slider {
+  position: absolute;
+  width: 80%;
+  bottom: -15px;
+  left: 6%;
+}
+
 .hgauge-value {
   margin-top: -1px;
   height: 10px;
