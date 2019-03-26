@@ -82,7 +82,7 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->copy()->getHtml(init('version', 'dplan')));
+		ajax::success($plan->copy()->getHtml(init('version', 'dashboard')));
 	}
 	
 	if (init('action') == 'get') {

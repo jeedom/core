@@ -367,7 +367,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-
+  
   $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
@@ -470,7 +470,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
           var info = getObjectInfo($(this));
           jeedom.plan.copy({
             id: $(this).attr('data-plan_id'),
-            version: 'dplan',
+            version: 'dashboard',
             error: function (error) {
               $('#div_alert').showAlert({message: error.message, level: 'danger'});
             },
@@ -478,7 +478,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
               displayObject(data.plan,data.html);
             }
           });
-
+          
         }
       },
       lock: {
@@ -497,7 +497,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-
+  
 }
 /**************************************init*********************************************/
 displayPlan();
@@ -541,7 +541,7 @@ $('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnF
     var el = $(this);
     jeedom.eqLogic.toHtml({
       id : el.attr('data-eqLogic_id'),
-      version : 'dplan',
+      version : 'dashboard',
       global:false,
       success:function(data){
         var html = $(data.html).css('position','absolute');
@@ -565,7 +565,7 @@ $('#div_pageContainer').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic',
     var el = $(this);
     jeedom.eqLogic.toHtml({
       id : el.attr('data-eqLogic_id'),
-      version : 'dplan',
+      version : 'dashboard',
       global:false,
       success:function(data){
         el.empty().append($(data.html).css('position','absolute'));
@@ -700,7 +700,7 @@ function initEditOption(_state) {
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true);
     }catch (e) {
-
+      
     }
   }else{
     try{
@@ -711,13 +711,13 @@ function initEditOption(_state) {
         $(this).attr('href', $(this).attr('data-href'));
       });
     }catch (e) {
-
+      
     }
     $('.div_grid').hide();
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false);
     }catch (e) {
-
+      
     }
   }
 }
@@ -726,7 +726,7 @@ function addObject(_plan){
   _plan.planHeader_id = planHeader_id;
   jeedom.plan.create({
     plan: _plan,
-    version: 'dplan',
+    version: 'dashboard',
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -812,7 +812,7 @@ function displayPlan(_code) {
           try {
             $('.div_displayObject').append(objects);
           }catch(e) {
-
+            
           }
           initEditOption(editOption.state);
           initReportMode();

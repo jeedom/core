@@ -45,7 +45,7 @@ function fullScreen(_mode) {
 if (view_id != '') {
   jeedom.view.toHtml({
     id: view_id,
-    version: 'dview',
+    version: 'dashboard',
     useCache: true,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});

@@ -901,14 +901,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}');
     }
   }
-  
-  editorCodeDview = null;
-  editorCodeDplan = null;
-  editorCodeMobile = null;
-  editorCodeMview = null;
-  editorCodeDashboard = null;
-  
-  
   $('#bt_cmdConfigureSave').on('click', function () {
     var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
     if (!isset(cmd.display)) {

@@ -21,7 +21,7 @@ function initView(_view_id) {
     jeedom.history.chart = [];
     jeedom.view.toHtml({
       id: _view_id,
-      version: 'mview',
+      version: 'mobile',
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },

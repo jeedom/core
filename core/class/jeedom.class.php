@@ -1054,21 +1054,10 @@ class jeedom {
 	/******************************************UTILS******************************************************/
 	
 	public static function versionAlias($_version, $_lightMode = true) {
-		if (!$_lightMode) {
-			if ($_version == 'dplan') {
-				return 'plan';
-			} else if ($_version == 'dview') {
-				return 'view';
-			} else if ($_version == 'mview') {
-				return 'view';
-			}
+		if($_version == 'mobile' || $_version == 'mview'){
+			return 'mobile';
 		}
-		$alias = array(
-			'mview' => 'mobile',
-			'dview' => 'dashboard',
-			'dplan' => 'dashboard',
-		);
-		return (isset($alias[$_version])) ? $alias[$_version] : $_version;
+		return 'dashboard';
 	}
 	
 	public static function toHumanReadable($_input) {

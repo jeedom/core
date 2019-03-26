@@ -117,7 +117,7 @@ class view {
 		return $return;
 	}
 	
-	public function toAjax($_version = 'dview', $_html = false) {
+	public function toAjax($_version = 'dashboard', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach ($this->getViewZone() as $viewZone) {

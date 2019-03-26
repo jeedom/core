@@ -812,7 +812,7 @@ class eqLogic {
 	
 	public function emptyCacheWidget() {
 		$users = user::all();
-		foreach (array('dashboard', 'mobile', 'mview', 'dview', 'dplan', 'view', 'plan') as $version) {
+		foreach (array('dashboard', 'mobile') as $version) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
 			$mc->remove();
 			foreach ($users as $user) {

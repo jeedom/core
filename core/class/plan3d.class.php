@@ -195,7 +195,7 @@ class plan3d {
 		return null;
 	}
 	
-	public function getHtml($_version = 'dplan') {
+	public function getHtml($_version = 'dashboard') {
 		if (in_array($this->getLink_type(), array('eqLogic', 'cmd', 'scenario'))) {
 			$link = $this->getLink();
 			if (!is_object($link)) {
