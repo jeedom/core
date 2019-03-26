@@ -1,6 +1,6 @@
-<div style="min-width:75px;  position:relative; top:-7px; padding:0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div style="width:55px; height:85px;" class="vgauge cursor #history#" data-cmd_id="#id#" >
-    <div  class="cmdName" style="#hideCmdName#">#name_display#</div>
+<div class="tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+  <div class="verticalWidget vgauge cursor #history#" data-cmd_id="#id#" >
+    <div class="cmdName" style="#hideCmdName#">#name_display#</div>
     <div class="vgauge-chart">
       <div class="vgauge-bckg">
         <div class="vgauge-value"></div>
@@ -8,7 +8,7 @@
       <div class="vgauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
     </div>
   </div>
-  <div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block" class="cmdStats">
+  <div style="#displayHistory#" class="col-xs-12 center-block" class="cmdStats">
     <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <script>
@@ -19,10 +19,6 @@
       $('.cmd[data-cmd_uid=#uid#] .vgauge-state strong').first().text(_options.display_value)
     }
 
-    if (is_numeric('#state#')) {
-      jeedom.cmd.update['#id#']({display_value:'#state#'});
-    } else {
-      $('.cmd[data-cmd_uid=#uid#] .vgauge').append('<center><span class="label label-danger" style="margin-top : 5px;">#state#</span></center>')
-    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
   </script>
 </div>
