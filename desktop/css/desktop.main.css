@@ -19,8 +19,8 @@ html {
 
 body {
   font-family: 'Roboto' !important;
-  font-size: 1.42em;
-  line-height: 1.42857143;
+  font-size: 14px;
+  line-height: 1.42;
   padding-top: 50px;
   height: 100%;
   box-sizing: border-box;
@@ -785,7 +785,11 @@ li.alert-info.eqLogic {
   outline: none;
 }
 .ui-slider-horizontal{ height: 5px !important;}
-.ui-slider{ background: var(--el-defaultColor) !important; border:none !important;}
+.ui-slider{
+  margin: 5px 5px 5px 5px!important;
+  background: var(--el-defaultColor) !important;
+  border:none !important;
+}
 
 .action_colorpicker_change {
   width: 35px !important;
@@ -1208,6 +1212,7 @@ input.knob {
   color: var(--txt-color) !important;
 }
 .input-sm {
+  font-size: 12px !important;
   line-height: 16px !important;
   height: 28px !important;
 }
