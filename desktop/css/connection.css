@@ -9,6 +9,7 @@ body{
 	display: table;
 	position: relative;
 	transition: all .5s;
+
 }
 .veen > div {
 	display: table-cell;
@@ -24,6 +25,7 @@ body{
 	position: relative;
 	color: #FFF;
 	transition: all .25s;
+
 }
 .veen button.dark{
 	border-color: #93cc01;
@@ -35,6 +37,7 @@ body{
 }
 .veen .splits p{
 	font-size: 15px;
+
 }
 .veen button:active{
 	box-shadow: none;
@@ -117,7 +120,7 @@ body{
 }
 .veen .wrapper input:focus{
 	outline: none;
-	border-color: #ff4931;
+	border-color: #e0b722;
 }
 .veen > .wrapper.move{
 	left: 45%;
@@ -127,7 +130,8 @@ body{
 }
 
 #cb_storeConnection {
-	right: 10px
+	right: 10px !important;
+	top: 0 !important;
 }
 
 .btn_help{
@@ -181,7 +185,7 @@ select:-webkit-autofill {
 	}
 	.splits{
 		width: 50%;
-		background: #fff;
+		background: #fff !important;
 		float: left;
 	}
 	.splits button{
