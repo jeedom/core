@@ -648,6 +648,7 @@ class eqLogic {
 		if ($this->getDisplay('showOn' . $_version, 1) == 0) {
 			return '';
 		}
+		
 		if (!$_noCache) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if ($mc->getValue() != '') {

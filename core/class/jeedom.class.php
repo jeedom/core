@@ -1054,6 +1054,12 @@ class jeedom {
 	/******************************************UTILS******************************************************/
 	
 	public static function versionAlias($_version, $_lightMode = true) {
+		if($_version == 'mview'){
+			return 'mobile';
+		}
+		if($_version == 'dview' || $_version == 'dplan' || $_version == 'plan' || $_version == 'view'){
+			return 'dashboard';
+		}
 		return $_version;
 	}
 	
