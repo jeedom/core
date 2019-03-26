@@ -163,11 +163,6 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<?php
 						foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
 							echo '<th style="width:20%">{{' . $value['name'] . '}}';
-							if (in_array($key, array('plan', 'view'))) {
-								echo '<i class="fas fa-eye pull-right cursor bt_displayWidget" data-version="d' . $key . '" aria-hidden="true"></i>';
-							} elseif ($key == 'dashboard') {
-								echo '<i class="fas fa-eye pull-right cursor bt_displayWidget" data-version="' . $key . '" aria-hidden="true"></i>';
-							}
 							echo '</th>';
 						}
 						?>
@@ -309,7 +304,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-
+		
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -446,7 +441,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-
+						
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -562,7 +557,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-
+	
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
