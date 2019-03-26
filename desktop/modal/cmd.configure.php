@@ -568,7 +568,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               ?>
               <tr>
                 <td>{{Widget}}</td>
-                <td colspan="3">
+                <td>
                   <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
                     ?>
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
