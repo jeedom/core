@@ -645,8 +645,7 @@ class eqLogic {
 		if (!$this->getIsEnable()) {
 			return '';
 		}
-		$version = jeedom::versionAlias($_version, false);
-		if ($this->getDisplay('showOn' . $version, 1) == 0) {
+		if ($this->getDisplay('showOn' . $_version, 1) == 0) {
 			return '';
 		}
 		if (!$_noCache) {
@@ -699,14 +698,14 @@ class eqLogic {
 				}
 			}
 		}
-		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $version, 1) == 1) {
+		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $_version, 1) == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
-		if ($this->getDisplay('showObjectNameOn' . $version, 0) == 1) {
+		if ($this->getDisplay('showObjectNameOn' . $_version, 0) == 1) {
 			$object = $this->getObject();
 			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
 		}
-		if ($this->getDisplay('showNameOn' . $version, 1) == 0) {
+		if ($this->getDisplay('showNameOn' . $_version, 1) == 0) {
 			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
@@ -718,7 +717,7 @@ class eqLogic {
 				if (!isset($parameter['type'])) {
 					continue;
 				}
-				if (is_array($parameter['allow_displayType']) && !in_array($version, $parameter['allow_displayType'])) {
+				if (is_array($parameter['allow_displayType']) && !in_array($_version, $parameter['allow_displayType'])) {
 					continue;
 				}
 				if ($parameter['allow_displayType'] === false) {
@@ -728,20 +727,20 @@ class eqLogic {
 				if (isset($parameter['default'])) {
 					$default = $parameter['default'];
 				}
-				if ($this->getDisplay('advanceWidgetParameter' . $pKey . $version . '-default', 1) == 1) {
+				if ($this->getDisplay('advanceWidgetParameter' . $pKey . $_version . '-default', 1) == 1) {
 					$replace['#' . $pKey . '#'] = $default;
 					continue;
 				}
 				switch ($parameter['type']) {
 					case 'color':
-					if ($this->getDisplay('advanceWidgetParameter' . $pKey . $version . '-transparent', 0) == 1) {
+					if ($this->getDisplay('advanceWidgetParameter' . $pKey . $_version . '-transparent', 0) == 1) {
 						$replace['#' . $pKey . '#'] = 'transparent';
 					} else {
-						$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $version, $default);
+						$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $_version, $default);
 					}
 					break;
 					default:
-					$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $version, $default);
+					$replace['#' . $pKey . '#'] = $this->getDisplay('advanceWidgetParameter' . $pKey . $_version, $default);
 					break;
 				}
 			}
@@ -880,15 +879,6 @@ class eqLogic {
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
-			}
-			if ($this->getDisplay('showObjectNameOnview', -1) == -1) {
-				$this->setDisplay('showObjectNameOnview', 1);
-			}
-			if ($this->getDisplay('showObjectNameOndview', -1) == -1) {
-				$this->setDisplay('showObjectNameOndview', 1);
-			}
-			if ($this->getDisplay('showObjectNameOnmview', -1) == -1) {
-				$this->setDisplay('showObjectNameOnmview', 1);
 			}
 			if ($this->getDisplay('height', -1) == -1 || intval($this->getDisplay('height')) < 2) {
 				$this->setDisplay('height', 'auto');

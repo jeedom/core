@@ -1054,10 +1054,7 @@ class jeedom {
 	/******************************************UTILS******************************************************/
 	
 	public static function versionAlias($_version, $_lightMode = true) {
-		if($_version == 'mobile' || $_version == 'mview'){
-			return 'mobile';
-		}
-		return 'dashboard';
+		return $_version;
 	}
 	
 	public static function toHumanReadable($_input) {
