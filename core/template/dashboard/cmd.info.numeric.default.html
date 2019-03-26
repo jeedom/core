@@ -1,6 +1,6 @@
-<div style="min-width: 100px;padding: 0px;" class="container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div style="width:95px;height : 95px;" class="gauge cursor #history#" data-cmd_id="#id#" ></div>
-  <div style="#displayHistory#" class="col-xs-12 center-block" class="cmdStats">
+<div class="container-fluid tooltips cmd cmd-widget squareWidget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+  <div class="gauge cursor #history#" data-cmd_id="#id#" ></div>
+  <div style="#displayHistory#" class="col-xs-12 center-block cmdStats">
     <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <script>
@@ -37,8 +37,8 @@
         },
         title: null,
         pane: {
-          center: ['50%', '65%'],
-          size: '88%',
+          center: ['50%', '100%'],
+          size: 90,
           startAngle: - 90,
           endAngle: 90,
           background: {
@@ -63,20 +63,20 @@
           labels : {enabled: false},
           tickWidth: 0,
           title: {
-            y: - 70
+            y: - 50
           },
           min: #minValue#,
           max: #maxValue#,
           title: {
             text: '<span style="#hideCmdName#">#name_display#</span>',
-            y: - 28
+            y: - 33
           }
         },
         labels : {enabled: false},
         plotOptions: {
           solidgauge: {
             dataLabels: {
-              y: -18,
+              y: -21,
               borderWidth: 0,
               useHTML: true
             }
