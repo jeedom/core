@@ -180,7 +180,7 @@ function displayWidgetSubtype($_name) {
 		</div>
 		<div class="input-group input-group-sm">
 			<span class="input-group-btn">
-				<select class="form-control input-sm roundedLeft" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
+				<select class="form-control roundedLeft" id="sel_categorie" data-href='<?php echo buildUrl('categorie', ''); ?>'>
 					<?php
 					if (init('categorie') == '') {
 						echo '<option value="" selected>{{Top et nouveautés}}</option>';
@@ -207,7 +207,7 @@ function displayWidgetSubtype($_name) {
 					}
 					?>
 				</select>
-				<input class="form-control input-sm" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
+				<input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
 				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
 			</span>
 		</div>
