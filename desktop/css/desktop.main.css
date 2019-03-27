@@ -247,7 +247,7 @@ div.cmd-widget > .content-lg {
 }
 div.cmd-widget > .value {
   width: 100%;
-  height: 14px;
+  height: 16px;
   margin-bottom: 2px;
 }
 div.cmd-widget > .value > .center-block {
@@ -2194,7 +2194,7 @@ path.highcharts-graph {
   width: 5px;
   height: 40px;
 }
-.shuttergauge {
+.shuttergauge .content {
   width: 90px;
   min-width: 90px;
   max-width: 90px;
@@ -2204,17 +2204,18 @@ path.highcharts-graph {
   height: 50px;
   position: absolute;
   top: 11px;
-  margin-left: -23px;
+  margin-left: 23px;
   border-top: 6px solid var(--el-defaultColor);
   border-left: 4px solid var(--el-defaultColor);
   border-right: 4px solid var(--el-defaultColor);
 }
 
-.shuttergauge-chart .slider {
-  position: absolute;
-  width: 75%;
-  bottom: -14px;
-  left: 5%;
+.cmd-widget[data-type=action] .shuttergauge-chart {
+  height: 42px;
+}
+
+.shuttergauge .slider {
+  width: 60px;
 }
 .hgauge-value {
   position: absolute;
