@@ -2214,25 +2214,27 @@ path.highcharts-graph {
   height: 30px;
   margin-bottom: -3px;
 }
-.shuttergauge .content {
+.shuttergauge .content-sm {
   width: 90px;
   min-width: 90px;
   max-width: 90px;
 }
 .shuttergauge-bckg {
   width: 39px;
-  height: 33px;
+  height: 47%;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
+  position: absolute;
+  top: 14px;
+  left: 22px;
 }
-
+.shuttergauge-chart {
+  height: 36px;
+}
 .shuttergauge-value {
   position:relative;
   top: -1px;
-}
-.cmd-widget[data-type=action] .shuttergauge-chart {
-  height: 36px;
 }
 
 .shuttergauge .slider {
