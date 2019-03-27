@@ -2218,6 +2218,7 @@ path.highcharts-graph {
 
 .shuttergauge .slider {
   width: 60px;
+  top: -1px;
 }
 .hgauge-value {
   position: absolute;
