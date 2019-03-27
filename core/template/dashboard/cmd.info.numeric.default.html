@@ -1,4 +1,4 @@
-<div class="container-fluid tooltips cmd cmd-widget squareWidget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
+<div class="tooltips arcgauge cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
   <div class="title">
     <span style="#hideCmdName#">#name_display#</span>
   </div>
@@ -42,8 +42,8 @@
         },
         title: null,
         pane: {
-          center: ['50%', '100%'],
-          size: 90,
+          center: ['50%', '74%'],
+          size: 80,
           startAngle: - 90,
           endAngle: 90,
           background: {
@@ -60,21 +60,18 @@
         // the value axis
         yAxis: {
           stops: [
-          [0, '#cmdColor#']
+            [0, '#cmdColor#']
           ],
           lineWidth: 0,
           minorTickInterval: null,
           tickPixelInterval: 400,
           labels : {enabled: false},
           tickWidth: 0,
-          title: {
-            y: - 50
-          },
           min: #minValue#,
           max: #maxValue#,
           title: {
             text: '',
-            y: - 34
+            y: - 74
           }
         },
         labels : {enabled: false},
@@ -107,5 +104,5 @@
       $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>');
     }
   </script>
-  
+
 </div>
