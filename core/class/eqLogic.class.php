@@ -803,7 +803,9 @@ class eqLogic {
 	}
 	
 	public function postToHtml($_version, $_html) {
-		cache::set('widgetHtml' . $this->getId() . $_version, $_html);
+		if(config::byKey('widget::disableCache','core',0) == 0){
+			cache::set('widgetHtml' . $this->getId() . $_version, $_html);
+		}
 		return $_html;
 	}
 	
