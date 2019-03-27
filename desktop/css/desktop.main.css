@@ -212,25 +212,50 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-
-.squareWidget {
+div.cmd-widget {
+  position: relative;
   width: 90px;
-  height: 90px;
   padding: 0;
   top: 0 !important;
 }
-.horizontalWidget {
-  width: 120px;
-  height: 60px;
-  padding: 0;
+div.cmd-widget > .title {
+  color: var(--txt-color);
+  width: 100%;
+  height: 16px;
+  line-height: 1px;
   top: 0 !important;
+  margin-bottom: 2px;
 }
-.verticalWidget {
-  width: 75px;
-  height: 75px;
-  padding: 0;
-  top: 0 !important;
+div.cmd-widget > .content-sm {
+  height: 42px !important;
+  min-height: 42px;
+  display: table-cell;
+  vertical-align: middle;
 }
+div.cmd-widget > .content {
+  height: 56px !important;
+  min-height: 56px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content-lg {
+  height: 72px !important;
+  min-height: 72px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .value {
+  width: 100%;
+  height: 14px;
+  margin-bottom: 2px;
+}
+div.cmd-widget > .value > .center-block {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 0 !important;
+  margin: 0;
+}
+
 
 .timeCmd.label {
   color: var(--txt-color);
@@ -781,6 +806,7 @@ pre {
 .state,
 .cmd {
   color: var(--link-color) !important;
+  font-size: 12px;
 }
 p.state {
   color: var(--txt-color) !important;
@@ -2145,115 +2171,55 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
-.hgauge,
-.vgauge,
-.shuttergauge {
-  position: relative !important;
-  padding: 0;
-  display: table-cell !important;
-  color: var(--txt-color);
-  font-weight: 700;
-}
-
 .hgauge-value,
 .vgauge-value,
 .shuttergauge-value {
   background: var(--link-color);
 }
-.hgauge > div:first-child,
-.vgauge > div:first-child,
-.shuttergauge > div:first-child {
-  text-align: center !important;
-  font-size: 12px;
-}
-.hgauge > div:first-child:after {
-  content:'';
-  height: 10px;
-  display: table;
-}
 .hgauge-bckg,
 .vgauge-bckg {
   background: var(--el-defaultColor);
 }
-
-.hgauge {
-  text-align: left;
-  vertical-align: middle;
-  top: 7px;
-}
-.vgauge,
-.shuttergauge {
-  top: 7px;
-}
-.vgauge-chart,
-.shuttergauge-chart {
-  display: inline-block;
-  text-align: center !important;
-}
-
-.hgauge > div:first-child {
-  width: 100% !important;
-}
-.hgauge-state {
-  text-align: center !important;
-  width: 100% !important;
-  font-size: 12px;
-  margin-top: 5px;
-}
-.vgauge-state,
-.shuttergauge-state {
-  font-size: 12px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
-
 .hgauge-bckg {
-  width: 100%;
+  position:relative;
+  width: 90px;
   height: 5px;
+  top: -7px;
 }
 .vgauge-bckg {
+  position:relative;
   width: 5px;
-  height: calc(100% - 32px);
-  margin-left: -7px;
-  position: absolute;
-  bottom: 16px;
+  height: 40px;
 }
-
 .shuttergauge-bckg {
-  width: 55%;
-  height: calc(100% - 37px);
-  margin-left: -29%;
+  width: 45%;
+  height: 50px;
+  margin-left: -22%;
   position: absolute;
-  bottom: 18px;
+  top: 11px;
   border-top: 6px solid var(--el-defaultColor);
   border-left: 4px solid var(--el-defaultColor);
   border-right: 4px solid var(--el-defaultColor);
 }
 
-.shuttergauge .slider {
+.shuttergauge-chart .slider {
   position: absolute;
-  width: 80%;
-  bottom: -15px;
-  left: 6%;
+  width: 75%;
+  bottom: -14px;
+  left: 5%;
 }
-
 .hgauge-value {
-  margin-top: -1px;
+  position: absolute;
+  left: 0;
+  margin-top: -8px;
   height: 10px;
 }
 .vgauge-value {
-  width: 10px;
-  margin-left: 4px;
   position: absolute;
-}
-.vgauge-value {
   bottom: 0;
+  width: 10px;
+  margin-left: 4px;  
 }
-
-
 
 
 /* __________________________________________________________________________________________________________DIALOGS */
@@ -2654,16 +2620,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2671,11 +2637,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2702,5 +2668,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
