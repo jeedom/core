@@ -1070,12 +1070,12 @@ class cmd {
 	
 	public function getWidgetTemplateCode($_version = 'dashboard') {
 		global $JEEDOM_INTERNAL_CONFIG;
-		$version = jeedom::versionAlias($_version);
+		$_version = jeedom::versionAlias($_version);
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
-		$widget_name = $this->getTemplate($version, 'default');
-		if(strpos($this->getTemplate($version, 'default'),'::') !== false){
-			$name = explode('::',$this->getTemplate($version, 'default'));
+		$widget_name = $this->getTemplate($_version, 'default');
+		if(strpos($this->getTemplate($_version, 'default'),'::') !== false){
+			$name = explode('::',$this->getTemplate($_version, 'default'));
 			$widget_name = $name[1];
 			if($name[0] == 'custom'){
 				$widget = widgets::byTypeSubtypeAndName($this->getType(),$this->getSubType(),$name[1]);
@@ -1117,15 +1117,15 @@ class cmd {
 			}
 		}
 		$template = '';
-		if (!isset(self::$_templateArray[$version . '::' . $template_name])) {
-			$template = getTemplate('core', $version, $template_name);
+		if (!isset(self::$_templateArray[$_version . '::' . $template_name])) {
+			$template = getTemplate('core', $_version, $template_name);
 			if ($template == '') {
 				if (config::byKey('active', 'widget') == 1) {
-					$template = getTemplate('core', $version, $template_name, 'widget');
+					$template = getTemplate('core', $_version, $template_name, 'widget');
 				}
 				if ($template == '') {
 					foreach (plugin::listPlugin(true) as $plugin) {
-						$template = getTemplate('core', $version, $template_name, $plugin->getId());
+						$template = getTemplate('core', $_version, $template_name, $plugin->getId());
 						if ($template != '') {
 							break;
 						}
@@ -1133,12 +1133,12 @@ class cmd {
 				}
 				if ($template == '') {
 					$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
-					$template = getTemplate('core', $version, $template_name);
+					$template = getTemplate('core', $_version, $template_name);
 				}
 			}
-			self::$_templateArray[$version . '::' . $template_name] = $template;
+			self::$_templateArray[$_version . '::' . $template_name] = $template;
 		} else {
-			$template = self::$_templateArray[$version . '::' . $template_name];
+			$template = self::$_templateArray[$_version . '::' . $template_name];
 		}
 		if($replace != null && is_array($replace)){
 			$template = str_replace(array_keys($replace),$replace,$template);
@@ -1147,11 +1147,10 @@ class cmd {
 	}
 	
 	public function toHtml($_version = 'dashboard', $_options = '') {
-		$version2 = jeedom::versionAlias($_version, false);
-		if ($this->getDisplay('showOn' . $version2, 1) == 0) {
+		$_version = jeedom::versionAlias($_version);
+		if ($this->getDisplay('showOn' . $_version, 1) == 0) {
 			return '';
 		}
-		$version = jeedom::versionAlias($_version);
 		$html = '';
 		$replace = array(
 			'#id#' => $this->getId(),
@@ -1192,10 +1191,10 @@ class cmd {
 			}
 			$replace['#listValue#'] = $listOption;
 		}
-		if ($this->getDisplay('showNameOn' . $version2, 1) == 0) {
+		if ($this->getDisplay('showNameOn' . $_version, 1) == 0) {
 			$replace['#hideCmdName#'] = 'display:none;';
 		}
-		if ($this->getDisplay('showIconAndName' . $version2, 0) == 1) {
+		if ($this->getDisplay('showIconAndName' . $_version, 0) == 1) {
 			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
 		}
 		$template = $this->getWidgetTemplateCode($_version);
@@ -1204,12 +1203,12 @@ class cmd {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
 			if ($this->getEqLogic()->getIsEnable() == 0) {
-				$template = getTemplate('core', $version, 'cmd.error');
+				$template = getTemplate('core', $_version, 'cmd.error');
 				$replace['#state#'] = 'N/A';
 			} else {
 				$replace['#state#'] = $this->execCmd();
 				if (strpos($replace['#state#'], 'error::') !== false) {
-					$template = getTemplate('core', $version, 'cmd.error');
+					$template = getTemplate('core', $_version, 'cmd.error');
 					$replace['#state#'] = str_replace('error::', '', $replace['#state#']);
 				} else {
 					if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
@@ -1231,7 +1230,7 @@ class cmd {
 			if ($this->getIsHistorized() == 1) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
-					if ($this->getDisplay('showStatsOn' . $version2, 1) == 1) {
+					if ($this->getDisplay('showStatsOn' . $_version, 1) == 1) {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
 						$replace['#displayHistory#'] = '';
 						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));

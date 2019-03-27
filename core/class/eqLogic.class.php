@@ -706,10 +706,7 @@ class eqLogic {
 		$replace['#style#'] = trim($replace['#style#'], ';');
 		if (is_array($this->widgetPossibility('parameters'))) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
-				if (!isset($parameter['allow_displayType'])) {
-					continue;
-				}
-				if (!isset($parameter['type'])) {
+				if (!isset($parameter['allow_displayType']) || !isset($parameter['type'])) {
 					continue;
 				}
 				if (is_array($parameter['allow_displayType']) && !in_array($_version, $parameter['allow_displayType'])) {
