@@ -2192,6 +2192,11 @@ path.highcharts-graph {
   width: 5px;
   height: 40px;
 }
+.shuttergauge {
+  width: 90px;
+  min-width: 90px;
+  max-width: 90px;
+}
 .shuttergauge-bckg {
   width: 45%;
   height: 50px;
