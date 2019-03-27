@@ -2035,13 +2035,6 @@ hr {
 
 
 /* __________________________________________________________________________________________________________HIGHCHARTS */
-/* arc gauges and sliders */
-.gauge {
-  width: 100px;
-  height: 70px;
-  margin: 0 auto;
-}
-.gauge .highcharts-pane { fill: var(--el-defaultColor); }
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
 .highcharts-color-0 { fill: var(--link-color); }
 .ui-slider-handle {
@@ -2174,6 +2167,23 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
+.gauge {
+  position: relative;
+  width: 100px;
+  height: 54px;
+  margin: 0 auto;
+}
+.gauge .highcharts-pane {
+  fill: var(--el-defaultColor);
+}
+.arcgauge {
+  max-height: 80px;
+}
+.arcgauge .value {
+  position: relative;
+  top: -9px;
+}
+
 .hgauge-value,
 .vgauge-value,
 .shuttergauge-value {
