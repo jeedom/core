@@ -1,15 +1,20 @@
 <div class="container-fluid tooltips cmd cmd-widget squareWidget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div class="gauge cursor #history#" data-cmd_id="#id#" ></div>
-  <div style="#displayHistory#" class="col-xs-12 center-block cmdStats">
-    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  <div class="title">
+    <span style="#hideCmdName#">#name_display#</span>
+  </div>
+  <div class="content-sm">
+    <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
+  </div>
+  <div class="value">
+    <div style="#displayHistory#" class="col-xs-12 center-block cmdStats">
+      <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value);
     }
-
     if (is_numeric('#state#')) {
-      // The speed gauge
       $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
         chart: {
           events: {
@@ -68,7 +73,7 @@
           min: #minValue#,
           max: #maxValue#,
           title: {
-            text: '<span style="#hideCmdName#">#name_display#</span>',
+            text: '',
             y: - 34
           }
         },
@@ -102,5 +107,5 @@
       $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>');
     }
   </script>
-
+  
 </div>
