@@ -227,6 +227,10 @@ div.cmd-widget > .title {
   text-align: center;
 }
 
+.eqLogic-widget div.cmd-widget:last-of-type .title {
+  margin-bottom: 5px;
+}
+
 div.cmd-widget > .content-sm {
   height: 28px !important;
   min-height: 28px;
