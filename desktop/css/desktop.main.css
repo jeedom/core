@@ -234,14 +234,14 @@ div.cmd-widget > .content-sm {
   vertical-align: middle;
 }
 div.cmd-widget > .content {
-  height: 42px !important;
-  min-height: 42px;
+  height: 58px !important;
+  min-height: 58px;
   display: table-cell;
   vertical-align: middle;
 }
 div.cmd-widget > .content-lg {
-  height: 58px !important;
-  min-height: 58px;
+  height: 74px !important;
+  min-height: 74px;
   display: table-cell;
   vertical-align: middle;
 }
