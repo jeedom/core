@@ -1,7 +1,9 @@
 <div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="message" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="width: 146px;">
-	<input class="form-control input-sm title" placeholder="#title_placeholder#" data-cmd_id="#id#"/>
-	<textarea class="form-control input-sm message" rows="2" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_uid="#uid#" data-cmd_id="#id#"></textarea>
-	<center><a class='btn btn-xs execute'>#name_display#</a></center>
+	<div class="content-lg">
+		<input class="form-control input-sm title" placeholder="#title_placeholder#" data-cmd_id="#id#"/>
+		<textarea class="form-control input-sm message" rows="2" style="margin-top : 5px; resize:vertical;height: 50px;" placeholder="#message_placeholder#" data-cmd_uid="#uid#" data-cmd_id="#id#"></textarea>
+		<center><a class='btn btn-xs execute'>#name_display#</a></center>
+	</div>
 	<script>
 		if('#title_disable#' == '1'){
 			$('.cmd[data-cmd_uid=#uid#] .title').hide();

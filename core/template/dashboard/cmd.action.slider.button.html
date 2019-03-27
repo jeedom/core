@@ -1,6 +1,8 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="">
-  <div  class="cmdName" style="#hideCmdName#">#name_display#</div>
-  <center>
+  <div class="title">
+    <div class="cmdName" style="#hideCmdName#">#name_display#</div>
+  </div>
+  <div class="content">
     <div class="input-group" style="width: 150px;">
       <span class="input-group-btn" style="position: relative;">
         <a class="btn btn-default bt_minus roundedLeft"><i class="fas fa-minus"></i></a>
@@ -10,7 +12,7 @@
         <a class="btn btn-default bt_plus roundedRight"><i class="fa fa-plus"></i></a>
       </span>
     </div>
-  </center>
+  </div>
   <script>
     $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
       var max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#');

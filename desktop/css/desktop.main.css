@@ -226,20 +226,20 @@ div.cmd-widget > .title {
   margin-bottom: 2px;
 }
 div.cmd-widget > .content-sm {
+  height: 28px !important;
+  min-height: 28px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content {
   height: 42px !important;
   min-height: 42px;
   display: table-cell;
   vertical-align: middle;
 }
-div.cmd-widget > .content {
-  height: 56px !important;
-  min-height: 56px;
-  display: table-cell;
-  vertical-align: middle;
-}
 div.cmd-widget > .content-lg {
-  height: 72px !important;
-  min-height: 72px;
+  height: 58px !important;
+  min-height: 58px;
   display: table-cell;
   vertical-align: middle;
 }

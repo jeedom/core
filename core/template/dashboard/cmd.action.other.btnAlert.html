@@ -1,8 +1,10 @@
-<span class="cmd cmd-widget" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#">
-    <span class="iconCmd"></span>
-    <span style="#hideCmdName#" class="cmdName">#valueName#</span>
-  </a>
+<div class="cmd cmd-widget" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="content-sm">
+    <a class="btn btn-sm btn-default action cmdName tooltips" title="#name#">
+      <span class="iconCmd"></span>
+      <span style="#hideCmdName#" class="cmdName">#valueName#</span>
+    </a>
+  </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
@@ -30,4 +32,4 @@
       $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
     }
   </script>
-</span>
+</div>

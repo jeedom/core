@@ -1,5 +1,7 @@
-<span class="cmd reportModeHidden cmd-widget" style="display: inline;margin-right: 2px;" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <a class="btn btn-sm btn-default action tooltips" title="#name#">#name_display#</a>
+<div class="cmd reportModeHidden cmd-widget" style="display: inline;margin-right: 2px;" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="content-sm">
+    <a class="btn btn-sm btn-default action tooltips" title="#name#">#name_display#</a>
+  </div>
   <script>
     $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
       jeedom.cmd.execute({id: '#id#'});
@@ -9,4 +11,4 @@
       $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
     }
   </script>
-</span>
+</div>

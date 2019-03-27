@@ -1,12 +1,16 @@
 <div style="min-width:90px;margin-right: 5px;margin-left: 5px;padding:0px;" class="cmd #history# container-fluid tooltips cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<center>
+	<div class="title">
 		<div  class="cmdName" style="#hideCmdName#">#name_display#</div>
+	</div>
+	<div class="content-sm">
 		<span style="font-weight: bold;" class="pull-right">#unite#</span>
-		<span style="font-size: 2em;font-weight: bold;" class="pull-right state"></span><br/>
+		<span style="font-size: 2em;font-weight: bold;" class="pull-right state"></span>
+	</div>
+	<div class="value">
 		<div style="#displayHistory# font-size: 0.8em;" class="col-xs-12 center-block">
 			<span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
 		</div>
-	</center>
+	</div>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)

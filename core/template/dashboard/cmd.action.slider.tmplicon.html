@@ -1,9 +1,15 @@
 <div style="width:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div  class="cmdName title" style="#hideCmdName#">#name_display#</div>
-  <span class="cursor content-sm iconCmd#uid# iconCmd"></span>
-  <div style="display:inline-block;">
-    <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
-    <span class="value#uid# value"></span>
+  <div class="title">
+    <div class="cmdName" style="#hideCmdName#">#name_display#</div>
+  </div>
+  <div class="content-sm">
+    <span class="cursor iconCmd#uid# iconCmd"></span>
+  </div>
+  <div class="value">
+    <div style="display:inline-block;">
+      <div class="slider" style="margin : 5px 10px 8px 10px;width: 80px;" value="#state#"></div>
+      <span class="value#uid#"></span>
+    </div>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){

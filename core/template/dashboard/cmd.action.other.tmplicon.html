@@ -1,8 +1,10 @@
 <div style="width:90px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <center>
+  <div class="title">
     <div  class="cmdName" style="#hideCmdName#">#valueName#</div>
+  </div>
+  <div class="content">
     <span class="iconCmd"></span>
-  </center>
+  </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
