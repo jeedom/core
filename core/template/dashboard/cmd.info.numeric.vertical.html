@@ -21,7 +21,7 @@
       height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = Math.round(parseFloat(height) * 10) / 10
       $('.cmd[data-cmd_uid=#uid#] .vgauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .vgauge-state strong').first().text(_options.display_value)
+      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#'});
