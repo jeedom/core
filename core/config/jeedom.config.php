@@ -103,9 +103,11 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'timeWindow' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>')),
 				),
 				'numeric'=>array(
-					'testMultistate' => array('template' => 'tmplmultistate','test' => array(
-						array('operation' => '#value# > 1','state' => '<i class=\'fas fa-check\'></i>'),
-						array('operation' => '#value# > 70','state' => '<i class=\'icon jeedom-porte-ferme\'></i>')
+					'heatPiloteWire' => array('template' => 'tmplmultistate','test' => array(
+						array('operation' => '#value# == 3','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
+						array('operation' => '#value# == 2','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
+						array('operation' => '#value# == 1','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
+						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-conf\'></i>')
 					)),
 				)
 			)
