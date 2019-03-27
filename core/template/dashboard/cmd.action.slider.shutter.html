@@ -2,14 +2,13 @@
   <div class="title shuttergauge cursor #history#" data-cmd_id="#id#">
     <div class="cmdName" style="#hideCmdName#">#name_display#</div>
   </div>
-  <div class="content-sm" data-cmd_id="#id#">
+  <div class="content-sm" data-cmd_id="#id#" style="width:90px;">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg cursor">
         <div class="shuttergauge-value"></div>
       </div>
       <div class="slider" value="#state#"></div>
     </div>
-
   </div>
   <div class="value" data-cmd_id="#id#">
     <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
@@ -17,14 +16,13 @@
       <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
     </div>
   </div>
-
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
-
+      
       $(".cmd[data-cmd_id=#id#] .slider").slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
@@ -35,7 +33,7 @@
         }
       })
     }
-
+    
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state').find('strong').first().html()
       if (shutterPos > 50) {
@@ -44,12 +42,12 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: 100}})
       }
     })
-
+    
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       $(".value#uid#").hide()
     })
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#'})
   </script>
 </div>

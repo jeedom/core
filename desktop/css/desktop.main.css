@@ -2194,10 +2194,10 @@ path.highcharts-graph {
 }
 .shuttergauge-bckg {
   width: 45%;
-  height: 50px;
-  margin-left: -22%;
+  height: 28px;
   position: absolute;
   top: 11px;
+  margin-left: 25px;
   border-top: 6px solid var(--el-defaultColor);
   border-left: 4px solid var(--el-defaultColor);
   border-right: 4px solid var(--el-defaultColor);
