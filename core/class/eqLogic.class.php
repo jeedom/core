@@ -640,10 +640,7 @@ class eqLogic {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}
-		if (!$this->getIsEnable()) {
+		if (!$this->hasRight('r') || !$this->getIsEnable()) {
 			return '';
 		}
 		if (!$_noCache && config::byKey('widget::disableCache','core',0) == 0) {
@@ -696,7 +693,7 @@ class eqLogic {
 				}
 			}
 		}
-		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1 && $refresh_cmd->getDisplay('showOn' . $_version, 1) == 1) {
+		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
 		if ($this->getDisplay('showObjectNameOn' . $_version, 0) == 1) {
@@ -751,18 +748,18 @@ class eqLogic {
 		if (!is_array($replace)) {
 			return $replace;
 		}
-		$version = jeedom::versionAlias($_version);
+		$_version = jeedom::versionAlias($_version);
 		
-		switch ($this->getDisplay('layout::' . $version)) {
+		switch ($this->getDisplay('layout::' . $_version)) {
 			case 'table':
 			$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
-			$table = self::generateHtmlTable($this->getDisplay('layout::' . $version . '::table::nbLine', 1), $this->getDisplay('layout::' . $version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $version . '::table::parameters'));
+			$table = self::generateHtmlTable($this->getDisplay('layout::' . $_version . '::table::nbLine', 1), $this->getDisplay('layout::' . $_version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $_version . '::table::parameters'));
 			$br_before = 0;
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				$tag = '#cmd::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+				$tag = '#cmd::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$table['tag'][$tag] .= '<br/>';
 				}
@@ -796,10 +793,10 @@ class eqLogic {
 			$replace['#cmd#'] = $cmd_html;
 			break;
 		}
-		if (!isset(self::$_templateArray[$version])) {
-			self::$_templateArray[$version] = getTemplate('core', $version, 'eqLogic');
+		if (!isset(self::$_templateArray[$_version])) {
+			self::$_templateArray[$_version] = getTemplate('core', $_version, 'eqLogic');
 		}
-		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$version]));
+		return $this->postToHtml($_version, template_replace($replace, self::$_templateArray[$_version]));
 	}
 	
 	public function postToHtml($_version, $_html) {
