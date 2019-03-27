@@ -228,12 +228,12 @@ div.cmd-widget > .title {
   text-align: center;
 }
 .eqLogic-widget div.cmd-widget:last-of-type .title {
-  margin-bottom: 5px;
+  /*! margin-bottom: 5px; */
 }
 div.cmd-widget > .content-sm {
-  height: 28px !important;
-  min-height: 28px;
-  max-height: 32px;
+  height: 38px !important;
+  min-height: 38px;
+  max-height: 38px;
   display: table-cell;
   vertical-align: middle;
 }
@@ -1577,7 +1577,7 @@ table.tableCmd {
 table.tableCmd .cmd-widget {
   margin-right: 6px !important;
 }
-table.tableCmd td {
+:not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
 }
 
