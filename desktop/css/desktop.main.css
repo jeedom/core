@@ -226,11 +226,9 @@ div.cmd-widget > .title {
   display: table;
   text-align: center;
 }
-
 .eqLogic-widget div.cmd-widget:last-of-type .title {
   margin-bottom: 5px;
 }
-
 div.cmd-widget > .content-sm {
   height: 28px !important;
   min-height: 28px;
@@ -2222,18 +2220,19 @@ path.highcharts-graph {
   max-width: 90px;
 }
 .shuttergauge-bckg {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 14px;
-  margin-left: -18px;
+  width: 39px;
+  height: 33px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
 }
 
+.shuttergauge-value {
+  position:relative;
+  top: -1px;
+}
 .cmd-widget[data-type=action] .shuttergauge-chart {
-  height: 28px;
+  height: 36px;
 }
 
 .shuttergauge .slider {
