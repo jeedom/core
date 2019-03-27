@@ -853,7 +853,13 @@ li.alert-info.eqLogic {
   width: 35px !important;
   padding: 0 !important;
   border: none !important;
+  height: 25px !important;
 }
+
+.action_colorpicker_off{
+  height: 25px !important;
+}
+
 h4.modal-title {
   font-size: 16px;
 }
