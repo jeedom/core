@@ -2190,9 +2190,11 @@ path.highcharts-graph {
   top: -7px;
 }
 .vgauge-bckg {
-  position:relative;
+  position: relative;
+  top: -6px;
   width: 5px;
-  height: 40px;
+  height: 30px;
+  margin-bottom: -3px;
 }
 .shuttergauge .content {
   width: 90px;
@@ -2200,18 +2202,18 @@ path.highcharts-graph {
   max-width: 90px;
 }
 .shuttergauge-bckg {
-  width: 45%;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   position: absolute;
   top: 11px;
-  margin-left: 23px;
-  border-top: 6px solid var(--el-defaultColor);
-  border-left: 4px solid var(--el-defaultColor);
-  border-right: 4px solid var(--el-defaultColor);
+  margin-left: -18px;
+  border-top: 5px solid var(--el-defaultColor);
+  border-left: 3px solid var(--el-defaultColor);
+  border-right: 3px solid var(--el-defaultColor);
 }
 
 .cmd-widget[data-type=action] .shuttergauge-chart {
-  height: 42px;
+  height: 28px;
 }
 
 .shuttergauge .slider {
