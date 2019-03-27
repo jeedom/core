@@ -34,7 +34,7 @@
 });
 
  $('#bt_refreshMessage').on('click', function(event) {
-    $('#md_modal').dialog({title: "{{Message Jeedom}}"});
+    $('#md_modal').dialog({title: "{{Messages}}"});
     $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
 });
 
