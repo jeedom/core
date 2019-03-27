@@ -232,6 +232,7 @@ div.cmd-widget > .title {
 div.cmd-widget > .content-sm {
   height: 28px !important;
   min-height: 28px;
+  max-height: 32px;
   display: table-cell;
   vertical-align: middle;
 }
@@ -2210,10 +2211,15 @@ path.highcharts-graph {
 .vgauge-bckg {
   position: relative;
   top: -5px;
+  left: -6px;
   width: 5px;
-  height: 30px;
-  margin-bottom: -3px;
+  height: 35px;
+  margin-bottom: -7px;
 }
+.shuttergauge {
+  margin-top: -3px; 
+}
+
 .shuttergauge .content-sm {
   width: 90px;
   min-width: 90px;
@@ -2221,7 +2227,7 @@ path.highcharts-graph {
 }
 .shuttergauge-bckg {
   width: 39px;
-  height: 47%;
+  height: 37px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
@@ -2230,13 +2236,8 @@ path.highcharts-graph {
   left: 22px;
 }
 .shuttergauge-chart {
-  height: 36px;
+  height: 34px;
 }
-.shuttergauge-value {
-  position:relative;
-  top: -1px;
-}
-
 .shuttergauge .slider {
   width: 60px;
   top: -1px;
