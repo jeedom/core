@@ -224,6 +224,8 @@ div.cmd-widget > .title {
   line-height: 1px;
   top: 0 !important;
   margin-bottom: 2px;
+  display: table;
+  text-align: center;
 }
 div.cmd-widget > .content-sm {
   height: 28px !important;
@@ -2199,10 +2201,10 @@ path.highcharts-graph {
 }
 .shuttergauge-bckg {
   width: 45%;
-  height: 28px;
+  height: 50px;
   position: absolute;
   top: 11px;
-  margin-left: 25px;
+  margin-left: -23px;
   border-top: 6px solid var(--el-defaultColor);
   border-left: 4px solid var(--el-defaultColor);
   border-right: 4px solid var(--el-defaultColor);
