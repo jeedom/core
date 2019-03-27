@@ -212,54 +212,6 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-div.cmd-widget {
-  position: relative;
-  padding: 0;
-  top: 0 !important;
-}
-div.cmd-widget > .title {
-  color: var(--txt-color);
-  width: 100%;
-  height: 16px;
-  line-height: 14px;
-  position: relative;
-  display: table;
-  text-align: center;
-}
-.eqLogic-widget div.cmd-widget:last-of-type .title {
-  margin-bottom: 5px;
-}
-div.cmd-widget > .content-sm {
-  height: 28px !important;
-  min-height: 28px;
-  max-height: 32px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .content {
-  height: 58px !important;
-  min-height: 58px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .content-lg {
-  height: 74px !important;
-  min-height: 74px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .value {
-  width: 100%;
-  height: 16px;
-  margin-bottom: 2px;
-}
-div.cmd-widget > .value > .center-block {
-  color: var(--txt-color);
-  font-size: 11px;
-  font-weight: normal;
-  padding: 0 !important;
-  margin: 0;
-}
 .eqLogic_layout_table div.cmd-widget .iconCmd > i {
   position: relative;
   top: -6px !important;
@@ -2169,6 +2121,52 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
+div.cmd-widget {
+  position: relative;
+  padding: 0;
+  top: 0 !important;
+}
+div.cmd-widget > .title {
+  color: var(--txt-color);
+  width: 100%;
+  height: 16px;
+  line-height: 14px;
+  position: relative;
+  display: table;
+  text-align: center;
+}
+
+div.cmd-widget > .content-sm {
+  height: 38px !important;
+  min-height: 38px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content {
+  height: 58px !important;
+  min-height: 58px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content-lg {
+  height: 74px !important;
+  min-height: 74px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .value {
+  width: 100%;
+  height: 16px;
+  margin-bottom: 2px;
+}
+div.cmd-widget > .value > .center-block {
+  color: var(--txt-color);
+  font-size: 11px;
+  font-weight: normal;
+  padding: 0 !important;
+  margin: 0;
+}
+
 .sliderValue {
   position: absolute;
   z-index: 1;
@@ -2213,34 +2211,30 @@ path.highcharts-graph {
   top: -5px;
   left: -6px;
   width: 5px;
-  height: 35px;
-  margin-bottom: -7px;
+  height: 38px;
+  margin-bottom: -8px;
 }
 .shuttergauge {
-  margin-top: -3px; 
+  margin-top: -3px;
 }
-
 .shuttergauge .content-sm {
   width: 90px;
   min-width: 90px;
   max-width: 90px;
 }
 .shuttergauge-bckg {
-  width: 39px;
-  height: 37px;
+  width: 34px;
+  height: 41px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
   position: absolute;
-  top: 14px;
-  left: 22px;
-}
-.shuttergauge-chart {
-  height: 34px;
+  top: 15px;
+  left: 27px;
 }
 .shuttergauge .slider {
   width: 60px;
-  top: -1px;
+  top: 7px;
 }
 .hgauge-value {
   position: absolute;
@@ -2654,16 +2648,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2671,11 +2665,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2702,5 +2696,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
