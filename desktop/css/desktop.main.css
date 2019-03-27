@@ -221,9 +221,9 @@ div.cmd-widget > .title {
   color: var(--txt-color);
   width: 100%;
   height: 16px;
-  line-height: 1px;
-  top: 0 !important;
-  margin-bottom: 2px;
+  line-height: 10px;
+  margin-bottom: 5px;
+  position: relative;
   display: table;
   text-align: center;
 }
@@ -256,6 +256,10 @@ div.cmd-widget > .value > .center-block {
   font-weight: normal;
   padding: 0 !important;
   margin: 0;
+}
+div.cmd-widget :not(.btn) > .icon {
+  position: relative;
+  top: -8px !important;
 }
 
 
@@ -334,7 +338,7 @@ div.cmd-widget > .value > .center-block {
 .iconCmd {
   margin-top: 5px !important;
   top: 0 !important;
-  font-size: 2.5em;
+  font-size: 32px;
   font-weight: bold;
 }
 .iconCmd > i {
@@ -849,13 +853,7 @@ li.alert-info.eqLogic {
   width: 35px !important;
   padding: 0 !important;
   border: none !important;
-  height: 25px !important;
 }
-
-.action_colorpicker_off{
-  height: 25px !important;
-}
-
 h4.modal-title {
   font-size: 16px;
 }
@@ -2207,7 +2205,7 @@ path.highcharts-graph {
 }
 .vgauge-bckg {
   position: relative;
-  top: -6px;
+  top: -5px;
   width: 5px;
   height: 30px;
   margin-bottom: -3px;
@@ -2221,7 +2219,7 @@ path.highcharts-graph {
   width: 35px;
   height: 35px;
   position: absolute;
-  top: 11px;
+  top: 14px;
   margin-left: -18px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
