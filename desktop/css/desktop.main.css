@@ -441,13 +441,6 @@ div.cmd > div.center-block {
   z-index: -1;
 }
 
-[data-subtype=slider] > div > span,
-span[style*="transform: translate(-50%, 150%)"] {
-  color: var(--link-color);
-  background-color: transparent !important;
-  transform: translate(calc(100% + 20px)) !important;
-}
-
 select.selectCmd {
   border: 0;
   vertical-align: middle;
@@ -2175,6 +2168,13 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
+.sliderValue {
+  position: absolute;
+  z-index: 1;
+  top: 82%;
+  left: 20%;
+  transform: translate(-50%, 50%);
+}
 .gauge {
   position: relative;
   width: 100px;
