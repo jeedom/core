@@ -810,14 +810,11 @@ class eqLogic {
 	}
 	
 	public function emptyCacheWidget() {
-		$users = user::all();
-		foreach (array('dashboard', 'mobile') as $version) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
+		if(config::byKey('widget::disableCache','core',0) == 0){
+			$mc = cache::byKey('widgetHtml' . $this->getId() . 'mobile');
 			$mc->remove();
-			foreach ($users as $user) {
-				$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
-				$mc->remove();
-			}
+			$mc = cache::byKey('widgetHtml' . $this->getId() . 'dashboard');
+			$mc->remove();
 		}
 	}
 	
