@@ -2165,6 +2165,7 @@ div.cmd-widget > .content-lg {
   vertical-align: middle;
 }
 div.cmd-widget > .value {
+  display: relative;
   width: 100%;
   height: 16px;
   min-height: 16px;
@@ -2195,11 +2196,11 @@ div.eqLogic_layout_default .cmd-widget {
 }
 
 .sliderValue {
+  font-size: 12px;
+  font-weight: normal;
   position: absolute;
   z-index: 1;
-  top: 82%;
-  left: 20%;
-  transform: translate(-50%, 50%);
+  transform: translate(-200%, 5%);
 }
 .gauge {
   position: relative;
