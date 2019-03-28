@@ -2182,10 +2182,10 @@ div.eqLogic_layout_default .title{
   margin-top: 3px;
 }
 
-.eqLogic_layout_table div.cmd-widget .iconCmd > i {
-  position: relative;
-  top: -6px !important;
-}
+/*.eqLogic_layout_table div.cmd-widget .iconCmd > i {
+position: relative;
+top: -6px !important;
+}*/
 
 .verticalAlign {
   position: relative;
