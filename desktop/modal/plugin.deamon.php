@@ -34,13 +34,13 @@ $refresh = array();
 $refresh[0] = 0;
 switch ($deamon_info['state']) {
 	case 'ok':
-		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
+		echo '<span class="label label-success">{{OK}}</span>';
 		break;
 	case 'nok':
-		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+		echo '<span class="label label-danger">{{NOK}}</span>';
 		break;
 	default:
-		echo '<span class="label label-warning" style="font-size:1em;">' . $deamon_info['state'] . '</span>';
+		echo '<span class="label label-warning">' . $deamon_info['state'] . '</span>';
 		break;
 }
 ?>
@@ -55,13 +55,13 @@ if (!isset($deamon_info['auto'])) {
 }
 switch ($deamon_info['launchable']) {
 	case 'ok':
-		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
+		echo '<span class="label label-success">{{OK}}</span>';
 		break;
 	case 'nok':
-		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> ' . $deamon_info['launchable_message'];
+		echo '<span class="label label-danger">{{NOK}}</span> ' . $deamon_info['launchable_message'];
 		break;
 	default:
-		echo '<span class="label label-warning" style="font-size:1em;">' . $deamon_info['launchable'] . '</span>';
+		echo '<span class="label label-warning">' . $deamon_info['launchable'] . '</span>';
 		break;
 }
 ?>
@@ -108,17 +108,17 @@ sendVarToJs('refresh_deamon_info', $refresh);
 							if(data.auto == 1){
 								$('.bt_stopDeamon').show();
 							}
-							$('.deamonState').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
+							$('.deamonState').empty().append('<span class="label label-success">{{OK}}</span>');
 							break;
 							case 'nok':
 							if(data.auto == 1){
 								nok = true;
 							}
 							$('.bt_stopDeamon').hide();
-							$('.deamonState').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
+							$('.deamonState').empty().append('<span class="label label-danger">{{NOK}}</span>');
 							break;
 							default:
-							$('.deamonState').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+							$('.deamonState').empty().append('<span class="label label-warning">'+data.state+'</span>');
 						}
 						switch(data.launchable) {
 							case 'ok':
@@ -126,7 +126,7 @@ sendVarToJs('refresh_deamon_info', $refresh);
 							if(data.auto == 1 && data.state == 'ok'){
 								$('.bt_stopDeamon').show();
 							}
-							$('.deamonLaunchable').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
+							$('.deamonLaunchable').empty().append('<span class="label label-success">{{OK}}</span>');
 							break;
 							case 'nok':
 							if(data.auto == 1){
@@ -134,10 +134,10 @@ sendVarToJs('refresh_deamon_info', $refresh);
 							}
 							$('.bt_startDeamon').hide();
 							$('.bt_stopDeamon').hide();
-							$('.deamonLaunchable').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span> '+data.launchable_message);
+							$('.deamonLaunchable').empty().append('<span class="label label-danger">{{NOK}}</span> '+data.launchable_message);
 							break;
 							default:
-							$('.deamonLaunchable').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+							$('.deamonLaunchable').empty().append('<span class="label label-warning">'+data.state+'</span>');
 						}
 						$('.td_lastLaunchDeamon').empty().append(data.last_launch);
 						if(data.auto == 1){
