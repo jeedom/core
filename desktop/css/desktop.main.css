@@ -212,61 +212,6 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
-div.cmd-widget {
-  position: relative;
-  padding: 0;
-  top: 0 !important;
-  min-width: 70px;
-}
-div.cmd-widget > .title {
-  color: var(--txt-color);
-  width: 100%;
-  height: 16px;
-  line-height: 14px;
-  position: relative;
-  display: table;
-  text-align: center;
-}
-.eqLogic-widget div.cmd-widget:last-of-type .title {
-  /*! margin-bottom: 5px; */
-}
-div.cmd-widget > .content-sm {
-  height: 38px !important;
-  min-height: 38px;
-  max-height: 38px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .content {
-  height: 58px !important;
-  min-height: 58px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .content-lg {
-  height: 74px !important;
-  min-height: 74px;
-  display: table-cell;
-  vertical-align: middle;
-}
-div.cmd-widget > .value {
-  width: 100%;
-  height: 16px;
-  margin-bottom: 2px;
-}
-div.cmd-widget > .value > .center-block {
-  color: var(--txt-color);
-  font-size: 11px;
-  font-weight: normal;
-  padding: 0 !important;
-  margin: 0;
-}
-.eqLogic_layout_table div.cmd-widget .iconCmd > i {
-  position: relative;
-  top: -6px !important;
-}
-
-
 .timeCmd.label {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
@@ -2164,6 +2109,66 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
+div.cmd-widget {
+  position: relative;
+  padding: 0;
+  top: 0 !important;
+  min-width: 70px;
+}
+div.cmd-widget > .title {
+  color: var(--txt-color);
+  width: 100%;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 14px;
+  position: relative;
+  display: table;
+  text-align: center;
+}
+.eqLogic-widget div.cmd-widget:last-of-type .title {
+  /*! margin-bottom: 5px; */
+}
+div.cmd-widget > .content-sm {
+  height: 40px !important;
+  min-height: 40px;
+  max-height: 40px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content {
+  height: 56px !important;
+  min-height: 56px;
+  max-height: 56px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .content-lg {
+  height: 72px !important;
+  min-height: 72px;
+  max-height: 72px;
+  display: table-cell;
+  vertical-align: middle;
+}
+div.cmd-widget > .value {
+  width: 100%;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  margin-bottom: 2px;
+}
+div.cmd-widget > .value > .center-block {
+  color: var(--txt-color);
+  font-size: 11px;
+  font-weight: normal;
+  padding: 0 !important;
+  margin: 0;
+}
+.eqLogic_layout_table div.cmd-widget .iconCmd > i {
+  position: relative;
+  top: -6px !important;
+}
+
 .verticalAlign {
   position: relative;
   transform: translateY(calc(-50%));
