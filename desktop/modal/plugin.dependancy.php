@@ -26,13 +26,13 @@ $dependancy_info = $plugin->dependancy_info();
 				<?php
 switch ($dependancy_info['state']) {
 	case 'ok':
-		echo '<span class="label label-success" style="font-size:1em;">{{OK}}</span>';
+		echo '<span class="label label-success">{{OK}}</span>';
 		break;
 	case 'nok':
-		echo '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>';
+		echo '<span class="label label-danger">{{NOK}}</span>';
 		break;
 	case 'in_progress':
-		echo '<span class="label label-primary" style="font-size:1em;"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
+		echo '<span class="label label-primary"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
 		if (isset($dependancy_info['progression']) && $dependancy_info['progression'] !== '') {
 			echo ' - ' . $dependancy_info['progression'] . ' %';
 		}
@@ -42,7 +42,7 @@ switch ($dependancy_info['state']) {
 		echo '</span>';
 		break;
 	default:
-		echo '<span class="label label-warning" style="font-size:1em;">' . $dependancy_info['state'] . '</span>';
+		echo '<span class="label label-warning">' . $dependancy_info['state'] . '</span>';
 		break;
 }
 ?>
@@ -64,17 +64,17 @@ switch ($dependancy_info['state']) {
 			success: function (data) {
 				switch(data.state) {
 					case 'ok':
-					$('.dependancyState').empty().append('<span class="label label-success" style="font-size:1em;">{{OK}}</span>');
+					$('.dependancyState').empty().append('<span class="label label-success">{{OK}}</span>');
 					break;
 					case 'nok':
 					nok = true;
 					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-info').addClass('panel-danger');
-					$('.dependancyState').empty().append('<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>');
+					$('.dependancyState').empty().append('<span class="label label-danger">{{NOK}}</span>');
 					break;
 					case 'in_progress':
 					nok = true;
 					$("#div_plugin_dependancy").closest('.panel').removeClass('panel-success panel-danger').addClass('panel-info');
-					var html = '<span class="label label-primary" style="font-size:1em;"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
+					var html = '<span class="label label-primary"><i class="fas fa-spinner fa-spin"></i> {{Installation en cours}}';
 					if(isset(data.progression) && data.progression !== ''){
 						html += ' - '+data.progression+' %';
 					}
@@ -85,7 +85,7 @@ switch ($dependancy_info['state']) {
 					$('.dependancyState').empty().append(html);
 					break;
 					default:
-					$('.dependancyState').empty().append('<span class="label label-warning" style="font-size:1em;">'+data.state+'</span>');
+					$('.dependancyState').empty().append('<span class="label label-warning">'+data.state+'</span>');
 				}
 				$('.td_lastLaunchDependancy').empty().append(data.last_launch);
 				if(!nok){
