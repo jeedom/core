@@ -780,7 +780,6 @@ li.alert-info.eqLogic {
   border-radius: 8px !important;
   background-color: var(--link-color) !important;
   cursor: pointer !important;
-  top: -7px !important;
 }
 .ui-slider-handle:active,
 .ui-slider-handle:focus,
@@ -788,7 +787,18 @@ li.alert-info.eqLogic {
   background-color: var(--linkHover-color) !important;
   outline: none;
 }
-.ui-slider-horizontal{ height: 3.2px !important;}
+.ui-slider-horizontal .ui-slider-handle {
+  top: -7px !important;
+}
+.ui-slider-vertical .ui-slider-handle {
+  left: -6px !important;
+}
+.ui-slider-horizontal {
+  height: 3.2px !important;
+}
+.ui-slider-vertical {
+  width: 3.2px !important;
+}
 .ui-slider{
   margin: 5px 5px 5px 5px!important;
   background: var(--el-defaultColor) !important;
