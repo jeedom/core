@@ -773,13 +773,22 @@ li.alert-info.eqLogic {
 }
 .row .objectSummaryParent{ font-size : 14px !important; }
 
+
+/* sliders */
+.ui-slider-handle {
+  font-size: 13px;
+  border-radius: 8px !important;
+  background-color: var(--link-color) !important;
+  cursor: pointer !important;
+  top: -7px !important;
+}
 .ui-slider-handle:active,
 .ui-slider-handle:focus,
 .ui-slider-handle:hover {
   background-color: var(--linkHover-color) !important;
   outline: none;
 }
-.ui-slider-horizontal{ height: 5px !important;}
+.ui-slider-horizontal{ height: 3.2px !important;}
 .ui-slider{
   margin: 5px 5px 5px 5px!important;
   background: var(--el-defaultColor) !important;
@@ -1983,14 +1992,6 @@ hr {
 /* __________________________________________________________________________________________________________HIGHCHARTS */
 .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
 .highcharts-color-0 { fill: var(--link-color); }
-.ui-slider-handle {
-  font-size: 14px;
-  border-radius: 8px !important;
-  background-color: var(--link-color) !important;
-  cursor: pointer !important;
-  top: -5px !important;
-}
-
 .highcharts-legend-item tspan {
   cursor: pointer;
 }
