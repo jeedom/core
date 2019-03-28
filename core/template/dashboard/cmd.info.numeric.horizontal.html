@@ -14,10 +14,6 @@
   </div>
 
   <script>
-    if($('.cmd[data-cmd_uid=#uid#] .hgauge .cmdName').css('display') == 'none')
-    {
-      $('.cmd[data-cmd_uid=#uid#] .hgauge').css({top:'16px'})
-    }
     jeedom.cmd.update['#id#'] = function(_options){
       width = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       width = Math.round(parseFloat(width) * 10) / 10
