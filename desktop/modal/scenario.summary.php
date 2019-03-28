@@ -27,7 +27,7 @@ if (!isConnect()) {
 		</tr>
 	</thead>
 	<tbody>
-		
+
 	</tbody>
 </table>
 
@@ -59,16 +59,16 @@ function refreshScenarioSummary(){
 				tr += '<td>';
 				switch (data[i].state) {
 					case 'error' :
-					tr += '<span class="label label-warning" style="font-size : 1em;">{{Erreur}}</span>';
+					tr += '<span class="label label-warning">{{Erreur}}</span>';
 					break;
 					case 'on' :
-					tr += '<span class="label label-info" style="font-size : 1em;">{{Actif}}</span>';
+					tr += '<span class="label label-info">{{Actif}}</span>';
 					break;
 					case 'in progress' :
-					tr += '<span class="label label-success" style="font-size : 1em;">{{En cours}}</span>';
+					tr += '<span class="label label-success">{{En cours}}</span>';
 					break;
 					case 'stop' :
-					tr += '<span class="label label-danger" style="font-size : 1em;">{{Arrêté}}</span>';
+					tr += '<span class="label label-danger">{{Arrêté}}</span>';
 					break;
 				}
 				tr += '</td>';
@@ -112,13 +112,13 @@ function refreshScenarioSummary(){
 			}
 			$('#table_scenarioSummary tbody').append(table);
 			$("#table_scenarioSummary").trigger("update");
-			
+
 			$('.bt_summarayViewLog').off().on('click',function(){
 				var tr = $(this).closest('tr');
 				$('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"});
 				$("#md_modal2").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open');
 			});
-			
+
 			$('.bt_sumarrayStopScenario').off().on('click',function(){
 				var tr = $(this).closest('tr');
 				jeedom.scenario.changeState({
@@ -132,7 +132,7 @@ function refreshScenarioSummary(){
 					}
 				});
 			});
-			
+
 			$('.bt_summarayLaunchScenario').off().on('click',function(){
 				var tr = $(this).closest('tr');
 				jeedom.scenario.changeState({
@@ -146,7 +146,7 @@ function refreshScenarioSummary(){
 					}
 				});
 			});
-			
+
 			$('.bt_summaryGotoScenario').off().on('click',function(){
 				var tr = $(this).closest('tr');
 				window.location.href = 'index.php?v=d&p=scenario&id='+tr.attr('data-id');
