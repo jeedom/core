@@ -2195,9 +2195,13 @@ div.cmd-widget > .value > .center-block {
 .arcgauge {
   max-height: 80px;
 }
+.arcgauge .title {
+  position: relative;
+  top: -4px;
+}
 .arcgauge .value {
   position: relative;
-  top: -9px;
+  top: -4px;
 }
 
 .hgauge-value,
