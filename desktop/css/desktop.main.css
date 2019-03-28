@@ -1455,6 +1455,9 @@ i.tablesorter-icon::before {
   content: "\e920\e91f" !important;
   font-style: normal;
 }
+.tablesorter-header[data-sorter=false] {
+  cursor: default;
+}
 
 table.table,
 table.table .table {
