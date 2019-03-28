@@ -9,11 +9,13 @@
       </div>
     </div>
   </div>
-  <div style="display:inline-block;">
-    <div class="slider" value="#state#"></div>
-    <span class="value#uid# sliderValue" style="display:none;"></span>
+  <div class="value" data-cmd_id="#id#">
+    <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+    <div class="slider" value="#state#">
+      <span class="value#uid# sliderValue" style="display:none;"></span>
+    </div>
   </div>
-  <div class="hiddenState" style="display:none">#state#</div>
+
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
@@ -22,8 +24,8 @@
         height = 100 - height;
       }
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .hiddenState').first().text(_options.display_value)
-      
+      $('.cmd[data-cmd_uid=#uid#] .state').first().text(_options.display_value)
+
       $(".cmd[data-cmd_id=#id#] .slider").slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
@@ -34,21 +36,32 @@
         }
       })
     }
-    
+
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
-      shutterPos = $('.cmd[data-cmd_uid=#uid#] .hiddenState').first().html()
+      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state').first().html()
       if (shutterPos > 50) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: 0}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
+        $('.cmd[data-cmd_uid=#uid#] .state').first().text(#minValue#)
       } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: 100}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
+        $('.cmd[data-cmd_uid=#uid#] .state').first().text(#maxValue#)
       }
+
     })
-    
+
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       $(".value#uid#").hide()
     })
-    
+
     jeedom.cmd.update['#id#']({display_value:'#state#'})
+
+    $( ".cmd[data-cmd_id=#id#] .slider").slider({
+      orientation: "vertical",
+      min: #minValue#,
+      max: #maxValue#,
+      value: #state#,
+    })
+
   </script>
 </div>
