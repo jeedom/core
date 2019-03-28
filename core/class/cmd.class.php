@@ -1157,7 +1157,7 @@ class cmd {
 			'#name#' => $this->getName(),
 			'#name_display#' => ($this->getDisplay('icon') != '') ? $this->getDisplay('icon') : $this->getName(),
 			'#history#' => '',
-			'#displayHistory#' => 'display : none;',
+			'#hide_history#' => 'hidden',
 			'#unite#' => $this->getUnite(),
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
@@ -1166,7 +1166,7 @@ class cmd {
 			'#version#' => $_version,
 			'#eqLogic_id#' => $this->getEqLogic_id(),
 			'#generic_type#' => $this->getGeneric_type(),
-			'#hideCmdName#' => '',
+			'#hide_name#' => '',
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
 			$listOption = '';
@@ -1192,7 +1192,7 @@ class cmd {
 			$replace['#listValue#'] = $listOption;
 		}
 		if ($this->getDisplay('showNameOn' . $_version, 1) == 0) {
-			$replace['#hideCmdName#'] = 'display:none;';
+			$replace['#hide_name#'] = 'hidden';
 		}
 		if ($this->getDisplay('showIconAndName' . $_version, 0) == 1) {
 			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
@@ -1232,7 +1232,7 @@ class cmd {
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#displayHistory#') !== false) {
 					if ($this->getDisplay('showStatsOn' . $_version, 1) == 1) {
 						$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
-						$replace['#displayHistory#'] = '';
+						$replace['#hide_history#'] = '';
 						$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
 						if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
 							$replace['#averageHistoryValue#'] = round($replace['#state#'], 1);

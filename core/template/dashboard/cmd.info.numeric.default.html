@@ -1,12 +1,12 @@
 <div class="tooltips arcgauge cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div class="title">
-    <span class="cmdName" style="#hideCmdName#">#name_display#</span>
+  <div class="title #hide_name#">
+    <span class="cmdName">#name_display#</span>
   </div>
   <div class="content-sm ">
     <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
   </div>
-  <div class="value">
-    <div style="#displayHistory#" class="col-xs-12 center-block cmdStats">
+  <div class="value #hide_history#">
+    <div class="col-xs-12 center-block cmdStats">
       <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
     </div>
   </div>
