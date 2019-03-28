@@ -20,11 +20,13 @@ foreach (cmd::all() as $cmd) {
 sendVarToJs('cmds_history_configure', $list_cmd);
 ?>
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply" style="color : white;" ><i class="fas fa-check"></i> {{Valider}}</a>
-<center><span class="label label-info" style="font-size: 1em;">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span></center>
+<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
+<center>
+  <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
+</center>
 
 <br/>
-<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory" style="width:100%">
+<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
   <thead>
     <tr>
       <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
