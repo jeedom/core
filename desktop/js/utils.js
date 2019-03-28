@@ -742,11 +742,14 @@ function positionEqLogic(_id,_preResize,_scenario) {
   }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
+      console.log($(this).html());
+      console.log($(this).width());
+      console.log($(this).height());
       if($(this).width() == 0){
-        $(this).width('auto');
+        $(this).width('230');
       }
       if($(this).height() == 0){
-        $(this).height('auto');
+        $(this).height('110');
       }
       $(this).width(Math.ceil($(this).width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']));
       $(this).height(Math.ceil($(this).height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']));

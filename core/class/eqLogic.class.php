@@ -667,8 +667,8 @@ class eqLogic {
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => '',
-			'#height#' => $this->getDisplay('height', '110'),
-			'#width#' => $this->getDisplay('width', '230'),
+			'#height#' => $this->getDisplay('height', '110px'),
+			'#width#' => $this->getDisplay('width', '230px'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
@@ -871,11 +871,11 @@ class eqLogic {
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 			}
-			if ($this->getDisplay('height', 'auto') == 'auto' || intval($this->getDisplay('height')) < 2) {
-				$this->setDisplay('height', '110');
+			if ($this->getDisplay('height', 'auto') == 'auto') {
+				$this->setDisplay('height', '110px');
 			}
-			if ($this->getDisplay('width', 'auto') == 'auto' || intval($this->getDisplay('height')) < 2) {
-				$this->setDisplay('width', '230');
+			if ($this->getDisplay('width', 'auto') == 'auto') {
+				$this->setDisplay('width', '230px');
 			}
 			foreach (array('dashboard', 'mobile') as $key) {
 				if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
