@@ -2136,8 +2136,9 @@ div.cmd-widget > .title {
 div.cmd-widget > .content-xs {
   color: var(--txt-color);
   width: 100%;
-  height: 11px !important;
-  line-height: 11px;
+  height: 12px !important;
+  min-height: 12px;
+  line-height: 12px;
   margin: 0;
   position: relative;
   display: table;
