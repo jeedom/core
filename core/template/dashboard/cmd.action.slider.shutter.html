@@ -23,7 +23,7 @@
       }
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .hiddenState').first().text(_options.display_value)
-
+      
       $(".cmd[data-cmd_id=#id#] .slider").slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
@@ -34,7 +34,7 @@
         }
       })
     }
-
+    
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .hiddenState').first().html()
       if (shutterPos > 50) {
@@ -43,12 +43,12 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: 100}})
       }
     })
-
+    
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       $(".value#uid#").hide()
     })
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#'})
   </script>
 </div>
