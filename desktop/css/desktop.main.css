@@ -2213,7 +2213,7 @@ div.eqLogic_layout_default .cmd-widget {
 }
 .arcgauge .cmdStats {
   position: relative;
-  top: 3px;
+  top: -1px;
 }
 
 .hgauge-value,
