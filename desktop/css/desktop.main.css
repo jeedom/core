@@ -2209,12 +2209,9 @@ div.eqLogic_layout_default .cmd-widget {
 .gauge .highcharts-pane {
   fill: var(--el-defaultColor);
 }
-.arcgauge {
-  max-height: 80px;
-}
 .arcgauge .cmdStats {
   position: relative;
-  top: -1px;
+  top: 2px;
 }
 
 .hgauge-value,
