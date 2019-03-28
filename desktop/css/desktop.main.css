@@ -2394,7 +2394,7 @@ div.eqLogic_layout_default .cmd-widget {
   padding: 13px !important;
   padding-right: 13px !important;
 }
-.ui-dialog-content > div:not(.alert) {
+.ui-dialog-content > div:not(.alert):not(.jqAlert) {
   background: transparent !important;
 }
 .ui-widget-content:not(.slider){
