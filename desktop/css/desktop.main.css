@@ -2174,6 +2174,14 @@ div.cmd-widget > .value > .center-block {
   margin: 0;
 }
 
+div.eqLogic_layout_table tbody tr td{
+  vertical-align: top;
+}
+
+div.eqLogic_layout_default .title{
+  margin-top: 3px;
+}
+
 .eqLogic_layout_table div.cmd-widget .iconCmd > i {
   position: relative;
   top: -6px !important;
@@ -2207,7 +2215,7 @@ div.cmd-widget > .value > .center-block {
 }
 .arcgauge .title {
   position: relative;
-  top: -4px;
+  /*  top: -4px;*/
 }
 
 .hgauge-value,
@@ -2234,7 +2242,7 @@ div.cmd-widget > .value > .center-block {
   margin-bottom: -7px;
 }
 .shuttergauge {
-  margin-top: 0px; 
+  margin-top: 0px;
 }
 
 .shuttergauge .center-block {
@@ -2252,7 +2260,7 @@ div.cmd-widget > .value > .center-block {
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
   position: absolute;
-  top: 14px;
+  top: 16px;
   left: 22px;
 }
 .shuttergauge-chart {

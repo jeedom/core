@@ -2,7 +2,7 @@
   <div class="title cursor #history#" data-cmd_id="#id#">
     <div class="cmdName" style="#hideCmdName#">#name_display#</div>
   </div>
-  <div class="content-sm" data-cmd_id="#id#">
+  <div class="content-sm " data-cmd_id="#id#">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg">
         <div class="shuttergauge-value"></div>
@@ -15,7 +15,7 @@
       <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
     </div>
   </div>
-
+  
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
@@ -23,7 +23,7 @@
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
     }
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#'});
   </script>
 </div>

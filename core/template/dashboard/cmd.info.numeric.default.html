@@ -2,7 +2,7 @@
   <div class="title">
     <span class="cmdName" style="#hideCmdName#">#name_display#</span>
   </div>
-  <div class="content-sm">
+  <div class="content-sm ">
     <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
   </div>
   <div class="value">
@@ -60,7 +60,7 @@
         // the value axis
         yAxis: {
           stops: [
-            [0, '#cmdColor#']
+          [0, '#cmdColor#']
           ],
           lineWidth: 0,
           minorTickInterval: null,
@@ -104,5 +104,5 @@
       $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>');
     }
   </script>
-
+  
 </div>
