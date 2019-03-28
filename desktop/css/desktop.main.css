@@ -2209,10 +2209,6 @@ div.cmd-widget > .value > .center-block {
   position: relative;
   top: -4px;
 }
-.arcgauge .value {
-  position: relative;
-  top: -4px;
-}
 
 .hgauge-value,
 .vgauge-value,
