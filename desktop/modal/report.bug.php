@@ -26,14 +26,14 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			<strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
 			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
-			
+
 			<center>
 				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Bug%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les bugs}}</a><br/>
 				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Am%C3%A9lioration%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les propositions d'amélioration}}</a>
 			</center>
 		</div>
 	</div>
-	
+
 	<div class="panel panel-primary">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
 		<div class="panel-body">
@@ -72,7 +72,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 					<input class="form-control ticketAttr" data-l1key="title"/>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Message}}</label>
 				<div class="col-sm-9">
@@ -80,20 +80,20 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 					<input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
 				</div>
 			</div>
-			<div class="form-actions" style="height: 20px;">
+			<div class="form-actions">
 				<label style="margin-left: 140px;"><input type="checkbox" class="ticketAttr" data-l1key="openSupport" checked="checked" /> {{Ouvrir un accès au support}}</label>
-				<a class="btn btn-success pull-right" id="bt_sendBugReport" style="color:white;"><i class="far fa-check-circle"></i> {{Envoyer}}</a>
+				<a class="btn btn-success pull-right" id="bt_sendBugReport"><i class="far fa-check-circle"></i> {{Envoyer}}</a>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
 			<div class="form-group">
 				<label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
 				<div class="col-sm-2">
-					<a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank" style="color:white;"><i class="far fa-check-circle"></i> {{Accéder}}</a>
+					<a class="btn btn-success" id="bt_reportBugIssueUrl" href="#" target="_blank"><i class="far fa-check-circle"></i> {{Accéder}}</a>
 				</div>
 			</div>
 		</div>

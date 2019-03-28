@@ -14,7 +14,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#main" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-cog"></i> {{Général}}</a></li>
 	<li role="presentation"><a href="#components" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Composants}}</a></li>
-	<a class='btn btn-success btn-sm pull-right cursor' style="color: white;" id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+	<a class='btn btn-success btn-sm pull-right cursor' id='bt_saveConfigurePlanHeader'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
 </ul>
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="main">

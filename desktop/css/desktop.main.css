@@ -2130,6 +2130,9 @@ div.cmd-widget > .title {
   display: table;
   text-align: center;
 }
+div.cmd-widget > .hidden {
+  display: none !important;
+}
 .eqLogic-widget div.cmd-widget:last-of-type .title {
   /*! margin-bottom: 5px; */
 }
@@ -2165,6 +2168,7 @@ div.cmd-widget > .content-lg {
   vertical-align: middle;
 }
 div.cmd-widget > .value {
+  display: relative;
   width: 100%;
   height: 16px;
   min-height: 16px;
@@ -2195,11 +2199,11 @@ div.eqLogic_layout_default .cmd-widget {
 }
 
 .sliderValue {
+  font-size: 12px;
+  font-weight: normal;
   position: absolute;
   z-index: 1;
-  top: 82%;
-  left: 20%;
-  transform: translate(-50%, 50%);
+  transform: translate(-200%, 5%);
 }
 .gauge {
   position: relative;
@@ -2682,16 +2686,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2699,11 +2703,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2730,5 +2734,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
