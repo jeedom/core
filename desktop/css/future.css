@@ -67,6 +67,11 @@
   font-weight: 900;
 }
 
+#in_searchEqlogic,
+#in_searchPlugin {
+  margin-bottom: 15px;
+}
+
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div {
   border: none !important;
@@ -92,18 +97,17 @@
 .pluginListContainer div.cursor > center > img,
 .interactListContainer div.cursor > img {
   width: 90px !important;
-  padding-top: 15px;
 }
 
 .eqLogicThumbnailContainer div.cursor > center > img,
 .eqLogicThumbnailContainer div.cursor img {
   width: 75px !important;
   height: auto !important;
-  padding-top: 15px;
 }
+.eqLogicDisplayAction,
 .eqLogicDisplayCard {
   margin-bottom: 10px !important;
-  height: 170px !important;
+  height: 155px !important;
   padding: 0 !important;
   margin: 0 !important;
 }
