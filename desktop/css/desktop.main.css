@@ -2261,7 +2261,7 @@ top: -6px !important;
   border-right: 3px solid var(--el-defaultColor);
   position: absolute;
   top: 16px;
-  left: 22px;
+  left: 25px;
 }
 .shuttergauge-chart {
   height: 36px;
