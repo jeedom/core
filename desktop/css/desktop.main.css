@@ -2183,9 +2183,6 @@ div.cmd-widget > .value > .center-block {
   margin: 0;
 }
 
-div.eqLogic_layout_table tbody tr td {
-  vertical-align: top;
-}
 div.eqLogic_layout_table .tableCmd,
 div.eqLogic_layout_default .cmd-widget {
   margin-top: 5px;
