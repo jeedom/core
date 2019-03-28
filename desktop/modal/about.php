@@ -16,15 +16,17 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
     </center>
     <div class="form-group">
       <center class="label-info">
-        <span style="font-size : 1em;" class="label">{{Auteur(s)}}</span>
+        <span class="label">{{Auteur(s)}}</span>
       </center>
       <center>
+        <br>
         <span>Jeedom SAS</span>
+        <br><br>
       </center>
     </div>
     <div class="form-group">
       <center class="label-info">
-        <span style="font-size : 1em;" class="label">Licence</span>
+        <span class="label">Licence</span>
       </center>
       <center>
         <textarea readonly class="form-control" style="resize:none;min-height:25em;padding:15px;">
