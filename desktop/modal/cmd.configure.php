@@ -36,7 +36,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</ul>
-
+	
 	<div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
 		<div role="tabpanel" class="tab-pane active" id="cmd_information">
 			<br/>
@@ -189,7 +189,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</form>
 				</div>
 			</div>
-
+			
 			<form class="form-horizontal">
 				<fieldset id="fd_cmdUsedBy">
 					<legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
@@ -311,7 +311,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 				</fieldset>
 			</form>
 			<?php if ($cmd->getType() == 'action') {?>
-
+				
 				<form class="form-horizontal">
 					<fieldset>
 						<legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
@@ -354,7 +354,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 								<input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -362,10 +362,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionCheckCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
+						
 						$('#bt_addActionCheckCmd').off('click').on('click',function(){
 							addActionCmd({}, 'actionCheckCmd','{{Action}}');
 						});
@@ -404,7 +404,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionPostExecCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 						$('#bt_addActionPostExecCmd').off('click').on('click',function(){
@@ -414,7 +414,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</fieldset>
 				</form>
 			<?php }?>
-
+			
 			<?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
 				?>
 				<form class="form-horizontal">
@@ -546,7 +546,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			</div>
 		<?php }
 		?>
-
+		
 		<?php if ($cmd->widgetPossibility('custom')) {
 			?>
 			<div role="tabpanel" class="tab-pane" id="cmd_display">
@@ -657,9 +657,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</tr>
 						<?php }
 						?>
-						<?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) {
-
-							?>
+						<?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
 							<tr>
 								<td>{{Afficher les statistiques}}</td>
 								<?php
@@ -677,7 +675,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						?>
 					</tbody>
 				</table>
-
+				
 				<div class="form-group">
 					<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
 					<div class="col-xs-1">
@@ -688,7 +686,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
 					</div>
 				</div>
-
+				
 				<br/><br/>
 				<?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 					?>
@@ -728,9 +726,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</div>
-
+	
 	<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
-
+	
 	<script>
 	$("#md_cmdConfigureSelectMultiple").dialog({
 		closeText: '',
@@ -746,11 +744,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			$("body").css({overflow: 'inherit'});
 		}
 	});
-
+	
 	$('#table_widgetParametersCmd').delegate('.removeWidgetParameter', 'click', function () {
 		$(this).closest('tr').remove();
 	});
-
+	
 	$('#bt_addWidgetParametersCmd').off().on('click', function () {
 		var tr = '<tr>';
 		tr += '<td>';
@@ -765,7 +763,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		tr += '</tr>';
 		$('#table_widgetParametersCmd tbody').append(tr);
 	});
-
+	
 	$('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
 	$('#bt_cmdConfigureRawObject').off('click').on('click',function(){
 		$('#md_modal3').dialog({title: "{{Informations}}"});
@@ -775,7 +773,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		$('#md_modal3').dialog({title: "{{Graphique des liens}}"});
 		$("#md_modal3").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
 	});
-
+	
 	$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
 		jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
 			var target_id = result.cmd.id
@@ -796,7 +794,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
+	
 	$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
 		jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
 			var target_id = result.cmd.id
@@ -817,8 +815,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
-
+	
+	
 	$('#bt_cmdConfigureReplaceMeBy').off('click').on('click',function(){
 		jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
 			var target_id = result.cmd.id
@@ -839,7 +837,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
+	
 	$('#bt_cmdConfigureReplaceByMe').off('click').on('click',function(){
 		jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
 			var target_id = result.cmd.id
@@ -860,8 +858,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
-
+	
+	
 	$('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
 		var target_id = prompt("{{ID de commande à remplacer ?}}");
 		if(target_id == null){
@@ -882,20 +880,20 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			}
 		});
 	});
-
-
+	
+	
 	if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
 		for(var i in cmdInfo.configuration.actionCheckCmd){
 			addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
 		}
 	}
-
+	
 	if(isset(cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(cmdInfo.configuration.jeedomPreExecCmd) && cmdInfo.configuration.jeedomPreExecCmd.length != null){
 		for(var i in cmdInfo.configuration.jeedomPreExecCmd){
 			addActionCmd(cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd','{{Action}}');
 		}
 	}
-
+	
 	if(isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configuration.jeedomPostExecCmd) && cmdInfo.configuration.jeedomPostExecCmd.length != null){
 		for(var i in cmdInfo.configuration.jeedomPostExecCmd){
 			addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}');
@@ -931,13 +929,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			}
 		});
 	});
-
-
+	
+	
 	$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
 		var type = $(this).attr('data-type');
 		$(this).closest('.' + type).remove();
 	});
-
+	
 	$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
 		var type = $(this).attr('data-type');
 		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
@@ -949,7 +947,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
+	
 	$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function () {
 		var type = $(this).attr('data-type');
 		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
@@ -961,7 +959,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			});
 		});
 	});
-
+	
 	$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
 		var type = $(this).attr('data-type')
 		var expression = $(this).closest('.' + type).getValues('.expressionAttr');
@@ -971,7 +969,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			taAutosize();
 		})
 	});
-
+	
 	function addActionCmd(_action, _type, _name) {
 		if (!isset(_action)) {
 			_action = {};
@@ -1004,7 +1002,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		$('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
 		taAutosize();
 	}
-
+	
 	$('#bt_cmdConfigureSaveOn').on('click',function(){
 		var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
 		if (!isset(cmd.display)) {
@@ -1033,7 +1031,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(0);
 				}
 			});
-
+			
 			$('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
 				$('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
 					if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
@@ -1058,21 +1056,21 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
 		});
 	});
-
+	
 	$('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
 		$(this).empty();
 	});
-
+	
 	$('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
 		$('#md_modal3').dialog({title: "{{Logs}}"});
 		$('#md_modal3').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
 	});
-
+	
 	$('#bt_cmdConfigureShowHistory').on( 'click',function () {
 		$('#md_modal3').dialog({title: "Historique"});
 		$("#md_modal3").load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open');
 	});
-
+	
 	$('#bt_cmdConfigureTest').on('click',function(){
 		jeedom.cmd.test({id: cmdInfo.id, alert : '#md_displayCmdConfigure'});
 	});
