@@ -239,7 +239,7 @@ legend {
   max-height: 30px;
 }
 .eqLogic-widget .cmd.refresh {
-  margin-top: 1px !important;
+  margin-top: 5px !important;
   margin-right: 5px !important;
 }
 .eqLogic-widget .cmd.refresh i {
