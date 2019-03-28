@@ -42,37 +42,37 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{ID}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="id" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="id"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{Nom}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="name" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="name"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{ID logique}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="logicalId" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="logicalId"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{ID de l'objet}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="object_id" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="object_id"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{Date de création}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-7 control-label">{{Date de changement de pile(s)}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime"></span>
 							</div>
 						</div>
 					</fieldset>
@@ -94,25 +94,25 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						<div class="form-group">
 							<label class="col-sm-6 control-label">{{Type}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="eqType_name" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="eqType_name"></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-6 control-label">{{Tentative échouée}}</label>
 							<div class="col-sm-4">
-								<span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
+								<span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-6 control-label">{{Date de dernière communication}}</label>
 							<div class="col-sm-4">
-								<span class="label label-primary" style="font-size : 1em;"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
+								<span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-6 control-label">{{Dernière mise à jour}}</label>
 							<div class="col-sm-4">
-								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime" style="font-size : 1em;"></span>
+								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime"></span>
 							</div>
 						</div>
 					</fieldset>
@@ -304,7 +304,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-		
+
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -397,7 +397,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">{{Style général des cases (CSS)}}</label>
 					<div class="col-sm-10">
-						<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
+						<input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -441,7 +441,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-						
+
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -557,7 +557,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-	
+
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
