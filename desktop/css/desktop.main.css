@@ -306,7 +306,6 @@ div.cmd > div.center-block {
   color: var(--txt-color) !important;
   font-size: 11px !important;
   font-weight: normal;
-  margin-top: 5px;
   padding: 0 !important;
   width: 100% !important;
 }
@@ -751,6 +750,7 @@ pre {
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
+  line-height: 14px;
 }
 p.state {
   color: var(--txt-color) !important;
@@ -788,7 +788,7 @@ li.alert-info.eqLogic {
   outline: none;
 }
 .ui-slider-horizontal .ui-slider-handle {
-  top: -7px !important;
+  top: -6px !important;
 }
 .ui-slider-vertical .ui-slider-handle {
   left: -6px !important;
@@ -800,9 +800,8 @@ li.alert-info.eqLogic {
   width: 3.2px !important;
 }
 .ui-slider{
-  margin: 5px 5px 5px 5px!important;
   background: var(--el-defaultColor) !important;
-  border:none !important;
+  border: none !important;
 }
 
 .action_colorpicker_change,
@@ -1539,12 +1538,6 @@ tr.tablesorter-filter-row td {
   background-color: var(--btn-default-color)!important;
 }
 
-table.tableCmd {
-  min-width: 100%;
-}
-table.tableCmd .cmd-widget {
-  margin-right: 6px !important;
-}
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
 }
@@ -2141,9 +2134,7 @@ div.cmd-widget > .title {
   display: table;
   text-align: center;
 }
-.eqLogic-widget div.cmd-widget:last-of-type .title {
-  /*! margin-bottom: 5px; */
-}
+
 div.cmd-widget > .content-xs {
   color: var(--txt-color);
   width: 100%;
@@ -2177,7 +2168,7 @@ div.cmd-widget > .content-lg {
   vertical-align: middle;
 }
 div.cmd-widget > .value {
-  display: relative;
+  font-weight: bold;
   width: 100%;
   height: 16px;
   min-height: 16px;
@@ -2192,6 +2183,12 @@ div.cmd-widget > .value > .center-block {
   margin: 0;
 }
 
+div.eqLogic_layout_table table.tableCmd {
+  min-width: 100%;
+}
+div.eqLogic_layout_table table.tableCmd td {
+  vertical-align: top;
+}
 div.eqLogic_layout_table .tableCmd,
 div.eqLogic_layout_default .cmd-widget {
   margin-top: 5px;
@@ -2204,13 +2201,36 @@ div.eqLogic_layout_default .cmd-widget {
   z-index: -1;
 }
 
+.slider.ui-slider-horizontal {
+  position: relative;
+  margin: 5px;
+  width: 65px;
+  left: 0;
+}
+.slider.ui-slider-vertical {
+  position: absolute;
+  margin: 5px;
+  height: 55px;
+  top: 12px !important;
+  right: 3px;
+}
+
 .sliderValue {
   font-size: 12px;
+  color: var(--txt-color);
   font-weight: normal;
   position: absolute;
   z-index: 1;
-  transform: translate(-200%, 5%);
 }
+.ui-slider-horizontal > .sliderValue {
+  top: -7px;
+  right: -22px;
+}
+.ui-slider-vertical > .sliderValue {
+  bottom: -1px;
+  right: 10px;
+}
+
 .gauge {
   position: relative;
   width: 100px;
@@ -2222,7 +2242,7 @@ div.eqLogic_layout_default .cmd-widget {
 }
 .arcgauge .cmdStats {
   position: relative;
-  top: 2px;
+  top: -1px;
 }
 
 .hgauge-value,
@@ -2248,8 +2268,13 @@ div.eqLogic_layout_default .cmd-widget {
   height: 38px;
   margin-bottom: -7px;
 }
+.hgauge,
+.vgauge,
 .shuttergauge {
-  margin-top: 0px;
+  width: 90px;
+  max-width: 90px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .shuttergauge .center-block {
@@ -2588,7 +2613,8 @@ div[id^=__lpform_] { /*lastpass*/
 .eqLogic-widget,
 .scenario-widget,
 #div_alert,
-.alert {
+.alert,
+.jqAlert{
   border-radius: var(--border-radius) !important;
 }
 
