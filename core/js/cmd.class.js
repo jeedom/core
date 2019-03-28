@@ -846,7 +846,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
     _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
     } else {
     var interval = 10000;
-    _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+     _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
     }
     var myinterval = setInterval(function(){
       var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
@@ -859,7 +859,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
          _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
       } else {
         var interval = 10000;
-        _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+            _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
       }
     }, interval);
     _el.attr('data-interval',myinterval);
@@ -878,7 +878,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
             _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
         } else {
             interval = 10000;
-            _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+            _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
        }
       }else{
         _el.empty().append("0 s");
