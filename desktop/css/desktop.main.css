@@ -369,6 +369,12 @@ div.cmd > div.center-block {
 .counterReorderJeedom {
   color: white;
 }
+.eqLogic-widget.editingMode {
+  box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
+}
+.eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
+  border: 2px solid var(--link-color) !important;
+}
 
 /* summary */
 .objectSummaryParent {
@@ -377,14 +383,6 @@ div.cmd > div.center-block {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
-.eqLogic-widget.editingMode {
-  box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
-}
-
-.eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-  border: 2px solid var(--link-color) !important;
-}
-
 select.selectCmd {
   border: 0;
   vertical-align: middle;
@@ -2178,18 +2176,13 @@ div.cmd-widget > .value > .center-block {
   margin: 0;
 }
 
-div.eqLogic_layout_table tbody tr td{
+div.eqLogic_layout_table tbody tr td {
   vertical-align: top;
 }
-
-div.eqLogic_layout_default .title{
-  margin-top: 3px;
+div.eqLogic_layout_table .tableCmd,
+div.eqLogic_layout_default .cmd-widget {
+  margin-top: 5px;
 }
-
-/*.eqLogic_layout_table div.cmd-widget .iconCmd > i {
-position: relative;
-top: -6px !important;
-}*/
 
 .verticalAlign {
   position: relative;
@@ -2217,9 +2210,9 @@ top: -6px !important;
 .arcgauge {
   max-height: 80px;
 }
-.arcgauge .title {
+.arcgauge .cmdStats {
   position: relative;
-  /*  top: -4px;*/
+  top: 3px;
 }
 
 .hgauge-value,
