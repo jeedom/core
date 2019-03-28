@@ -285,10 +285,9 @@ legend {
 }
 
 .iconCmd {
-  margin-top: 5px !important;
   top: 0 !important;
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: normal;
 }
 .iconCmd > i {
   color: var(--link-color) !important;
@@ -2174,6 +2173,7 @@ div.cmd-widget > .value > .center-block {
   padding: 0 !important;
   margin: 0;
 }
+
 .eqLogic_layout_table div.cmd-widget .iconCmd > i {
   position: relative;
   top: -6px !important;
