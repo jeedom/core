@@ -840,28 +840,50 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var j = Math.floor(d / 86400);
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+    if (d > 3599) {
+    var interval = 60000;
     _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+    } else {
+    var interval = 10000;
+    _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+    }
     var myinterval = setInterval(function(){
       var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
-      _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    }, 60000);
+      var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+      if (d > 3599) {
+        var interval = 60000;
+         _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+      } else {
+        var interval = 10000;
+        _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+      }
+    }, interval);
     _el.attr('data-interval',myinterval);
   }else{
-    _el.empty().append("0 min");
+    _el.empty().append("0 s");
+    var interval = 10000;
     var myinterval = setInterval(function(){
       if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
         var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
-        _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+        var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+        if (d > 3599) {
+            interval = 60000;
+            _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+        } else {
+            interval = 10000;
+            _el.empty().append(((m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min " : "") + (s > 0 ? s + " s " : "0 s")));
+       }
       }else{
-        _el.empty().append("0 min");
+        _el.empty().append("0 s");
       }
-    }, 60000);
+    }, interval);
     _el.attr('data-interval',myinterval);
   }
 };
