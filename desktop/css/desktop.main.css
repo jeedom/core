@@ -2130,9 +2130,6 @@ div.cmd-widget > .title {
   display: table;
   text-align: center;
 }
-div.cmd-widget > .hidden {
-  display: none !important;
-}
 .eqLogic-widget div.cmd-widget:last-of-type .title {
   /*! margin-bottom: 5px; */
 }
@@ -2562,6 +2559,9 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 
+.hidden  {
+  display: none !important;
+}
 
 
 /* __________________________________________________________________________________________________________ROUNDING */
