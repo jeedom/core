@@ -2210,8 +2210,8 @@ div.eqLogic_layout_default .cmd-widget {
 .slider.ui-slider-vertical {
   position: absolute;
   margin: 5px;
-  height: 55px;
-  top: 12px !important;
+  height: 50px;
+  top: 16px !important;
   right: 3px;
 }
 
