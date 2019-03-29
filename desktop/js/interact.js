@@ -37,11 +37,10 @@ $(function(){
         interactGroups = []
         for(i=0; i<interacts.length; i++){
           group = interacts[i].group
+          if (group == null) continue
           if (group == "") group = 'Aucun'
-          if (group != undefined)  {
-            group = group[0].toUpperCase() + group.slice(1)
-            interactGroups.push(group)
-          }
+          group = group[0].toUpperCase() + group.slice(1)
+          interactGroups.push(group)
         }
         interactGroups = Array.from(new Set(interactGroups))
         interactGroups.sort()
@@ -54,6 +53,7 @@ $(function(){
           {
             sc = interacts[j]
             scGroup = sc.group
+            if (scGroup == null) continue
             if (scGroup == "") scGroup = 'Aucun'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
             if (sc.name == "") sc.name = sc.query
