@@ -125,7 +125,12 @@ try {
 	}
 	
 	if (init('action') == 'listByType') {
-		ajax::success(utils::o2a(eqLogic::byType(init('type'))));
+		$return = array();
+		foreach (eqLogic::byType(init('type')) as $eqLogic) {
+			$return[$eqLogic->getId()] = utils::o2a($eqLogic);
+			$return[$eqLogic->getId()]['humanName'] = $eqLogic->getHumanName();
+		}
+		ajax::success(array_values($return));
 	}
 	
 	if (init('action') == 'listByObjectAndCmdType') {
