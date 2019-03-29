@@ -1,0 +1,18 @@
+<div class="tooltips hgauge cmd cmd-widget #history#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<center>
+		<div class="hgauge-bckg"></div>
+		<div class="hgauge-value"></div>
+		<div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+	</center>
+
+	<script>
+		jeedom.cmd.update['#id#'] = function(_options){
+			width = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+			width = Math.round(parseFloat(width) * 10) / 10
+			$('.cmd[data-cmd_uid=#uid#] .hgauge-value').width(width+'%')
+			$('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
+		}
+
+		jeedom.cmd.update['#id#']({display_value:'#state#'});
+	</script>
+</div>
