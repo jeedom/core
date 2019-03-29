@@ -118,20 +118,20 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					)),
 					'heatPiloteWireQubino' => array('template' => 'tmplmultistate','test' => array(
 						array('operation' => '#value# == 255','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
-						array('operation' => '#value# == 50','state' => '<i class="icon jeedom-pilote-conf"></i><sup style="font-size: 0.3em; margin-left: 1px">-1</sup>'),
-						array('operation' => '#value# == 40','state' => '<i class="icon jeedom-pilote-conf"></i><sup style="font-size: 0.3em; margin-left: 1px">-2</sup>'),
+						array('operation' => '#value# == 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
+						array('operation' => '#value# == 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
 						array('operation' => '#value# == 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
 						array('operation' => '#value# == 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
 						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
 					)),
 					'timeHeatPiloteWireQubino' => array('template' => 'tmpltimeMultistate','test' => array(
 						array('operation' => '#value# == 255','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
-						array('operation' => '#value# == 50','state' => '<i class="icon jeedom-pilote-conf"></i><sup style="font-size: 0.3em; margin-left: 1px">-1</sup>'),
-						array('operation' => '#value# == 40','state' => '<i class="icon jeedom-pilote-conf"></i><sup style="font-size: 0.3em; margin-left: 1px">-2</sup>'),
+						array('operation' => '#value# == 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
+						array('operation' => '#value# == 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
 						array('operation' => '#value# == 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
 						array('operation' => '#value# == 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
 						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
-					)),
+					))
 				)
 			)
 		),
