@@ -818,9 +818,11 @@ class scenario {
 					if (!$this->hasRight('r')) {
 						return '';
 					}
-					$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
-					if ($mc->getValue() != '') {
-						return $mc->getValue();
+					if(config::byKey('widget::disableCache','core',0) == 0){
+						$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
+						if ($mc->getValue() != '') {
+							return $mc->getValue();
+						}
 					}
 					$version = jeedom::versionAlias($_version);
 					$name = ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName();
@@ -843,7 +845,9 @@ class scenario {
 						self::$_templateArray[$version] = getTemplate('core', $version, 'scenario');
 					}
 					$html = template_replace($replace, self::$_templateArray[$version]);
-					cache::set('scenarioHtml' . $version . $this->getId(), $html);
+					if(config::byKey('widget::disableCache','core',0) == 0){
+						cache::set('scenarioHtml' . $version . $this->getId(), $html);
+					}
 					return $html;
 				}
 				/**
