@@ -254,6 +254,7 @@ body {
 }
 .state {
   font-size: 16px !important;
+  font-weight: bold;
 }
 .state i {
   font-size: 40px !important;
