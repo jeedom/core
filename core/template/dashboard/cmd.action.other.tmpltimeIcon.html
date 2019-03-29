@@ -1,11 +1,15 @@
-<div style="width:90px;min-height:80px;" class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-    <center>
-        <div style="font-weight: bold;font-size : 12px;#hideCmdName#">#valueName#</div>
-        <span style="font-size: 2.5em;font-weight: bold;margin-top: 5px;" class="iconCmd"></span>
-        <span class="timeCmd#uid# timeCmd label label-default"></span>
-    </center>
-    <script>
-        jeedom.cmd.update['#id#'] = function(_options){
+<div style="width:100px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#valueName#</div>
+  </div>
+  <div class="content-sm ">
+    <span class="cursor iconCmd content-sm"></span>
+  </div>
+  <div class="value">
+    <span class="timeCmd#uid# timeCmd label label-default value"></span>
+  </div>
+  <script>
+   jeedom.cmd.update['#id#'] = function(_options){
             jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
             $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
             if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
@@ -13,14 +17,14 @@
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
                 }
             } else {
                 if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
+                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
                 }
             }
         }
