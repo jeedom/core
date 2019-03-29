@@ -42,12 +42,9 @@
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state').first().html()
       if (shutterPos > 50) {
         jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
-        $('.cmd[data-cmd_uid=#uid#] .state').first().text(#minValue#)
       } else {
         jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
-        $('.cmd[data-cmd_uid=#uid#] .state').first().text(#maxValue#)
       }
-
     })
 
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
