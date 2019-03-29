@@ -90,7 +90,7 @@ global $JEEDOM_INTERNAL_CONFIG;
                       foreach (widgets::listTemplate() as $type => $values) {
                         foreach ($values as $subtype => $namelist) {
                           foreach ($namelist as $name) {
-                            echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.str_replace('tmpl','',$name).'</option>';
+                            echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.ucfirst(str_replace('tmpl','',$name)).'</option>';
                           }
                         }
                       }
