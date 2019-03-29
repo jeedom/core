@@ -192,6 +192,8 @@ try {
 					shell_exec('rm -rf ' . __DIR__ . '/../doc');
 					shell_exec('rm -rf ' . __DIR__ . '/../docs');
 					shell_exec('rm -rf ' . __DIR__ . '/../support');
+					shell_exec('rm -rf ' . __DIR__ . '/../core/template/*');
+					shell_exec('rm -rf ' . __DIR__ . '/../core/themes/*');
 					echo "OK\n";
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
