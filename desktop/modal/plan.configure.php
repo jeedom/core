@@ -181,7 +181,7 @@ sendVarToJS('id', $plan->getId());
 				<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
 			</div>
 		</div>
-		<div class="form-group link_type link_plan link_view link_text link_summary">
+		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic">
 			<label class="col-lg-4 control-label">{{Couleur de fond}}</label>
 			<div class="col-lg-2">
 				<input type="color" class="planAttr form-control" data-l1key="css" data-l2key="background-color" />

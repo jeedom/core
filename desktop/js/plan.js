@@ -915,22 +915,22 @@ function displayObject(_plan,_html, _noRender) {
   var html = $(_html);
   html.attr('data-plan_id',_plan.id);
   html.addClass('jeedomAlreadyPosition');
-  html.css('z-index', 1000);
-  html.css('position', 'absolute');
-  html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
-  html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
-  html.css('transform-origin', '0 0');
-  html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-  html.css('-webkit-transform-origin', '0 0');
-  html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-  html.css('-moz-transform-origin', '0 0');
-  html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.style('z-index', 1000, 'important');
+  html.style('position', 'absolute', 'important');
+  html.style('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100, 'important');
+  html.style('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100, 'important');
+  html.style('transform-origin', '0 0', 'important');
+  html.style('transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
+  html.style('-webkit-transform-origin', '0 0', 'important');
+  html.style('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
+  html.style('-moz-transform-origin', '0 0', 'important');
+  html.style('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
   html.addClass('noResize');
   if (isset(_plan.display) && isset(_plan.display.width)) {
-    html.css('width', init(_plan.display.width, 50));
+    html.style('width', init(_plan.display.width, 50), 'important');
   }
   if (isset(_plan.display) && isset(_plan.display.height)) {
-    html.css('height', init(_plan.display.height, 50));
+    html.style('height', init(_plan.display.height, 50), 'important');
   }
   for (var key in _plan.css) {
     if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
@@ -938,17 +938,20 @@ function displayObject(_plan,_html, _noRender) {
         continue;
       }
       html.css(key, _plan.css[key]);
-    }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
+    }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view' || _plan.link_type == 'eqLogic') {
       if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-          html.css('background-color', 'transparent');
-          html.css('border-radius', '0px');
-          html.css('box-shadow', 'none');
+          html.style('background-color', 'transparent', 'important');
+          html.style('border-radius', '0px', 'important');
+          html.style('box-shadow', 'none', 'important');
+          if(_plan.link_type == 'eqLogic'){
+            html.find('.widget-name').style('background-color', 'transparent', 'important');
+          }
         }else{
-          html.css(key, _plan.css[key]);
+          html.style(key, _plan.css[key], 'important');
         }
       }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-        html.css(key, _plan.css[key]);
+        html.style(key, _plan.css[key], 'important');
       }
     }
   }
