@@ -617,6 +617,35 @@ path.highcharts-graph {
 
 
 /* ___________________________________________________________GAUGES */
+.hgauge-value,
+.shuttergauge-value {
+  background: var(--link-color);
+}
+
+.hgauge {
+  position: relative;
+  width: 160px;
+  max-width: 160px;
+  height: 60px;
+  top: 12px;
+}
+.hgauge-bckg {
+  position:relative;
+  width: 160px;
+  height: 5px;
+  top: -3px;
+  background: var(--el-defaultColor);
+}
+.hgauge-value {
+  height: 10px;
+  position: absolute;
+  left: 0;
+  margin-top: -4px;
+}
+.hgauge .state {
+  margin-top: 10px;
+}
+
 .shuttergauge {
   position: relative;
   width: 100% !important;
