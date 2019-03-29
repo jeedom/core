@@ -68,7 +68,7 @@ $(function(){
         for(i=0; i<_eqs.length; i++)
         {
           eq = _eqs[i]
-          contextmenuitems[eq.id] = {'name': eq.name}
+          contextmenuitems[eq.id] = {'name': eq.humanName}
         }
         
         $('.nav.nav-tabs').contextMenu({
