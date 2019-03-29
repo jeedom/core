@@ -624,14 +624,12 @@ path.highcharts-graph {
 
 .hgauge {
   position: relative;
-  width: 160px;
-  max-width: 160px;
+  width: calc(100% - 16px);
   height: 60px;
   top: 12px;
 }
 .hgauge-bckg {
   position:relative;
-  width: 160px;
   height: 5px;
   top: -3px;
   background: var(--el-defaultColor);
