@@ -81,7 +81,7 @@ class widgets {
         $return[$informations[1]][$informations[2]] = array();
       }
       if (isset($informations[3])) {
-        $return[$informations[1]][$informations[2]] = $informations[3];
+        $return[$informations[1]][$informations[2]][] = $informations[3];
       }
     }
     return $return;
