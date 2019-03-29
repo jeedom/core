@@ -2287,7 +2287,7 @@ div.eqLogic_layout_default .cmd-widget {
 }
 .shuttergauge-bckg {
   width: 39px;
-  height: 37px;
+  height: 40px;
   border-top: 5px solid var(--el-defaultColor);
   border-left: 3px solid var(--el-defaultColor);
   border-right: 3px solid var(--el-defaultColor);
