@@ -29,6 +29,7 @@ class widgets {
   private $template;
   private $replace;
   private $test;
+  private $display;
   private $_changed = false;
   
   /*     * ***********************Méthodes statiques*************************** */
@@ -188,5 +189,18 @@ class widgets {
     $this->_changed = utils::attrChanged($this->_changed,$this->test,$test);
     $this->test = utils::setJsonAttr($this->test, $_key, $_value);
     return $this;
+  }
+  
+  public function getDisplay($_key = '', $_default = '') {
+    return utils::getJsonAttr($this->display, $_key, $_default);
+  }
+    
+  public function setDisplay($_key, $_value) {
+    if ($this->getDisplay($_key) != $_value) {
+        $this->_needRefreshWidget = true;
+    }
+    $display = utils::setJsonAttr($this->display, $_key, $_value);
+    $this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+    $this->display = $display;
   }
 }

@@ -22,6 +22,12 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   $("#bt_saveWidgets").click();
 });
 
+$('#bt_chooseIcon').on('click', function () {
+  chooseIcon(function (_icon) {
+    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  });
+});
+
 if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }

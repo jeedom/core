@@ -22,7 +22,11 @@ global $JEEDOM_INTERNAL_CONFIG;
       <?php
       foreach (widgets::all() as $widgets) {
         echo '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widgets->getId() . '">';
-        echo '<i class="fas fa-image"></i>';
+        if($widgets->getDisplay('icon') != ''){
+            echo '<span>'.$widgets->getDisplay('icon').'</span>';
+        }else{
+            echo '<span><i class="fas fa-image"></i></span>';
+        }
         echo "<br/>";
         echo '<span class="name">' . $widgets->getName() . '</span><br/>';
         echo '</div>';
@@ -97,6 +101,15 @@ global $JEEDOM_INTERNAL_CONFIG;
                       ?>
                     </select>
                   </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
+                    <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5">
+                        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-4 col-xs-5">
+                        <div class="widgetsAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+                    </div>
                 </div>
                 <legend class="type_replace">{{Remplacement}}</legend>
                 <div id="div_templateReplace" class="type_replace"></div>

@@ -2471,6 +2471,14 @@
           "extra": ""
         },
         {
+          "name": "display",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "replace",
           "type": "text",
           "null": "YES",
