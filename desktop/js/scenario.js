@@ -53,8 +53,10 @@ $(function(){
         for(i=0; i<scenarios.length; i++){
           group = scenarios[i].group
           if (group == "") group = 'Aucun'
-          group = group[0].toUpperCase() + group.slice(1)
-          scenarioGroups.push(group)
+          if (group != undefined)  {
+            group = group[0].toUpperCase() + group.slice(1)
+            scenarioGroups.push(group)
+          }
         }
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
@@ -86,20 +88,23 @@ $(function(){
           contextmenuitems[group] = {'name':group, 'items':items}
         }
 
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'scenario-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=scenario&id=' + key;
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
-            }
-            loadPage(url);
-          },
-          items: contextmenuitems
-        })
+        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
+        {
+          $('.nav.nav-tabs').contextMenu({
+            selector: 'li',
+            autoHide: true,
+            zIndex: 9999,
+            className: 'scenario-context-menu',
+            callback: function(key, options) {
+              url = 'index.php?v=d&p=scenario&id=' + key;
+              if (document.location.toString().match('#')) {
+                url += '#' + document.location.toString().split('#')[1];
+              }
+              loadPage(url);
+            },
+            items: contextmenuitems
+          })
+        }
       }
     })
   }
