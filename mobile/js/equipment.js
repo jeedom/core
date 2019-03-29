@@ -106,6 +106,7 @@ function initEquipment(_object_id) {
     setTileSize('.eqLogic');
     setTileSize('.scenario');
     $('#div_displayEquipement > .objectHtml').packery({gutter :0});
+    $('.div_displayEquipement .objectHtml').packery({gutter :0});
   });
   
   
