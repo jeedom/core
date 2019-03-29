@@ -617,7 +617,7 @@ class cmd {
 				$return[$informations[1]][$informations[2]] = array();
 			}
 			if (isset($informations[3])) {
-				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core');
+				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core', 'type' => 'core');
 			}
 		}
 		$path = __DIR__ . '/../../plugins/widget/core/template/' . $_version;
@@ -633,7 +633,7 @@ class cmd {
 						$return[$informations[1]][$informations[2]] = array();
 					}
 					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
-						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget');
+						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget' ,  'type' => 'widget');
 					}
 				}
 			}
@@ -647,7 +647,7 @@ class cmd {
 					if(!isset($return[$type][$subtype])){
 						$return[$type][$subtype] = array();
 					}
-					$return[$type][$subtype][$name] = array('name' => $name, 'location' => 'core');
+					$return[$type][$subtype][$name] = array('name' => $name, 'location' => 'core', 'type' => 'template');
 				}
 			}
 		}
@@ -665,7 +665,7 @@ class cmd {
 						if(!isset($return[$type][$subtype])){
 							$return[$type][$subtype] = array();
 						}
-						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId());
+						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId() , 'type' => 'plugin');
 					}
 				}
 			}
@@ -677,7 +677,7 @@ class cmd {
 			if(!isset($return[$widgets->getType()][$widgets->getSubtype()])){
 				$return[$widgets->getType()][$widgets->getSubtype()] = array();
 			}
-			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom');
+			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom', 'type' => 'custom');
 		}
 		return $return;
 	}

@@ -572,14 +572,35 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 									<?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
 										?>
 										<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-											<option value="default">defaut (core)</option>';
+											<option value="default">Défaut</option>';
 											<?php
 											if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
-												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $widget) {
-													if ($widget['name'] == 'default') {
-														continue;
+												$types = array();
+												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
+													if (isset($info['type'])) {
+														$info['key'] = $key;
+													if (!isset($types[$info['type']])) {
+														$types[$info['type']][0] = $info;
+													} else {
+														array_push($types[$info['type']], $info);
 													}
-													echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+												}
+												}
+												ksort($types);
+												foreach ($types as $type) {
+													usort($type, function ($a, $b) {
+														return strcmp($a['name'], $b['name']);
+													});
+													foreach ($type as $key => $widget) {
+														if ($widget['name'] == 'default') {
+															continue;
+														}
+														if ($key == 0) {
+															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+														}
+														echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+													}
+													echo '</optgroup>';
 												}
 											}
 											?>
@@ -591,14 +612,35 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 									<?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
 										?>
 										<select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-											<option value="default">defaut (core)</option>';
+											<option value="default">Défaut</option>';
 											<?php
 											if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
-												foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $widget) {
-													if ($widget['name'] == 'default') {
-														continue;
+												$types = array();
+												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
+													if (isset($info['type'])) {
+														$info['key'] = $key;
+													if (!isset($types[$info['type']])) {
+														$types[$info['type']][0] = $info;
+													} else {
+														array_push($types[$info['type']], $info);
 													}
-													echo '<option value="'.$widget['location'].'::' . $widget['name'] . '">' . $widget['name'] . ' (' . $widget['location'] . ')</option>';
+												}
+												}
+												ksort($types);
+												foreach ($types as $type) {
+													usort($type, function ($a, $b) {
+														return strcmp($a['name'], $b['name']);
+													});
+													foreach ($type as $key => $widget) {
+														if ($widget['name'] == 'default') {
+															continue;
+														}
+														if ($key == 0) {
+															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+														}
+														echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+													}
+													echo '</optgroup>';
 												}
 											}
 											?>
