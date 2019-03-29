@@ -22,6 +22,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
 
+//contextMenu:
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -37,8 +38,10 @@ $(function(){
         for(i=0; i<interacts.length; i++){
           group = interacts[i].group
           if (group == "") group = 'Aucun'
-          group = group[0].toUpperCase() + group.slice(1)
-          interactGroups.push(group)
+          if (group != undefined)  {
+            group = group[0].toUpperCase() + group.slice(1)
+            interactGroups.push(group)
+          }
         }
         interactGroups = Array.from(new Set(interactGroups))
         interactGroups.sort()
@@ -71,20 +74,23 @@ $(function(){
           contextmenuitems[group] = {'name':group, 'items':items}
         }
 
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'interact-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=interact&id=' + key;
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
-            }
-            loadPage(url);
-          },
-          items: contextmenuitems
-        })
+        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
+        {
+          $('.nav.nav-tabs').contextMenu({
+            selector: 'li',
+            autoHide: true,
+            zIndex: 9999,
+            className: 'interact-context-menu',
+            callback: function(key, options) {
+              url = 'index.php?v=d&p=interact&id=' + key;
+              if (document.location.toString().match('#')) {
+                url += '#' + document.location.toString().split('#')[1];
+              }
+              loadPage(url);
+            },
+            items: contextmenuitems
+          })
+        }
       }
     })
   }
