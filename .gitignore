@@ -22,6 +22,7 @@ data/*
 !data/object
 !data/plan
 !data/custom
+!data/customTemplates
 data/3d/*
 !3d/.htaccess
 
