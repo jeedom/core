@@ -85,15 +85,42 @@ class widgets {
         $return[$informations[1]][$informations[2]][] = $informations[3];
       }
     }
+    $files = ls(__DIR__ . '/../../data/customTemplates/dashboard', 'cmd.*', false, array('files', 'quiet'));
+    foreach ($files as $file) {
+      $informations = explode('.', $file);
+      if(count($informations) < 4){
+        continue;
+      }
+      if(stripos($informations[3],'tmpl') === false){
+        continue;
+      }
+      if (!isset($return[$informations[1]])) {
+        $return[$informations[1]] = array();
+      }
+      if (!isset($return[$informations[1]][$informations[2]])) {
+        $return[$informations[1]][$informations[2]] = array();
+      }
+      if (isset($informations[3])) {
+        $return[$informations[1]][$informations[2]][] = $informations[3];
+      }
+    }
     return $return;
   }
   
   public static function getTemplateConfiguration($_template){
+    $iscustom = false;
     if(!file_exists(__DIR__ . '/../template/dashboard/'.$_template.'.html')){
-      return;
+      $iscustom = true;
+      if(!file_exists(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html')){
+        return;
+      }
     }
     $return = array('test' => false);
-    $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+    if ($iscustom) {
+        $template = file_get_contents(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html');
+    } else {
+        $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+    }
     if(strpos($template,'#test#') !== false){
       $return['test'] = true;
     }
