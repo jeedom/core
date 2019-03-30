@@ -112,13 +112,15 @@ $(function(){
             selector: 'li',
             autoHide: true,
             zIndex: 9999,
-            className: 'scenario-context-menu',
+            className: 'eq-context-menu',
             callback: function(key, options) {
-              url = 'index.php?v=d&p=scenario&id=' + key;
+              tab = null
               if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1];
+                tab = '#' + document.location.toString().split('#')[1];
+                tab = $('a[href="' + tab + '"]')
               }
-              loadPage(url);
+              $('.eqLogicDisplayCard[data-eqLogic_id="' + key + '"]').click()
+              if (tab) tab.click()
             },
             items: contextmenuitems
           })
