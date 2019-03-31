@@ -44,7 +44,7 @@ function initView(_view_id) {
       setTileSize('.scenario');
       $('.eqLogicZone').packery({gutter : 0});
       var screenWidth = $(window).width() - 8;
-      $('.div_viewZone').each(function(){
+      $('.div_viewZone .table-responsive').each(function(){
         $(this).width('auto')
         $(this).css('max-width','none');
         if($(this).width() < screenWidth){
@@ -81,7 +81,7 @@ function displayView(html) {
   }, 50);
   $('#div_displayView .ui-table-columntoggle-btn').remove();
   var screenWidth = $(window).width() - 8;
-  $('.div_viewZone').each(function(){
+  $('.div_viewZone .table-responsive').each(function(){
     if($(this).width() < screenWidth){
       $(this).width(screenWidth);
     }else{
