@@ -630,6 +630,11 @@ pre {
   line-height: 20px;
   background: var(--bg-modal-color);
 }
+
+.div_viewZone{
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+}
+
 .view-link-widget,
 .plan-link-widget {
   padding: 3px;
