@@ -778,6 +778,9 @@ pre {
 
 
 /* ___________________________________________________________VIEW */
+.div_viewZone{
+  margin-left:10px;
+}
 
 .div_viewZoneTable{
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
