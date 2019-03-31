@@ -915,22 +915,22 @@ function displayObject(_plan,_html, _noRender) {
   var html = $(_html);
   html.attr('data-plan_id',_plan.id);
   html.addClass('jeedomAlreadyPosition');
-  html.style('z-index', 1000, 'important');
-  html.style('position', 'absolute', 'important');
-  html.style('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100, 'important');
-  html.style('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100, 'important');
-  html.style('transform-origin', '0 0', 'important');
-  html.style('transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
-  html.style('-webkit-transform-origin', '0 0', 'important');
-  html.style('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
-  html.style('-moz-transform-origin', '0 0', 'important');
-  html.style('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')', 'important');
+  html.css('z-index', 1000);
+  html.css('position', 'absolute');
+  html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
+  html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
+  html.css('transform-origin', '0 0', 'important');
+  html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.css('-webkit-transform-origin', '0 0');
+  html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.css('-moz-transform-origin', '0 0');
+  html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
   html.addClass('noResize');
   if (isset(_plan.display) && isset(_plan.display.width)) {
-    html.style('width', init(_plan.display.width, 50), 'important');
+    html.css('width', init(_plan.display.width, 50));
   }
   if (isset(_plan.display) && isset(_plan.display.height)) {
-    html.style('height', init(_plan.display.height, 50), 'important');
+    html.css('height', init(_plan.display.height, 50));
   }
   for (var key in _plan.css) {
     if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
