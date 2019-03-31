@@ -25,6 +25,15 @@
       }
       height = ((position - #minValue#) * 100) / (#maxValue# - #minValue#);
       height = 100 - (Math.round(parseFloat(height) * 10) / 10);
+
+      if (height > 65) {
+        $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
+        $('.cmd[data-cmd_uid=#uid#] .state').css('margin-top','-35px')
+      } else {
+        $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
+        $('.cmd[data-cmd_uid=#uid#] .state').css('margin-top','-12px')
+      }
+
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
       $('.cmd[data-cmd_uid=#uid#] .slider').slider( "option", "value",position);
