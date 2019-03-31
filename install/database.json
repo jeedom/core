@@ -2493,14 +2493,6 @@
           "key": "",
           "default": null,
           "extra": ""
-        },
-        {
-          "name": "display",
-          "type": "text",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
         }
       ],
       "indexes": {
