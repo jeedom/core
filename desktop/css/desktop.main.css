@@ -7,10 +7,10 @@ Theme Core 2019 @Jeedom
   height:8px;
 }
 ::-webkit-scrollbar-track-piece{
-  background-color:transparent
+  background-color:transparent !important;
 }
 ::-webkit-scrollbar-thumb{
-  background: var(--btnEq-default-color)
+  background: var(--logo-secondary-color) !important;
 }
 
 html {
@@ -30,7 +30,7 @@ body {
   background-size: cover;
   background-position: center center;
   margin: 0 !important;
-  scrollbar-color: var(--form-bg-color) rgb(var(--bg-color)) !important;
+  scrollbar-color: var(--logo-secondary-color) rgb(var(--bg-color)) !important;
 }
 .backgroundforJeedom{
   width:100%;
@@ -2727,16 +2727,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2744,11 +2744,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -2775,5 +2775,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
