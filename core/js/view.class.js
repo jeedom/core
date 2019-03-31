@@ -80,8 +80,11 @@ jeedom.view.handleViewAjax = function (_params) {
   var result = {html: '', scenario: [], cmd: [], eqLogic: []};
   for (var i in _params.view.viewZone) {
     var viewZone = _params.view.viewZone[i];
-    
-    result.html += '<div class="col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12)+' div_viewZone">';
+    if (viewZone.type == 'table') {
+      result.html += '<div class="col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12)+' div_viewZoneTable">';
+    }else{
+      result.html += '<div class="col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12)+'">';
+    }
     
     result.html += '<legend class="lg_viewZone" style="color : #716b7a" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
     var div_id = 'div_viewZone' + viewZone.id + Date.now();

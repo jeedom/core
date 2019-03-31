@@ -635,7 +635,7 @@ pre {
   background: var(--bg-modal-color);
 }
 
-.div_viewZone{
+.div_viewZoneTable{
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
 }
 
