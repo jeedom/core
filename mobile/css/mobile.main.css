@@ -149,7 +149,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-
+  
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -361,8 +361,6 @@ p.state {
   margin: 0;
 }
 
-
-
 /* bottom home menu */
 .ui-bottom-sheet-list .ui-bottom-sheet-link,
 .ui-bottom-sheet {
@@ -373,6 +371,7 @@ p.state {
 .ui-listview > li >a:hover {
   background-color: var(--btnEq-default-color) !important;
 }
+
 
 .cmd a.ui-btn-raised > i {
   font-size: 1.2em !important;
@@ -775,4 +774,16 @@ pre {
 }
 #bt_eraseSearchInput {
   border-radius: 0 0 var(--border-radius) 0 !important;
+}
+
+
+/* ___________________________________________________________VIEW */
+
+.div_viewZone{
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  margin-bottom: 5px;
+}
+
+.div_viewZone table{
+  background-color: transparent !important;
 }
