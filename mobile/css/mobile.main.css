@@ -11,7 +11,11 @@ Theme Core 2019 @Jeedom
   background-color:transparent
 }
 ::-webkit-scrollbar-thumb{
-  background: var(--btnEq-default-color)
+  background: var(--logo-secondary-color) !important;
+}
+
+::-webkit-scrollbar-corner{
+  background-color:transparent
 }
 
 ::-moz-color-swatch {
@@ -51,7 +55,7 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  scrollbar-color: var(--form-bg-color) rgb(var(--bg-color)) !important;
+  scrollbar-color: var(--logo-secondary-color) rgb(var(--bg-color)) !important;
 }
 
 .nd2-card{
