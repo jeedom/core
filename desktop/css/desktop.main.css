@@ -194,7 +194,7 @@ legend {
   margin-left:10px;
 }
 /* legend on equipements pages */
-:not(.div_object) > legend {
+:not(.div_object) > legend:not(.no-bordered) {
   text-align: left !important;
   font-size: 17px;
   color: var(--link-color);
