@@ -609,8 +609,8 @@ div[data-market_type=plugin]:hover {
   font-size: 16px !important;
 }
 
-#div_plugin_functionality .form-group{
-  margin-bottom: 10px;
+.form-group .label{
+  padding: 2px 8px 2px 8px; !important;
 }
 
 pre {
