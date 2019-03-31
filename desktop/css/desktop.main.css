@@ -2298,6 +2298,11 @@ div.eqLogic_layout_default .cmd-widget {
 .shuttergauge-chart {
   height: 36px;
 }
+.shuttergauge[data-type=action] .state {
+  position: relative;
+  z-index: 2;
+  margin-top: -12px;
+}
 .shuttergauge .slider {
   width: 60px;
   top: -1px;
