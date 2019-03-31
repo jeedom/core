@@ -779,11 +779,11 @@ pre {
 
 /* ___________________________________________________________VIEW */
 
-.div_viewZone{
+.div_viewZoneTable{
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   margin-bottom: 5px;
 }
 
-.div_viewZone table{
+.div_viewZoneTable table{
   background-color: transparent !important;
 }
