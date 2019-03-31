@@ -46,8 +46,12 @@ function initView(_view_id) {
       var screenWidth = $(window).width() - 8;
       $('.div_viewZone').each(function(){
         $(this).width('auto')
+        $(this).css('max-width','none');
         if($(this).width() < screenWidth){
           $(this).width(screenWidth);
+        }else{
+          $(this).css('overflow','scroll');
+          $(this).css('max-width',screenWidth+'px');
         }
       });
     }, 50);
@@ -77,6 +81,9 @@ function displayView(html) {
   $('.div_viewZone').each(function(){
     if($(this).width() < screenWidth){
       $(this).width(screenWidth);
+    }else{
+      $(this).css('overflow','scroll');
+      $(this).css('max-width',screenWidth+'px');
     }
   });
 }
