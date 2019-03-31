@@ -76,6 +76,9 @@ function displayView(html) {
   }
   setTileSize('.eqLogic');
   $('.eqLogicZone').packery({gutter : 0});
+  setTimeout(function(){
+    $('.eqLogicZone').packery({gutter : 0});
+  }, 50);
   $('#div_displayView .ui-table-columntoggle-btn').remove();
   var screenWidth = $(window).width() - 8;
   $('.div_viewZone').each(function(){
