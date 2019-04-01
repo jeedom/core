@@ -1427,6 +1427,11 @@ input[type=checkbox].summaryAttr {
   margin-top: -12px;
 }
 
+/* select multiple */
+.custom-select {
+  font-size: 14px !important;
+  padding: 0 !important;
+}
 
 
 /* __________________________________________________________________________________________________________TABS */
