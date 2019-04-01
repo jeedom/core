@@ -2309,6 +2309,8 @@ div.eqLogic_layout_default .cmd-widget {
   left: 25px;
 }
 .shuttergauge-chart {
+  position: relative;
+  top: -18px;
   height: 36px;
 }
 .shuttergauge[data-type=action] .state {
@@ -2318,7 +2320,7 @@ div.eqLogic_layout_default .cmd-widget {
 }
 .shuttergauge .slider {
   width: 60px;
-  top: -1px;
+  top: 12px !important;
 }
 .hgauge-value {
   position: absolute;
