@@ -1661,7 +1661,7 @@ hr {
 
 /*    __DESIGN__    */
 .element legend {
-  border-left: none;
+  border-left: none!important;
 }
 .element {
   position: relative;
@@ -1686,7 +1686,7 @@ hr {
   margin-bottom: 2px;
 }
 .element .subElement.noSortable legend,
-.subElement legend {
+.element .subElement legend {
   padding-left: 25px !important;
 }
 
