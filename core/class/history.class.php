@@ -426,6 +426,9 @@ class history {
 				$cValue = $history->getValue();
 				$cTime = strtotime($history->getDatetime());
 			}
+			if(($cTime - $start) <= 0){
+				return 0;
+			}
 			$result = $sum / ($cTime - $start);
 			return $result;
 		}
