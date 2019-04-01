@@ -10,7 +10,7 @@ Theme Core 2019 @Jeedom
   background-color:transparent !important;
 }
 ::-webkit-scrollbar-thumb{
-  background: var(--logo-secondary-color) !important;
+  background: var(--el-defaultColor) !important;
 }
 
 html {
@@ -30,7 +30,7 @@ body {
   background-size: cover;
   background-position: center center;
   margin: 0 !important;
-  scrollbar-color: var(--logo-secondary-color) rgb(var(--bg-color)) !important;
+  scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
 .backgroundforJeedom{
   width:100%;
@@ -1432,7 +1432,6 @@ input[type=checkbox].summaryAttr {
   font-size: 14px !important;
   padding: 0 !important;
 }
-
 
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
