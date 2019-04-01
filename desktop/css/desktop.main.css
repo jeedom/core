@@ -301,31 +301,6 @@ legend {
   width: 30px;
   z-index: 1030;
 }
-.cmdStats,
-div.cmd > div.center-block {
-  color: var(--txt-color) !important;
-  font-size: 11px !important;
-  font-weight: normal;
-  padding: 0 !important;
-  width: 100% !important;
-}
-
-.cmd-widget {
-  display: inline-block;
-  position : relative;
-  vertical-align: top;
-}
-
-.cmd-widget .statistiques {
-  position : absolute;
-  bottom: 0;
-  font-size: 0.80em;
-  left : 0;
-  margin : 0;
-  padding: 0;
-  line-height:0px;
-}
-
 
 .li_log i {
   float: left;
@@ -2205,6 +2180,31 @@ div.eqLogic_layout_default .cmd-widget {
   margin-top: 5px;
 }
 
+.cmdStats,
+div.cmd > div.center-block {
+  color: var(--txt-color) !important;
+  font-size: 11px !important;
+  font-weight: normal;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+.cmd-widget {
+  display: inline-block;
+  position : relative;
+  vertical-align: top;
+}
+
+.cmd-widget .statistiques {
+  position : absolute;
+  bottom: 0;
+  font-size: 0.80em;
+  left : 0;
+  margin : 0;
+  padding: 0;
+  line-height:0px;
+}
+
 .verticalAlign {
   position: relative;
   transform: translateY(calc(-50%));
@@ -2313,8 +2313,6 @@ div.eqLogic_layout_default .cmd-widget {
 }
 .shuttergauge[data-type=action] .state {
   position: relative;
-  z-index: 2;
-  margin-top: -12px;
 }
 .shuttergauge .slider {
   width: 60px;
