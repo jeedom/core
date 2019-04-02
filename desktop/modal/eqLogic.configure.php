@@ -344,7 +344,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			</div>
 		</div>
 	</div>
-	<legend><i class="fas fa-clock-o"></i> {{Alertes Communications}}</legend>
+	<legend><i class="far fa-clock"></i> {{Alertes Communications}}</legend>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="form-group">
