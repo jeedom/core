@@ -364,6 +364,14 @@ select.selectCmd {
   height: 2em;
 }
 
+.divIconSel {
+  height: 70px !important;
+  overflow: hidden !important;
+}
+.iconDesc {
+  word-wrap: break-word;
+}
+
 /* object/scenario/interact/plugin pages */
 div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
