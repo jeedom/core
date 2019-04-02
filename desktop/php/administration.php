@@ -642,93 +642,93 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<legend>{{Gestion avancée}}</legend>
-							<table class="table table-condensed table-bordered">
-								<thead>
-									<tr>
-										<th>{{Interface}}</th>
-										<th>{{IP}}</th>
-										<th>{{Mac}}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									foreach (network::getInterfaces() as $interface) {
-										$mac = network::getInterfaceMac($interface);
-										echo '<tr>';
-										echo '<td>';
-										echo $interface;
-										echo '</td>';
-										echo '<td>';
-										echo network::getInterfaceIp($interface);
-										echo '</td>';
-										echo '<td>';
-										echo network::getInterfaceMac($interface);
-										echo '</td>';
-										echo '</tr>';
-									}
-									?>
-								</tbody>
-							</table>
-							<div class="form-group has-error">
-								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
-								<div class="col-xs-4">
-									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
-								<div class="col-xs-6">
-									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<?php
-							foreach ($repos as $key => $value) {
-								if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
-									continue;
-								}
-								if ($configs[$key . '::enable'] == 0) {
-									continue;
-								}
-								echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
-								if ($configs['dns::token'] == '') {
-									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
-									continue;
-								}
-								echo '<div class="form-group">';
-								echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
-								echo '<div class="col-xs-8">';
-								echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-								echo '</div>';
-								echo '</div>';
-								echo '<div class="form-group">';
-								echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
-								echo '<div class="col-xs-8">';
-								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-									echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
-								} else {
-									echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
-								}
-								echo '</div>';
-								echo '</div>';
-								echo '<div class="form-group">';
-								echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
-								echo '<div class="col-xs-8">';
-								echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-								echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
-								echo '</div>';
-								echo '</div>';
-							}
-
-							?>
-						</div>
-					</div>
 				</fieldset>
 			</form>
+			<div class="row">
+				<div class="col-sm-6">
+					<legend>{{Gestion avancée}}</legend>
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th>{{Interface}}</th>
+								<th>{{IP}}</th>
+								<th>{{Mac}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							foreach (network::getInterfaces() as $interface) {
+								$mac = network::getInterfaceMac($interface);
+								echo '<tr>';
+								echo '<td>';
+								echo $interface;
+								echo '</td>';
+								echo '<td>';
+								echo network::getInterfaceIp($interface);
+								echo '</td>';
+								echo '<td>';
+								echo network::getInterfaceMac($interface);
+								echo '</td>';
+								echo '</tr>';
+							}
+							?>
+						</tbody>
+					</table>
+					<div class="form-group has-error">
+						<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
+						<div class="col-xs-4">
+							<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+						</div>
+					</div>
+					<div class="form-group col-xs-12">
+						<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+						<div class="col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="network::localip" />
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<?php
+					foreach ($repos as $key => $value) {
+						if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
+							continue;
+						}
+						if ($configs[$key . '::enable'] == 0) {
+							continue;
+						}
+						echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
+						if ($configs['dns::token'] == '') {
+							echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
+							continue;
+						}
+						echo '<div class="form-group col-xs-12">';
+						echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
+						echo '<div class="col-xs-8">';
+						echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
+						echo '</div>';
+						echo '</div>';
+						echo '<div class="form-group col-xs-12">';
+						echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
+						echo '<div class="col-xs-8">';
+						if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
+							echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+						} else {
+							echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
+						}
+						echo '</div>';
+						echo '</div>';
+						echo '<div class="form-group col-xs-12">';
+						echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
+						echo '<div class="col-xs-8">';
+						echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
+						echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
+						echo '</div>';
+						echo '</div>';
+					}
+
+					?>
+				</div>
+			</div>
 		</div>
 
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
