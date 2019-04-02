@@ -224,12 +224,13 @@ body {
 }
 
 .iconCmd {
-  font-size: 40px;
+  font-size: 28px;
   font-weight: bold;
 }
-.iconCmd > i {
+.iconCmd i {
   color: var(--link-color) !important;
-  font-size: 1em !important;
+  margin: 7px;
+  font-size: 32px !important;
 }
 .timeCmd {
   color: var(--txt-color);
@@ -272,7 +273,9 @@ body {
   margin-bottom: 14px;
 }
 p.state {
-  font-size: 14px !important;
+  font-size: 12px !important;
+  line-height: 12px;
+  font-weight: normal;
 }
 .btn.action {
   margin-top: 2px;
