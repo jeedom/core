@@ -12,7 +12,7 @@ $date = array(
 
 <ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
 	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
-	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-clock-o"></i> {{Timeline}}</a></li>
+	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
