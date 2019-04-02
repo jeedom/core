@@ -2147,6 +2147,9 @@ div.cmd-widget > .content-xs {
   position: relative;
   text-align: center;
 }
+div.cmd-widget > .content-xs .slider {
+  margin-top: 8px;
+}
 div.cmd-widget > .content-sm {
   height: 40px !important;
   min-height: 40px;
