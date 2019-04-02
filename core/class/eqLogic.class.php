@@ -517,6 +517,7 @@ class eqLogic {
 		$batterySince = 'NA';
 		if ($batteryTime != 'NA') {
 			$batterySince = ((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400);
+			$batterySince = round($batterySince, 1);
 		}
 		if (strpos($battery, ' ') !== false) {
 			$battery = substr(strrchr($battery, " "), 1);
