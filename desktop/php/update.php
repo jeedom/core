@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 ?>
 <br/>
-<i class="fas fa-clock-o"></i> <span>{{Dernière vérification : }}</span>
+<i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
