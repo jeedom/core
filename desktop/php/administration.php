@@ -184,7 +184,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<a class="btn btn-primary form-control" id="bt_forceSyncHour"><i class="fas fa-clock-o"></i> {{Forcer la synchronisation de l'heure}}</a>
+							<a class="btn btn-primary form-control" id="bt_forceSyncHour"><i class="far fa-clock"></i> {{Forcer la synchronisation de l'heure}}</a>
 						</div>
 					</div>
 					<div class="form-group">
