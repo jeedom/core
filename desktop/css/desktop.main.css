@@ -286,11 +286,12 @@ legend {
 
 .iconCmd {
   top: 0 !important;
-  font-size: 30px;
-  font-weight: normal;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--link-color) !important;
 }
 .iconCmd > i {
-  color: var(--link-color) !important;
+  font-size: 30px;
 }
 
 .statusCmd {
@@ -734,7 +735,7 @@ pre {
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 12px;
 }
 p.state {
   color: var(--txt-color) !important;
@@ -775,7 +776,7 @@ li.alert-info.eqLogic {
   top: -6px !important;
 }
 .ui-slider-vertical .ui-slider-handle {
-  left: -6px !important;
+  left: -5px !important;
 }
 .ui-slider-horizontal {
   height: 3.2px !important;
@@ -2286,6 +2287,7 @@ div.cmd > div.center-block {
   max-width: 90px;
   margin-left: 5px;
   margin-right: 5px;
+  line-height: 10px;
 }
 
 .shuttergauge .center-block {
