@@ -1359,7 +1359,7 @@ user::isBan();
 
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
-				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Log}}</a></li>
+				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
 			</ul>
 
 			<div class="tab-content">
