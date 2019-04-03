@@ -64,7 +64,9 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       $('#span_plugin_id').html(data.id);
       $('#span_plugin_name').html(data.name);
       if(isset(data.update) && isset(data.update.localVersion)){
-        $('#span_plugin_install_date').html(data.update.localVersion);
+        localVer = data.update.localVersion
+        if (localVer.length > 20) localVer = localVer.substring(0,20) + '...'
+        $('#span_plugin_install_date').html(localVer);
       }else{
         $('#span_plugin_install_date').html('');
       }
@@ -75,13 +77,13 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#span_plugin_installation').closest('.panel').show();
         $('#span_plugin_installation').html(data.installation);
       }
-      
+
       if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
         $('#span_plugin_install_version').html(data.update.configuration.version);
       }else{
         $('#span_plugin_install_version').html('');
       }
-      
+
       $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
       $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
       if(data.hasDependency == 0 || data.activate != 1){
@@ -92,7 +94,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_dependancy').closest('.panel')
         $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
       }
-      
+
       if(data.hasOwnDeamon == 0 || data.activate != 1){
         $('#div_plugin_deamon').closest('.panel').hide();
         $('#div_plugin_dependancy').closest('.panel').parent().removeClass('col-md-6')
@@ -125,7 +127,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       } else {
         $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>');
       }
-      
+
       $('#div_configPanel').hide();
       $('#div_plugin_panel').empty();
       if(isset(data.display) && data.display != ''){
@@ -138,7 +140,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);
       }
-      
+
       if(isset(data.mobile) && data.mobile != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
@@ -149,7 +151,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);
       }
-      
+
       $('#div_plugin_functionality').empty();
       count = 0;
       var config_panel_html = '<div class="row">';
@@ -181,19 +183,19 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       config_panel_html += '</div>';
       config_panel_html += '</div>';
       $('#div_plugin_functionality').append(config_panel_html);
-      
+
       $('#div_plugin_toggleState').empty();
       if (data.checkVersion != -1) {
-        var html = '<form class="form-horizontal">';
+        var html = '<form class="form-horizontal"><fieldset>';
         html += '<div class="form-group">';
         html += '<label class="col-sm-2 control-label">{{Statut}}</label>';
         html += '<div class="col-sm-4">';
         if (data.activate == 1) {
           $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-danger').addClass('panel-success');
-          html += '<span class="label label-success" style="font-size:1em;position:relative;top:7px;">{{Actif}}</span>';
+          html += '<span class="label label-success">{{Actif}}</span>';
         }else{
           $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
-          html += '<span class="label label-danger" style="font-size:1em;position:relative;top:7px;">{{Inactif}}</span>';
+          html += '<span class="label label-danger">{{Inactif}}</span>';
         }
         html += '</div>';
         html += '<label class="col-sm-2 control-label">{{Action}}</label>';
@@ -205,7 +207,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         }
         html += '</div>';
         html += '</div>';
-        html += '</form>';
+        html += '</fieldset></form>';
         $('#div_plugin_toggleState').html(html);
       }else{
         $('#div_plugin_toggleState').closest('.panel').removeClass('panel-default panel-success').addClass('panel-danger');
@@ -235,7 +237,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         log_conf += '</div>';
         log_conf += '</form>';
       }
-      
+
       log_conf += '<form class="form-horizontal">';
       log_conf += '<div class="form-group">';
       log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>';
@@ -250,7 +252,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       log_conf += '</div>';
       log_conf += '</form>';
-      
+
       $('#div_plugin_log').empty().append(log_conf);
       $('#div_plugin_configuration').empty();
       if (data.checkVersion != -1) {
