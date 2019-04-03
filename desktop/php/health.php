@@ -6,11 +6,11 @@ $starttime = getmicrotime();
 ?>
 <br/>
 <div class="panel-group" id="accordionHealth">
-	<div class="panel panel-default" style="outline: 2px solid var(--logo-primary-color);">
+	<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom" style="text-decoration:none;">
-					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> {{Santé de Jeedom}}</a>
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
+					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span></a>
 				<i class="fas fa-tachometer-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
 			</h3>
 		</div>
@@ -214,7 +214,7 @@ $starttime = getmicrotime();
 			if ($asPending == 0 && $asNok == 0) {
 				$errorMessage = '<span class="label label-success pull-right" style="position:relative;top:-3px;">{{OK}}</span>';
 			}
-			$globalhtml .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '" style="text-decoration:none;">';
+			$globalhtml .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '">';
 			$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 			$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 			$globalhtml .= $errorMessage . $pendingMessage;
