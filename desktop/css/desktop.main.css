@@ -593,8 +593,10 @@ div[data-market_type=plugin]:hover {
   font-size: 16px !important;
 }
 
-.form-group .label{
-  padding: 2px 8px 2px 8px; !important;
+.form-group .label {
+  display: table;
+  padding: 4px 6px; !important;
+  min-width: 40px !important;
 }
 
 pre {
@@ -1395,7 +1397,7 @@ input[type=radio] {
 }
 input[type=radio] {
   -webkit-border-radius: 1em !important;
-  margin-top: 1px !important;
+  margin-top: 3px !important;
 }
 input[type=checkbox]:checked:after {
   content: '\2714' !important;
