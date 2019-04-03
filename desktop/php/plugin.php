@@ -19,20 +19,20 @@ $plugins_list = plugin::listPlugin(false, true);
 				<span><center>{{Plugins}}</center></span>
 			</div>
 			<?php
-			foreach (update::listRepo() as $key => $value) {
-				if (!$value['enable']) {
-					continue;
+				foreach (update::listRepo() as $key => $value) {
+					if (!$value['enable']) {
+						continue;
+					}
+					if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
+						continue;
+					}
+					echo '<div class="cursor displayStore success" data-repo="' . $key . '">
+					<center>
+					<i class="fas fa-shopping-cart"></i>
+					</center>
+					<span><center>' . $value['name'] . '</center></span>
+					</div>';
 				}
-				if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
-					continue;
-				}
-				echo '<div class="cursor displayStore success" data-repo="' . $key . '">
-				<center>
-				<i class="fas fa-shopping-cart"></i>
-				</center>
-				<span><center>' . $value['name'] . '</center></span>
-				</div>';
-			}
 			?>
 		</div>
 		<legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
@@ -51,7 +51,7 @@ $plugins_list = plugin::listPlugin(false, true);
 			?>
 		</div>
 	</div>
-	<div class="col-xs-12" id="div_confPlugin" style="padding-left: 25px;display: none;">
+	<div class="col-xs-12" id="div_confPlugin">
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
 			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
@@ -71,17 +71,17 @@ $plugins_list = plugin::listPlugin(false, true);
 								<div class="form-group">
 									<label class="col-sm-2 control-label">{{Version}}</label>
 									<div class="col-sm-4">
-										<span id="span_plugin_install_date" style="position:relative;top:9px;"></span>
+										<span id="span_plugin_install_date"></span>
 									</div>
 									<label class="col-sm-2 control-label">{{Version Jeedom}}</label>
 									<div class="col-sm-4">
-										<span id="span_plugin_require" style="position:relative;top:9px;"></span>
+										<span id="span_plugin_require"></span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">{{License}}</label>
 									<div class="col-sm-4">
-										<span id="span_plugin_license" style="position:relative;top:9px;"></span>
+										<span id="span_plugin_license"></span>
 									</div>
 								</div>
 							</fieldset>
