@@ -193,7 +193,7 @@ if (is_array($scenarioListGroup)) {
 										<button class="btn btn-default dropdown-toggle scenarioAttr" type="button" data-toggle="dropdown" data-l1key="object_id">
 											<span class="caret"></span>
 										</button>
-										<ul class="dropdown-menu dropdown-menu-right">
+										<ul class="dropdown-menu dropdown-menu-right scrollable-menu " style="max-height: 450px;">
 											<li><a href="#" data-value="">{{Aucun}}</a></li>
 											<?php
 											foreach (jeeObject::all() as $object) {
