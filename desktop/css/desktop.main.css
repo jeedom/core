@@ -1664,8 +1664,7 @@ hr {
 .expressions .sortable-placeholder{
   background-color: #94CA02;
 }
-#div_editScenario #generaltab textarea,
-#div_noteManagerDisplay textarea {
+textarea {
   resize: vertical !important;
 }
 
