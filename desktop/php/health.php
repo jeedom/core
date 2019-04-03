@@ -6,7 +6,7 @@ $starttime = getmicrotime();
 ?>
 <br/>
 <div class="panel-group" id="accordionHealth">
-	<div class="panel panel-default" style="border: 3px solid var(--logo-primary-color);border-color:var(--logo-primary-color)!important;">
+	<div class="panel panel-default" style="outline: 2px solid var(--logo-primary-color);">
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom" style="text-decoration:none;">
