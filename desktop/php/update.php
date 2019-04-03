@@ -15,7 +15,7 @@ if (!isConnect('admin')) {
 
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
-	<li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-feather"></i> {{Autre}}</a></li>
+	<li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-feather"></i> {{Autres}}</a></li>
 	<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
 </ul>
 
