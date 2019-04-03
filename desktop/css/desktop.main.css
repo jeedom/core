@@ -2677,6 +2677,7 @@ td.alert {
 }
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+  min-height: 50px;
 }
 
 .btn,
