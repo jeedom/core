@@ -38,6 +38,7 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
 
+/* contextMenu */
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -453,6 +454,7 @@ $('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCr
 });
 
 $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
+  if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click');
   var elementDiv = $(this).closest('.element');
   if(elementDiv.html() == undefined){
     elementDiv = $('#div_scenarioElement');
