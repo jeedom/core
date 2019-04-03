@@ -352,7 +352,7 @@ if (init('rescue', 0) == 0) {
 												</ul>
 											</li>
 										<?php } ?>
-										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préference}}</a></li>
+										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préferences}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
 											<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
