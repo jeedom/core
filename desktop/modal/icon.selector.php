@@ -27,7 +27,7 @@ if (!isConnect()) {
 }
 </style>
 
-<input class="form-control pull-right" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
+<input class="form-control input-sm" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
 
 <?php
 	foreach (ls('core/css/icon', '*') as $dir) {
