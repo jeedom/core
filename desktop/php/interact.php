@@ -178,7 +178,7 @@ if (is_array($interactListGroup)) {
 							<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
 						</div>
 						<div class="col-sm-1">
-							<a class="btn btn-default cursor listEquipementInfoReply input-sm"><i class="fas fa-list-alt "></i></a>
+							<a class="btn btn-default cursor listEquipementInfoReply input-sm" title="Rechercher une commande"><i class="fas fa-list-alt "></i></a>
 						</div>
 					</div>
 					<div class="form-group">
