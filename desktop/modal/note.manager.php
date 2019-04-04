@@ -15,15 +15,17 @@ if (!isConnect('admin')) {
 	<div class="col-lg-10 col-md-9 col-sm-8" style="overflow:hidden;">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+				<a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}
+				</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 		<br/><br/>
 		<div id="div_noteManagerDisplay">
 			<input class="noteAttr form-control" data-l1key="id" style="display:none;" disabled/>
-			<input class="noteAttr form-control" data-l1key="name"/>
+			<input class="noteAttr form-control" data-l1key="name" placeholder="Titre"/>
 			<br/>
-			<textarea class="noteAttr form-control ta_autosize" data-l1key="text"></textarea>
+			<textarea class="noteAttr form-control ta_autosize" data-l1key="text" placeholder="Note..."></textarea>
 		</div>
 	</div>
 </div>
@@ -50,6 +52,7 @@ function updateNoteList(){
 
 $('#bt_noteManagerAdd').on('click',function(){
 	$('#div_noteManagerDisplay .noteAttr').value('');
+	$('#ul_noteList li.active').removeClass('active');
 });
 
 $('#ul_noteList').on('click','.li_noteDisplay',function(){
