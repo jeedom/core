@@ -13,6 +13,7 @@ Theme Core 2019 @Jeedom
   background: var(--el-defaultColor) !important;
 }
 
+
 html {
   height: 100%;
 }
@@ -2588,6 +2589,33 @@ button.ui-dialog-titlebar-close:hover {
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover {
 	background: var(--logo-primary-color) !important;
 }
+
+/* jqueryui spinner */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.ui-spinner a.ui-spinner-button {
+  border: none;
+  opacity: 0.6;
+}
+.ui-spinner a.ui-spinner-button:hover {
+  opacity: 1;
+  background: var(--logo-primary-color);
+}
+.ui-button-icon.ui-icon {
+  background-image: var(--url-iconsLight);
+  margin-left: 0;
+  margin-top: 0;
+}
+
+
 
 
 /* Designs */
