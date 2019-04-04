@@ -773,7 +773,7 @@ function addObjectSummary(_summary) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<div class="dropdown">';
+  tr += '<div class="dropdown dynDropdown">';
   tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
   if(isset(_summary) && isset(_summary.calcul)) {
     tr += _summary.calcul;
@@ -797,7 +797,7 @@ function addObjectSummary(_summary) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="unit" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<div class="dropdown">';
+  tr += '<div class="dropdown dynDropdown">';
   tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="count">';
   if(isset(_summary) && isset(_summary.count)) {
     tr += _summary.count;
