@@ -608,7 +608,7 @@ user::isBan();
 								<span class="input-group-addon">://</span>
 								<input type="text" class="configKey form-control" data-l1key="internalAddr" />
 								<span class="input-group-addon">:</span>
-								<input type="number" class="configKey form-control" data-l1key="internalPort" />
+								<input type="text" class="configKey form-control" data-l1key="internalPort" />
 								<span class="input-group-addon">/</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="internalComplement" />
 							</div>
@@ -636,7 +636,7 @@ user::isBan();
 								<span class="input-group-addon">://</span>
 								<input type="text" class="configKey form-control" data-l1key="externalAddr" />
 								<span class="input-group-addon">:</span>
-								<input type="number" class="configKey form-control" data-l1key="externalPort" />
+								<input type="text" class="configKey form-control" data-l1key="externalPort" />
 								<span class="input-group-addon">/</span>
 								<input type="text" class="configKey form-control roundedRight" data-l1key="externalComplement" />
 							</div>
