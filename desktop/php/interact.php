@@ -12,6 +12,7 @@ if (is_array($interactListGroup)) {
 		$interacts[$group['group']] = interactDef::all($group['group']);
 	}
 }
+$optionMaxSize = 15;
 ?>
 <div class="row row-overflow">
 	<div id="interactThumbnailDisplay" class="col-xs-12">
@@ -214,99 +215,140 @@ if (is_array($interactListGroup)) {
 				</fieldset>
 			</form>
 		</div>
+
 		<div role="tabpanel" class="tab-pane" id="filtertab">
 			<br/>
+			<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
 			<form class="form-horizontal" id="div_filtre">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux commandes de type}}</label>
-						<div class="col-sm-9">
-							<?php
-							foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '" checked="true" />' . $type['name'] . '</label> ';
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour sous-type}}</label>
-						<div class="col-sm-9">
-							<?php
-							foreach (jeedom::getConfiguration('cmd:type') as $type) {
-								foreach ($type['subtype'] as $id => $subtype) {
-									echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '" checked="true" />' . $subtype['name'] . '</label> ';
-								}
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux commandes ayant pour unité}}</label>
-						<div class="col-sm-9">
-							<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="none" checked="true" />{{Sans unité}}</label>
-							<?php
-							foreach (cmd::allUnite() as $unite) {
-								if (trim($unite['unite']) == '') {
-									continue;
-								}
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '" checked="true" />' . $unite['unite'] . '</label> ';
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux commandes appartenant aux objets}}</label>
-						<div class="col-sm-9">
-							<?php
-							foreach (jeeObject::all() as $object) {
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '" checked="true" />' . $object->getName() . '</label> ';
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux plugins}}</label>
-						<div class="col-sm-9">
-							<?php
-							foreach (eqLogic::allType() as $type) {
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '" checked="true" />' . $type['type'] . '</label> ';
-							}
-							?>
+						<div class="col-sm-12">
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de type}}</label><br/><br/>
+								<?php
+									$size = 0;
+									$html = '';
+									foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="'.$id.'">'.$type['name'].'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de sous-type}}</label><br/><br/>
+								<?php
+									$size = 0;
+									$html = '';
+									foreach (jeedom::getConfiguration('cmd:type') as $type) {
+										foreach ($type['subtype'] as $id => $subtype) {
+											$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="'.$id.'">'.$subtype['name'].'</option>';
+											$size += 1;
+										}
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes par unité}}</label><br/><br/>
+								<?php
+									$size = 1;
+									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
+									foreach (cmd::allUnite() as $unite) {
+										if (trim($unite['unite']) == '') {
+											continue;
+										}
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="'.$unite['unite'].'">'.$unite['unite'].'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes des objets}}</label><br/><br/>
+								<?php
+									$size = 0;
+									$html = '';
+									foreach (jeeObject::all() as $object) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="'.$object->getId().'">'.$object->getName().'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Plugins}}</label><br/><br/>
+								<?php
+									$size = 0;
+									$html = '';
+									foreach (eqLogic::allType() as $type) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="'.$type['type'].'">'.$type['type'].'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Catégories}}</label><br/><br/>
+								<?php
+									$size = 1;
+									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
+									foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="'.$id.'">'.$category['name'].'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
+								?>
+							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux catégories}}</label>
-						<div class="col-sm-9">
-							<?php
-							echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="noCategory" checked="true" />{{Sans catégorie}}</label> ';
-							foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '" checked="true" />' . $category['name'] . '</label> ';
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter aux visibles}}</label>
-						<div class="col-sm-9">
-							<?php
-							foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
-								echo '<label style="margin-right:25px;"><input class="interactAttr" type="checkbox" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '" />' . $name . '</label> ';
-							}
-							?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">{{Limiter à l'équipement}}</label>
-						<div class="col-sm-6">
-							<select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
-								<option value="all">{{Tous}}</option>
+						<div class="col-sm-12">
+							<div class="col-sm-2">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Visibles}}</label><br/><br/>
 								<?php
-								foreach (eqLogic::all() as $eqLogic) {
-									echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
-								}
+									$size = 0;
+									$html = '';
+									foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="'.$id.'">'.$name.'</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+									$html .= '</select>';
+									echo $html;
 								?>
-							</select>
+							</div>
+							<div class="col-sm-4">
+								<label class="control-label"><i class="fas fa-filter"></i> {{Equipement}}</label><br/><br/>
+								<select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
+									<option value="all">{{Tous}}</option>
+									<?php
+									foreach (eqLogic::all() as $eqLogic) {
+										echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
+									}
+									?>
+								</select>
+							</div>
 						</div>
 					</div>
 				</fieldset>
