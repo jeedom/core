@@ -378,7 +378,7 @@ $('#bt_showEventInRealTime').on('click',function(){
 });
 
 $('#bt_showNoteManager').on('click',function(){
-  $('#md_modal').dialog({title: "{{Note}}"});
+  $('#md_modal').dialog({title: "{{Notes}}"});
   $("#md_modal").load('index.php?v=d&modal=note.manager').dialog('open');
 });
 
