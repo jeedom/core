@@ -34,10 +34,14 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.con
   }, 100);
 });
 
-
+//DateTimePickers and Spinners
 $(function(){
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
+
+  $('input[type="number"]').spinner({
+    icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
+  });
 })
 
 $('#div_pageContainer').off('change','.enableRepository').on('change','.enableRepository', function () {
