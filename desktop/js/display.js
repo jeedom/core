@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -139,6 +138,7 @@ $('#in_search').on('keyup',function(){
   $('.eqLogic').show();
   $('.cmdSortable').hide();
   if(search == ''){
+    $('.packeryContainer').packery();
     return;
   }
   $('.eqLogic').each(function(){
@@ -157,6 +157,7 @@ $('#in_search').on('keyup',function(){
         cmd.removeClass('alert-warning').addClass('alert-success');
       }
     });
+  $('.packeryContainer').packery();
   });
 });
 
