@@ -2566,13 +2566,13 @@ button.ui-dialog-titlebar-close:hover {
 /* datetime picker */
 .xdsoft_datetimepicker {
 	box-shadow: none;
-	background: var(--sc-formTxt-color);
+	background: var(--bg-modal-color);
 	color: var(--txt-color);
 	font-family: "Roboto", Helvetica, Arial, sans-serif;
   border: none;
 }
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div {
-	background: var(--bg-modal-color);
+	background: rgb(var(--bg-color));
   border: none;
 	color: var(--txt-color);
 }
