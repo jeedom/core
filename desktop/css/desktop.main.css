@@ -1231,7 +1231,7 @@ textarea:not(.expressionAttr) {
 input.knob {
   color: var(--txt-color) !important;
 }
-.input-sm {
+:not(textarea).input-sm {
   font-size: 12px !important;
   line-height: 16px !important;
   height: 28px !important;
