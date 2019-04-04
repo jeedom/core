@@ -2563,14 +2563,39 @@ button.ui-dialog-titlebar-close:hover {
   box-shadow: none !important;
 }
 
+/* datetime picker */
+.xdsoft_datetimepicker {
+	box-shadow: none;
+	background: var(--sc-formTxt-color);
+	color: var(--txt-color);
+	font-family: "Roboto", Helvetica, Arial, sans-serif;
+  border: none;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div {
+	background: var(--bg-modal-color);
+  border: none;
+	color: var(--txt-color);
+}
+.xdsoft_datetimepicker,
+.xdsoft_timepicker,
+.xdsoft_time_box {
+	border: none !important;
+}
+.xdsoft_time:hover {
+  background-color: var(--logo-primary-color) !important;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td:hover,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover {
+	background: var(--logo-primary-color) !important;
+}
+
+
 /* Designs */
 .nav>li>a:focus,
 .nav>li>a:hover {
   text-decoration: none;
   background-color: var(--defaultBkg-color)
 }
-
-
 
 
 /* __________________________________________________________________________________________________________CodeMirror */
