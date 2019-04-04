@@ -970,6 +970,9 @@ button .fas.fa-plus-circle {
 .nav .dropdown-menu {
   font-size: 14px;
 }
+.dropdown-menu > li a {
+  border-right: 7px solid transparent
+}
 .nav.navbar-nav .dropdown-submenu ul li a {
   padding-right: 30px;
 }
@@ -984,6 +987,7 @@ header .navbar-toggle {
 .navbar-toggle .icon-bar {
   height: 3px;
 }
+
 
 .dropdown-menu,
 .dropdown > a,
