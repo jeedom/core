@@ -23,27 +23,6 @@ foreach ($objects as $object) {
 	$nbEqlogic += count($eqLogics[$object->getId()]);
 }
 ?>
-<style>
-.eqLogicSortable{
-	list-style-type: none;
-	min-height: 20px;
-	padding-left: 0px;
-}
-.eqLogicSortable li {
-	margin: 0 2px 2px 2px;
-	padding: 5px;
-}
-
-.cmdSortable{
-	list-style-type: none;
-	min-height: 20px;
-	padding-left: 0px;
-}
-.cmdSortable li {
-	margin: 0 2px 2px 2px;
-	padding: 5px;
-}
-</style>
 <br/>
 <span class="pull-left">
 	<a class="btn btn-default btn-sm" id="bt_removeHistory"><i class="fas fa-trash" aria-hidden="true"></i> {{Historique des suppressions}}</a>
@@ -70,7 +49,7 @@ foreach ($objects as $object) {
 	<?php
 	if (count($eqLogics[-1]) > 0) {
 		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">';
-		echo '<div style="margin-bottom: 1em; padding:0.2em 0.5em;">';
+		echo '<div>';
 		echo '<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>';
 		echo '<ul class="eqLogicSortable">';
 			
@@ -107,11 +86,11 @@ foreach ($objects as $object) {
 	foreach ($objects as $object) {
 		$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
 		echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
-		echo '<div style="margin-bottom: 1em; padding:0.2em 0.5em; background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
+		echo '<div style="background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
 		echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
 		echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
-		echo '<i style="position:relative;top : 3px;" class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-		echo '<a style="position:relative;top : 3px;color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+		echo '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+		echo '<a style="color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
 		
 		echo '</legend>';
 		echo '<ul class="eqLogicSortable">';
