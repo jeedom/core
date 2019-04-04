@@ -312,7 +312,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<div class="dropdown dropup">
+							<div class="dropdown dropup dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::pro::mode">
 									<span class="caret"></span>
 								</button>
@@ -335,7 +335,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<div class="dropdown dropup">
+							<div class="dropdown dropup dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::core::market::mode">
 									<span class="caret"></span>
 								</button>
@@ -365,7 +365,7 @@ user::isBan();
 							echo '</div>';
 							echo '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
 							echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
-							echo '<div class="dropdown dropup">';
+							echo '<div class="dropdown dropup dynDropdown">';
 							echo '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::' . $plugin->getId() . '::mode">';
 							echo '<span class="caret"></span>';
 							echo '</button>';
@@ -944,7 +944,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<div class="dropdown dropup">
+							<div class="dropdown dropup dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="history::defautShowPeriod">
 									<span class="caret"></span>
 								</button>
@@ -1631,7 +1631,7 @@ user::isBan();
 											echo '<input type="password" autocomplete="new-password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'select':
-											echo '<div class="dropdown dropup">';
+											echo '<div class="dropdown dropup dynDropdown">';
 											echo '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="' . $key . '::' . $pKey . '">';
 											echo '<span class="caret"></span>';
 											echo '</button>';
