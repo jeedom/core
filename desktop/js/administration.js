@@ -35,6 +35,11 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.con
 });
 
 
+$(function(){
+  $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
+  $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
+})
+
 $('#div_pageContainer').off('change','.enableRepository').on('change','.enableRepository', function () {
   if($(this).value() == 1){
     $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
