@@ -811,11 +811,11 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème clair de}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="time" class="configKey form-control" data-l1key="theme_start_day_hour"/>
+							<input type="text" class="configKey form-control" data-l1key="theme_start_day_hour"/>
 						</div>
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="time" class="configKey form-control" data-l1key="theme_end_day_hour"/>
+							<input type="text" class="configKey form-control" data-l1key="theme_end_day_hour"/>
 						</div>
 					</div>
 					<div class="form-group">
