@@ -227,8 +227,39 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 
 $("#bt_saveInteract").on('click', function () {
   var interact = $('.interact').getValues('.interactAttr')[0];
+  interact.filtres.type = {};
+  $('option[data-l1key=filtres][data-l2key=type]').each(function() {
+      interact.filtres.type[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.subtype = {};
+  $('option[data-l1key=filtres][data-l2key=subtype]').each(function() {
+      interact.filtres.subtype[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.unite = {};
+  $('option[data-l1key=filtres][data-l2key=unite]').each(function() {
+      interact.filtres.unite[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.object = {};
+  $('option[data-l1key=filtres][data-l2key=object]').each(function() {
+      interact.filtres.object[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.plugin = {};
+  $('option[data-l1key=filtres][data-l2key=plugin]').each(function() {
+      interact.filtres.plugin[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.category = {};
+  $('option[data-l1key=filtres][data-l2key=category]').each(function() {
+      interact.filtres.category[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+  interact.filtres.visible = {};
+  $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
+      interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
+  });
+
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
+  console.log(interact)
+
   jeedom.interact.save({
     interact: interact,
     error: function (error) {
@@ -358,40 +389,40 @@ function displayInteract(_id){
       $('#div_action').empty();
       $('.interactAttr').value('');
       $('.interact').setValues(data, '.interactAttr');
-      $('.interactAttr[data-l1key=filtres][data-l2key=type]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=unite]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=object]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').value(1);
-      $('.interactAttr[data-l1key=filtres][data-l2key=category]').value(1);
+      $('.interactAttr[data-l1key=filtres][data-l2key=type]').prop('selected', false);
+      $('.interactAttr[data-l1key=filtres][data-l2key=subtype]').prop('selected', false);
+      $('.interactAttr[data-l1key=filtres][data-l2key=unite]').prop('selected', false);
+      $('.interactAttr[data-l1key=filtres][data-l2key=object]').prop('selected', false);
+      $('.interactAttr[data-l1key=filtres][data-l2key=plugin]').prop('selected', false);
+      $('.interactAttr[data-l1key=filtres][data-l2key=category]').prop('selected', false);
       if(isset(data.filtres) && isset(data.filtres.type) && $.isPlainObject(data.filtres.type)){
         for(var i in data.filtres.type){
-          $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').value(data.filtres.type[i]);
+          if(data.filtres.type[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=type][data-l3key='+i+']').prop('selected', true)
         }
       }
       if(isset(data.filtres) && isset(data.filtres.subtype) && $.isPlainObject(data.filtres.subtype)){
         for(var i in data.filtres.subtype){
-          $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key='+i+']').value(data.filtres.subtype[i]);
+          if(data.filtres.subtype[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=subtype][data-l3key='+i+']').prop('selected', true)
         }
       }
       if(isset(data.filtres) && isset(data.filtres.unite) && $.isPlainObject(data.filtres.unite)){
         for(var i in data.filtres.unite){
-          $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').value(data.filtres.unite[i]);
+          if(data.filtres.unite[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=unite][data-l3key="'+i+'"]').prop('selected', true)
         }
       }
       if(isset(data.filtres) && isset(data.filtres.object) && $.isPlainObject(data.filtres.object)){
         for(var i in data.filtres.object){
-          $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key='+i+']').value(data.filtres.object[i]);
+          if(data.filtres.object[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=object][data-l3key='+i+']').prop('selected', true)
         }
       }
       if(isset(data.filtres) && isset(data.filtres.plugin) && $.isPlainObject(data.filtres.plugin)){
         for(var i in data.filtres.plugin){
-          $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key='+i+']').value(data.filtres.plugin[i]);
+          if(data.filtres.plugin[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=plugin][data-l3key='+i+']').prop('selected', true)
         }
       }
       if(isset(data.filtres) && isset(data.filtres.category) && $.isPlainObject(data.filtres.category)){
         for(var i in data.filtres.category){
-          $('.interactAttr[data-l1key=filtres][data-l2key=category][data-l3key='+i+']').value(data.filtres.category[i]);
+          if(data.filtres.category[i] == 1) $('.interactAttr[data-l1key=filtres][data-l2key=category][data-l3key='+i+']').prop('selected', true)
         }
       }
       if(isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null){
