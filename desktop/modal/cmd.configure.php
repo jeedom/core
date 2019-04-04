@@ -572,7 +572,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 									<?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
 										?>
 										<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-											<option value="default">Défaut</option>';
+											<option value="default">Défaut</option>
 											<?php
 											if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
 												$types = array();
