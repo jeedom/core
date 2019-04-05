@@ -1534,8 +1534,8 @@ user::isBan();
 						<fieldset>
 							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
-								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
+								<div class="col-lg-4 col-xs-6">
 									<div class="dropdown dynDropdown">
 										<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
 											<span class="caret"></span>
@@ -1558,8 +1558,8 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}</label>
+								<div class="col-lg-4 col-xs-6">
 									<div class="dropdown dynDropdown">
 										<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
 											<span class="caret"></span>
@@ -1574,7 +1574,7 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
+								<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
 								<div class="col-sm-1">
 									<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
 								</div>
