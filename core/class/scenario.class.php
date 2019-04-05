@@ -246,11 +246,9 @@ class scenario {
 			$trigger = 'schedule';
 			if (jeedom::isDateOk()) {
 				foreach ($scenarios as $key => &$scenario) {
-					if ($scenario->getState() != 'in progress' || $scenario->getConfiguration('allowMultiInstance',0) == 1) {
-						if (!$scenario->isDue()) {
-							unset($scenarios[$key]);
-						}
-					} else {
+					if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance',0) == 0) {
+						unset($scenarios[$key]);
+					}else if (!$scenario->isDue()) {
 						unset($scenarios[$key]);
 					}
 				}
