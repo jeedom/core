@@ -756,24 +756,31 @@ function printObjectSummary() {
         return;
       }
       $('#table_objectSummary tbody').empty();
+      _objSumLength = Object.keys(data.result).length
+      var n = 0;
       for (var i in data.result) {
         if(isset(data.result[i].key) && data.result[i].key == ''){
+          _objSumLength--;
           continue;
         }
         if(!isset(data.result[i].name)){
+          _objSumLength--;
           continue;
         }
         if(!isset(data.result[i].key)){
           data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '');
         }
-        addObjectSummary(data.result[i]);
+        _direction = -1
+        if (n > (_objSumLength - 4)) _direction = 1
+        addObjectSummary(data.result[i], _direction);
+        n++;
       }
       modifyWithoutSave = false;
     }
   });
 }
 
-function addObjectSummary(_summary) {
+function addObjectSummary(_summary, _direction=1) {
   var tr = '<tr class="objectSummary">';
   tr += '<td>';
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="key" />';
@@ -782,7 +789,11 @@ function addObjectSummary(_summary) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<div class="dropdown dynDropdown">';
+  if (_direction == 1) {
+    tr += '<div class="dropdown dynDropdown dropup">';
+  } else {
+    tr += '<div class="dropdown dynDropdown">';
+  }
   tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
   if(isset(_summary) && isset(_summary.calcul)) {
     tr += _summary.calcul;
