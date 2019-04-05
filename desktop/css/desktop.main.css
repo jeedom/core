@@ -1143,6 +1143,11 @@ div.panel {
   background-color: var(--al-danger-color);
 }
 
+[data-page=plugin] #div_configLog .panel-body,
+[data-page=plugin] #div_state .panel-body {
+  min-height: 150px;
+}
+
 /* __________________________________________________________________________________________________________FORMS */
 ::-moz-color-swatch {
   border: none;
