@@ -51,7 +51,7 @@ $plugins_list = plugin::listPlugin(false, true);
 			?>
 		</div>
 	</div>
-	<div class="col-xs-12" id="div_confPlugin">
+	<div class="col-xs-12" id="div_confPlugin" style="display:none;">
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
 			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
@@ -177,7 +177,6 @@ $plugins_list = plugin::listPlugin(false, true);
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 
