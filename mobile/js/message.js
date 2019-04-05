@@ -44,7 +44,7 @@ function getAllMessage(_plugin) {
             var tbody = '';
             for (var i in  messages) {
                 tbody += '<tr data-message_id="' + messages[i].id + '">';
-                tbody += '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
+                tbody += '<td class="msgBin"><i class="far fa-trash-alt cursor removeMessage"></i></td>';
                 tbody += '<td class="datetime">' + messages[i].date + '</td>';
                 tbody += '<td class="plugin">' + messages[i].plugin + '</td>';
                 tbody += '<td class="message">' + $('<textarea />').html(messages[i].message).text() + '</td>';
