@@ -230,10 +230,6 @@ legend {
   display: block;
 }
 
-.input-group-addon {
-  color: var(--linkHoverLight-color) !important;
-}
-
 .eqLogic-widget,
 .scenario-widget {
   overflow: hidden;
@@ -241,7 +237,6 @@ legend {
 
 .eqLogic-widget .btn-default,
 .eqLogic-widget input,
-.input-group-addon,
 .scenario-widget .btn-default,
 .eqLogic-widget .btn,
 .scenario-widget .btn {
@@ -311,6 +306,11 @@ legend {
   top: 3px;
   width: 30px;
   z-index: 1030;
+}
+
+label sup {
+  color: var(--al-info-color);
+  font-size: 11px;
 }
 
 .li_log i {
@@ -1231,6 +1231,11 @@ fieldset > div {
 }
 
 /* commands */
+.input-group-addon {
+  color: var(--sc-lightTxt-color);
+  background: var(--sc-formTxt-color) !important;
+  border: none;
+}
 .form-control:not(.btn):not(.expressionAttr),
 input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
 textarea:not(.expressionAttr) {
@@ -1246,6 +1251,10 @@ input.knob {
 :not(textarea).input-sm {
   font-size: 12px !important;
   line-height: 16px !important;
+  height: 28px !important;
+}
+.input-group-sm .input-group-addon,
+.input-group-sm .input-group-btn .btn {
   height: 28px !important;
 }
 .input-xs {
@@ -1271,11 +1280,6 @@ input:focus, textarea:focus {
 }
 .input-group {
   margin-bottom: 1.2px;
-}
-.input-group-addon {
-  color: var(--sc-lightTxt-color);
-  background: var(--sc-formTxt-color) !important;
-  border: none;
 }
 .form-horizontal .checkbox-inline {
   padding-top: 0px !important;
