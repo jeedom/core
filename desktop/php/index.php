@@ -148,6 +148,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
 	include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
 	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
+	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
 	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
 	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
@@ -166,7 +167,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css" rel="stylesheet">';
@@ -288,21 +289,21 @@ if (init('rescue', 0) == 0) {
 							<li class="dropdown cursor">
 								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
-								<?php if (isConnect('admin')) { ?>
-									<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
-								<?php } ?>
-								<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
-								<?php if (isConnect('admin')) { ?>
-									<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
-									<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
-								<?php } ?>
-								<li class="divider"></li>
-								<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
-								<?php if (isConnect('admin')) { ?>
-									<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
+									<?php if (isConnect('admin')) { ?>
+										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
+									<?php } ?>
+									<li><a href="#" id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
+									<?php if (isConnect('admin')) { ?>
+										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
+										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
+									<?php } ?>
 									<li class="divider"></li>
-									<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
-								<?php } ?>
+									<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
+									<?php if (isConnect('admin')) { ?>
+										<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
+										<li class="divider"></li>
+										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
+									<?php } ?>
 								</ul>
 							</li>
 							<?php if (isConnect('admin')) { ?>
@@ -480,3 +481,4 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
+	
