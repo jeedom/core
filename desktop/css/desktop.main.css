@@ -182,8 +182,8 @@ legend {
   margin-left: 15px;
 }
 .eqLogicSortable {
-	list-style-type: none;
-	padding-left: 0px;
+  list-style-type: none;
+  padding-left: 0px;
 }
 .eqLogicSortable i {
   margin: 3px 3px 0 3px !important;
@@ -383,6 +383,10 @@ select.selectCmd {
 }
 
 /* object/scenario/interact/plugin pages */
+div[class*="ListContainer"] {
+  background: transparent;
+}
+
 div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
   width : 130px !important;
@@ -2157,7 +2161,7 @@ div.cmd-widget > .content-xs {
   width: 100%;
   height: 12px;
   min-height: 12px;
-  line-height: 12px;
+  line-height: 14px;
   margin: 0;
   position: relative;
   text-align: center;
@@ -2210,9 +2214,8 @@ div.eqLogic_layout_table table.tableCmd {
 div.eqLogic_layout_table table.tableCmd td {
   vertical-align: top;
 }
-div.eqLogic_layout_table .tableCmd,
-div.eqLogic_layout_default .cmd-widget {
-  margin-top: 5px;
+.eqLogic.eqLogic-widget > .widget-name {
+  margin-bottom: 5px;
 }
 
 .cmdStats,
@@ -2242,8 +2245,8 @@ div.cmd > div.center-block {
 
 .verticalAlign {
   position: relative;
-  transform: translateY(calc(-50%));
-  top: calc(50% - 10px);
+  transform: translateY(-50%);
+  top: calc(50% - 18px);
   z-index: -1;
 }
 
@@ -2570,28 +2573,28 @@ button.ui-dialog-titlebar-close:hover {
 
 /* datetime picker */
 .xdsoft_datetimepicker {
-	box-shadow: none;
-	background: var(--bg-modal-color);
-	color: var(--txt-color);
-	font-family: "Roboto", Helvetica, Arial, sans-serif;
+  box-shadow: none;
+  background: var(--bg-modal-color);
+  color: var(--txt-color);
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
   border: none;
 }
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div {
-	background: rgb(var(--bg-color));
+  background: rgb(var(--bg-color));
   border: none;
-	color: var(--txt-color);
+  color: var(--txt-color);
 }
 .xdsoft_datetimepicker,
 .xdsoft_timepicker,
 .xdsoft_time_box {
-	border: none !important;
+  border: none !important;
 }
 .xdsoft_time:hover {
   background-color: var(--logo-primary-color) !important;
 }
 .xdsoft_datetimepicker .xdsoft_calendar td:hover,
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box >div >div:hover {
-	background: var(--logo-primary-color) !important;
+  background: var(--logo-primary-color) !important;
 }
 
 /* jqueryui spinner */
