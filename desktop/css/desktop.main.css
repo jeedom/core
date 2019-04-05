@@ -392,16 +392,15 @@ div[class*="ListContainer"] > div.cursor,
   width : 130px !important;
   font-size: 14px !important;
 }
-
-div[class*="ListContainer"] .cursor i,
-.eqLogicThumbnailContainer .cursor i {
+div[class*="ListContainer"] > div.cursor i,
+.eqLogicThumbnailContainer > div.cursor i {
   font-size: 38px !important;
   font-weight: 900;
 }
 div[class*="ListContainer"] i[class*=jeedom-batt] {
   font-weight: normal;
 }
-div[class*="ListContainer"] .objectSummaryParent i {
+div[class*="ListContainer"] span.objectSummaryParent i {
   font-size: 12px !important;
 }
 
@@ -430,11 +429,11 @@ div[class*="ListContainer"] div.cursor > center > i,
 }
 
 div[class*="DisplayCard"] {
-  height: 138px !important;
+  height: 130px !important;
   overflow: hidden;
 }
 .eqLogicThumbnailContainer .eqLogicDisplayCard {
-  height: 175px !important;
+  height: 168px !important;
 }
 .scenarioDisplayCard.cursor {
   margin-left: 0 !important;
@@ -449,17 +448,10 @@ div[class*="DisplayCard"] .name {
   font-family: "Roboto";
   font-size: 12px;
   font-weight: 700;
-  line-height: 18px !important;
+  line-height: 14px !important;
 }
 div[class*="DisplayCard"] .name > .label {
   line-height: 24px !important;
-}
-
-.scenarioDisplayCard > span > i {
-  font-size: 3em !important;
-}
-.scenarioDisplayCard .icon.noicon {
-  color: var(--logo-primary-color);
 }
 
 .pluginDisplayCard,
@@ -492,13 +484,19 @@ div[class*="DisplayCard"] .name > .label {
   position: relative;
   top: 3px !important;
 }
+.scenarioDisplayCard > span.name strong,
 .eqLogicDisplayCard > span.name strong {
   position: relative;
-  top: 5px !important;
+  top: 3px !important;
   display: block;
-  height: 36px;
+  height: 28px !important;
   overflow: hidden;
 }
+.interactDisplayCard > span.name {
+  height: 28px !important;
+  overflow: hidden;
+}
+
 .eqLogicDisplayCard img {
   width: 75px !important;
   max-width: 75px;
@@ -511,6 +509,12 @@ div[class*="DisplayCard"] .name > .label {
   margin-right: 5px;
   color: var(--linkHoverLight-color);
   font-size: 14px !important;
+}
+.scenarioDisplayCard > span > i {
+  font-size: 3em !important;
+}
+.scenarioDisplayCard .icon.noicon {
+  color: var(--logo-primary-color);
 }
 
 div.cmdListContainer .tablesorter i {
