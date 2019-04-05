@@ -104,6 +104,7 @@ class plugin {
 		$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
 		$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
 		$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
+		$plugin->functionality['cron10'] = array('exists' => method_exists($plugin->getId(), 'cron10'), 'controlable' => 1);
 		$plugin->functionality['cron15'] = array('exists' => method_exists($plugin->getId(), 'cron15'), 'controlable' => 1);
 		$plugin->functionality['cron30'] = array('exists' => method_exists($plugin->getId(), 'cron30'), 'controlable' => 1);
 		$plugin->functionality['cronHourly'] = array('exists' => method_exists($plugin->getId(), 'cronHourly'), 'controlable' => 1);
@@ -331,6 +332,31 @@ class plugin {
 			}
 		}
 		cache::set('plugin::cron5::inprogress', 0);
+	}
+	
+	public static function cron10() {
+		$cache = cache::byKey('plugin::cron10::inprogress');
+		if ($cache->getValue(0) > 3) {
+			message::add('core', __('La tache plugin::cron10 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron10::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
+		}
+		cache::set('plugin::cron10::inprogress', $cache->getValue(0) + 1);
+		foreach (self::listPlugin(true) as $plugin) {
+			if (method_exists($plugin->getId(), 'cron10')) {
+				if (config::byKey('functionality::cron10::enable', $plugin->getId(), 1) == 0) {
+					continue;
+				}
+				$plugin_id = $plugin->getId();
+				cache::set('plugin::cron10::last', $plugin_id);
+				try {
+					$plugin_id::cron10();
+				} catch (Exception $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron10 du plugin : ', __FILE__) . $e->getMessage());
+				} catch (Error $e) {
+					log::add($plugin_id, 'error', __('Erreur sur la fonction cron10 du plugin : ', __FILE__) . $e->getMessage());
+				}
+			}
+		}
+		cache::set('plugin::cron10::inprogress', 0);
 	}
 	
 	public static function cron15() {
