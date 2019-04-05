@@ -153,7 +153,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-  
+
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -784,6 +784,40 @@ pre {
   border-radius: 0 0 var(--border-radius) 0 !important;
 }
 
+/* ___________________________________________________________MESSAGES */
+a.ui-table-columntoggle-btn {
+  display: none;
+}
+@media only screen and (max-width:30em) {
+  #table_message th.ui-table-priority-1 {
+    display: none;
+  }
+  #table_message td:not(.msgBin) {
+    display: block;
+  }
+  #table_message td.msgBin {
+    display: table-cell;
+  }
+  #table_message td:not(.datetime) {
+    margin-left: -30px;
+  }
+  #table_message td.plugin:before {
+    content: 'Source: ';
+  }
+
+  #table_message td.message {
+    background: var(--bg-modal-color);
+    border-bottom: 1px solid var(--al-info-color);
+  }
+}
+@media only screen and (min-width:30em) {
+  #table_message th {
+    display: table-cell;
+  }
+  #table_message td {
+    display: table-cell;
+  }
+}
 
 /* ___________________________________________________________VIEW */
 .div_viewZone{
