@@ -32,8 +32,8 @@ if ($selectPlugin != '') {
 	<thead>
 		<tr>
 			<th data-sorter="false" data-filter="false"></th>
-			<th>{{Date et heure}}</th>
-			<th>{{Plugin}}</th>
+			<th style="width:150px;">{{Date et heure}}</th>
+			<th>{{Source}}</th>
 			<th>{{Description}}</th>
 			<th data-sorter="false" data-filter="false">{{Action}}</th>
 		</tr>
