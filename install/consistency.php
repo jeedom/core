@@ -265,7 +265,7 @@ if(method_exists('utils','attrChanged')){
 	$cron->setClass('plugin');
 	$cron->setFunction('cron10');
 	$cron->setSchedule('*/10 * * * * *');
-	$cron->setTimeout(5);
+	$cron->setTimeout(10);
 	$cron->setDeamon(0);
 	$cron->save();
 	
