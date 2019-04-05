@@ -307,8 +307,8 @@ function addActionOnMessage(_action) {
   }
   var div = '<div class="actionOnMessage">';
   div += '<div class="form-group ">';
-  div += '<label class="col-sm-1 control-label">Action</label>';
-  div += '<div class="col-sm-2">';
+  div += '<label class="col-sm-2 control-label">Action</label>';
+  div += '<div class="col-sm-1">';
   div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />';
   div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />';
   div += '</div>';
@@ -320,7 +320,7 @@ function addActionOnMessage(_action) {
   div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" />';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-default btn-sm listAction" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>';
-  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight"><i class="fas fa-list-alt"></i></a>';
+  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
