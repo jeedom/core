@@ -13,6 +13,29 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+$('#in_searchWidgets').keyup(function () {
+  var search = $(this).value();
+  if(search == ''){
+    $('.widgetsDisplayCard').show();
+    $('.widgetsListContainer').packery();
+    return;
+  }
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+  $('.widgetsDisplayCard').hide();
+  $('.widgetsDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this).closest('.widgetsDisplayCard').show();
+    }
+  });
+  $('.widgetsListContainer').packery();
+});
+
+
+
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -122,24 +145,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('.widgetsListContainer').packery();
 });
 
-$('#in_searchWidgets').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
-    $('.widgetsDisplayCard').show();
-    $('.widgetsListContainer').packery();
-    return;
-  }
-  $('.widgetsDisplayCard').hide();
-  $('.widgetsDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this).closest('.widgetsDisplayCard').show();
-    }
-  });
-  $('.widgetsListContainer').packery();
-});
-
-$('#bt_widgetsAddTest').off('click').on('click', function (event) {
+('#bt_widgetsAddTest').off('click').on('click', function (event) {
   addTest({})
 });
 
