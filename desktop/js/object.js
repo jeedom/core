@@ -17,6 +17,26 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 
+$('#in_searchObject').keyup(function () {
+  var search = $(this).value();
+  if(search == ''){
+    $('.objectDisplayCard').show();
+    $('.objectListContainer').packery();
+    return;
+  }
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+  $('.objectDisplayCard').hide();
+  $('.objectDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this).closest('.objectDisplayCard').show();
+    }
+  });
+  $('.objectListContainer').packery();
+});
+
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -38,7 +58,7 @@ $(function(){
           ob = _objects[i]
           contextmenuitems[ob.id] = {'name': ob.name}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -91,25 +111,6 @@ $(".objectDisplayCard").on('click', function (event) {
   return false;
 });
 
-$('#in_searchObject').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
-    $('.objectDisplayCard').show();
-    $('.objectListContainer').packery();
-    return;
-  }
-  $('.objectDisplayCard').hide();
-  $('.objectDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this).closest('.objectDisplayCard').show();
-    }
-  });
-  $('.objectListContainer').packery();
-});
-
-
-
 $('#bt_removeBackgroundImage').off('click').on('click', function () {
   jeedom.object.removeImage({
     id: $('.objectAttr[data-l1key=id]').value(),
@@ -127,7 +128,7 @@ function loadObjectConfiguration(_id){
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
   }catch(error) {
-    
+
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
@@ -174,7 +175,7 @@ function loadObjectConfiguration(_id){
               $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
             }
           }
-          
+
         }
       }
       modifyWithoutSave = false;
