@@ -1448,17 +1448,13 @@ user::isBan();
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Adresse syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<div class="form-control">
-											<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
-										</div>
+										<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Port syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<div class="form-control">
-											<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
-										</div>
+										<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
 									</div>
 								</div>
 							</div>
