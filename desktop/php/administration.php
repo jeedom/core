@@ -467,69 +467,69 @@ user::isBan();
 					<legend>{{LDAP}}</legend>
 					<?php if (function_exists('ldap_connect')) {?>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Activer l'authentification LDAP}}</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
 							</div>
 						</div>
 						<div id="div_config_ldap">
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Hôte}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Domaine}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Base DN}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nom d'utilisateur}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Champs recherche utilisateur}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre (optionnel)}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
 								</div>
 							</div>
 							<div class="form-group has-error">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Autoriser REMOTE_USER}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<div class="col-md-3 col-sm-4 col-xs-12">
 									<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
 								</div>
 							</div>
@@ -539,34 +539,34 @@ user::isBan();
 					}?>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée de vie des sessions (heure)}}
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions (heure)}}
 							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}"></i></sup>
 						</label>
-						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}</label>
+						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps maximum entre les échecs}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs (sec)}}</label>
+						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée du bannissement, -1 pour infini}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement, -1 pour infini (sec)}}</label>
+						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::bantime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP "blanche"}}</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{IP "blanche"}}</label>
+						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
