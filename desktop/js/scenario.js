@@ -18,6 +18,38 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-size','auto');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
+$('#in_searchScenario').keyup(function () {
+  var search = $(this).value();
+  if(search == ''){
+    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+    $('.scenarioDisplayCard').show();
+    $('.scenarioListContainer').packery();
+    return;
+  }
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
+  $('.scenarioDisplayCard').hide();
+  $('.scenarioDisplayCard .name').each(function(){
+    var text = $(this).text().toLowerCase();
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    if(text.indexOf(search.toLowerCase()) >= 0){
+      $(this).closest('.scenarioDisplayCard').show();
+    }
+  });
+  $('.scenarioListContainer').packery();
+});
+
+$('#bt_openAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='false']").each(function(){
+    $(this).click()
+  })
+});
+$('#bt_closeAll').on('click', function () {
+  $(".accordion-toggle[aria-expanded='true']").each(function(){
+    $(this).click()
+  })
+});
 
 document.addEventListener('keydown', function(event) {
   //in expression input or textarea:
@@ -191,36 +223,6 @@ $("#div_tree").jstree({
 });
 $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearch').val());
-});
-
-$('#in_searchScenario').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
-    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
-    $('.scenarioDisplayCard').show();
-    $('.scenarioListContainer').packery();
-    return;
-  }
-  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
-  $('.scenarioDisplayCard').hide();
-  $('.scenarioDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this).closest('.scenarioDisplayCard').show();
-    }
-  });
-  $('.scenarioListContainer').packery();
-});
-
-$('#bt_openAll').on('click', function () {
-  $(".accordion-toggle[aria-expanded='false']").each(function(){
-    $(this).click()
-  })
-});
-$('#bt_closeAll').on('click', function () {
-  $(".accordion-toggle[aria-expanded='true']").each(function(){
-    $(this).click()
-  })
 });
 
 $('#bt_chooseIcon').on('click', function () {
