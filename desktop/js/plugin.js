@@ -13,13 +13,6 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-if($('#md_modal').is(':visible')){
-  $('#bt_returnToThumbnailDisplay').hide();
-  $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
-  alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
-}else{
-  alert_div_plugin_configuration = $('#div_alert');
-}
 
 $('#in_searchPlugin').off('keyup').keyup(function () {
   var search = $(this).value();
@@ -28,9 +21,12 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
     $('.pluginListContainer').packery();
     return;
   }
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
   $('.pluginDisplayCard').hide();
   $('.pluginDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     if(text.indexOf(search.toLowerCase()) >= 0){
       $(this)
       $(this).closest('.pluginDisplayCard').show();
@@ -39,6 +35,13 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
   $('.pluginListContainer').packery();
 });
 
+if($('#md_modal').is(':visible')){
+  $('#bt_returnToThumbnailDisplay').hide();
+  $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
+  alert_div_plugin_configuration = $('#div_alertPluginConfiguration');
+}else{
+  alert_div_plugin_configuration = $('#div_alert');
+}
 
 setTimeout(function(){
   $('.pluginListContainer').packery();
