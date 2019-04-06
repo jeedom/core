@@ -45,17 +45,13 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nom de votre}} <?php echo config::byKey('product_name'); ?>
-							<sup><i class="fas fa-question-circle tooltips" title="{{Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Nom de votre <?php echo config::byKey('product_name'); ?> (utilisé notamment par le market)}}">{{Nom de votre}} <?php echo config::byKey('product_name'); ?></label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="name" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Langue}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>">{{Langue}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="language">
@@ -84,9 +80,7 @@ user::isBan();
 					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Date et heure}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>">{{Date et heure}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="timezone">
@@ -194,26 +188,20 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Serveur de temps optionnel}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}">{{Serveur de temps optionnel}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}">{{Ignorer la vérification de l'heure}}</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
 						</div>
 					</div>
 					<hr class="hrPrimary">
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Système}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Indique votre type de matériel}}"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Indique votre type de matériel}}">{{Système}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
 						</div>
@@ -222,9 +210,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clef d'installation}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}">{{Clef d'installation}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
 						</div>
@@ -303,9 +289,7 @@ user::isBan();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>">{{Clef API}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['api']; ?>" />
@@ -317,9 +301,7 @@ user::isBan();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API Pro}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>">{{Clef API Pro}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apipro']; ?>" />
@@ -342,9 +324,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef Market}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-						</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>">{{Clef Market}}</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
 								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apimarket']; ?>" />
@@ -374,9 +354,7 @@ user::isBan();
 								continue;
 							}
 							echo '<div class="form-group">';
-							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API}} '.$plugin->getName().' ';
-							echo '<sup><i class="fas fa-question-circle tooltips" title="{{Clef API pour le plugin}} '.$plugin->getName().'"></i></sup>';
-							echo '</label>';
+							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label help" data-help="{{Clef API pour le plugin}} ' . $plugin->getName() . '">{{Clef API}} ' . $plugin->getName() . '</label>';
 							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
 							echo '<div class="input-group">';
 							echo '<input class="span_apikey roundedLeft form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
@@ -467,69 +445,69 @@ user::isBan();
 					<legend>{{LDAP}}</legend>
 					<?php if (function_exists('ldap_connect')) {?>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Activer l'authentification LDAP}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer l'authentification LDAP}}</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="ldap:enable"/>
 							</div>
 						</div>
 						<div id="div_config_ldap">
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Hôte}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Port}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:port" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Domaine}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Domaine}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:domain" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Base DN}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Base DN}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:basedn" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nom d'utilisateur}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom d'utilisateur}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:username" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Champs recherche utilisateur}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Champs recherche utilisateur}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text" class="configKey form-control" data-l1key="ldap::usersearch" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Filtre (optionnel)}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Filtre (optionnel)}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text" class="configKey form-control" data-l1key="ldap:filter" />
 								</div>
 							</div>
 							<div class="form-group has-error">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Autoriser REMOTE_USER}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Autoriser REMOTE_USER}}</label>
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-								<div class="col-md-3 col-sm-4 col-xs-12">
+								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
 								</div>
 							</div>
@@ -539,34 +517,32 @@ user::isBan();
 					}?>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions (heure)}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}"></i></sup>
-						</label>
-						<div class="col-md-3 col-sm-4 col-xs-12">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help" data-help="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}">{{Durée de vie des sessions (heure)}}</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}</label>
-						<div class="col-md-3 col-sm-4 col-xs-12">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nombre d'échecs tolérés}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs (sec)}}</label>
-						<div class="col-md-3 col-sm-4 col-xs-12">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Temps maximum entre les échecs (s)}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement, -1 pour infini (sec)}}</label>
-						<div class="col-md-3 col-sm-4 col-xs-12">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Durée du bannissement (s), -1 pour infini}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::bantime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{IP "blanche"}}</label>
-						<div class="col-md-3 col-sm-4 col-xs-12">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{IP "blanche"}}</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
@@ -879,10 +855,9 @@ user::isBan();
 					</div>
 
 					<legend>{{Personnalisation}}</legend>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info">Activer la personnalisation pour écraser les paramètres par défaut des thèmes.</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
-							<sup><i class="fas fa-question-circle tooltips" title="Activer la personnalisation pour écraser les paramètres par défaut des thèmes."></i></sup>
-						</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
 						</div>
@@ -1378,17 +1353,10 @@ user::isBan();
 							<a class="btn btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-2 hidden-xs"></div>
-						<div class="col-sm-10 col-xs-12">
-
-						</div>
-					</div>
+					<div id="div_actionOnMessage"></div>
 				</fieldset>
 			</form>
-			<form class="form-horizontal">
-				<div id="div_actionOnMessage"></div>
-			</form>
+
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
@@ -1448,13 +1416,17 @@ user::isBan();
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Adresse syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+										<div class="form-control">
+											<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Port syslog UDP}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+										<div class="form-control">
+											<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1562,8 +1534,8 @@ user::isBan();
 						<fieldset>
 							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
-								<div class="col-lg-4 col-xs-6">
+								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<div class="dropdown dynDropdown">
 										<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
 											<span class="caret"></span>
@@ -1586,8 +1558,8 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}</label>
-								<div class="col-lg-4 col-xs-6">
+								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 									<div class="dropdown dynDropdown">
 										<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::branch">
 											<span class="caret"></span>
@@ -1602,7 +1574,7 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
+								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Vérifier automatiquement si il y a des mises à jour}}</label>
 								<div class="col-sm-1">
 									<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
 								</div>
