@@ -841,25 +841,31 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
     var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-    if (d > 3599) {
-    var interval = 60000;
-    _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-    } else {
-    var interval = 10000;
-     _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-    }
+    if (d > 86399) {
+        var interval = 3600000;
+        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      } else if (d > 3599 && d < 86400) {
+        var interval = 60000;
+         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+      } else {
+        var interval = 10000;
+         _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      }
     var myinterval = setInterval(function(){
       var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
       var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-      if (d > 3599) {
+     if (d > 86399) {
+        var interval = 3600000;
+        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      } else if (d > 3599 && d < 86400) {
         var interval = 60000;
-         _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
+         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
       } else {
         var interval = 10000;
-            _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+            _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
       }
     }, interval);
     _el.attr('data-interval',myinterval);
@@ -873,13 +879,16 @@ jeedom.cmd.displayDuration = function(_date,_el){
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
         var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-        if (d > 3599) {
-            interval = 60000;
-            _el.empty().append(((j > 0 ? j + " j " : "") + (h > 0 ? h + " h " : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + " min" : "0 min")));
-        } else {
-            interval = 10000;
-            _el.empty().append(((m > 0 ? m + " min " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-       }
+        if (d > 86399) {
+         interval = 3600000;
+        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      } else if (d > 3599 && d < 86400) {
+         interval = 60000;
+         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+      } else {
+         interval = 10000;
+         _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      }
       }else{
         _el.empty().append("0 s");
       }
