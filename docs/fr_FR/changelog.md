@@ -5,9 +5,9 @@ Changelog
 3.3.20
 =====
 
-- Correction d'un bug sur les scénario ou ceux-ci pouvez rester bloqués à "en cours" alors qu'ils sont désactivé
-- Correction d'un soucis de lancement de scénario non planifié
-- Correction de bug liée au fueseau horraire
+- Correction d'un bug sur les scénarios où ceux-ci pouvaient rester bloqués à "en cours" alors qu'ils sont désactivés
+- Correction d'un souci de lancement de scénario non planifié
+- Correction de bug lié au fuseau horaire
 
 3.3.19
 =====
