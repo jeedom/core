@@ -185,6 +185,13 @@ legend {
   list-style-type: none;
   padding-left: 0px;
 }
+#searchResult a[role=searchTabLink] {
+  display: inline-block;
+  font-size: 14px !important;
+  font-weight: bold;
+  margin-top: 15px !important;
+  border-bottom: 3px solid var(--logo-primary-color);
+}
 .eqLogicSortable i {
   margin: 3px 3px 0 3px !important;
 }
@@ -328,6 +335,7 @@ label sup {
 }
 
 .list-group-item {
+  padding: 0 5px;
   background-color: var(--defaultBkg-color);
 }
 .list-group-item-success {
@@ -778,6 +786,13 @@ hr.hrPrimary {
   width: 5%;
   opacity: 0.5;
 }
+hr.hrSecondary {
+  border-top: 1px dotted var(--logo-primary-color);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 7%;
+  opacity: 0.5;
+}
 
 /* résumé */
 li.alert-info.eqLogic {
@@ -906,6 +921,9 @@ button.dropdown-toggle {
 }
 .dropdown-menu {
   font-size: 14px;
+}
+.dropdown.dynDropdown li a {
+  line-height: 14px !important;
 }
 .dropdown button.dropdown-toggle {
   color: var(--txt-color) !important;
@@ -2844,16 +2862,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2861,11 +2879,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2892,5 +2910,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }

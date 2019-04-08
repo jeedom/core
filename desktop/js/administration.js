@@ -14,6 +14,83 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 actionOptions = [];
+
+//searching
+$('#in_searchConfig').keyup(function () {
+  var search = $(this).value()
+
+  //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
+  $('span[searchId]').each(function() {
+    el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
+    el.removeAttr('searchId')
+    $(this).replaceWith(el)
+  })
+
+  $('#searchResult').empty()
+  if(search == '') {
+    $('.nav-tabs.nav-primary').show()
+    $('.tab-content').show()
+    initPickers()
+    return
+  }
+  if (search.length < 3) return
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+  $('.nav-tabs.nav-primary').hide()
+  $('.tab-content').hide()
+
+  var prevTab = ''
+  $('.form-group > .control-label').each(function() {
+    var text = $(this).html().toLowerCase()
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    if (text.indexOf(search.toLowerCase()) >= 0){
+
+      //get element tab to create link to:
+      var tabId = $(this).closest('div[role="tabpanel"]').attr('id')
+      tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
+      if (tabName != undefined && prevTab != tabId) {
+        $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
+      }
+      prevTab = tabId
+
+      el = $(this).closest('.form-group')
+      searchId = Math.random()
+      el.attr('searchId', searchId)
+      el.replaceWith('<span searchId='+ searchId + '></span>')
+      $('#searchResult').append(el)
+    }
+  })
+  initPickers()
+  initSearchLinks()
+})
+
+function initSearchLinks() {
+  $('#searchResult a[role="searchTabLink"]').on('click', function() {
+    tabId = $(this).attr('href')
+    $('#bt_resetConfigSearch').trigger('click')
+    $('ul.nav-primary > li > a[href="' + tabId + '"]').trigger('click')
+  })
+}
+
+$('#bt_resetConfigSearch').on('click', function () {
+  $('#in_searchConfig').val('')
+  $('#in_searchConfig').keyup();
+})
+
+
+//DateTimePickers and Spinners
+function initPickers() {
+  $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
+  $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
+
+  $('input[type="number"]').spinner({
+    icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
+  });
+}
+$(function(){
+  initPickers()
+})
+
 $('.nav-tabs.nav-primary a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
@@ -33,16 +110,6 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.con
     }
   }, 100);
 });
-
-//DateTimePickers and Spinners
-$(function(){
-  $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-  $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-
-  $('input[type="number"]').spinner({
-    icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
-  });
-})
 
 $('#div_pageContainer').off('change','.enableRepository').on('change','.enableRepository', function () {
   if($(this).value() == 1){
