@@ -2390,15 +2390,25 @@ div.cmd > div.center-block {
 .shuttergauge-chart {
   position: relative;
   top: -18px;
-  height: 36px;
+  height: 37px;
+}
+.shuttergauge[data-type=action] .shuttergauge-bckg {
+  left: 18px;
 }
 .shuttergauge[data-type=action] .state {
   position: relative;
+  left: -7px;
 }
 .shuttergauge .slider {
   width: 60px;
   top: 12px !important;
 }
+.shuttergauge .timeCmd {
+  position: relative;
+  margin-left: -15px !important;
+  max-width: 70px;
+}
+
 .hgauge-value {
   position: absolute;
   left: 0;
