@@ -88,7 +88,7 @@ try {
 	}
 
 	try {
-		echo "Vérification des droits...";
+		echo "Vérifiez les droits...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
