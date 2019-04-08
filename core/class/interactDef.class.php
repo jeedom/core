@@ -32,6 +32,7 @@ class interactDef {
 	private $enable;
 	private $group;
 	private $actions;
+	private $display;
 	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -728,6 +729,17 @@ class interactDef {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
 		$this->actions = $actions;
+		return $this;
+	}
+	
+	public function getDisplay($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->display, $_key, $_default);
+	}
+	
+	public function setDisplay($_key, $_value) {
+		$display = utils::setJsonAttr($this->display, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->display = $display;
 		return $this;
 	}
 	
