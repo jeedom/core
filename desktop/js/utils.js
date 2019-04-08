@@ -176,17 +176,26 @@ $('body').on('focusin','.bootbox-input', function (e) {
 /************************Help*************************/
 
 setInterval(function () {
-  var date = new Date();
-  date.setTime(date.getTime() + clientServerDiffDatetime);
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var seconde = date.getSeconds();
-  var horloge = (hour < 10) ? '0' + hour : hour;
-  horloge += ':';
-  horloge += (minute < 10) ? '0' + minute : minute;
-  horloge += ':';
-  horloge += (seconde < 10) ? '0' + seconde : seconde;
-  $('#horloge').text(horloge);
+  var times = [ 0, 0, 0 ]
+  var max = times.length
+  var times = $('#horloge').text().split(':');
+  for (var i = 0; i < max; i++) {
+    times[i] = isNaN(parseInt(times[i])) ? 0 : parseInt(times[i])
+  }
+  var hours = times[0]
+  var minutes = times[1]
+  var seconds = times[2]+1
+  if (seconds >= 60) {
+    var m = (seconds / 60) << 0
+    minutes += m
+    seconds -= 60 * m
+  }
+  if (minutes >= 60) {
+    var h = (minutes / 60) << 0
+    hours += h
+    minutes -= 60 * h
+  }
+  $('#horloge').text(('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2))
 }, 1000);
 
 if (isset(jeedom_langage)) {

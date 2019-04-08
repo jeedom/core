@@ -146,7 +146,7 @@ class scenarioElement {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
-				message::add('scenario', __('Expression non valide  [', __FILE__) . $expresssion_str . __('] trouvée dans le scénario : ', __FILE__) . $_scenario->getHumanName(), '', 'invalidExprScenarioElement::' . $this->getId());
+					message::add('scenario', __('Expression non valide  [', __FILE__) . $expresssion_str . __('] trouvée dans le scénario : ', __FILE__) . $_scenario->getHumanName().__(', résultat : ',__FILE__).$result, '', 'invalidExprScenarioElement::' . $this->getId());
 				return;
 			}
 			if ($result) {

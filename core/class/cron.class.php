@@ -259,7 +259,7 @@ class cron {
 			if (!$_noErrorReport) {
 				$this->halt();
 				if (!$this->running()) {
-					exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
+					system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 				} else {
 					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
