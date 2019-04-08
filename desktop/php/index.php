@@ -386,6 +386,11 @@ if (init('rescue', 0) == 0) {
 									</span>
 								</a>
 							</li>
+							<li>
+								<a href="#" id="bt_jsErrorModal" style="display:none;">
+									<i class="fas fa-exclamation-triangle" title="{{Erreur Javascript}}"></i>
+								</a>
+							</li>
 							<?php if (isConnect('admin')) {
 								$nbUpdate = update::nbNeedUpdate();
 								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
