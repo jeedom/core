@@ -17,6 +17,7 @@
 
 printCron();
 printListener();
+initTableSorter(filter=false)
 
 $("#bt_refreshCron").on('click', function () {
   printCron();
@@ -121,6 +122,7 @@ function printCron() {
       }
       $('#table_cron tbody').append(tr);
       modifyWithoutSave = false;
+      $("#table_cron").trigger("update");
       $.hideLoading();
     }
   });
@@ -162,10 +164,10 @@ function addCron(_cron) {
     tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> ';
   }
   tr += '</td>';
-  tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
-  tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
-  tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
-  tr += '<td class="function">';
+  tr += '<td class="class"><span class="hidden cronAttr" data-l1key="class"></span><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
+  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="function"></span><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
+  tr += '<td class="schedule"><span class="hidden cronAttr" data-l1key="schedule"></span><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
+  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="timeout"></span>';
   if(init(_cron.deamon) == 0){
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />';
   }
@@ -196,6 +198,7 @@ function addCron(_cron) {
   tr += '<i class="fas fa-minus-circle remove pull-right cursor"></i>';
   tr += '</td>';
   tr += '</tr>';
+  $("#table_cron").trigger("update");
   var result = $(tr);
   result.setValues(_cron, '.cronAttr');
   return result;
