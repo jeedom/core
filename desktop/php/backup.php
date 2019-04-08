@@ -8,7 +8,7 @@ echo '</script>';
 ?>
 
 <div class="pull-right" style="display:inline-flex;">
-  <a id="bt_saveBackup" class="btn btn-success pull-right"><i class="far fa-check-circle"></i> Sauvegarder</a>
+	<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="far fa-check-circle"></i> Sauvegarder</a>
 </div>
 <br/>
 <div id="backup">
@@ -42,9 +42,9 @@ echo '</script>';
 							<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
 						</div>
 					</div>
-
+					
 					<hr class="hrPrimary">
-
+					
 					<div class="form-group">
 						<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
 						<div class="col-xs-12">
@@ -73,46 +73,46 @@ echo '</script>';
 				</fieldset>
 			</form>
 			<?php
-				foreach (update::listRepo() as $rkey => $value) {
-					if ($value['scope']['backup'] == false) {
-						continue;
-					}
-					if ($value['enable'] == 0) {
-						continue;
-					}
-					$class = 'repo_' . $rkey;
-
-					$icon = '<i class="fas fa-network-wired"></i>';
-					if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
-					echo '<legend>'.$icon.' {{Sauvegardes}} ' . $value['name'] . '</legend>';
-					echo '<form class="form-horizontal repo">';
-					echo '<fieldset>';
-					echo '<div class="form-group">';
-					echo '<label class="col-sm-4 col-xs-6 control-label">{{Envoi des sauvegardes}}</label>';
-					echo '<div class="col-sm-4 col-xs-6">';
-					echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
-					echo '</div>';
-					echo '</div>';
-					echo '<div class="form-group">';
-					echo '<label class="col-sm-4 col-xs-12 control-label">{{Sauvegardes disponibles}}</label>';
-					echo '<div class="col-sm-8 col-xs-12">';
-					echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
-					echo '<option>{{Chargement...}}</option>';
-					echo '</select>';
-					echo '<script>';
-					echo 'REPO_LIST.push("' . $rkey . '");';
-					echo '</script>';
-					echo '</div>';
-					echo '</div>';
-					echo '<div class="form-group">';
-					echo '<label class="col-sm-4 col-xs-12"></label>';
-					echo '<div class="col-sm-8 col-xs-12">';
-					echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>';
-					echo '</div>';
-					echo '</div>';
-					echo '</fieldset>';
-					echo '</form>';
+			foreach (update::listRepo() as $rkey => $value) {
+				if ($value['scope']['backup'] == false) {
+					continue;
 				}
+				if ($value['enable'] == 0) {
+					continue;
+				}
+				$class = 'repo_' . $rkey;
+				
+				$icon = '<i class="fas fa-network-wired"></i>';
+				if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
+				echo '<legend>'.$icon.' {{Sauvegardes}} ' . $value['name'] . '</legend>';
+				echo '<form class="form-horizontal repo">';
+				echo '<fieldset>';
+				echo '<div class="form-group">';
+				echo '<label class="col-sm-6 col-xs-6 control-label">{{Envoi des sauvegardes}}</label>';
+				echo '<div class="col-sm-4 col-xs-6">';
+				echo '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
+				echo '</div>';
+				echo '</div>';
+				echo '<div class="form-group">';
+				echo '<label class="col-sm-6 col-xs-12 control-label">{{Sauvegardes disponibles}}</label>';
+				echo '<div class="col-sm-6 col-xs-12">';
+				echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
+				echo '<option>{{Chargement...}}</option>';
+				echo '</select>';
+				echo '<script>';
+				echo 'REPO_LIST.push("' . $rkey . '");';
+				echo '</script>';
+				echo '</div>';
+				echo '</div>';
+				echo '<div class="form-group">';
+				echo '<label class="col-sm-6 col-xs-12"></label>';
+				echo '<div class="col-sm-6 col-xs-12">';
+				echo '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>';
+				echo '</div>';
+				echo '</div>';
+				echo '</fieldset>';
+				echo '</form>';
+			}
 			?>
 		</div>
 		<div class="col-sm-6">
