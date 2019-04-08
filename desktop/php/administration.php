@@ -428,7 +428,9 @@
 				<fieldset>
 					<legend><i class="fas fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Interface d’administration système.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
@@ -442,7 +444,9 @@
 					</div>
 					<legend><i class="fas fa-database"></i> {{Base de données}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Interface d’administration de la base de données.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
@@ -561,7 +565,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}</label>
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Passé ce nombre, l'IP sera bannie}}"></i></sup>
+						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
@@ -1015,9 +1021,11 @@
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
+						</label>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+							<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl">
 						</div>
 					</div>
 				</fieldset>
@@ -1090,13 +1098,17 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Force la suppression des objets qui ne sont plus utiles. Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_cleanCache"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider toutes les données en cache}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider toutes les données en cache}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Vide complètement le cache. Attention cela peut faire perdre des données.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-danger" id="bt_flushCache"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
@@ -1114,7 +1126,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Fréquence à laquelle Jeedom vérifie si il y a des événements en attente.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input class="configKey form-control" data-l1key="event::waitPollingTime"/>
 						</div>
@@ -1360,10 +1374,10 @@
 								<th>{{Clef}}</th>
 								<th>{{Nom}}</th>
 								<th>{{Calcul}}</th>
-								<th>{{Icone}}</th>
+								<th>{{Icône}}</th>
 								<th>{{Unité}}</th>
 								<th>{{Méthode de comptage}}</th>
-								<th>{{Affiché si valeur égale 0}}</th>
+								<th>{{Affiché même si nulle}}</th>
 								<th>{{Lier à un virtuel}}</th>
 								<th></th>
 							</tr>
@@ -1588,7 +1602,7 @@
 						<fieldset>
 							<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
 							<div class="form-group">
-								<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour}}</label>
+								<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
 								<div class="col-lg-4 col-xs-6">
 									<div class="dropdown dynDropdown">
 										<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="core::repo::provider">
@@ -1613,7 +1627,7 @@
 							</div>
 							<div class="form-group">
 								<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
-									<sup><i class="fas fa-question-circle tooltips" title="{{Version pour la vérification des mises à jour et à installer.}}"></i></sup>
+									<sup><i class="fas fa-question-circle tooltips" title="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 								</label>
 								<div class="col-lg-4 col-xs-6">
 									<div class="dropdown dynDropdown">
