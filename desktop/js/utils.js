@@ -578,9 +578,11 @@ function initReportMode() {
   }
 }
 
-function initTableSorter() {
+function initTableSorter(filter=true) {
+  var widgets = ['uitheme', 'filter', 'zebra', 'resizable'];
+  if (filter === false) widgets = widgets.filter(item => item !== 'filter')
+
   $(".tablesorter").each(function () {
-    var widgets = ['uitheme', 'filter', 'zebra', 'resizable'];
     $(".tablesorter").tablesorter({
       theme: "bootstrap",
       widthFixed: true,
