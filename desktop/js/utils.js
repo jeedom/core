@@ -18,6 +18,7 @@ var JS_ERROR = [];
 window.addEventListener('error', function (evt) {
   JS_ERROR.push(evt)
   $('#bt_jsErrorModal').show();
+  $.hideLoading();
 });
 
 uniqId_count = 0;

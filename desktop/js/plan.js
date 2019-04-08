@@ -937,7 +937,7 @@ function displayObject(_plan,_html, _noRender) {
       if(key == 'z-index' && _plan.css[key] < 999){
         continue;
       }
-      html.css(key, _plan.css[key]);
+      html.style(key, _plan.css[key], 'important');
     }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view' || _plan.link_type == 'eqLogic') {
       if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
         if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
@@ -952,6 +952,11 @@ function displayObject(_plan,_html, _noRender) {
         }
       }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
         html.style(key, _plan.css[key], 'important');
+        if(_plan.link_type == 'eqLogic'){
+          html.find('*').each(function(){
+            $(this).style(key, _plan.css[key], 'important')
+          });
+        }
       }
     }
   }
