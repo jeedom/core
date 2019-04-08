@@ -145,7 +145,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('.widgetsListContainer').packery();
 });
 
-('#bt_widgetsAddTest').off('click').on('click', function (event) {
+$('#bt_widgetsAddTest').off('click').on('click', function (event) {
   addTest({})
 });
 
