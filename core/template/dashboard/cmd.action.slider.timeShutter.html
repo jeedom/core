@@ -31,9 +31,11 @@
       if (height#uid# > 65) {
         $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-35px', 'min-height':'51px'})
+        $('.cmd[data-cmd_uid=#uid#] .value .timeCmd').css('top','28px')
       } else {
         $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-12px', 'min-height':'28px'})
+        $('.cmd[data-cmd_uid=#uid#] .value .timeCmd').css('top','5px')
       }
       
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height#uid#+'%')
