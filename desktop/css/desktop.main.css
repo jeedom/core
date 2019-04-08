@@ -531,7 +531,7 @@ div[class*="DisplayCard"] .name > .label {
 div.cmdListContainer .tablesorter i {
   font-size: 14px !important;
 }
-tr.tablesorter-headerRow th:not(.sorter-false) .tablesorter-header-inner {
+tr.tablesorter-headerRow th:not(.resizable-false) .tablesorter-header-inner {
   padding: 0 0 0 0!important;
   border-right: 3px solid var(--logo-primary-color);
 }
