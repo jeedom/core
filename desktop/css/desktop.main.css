@@ -531,14 +531,17 @@ div[class*="DisplayCard"] .name > .label {
 div.cmdListContainer .tablesorter i {
   font-size: 14px !important;
 }
-tr.tablesorter-headerRow th:not(.resizable-false) .tablesorter-header-inner {
+.tablesorter-header-inner {
   padding: 0 0 0 0!important;
-  border-right: 3px solid var(--logo-primary-color);
+}
+table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
+  border-right: 3px solid var(--logo-primary-color) !important;
 }
 .tablesorter-resizable-handle {
   width: 5px !important;
   margin-left: 7px;
 }
+
 
 /* market */
 div[data-market_type=plugin] {
