@@ -6,6 +6,8 @@ Changelog
 =====
 
 - Correction d'un bug sur les scénario ou ceux-ci pouvez rester bloqués à "en cours" alors qu'ils sont désactivé
+- Correction d'un soucis de lancement de scénario non planifié
+- Correction de bug liée au fueseau horraire
 
 3.3.19
 =====
