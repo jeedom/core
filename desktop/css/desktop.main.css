@@ -2348,9 +2348,9 @@ div.cmd > div.center-block {
 }
 .hgauge-bckg {
   position:relative;
-  width: 90px;
+  width: 70px;
   height: 5px;
-  top: -3px;
+  left: 0;
 }
 .vgauge-bckg {
   position: relative;
@@ -2409,11 +2409,14 @@ div.cmd > div.center-block {
   margin-left: -15px !important;
   max-width: 70px;
 }
-
+.hgauge .content-sm {
+  width: 70px !important;
+  text-align: left;
+}
 .hgauge-value {
-  position: absolute;
-  left: 0;
-  margin-top: -4px;
+  position: relative;
+  padding: 0;
+  margin-top: -1px;
   height: 10px;
 }
 .vgauge-value {
