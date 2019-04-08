@@ -7,12 +7,11 @@ echo 'REPO_LIST = []';
 echo '</script>';
 ?>
 
-<div class="pull-right" style="display:inline-flex;">
-	<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="far fa-check-circle"></i> Sauvegarder</a>
-</div>
-<br/>
 <div id="backup">
 	<br/>
+	<div class="pull-right" style="display:inline-flex;">
+		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="far fa-check-circle"></i> Sauvegarder</a>
+	</div>
 	<div class="row row-overflow">
 		<div class="col-sm-6">
 			<legend><i class="fas fa-folder-open"></i>  {{Sauvegardes locales}}</legend>
@@ -94,7 +93,7 @@ echo '</script>';
 				echo '</div>';
 				echo '</div>';
 				echo '<div class="form-group">';
-				echo '<label class="col-sm-6 col-xs-12 control-label">{{Sauvegardes disponibles}}</label>';
+				echo '<label class="col-sm-6 col-xs-12 control-label"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>';
 				echo '<div class="col-sm-6 col-xs-12">';
 				echo '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
 				echo '<option>{{Chargement...}}</option>';

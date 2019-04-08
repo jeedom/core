@@ -72,7 +72,7 @@ $optionMaxSize = 15;
 					if($interact->getDisplay('icon') != ''){
 						echo '<span>'.$interact->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="far noicon fa-comments"></i></span>';
+						echo '<span><i class="icon noicon far fa-comments"></i></span>';
 					}
 					echo "<br>";
 					echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
@@ -103,7 +103,7 @@ $optionMaxSize = 15;
 						if($interact->getDisplay('icon') != ''){
 							echo '<span>'.$interact->getDisplay('icon').'</span>';
 						}else{
-							echo '<span><i class="far noicon fa-comments"></i></span>';
+							echo '<span><i class="icon noicon far fa-comments"></i></span>';
 						}
 						echo "<br>";
 						echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';

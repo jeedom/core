@@ -77,6 +77,9 @@ $('#bt_resetConfigSearch').on('click', function () {
   $('#in_searchConfig').keyup();
 })
 
+$(function(){
+  $('#in_searchConfig').focus()
+})
 
 //DateTimePickers and Spinners
 function initPickers() {
