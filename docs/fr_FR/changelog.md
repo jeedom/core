@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.20
+=====
+
+- Correction d'un bug sur les scénario ou ceux-ci pouvez rester bloquer à "en cours" alors qu'ils sont désactivé
+
 3.3.19
 =====
 - Correction de bugs (en particulier lors de l'update)
