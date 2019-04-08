@@ -23,10 +23,10 @@
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
         position = maxValue - position;
       }
-      height = ((position - #minValue#) * 100) / (#maxValue# - #minValue#);
-      height = 100 - (Math.round(parseFloat(height) * 10) / 10);
+      height#uid# = ((position - #minValue#) * 100) / (#maxValue# - #minValue#);
+      height#uid# = 100 - (Math.round(parseFloat(height#uid#) * 10) / 10);
       
-      if (height > 65) {
+      if (height#uid# > 65) {
         $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-35px', 'min-height':'51px'})
       } else {
@@ -34,7 +34,7 @@
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-12px', 'min-height':'28px'})
       }
       
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
+      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height#uid#+'%')
       $('.cmd[data-cmd_uid=#uid#] .state strong:first').text(_options.display_value)
       $('.cmd[data-cmd_uid=#uid#] .slider').slider( "option", "value",position);
     }
@@ -74,7 +74,7 @@
         }else{
           $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').html('<strong>' + ui.value +'</strong> <strong>#unite#</strong>')
         }
-        if (height > 65) {
+        if (height#uid# > 65) {
             $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
          } else {
             $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
