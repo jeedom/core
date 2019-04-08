@@ -15,7 +15,7 @@
   <div class="value" data-cmd_id="#id#">
     <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
-
+  
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       var position = _options.display_value;
@@ -25,7 +25,7 @@
       }
       height = ((position - #minValue#) * 100) / (#maxValue# - #minValue#);
       height = 100 - (Math.round(parseFloat(height) * 10) / 10);
-
+      
       if (height > 65) {
         $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-35px', 'min-height':'51px'})
@@ -33,21 +33,21 @@
         $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
         $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-12px', 'min-height':'28px'})
       }
-
+      
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
+      $('.cmd[data-cmd_uid=#uid#] .state strong:first').text(_options.display_value)
       $('.cmd[data-cmd_uid=#uid#] .slider').slider( "option", "value",position);
     }
-
+    
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
-      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state').first().html()
+      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong:first').html()
       if (shutterPos > 50) {
         jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
       } else {
         jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
       }
     })
-
+    
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       if('#invert#' == '1'){
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
@@ -55,10 +55,9 @@
       }else{
         jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       }
-
       $(".value#uid#").hide()
     })
-
+    
     $(".cmd[data-cmd_id=#id#] .slider").slider({
       orientation: "vertical",
       min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
@@ -74,7 +73,7 @@
         }
       }
     })
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#'})
   </script>
 </div>
