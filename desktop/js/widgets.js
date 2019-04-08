@@ -51,6 +51,10 @@ $('#bt_chooseIcon').on('click', function () {
   });
 });
 
+$('.widgetsAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+  $('.widgetsAttr[data-l1key=display][data-l2key=icon]').value('');
+});
+
 if (getUrlVars('saveSuccessFull') == 1) {
   $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
 }
