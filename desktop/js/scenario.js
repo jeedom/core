@@ -231,6 +231,10 @@ $('#bt_chooseIcon').on('click', function () {
   });
 });
 
+$('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+  $('.scenarioAttr[data-l1key=display][data-l2key=icon]').value('');
+});
+
 $('.scenarioAttr[data-l1key=group]').autocomplete({
   source: function (request, response, url) {
     $.ajax({
