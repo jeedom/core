@@ -69,7 +69,9 @@ a > span,
 a.btn,
 .btn,
 .btn > *,
-.ui-icon-closethick {
+.ui-icon-closethick,
+.cursor,
+.cursor * {
   cursor: pointer !important;
 }
 
@@ -776,9 +778,17 @@ pre {
 p.state {
   color: var(--txt-color) !important;
 }
-
-.cursor * {
-  cursor: pointer;
+.eqLogic.eqLogic-widget .cmd.label .cmdName,
+.eqLogic.eqLogic-widget .cmd.label .state,
+.eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
+  color: var(--sc-lightTxt-color) !important;
+  font-weight: normal;
+}
+.eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
+  display: inline-block;
+  margin: auto;
+  height: 14px;
+  padding: 1px;
 }
 
 hr.hrPrimary {
