@@ -503,7 +503,7 @@ div[class*="DisplayCard"] .name > .label {
   overflow: hidden;
 }
 .interactDisplayCard > span.name {
-  height: 28px !important;
+  height: 55px !important;
   overflow: hidden;
 }
 
@@ -523,7 +523,8 @@ div[class*="DisplayCard"] .name > .label {
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
-.scenarioDisplayCard .icon.noicon {
+.scenarioDisplayCard .icon.noicon,
+.interactDisplayCard .icon.noicon {
   color: var(--logo-primary-color);
 }
 
