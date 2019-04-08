@@ -60,4 +60,8 @@ echo 'Start sshd'
 systemctl restart sshd
 service ssh restart
 
+echo 'Start atd'
+systemctl restart atd
+service atd restart
+
 /usr/bin/supervisord
