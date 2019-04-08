@@ -397,7 +397,8 @@ $('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
 });
 
 $('#in_searchEqlogic').off('keyup').keyup(function () {
-  var search = $(this).value();
+  var search = $(this).value().toLowerCase();
+  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
   if(search == ''){
     $('.eqLogicDisplayCard').show();
     $('.eqLogicThumbnailContainer').packery();
@@ -406,7 +407,8 @@ $('#in_searchEqlogic').off('keyup').keyup(function () {
   $('.eqLogicDisplayCard').hide();
   $('.eqLogicDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
-    if(text.indexOf(search.toLowerCase()) >= 0){
+    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    if(text.indexOf(search) >= 0){
       $(this)
       $(this).closest('.eqLogicDisplayCard').show();
     }

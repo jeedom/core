@@ -51,6 +51,12 @@ $('#bt_closeAll').on('click', function () {
   })
 });
 
+$('#bt_chooseIcon').on('click', function () {
+  chooseIcon(function (_icon) {
+    $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  });
+});
+
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })

@@ -69,7 +69,11 @@ $optionMaxSize = 15;
 				foreach ($interacts[-1] as $interact) {
 					$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 					echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
-					echo '<img src="core/img/interaction.png"/>';
+					if($interact->getDisplay('icon') != ''){
+						echo '<span>'.$interact->getDisplay('icon').'</span>';
+					}else{
+						echo '<span><i class="far noicon fa-comments"></i></span>';
+					}
 					echo "<br>";
 					echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
 					echo '</div>';
@@ -96,7 +100,11 @@ $optionMaxSize = 15;
 					foreach ($interacts[$group['group']] as $interact) {
 						$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
 						echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
-						echo '<img src="core/img/interaction.png"/>';
+						if($interact->getDisplay('icon') != ''){
+							echo '<span>'.$interact->getDisplay('icon').'</span>';
+						}else{
+							echo '<span><i class="far noicon fa-comments"></i></span>';
+						}
 						echo "<br>";
 						echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
 						echo '</div>';
@@ -152,6 +160,15 @@ $optionMaxSize = 15;
 						<label class="col-sm-2 col-xs-2 control-label">{{Actif}}</label>
 						<div class="col-sm-9 col-xs-9">
 							<input class="interactAttr" type="checkbox" data-l1key="enable" placeholder=""/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 col-xs-2 control-label">{{Icône}}</label>
+						<div class="col-sm-1 col-xs-1">
+							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</div>
+						<div class="col-sm-1 col-xs-1">
+							<div class="interactAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
 						</div>
 					</div>
 					<div class="form-group">
