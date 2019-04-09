@@ -1102,6 +1102,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 	
 	$('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
 		$(this).empty();
+		$('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty();
 	});
 	
 	$('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
