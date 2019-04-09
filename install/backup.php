@@ -48,7 +48,7 @@ try {
 	}
 
 	try {
-		echo 'Vérifiez les droits sur les fichiers...';
+		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -236,7 +236,7 @@ try {
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
 
 	try {
-		echo 'Vérifiez les droits sur les fichiers...';
+		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
