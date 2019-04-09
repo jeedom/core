@@ -12,7 +12,7 @@ Theme Core 2019 @Jeedom
   --logo-secondary-color: rgb(189, 188, 190);
   --bg-color: 32, 32, 32;
   --bg-modal-color: rgb(40, 41, 42);
-  --contrast-color: rgb(240, 240, 240);
+  --contrast-color: 240, 240, 240;
 
   --txt-color: rgb(172, 172, 172);
   --link-color: rgb(195, 195, 195);
