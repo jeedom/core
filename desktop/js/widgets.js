@@ -44,6 +44,46 @@ $(function(){
   $('#in_searchWidgets').focus()
 })
 
+//context menu
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.widgets.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (_widgets) {
+        if(_widgets.length == 0){
+          return;
+        }
+        var contextmenuitems = {}
+        for(i=0; i<_widgets.length; i++)
+        {
+          wg = _widgets[i]
+          contextmenuitems[wg.id] = {'name': wg.name}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'widget-context-menu',
+          callback: function(key, options) {
+            url = 'index.php?v=d&p=widgets&id=' + key;
+            if (document.location.toString().match('#')) {
+              url += '#' + document.location.toString().split('#')[1];
+            }
+            loadPage(url);
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
+
+
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
