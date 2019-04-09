@@ -81,6 +81,12 @@ $(function(){
   $('#in_searchConfig').focus()
 })
 
+$(function () {
+  setTimeout(function(){
+    modifyWithoutSave = false;
+  }, 1000);
+});
+
 //DateTimePickers and Spinners
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
