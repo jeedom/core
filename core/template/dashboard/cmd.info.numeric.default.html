@@ -2,13 +2,11 @@
   <div class="title #hide_name#">
     <span class="cmdName">#name_display#</span>
   </div>
-  <div class="content ">
+  <div class="content-sm">
     <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
   </div>
-  <div class="value #hide_history#">
-    <div class="col-xs-12 center-block cmdStats">
-      <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-    </div>
+  <div class="cmdStats #hide_history#">
+    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
@@ -34,6 +32,7 @@
           backgroundColor: null,
           plotBorderWidth: 0,
           plotShadow: false,
+          height: 40,
           spacingTop: 0,
           spacingLeft: 0,
           spacingRight: 0,
@@ -42,7 +41,7 @@
         },
         title: null,
         pane: {
-          center: ['50%', '80%'],
+          center: ['50%', '100%'],
           size: 80,
           startAngle: - 90,
           endAngle: 90,
@@ -70,15 +69,14 @@
           min: #minValue#,
           max: #maxValue#,
           title: {
-            text: '',
-            y: - 74
+            text: ''
           }
         },
         labels : {enabled: false},
         plotOptions: {
           solidgauge: {
             dataLabels: {
-              y: -21,
+              y: 9,
               borderWidth: 0,
               useHTML: true
             }
@@ -104,5 +102,5 @@
       $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>');
     }
   </script>
-  
+
 </div>
