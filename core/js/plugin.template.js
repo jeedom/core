@@ -117,7 +117,11 @@ $(function(){
               tab = null
               if (document.location.toString().match('#')) {
                 tab = '#' + document.location.toString().split('#')[1];
-                tab = $('a[href="' + tab + '"]')
+                if (tab != '#') {
+                    tab = $('a[href="' + tab + '"]')
+                } else {
+                    tab = null
+                }
               }
               $('.eqLogicDisplayCard[data-eqLogic_id="' + key + '"]').click()
               if (tab) tab.click()
