@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -38,7 +38,7 @@ try {
 		$object->remove();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'byId') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -46,12 +46,12 @@ try {
 		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
-	
+
 	if (init('action') == 'createSummaryVirtual') {
 		jeeObject::createSummaryToVirtual(init('key'));
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'all') {
 		$objects = jeeObject::buildTree();
 		if (init('onlyHasEqLogic') != '') {
@@ -66,7 +66,7 @@ try {
 		}
 		ajax::success(utils::o2a($objects));
 	}
-	
+
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -83,7 +83,7 @@ try {
 		$object->save();
 		ajax::success(utils::o2a($object));
 	}
-	
+
 	if (init('action') == 'getChild') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -92,7 +92,7 @@ try {
 		$return = utils::o2a($object->getChild());
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'toHtml') {
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
@@ -187,7 +187,7 @@ try {
 			ajax::success(implode($html));
 		}
 	}
-	
+
 	if (init('action') == 'setOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -203,7 +203,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'getSummaryHtml') {
 		if (init('ids') != '') {
 			$return = array();
@@ -236,7 +236,7 @@ try {
 			ajax::success($info_object);
 		}
 	}
-	
+
 	if (init('action') == 'removeImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -252,7 +252,7 @@ try {
 		@rrmdir(__DIR__ . '/../../core/img/object');
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'uploadImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -280,7 +280,7 @@ try {
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
 		$object->setImage('sha512', sha512($object->getImage('data')));
-		
+
 		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;
 		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
@@ -288,9 +288,12 @@ try {
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
 		$object->save();
-		ajax::success();
+
+		$result = array();
+		$result['filepath'] = $filepath;
+		ajax::success($result);
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
