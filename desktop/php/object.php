@@ -49,7 +49,9 @@ $allObject = jeeObject::all();
 	<div class="col-xs-12 object" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
+				</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
 
@@ -130,99 +132,106 @@ $allObject = jeeObject::all();
 								</span>
 								<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
 							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 objectImg">
+								<img src="" width="200px" height="auto" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="summarytab">
+				<?php
+				if (count(config::byKey('object:summary')) == 0) {
+					echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
+				} else {
+
+					?>
+					<form class="form-horizontal">
+						<fieldset>
+							<table class="table">
+								<thead>
+									<tr>
+										<th></th>
+										<?php
+										foreach (config::byKey('object:summary') as $key => $value) {
+											echo '<th style="cursor:default;">' . $value['name'] . '</th>';
+										}
+										?>
+									</tr>
+								</thead>
+								<?php
+								echo '<tr>';
+								echo '<td style="cursor:default;">';
+								echo '{{Remonter dans le résumé global}}';
+								echo '</td>';
+								foreach (config::byKey('object:summary') as $key => $value) {
+									echo '<td>';
+									echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
+									echo '</td>';
+								}
+								echo '</tr>';
+								echo '<tr>';
+								echo '<tr>';
+								echo '<td style="cursor:default;">';
+								echo '{{Masquer en desktop}}';
+								echo '</td>';
+								foreach (config::byKey('object:summary') as $key => $value) {
+									echo '<td>';
+									echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
+									echo '</td>';
+								}
+								echo '</tr>';
+								echo '<tr>';
+								echo '<tr>';
+								echo '<td>';
+								echo '{{Masquer en mobile}}';
+								echo '</td>';
+								foreach (config::byKey('object:summary') as $key => $value) {
+									echo '<td>';
+									echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
+									echo '</td>';
+								}
+								echo '</tr>';
+								?>
+							</table>
 						</fieldset>
 					</form>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="summarytab">
+					<form class="form-horizontal">
+						<fieldset>
+							<legend style="cursor:default;"><i class="fas fa-tachometer-alt"></i>  {{Commandes}}</legend>
+							<ul class="nav nav-tabs" role="tablist">
+								<?php
+								$active = 'active';
+								foreach (config::byKey('object:summary') as $key => $value) {
+									echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
+									$active = '';
+								}
+								?>
+							</ul>
+							<div class="tab-content">
+								<?php
+								$active = ' active';
+								foreach (config::byKey('object:summary') as $key => $value) {
+									echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
+									echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
+									echo '<br/>';
+									echo '<div class="div_summary" data-type="' . $key . '"></div>';
+									echo '</div>';
+									$active = '';
+								}
+								?>
+							</div>
+						</fieldset>
+					</form>
 					<?php
-					if (count(config::byKey('object:summary')) == 0) {
-						echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
-					} else {
-
-						?>
-						<form class="form-horizontal">
-							<fieldset>
-								<table class="table">
-									<thead>
-										<tr>
-											<th></th>
-											<?php
-											foreach (config::byKey('object:summary') as $key => $value) {
-												echo '<th style="cursor:default;">' . $value['name'] . '</th>';
-											}
-											?>
-										</tr>
-									</thead>
-									<?php
-									echo '<tr>';
-									echo '<td style="cursor:default;">';
-									echo '{{Remonter dans le résumé global}}';
-									echo '</td>';
-									foreach (config::byKey('object:summary') as $key => $value) {
-										echo '<td>';
-										echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
-										echo '</td>';
-									}
-									echo '</tr>';
-									echo '<tr>';
-									echo '<tr>';
-									echo '<td style="cursor:default;">';
-									echo '{{Masquer en desktop}}';
-									echo '</td>';
-									foreach (config::byKey('object:summary') as $key => $value) {
-										echo '<td>';
-										echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
-										echo '</td>';
-									}
-									echo '</tr>';
-									echo '<tr>';
-									echo '<tr>';
-									echo '<td>';
-									echo '{{Masquer en mobile}}';
-									echo '</td>';
-									foreach (config::byKey('object:summary') as $key => $value) {
-										echo '<td>';
-										echo '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
-										echo '</td>';
-									}
-									echo '</tr>';
-									?>
-								</table>
-							</fieldset>
-						</form>
-						<form class="form-horizontal">
-							<fieldset>
-								<legend style="cursor:default;"><i class="fas fa-tachometer-alt"></i>  {{Commandes}}</legend>
-								<ul class="nav nav-tabs" role="tablist">
-									<?php
-									$active = 'active';
-									foreach (config::byKey('object:summary') as $key => $value) {
-										echo '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
-										$active = '';
-									}
-									?>
-								</ul>
-								<div class="tab-content">
-									<?php
-									$active = ' active';
-									foreach (config::byKey('object:summary') as $key => $value) {
-										echo '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
-										echo '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
-										echo '<br/>';
-										echo '<div class="div_summary" data-type="' . $key . '"></div>';
-										echo '</div>';
-										$active = '';
-									}
-									?>
-								</div>
-							</fieldset>
-						</form>
-						<?php
-					}
-					?>
-				</div>
+				}
+				?>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<?php include_file("desktop", "object", "js");?>
+<?php include_file("desktop", "object", "js");?>
