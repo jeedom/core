@@ -25,9 +25,9 @@ if (!isConnect('admin')) {
 			<thead>
 				<tr>
 					<th data-sorter="false" style="width:50px;"></th>
-					<th data-sorter="false">{{Nom}}</th>
-					<th data-sorter="false" data-filter="false">{{Version installée}}</th>
-					<th data-sorter="false" data-filter="false">{{Dernière version}}</th>
+					<th>{{Nom}}</th>
+					<th data-sorter="shortDate">{{Version installée}}</th>
+					<th data-sorter="shortDate">{{Dernière version}}</th>
 					<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
@@ -41,10 +41,10 @@ if (!isConnect('admin')) {
 			<thead>
 				<tr>
 					<th data-sorter="false" style="width:50px;"></th>
-					<th data-sorter="false">{{Nom}}</th>
-					<th data-sorter="false" data-filter="false">{{Version installée}}</th>
-					<th data-sorter="false" data-filter="false">{{Dernière version}}</th>
-					<th data-sorter="false" data-filter="false">{{Options}}</th>
+					<th>{{Nom}}</th>
+					<th data-sorter="shortDate" data-filter="false">{{Version installée}}</th>
+					<th data-sorter="shortDate" data-filter="false">{{Dernière version}}</th>
+					<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
 					<th data-sorter="false" data-filter="false">{{Actions}}</th>
 				</tr>
 			</thead>
