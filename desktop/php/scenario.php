@@ -54,6 +54,9 @@ if (is_array($scenarioListGroup)) {
 			echo '<div class="input-group" style="margin-bottom:5px;">';
 				echo '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
 				echo '<div class="input-group-btn">';
+					echo '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
+				echo '</div>';
+				echo '<div class="input-group-btn">';
 						echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
 				echo '</div>';
 				echo '<div class="input-group-btn">';
