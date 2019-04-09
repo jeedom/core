@@ -1571,24 +1571,34 @@
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="col-lg-12 form-group">
-						<label class="col-lg-4 col-md-3 col-sm-4 col-xs-4 control-label">{{Nombre d'échecs avant désactivation de l'équipement}}</label>
-						<div class="col-lg-2 col-md-4 col-sm-5 col-xs-6">
+						<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Échecs avant désactivation}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Nombre d'échecs avant désactivation de l'équipement.}}"></i></sup>
+						</label>
+						<div class="col-lg-1 col-sm-1 col-xs-4">
 							<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
 						</div>
+						<br/><br/>
 					</div>
 					<div class="col-lg-12 form-group">
-						<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">{{Seuil des piles}}</label>
-						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 eqLogicAttr label label-danger">{{Danger}}</label>
-							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-								<input class="configKey form-control" data-l1key="battery::danger" />
-							</div>
-							<label class="col-lg-2 col-md-2 col-sm-3 col-xs-3 eqLogicAttr label label-warning">{{Warning}}</label>
-							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
-								<input class="configKey form-control" data-l1key="battery::warning" />
-							</div>
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 eqLogicAttr label label-success">{{Ok}}</label>
+						<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Seuil des piles}}</label>
+					</div>
+					<div class="col-lg-12 form-group">
+						<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge des piles / batterie passe en dessous de}}"></i></sup>
+						</label>
+						<div class="col-lg-1 col-sm-1 col-xs-4">
+							<input class="configKey form-control" data-l1key="battery::warning" />
 						</div>
+						<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-warning">{{Warning}}</label>
+					</div>
+					<div class="col-lg-12 form-group">
+						<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge des piles / batterie passe en dessous de}}"></i></sup>
+						</label>
+						<div class="col-lg-1 col-sm-1 col-xs-4">
+							<input class="configKey form-control" data-l1key="battery::danger" />
+						</div>
+						<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-danger">{{Danger}}</label>
 					</div>
 				</fieldset>
 			</form>

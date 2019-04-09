@@ -14,6 +14,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+//searching
 $('#in_searchPlugin').off('keyup').keyup(function () {
   var search = $(this).value();
   if(search == ''){
@@ -34,6 +35,15 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
   });
   $('.pluginListContainer').packery();
 });
+
+$('#bt_resetPluginSearch').on('click', function () {
+  $('#in_searchPlugin').val('')
+  $('#in_searchPlugin').keyup();
+})
+
+$(function(){
+  $('#in_searchPlugin').focus()
+})
 
 if($('#md_modal').is(':visible')){
   $('#bt_returnToThumbnailDisplay').hide();

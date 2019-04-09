@@ -18,6 +18,7 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-size','auto');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
+//searching
 $('#in_searchScenario').keyup(function () {
   var search = $(this).value();
   if(search == ''){
@@ -50,6 +51,15 @@ $('#bt_closeAll').on('click', function () {
     $(this).click()
   })
 });
+
+$('#bt_resetScenarioSearch').on('click', function () {
+  $('#in_searchScenario').val('')
+  $('#in_searchScenario').keyup();
+})
+
+$(function(){
+  $('#in_searchScenario').focus()
+})
 
 document.addEventListener('keydown', function(event) {
   //in expression input or textarea:

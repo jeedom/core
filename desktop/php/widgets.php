@@ -15,9 +15,14 @@ global $JEEDOM_INTERNAL_CONFIG;
         <span><center>{{Ajouter}}</center></span>
       </div>
     </div>
-    
+
     <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
-    <input class="form-control" placeholder="{{Rechercher}}" id="in_searchWidgets" style="margin-bottom:4px;"/>
+    <div class="input-group" style="margin-bottom:5px;">
+      <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>
+      <div class="input-group-btn">
+        <a id="bt_resetWidgetsSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+      </div>
+    </div>
     <div class="widgetsListContainer">
       <?php
       foreach (widgets::all() as $widgets) {
@@ -34,7 +39,7 @@ global $JEEDOM_INTERNAL_CONFIG;
       ?>
     </div>
   </div>
-  
+
   <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
     <div class="input-group pull-right" style="display:inline-flex">
       <span class="input-group-btn">
@@ -122,6 +127,5 @@ global $JEEDOM_INTERNAL_CONFIG;
           </div>
         </div>
       </div>
-      
+
       <?php include_file("desktop", "widgets", "js");?>
-      

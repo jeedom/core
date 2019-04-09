@@ -23,9 +23,15 @@ $allObject = jeeObject::all();
 				<span>{{Vue d'ensemble}}</span>
 			</div>
 		</div>
-		
+
 		<legend><i class="fas fa-image"></i>  {{Mes objets}}</legend>
-		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchObject" style="margin-bottom:4px;"/>
+		<div class="input-group" style="margin-bottom:5px;">
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
+			<div class="input-group-btn">
+				<a id="bt_resetObjectSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+			</div>
+		</div>
+
 		<div class="objectListContainer">
 			<?php
 			foreach ($allObject as $object) {
@@ -39,20 +45,20 @@ $allObject = jeeObject::all();
 			?>
 		</div>
 	</div>
-	
+
 	<div class="col-xs-12 object" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 		</ul>
-		
+
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
@@ -132,7 +138,7 @@ $allObject = jeeObject::all();
 					if (count(config::byKey('object:summary')) == 0) {
 						echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 					} else {
-						
+
 						?>
 						<form class="form-horizontal">
 							<fieldset>
@@ -218,6 +224,5 @@ $allObject = jeeObject::all();
 			</div>
 		</div>
 	</div>
-	
+
 	<?php include_file("desktop", "object", "js");?>
-	

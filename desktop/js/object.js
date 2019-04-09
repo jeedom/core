@@ -17,6 +17,7 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 
+//searching
 $('#in_searchObject').keyup(function () {
   var search = $(this).value();
   if(search == ''){
@@ -36,6 +37,15 @@ $('#in_searchObject').keyup(function () {
   });
   $('.objectListContainer').packery();
 });
+
+$('#bt_resetObjectSearch').on('click', function () {
+  $('#in_searchObject').val('')
+  $('#in_searchObject').keyup();
+})
+
+$(function(){
+  $('#in_searchObject').focus()
+})
 
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
