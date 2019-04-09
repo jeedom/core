@@ -2613,15 +2613,17 @@ div.vis-item-content {
 }
 
 button.ui-dialog-titlebar-close:before {
+  font-weight: normal;
   content: "X";
+  color: rgb(var(--bg-color)) !important;
+  z-index: 50;
 }
 button.ui-dialog-titlebar-close {
-  color: var(--bg-color) !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-  font-family: "Roboto";
+  position: absolute;
+  top: 30px !important;
   font-size: 14px !important;
   opacity: 1 !important;
+  text-shadow: none !important;
 }
 button.ui-dialog-titlebar-close:hover {
   opacity: 0.75 !important;
