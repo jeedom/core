@@ -5,13 +5,13 @@ Changelog
 3.3.20
 =====
 
-- Correction d'un bug sur les scénario ou ceux-ci pouvez rester bloqués à "en cours" alors qu'ils sont désactivé
-- Correction d'un soucis de lancement de scénario non planifié
-- Correction de bug liée au fueseau horraire
+- Correction d'un bug sur les scénarios où ceux-ci pouvaient rester bloqués à "en cours" alors qu'ils sont désactivés
+- Correction d'un souci de lancement de scénarios non planifiés
+- Correction de bug lié au fuseau horaire
 
 3.3.19
 =====
-- Correction de bugs (en particulier lors de l'update)
+- Correction de bugs (en particulier lors de la mise à jour)
 
 
 3.3.18
@@ -21,12 +21,12 @@ Changelog
 3.3.17
 =====
 
-- Correction d'une erreur sur les backups samba
+- Correction d'une erreur sur les sauvegardes via samba
 
 3.3.16
 =====
 
--   Possibilité de supprimer une variable.
+-   Possibilité de supprimer une variable
 -   Ajout d'un affichage 3D (beta)
 -   Refonte du système de backup cloud (backup incrémental et chiffré).
 -   Ajout d'un système de prise de note intégré (dans Analyse -> Note).
