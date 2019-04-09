@@ -584,6 +584,7 @@ function initTableSorter(filter=true) {
 
   $(".tablesorter").each(function () {
     $(".tablesorter").tablesorter({
+      dateFormat : "yyyy-mm-dd",
       theme: "bootstrap",
       widthFixed: true,
       headerTemplate: '{content} ',
