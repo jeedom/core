@@ -2110,12 +2110,26 @@ textarea {
   fill: var(--link-color) !important;
 }
 [data-page=history] .highcharts-yaxis-grid .highcharts-grid-line {
-  stroke-width: 0.2;
+  stroke-width: 0.1 !important;
   stroke: var(--link-color) !important;
 }
 path.highcharts-graph {
-  stroke-width: 1.5;
+  stroke-width: 1.2;
 }
+
+.highcharts-tooltip-box,
+.highcharts-label-box {
+	fill: var(--bg-modal-color);
+	fill-opacity: 1 !important;
+	stroke-width: 0.2 !important;
+}
+.highcharts-tooltip text {
+	fill: var(--txt-color) !important;
+	text-shadow: none !important;
+}
+
+
+
 #div_graphLinkRenderer g {
   fill: var(--txt-color);
 }
