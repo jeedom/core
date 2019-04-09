@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,8 +15,9 @@
  */
 
 
- $("#sel_plugin").on('change', function() {
-    loadPage('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value());
+ $("#sel_plugin").on('change', function(event) {
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
+    $('#md_modal').load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1');
 });
 
  $("#bt_clearMessage").on('click', function(event) {
@@ -34,7 +34,7 @@
 });
 
  $('#bt_refreshMessage').on('click', function(event) {
-    $('#md_modal').dialog({title: "{{Messages}}"});
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
     $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
 });
 
