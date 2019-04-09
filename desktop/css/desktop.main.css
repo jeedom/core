@@ -2109,7 +2109,7 @@ textarea {
 .highcharts-axis-labels > text {
   fill: var(--link-color) !important;
 }
-[data-page=history] .highcharts-yaxis-grid .highcharts-grid-line {
+.highcharts-yaxis-grid .highcharts-grid-line {
   stroke-width: 0.1 !important;
   stroke: var(--link-color) !important;
 }
