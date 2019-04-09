@@ -128,6 +128,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
+      $('.objectImg img').hide()
       $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'});
     },
   });
@@ -137,7 +138,7 @@ function loadObjectConfiguration(_id){
   try {
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
-  }catch(error) {
+  } catch(error) {
 
   }
   $('#bt_uploadImage').fileupload({
@@ -148,6 +149,14 @@ function loadObjectConfiguration(_id){
       if (data.result.state != 'ok') {
         $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
         return;
+      }
+      if (isset(data.result.result.filepath)) {
+        filePath = data.result.result.filepath
+        filePath = '/data/object/' + filePath.split('/data/object/')[1]
+        $('.objectImg img').attr('src',filePath);
+        $('.objectImg img').show()
+      } else {
+        $('.objectImg img').hide()
       }
       $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'});
     }
@@ -174,6 +183,14 @@ function loadObjectConfiguration(_id){
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
       $('.div_summary').empty();
       $('.tabnumber').empty();
+
+      if (isset(data.img)) {
+        $('.objectImg img').attr('src',data.img);
+        $('.objectImg img').show()
+      } else {
+        $('.objectImg img').hide()
+      }
+
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         for(var i in data.configuration.summary){
           var el = $('.type'+i);
