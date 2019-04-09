@@ -188,7 +188,7 @@ legend {
   padding-left: 0px;
 }
 #searchResult a[role=searchTabLink] {
-  display: inline-block;
+  display: table;
   font-size: 14px !important;
   font-weight: bold;
   margin-top: 15px !important;
