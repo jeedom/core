@@ -14,7 +14,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 printUpdate();
 
 $("#md_specifyUpdate").dialog({
@@ -219,22 +218,28 @@ function addUpdate(_update) {
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
-  tr += '<td><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
+  tr += '<td><span class="hidden">'+_update.name+'</span><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>';
   if(_update.configuration && _update.configuration.version){
     updClass = 'label-warning';
     if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success';
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label '+updClass+'">'+_update.configuration.version+'</span>';
   }
+
+  _localVersion = _update.localVersion
+  if (_localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
+  _remoteVersion = _update.remoteVersion
+  if (_remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
+
   tr += '</td>';
-  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="localVersion"></span></td>';
-  tr += '<td style="width:250px;"><span class="updateAttr label label-primary" data-l1key="remoteVersion"></span></td>';
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
   tr += '<td style="width:180px;">';
   if (_update.type != 'core') {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span>{{Ne pas mettre à jour}}</span>';
   }
   tr += '</td>';
-  tr += '<td>';
+  tr += '<td style="width:340px;">';
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
       tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ';
@@ -249,10 +254,10 @@ function addUpdate(_update) {
       tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-sync"></i> {{Reinstaller}}</a> ';
     }
   }
-  tr += '<a class="btn btn-info btn-xs pull-right checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
   if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs pull-right remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
+    tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a> ';
   }
+  tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
   tr += '</td>';
   tr += '</tr>';
 
