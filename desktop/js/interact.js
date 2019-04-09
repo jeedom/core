@@ -18,6 +18,7 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 
+//searching
 $('#in_searchInteract').keyup(function () {
   var search = $(this).value();
   if(search == ''){
@@ -39,6 +40,15 @@ $('#in_searchInteract').keyup(function () {
   });
   $('.interactListContainer').packery();
 });
+
+$('#bt_resetInteractSearch').on('click', function () {
+  $('#in_searchInteract').val('')
+  $('#in_searchInteract').keyup();
+})
+
+$(function(){
+  $('#in_searchInteract').focus()
+})
 
 $('#bt_openAll').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
