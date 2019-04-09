@@ -295,7 +295,7 @@ legend {
   padding: 4px 12px;
 }
 .label:empty {
-  display: none;
+  display: none !important;
 }
 
 .iconCmd {
@@ -1411,7 +1411,7 @@ div[data-subtype=select][data-version=dplan] {
 select,
 input[type=text] {
   border: 0 !important;
-  background: var(--form-bg-color) !important;
+  background-color: var(--form-bg-color) !important;
   padding: 6px 12px !important;
 }
 select option {
@@ -1420,7 +1420,7 @@ select option {
 }
 select optgroup {
   color: var(--txt-color) !important;
-  background: var(--bg-modal-color) !important;
+  background-color: var(--bg-modal-color) !important;
 }
 
 .input-xs {
