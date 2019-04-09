@@ -237,6 +237,7 @@ legend {
   position: relative;
   padding: 2px 5px !important;
   display: block;
+  max-width: 70px;
 }
 
 .eqLogic-widget,
@@ -2418,7 +2419,6 @@ div.cmd > div.center-block {
 .shuttergauge .timeCmd {
   position: relative;
   margin-left: -15px !important;
-  max-width: 70px;
 }
 .hgauge .content-sm {
   width: 70px !important;
