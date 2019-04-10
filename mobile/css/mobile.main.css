@@ -311,7 +311,8 @@ p.state {
 .objectSummaryglobal .objectSummaryParent {
   font-size: 12px;
 }
-#bottompanel_objectList .objectSummaryParent {
+#bottompanel_objectList .objectSummaryParent,
+.ui-listview .objectSummaryParent {
   font-size: 12px !important;
 }
 
@@ -347,7 +348,8 @@ p.state {
   color: var(--linkHover-color) !important;
 }
 :not(.cmd) a.ui-btn-raised:not(.ui-mini) > i {
-  font-size: 2.5em !important;
+  margin-top: 5px;
+  font-size: 2em !important;
 }
 .ui-mini {
   font-size: 12px;
@@ -370,13 +372,22 @@ p.state {
 }
 
 /* bottom home menu */
-.ui-bottom-sheet-list .ui-bottom-sheet-link,
-.ui-bottom-sheet {
+.ui-panel-position-bottom.ui-panel-display-overlay a,
+.ui-listview > li > a {
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: none !important;
+  padding: 5px 10px !important;
   color: var(--link-color) !important;
   background-color: var(--defaultBkg-color) !important;
 }
+.ui-panel-position-bottom.ui-panel-display-overlay a > span:first-child > i,
+.ui-panel-position-bottom.ui-panel-display-overlay > a > i{
+  display: inline-flex;
+  width: 28px;
+}
 .ui-bottom-sheet-list .ui-bottom-sheet-link:hover,
-.ui-listview > li >a:hover {
+.ui-listview > li > a:hover {
   background-color: var(--btnEq-default-color) !important;
 }
 
