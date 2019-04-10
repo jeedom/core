@@ -235,9 +235,7 @@ if (init('rescue', 0) == 0) {
 			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-							<img src="<?php echo $configs['product_image'] ?>" height="30" style="position: relative; top:-5px;"/>
-						</a>
+						<a class="navbar-brand" href="<?php echo $homeLink; ?>"></a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
 							<span class="icon-bar"></span>
