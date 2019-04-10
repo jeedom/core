@@ -1606,7 +1606,7 @@
 					</div>
 					<div class="col-lg-12 form-group">
 						<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge des piles / batterie passe en dessous de}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge passe en dessous de}}"></i></sup>
 						</label>
 						<div class="col-lg-1 col-sm-1 col-xs-4">
 							<input class="configKey form-control" data-l1key="battery::warning" />
@@ -1615,7 +1615,7 @@
 					</div>
 					<div class="col-lg-12 form-group">
 						<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge des piles / batterie passe en dessous de}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Si la charge passe en dessous de}}"></i></sup>
 						</label>
 						<div class="col-lg-1 col-sm-1 col-xs-4">
 							<input class="configKey form-control" data-l1key="battery::danger" />
