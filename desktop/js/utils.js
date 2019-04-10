@@ -83,7 +83,7 @@ function loadPage(_url,_noPushHistory){
   setBackgroundImg('');
   jeedomBackgroundImg = null;
   $('#div_pageContainer').empty().load(url,function(){
-    if (_url.match('#') && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
+    if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click');
     }
     $('body').attr('data-page',getUrlVars('p'));
