@@ -1028,13 +1028,15 @@ button .fas.fa-plus-circle {
 a.navbar-brand > img {
   display: none;
 }
+
+/* hamburger */
 header .navbar-toggle {
   border: none;
-  margin-top: 2px;
   background: transparent !important;
 }
 .navbar-toggle .icon-bar {
   height: 3px;
+  background-color: var(--link-color);
 }
 
 
@@ -1103,11 +1105,15 @@ ul.dropdown-menu {
   min-height: 50px;
   height: 50px;
 }
+.navbar-collapse {
+  background: var(--bg-modal-color);
+}
 .navbar-nav > li > a {
   padding-top: 15px;
   padding-bottom: 15px;
-  background: transparent !important;
+  
 }
+
 .nav.navbar-nav ul li a i {
   display: inline-flex;
   width: 20px;
