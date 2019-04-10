@@ -539,11 +539,81 @@ function initPage(){
 }
 
 function initDropdowns(){
-  $('body').off('click','.dynDropdown .dropdown-menu a').on('click','.dynDropdown .dropdown-menu a',function(){
+  $('body').off('click','.dynDropdown .dropdown-menu a').on('click','.dynDropdown .dropdown-menu a', function() {
     $(this).closest('.dropdown').find('button').html($(this).text() + '<span class="caret"></span>')
     $(this).closest('.dropdown').find('button').attr('value', $(this).attr('data-value'))
-    $(this).closest('.dropdown').find('button').trigger('change');
-  });
+    $(this).closest('.dropdown').find('button').trigger('change')
+  })
+  setTimeout(function() {
+      dropDownsKeys()
+    }, 200)
+}
+
+function dropDownsKeys() {
+  //store values on click for escape handling:
+  $('.dropdown-toggle').on('click', function(event) {
+    prevDropDownValue = $(this).html()
+    prevDropDownDatavalue = $(this).attr('value')
+  })
+
+  $('.dropdown-toggle').keydown(function(event) {
+    key = event.key
+
+    if(key == 'Escape') {
+      $(this).html(prevDropDownValue)
+      $(this).attr('value', prevDropDownDatavalue)
+      $(this).trigger('change')
+      $('body').trigger('click')
+      return false
+    }
+
+    selected = -1
+    $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
+      if ($(li).find('a').style('background-color') == 'var(--placeholder-color)' && selected < index) selected = index
+      $(li).find('a').style('background-color', '')
+    })
+
+    $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
+      value = $(li).find('a').text().toLowerCase()
+      //handle '(kiki) value':
+      if (value.indexOf(')') > -1)
+      {
+        cut = value.split(')')[1]
+        if (cut == '') {
+          value = value.split(')')[0]
+        } else {
+          value = cut
+        }
+      }
+      value = value.trim()
+
+      //handle 'value1, value2':
+      values = null
+      if (value.indexOf(',') > -1) {
+        values = value.split(',')
+      }
+
+      if (values) {
+        for (i = 0; i < values.length; i++) {
+          value = values[i].trim()
+          console.log(value)
+          match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
+          if (match) break
+        }
+      } else {
+        match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
+      }
+
+      if (match && selected < index) {
+        $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
+        $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
+        $(this).closest('.dropdown').find('button').attr('value', $(li).attr('data-value'))
+        $(this).closest('.dropdown').find('button').trigger('change')
+        return false
+      }
+
+    })
+  })
 }
 
 function linkify(inputText) {
