@@ -596,7 +596,6 @@ function dropDownsKeys() {
       if (values) {
         for (i = 0; i < values.length; i++) {
           value = values[i].trim()
-          console.log(value)
           match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
           if (match) break
         }
