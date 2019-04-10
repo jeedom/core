@@ -1013,6 +1013,51 @@ button .fas.fa-plus-circle {
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
+nav.navbar-collapse:not(.in) {
+  background: transparent !important;
+}
+
+.navbar {
+  min-height: 50px;
+  height: 50px;
+}
+.navbar-collapse {
+  background: var(--bg-modal-color);
+}
+.navbar-nav > li > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.nav.navbar-nav ul li a i {
+  display: inline-flex;
+  width: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+header.navbar,
+.nav.navbar-nav .dropdown {
+  box-sizing: border-box;
+  border-bottom: 3px solid rgb(var(--bg-color)) !important;
+}
+header.navbar {
+  box-sizing: unset;
+}
+.navbar-nav > li.navTime {
+  padding: 5px 0 0 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+.navbar-nav > li.navTime > a  {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 105px;
+}
+
 .navbar {
   background-color: var(--defaultBkg-color) !important;
 }
@@ -1024,9 +1069,6 @@ button .fas.fa-plus-circle {
 }
 .nav.navbar-nav .dropdown-submenu ul li a {
   padding-right: 30px;
-}
-a.navbar-brand > img {
-  display: none;
 }
 
 /* hamburger */
@@ -1100,49 +1142,6 @@ ul.dropdown-menu {
   left: -100%;
   margin-left: 10px;
 }
-
-.navbar {
-  min-height: 50px;
-  height: 50px;
-}
-.navbar-collapse {
-  background: var(--bg-modal-color);
-}
-.navbar-nav > li > a {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  
-}
-
-.nav.navbar-nav ul li a i {
-  display: inline-flex;
-  width: 20px;
-  font-size: 14px;
-  text-align: center;
-}
-header.navbar,
-.nav.navbar-nav .dropdown {
-  box-sizing: border-box;
-  border-bottom: 3px solid rgb(var(--bg-color)) !important;
-}
-header.navbar {
-  box-sizing: unset;
-}
-.navbar-nav > li.navTime {
-  padding: 5px 0 0 0 !important;
-  margin: 0 !important;
-  text-align: center !important;
-}
-.navbar-nav > li.navTime > a  {
-  padding: 0 !important;
-  margin: 0 !important;
-  text-align: center !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 105px;
-}
-
 
 /* __________________________________________________________________________________________________________PANELS */
 div.panel {
