@@ -557,8 +557,9 @@
 					}?>
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions (heure)}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}"></i></sup>
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion, en heure, à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}"></i></sup>
+							<sub>h</sub>
 						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
@@ -566,26 +567,35 @@
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Passé ce nombre, l'IP sera bannie}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
 						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs (sec)}}</label>
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Temps en secondes}}"></i></sup>
+							<sub>s</sub>
+						</label>
+
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement, -1 pour infini (sec)}}</label>
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Durée en secondes, -1 pour un bannissement infini}}"></i></sup>
+							<sub>s</sub>
+						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::bantime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{IP "blanche"}}</label>
+						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Liste blanche}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.*}}"></i></sup>
+						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
@@ -963,25 +973,33 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne (en heures)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne}}
+							<sub>h</sub>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour la tendance (en heures)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour la tendance}}
+							<sub>h</sub>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Délai avant archivage (en heures)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Délai avant archivage}}
+							<sub>h</sub>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Archiver par paquet de (en heures)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Archiver par paquet de}}
+							<sub>h</sub>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
 						</div>
@@ -1298,13 +1316,17 @@
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Delai d'attente après génération de la page (en ms)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Delai d'attente après génération de la page}}
+							<sub>ms</sub>
+						</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<input class="configKey form-control" data-l1key="report::delay" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer les rapports plus anciens de (jours)}}</label>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer les rapports plus anciens de}}
+							<sub>j</sub>
+						</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 							<input class="configKey form-control" data-l1key="report::maxdays" />
 						</div>
