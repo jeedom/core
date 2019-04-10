@@ -374,10 +374,10 @@ p.state {
 /* bottom home menu */
 .ui-panel-position-bottom.ui-panel-display-overlay a,
 .ui-listview > li > a {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: normal;
   text-transform: none !important;
-  padding: 5px 10px !important;
+  padding: 6px 10px !important;
   color: var(--link-color) !important;
   background-color: var(--defaultBkg-color) !important;
 }
@@ -390,7 +390,9 @@ p.state {
 .ui-listview > li > a:hover {
   background-color: var(--btnEq-default-color) !important;
 }
-
+.ui-bottom-sheet-list {
+  background-color: var(--defaultBkg-color) !important;
+}
 
 .cmd a.ui-btn-raised > i {
   font-size: 1.2em !important;
