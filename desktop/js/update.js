@@ -232,11 +232,12 @@ function addUpdate(_update) {
   if (_update.status == 'UPDATE') {
     labelClass = 'label-warning';
     if (_update.type == 'core' || _update.type == 'plugin') {
-      hasUpdate = true;
+      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true;
     } else {
-      hasUpdateOther = true;
+      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
