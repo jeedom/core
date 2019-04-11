@@ -211,6 +211,7 @@ $('body').on('focusin','.bootbox-input', function (e) {
 
 /************************Help*************************/
 
+//horloge:
 setInterval(function () {
   var times = [ 0, 0, 0 ]
   var max = times.length
@@ -560,6 +561,11 @@ function dropDownsKeys() {
   })
 
   $('.dropdown-toggle').keydown(function(event) {
+    if (event.which == 13) {
+      $('body').trigger('click')
+      return false
+    }
+
     key = event.key
 
     if(key == 'Escape') {
@@ -609,7 +615,7 @@ function dropDownsKeys() {
       if (match && selected < index) {
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
-        $(this).closest('.dropdown').find('button').attr('value', $(li).attr('data-value'))
+        $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
         $(this).closest('.dropdown').find('button').trigger('change')
         return false
       }
