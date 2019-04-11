@@ -12,6 +12,7 @@ Changelog
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Ajout d'un bouton pour vider le cache des widgets.
+- Ajout d'une option pour désactiver le cache des widgets.
 - Amélioration et réorganisation du menu principal.
 - Amélioration et réorganisation des configurations.
 - Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
@@ -20,7 +21,11 @@ Changelog
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide de plugin).
-
+- Les champs de recherche supportent maintenant les accents.
+- Les champs de recherche 'pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
+- Ajout d'un moteur de recherche dans les configurations.
+- Améliorations des tables avec option de filtre et tri.
+- Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 
 3.3.16
 =====
