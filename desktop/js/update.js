@@ -127,16 +127,21 @@ $('#table_update,#table_updateOther').delegate('.checkUpdate', 'click', function
 
 $('#bt_saveUpdate').on('click',function(){
   jeedom.update.saves({
-    updates : $('#table_update tbody tr').getValues('.updateAttr'),
+    updates : $('tbody tr').getValues('.updateAttr'),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
-      printUpdate();
+      loadPage('index.php?v=d&p=update&saveSuccessFull=1');
     }
   });
 });
+if (getUrlVars('saveSuccessFull') == 1) {
+  $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
+  window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0] );
+}
+
 
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
