@@ -655,9 +655,14 @@ function initTableSorter(filter=true) {
     $(".tablesorter").tablesorter({
       dateFormat : "yyyy-mm-dd",
       theme: "bootstrap",
-      widthFixed: true,
+      widthFixed: false,
       headerTemplate: '{content} ',
       widgets: widgets,
+      ignoreCase: true,
+      delayInit: false,
+      resizable: false,
+      saveSort: false,
+      sortLocaleCompare: true,
       widgetOptions: {
         filter_ignoreCase: true,
         resizable: true,
