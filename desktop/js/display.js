@@ -134,38 +134,43 @@ $('.configureCmd').on('click',function(){
 
 //searching
 $('#in_search').on('keyup',function(){
-  var search = $(this).value().toLowerCase();
+  try {
+    var search = $(this).value().toLowerCase();
 
-  $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
-  $('.eqLogic').show();
-  $('.cmdSortable').hide();
-  if(search == '' || search.length < 3) {
-    $('.packeryContainer').packery();
-    return;
-  }
-
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-  $('.eqLogic').each(function(){
-    var eqLogic = $(this);
-    var name = eqLogic.attr('data-name').toLowerCase();
-    name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-    var type = eqLogic.attr('data-type').toLowerCase();
-    type = type.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-    if(name.indexOf(search) < 0 && type.indexOf(search) < 0){
-      eqLogic.hide();
+    $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
+    $('.eqLogic').show();
+    $('.cmdSortable').hide();
+    if(search == '' || search.length < 3) {
+      $('.packeryContainer').packery();
+      return;
     }
-    $(this).find('.cmd').each(function(){
-      var cmd = $(this);
-      var name = cmd.attr('data-name').toLowerCase();
+
+    search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    $('.eqLogic').each(function(){
+      var eqLogic = $(this);
+      var name = eqLogic.attr('data-name').toLowerCase();
       name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-      if(name.indexOf(search) >= 0){
-        eqLogic.show();
-        eqLogic.find('.cmdSortable').show();
-        cmd.removeClass('alert-warning').addClass('alert-success');
+      var type = eqLogic.attr('data-type').toLowerCase();
+      type = type.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      if(name.indexOf(search) < 0 && type.indexOf(search) < 0){
+        eqLogic.hide();
       }
+      $(this).find('.cmd').each(function(){
+        var cmd = $(this);
+        var name = cmd.attr('data-name').toLowerCase();
+        name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        if(name.indexOf(search) >= 0){
+          eqLogic.show();
+          eqLogic.find('.cmdSortable').show();
+          cmd.removeClass('alert-warning').addClass('alert-success');
+        }
+      });
+    $('.packeryContainer').packery();
     });
-  $('.packeryContainer').packery();
-  });
+  }
+  catch(error) {
+    console.error(error);
+  }
 });
 
 $('.cb_selEqLogic').on('change',function(){
