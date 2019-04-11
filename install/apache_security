@@ -1,4 +1,4 @@
-<Directory /var/www/html>
+<Directory WEBSERVER_HOME>
         Options -Indexes -ExecCGI -FollowSymLinks
         AllowOverride All
 </Directory>
@@ -39,4 +39,4 @@ Header unset X-Powered-By
 SSLProtocol  all -SSLv2 -SSLv3 -TLSv1
 </IfModule>
 
-ErrorLog /var/www/html/log/http.error
+ErrorLog WEBSERVER_HOME/log/http.error
