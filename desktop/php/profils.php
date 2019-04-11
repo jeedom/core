@@ -360,7 +360,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 							<?php
 							foreach ($_SESSION['user']->getOptions('registerDevice') as $key => $value) {
 								echo '<tr data-key="' . $key . '">';
-								echo '<td>';
+								echo '<td title="'.$key.'">';
 								echo substr($key, 0, 10) . '...';
 								echo '</td>';
 								echo '<td>';
