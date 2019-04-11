@@ -11,7 +11,7 @@ $starttime = getmicrotime();
 			<h3 class="panel-title">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
 					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span></a>
-				<i class="fas fa-tachometer-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
+				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="Benchmark Jeedom"></i>
 			</h3>
 		</div>
 		<div id="health_jeedom" class="panel-collapse collapse in" aria-expanded="true">
@@ -61,17 +61,17 @@ $starttime = getmicrotime();
 		$asPending = 0;
 		if ($plugin->getHasOwnDeamon() == 1) {
 			if ($plugin->deamon_info()['auto'] == 1) {
-				$daemonInfo = ' <i class="fas fa-university pull-right" style="color:grey;font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
+				$daemonInfo = ' <i class="fas fa-university pull-right" style="font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
 			} else {
 				$daemonInfo = ' <i class="fas fa-university pull-right" style="color:#ff4c4c;font-size:0.8em" title="{{Démon en mode manuel}}"></i>';
 			}
 		}
 		if (config::byKey('port', $plugin->getId()) != '') {
-			$port = ' <i class="icon techno-fleches pull-right" style="color:grey;font-size:0.8em" title="{{Port configuré}}"></i><span style="color:grey;font-size:0.8em title="{{Port configuré}}" class="pull-right"> ' . ucfirst(config::byKey('port', $plugin->getId())) . '</span>';
+			$port = ' <i class="icon techno-fleches pull-right" style="font-size:0.8em" title="{{Port configuré}}"></i><span style="font-size:0.8em title="{{Port configuré}}" class="pull-right"> ' . ucfirst(config::byKey('port', $plugin->getId())) . '</span>';
 		}
 		if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 			$hasSpecificHealth = 1;
-			$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fas fa-medkit bt_healthSpecific pull-right cursor" style="color:grey;font-size:0.8em" title="Santé spécifique"></i>';
+			$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fas fa-medkit bt_healthSpecific pull-right cursor" style="font-size:0.8em" title="Santé spécifique"></i>';
 		}
 		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
 			$count += 1;
@@ -218,7 +218,7 @@ $starttime = getmicrotime();
 			$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 			$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 			$globalhtml .= $errorMessage . $pendingMessage;
-			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" style="color:grey;font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
+			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}"" style=font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
 			$globalhtml .= '</h3>';
 			$globalhtml .= '</div>';
 			$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';
