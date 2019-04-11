@@ -132,7 +132,6 @@ $('#bt_saveUpdate').on('click',function(){
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      $('#div_alert').showAlert({message: '{{Sauvegarde effectuée}}', level: 'success'});
       loadPage('index.php?v=d&p=update&saveSuccessFull=1');
     }
   });
