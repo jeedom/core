@@ -6,6 +6,7 @@ Changelog
 =====
 
 - Correction d'un bug ou l'affichage de l'heure pouvez dépasser 24h
+- Correction d'un bug sur la mise à jour des résumés en désign
 
 3.3.20
 =====
