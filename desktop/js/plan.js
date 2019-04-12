@@ -933,32 +933,43 @@ function displayObject(_plan,_html, _noRender) {
     html.css('height', init(_plan.display.height, 50));
   }
   for (var key in _plan.css) {
-    if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
-      if(key == 'z-index' && _plan.css[key] < 999){
-        continue;
-      }
-      html.style(key, _plan.css[key], 'important');
-    }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view' || _plan.link_type == 'eqLogic'  || _plan.link_type == 'cmd') {
-      if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
-        if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-          html.style('background-color', 'transparent', 'important');
-          html.style('border-radius', '0px', 'important');
-          html.style('box-shadow', 'none', 'important');
-          if(_plan.link_type == 'eqLogic'){
-            html.find('.widget-name').style('background-color', 'transparent', 'important');
-          }
-        }else{
-          html.style(key, _plan.css[key], 'important');
-        }
-      }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-        html.style(key, _plan.css[key], 'important');
-        if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd'){
-          html.find('*').each(function(){
-            $(this).style(key, _plan.css[key], 'important')
-          });
-        }
-      }
+    if (_plan.css[key] === ''){
+      continue;
     }
+    if(key == 'z-index' && _plan.css[key] < 999){
+      continue;
+    }
+    if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
+      if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+        html.style('background-color', 'transparent', 'important');
+        html.style('border-radius', '0px', 'important');
+        html.style('box-shadow', 'none', 'important');
+        if(_plan.link_type == 'eqLogic'){
+          html.find('.widget-name').style('background-color', 'transparent', 'important');
+        }
+      }else{
+        html.style(key, _plan.css[key], 'important');
+      }
+      continue;
+    }
+    if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
+      html.style(key, _plan.css[key], 'important');
+      if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd'){
+        html.find('*').each(function(){
+          $(this).style(key, _plan.css[key], 'important')
+        });
+      }
+      continue;
+    }
+    if (key == 'opacity'){
+      continue;
+    }
+    html.style(key, _plan.css[key], 'important');
+  }
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
+    console.log(html.css('background-color'));
+    html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
+    console.log(html.css('background-color'));
   }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
