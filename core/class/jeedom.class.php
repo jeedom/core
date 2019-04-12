@@ -252,10 +252,10 @@ class jeedom {
 		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
 		$value += shell_exec('sudo dmesg | grep "I/O error" | wc -l');
 		$return[] = array(
-			'name' => __('Erreur disque', __FILE__),
+			'name' => __('Erreur I/O', __FILE__),
 			'state' => ($value == 0),
 			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Il y a des erreurs disque, cela peut indiquer un soucis avec le disque ou un problème d\'alimentation', __FILE__),
+			'comment' => ($value == 0) ? '' : __('Il y a des erreurs I/O.', __FILE__),
 		);
 		
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
