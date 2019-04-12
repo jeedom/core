@@ -7,11 +7,13 @@
 			}else {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="fas fa-times"></i>');
 			}
-			$('.cmd[data-cmd_id=#id#]').css('background-color', '');
-			if(_options.alertLevel == 'warning'){
-				$('.cmd[data-cmd_id=#id#]').css({"background-color":"#b2b200"});
-			}else if(_options.alertLevel == 'danger'){
-				$('.cmd[data-cmd_id=#id#]').css({"background-color":"#da2e37"});
+			if(_options.alertLevel){
+				$('.cmd[data-cmd_id=#id#]').css('background-color', '');
+				if(_options.alertLevel == 'warning'){
+					$('.cmd[data-cmd_id=#id#]').css({"background-color":"#b2b200"});
+				}else if(_options.alertLevel == 'danger'){
+					$('.cmd[data-cmd_id=#id#]').css({"background-color":"#da2e37"});
+				}
 			}
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',alertLevel:'#alertLevel#'});
