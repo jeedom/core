@@ -60,6 +60,7 @@ class migrate {
 					$statut = 'space';
 					$space = migrate::freeSpaceUsb()/1024;
 				}
+				log::removeAll();
 			}
 		}
 		return array('statut' => $statut, 'space' => $space, 'minSpace' => $minSize);
