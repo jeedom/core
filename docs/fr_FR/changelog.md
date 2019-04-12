@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.21
+=====
+
+- Correction d'un bug ou l'affichage de l'heure pouvez dépasser 24h
+
 3.3.20
 =====
 
