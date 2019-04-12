@@ -365,7 +365,7 @@ label sup {
 .counterReorderJeedom {
   color: white;
 }
-.eqLogic-widget.editingMode {
+.editingMode {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
 }
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
