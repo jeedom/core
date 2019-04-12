@@ -152,15 +152,12 @@ $('.eqLogicAction[data-action=gotoPluginConf]').on('click', function () {
   $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id='+eqType).dialog('open');
 });
 
-$('.eqLogicAction[data-action=returnToThumbnailDisplay]').off('click').on('click', function (event) {
+$('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off('click').on('click', function (event) {
   $('.eqLogic').hide();
   $('.eqLogicThumbnailDisplay').show();
   $('.li_eqLogic').removeClass('active');
   $('.eqLogicThumbnailContainer').packery();
-  event.preventDefault();
-  return false;
 });
-
 
 $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
   jeedom.eqLogic.cache.getCmd = Array();
