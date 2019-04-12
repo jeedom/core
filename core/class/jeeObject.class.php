@@ -205,7 +205,7 @@ class jeeObject {
 		if (count($toRefreshCmd) > 0) {
 			foreach ($toRefreshCmd as $value) {
 				try {
-					$value['object']->setCache('summaryHtmldesktop', '');
+					$value['object']->setCache('summaryHtmldashboard', '');
 					$value['object']->setCache('summaryHtmlmobile', '');
 					if ($value['object']->getConfiguration('summary_virtual_id') == '') {
 						continue;
@@ -227,7 +227,7 @@ class jeeObject {
 			}
 		}
 		if (count($global) > 0) {
-			cache::set('globalSummaryHtmldesktop', '');
+			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$event = array('object_id' => 'global', 'keys' => array());
 			foreach ($global as $key => $value) {
@@ -283,7 +283,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 	
-	public static function getGlobalHtmlSummary($_version = 'desktop') {
+	public static function getGlobalHtmlSummary($_version = 'dashboard') {
 		$cache = cache::byKey('globalSummaryHtml' . $_version);
 		if ($cache->getValue() != '') {
 			return $cache->getValue();
@@ -307,7 +307,7 @@ class jeeObject {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'desktop') ? 4 : 2;
+		$margin = ($_version == 'dashboard') ? 4 : 2;
 		
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
@@ -647,7 +647,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 	
-	public function getHtmlSummary($_version = 'desktop') {
+	public function getHtmlSummary($_version = 'dashboard') {
 		if (trim($this->getCache('summaryHtml' . $_version)) != '') {
 			return $this->getCache('summaryHtml' . $_version);
 		}
@@ -660,7 +660,7 @@ class jeeObject {
 			$result = $this->getSummary($key);
 			if ($result !== null) {
 				$style = '';
-				if ($_version == 'desktop') {
+				if ($_version == 'dashboard') {
 					$style = 'color:' . $this->getDisplay($_version . '::summaryTextColor', '#000000') . ';';
 				}
 				$allowDisplayZero = $value['allowDisplayZero'];
