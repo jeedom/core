@@ -195,6 +195,9 @@ setInterval(function () {
     hours += h
     minutes -= 60 * h
   }
+  if (hours >= 24) {
+    hours = 0
+  }
   $('#horloge').text(('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2))
 }, 1000);
 
