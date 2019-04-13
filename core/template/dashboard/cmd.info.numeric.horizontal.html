@@ -18,7 +18,7 @@
       width = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       width = Math.round(parseFloat(width) * 10) / 10
       $('.cmd[data-cmd_uid=#uid#] .hgauge-value').width(width+'%')
-      $('.cmd[data-cmd_uid=#uid#] .state strong:first').text(_options.display_value)
+      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#'});

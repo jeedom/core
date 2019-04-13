@@ -67,7 +67,7 @@ if (view_id != '') {
       }
       
       try {
-        $('.div_displayView:last').empty().html(html.html);
+        $('.div_displayView').last().empty().html(html.html);
       }catch(err) {
         console.log(err);
       }

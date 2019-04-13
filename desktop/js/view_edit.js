@@ -182,10 +182,10 @@ if (is_numeric(getUrlVars('view_id'))) {
     if ($('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').length != 0) {
         $('#ul_view .li_view[data-view_id=' + getUrlVars('view_id') + ']').click();
     } else {
-        $('#ul_view .li_view:first').click();
+        $('#ul_view .li_view').first().click();
     }
 } else {
-    $('#ul_view .li_view:first').click();
+    $('#ul_view .li_view').first().click();
 }
 
 $("#div_viewZones").sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
@@ -334,7 +334,7 @@ function addEditviewZone(_viewZone) {
     }
     div += '</div>';
     $('#div_viewZones').append(div);
-    $('#div_viewZones .viewZone:last').setValues(_viewZone,'.viewZoneAttr');
+    $('#div_viewZones .viewZone').last().setValues(_viewZone,'.viewZoneAttr');
     $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", cursor: "move", items: ".viewData", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
     } else {
         $('#' + _viewZone.emplacement).find('.viewZoneAttr[data-l1key=name]').html(_viewZone.name);

@@ -231,7 +231,7 @@ function addTest(_test){
   div += '</div>';
   div += '</div>';
   $('#div_templateTest').append(div);
-  $('#div_templateTest').find('.test:last').setValues(_test, '.testAttr');
+  $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr');
 }
 
 $("#bt_addWidgets").off('click').on('click', function (event) {
@@ -289,7 +289,7 @@ if (is_numeric(getUrlVars('id'))) {
   if ($('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').length != 0) {
     $('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').click();
   } else {
-    $('.widgetsDisplayCard:first').click();
+    $('.widgetsDisplayCard').first().click();
   }
 }
 

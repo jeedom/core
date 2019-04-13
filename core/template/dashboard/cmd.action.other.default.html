@@ -6,9 +6,9 @@
     $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
       jeedom.cmd.execute({id: '#id#'});
     });
-    if ($('.cmd[data-cmd_uid=#uid#]:last').prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]:last').prev().data('subtype') != 'other'
-    && $('.cmd[data-cmd_uid=#uid#]:last').prev().css('display') != 'block') {
-      $('.cmd[data-cmd_uid=#uid#]:last').prepend('<br/>');
+    if ($('.cmd[data-cmd_uid=#uid#]').last().prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').last().prev().data('subtype') != 'other'
+    && $('.cmd[data-cmd_uid=#uid#]').last().prev().css('display') != 'block') {
+      $('.cmd[data-cmd_uid=#uid#]').last().prepend('<br/>');
     }
   </script>
 </div>

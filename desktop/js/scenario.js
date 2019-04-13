@@ -905,7 +905,7 @@ function updateElseToggle() {
   $('.subElementELSE').each(function () {
     if(!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-chevron-right')){
       if($(this).children('.expressions').children('.expression').length == 0){
-        $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first').trigger('click');
+        $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').first().trigger('click');
       }
     }
   });
@@ -1001,7 +1001,7 @@ function printScenario(_id) {
       if(data.name){
         document.title = data.name +' - Jeedom';
       }
-      $('.scenarioAttr[data-l1key=object_id] option:first').attr('selected',true);
+      $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
       $('.scenarioAttr[data-l1key=object_id]').val('');
       $('#div_pageContainer').setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;

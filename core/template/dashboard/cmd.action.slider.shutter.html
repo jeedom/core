@@ -35,12 +35,12 @@
       }
       
       $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height#uid#+'%')
-      $('.cmd[data-cmd_uid=#uid#] .state strong:first').text(_options.display_value)
+      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
       $('.cmd[data-cmd_uid=#uid#] .slider').slider( "option", "value",position);
     }
     
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
-      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong:first').html()
+      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
       if (shutterPos > 50) {
         jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
       } else {

@@ -290,9 +290,9 @@ function addUpdate(_update) {
 
   if (_update.type == 'core' || _update.type == 'plugin') {
     $('#table_update').append(tr);
-    $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
+    $('#table_update tbody tr').last().setValues(_update, '.updateAttr');
   } else {
     $('#table_updateOther').append(tr);
-    $('#table_updateOther tbody tr:last').setValues(_update, '.updateAttr');
+    $('#table_updateOther tbody tr').last().setValues(_update, '.updateAttr');
   }
 }

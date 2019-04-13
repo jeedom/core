@@ -405,7 +405,7 @@ function addActionOnMessage(_action) {
   div += '</div>';
   div += '</div>';
   $('#div_actionOnMessage').append(div);
-  $('#div_actionOnMessage .actionOnMessage:last').setValues(_action, '.expressionAttr');
+  $('#div_actionOnMessage .actionOnMessage').last().setValues(_action, '.expressionAttr');
   actionOptions.push({
     expression : init(_action.cmd, ''),
     options : _action.options,
@@ -922,7 +922,7 @@ function addObjectSummary(_summary, _direction=1) {
   tr += '</tr>';
   $('#table_objectSummary tbody').append(tr);
   if (isset(_summary)){
-    $('#table_objectSummary tbody tr:last').setValues(_summary, '.objectSummaryAttr');
+    $('#table_objectSummary tbody tr').last().setValues(_summary, '.objectSummaryAttr');
   }
   if(isset(_summary) && isset(_summary.key) && _summary.key != ''){
     $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled','disabled');

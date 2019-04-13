@@ -405,7 +405,7 @@ sendVarToJS('id', $plan->getId());
 		div += '</div>';
 		div += '</div>';
 		$('#div_planConfigureAction' + _type).append(div);
-		$('#div_planConfigureAction' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+		$('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
 		taAutosize();
 	}
 	

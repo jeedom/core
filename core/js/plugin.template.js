@@ -136,12 +136,12 @@ $(function(){
 var url = document.location.toString();
 if (url.match('#')) {
   if(url.split('#')[1] == ''){
-    $('.nav-tabs a:not(.eqLogicAction):first').click();
+    $('.nav-tabs a:not(.eqLogicAction)').first().click();
   }else{
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').click();
   }
 }else{
-  $('.nav-tabs a:not(.eqLogicAction):first').click();
+  $('.nav-tabs a:not(.eqLogicAction)').first().click();
 }
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
@@ -180,7 +180,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
   if($('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').html() != undefined){
     $('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').addClass('active');
   }
-  $('.nav-tabs a:not(.eqLogicAction):first').click();
+  $('.nav-tabs a:not(.eqLogicAction)').first().click();
   $.showLoading();
   jeedom.eqLogic.print({
     type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
@@ -481,11 +481,11 @@ if (is_numeric(getUrlVars('id'))) {
   } else if ($('.eqLogicThumbnailContainer .eqLogicDisplayCard[data-eqLogic_id=' + getUrlVars('id') + ']').length != 0) {
     $('.eqLogicThumbnailContainer .eqLogicDisplayCard[data-eqLogic_id=' + getUrlVars('id') + ']').click();
   } else  if ($('.eqLogicThumbnailDisplay').html() == undefined) {
-    $('#ul_eqLogic .li_eqLogic:first').click();
+    $('#ul_eqLogic .li_eqLogic').first().click();
   }
 } else {
   if ($('.eqLogicThumbnailDisplay').html() == undefined) {
-    $('#ul_eqLogic .li_eqLogic:first').click();
+    $('#ul_eqLogic .li_eqLogic').first().click();
   }
 }
 

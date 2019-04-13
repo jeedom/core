@@ -297,7 +297,7 @@ if (is_numeric(getUrlVars('id'))) {
   if ($('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').length != 0) {
     $('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').click();
   } else {
-    $('.objectDisplayCard:first').click();
+    $('.objectDisplayCard').first().click();
   }
 }
 
@@ -347,7 +347,7 @@ function addSummaryInfo(_el, _summary) {
   div += '</div>';
   div += '</div>';
   _el.find('.div_summary').append(div);
-  _el.find('.summary:last').setValues(_summary, '.summaryAttr');
+  _el.find('.summary').last().setValues(_summary, '.summaryAttr');
 }
 
 $('.bt_showObjectSummary').off('click').on('click', function () {

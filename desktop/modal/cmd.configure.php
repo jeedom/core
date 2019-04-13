@@ -1041,7 +1041,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
 		div += '</div>';
 		$('#div_' + _type).append(div);
-		$('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+		$('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
 		taAutosize();
 	}
 	

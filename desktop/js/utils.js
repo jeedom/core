@@ -192,9 +192,9 @@ $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',fun
 
 
 $('ul.nav li.dropdown').hover(function() {
-  $(this).find('.dropdown-menu:first').stop(true, true).show();
+  $(this).find('.dropdown-menu').first().stop(true, true).show();
 }, function() {
-  $(this).find('.dropdown-menu:first').stop(true, true).hide();
+  $(this).find('.dropdown-menu').first().stop(true, true).hide();
 });
 /*********************Gestion des dialogs********************************/
 

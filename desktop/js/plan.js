@@ -421,7 +421,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
                   $(this).dialog("close");
                 },
                 "Valider": function () {
-                  var tr = $('#table_addViewData tbody tr:first');
+                  var tr = $('#table_addViewData tbody tr').first();
                   var options = [];
                   while (tr.attr('data-link_id') != undefined) {
                     if (tr.find('.enable').is(':checked')) {

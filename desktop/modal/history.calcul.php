@@ -154,7 +154,7 @@ function addCalculHistory(_calculHistory){
 	html += '</td>';
 	html += '</tr>';
 	$('#table_calculHisotry tbody').append(html);
-	$('#table_calculHisotry tbody tr:last').setValues(_calculHistory,'.calculHistoryAttr');
+	$('#table_calculHisotry tbody tr').last().setValues(_calculHistory,'.calculHistoryAttr');
 }
 
 </script>

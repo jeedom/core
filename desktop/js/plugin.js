@@ -375,7 +375,7 @@ if (sel_plugin_id != -1) {
   if ($('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
     $('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').click();
   } else {
-    $('.pluginDisplayCard:first').click();
+    $('.pluginDisplayCard').first().click();
   }
 }
 

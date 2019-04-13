@@ -497,7 +497,7 @@ function addAction(_action, _type, _name) {
   var actionOption_id = uniqId();
   div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'"></div>';
   $('#div_' + _type).append(div);
-  $('#div_' + _type + ' .' + _type + ':last').setValues(_action, '.expressionAttr');
+  $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
   actionOptions.push({
     expression : init(_action.cmd, ''),
     options : _action.options,

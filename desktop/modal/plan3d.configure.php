@@ -329,7 +329,7 @@ sendVarToJS('id', $plan3d->getId());
 			div += '</div>';
 			div += '</div>';
 			$('#div_conditionColor').append(div);
-			$('#div_conditionColor .conditionalColor:last').setValues(_conditionalColor, '.conditionalColorAttr');
+			$('#div_conditionColor .conditionalColor').last().setValues(_conditionalColor, '.conditionalColorAttr');
 		}
 		
 		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
@@ -377,7 +377,7 @@ sendVarToJS('id', $plan3d->getId());
 			div += '</div>';
 			div += '</div>';
 			$('#div_conditionShow').append(div);
-			$('#div_conditionShow .conditionalShow:last').setValues(_conditionalShow, '.conditionalShowAttr');
+			$('#div_conditionShow .conditionalShow').last().setValues(_conditionalShow, '.conditionalShowAttr');
 		}
 		
 		$("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
