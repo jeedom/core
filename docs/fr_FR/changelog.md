@@ -9,6 +9,7 @@ Changelog
 - Correction d'un bug sur la mise à jour des résumés en désign
 - Correction d'un bug sur la gestion des niveau d'alerte sur certain widget lors de la mise à jour de la valeur
 - Correction de l'affichage des équipements désactivés sur certain plugins
+- Correction d'un bug lors de l'indication de changement de pile à jeedom
 
 3.3.20
 =====
