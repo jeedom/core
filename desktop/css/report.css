@@ -4,3 +4,40 @@
 .highcharts-plot-band {
   fill: rgb(235, 235, 238) !important;
 }
+
+.viewZone{
+  background: rgb(247, 248, 248);
+}
+
+.div_viewZoneTable{
+  background-color: rgba(249, 249, 250, 0.8) !important;
+}
+
+.reportModeHidden{
+  display : none;
+}
+
+.cmd-widget > center {
+  fill: rgb(115, 115, 115) !important;
+  color: rgb(115, 115, 115);
+}
+
+.state,.cmd {
+  color: rgb(90, 90, 90) !important;
+}
+
+div.cmd-widget > .content-xs {
+  color: rgb(115, 115, 115);
+}
+
+div.cmd-widget > .value > .center-block {
+  color: rgb(115, 115, 115);
+}
+
+.cmdStats,div.cmd > div.center-block {
+  color: rgb(115, 115, 115) !important;
+}
+
+.sliderValue {
+  color: rgb(115, 115, 115);
+}
