@@ -748,6 +748,7 @@ $('#bt_resetbattery').on('click',function(){
 				},
 				success: function (data) {
 					$('#md_displayEqLogicConfigure').showAlert({message: '{{Changement de pile(s) pris en compte}}', level: 'success'});
+					$('.eqLogicAttr[data-l1key=configuration][data-l2key=batterytime]').value(yyyy+'-'+mm+'-'+dd+' '+hh+':'+MM+':'+ss);
 				}
 			});
 		}
