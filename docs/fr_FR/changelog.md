@@ -8,6 +8,7 @@ Changelog
 - Correction d'un bug ou l'affichage de l'heure pouvez dépasser 24h
 - Correction d'un bug sur la mise à jour des résumés en désign
 - Correction d'un bug sur la gestion des niveau d'alerte sur certain widget lors de la mise à jour de la valeur
+- Correction de l'affichage des équipements désactivés sur certain plugins
 
 3.3.20
 =====
