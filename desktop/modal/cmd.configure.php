@@ -1256,6 +1256,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     var iconeGeneric = $(this).closest('.iconeGeneric');
     chooseIcon(function (_icon) {
       iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+      $('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
     });
   });
   
