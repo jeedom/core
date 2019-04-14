@@ -40,7 +40,7 @@ try {
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Envoie l'événement de début de sauvegarde...";
+		echo "Envoi l'évènement de début de sauvegarde...";
 		jeedom::event('begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -48,7 +48,7 @@ try {
 	}
 
 	try {
-		echo 'Vérifiez les droits sur les fichiers...';
+		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -88,7 +88,7 @@ try {
 		}
 	}
 
-	echo "Vérifie la base de données...";
+	echo "Vérification de la base de données...";
 	if(isset($CONFIG['db']['unix_socket'])) {
 		system("mysqlcheck --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 	} else {
@@ -236,7 +236,7 @@ try {
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
 
 	try {
-		echo 'Vérifiez les droits sur les fichiers...';
+		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -244,7 +244,7 @@ try {
 	}
 
 	try {
-		echo 'Envoi l\'événement de fin de sauvegarde...';
+		echo 'Envoi l\'évènement de fin de sauvegarde...';
 		jeedom::event('end_backup');
 		echo "OK\n";
 	} catch (Exception $e) {
