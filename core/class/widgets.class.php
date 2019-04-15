@@ -117,9 +117,9 @@ class widgets {
     }
     $return = array('test' => false);
     if ($iscustom) {
-        $template = file_get_contents(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html');
+      $template = file_get_contents(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html');
     } else {
-        $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+      $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
     }
     if(strpos($template,'#test#') !== false){
       $return['test'] = true;
@@ -141,6 +141,15 @@ class widgets {
   
   public function remove() {
     DB::remove($this);
+  }
+  
+  public function getUsedBy(){
+    $return = array();
+    $return = array_merge(
+      cmd::searchTemplate('dashboard":"custom::'.$this->getName()),
+      cmd::searchTemplate('mobile":"custom::'.$this->getName())
+    );
+    return $return;
   }
   
   /*     * **********************Getteur Setteur*************************** */
@@ -221,10 +230,10 @@ class widgets {
   public function getDisplay($_key = '', $_default = '') {
     return utils::getJsonAttr($this->display, $_key, $_default);
   }
-    
+  
   public function setDisplay($_key, $_value) {
     if ($this->getDisplay($_key) != $_value) {
-        $this->_needRefreshWidget = true;
+      $this->_needRefreshWidget = true;
     }
     $display = utils::setJsonAttr($this->display, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->display,$display);

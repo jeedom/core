@@ -32,7 +32,16 @@ try {
   }
   
   if (init('action') == 'byId') {
-    ajax::success(utils::o2a(widgets::byId(init('id'))));
+    $widget = widgets::byId(init('id'));
+    $result = utils::o2a($widget);
+    $result['usedBy'] = array();
+    $usedBy = $widget->getUsedBy();
+    if(is_array($usedBy) && count($usedBy) > 0){
+      foreach ($usedBy as $cmd) {
+        $result['usedBy'][$cmd->getId()] = $cmd->getHumanName();
+      }
+    }
+    ajax::success($result);
   }
   
   if (init('action') == 'remove') {

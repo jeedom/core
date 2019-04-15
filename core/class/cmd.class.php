@@ -222,6 +222,34 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 	
+	public static function searchDisplay($_display, $_eqType = null) {
+		if (!is_array($_display)) {
+			$values = array(
+				'display' => '%' . $_display . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM cmd
+			WHERE display LIKE :display';
+		} else {
+			$values = array(
+				'display' => '%' . $_display[0] . '%',
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM cmd
+			WHERE display LIKE :display';
+			for ($i = 1; $i < count($_display); $i++) {
+				$values['display' . $i] = '%' . $_display[$i] . '%';
+				$sql .= ' OR display LIKE :display' . $i;
+			}
+		}
+		if ($_eqType !== null) {
+			$values['eqType'] = $_eqType;
+			$sql .= ' AND eqType=:eqType ';
+		}
+		$sql .= ' ORDER BY name';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+	
 	public static function searchConfigurationEqLogic($_eqLogic_id, $_configuration, $_type = null) {
 		$values = array(
 			'configuration' => '%' . $_configuration . '%',
