@@ -196,6 +196,12 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
+	public static function backup_install(){
+		if (exec('which duplicity | wc -l') == 0) {
+			com_shell::execute('sudo apt-get -y install duplicity');
+		}
+	}
+	
 	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => 'https://' . config::byKey('market::backupServer'),
@@ -227,6 +233,7 @@ class repo_market {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
 		self::backup_createFolderIsNotExist();
+		self::backup_install();
 		$base_dir = realpath(__DIR__ . '/../../');
 		if(!file_exists($base_dir . '/tmp')){
 			mkdir($base_dir . '/tmp');
@@ -288,6 +295,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
+		self::backup_install();
 		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		if ($_nb == null) {
 			$_nb = 0;
@@ -323,6 +331,7 @@ class repo_market {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
+		self::backup_install();
 		$return = array();
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
@@ -358,6 +367,7 @@ class repo_market {
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
+		self::backup_install();
 		$base_dir = realpath(__DIR__ . '/../../');
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
