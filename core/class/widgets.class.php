@@ -75,6 +75,9 @@ class widgets {
       if(stripos($informations[3],'tmpl') === false){
         continue;
       }
+      if(!file_exists(__DIR__ . '/../template/mobile/'.$file)){
+        continue;
+      }
       if (!isset($return[$informations[1]])) {
         $return[$informations[1]] = array();
       }
@@ -92,6 +95,9 @@ class widgets {
         continue;
       }
       if(stripos($informations[3],'tmpl') === false){
+        continue;
+      }
+      if(!file_exists(__DIR__ . '/../../data/customTemplates/mobile/'.$file)){
         continue;
       }
       if (!isset($return[$informations[1]])) {

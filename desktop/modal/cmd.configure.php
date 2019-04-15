@@ -579,12 +579,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
 													if (isset($info['type'])) {
 														$info['key'] = $key;
-													if (!isset($types[$info['type']])) {
-														$types[$info['type']][0] = $info;
-													} else {
-														array_push($types[$info['type']], $info);
+														if (!isset($types[$info['type']])) {
+															$types[$info['type']][0] = $info;
+														} else {
+															array_push($types[$info['type']], $info);
+														}
 													}
-												}
 												}
 												ksort($types);
 												foreach ($types as $type) {
@@ -616,21 +616,22 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 											<?php
 											if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
 												$types = array();
-												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
+												foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
 													if (isset($info['type'])) {
 														$info['key'] = $key;
-													if (!isset($types[$info['type']])) {
-														$types[$info['type']][0] = $info;
-													} else {
-														array_push($types[$info['type']], $info);
+														if (!isset($types[$info['type']])) {
+															$types[$info['type']][0] = $info;
+														} else {
+															array_push($types[$info['type']], $info);
+														}
 													}
-												}
 												}
 												ksort($types);
 												foreach ($types as $type) {
 													usort($type, function ($a, $b) {
 														return strcmp($a['name'], $b['name']);
 													});
+													
 													foreach ($type as $key => $widget) {
 														if ($widget['name'] == 'default') {
 															continue;

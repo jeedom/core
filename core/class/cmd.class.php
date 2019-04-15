@@ -684,7 +684,7 @@ class cmd {
 					$return[$informations[1]][$informations[2]] = array();
 				}
 				if (isset($informations[3])) {
-					$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'customtemp', 'type' => 'custom template');
+					$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'customtemp', 'type' => 'custom');
 				}
 			}
 		}

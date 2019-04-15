@@ -44,6 +44,10 @@ $(function(){
   $('#in_searchWidgets').focus()
 })
 
+$('#bt_editCode').on('click', function () {
+  loadPage('index.php?v=d&p=editor&rootPath='+encodeURIComponent('data/customTemplates'));
+})
+
 //context menu
 $(function(){
   try{

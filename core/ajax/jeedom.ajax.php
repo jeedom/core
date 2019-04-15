@@ -315,7 +315,7 @@ try {
 	if (init('action') == 'getFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
 		ajax::success(file_get_contents(init('path')));
@@ -324,7 +324,7 @@ try {
 	if (init('action') == 'setFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
 		ajax::success(file_put_contents(init('path'), init('content')));
@@ -333,7 +333,7 @@ try {
 	if (init('action') == 'deleteFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
 		ajax::success(unlink(init('path')));
@@ -342,7 +342,7 @@ try {
 	if (init('action') == 'createFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('name'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
 		touch(init('path') . init('name'));

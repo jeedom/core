@@ -2,6 +2,16 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
+$rootPath = __DIR__ . '/../../data/customTemplates';
+if(!file_exists($rootPath)){
+  mkdir($rootPath);
+}
+if(!file_exists($rootPath.'/dashboard')){
+  mkdir($rootPath.'/dashboard');
+}
+if(!file_exists($rootPath.'/mobile')){
+  mkdir($rootPath.'/mobile');
+}
 global $JEEDOM_INTERNAL_CONFIG;
 ?>
 <div class="row row-overflow">

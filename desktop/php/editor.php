@@ -2,7 +2,14 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$rootPath = __DIR__ . '/../../';
+if(init('rootPath') != ''){
+	if(strpos(urldecode(init('rootPath')),'..') !== false){
+		throw new \Exception(__('Répertoire racine interdit',__FILE__));
+	}
+	$rootPath = __DIR__ . '/../../'.urldecode(init('rootPath')).'/';
+}else{
+	$rootPath = __DIR__ . '/../../';
+}
 sendVarToJS('rootPath', $rootPath);
 ?>
 
@@ -13,7 +20,7 @@ sendVarToJS('rootPath', $rootPath);
 			<ul id="ul_Folder">
 				<?php
 				foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
-					echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . __DIR__ . '/../../' . $folder . '">' . $folder . '</a></li>';
+					echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . $rootPath . $folder . '">' . $folder . '</a></li>';
 				}
 				?>
 			</ul>

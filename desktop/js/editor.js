@@ -91,7 +91,8 @@ function getEditorMode(_path){
 
 function displayFile(_path){
   $.hideAlert();
-  $('#span_editorFileName').empty().html(_path);
+  $('#span_editorFileName').empty().html(_path.replace(/^.*[\\\/]/, ''));
+  $('#span_editorFileName').attr('title',_path);
   $('#bt_saveFile').attr('data-path',_path);
   $('#bt_deleteFile').attr('data-path',_path);
   jeedom.getFileContent({
