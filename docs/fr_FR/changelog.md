@@ -13,6 +13,7 @@ Changelog
 - Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
 - Correction de bug lors de la mise à jour de variable (qui ne lancé pas toujours les scénarios ou ne déclenché pas une mise à jour des commandes dans tous les cas)
 - Correction d'un bug sur les backups cloud, ou duplicity ne s'installait pas correctement
+- Amélioration du tts interne jeedom
 
 
 3.3.20
