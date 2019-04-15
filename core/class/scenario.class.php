@@ -1106,7 +1106,7 @@ class scenario {
 					if (is_array($this->getSchedule())) {
 						foreach ($this->getSchedule() as $schedule) {
 							try {
-								$c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+								$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 								try {
 									if ($c->isDue()) {
 										return true;
@@ -1136,7 +1136,7 @@ class scenario {
 						}
 					} else {
 						try {
-							$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+							$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 							try {
 								if ($c->isDue()) {
 									return true;
