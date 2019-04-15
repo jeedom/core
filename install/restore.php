@@ -40,7 +40,7 @@ try {
 	echo "***************Début de la restauration de Jeedom " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Envoie l'événement de début de restauration...";
+		echo "Envoi l'évènement de début de restauration...";
 		jeedom::event('begin_restore', true);
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -88,7 +88,7 @@ try {
 	}
 
 	try {
-		echo "Vérifiez les droits...";
+		echo "Vérification des droits...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -180,7 +180,7 @@ try {
 		$plugin_id = $plugin->getId();
 		$dependancy_info = $plugin->dependancy_info(true);
 		if (method_exists($plugin_id, 'restore')) {
-			echo 'Plugin restoration : ' . $plugin_id . '...';
+			echo 'Plugin restauration : ' . $plugin_id . '...';
 			$plugin_id::restore();
 			echo "OK\n";
 		}
@@ -204,7 +204,7 @@ try {
 	}
 
 	try {
-		echo "Envoie l'événement de la fin de la sauvegarde...";
+		echo "Envoi l'évènement de la fin de la sauvegarde...";
 		jeedom::event('end_restore');
 		echo "OK\n";
 	} catch (Exception $e) {
