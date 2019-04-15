@@ -54,6 +54,9 @@ if (file_exists($filename)) {
 	die();
 }
 log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ')');
+if($engine == 'pico' && exec('which pico2wave | wc -l') == 0){
+	$engine = 'espeak';
+}
 try {
 	switch ($engine) {
 		case 'gcp':
