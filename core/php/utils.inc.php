@@ -1376,5 +1376,9 @@ function sanitizeAccent($_message) {
 		if(count($matches) > 0){
 			return '';
 		}
+		preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
 		return $return;
 	}
