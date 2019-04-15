@@ -1370,6 +1370,16 @@ function sanitizeAccent($_message) {
 	}
 	
 	function checkAndFixCron($_cron){
-		return str_replace('*/ ','* ',$_cron);
+		$return = $_cron;
+		$return = str_replace('*/ ','* ',$return);
+		preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		return $return;
 	}
 	
