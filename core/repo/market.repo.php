@@ -198,7 +198,11 @@ class repo_market {
 	
 	public static function backup_install(){
 		if (exec('which duplicity | wc -l') == 0) {
-			com_shell::execute('sudo apt-get -y install duplicity');
+			try {
+				com_shell::execute('sudo apt-get -y install duplicity');
+			} catch (\Exception $e) {
+				
+			}
 		}
 	}
 	
