@@ -45,7 +45,7 @@ $(function(){
 })
 
 $('#bt_editCode').on('click', function () {
-  loadPage('index.php?v=d&p=editor&rootPath='+encodeURIComponent('data/customTemplates'));
+  loadPage('index.php?v=d&p=editor&type=widget');
 })
 
 //context menu

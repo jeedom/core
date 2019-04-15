@@ -2,15 +2,13 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-if(init('rootPath') != ''){
-	if(strpos(urldecode(init('rootPath')),'..') !== false){
-		throw new \Exception(__('Répertoire racine interdit',__FILE__));
-	}
-	$rootPath = __DIR__ . '/../../'.urldecode(init('rootPath')).'/';
-}else{
-	$rootPath = __DIR__ . '/../../';
+$rootPath = __DIR__ . '/../../';
+if(init('type') == 'widget'){
+	$rootPath = __DIR__ . '/../../data/customTemplates/';
 }
 sendVarToJS('rootPath', $rootPath);
+sendVarToJS('editorType', init('type'));
+global $JEEDOM_INTERNAL_CONFIG;
 ?>
 
 <div class="row row-overflow">
@@ -43,4 +41,62 @@ sendVarToJS('rootPath', $rootPath);
 		<textarea class="form-control" id="ta_fileContent"></textarea>
 	</div>
 </div>
-<?php include_file("desktop", "editor", "js");?>
+
+
+<div id="md_widgetCreate" style="overflow-x: hidden;">
+	<form class="form-horizontal">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-xs-4 control-label">{{Version}}</label>
+				<div class="col-xs-4">
+					<select id="sel_widgetVersion">
+						<option value="dashboard">{{Dashboard}}</option>
+						<option value="mobile">{{Mobile}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-4 control-label">{{Type}}</label>
+				<div class="col-xs-4">
+					<select  id="sel_widgetType">
+						<?php
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+							echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</option>';
+						}
+						?>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-4 control-label">{{Sous-type}}</label>
+				<div class="col-xs-4">
+					<select id="sel_widgetSubtype">
+						<option value="" data-default="1"><a></option>
+							<?php
+							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+								foreach ($value['subtype'] as $skey => $svalue) {
+									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+								}
+							}
+							?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">{{Nom}}</label>
+					<div class="col-xs-4">
+						<input id="in_widgetName" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label"></label>
+					<div class="col-xs-4">
+						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		
+	</div>
+	<?php include_file("desktop", "editor", "js");?>
+	
