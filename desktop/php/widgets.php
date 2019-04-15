@@ -32,7 +32,8 @@ global $JEEDOM_INTERNAL_CONFIG;
         }else{
           echo '<span><i class="fas fa-image"></i></span>';
         }
-        echo "<br/>";
+        echo '<br/>';
+        echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widgets->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widgets->getSubType() .'</span></span>'; 
         echo '<span class="name">' . $widgets->getName() . '</span><br/>';
         echo '</div>';
       }
