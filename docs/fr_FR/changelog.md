@@ -9,7 +9,10 @@ Changelog
 - Correction d'un bug sur la mise à jour des résumés en design
 - Correction d'un bug sur la gestion des niveaux d'alertes sur certain widget lors de la mise à jour de la valeur
 - Correction de l'affichage des équipements désactivés sur certains plugins
-- Correction d'un bug lors de l'indication de changement de pile à jeedom
+- Correction d'un bug lors de l'indication de changement de pile à Jeedom
+- Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
+- Correction de bug lors de la mise à jour de variable (qui ne lancé pas toujours les scénarios ou ne déclenché pas une mise à jour des commandes dans tous les cas)
+
 
 3.3.20
 =====
