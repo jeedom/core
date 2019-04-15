@@ -18,44 +18,44 @@ $optionMaxSize = 15;
 	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="interactListContainer">
-			<div class="cursor success" id="bt_addInteract2">
+			<div class="cursor logoPrimary" id="bt_addInteract2">
 				<center>
 					<i class="fas fa-plus-circle"></i>
 				</center>
 				<span><center>{{Ajouter}}</center></span>
 			</div>
-			<div class="cursor warning" id="bt_regenerateInteract2">
+			<div class="cursor logoSecondary" id="bt_regenerateInteract2">
 				<center>
 					<i class="fas fa-sync"></i>
 				</center>
 				<span><center>{{Regénérer}}</center></span>
 			</div>
-			<div class="cursor info" id="bt_testInteract2">
+			<div class="cursor logoSecondary" id="bt_testInteract2">
 				<center>
 					<i class="fas fa-comment"></i>
 				</center>
 				<span ><center>{{Tester}}</center></span>
 			</div>
 		</div>
-
+		
 		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
 		<?php
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
 		} else {
 			echo '<div class="input-group" style="margin-bottom:5px;">';
-				echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
-				echo '<div class="input-group-btn">';
-					echo '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
-				echo '</div>';
-				echo '<div class="input-group-btn">';
-						echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
-				echo '</div>';
-				echo '<div class="input-group-btn">';
-						echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-				echo '</div>';
+			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
+			echo '<div class="input-group-btn">';
+			echo '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
 			echo '</div>';
-
+			echo '<div class="input-group-btn">';
+			echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+			echo '</div>';
+			echo '<div class="input-group-btn">';
+			echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			echo '</div>';
+			echo '</div>';
+			
 			echo '<div class="panel-group" id="accordionInteract">';
 			if (count($interacts[-1]) > 0) {
 				echo '<div class="panel panel-default">';
@@ -123,7 +123,7 @@ $optionMaxSize = 15;
 		}
 		?>
 	</div>
-
+	
 	<div class="interact col-xs-12" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -133,7 +133,7 @@ $optionMaxSize = 15;
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-
+		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
@@ -141,7 +141,7 @@ $optionMaxSize = 15;
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 	</ul>
-
+	
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
@@ -235,7 +235,7 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="filtertab">
 			<br/>
 			<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
@@ -246,116 +246,116 @@ $optionMaxSize = 15;
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de type}}</label><br/><br/>
 								<?php
-									$size = 0;
-									$html = '';
-									foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="'.$id.'">'.$type['name'].'</option>';
-										$size += 1;
-									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								$size = 0;
+								$html = '';
+								foreach (jeedom::getConfiguration('cmd:type') as $id => $type) {
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="'.$id.'">'.$type['name'].'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de sous-type}}</label><br/><br/>
 								<?php
-									$size = 0;
-									$html = '';
-									foreach (jeedom::getConfiguration('cmd:type') as $type) {
-										foreach ($type['subtype'] as $id => $subtype) {
-											$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="'.$id.'">'.$subtype['name'].'</option>';
-											$size += 1;
-										}
+								$size = 0;
+								$html = '';
+								foreach (jeedom::getConfiguration('cmd:type') as $type) {
+									foreach ($type['subtype'] as $id => $subtype) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="'.$id.'">'.$subtype['name'].'</option>';
+										$size += 1;
 									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes par unité}}</label><br/><br/>
 								<?php
-									$size = 1;
-									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
-									foreach (cmd::allUnite() as $unite) {
-										if (trim($unite['unite']) == '') {
-											continue;
-										}
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="'.$unite['unite'].'">'.$unite['unite'].'</option>';
-										$size += 1;
+								$size = 1;
+								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
+								foreach (cmd::allUnite() as $unite) {
+									if (trim($unite['unite']) == '') {
+										continue;
 									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="'.$unite['unite'].'">'.$unite['unite'].'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes des objets}}</label><br/><br/>
 								<?php
-									$size = 0;
-									$html = '';
-									foreach (jeeObject::all() as $object) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="'.$object->getId().'">'.$object->getName().'</option>';
-										$size += 1;
-									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								$size = 0;
+								$html = '';
+								foreach (jeeObject::all() as $object) {
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="'.$object->getId().'">'.$object->getName().'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Plugins}}</label><br/><br/>
 								<?php
-									$size = 0;
-									$html = '';
-									foreach (eqLogic::allType() as $type) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="'.$type['type'].'">'.$type['type'].'</option>';
-										$size += 1;
-									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								$size = 0;
+								$html = '';
+								foreach (eqLogic::allType() as $type) {
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="'.$type['type'].'">'.$type['type'].'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Catégories}}</label><br/><br/>
 								<?php
-									$size = 1;
-									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
-									foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="'.$id.'">'.$category['name'].'</option>';
-										$size += 1;
-									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								$size = 1;
+								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
+								foreach (jeedom::getConfiguration('eqLogic:category') as $id => $category) {
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="'.$id.'">'.$category['name'].'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<div class="col-sm-12">
 							<div class="col-sm-2">
 								<label class="control-label"><i class="fas fa-filter"></i> {{Visibles}}</label><br/><br/>
 								<?php
-									$size = 0;
-									$html = '';
-									foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="'.$id.'">'.$name.'</option>';
-										$size += 1;
-									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-									$html .= '</select>';
-									echo $html;
+								$size = 0;
+								$html = '';
+								foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
+									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="'.$id.'">'.$name.'</option>';
+									$size += 1;
+								}
+								if ($size > $optionMaxSize) $size = $optionMaxSize;
+								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
+								$html .= '</select>';
+								echo $html;
 								?>
 							</div>
 							<div class="col-sm-4">
@@ -374,18 +374,18 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="actiontab">
 			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 			<br/><br/>
 			<form class="form-horizontal">
 				<fieldset>
-
+					
 					<div id="div_action"></div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-
+	
 	<?php include_file('desktop', 'interact', 'js');?>
-
+	

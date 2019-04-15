@@ -8,14 +8,19 @@ global $JEEDOM_INTERNAL_CONFIG;
   <div id="div_widgetsList" class="col-xs-12">
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
     <div class="widgetsListContainer">
-      <div class="cursor success" id="bt_addWidgets">
+      <div class="cursor logoPrimary" id="bt_addWidgets">
         <center>
           <i class="fas fa-plus-circle"></i>
         </center>
         <span><center>{{Ajouter}}</center></span>
       </div>
+      <div class="cursor logoSecondary" id="bt_editCode">
+        <center>
+          <i class="far fa-file-code"></i>
+        </center>
+        <span><center>{{Code}}</center></span>
+      </div>
     </div>
-    
     <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>
@@ -33,7 +38,7 @@ global $JEEDOM_INTERNAL_CONFIG;
           echo '<span><i class="fas fa-image"></i></span>';
         }
         echo '<br/>';
-        echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widgets->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widgets->getSubType() .'</span></span>'; 
+        echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widgets->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widgets->getSubType() .'</span></span>';
         echo '<span class="name">' . $widgets->getName() . '</span><br/>';
         echo '</div>';
       }
