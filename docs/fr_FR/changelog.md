@@ -5,18 +5,18 @@ Changelog
 3.3.21
 =====
 
-- Correction d'un bug ou l'affichage de l'heure pouvez dépasser 24h
-- Correction d'un bug sur la mise à jour des résumés en désign
-- Correction d'un bug sur la gestion des niveau d'alerte sur certain widget lors de la mise à jour de la valeur
-- Correction de l'affichage des équipements désactivés sur certain plugins
+- Correction d'un bug ou l'affichage de l'heure pouvait dépasser 24h
+- Correction d'un bug sur la mise à jour des résumés en design
+- Correction d'un bug sur la gestion des niveaux d'alertes sur certain widget lors de la mise à jour de la valeur
+- Correction de l'affichage des équipements désactivés sur certains plugins
 - Correction d'un bug lors de l'indication de changement de pile à jeedom
 
 3.3.20
 =====
 
-- Correction d'un bug sur les scénario ou ceux-ci pouvez rester bloqués à "en cours" alors qu'ils sont désactivé
-- Correction d'un soucis de lancement de scénario non planifié
-- Correction de bug liée au fueseau horraire
+- Correction d'un bug sur les scénarios ou ceux-ci pouvaient rester bloqués à "en cours" alors qu'ils sont désactivés
+- Correction d'un souci de lancement de scénario non planifié
+- Correction de bug lié au fuseau horaire
 
 3.3.19
 =====
