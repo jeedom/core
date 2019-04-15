@@ -52,7 +52,7 @@ if (!isConnect('admin')) {
 			</tbody>
 		</table>
 	</div>
-	<div role="tabpanel" class="tab-pane" id="log">
+	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
 		<legend style="cursor:default;"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
 		<pre id="pre_updateInfo"></pre>
 	</div>
@@ -95,25 +95,25 @@ if (!isConnect('admin')) {
 				</div>
 			</div>
 			<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur "Aucune"}}</div>
-				<div class="form-group has-error">
-					<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
-					<div class="col-xs-5">
-						<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
-							<option value="">{{Aucune}}</option>
-							<?php
-							$updates = array();
-							foreach (update::listCoreUpdate() as $udpate) {
-								$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
-							}
-							usort($updates, 'version_compare');
-							$updates = array_reverse($updates);
-							foreach ($updates as $value) {
-								echo '<option value="' . $value . '">' . $value . '</option>';
-							}
-							?>
-						</select>
-					</div>
+			<div class="form-group has-error">
+				<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
+				<div class="col-xs-5">
+					<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
+						<option value="">{{Aucune}}</option>
+						<?php
+						$updates = array();
+						foreach (update::listCoreUpdate() as $udpate) {
+							$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+						}
+						usort($updates, 'version_compare');
+						$updates = array_reverse($updates);
+						foreach ($updates as $value) {
+							echo '<option value="' . $value . '">' . $value . '</option>';
+						}
+						?>
+					</select>
 				</div>
+			</div>
 		</fieldset>
 	</form>
 	<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
