@@ -7,14 +7,14 @@ Changelog
 
 - Correction d'un bug ou l'affichage de l'heure pouvait dépasser 24h
 - Correction d'un bug sur la mise à jour des résumés en design
-- Correction d'un bug sur la gestion des niveaux d'alertes sur certain widget lors de la mise à jour de la valeur
+- Correction d'un bug sur la gestion des niveaux d'alertes sur certains widgets lors de la mise à jour de la valeur
 - Correction de l'affichage des équipements désactivés sur certains plugins
 - Correction d'un bug lors de l'indication de changement de pile à Jeedom
 - Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
-- Correction de bug lors de la mise à jour de variable (qui ne lancé pas toujours les scénarios ou ne déclenché pas une mise à jour des commandes dans tous les cas)
-- Correction d'un bug sur les backups cloud, ou duplicity ne s'installait pas correctement
-- Amélioration du tts interne jeedom
-- Amélioration du systeme de verification de syntaxe cron
+- Correction de bug lors de la mise à jour de variable (qui ne lançait pas toujours les scénarios ou ne déclenchait pas une mise à jour des commandes dans tous les cas)
+- Correction d'un bug sur les backups Cloud, ou duplicity ne s'installait pas correctement
+- Amélioration du TTS interne à Jeedom
+- Amélioration du système de vérification de syntaxe cron
 
 
 3.3.20
