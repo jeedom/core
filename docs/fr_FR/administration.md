@@ -62,7 +62,8 @@ Thèmes
     le thème clair choisit précédement sera utilisé. Il faut cependant cocher l'option
     **Bascule du thème en fonction de l'heure**.
     
--   **Capteur de luminosité**   : Uniquement pour mobile. 
+-   **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer 
+    generic extra sensor dans chrome, page chrome://flags
 
 -   **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve
     dans les pages scénarios, objets, interactions, etc.
