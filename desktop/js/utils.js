@@ -13,6 +13,7 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 var JS_ERROR = [];
 
 window.addEventListener('error', function (evt) {
@@ -106,7 +107,7 @@ $(function () {
     initRowOverflow();
   }
   $('body').attr('data-page',getUrlVars('p'));
-
+  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
       return;
@@ -114,7 +115,7 @@ $(function () {
     var url = window.location.href.split("index.php?");
     loadPage('index.php?'+url[1],true)
   });
-
+  
   $('body').on('click','a',function(e){
     if($(this).hasClass('noOnePageLoad')){
       return;
@@ -139,8 +140,8 @@ $(function () {
     e.preventDefault();
     e.stopPropagation();
   });
-
-
+  
+  
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -155,8 +156,8 @@ $(function () {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   }
-
-
+  
+  
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -237,6 +238,7 @@ setInterval(function () {
   }
   $('#horloge').text(('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2))
 }, 1000);
+
 
 if (isset(jeedom_langage)) {
   bootbox.setDefaults({
@@ -521,7 +523,7 @@ function initTextArea(){
 }
 
 function initCheckBox(){
-
+  
 }
 
 function initPage(){
@@ -549,8 +551,8 @@ function initDropdowns(){
     $(this).closest('.dropdown').find('button').trigger('change')
   })
   setTimeout(function() {
-      dropDownsKeys()
-    }, 200)
+    dropDownsKeys()
+  }, 200)
 }
 
 function dropDownsKeys() {
@@ -559,15 +561,15 @@ function dropDownsKeys() {
     prevDropDownValue = $(this).html()
     prevDropDownDatavalue = $(this).attr('value')
   })
-
+  
   $('.dropdown-toggle').keydown(function(event) {
     if (event.which == 13) {
       $('body').trigger('click')
       return false
     }
-
+    
     key = event.key
-
+    
     if(key == 'Escape') {
       $(this).html(prevDropDownValue)
       $(this).attr('value', prevDropDownDatavalue)
@@ -575,13 +577,13 @@ function dropDownsKeys() {
       $('body').trigger('click')
       return false
     }
-
+    
     selected = -1
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       if ($(li).find('a').style('background-color') == 'var(--placeholder-color)' && selected < index) selected = index
       $(li).find('a').style('background-color', '')
     })
-
+    
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       value = $(li).find('a').text().toLowerCase()
       //handle '(kiki) value':
@@ -595,13 +597,13 @@ function dropDownsKeys() {
         }
       }
       value = value.trim()
-
+      
       //handle 'value1, value2':
       values = null
       if (value.indexOf(',') > -1) {
         values = value.split(',')
       }
-
+      
       if (values) {
         for (i = 0; i < values.length; i++) {
           value = values[i].trim()
@@ -611,7 +613,7 @@ function dropDownsKeys() {
       } else {
         match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
       }
-
+      
       if (match && selected < index) {
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
@@ -619,7 +621,7 @@ function dropDownsKeys() {
         $(this).closest('.dropdown').find('button').trigger('change')
         return false
       }
-
+      
     })
   })
 }
@@ -656,10 +658,14 @@ function initReportMode() {
   }
 }
 
-function initTableSorter(filter=true) {
-  var widgets = ['uitheme', 'filter', 'zebra', 'resizable'];
-  if (filter === false) widgets = widgets.filter(item => item !== 'filter')
-
+function initTableSorter(filter) {
+  var widgets = ['uitheme', 'zebra', 'resizable'];
+  if(!filter){
+    filter = true;
+  }
+  if (filter !== false) {
+    widgets = widgets.push('filter')
+  }
   $(".tablesorter").each(function () {
     $(".tablesorter").tablesorter({
       dateFormat : "yyyy-mm-dd",
@@ -764,12 +770,12 @@ function notify(_title, _text, _class_name) {
 
 jQuery.fn.findAtDepth = function (selector, maxDepth) {
   var depths = [], i;
-
+  
   if (maxDepth > 0) {
     for (i = 1; i <= maxDepth; i++) {
       depths.push('> ' + new Array(i).join('* > ') + selector);
     }
-
+    
     selector = depths.join(', ');
   }
   return this.find(selector);
@@ -788,7 +794,7 @@ function sleep(milliseconds) {
 function chooseIcon(_callback) {
   if ($("#mod_selectIcon").length == 0) {
     $('#div_pageContainer').append('<div id="mod_selectIcon" title="{{Choisissez votre icône}}" ></div>');
-
+    
     $("#mod_selectIcon").dialog({
       closeText: '',
       autoOpen: false,
@@ -1003,14 +1009,14 @@ function editWidgetCmdMode(_mode){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_table table.tableCmd').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default.ui-sortable').length > 0){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.ui-draggable').length > 0){
@@ -1169,7 +1175,7 @@ function editWidgetCmdMode(_mode){
       });
     }
   }
-
+  
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -1178,3 +1184,4 @@ function editWidgetCmdMode(_mode){
       b: parseInt(result[3], 16)
     } : null;
   }
+  

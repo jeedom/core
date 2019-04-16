@@ -8,10 +8,10 @@
   </select>
   <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
   <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
-
+  
   <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
   <select class="expressionAttr form-control input-sm type plan roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
-
+  
   <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
   <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 </div>
@@ -48,7 +48,7 @@
       $(this).closest('select').addClass('roundedRight')
     }
   });
-
+  
   jeedom.view.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -81,7 +81,7 @@
       }
     }
   });
-
+  
   jeedom.plugin.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -101,8 +101,8 @@
       }
     }
   });
-
-
+  
+  
   if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
   }
