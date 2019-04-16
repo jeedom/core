@@ -1,7 +1,7 @@
-C’est ici que se trouvent la plupart des paramètres de configuration.
-Bien que nombreux, ils sont pré-configurés par défaut.
+C’est sur cette page que se trouvent la plupart des paramètres de configuration.
+Bien que nombreux, une majorité sont pré-configurés par défaut.
 
-La page est accessible par **Administration → Configuration**.
+La page est accessible via  **Réglages → Système → Configuration**.
 
 Général 
 =======
@@ -9,155 +9,81 @@ Général
 Dans cet onglet on retrouve des informations générales sur Jeedom :
 
 -   **Nom de votre Jeedom** : Permet d’identifier votre Jeedom,
-    notamment dans le market. Il peut être réutilisé dans les scénarios
+    notamment dans le Market. Il peut être réutilisé dans les scénarios
     ou permettre d’identifier une sauvegarde.
+
+-   **Langue** : Langue utilisée dans votre Jeedom.
 
 -   **Système** : Type de matériel sur lequel est installé le système où
     votre Jeedom tourne.
 
--   **Clef d’installation** : Clef matérielle de votre Jeedom sur
-    le market. Si votre Jeedom n’apparaît pas dans la liste de vos
-    Jeedom sur le market, il est conseillé de cliquer sur le bouton
-    **Remise à zéro**.
-
--   **Langue** : Langue utilisée dans votre Jeedom.
-
 -   **Générer les traductions** : Permet de générer les traductions,
     attention, cela peut ralentir votre système. Option surtout utile
     pour les développeurs.
-
--   **Durée de vie des sessions (heure)** : durée de vie des sessions
-    PHP, il est déconseillé de toucher à ce paramètre.
 
 -   **Date et heure** : Choix de votre fuseau horaire. Vous pouvez
     cliquer sur **Forcer la synchronisation de l’heure** pour rétablir
     une mauvaise heure affichée en haut à droite.
 
 -   **Serveur de temps optionnel** : Indique quel serveur de temps doit
-    être utilisé si vous cliquez sur **Forcer la synchronisation de
-    l’heure**. (à réserver aux experts)
+    être utilisé si vous cliquez sur **Forcer la synchronisation de l’heure**
+    (à réserver aux experts).
 
 -   **Ignorer la vérification de l’heure** : indique à Jeedom de ne pas
     vérifier si l’heure est cohérente entre lui-même et le système sur
-    lequel il tourne. Peut être utile, par exemple, si vous ne connectez
+    lequel il tourne. Peut être utile par exemple, si vous ne connectez
     pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
     matériel utilisé.
-
-API 
-===
-
-Vous trouvez ici la liste des différentes clés API disponibles dans
-votre Jeedom. De base, le core a deux clés API :
-
--   une générale : autant que possible, il faut éviter de l’utiliser,
-
--   et une autre pour les professionnels : utilisée pour la gestion
-    de parc. Elle peut être vide.
-
--   Puis, vous trouverez une clé API par plugin en ayant besoin.
-
-Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et
-TTS, vous pouvez définir leur portée :
-
--   **Désactivée** : la clé API ne peut être utilisée,
-
--   **IP blanche** : seule une liste d’IPs est autorisée (voir
-    Administration→Configuration→Réseaux),
-
--   **Localhost** : seules les requêtes venant du système sur lequel est
-    installé Jeedom sont autorisées,
-
--   **Activé** : aucune restriction, n’importe quel système ayant accès
-    à votre Jeedom pourra accéder à cette API.
-
-&gt;\_OS/DB 
-===========
-
-Deux parties réservées aux experts sont présentes dans cet onglet.
-
-> **Important**
->
-> ATTENTION : Si vous modifiez Jeedom avec l’une de ces deux solutions,
-> le support peut refuser de vous aider.
-
--   **&gt;\_Système** : Permet d’accéder à une interface
-    d’administration système. C’est une sorte de console shell dans
-    laquelle vous pouvez lancer les commandes les plus utiles, notamment
-    pour obtenir des informations sur le système.
     
--   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
-    d'exploitation et de les éditer ou supprimer ou d'en créer. 
-
--   **Base de données** : Administration / Lancer : Permet d’accéder à la base de données
-    de Jeedom. Vous pouvez alors lancer des commandes dans le champs
-    du haut. 
-    Vérification / Lancer : Permet de lancer une vérification sur la base de données
-    de Jeedom et de corriger si nécessaire les erreurs
+-   **Système** : Indique le type de matériel sur lequel Jeedom est installé.   
     
-    Deux paramètres s’affichent, en dessous, pour information :
+-   **Clef d’installation** : Clef matérielle de votre Jeedom sur
+    le Market. Si votre Jeedom n’apparaît pas dans la liste de vos
+    Jeedom sur le Market, il est conseillé de cliquer sur le bouton
+    **Remise à zéro**.
+
+-   **Dernière date connue** : Date enregistrée par Jeedom, utilisée après 
+    un redémarrage pour des systèmes n'ayant pas de pile RTC.
+
+Interface
+=========
+
+Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
+
+Thèmes 
+------
+
+-   **Desktop clair et sombre** : Vous permet de choisir un thème clair
+    et un sombre pour le Desktop.
     
-    -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
-        la base de données,
+-   **Mobile clair et sombre** : idem que précédement pour la version Mobile.
 
-    -   **Mot de passe** : mot de passe d’accès à la base de données
-        utilisé par Jeedom.
+-   **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle
+    le thème clair choisit précédement sera utilisé. Il faut cependant cocher l'option
+    **Bascule du thème en fonction de l'heure**.
     
-Sécurité 
-========
+-   **Capteur de luminosité**   : Uniquement pour mobile. 
 
-LDAP 
-----
+-   **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve
+    dans les pages scénarios, objets, interactions, etc.
 
--   **Activer l’authentification LDAP** : active l’authentification à
-    travers un AD (LDAP)
+Tuiles 
+------
 
--   **Hôte** : serveur hébergeant l’AD
+-   **Tuiles Pas horizontal** : Contraint la largeur des tuiles tous les x pixels.
 
--   **Domaine** : domaine de votre AD
+-   **Tuiles Pas vertical** : Contraint la hauteur des tuiles tous les x pixels.
 
--   **Base DN** : base DN de votre AD
+-   **Tuiles Marge** : Espace vertical et horizontal entre les tuiles, en pixels.
 
--   **Nom d’utilisateur** : nom d’utilisateur pour que Jeedom se
-    connecte à l’AD
-
--   **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD
-
--   **Champs recherche utilisateur** : champs de recherche du
-    login utilisateur. En général uid pour LDAP, SamAccountName pour
-    Windows AD
-
--   **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des
-    groupes par exemple)
-
--   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
-    par exemple)
-
-Connexion 
----------
-
--   **Nombre d’échecs tolérés** : définit le nombre de tentatives
-    successives autorisées avant de bannir l’IP
-
--   **Temps maximum entre les échecs (en secondes)** : temps maximum
-    pour que 2 tentatives soient considérées comme successives
-
--   **Durée du bannissement (en secondes), -1 pour infini** : temps de
-    bannissement de l’IP
-
--   **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
-
--   **Supprimer les IPs bannies** : Permet de vider la liste des IP
-    actuellement bannies
-
-La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
-l’IP, la date de bannissement et la date de fin de bannissement
-programmée.
+Personnalisation 
+----------------
 
 Réseaux 
 =======
 
 Il faut absolument configurer correctement cette partie importante de
-Jeedom, sinon beaucoup de plugins risqueraient de ne pas fonctionner. Il
+Jeedom sinon beaucoup de plugins risquent de ne pas fonctionner. Il
 est possible d’accéder à Jeedom de deux manières différentes : L'**accès
 interne** (depuis le même réseau local que Jeedom) et l'**accès
 externe** (depuis un autre réseau notamment depuis Internet).
@@ -242,34 +168,90 @@ externe** (depuis un autre réseau notamment depuis Internet).
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la
 > configuration du pare-feu et du filtre parental de votre box Internet
 > (sur livebox il faut par exemple le pare-feu en niveau moyen).
+-   **Durée de vie des sessions (heure)** : durée de vie des sessions
+    PHP, il est déconseillé de toucher à ce paramètre.
 
-Couleurs 
-========
+Logs 
+====
 
-La colorisation des widgets est effectuée en fonction de la catégorie à
-laquelle appartient l’équipement. Parmi les catégories on retrouve le
-Chauffage, Sécurité, Energie, Lumière, Automatisme, Multimedia, Autre…​
+Timeline 
+--------
 
-Pour chaque catégorie, on pourra différencier les couleurs de la version
-desktop et de la version mobile. On peut alors changer :
+-   **Nombre maximum d’évènements** : Définit le nombre maximum d'évènements à
+    afficher dans la timeline.
 
--   la couleur du fond des widgets,
+-   **Supprimer tous les évènements** : Permet de vider la timeline de
+    tous ses évènements enregistrés.
 
--   la couleur de la commande lorsque le widget est de type graduel (par
-    exemple les lumières, les volets, les températures).
+Messages 
+--------
 
-En cliquant sur la couleur une fenêtre s’ouvre, permettant de choisir sa
-couleur. La croix à côté de la couleur permet de revenir au paramètre
-par défaut.
+-   **Ajouter un message à chaque erreur dans les logs** : si un plugin
+    ou Jeedom écrit un message d’erreur dans un log, Jeedom ajoute
+    automatiquement un message dans le centre des messages (au moins
+    vous êtes sûr de ne pas le manquer).
 
-En haut de page, vous pouvez aussi configurer la transparence des
-widgets de manière globale (ce sera la valeur par défaut. Il est
-possible ensuite de modifier cette valeur widget par widget). Pour ne
-mettre aucune transparence, laissez 1.0 .
+-   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre des messages. Vous avez 2 tags pour ces actions : 
+        - #message# : message en question
+        - #plugin# : plugin qui a déclenché le message
 
-> **Tip**
->
-> N’oubliez pas de sauvegarder après toute modification.
+Alertes 
+-------
+
+-   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
+    centre de message si un équipement tombe en **timeout**.
+
+-   **Commande sur Timeout** : Commande de type **message** à utiliser
+    si un équipement est en **timeout**.
+
+-   **Ajouter un message à chaque Batterie en Warning** : Ajoute un
+    message dans le centre de messages si un équipement a son niveau de
+    batterie en **warning**.
+
+-   **Commande sur Batterie en Warning** : Commande de type **message**
+    à utiliser si un équipement à son niveau de batterie en **warning**.
+
+-   **Ajouter un message à chaque Batterie en Danger** : Ajoute un
+    message dans le centre de messages si un équipement à son niveau de
+    batterie en **danger**.
+
+-   **Commande sur Batterie en Danger** : Commande de type **message** à
+    utiliser si un équipement à son niveau de batterie en **danger**.
+
+-   **Ajouter un message à chaque Warning** : Ajoute un message dans le
+    centre de messages si une commande passe en alerte **warning**.
+
+-   **Commande sur Warning** : Commande de type **message** à utiliser
+    si une commande passe en alerte **warning**.
+
+-   **Ajouter un message à chaque Danger** : Ajoute un message dans le
+    centre de messages si une commande passe en alerte **danger**.
+
+-   **Commande sur Danger** : Commande de type **message** à utiliser si
+    une commande passe en alerte **danger**.
+
+Logs 
+----
+
+-   **Moteur de log** : Permet de changer le moteur de log pour, par
+    exemple, les envoyer à un demon syslog(d).
+
+-   **Format des logs** : Format de log à utiliser (Attention : ça
+    n’affecte pas les logs des démons).
+
+-   **Nombre de lignes maximum dans un fichier de log** : Définit le
+    nombre maximum de lignes dans un fichier de log. Il est recommandé
+    de ne pas toucher cette valeur, car une valeur trop grande pourrait
+    remplir le système de fichiers et/ou rendre Jeedom incapable
+    d’afficher le log.
+
+-   **Niveau de log par défaut** : Quand vous sélectionnez "Défaut",
+    pour le niveau d’un log dans Jeedom, c’est celui-ci qui sera
+    alors utilisé.
+
+En dessous vous retrouvez un tableau permettant de gérer finement le
+niveau de log des éléments essentiels de Jeedom ainsi que celui des
+plugins.
 
 Commandes 
 =========
@@ -340,24 +322,94 @@ nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
 commande, **\#humanname\#** pour le nom complet de la commande (ex :
 \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#` pour le nom de l'équipement
 
-Cache 
+Résumés 
+=======
+
+Permet d’ajouter des résumés d’objets. Cette information est affichée
+tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
+objets :
+
+-   **Clef** : Clé du résumé, à ne surtout pas toucher.
+
+-   **Nom** : Nom du résumé.
+
+-   **Calcul** : Méthode de calcul, peut être de type :
+
+    -   **Somme** : fait la somme des différentes valeurs,
+
+    -   **Moyenne** : fait la moyenne des valeurs,
+
+    -   **Texte** : affiche textuellement la valeur (surtout pour celles
+        de type chaine de caractères).
+
+-   **Icone** : Icône du résumé.
+
+-   **Unité** : Unité du résumé.
+
+-   **Méthode de comptage** : Si vous comptez une donnée binaire alors
+    il faut mettre cette valeur à binaire, exemple si vous comptez le
+    nombre de lampes allumées mais que vous avez juste la valeur du
+    variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom
+    considéra que si la valeur est supérieure à 1, alors la lampe
+    est allumée.
+
+-   **Afficher si valeur égale 0** : Cochez cette case pour afficher la
+    valeur, même quand elle vaut 0.
+
+-   **Lier à un virtuel** : Lance la création de commandes virtuelles
+    ayant pour valeur celles du résumé.
+
+-   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
+    de supprimer le résumé de la ligne.
+
+Equipements 
+===========
+
+-   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
+    d’échecs de communication avec l’équipement avant désactivation de
+    celui-ci (un message vous préviendra si cela arrive).
+
+-   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
+    sur les piles.
+
+Rapports 
+========
+
+Permet de configurer la génération et la gestion des rapports
+
+-   **Délai d’attente après génération de la page (en ms)** : Délai
+    d’attente après chargement du rapport pour faire la "photo", à
+    changer si votre rapport est incomplet par exemple.
+
+-   **Nettoyer les rapports plus anciens de (jours)** : Définit le
+    nombre de jours avant de supprimer un rapport (les rapports prennent
+    un peu de place donc attention à ne pas mettre trop
+    de conservation).
+
+Liens 
 =====
 
-Permet de surveiller et d’agir sur le cache de Jeedom :
+Permet de configurer les graphiques de liens. Ces liens permettent de
+voir, sous forme d’un graphique, les relations entre les objets, les
+équipements, les objets, etc.
 
--   **Statistiques** : Nombre d’objets actuellement en cache
+-   **Profondeur pour les scénarios** : Permet de définir, lors de
+    l’affichage d’un graphique de liens d’un scénario, le nombre
+    d’éléments maximum à afficher (plus il y a d’éléments plus le
+    graphique sera lent à générer et plus il sera difficile à lire).
 
--   **Nettoyer le cache** : Force la suppression des objets qui ne sont
-    plus utiles. Jeedom le fait automatiquement toutes les nuits.
+-   **Profondeur pour les objets** : Idem pour les objets.
 
--   **Vider toutes les données en cache** : Vide complètement le cache.
-    Attention cela peut faire perdre des données !
+-   **Profondeur pour les équipements** : Idem pour les équipements.
 
--   **Temps de pause pour le long polling** : Fréquence à laquelle
-    Jeedom vérifie si il y a des événements en attente pour les clients
-    (interface web, application mobile…​). Plus ce temps est court, plus
-    l’interface se mettra à jour rapidement, en contre partie cela
-    utilise plus de ressources et peut donc ralentir Jeedom.
+-   **Profondeur pour les commandes** : Idem pour les commandes.
+
+-   **Profondeur pour les variables** : Idem pour les variables.
+
+-   **Paramètre de prerender** : Permet d’agir sur la disposition
+    du graphique.
+
+-   **Paramètre de render** : Idem.
 
 Interactions 
 ============
@@ -495,189 +547,57 @@ Voici donc les différentes options disponibles :
     commande de type slider au minimu (ex ferme pour fermer le volet de
     la chambre ⇒ volet chambre à 0%).
 
-Couleurs 
---------
-
-Cette partie permet de définir les couleurs que Jeedom associera aux
-mots rouge/bleu/noir…​ Pour ajouter une couleur :
-
--   Cliquez sur le bouton **+**, à droite,
-
--   Donnez un nom à votre couleur,
-
--   Choisissez la couleur associée en cliquant sur la case de droite.
-
-Rapports 
+Sécurité 
 ========
 
-Permet de configurer la génération et la gestion des rapports
+LDAP 
+----
 
--   **Délai d’attente après génération de la page (en ms)** : Délai
-    d’attente après chargement du rapport pour faire la "photo", à
-    changer si votre rapport est incomplet par exemple.
+-   **Activer l’authentification LDAP** : active l’authentification à
+    travers un AD (LDAP)
 
--   **Nettoyer les rapports plus anciens de (jours)** : Définit le
-    nombre de jours avant de supprimer un rapport (les rapports prennent
-    un peu de place donc attention à ne pas mettre trop
-    de conservation).
+-   **Hôte** : serveur hébergeant l’AD
 
-Liens 
-=====
+-   **Domaine** : domaine de votre AD
 
-Permet de configurer les graphiques de liens. Ces liens permettent de
-voir, sous forme d’un graphique, les relations entre les objets, les
-équipements, les objets, etc.
+-   **Base DN** : base DN de votre AD
 
--   **Profondeur pour les scénarios** : Permet de définir, lors de
-    l’affichage d’un graphique de liens d’un scénario, le nombre
-    d’éléments maximum à afficher (plus il y a d’éléments plus le
-    graphique sera lent à générer et plus il sera difficile à lire).
+-   **Nom d’utilisateur** : nom d’utilisateur pour que Jeedom se
+    connecte à l’AD
 
--   **Profondeur pour les objets** : Idem pour les objets.
+-   **Mot de passe** : mot de passe pour que Jeedom se connecte à l’AD
 
--   **Profondeur pour les équipements** : Idem pour les équipements.
+-   **Champs recherche utilisateur** : champs de recherche du
+    login utilisateur. En général uid pour LDAP, SamAccountName pour
+    Windows AD
 
--   **Profondeur pour les commandes** : Idem pour les commandes.
+-   **Filtre (optionnel)** : filtre sur l’AD (pour la gestion des
+    groupes par exemple)
 
--   **Profondeur pour les variables** : Idem pour les variables.
+-   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
+    par exemple)
 
--   **Paramètre de prerender** : Permet d’agir sur la disposition
-    du graphique.
+Connexion 
+---------
 
--   **Paramètre de render** : Idem.
+-   **Nombre d’échecs tolérés** : définit le nombre de tentatives
+    successives autorisées avant de bannir l’IP
 
-Résumés 
-=======
+-   **Temps maximum entre les échecs (en secondes)** : temps maximum
+    pour que 2 tentatives soient considérées comme successives
 
-Permet d’ajouter des résumés d’objets. Cette information est affichée
-tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
-objets :
+-   **Durée du bannissement (en secondes), -1 pour infini** : temps de
+    bannissement de l’IP
 
--   **Clef** : Clé du résumé, à ne surtout pas toucher.
+-   **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
 
--   **Nom** : Nom du résumé.
+-   **Supprimer les IPs bannies** : Permet de vider la liste des IP
+    actuellement bannies
 
--   **Calcul** : Méthode de calcul, peut être de type :
-
-    -   **Somme** : fait la somme des différentes valeurs,
-
-    -   **Moyenne** : fait la moyenne des valeurs,
-
-    -   **Texte** : affiche textuellement la valeur (surtout pour celles
-        de type chaine de caractères).
-
--   **Icone** : Icône du résumé.
-
--   **Unité** : Unité du résumé.
-
--   **Méthode de comptage** : Si vous comptez une donnée binaire alors
-    il faut mettre cette valeur à binaire, exemple si vous comptez le
-    nombre de lampes allumées mais que vous avez juste la valeur du
-    variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom
-    considéra que si la valeur est supérieure à 1, alors la lampe
-    est allumée.
-
--   **Afficher si valeur égale 0** : Cochez cette case pour afficher la
-    valeur, même quand elle vaut 0.
-
--   **Lier à un virtuel** : Lance la création de commandes virtuelles
-    ayant pour valeur celles du résumé.
-
--   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
-    de supprimer le résumé de la ligne.
-
-Logs 
-====
-
-Timeline 
---------
-
--   **Nombre maximum d’évènements** : Définit le nombre maximum à
-    afficher dans la timeline.
-
--   **Supprimer tous les évènements** : Permet de vider la timeline de
-    tous ses évènements enregistrés.
-
-Messages 
---------
-
--   **Ajouter un message à chaque erreur dans les logs** : si un plugin
-    ou Jeedom écrit un message d’erreur dans un log, Jeedom ajoute
-    automatiquement un message dans le centre des messages (au moins
-    vous êtes sûr de ne pas le manquer).
-
--   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre de message. Vous avez 2 tags pour ces actions : 
-        - #message# : message en question
-        - #plugin# : plugin qui a déclenché le message
-
-Alertes 
--------
-
--   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
-    centre de message si un équipement tombe en **timeout**.
-
--   **Commande sur Timeout** : Commande de type **message** à utiliser
-    si un équipement est en **timeout**.
-
--   **Ajouter un message à chaque Batterie en Warning** : Ajoute un
-    message dans le centre de messages si un équipement a son niveau de
-    batterie en **warning**.
-
--   **Commande sur Batterie en Warning** : Commande de type **message**
-    à utiliser si un équipement à son niveau de batterie en **warning**.
-
--   **Ajouter un message à chaque Batterie en Danger** : Ajoute un
-    message dans le centre de messages si un équipement à son niveau de
-    batterie en **danger**.
-
--   **Commande sur Batterie en Danger** : Commande de type **message** à
-    utiliser si un équipement à son niveau de batterie en **danger**.
-
--   **Ajouter un message à chaque Warning** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **warning**.
-
--   **Commande sur Warning** : Commande de type **message** à utiliser
-    si une commande passe en alerte **warning**.
-
--   **Ajouter un message à chaque Danger** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **danger**.
-
--   **Commande sur Danger** : Commande de type **message** à utiliser si
-    une commande passe en alerte **danger**.
-
-Log 
----
-
--   **Moteur de log** : Permet de changer le moteur de log pour, par
-    exemple, les envoyer à un demon syslog(d).
-
--   **Format des logs** : Format de log à utiliser (Attention : ça
-    n’affecte pas les logs des démons).
-
--   **Nombre de lignes maximum dans un fichier de log** : Définit le
-    nombre maximum de lignes dans un fichier de log. Il est recommandé
-    de ne pas toucher cette valeur, car une valeur trop grande pourrait
-    remplir le système de fichiers et/ou rendre Jeedom incapable
-    d’afficher le log.
-
--   **Niveau de log par défaut** : Quand vous sélectionnez "Défaut",
-    pour le niveau d’un log dans Jeedom, c’est celui-ci qui sera
-    alors utilisé.
-
-En dessous vous retrouvez un tableau permettant de gérer finement le
-niveau de log des éléments essentiels de Jeedom ainsi que celui des
-plugins.
-
-Equipements 
-===========
-
--   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
-    d’échecs de communication avec l’équipement avant désactivation de
-    celui-ci (un message vous préviendra si cela arrive).
-
--   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
-    sur les piles.
-
+La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
+l’IP, la date de bannissement et la date de fin de bannissement
+programmée.
+    
 Mise à jour et fichiers 
 =======================
 
@@ -801,4 +721,80 @@ un partage Samba (ex : NAS Synology).
 
 -   **URL version core Jeedom**
 
+Cache 
+=====
 
+Permet de surveiller et d’agir sur le cache de Jeedom :
+
+-   **Statistiques** : Nombre d’objets actuellement en cache
+
+-   **Nettoyer le cache** : Force la suppression des objets qui ne sont
+    plus utiles. Jeedom le fait automatiquement toutes les nuits.
+
+-   **Vider toutes les données en cache** : Vide complètement le cache.
+    Attention cela peut faire perdre des données !
+
+-   **Temps de pause pour le long polling** : Fréquence à laquelle
+    Jeedom vérifie si il y a des événements en attente pour les clients
+    (interface web, application mobile…​). Plus ce temps est court, plus
+    l’interface se mettra à jour rapidement, en contre partie cela
+    utilise plus de ressources et peut donc ralentir Jeedom.
+
+API 
+===
+
+Vous trouvez ici la liste des différentes clés API disponibles dans
+votre Jeedom. De base, le core a deux clés API :
+
+-   une générale : autant que possible, il faut éviter de l’utiliser,
+
+-   et une autre pour les professionnels : utilisée pour la gestion
+    de parc. Elle peut être vide.
+
+-   Puis, vous trouverez une clé API par plugin en ayant besoin.
+
+Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et
+TTS, vous pouvez définir leur portée :
+
+-   **Désactivée** : la clé API ne peut être utilisée,
+
+-   **IP blanche** : seule une liste d’IPs est autorisée (voir
+    Administration→Configuration→Réseaux),
+
+-   **Localhost** : seules les requêtes venant du système sur lequel est
+    installé Jeedom sont autorisées,
+
+-   **Activé** : aucune restriction, n’importe quel système ayant accès
+    à votre Jeedom pourra accéder à cette API.
+
+&gt;\_OS/DB 
+===========
+
+Deux parties réservées aux experts sont présentes dans cet onglet.
+
+> **Important**
+>
+> ATTENTION : Si vous modifiez Jeedom avec l’une de ces deux solutions,
+> le support peut refuser de vous aider.
+
+-   **&gt;\_Système** : Permet d’accéder à une interface
+    d’administration système. C’est une sorte de console shell dans
+    laquelle vous pouvez lancer les commandes les plus utiles, notamment
+    pour obtenir des informations sur le système.
+    
+-   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
+    d'exploitation et de les éditer ou supprimer ou d'en créer. 
+
+-   **Base de données** : Administration / Lancer : Permet d’accéder à la base de données
+    de Jeedom. Vous pouvez alors lancer des commandes dans le champs
+    du haut. 
+    Vérification / Lancer : Permet de lancer une vérification sur la base de données
+    de Jeedom et de corriger si nécessaire les erreurs
+    
+    Deux paramètres s’affichent, en dessous, pour information :
+    
+    -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
+        la base de données,
+
+    -   **Mot de passe** : mot de passe d’accès à la base de données
+        utilisé par Jeedom.
