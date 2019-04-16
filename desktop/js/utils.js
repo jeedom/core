@@ -174,31 +174,45 @@ $('body').on('focusin','.bootbox-input', function (e) {
   e.stopPropagation();
 });
 /************************Help*************************/
+function formatTZ(offsetMin) {
+  var utc ='(UTC';
+  if(offsetMin > 0 ) utc += '+';
+  else utc += '-';
+  offsetMin = Math.abs(offsetMin);
+  var nbh = Math.floor(offsetMin/60);
+  var nbmin = Math.floor(offsetMin%60);
+  utc += nbh;
+  if ( nbmin > 0 ) {
+    utc += ':';
+    utc += nbmin;
+  }
+  utc += ')';
+  return utc;
+}
 
 setInterval(function () {
-  var times = [ 0, 0, 0 ]
-  var max = times.length
-  var times = $('#horloge').text().split(':');
-  for (var i = 0; i < max; i++) {
-    times[i] = isNaN(parseInt(times[i])) ? 0 : parseInt(times[i])
+  var dateLoc = new Date;
+  var dateJeed = new Date;
+  dateJeed.setTime(dateLoc.getTime() +(dateLoc.getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime);
+  var Tloc = dateLoc.toLocaleTimeString();
+  var UtcLoc = formatTZ(-dateLoc.getTimezoneOffset());
+  var Tjeed = dateJeed.toLocaleTimeString();
+  var UtcJeed = formatTZ(serverTZoffsetMin);
+  var diff = ' CltSrvDiff:'+Math.round(clientServerDiffDatetime/100)/10+'s';
+  var Txt = '';
+  if ( serverTZoffsetMin + dateLoc.getTimezoneOffset() == 0) { // meme fuseau horaire
+    if ( Math.abs(clientServerDiffDatetime) < 60000 ) // Moins d'une minute d'écart
+      Txt = Tjeed;
+    else
+      Txt = Tloc +' / Jeedom ' +Tjeed +diff;
   }
-  var hours = times[0]
-  var minutes = times[1]
-  var seconds = times[2]+1
-  if (seconds >= 60) {
-    var m = (seconds / 60) << 0
-    minutes += m
-    seconds -= 60 * m
+  else {
+    if ( Math.abs(clientServerDiffDatetime) < 60000 ) // Moins d'une minute d'écart
+      Txt = Tloc+UtcLoc +' / Jeedom ' +Tjeed+UtcJeed;
+    else
+      Txt = Tloc+UtcLoc +' / Jeedom ' +Tjeed+UtcJeed +diff;
   }
-  if (minutes >= 60) {
-    var h = (minutes / 60) << 0
-    hours += h
-    minutes -= 60 * h
-  }
-  if (hours >= 24) {
-    hours = 0
-  }
-  $('#horloge').text(('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2))
+  $('#horloge').text(Txt);
 }, 1000);
 
 if (isset(jeedom_langage)) {
