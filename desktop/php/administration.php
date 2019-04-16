@@ -791,7 +791,7 @@ user::isBan();
 				<fieldset>
 					<legend>{{Thèmes}}</legend>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme Desktop clair}}</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme">
@@ -827,7 +827,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Theme mobile clair}}</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème mobile clair}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color">
