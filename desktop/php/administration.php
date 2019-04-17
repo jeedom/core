@@ -891,7 +891,7 @@ user::isBan();
 					<legend>{{Tuiles}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
-							<sup><i class="fas fa-question-circle tooltips" title="Contraint la hauteur des tuiles tous les x pixels"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="Contraint la largeur des tuiles tous les x pixels"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" class="configKey form-control" data-l1key="widget::step::width" />
@@ -899,7 +899,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
-							<sup><i class="fas fa-question-circle tooltips" title="Contraint la largeur des tuiles tous les x pixels"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="Contraint la hauteur des tuiles tous les x pixels"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" class="configKey form-control" data-l1key="widget::step::height" />
