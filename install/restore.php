@@ -40,7 +40,7 @@ try {
 	echo "***************Début de la restauration de Jeedom " . date('Y-m-d H:i:s') . "***************\n";
 
 	try {
-		echo "Envoie l'événement de début de restauration...";
+		echo "Envoi l'évènement de début de restauration...";
 		jeedom::event('begin_restore', true);
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -88,7 +88,7 @@ try {
 	}
 
 	try {
-		echo "Vérifiez les droits...";
+		echo "Vérification des droits...";
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
@@ -133,15 +133,15 @@ try {
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Impossible de trouver le fichier de la base de données de la sauvegarde : DB_backup.sql');
 	}
-	echo "Supprimer la table de la sauvegarde";
+	echo "Suppression de la table de la sauvegarde";
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
-	echo "Désactive les contraintes...";
+	echo "Désactivation des contraintes...";
 	DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
 	echo "OK\n";
 	foreach ($tables as $table) {
 		$table = array_values($table);
 		$table = $table[0];
-		echo "Supprimer la table : " . $table . ' ...';
+		echo "Suppression de la table : " . $table . ' ...';
 		DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
 	}
@@ -154,7 +154,7 @@ try {
 	}
 	echo "OK\n";
 
-	echo "Active les contraintes...";
+	echo "Activation des contraintes...";
 	try {
 		DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
 	} catch (Exception $e) {
@@ -180,7 +180,7 @@ try {
 		$plugin_id = $plugin->getId();
 		$dependancy_info = $plugin->dependancy_info(true);
 		if (method_exists($plugin_id, 'restore')) {
-			echo 'Plugin restoration : ' . $plugin_id . '...';
+			echo 'Restauration des Plugins : ' . $plugin_id . '...';
 			$plugin_id::restore();
 			echo "OK\n";
 		}
@@ -190,7 +190,7 @@ try {
 	$cache->remove();
 
 	try {
-		echo "Check jeedom consistency...";
+		echo "Vérification de la consistance de Jeedom...";
 		require_once __DIR__ . '/consistency.php';
 		echo "OK\n";
 	} catch (Exception $ex) {
@@ -204,7 +204,7 @@ try {
 	}
 
 	try {
-		echo "Envoie l'événement de la fin de la sauvegarde...";
+		echo "Envoi l'évènement de la fin de la sauvegarde...";
 		jeedom::event('end_restore');
 		echo "OK\n";
 	} catch (Exception $e) {
