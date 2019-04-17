@@ -4,9 +4,7 @@ $replace = array(
   '<i class="fa' => '<i class="fas'
 );
 
-
-$objects = jeeObject::all();
-foreach ($objects as $object) {
+foreach (jeeObject::all() as $object) {
   try {
     utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
     $object->save();
@@ -15,8 +13,7 @@ foreach ($objects as $object) {
   }
 }
 
-$eqLogics = eqLogic::all();
-foreach ($eqLogics as $eqLogic) {
+foreach (eqLogic::all() as $eqLogic) {
   try {
     utils::a2o($eqLogic,str_replace(array_keys($replace), $replace, utils::o2a($eqLogic)));
     $eqLogic->save();
@@ -25,11 +22,19 @@ foreach ($eqLogics as $eqLogic) {
   }
 }
 
-$cmds = cmd::all();
-foreach ($cmds as $cmd) {
+foreach (cmd::all() as $cmd) {
   try {
     utils::a2o($cmd,str_replace(array_keys($replace), $replace, utils::o2a($cmd)));
     $cmd->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (scenario::all() as $scenario) {
+  try {
+    utils::a2o($scenario,str_replace(array_keys($replace), $replace, utils::o2a($scenario)));
+    $scenario->save();
   } catch (\Exception $e) {
     
   }
