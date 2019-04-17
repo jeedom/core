@@ -306,7 +306,7 @@ class cmd {
 			'search' => '%#' . $_value . '#%',
 		);
 		if(strpos($_value,'variable')){
-			$values['search'] = '%' . $_value . '%';
+			$values['search'] = '%#' . $_value . '%';
 		}
 		if ($_onlyEnable) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
