@@ -1382,3 +1382,11 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
+
+	function getTZoffsetMin() {
+		$tz = date_default_timezone_get();
+		date_default_timezone_set( "UTC" );
+		$seconds = timezone_offset_get( timezone_open($tz), new DateTime() );
+		date_default_timezone_set($tz);
+		return($seconds/60);
+	}
