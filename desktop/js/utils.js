@@ -175,32 +175,6 @@ $('body').on('focusin','.bootbox-input', function (e) {
 });
 /************************Help*************************/
 
-setInterval(function () {
-  var times = [ 0, 0, 0 ]
-  var max = times.length
-  var times = $('#horloge').text().split(':');
-  for (var i = 0; i < max; i++) {
-    times[i] = isNaN(parseInt(times[i])) ? 0 : parseInt(times[i])
-  }
-  var hours = times[0]
-  var minutes = times[1]
-  var seconds = times[2]+1
-  if (seconds >= 60) {
-    var m = (seconds / 60) << 0
-    minutes += m
-    seconds -= 60 * m
-  }
-  if (minutes >= 60) {
-    var h = (minutes / 60) << 0
-    hours += h
-    minutes -= 60 * h
-  }
-  if (hours >= 24) {
-    hours = 0
-  }
-  $('#horloge').text(('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2))
-}, 1000);
-
 if (isset(jeedom_langage)) {
   bootbox.setDefaults({
     locale: jeedom_langage.substr(0, 2),
@@ -396,6 +370,13 @@ setTimeout(function(){
   $('body').trigger('jeedom_page_load');
 }, 1);
 });
+
+setInterval(function () {
+  var dateLoc = new Date;
+  var dateJeed = new Date;
+  dateJeed.setTime(dateLoc.getTime() +(dateLoc.getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime);
+  $('#horloge').text(dateJeed.toLocaleTimeString());
+}, 1000);
 
 function setBackgroundImg(_path){
   if(isset(userProfils) && isset(userProfils.hideBackgroundImg) && userProfils.hideBackgroundImg == 1){
