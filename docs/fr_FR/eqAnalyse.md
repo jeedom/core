@@ -1,4 +1,4 @@
-La page Analyse d’équipements vous permet de voir de nombreuses infos
+La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
 relatives aux équipements de manière centralisée :
 
 -   l’état de vos piles
