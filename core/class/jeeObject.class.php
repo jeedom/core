@@ -662,6 +662,7 @@ class jeeObject {
 			}
 			$result = $this->getSummary($key);
 			if ($result !== null) {
+				$style = '';
 				$allowDisplayZero = $value['allowDisplayZero'];
 				if ($value['calcul'] == 'text') {
 					$allowDisplayZero = 1;
@@ -669,7 +670,7 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$return .= '<span style="margin-right:5px;'.$style.'" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
 		$return = trim($return) . '</span>';
