@@ -7,7 +7,7 @@ fonctions d’organisation des équipements et des commandes, à leur
 configuration avancée ainsi qu’à des possibilités de configuration
 d’affichage.
 
-Cette page est accessible par **Outils → Résumé domotique**.
+Cette page est accessible par **Analyse → Résumé domotique**.
 
 Le haut de la page 
 ------------------
@@ -21,7 +21,8 @@ affichés sur cette page. \* **Rechercher** : Permet de rechercher un
 élément particulier. Ce peut être le nom d’un équipement, d’une commande
 ou le nom du plugin par lequel a été créé l’équipement.
 
-Vous avez aussi un bouton "Historique des suppressions" qui vous permettra d'afficher l'historique des commandes, équipements, objets, vue, design, deisgn 3d, scénario et utilisateur supprimés.
+Vous avez aussi un bouton **Historique des suppressions** : Affiche l'historique
+des commandes, équipements, objets, vues, design, deisgn 3d, scénarios et utilisateurs supprimés.
 
 Les cadres objet 
 ----------------
