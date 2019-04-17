@@ -13,28 +13,82 @@ foreach (jeeObject::all() as $object) {
   }
 }
 
-foreach (eqLogic::all() as $eqLogic) {
+foreach (eqLogic::all() as $object) {
   try {
-    utils::a2o($eqLogic,str_replace(array_keys($replace), $replace, utils::o2a($eqLogic)));
-    $eqLogic->save();
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
   } catch (\Exception $e) {
     
   }
 }
 
-foreach (cmd::all() as $cmd) {
+foreach (cmd::all() as $object) {
   try {
-    utils::a2o($cmd,str_replace(array_keys($replace), $replace, utils::o2a($cmd)));
-    $cmd->save();
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
   } catch (\Exception $e) {
     
   }
 }
 
-foreach (scenario::all() as $scenario) {
+foreach (scenario::all() as $object) {
   try {
-    utils::a2o($scenario,str_replace(array_keys($replace), $replace, utils::o2a($scenario)));
-    $scenario->save();
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (scenarioExpression::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (viewZone::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (viewData::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (view::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (plan::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
+  } catch (\Exception $e) {
+    
+  }
+}
+
+foreach (planHeader::all() as $object) {
+  try {
+    utils::a2o($object,str_replace(array_keys($replace), $replace, utils::o2a($object)));
+    $object->save();
   } catch (\Exception $e) {
     
   }
