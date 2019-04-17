@@ -305,7 +305,7 @@ class cmd {
 			'value' => $_value,
 			'search' => '%#' . $_value . '#%',
 		);
-		if(strpos($_value,'variable')){
+		if(strpos($_value,'variable(') !== false){
 			$values['search'] = '%#' . $_value . '%';
 		}
 		if ($_onlyEnable) {
