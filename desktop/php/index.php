@@ -85,7 +85,8 @@ if (init('rescue', 0) == 0) {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
 	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo strtotime('now'); ?> * 1000) - clientDatetime.getTime();
+	var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
+	var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
 	var serverDatetime = <?php echo getmicrotime(); ?>;
 	</script>
 	<?php
