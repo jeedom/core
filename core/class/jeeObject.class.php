@@ -324,7 +324,6 @@ class jeeObject {
 				$allowDisplayZero = 1;
 			} else {
 				$result = round(jeedom::calculStat($def[$key]['calcul'], $value), 1);
-				
 			}
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
