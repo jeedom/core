@@ -453,7 +453,6 @@ setInterval(function () {
   $('#horloge').text(dateJeed.toLocaleTimeString());
 }, 1000);
 
-
 function changeThemeAuto(){
   if(typeof jeedom.theme == 'undefined'){
     return;
