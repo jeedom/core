@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/../../core/php/core.inc.php';
-$replace = array(
-  '<i class="fa ' => '<i class="fas ',
-  "<i class=\'fa " => "<i class=\'fas ",
-  '<i class=\"fa ' => '<i class=\"fas '
-);
+
 
 function replaceAndSaveFA5($objects){
+  $replace = array(
+    '<i class="fa ' => '<i class="fas ',
+    "<i class=\'fa " => "<i class=\'fas ",
+    '<i class=\"fa ' => '<i class=\"fas '
+  );
   foreach ($objects as $object) {
     try {
       $json =  json_encode(utils::o2a($object));
