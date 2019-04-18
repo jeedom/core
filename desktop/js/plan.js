@@ -969,7 +969,6 @@ function displayObject(_plan,_html, _noRender) {
   if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
     console.log(html.css('background-color'));
     html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
-    console.log(html.css('background-color'));
   }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
