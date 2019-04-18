@@ -1028,15 +1028,53 @@ class jeedom {
 			$datas = array_merge($datas, cmd::searchConfiguration($key));
 			$datas = array_merge($datas, eqLogic::searchConfiguration($key));
 			$datas = array_merge($datas, jeeObject::searchConfiguration($key));
-			$datas = array_merge($datas, scenario::searchByUse(array(array('action' => '#' . $key . '#'))));
+			$datas = array_merge($datas, scenario::searchByUse(array(array('action' => $key))));
 			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable', str_replace('#', '', $key), true));
+			$datas = array_merge($datas, viewData::searchByConfiguration($key));
+			$datas = array_merge($datas, plan::searchByConfiguration($key));
+			$datas = array_merge($datas, plan3d::searchByConfiguration($key));
 		}
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {
 				utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
 				$data->save();
+			}
+		}
+		foreach ($_replaces as $key => $value) {
+			$viewDatas = viewData::byTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($viewDatas)  > 0){
+				foreach ($viewDatas as $viewData) {
+					try {
+						$viewData->setLink_id(str_replace('#', '', $value));
+						$viewData->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
+			}
+			$plans = plan::byTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($plans)  > 0){
+				foreach ($plans as $plan) {
+					try {
+						$plan->setLink_id(str_replace('#', '', $value));
+						$plan->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
+			}
+			$plan3ds = plan3d::byTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($plan3ds)  > 0){
+				foreach ($plan3ds as $plan3d) {
+					try {
+						$plan3d->setLink_id(str_replace('#', '', $value));
+						$plan->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
 			}
 		}
 	}
