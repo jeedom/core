@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../core/php/core.inc.php';
 $replace = array(
-  '<i class="fa ' => '<i class="fas '
+  '<i class="fa ' => '<i class="fas ',
   "<i class=\'fa " => "<i class=\'fas ",
   '<i class=\"fa ' => '<i class=\"fas '
 );
@@ -22,7 +22,7 @@ function replaceAndSaveFA5($objects){
 replaceAndSaveFA5(jeeObject::all());
 replaceAndSaveFA5(eqLogic::all());
 replaceAndSaveFA5(cmd::all());
-replaceAndSaveFA5(scenario::all();
+replaceAndSaveFA5(scenario::all());
 replaceAndSaveFA5(scenarioExpression::all());
 replaceAndSaveFA5(viewZone::all());
 replaceAndSaveFA5(viewData::all());
