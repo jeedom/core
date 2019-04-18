@@ -936,6 +936,9 @@ function displayObject(_plan,_html, _noRender) {
     if (_plan.css[key] === ''){
       continue;
     }
+    if(key == 'zoom' || key == 'rotate'){
+      continue;
+    }
     if(key == 'z-index' && _plan.css[key] < 999){
       continue;
     }
