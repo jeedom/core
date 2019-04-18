@@ -65,6 +65,12 @@ if ($market->getCertification() == 'Legacy') {
 if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
 }
+	 	if ($market->getCertification() == 'Premium') {
+			echo '<span style="font-size : 1.5em;color:#9b59b6">{{Premium}}</span><br/>';
+		}
+		if ($market->getCertification() == 'Partenaire') {
+			echo '<span style="font-size : 1.5em;color:#2ecc71">{{Partenaire}}</span><br/>';
+		}
 global $JEEDOM_INTERNAL_CONFIG;
 if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()])) {
 	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['icon'] . '"></i> ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name'] . '</span>';
