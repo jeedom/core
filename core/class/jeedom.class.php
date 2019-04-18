@@ -1021,7 +1021,7 @@ class jeedom {
 					}
 				}
 			}
-			$plans = plan::byTypeLinkId('cmd',str_replace('#', '', $key));
+			$plans = plan::byLinkTypeLinkId('cmd',str_replace('#', '', $key));
 			if(count($plans)  > 0){
 				foreach ($plans as $plan) {
 					try {
@@ -1032,7 +1032,7 @@ class jeedom {
 					}
 				}
 			}
-			$plan3ds = plan3d::byTypeLinkId('cmd',str_replace('#', '', $key));
+			$plan3ds = plan3d::byLinkTypeLinkId('cmd',str_replace('#', '', $key));
 			if(count($plan3ds)  > 0){
 				foreach ($plan3ds as $plan3d) {
 					try {
