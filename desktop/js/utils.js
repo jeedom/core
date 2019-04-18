@@ -640,7 +640,7 @@ function positionEqLogic(_id,_preResize,_scenario) {
     if(!widget.hasClass(widget.attr('data-category'))){
       widget.addClass(widget.attr('data-category'));
     }
-    widget.css('margin',jeedom.theme['widget::margin']+'px');
+    widget.css('margin',widget_margin+'px');
   }else{
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin','0px').css('padding','0px');
     $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').each(function () {
@@ -656,7 +656,7 @@ function positionEqLogic(_id,_preResize,_scenario) {
         $(this).addClass($(this).attr('data-category'));
       }
     });
-    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',jeedom.theme['widget::margin']+'px');
+    $('.eqLogic-widget:not(.jeedomAlreadyPosition),.scenario-widget:not(.jeedomAlreadyPosition)').css('margin',widget_margin+'px');
     $('.eqLogic-widget,.scenario-widget').addClass('jeedomAlreadyPosition');
   }
 }
