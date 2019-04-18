@@ -11,7 +11,7 @@
         <p id="phrase_login_btn"></p>
       </div>
       <div class="rgstr-btn splits">
-        <img class="img-responsive" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="display:block; margin: 10% 5% 10% auto; width:45%;">
+        <img class="img-responsive" src="<?php echo config::byKey('product_connection_image') ?>" style="display:block; margin: 10% 5% 10% auto; width:45%;">
       </div>
       <div class="wrapper">
         <div id="login" tabindex="503" class="form-group">
@@ -81,5 +81,24 @@
   </button>
 </div>
 <?php
+if(config::byKey('product_connection_BG')){
+	echo "<style>";
+	echo "body {";
+	echo "background-image: url(".config::byKey('product_connection_BG').") !important;";
+	echo "background-position: center !important;";
+	echo "background-repeat: no-repeat !important;"; 
+	echo "background-size: cover !important;";
+	echo "}";
+	echo "</style>";
+}elseif(config::byKey('product_connection_color')){
+	echo "<style>";
+	echo "body { background:".config::byKey('product_connection_color')." !important;}";
+	echo "</style>";
+}
+if(config::byKey('product_name') != 'Jeedom'){
+	echo "<style>";
+	echo ".btn_help { display:none; }";
+	echo "</style>";
+}
 include_file('desktop', 'connection', 'css');
 include_file('desktop', 'connection', 'js');
