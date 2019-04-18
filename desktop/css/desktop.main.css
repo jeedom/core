@@ -1150,6 +1150,15 @@ ul.dropdown-menu {
 }
 
 /* __________________________________________________________________________________________________________PANELS */
+
+#bt_messageModal,#bt_jsErrorModal,#bt_nbUpdateNavbar{
+  background-color: transparent !important;
+}
+
+#bt_messageModal:hover,#bt_jsErrorModal:hover,#bt_nbUpdateNavbar:hover{
+  background-color: transparent !important;
+}
+
 div.panel {
   border : none;
 }

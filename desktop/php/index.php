@@ -394,7 +394,7 @@ if (init('rescue', 0) == 0) {
 								$nbUpdate = update::nbNeedUpdate();
 								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
 								<li>
-									<a href="index.php?v=d&p=update">
+									<a href="index.php?v=d&p=update" id="bt_nbUpdateNavbar">
 										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 									</li>
 								<?php } ?>
