@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * Indicator series type for Highstock
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/indicators/dpo', ['highcharts', 'highcharts/modules/stock'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'indicators/dpo.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -158,9 +166,9 @@
          * @apioption series.dpo
          */
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/indicators/dpo.src.js', [], function () {
 
 
-    }());
+    });
 }));

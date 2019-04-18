@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2017-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -12,20 +12,30 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/venn', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var draw = (function () {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/draw-point.js', [], function () {
         var isFn = function (x) {
             return typeof x === 'function';
         };
 
         /**
-         * Handles the drawing of a point.
+         * Handles the drawing of a component.
+         * Can be used for any type of component that reserves the graphic property, and
+         * provides a shouldDraw on its context.
          *
          * @private
          * @function draw
@@ -33,20 +43,20 @@
          * @param {object} params
          *        Parameters.
          *
-         * @todo
-         * - add type checking.
+         * TODO: add type checking.
+         * TODO: export this function to enable usage
          */
         var draw = function draw(params) {
-            var point = this,
-                graphic = point.graphic,
+            var component = this,
+                graphic = component.graphic,
                 animatableAttribs = params.animatableAttribs,
                 onComplete = params.onComplete,
                 css = params.css,
                 renderer = params.renderer;
 
-            if (point.shouldDraw()) {
+            if (component.shouldDraw()) {
                 if (!graphic) {
-                    point.graphic = graphic =
+                    component.graphic = graphic =
                         renderer[params.shapeType](params.shapeArgs).add(params.group);
                 }
                 graphic
@@ -58,22 +68,46 @@
                         onComplete
                     );
             } else if (graphic) {
-                graphic.animate(animatableAttribs, undefined, function () {
-                    point.graphic = graphic = graphic.destroy();
+                var destroy = function () {
+                    component.graphic = graphic = graphic.destroy();
                     if (isFn(onComplete)) {
                         onComplete();
                     }
-                });
-            }
-            if (graphic) {
-                graphic.addClass(point.getClassName(), true);
+                };
+
+                // animate only runs complete callback if something was animated.
+                if (Object.keys(animatableAttribs).length) {
+                    graphic.animate(animatableAttribs, undefined, function () {
+                        destroy();
+                    });
+                } else {
+                    destroy();
+                }
             }
         };
 
+        /**
+         * An extended version of draw customized for points.
+         * It calls additional methods that is expected when rendering a point.
+         *
+         * @param {object} params Parameters
+         */
+        var drawPoint = function drawPoint(params) {
+            var point = this,
+                attribs = params.attribs = params.attribs || {};
 
-        return draw;
-    }());
-    var geometry = (function () {
+            // Assigning class in dot notation does go well in IE8
+            // eslint-disable-next-line dot-notation
+            attribs['class'] = point.getClassName();
+
+            // Call draw to render component
+            draw.call(point, params);
+        };
+
+
+        return drawPoint;
+    });
+    _registerModule(_modules, 'mixins/geometry.js', [], function () {
         /**
          * Calculates the center between a list of points.
          *
@@ -125,8 +159,8 @@
 
 
         return geometry;
-    }());
-    var geometryCircles = (function (geometry) {
+    });
+    _registerModule(_modules, 'mixins/geometry-circles.js', [_modules['mixins/geometry.js']], function (geometry) {
         var getAngleBetweenPoints = geometry.getAngleBetweenPoints,
             getCenterOfPoints = geometry.getCenterOfPoints,
             getDistanceBetweenPoints = geometry.getDistanceBetweenPoints;
@@ -135,6 +169,19 @@
             var a = Math.pow(10, decimals);
 
             return Math.round(x * a) / a;
+        };
+
+        /**
+         * Calculates the area of a circle based on its radius.
+         *
+         * @param {number} r The radius of the circle.
+         * @returns {number} Returns the area of the circle.
+         */
+        var getAreaOfCircle = function (r) {
+            if (r <= 0) {
+                throw new Error('radius of circle must be a positive number.');
+            }
+            return Math.PI * r * r;
         };
 
         /**
@@ -167,16 +214,13 @@
             // If the distance is larger than the sum of the radiuses then the circles
             // does not overlap.
             if (d < r1 + r2) {
-                var r1Square = r1 * r1,
-                    r2Square = r2 * r2;
-
                 if (d <= Math.abs(r2 - r1)) {
                     // If the circles are completely overlapping, then the overlap
                     // equals the area of the smallest circle.
-                    overlap = Math.PI * Math.min(r1Square, r2Square);
+                    overlap = getAreaOfCircle(r1 < r2 ? r1 : r2);
                 } else {
                     // Height of first triangle segment.
-                    var d1 = (r1Square - r2Square + d * d) / (2 * d),
+                    var d1 = (r1 * r1 - r2 * r2 + d * d) / (2 * d),
                         // Height of second triangle segment.
                         d2 = d - d1;
 
@@ -414,6 +458,7 @@
         };
 
         var geometryCircles = {
+            getAreaOfCircle: getAreaOfCircle,
             getAreaOfIntersectionBetweenCircles: getAreaOfIntersectionBetweenCircles,
             getCircleCircleIntersection: getCircleCircleIntersection,
             getCirclesIntersectionPoints: getCirclesIntersectionPoints,
@@ -427,8 +472,8 @@
 
 
         return geometryCircles;
-    }(geometry));
-    (function (draw, geometry, geometryCircles, H) {
+    });
+    _registerModule(_modules, 'modules/venn.src.js', [_modules['mixins/draw-point.js'], _modules['mixins/geometry.js'], _modules['mixins/geometry-circles.js'], _modules['parts/Globals.js']], function (draw, geometry, geometryCircles, H) {
         /* *
          * Experimental Highcharts module which enables visualization of a Venn Diagram.
          *
@@ -446,6 +491,7 @@
 
         var color = H.Color,
             extend = H.extend,
+            getAreaOfCircle = geometryCircles.getAreaOfCircle,
             getAreaOfIntersectionBetweenCircles =
                 geometryCircles.getAreaOfIntersectionBetweenCircles,
             getCircleCircleIntersection = geometryCircles.getCircleCircleIntersection,
@@ -597,9 +643,16 @@
         var getDistanceBetweenCirclesByOverlap =
         function getDistanceBetweenCirclesByOverlap(r1, r2, overlap) {
             var maxDistance = r1 + r2,
-                distance = maxDistance;
+                distance;
 
-            if (overlap > 0) {
+            if (overlap <= 0) {
+                // If overlap is below or equal to zero, then there is no overlap.
+                distance = maxDistance;
+            } else if (getAreaOfCircle(r1 < r2 ? r1 : r2) <= overlap) {
+                // When area of overlap is larger than the area of the smallest circle,
+                // then it is completely overlapping.
+                distance = 0;
+            } else {
                 distance = bisect(function (x) {
                     var actualOverlap = getOverlapBetweenCirclesByDistance(r1, r2, x);
 
@@ -1289,7 +1342,9 @@
             clip: false,
             colorByPoint: true,
             dataLabels: {
+                /** @ignore-option */
                 enabled: true,
+                /** @ignore-option */
                 formatter: function () {
                     return this.point.name;
                 }
@@ -1616,9 +1671,9 @@
          */
         seriesType('venn', 'scatter', vennOptions, vennSeries, vennPoint);
 
-    }(draw, geometry, geometryCircles, Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/venn.src.js', [], function () {
 
 
-    }());
+    });
 }));

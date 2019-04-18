@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * GridAxis
  *
  * (c) 2016-2019 Lars A. V. Cabrera
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/grid-axis', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2016 Highsoft AS
          * Authors: Lars A. V. Cabrera
@@ -212,23 +221,21 @@
         };
 
         // Add custom date formats
-        H.dateFormats = {
-            // Week number
-            W: function (timestamp) {
-                var d = new Date(timestamp),
-                    yearStart,
-                    weekNo;
+        H.dateFormats.W = function (timestamp) {
+            var d = new Date(timestamp),
+                yearStart,
+                weekNo;
 
-                d.setHours(0, 0, 0, 0);
-                d.setDate(d.getDate() - (d.getDay() || 7));
-                yearStart = new Date(d.getFullYear(), 0, 1);
-                weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-                return weekNo;
-            },
-            // First letter of the day of the week, e.g. 'M' for 'Monday'.
-            E: function (timestamp) {
-                return dateFormat('%a', timestamp, true).charAt(0);
-            }
+            d.setHours(0, 0, 0, 0);
+            d.setDate(d.getDate() - (d.getDay() || 7));
+            yearStart = new Date(d.getFullYear(), 0, 1);
+            weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+            return weekNo;
+        };
+
+        // First letter of the day of the week, e.g. 'M' for 'Monday'.
+        H.dateFormats.E = function (timestamp) {
+            return dateFormat('%a', timestamp, true).charAt(0);
         };
 
         addEvent(
@@ -980,9 +987,9 @@
             }
         });
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/grid-axis.src.js', [], function () {
 
 
-    }());
+    });
 }));

@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2009-2019 Highsoft AS
  *
@@ -11,23 +11,36 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/themes/sunset', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (Highcharts) {
-        /**
-         * (c) 2010-2017 Highsoft AS
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'themes/sunset.js', [_modules['parts/Globals.js']], function (Highcharts) {
+        /* *
          *
-         * License: www.highcharts.com/license
+         *  (c) 2010-2019 Highsoft AS
          *
-         * Accessible high-contrast theme for Highcharts. Considers colorblindness and
-         * monochrome rendering.
-         * @author Øystein Moseng
-         */
+         *  Author: Øystein Moseng
+         *
+         *  License: www.highcharts.com/license
+         *
+         *  Accessible high-contrast theme for Highcharts. Considers colorblindness and
+         *  monochrome rendering.
+         *
+         * */
+
+
 
         Highcharts.theme = {
             colors: ['#FDD089', '#FF7F79', '#A0446E', '#251535'],
@@ -54,9 +67,9 @@
         // Apply the theme
         Highcharts.setOptions(Highcharts.theme);
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/themes/sunset.src.js', [], function () {
 
 
-    }());
+    });
 }));

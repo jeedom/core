@@ -1,5 +1,6 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Streamgraph module
  *
  * (c) 2010-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/streamgraph', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/streamgraph.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * Streamgraph module
          *
@@ -92,46 +101,44 @@
          * An array of data points for the series. For the `streamgraph` series type,
          * points can be given in the following ways:
          *
-         * 1.  An array of numerical values. In this case, the numerical values
-         * will be interpreted as `y` options. The `x` values will be automatically
-         * calculated, either starting at 0 and incremented by 1, or from `pointStart`
-         * and `pointInterval` given in the series options. If the axis has
-         * categories, these will be used. Example:
+         * 1. An array of numerical values. In this case, the numerical values will be
+         *    interpreted as `y` options. The `x` values will be automatically
+         *    calculated, either starting at 0 and incremented by 1, or from
+         *    `pointStart` and `pointInterval` given in the series options. If the axis
+         *    has categories, these will be used. Example:
+         *    ```js
+         *    data: [0, 5, 3, 5]
+         *    ```
          *
-         *  ```js
-         *  data: [0, 5, 3, 5]
-         *  ```
+         * 2. An array of arrays with 2 values. In this case, the values correspond to
+         *    `x,y`. If the first value is a string, it is applied as the name of the
+         *    point, and the `x` value is inferred.
+         *    ```js
+         *        data: [
+         *            [0, 9],
+         *            [1, 7],
+         *            [2, 6]
+         *        ]
+         *    ```
          *
-         * 2.  An array of arrays with 2 values. In this case, the values correspond
-         * to `x,y`. If the first value is a string, it is applied as the name
-         * of the point, and the `x` value is inferred.
-         *
-         *  ```js
-         *     data: [
-         *         [0, 9],
-         *         [1, 7],
-         *         [2, 6]
-         *     ]
-         *  ```
-         *
-         * 3.  An array of objects with named values. The following snippet shows only a
-         * few settings, see the complete options set below. If the total number of data
-         * points exceeds the series' [turboThreshold](#series.area.turboThreshold),
-         * this option is not available.
-         *
-         *  ```js
-         *     data: [{
-         *         x: 1,
-         *         y: 9,
-         *         name: "Point2",
-         *         color: "#00FF00"
-         *     }, {
-         *         x: 1,
-         *         y: 6,
-         *         name: "Point1",
-         *         color: "#FF00FF"
-         *     }]
-         *  ```
+         * 3. An array of objects with named values. The following snippet shows only a
+         *    few settings, see the complete options set below. If the total number of
+         *    data points exceeds the series'
+         *    [turboThreshold](#series.area.turboThreshold),
+         *    this option is not available.
+         *    ```js
+         *        data: [{
+         *            x: 1,
+         *            y: 9,
+         *            name: "Point2",
+         *            color: "#00FF00"
+         *        }, {
+         *            x: 1,
+         *            y: 6,
+         *            name: "Point1",
+         *            color: "#FF00FF"
+         *        }]
+         *    ```
          *
          * @sample {highcharts} highcharts/chart/reflow-true/
          *         Numerical values
@@ -144,15 +151,15 @@
          * @sample {highcharts} highcharts/series/data-array-of-objects/
          *         Config objects
          *
-         * @type      {Array<number|Array<(number|string),number>|*>}
+         * @type      {Array<number|Array<(number|string),(number|null)>|null|*>}
          * @extends   series.line.data
          * @product   highcharts highstock
          * @apioption series.streamgraph.data
          */
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/streamgraph.src.js', [], function () {
 
 
-    }());
+    });
 }));

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * Pareto series type for Highcharts
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/pareto', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var derivedSeriesMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/derived-series.js', [_modules['parts/Globals.js']], function (H) {
 
 
         var Series = H.Series,
@@ -42,6 +50,8 @@
          * @mixin derivedSeriesMixin
          */
         var derivedSeriesMixin = {
+
+            hasDerivedData: true,
             /**
              * Initialise series
              *
@@ -81,9 +91,13 @@
             setBaseSeries: function () {
                 var chart = this.chart,
                     baseSeriesOptions = this.options.baseSeries,
-                    baseSeries =
-                baseSeriesOptions &&
-                (chart.series[baseSeriesOptions] || chart.get(baseSeriesOptions));
+                    baseSeries = (
+                        H.defined(baseSeriesOptions) &&
+                        (
+                            chart.series[baseSeriesOptions] ||
+                            chart.get(baseSeriesOptions)
+                        )
+                    );
 
                 this.baseSeries = baseSeries || null;
             },
@@ -169,8 +183,8 @@
 
 
         return derivedSeriesMixin;
-    }(Highcharts));
-    (function (H, derivedSeriesMixin) {
+    });
+    _registerModule(_modules, 'modules/pareto.src.js', [_modules['parts/Globals.js'], _modules['mixins/derived-series.js']], function (H, derivedSeriesMixin) {
         /* *
          * (c) 2010-2017 Sebastian Bochan
          *
@@ -319,9 +333,9 @@
          * @apioption series.pareto.data
          */
 
-    }(Highcharts, derivedSeriesMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/pareto.src.js', [], function () {
 
 
-    }());
+    });
 }));

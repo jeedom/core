@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2010-2019 Highsoft AS
  * Author: Sebastian Domas
@@ -12,14 +12,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/histogram-bellcurve', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var derivedSeriesMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/derived-series.js', [_modules['parts/Globals.js']], function (H) {
 
 
         var Series = H.Series,
@@ -41,6 +49,8 @@
          * @mixin derivedSeriesMixin
          */
         var derivedSeriesMixin = {
+
+            hasDerivedData: true,
             /**
              * Initialise series
              *
@@ -80,9 +90,13 @@
             setBaseSeries: function () {
                 var chart = this.chart,
                     baseSeriesOptions = this.options.baseSeries,
-                    baseSeries =
-                baseSeriesOptions &&
-                (chart.series[baseSeriesOptions] || chart.get(baseSeriesOptions));
+                    baseSeries = (
+                        H.defined(baseSeriesOptions) &&
+                        (
+                            chart.series[baseSeriesOptions] ||
+                            chart.get(baseSeriesOptions)
+                        )
+                    );
 
                 this.baseSeries = baseSeries || null;
             },
@@ -168,8 +182,8 @@
 
 
         return derivedSeriesMixin;
-    }(Highcharts));
-    (function (H, derivedSeriesMixin) {
+    });
+    _registerModule(_modules, 'modules/histogram.src.js', [_modules['parts/Globals.js'], _modules['mixins/derived-series.js']], function (H, derivedSeriesMixin) {
 
 
 
@@ -193,7 +207,7 @@
          **/
         var binsNumberFormulas = {
             'square-root': function (baseSeries) {
-                return Math.round(Math.sqrt(baseSeries.options.data.length));
+                return Math.ceil(Math.sqrt(baseSeries.options.data.length));
             },
 
             'sturges': function (baseSeries) {
@@ -287,15 +301,18 @@
             },
 
             derivedData: function (baseData, binsNumber, binWidth) {
-                var max = arrayMax(baseData),
-                    min = arrayMin(baseData),
+                var series = this,
+                    max = arrayMax(baseData),
+                    // Float correction needed, because first frequency value is not
+                    // corrected when generating frequencies (within for loop).
+                    min = correctFloat(arrayMin(baseData)),
                     frequencies = [],
                     bins = {},
                     data = [],
                     x,
                     fitToBin;
 
-                binWidth = this.binWidth = correctFloat(
+                binWidth = series.binWidth = series.options.pointRange = correctFloat(
                     isNumber(binWidth) ?
                         (binWidth || 1) :
                         (max - min) / binsNumber
@@ -303,7 +320,20 @@
 
                 // If binWidth is 0 then max and min are equaled,
                 // increment the x with some positive value to quit the loop
-                for (x = min; x < max; x = correctFloat(x + binWidth)) {
+                for (
+                    x = min;
+                    // This condition is needed because of the margin of error while
+                    // operating on decimal numbers. Without that, additional bin was
+                    // sometimes noticeable on the graph, because of too small precision
+                    // of float correction.
+                    x < max &&
+                        (
+                            series.userOptions.binWidth ||
+                            correctFloat(max - x) >= binWidth ||
+                            correctFloat(min + (frequencies.length * binWidth) - x) <= 0
+                        );
+                    x = correctFloat(x + binWidth)
+                ) {
                     frequencies.push(x);
                     bins[x] = 0;
                 }
@@ -390,8 +420,8 @@
          * @apioption series.histogram.data
          */
 
-    }(Highcharts, derivedSeriesMixin));
-    (function (H, derivedSeriesMixin) {
+    });
+    _registerModule(_modules, 'modules/bellcurve.src.js', [_modules['parts/Globals.js'], _modules['mixins/derived-series.js']], function (H, derivedSeriesMixin) {
         /* *
          * (c) 2010-2019 Highsoft AS
          *
@@ -562,9 +592,9 @@
          * @apioption series.bellcurve.baseSeries
          */
 
-    }(Highcharts, derivedSeriesMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/histogram-bellcurve.src.js', [], function () {
 
 
-    }());
+    });
 }));

@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Tree Grid
  *
  * (c) 2016-2019 Jon Arild Nygard
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/treegrid', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'parts-gantt/GridAxis.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2016 Highsoft AS
          * Authors: Lars A. V. Cabrera
@@ -212,23 +221,21 @@
         };
 
         // Add custom date formats
-        H.dateFormats = {
-            // Week number
-            W: function (timestamp) {
-                var d = new Date(timestamp),
-                    yearStart,
-                    weekNo;
+        H.dateFormats.W = function (timestamp) {
+            var d = new Date(timestamp),
+                yearStart,
+                weekNo;
 
-                d.setHours(0, 0, 0, 0);
-                d.setDate(d.getDate() - (d.getDay() || 7));
-                yearStart = new Date(d.getFullYear(), 0, 1);
-                weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-                return weekNo;
-            },
-            // First letter of the day of the week, e.g. 'M' for 'Monday'.
-            E: function (timestamp) {
-                return dateFormat('%a', timestamp, true).charAt(0);
-            }
+            d.setHours(0, 0, 0, 0);
+            d.setDate(d.getDate() - (d.getDay() || 7));
+            yearStart = new Date(d.getFullYear(), 0, 1);
+            weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+            return weekNo;
+        };
+
+        // First letter of the day of the week, e.g. 'M' for 'Monday'.
+        H.dateFormats.E = function (timestamp) {
+            return dateFormat('%a', timestamp, true).charAt(0);
         };
 
         addEvent(
@@ -980,8 +987,8 @@
             }
         });
 
-    }(Highcharts));
-    var Tree = (function (H) {
+    });
+    _registerModule(_modules, 'parts-gantt/Tree.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2016-2019 Highsoft AS
@@ -1138,8 +1145,8 @@
 
 
         return Tree;
-    }(Highcharts));
-    var result = (function (H) {
+    });
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Globals.js']], function (H) {
 
         var extend = H.extend,
             isArray = H.isArray,
@@ -1396,8 +1403,8 @@
 
 
         return result;
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['parts/Globals.js']], function (H) {
         /**
          * (c) 2009-2019 Torstein Honsi
          *
@@ -1410,9 +1417,25 @@
             pick = H.pick,
             extend = H.extend,
             isArray = H.isArray,
+            find = H.find,
             fireEvent = H.fireEvent,
             Axis = H.Axis,
             Series = H.Series;
+
+        /**
+         * Returns the first break found where the x is larger then break.from and
+         * smaller then break.to.
+         *
+         * @param {number} x The number which should be within a break.
+         * @param {array} breaks The array of breaks to search within.
+         * @return {object|boolean} Returns the first break found that matches, returns
+         * false if no break is found.
+         */
+        var findBreakAt = function (x, breaks) {
+            return find(breaks, function (b) {
+                return b.from < x && x < b.to;
+            });
+        };
 
         extend(Axis.prototype, {
             isInBreak: function (brk, val) {
@@ -1578,14 +1601,22 @@
                     animation,
                     eventArguments
                 ) {
-                    // If trying to set extremes inside a break, extend it to before and
-                    // after the break ( #3857 )
+                    // If trying to set extremes inside a break, extend min to after,
+                    // and max to before the break ( #3857 )
                     if (this.isBroken) {
-                        while (this.isInAnyBreak(newMin)) {
-                            newMin -= this.closestPointRange;
+                        var axisBreak,
+                            breaks = this.options.breaks;
+
+                        while ((axisBreak = findBreakAt(newMin, breaks))) {
+                            newMin = axisBreak.to;
                         }
-                        while (this.isInAnyBreak(newMax)) {
-                            newMax -= this.closestPointRange;
+                        while ((axisBreak = findBreakAt(newMax, breaks))) {
+                            newMax = axisBreak.from;
+                        }
+
+                        // If both min and max is within the same break.
+                        if (newMax < newMin) {
+                            newMax = newMin;
                         }
                     }
                     Axis.prototype.setExtremes.call(
@@ -1910,8 +1941,8 @@
             return this.getGraphPath(points);
         };
 
-    }(Highcharts));
-    (function (H, Tree, mixinTreeSeries) {
+    });
+    _registerModule(_modules, 'parts-gantt/TreeGrid.js', [_modules['parts/Globals.js'], _modules['parts-gantt/Tree.js'], _modules['mixins/tree-series.js']], function (H, Tree, mixinTreeSeries) {
         /* *
          * (c) 2016 Highsoft AS
          * Authors: Jon Arild Nygard
@@ -2194,62 +2225,6 @@
         };
 
         /**
-         * Builds the tree of categories and calculates its positions.
-         *
-         * @param {object} e Event object
-         * @param {object} e.target The chart instance which the event was fired on.
-         * @param {object[]} e.target.axes The axes of the chart.
-         */
-        var onBeforeRender = function (e) {
-            var chart = e.target,
-                axes = chart.axes;
-
-            axes
-                .filter(function (axis) {
-                    return axis.options.type === 'treegrid';
-                })
-                .forEach(function (axis) {
-                    var labelOptions = axis.options && axis.options.labels,
-                        removeFoundExtremesEvent;
-
-                    // setScale is fired after all the series is initialized,
-                    // which is an ideal time to update the axis.categories.
-                    axis.updateYNames();
-
-                    // Update yData now that we have calculated the y values
-                    // TODO: it would be better to be able to calculate y values
-                    // before Series.setData
-                    axis.series.forEach(function (series) {
-                        series.yData = series.options.data.map(function (data) {
-                            return data.y;
-                        });
-                    });
-
-                    // Calculate the label options for each level in the tree.
-                    axis.mapOptionsToLevel = getLevelOptions({
-                        defaults: labelOptions,
-                        from: 1,
-                        levels: labelOptions.levels,
-                        to: axis.tree.height
-                    });
-
-                    // Collapse all the nodes belonging to a point where collapsed
-                    // equals true.
-                    // Can be called from beforeRender, if getBreakFromNode removes
-                    // its dependency on axis.max.
-                    removeFoundExtremesEvent =
-                        H.addEvent(axis, 'foundExtremes', function () {
-                            axis.collapsedNodes.forEach(function (node) {
-                                var breaks = collapse(axis, node);
-
-                                axis.setBreaks(breaks, false);
-                            });
-                            removeFoundExtremesEvent();
-                        });
-                });
-        };
-
-        /**
          * Creates a tree structure of the data, and the treegrid. Calculates
          * categories, and y-values of points based on the tree.
          *
@@ -2427,6 +2402,97 @@
             };
         };
 
+        /**
+         * Builds the tree of categories and calculates its positions.
+         * @private
+         * @param {object} e Event object
+         * @param {object} e.target The chart instance which the event was fired on.
+         * @param {object[]} e.target.axes The axes of the chart.
+         */
+        var onBeforeRender = function (e) {
+            var chart = e.target,
+                axes = chart.axes;
+
+            axes
+                .filter(function (axis) {
+                    return axis.options.type === 'treegrid';
+                })
+                .forEach(function (axis) {
+                    var options = axis.options || {},
+                        labelOptions = options.labels,
+                        removeFoundExtremesEvent,
+                        uniqueNames = options.uniqueNames,
+                        numberOfSeries = 0,
+                        // Concatenate data from all series assigned to this axis.
+                        data = axis.series.reduce(function (arr, s) {
+                            if (s.visible) {
+                                // Push all data to array
+                                s.options.data.forEach(function (data) {
+                                    if (isObject(data)) {
+                                        // Set series index on data. Removed again after
+                                        // use.
+                                        data.seriesIndex = numberOfSeries;
+                                        arr.push(data);
+                                    }
+                                });
+
+                                // Increment series index
+                                if (uniqueNames === true) {
+                                    numberOfSeries++;
+                                }
+                            }
+                            return arr;
+                        }, []),
+                        // setScale is fired after all the series is initialized,
+                        // which is an ideal time to update the axis.categories.
+                        treeGrid = getTreeGridFromData(
+                            data,
+                            uniqueNames,
+                            (uniqueNames === true) ? numberOfSeries : 1
+                        );
+
+                    // Assign values to the axis.
+                    axis.categories = treeGrid.categories;
+                    axis.mapOfPosToGridNode = treeGrid.mapOfPosToGridNode;
+                    axis.hasNames = true;
+                    axis.tree = treeGrid.tree;
+
+                    // Update yData now that we have calculated the y values
+                    axis.series.forEach(function (series) {
+                        var data = series.options.data.map(function (d) {
+                            return isObject(d) ? merge(d) : d;
+                        });
+
+                        // Avoid destroying points when series is not visible
+                        if (series.visible) {
+                            series.setData(data, false);
+                        }
+                    });
+
+                    // Calculate the label options for each level in the tree.
+                    axis.mapOptionsToLevel = getLevelOptions({
+                        defaults: labelOptions,
+                        from: 1,
+                        levels: labelOptions.levels,
+                        to: axis.tree.height
+                    });
+
+                    // Collapse all the nodes belonging to a point where collapsed
+                    // equals true.
+                    // Can be called from beforeRender, if getBreakFromNode removes
+                    // its dependency on axis.max.
+                    removeFoundExtremesEvent =
+                        H.addEvent(axis, 'foundExtremes', function () {
+                            treeGrid.collapsedNodes.forEach(function (node) {
+                                var breaks = collapse(axis, node);
+
+                                axis.setBreaks(breaks, false);
+                            });
+                            removeFoundExtremesEvent();
+                        });
+                });
+        };
+
         override(GridAxis.prototype, {
             init: function (proceed, chart, userOptions) {
                 var axis = this,
@@ -2459,6 +2525,8 @@
                             * @type      {Array<*>}
                             * @product   gantt
                             * @apioption yAxis.labels.levels
+                            *
+                            * @private
                             */
                             levels: [{
                                 /**
@@ -2470,6 +2538,8 @@
                                 * @type      {number}
                                 * @product   gantt
                                 * @apioption yAxis.labels.levels.level
+                                *
+                                * @private
                                 */
                                 level: undefined
                             }, {
@@ -2478,6 +2548,8 @@
                                  * @type      {Highcharts.CSSObject}
                                  * @product   gantt
                                  * @apioption yAxis.labels.levels.style
+                                 *
+                                 * @private
                                  */
                                 style: {
                                     /** @ignore-option */
@@ -2491,13 +2563,17 @@
                              *
                              * @product      gantt
                              * @optionparent yAxis.labels.symbol
+                             *
+                             * @private
                              */
                             symbol: {
                                 /**
                                  * The symbol type. Points to a definition function in
                                  * the `Highcharts.Renderer.symbols` collection.
                                  *
-                                 * @validvalue ["arc", "circle", "diamond", "square", "triangle", "triangle-down"]
+                                 * @type {Highcharts.SymbolKeyValue}
+                                 *
+                                 * @private
                                  */
                                 type: 'triangle',
                                 x: -5,
@@ -2787,7 +2863,7 @@
             }
         });
 
-        extend(GridAxisTick.prototype, /** @lends Highcharts.Tick.prototype */{
+        extend(GridAxisTick.prototype, /** @lends Highcharts.Tick.prototype */ {
 
             /**
              * Collapse the grid cell. Used when axis is of type treegrid.
@@ -2855,63 +2931,14 @@
             }
         });
 
-        GridAxis.prototype.updateYNames = function () {
-            var axis = this,
-                options = axis.options,
-                isTreeGrid = options.type === 'treegrid',
-                uniqueNames = options.uniqueNames,
-                isYAxis = !axis.isXAxis,
-                series = axis.series,
-                numberOfSeries = 0,
-                treeGrid,
-                data;
-
-            if (isTreeGrid && isYAxis) {
-                // Concatenate data from all series assigned to this axis.
-                data = series.reduce(function (arr, s) {
-                    if (s.visible) {
-                        // Push all data to array
-                        s.options.data.forEach(function (data) {
-                            if (isObject(data)) {
-                                // Set series index on data. Removed again after use.
-                                data.seriesIndex = numberOfSeries;
-                                arr.push(data);
-                            }
-                        });
-
-                        // Increment series index
-                        if (uniqueNames === true) {
-                            numberOfSeries++;
-                        }
-                    }
-                    return arr;
-                }, []);
-
-                // Calculate categories and the hierarchy for the grid.
-                treeGrid = getTreeGridFromData(
-                    data,
-                    uniqueNames,
-                    (uniqueNames === true) ? numberOfSeries : 1
-                );
-
-                // Assign values to the axis.
-                axis.categories = treeGrid.categories;
-                axis.mapOfPosToGridNode = treeGrid.mapOfPosToGridNode;
-                // Used on init to start a node as collapsed
-                axis.collapsedNodes = treeGrid.collapsedNodes;
-                axis.hasNames = true;
-                axis.tree = treeGrid.tree;
-            }
-        };
-
         // Make utility functions available for testing.
         GridAxis.prototype.utils = {
             getNode: Tree.getNode
         };
 
-    }(Highcharts, Tree, result));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/treegrid.src.js', [], function () {
 
 
-    }());
+    });
 }));

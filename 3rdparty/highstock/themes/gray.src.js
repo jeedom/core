@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2009-2019 Torstein Honsi
  *
@@ -11,22 +11,33 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/themes/gray', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (Highcharts) {
-        /**
-         * (c) 2010-2019 Torstein Honsi
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'themes/gray.js', [_modules['parts/Globals.js']], function (Highcharts) {
+        /* *
          *
-         * License: www.highcharts.com/license
+         *  (c) 2010-2019 Torstein Honsi
          *
-         * Gray theme for Highcharts JS
-         * @author Torstein Honsi
-         */
+         *  License: www.highcharts.com/license
+         *
+         *  Gray theme for Highcharts JS
+         *
+         * */
+
+
 
         Highcharts.theme = {
             colors: ['#DDDF0D', '#7798BF', '#55BF3B', '#DF5353', '#aaeeee',
@@ -285,9 +296,9 @@
         // Apply the theme
         Highcharts.setOptions(Highcharts.theme);
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/themes/gray.src.js', [], function () {
 
 
-    }());
+    });
 }));

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * Indicator series type for Highstock
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/indicators/indicators', ['highcharts', 'highcharts/modules/stock'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var requiredIndicatorMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/indicator-required.js', [_modules['parts/Globals.js']], function (H) {
         /**
          * (c) 2010-2019 Daniel Studencki
          *
@@ -68,8 +76,8 @@
 
 
         return requiredIndicatorMixin;
-    }(Highcharts));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/indicators.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -185,7 +193,8 @@
                  * or indicator values.
                  *
                  * @sample {highstock} stock/plotoptions/series-comparetomain/
-                 *         compareToMain
+                 *         Difference between comparing SMA values to the main series
+                 *         and its own values.
                  *
                  * @type {boolean}
                  */
@@ -227,6 +236,7 @@
                     series: true,
                     eventName: 'updatedData'
                 },
+                hasDerivedData: true,
                 useCommonDataGrouping: true,
                 nameComponents: ['period'],
                 nameSuffixes: [], // e.g. Zig Zag uses extra '%'' in the legend name
@@ -492,9 +502,9 @@
          * @apioption series.sma
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/indicators/indicators.src.js', [], function () {
 
 
-    }());
+    });
 }));

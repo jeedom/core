@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Client side exporting module
  *
  * (c) 2015-2019 Torstein Honsi / Oystein Moseng
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/offline-exporting', ['highcharts', 'highcharts/modules/exporting'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (Highcharts) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/download-url.js', [_modules['parts/Globals.js']], function (Highcharts) {
         /* *
          * Mixin for downloading content in the browser
          *
@@ -122,8 +131,8 @@
             }
         };
 
-    }(Highcharts));
-    (function (Highcharts) {
+    });
+    _registerModule(_modules, 'modules/offline-exporting.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
         /**
          * Client side exporting module
          *
@@ -602,10 +611,17 @@
                 el,
                 i,
                 l,
+                href,
                 // After grabbing the SVG of the chart's copy container we need to do
                 // sanitation on the SVG
                 sanitize = function (svg) {
                     return chart.sanitizeSVG(svg, chartCopyOptions);
+                },
+                // When done with last image we have our SVG
+                checkDone = function () {
+                    if (imagesEmbedded === images.length) {
+                        successCallback(sanitize(chartCopyContainer.innerHTML));
+                    }
                 },
                 // Success handler, we converted image to base64!
                 embeddedSuccess = function (imageURL, imageType, callbackArgs) {
@@ -618,10 +634,7 @@
                         imageURL
                     );
 
-                    // When done with last image we have our SVG
-                    if (imagesEmbedded === images.length) {
-                        successCallback(sanitize(chartCopyContainer.innerHTML));
-                    }
+                    checkDone();
                 };
 
             // Hook into getSVG to get a copy of the chart copy's container (#8273)
@@ -645,21 +658,31 @@
                 // Go through the images we want to embed
                 for (i = 0, l = images.length; i < l; ++i) {
                     el = images[i];
-                    Highcharts.imageToDataUrl(
-                        el.getAttributeNS(
-                            'http://www.w3.org/1999/xlink',
-                            'href'
-                        ),
-                        'image/png',
-                        { imageElement: el }, options.scale,
-                        embeddedSuccess,
-                        // Tainted canvas
-                        failCallback,
-                        // No canvas support
-                        failCallback,
-                        // Failed to load source
-                        failCallback
+                    href = el.getAttributeNS(
+                        'http://www.w3.org/1999/xlink',
+                        'href'
                     );
+                    if (href) {
+                        Highcharts.imageToDataUrl(
+                            href,
+                            'image/png',
+                            { imageElement: el },
+                            options.scale,
+                            embeddedSuccess,
+                            // Tainted canvas
+                            failCallback,
+                            // No canvas support
+                            failCallback,
+                            // Failed to load source
+                            failCallback
+                        );
+
+                    // Hidden, boosted series have blank href (#10243)
+                    } else {
+                        ++imagesEmbedded;
+                        el.parentNode.removeChild(el);
+                        checkDone();
+                    }
                 }
             } catch (e) {
                 failCallback(e);
@@ -791,7 +814,7 @@
 
         // Extend the default options to use the local exporter logic
         merge(true, Highcharts.getOptions().exporting, {
-            libURL: 'https://code.highcharts.com/7.0.3/lib/',
+            libURL: 'https://code.highcharts.com/7.1.1/lib/',
 
             // When offline-exporting is loaded, redefine the menu item definitions
             // related to download.
@@ -830,9 +853,9 @@
             }
         });
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/offline-exporting.src.js', [], function () {
 
 
-    }());
+    });
 }));

@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Plugin for displaying a message when there is no data visible in chart.
  *
  * (c) 2010-2019 Highsoft AS
@@ -13,14 +14,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/no-data-to-display', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/no-data-to-display.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  Plugin for displaying a message when there is no data visible in chart.
@@ -35,8 +44,7 @@
 
 
 
-        var seriesTypes = H.seriesTypes,
-            chartPrototype = H.Chart.prototype,
+        var chartPrototype = H.Chart.prototype,
             defaultOptions = H.getOptions(),
             extend = H.extend;
 
@@ -119,14 +127,14 @@
                 /**
                  * Horizontal alignment of the label.
                  *
-                 * @type {Highcharts.AlignType}
+                 * @type {Highcharts.AlignValue}
                  */
                 align: 'center',
 
                 /**
                  * Vertical alignment of the label.
                  *
-                 * @type {Highcharts.VerticalAlignType}
+                 * @type {Highcharts.VerticalAlignValue}
                  */
                 verticalAlign: 'middle'
             },
@@ -148,45 +156,6 @@
                 color: '#666666'
             }
 
-        };
-
-        // Define hasData function for non-cartesian seris. Returns true if the series
-        // has points at all.
-        [
-            'bubble',
-            'gauge',
-            'heatmap',
-            'networkgraph',
-            'pie',
-            'sankey',
-            'treemap',
-            'waterfall'
-        ].forEach(function (type) {
-            if (seriesTypes[type]) {
-                seriesTypes[type].prototype.hasData = function () {
-                    return !!this.points.length; // != 0
-                };
-            }
-        });
-
-        /**
-         * Define hasData functions for series. These return true if there are data
-         * points on this series within the plot area.
-         *
-         * @private
-         * @function Highcharts.Series#hasData
-         *
-         * @return {boolean}
-         */
-        H.Series.prototype.hasData = function () {
-            return (
-                (
-                    this.visible &&
-                    this.dataMax !== undefined &&
-                    this.dataMin !== undefined
-                ) || // #3703
-                (this.visible && this.yData && this.yData.length > 0) // #9758
-            );
         };
 
         /**
@@ -277,9 +246,9 @@
             }
         });
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/no-data-to-display.src.js', [], function () {
 
 
-    }());
+    });
 }));

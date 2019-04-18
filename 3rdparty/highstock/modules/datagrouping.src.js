@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * Data grouping module
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/datagrouping', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var dataGrouping = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'parts/DataGrouping.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Torstein Honsi
@@ -28,6 +36,10 @@
          *  License: www.highcharts.com/license
          *
          * */
+
+        /**
+         * @typedef {"average"|"averages"|"open"|"high"|"low"|"close"|"sum"} Highcharts.DataGroupingApproximationValue
+         */
 
 
 
@@ -100,8 +112,7 @@
          * @sample {highstock} stock/plotoptions/series-datagrouping-approximation
          *         Approximation callback with custom data
          *
-         * @type       {string|Function}
-         * @validvalue ["average", "averages", "open", "high", "low", "close", "sum"]
+         * @type       {Highcharts.DataGroupingApproximationValue|Function}
          * @product    highstock
          * @apioption  plotOptions.series.dataGrouping.approximation
          */
@@ -263,7 +274,9 @@
          * @apioption plotOptions.column.dataGrouping.groupPixelWidth
          */
 
-
+        /**
+         * @private
+         */
         var approximations = H.approximations = {
             sum: function (arr) {
                 var len = arr.length,
@@ -1131,10 +1144,10 @@
          * ************************************************************************** */
 
         return dataGrouping;
-    }(Highcharts));
-    return (function (dataGrouping) {
+    });
+    _registerModule(_modules, 'masters/modules/datagrouping.src.js', [_modules['parts/DataGrouping.js']], function (dataGrouping) {
 
 
         return dataGrouping;
-    }(dataGrouping));
+    });
 }));

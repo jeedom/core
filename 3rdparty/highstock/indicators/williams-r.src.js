@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * Indicator series type for Highstock
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/indicators/williams-r', ['highcharts', 'highcharts/modules/stock'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var reduceArrayMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/reduce-array.js', [_modules['parts/Globals.js']], function (H) {
         /**
          * (c) 2010-2019 Pawel Fus & Daniel Studencki
          *
@@ -72,8 +80,8 @@
 
 
         return reduceArrayMixin;
-    }(Highcharts));
-    (function (H, reduceArrayMixin) {
+    });
+    _registerModule(_modules, 'indicators/williams-r.src.js', [_modules['parts/Globals.js'], _modules['mixins/reduce-array.js']], function (H, reduceArrayMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -199,9 +207,9 @@
          * @apioption series.williamsr
          */
 
-    }(Highcharts, reduceArrayMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/indicators/williams-r.src.js', [], function () {
 
 
-    }());
+    });
 }));

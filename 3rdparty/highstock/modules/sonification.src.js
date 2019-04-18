@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Sonification module
  *
  * (c) 2012-2019 Øystein Moseng
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/sonification', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var Instrument = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/sonification/Instrument.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -601,8 +610,8 @@
 
 
         return Instrument;
-    }(Highcharts));
-    var frequencies = (function () {
+    });
+    _registerModule(_modules, 'modules/sonification/musicalFrequencies.js', [], function () {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -716,8 +725,8 @@
 
 
         return frequencies;
-    }());
-    var utilities = (function (musicalFrequencies) {
+    });
+    _registerModule(_modules, 'modules/sonification/utilities.js', [_modules['modules/sonification/musicalFrequencies.js']], function (musicalFrequencies) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -895,8 +904,8 @@
 
 
         return utilities;
-    }(frequencies));
-    var instruments = (function (Instrument, utilities) {
+    });
+    _registerModule(_modules, 'modules/sonification/instrumentDefinitions.js', [_modules['modules/sonification/Instrument.js'], _modules['modules/sonification/utilities.js']], function (Instrument, utilities) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -932,8 +941,8 @@
 
 
         return instruments;
-    }(Instrument, utilities));
-    var Earcon = (function (H) {
+    });
+    _registerModule(_modules, 'modules/sonification/Earcon.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -1117,8 +1126,8 @@
 
 
         return Earcon;
-    }(Highcharts));
-    var pointSonifyFunctions = (function (H, utilities) {
+    });
+    _registerModule(_modules, 'modules/sonification/pointSonify.js', [_modules['parts/Globals.js'], _modules['modules/sonification/utilities.js']], function (H, utilities) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -1502,8 +1511,8 @@
 
 
         return pointSonifyFunctions;
-    }(Highcharts, utilities));
-    var chartSonifyFunctions = (function (H, utilities) {
+    });
+    _registerModule(_modules, 'modules/sonification/chartSonify.js', [_modules['parts/Globals.js'], _modules['modules/sonification/utilities.js']], function (H, utilities) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -2528,8 +2537,8 @@
 
 
         return chartSonifyFunctions;
-    }(Highcharts, utilities));
-    var timelineClasses = (function (H, utilities) {
+    });
+    _registerModule(_modules, 'modules/sonification/Timeline.js', [_modules['parts/Globals.js'], _modules['modules/sonification/utilities.js']], function (H, utilities) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -3230,8 +3239,8 @@
 
 
         return timelineClasses;
-    }(Highcharts, utilities));
-    (function (H, Instrument, instruments, Earcon, pointSonifyFunctions, chartSonifyFunctions, utilities, TimelineClasses) {
+    });
+    _registerModule(_modules, 'modules/sonification/sonification.js', [_modules['parts/Globals.js'], _modules['modules/sonification/Instrument.js'], _modules['modules/sonification/instrumentDefinitions.js'], _modules['modules/sonification/Earcon.js'], _modules['modules/sonification/pointSonify.js'], _modules['modules/sonification/chartSonify.js'], _modules['modules/sonification/utilities.js'], _modules['modules/sonification/Timeline.js']], function (H, Instrument, instruments, Earcon, pointSonifyFunctions, chartSonifyFunctions, utilities, TimelineClasses) {
         /* *
          *
          *  (c) 2009-2019 Øystein Moseng
@@ -3331,11 +3340,11 @@
             sonification: {}
         });
 
-    }(Highcharts, Instrument, instruments, Earcon, pointSonifyFunctions, chartSonifyFunctions, utilities, timelineClasses));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/sonification.src.js', [], function () {
 
 
 
 
-    }());
+    });
 }));

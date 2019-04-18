@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Highcharts cylinder module
  *
  * (c) 2010-2019 Kacper Madej
@@ -12,16 +13,27 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/cylinder', ['highcharts', 'highcharts/highcharts-3d'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/cylinder.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
-         * (c) 2010-2019 Kacper Madej
+         * Highcharts cylinder - a 3D series
+         *
+         * (c) 2010-2019 Highsoft AS
+         * Author: Kacper Madej
          *
          * License: www.highcharts.com/license
          */
@@ -32,6 +44,7 @@
             color = H.color,
             deg2rad = H.deg2rad,
             perspective = H.perspective,
+            pick = H.pick,
             seriesType = H.seriesType,
 
             // Work on H.Renderer instead of H.SVGRenderer for VML support.
@@ -139,7 +152,7 @@
          * @sample {highcharts} highcharts/series/data-array-of-objects/
          *         Config objects
          *
-         * @type      {Array<number|Array<(number|string),number>|*>}
+         * @type      {Array<number|Array<(number|string),(number|null)>|null|*>}
          * @extends   series.column.data
          * @product   highcharts highstock
          * @apioption series.cylinder.data
@@ -236,7 +249,7 @@
         RendererProto.getCylinderBack = function (topPath, bottomPath) {
             var path = ['M'];
 
-            if (bottomPath.simplified) {
+            if (topPath.simplified) {
                 path = path.concat(topPath.slice(7, 12));
 
                 // end at start
@@ -274,11 +287,16 @@
 
         // Retruns cylinder path for top or bottom
         RendererProto.getCylinderEnd = function (chart, shapeArgs, isBottom) {
-            // A half of the smaller one out of width or depth
-            var radius = Math.min(shapeArgs.width, shapeArgs.depth) / 2,
+            // A half of the smaller one out of width or depth (optional, because
+            // there's no depth for a funnel that reuses the code)
+            var depth = pick(shapeArgs.depth, shapeArgs.width),
+                radius = Math.min(shapeArgs.width, depth) / 2,
 
                 // Approximated longest diameter
-                angleOffset = deg2rad * (chart.options.chart.options3d.beta - 90),
+                angleOffset = deg2rad * (
+                    chart.options.chart.options3d.beta - 90 +
+                    (shapeArgs.alphaCorrection || 0)
+                ),
 
                 // Could be top or bottom of the cylinder
                 y = shapeArgs.y + (isBottom ? shapeArgs.height : 0),
@@ -287,7 +305,7 @@
                 // More math. at spencermortensen.com/articles/bezier-circle/
                 c = 0.5519 * radius,
                 centerX = shapeArgs.width / 2 + shapeArgs.x,
-                centerZ = shapeArgs.depth / 2 + shapeArgs.z,
+                centerZ = depth / 2 + shapeArgs.z,
 
                 // points could be generated in a loop, but readability will plummet
                 points = [{ // M - starting point
@@ -366,7 +384,10 @@
             perspectivePoints = perspective(points, chart, true);
 
             // check for sub-pixel curve issue, compare front and back edges
-            if (Math.abs(perspectivePoints[3].y - perspectivePoints[9].y) < 2.5) {
+            if (
+                Math.abs(perspectivePoints[3].y - perspectivePoints[9].y) < 2.5 &&
+                Math.abs(perspectivePoints[0].y - perspectivePoints[6].y) < 2.5
+            ) {
                 // use simplied shape
                 path = this.toLinePath([
                     perspectivePoints[0],
@@ -405,9 +426,9 @@
             return path;
         };
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/cylinder.src.js', [], function () {
 
 
-    }());
+    });
 }));

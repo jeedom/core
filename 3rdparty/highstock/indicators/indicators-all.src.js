@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
  *
  * All technical indicators for Highstock
  *
@@ -13,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/indicators/indicators-all', ['highcharts', 'highcharts/modules/stock'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var requiredIndicatorMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/indicator-required.js', [_modules['parts/Globals.js']], function (H) {
         /**
          * (c) 2010-2019 Daniel Studencki
          *
@@ -68,8 +76,8 @@
 
 
         return requiredIndicatorMixin;
-    }(Highcharts));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/indicators.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -185,7 +193,8 @@
                  * or indicator values.
                  *
                  * @sample {highstock} stock/plotoptions/series-comparetomain/
-                 *         compareToMain
+                 *         Difference between comparing SMA values to the main series
+                 *         and its own values.
                  *
                  * @type {boolean}
                  */
@@ -227,6 +236,7 @@
                     series: true,
                     eventName: 'updatedData'
                 },
+                hasDerivedData: true,
                 useCommonDataGrouping: true,
                 nameComponents: ['period'],
                 nameSuffixes: [], // e.g. Zig Zag uses extra '%'' in the legend name
@@ -492,8 +502,8 @@
          * @apioption series.sma
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/accumulation-distribution.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -621,8 +631,8 @@
          * @apioption series.ad
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/ao.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -827,8 +837,8 @@
          * @apioption series.ao
          */
 
-    }(Highcharts));
-    var multipleLinesMixin = (function (H) {
+    });
+    _registerModule(_modules, 'mixins/multipe-lines.js', [_modules['parts/Globals.js']], function (H) {
         /**
          *
          *  (c) 2010-2019 Wojciech Chmiel
@@ -1050,8 +1060,8 @@
 
 
         return multipleLinesMixin;
-    }(Highcharts));
-    (function (H, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/aroon.src.js', [_modules['parts/Globals.js'], _modules['mixins/multipe-lines.js']], function (H, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -1223,8 +1233,8 @@
          * @apioption series.aroon
          */
 
-    }(Highcharts, multipleLinesMixin));
-    (function (H, multipleLinesMixin, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/aroon-oscillator.src.js', [_modules['parts/Globals.js'], _modules['mixins/multipe-lines.js'], _modules['mixins/indicator-required.js']], function (H, multipleLinesMixin, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -1350,8 +1360,8 @@
          * @apioption series.aroonoscillator
          */
 
-    }(Highcharts, multipleLinesMixin, requiredIndicatorMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/atr.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -1501,8 +1511,8 @@
          * @apioption series.atr
          */
 
-    }(Highcharts));
-    (function (H, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/bollinger-bands.src.js', [_modules['parts/Globals.js'], _modules['mixins/multipe-lines.js']], function (H, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -1709,8 +1719,8 @@
          * @apioption series.bb
          */
 
-    }(Highcharts, multipleLinesMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/cci.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -1840,8 +1850,8 @@
          * @apioption series.cci
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/cmf.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Highsoft AS
@@ -2087,8 +2097,8 @@
          * @apioption series.cmf
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/dpo.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -2226,8 +2236,8 @@
          * @apioption series.dpo
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/ema.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -2392,8 +2402,8 @@
          * @apioption series.ema
          */
 
-    }(Highcharts));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/chaikin.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -2557,8 +2567,8 @@
          * @apioption series.chaikin
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/dema.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -2747,8 +2757,8 @@
          * @apioption series.dema
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/tema.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -2993,8 +3003,8 @@
          * @apioption series.tema
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H, requiredIndicator) {
+    });
+    _registerModule(_modules, 'indicators/trix.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicator) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -3088,8 +3098,8 @@
          * @apioption series.trix
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/apo.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -3235,8 +3245,8 @@
          * @apioption series.apo
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/ichimoku-kinko-hyo.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -3759,7 +3769,7 @@
                     // element and indicator property
                     if (indicator.graphCollection) {
                         indicator.graphCollection.forEach(function (graphName) {
-                            indicator[graphName].element.remove();
+                            indicator[graphName].destroy();
                             delete indicator[graphName];
                         });
                     }
@@ -4085,8 +4095,8 @@
          * @apioption series.ikh
          */
 
-    }(Highcharts));
-    (function (H, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/keltner-channels.src.js', [_modules['parts/Globals.js'], _modules['mixins/multipe-lines.js']], function (H, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -4277,8 +4287,8 @@
          * @optionparent series.keltnerchannels
          */
 
-    }(Highcharts, multipleLinesMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/macd.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -4694,8 +4704,8 @@
          * @apioption series.macd
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/mfi.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  Money Flow Index indicator for Highstock
@@ -4892,8 +4902,8 @@
          * @apioption series.mfi
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/momentum.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -5011,8 +5021,8 @@
          * @apioption series.momentum
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/natr.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -5085,8 +5095,8 @@
          * @apioption series.natr
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/pivot-points.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -5158,7 +5168,9 @@
                 },
                 enableMouseTracking: false,
                 dataLabels: {
+                    /** @ignore-option */
                     enabled: true,
+                    /** @ignore-option */
                     format: '{point.pivotLine}'
                 },
                 dataGrouping: {
@@ -5445,8 +5457,8 @@
          * @apioption series.pivotpoints
          */
 
-    }(Highcharts));
-    (function (H, requiredIndicatorMixin) {
+    });
+    _registerModule(_modules, 'indicators/ppo.src.js', [_modules['parts/Globals.js'], _modules['mixins/indicator-required.js']], function (H, requiredIndicatorMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -5596,8 +5608,8 @@
          * @apioption series.ppo
          */
 
-    }(Highcharts, requiredIndicatorMixin));
-    var reduceArrayMixin = (function (H) {
+    });
+    _registerModule(_modules, 'mixins/reduce-array.js', [_modules['parts/Globals.js']], function (H) {
         /**
          * (c) 2010-2019 Pawel Fus & Daniel Studencki
          *
@@ -5649,8 +5661,8 @@
 
 
         return reduceArrayMixin;
-    }(Highcharts));
-    (function (H, reduceArrayMixin, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/price-channel.src.js', [_modules['parts/Globals.js'], _modules['mixins/reduce-array.js'], _modules['mixins/multipe-lines.js']], function (H, reduceArrayMixin, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -5796,8 +5808,8 @@
          * @optionparent series.pc
          */
 
-    }(Highcharts, reduceArrayMixin, multipleLinesMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/price-envelopes.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -6047,8 +6059,8 @@
          * @apioption series.priceenvelopes
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/psar.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  Parabolic SAR indicator for Highstock
@@ -6354,8 +6366,8 @@
          * @apioption series.psar
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/roc.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Kacper Madej
@@ -6503,8 +6515,8 @@
          * @apioption series.roc
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/rsi.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -6666,8 +6678,8 @@
          * @apioption series.rsi
          */
 
-    }(Highcharts));
-    (function (H, reduceArrayMixin, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/stochastic.src.js', [_modules['parts/Globals.js'], _modules['mixins/reduce-array.js'], _modules['mixins/multipe-lines.js']], function (H, reduceArrayMixin, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -6857,8 +6869,8 @@
          * @apioption series.stochastic
          */
 
-    }(Highcharts, reduceArrayMixin, multipleLinesMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/supertrend.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -6977,7 +6989,7 @@
                          * @sample {highstock} stock/xaxis/gridlinedashstyle/
                          *         Long dashes
                          *
-                         * @type  {Highcharts.DashStyleType}
+                         * @type  {Highcharts.DashStyleValue}
                          * @since 7.0.0
                          */
                         dashStyle: 'LongDash'
@@ -7401,8 +7413,8 @@
          * @apioption series.supertrend
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/volume-by-price.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Paweł Dalek
@@ -7544,14 +7556,20 @@
                     enabled: false
                 },
                 dataLabels: {
-                    enabled: true,
+                    /** @ignore-option */
                     allowOverlap: true,
-                    verticalAlign: 'top',
+                    /** @ignore-option */
+                    enabled: true,
+                    /** @ignore-option */
                     format: 'P: {point.volumePos:.2f} | N: {point.volumeNeg:.2f}',
+                    /** @ignore-option */
                     padding: 0,
+                    /** @ignore-option */
                     style: {
                         fontSize: '7px'
-                    }
+                    },
+                    /** @ignore-option */
+                    verticalAlign: 'top'
                 }
             },
             /**
@@ -8072,8 +8090,8 @@
          * @apioption series.vbp
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/vwap.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Paweł Dalek
@@ -8261,8 +8279,8 @@
          * @apioption series.vwap
          */
 
-    }(Highcharts));
-    (function (H, reduceArrayMixin) {
+    });
+    _registerModule(_modules, 'indicators/williams-r.src.js', [_modules['parts/Globals.js'], _modules['mixins/reduce-array.js']], function (H, reduceArrayMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -8388,8 +8406,8 @@
          * @apioption series.williamsr
          */
 
-    }(Highcharts, reduceArrayMixin));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/wma.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Kacper Madej
@@ -8534,8 +8552,8 @@
          * @apioption series.wma
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/zigzag.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Kacper Madej
@@ -8755,8 +8773,8 @@
          * @apioption series.zigzag
          */
 
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'indicators/regressions.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          *
          *  (c) 2010-2019 Kamil Kulig
@@ -9182,8 +9200,8 @@
          * @apioption series.linearregressionangle
          */
 
-    }(Highcharts));
-    (function (H, multipleLinesMixin) {
+    });
+    _registerModule(_modules, 'indicators/acceleration-bands.src.js', [_modules['parts/Globals.js'], _modules['mixins/multipe-lines.js']], function (H, multipleLinesMixin) {
         /* *
          *
          *  License: www.highcharts.com/license
@@ -9380,10 +9398,10 @@
          * @optionparent series.abands
          */
 
-    }(Highcharts, multipleLinesMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/indicators/indicators-all.src.js', [], function () {
 
 
 
-    }());
+    });
 }));

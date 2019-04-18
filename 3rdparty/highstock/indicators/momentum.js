@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.0.3 (2019-02-06)
+  Highcharts JS v7.1.1 (2019-04-09)
 
  Indicator series type for Highstock
 
@@ -7,6 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){(function(a){function m(a,b,c,f,d){c=c[f-1][3]-c[f-d-1][3];b=b[f-1];a.shift();return[b,c]}var n=a.isArray;a=a.seriesType;a("momentum","sma",{params:{period:14}},{nameBase:"Momentum",getValues:function(a,b){b=b.period;var c=a.xData,f=(a=a.yData)?a.length:0,d=c[0],g=[],h=[],k=[],
-l,e;if(c.length<=b||!n(a[0]))return!1;l=[[d,a[0][3]]];for(d=b+1;d<f;d++)e=m(l,c,a,d,b,void 0),g.push(e),h.push(e[0]),k.push(e[1]);e=m(l,c,a,d,b,void 0);g.push(e);h.push(e[0]);k.push(e[1]);return{values:g,xData:h,yData:k}}})})(a)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/momentum",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,h,p){a.hasOwnProperty(b)||(a[b]=p.apply(null,h))}a=a?a._modules:{};b(a,"indicators/momentum.src.js",[a["parts/Globals.js"]],function(a){function b(a,b,c,g,d){c=c[g-1][3]-
+c[g-d-1][3];b=b[g-1];a.shift();return[b,c]}var h=a.isArray;a=a.seriesType;a("momentum","sma",{params:{period:14}},{nameBase:"Momentum",getValues:function(a,f){f=f.period;var c=a.xData,g=(a=a.yData)?a.length:0,d=c[0],k=[],l=[],m=[],n,e;if(c.length<=f||!h(a[0]))return!1;n=[[d,a[0][3]]];for(d=f+1;d<g;d++)e=b(n,c,a,d,f,void 0),k.push(e),l.push(e[0]),m.push(e[1]);e=b(n,c,a,d,f,void 0);k.push(e);l.push(e[0]);m.push(e[1]);return{values:k,xData:l,yData:m}}})});b(a,"masters/indicators/momentum.src.js",[],
+function(){})});
 //# sourceMappingURL=momentum.js.map

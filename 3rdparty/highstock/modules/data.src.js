@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Data module
  *
  * (c) 2012-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/data', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/ajax.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2010-2017 Christer Vasseng, Torstein Honsi
          *
@@ -142,8 +151,8 @@
             r.send(options.data || true);
         };
 
-    }(Highcharts));
-    (function (Highcharts) {
+    });
+    _registerModule(_modules, 'modules/data.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
         /**
          * Data module
          *
@@ -709,6 +718,11 @@
                     hasData = true;
                 }
 
+                if (this.hasURLOption(options)) {
+                    clearTimeout(this.liveDataTimeout);
+                    hasData = false;
+                }
+
                 if (!hasData) {
                     // Fetch live data
                     hasData = this.fetchLiveData();
@@ -733,6 +747,13 @@
                 if (!hasData && options.afterComplete) {
                     options.afterComplete();
                 }
+            },
+
+            hasURLOption: function (options) {
+                return Boolean(
+                    options &&
+                    (options.rowsURL || options.csvURL || options.columnsURL)
+                );
             },
 
             /**
@@ -1452,7 +1473,8 @@
              *         The first URL that was tried.
              */
             fetchLiveData: function () {
-                var chart = this.chart,
+                var data = this,
+                    chart = this.chart,
                     options = this.options,
                     maxRetries = 3,
                     currentRetries = 0,
@@ -1460,9 +1482,7 @@
                     updateIntervalMs = (options.dataRefreshRate || 2) * 1000,
                     originalOptions = merge(options);
 
-                if (!options ||
-                    (!options.csvURL && !options.rowsURL && !options.columnsURL)
-                ) {
+                if (!this.hasURLOption(options)) {
                     return false;
                 }
 
@@ -1487,7 +1507,7 @@
                         }
 
                         if (initialFetch) {
-                            clearTimeout(chart.liveDataTimeout);
+                            clearTimeout(data.liveDataTimeout);
                             chart.liveDataURL = url;
                         }
 
@@ -1495,7 +1515,7 @@
                             // Poll
                             if (pollingEnabled && chart.liveDataURL === url) {
                                 // We need to stop doing this if the URL has changed
-                                chart.liveDataTimeout =
+                                data.liveDataTimeout =
                                     setTimeout(performFetch, updateIntervalMs);
                             }
                         }
@@ -1550,9 +1570,7 @@
 
                 performFetch(true);
 
-                return (options &&
-                    (options.csvURL || options.rowsURL || options.columnsURL)
-                );
+                return this.hasURLOption(options);
             },
 
 
@@ -2047,6 +2065,26 @@
             },
 
             /**
+             * Get the parsed data in a form that we can apply directly to the
+             * `series.data` config. Array positions can be mapped using the
+             * `series.keys` option.
+             *
+             * @example
+             * const data = Highcharts.data({
+             *   csv: document.getElementById('data').innerHTML
+             * }).getData();
+             *
+             * @function Highcharts.Data#getData
+             *
+             * @return {Array<Array<*>>} Data rows
+             */
+            getData: function () {
+                if (this.columns) {
+                    return this.rowsToColumns(this.columns).slice(1);
+                }
+            },
+
+            /**
              * A hook for working directly on the parsed columns
              *
              * @function Highcharts.Data#parsed
@@ -2281,15 +2319,17 @@
                         // Avoid setting axis options unless the type changes. Running
                         // Axis.update will cause the whole structure to be destroyed
                         // and rebuilt, and animation is lost.
-                        if (
-                            dataOptions.xAxis &&
-                            chart.xAxis[0] &&
-                            dataOptions.xAxis.type === chart.xAxis[0].options.type
-                        ) {
-                            delete dataOptions.xAxis;
-                        }
+                        if (dataOptions) {
+                            if (
+                                dataOptions.xAxis &&
+                                chart.xAxis[0] &&
+                                dataOptions.xAxis.type === chart.xAxis[0].options.type
+                            ) {
+                                delete dataOptions.xAxis;
+                            }
 
-                        chart.update(dataOptions, redraw, true);
+                            chart.update(dataOptions, redraw, true);
+                        }
                     };
                     // Apply it
                     merge(true, this.options, options);
@@ -2557,9 +2597,9 @@
             // Else return undefined
         };
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/data.src.js', [], function () {
 
 
-    }());
+    });
 }));

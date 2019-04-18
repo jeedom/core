@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Highcharts Drilldown module
  *
  * Author: Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/drilldown', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/drilldown.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * Highcharts Drilldown module
          *
@@ -179,6 +188,8 @@
                  *
                  * @since   3.0.8
                  * @product highcharts highmaps
+                 *
+                 * @private
                  */
                 drillUpText: '◁ Back to {series.name}'
             }
@@ -321,11 +332,10 @@
                  * What box to align the button to. Can be either `plotBox` or
                  * `spacingBox`.
                  *
-                 * @type       {string}
+                 * @type       {Highcharts.ButtonRelativeToValue}
                  * @default    plotBox
                  * @since      3.0.8
                  * @product    highcharts highmaps
-                 * @validvalue ["plotBox", "spacingBox"]
                  * @apioption  drilldown.drillUpButton.relativeTo
                  */
 
@@ -363,7 +373,7 @@
                     /**
                      * Vertical alignment of the button.
                      *
-                     * @type      {Highcharts.VerticalAlignType}
+                     * @type      {Highcharts.VerticalAlignValue}
                      * @default   top
                      * @product   highcharts highmaps
                      * @apioption drilldown.drillUpButton.position.verticalAlign
@@ -372,7 +382,7 @@
                     /**
                      * Horizontal alignment.
                      *
-                     * @type {Highcharts.AlignType}
+                     * @type {Highcharts.AlignValue}
                      */
                     align: 'right',
 
@@ -631,6 +641,7 @@
             this.pointer.reset();
             this.redraw();
             this.showDrillUpButton();
+            fireEvent(this, 'afterDrilldown');
         };
 
         Chart.prototype.getDrilldownBackText = function () {
@@ -793,9 +804,6 @@
                 }
             }
 
-            // Fire a once-off event after all series have been drilled up (#5158)
-            fireEvent(chart, 'drillupall');
-
             this.redraw();
 
             if (this.drilldownLevels.length === 0) {
@@ -808,6 +816,9 @@
             }
 
             this.ddDupes.length = []; // #3315
+
+            // Fire a once-off event after all series have been drilled up (#5158)
+            fireEvent(chart, 'drillupall');
         };
 
         // Add update function to be called internally from Chart.update (#7600)
@@ -1313,9 +1324,9 @@
             }
         });
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/drilldown.src.js', [], function () {
 
 
-    }());
+    });
 }));

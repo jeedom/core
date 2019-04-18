@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Old IE (v6, v7, v8) module for Highcharts v6+.
  *
  * (c) 2010-2019 Highsoft AS
@@ -13,14 +14,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/oldie', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/oldie.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2010-2019 Torstein Honsi
          *
@@ -67,7 +76,7 @@
          * @apioption global.VMLRadialGradientURL
          */
         H.getOptions().global.VMLRadialGradientURL =
-            'http://code.highcharts.com/7.0.3/gfx/vml-radial-gradient.png';
+            'http://code.highcharts.com/7.1.1/gfx/vml-radial-gradient.png';
 
 
         // Utilites
@@ -1574,9 +1583,9 @@
             return offsetWidth;
         };
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/oldie.src.js', [], function () {
 
 
-    }());
+    });
 }));

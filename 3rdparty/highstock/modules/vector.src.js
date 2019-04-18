@@ -1,5 +1,6 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Vector plot series module
  *
  * (c) 2010-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/vector', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/vector.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * Vector plot series module
          *
@@ -214,7 +223,10 @@
                         var plotX = point.plotX,
                             plotY = point.plotY;
 
-                        if (chart.isInsidePlot(plotX, plotY, chart.inverted)) {
+                        if (
+                            this.options.clip === false ||
+                            chart.isInsidePlot(plotX, plotY, chart.inverted)
+                        ) {
 
                             if (!point.graphic) {
                                 point.graphic = this.chart.renderer
@@ -373,9 +385,9 @@
          * @apioption series.vector.data.direction
          */
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/vector.src.js', [], function () {
 
 
-    }());
+    });
 }));

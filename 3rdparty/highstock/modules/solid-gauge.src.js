@@ -1,5 +1,6 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Solid angular gauge module
  *
  * (c) 2010-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/solid-gauge', ['highcharts', 'highcharts/highcharts-more'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'modules/solid-gauge.src.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * Solid angular gauge module
          *
@@ -274,7 +283,7 @@
 
         // The solidgauge series type
         H.seriesType('solidgauge', 'gauge', solidGaugeOptions, {
-
+            drawLegendSymbol: H.LegendSymbolMixin.drawRectangle,
             // Extend the translate function to extend the Y axis with the necessary
             // decoration (#5895).
             translate: function () {
@@ -470,7 +479,7 @@
          * @sample {highcharts} highcharts/series/data-array-of-objects/
          *         Config objects
          *
-         * @type      {Array<number|*>}
+         * @type      {Array<number|null|*>}
          * @extends   series.gauge.data
          * @product   highcharts
          * @apioption series.solidgauge.data
@@ -502,9 +511,9 @@
          * @apioption series.solidgauge.data.radius
          */
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/solid-gauge.src.js', [], function () {
 
 
-    }());
+    });
 }));

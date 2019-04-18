@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Exporting module
  *
  * (c) 2010-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/export-data', ['highcharts', 'highcharts/modules/exporting'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/ajax.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2010-2017 Christer Vasseng, Torstein Honsi
          *
@@ -142,8 +151,8 @@
             r.send(options.data || true);
         };
 
-    }(Highcharts));
-    (function (Highcharts) {
+    });
+    _registerModule(_modules, 'mixins/download-url.js', [_modules['parts/Globals.js']], function (Highcharts) {
         /* *
          * Mixin for downloading content in the browser
          *
@@ -246,8 +255,8 @@
             }
         };
 
-    }(Highcharts));
-    (function (Highcharts) {
+    });
+    _registerModule(_modules, 'modules/export-data.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
         /**
          * Experimental data export module for Highcharts
          *
@@ -267,11 +276,14 @@
             win = Highcharts.win,
             doc = win.document,
             seriesTypes = Highcharts.seriesTypes,
-            downloadURL = Highcharts.downloadURL;
+            downloadURL = Highcharts.downloadURL,
+            fireEvent = Highcharts.fireEvent;
+
 
         // Can we add this to utils? Also used in screen-reader.js
         /**
          * HTML encode some characters vulnerable for XSS.
+         * @private
          * @param  {string} html The input string
          * @return {string} The excaped string
          */
@@ -286,9 +298,22 @@
         }
 
         Highcharts.setOptions({
+            /**
+             * Export-data module required. When set to `false` will prevent the series
+             * data from being included in any form of data export.
+             *
+             * Since version 6.0.0 until 7.1.0 the option was existing undocumented
+             * as `includeInCSVExport`.
+             *
+             * @type      {boolean}
+             * @since     7.1.0
+             * @apioption plotOptions.series.includeInDataExport
+             */
 
             /**
              * @optionparent exporting
+             *
+             * @private
              */
             exporting: {
 
@@ -429,6 +454,8 @@
 
             /**
              * @optionparent lang
+             *
+             * @private
              */
             lang: {
 
@@ -590,7 +617,7 @@
                 });
 
                 if (
-                    series.options.includeInCSVExport !== false &&
+                    series.options.includeInDataExport !== false &&
                     !series.options.isInternal &&
                     series.visible !== false // #55
                 ) {
@@ -754,7 +781,7 @@
             }
             dataRows = dataRows.concat(rowArr);
 
-            Highcharts.fireEvent(this, 'exportData', { dataRows: dataRows });
+            fireEvent(this, 'exportData', { dataRows: dataRows });
 
             return dataRows;
         };
@@ -1008,7 +1035,7 @@
 
             var e = { html: html };
 
-            Highcharts.fireEvent(this, 'afterGetTable', e);
+            fireEvent(this, 'afterGetTable', e);
 
             return e.html;
         };
@@ -1103,6 +1130,7 @@
             }
 
             this.dataTableDiv.innerHTML = this.getTable();
+            fireEvent(this, 'afterViewData', this.dataTableDiv);
         };
 
         /**
@@ -1206,13 +1234,15 @@
                 }
             });
 
-            exportingOptions.buttons.contextButton.menuItems.push(
-                'separator',
-                'downloadCSV',
-                'downloadXLS',
-                'viewData',
-                'openInCloud'
-            );
+            if (exportingOptions.buttons) {
+                exportingOptions.buttons.contextButton.menuItems.push(
+                    'separator',
+                    'downloadCSV',
+                    'downloadXLS',
+                    'viewData',
+                    'openInCloud'
+                );
+            }
         }
 
         // Series specific
@@ -1226,9 +1256,9 @@
             seriesTypes.treemap.prototype.exportKey = 'name';
         }
 
-    }(Highcharts));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/export-data.src.js', [], function () {
 
 
-    }());
+    });
 }));

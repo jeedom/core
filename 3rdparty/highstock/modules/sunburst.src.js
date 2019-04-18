@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2016-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -12,20 +12,30 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/sunburst', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var draw = (function () {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/draw-point.js', [], function () {
         var isFn = function (x) {
             return typeof x === 'function';
         };
 
         /**
-         * Handles the drawing of a point.
+         * Handles the drawing of a component.
+         * Can be used for any type of component that reserves the graphic property, and
+         * provides a shouldDraw on its context.
          *
          * @private
          * @function draw
@@ -33,20 +43,20 @@
          * @param {object} params
          *        Parameters.
          *
-         * @todo
-         * - add type checking.
+         * TODO: add type checking.
+         * TODO: export this function to enable usage
          */
         var draw = function draw(params) {
-            var point = this,
-                graphic = point.graphic,
+            var component = this,
+                graphic = component.graphic,
                 animatableAttribs = params.animatableAttribs,
                 onComplete = params.onComplete,
                 css = params.css,
                 renderer = params.renderer;
 
-            if (point.shouldDraw()) {
+            if (component.shouldDraw()) {
                 if (!graphic) {
-                    point.graphic = graphic =
+                    component.graphic = graphic =
                         renderer[params.shapeType](params.shapeArgs).add(params.group);
                 }
                 graphic
@@ -58,22 +68,46 @@
                         onComplete
                     );
             } else if (graphic) {
-                graphic.animate(animatableAttribs, undefined, function () {
-                    point.graphic = graphic = graphic.destroy();
+                var destroy = function () {
+                    component.graphic = graphic = graphic.destroy();
                     if (isFn(onComplete)) {
                         onComplete();
                     }
-                });
-            }
-            if (graphic) {
-                graphic.addClass(point.getClassName(), true);
+                };
+
+                // animate only runs complete callback if something was animated.
+                if (Object.keys(animatableAttribs).length) {
+                    graphic.animate(animatableAttribs, undefined, function () {
+                        destroy();
+                    });
+                } else {
+                    destroy();
+                }
             }
         };
 
+        /**
+         * An extended version of draw customized for points.
+         * It calls additional methods that is expected when rendering a point.
+         *
+         * @param {object} params Parameters
+         */
+        var drawPoint = function drawPoint(params) {
+            var point = this,
+                attribs = params.attribs = params.attribs || {};
 
-        return draw;
-    }());
-    var result = (function (H) {
+            // Assigning class in dot notation does go well in IE8
+            // eslint-disable-next-line dot-notation
+            attribs['class'] = point.getClassName();
+
+            // Call draw to render component
+            draw.call(point, params);
+        };
+
+
+        return drawPoint;
+    });
+    _registerModule(_modules, 'mixins/tree-series.js', [_modules['parts/Globals.js']], function (H) {
 
         var extend = H.extend,
             isArray = H.isArray,
@@ -330,8 +364,8 @@
 
 
         return result;
-    }(Highcharts));
-    (function (H, mixinTreeSeries) {
+    });
+    _registerModule(_modules, 'modules/treemap.src.js', [_modules['parts/Globals.js'], _modules['mixins/tree-series.js'], _modules['mixins/draw-point.js']], function (H, mixinTreeSeries, drawPoint) {
         /* *
          * (c) 2014-2019 Highsoft AS
          *
@@ -436,6 +470,7 @@
                  */
                 allowTraversingTree: false,
 
+                animationLimit: 250,
                 /**
                  * When the series contains less points than the crop threshold, all
                  * points are drawn, event if the points fall outside the visible plot
@@ -529,27 +564,31 @@
                 showInLegend: false,
 
                 /**
-                 * @ignore
+                 * @ignore-option
                  */
                 marker: false,
 
                 colorByPoint: false,
 
                 /**
-                 * @extends plotOptions.heatmap.dataLabels
-                 * @since   4.1.0
+                 * @since 4.1.0
                  */
                 dataLabels: {
-                    enabled: true,
+                    /** @ignore-option */
                     defer: false,
-                    verticalAlign: 'middle',
+                    /** @ignore-option */
+                    enabled: true,
+                    /** @ignore-option */
                     formatter: function () {
                         var point = this && this.point ? this.point : {},
                             name = isString(point.name) ? point.name : '';
 
                         return name;
                     },
-                    inside: true
+                    /** @ignore-option */
+                    inside: true,
+                    /** @ignore-option */
+                    verticalAlign: 'middle'
                 },
 
                 tooltip: {
@@ -616,7 +655,8 @@
                 levelIsConstant: true,
                 /**
                  * Options for the button appearing when drilling down in a treemap.
-                 * Deprecated and replaced by [traverseUpButton](#plotOptions.treemap.traverseUpButton).
+                 * Deprecated and replaced by
+                 * [traverseUpButton](#plotOptions.treemap.traverseUpButton).
                  *
                  * @deprecated
                  */
@@ -633,17 +673,17 @@
                          * Vertical alignment of the button.
                          *
                          * @deprecated
-                         * @default    top
-                         * @validvalue ["top", "middle", "bottom"]
-                         * @product    highcharts
-                         * @apioption  plotOptions.treemap.drillUpButton.position.verticalAlign
+                         * @type      {Highcharts.VerticalAlignValue}
+                         * @default   top
+                         * @product   highcharts
+                         * @apioption plotOptions.treemap.drillUpButton.position.verticalAlign
                          */
 
                         /**
                          * Horizontal alignment of the button.
                          *
                          * @deprecated
-                         * @validvalue ["left", "center", "right"]
+                         * @type {Highcharts.AlignValue}
                          */
                         align: 'right',
 
@@ -676,16 +716,16 @@
                         /**
                          * Vertical alignment of the button.
                          *
-                         * @default    top
-                         * @validvalue ["top", "middle", "bottom"]
-                         * @product    highcharts
-                         * @apioption  plotOptions.treemap.traverseUpButton.position.verticalAlign
+                         * @type      {Highcharts.VerticalAlignValue}
+                         * @default   top
+                         * @product   highcharts
+                         * @apioption plotOptions.treemap.traverseUpButton.position.verticalAlign
                          */
 
                         /**
                          * Horizontal alignment of the button.
                          *
-                         * @validvalue ["left", "center", "right"]
+                         * @type {Highcharts.AlignValue}
                          */
                         align: 'right',
 
@@ -972,6 +1012,11 @@
                     series.nodeMap = [];
                     return series.buildNode('', -1, 0, parentList, null);
                 },
+                // Define hasData function for non-cartesian series.
+                // Returns true if the series has points at all.
+                hasData: function () {
+                    return !!this.processedXData.length; // != 0
+                },
                 init: function (chart, options) {
                     var series = this,
                         colorSeriesMixin = H.colorSeriesMixin;
@@ -1192,7 +1237,6 @@
                                 yAxis.translate(values.y + values.height, 0, 0, 0, 1)
                             ) - crispCorr;
                             // Set point values
-                            point.shapeType = 'rect';
                             point.shapeArgs = {
                                 x: Math.min(x1, x2),
                                 y: Math.min(y1, y2),
@@ -1713,54 +1757,89 @@
                     return attr;
                 },
 
-                // Extending ColumnSeries drawPoints
+                // Override drawPoints
                 drawPoints: function () {
                     var series = this,
-                        points = series.points.filter(function (n) {
-                            return n.node.visible;
-                        });
+                        chart = series.chart,
+                        renderer = chart.renderer,
+                        points = series.points,
+                        styledMode = chart.styledMode,
+                        options = series.options,
+                        shadow = styledMode ? {} : options.shadow,
+                        borderRadius = options.borderRadius,
+                        withinAnimationLimit =
+                            chart.pointCount < options.animationLimit,
+                        allowTraversingTree = options.allowTraversingTree;
 
                     points.forEach(function (point) {
-                        var groupKey = 'level-group-' + point.node.levelDynamic;
+                        var levelDynamic = point.node.levelDynamic,
+                            animate = {},
+                            attr = {},
+                            css = {},
+                            groupKey = 'level-group-' + levelDynamic,
+                            hasGraphic = !!point.graphic,
+                            shouldAnimate = withinAnimationLimit && hasGraphic,
+                            shapeArgs = point.shapeArgs;
 
-                        if (!series[groupKey]) {
-                            series[groupKey] = series.chart.renderer.g(groupKey)
-                                .attr({
-                                // @todo Set the zIndex based upon the number of levels,
-                                // instead of using 1000
-                                    zIndex: 1000 - point.node.levelDynamic
-                                })
-                                .add(series.group);
+                        // Don't bother with calculate styling if the point is not drawn
+                        if (point.shouldDraw()) {
+                            if (borderRadius) {
+                                attr.r = borderRadius;
+                            }
+
+                            merge(
+                                true, // Extend object
+                                // Which object to extend
+                                shouldAnimate ? animate : attr,
+                                // Add shapeArgs to animate/attr if graphic exists
+                                hasGraphic ? shapeArgs : {},
+                                // Add style attribs if !styleMode
+                                styledMode ?
+                                    {} :
+                                    series.pointAttribs(
+                                        point, point.selected && 'select'
+                                    )
+                            );
+
+                            // In styled mode apply point.color. Use CSS, otherwise the
+                            // fill used in the style sheet will take precedence over
+                            // the fill attribute.
+                            if (series.colorAttribs && styledMode) {
+                                // Heatmap is loaded
+                                extend(css, series.colorAttribs(point));
+                            }
+
+                            if (!series[groupKey]) {
+                                series[groupKey] = renderer.g(groupKey)
+                                    .attr({
+                                        // @todo Set the zIndex based upon the number of
+                                        // levels, instead of using 1000
+                                        zIndex: 1000 - levelDynamic
+                                    })
+                                    .add(series.group);
+                            }
                         }
-                        point.group = series[groupKey];
 
-                    });
-                    // Call standard drawPoints
-                    seriesTypes.column.prototype.drawPoints.call(this);
-
-                    // In styled mode apply point.color. Use CSS, otherwise the fill
-                    // used in the style sheet will take precedence over the fill
-                    // attribute.
-                    if (this.colorAttribs && series.chart.styledMode) {
-                        // Heatmap is loaded
-                        this.points.forEach(function (point) {
-                            if (point.graphic) {
-                                point.graphic.css(this.colorAttribs(point));
-                            }
-                        }, this);
-                    }
-
-                    // If setRootNode is allowed, set a point cursor on clickables & add
-                    // drillId to point
-                    if (series.options.allowTraversingTree) {
-                        points.forEach(function (point) {
-                            if (point.graphic) {
-                                point.drillId = series.options.interactByLeaf ?
-                                    series.drillToByLeaf(point) :
-                                    series.drillToByGroup(point);
-                            }
+                        // Draw the point
+                        point.draw({
+                            animatableAttribs: animate,
+                            attribs: attr,
+                            css: css,
+                            group: series[groupKey],
+                            renderer: renderer,
+                            shadow: shadow,
+                            shapeArgs: shapeArgs,
+                            shapeType: 'rect'
                         });
-                    }
+
+                        // If setRootNode is allowed, set a point cursor on clickables &
+                        // add drillId to point
+                        if (allowTraversingTree && point.graphic) {
+                            point.drillId = options.interactByLeaf ?
+                                series.drillToByLeaf(point) :
+                                series.drillToByGroup(point);
+                        }
+                    });
                 },
                 // Add drilling on the suitable points
                 onClickDrillToNode: function (event) {
@@ -1990,12 +2069,26 @@
                     H.extend(this.yAxis.options, treeAxis);
                     H.extend(this.xAxis.options, treeAxis);
                 },
+
+                /**
+                * Workaround for `inactive` state. Since `series.opacity` option is
+                * already reserved, don't use that state at all by disabling
+                * `inactiveOtherPoints` and not inheriting states by points.
+                *
+                * @private
+                */
+                setState: function (state) {
+                    this.options.inactiveOtherPoints = true;
+                    Series.prototype.setState.call(this, state, false);
+                    this.options.inactiveOtherPoints = false;
+                },
                 utils: {
                     recursive: recursive
                 }
 
                 // Point class
             }, {
+                draw: drawPoint,
                 getClassName: function () {
                     var className = H.Point.prototype.getClassName.call(this),
                         series = this.series,
@@ -2037,7 +2130,11 @@
                         });
                     }
                 },
-                setVisible: seriesTypes.pie.prototype.pointClass.prototype.setVisible
+                setVisible: seriesTypes.pie.prototype.pointClass.prototype.setVisible,
+                shouldDraw: function () {
+                    var point = this;
+                    return isNumber(point.plotY) && point.y !== null;
+                }
             }
         );
 
@@ -2056,18 +2153,17 @@
          * An array of data points for the series. For the `treemap` series
          * type, points can be given in the following ways:
          *
-         * 1.  An array of numerical values. In this case, the numerical values
-         * will be interpreted as `value` options. Example:
-         *
+         * 1. An array of numerical values. In this case, the numerical values will be
+         *    interpreted as `value` options. Example:
          *  ```js
          *  data: [0, 5, 3, 5]
          *  ```
          *
          * 2.  An array of objects with named values. The following snippet shows only a
-         * few settings, see the complete options set below. If the total number of data
-         * points exceeds the series' [turboThreshold](#series.treemap.turboThreshold),
+         *    few settings, see the complete options set below. If the total number of
+         *    data points exceeds the series'
+         *    [turboThreshold](#series.treemap.turboThreshold),
          * this option is not available.
-         *
          *  ```js
          *     data: [{
          *         value: 9,
@@ -2085,7 +2181,7 @@
          * @sample {highcharts} highcharts/series/data-array-of-objects/
          *         Config objects
          *
-         * @type      {Array<number|*>}
+         * @type      {Array<number|null|*>}
          * @extends   series.heatmap.data
          * @excluding x, y
          * @product   highcharts
@@ -2096,7 +2192,7 @@
          * The value of the point, resulting in a relative area of the point
          * in the treemap.
          *
-         * @type      {number}
+         * @type      {number|null}
          * @product   highcharts
          * @apioption series.treemap.data.value
          */
@@ -2129,8 +2225,8 @@
          * @apioption series.treemap.data.parent
          */
 
-    }(Highcharts, result));
-    (function (H, drawPoint, mixinTreeSeries) {
+    });
+    _registerModule(_modules, 'modules/sunburst.src.js', [_modules['parts/Globals.js'], _modules['mixins/draw-point.js'], _modules['mixins/tree-series.js']], function (H, drawPoint, mixinTreeSeries) {
         /* *
          *
          *  This module implements sunburst charts in Highcharts.
@@ -2142,6 +2238,36 @@
          *  License: www.highcharts.com/license
          *
          * */
+
+        /**
+         * Possible rotation options for data labels in the sunburst series.
+         *
+         * @typedef {"auto"|"perpendicular"|"parallel"} Highcharts.SeriesSunburstDataLabelsRotationValue
+         */
+
+        /**
+         * Options for data labels in the sunburst series.
+         *
+         * @interface Highcharts.SeriesSunburstDataLabelsOptionsObject
+         * @extends Highcharts.DataLabelsOptionsObject
+         *//**
+         * @name Highcharts.SeriesSunburstDataLabelsOptionsObject#align
+         * @type {undefined}
+         *//**
+         * @name Highcharts.SeriesSunburstDataLabelsOptionsObject#allowOverlap
+         * @type {undefined}
+         *//**
+         * Decides how the data label will be rotated relative to the perimeter
+         * of the sunburst. Valid values are `auto`, `parallel` and
+         * `perpendicular`. When `auto`, the best fit will be computed for the
+         * point.
+         *
+         * The `series.rotation` option takes precedence over `rotationMode`.
+         *
+         * @name Highcharts.SeriesSunburstDataLabelsOptionsObject#rotationMode
+         * @type {Highcharts.SeriesSunburstDataLabelsRotationValue|undefined}
+         * @since 6.0.0
+         */
 
 
 
@@ -2674,27 +2800,25 @@
             center: ['50%', '50%'],
             colorByPoint: false,
             /**
-             * @extends   plotOptions.series.dataLabels
-             * @excluding align, allowOverlap, distance, staggerLines, step
+             * Disable inherited opacity from Treemap series.
+             *
+             * @ignore-option
+             */
+            opacity: 1,
+            /**
+             * @type {Highcharts.SeriesSunburstDataLabelsOptionsObject|Highcharts.DataLabelsOptionsObject}
              */
             dataLabels: {
+                /** @ignore-option */
                 allowOverlap: true,
+                /** @ignore-option */
                 defer: true,
+                /** @ignore-option */
+                rotationMode: 'auto',
+                /** @ignore-option */
                 style: {
                     textOverflow: 'ellipsis'
-                },
-                /**
-                 * Decides how the data label will be rotated relative to the perimeter
-                 * of the sunburst. Valid values are `auto`, `parallel` and
-                 * `perpendicular`. When `auto`, the best fit will be computed for the
-                 * point.
-                 *
-                 * The `series.rotation` option takes precedence over `rotationMode`.
-                 *
-                 * @since      6.0.0
-                 * @validvalue ["auto", "perpendicular", "parallel"]
-                 */
-                rotationMode: 'auto'
+                }
             },
             /**
              * Which point to use as a root in the visualization.
@@ -3092,9 +3216,10 @@
         var sunburstPoint = {
             draw: drawPoint,
             shouldDraw: function shouldDraw() {
-                var point = this;
-
-                return !point.isNull;
+                return !this.isNull;
+            },
+            isValid: function isValid() {
+                return true;
             }
         };
 
@@ -3109,7 +3234,7 @@
          */
 
         /**
-         * @type      {Array<number|*>}
+         * @type      {Array<number|null|*>}
          * @extends   series.treemap.data
          * @excluding x, y
          * @product   highcharts
@@ -3120,7 +3245,7 @@
          * The value of the point, resulting in a relative area of the point
          * in the sunburst.
          *
-         * @type      {number}
+         * @type      {number|null}
          * @since     6.0.0
          * @product   highcharts
          * @apioption series.sunburst.data.value
@@ -3166,9 +3291,9 @@
             sunburstPoint
         );
 
-    }(Highcharts, draw, result));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/sunburst.src.js', [], function () {
 
 
-    }());
+    });
 }));

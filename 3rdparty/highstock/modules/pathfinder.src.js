@@ -1,5 +1,6 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Pathfinder
  *
  * (c) 2016-2019 Øystein Moseng
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/pathfinder', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var algorithms = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'parts-gantt/PathfinderAlgorithms.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2016 Highsoft AS
          * Author: Øystein Moseng
@@ -834,8 +843,8 @@
 
 
         return algorithms;
-    }(Highcharts));
-    (function (H) {
+    });
+    _registerModule(_modules, 'parts-gantt/ArrowSymbols.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2017 Highsoft AS
          * Authors: Lars A. V. Cabrera
@@ -1033,13 +1042,36 @@
         H.SVGRenderer.prototype.symbols['arrow-filled-half'] =
                 H.SVGRenderer.prototype.symbols['triangle-left-half'];
 
-    }(Highcharts));
-    (function (H, pathfinderAlgorithms) {
+    });
+    _registerModule(_modules, 'parts-gantt/Pathfinder.js', [_modules['parts/Globals.js'], _modules['parts-gantt/PathfinderAlgorithms.js']], function (H, pathfinderAlgorithms) {
         /* *
          * (c) 2016 Highsoft AS
          * Authors: Øystein Moseng, Lars A. V. Cabrera
          *
          * License: www.highcharts.com/license
+         */
+
+        /**
+         * The default pathfinder algorithm to use for a chart. It is possible to define
+         * your own algorithms by adding them to the
+         * `Highcharts.Pathfinder.prototype.algorithms`
+         * object before the chart has been created.
+         *
+         * The default algorithms are as follows:
+         *
+         * `straight`:      Draws a straight line between the connecting
+         *                  points. Does not avoid other points when drawing.
+         *
+         * `simpleConnect`: Finds a path between the points using right angles
+         *                  only. Takes only starting/ending points into
+         *                  account, and will not avoid other points.
+         *
+         * `fastAvoid`:     Finds a path between the points using right angles
+         *                  only. Will attempt to avoid other points, but its
+         *                  focus is performance over accuracy. Works well with
+         *                  less dense datasets.
+         *
+         * @typedef {"fastAvoid"|"simpleConnect"|"straight"|string} Highcharts.PathfinderTypeValue
          */
 
 
@@ -1155,9 +1187,9 @@
                  * @sample gantt/pathfinder/demo
                  *         Different types used
                  *
-                 * @default    undefined
-                 * @since      6.2.0
-                 * @validvalue ["straight", "simpleConnect", "fastAvoid"]
+                 * @type    {Highcharts.PathfinderTypeValue}
+                 * @default undefined
+                 * @since   6.2.0
                  */
                 type: 'straight',
 
@@ -1233,14 +1265,14 @@
                     /**
                      * Horizontal alignment of the markers relative to the points.
                      *
-                     * @type {Highcharts.AlignType}
+                     * @type {Highcharts.AlignValue}
                      */
                     align: 'center',
 
                     /**
                      * Vertical alignment of the markers relative to the points.
                      *
-                     * @type {Highcharts.VerticalAlignType}
+                     * @type {Highcharts.VerticalAlignValue}
                      */
                     verticalAlign: 'middle',
 
@@ -2328,9 +2360,9 @@
             }
         });
 
-    }(Highcharts, algorithms));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/pathfinder.src.js', [], function () {
 
 
-    }());
+    });
 }));

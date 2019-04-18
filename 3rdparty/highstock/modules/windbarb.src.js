@@ -1,5 +1,6 @@
 /**
- * @license  Highcharts JS v7.0.3 (2019-02-06)
+ * @license  Highcharts JS v7.1.1 (2019-04-09)
+ *
  * Wind barb series module
  *
  * (c) 2010-2019 Torstein Honsi
@@ -12,14 +13,22 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/windbarb', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var onSeriesMixin = (function (H) {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/on-series.js', [_modules['parts/Globals.js']], function (H) {
         /* *
          * (c) 2010-2019 Torstein Honsi
          *
@@ -186,8 +195,8 @@
 
 
         return onSeriesMixin;
-    }(Highcharts));
-    (function (H, onSeriesMixin) {
+    });
+    _registerModule(_modules, 'modules/windbarb.src.js', [_modules['parts/Globals.js'], _modules['mixins/on-series.js']], function (H, onSeriesMixin) {
         /* *
          * Wind barb series module
          *
@@ -200,6 +209,41 @@
 
         var noop = H.noop,
             seriesType = H.seriesType;
+
+        // Once off, register the windbarb approximation for data grouping.This can be
+        // called anywhere (not necessarily in the translate function), but must happen
+        // after the data grouping module is loaded and before the wind barb series uses
+        // it.
+        function registerApproximation() {
+            if (H.approximations && !H.approximations.windbarb) {
+                H.approximations.windbarb = function (values, directions) {
+                    var vectorX = 0,
+                        vectorY = 0,
+                        i,
+                        len = values.length;
+
+                    for (i = 0; i < len; i++) {
+                        vectorX += values[i] * Math.cos(
+                            directions[i] * H.deg2rad
+                        );
+                        vectorY += values[i] * Math.sin(
+                            directions[i] * H.deg2rad
+                        );
+                    }
+
+                    return [
+                        // Wind speed
+                        values.reduce(function (sum, value) {
+                            return sum + value;
+                        }, 0) / values.length,
+                        // Wind direction
+                        Math.atan2(vectorY, vectorX) / H.deg2rad
+                    ];
+                };
+            }
+        }
+
+        registerApproximation();
 
         /**
          * @private
@@ -220,16 +264,51 @@
          *
          * @extends      plotOptions.column
          * @excluding    boostThreshold, marker, connectEnds, connectNulls,
-         *               cropThreshold, dashStyle, gapSize, gapUnit, dataGrouping,
-         *               linecap, shadow, stacking, step
+         *               cropThreshold, dashStyle, dragDrop, gapSize, gapUnit, linecap,
+         *               shadow, stacking, step
          * @since        6.0.0
          * @product      highcharts highstock
          * @optionparent plotOptions.windbarb
          */
             , {
-            /**
-             * The line width of the wind barb symbols.
-             */
+                /**
+                 * Data grouping options for the wind barbs. In Highcharts, this
+                 * requires the `modules/datagrouping.js` module to be loaded. In
+                 * Highstock, data grouping is included.
+                 *
+                 * @sample  highcharts/plotoptions/windbarb-datagrouping
+                 *          Wind barb with data grouping
+                 *
+                 * @since   7.1.0
+                 * @product highcharts highstock
+                 */
+                dataGrouping: {
+                    /**
+                     * Whether to enable data grouping.
+                     *
+                     * @product highcharts highstock
+                     */
+                    enabled: true,
+                    /**
+                     * Approximation function for the data grouping. The default
+                     * returns an average of wind speed and a vector average direction
+                     * weighted by wind speed.
+                     *
+                     * @product highcharts highstock
+                     *
+                     * @type {String|Function}
+                     */
+                    approximation: 'windbarb',
+                    /**
+                     * The approximate data group width.
+                     *
+                     * @product highcharts highstock
+                     */
+                    groupPixelWidth: 30
+                },
+                /**
+                 * The line width of the wind barb symbols.
+                 */
                 lineWidth: 2,
                 /**
              * The id of another series in the chart that the wind barbs are projected
@@ -285,6 +364,11 @@
                 beaufortFloor: [0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8,
                     24.5, 28.5, 32.7],
                 trackerGroups: ['markerGroup'],
+
+                init: function (chart, options) {
+                    registerApproximation();
+                    H.Series.prototype.init.call(this, chart, options);
+                },
 
                 // Get presentational attributes.
                 pointAttribs: function (point, state) {
@@ -434,7 +518,10 @@
 
                         // Check if it's inside the plot area, but only for the X
                         // dimension.
-                        if (chart.isInsidePlot(plotX, 0, false)) {
+                        if (
+                            this.options.clip === false ||
+                            chart.isInsidePlot(plotX, 0, false)
+                        ) {
 
                             // Create the graphic the first time
                             if (!point.graphic) {
@@ -483,7 +570,10 @@
                 },
 
                 // Don't invert the marker group (#4960)
-                invertGroups: noop
+                invertGroups: noop,
+
+                // No data extremes for the Y axis
+                getExtremes: noop
             }, {
                 isValid: function () {
                     return H.isNumber(this.value) && this.value >= 0;
@@ -566,9 +656,9 @@
          * @apioption series.windbarb.data.direction
          */
 
-    }(Highcharts, onSeriesMixin));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/windbarb.src.js', [], function () {
 
 
-    }());
+    });
 }));

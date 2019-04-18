@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.0.3 (2019-02-06)
+ * @license Highcharts JS v7.1.1 (2019-04-09)
  *
  * (c) 2016-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -12,20 +12,30 @@
         factory['default'] = factory;
         module.exports = factory;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define('highcharts/modules/wordcloud', ['highcharts'], function (Highcharts) {
+            factory(Highcharts);
+            factory.Highcharts = Highcharts;
             return factory;
         });
     } else {
         factory(typeof Highcharts !== 'undefined' ? Highcharts : undefined);
     }
 }(function (Highcharts) {
-    var draw = (function () {
+    var _modules = Highcharts ? Highcharts._modules : {};
+    function _registerModule(obj, path, args, fn) {
+        if (!obj.hasOwnProperty(path)) {
+            obj[path] = fn.apply(null, args);
+        }
+    }
+    _registerModule(_modules, 'mixins/draw-point.js', [], function () {
         var isFn = function (x) {
             return typeof x === 'function';
         };
 
         /**
-         * Handles the drawing of a point.
+         * Handles the drawing of a component.
+         * Can be used for any type of component that reserves the graphic property, and
+         * provides a shouldDraw on its context.
          *
          * @private
          * @function draw
@@ -33,20 +43,20 @@
          * @param {object} params
          *        Parameters.
          *
-         * @todo
-         * - add type checking.
+         * TODO: add type checking.
+         * TODO: export this function to enable usage
          */
         var draw = function draw(params) {
-            var point = this,
-                graphic = point.graphic,
+            var component = this,
+                graphic = component.graphic,
                 animatableAttribs = params.animatableAttribs,
                 onComplete = params.onComplete,
                 css = params.css,
                 renderer = params.renderer;
 
-            if (point.shouldDraw()) {
+            if (component.shouldDraw()) {
                 if (!graphic) {
-                    point.graphic = graphic =
+                    component.graphic = graphic =
                         renderer[params.shapeType](params.shapeArgs).add(params.group);
                 }
                 graphic
@@ -58,22 +68,46 @@
                         onComplete
                     );
             } else if (graphic) {
-                graphic.animate(animatableAttribs, undefined, function () {
-                    point.graphic = graphic = graphic.destroy();
+                var destroy = function () {
+                    component.graphic = graphic = graphic.destroy();
                     if (isFn(onComplete)) {
                         onComplete();
                     }
-                });
-            }
-            if (graphic) {
-                graphic.addClass(point.getClassName(), true);
+                };
+
+                // animate only runs complete callback if something was animated.
+                if (Object.keys(animatableAttribs).length) {
+                    graphic.animate(animatableAttribs, undefined, function () {
+                        destroy();
+                    });
+                } else {
+                    destroy();
+                }
             }
         };
 
+        /**
+         * An extended version of draw customized for points.
+         * It calls additional methods that is expected when rendering a point.
+         *
+         * @param {object} params Parameters
+         */
+        var drawPoint = function drawPoint(params) {
+            var point = this,
+                attribs = params.attribs = params.attribs || {};
 
-        return draw;
-    }());
-    var collision = (function (H) {
+            // Assigning class in dot notation does go well in IE8
+            // eslint-disable-next-line dot-notation
+            attribs['class'] = point.getClassName();
+
+            // Call draw to render component
+            draw.call(point, params);
+        };
+
+
+        return drawPoint;
+    });
+    _registerModule(_modules, 'mixins/polygon.js', [_modules['parts/Globals.js']], function (H) {
 
         var deg2rad = H.deg2rad,
             find = H.find,
@@ -366,8 +400,8 @@
 
 
         return collision;
-    }(Highcharts));
-    (function (H, drawPoint, polygon) {
+    });
+    _registerModule(_modules, 'modules/wordcloud.src.js', [_modules['parts/Globals.js'], _modules['mixins/draw-point.js'], _modules['mixins/polygon.js']], function (H, drawPoint, polygon) {
         /* *
          * Experimental Highcharts module which enables visualization of a word cloud.
          *
@@ -1386,6 +1420,9 @@
 
                 return !point.isNull;
             },
+            isValid: function isValid() {
+                return true;
+            },
             weight: 1
         };
 
@@ -1467,9 +1504,9 @@
             wordCloudPoint
         );
 
-    }(Highcharts, draw, collision));
-    return (function () {
+    });
+    _registerModule(_modules, 'masters/modules/wordcloud.src.js', [], function () {
 
 
-    }());
+    });
 }));
