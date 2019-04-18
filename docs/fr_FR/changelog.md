@@ -2,6 +2,12 @@
 Changelog
 =========
 
+3.3.22
+=====
+
+- Corrections de bugs
+- Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
+
 3.3.21
 =====
 
