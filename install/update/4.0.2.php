@@ -6,7 +6,10 @@ function replaceAndSaveFA5($objects){
   $replace = array(
     '<i class="fa ' => '<i class="fas ',
     "<i class=\'fa " => "<i class=\'fas ",
-    '<i class=\"fa ' => '<i class=\"fas '
+    '<i class=\"fa ' => '<i class=\"fas ',
+    '-o>' => '>',
+    '-o">' => '">',
+    "-o'>" => "'>"
   );
   foreach ($objects as $object) {
     try {
