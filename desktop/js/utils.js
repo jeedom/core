@@ -769,10 +769,9 @@ function sleep(milliseconds) {
 }
 
 
-function chooseIcon(_callback) {
+function chooseIcon(_callback,_params) {
   if ($("#mod_selectIcon").length == 0) {
     $('#div_pageContainer').append('<div id="mod_selectIcon" title="{{Choisissez votre icône}}" ></div>');
-    
     $("#mod_selectIcon").dialog({
       closeText: '',
       autoOpen: false,
@@ -789,25 +788,28 @@ function chooseIcon(_callback) {
         $("body").css({overflow: 'inherit'});
       }
     });
-    jQuery.ajaxSetup({async: false});
-    $('#mod_selectIcon').load('index.php?v=d&modal=icon.selector');
-    jQuery.ajaxSetup({async: true});
   }
-  $("#mod_selectIcon").dialog('option', 'buttons', {
-    "Annuler": function () {
-      $(this).dialog("close");
-    },
-    "Valider": function () {
-      var icon = $('.iconSelected .iconSel').html();
-      if (icon == undefined) {
-        icon = '';
+  var url = 'index.php?v=d&modal=icon.selector';
+  if(_params && _params.img && _params.img === true){
+    url += '&showimg=1';
+  }
+  $('#mod_selectIcon').empty().load(url,function(){
+    $("#mod_selectIcon").dialog('option', 'buttons', {
+      "Annuler": function () {
+        $(this).dialog("close");
+      },
+      "Valider": function () {
+        var icon = $('.iconSelected .iconSel').html();
+        if (icon == undefined) {
+          icon = '';
+        }
+        icon = icon.replace(/"/g, "'");
+        _callback(icon);
+        $(this).dialog('close');
       }
-      icon = icon.replace(/"/g, "'");
-      _callback(icon);
-      $(this).dialog('close');
-    }
+    });
+    $('#mod_selectIcon').dialog('open');
   });
-  $('#mod_selectIcon').dialog('open');
 }
 
 function calculWidgetSize(_size,_step,_margin){

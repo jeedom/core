@@ -137,14 +137,14 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
   var bt = $(this);
   chooseIcon(function (_icon) {
     bt.closest('.form-group').find('.widgetsAttr[data-l1key=replace]').value(_icon);
-  });
+  },{img:true});
 });
 
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function () {
   var bt = $(this);
   chooseIcon(function (_icon) {
     bt.closest('.form-group').find('.testAttr[data-l1key=state]').value(_icon);
-  });
+  },{img:true});
 });
 
 function capitalizeFirstLetter(string) {
@@ -165,7 +165,7 @@ function loadTemplateConfiguration(_template,_data){
         for(var i in data.replace){
           replace += '<div class="form-group">';
           replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", ""))+'</label>';
-          replace += '<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">';
+          replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
           replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
           replace += '<span class="input-group-btn">';
@@ -224,7 +224,7 @@ function addTest(_test){
   div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
   div += '</div>';
   div += '</div>';
-  div += '<div class="col-sm-3">';
+  div += '<div class="col-sm-7">';
   div += '<div class="input-group">';
   div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state" placeholder="Résultat si test ok"/>';
   div += '<span class="input-group-btn">';
