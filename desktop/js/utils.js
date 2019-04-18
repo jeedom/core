@@ -632,11 +632,11 @@ function positionEqLogic(_id,_preResize,_scenario) {
       $(this).height('110');
     }
     if(init(_preResize,true)){
-      widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']));
-      widget.height(Math.floor(widget.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']));
+      widget.width(Math.floor(widget.width() / widget_width_step) * widget_width_step - (2 * widget_margin));
+      widget.height(Math.floor(widget.height() / widget_height_step) * widget_height_step - (2 * widget_margin));
     }
-    widget.width(calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
-    widget.height(calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
+    widget.width(calculWidgetSize(widget.width(),widget_width_step,widget_margin));
+    widget.height(calculWidgetSize(widget.height(),widget_height_step,widget_margin));
     if(!widget.hasClass(widget.attr('data-category'))){
       widget.addClass(widget.attr('data-category'));
     }
@@ -650,8 +650,8 @@ function positionEqLogic(_id,_preResize,_scenario) {
       if($(this).height() == 0){
         $(this).height('110');
       }
-      $(this).width(calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']));
-      $(this).height(calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']));
+      $(this).width(calculWidgetSize($(this).width(),widget_width_step,widget_margin));
+      $(this).height(calculWidgetSize($(this).height(),widget_height_step,widget_margin));
       if(!$(this).hasClass($(this).attr('data-category'))){
         $(this).addClass($(this).attr('data-category'));
       }
