@@ -466,7 +466,7 @@ class interactQuery {
 			$listener->addEvent($data['cmd']->getId());
 			$listener->setOption($options);
 			$listener->save(true);
-			return array('reply' => __('C\'est noté : ', __FILE__) . str_replace('#value#', $data['cmd']->getHumanName(), $test));
+			return array('reply' => __('C\'est noté : ', __FILE__) . htmlspecialchars(str_replace('#value#', $data['cmd']->getHumanName(), $test)));
 		}
 		return null;
 	}
