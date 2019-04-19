@@ -1403,3 +1403,7 @@ function sanitizeAccent($_message) {
 		return ucfirst($return);
 	}
 	
+	function cleanComponanteName($_name){
+		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
+	}
+	

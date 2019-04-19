@@ -1591,7 +1591,7 @@ class scenario {
 				* @return $this
 				*/
 				public function setName($_name) {
-					$_name = str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
+					$_name = cleanComponanteName($_name);
 					if ($_name != $this->getName()) {
 						$this->_changeState = true;
 						$this->_changed = true;
