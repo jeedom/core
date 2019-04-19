@@ -34,8 +34,7 @@ if ($author == null && $name === null && $categorie === null && init('certificat
 			'author' => $author,
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
-			'certification' => init('certification', null),
-			'limit' => 50,
+			'certification' => init('certification', null)
 		)
 	);
 }
