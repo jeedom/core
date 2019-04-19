@@ -32,6 +32,7 @@ class jeeObject {
 	protected $image;
 	protected $_child = array();
 	protected $_changed = false;
+	protected $_summaryChanged = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -489,6 +490,13 @@ class jeeObject {
 	}
 	
 	public function save() {
+		if($this->_changed){
+			log::add('debug','debug','object change : '.$this->getName());
+			cache::set('globalSummaryHtmldashboard', '');
+			cache::set('globalSummaryHtmlmobile', '');
+			$this->setCache('summaryHtmldashboard', '');
+			$this->setCache('summaryHtmlmobile', '');
+		}
 		DB::save($this);
 		return true;
 	}
