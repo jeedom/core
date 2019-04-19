@@ -1917,7 +1917,7 @@ class cmd {
 	* @return $this
 	*/
 	public function setName($_name) {
-		$_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
+		$_name = str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
