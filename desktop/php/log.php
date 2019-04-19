@@ -45,7 +45,7 @@ natcasesort($list_logfile);
 					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
 						$flag = '<i class="fa fa-exclamation-circle"></i>';
 					}
-					echo '<li class="cursor li_log ' .(($file == $logfile)?'active':'') .'" data-log="' . $file . '" >' . $flag . '<a>' . $file . $fsizelog . '</a></li>';
+					echo '<li class="cursor li_log ' .(($file == $logfile)?'active':'') .'" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
 				}
 				?>
 			</ul>

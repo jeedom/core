@@ -333,10 +333,12 @@ label sup {
   font-size: 11px;
 }
 
-.li_log i {
-  float: left;
-  margin-top: 8px;
+.li_log i{
+  position: relative;
+  left: -2px;
+  top :1px;
 }
+
 .li_log i.fa-check {
   color: var(--logo-primary-color);
 }
