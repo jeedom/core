@@ -204,7 +204,7 @@ try {
 					continue;
 				}
 				utils::a2o($cmd, $cmd_ajax);
-				$cmd->save();
+				$cmd->save(true);
 			}
 			ajax::success();
 		}
