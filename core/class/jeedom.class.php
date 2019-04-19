@@ -1005,8 +1005,12 @@ class jeedom {
 		}
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {
-				utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
-				$data->save();
+				try {
+					utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
+					$data->save(true);
+				} catch (\Exception $e) {
+					
+				}
 			}
 		}
 		foreach ($_replaces as $key => $value) {
