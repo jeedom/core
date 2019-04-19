@@ -1390,3 +1390,8 @@ function sanitizeAccent($_message) {
 		date_default_timezone_set($tz);
 		return($seconds/60);
 	}
+
+	
+	function cleanComponanteName($_name){
+		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
+	}
