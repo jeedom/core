@@ -72,7 +72,7 @@ try {
 						
 					}
 				} else if (init('p') != '') {
-					$title = ucfirst(init('p')) . ' - ' . config::byKey('product_name');
+					$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
 				}
 				if(init('p') != 'message'){
 					echo '<script>';

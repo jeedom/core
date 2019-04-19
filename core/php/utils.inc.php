@@ -1391,3 +1391,15 @@ function sanitizeAccent($_message) {
 		return($seconds/60);
 	}
 	
+	function pageTitle($_page){
+		switch ($_page) {
+			case 'log':
+			$return = __('Logs',__FILE__);
+			break;
+			default:
+			$return = $_page;
+			break;
+		}
+		return ucfirst($return);
+	}
+	
