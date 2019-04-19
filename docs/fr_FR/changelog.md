@@ -7,6 +7,7 @@ Changelog
 
 - Corrections de bugs
 - Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
+- Correction d'un bug pouvant empecher d'ouvrir certain équipements de plugins (type alarme ou virtuel)
 
 3.3.21
 =====
