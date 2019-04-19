@@ -7,12 +7,12 @@ Changelog
 
 - Corrections de bugs
 - Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
-- Correction d'un bug pouvant empecher d'ouvrir certain équipements de plugins (type alarme ou virtuel)
+- Correction d'un bug pouvant empêcher d'ouvrir certains équipements de plugins (type alarme ou virtuel)
 
 3.3.21
 =====
 
-- Correction d'un bug ou l'affichage de l'heure pouvait dépasser 24h
+- Correction d'un bug où l'affichage de l'heure pouvait dépasser 24h
 - Correction d'un bug sur la mise à jour des résumés en design
 - Correction d'un bug sur la gestion des niveaux d'alertes sur certains widgets lors de la mise à jour de la valeur
 - Correction de l'affichage des équipements désactivés sur certains plugins
