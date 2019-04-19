@@ -1298,7 +1298,7 @@ user::isBan();
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
 						<thead>
 							<tr>
-								<th>{{Nom}}</th><th>{{Code HTML}}</th>
+								<th>{{Nom}}</th><th>{{Code HTML}}</th><th></th>
 							</tr>
 							<tr class="filter" style="display : none;">
 								<td class="color"><input class="filter form-control" filterOn="color" /></td>
