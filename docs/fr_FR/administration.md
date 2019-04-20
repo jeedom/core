@@ -733,6 +733,11 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 
 -   **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
+    
+-   **Vider le cache des widgets** : Vide le cache dédié aux widgets
+
+-   **Désactiver le cache des widgets** : Cocher la case pour désactiver
+    le caches des widgets
 
 -   **Temps de pause pour le long polling** : Fréquence à laquelle
     Jeedom vérifie si il y a des événements en attente pour les clients
