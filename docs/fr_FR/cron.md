@@ -7,7 +7,7 @@ demande du support technique.
 > En cas de mauvaise manipulation sur cette page, toute demande de
 > support peut vous être refusée.
 
-Pour y accéder, il faut aller dans **Administration → Moteur de tâches**
+Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâches**
 :
 
 # Cron
