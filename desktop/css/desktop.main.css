@@ -166,22 +166,23 @@ legend {
 [data-page=display] .object legend {
   border-left: none;
 }
-[data-page=display] #div_pageContainer > div.packeryContainer legend,
-[data-page=display] #div_pageContainer > div.packeryContainer > div,
-[data-page=display] #div_pageContainer > div.packeryContainer > div > div {
+[data-page=display] #div_pageContainer div.packeryContainer legend,
+[data-page=display] #div_pageContainer div.packeryContainer > div,
+[data-page=display] #div_pageContainer div.packeryContainer > div > div {
   padding: 5px !important;
   margin: 0 !important;
   border-left: none;
 }
-[data-page=display] #div_pageContainer ul > li {
+[data-page=display] #div_pageContainer #display ul > li {
   margin: 1.2px 0 !important;
   padding: 2px 5px !important;
 }
+[data-page=display] #div_pageContainer div.packeryContainer {
+  margin-left: -5px;
+  margin-right: -5px;
+}
 [data-page=display] .object div {
   background-color: var(--bg-modal-color);
-}
-[data-page=display] #in_search {
-  margin-left: 15px;
 }
 .eqLogicSortable {
   list-style-type: none;
@@ -2944,16 +2945,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2961,11 +2962,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2992,5 +2993,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
