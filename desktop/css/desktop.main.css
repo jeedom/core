@@ -1163,11 +1163,10 @@ ul.dropdown-menu {
 
 /* __________________________________________________________________________________________________________PANELS */
 
-#bt_messageModal,#bt_jsErrorModal,#bt_nbUpdateNavbar{
+.navbar-nav.navbar-right > li a {
   background-color: transparent !important;
 }
-
-#bt_messageModal:hover,#bt_jsErrorModal:hover,#bt_nbUpdateNavbar:hover{
+.navbar-nav.navbar-right > li a:hover {
   background-color: transparent !important;
 }
 
