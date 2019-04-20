@@ -172,6 +172,14 @@ $('#in_search').on('keyup',function(){
     console.error(error);
   }
 });
+$('#bt_resetdisplaySearch').on('click', function () {
+  $('#in_search').val('')
+  $('#in_search').keyup();
+})
+
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  window.location.hash = e.target.hash;
+})
 
 $('.cb_selEqLogic').on('change',function(){
   var found = false;
@@ -254,4 +262,16 @@ $('.bt_setIsEnable').on('click',function(){
 $('#bt_removeHistory').on('click',function(){
   $('#md_modal').dialog({title: "{{Historique des suppressions}}"});
   $('#md_modal').load('index.php?v=d&modal=remove.history').dialog('open');
+});
+
+$('#bt_emptyRemoveHistory').on('click',function(){
+  jeedom.emptyRemoveHistory({
+    error: function (error) {
+      $('#div_alertRemoveHistory').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#table_removeHistory tbody').empty();
+      $('#div_alertRemoveHistory').showAlert({message: '{{Historique vidé avec succès}}', level: 'success'});
+    }
+  });
 });
