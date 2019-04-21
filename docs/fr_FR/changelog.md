@@ -10,6 +10,7 @@ Changelog
 - En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
 - Amélioration et réorganisation du menu principal.
 - Amélioration et réorganisation des configurations.
+- Ajout de nombreux tooltips (aide) sur les configurations.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
 - Refonte du système de widgets (menu Outils / Widgets).
 - Ajout d'un widget horizontal (core).
