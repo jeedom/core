@@ -17,6 +17,7 @@ Changelog
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Ajout d'un bouton pour vider le cache des widgets.
 - Ajout d'une option pour désactiver le cache des widgets.
+- Possibilité d'attribuer une icône à une interaction.
 - Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
 - Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
 - Possibilité de condenser les blocs de scénario.
