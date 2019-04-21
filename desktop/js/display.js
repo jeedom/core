@@ -132,6 +132,8 @@ $('.configureCmd').on('click',function(){
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
 });
 
+
+$('#in_search').focus()
 //searching
 $('#in_search').on('keyup',function(){
   try {
