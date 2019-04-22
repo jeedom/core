@@ -239,6 +239,7 @@ legend {
   padding: 2px 5px !important;
   display: block;
   max-width: 70px;
+  font-size: 10px !important;
 }
 
 .eqLogic-widget,
@@ -2394,7 +2395,9 @@ div.cmd > div.center-block {
   position: relative;
   top: 3px;
 }
-
+.gauge .highcharts-yaxis-grid {
+  display: none;
+}
 .hgauge-value,
 .vgauge-value,
 .shuttergauge-value {
