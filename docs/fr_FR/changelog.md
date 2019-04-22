@@ -36,7 +36,7 @@ Changelog
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
 - Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
-- Suppression de Font Awesome 4.
+- Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Nombreux bugfixs.
 
 3.3.16
