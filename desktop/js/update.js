@@ -207,7 +207,7 @@ function printUpdate() {
       for (var i in data) {
         addUpdate(data[i]);
       }
-      
+
       $('#table_update').trigger('update');
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
       $('#table_updateOther').trigger('update');
@@ -215,7 +215,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-  
+
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -234,7 +234,7 @@ function addUpdate(_update) {
   if (init(_update.status) == '') {
     _update.status = 'OK';
   }
-  
+
   if (_update.status == 'UPDATE') {
     labelClass = 'label-warning';
     if (_update.type == 'core' || _update.type == 'plugin') {
@@ -243,7 +243,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-  
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -254,12 +254,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label '+updClass+'">'+_update.configuration.version+'</span>';
   }
-  
+
   _localVersion = _update.localVersion
   if (_localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-  
+
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -268,19 +268,19 @@ function addUpdate(_update) {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span>{{Ne pas mettre à jour}}</span>';
   }
   tr += '</td>';
-  tr += '<td style="width:340px;">';
+  tr += '<td style="width:350px;">';
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
       tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ';
     }
-  }else{
+  } else {
     tr += '<a class="btn btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
   }
   if (_update.type != 'core') {
     if (_update.status == 'UPDATE') {
       tr += '<a class="btn btn-info btn-xs update" title="{{Mettre à jour}}"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> ';
-    }else if (_update.type != 'core') {
-      tr += '<a class="btn btn-info btn-xs update" title="{{Re-installer}}"><i class="fas fa-sync"></i> {{Reinstaller}}</a> ';
+    } else if (_update.type != 'core') {
+      tr += '<a class="btn btn-info btn-xs update" title="{{Réinstaller}}"><i class="fas fa-sync"></i> {{Réinstaller}}</a> ';
     }
   }
   if (_update.type != 'core') {
@@ -289,7 +289,7 @@ function addUpdate(_update) {
   tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
   tr += '</td>';
   tr += '</tr>';
-  
+
   if (_update.type == 'core' || _update.type == 'plugin') {
     $('#table_update').append(tr);
     $('#table_update tbody tr').last().setValues(_update, '.updateAttr');

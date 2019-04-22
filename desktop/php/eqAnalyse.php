@@ -26,6 +26,12 @@ usort($list, function ($a, $b) {
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="battery">
 		<br/>
+		<div class="input-group" style="margin-bottom:5px;">
+			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_search"/>
+			<div class="input-group-btn">
+				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+			</div>
+		</div>
 		<div class="batteryListContainer">
 			<?php
 			foreach ($list as $eqLogic) {
@@ -138,7 +144,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -211,7 +217,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">

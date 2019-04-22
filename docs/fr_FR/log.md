@@ -1,11 +1,11 @@
-Affichage 
-=========
+Logs 
+====
 
 Le menu Logs permet de suivre ce qui se passe sur sa domotique. Dans la
 plupart des cas les logs ne serviront qu’à effectuer du debuggage et à
 résoudre des problèmes par l’équipe de support.
 
-Pour y accéder il faut aller dans Administration → Logs :
+Pour y accéder il faut aller dans Analyse → Logs :
 
 La page de Logs est assez simple, en haut à gauche une liste déroulante
 permettant le choix du log à regarder, en haut à droite vous avez 5
@@ -31,7 +31,7 @@ boutons :
 > ! si vous le supprimez (en ligne de commande par exemple) celui-ci ne
 > se recréera pas tout seul, il faut redémarrer le système.
 
-Le log "Event" 
+Temps réel 
 ==============
 
 Le log "Event" est un peu particulier. Tout d’abord pour qu’il

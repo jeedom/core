@@ -5,27 +5,39 @@ Changelog
 4.0.0
 =====
 
-- Refonte des thèmes.
+- Refonte des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
+- Amélioration et réorganisation du menu principal.
+- Amélioration et réorganisation des configurations.
+- Ajout de nombreux tooltips (aide) sur les configurations.
+- Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
+- Refonte du système de widgets (menu Outils / Widgets).
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Ajout d'un bouton pour vider le cache des widgets.
 - Ajout d'une option pour désactiver le cache des widgets.
-- Amélioration et réorganisation du menu principal.
-- Amélioration et réorganisation des configurations.
+- Possibilité de centrer verticalement le contenu des tuiles (Configuration / Interface).
+- Possibilité d'attribuer une icône à une interaction.
 - Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
 - Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
 - Possibilité de condenser les blocs de scénario.
+- Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide de plugin).
+- Ajout d'un moteur de recherche dans les configurations.
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche 'pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
-- Ajout d'un moteur de recherche dans les configurations.
 - Améliorations des tables avec option de filtre et tri.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
+- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
+- Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
+- Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
+- Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
+- Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
+- Nombreux bugfixs.
 
 3.3.16
 =====

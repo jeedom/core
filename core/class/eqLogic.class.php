@@ -1491,7 +1491,7 @@ class eqLogic {
 	}
 	
 	public function setName($_name) {
-		$_name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $_name);
+		$_name = cleanComponanteName($_name);
 		if($_name != $this->name){
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;

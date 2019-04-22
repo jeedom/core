@@ -43,20 +43,25 @@ sendVarToJs('tabimg',init('tabimg'));
 
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="icon">
-		<input class="form-control input-sm" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
-		
+		<div class="input-group" style="margin-bottom:5px;">
+  			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_iconSelectorSearch">
+  			<div class="input-group-btn">
+  				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+  			</div>
+  		</div>
+
 		<?php
 		foreach (ls('core/css/icon', '*') as $dir) {
 			if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
 				$fontfile = 'core/css/icon/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-				
+
 				$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				$height = (ceil(count($matches) / 14) * 40) + 80;
 				echo '<div style="height : ' . $height . 'px;"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-				
+
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -74,11 +79,7 @@ sendVarToJs('tabimg',init('tabimg'));
 						$number++;
 					}
 				}
-				if ($number == 1) {
-					echo '</div><br/>';
-				}else{
-					echo '</div></div><br/>';
-				}
+				echo '</div><br/>';
 			}
 		}
 		?>
@@ -313,7 +314,7 @@ sendVarToJs('tabimg',init('tabimg'));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1');
 				}
 			});
-			
+
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -347,6 +348,10 @@ $('#in_iconSelectorSearch').on('keyup',function(){
 		})
 	}
 });
+$('#bt_resetSearch').on('click', function () {
+  $('#in_iconSelectorSearch').val('')
+  $('#in_iconSelectorSearch').keyup();
+})
 
 $('.divIconSel').on('click', function () {
 	$('.divIconSel').removeClass('iconSelected');

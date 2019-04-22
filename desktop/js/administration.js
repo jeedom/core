@@ -18,14 +18,14 @@ actionOptions = [];
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
-
+  
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-
+  
   $('#searchResult').empty()
   if(search == '') {
     $('.nav-tabs.nav-primary').show()
@@ -35,16 +35,16 @@ $('#in_searchConfig').keyup(function () {
   }
   if (search.length < 3) return
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-
+  
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
     var text = $(this).html().toLowerCase()
     text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     if (text.indexOf(search.toLowerCase()) >= 0){
-
+      
       //get element tab to create link to:
       var tabId = $(this).closest('div[role="tabpanel"]').attr('id')
       tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
@@ -52,7 +52,7 @@ $('#in_searchConfig').keyup(function () {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-
+      
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
@@ -91,7 +91,7 @@ $(function () {
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-
+  
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   });
@@ -329,7 +329,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-
+  
   return false;
 });
 
@@ -653,7 +653,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-
+      
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
@@ -671,10 +671,17 @@ function addConvertColor(_color, _html) {
   tr += '<td>';
   tr += '<input type="color" class="html form-control input-sm" value="' + init(_html) + '" />';
   tr += '</td>';
+  tr += '<td>';
+  tr += '<i class="fas fa-minus-circle removeConvertColor cursor"></i>';
+  tr += '</td>';
   tr += '</tr>';
   $('#table_convertColor tbody').append(tr);
   modifyWithoutSave = true;
 }
+
+$('#table_convertColor tbody').off('click','.removeConvertColor').on('click','.removeConvertColor',function(){
+  $(this).closest('tr').remove();
+});
 
 function saveConvertColor() {
   var value = {};

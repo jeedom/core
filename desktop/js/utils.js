@@ -642,28 +642,27 @@ function initTableSorter(filter) {
     filter = true;
   }
   if (filter !== false) {
-    widgets = widgets.push('filter')
+    widgets.push('filter')
   }
-  $(".tablesorter").each(function () {
-    $(".tablesorter").tablesorter({
-      dateFormat : "yyyy-mm-dd",
-      theme: "bootstrap",
-      widthFixed: false,
-      headerTemplate: '{content} ',
-      widgets: widgets,
-      ignoreCase: true,
-      delayInit: false,
-      resizable: false,
-      saveSort: false,
-      sortLocaleCompare: true,
-      widgetOptions: {
-        filter_ignoreCase: true,
-        resizable: true,
-        stickyHeaders_offset: $('header.navbar-fixed-top').height(),
-        zebra: ["ui-widget-content even", "ui-state-default odd"],
-      }
-    });
+  $(".tablesorter").tablesorter({
+    dateFormat : "yyyy-mm-dd",
+    theme: "bootstrap",
+    widthFixed: false,
+    headerTemplate: '{content} ',
+    widgets: widgets,
+    ignoreCase: true,
+    delayInit: false,
+    resizable: false,
+    saveSort: false,
+    sortLocaleCompare: true,
+    widgetOptions: {
+      filter_ignoreCase: true,
+      resizable: true,
+      stickyHeaders_offset: $('header.navbar-fixed-top').height(),
+      zebra: ["ui-widget-content even", "ui-state-default odd"],
+    }
   });
+  $(".tablesorter").css('width','');
 }
 
 function initHelp(){

@@ -62,7 +62,8 @@ Thèmes
     le thème clair choisit précédement sera utilisé. Il faut cependant cocher l'option
     **Bascule du thème en fonction de l'heure**.
     
--   **Capteur de luminosité**   : Uniquement pour mobile. 
+-   **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer 
+    generic extra sensor dans chrome, page chrome://flags
 
 -   **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve
     dans les pages scénarios, objets, interactions, etc.
@@ -733,6 +734,11 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 
 -   **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
+    
+-   **Vider le cache des widgets** : Vide le cache dédié aux widgets
+
+-   **Désactiver le cache des widgets** : Cocher la case pour désactiver
+    le caches des widgets
 
 -   **Temps de pause pour le long polling** : Fréquence à laquelle
     Jeedom vérifie si il y a des événements en attente pour les clients
