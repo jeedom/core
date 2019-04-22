@@ -18,10 +18,12 @@ Changelog
 - Affichage du widget shutter (core) proportionnel à la valeur.
 - Ajout d'un bouton pour vider le cache des widgets.
 - Ajout d'une option pour désactiver le cache des widgets.
+- Possibilité de centrer verticalement le contenu des tuiles (Configuration / Interface).
 - Possibilité d'attribuer une icône à une interaction.
 - Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
 - Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
 - Possibilité de condenser les blocs de scénario.
+- Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide de plugin).
@@ -33,7 +35,7 @@ Changelog
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
-- Allègement (css, refactoring, etc.) et améliorations des performances générales.
+- Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
 - Suppression de Font Awesome 4.
 - Nombreux bugfixs.
 
