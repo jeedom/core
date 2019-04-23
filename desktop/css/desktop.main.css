@@ -1415,6 +1415,7 @@ div[data-subtype=select] {
 :not(.form-group) > div[data-subtype=select] {
   width: 100% !important;
   min-width: 100% !important;
+  display: inline-table;
 }
 div[data-subtype=select] select {
   color: var(--link-color) !important;
