@@ -316,7 +316,14 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
         id : $(this).attr('data-cmd_id'),
         version : $(this).attr('data-version'),
         success : function(data){
-          $('.cmd[data-cmd_id=' + data.id + ']').replaceWith(data.html);
+          var html = $(data.html);
+          var cmd = $('.cmd[data-cmd_id=' + data.id + ']');
+          var uid = html.attr('data-cmd_uid');
+          if(uid != 'undefined'){
+            cmd.attr('data-cmd_uid',uid);
+          }
+          cmd.empty().html(html.children());
+          cmd.attr("class", html.attr("class"));
         }
       })
     });
@@ -842,30 +849,30 @@ jeedom.cmd.displayDuration = function(_date,_el){
     var m = Math.floor(d % 3600 / 60);
     var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
     if (d > 86399) {
-        var interval = 3600000;
-        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
-      } else if (d > 3599 && d < 86400) {
-        var interval = 60000;
-         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
-      } else {
-        var interval = 10000;
-         _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-      }
+      var interval = 3600000;
+      _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+    } else if (d > 3599 && d < 86400) {
+      var interval = 60000;
+      _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+    } else {
+      var interval = 10000;
+      _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+    }
     var myinterval = setInterval(function(){
       var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
       var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-     if (d > 86399) {
+      if (d > 86399) {
         var interval = 3600000;
         _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
       } else if (d > 3599 && d < 86400) {
         var interval = 60000;
-         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+        _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
       } else {
         var interval = 10000;
-            _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+        _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
       }
     }, interval);
     _el.attr('data-interval',myinterval);
@@ -880,15 +887,15 @@ jeedom.cmd.displayDuration = function(_date,_el){
         var m = Math.floor(d % 3600 / 60);
         var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
         if (d > 86399) {
-         interval = 3600000;
-        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
-      } else if (d > 3599 && d < 86400) {
-         interval = 60000;
-         _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
-      } else {
-         interval = 10000;
-         _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-      }
+          interval = 3600000;
+          _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+        } else if (d > 3599 && d < 86400) {
+          interval = 60000;
+          _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+        } else {
+          interval = 10000;
+          _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+        }
       }else{
         _el.empty().append("0 s");
       }
