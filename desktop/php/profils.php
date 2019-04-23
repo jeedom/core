@@ -41,7 +41,9 @@ if (!isConnect()) {
 						<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
 						
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}</label>
+							<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}
+								<sup><i class="fas fa-question-circle tooltips" title="Affiche le panneau des objets sur le dashboard"></i></sup>
+							</label>
 							<div class="col-sm-1 col-xs-6">
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
 							</div>
@@ -52,13 +54,17 @@ if (!isConnect()) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-6 control-label">{{Afficher les menus}}</label>
+							<label class="col-sm-4 col-xs-6 control-label">{{Afficher les menus}}
+								<sup><i class="fas fa-question-circle tooltips" title="Affiche le panneau de gauche sur les pages qui en dispose"></i></sup>
+							</label>
 							<div class="col-sm-1 col-xs-6">
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotAutoHideMenu"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}</label>
+							<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}
+								<sup><i class="fas fa-question-circle tooltips" title="Page affichée après connexion"></i></sup>
+							</label>
 							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
@@ -92,7 +98,9 @@ if (!isConnect()) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}</label>
+							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}
+								<sup><i class="fas fa-question-circle tooltips" title="Objet affiché lors de l’arrivée sur le dashboard"></i></sup>
+							</label>
 							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
@@ -127,7 +135,9 @@ if (!isConnect()) {
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}</label>
+							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}
+								<sup><i class="fas fa-question-circle tooltips" title="Vue affichée lors de l’arrivée sur le dashboard"></i></sup>
+							</label>
 							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
@@ -167,7 +177,9 @@ if (!isConnect()) {
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}</label>
+							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}
+								<sup><i class="fas fa-question-circle tooltips" title="Design affiché lors de l’arrivée sur le dashboard"></i></sup>
+							</label>
 							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
@@ -207,7 +219,9 @@ if (!isConnect()) {
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}</label>
+							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}
+								<sup><i class="fas fa-question-circle tooltips" title="Design 3D affiché lors de l’arrivée sur le dashboard"></i></sup>
+							</label>
 							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
