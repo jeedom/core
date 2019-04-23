@@ -35,6 +35,7 @@ Changelog
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
+- Possibilité de spécifier l'ordre (position) des designs et designs 3D (Edition, Configurer le design).
 - Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Nombreux bugfixs.
