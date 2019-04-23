@@ -332,7 +332,8 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
   if(cmds.length > 0){
     $(cmds).each(function(){
-      if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+      var cmd = $(this);
+      if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
         return true;
       }
       jeedom.cmd.toHtml({
@@ -340,7 +341,13 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
         id : $(this).attr('data-cmd_id'),
         version : $(this).attr('data-version'),
         success : function(data){
-          $('.cmd[data-cmd_id=' + data.id + ']').replaceWith(data.html);
+          var html = $(data.html);
+          var uid = html.attr('data-cmd_uid');
+          if(uid != 'undefined'){
+            cmd.attr('data-cmd_uid',uid);
+          }
+          cmd.empty().html(html.children());
+          cmd.attr("class", html.attr("class"));
         }
       })
     });
