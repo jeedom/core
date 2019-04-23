@@ -26,7 +26,7 @@ Changelog
 - Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
-- Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide de plugin).
+- Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
 - Ajout d'un moteur de recherche dans les configurations.
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche 'pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
