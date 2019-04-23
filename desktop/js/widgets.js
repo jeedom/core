@@ -107,14 +107,6 @@ $('.widgetsAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
   $('.widgetsAttr[data-l1key=display][data-l2key=icon]').value('');
 });
 
-if (getUrlVars('saveSuccessFull') == 1) {
-  $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-}
-
-if (getUrlVars('removeSuccessFull') == 1) {
-  $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
-}
-
 $('.widgetsAttr[data-l1key=type]').off('change').on('change',function(){
   $('.widgetsAttr[data-l1key=subtype] option').hide();
   if($(this).value() != ''){

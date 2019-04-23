@@ -26,7 +26,7 @@ $('#in_searchObject').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.objectDisplayCard').hide();
   $('.objectDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
@@ -68,7 +68,7 @@ $(function(){
           ob = _objects[i]
           contextmenuitems[ob.id] = {'name': ob.name}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -88,14 +88,6 @@ $(function(){
   }
   catch(err) {}
 })
-
-if (getUrlVars('saveSuccessFull') == 1) {
-  $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-}
-
-if (getUrlVars('removeSuccessFull') == 1) {
-  $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
-}
 
 $('#bt_graphObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"});
@@ -139,7 +131,7 @@ function loadObjectConfiguration(_id){
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
   } catch(error) {
-
+    
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
@@ -183,14 +175,14 @@ function loadObjectConfiguration(_id){
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
       $('.div_summary').empty();
       $('.tabnumber').empty();
-
+      
       if (isset(data.img)) {
         $('.objectImg img').attr('src',data.img);
         $('.objectImg img').show()
       } else {
         $('.objectImg img').hide()
       }
-
+      
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         for(var i in data.configuration.summary){
           var el = $('.type'+i);
@@ -202,7 +194,7 @@ function loadObjectConfiguration(_id){
               $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
             }
           }
-
+          
         }
       }
       modifyWithoutSave = false;

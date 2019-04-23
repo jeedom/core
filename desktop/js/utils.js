@@ -108,6 +108,17 @@ $(function () {
   }
   $('body').attr('data-page',getUrlVars('p'));
   
+  $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
+    if (getUrlVars('saveSuccessFull') == 1) {
+      $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
+      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]);
+    }
+    if (getUrlVars('removeSuccessFull') == 1) {
+      $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
+      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]);
+    }
+  });
+  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
       return;

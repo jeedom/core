@@ -138,11 +138,6 @@ $('#bt_saveUpdate').on('click',function(){
     }
   });
 });
-if (getUrlVars('saveSuccessFull') == 1) {
-  $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-  window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0] );
-}
-
 
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
@@ -207,7 +202,7 @@ function printUpdate() {
       for (var i in data) {
         addUpdate(data[i]);
       }
-
+      
       $('#table_update').trigger('update');
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
       $('#table_updateOther').trigger('update');
@@ -215,7 +210,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -234,7 +229,7 @@ function addUpdate(_update) {
   if (init(_update.status) == '') {
     _update.status = 'OK';
   }
-
+  
   if (_update.status == 'UPDATE') {
     labelClass = 'label-warning';
     if (_update.type == 'core' || _update.type == 'plugin') {
@@ -243,7 +238,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -254,12 +249,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label '+updClass+'">'+_update.configuration.version+'</span>';
   }
-
+  
   _localVersion = _update.localVersion
   if (_localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -289,7 +284,7 @@ function addUpdate(_update) {
   tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>';
   tr += '</td>';
   tr += '</tr>';
-
+  
   if (_update.type == 'core' || _update.type == 'plugin') {
     $('#table_update').append(tr);
     $('#table_update tbody tr').last().setValues(_update, '.updateAttr');
