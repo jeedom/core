@@ -29,9 +29,10 @@ Changelog
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
 - Ajout d'un moteur de recherche dans les configurations.
 - Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche 'pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
+- Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Améliorations des tables avec option de filtre et tri.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
+- Page update : différentiation par version (stable, beta, ...).
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
