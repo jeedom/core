@@ -932,7 +932,7 @@ function displayObject(_plan,_html, _noRender) {
   if (isset(_plan.display) && isset(_plan.display.height)) {
     html.css('height', init(_plan.display.height, 50));
   }
-  for (var key in _plan.css) {
+    for (var key in _plan.css) {
     if (_plan.css[key] === ''){
       continue;
     }
@@ -942,25 +942,28 @@ function displayObject(_plan,_html, _noRender) {
     if(key == 'z-index' && _plan.css[key] < 999){
       continue;
     }
-    if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
-      if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-        html.style('background-color', 'transparent', 'important');
-        html.style('border-radius', '0px', 'important');
-        html.style('box-shadow', 'none', 'important');
-        if(_plan.link_type == 'eqLogic'){
-          html.find('.widget-name').style('background-color', 'transparent', 'important');
+    if (key == 'background-color') {
+      if(isset(_plan.display) && (!isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)){
+        if (isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+          html.style('background-color', 'transparent', 'important');
+          html.style('border-radius', '0px', 'important');
+          html.style('box-shadow', 'none', 'important');
+          if(_plan.link_type == 'eqLogic'){
+            html.find('.widget-name').style('background-color', 'transparent', 'important');
+          }
+        }else{
+          html.style(key, _plan.css[key], 'important');
         }
-      }else{
-        html.style(key, _plan.css[key], 'important');
       }
       continue;
-    }
-    if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-      html.style(key, _plan.css[key], 'important');
-      if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd'){
-        html.find('*').each(function(){
-          $(this).style(key, _plan.css[key], 'important')
-        });
+    }else if (key == 'color') {
+      if(!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1){
+        html.style(key, _plan.css[key], 'important');
+        if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd'){
+          html.find('*').each(function(){
+            $(this).style(key, _plan.css[key], 'important')
+          });
+        }
       }
       continue;
     }
@@ -970,7 +973,6 @@ function displayObject(_plan,_html, _noRender) {
     html.style(key, _plan.css[key], 'important');
   }
   if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
-    console.log(html.css('background-color'));
     html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
   }
   if(_plan.link_type == 'graph'){
