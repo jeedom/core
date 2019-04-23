@@ -562,6 +562,9 @@ div.cmdListContainer .tablesorter i {
 table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
   border-right: 1px dotted var(--txt-color) !important;
 }
+table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inner {
+  border-right: none !important;
+}
 .tablesorter-resizable-handle {
   width: 7px !important;
   margin-left: 7px;
