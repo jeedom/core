@@ -102,12 +102,6 @@ class jeedom {
 				$return[] = array('detail' => 'Administration', 'help' => __('Commande retour interactions', __FILE__), 'who' => $cmd);
 			}
 		}
-		$cmd = config::byKey('emailAdmin', 'core', '');
-		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#', '', $cmd))) {
-				$return[] = array('detail' => 'Administration', 'help' => __('Commande information utilisateur', __FILE__), 'who' => $cmd);
-			}
-		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
 			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
