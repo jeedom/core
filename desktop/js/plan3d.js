@@ -14,6 +14,11 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+window.addEventListener('click', function(event) {
+  if (!event.path) {
+    return;
+  }
+});
 if (getUrlVars('fullscreen') == '1') {
   $('#div_colPlan3d').removeClass('col-lg-10').addClass('col-lg-12');
   $('#div_colMenu').remove();
