@@ -24,7 +24,7 @@ foreach ($cmds as $cmd) {
   <thead>
     <tr>
       <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
-      <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline" style="color : white;" ><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline" style="color : white;" ><i class="fas fa-check"></i></a></th>
+      <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline"><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline"><i class="fas fa-check"></i></a></th>
       <th>{{Type}}</th>
       <th>{{Nom}}</th>
       <th>{{Plugin}}</th>
@@ -81,9 +81,9 @@ foreach ($cmds as $cmd) {
       echo '</td>';
       echo '<td>';
       if($cmd->getType() == 'info'){
-        echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '"><i class="fas fa-share export"></i></a>';
+        echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
-      echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '"><i class="fas fa-cogs"></i></a>';
+      echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       echo '</td>';
       echo '</tr>';
     }
