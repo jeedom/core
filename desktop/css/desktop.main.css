@@ -254,6 +254,7 @@ legend {
 .eqLogic-widget,
 .scenario-widget {
   overflow: hidden;
+  z-index: 0;
 }
 
 .eqLogic-widget .btn-default,
