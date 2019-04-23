@@ -30,6 +30,7 @@ Changelog
 - Ajout d'un moteur de recherche dans les configurations.
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
+- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Améliorations des tables avec option de filtre et tri.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Page update : différentiation par version (stable, beta, ...).
