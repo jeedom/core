@@ -2593,7 +2593,7 @@ div.cmd > div.center-block {
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
-  background-color: var(--txt-color) !important;
+  background-color: rgb(var(--contrast-color)) !important;
 }
 .ui-dialog .ui-dialog-title {
   color: rgb(var(--bg-color)) !important;
