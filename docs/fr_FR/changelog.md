@@ -36,6 +36,7 @@ Changelog
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
 - Possibilité de spécifier l'ordre (position) des designs et designs 3D (Edition, Configurer le design).
+- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Nombreux bugfixs.
