@@ -81,10 +81,10 @@ function refreshScenarioSummary(){
 				tr += '<td style="width:60px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="width:130px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="width:130px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode"></center>';
 				tr += '</td>';
 				tr += '<td>';
