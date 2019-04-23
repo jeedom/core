@@ -7,20 +7,20 @@ Changelog
 
 - Refonte des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
-- En mobile le thème peut changer en fonction de la luminosité (attention nécessite d'activer generic extra sensor dans chrome, page chrome://flags).
+- En mobile le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).
 - Amélioration et réorganisation du menu principal.
 - Amélioration et réorganisation des configurations.
-- Ajout de nombreux tooltips (aide) sur les configurations.
+- Ajout de nombreux *tooltips* (aide) sur les configurations.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
 - Refonte du système de widgets (menu Outils / Widgets).
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.
-- Ajout d'un bouton pour vider le cache des widgets.
-- Ajout d'une option pour désactiver le cache des widgets.
-- Possibilité de centrer verticalement le contenu des tuiles (Configuration / Interface).
+- Configuration / Cache : Ajout d'un bouton pour vider le cache des widgets.
+- Configuration / Cache : Ajout d'une option pour désactiver le cache des widgets.
+- Configuration / Interface : Possibilité de centrer verticalement le contenu des tuiles.
 - Possibilité d'attribuer une icône à une interaction.
-- Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, lancer et afficher le log.
+- Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, le lancer, et afficher le log.
 - Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
 - Possibilité de condenser les blocs de scénario.
 - Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
@@ -31,6 +31,7 @@ Changelog
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
+- Lors d'une recherche, la touche *echap* annule la recherche.
 - Améliorations des tables avec option de filtre et tri.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Page update : différentiation par version (stable, beta, ...).
