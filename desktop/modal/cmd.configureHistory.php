@@ -24,7 +24,10 @@ foreach ($cmds as $cmd) {
   <thead>
     <tr>
       <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
-      <th data-filter="false" data-sorter="checkbox">{{Timeline}} <a class="btn btn-danger btn-xs pull-right" id="bt_canceltimeline"><i class="fas fa-times"></i></a><a class="btn btn-success btn-xs pull-right" id="bt_applytimeline"><i class="fas fa-check"></i></a></th>
+      <th data-filter="false" data-sorter="checkbox">{{Timeline}}
+        <a class="btn btn-success btn-xs" id="bt_applytimeline" style="width:22px;"><i class="fas fa-check"></i></a>
+        <a class="btn btn-danger btn-xs" id="bt_canceltimeline" style="width:22px;"><i class="fas fa-times"></i></a>
+      </th>
       <th>{{Type}}</th>
       <th>{{Nom}}</th>
       <th>{{Plugin}}</th>
@@ -37,22 +40,22 @@ foreach ($cmds as $cmd) {
     <?php
     foreach ($cmds as $cmd) {
       echo '<tr data-cmd_id="'.$cmd->getId(). '">';
-      echo '<td>';
+      echo '<td style="width:85px;">';
       if($cmd->getType() == 'info'){
-        echo '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized() == 1) ? 'checked' : '').' />';
+        echo '<center><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized() == 1) ? 'checked' : '').' /></center>';
       }
       echo '</td>';
-      echo '<td style="width:160px;">';
-      echo '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable') == 1) ? 'checked' : '').' />';
+      echo '<td style="width:135px;">';
+      echo '<center><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable') == 1) ? 'checked' : '').' /></center>';
       echo '</td>';
-      echo '<td>';
+      echo '<td style="width:130px;">';
       echo '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
       echo '</td>';
       echo '<td>';
       echo '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
       echo '<span class="cmdAttr" data-l1key="humanName">'.$cmd->getHumanName().'</span>';
       echo '</td>';
-      echo '<td>';
+      echo '<td style="width:100px;">';
       echo '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
       echo '</td>';
       echo '<td>';
@@ -79,7 +82,7 @@ foreach ($cmds as $cmd) {
         echo '</select>';
       }
       echo '</td>';
-      echo '<td>';
+      echo '<td style="width:90px;">';
       if($cmd->getType() == 'info'){
         echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
