@@ -44,7 +44,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
 						<div class="col-lg-2">
-							<input type="password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
+							<input type="password" autocomplete="new-password" class="planHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
 						</div>
 					</div>
 					<div class="form-group">
