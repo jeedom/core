@@ -316,7 +316,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="off" />
+                <input type="password" class="cmdAttr form-control" data-l1key="configuration" data-l2key="actionCodeAccess" autocomplete="new-password" />
               </div>
             </div>
           </fieldset>
