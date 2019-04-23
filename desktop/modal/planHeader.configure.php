@@ -30,6 +30,12 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Position}}</label>
+						<div class="col-lg-2">
+							<input type="number" class="planHeaderAttr form-control" data-l1key="order" min="0" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Fond transparent}}</label>
 						<div class="col-lg-2">
 							<input type="checkbox" class="planHeaderAttr" data-l1key="configuration" data-l2key="backgroundTransparent" />

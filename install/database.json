@@ -1572,6 +1572,14 @@
           "extra": ""
         },
         {
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "configuration",
           "type": "text",
           "null": "YES",
@@ -1580,7 +1588,18 @@
           "extra": ""
         }
       ],
-      "indexes": []
+      "indexes": {
+        "order": {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "order",
+              "Sub_part": null
+            }
+          }
+        }
+      }
     },
     {
       "name": "planHeader",
@@ -1610,6 +1629,14 @@
           "extra": ""
         },
         {
+          "name": "order",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "MUL",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "configuration",
           "type": "text",
           "null": "YES",
@@ -1618,7 +1645,18 @@
           "extra": ""
         }
       ],
-      "indexes": []
+      "indexes": {
+        "order": {
+          "Key_name": "order",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "order",
+              "Sub_part": null
+            }
+          }
+        }
+      }
     },
     {
       "name": "scenario",

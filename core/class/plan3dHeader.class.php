@@ -25,6 +25,7 @@ class plan3dHeader {
 	private $id;
 	private $name;
 	private $configuration;
+	private $order;
 	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -41,7 +42,8 @@ class plan3dHeader {
 	
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM plan3dHeader';
+		FROM plan3dHeader
+		ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
@@ -96,6 +98,10 @@ class plan3dHeader {
 		return $this->name;
 	}
 	
+	public function getOrder() {
+		return $this->order;
+	}
+	
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
@@ -105,6 +111,12 @@ class plan3dHeader {
 	public function setName($_name) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
+		return $this;
+	}
+	
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
 		return $this;
 	}
 	

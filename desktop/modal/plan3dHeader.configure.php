@@ -31,6 +31,12 @@ sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-4 control-label">{{Position}}</label>
+						<div class="col-lg-2">
+							<input type="number" class="plan3dHeaderAttr form-control" data-l1key="order" min="0" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-4 control-label">{{Code d'accès}}</label>
 						<div class="col-lg-2">
 							<input type="password" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="accessCode" />
