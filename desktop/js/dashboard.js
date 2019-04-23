@@ -95,7 +95,9 @@ $('#bt_resetDashboardSearch').on('click', function () {
   $('#in_searchWidget').keyup();
 })
 
-
+$(function(){
+  $('#in_searchWidget').focus()
+})
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
   $('#md_modal2').dialog({title: "Historique"});
