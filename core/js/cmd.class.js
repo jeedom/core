@@ -308,6 +308,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
   if(cmds.length > 0){
     $(cmds).each(function(){
+      var cmd = $(this);
       if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
         return true;
       }
@@ -317,7 +318,6 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
         version : $(this).attr('data-version'),
         success : function(data){
           var html = $(data.html);
-          var cmd = $('.cmd[data-cmd_id=' + data.id + ']');
           var uid = html.attr('data-cmd_uid');
           if(uid != 'undefined'){
             cmd.attr('data-cmd_uid',uid);
