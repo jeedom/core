@@ -372,30 +372,36 @@ if(method_exists('utils','attrChanged')){
 	}
 	
 	
-	try {
-		foreach (jeeObject::all() as $object) {
+	
+	foreach (jeeObject::all() as $object) {
+		try {
 			$object->save();
+		} catch (Exception $exc) {
+			
 		}
-	} catch (Exception $exc) {
-		
 	}
 	
+	
 	foreach (cmd::all() as $cmd) {
-		$changed = false;
-		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
-			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
-			$changed = true;
-		}
-		if(trim($cmd->getTemplate('dashboard')) != '' && strpos($cmd->getTemplate('dashboard'),'::') === false){
-			$cmd->setTemplate('dashboard','core::'.$cmd->getTemplate('dashboard'));
-			$changed = true;
-		}
-		if(trim($cmd->getTemplate('mobile')) != '' && strpos($cmd->getTemplate('mobile'),'::') === false){
-			$cmd->setTemplate('mobile','core::'.$cmd->getTemplate('mobile'));
-			$changed = true;
-		}
-		if($changed){
-			$cmd->save();
+		try {
+			$changed = false;
+			if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+				$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+				$changed = true;
+			}
+			if(trim($cmd->getTemplate('dashboard')) != '' && strpos($cmd->getTemplate('dashboard'),'::') === false){
+				$cmd->setTemplate('dashboard','core::'.$cmd->getTemplate('dashboard'));
+				$changed = true;
+			}
+			if(trim($cmd->getTemplate('mobile')) != '' && strpos($cmd->getTemplate('mobile'),'::') === false){
+				$cmd->setTemplate('mobile','core::'.$cmd->getTemplate('mobile'));
+				$changed = true;
+			}
+			if($changed){
+				$cmd->save();
+			}
+		} catch (Exception $exc) {
+			
 		}
 	}
 }
