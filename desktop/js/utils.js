@@ -1187,9 +1187,9 @@ function hexToRgb(hex) {
 
 //reset search on esc key:
 setTimeout(function() {
-  $("input[id^='in_search']").keydown(function(event) {
-    if (event.which == 27) {
-      $(this).val('').keyup();
-    }
-  })
-}, 200)
+ $("body").on('keydown',"input[id^='in_search']",function(event) {
+   if (event.which == 27) {
+     $(this).val('').keyup();
+   }
+ })
+}, 500)
