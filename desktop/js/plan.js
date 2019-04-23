@@ -973,7 +973,6 @@ function displayObject(_plan,_html, _noRender) {
     html.style(key, _plan.css[key], 'important');
   }
   if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
-    console.log(html.css('background-color'));
     html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
   }
   if(_plan.link_type == 'graph'){
