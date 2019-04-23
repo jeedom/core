@@ -27,8 +27,8 @@ $date = array(
 							<textarea class="form-control roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
 							<span class="input-group-btn">
 								<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
-								</a><a class="btn btn-success" id="bt_displayCalculHistory"><i class="fas fa-check"></i>
-								</a><a class="btn btn-default roundedRight" id="bt_configureCalculHistory"><i class="fas fa-cogs"></i></a>
+								</a><a class="btn btn-success" id="bt_displayCalculHistory" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i>
+								</a><a class="btn btn-default roundedRight" id="bt_configureCalculHistory" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i></a>
 							</span>
 						</div>
 					</li>
