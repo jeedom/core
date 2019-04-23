@@ -174,8 +174,17 @@ legend {
   border-left: none;
 }
 [data-page=display] #div_pageContainer #display ul > li {
-  margin: 1.2px 0 !important;
+  list-style-type: none;
+  margin: 2px 0 !important;
+  padding: 1.3px 5px !important;
+}
+[data-page=display] #div_pageContainer #display ul > li > ul > li {
+  margin: 1.3px !important;
   padding: 2px 5px !important;
+}
+[data-page=display] #div_pageContainer #display ul > li > ul > li > i {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 [data-page=display] #div_pageContainer div.packeryContainer {
   margin-left: -5px;

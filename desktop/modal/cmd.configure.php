@@ -207,9 +207,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<?php
 							foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
 								if ($usedByEqLogic->getIsEnable() != 1) {
-									echo '<span class="label label-default cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+									echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-info">' . $usedByEqLogic->getHumanName() . '</a><br/>';
 								} else {
-									echo '<span class="label label-primary cursor"><a href="' . $usedByEqLogic->getLinkToConfiguration() . '" style="color : white;">' . $usedByEqLogic->getHumanName() . '</a></span><br/>';
+									echo '<a href="' . $usedByEqLogic->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByEqLogic->getHumanName() . '</a><br/>';
 								}
 							}
 							?>
@@ -220,7 +220,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
 							<?php
 							foreach ($usedBy['cmd'] as $usedByCmd) {
-								echo '<span class="label label-primary cursor"><a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" style="color : white;">' . $usedByCmd->getHumanName() . '</a></span><br/>';
+								echo '<a href="' . $usedByCmd->getEqLogic()->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByCmd->getHumanName() . '</a><br/>';
 							}
 							?>
 						</div>
@@ -231,9 +231,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<?php
 							foreach ($usedBy['scenario'] as $usedByScenario) {
 								if ($usedByScenario->getIsActive() != 1) {
-									echo '<span class="label label-default cursor"><a href="' . $usedByScenario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScenario->getHumanName() . '</a></span><br/>';
+									echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
 								} else {
-									echo '<span class="label label-primary cursor"><a href="' . $usedByScenario->getLinkToConfiguration() . '" style="color : white;">' . $usedByScenario->getHumanName() . '</a></span><br/>';
+									echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
 								}
 							}
 							?>
