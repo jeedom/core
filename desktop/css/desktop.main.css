@@ -339,7 +339,8 @@ legend {
   z-index: 1030;
 }
 
-label sup {
+label sup,
+sup i {
   color: var(--al-info-color);
   font-size: 11px;
 }
@@ -559,7 +560,7 @@ div.cmdListContainer .tablesorter i {
   padding: 0 0 0 0!important;
 }
 table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
-  border-right: 2px solid var(--txt-color) !important;
+  border-right: 1px dotted var(--txt-color) !important;
 }
 .tablesorter-resizable-handle {
   width: 7px !important;
