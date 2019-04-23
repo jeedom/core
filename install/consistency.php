@@ -352,25 +352,25 @@ if(method_exists('utils','attrChanged')){
 		}
 	}
 	
-		try {
-		foreach (object::all() as $object) {
-			try {
-			$object->save();
-				} catch (Exception $exc) {
 		
-	}
+	foreach (object::all() as $object) {
+		try {
+			$object->save();
+		} catch (Exception $exc) {
+
 		}
+	}
 	
 	
 	foreach (cmd::all() as $cmd) {
 		try {
-		if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
-			$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
-			$cmd->save();
-		}
+			if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+				$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+				$cmd->save();
+			}
 		} catch (Exception $exc) {
 		
-	}
+		}
 	}
 	
 }
