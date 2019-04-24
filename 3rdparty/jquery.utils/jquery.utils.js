@@ -687,6 +687,9 @@ String.prototype.stripAccents = function () {
       }
       // CSSStyleDeclaration
       var style = this.get(0).style;
+     if(!style){
+        return this;
+      }
       // Getter/Setter
       if (typeof styleName != 'undefined') {
         if (typeof value != 'undefined') {
