@@ -33,20 +33,19 @@ if (!isConnect('admin')) {
 	<table id="table_cron" class="table table-bordered table-condensed tablesorter">
 		<thead>
 			<tr>
-				<th data-resizable="false" class="id" style="width: 40px;">#</th>
-				<th data-resizable="false" style="width: 80px;"></th>
-				<th data-sorter="checkbox" data-resizable="false" class="enable" style="width: 80px;">{{Actif}}</th>
-				<th class="pid" style="width: 100px;">{{PID}}</th>
-				<th data-sorter="checkbox" class="deamons" style="width: 120px;">{{Démon}}</th>
-				<th data-sorter="checkbox" class="once" style="width: 80px;">{{Unique}}</th>
-				<th data-sorter="input" class="class" style="width: 120px;">{{Classe}}</th>
-				<th data-sorter="input" class="function" style="width: 120px;">{{Fonction}}</th>
-				<th class="schedule" style="width: 170px;">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
-				<th class="timeout" style="width: 150px;">{{Timeout (min)}}</th>
-				<th class="lastRun" style="width: 200px;">{{Dernier lancement}}</th>
-				<th class="runtime" style="width: 200px;">{{Dernière durée}}</th>
-				<th class="state" style="width: 80px;">{{Statut}}</th>
-				<th class="action" style="width: 50px;"></th>
+				<th data-resizable="false" class="id">{{ID}}</th>
+				<th data-sorter="checkbox" data-resizable="false" class="enable">{{Actif}}</th>
+				<th class="pid">{{PID}}</th>
+				<th data-sorter="checkbox" class="deamons">{{Démon}}</th>
+				<th data-sorter="checkbox" class="once">{{Unique}}</th>
+				<th data-sorter="input" class="class">{{Classe}}</th>
+				<th data-sorter="input" class="function">{{Fonction}}</th>
+				<th class="schedule">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
+				<th class="timeout">{{Timeout (min)}}</th>
+				<th class="lastRun">{{Dernier lancement}}</th>
+				<th class="runtime">{{Dernière durée}}</th>
+				<th class="state">{{Statut}}</th>
+				<th class="action">{{Actions}}</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
