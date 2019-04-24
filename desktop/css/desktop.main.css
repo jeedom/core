@@ -568,10 +568,6 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
-.tablesorter-resizable-handle {
-  width: 7px !important;
-  margin-left: 7px;
-}
 #table_cron .tablesorter-filter {
   display: none;
 }
