@@ -196,7 +196,7 @@ function addCron(_cron) {
       tr += ' <a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
     }
   }
-  tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove cursor"></i></a>';
+  tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>';
   tr += '</td>';
   tr += '</tr>';
   $("#table_cron").trigger("update");
