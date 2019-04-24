@@ -493,7 +493,7 @@ function changeThemeAuto(){
 }
 
 function setBackgroundImg(_path){
-  if(isset(userProfils) && isset(userProfils.hideBackgroundImg) && userProfils.hideBackgroundImg == 1){
+  if(isset(jeedom) && isset(jeedom.theme) && isset(jeedom.theme.hideBackgroundImg) && jeedom.theme.hideBackgroundImg == 1){
     return;
   }
   if(_path == ''){
