@@ -33,19 +33,19 @@ if (!isConnect('admin')) {
 	<table id="table_cron" class="table table-bordered table-condensed tablesorter">
 		<thead>
 			<tr>
-				<th data-resizable="false" class="id">{{ID}}</th>
-				<th data-sorter="checkbox" data-resizable="false" class="enable">{{Actif}}</th>
-				<th class="pid">{{PID}}</th>
-				<th data-sorter="checkbox" class="deamons">{{Démon}}</th>
-				<th data-sorter="checkbox" class="once">{{Unique}}</th>
-				<th data-sorter="input" class="class">{{Classe}}</th>
-				<th data-sorter="input" class="function">{{Fonction}}</th>
-				<th class="schedule">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
-				<th class="timeout">{{Timeout (min)}}</th>
-				<th class="lastRun">{{Dernier lancement}}</th>
-				<th class="runtime">{{Dernière durée}}</th>
-				<th class="state">{{Statut}}</th>
-				<th class="action">{{Actions}}</th>
+				<th data-filter="false" data-resizable="false" class="id">{{ID}}</th>
+				<th data-filter="false" data-sorter="checkbox" data-resizable="false" class="enable">{{Actif}}</th>
+				<th data-filter="false" class="pid">{{PID}}</th>
+				<th data-filter="false" data-sorter="checkbox" class="deamons">{{Démon}}</th>
+				<th data-filter="false" data-sorter="checkbox" class="once">{{Unique}}</th>
+				<th data-filter="false" data-sorter="input" class="class">{{Classe}}</th>
+				<th data-filter="false" data-sorter="input" class="function">{{Fonction}}</th>
+				<th data-filter="false" class="schedule">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
+				<th data-filter="false" class="timeout">{{Timeout (min)}}</th>
+				<th data-filter="false" class="lastRun">{{Dernier lancement}}</th>
+				<th data-filter="false" class="runtime">{{Dernière durée}}</th>
+				<th data-filter="false" class="state">{{Statut}}</th>
+				<th data-filter="false" class="action">{{Actions}}</th>
 			</tr>
 		</thead>
 		<tbody></tbody>
