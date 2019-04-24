@@ -34,6 +34,8 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 });
 
 $("#bt_save").on('click', function () {
+  //clean sorter hidden span:
+  $("span").remove(".hidden");
   jeedom.cron.save({
     crons: $('#table_cron tbody tr').getValues('.cronAttr'),
     error: function (error) {
@@ -153,10 +155,10 @@ function addCron(_cron) {
     tr += '<center><input type="checkbox" class="cronAttr" data-l1key="once" /></center></span> ';
   }
   tr += '</td>';
-  tr += '<td class="class"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
-  tr += '<td class="function"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
-  tr += '<td class="schedule"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
-  tr += '<td class="function">';
+  tr += '<td class="class"><span class="hidden cronAttr" data-l1key="class"></span><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
+  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="function"></span><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
+  tr += '<td class="schedule"><span class="hidden cronAttr" data-l1key="schedule"></span><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
+  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="timeout"></span>';
   if(init(_cron.deamon) == 0){
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />';
   }
