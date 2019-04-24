@@ -55,13 +55,15 @@ class plugin {
 			return self::$_cache[$_id];
 		}
 		if (!file_exists($_id) || strpos($_id, '/') === false) {
-			$_id = self::getPathById($_id);
+			$path = self::getPathById($_id);
+		}else{
+			$path = $_id;
 		}
-		if (!file_exists($_id)) {
+		if (!file_exists($path)) {
 			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable : ' . $_id);
 		}
-		$data = json_decode(file_get_contents($_id), true);
+		$data = json_decode(file_get_contents($path), true);
 		if (!is_array($data)) {
 			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable (json invalide) : ' . $_id . ' => ' . print_r($data, true));
@@ -80,7 +82,7 @@ class plugin {
 		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
 		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
-		$plugin->filepath = $_id;
+		$plugin->filepath = $path;
 		$plugin->index = (isset($data['index'])) ? $data['index'] : $data['id'];
 		$plugin->display = (isset($data['display'])) ? $data['display'] : '';
 		$plugin->issue = (isset($data['issue'])) ? $data['issue'] : '';
