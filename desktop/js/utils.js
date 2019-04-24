@@ -558,7 +558,10 @@ function dropDownsKeys() {
     }
     
     key = event.key
+<<<<<<< HEAD
     
+=======
+>>>>>>> 45c054ae564337969679c2d587fc32ecfba55aa0
     if(key == 'Escape') {
       $(this).html(prevDropDownValue)
       $(this).attr('value', prevDropDownDatavalue)
@@ -604,7 +607,10 @@ function dropDownsKeys() {
       }
       
       if (match && selected < index) {
+        ul = $(this).closest('.dropdown').find('ul')
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
+        $(ul).scrollTop($(li).position().top - $(ul).find('li:first').position().top)
+
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
         $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
         $(this).closest('.dropdown').find('button').trigger('change')
@@ -1174,6 +1180,7 @@ function editWidgetCmdMode(_mode){
       });
     }
   }
+<<<<<<< HEAD
   
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -1193,3 +1200,24 @@ function editWidgetCmdMode(_mode){
     })
   }, 500)
   
+=======
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+//reset search on esc key:
+setTimeout(function() {
+  $("body").on('keydown',"input[id^='in_search']",function(event) {
+    if(event.key == 'Escape') {
+      $(this).val('').keyup();
+    }
+  })
+}, 500)
+>>>>>>> 45c054ae564337969679c2d587fc32ecfba55aa0
