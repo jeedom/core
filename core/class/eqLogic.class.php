@@ -579,7 +579,7 @@ class eqLogic {
 			return false;
 		}
 		$oldValue = $cmd->execCmd();
-		if (($oldValue != $cmd->formatValue($_value)) || $oldValue === '') {
+		if (($oldValue !== $cmd->formatValue($_value)) || $oldValue === '') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
