@@ -113,18 +113,16 @@ Theme Core 2019 @Jeedom
 	color: var(--linkHoverLight-color) !important;
 }
 
-.cmd .iconCmd i,
-.iconCmd i {
-  color: var(--linkHoverLight-color) !important;
-}
-p.state {
-  color: var(--linkHoverLight-color) !important;
-}
 .state,
-.state i {
+.state i,
+p.state,
+.iconCmd,
+.iconCmd i,
+.iconCmd span,
+.cmd .iconCmd i,
+.cmd {
   color: var(--linkHoverLight-color) !important;
 }
-
 
 /* buttons */
 .eqLogic.eqLogic-widget .ui-input-text input {
