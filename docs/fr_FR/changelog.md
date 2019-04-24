@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.23
+=====
+
+- Correction d'un bug sur l'affichage du nombre de mise à jour
+
 3.3.22
 =====
 
