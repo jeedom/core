@@ -34,8 +34,6 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 });
 
 $("#bt_save").on('click', function () {
-  //clean sorter hidden span:
-  $("span").remove(".hidden");
   jeedom.cron.save({
     crons: $('#table_cron tbody tr').getValues('.cronAttr'),
     error: function (error) {
@@ -139,37 +137,37 @@ function addCron(_cron) {
     disabled ='disabled';
   }
   var tr = '<tr id="' + init(_cron.id) + '">';
-  tr += '<td class="option" style="width:50px;"><span class="cronAttr label label-info" data-l1key="id"></span></td>';
-  tr += '<td class="enable" style="width:50px;"><center>';
+  tr += '<td style="width:50px;"><span class="cronAttr label label-info" data-l1key="id"></span></td>';
+  tr += '<td style="width:50px;"><center>';
   tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked '+disabled+'/>';
   tr += '</center></td>';
   tr += '<td>';
   tr += init(_cron.pid);
   tr += '</td>';
-  tr += '<td class="deamons" style="width:95px;">';
+  tr += '<td style="width:95px;">';
   tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" '+disabled+' /></span> ';
   tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />';
   tr += '</td>';
-  tr += '<td class="once" style="width:70px;">';
+  tr += '<td style="width:70px;">';
   if(init(_cron.deamon) == 0){
     tr += '<center><input type="checkbox" class="cronAttr" data-l1key="once" /></center></span> ';
   }
   tr += '</td>';
-  tr += '<td class="class"><span class="hidden cronAttr" data-l1key="class"></span><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
-  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="function"></span><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
-  tr += '<td class="schedule"><span class="hidden cronAttr" data-l1key="schedule"></span><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
-  tr += '<td class="function"><span class="hidden cronAttr" data-l1key="timeout"></span>';
+  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>';
+  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>';
+  tr += '<td><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>';
+  tr += '<td>';
   if(init(_cron.deamon) == 0){
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />';
   }
   tr += '</td>';
-  tr += '<td class="lastRun">';
+  tr += '<td>';
   tr += init(_cron.lastRun);
   tr += '</td>';
-  tr += '<td class="runtime">';
+  tr += '<td>';
   tr += init(_cron.runtime,'0')+'s';
   tr += '</td>';
-  tr += '<td class="state" style="width:60px;">';
+  tr += '<td style="width:60px;">';
   var label = 'label label-info';
   if (init(_cron.state) == 'run') {
     label = 'label label-success';
@@ -185,8 +183,8 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
   tr += '</td>';
-
-  tr += '<td class="action" style="width:85px;">';
+  
+  tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
     tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> ';
   }
