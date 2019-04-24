@@ -891,9 +891,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}');
     }
   }
-
-    $('#md_displayCmdConfigure').showAlert({message: '{{Opération effectuée avec succès, n\'oubliez pas de sauvegarder}}', level: 'success'});
-  });
   
   
   $('#bt_cmdConfigureSave').on('click', function () {
