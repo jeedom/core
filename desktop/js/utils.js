@@ -558,7 +558,6 @@ function dropDownsKeys() {
     }
 
     key = event.key
-
     if(key == 'Escape') {
       $(this).html(prevDropDownValue)
       $(this).attr('value', prevDropDownDatavalue)
@@ -1187,9 +1186,9 @@ function hexToRgb(hex) {
 
 //reset search on esc key:
 setTimeout(function() {
- $("body").on('keydown',"input[id^='in_search']",function(event) {
-   if (event.which == 27) {
-     $(this).val('').keyup();
-   }
- })
+  $("body").on('keydown',"input[id^='in_search']",function(event) {
+    if(event.key == 'Escape') {
+      $(this).val('').keyup();
+    }
+  })
 }, 500)
