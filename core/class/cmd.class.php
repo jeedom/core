@@ -1265,7 +1265,7 @@ class cmd {
 			return;
 		}
 		$oldValue = $this->execCmd();
-		$repeat = ($oldValue == $value && $oldValue !== '' && $oldValue !== null);
+		$repeat = ($oldValue === $value && $oldValue !== '' && $oldValue !== null);
 		$this->setCollectDate(($_datetime !== null) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
