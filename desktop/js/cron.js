@@ -190,10 +190,10 @@ function addCron(_cron) {
   }
   if(init(_cron.deamon) == 0){
     if (init(_cron.state) == 'run') {
-      tr += ' <a class="btn btn-danger btn-xs stop" style="color : white;"><i class="fas fa-stop"></i></a>';
+      tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>';
     }
     if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-      tr += ' <a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
+      tr += ' <a class="btn btn-success btn-xs start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>';
     }
   }
   tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>';
