@@ -111,5 +111,5 @@ a:focus {
 .eqLogic.eqLogic-widget .btn:hover,
 .scenario.scenario-widget .btn:hover,
 #div_displayObject .btn:hover {
-  color: var(--linkHoverLight-color) !important;
+  color: var(--txt-color) !important;
 }
