@@ -183,10 +183,10 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
   tr += '</td>';
-  
+
   tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
-    tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> ';
+    tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';
   }
   if(init(_cron.deamon) == 0){
     if (init(_cron.state) == 'run') {
@@ -196,7 +196,7 @@ function addCron(_cron) {
       tr += ' <a class="btn btn-success btn-xs start" style="color : white;"><i class="fas fa-play"></i></a>';
     }
   }
-  tr += '<i class="fas fa-minus-circle remove pull-right cursor"></i>';
+  tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove cursor"></i></a>';
   tr += '</td>';
   tr += '</tr>';
   $("#table_cron").trigger("update");
