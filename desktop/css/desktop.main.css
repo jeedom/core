@@ -1382,14 +1382,16 @@ input:focus, textarea:focus {
 .form-horizontal .checkbox-inline {
   padding-top: 0px !important;
 }
-.checkbox-inline > input[type=checkbox] {
-  margin-left: -20px !important;
-  margin-right: 10px !important;
-  margin-bottom: 10px;
-}
+
 .checkbox-inline {
-  padding-left: 20px;
+  margin-left: 5px;
+  margin-right: 5px !important;
 }
+.checkbox-inline > input[type=checkbox] {
+  margin-top: -2px;
+}
+
+
 
 .checkbox-inline.disabled,
 .checkbox.disabled label,
