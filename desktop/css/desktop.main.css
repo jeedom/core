@@ -13,7 +13,6 @@ Theme Core 2019 @Jeedom
   background: var(--el-defaultColor) !important;
 }
 
-
 html {
   height: 100%;
 }
@@ -569,6 +568,9 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 .tablesorter-resizable-handle {
   width: 7px !important;
   margin-left: 7px;
+}
+#table_cron .tablesorter-filter {
+  display: none;
 }
 
 #md_modal table.tablesorter {
