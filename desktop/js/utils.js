@@ -1176,22 +1176,23 @@ function editWidgetCmdMode(_mode){
       });
     }
   }
-}
-
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
-//reset search on esc key:
-setTimeout(function() {
-  $("body").on('keydown',"input[id^='in_search']",function(event) {
-    if(event.key == 'Escape') {
-      $(this).val('').keyup();
-    }
-  })
-}, 500)
+  
+  
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+  
+  //reset search on esc key:
+  setTimeout(function() {
+    $("body").on('keydown',"input[id^='in_search']",function(event) {
+      if(event.key == 'Escape') {
+        $(this).val('').keyup();
+      }
+    })
+  }, 500)
+  
