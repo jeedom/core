@@ -959,7 +959,7 @@ function displayObject(_plan,_html, _noRender) {
     }else if (key == 'color') {
       if(!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1){
         html.style(key, _plan.css[key], 'important');
-        if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd'){
+        if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd' || _plan.link_type == 'summary'){
           html.find('*').each(function(){
             $(this).style(key, _plan.css[key], 'important')
           });
