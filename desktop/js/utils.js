@@ -603,7 +603,10 @@ function dropDownsKeys() {
       }
 
       if (match && selected < index) {
+        ul = $(this).closest('.dropdown').find('ul')
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
+        $(ul).scrollTop($(li).position().top - $(ul).find('li:first').position().top)
+
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
         $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
         $(this).closest('.dropdown').find('button').trigger('change')
