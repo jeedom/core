@@ -95,12 +95,14 @@ sendVarToJS('market_display_info', $market_array);
 			if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
 				$purchase_info = repo_market::getPurchaseInfo();
 				if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
-					
 					?>
 					<a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
 					<?php
-					echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
-					
+					if ($market->getCertification() !== 'Premium') {
+						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+					}else{
+						echo '<a class="btn btn-default" target="_blank" href="mailto:supportpro@jeedom.com"><i class="fa fa-envelope"></i> {{Nous Contacter}}</a>';
+					}
 				} else {
 					echo '<div class="alert alert-info">{{Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
 				}
@@ -115,13 +117,17 @@ sendVarToJS('market_display_info', $market_array);
 		?>
 		<br/><br/>
 		<?php
-		if ($market->getCost() > 0) {
-			if ($market->getCost() != $market->getRealCost()) {
-				echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+		if ($market->getCertification() == 'Premium') {
+			echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
+		}else{
+			if ($market->getCost() > 0) {
+				if ($market->getCost() != $market->getRealCost()) {
+					echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+				}
+				echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
+			} else {
+				echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
 			}
-			echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
-		} else {
-			echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
 		}
 		?>
 	</div>
