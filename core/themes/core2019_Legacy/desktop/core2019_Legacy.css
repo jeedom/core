@@ -153,6 +153,13 @@ span.cursor > i:hover {
   background-color: var(--form-bg-color) !important;
 }
 
+.iconCmd,
+.cmdName,
+.cmdStats,
+.state {
+  color: var(--sc-lightTxt-color) !important;
+}
+
 /* analyse equipment */
 #battery .eqLogic-widget {
   color: var(--linkHoverLight-color) !important;
