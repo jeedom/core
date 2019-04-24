@@ -107,7 +107,7 @@ $(function () {
     initRowOverflow();
   }
   $('body').attr('data-page',getUrlVars('p'));
-
+  
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -118,7 +118,7 @@ $(function () {
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]);
     }
   });
-
+  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
       return;
@@ -126,7 +126,7 @@ $(function () {
     var url = window.location.href.split("index.php?");
     loadPage('index.php?'+url[1],true)
   });
-
+  
   $('body').on('click','a',function(e){
     if($(this).hasClass('noOnePageLoad')){
       return;
@@ -151,8 +151,8 @@ $(function () {
     e.preventDefault();
     e.stopPropagation();
   });
-
-
+  
+  
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -167,7 +167,7 @@ $(function () {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   }
-
+  
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -512,7 +512,7 @@ function initTextArea(){
 }
 
 function initCheckBox(){
-
+  
 }
 
 function initPage(){
@@ -550,15 +550,15 @@ function dropDownsKeys() {
     prevDropDownValue = $(this).html()
     prevDropDownDatavalue = $(this).attr('value')
   })
-
+  
   $('.dropdown-toggle').keydown(function(event) {
     if (event.which == 13) {
       $('body').trigger('click')
       return false
     }
-
+    
     key = event.key
-
+    
     if(key == 'Escape') {
       $(this).html(prevDropDownValue)
       $(this).attr('value', prevDropDownDatavalue)
@@ -566,13 +566,13 @@ function dropDownsKeys() {
       $('body').trigger('click')
       return false
     }
-
+    
     selected = -1
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       if ($(li).find('a').style('background-color') == 'var(--placeholder-color)' && selected < index) selected = index
       $(li).find('a').style('background-color', '')
     })
-
+    
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       value = $(li).find('a').text().toLowerCase()
       //handle '(kiki) value':
@@ -586,13 +586,13 @@ function dropDownsKeys() {
         }
       }
       value = value.trim()
-
+      
       //handle 'value1, value2':
       values = null
       if (value.indexOf(',') > -1) {
         values = value.split(',')
       }
-
+      
       if (values) {
         for (i = 0; i < values.length; i++) {
           value = values[i].trim()
@@ -602,7 +602,7 @@ function dropDownsKeys() {
       } else {
         match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
       }
-
+      
       if (match && selected < index) {
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
@@ -610,7 +610,7 @@ function dropDownsKeys() {
         $(this).closest('.dropdown').find('button').trigger('change')
         return false
       }
-
+      
     })
   })
 }
@@ -738,8 +738,7 @@ function refreshUpdateNumber() {
       if (_number == 0 || _number == '0') {
         $('#span_nbUpdate').hide();
       } else {
-        $('#span_nbUpdate span').html(_number);
-        $('#span_nbUpdate').show();
+        $('#span_nbUpdate').html(_number).show();
       }
     }
   });
@@ -758,12 +757,12 @@ function notify(_title, _text, _class_name) {
 
 jQuery.fn.findAtDepth = function (selector, maxDepth) {
   var depths = [], i;
-
+  
   if (maxDepth > 0) {
     for (i = 1; i <= maxDepth; i++) {
       depths.push('> ' + new Array(i).join('* > ') + selector);
     }
-
+    
     selector = depths.join(', ');
   }
   return this.find(selector);
@@ -1009,14 +1008,14 @@ function editWidgetCmdMode(_mode){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_table table.tableCmd').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default.ui-sortable').length > 0){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.ui-draggable').length > 0){
@@ -1028,168 +1027,169 @@ function editWidgetCmdMode(_mode){
     $(".eqLogic-widget.eqLogic_layout_table table.tableCmd").addClass('table-bordered');
     $('.eqLogic-widget.eqLogic_layout_table table.tableCmd td').sortable({
       connectWith: '.eqLogic-widget.eqLogic_layout_table table.tableCmd td',items: ".cmd"});
-    $('.eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
-      $('.eqLogic-widget').draggable('disable');
-    });
-    $('.eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
-      $('.eqLogic-widget').draggable('enable');
-    });
-    $.contextMenu({
-      selector: '.eqLogic-widget',
-      zIndex: 9999,
-      events: {
-        show: function(opt) {
-          $.contextMenu.setInputValues(opt, this.data());
+      $('.eqLogic-widget.allowReorderCmd').on('mouseover','.cmd',function(){
+        $('.eqLogic-widget').draggable('disable');
+      });
+      $('.eqLogic-widget.allowReorderCmd').on('mouseleave','.cmd',function(){
+        $('.eqLogic-widget').draggable('enable');
+      });
+      $.contextMenu({
+        selector: '.eqLogic-widget',
+        zIndex: 9999,
+        events: {
+          show: function(opt) {
+            $.contextMenu.setInputValues(opt, this.data());
+          },
+          hide: function(opt) {
+            $.contextMenu.getInputValues(opt, this.data());
+          }
         },
-        hide: function(opt) {
-          $.contextMenu.getInputValues(opt, this.data());
+        items: {
+          configuration: {
+            name: "{{Configuration avancée}}",
+            icon : 'fas fa-cog',
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              $('#md_modal').dialog({title: "{{Configuration du widget}}"});
+              $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
+            }
+          },
+          sep1 : "---------",
+          layoutDefaut: {
+            name: "{{Defaut}}",
+            icon : 'fas fa-square',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard' : 'default'},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
+          layoutTable: {
+            name: "{{Table}}",
+            icon : 'fas fa-table',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard' : 'table'},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
+          sep2 : "---------",
+          addTableColumn: {
+            name: "{{Ajouter colonne}}",
+            icon : 'fas fa-plus',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
+          addTableLine: {
+            name: "{{Ajouter ligne}}",
+            icon : 'fas fa-plus',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
+          removeTableColumn: {
+            name: "{{Supprimer colonne}}",
+            icon : 'fas fa-minus',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
+          removeTableLine: {
+            name: "{{Supprimer ligne}}",
+            icon : 'fas fa-minus',
+            disabled:function(key, opt) {
+              return !$(this).hasClass('eqLogic_layout_table');
+            },
+            callback: function(key, opt){
+              saveWidgetDisplay()
+              jeedom.eqLogic.simpleSave({
+                eqLogic : {
+                  id : $(this).attr('data-eqLogic_id'),
+                  display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
+                },
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                }
+              });
+            }
+          },
         }
-      },
-      items: {
-        configuration: {
-          name: "{{Configuration avancée}}",
-          icon : 'fas fa-cog',
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            $('#md_modal').dialog({title: "{{Configuration du widget}}"});
-            $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id='+$(this).attr('data-eqLogic_id')).dialog('open');
-          }
-        },
-        sep1 : "---------",
-        layoutDefaut: {
-          name: "{{Defaut}}",
-          icon : 'fas fa-square',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('allowLayout') || !$(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard' : 'default'},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-        layoutTable: {
-          name: "{{Table}}",
-          icon : 'fas fa-table',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('allowLayout') || $(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard' : 'table'},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-        sep2 : "---------",
-        addTableColumn: {
-          name: "{{Ajouter colonne}}",
-          icon : 'fas fa-plus',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-        addTableLine: {
-          name: "{{Ajouter ligne}}",
-          icon : 'fas fa-plus',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-        removeTableColumn: {
-          name: "{{Supprimer colonne}}",
-          icon : 'fas fa-minus',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-        removeTableLine: {
-          name: "{{Supprimer ligne}}",
-          icon : 'fas fa-minus',
-          disabled:function(key, opt) {
-            return !$(this).hasClass('eqLogic_layout_table');
-          },
-          callback: function(key, opt){
-            saveWidgetDisplay()
-            jeedom.eqLogic.simpleSave({
-              eqLogic : {
-                id : $(this).attr('data-eqLogic_id'),
-                display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
-              },
-              error: function (error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'});
-              }
-            });
-          }
-        },
-      }
-    });
+      });
+    }
   }
-}
-
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
-//reset search on esc key:
-setTimeout(function() {
- $("body").on('keydown',"input[id^='in_search']",function(event) {
-   if (event.which == 27) {
-     $(this).val('').keyup();
-   }
- })
-}, 500)
+  
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+  
+  //reset search on esc key:
+  setTimeout(function() {
+    $("body").on('keydown',"input[id^='in_search']",function(event) {
+      if (event.which == 27) {
+        $(this).val('').keyup();
+      }
+    })
+  }, 500)
+  
