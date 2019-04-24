@@ -530,7 +530,7 @@ function refreshUpdateNumber() {
       if (_number == 0 || _number == '0') {
         $('#span_nbUpdate').hide();
       } else {
-        $('#span_nbUpdate span').html(_number);
+        $('#span_nbUpdate').html(_number);
         $('#span_nbUpdate').show();
       }
     }
