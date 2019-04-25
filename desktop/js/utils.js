@@ -1180,12 +1180,29 @@ function editWidgetCmdMode(_mode){
 
 
 function hexToRgb(hex) {
-var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-return result ? {
-  r: parseInt(result[1], 16),
-  g: parseInt(result[2], 16),
-  b: parseInt(result[3], 16)
-} : null;
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+function rgbToHex(r, g=null, b=null) {
+  if ($.type(r) === 'string' && g == null) {
+    r = r.trim()
+    if (r.startsWith('rgb')) r = r.replace('rgb', '')
+    if (r.startsWith('(')) r = r.replace('(', '')
+    if (r.endsWith(')')) r = r.replace(')', '')
+    strAr = r.split(',')
+    r = parseInt(strAr[0].trim())
+    g = parseInt(strAr[1].trim())
+    b = parseInt(strAr[2].trim())
+  }
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
 //reset search on esc key:
