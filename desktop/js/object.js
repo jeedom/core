@@ -172,6 +172,13 @@ function loadObjectConfiguration(_id){
 
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value(objectBkgdColor);
         $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value(objectTxtColor);
+
+        $('.objectAttr[data-l1key=display][data-l2key=tagColor]').click(function () {
+          $('input[data-l2key="useCustomColor"').prop('checked', true)
+        })
+        $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').click(function () {
+          $('input[data-l2key="useCustomColor"').prop('checked', true)
+        })
       }
 
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
