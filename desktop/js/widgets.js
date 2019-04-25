@@ -40,10 +40,6 @@ $('#bt_resetWidgetsSearch').on('click', function () {
   $('#in_searchWidgets').keyup();
 })
 
-$(function(){
-  $('#in_searchWidgets').focus()
-})
-
 $('#bt_editCode').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
 })
