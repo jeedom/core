@@ -952,7 +952,11 @@ class eqLogic {
 		$object = $this->getObject();
 		if (is_object($object)) {
 			if ($_tag) {
-				$name .= '<span class="label labelObjectHuman" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
+				if ($this->getConfiguration('useCustomColor') == 1) {
+					$name .= '<span class="label" style="text-shadow : none;background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . '</span>';
+				}else{
+					$name .= '<span class="label labelObjectHuman" style="text-shadow : none;">' . $object->getName() . '</span>';
+				}
 			} else {
 				$name .= '[' . $object->getName() . ']';
 			}
