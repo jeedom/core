@@ -343,7 +343,9 @@ foreach ($markets as $market) {
 		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
 			if ($market->getPurchase() == 1) {
 				echo ' <i class="fa fa-check-circle"></i>';
-			} else {
+			} else	if ($this->getCertification() == 'Premium') {
+			        echo '';
+			}else{
 				if ($market->getCost() != $market->getRealCost()) {
 					echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
 				}
