@@ -1023,6 +1023,10 @@ class eqLogic {
 		if ($_pourcent < 0) {
 			$_pourcent = 0;
 		}
+		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery')*1.1) && $this->getStatus('battery',-1) >= 0){
+			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
+			$this->save();
+		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
 		if ($_pourcent !== '' && $_pourcent < $danger_threshold) {
