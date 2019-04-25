@@ -46,10 +46,6 @@ $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').keyup();
 })
 
-$(function(){
-  $('#in_searchInteract').focus()
-})
-
 $('#bt_openAll').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
     $(this).click()
