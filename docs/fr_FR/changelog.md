@@ -6,6 +6,8 @@ Changelog
 =====
 
 - Correction d'un bug sur l'affichage du nombre de mise à jour
+- Suppression de l'édition du code html depuis la configuration avancée des commandes du à de trop nombreux bugs
+- Corrections de bugs
 
 3.3.22
 =====
