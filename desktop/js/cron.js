@@ -169,19 +169,24 @@ function addCron(_cron) {
   tr += '</td>';
   tr += '<td style="width:60px;">';
   var label = 'label label-info';
+  var state = init(_cron.state);
   if (init(_cron.state) == 'run') {
     label = 'label label-success';
+    state = '{{En cours}}';
   }
   if (init(_cron.state) == 'stop') {
     label = 'label label-danger';
+    state = '{{Arrêté}}'
   }
   if (init(_cron.state) == 'starting') {
     label = 'label label-warning';
+    state = '{{Démarrage}}';
   }
   if (init(_cron.state) == 'stoping') {
     label = 'label label-warning';
+    state = '{{Arrêt}}';
   }
-  tr += '<span class="' + label + '">' + init(_cron.state) + '</span>';
+  tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
 
   tr += '<td style="width:85px;">';

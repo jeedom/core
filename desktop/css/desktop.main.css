@@ -568,10 +568,6 @@ table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inne
 table.tablesorter .tablesorter-header:focus {
   outline:none;
 }
-.tablesorter-resizable-handle {
-  width: 7px !important;
-  margin-left: 7px;
-}
 #table_cron .tablesorter-filter {
   display: none;
 }
@@ -1014,6 +1010,9 @@ button.dropdown-toggle {
   right: 10px;
   border-width: 6px;
 }
+.caret  {
+  border-top: 4px solid var(--txt-color);
+}
 .dropdown.open > button {
   color: var(--txt-color)  !important;
   background: var(--form-bg-color) !important;
@@ -1382,14 +1381,16 @@ input:focus, textarea:focus {
 .form-horizontal .checkbox-inline {
   padding-top: 0px !important;
 }
-.checkbox-inline > input[type=checkbox] {
-  margin-left: -20px !important;
-  margin-right: 10px !important;
-  margin-bottom: 10px;
-}
+
 .checkbox-inline {
-  padding-left: 20px;
+  margin-left: 5px;
+  margin-right: 5px !important;
 }
+.checkbox-inline > input[type=checkbox] {
+  margin-top: -2px;
+}
+
+
 
 .checkbox-inline.disabled,
 .checkbox.disabled label,
@@ -1529,6 +1530,11 @@ input[type=checkbox]:checked:after {
   position: absolute;
   left: 2px;
   top: -3px;
+}
+input[type=checkbox]::-ms-check {
+  background-color: var(--form-bg-color) !important;
+  border: none;
+  color: var(--linkHover-color);
 }
 input[type=radio]:checked {
   background: var(--txt-color) !important;
