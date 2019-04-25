@@ -218,60 +218,64 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	</div>
 </div>
 <br/>
-<legend>{{Informations complementaires}}</legend>
+
 <div class="form-group">
 	<div class='row'>
-		<div class='col-sm-2'>
-			<label class="control-label">{{Taille}}</label><br/>
-			<span><?php echo $market->getParameters('size'); ?></span>
-		</div>
-		<div class='col-sm-2'>
-			<label class="control-label">{{Lien}}</label><br/>
-			<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-				<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
-			<?php }
-			?>
-			<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-				<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
-			<?php }
-			?>
-		</div>
-		<div class='col-sm-2'>
-			<label class="control-label">{{Installation}}</label>
-			<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
-		</div>
-		
-		<div class='col-sm-1'>
-			<label class="control-label">{{Type}}</label><br/>
-			<span class="marketAttr" data-l1key="type"></span>
-		</div>
-		<div class='col-sm-2'>
-			<label class="control-label">{{Langue disponible}}</label><br/>
-			<?php
-			echo '<img src="core/img/francais.png" width="30" />';
-			if ($market->getLanguage('en_US') == 1) {
-				echo '<img src="core/img/anglais.png" width="30" />';
-			}
-			if ($market->getLanguage('de_DE') == 1) {
-				echo '<img src="core/img/allemand.png" width="30" />';
-			}
-			if ($market->getLanguage('sp_SP') == 1) {
-				echo '<img src="core/img/espagnol.png" width="30" />';
-			}
-			if ($market->getLanguage('ru_RU') == 1) {
-				echo '<img src="core/img/russe.png" width="30" />';
-			}
-			if ($market->getLanguage('id_ID') == 1) {
-				echo '<img src="core/img/indonesien.png" width="30" />';
-			}
-			if ($market->getLanguage('it_IT') == 1) {
-				echo '<img src="core/img/italien.png" width="30" />';
-			}
-			?>
-		</div>
-		<div class='col-sm-3'>
-			<label class="control-label">{{Dernière mise à jour le}}</label><br/>
-			<?php echo $market->getDatetime('stable') ?>
+		<div class="col-sm-12">
+			<legend>{{Informations complementaires}}</legend>
+
+			<div class='col-sm-2'>
+				<label class="control-label">{{Taille}}</label><br/>
+				<span><?php echo $market->getParameters('size'); ?></span>
+			</div>
+			<div class='col-sm-2'>
+				<label class="control-label">{{Lien}}</label><br/>
+				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+				<?php }
+				?>
+				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+				<?php }
+				?>
+			</div>
+			<div class='col-sm-2'>
+				<label class="control-label">{{Installation}}</label>
+				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
+			</div>
+			
+			<div class='col-sm-1'>
+				<label class="control-label">{{Type}}</label><br/>
+				<span class="marketAttr" data-l1key="type"></span>
+			</div>
+			<div class='col-sm-2'>
+				<label class="control-label">{{Langue disponible}}</label><br/>
+				<?php
+				echo '<img src="core/img/francais.png" width="30" />';
+				if ($market->getLanguage('en_US') == 1) {
+					echo '<img src="core/img/anglais.png" width="30" />';
+				}
+				if ($market->getLanguage('de_DE') == 1) {
+					echo '<img src="core/img/allemand.png" width="30" />';
+				}
+				if ($market->getLanguage('sp_SP') == 1) {
+					echo '<img src="core/img/espagnol.png" width="30" />';
+				}
+				if ($market->getLanguage('ru_RU') == 1) {
+					echo '<img src="core/img/russe.png" width="30" />';
+				}
+				if ($market->getLanguage('id_ID') == 1) {
+					echo '<img src="core/img/indonesien.png" width="30" />';
+				}
+				if ($market->getLanguage('it_IT') == 1) {
+					echo '<img src="core/img/italien.png" width="30" />';
+				}
+				?>
+			</div>
+			<div class='col-sm-3'>
+				<label class="control-label">{{Dernière mise à jour le}}</label><br/>
+				<?php echo $market->getDatetime('stable') ?>
+			</div>
 		</div>
 	</div>
 	
