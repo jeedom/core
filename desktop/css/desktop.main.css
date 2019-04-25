@@ -157,6 +157,11 @@ legend {
 }
 
 
+.labelObjectHuman {
+  padding-left: 5px !important;
+  color: var(--objectTxt-color);
+  background-color: var(--objectBkgd-color);
+}
 /* résumé domo */
 [data-page=display] legend a,
 [data-page=display] legend i {
