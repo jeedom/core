@@ -20,13 +20,16 @@ try {
 	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
 		header("location: install/setup.php");
 	}
-
+	
 	//dunno desktop or mobile:
 	if (!isset($_GET['v'])) {
 		$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
 		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet"))
 		? 'm' : 'd';
 		foreach ($_GET AS $var => $value) {
+			if(is_array($value)){
+				continue;
+			}
 			$getParams .= '&' . $var . '=' . $value;
 		}
 		$url = 'index.php?v=' . trim($getParams, '&');
@@ -39,7 +42,7 @@ try {
 		}
 		die();
 	}
-
+	
 	require_once __DIR__ . "/core/php/core.inc.php";
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
@@ -70,9 +73,9 @@ try {
 							$title = $plugin->getName() . ' - '.config::byKey('product_name');
 						}
 					} catch (Exception $e) {
-
+						
 					} catch (Error $e) {
-
+						
 					}
 				}
 				include_file('core', 'authentification', 'php');
@@ -91,7 +94,7 @@ try {
 		} else {
 			include_file('desktop', 'index', 'php');
 		}
-
+		
 		//page title:
 		try {
 			if ( init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal']) ) {
@@ -102,7 +105,7 @@ try {
 			}
 		} catch (Exception $e) {
 		}
-
+		
 	} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
 		$_fn = 'index';
 		$_type = 'html';
