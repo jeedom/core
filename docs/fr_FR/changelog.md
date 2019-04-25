@@ -40,9 +40,62 @@ Changelog
 - Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
 - Possibilité de spécifier l'ordre (position) des designs et designs 3D (Edition, Configurer le design).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
+- Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
 - Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Nombreux bugfixs.
+
+3.3.23
+=====
+
+- Correction d'un bug sur l'affichage du nombre de mise à jour
+- Suppression de l'édition du code html depuis la configuration avancée des commandes du à de trop nombreux bugs
+- Corrections de bugs
+- Amélioration de la fenetre de choix des icones
+- Mise à jour automatique de la date de changement de batterie si la baterrie est à plus de 90% et superieure de 10% à la valeur précedente
+
+3.3.22
+=====
+
+- Corrections de bugs
+- Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
+- Correction d'un bug pouvant empêcher d'ouvrir certains équipements de plugins (type alarme ou virtuel)
+
+3.3.21
+=====
+
+- Correction d'un bug où l'affichage de l'heure pouvait dépasser 24h
+- Correction d'un bug sur la mise à jour des résumés en design
+- Correction d'un bug sur la gestion des niveaux d'alertes sur certains widgets lors de la mise à jour de la valeur
+- Correction de l'affichage des équipements désactivés sur certains plugins
+- Correction d'un bug lors de l'indication de changement de pile à Jeedom
+- Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
+- Correction de bug lors de la mise à jour de variable (qui ne lançait pas toujours les scénarios ou ne déclenchait pas une mise à jour des commandes dans tous les cas)
+- Correction d'un bug sur les backups Cloud, ou duplicity ne s'installait pas correctement
+- Amélioration du TTS interne à Jeedom
+- Amélioration du système de vérification de syntaxe cron
+
+
+3.3.20
+=====
+
+- Correction d'un bug sur les scénarios ou ceux-ci pouvaient rester bloqués à "en cours" alors qu'ils sont désactivés
+- Correction d'un souci de lancement de scénario non planifié
+- Correction de bug lié au fuseau horaire
+
+3.3.19
+=====
+- Correction de bugs (en particulier lors de l'update)
+
+
+3.3.18
+=====
+- Correction de bugs
+
+3.3.17
+=====
+
+- Correction d'une erreur sur les backups samba
 
 3.3.16
 =====
