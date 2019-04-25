@@ -27,38 +27,44 @@ if (!isConnect()) {
     }
 </style>
 <input class="form-control pull-right" placeholder="{{Rechercher}}" id="in_iconSelectorSearch" />
-<?php
-foreach (ls('core/css/icon', '*') as $dir) {
-	if (is_dir('core/css/icon/' . $dir) && file_exists('core/css/icon/' . $dir . '/style.css')) {
-		$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
-		$research = strtolower(str_replace('/', '', $dir));
-		preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
-		$height = (ceil(count($matches) / 14) * 40) + 80;
-		echo '<div style="height : ' . $height . 'px;"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-
-		$number = 1;
-		foreach ($matches as $match) {
-			if (isset($match[0])) {
-				if ($number == 1) {
-					echo '<div class="row">';
-				}
-				echo '<div class="col-lg-1 divIconSel">';
-				$icon = str_replace(array(':', '.'), '', $match[0]);
-				echo '<center><span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span></center>';
-				echo '</div>';
-				if ($number == 12) {
-					echo '</div>';
-					$number = 0;
-				}
-				$number++;
+		<?php
+		foreach (ls('core/css/icon', '*') as $dir) {
+			if (!is_dir('core/css/icon/' . $dir) || !file_exists('core/css/icon/' . $dir . '/style.css')) {
+				continue;
 			}
+			$fontfile = 'core/css/icon/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
+			if (!file_exists($fontfile)) continue;
+			
+			$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
+			$research = strtolower(str_replace('/', '', $dir));
+			preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
+			echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
+			
+			$number = 1;
+			foreach ($matches as $match) {
+				if (isset($match[0])) {
+					if ($number == 1) {
+						echo '<div class="row">';
+					}
+					echo '<div class="col-lg-1 divIconSel">';
+					$icon = str_replace(array(':', '.'), '', $match[0]);
+					echo '<span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span>';
+					echo '</div>';
+					if ($number == 12) {
+						echo '</div>';
+						$number = 0;
+					}
+					$number++;
+				}
+			}
+			if($number != 0){
+				echo '</div>';
+			}
+			echo '</div>';
 		}
-		echo "</div><br/>";
-	}
-}
-?>
-<div style="height: 650px;">
-    <legend>{{Général}}</legend>
+		?>
+<div >
+    <legend class="iconCategory">{{Général}}</legend>
     <div class="row">
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fas fa-glass'></i></span><br/><span class="iconDesc">fa-glass</span></div>
         <div class="col-lg-1 divIconSel"><center><span class="iconSel"><i class='fas fa-music'></i></span><br/><span class="iconDesc">fa-music</span></div>
@@ -255,17 +261,24 @@ foreach (ls('core/css/icon', '*') as $dir) {
     </div>
 </div>
 <script>
-    $('#in_iconSelectorSearch').on('keyup',function(){
-        $('.divIconSel').show();
-        var search = $(this).value();
-        if(search != ''){
-            $('.iconDesc').each(function(){
-                if($(this).text().indexOf(search) == -1){
-                    $(this).closest('.divIconSel').hide();
-                }
-            })
-        }
-    });
+   $('#in_iconSelectorSearch').on('keyup',function(){
+	$('.divIconSel').show();
+	$('.iconCategory').show();
+	var search = $(this).value();
+	if(search != ''){
+		$('.iconDesc').each(function(){
+			if($(this).text().indexOf(search) == -1){
+				$(this).closest('.divIconSel').hide();
+			}
+		})
+	}
+	$('.iconCategory').each(function(){
+		var hide = true;
+		if($(this).find('.divIconSel:visible').length == 0){
+			$(this).hide();
+		}
+	});
+   });
     $('.divIconSel').on('click', function () {
         $('.divIconSel').removeClass('iconSelected');
         $(this).closest('.divIconSel').addClass('iconSelected');
