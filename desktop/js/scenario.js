@@ -57,10 +57,6 @@ $('#bt_resetScenarioSearch').on('click', function () {
   $('#in_searchScenario').keyup();
 })
 
-$(function(){
-  $('#in_searchScenario').focus()
-})
-
 document.addEventListener('keydown', function(event) {
   //in expression input or textarea:
   if (event.target.classList.contains('expressionAttr')){
