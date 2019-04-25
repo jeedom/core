@@ -611,9 +611,9 @@ class jeeObject {
 		if ($_tag) {
 			if ($_prettify) {
 				if ($this->getDisplay('tagColor') != '') {
-					return '<span class="label" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ' !important;color:' . $this->getDisplay('tagTextColor', 'white') . ' !important">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+					return '<span class="label labelObjectHuman" style="text-shadow : none;background-color:' . $this->getDisplay('tagColor') . ' !important;color:' . $this->getDisplay('tagTextColor', 'white') . ' !important">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
 				} else {
-					return '<span class="label label-primary" style="text-shadow : none;">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+					return '<span class="label labelObjectHuman" style="text-shadow : none;">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
 				}
 			} else {
 				return $this->getDisplay('icon') . ' ' . $this->getName();
