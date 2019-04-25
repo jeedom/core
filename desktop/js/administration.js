@@ -77,10 +77,6 @@ $('#bt_resetConfigSearch').on('click', function () {
   $('#in_searchConfig').keyup();
 })
 
-$(function(){
-  $('#in_searchConfig').focus()
-})
-
 $(function () {
   setTimeout(function(){
     modifyWithoutSave = false;

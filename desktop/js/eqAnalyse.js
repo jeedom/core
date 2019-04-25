@@ -19,8 +19,6 @@ $('.nav-tabs a').on('shown.bs.tab', function (e) {
 })
 positionEqLogic();
 
-$('#in_search').focus()
-
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",

@@ -41,10 +41,6 @@ $('#bt_resetPluginSearch').on('click', function () {
   $('#in_searchPlugin').keyup();
 })
 
-$(function(){
-  $('#in_searchPlugin').focus()
-})
-
 if($('#md_modal').is(':visible')){
   $('#bt_returnToThumbnailDisplay').hide();
   $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8');
