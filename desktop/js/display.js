@@ -133,7 +133,6 @@ $('.configureCmd').on('click',function(){
 });
 
 
-$('#in_search').focus()
 //searching
 $('#in_search').on('keyup',function(){
   try {
