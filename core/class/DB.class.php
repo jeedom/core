@@ -525,7 +525,7 @@ class DB {
 					$error .= $e->getMessage()."\n";
 				}
 			}
-			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+			if(isset($tinfo['indexes']) && count($tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
 					if(!isset($iinfo['presql']) || trim($iinfo['presql']) == ''){
 						continue;
@@ -556,7 +556,7 @@ class DB {
 					}
 				}
 			}
-			if(count(isset($tinfo['indexes']) && $tinfo['indexes']) > 0){
+			if(isset($tinfo['indexes']) && count($tinfo['indexes']) > 0){
 				foreach ($tinfo['indexes'] as $iname => $iinfo) {
 					if(!isset($iinfo['sql']) || trim($iinfo['sql']) == ''){
 						continue;
