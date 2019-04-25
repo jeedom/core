@@ -1045,6 +1045,9 @@ button .fas.fa-plus-circle {
   border-width: 5px;
 }
 
+#historytab .label.displayObject {
+  margin-bottom: 2px;
+}
 #historytab .label.displayObject:hover {
   opacity: 0.65;
 }
