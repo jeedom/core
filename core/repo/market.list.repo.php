@@ -341,7 +341,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 			echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
 			if ($market->getPurchase() == 1) {
 				echo ' <i class="fas fa-check-circle"></i>';
-			} else	if ($this->getCertification() == 'Premium') {
+			} else	if ($market->getCertification() == 'Premium') {
 				echo '';
 			}else{
 				if ($market->getCost() != $market->getRealCost()) {
