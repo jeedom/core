@@ -1782,6 +1782,7 @@ hr {
   background: var(--sc-form-color)!important;
   border: 0 !important;
   font-size: 12px !important;
+  height:28px;
 }
 .element textarea.expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
@@ -2709,7 +2710,7 @@ button.ui-dialog-titlebar-close {
 button.ui-dialog-titlebar-close:hover {
   opacity: 0.75 !important;
 }
-.ui-icon-closethick {
+.ui-dialog:not(.elfinder-dialog) .ui-icon-closethick {
   display:none !important;
 }
 
