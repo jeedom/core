@@ -43,10 +43,6 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup();
 })
 
-$(function(){
-  $('#in_searchObject').focus()
-})
-
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
   window.location.hash = e.target.hash;
 })
