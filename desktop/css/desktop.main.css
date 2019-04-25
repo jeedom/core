@@ -156,12 +156,12 @@ legend {
   color: var(--link-color) !important;
 }
 
-
 .labelObjectHuman {
   padding-left: 5px !important;
-  color: var(--objectTxt-color);
+  color: var(--objectTxt-color) !important;
   background-color: var(--objectBkgd-color);
 }
+
 /* résumé domo */
 [data-page=display] legend a,
 [data-page=display] legend i {
@@ -194,9 +194,7 @@ legend {
   margin-left: -5px;
   margin-right: -5px;
 }
-[data-page=display] .object div {
-  background-color: var(--bg-modal-color);
-}
+
 .eqLogicSortable {
   list-style-type: none;
   padding-left: 0px;
