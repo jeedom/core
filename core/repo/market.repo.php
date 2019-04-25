@@ -372,7 +372,10 @@ class repo_market {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
 		self::backup_install();
-		$base_dir = realpath(__DIR__ . '/../../');
+		$base_dir =  '/usr/jeedom_duplicity';
+		if(!file_exists($base_dir)){
+			mkdir($base_dir);
+		}
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
@@ -380,7 +383,7 @@ class repo_market {
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --num-retries 1';
-		$cmd .= ' --tempdir '.$base_dir . '/tmp';
+		$cmd .= ' --tempdir '.$base_dir;
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		$cmd .= ' ' . $restore_dir;
@@ -392,7 +395,7 @@ class repo_market {
 			}
 			throw new Exception('[restore cloud] ' . $e->getMessage());
 		}
-		return;
+		shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir);
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
