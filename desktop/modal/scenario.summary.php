@@ -34,6 +34,11 @@ if (!isConnect()) {
 <script>
 initTableSorter();
 refreshScenarioSummary();
+$('#table_scenarioSummary')[0].config.widgetOptions.resizable_widths = ['40px', '', '60px', '', '50px', '60px', '130px', '130px', '', '80px', '60px'];
+$('#table_scenarioSummary').trigger('applyWidgets');
+$('#table_scenarioSummary').trigger('resizableReset');
+$('#table_scenarioSummary').trigger('sorton', [[[1,0]]]);
+
 
 $('#bt_refreshSummaryScenario').off().on('click',function(){
 	refreshScenarioSummary();
@@ -50,13 +55,13 @@ function refreshScenarioSummary(){
 			var table = [];
 			for(var i in data){
 				var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">';
-				tr += '<td style="width:40px;">';
+				tr += '<td>';
 				tr += '<span class="label label-info scenarioAttr" data-l1key="id"></span>';
 				tr += '</td>';
 				tr += '<td>';
 				tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>';
 				tr += '</td>';
-				tr += '<td style="width:60px;">';
+				tr += '<td>';
 				switch (data[i].state) {
 					case 'error' :
 					tr += '<span class="label label-warning">{{Erreur}}</span>';
@@ -72,19 +77,19 @@ function refreshScenarioSummary(){
 					break;
 				}
 				tr += '</td>';
-				tr += '<td style="width:150px;">';
+				tr += '<td>';
 				tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>';
 				tr += '</td>';
-				tr += '<td style="width:50px;">';
+				tr += '<td>';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive"></center>';
 				tr += '</td>';
-				tr += '<td style="width:60px;">';
+				tr += '<td>';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible"></center>';
 				tr += '</td>';
-				tr += '<td style="width:130px;">';
+				tr += '<td>';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance"></center>';
 				tr += '</td>';
-				tr += '<td style="width:130px;">';
+				tr += '<td>';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode"></center>';
 				tr += '</td>';
 				tr += '<td>';
@@ -94,10 +99,10 @@ function refreshScenarioSummary(){
 				tr += '<option value="realtime">{{Temps réel}}</option>';
 				tr += '</select>';
 				tr += '</td>';
-				tr += '<td style="width:70px;">';
+				tr += '<td>';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable"></center>';
 				tr += '</td>';
-				tr += '<td style="width:60px;">';
+				tr += '<td>';
 				tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> ';
 				if(data[i].state == 'in_progress'){
 					tr += '<a class="btn btn-danger tooltips btn-xs bt_sumarrayStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>';
