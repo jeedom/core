@@ -107,13 +107,22 @@ if (!is_array($remove_history)) {
 			}
 
 			foreach ($objects as $object) {
-				$defaultTextColor = ($object->getDisplay('tagColor') == '') ? 'black' : 'white';
 				echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
-				echo '<div style="background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">';
-				echo '<legend style="color : ' . $object->getDisplay('tagTextColor', $defaultTextColor) . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
+				if ($object->getConfiguration('useCustomColor') == 1) {
+					echo '<div style="background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor') . '">';
+					echo '<legend style="color : ' . $object->getDisplay('tagTextColor') . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
+				} else {
+					echo '<div class="labelObjectHuman">';
+					echo '<legend class="labelObjectHuman">' . $object->getDisplay('icon') . '  ' . $object->getName();
+				}
 				echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
 				echo '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-				echo '<a style="color:' . $object->getDisplay('tagTextColor', $defaultTextColor) . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+
+				if ($object->getConfiguration('useCustomColor') == 1) {
+					echo '<a style="color:' . $object->getDisplay('tagTextColor') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+				} else {
+					echo '<a class="labelObjectHuman" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+				}
 
 				echo '</legend>';
 				echo '<ul class="eqLogicSortable">';
