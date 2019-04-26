@@ -189,7 +189,7 @@ autoCompleteCondition = [
   {val: 'lastCommunication(equipement)'},
   {val: 'color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'}
 ];
-autoCompleteAction = ['tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
+autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
 setTimeout(function(){
   $('.scenarioListContainer').packery();

@@ -166,10 +166,12 @@ jeedom.init = function () {
         $('#div_alert').showAlert({message: _options.message, level: _options.level});
       }
     }
-    
   });
   $('body').on('jeedom::alertPopup', function (_event,_message) {
     alert(_message);
+  });
+  $('body').on('jeedom::coloredIcons', function (_event,_state) {
+    $('body').attr('data-coloredIcons',_state);
   });
   $('body').on('message::refreshMessageNumber', function (_event,_options) {
     refreshMessageNumber();

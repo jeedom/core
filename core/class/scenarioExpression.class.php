@@ -1271,6 +1271,9 @@ class scenarioExpression {
 					event::add('jeedom::alertPopup', $options['message']);
 					$this->setLog($scenario, __('Affichage du popup : ', __FILE__) . $options['message']);
 					return;
+				}elseif ($this->getExpression() == 'setColoredIcon') {
+					config::save('interface::advance::coloredIcons',$options['state']);
+					event::add('jeedom::coloredIcons', $options['state']);
 				} elseif ($this->getExpression() == 'equipment' || $this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
