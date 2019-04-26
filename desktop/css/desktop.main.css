@@ -828,6 +828,10 @@ pre {
   color: var(--al-danger-color);
 }
 
+[data-coloredicons="1"] .icon_light {
+  color: #f1c40f;
+}
+
 .state,
 .cmd {
   color: var(--link-color) !important;

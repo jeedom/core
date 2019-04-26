@@ -153,7 +153,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-
+  
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -548,6 +548,9 @@ a.action.ui-btn {
   color: var(--al-danger-color) !important;
 }
 
+[data-coloredicons="1"] .icon_light {
+  color: #f1c40f;
+}
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
@@ -827,7 +830,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-
+  
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);
