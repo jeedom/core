@@ -161,6 +161,11 @@ legend {
   color: var(--objectTxt-color) !important;
   background-color: var(--objectBkgd-color);
 }
+.name > .labelObjectHuman {
+  padding-left: 0x !important;
+  display: inline-block;
+  padding: 0 5px;
+}
 
 /* résumé domo */
 [data-page=display] legend a,
