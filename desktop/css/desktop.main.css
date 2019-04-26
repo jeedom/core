@@ -815,13 +815,16 @@ pre {
 .info {
   color: var(--al-info-color);
 }
-.success {
+.success,
+[data-coloredicons="1"] .icon_ok {
   color: var(--bt-success-color);
 }
-.warning {
+.warning,
+[data-coloredicons="1"] .icon_warning {
   color: var(--al-warning-color);
 }
-.danger {
+.danger,
+[data-coloredicons="1"] .icon_danger {
   color: var(--al-danger-color);
 }
 
