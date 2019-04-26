@@ -406,7 +406,7 @@ try {
 		if (isset($params['longPolling'])) {
 			$longPolling = $params['longPolling'];
 		}
-		$plugin = null;
+		$filter = null;
 		if (isset($params['filter'])) {
 			$filter = $params['filter'];
 		}
