@@ -26,6 +26,7 @@ if (!isConnect()) {
 		<option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
 		<option value="event">{{Evènement}}</option>
 		<option value="tag">{{Tag}}</option>
+		<option value="setColoredIcon">{{Coloration des icones}}</option>
 	</select>
 </center>
 <br/>
@@ -115,6 +116,10 @@ if (!isConnect()) {
 
 <div class="alert alert-info mod_actionValue_selDescription tag" style="display:none;">
 	{{Permets d'ajouter/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)}}
+</div>
+
+<div class="alert alert-info mod_actionValue_selDescription setColoredIcon" style="display:none;">
+	{{Permets d'activer ou non la coloration des icones sur le dashboard}}
 </div>
 
 <script>
