@@ -97,17 +97,53 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'info' => array(
 				'binary'=>array(
 					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
-					'alert' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-alerte2\'></i>')),
-					'door' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>')),
+					'alert' => array(
+						'template' => 'tmplicon',
+						'replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-alerte2\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
+					'door' => array(
+						'template' => 'tmplicon',
+						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
 					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'light' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
 					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lock-ouvert\'></i>')),
-					'presence' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-mouvement\'></i>')),
+					'presence' => array(
+						'template' => 'tmplicon',
+						'replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-mouvement\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
 					'prise' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-prise\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
-					'window' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>')),
-					'timeDoor' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>')),
+					'window' => array(
+						'template' => 'tmplicon',
+						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
+					'timeDoor' => array(
+						'template' => 'tmpltimeIcon',
+						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
 					'timePresence' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-mouvement\'></i>')),
-					'timeWindow' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>')),
+					'timeWindow' => array(
+						'template' => 'tmpltimeIcon',
+						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>'),
+						'test' => array(
+							array('operation' => '#value# == 0','state' => '#e74c3c')
+						)
+					),
 				),
 				'numeric'=>array(
 					'heatPiloteWire' => array('template' => 'tmplmultistate','test' => array(

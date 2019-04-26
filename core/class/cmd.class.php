@@ -1166,8 +1166,8 @@ class cmd {
 			}else{
 				$replace = array();
 			}
+			$replace['#test#'] = '';
 			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
-				$replace['#test#'] = '';
 				foreach ($template_conf['test'] as &$test) {
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
 					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.str_replace("'","\'",$test['state']).'\'}';
