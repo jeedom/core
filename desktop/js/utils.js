@@ -447,10 +447,9 @@ if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' 
   }
 }
 
-if(typeof jeedom.theme['coloredIcons'] != 'undefined' && jeedom.theme['coloredIcons'] == '1'){
+$('body').attr('data-coloredIcons',0);
+if(typeof jeedom.theme.coloredIcons != 'undefined' && jeedom.theme.coloredIcons == '1'){
   $('body').attr('data-coloredIcons',1);
-}else{
-  $('body').attr('data-coloredIcons',0);
 }
 
 initPage();
