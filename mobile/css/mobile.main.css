@@ -549,7 +549,7 @@ a.action.ui-btn {
 }
 
 [data-coloredicons="1"] .icon_light {
-  color: #f1c40f;
+  color: #f1c40f !important;
 }
 
 /* ________________DIVERS */
