@@ -99,7 +99,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_danger fas fa-times\'></i>')),
 					'alert' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-alerte2\'></i>')),
 					'door' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-porte-ouverte\'></i>')),
-					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
+					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_danger icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'light' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_light icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
 					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-lock-ouvert\'></i>')),
 					'presence' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-mouvement\'></i>')),
