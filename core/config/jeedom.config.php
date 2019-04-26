@@ -101,14 +101,14 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'template' => 'tmplicon',
 						'replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-alerte2\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 					'door' => array(
 						'template' => 'tmplicon',
 						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
@@ -118,7 +118,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'template' => 'tmplicon',
 						'replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-mouvement\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 					'prise' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-prise\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
@@ -126,14 +126,14 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'template' => 'tmplicon',
 						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 					'timeDoor' => array(
 						'template' => 'tmpltimeIcon',
 						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-porte-ouverte\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 					'timePresence' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-mouvement\'></i>')),
@@ -141,7 +141,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						'template' => 'tmpltimeIcon',
 						'replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-fenetre-ouverte\'></i>'),
 						'test' => array(
-							array('operation' => '#value# == 0','state' => '#e74c3c')
+							array('operation' => '#value# == 0','state' => 1)
 						)
 					),
 				),

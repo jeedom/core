@@ -13,9 +13,9 @@
       }else {
         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
       }
-      var state = '';
+      var state = 0;
       #test#
-      $('.cmd[data-cmd_id=#id#] .iconCmd').style('color',state,'important');
+      $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-alert',state);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>
