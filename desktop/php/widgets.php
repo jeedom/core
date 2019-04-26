@@ -55,7 +55,9 @@ foreach (widgets::all() as $widget) {
         echo '<div class="panel panel-default">';
         echo '<div class="panel-heading">';
         echo '<h3 class="panel-title">';
-        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - '.count($widgets['info']).' widget(s)</a>';
+        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - ';
+        $c = count($widgets['info']);
+        echo $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
         echo '</h3>';
         echo '</div>';
         echo '<div id="widget_info" class="panel-collapse collapse">';
@@ -82,7 +84,9 @@ foreach (widgets::all() as $widget) {
         echo '<div class="panel panel-default">';
         echo '<div class="panel-heading">';
         echo '<h3 class="panel-title">';
-        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - '.count($widgets['action']).' widget(s)</a>';
+        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - ';
+        $c = count($widgets['action']);
+        echo $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
         echo '</h3>';
         echo '</div>';
         echo '<div id="widget_action" class="panel-collapse collapse">';
