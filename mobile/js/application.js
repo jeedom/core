@@ -262,7 +262,7 @@ function initApplication(_reinit) {
           jeedom.theme.theme_changeAccordingTime = "0";
         }
         $('body').attr('data-coloredIcons',0);
-        if(typeof jeedom.theme.coloredIcons != 'undefined' && jeedom.theme.coloredIcons == '1'){
+        if(typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1'){
           $('body').attr('data-coloredIcons',1);
         }
         $('#jQMnDColor').attr('href', 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.css');

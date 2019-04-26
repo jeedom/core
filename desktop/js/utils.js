@@ -448,7 +448,7 @@ if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' 
 }
 
 $('body').attr('data-coloredIcons',0);
-if(typeof jeedom.theme.coloredIcons != 'undefined' && jeedom.theme.coloredIcons == '1'){
+if(typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1'){
   $('body').attr('data-coloredIcons',1);
 }
 
