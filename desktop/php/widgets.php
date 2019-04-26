@@ -13,6 +13,10 @@ if(!file_exists($rootPath.'/mobile')){
   mkdir($rootPath.'/mobile');
 }
 global $JEEDOM_INTERNAL_CONFIG;
+$widgets = array('action' => array(),'info' => array());
+foreach (widgets::all() as $widget) {
+  $widgets[$widget->getType()][] = $widget;
+}
 ?>
 <div class="row row-overflow">
   <div id="div_widgetsList" class="col-xs-12">
@@ -35,21 +39,70 @@ global $JEEDOM_INTERNAL_CONFIG;
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>
       <div class="input-group-btn">
-        <a id="bt_resetWidgetsSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+        <a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>
+      </div>
+      <div class="input-group-btn">
+        <a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>
+      </div>
+      <div class="input-group-btn">
+        <a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
       </div>
     </div>
-    <div class="widgetsListContainer">
+    
+    <div class="panel-group" id="accordionWidgets">
       <?php
-      foreach (widgets::all() as $widgets) {
-        echo '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widgets->getId() . '">';
-        if($widgets->getDisplay('icon') != ''){
-          echo '<span>'.$widgets->getDisplay('icon').'</span>';
-        }else{
-          echo '<span><i class="fas fa-image"></i></span>';
+      if(count($widgets['info']) > 0){
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-heading">';
+        echo '<h3 class="panel-title">';
+        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - '.count($widgets['info']).' widget(s)</a>';
+        echo '</h3>';
+        echo '</div>';
+        echo '<div id="widget_info" class="panel-collapse collapse">';
+        echo '<div class="panel-body">';
+        echo '<div class="widgetsListContainer">';
+        foreach ($widgets['info'] as $widget) {
+          echo '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
+          if($widget->getDisplay('icon') != ''){
+            echo '<span>'.$widget->getDisplay('icon').'</span>';
+          }else{
+            echo '<span><i class="fas fa-image"></i></span>';
+          }
+          echo '<br/>';
+          echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+          echo '<span class="name">' . $widget->getName() . '</span><br/>';
+          echo '</div>';
         }
-        echo '<br/>';
-        echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widgets->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widgets->getSubType() .'</span></span>';
-        echo '<span class="name">' . $widgets->getName() . '</span><br/>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+      }
+      if(count($widgets['action']) > 0){
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-heading">';
+        echo '<h3 class="panel-title">';
+        echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - '.count($widgets['action']).' widget(s)</a>';
+        echo '</h3>';
+        echo '</div>';
+        echo '<div id="widget_action" class="panel-collapse collapse">';
+        echo '<div class="panel-body">';
+        echo '<div class="widgetsListContainer">';
+        foreach ($widgets['action'] as $widget) {
+          echo '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
+          if($widget->getDisplay('icon') != ''){
+            echo '<span>'.$widget->getDisplay('icon').'</span>';
+          }else{
+            echo '<span><i class="fas fa-image"></i></span>';
+          }
+          echo '<br/>';
+          echo '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+          echo '<span class="name">' . $widget->getName() . '</span><br/>';
+          echo '</div>';
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
       }
       ?>

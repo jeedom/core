@@ -14,16 +14,17 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-//searching
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value();
   if(search == ''){
+    $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.widgetsDisplayCard').show();
     $('.widgetsListContainer').packery();
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
   
+  $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.widgetsDisplayCard').hide();
   $('.widgetsDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
@@ -33,6 +34,17 @@ $('#in_searchWidgets').keyup(function () {
     }
   });
   $('.widgetsListContainer').packery();
+});
+
+$('#bt_openAll').off('click').on('click', function () {
+  $(".accordion-toggle[aria-expanded='false']").each(function(){
+    $(this).click()
+  })
+});
+$('#bt_closeAll').off('click').on('click', function () {
+  $(".accordion-toggle[aria-expanded='true']").each(function(){
+    $(this).click()
+  })
 });
 
 $('#bt_resetWidgetsSearch').on('click', function () {
@@ -182,6 +194,12 @@ function loadTemplateConfiguration(_template,_data){
 setTimeout(function(){
   $('.widgetsListContainer').packery();
 },100);
+
+$('.accordion-toggle').off('click').on('click', function () {
+  setTimeout(function(){
+    $('.widgetsListContainer').packery();
+  },100);
+});
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('#div_conf').hide();

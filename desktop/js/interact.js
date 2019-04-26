@@ -46,12 +46,12 @@ $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').keyup();
 })
 
-$('#bt_openAll').on('click', function () {
+$('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
     $(this).click()
   })
 });
-$('#bt_closeAll').on('click', function () {
+$('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").each(function(){
     $(this).click()
   })
