@@ -25,7 +25,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'energy' => array('name' => 'Energie', 'icon' => 'fa fa-bolt'),
 			'light' => array('name' => 'Lumière', 'icon' => 'fa fa-lightbulb-o'),
 			'automatism' => array('name' => 'Automatisme', 'icon' => 'fa fa-magic'),
-			'multimedia' => array('name' => 'Multimedia', 'icon' => 'fas fa-sliders-h'),
+			'multimedia' => array('name' => 'Multimédia', 'icon' => 'fas fa-sliders-h'),
 			'default' => array('name' => 'Autre', 'icon' => 'fa fa-circle-o'),
 		),
 		'style' => array(
