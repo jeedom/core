@@ -619,7 +619,7 @@ class jeeObject {
 				return $this->getDisplay('icon') . ' ' . $this->getName();
 			}
 		} else {
-			return $this->getName();
+			return '['. $this->getName().']';
 		}
 	}
 	
