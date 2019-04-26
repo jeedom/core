@@ -79,7 +79,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'circle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-circle\'></i>','#_icon_off_#' => '<i class=\'fas fa-circle-thin\'></i>')),
 					'fan' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-ventilo\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'garage' => array('template' => 'tmplicon',array('#_icon_on_#' => '<i class=\'icon_ok icon jeedom-garage-ferme fa-2x\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-garage-ouvert fa-stack-2x\'></i>')),
-					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lock-ouvert\'></i>')),
+					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-lock-ouvert\'></i>')),
 					'prise' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-prise\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'sprinkle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon nature-watering1\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'timeLight' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
@@ -96,7 +96,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'info' => array(
 				'binary'=>array(
-					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-check\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
+					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_danger fas fa-times\'></i>')),
 					'alert' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-alerte2\'></i>')),
 					'door' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_ok icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_danger icon jeedom-porte-ouverte\'></i>')),
 					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
