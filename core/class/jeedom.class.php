@@ -45,7 +45,8 @@ class jeedom {
 			'widget::step::height',
 			'widget::margin',
 			'widget::shadow',
-			'interface::advance::enable'
+			'interface::advance::enable',
+			'interface::advance::coloredIcons'
 		);
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];

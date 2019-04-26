@@ -29,7 +29,7 @@ user::isBan();
 			<div id="searchResult"></div>
 		</form>
 	</div>
-
+	
 	<ul class="nav nav-tabs nav-primary" role="tablist" style="max-width:calc(100% - 150px);">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Interface}}</a></li>
@@ -262,7 +262,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
 			<form class="form-horizontal">
@@ -315,7 +315,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API}}
 							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -329,7 +329,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API Pro}}
 							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -420,7 +420,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
@@ -477,7 +477,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="securitytab">
 			<br/>
 			<form class="form-horizontal">
@@ -578,7 +578,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle tooltips" title="{{Temps en secondes}}"></i></sup>
 							<sub>s</sub>
 						</label>
-
+						
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
@@ -600,7 +600,7 @@ user::isBan();
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
-
+					
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
@@ -635,7 +635,7 @@ user::isBan();
 							?>
 						</tbody>
 					</table>
-
+					
 				</fieldset>
 			</form>
 		</div>
@@ -779,12 +779,12 @@ user::isBan();
 						echo '</div>';
 						echo '</div>';
 					}
-
+					
 					?>
 				</div>
 			</div>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
@@ -913,7 +913,7 @@ user::isBan();
 							<input type="number" class="configKey form-control" data-l1key="widget::margin" />
 						</div>
 					</div>
-
+					
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
@@ -929,7 +929,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}
-							<sup><i class="fas fa-question-circle tooltips" title="Transparence des tuiles"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Transparence des tuiles}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
@@ -937,7 +937,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}
-							<sup><i class="fas fa-question-circle tooltips" title="Arrondi des éléments de l'interface (Tuiles, boutons etc). 0 pour pas d'arrondi"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Arrondi des éléments de l'interface (Tuiles, boutons etc). 0 pour pas d'arrondi}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" />
@@ -951,16 +951,24 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Centrage vertical des tuiles}}
-							<sup><i class="fas fa-question-circle tooltips" title="Centre verticalement le contenu des tuiles"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Centre verticalement le contenu des tuiles}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" />
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icone widget colorées}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Autorise des icones de widgets colorées}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
+						</div>
+					</div>
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="commandtab">
 			<br/>
 			<legend>{{Historique}}</legend>
@@ -1049,7 +1057,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="cachetab">
 			<br/>
 			<form class="form-horizontal">
@@ -1155,7 +1163,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interacttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1243,7 +1251,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -1255,7 +1263,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
@@ -1292,7 +1300,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 						</div>
 					</div>
-
+					
 					<legend>{{Couleurs}}</legend>
 					<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
@@ -1311,7 +1319,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="repporttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1335,7 +1343,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="graphlinktab">
 			<br/>
 			<form class="form-horizontal">
@@ -1399,7 +1407,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="summarytab">
 			<br/>
 			<form class="form-horizontal">
@@ -1424,7 +1432,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="logtab">
 			<br/>
 			<form class="form-horizontal">
@@ -1458,7 +1466,7 @@ user::isBan();
 					<div class="form-group">
 						<div class="col-sm-2 hidden-xs"></div>
 						<div class="col-sm-10 col-xs-12">
-
+							
 						</div>
 					</div>
 				</fieldset>
@@ -1470,7 +1478,7 @@ user::isBan();
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
 			</ul>
-
+			
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="log_alertes">
 					<form class="form-horizontal">
@@ -1501,7 +1509,7 @@ user::isBan();
 						</fieldset>
 					</form>
 				</div>
-
+				
 				<div role="tabpanel" class="tab-pane" id="log_log">
 					<form class="form-horizontal">
 						<fieldset>
@@ -1564,7 +1572,7 @@ user::isBan();
 								</div>
 							</div>
 							<?php
-
+							
 							$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
 							foreach ($other_log as $name) {
 								echo '<form class="form-horizontal">';
@@ -1602,7 +1610,7 @@ user::isBan();
 				</div>
 			</div>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="eqlogictab">
 			<br/>
 			<form class="form-horizontal">
@@ -1640,7 +1648,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="updatetab">
 			<br/>
 			<div class="row">
