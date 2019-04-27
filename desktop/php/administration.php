@@ -873,7 +873,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}</label>
 						<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime"/>
 						</div>
