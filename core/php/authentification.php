@@ -129,8 +129,7 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
-	
-	$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
+	$registerDevice = $user->getOptions('registerDevice', array());
 	if (!is_array($registerDevice)) {
 		$registerDevice = array();
 	}
