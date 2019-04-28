@@ -634,17 +634,10 @@ class eqLogic {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}
-		if (!$this->getIsEnable()) {
+		if (!$this->hasRight('r') || !$this->getIsEnable()) {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version, false);
-		if ($this->getDisplay('showOn' . $version, 1) == 0) {
-			return '';
-		}
-		
 		$user_id = '';
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
