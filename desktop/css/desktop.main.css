@@ -2649,7 +2649,7 @@ div.cmd > div.center-block {
   padding-right: 13px !important;
 }
 .ui-dialog-content > div:not(.alert):not(.jqAlert) {
-  background: transparent !important;
+  /*! background: transparent !important; */
 }
 .ui-widget-content:not(.slider){
   color: var(--txt-color) !important;
@@ -2802,16 +2802,14 @@ input[type=number] {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
-  border: 1px solid #eee;
   height: auto;
 }
 
-.CodeMirror,
+.CodeMirror:not(class*=cm-s-),
 .CodeMirror-code,
 .CodeMirror-sizer {
   background: var(--sc-form-color)!important;
   color: var(--sc-formTxt-color)!important;
-  border: none !important;
 }
 .CodeMirror-gutters {
   background: var(--form-bg-color)!important;
@@ -2997,16 +2995,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3014,11 +3012,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3045,5 +3043,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
