@@ -78,7 +78,7 @@ $('#bt_checkAllUpdate').off('click').on('click', function () {
 
 $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Etes vous sur de vouloir mettre à jour cet objet ?}}', function (result) {
+  bootbox.confirm('{{Etes vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.do({
@@ -97,7 +97,7 @@ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
 
 $('#table_update,#table_updateOther').delegate('.remove', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Etes vous sur de vouloir supprimer cet objet ?}}', function (result) {
+  bootbox.confirm('{{Etes vous sûr de vouloir supprimer cet objet ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({
@@ -213,7 +213,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-  
+
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -232,7 +232,7 @@ function addUpdate(_update) {
   if (init(_update.status) == '') {
     _update.status = 'OK';
   }
-  
+
   if (_update.status == 'UPDATE') {
     labelClass = 'label-warning';
     if (_update.type == 'core' || _update.type == 'plugin') {
@@ -241,7 +241,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-  
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -253,12 +253,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-  
+
   _localVersion = _update.localVersion
   if (_localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-  
+
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
