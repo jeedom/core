@@ -24,7 +24,7 @@ class widgets {
   
   private $id;
   private $name;
-  private $type;
+  private $type = 'action';
   private $subtype;
   private $template;
   private $replace;
@@ -139,6 +139,12 @@ class widgets {
   }
   
   /*     * *********************Méthodes d'instance************************* */
+  
+  public function preSave(){
+    if($this->getType() == ''){
+      $this->setType('action');
+    }
+  }
   
   public function save() {
     DB::save($this);
