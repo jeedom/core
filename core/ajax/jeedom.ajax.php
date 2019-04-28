@@ -307,9 +307,9 @@ try {
 		ajax::success(jeedom::consistency());
 	}
 	
-	if (init('action') == 'forceSyncHour') {
+	if (init('action') == 'cleanFileSystemRight') {
 		unautorizedInDemo();
-		ajax::success(jeedom::forceSyncHour());
+		ajax::success(jeedom::cleanFileSytemRight());
 	}
 	
 	if (init('action') == 'removeTimelineEvents') {
