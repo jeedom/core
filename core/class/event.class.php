@@ -71,25 +71,30 @@ class event {
 	public static function cleanEvent($_events) {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
-		foreach (array_values($_events) as $key => $event) {
+		$events = array_values($_events);
+		foreach ($events as $key => $event) {
 			if ($event['name'] == 'eqLogic::update') {
-				$id = $event['name'] . '::' . $event['option']['eqLogic_id'];
+				$id = 'eqLogic::update::' . $event['option']['eqLogic_id'];
 			} elseif ($event['name'] == 'cmd::update') {
-				$id = $event['name'] . '::' . $event['option']['cmd_id'];
+				$id = 'cmd::update::' . $event['option']['cmd_id'];
 			} elseif ($event['name'] == 'scenario::update') {
-				$id = $event['name'] . '::' . $event['option']['scenario_id'];
+				$id = 'scenario::update::' . $event['option']['scenario_id'];
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
-				$id = $event['name'] . '::' . $event['option']['object_id'];
+				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
 			} else {
 				continue;
 			}
-			if ($id != '' && isset($find[$id]) && $find[$id] > $event['datetime']) {
-				unset($_events[$key]);
-				continue;
+			if (isset($find[$id])) {
+				if($find[$id]['datetime'] > $event['datetime']){
+					unset($events[$key]);
+					continue;
+				}else{
+					unset($events[$find[$id]['key']]);
+				}
 			}
-			$find[$id] = $event['datetime'];
+			$find[$id] = array('datetime' => $event['datetime'],'key' => $key);
 		}
-		return array_values($_events);
+		return $events;
 	}
 
 	public static function orderEvent($a, $b) {
