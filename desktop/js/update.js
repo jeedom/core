@@ -197,7 +197,6 @@ function printUpdate() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      
       var tr_update = []
       var tr_update_other = [];
       for (var i in data) {
@@ -291,5 +290,5 @@ function addUpdate(_update) {
   tr += '</tr>';
   var html = $(tr);
   html.setValues(_update, '.updateAttr');
-  return html; 
+  return html;
 }
