@@ -169,53 +169,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 					</tr>
 				</thead>
 				<tbody>
-					<?php if ($eqLogic->widgetPossibility('custom::visibility')) {
-						?>
-						<tr>
-							<td>{{Visible}}</td>
-							<?php
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<td>';
-								if ($eqLogic->widgetPossibility('custom::visibility::' . $key)) {
-									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
-								}
-								echo '</td>';
-							}
-							?>
-						</tr>
-					<?php }
-					?>
-					<?php if ($eqLogic->widgetPossibility('custom::displayName')) {
-						?>
-						<tr>
-							<td>{{Afficher le nom}}</td>
-							<?php
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<td>';
-								if ($eqLogic->widgetPossibility('custom::displayName::' . $key)) {
-									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
-								}
-								echo '</td>';
-							}
-							?>
-						</tr>
-					<?php }
-					?>
-					<?php if ($eqLogic->widgetPossibility('custom::displayObjectName')) {
-						?>
-						<tr>
-							<td>{{Afficher le nom de l'objet}}</td>
-							<?php
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<td>';
-								if ($eqLogic->widgetPossibility('custom::displayObjectName::' . $key)) {
-									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showObjectNameOn' . $key . '" />';
-								}
-								echo '</td>';
-							}
-							?>
-						</tr>
-					<?php }
+					<?php
 					if (is_array($eqLogic->widgetPossibility('parameters'))) {
 						foreach ($eqLogic->widgetPossibility('parameters') as $pKey => $parameter) {
 							echo '<tr>';
@@ -304,7 +258,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-
+		
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -441,7 +395,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-
+						
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -557,7 +511,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-
+	
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
