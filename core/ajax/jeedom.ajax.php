@@ -302,6 +302,16 @@ try {
 		ajax::success($return);
 	}
 	
+	if (init('action') == 'consistency') {
+		unautorizedInDemo();
+		ajax::success(jeedom::consistency());
+	}
+	
+	if (init('action') == 'forceSyncHour') {
+		unautorizedInDemo();
+		ajax::success(jeedom::forceSyncHour());
+	}
+	
 	if (init('action') == 'removeTimelineEvents') {
 		unautorizedInDemo();
 		ajax::success(jeedom::removeTimelineEvent());
