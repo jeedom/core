@@ -245,6 +245,16 @@ try {
 		ajax::success(jeedom::rebootSystem());
 	}
 	
+	if (init('action') == 'cleanFileSystemRight') {
+		unautorizedInDemo();
+		ajax::success(jeedom::cleanFileSytemRight());
+	}
+	
+	if (init('action') == 'consistency') {
+		unautorizedInDemo();
+		ajax::success(jeedom::consistency());
+	}
+	
 	if (init('action') == 'forceSyncHour') {
 		unautorizedInDemo();
 		ajax::success(jeedom::forceSyncHour());
