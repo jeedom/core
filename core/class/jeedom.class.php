@@ -538,15 +538,11 @@ class jeedom {
 		return $bluetoothMapping;
 	}
 	
-	public static function consistency($_background = false) {
-		if ($_background) {
-			log::clear('consistency');
-			$cmd = __DIR__ . '/../../install/consistency.php';
-			$cmd .= ' >> ' . log::getPathToLog('consistency') . ' 2>&1 &';
-			system::php($cmd, true);
-		} else {
-			require_once __DIR__ . '/../../install/consistency.php';
-		}
+	public static function consistency() {
+		log::clear('consistency');
+		$cmd = __DIR__ . '/../../install/consistency.php';
+		$cmd .= ' >> ' . log::getPathToLog('consistency') . ' 2>&1 &';
+		system::php($cmd, true);
 	}
 	
 	/********************************************BACKUP*****************************************************************/
