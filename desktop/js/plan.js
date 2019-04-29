@@ -926,11 +926,13 @@ function displayObject(_plan,_html, _noRender) {
   html.css('-moz-transform-origin', '0 0');
   html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
   html.addClass('noResize');
-  if (isset(_plan.display) && isset(_plan.display.width)) {
-    html.css('width', init(_plan.display.width, 50));
-  }
-  if (isset(_plan.display) && isset(_plan.display.height)) {
-    html.css('height', init(_plan.display.height, 50));
+  if(_plan.link_type != 'cmd'){
+    if (isset(_plan.display) && isset(_plan.display.width)) {
+      html.css('width', init(_plan.display.width, 50));
+    }
+    if (isset(_plan.display) && isset(_plan.display.height)) {
+      html.css('height', init(_plan.display.height, 50));
+    }
   }
   for (var key in _plan.css) {
     if (_plan.css[key] === ''){
@@ -974,6 +976,22 @@ function displayObject(_plan,_html, _noRender) {
   }
   if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
     html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
+  }
+  if(_plan.link_type == 'eqLogic'){
+    if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
+      html.find('.widget-name').remove();
+      html.find('.cmd.refresh').remove();
+    }
+    if(isset(_plan.display.hideCmdName) && _plan.display.hideCmdName == 1){
+      html.find('.cmdName').remove();
+      html.find('.title').remove();
+    }
+  }
+  if(_plan.link_type == 'cmd'){
+    if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
+      html.find('.cmdName').remove();
+      html.find('.title').remove();
+    }
   }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
