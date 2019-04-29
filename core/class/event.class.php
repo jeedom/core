@@ -1,32 +1,32 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class event {
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $limit = 250;
 	private static $_fd = null;
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function getFileDescriptorLock() {
 		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
@@ -34,7 +34,7 @@ class event {
 		}
 		return self::$_fd;
 	}
-
+	
 	public static function add($_event, $_option = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
@@ -49,7 +49,7 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-
+	
 	public static function adds($_event, $_values = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
@@ -67,35 +67,40 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-
+	
 	public static function cleanEvent($_events) {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
-		foreach (array_values($_events) as $key => $event) {
+		$events = array_values($_events);
+		foreach ($events as $key => $event) {
 			if ($event['name'] == 'eqLogic::update') {
-				$id = $event['name'] . '::' . $event['option']['eqLogic_id'];
+				$id = 'eqLogic::update::' . $event['option']['eqLogic_id'];
 			} elseif ($event['name'] == 'cmd::update') {
-				$id = $event['name'] . '::' . $event['option']['cmd_id'];
+				$id = 'cmd::update::' . $event['option']['cmd_id'];
 			} elseif ($event['name'] == 'scenario::update') {
-				$id = $event['name'] . '::' . $event['option']['scenario_id'];
+				$id = 'scenario::update::' . $event['option']['scenario_id'];
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
-				$id = $event['name'] . '::' . $event['option']['object_id'];
+				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
 			} else {
 				continue;
 			}
-			if ($id != '' && isset($find[$id]) && $find[$id] > $event['datetime']) {
-				unset($_events[$key]);
-				continue;
+			if (isset($find[$id])) {
+				if($find[$id]['datetime'] > $event['datetime']){
+					unset($events[$key]);
+					continue;
+				}else{
+					unset($events[$find[$id]['key']]);
+				}
 			}
-			$find[$id] = $event['datetime'];
+			$find[$id] = array('datetime' => $event['datetime'],'key' => $key);
 		}
-		return array_values($_events);
+		return $events;
 	}
-
+	
 	public static function orderEvent($a, $b) {
 		return ($a['datetime'] - $b['datetime']);
 	}
-
+	
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
@@ -116,7 +121,7 @@ class event {
 		}
 		return $return;
 	}
-
+	
 	private static function filterEvent($_data = array(), $_filter = null) {
 		if ($_filter == null) {
 			return $_data;
@@ -134,7 +139,7 @@ class event {
 		}
 		return $return;
 	}
-
+	
 	private static function changesSince($_datetime) {
 		$return = array('datetime' => $_datetime, 'result' => array());
 		$cache = cache::byKey('event');
@@ -155,8 +160,8 @@ class event {
 		$return['result'] = array_reverse($return['result']);
 		return $return;
 	}
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
 }

@@ -572,6 +572,13 @@ class jeedom {
 		return $bluetoothMapping;
 	}
 	
+	public static function consistency() {
+		log::clear('consistency');
+		$cmd = __DIR__ . '/../../install/consistency.php';
+		$cmd .= ' >> ' . log::getPathToLog('consistency') . ' 2>&1 &';
+		system::php($cmd, true);
+	}
+	
 	/********************************************BACKUP*****************************************************************/
 	
 	public static function backup($_background = false) {

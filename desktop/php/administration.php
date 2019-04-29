@@ -426,6 +426,15 @@ user::isBan();
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
 			<form class="form-horizontal">
 				<fieldset>
+					<legend><i class="fas fa-brain"></i> {{Général}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Vérification général}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de lancer le test de consistence de Jeedom}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-warning" id="bt_consitency"><i class="fas fa-check"></i> {{Lancer}}</a>
+						</div>
+					</div>
 					<legend><i class="fas fa-terminal"></i> {{Système}}</legend>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Administration}}
@@ -433,6 +442,14 @@ user::isBan();
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Remettre à plat les droits des dossiers et fichiers}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de réappliquer les bons droits sur les fichiers}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<a class="btn btn-warning" id="bt_cleanFileSystemRight"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fas fa-indent"></i> {{Editeur de fichiers}}</legend>
@@ -791,7 +808,7 @@ user::isBan();
 				<fieldset>
 					<legend>{{Thèmes}}</legend>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop clair}}</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop principal}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme">
@@ -808,7 +825,7 @@ user::isBan();
 								</ul>
 							</div>
 						</div>
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
@@ -827,7 +844,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème mobile clair}}</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile principal}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color">
@@ -844,7 +861,7 @@ user::isBan();
 								</ul>
 							</div>
 						</div>
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Sombre}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile alternatif}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
 								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
@@ -863,7 +880,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème clair de}}</label>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème principal de}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="theme_start_day_hour"/>
 						</div>
@@ -873,7 +890,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Bascule du thème en fonction de l'heure}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}</label>
 						<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime"/>
 						</div>
@@ -959,7 +976,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icones widgets colorées}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Colorisation des icônes de widgets Presence/Ouverture en fonction de leur état}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Colorisation des icônes de widgets Presence/Ouverture en fonction de leur état. Modifiable par scénario, setColoredIcon (Colorisation des icônes).}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />

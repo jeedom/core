@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// Distributed under an MIT license: http://codemirror.net/LICENSE
+// Distributed under an MIT license: https://codemirror.net/LICENSE
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS
@@ -12,11 +12,12 @@
 "use strict";
 
 CodeMirror.defineSimpleMode("rust",{
-  start:[
+  start: [
     // string and byte string
-    {regex: /b?"(?:[^\\]|\\.)*?"/, token: "string"},
+    {regex: /b?"/, token: "string", next: "string"},
     // raw string and raw byte string
-    {regex: /(b?r)(#*)(".*?)("\2)/, token: ["string", "string", "string", "string"]},
+    {regex: /b?r"/, token: "string", next: "string_raw"},
+    {regex: /b?r#+"/, token: "string", next: "string_raw_hash"},
     // character
     {regex: /'(?:[^'\\]|\\(?:[nrt0'"]|x[\da-fA-F]{2}|u\{[\da-fA-F]{6}\}))'/, token: "string-2"},
     // byte
@@ -39,6 +40,18 @@ CodeMirror.defineSimpleMode("rust",{
     {regex: /[\{\[\(]/, indent: true},
     {regex: /[\}\]\)]/, dedent: true}
   ],
+  string: [
+    {regex: /"/, token: "string", next: "start"},
+    {regex: /(?:[^\\"]|\\(?:.|$))*/, token: "string"}
+  ],
+  string_raw: [
+    {regex: /"/, token: "string", next: "start"},
+    {regex: /[^"]*/, token: "string"}
+  ],
+  string_raw_hash: [
+    {regex: /"#+/, token: "string", next: "start"},
+    {regex: /(?:[^"]|"(?!#))*/, token: "string"}
+  ],
   comment: [
     {regex: /.*?\*\//, token: "comment", next: "start"},
     {regex: /.*/, token: "comment"}
@@ -55,4 +68,5 @@ CodeMirror.defineSimpleMode("rust",{
 
 
 CodeMirror.defineMIME("text/x-rustsrc", "rust");
+CodeMirror.defineMIME("text/rust", "rust");
 });

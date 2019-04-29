@@ -652,22 +652,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</tr>
 						<?php }
 						?>
-						<?php if ($cmd->widgetPossibility('custom::visibility')) {
-							?>
-							<tr>
-								<td>{{Visible}}</td>
-								<?php
-								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-									echo '<td>';
-									if ($cmd->widgetPossibility('custom::visibility::' . $key)) {
-										echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
-									}
-									echo '</td>';
-								}
-								?>
-							</tr>
-						<?php }
-						?>
 						<?php if ($cmd->widgetPossibility('custom::displayName')) {
 							?>
 							<tr>

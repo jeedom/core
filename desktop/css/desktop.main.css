@@ -816,16 +816,24 @@ pre {
   color: var(--al-info-color);
 }
 .success,
-[data-coloredicons="1"] .icon_ok {
-  color: var(--bt-success-color);
+[data-coloredicons="1"] .icon_green {
+  color: var(--bt-success-color) !important;
 }
 .warning,
-[data-coloredicons="1"] .icon_warning {
-  color: var(--al-warning-color);
+[data-coloredicons="1"] .icon_orange {
+  color: var(--al-warning-color) !important;
 }
 .danger,
-[data-coloredicons="1"] .icon_danger {
-  color: var(--al-danger-color);
+[data-coloredicons="1"] .icon_red {
+  color: var(--al-danger-color) !important;
+}
+
+[data-coloredicons="1"] .icon_yellow {
+  color: #f1c40f !important;
+}
+
+[data-coloredicons="1"] .icon_blue {
+  color: #3498db !important;
 }
 
 .state,
@@ -2607,11 +2615,13 @@ div.cmd > div.center-block {
   font-size: 14px;
 }
 
+.modal-footer .btn.bootbox-accept,
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--al-success-color)!important;
   border: none!important;
 }
+.modal-footer .btn.bootbox-cancel,
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
   background-color: var(--al-warning-color)!important;
 }
@@ -2641,7 +2651,7 @@ div.cmd > div.center-block {
   padding-right: 13px !important;
 }
 .ui-dialog-content > div:not(.alert):not(.jqAlert) {
-  background: transparent !important;
+  /*! background: transparent !important; */
 }
 .ui-widget-content:not(.slider){
   color: var(--txt-color) !important;
@@ -2794,16 +2804,14 @@ input[type=number] {
 
 /* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
-  border: 1px solid #eee;
   height: auto;
 }
 
-.CodeMirror,
+.CodeMirror:not(class*=cm-s-),
 .CodeMirror-code,
 .CodeMirror-sizer {
   background: var(--sc-form-color)!important;
   color: var(--sc-formTxt-color)!important;
-  border: none !important;
 }
 .CodeMirror-gutters {
   background: var(--form-bg-color)!important;

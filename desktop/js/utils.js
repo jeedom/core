@@ -1183,7 +1183,6 @@ function editWidgetCmdMode(_mode){
     }
   }
   
-  
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -1192,16 +1191,24 @@ function editWidgetCmdMode(_mode){
       b: parseInt(result[3], 16)
     } : null;
   }
+  
   function componentToHex(c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
   }
-  function rgbToHex(r, g=null, b=null) {
-    if ($.type(r) === 'string' && g == null) {
+  
+  function rgbToHex(r, g, b) {
+    if ($.type(r) === 'string' && !g) {
       r = r.trim()
-      if (r.startsWith('rgb')) r = r.replace('rgb', '')
-      if (r.startsWith('(')) r = r.replace('(', '')
-      if (r.endsWith(')')) r = r.replace(')', '')
+      if (r.startsWith('rgb')) {
+        r = r.replace('rgb', '')
+      }
+      if (r.startsWith('(')){
+        r = r.replace('(', '')
+      }
+      if (r.endsWith(')')){
+        r = r.replace(')', '')
+      }
       strAr = r.split(',')
       r = parseInt(strAr[0].trim())
       g = parseInt(strAr[1].trim())
@@ -1210,7 +1217,6 @@ function editWidgetCmdMode(_mode){
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
   }
   
-  //reset search on esc key:
   setTimeout(function() {
     $("body").on('keydown',"input[id^='in_search']",function(event) {
       if(event.key == 'Escape') {

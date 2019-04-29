@@ -789,7 +789,7 @@ class interactQuery {
 			}
 			$executeDate = strtotime($time);
 			if ($executeDate < strtotime('now')) {
-				$executeDate += 3600;
+				$executeDate += 3600 * 24;
 			}
 		}
 		if ($executeDate !== null && !isset($_parameters['execNow'])) {

@@ -1206,9 +1206,6 @@ class cmd {
 	
 	public function toHtml($_version = 'dashboard', $_options = '') {
 		$_version = jeedom::versionAlias($_version);
-		if ($this->getDisplay('showOn' . $_version, 1) == 0) {
-			return '';
-		}
 		$html = '';
 		$replace = array(
 			'#id#' => $this->getId(),
