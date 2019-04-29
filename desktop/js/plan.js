@@ -996,6 +996,8 @@ function displayObject(_plan,_html, _noRender) {
     html.find('*').css('min-height','');
   }
   if(_plan.link_type == 'cmd'){
+    var insideHtml = html.html();
+    html = html.empty().append('<center>'+insideHtml+'</center>');
     html.css('min-width','');
     html.css('width','');
     html.css('min-height','');
