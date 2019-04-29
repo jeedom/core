@@ -392,4 +392,11 @@ if (is_array($scenarioListGroup)) {
 include_file('3rdparty', 'jquery.sew/jquery.caretposition', 'js');
 include_file('3rdparty', 'jquery.sew/jquery.sew.min', 'js');
 include_file('desktop', 'scenario', 'js');
+
+//Core CodeMirror addons:
+include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
 ?>
