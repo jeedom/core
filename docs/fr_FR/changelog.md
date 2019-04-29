@@ -20,8 +20,9 @@ Changelog
 - Configuration / Cache : Ajout d'une option pour désactiver le cache des widgets.
 - Configuration / Interface : Possibilité de centrer verticalement le contenu des tuiles.
 - Possibilité d'attribuer une icône à une interaction.
-- Possibilité en faisant un ctrl + clic sur le bouton d'éxécution d'un scénario, de le sauvegarder, le lancer, et afficher le log.
-- Confirmation de suppression d'un bloc scénario. Ctrl + clic pour éviter la confirmation.
+- Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
+- Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
+- Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Possibilité de condenser les blocs de scénario.
 - Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
