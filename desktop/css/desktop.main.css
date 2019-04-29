@@ -1360,7 +1360,7 @@ input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAt
 textarea:not(.expressionAttr) {
   background: var(--form-bg-color) !important;
   color: var(--txt-color) !important;
-  border: 0 !important;
+  border-color: transparent !important;
   border-image-width: 0 !important;
   margin : 0;
 }
