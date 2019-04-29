@@ -222,11 +222,18 @@ $('body').on('focusin','.bootbox-input', function (e) {
 
 /************************Help*************************/
 
-if (isset(jeedom_langage)) {
-  bootbox.setDefaults({
-    locale: jeedom_langage.substr(0, 2),
-  });
-}
+setTimeout(function() {
+  if ( isset(jeedom_langage) ) {
+    lang = jeedom_langage.substr(0, 2)
+    supportedLangs = ['fr', 'de', 'es']
+    if ( lang != 'en' && supportedLangs.includes(lang) ) {
+      bootbox.addLocale('fr', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Annuler'})
+      bootbox.addLocale('de', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Abbrechen'})
+      bootbox.addLocale('es', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Anular'})
+      bootbox.setLocale('fr')
+    }
+  }
+}, 250)
 
 //Display report bug
 $("#md_reportBug").dialog({
@@ -1192,36 +1199,36 @@ function editWidgetCmdMode(_mode){
     } : null;
   }
   
-  function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-  }
-  
-  function rgbToHex(r, g, b) {
-    if ($.type(r) === 'string' && !g) {
-      r = r.trim()
-      if (r.startsWith('rgb')) {
-        r = r.replace('rgb', '')
-      }
-      if (r.startsWith('(')){
-        r = r.replace('(', '')
-      }
-      if (r.endsWith(')')){
-        r = r.replace(')', '')
-      }
-      strAr = r.split(',')
-      r = parseInt(strAr[0].trim())
-      g = parseInt(strAr[1].trim())
-      b = parseInt(strAr[2].trim())
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  if ($.type(r) === 'string' && !g) {
+    r = r.trim()
+    if (r.startsWith('rgb')) {
+      r = r.replace('rgb', '')
     }
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+    if (r.startsWith('(')){
+      r = r.replace('(', '')
+    }
+    if (r.endsWith(')')){
+      r = r.replace(')', '')
+    }
+    strAr = r.split(',')
+    r = parseInt(strAr[0].trim())
+    g = parseInt(strAr[1].trim())
+    b = parseInt(strAr[2].trim())
   }
-  
-  setTimeout(function() {
-    $("body").on('keydown',"input[id^='in_search']",function(event) {
-      if(event.key == 'Escape') {
-        $(this).val('').keyup();
-      }
-    })
-  }, 500)
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+}
+
+setTimeout(function() {
+  $("body").on('keydown',"input[id^='in_search']",function(event) {
+    if(event.key == 'Escape') {
+      $(this).val('').keyup();
+    }
+  })
+}, 500)
   
