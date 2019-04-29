@@ -596,8 +596,6 @@ class DB {
 		} catch (\Exception $e) {
 			$describes = array();
 		}
-		
-		
 		$return =  array($_table['name'] => array('status' => 'ok','fields' => array(),'indexes' => array(),'sql' => ''));
 		if(count($describes) == 0){
 			$return = array($_table['name'] => array(
@@ -629,6 +627,7 @@ class DB {
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],';');
 			return $return;
 		}
+		$forceRebuildIndex = false;
 		foreach ($_table['fields'] as $field) {
 			$found = false;
 			foreach ($describes as $describe) {
@@ -636,6 +635,9 @@ class DB {
 					continue;
 				}
 				$return[$_table['name']]['fields'] = array_merge($return[$_table['name']]['fields'],self::compareField($field,$describe,$_table['name']));
+				if(isset($return[$_table['name']]['fields'][$field['name']]) && $return[$_table['name']]['fields'][$field['name']]['status'] == 'nok'){
+					$forceRebuildIndex = true;
+				}
 				$found = true;
 			}
 			if(!$found){
@@ -670,7 +672,8 @@ class DB {
 				if($showIndex['Key_name'] != $index['Key_name']){
 					continue;
 				}
-				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name']));
+				
+				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'],self::compareIndex($index,$showIndex,$_table['name'],$forceRebuildIndex));
 				$found = true;
 			}
 			if(!$found){
@@ -745,7 +748,7 @@ class DB {
 		return $return;
 	}
 	
-	function compareIndex($_ref_index,$_real_index,$_table_name){
+	function compareIndex($_ref_index,$_real_index,$_table_name,$_forceRebuild = false){
 		$return = array($_ref_index['Key_name'] => array('status' => 'ok','presql' => '','sql' => ''));
 		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
@@ -754,6 +757,10 @@ class DB {
 		if($_ref_index['columns'] != $_real_index['columns']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
+		}
+		if($_forceRebuild){
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Force rebuild';
 		}
 		if($return[$_ref_index['Key_name']]['status'] == 'nok'){
 			$return[$_ref_index['Key_name']]['presql'] =  'ALTER TABLE `'.$_table_name.'` DROP INDEX `'.$_ref_index['Key_name'].'`;';
