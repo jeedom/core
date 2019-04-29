@@ -1360,7 +1360,7 @@ input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAt
 textarea:not(.expressionAttr) {
   background: var(--form-bg-color) !important;
   color: var(--txt-color) !important;
-  border: 0 !important;
+  border-color: transparent !important;
   border-image-width: 0 !important;
   margin : 0;
 }
@@ -2443,6 +2443,9 @@ div.cmd > div.center-block {
 .arcgauge .cmdStats {
   position: relative;
   top: 3px;
+}
+.arcgauge .highcharts-background {
+  fill-opacity: 0 !important;
 }
 .gauge .highcharts-yaxis-grid {
   display: none;
