@@ -2599,7 +2599,8 @@ div.cmd > div.center-block {
 .modal-footer .btn-default {
   height: 32px;
 }
-.modal-footer button[data-bb-handler=cancel] {
+.modal-footer button[data-bb-handler=cancel],
+.modal-footer a.btn[data-dismiss] {
   background-color: var(--al-warning-color)!important;
 }
 .modal-footer button[data-bb-handler=confirm] {
