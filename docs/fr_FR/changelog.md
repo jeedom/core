@@ -5,13 +5,13 @@ Changelog
 3.3.23
 =====
 
-- Correction d'un bug sur l'affichage du nombre de mise à jour
-- Suppression de l'édition du code html depuis la configuration avancée des commandes du à de trop nombreux bugs
-- Corrections de bugs
-- Amélioration de la fenetre de choix des icones
-- Mise à jour automatique de la date de changement de batterie si la baterrie est à plus de 90% et superieure de 10% à la valeur précedente
-- Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une verification de jeedom (droit, cron, base de données...)
-- Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
+-   Correction d'un bug sur l'affichage du nombre de mise à jour
+-	Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
+-	Corrections de bugs
+-	Amélioration de la fenêtre de choix des icônes
+-	Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
+-	Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
+-	Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====
