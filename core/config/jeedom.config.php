@@ -105,6 +105,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'presence' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-mouvement\'></i>')),
 					'prise' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-prise\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'window' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-fenetre-ouverte\'></i>')),
+					'flood' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-tint-slash\'></i>','#_icon_off_#' => '<i class=\'icon_blue fas fa-tint\'></i>')),
 					'timeDoor' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-porte-ouverte\'></i>')),
 					'timePresence' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-mouvement\'></i>')),
 					'timeWindow' => array('template' => 'tmpltimeIcon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-fenetre-ouverte\'></i>')),

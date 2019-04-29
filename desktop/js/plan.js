@@ -988,6 +988,8 @@ function displayObject(_plan,_html, _noRender) {
     }
   }
   if(_plan.link_type == 'cmd'){
+    html.css('min-width','');
+    html.css('width','');
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.find('.cmdName').remove();
       html.find('.title').remove();
