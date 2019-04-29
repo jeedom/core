@@ -2284,13 +2284,13 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________GAUGES */
-.eqLogic-widget > div.cmd-widget {
+.eqLogic-widget div.cmd-widget {
   position: relative;
   padding: 0;
   top: 0 !important;
   min-width: 70px;
 }
-div.cmd-widget > .title {
+div.cmd-widget .title {
   color: var(--txt-color);
   width: 100%;
   height: 16px;
@@ -2302,12 +2302,12 @@ div.cmd-widget > .title {
   text-align: center;
 }
 
-div.cmd-widget > div[class^="content"] {
+div.cmd-widget div[class^="content"] {
   display: table-cell;
   vertical-align: middle !important;
 }
 
-div.cmd-widget > .content-xs {
+div.cmd-widget .content-xs {
   color: var(--txt-color);
   width: 100%;
   height: 12px;
@@ -2317,26 +2317,26 @@ div.cmd-widget > .content-xs {
   position: relative;
   text-align: center;
 }
-div.cmd-widget > .content-xs .slider {
+div.cmd-widget .content-xs .slider {
   margin-top: 8px;
   margin-bottom: 12px;
 }
-div.cmd-widget > .content-sm {
+div.cmd-widget .content-sm {
   height: 40px !important;
   min-height: 40px;
   max-height: 40px;
 }
-div.cmd-widget > .content {
+div.cmd-widget .content {
   height: 56px !important;
   min-height: 56px;
   max-height: 56px;
 }
-div.cmd-widget > .content-lg {
+div.cmd-widget .content-lg {
   height: 72px !important;
   min-height: 72px;
   max-height: 72px;
 }
-div.cmd-widget > .value {
+div.cmd-widget .value {
   font-weight: bold;
   width: 100%;
   height: 16px;
@@ -2344,14 +2344,14 @@ div.cmd-widget > .value {
   max-height: 16px;
   margin-bottom: 2px;
 }
-div.cmd-widget > .value > .center-block {
+div.cmd-widget .value > .center-block {
   color: var(--txt-color);
   font-size: 11px;
   font-weight: normal;
   padding: 0 !important;
   margin: 0;
 }
-div.cmd-widget > div[class^="content"] > select {
+div.cmd-widget div[class^="content"] > select {
   font-size: 16px !important;
   height: 22px;
 }
