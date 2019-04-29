@@ -2444,6 +2444,9 @@ div.cmd > div.center-block {
   position: relative;
   top: 3px;
 }
+.arcgauge .highcharts-background {
+  fill-opacity: 0 !important;
+}
 .gauge .highcharts-yaxis-grid {
   display: none;
 }
