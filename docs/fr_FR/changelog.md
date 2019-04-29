@@ -11,6 +11,7 @@ Changelog
 - Amélioration de la fenetre de choix des icones
 - Mise à jour automatique de la date de changement de batterie si la baterrie est à plus de 90% et superieure de 10% à la valeur précedente
 - Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une verification de jeedom (droit, cron, base de données...)
+- Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====
