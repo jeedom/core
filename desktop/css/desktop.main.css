@@ -2615,11 +2615,13 @@ div.cmd > div.center-block {
   font-size: 14px;
 }
 
+.modal-footer .btn.bootbox-accept,
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--al-success-color)!important;
   border: none!important;
 }
+.modal-footer .btn.bootbox-cancel,
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
   background-color: var(--al-warning-color)!important;
 }
