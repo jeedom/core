@@ -193,6 +193,12 @@ sendVarToJS('id', $plan->getId());
 				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmdName" />
 			</div>
 		</div>
+		<div class="form-group link_eqLogic">
+			<label class="col-lg-4 control-label">{{Masquer les commandes action}}</label>
+			<div class="col-lg-2">
+				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideCmdAction" />
+			</div>
+		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
 			<label class="col-lg-4 control-label">{{Couleur de fond}}</label>
 			<div class="col-lg-2">

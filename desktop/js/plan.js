@@ -676,7 +676,7 @@ function initEditOption(_state) {
       }
     });
     if(editOption.highlight){
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('editingMode');
+      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('editingMode');
     }else{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('editingMode').removeClass('contextMenu_select');
     }
@@ -949,9 +949,10 @@ function displayObject(_plan,_html, _noRender) {
         if (isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
           html.style('background-color', 'transparent', 'important');
           html.style('border-radius', '0px', 'important');
-          html.style('box-shadow', 'none', 'important');
+          html.style('box-shadow', 'none');
           if(_plan.link_type == 'eqLogic'){
             html.find('.widget-name').style('background-color', 'transparent', 'important');
+            html.find('.widget-name a').style('color','rgb(90, 90, 90)','important');
           }
         }else{
           html.style(key, _plan.css[key], 'important');
@@ -986,6 +987,13 @@ function displayObject(_plan,_html, _noRender) {
       html.find('.cmdName').remove();
       html.find('.title').remove();
     }
+    if(isset(_plan.display.hideCmdAction) && _plan.display.hideCmdAction == 1){
+      html.find('.cmd[data-type=action]').remove();
+    }
+    html.css('min-width','');
+    html.css('min-height','');
+    html.find('*').css('min-width','');
+    html.find('*').css('min-height','');
   }
   if(_plan.link_type == 'cmd'){
     html.css('min-width','');
