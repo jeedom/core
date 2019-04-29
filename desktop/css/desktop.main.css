@@ -1486,7 +1486,8 @@ div[data-subtype=select][data-version=dplan] {
   -webkit-transform: translateZ(0px);
 }
 select,
-input[type=text] {
+input[type=text],
+input[type=password]{
   border: 0 !important;
   background-color: var(--form-bg-color) !important;
   padding: 6px 12px !important;
