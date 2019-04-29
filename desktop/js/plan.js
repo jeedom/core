@@ -897,88 +897,111 @@ function savePlan(_refreshDisplay,_async) {
 }
 
 function displayObject(_plan,_html, _noRender) {
-    _plan = init(_plan, {});
-    _plan.position = init(_plan.position, {});
-    _plan.css = init(_plan.css, {});
-    if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image') {
-        $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
-    }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
-        $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
-    }else if (_plan.link_type == 'cmd') {
-        $('.div_displayObject > .cmd-widget[data-cmd_id=' + _plan.link_id + ']').remove();
-    }else if (_plan.link_type == 'graph') {
-        for (var i in jeedom.history.chart) {
-            delete jeedom.history.chart[i];
-        }
-        $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
+  _plan = init(_plan, {});
+  _plan.position = init(_plan.position, {});
+  _plan.css = init(_plan.css, {});
+  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image') {
+    $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
+  }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
+    $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
+  }else if (_plan.link_type == 'cmd') {
+    $('.div_displayObject > .cmd-widget[data-cmd_id=' + _plan.link_id + ']').remove();
+  }else if (_plan.link_type == 'graph') {
+    for (var i in jeedom.history.chart) {
+      delete jeedom.history.chart[i];
     }
-    var html = $(_html);
-    html.attr('data-plan_id',_plan.id);
-    html.addClass('jeedomAlreadyPosition');
-    html.css('z-index', 1000);
-    html.css('position', 'absolute');
-    html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
-    html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
-    html.css('transform-origin', '0 0');
-    html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-    html.css('-webkit-transform-origin', '0 0');
-    html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-    html.css('-moz-transform-origin', '0 0');
-    html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-    html.addClass('noResize');
-    if (isset(_plan.display) && isset(_plan.display.width)) {
-        html.css('width', init(_plan.display.width, 50));
-    }
-    if (isset(_plan.display) && isset(_plan.display.height)) {
-        html.css('height', init(_plan.display.height, 50));
-    }
+    $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
+  }
+  var html = $(_html);
+  html.attr('data-plan_id',_plan.id);
+  html.addClass('jeedomAlreadyPosition');
+  html.css('z-index', 1000);
+  html.css('position', 'absolute');
+  html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
+  html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
+  html.css('transform-origin', '0 0', 'important');
+  html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.css('-webkit-transform-origin', '0 0');
+  html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.css('-moz-transform-origin', '0 0');
+  html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
+  html.addClass('noResize');
+  if (isset(_plan.display) && isset(_plan.display.width)) {
+    html.css('width', init(_plan.display.width, 50));
+  }
+  if (isset(_plan.display) && isset(_plan.display.height)) {
+    html.css('height', init(_plan.display.height, 50));
+  }
     for (var key in _plan.css) {
-        if (_plan.css[key] != '' && key != 'zoom' && key != 'color' && key != 'rotate' && key != 'background-color') {
-            if(key == 'z-index' && _plan.css[key] < 999){
-                continue;
-            }
-            html.css(key, _plan.css[key]);
-        }else if (_plan.link_type == 'text' || _plan.link_type == 'graph' || _plan.link_type == 'plan' || _plan.link_type == 'view') {
-            if (key == 'background-color' && (!isset(_plan.display) || !isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)) {
-             if (isset(_plan.display) && isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-                 html.css('background-color', 'transparent');
-                 html.css('border-radius', '0px'); 
-                 html.css('box-shadow', 'none'); 
-             }else{
-              html.css(key, _plan.css[key]);
-          }
-      }else if (key == 'color' && (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1)) {
-        html.css(key, _plan.css[key]);
+    if (_plan.css[key] === ''){
+      continue;
     }
-}
-}
-if(_plan.link_type == 'graph'){
+    if(key == 'zoom' || key == 'rotate'){
+      continue;
+    }
+    if(key == 'z-index' && _plan.css[key] < 999){
+      continue;
+    }
+    if (key == 'background-color') {
+      if(isset(_plan.display) && (!isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)){
+        if (isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
+          html.style('background-color', 'transparent', 'important');
+          html.style('border-radius', '0px', 'important');
+          html.style('box-shadow', 'none', 'important');
+          if(_plan.link_type == 'eqLogic'){
+            html.find('.widget-name').style('background-color', 'transparent', 'important');
+          }
+        }else{
+          html.style(key, _plan.css[key], 'important');
+        }
+      }
+      continue;
+    }else if (key == 'color') {
+      if(!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1){
+        html.style(key, _plan.css[key], 'important');
+        if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd' || _plan.link_type == 'summary'){
+          html.find('*').each(function(){
+            $(this).style(key, _plan.css[key], 'important')
+          });
+        }
+      }
+      continue;
+    }
+    if (key == 'opacity'){
+      continue;
+    }
+    html.style(key, _plan.css[key], 'important');
+  }
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
+    html.css('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'));
+  }
+  if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
     if(isset(_plan.display) && isset(_plan.display.graph)){
-        for (var i in _plan.display.graph) {
-            if (init(_plan.display.graph[i].link_id) != '') {
-                jeedom.history.drawChart({
-                    cmd_id: _plan.display.graph[i].link_id,
-                    el: 'graph' + _plan.link_id,
-                    showLegend: init(_plan.display.showLegend, true),
-                    showTimeSelector: init(_plan.display.showTimeSelector, false),
-                    showScrollbar: init(_plan.display.showScrollbar, true),
-                    dateRange: init(_plan.display.dateRange, '7 days'),
-                    option: init(_plan.display.graph[i].configuration, {}),
-                    transparentBackground : init(_plan.display.transparentBackground, false),
-                    showNavigator : init(_plan.display.showNavigator, true),
-                    enableExport : false,
-                    global: false,
-                });
-            }
+      for (var i in _plan.display.graph) {
+        if (init(_plan.display.graph[i].link_id) != '') {
+          jeedom.history.drawChart({
+            cmd_id: _plan.display.graph[i].link_id,
+            el: 'graph' + _plan.link_id,
+            showLegend: init(_plan.display.showLegend, true),
+            showTimeSelector: init(_plan.display.showTimeSelector, false),
+            showScrollbar: init(_plan.display.showScrollbar, true),
+            dateRange: init(_plan.display.dateRange, '7 days'),
+            option: init(_plan.display.graph[i].configuration, {}),
+            transparentBackground : init(_plan.display.transparentBackground, false),
+            showNavigator : init(_plan.display.showNavigator, true),
+            enableExport : false,
+            global: false,
+          });
         }
+      }
     }
     initEditOption(editOption.state);
     return;
-}
-if (init(_noRender, false)) {
- return html;
-}
-$('.div_displayObject').append(html);
-initEditOption(editOption.state);
+  }
+  if (init(_noRender, false)) {
+    return html;
+  }
+  $('.div_displayObject').append(html);
+  initEditOption(editOption.state);
 }

@@ -1042,7 +1042,7 @@ function addSchedule(_schedule) {
 }
 
 function addExpression(_expression) {
-  if (!isset(_expression.type) || _expression.type == '') {
+  if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
     return '';
   }
   var sortable = 'sortable';
@@ -1094,13 +1094,16 @@ function addExpression(_expression) {
     } else {
       retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked style="margin-top : 9px;margin-right : 0px;" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
     }
-    
+    var expression_txt = init(_expression.expression);
+    if(typeof expression_txt != 'string'){
+      expression_txt = json_encode(expression_txt);
+    }
     retour += '</div>';
     retour += '<div class="col-xs-4" style="margin-top: 4px"><div class="input-group input-group-sm">';
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_removeExpression" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>';
     retour += '</span>';
-    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + init(_expression.expression).replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
+    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g,'&quot;') + '" style="font-weight:bold;"/>';
     retour += '<span class="input-group-btn">';
     retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
     retour += '<button class="btn btn-default bt_selectCmdExpression" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';

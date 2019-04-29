@@ -10,6 +10,8 @@ if (!isConnect('admin')) {
 </style>
 <div id="div_rowSystemCommand" class="row row-overflow">
   <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
+    <a class="btn btn-warning" style="width:100%;margin-bottom:4px" id="bt_consitency"><i class="fas fa-check"></i> {{Consistance}}</a>
+    <a class="btn btn-warning" style="width:100%" id="bt_cleanFileSystemRight"><i class="fas fa-check"></i> {{Droit}}</a>
     <div class="bs-sidebar">
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSystemHistory'></ul>
       <ul class="nav nav-list bs-sidenav list-group">

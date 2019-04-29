@@ -294,6 +294,9 @@ jeedom.object.summaryUpdate = function(_params) {
 };
 
 jeedom.object.getImgPath = function(_params){
+   if(_params.id == 'all'){
+      return;
+    }
     jeedom.object.byId({
         id : _params.id,
         global: false,

@@ -223,8 +223,8 @@ try {
 		if (!in_array($extension, array('.gz'))) {
 			throw new Exception('Extension du fichier non valide (autorisé .tar.gz) : ' . $extension);
 		}
-		if (filesize($_FILES['file']['tmp_name']) > 300000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 300Mo)', __FILE__));
+		if (filesize($_FILES['file']['tmp_name']) > 1000000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 1Go)', __FILE__));
 		}
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
@@ -300,6 +300,16 @@ try {
 			}
 		}
 		ajax::success($return);
+	}
+	
+	if (init('action') == 'consistency') {
+		unautorizedInDemo();
+		ajax::success(jeedom::consistency());
+	}
+	
+	if (init('action') == 'cleanFileSystemRight') {
+		unautorizedInDemo();
+		ajax::success(jeedom::cleanFileSytemRight());
 	}
 	
 	if (init('action') == 'removeTimelineEvents') {

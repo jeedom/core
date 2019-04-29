@@ -85,7 +85,8 @@ if (init('rescue', 0) == 0) {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
 	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo strtotime('now'); ?> * 1000) - clientDatetime.getTime();
+	var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
+	var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
 	var serverDatetime = <?php echo getmicrotime(); ?>;
 	</script>
 	<?php
@@ -175,6 +176,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'animate/animate', 'css');
 	include_file('3rdparty', 'animate/animate', 'js');
+    include_file('desktop', 'future', 'css');
 	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
 		if (file_exists(__DIR__ . '/../custom/custom.css')) {
 			include_file('desktop', '', 'custom.css');

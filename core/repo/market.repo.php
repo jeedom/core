@@ -196,6 +196,16 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
+	public static function backup_install(){
+		if (exec('which duplicity | wc -l') == 0) {
+			try {
+				com_shell::execute('sudo apt-get -y install duplicity');
+			} catch (\Exception $e) {
+				
+			}
+		}
+	}
+	
 	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => 'https://' . config::byKey('market::backupServer'),
@@ -226,9 +236,12 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
 		}
-		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		self::backup_createFolderIsNotExist();
+		self::backup_install();
 		$base_dir = realpath(__DIR__ . '/../../');
+		if(!file_exists($base_dir . '/tmp')){
+			mkdir($base_dir . '/tmp');
+		}
 		$excludes = array(
 			$base_dir . '/tmp',
 			$base_dir . '/log',
@@ -286,6 +299,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
+		self::backup_install();
 		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
 		if ($_nb == null) {
 			$_nb = 0;
@@ -321,6 +335,7 @@ class repo_market {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
+		self::backup_install();
 		$return = array();
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
@@ -356,7 +371,11 @@ class repo_market {
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
 		}
-		$base_dir = realpath(__DIR__ . '/../../');
+		self::backup_install();
+		$base_dir =  '/usr/jeedom_duplicity';
+		if(!file_exists($base_dir)){
+			mkdir($base_dir);
+		}
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
@@ -376,7 +395,7 @@ class repo_market {
 			}
 			throw new Exception('[restore cloud] ' . $e->getMessage());
 		}
-		return;
+		shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir);
 		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
 		if (file_exists($restore_dir)) {
 			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);

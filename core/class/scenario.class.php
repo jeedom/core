@@ -162,6 +162,8 @@ class scenario {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE `mode` != "provoke"
+		AND `mode` != ""
+		AND `schedule` != ""
 		AND isActive=1';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -768,11 +770,15 @@ class scenario {
 					}
 					if ($this->getIsActive() != 1) {
 						$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
+						$this->setState('stop');
+						$this->setPID();
 						$this->persistLog();
 						return;
 					}
 					if ($this->getConfiguration('timeDependency', 0) == 1 && !jeedom::isDateOk()) {
 						$this->setLog(__('Lancement du scénario : ', __FILE__) . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK', __FILE__));
+						$this->setState('stop');
+						$this->setPID();
 						$this->persistLog();
 						return;
 					}
@@ -1057,7 +1063,7 @@ class scenario {
 						$calculatedDate_tmp = array('prevDate' => '', 'nextDate' => '');
 						foreach ($this->getSchedule() as $schedule) {
 							try {
-								$c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+								$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 								$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 								$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 							} catch (Exception $exc) {
@@ -1074,7 +1080,7 @@ class scenario {
 						}
 					} else {
 						try {
-							$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+							$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 							$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 							$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
 						} catch (Exception $exc) {
@@ -1100,7 +1106,7 @@ class scenario {
 					if (is_array($this->getSchedule())) {
 						foreach ($this->getSchedule() as $schedule) {
 							try {
-								$c = new Cron\CronExpression($schedule, new Cron\FieldFactory);
+								$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 								try {
 									if ($c->isDue()) {
 										return true;
@@ -1130,7 +1136,7 @@ class scenario {
 						}
 					} else {
 						try {
-							$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+							$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 							try {
 								if ($c->isDue()) {
 									return true;
@@ -1608,6 +1614,7 @@ class scenario {
 				* @return $this
 				*/
 				public function setName($_name) {
+					$_name = cleanComponanteName($_name);
 					if ($_name != $this->getName()) {
 						$this->_changeState = true;
 						$this->_changed = true;

@@ -829,3 +829,25 @@ function saveObjectSummary() {
         }
     });
 }
+
+$('#bt_cleanFileSystemRight').off('click').on('click',function(){
+  jeedom.cleanFileSystemRight({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_alert').showAlert({message: '{{Remise à plat des droits fait avec succès}}', level: 'success'});
+    }
+  });
+});
+
+$('#bt_consitency').off('click').on('click',function(){
+  jeedom.consistency({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_alert').showAlert({message: '{{Lance de la vérification fait, voir le log consistency pour voir le résultat}}', level: 'success'});
+    }
+  });
+});

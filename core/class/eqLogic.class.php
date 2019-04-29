@@ -574,7 +574,7 @@ class eqLogic {
 			return false;
 		}
 		$oldValue = $cmd->execCmd();
-		if (($oldValue != $cmd->formatValue($_value)) || $oldValue === '') {
+		if (($oldValue !== $cmd->formatValue($_value)) || $oldValue === '') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
@@ -634,17 +634,10 @@ class eqLogic {
 		if ($_version == '') {
 			throw new Exception(__('La version demandée ne peut pas être vide (mobile, dashboard ou scénario)', __FILE__));
 		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}
-		if (!$this->getIsEnable()) {
+		if (!$this->hasRight('r') || !$this->getIsEnable()) {
 			return '';
 		}
 		$version = jeedom::versionAlias($_version, false);
-		if ($this->getDisplay('showOn' . $version, 1) == 0) {
-			return '';
-		}
-		
 		$user_id = '';
 		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user'])) {
 			$user_id = $_SESSION['user']->getId();
@@ -1098,6 +1091,10 @@ class eqLogic {
 		}
 		if ($_pourcent < 0) {
 			$_pourcent = 0;
+		}
+		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.1)){
+			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
+			$this->save();
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
@@ -1566,7 +1563,7 @@ class eqLogic {
 	}
 	
 	public function setName($_name) {
-		$_name = str_replace(array('&', '#', ']', '[', '%', "'", "\\", "/"), '', $_name);
+		$_name = cleanComponanteName($_name);
 		if($_name != $this->name){
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;

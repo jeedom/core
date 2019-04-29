@@ -216,6 +216,10 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une
 **action** dans le bloc actuel.
 
+> **Tip**
+>
+> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seule les parentheses () sont possible
+
 #### Bloc Code
 
 > **Important**

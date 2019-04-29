@@ -60,6 +60,7 @@ class migrate {
 					$statut = 'space';
 					$space = migrate::freeSpaceUsb()/1024;
 				}
+				log::removeAll();
 			}
 		}
 		return array('statut' => $statut, 'space' => $space, 'minSpace' => $minSize);
@@ -116,6 +117,9 @@ class migrate {
 				exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
 				return 'telechargement';
 			}
+		}else{
+			exec('sudo wget --no-check-certificate --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/backupJeedomDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+			return 'telechargement';
 		}
 	}
 	

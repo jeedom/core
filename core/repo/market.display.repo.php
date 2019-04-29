@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 if (init('id') != '') {
 	$market = repo_market::byId(init('id'));
 }
@@ -18,7 +17,6 @@ include_file('3rdparty', 'slick/slick', 'css');
 include_file('3rdparty', 'slick/slick-theme', 'css');
 include_file('3rdparty', 'fancybox/jquery.fancybox', 'js');
 include_file('3rdparty', 'fancybox/jquery.fancybox', 'css');
-
 $market_array = utils::o2a($market);
 $market_array['rating'] = $market->getRating();
 $update = update::byLogicalId($market->getLogicalId());
@@ -65,6 +63,12 @@ if ($market->getCertification() == 'Legacy') {
 if ($market->getCertification() == 'Obsolète') {
 	echo '<span style="font-size: 1.5em;font-weight: bold;color:#e74c3c;">{{Obsolète}}</span><br/>';
 }
+	 	if ($market->getCertification() == 'Premium') {
+			echo '<span style="font-size : 1.5em;color:#9b59b6">{{Premium}}</span><br/>';
+		}
+		if ($market->getCertification() == 'Partenaire') {
+			echo '<span style="font-size : 1.5em;color:#2ecc71">{{Partenaire}}</span><br/>';
+		}
 global $JEEDOM_INTERNAL_CONFIG;
 if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()])) {
 	echo '<span style="font-size: 1em;font-weight: bold;color:#707070;"><i class="fa ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['icon'] . '"></i> ' . $JEEDOM_INTERNAL_CONFIG['plugin']['category'][$market->getCategorie()]['name'] . '</span>';
@@ -89,12 +93,14 @@ if ($market->getPurchase() == 1) {
 	if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
 		$purchase_info = repo_market::getPurchaseInfo();
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
-
 			?>
      <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
      <?php
-echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
-
+			if ($market->getCertification() == 'Premium') {
+				echo '<a class="btn btn-default" target="_blank" href="mailto:supportpro@jeedom.com"><i class="fa fa-envelope"></i> {{Nous Contacter}}</a>';
+			}else{
+				echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+			}
 		} else {
 			echo '<div class="alert alert-info">{{Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\'acheter}}</div>';
 		}
@@ -109,19 +115,23 @@ if (is_object($update)) {
 ?>
 <br/><br/>
 <?php
-if ($market->getCost() > 0) {
-	if ($market->getCost() != $market->getRealCost()) {
-		echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
-	}
-	echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
-} else {
-	echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
+if ($market->getCertification() == 'Premium') {
+	echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
+}else{
+	if ($market->getCost() > 0) {
+		if ($market->getCost() != $market->getRealCost()) {
+			echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+		}
+		echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
+	} else {
+		echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
+	}	
 }
 ?>
 </div>
 </div>
 <?php
-if ($market->getCertification() != 'Officiel') {
+if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
 $compatibilityHardware = $market->getHardwareCompatibility();
@@ -271,17 +281,14 @@ if ($market->getLanguage('it_IT') == 1) {
 }
 </style>
 <script>
-
   $("img.lazy").lazyload({
     event: "sporty"
   });
   $("img.lazy").trigger("sporty");
-
   $(document).unbind('click.fb-start');
   $(".fancybox").fancybox({
     autoHeight: true,
   });
-
   $('.variable-width').slick({
     dots: true,
     speed: 300,
@@ -291,19 +298,13 @@ if ($market->getLanguage('it_IT') == 1) {
     slidesToShow: 3,
     slidesToScroll: 1
   });
-
   $('body').setValues(market_display_info, '.marketAttr');
-
   $('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
-
   $('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
   $('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
-
   $('#bt_paypalClick').on('click', function () {
     $(this).hide();
   });
-
-
   $('.bt_installFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     var logicalId = $(this).attr('data-market_logicalId');
@@ -328,9 +329,7 @@ if ($market->getLanguage('it_IT') == 1) {
       $('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
     }
   });
-
   });
-
   $('#bt_removeFromMarket').on('click', function () {
     var id = $(this).attr('data-market_id');
     jeedom.repo.remove({
@@ -345,7 +344,6 @@ if ($market->getLanguage('it_IT') == 1) {
      }
    });
   });
-
   $('#in_myRating').on('change', function () {
     var id = $('.marketAttr[data-l1key=id]').value();
     jeedom.repo.setRating({
@@ -357,7 +355,6 @@ if ($market->getLanguage('it_IT') == 1) {
     }
   });
   });
-
   $('.span_author').off('click').on('click',function(){
     $('#md_modal2').dialog('close');
     $('#md_modal').dialog({title: "{{Market}}"});

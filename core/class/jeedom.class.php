@@ -102,12 +102,6 @@ class jeedom {
 				$return[] = array('detail' => 'Administration', 'help' => __('Commande retour interactions', __FILE__), 'who' => $cmd);
 			}
 		}
-		$cmd = config::byKey('emailAdmin', 'core', '');
-		if ($cmd != '') {
-			if (!cmd::byId(str_replace('#', '', $cmd))) {
-				$return[] = array('detail' => 'Administration', 'help' => __('Commande information utilisateur', __FILE__), 'who' => $cmd);
-			}
-		}
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			$cmds = config::byKey('alert::' . $level . 'Cmd', 'core', '');
 			preg_match_all("/#([0-9]*)#/", $cmds, $matches);
@@ -252,10 +246,10 @@ class jeedom {
 		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
 		$value += shell_exec('sudo dmesg | grep "I/O error" | wc -l');
 		$return[] = array(
-			'name' => __('Erreur disque', __FILE__),
+			'name' => __('Erreur I/O', __FILE__),
 			'state' => ($value == 0),
 			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Il y a des erreurs disque, cela peut indiquer un soucis avec le disque ou un problème d\'alimentation', __FILE__),
+			'comment' => ($value == 0) ? '' : __('Il y a des erreurs I/O.', __FILE__),
 		);
 		
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
@@ -542,6 +536,13 @@ class jeedom {
 			return '';
 		}
 		return $bluetoothMapping;
+	}
+	
+	public static function consistency() {
+		log::clear('consistency');
+		$cmd = __DIR__ . '/../../install/consistency.php';
+		$cmd .= ' >> ' . log::getPathToLog('consistency') . ' 2>&1 &';
+		system::php($cmd, true);
 	}
 	
 	/********************************************BACKUP*****************************************************************/
@@ -989,21 +990,63 @@ class jeedom {
 	
 	/*************************************************************************************/
 	
-	public static function replaceTag(array $_replaces) {
+		public static function replaceTag(array $_replaces) {
 		$datas = array();
 		foreach ($_replaces as $key => $value) {
 			$datas = array_merge($datas, cmd::searchConfiguration($key));
 			$datas = array_merge($datas, eqLogic::searchConfiguration($key));
 			$datas = array_merge($datas, jeeObject::searchConfiguration($key));
-			$datas = array_merge($datas, scenario::searchByUse(array(array('action' => '#' . $key . '#'))));
+			$datas = array_merge($datas, scenario::searchByUse(array(array('action' => $key))));
 			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable', str_replace('#', '', $key), true));
+			$datas = array_merge($datas, viewData::searchByConfiguration($key));
+			$datas = array_merge($datas, plan::searchByConfiguration($key));
+			$datas = array_merge($datas, plan3d::searchByConfiguration($key));
 		}
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {
-				utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
-				$data->save();
+				try {
+					utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
+					$data->save(true);
+				} catch (\Exception $e) {
+					
+				}
+			}
+		}
+		foreach ($_replaces as $key => $value) {
+			$viewDatas = viewData::byTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($viewDatas)  > 0){
+				foreach ($viewDatas as $viewData) {
+					try {
+						$viewData->setLink_id(str_replace('#', '', $value));
+						$viewData->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
+			}
+			$plans = plan::byLinkTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($plans)  > 0){
+				foreach ($plans as $plan) {
+					try {
+						$plan->setLink_id(str_replace('#', '', $value));
+						$plan->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
+			}
+			$plan3ds = plan3d::byLinkTypeLinkId('cmd',str_replace('#', '', $key));
+			if(count($plan3ds)  > 0){
+				foreach ($plan3ds as $plan3d) {
+					try {
+						$plan3d->setLink_id(str_replace('#', '', $value));
+						$plan->save();
+					} catch (\Exception $e) {
+						
+					}
+				}
 			}
 		}
 	}

@@ -140,7 +140,9 @@ jeedom.eqLogic.print = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd;
+      if(data.result && data.result.cmd){
+        jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd;
+      }
       return data;
     }
   };

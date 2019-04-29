@@ -113,7 +113,7 @@ class cron {
 	public static function clean() {
 		$crons = self::all();
 		foreach ($crons as $cron) {
-			$c = new Cron\CronExpression($cron->getSchedule(), new Cron\FieldFactory);
+			$c = new Cron\CronExpression(checkAndFixCron($cron->getSchedule()), new Cron\FieldFactory);
 			try {
 				if (!$c->isDue()) {
 					$c->getNextRunDate();
@@ -259,7 +259,7 @@ class cron {
 			if (!$_noErrorReport) {
 				$this->halt();
 				if (!$this->running()) {
-					exec($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
+					system::php($cmd . ' >> ' . log::getPathToLog('cron_execution') . ' 2>&1 &');
 				} else {
 					throw new Exception(__('Impossible d\'exécuter la tâche car elle est déjà en cours d\'exécution (', __FILE__) . ' : ' . $cmd);
 				}
@@ -364,7 +364,7 @@ class cron {
 			return false;
 		}
 		try {
-			$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 			try {
 				if ($c->isDue()) {
 					return true;
@@ -395,7 +395,7 @@ class cron {
 	
 	public function getNextRunDate() {
 		try {
-			$c = new Cron\CronExpression($this->getSchedule(), new Cron\FieldFactory);
+			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 			return $c->getNextRunDate()->format('Y-m-d H:i:s');
 		} catch (Exception $e) {
 			

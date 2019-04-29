@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
 $type = init('type', null);
 $categorie = init('categorie', null);
 $name = init('name', null);
@@ -34,12 +33,10 @@ if ($author == null && $name === null && $categorie === null && init('certificat
 			'author' => $author,
 			'cost' => init('cost', null),
 			'timeState' => init('timeState'),
-			'certification' => init('certification', null),
-			'limit' => 50,
+			'certification' => init('certification', null)
 		)
 	);
 }
-
 function buildUrl($_key, $_value) {
 	$url = 'index.php?v=d&modal=update.display&';
 	foreach ($_GET as $key => $value) {
@@ -52,7 +49,6 @@ function buildUrl($_key, $_value) {
 	}
 	return $url;
 }
-
 function displayWidgetName($_name) {
 	$result = '';
 	$name = explode('.', $_name);
@@ -95,7 +91,6 @@ function displayWidgetName($_name) {
 	}
 	return $result .= $name[3];
 }
-
 function displayWidgetType($_name) {
 	$result = '';
 	$name = explode('.', $_name);
@@ -115,7 +110,6 @@ function displayWidgetType($_name) {
 	}
 	return $result;
 }
-
 function displayWidgetSubtype($_name) {
 	$result = '';
 	$name = explode('.', $_name);
@@ -157,7 +151,6 @@ function displayWidgetSubtype($_name) {
 		padding-bottom: 0;
 		padding-top: 0;
 	}
-
 	.market:hover{
 		background-color : #F2F1EF !important;
 	}
@@ -179,6 +172,8 @@ function displayWidgetSubtype($_name) {
 			<div class="btn-group" >
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Officiel') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Officiel'); ?>">{{Officiel}}</a>
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Conseillé') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Conseillé'); ?>">{{Conseillé}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Premium') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Premium'); ?>">{{Premium}}</a>
+				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Partenaire') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Partenaire'); ?>">{{Partenaire}}</a>
 				<a class="btn btn-default bt_pluginFilter <?php echo (init('certification') == 'Legacy') ? 'btn-primary' : '' ?>" data-href="<?php echo buildUrl('certification', 'Legacy'); ?>">{{Legacy}}</a>
 				<a class="btn btn-default bt_pluginFilter" data-href="<?php echo buildUrl('certification', ''); ?>"><i class="fa fa-times"></i></a>
 			</div>
@@ -235,7 +230,6 @@ if (config::byKey('market::username') != '') {
 	}
 	echo '</span>';
 }
-
 ?>
 	</div>
 </form>
@@ -277,13 +271,11 @@ foreach ($markets as $market) {
 		$first = false;
 		$nCategory++;
 	}
-
 	$install = 'notInstall';
 	if (!is_object($update)) {
 		$install = 'install';
 	}
 	echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 220px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
-
 	if ($market->getType() != 'widget') {
 		if ($market->getCertification() == 'Officiel') {
 			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Officiel.png" /></div>';
@@ -297,8 +289,13 @@ foreach ($markets as $market) {
 		if ($market->getCertification() == 'Obsolète') {
 			echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
 		}
+			if ($market->getCertification() == 'Premium') {
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Premium.png" /></div>';
+			}
+			if ($market->getCertification() == 'Partenaire') {
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Partenaire.png" /></div>';
+			}
 	}
-
 	if ($market->getType() == 'widget') {
 		if (strpos($market->getName(), 'mobile.') !== false) {
 			echo '<i class="fa fa-mobile" style="position: absolute;top: 15px;left: 21px;" title="{{Widget pour la version mobile}}"></i>';
@@ -309,7 +306,6 @@ foreach ($markets as $market) {
 	if (is_object($update)) {
 		echo '<i class="fa fa-check" style="position : absolute; right : 5px;"></i>';
 	}
-
 	echo "<br/><center>";
 	$default_image = 'core/img/no_image.gif';
 	switch ($market->getType()) {
@@ -323,20 +319,15 @@ foreach ($markets as $market) {
 			$default_image = 'core/img/no-image-script.png';
 			break;
 	}
-
 	$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 	if ($market->getType() == 'widget') {
 		echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" style="margin-left: 20px;border: 1px solid #C5C5C5;border-radius:5px; padding: 3px" />';
 	} else {
 		echo '<img class="lazy" src="' . $default_image . '" data-original="' . $urlPath . '" height="105" width="95" />';
 	}
-
 	echo "</center>";
-
 	echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;">' . $market->getName() . '</span>';
-
 	echo '<span style="position : absolute;bottom : 25px;right : 12px;font-size : 0.7em;color:#999999;"><span style="font-size : 0.8em;">{{par}}</span> ' . $market->getAuthor() . '</span>';
-
 	$note = $market->getRating();
 	echo '<span style="position : absolute;bottom : 5px;left : 5px;font-size : 0.7em;">';
 	for ($i = 1; $i < 6; $i++) {
@@ -347,19 +338,23 @@ foreach ($markets as $market) {
 		}
 	}
 	echo '</span>';
-	if ($market->getCost() > 0) {
+	if ($market->getCertification() !== 'Premium') {
+		if ($market->getCost() > 0) {
 		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">';
-		if ($market->getPurchase() == 1) {
-			echo ' <i class="fa fa-check-circle"></i>';
-		} else {
-			if ($market->getCost() != $market->getRealCost()) {
-				echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+			if ($market->getPurchase() == 1) {
+				echo ' <i class="fa fa-check-circle"></i>';
+			} else	if ($market->getCertification() == 'Premium') {
+			        echo '';
+			}else{
+				if ($market->getCost() != $market->getRealCost()) {
+					echo '<span style="text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+				}
+				echo number_format($market->getCost(), 2) . ' €';
 			}
-			echo number_format($market->getCost(), 2) . ' €';
+			echo '</span>';
+		} else {
+			echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
 		}
-		echo '</span>';
-	} else {
-		echo '<span style="position : absolute;bottom : 5px;right : 12px;color:#97bd44;">Gratuit</span>';
 	}
 	echo '</div>';
 }
@@ -372,7 +367,6 @@ if ($default) {
 	.market:hover{
 		background-color : #F2F1EF !important;
 	}
-
 	#md_modal{
 		background-color: #e7e7e7
 	}
@@ -381,43 +375,34 @@ if ($default) {
 <script>
 	$(function () {
 		$('.pluginContainer').packery();
-
 		$("img.lazy").lazyload({
 			event: "sporty"
 		});
 		$("img.lazy").trigger("sporty");
 		initTableSorter();
-
 		setTimeout(function () {
 			$('#table_market tbody tr.install').hide();
 		}, 500);
-
 		$('.bt_pluginFilter').on('click', function () {
 			$('#md_modal').load($(this).attr('data-href'));
 		});
-
 		$('#sel_categorie').on('change', function () {
 			$('#md_modal').load($(this).attr('data-href') + '&categorie=' + encodeURI($(this).value()));
 		});
-
 		$('#bt_search').on('click', function () {
 			$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
 		});
-
 		$('#in_search').keypress(function (e) {
 			if (e.which == 13) {
 				$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI($('#in_search').value()));
 			}
 		});
-
 		$('#bt_returnMarketList').on('click', function () {
 			$('#md_modal').load($(this).attr('data-href'));
 		});
-
 		$('.marketMultiple').on('click',function(){
 			$('#md_modal').load($(this).attr('data-href') + '&name=' + encodeURI('.'+$(this).attr('data-market_name')));
 		});
-
 		$('.bt_installFilter').on('click', function () {
 			$('.bt_installFilter').removeClass('btn-primary');
 			$('.pluginContainer').show();
@@ -446,7 +431,6 @@ if ($default) {
 				}
 			});
 		});
-
 		$('.market').on('click', function () {
 			$('#md_modal2').dialog({title: "{{Market Jeedom}}"});
 			$('#md_modal2').load('index.php?v=d&modal=update.display&type=' + $(this).attr('data-market_type') + '&id=' + $(this).attr('data-market_id')+'&repo=market').dialog('open');

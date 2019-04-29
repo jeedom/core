@@ -1370,5 +1370,28 @@ function sanitizeAccent($_message) {
 	}
 	
 	function checkAndFixCron($_cron){
-		return str_replace('*/ ','* ',$_cron);
+		$return = $_cron;
+		$return = str_replace('*/ ','* ',$return);
+		preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
+		if(count($matches) > 0){
+			return '';
+		}
+		return $return;
+	}
+
+	function getTZoffsetMin() {
+		$tz = date_default_timezone_get();
+		date_default_timezone_set( "UTC" );
+		$seconds = timezone_offset_get( timezone_open($tz), new DateTime() );
+		date_default_timezone_set($tz);
+		return($seconds/60);
+	}
+
+	
+	function cleanComponanteName($_name){
+		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
 	}

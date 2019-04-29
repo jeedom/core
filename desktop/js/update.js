@@ -31,6 +31,8 @@ $("#md_specifyUpdate").dialog({
   }
 });
 
+$('#pre_updateInfo').parent().height($(window).outerHeight() - $('header').outerHeight() - 160);
+
 $('#bt_updateJeedom').off('click').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');

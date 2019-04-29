@@ -175,22 +175,6 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 					</tr>
 				</thead>
 				<tbody>
-					<?php if ($eqLogic->widgetPossibility('custom::visibility')) {
-						?>
-						<tr>
-							<td>{{Visible}}</td>
-							<?php
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<td>';
-								if ($eqLogic->widgetPossibility('custom::visibility::' . $key)) {
-									echo '<input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="showOn' . $key . '" checked />';
-								}
-								echo '</td>';
-							}
-							?>
-						</tr>
-					<?php }
-					?>
 					<?php if ($eqLogic->widgetPossibility('custom::displayName')) {
 						?>
 						<tr>
@@ -748,6 +732,7 @@ $('#bt_resetbattery').on('click',function(){
 				},
 				success: function (data) {
 					$('#md_displayEqLogicConfigure').showAlert({message: '{{Changement de pile(s) pris en compte}}', level: 'success'});
+					$('.eqLogicAttr[data-l1key=configuration][data-l2key=batterytime]').value(yyyy+'-'+mm+'-'+dd+' '+hh+':'+MM+':'+ss);
 				}
 			});
 		}
