@@ -132,6 +132,18 @@ externe** (depuis un autre réseau notamment depuis Internet).
 
     -   **Complément** : le fragment d’URL complémentaire (exemple
         : /jeedom) pour accéder à Jeedom.
+        
+-   **Proxy pour market** : activation du proxy.
+    
+    - Cocher la case activer le proxy
+    
+    - **Adresse Proxy** : Renseigner l'adresse du proxy,
+    
+    - **Port du Proxy** : Renseigner le port du proxy,
+    
+    - **Login** : Renseigner le login du proxy,
+    
+    - **Mot de passe** : Renseigner le mot de passe.
 
 > **Tip**
 >
