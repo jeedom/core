@@ -90,7 +90,7 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success(jeedom::toHumanReadable(utils::o2a($plan)));
+		ajax::success($plan->getHtml('dashboard'));
 	}
 	
 	if (init('action') == 'remove') {

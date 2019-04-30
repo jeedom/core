@@ -477,8 +477,8 @@ sendVarToJS('id', $plan->getId());
 		url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id+'&jeedom_token='+JEEDOM_AJAX_TOKEN,
 		dataType: 'json',
 		done: function (e, data) {
-			if (data.result.state != 'ok') {
-				$('#div_alertPlanConfigure').showAlert({message: data.result.result, level: 'danger'});
+			if (plan.plan.state != 'ok') {
+				$('#div_alertPlanConfigure').showAlert({message: plan.plan.result, level: 'danger'});
 				return;
 			}
 		}
@@ -516,40 +516,30 @@ sendVarToJS('id', $plan->getId());
 	});
 	
 	if (isset(id) && id != '') {
-		$.ajax({
-			type: "POST",
-			url: "core/ajax/plan.ajax.php",
-			data: {
-				action: "get",
-				id: id
+		jeedom.plan.byId({
+			id : id,
+			error: function (error) {
+				$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error, $('#div_alertPlanConfigure'));
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alertPlanConfigure').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				$('.link_type:not(.link_'+data.result.link_type+')').remove()
-				$('#fd_planConfigure').setValues(data.result, '.planAttr');
-				if (isset(data.result.configuration.action_on)) {
-					for (var i in data.result.configuration.action_on) {
-						addActionPlanConfigure(data.result.configuration.action_on[i],'on');
+			success: function (plan) {
+				$('.link_type:not(.link_'+plan.plan.link_type+')').remove()
+				$('#fd_planConfigure').setValues(plan.plan, '.planAttr');
+				if (isset(plan.plan.configuration.action_on)) {
+					for (var i in plan.plan.configuration.action_on) {
+						addActionPlanConfigure(plan.plan.configuration.action_on[i],'on');
 					}
 				}
-				if (isset(data.result.configuration.action_off)) {
-					for (var i in data.result.configuration.action_off) {
-						addActionPlanConfigure(data.result.configuration.action_off[i],'off');
+				if (isset(plan.plan.configuration.action_off)) {
+					for (var i in plan.plan.configuration.action_off) {
+						addActionPlanConfigure(plan.plan.configuration.action_off[i],'off');
 					}
 				}
-				if (isset(data.result.configuration.action_other)) {
-					for (var i in data.result.configuration.action_other) {
-						addActionPlanConfigure(data.result.configuration.action_other[i],'other');
+				if (isset(plan.plan.configuration.action_other)) {
+					for (var i in plan.plan.configuration.action_other) {
+						addActionPlanConfigure(plan.plan.configuration.action_other[i],'other');
 					}
 				}
-				if (data.result.link_type == 'text') {
+				if (plan.plan.link_type == 'text') {
 					var code = $('.planAttr[data-l1key=display][data-l2key=text]');
 					if (code.attr('id') == undefined) {
 						code.uniqueId();
@@ -588,8 +578,16 @@ sendVarToJS('id', $plan->getId());
 			},
 			success: function () {
 				$('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'});
-				displayPlan();
-				$('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
+				jeedom.plan.byId({
+					id : plans[0].id,
+					error: function (error) {
+						$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (plan) {
+						displayObject(plan.plan,plan.html,false);
+						$('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
+					}
+				})
 			},
 		});
 	}
