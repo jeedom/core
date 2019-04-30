@@ -688,6 +688,9 @@ function initEditOption(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
       containment: "parent",
       cancel : '.locked',
+      resize: function( event, ui ) {
+        ui.element.find('.camera').trigger('resize');
+      },
       stop: function( event, ui ) {
         savePlan(false,false);
       }
