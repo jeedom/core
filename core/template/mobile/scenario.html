@@ -2,14 +2,16 @@
   <center class="widget-name">
     #name#
   </center>
-  <center class="state">
-    #icon#
-  </center>
   <center>
-    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
-    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
-    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
-    <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></a>
+    <span class="state">
+      #icon#
+    </span>
+    <span>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
+      <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></a>
+    </span>
   </center>
   <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
