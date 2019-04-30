@@ -982,16 +982,21 @@ function displayObject(_plan,_html, _noRender) {
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.find('.widget-name').remove();
     }
-    if(isset(_plan.display.hideCmdName) && _plan.display.hideCmdName == 1){
-      html.find('.cmdName').remove();
-      html.find('.title').remove();
-    }
     if(isset(_plan.display.cmdHide)){
       for(var i in _plan.display.cmdHide){
         if(_plan.display.cmdHide[i] == 0){
           continue;
         }
         html.find('.cmd[data-cmd_id='+i+']').remove();
+      }
+    }
+    if(isset(_plan.display.cmdHideName)){
+      for(var i in _plan.display.cmdHideName){
+        if(_plan.display.cmdHideName[i] == 0){
+          continue;
+        }
+        html.find('.cmd[data-cmd_id='+i+'] .cmdName').remove();
+        html.find('.cmd[data-cmd_id='+i+'] .title').remove();
       }
     }
     html.css('min-width','');
