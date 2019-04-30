@@ -133,64 +133,20 @@ div.vis-item,div.vis-item-content {
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
 		<br/>
-		<div class="row form-group">
-			<div class="col-lg-3 col-sm-12 center">
-				<div class="btn-group" role="group" aria-label="...">
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="h">H</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="w">S</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="m">M</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
-				</div>
-				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a>
-			</div>
-			<div class="col-lg-3 col-sm-12 center">
-				<a class="btn btn-sm btn-default" id="bt_configureTimelineCommand"><i class="fas fa-cogs"></i> {{Commandes}}</a>
-				<a class="btn btn-sm btn-default" id="bt_configureTimelineScenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a>
-			</div>
-			<div class="col-lg-3 col-sm-12">
-				<select class="form-control input-sm" id="sel_pluginsTimeline">
-					<option value="all">{{Tous (Plugins)}}</option>
-					<?php
-					foreach (plugin::listPlugin() as $plugin) {
-						echo '<option value="' . $plugin->getId() . '">' . $plugin->getName() . '</option>';
-					}
-					?>
-				</select>
-				<select class="form-control input-sm" id="sel_categoryTimeline">
-					<option value="all">{{Tous (Catégories)}}</option>
-					<?php
-					foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-						echo '<option value="' . $key . '">' . $value['name'] . '</option>';
-					}
-					?>
-				</select>
-			</div>
-			<div class="col-lg-3 col-sm-12">
-				<select class="form-control input-sm" id="sel_objectsTimeline">
-					<option value="all">{{Tous (Objets)}}</option>
-					<?php
-					foreach (jeeObject::all() as $object) {
-						echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-					}
-					?>
-				</select>
-				<select class="form-control input-sm" id="sel_typesTimeline">
-					<option value="all">{{Tous (Types)}}</option>
-					<option value="cmd">{{Commandes}}</option>
-					<option value="scenario">{{Scénarios}}</option>
-				</select>
-			</div>
-		</div>
+		<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
+			<thead>
+				<tr>
+					<th data-sorter="shortDate">{{Date}}</th>
+					<th>{{Type}}</th>
+					<th>{{Visuel}}</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		
 	</div>
-	<div class="row">
-		<div class="col-sm-12">
-			<div id="div_visualization"></div>
-		</div>
-	</div>
-	
-</div>
 </div>
 
 <?php include_file("desktop", "history", "js");?>
