@@ -71,9 +71,7 @@ class migrate {
 		log::remove('migrate');
 		exec('sudo rm '.$mediaLink.'/*');
 	    $backups = jeedom::listBackup();
-	    foreach ($backups as $backup) {
-		    	$lienBackup = $backup;
-	    }
+	    $lienBackup = $backups[0];
 	    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
 		} else {
