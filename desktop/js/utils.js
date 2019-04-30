@@ -213,12 +213,16 @@ $.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
 $('body').on( "show", ".modal",function () {
   document.activeElement.blur();
-  $(this).find(".modal-body :input:visible:first").focus();
+  $(this).find(".modal-body :input:visible").first().focus();
 });
 
 $('body').on('focusin','.bootbox-input', function (e) {
   e.stopPropagation();
 });
+  
+$('.bootbox.modal').on('shown.bs.modal', function() {
+   dialog.find(".bootbox-accept").focus();
+})
 
 /************************Help*************************/
 
@@ -618,7 +622,7 @@ function dropDownsKeys() {
       if (match && selected < index) {
         ul = $(this).closest('.dropdown').find('ul')
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
-        $(ul).scrollTop($(li).position().top - $(ul).find('li:first').position().top)
+        $(ul).scrollTop($(li).position().top - $(ul).find('li').first().position().top)
         
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
         $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
