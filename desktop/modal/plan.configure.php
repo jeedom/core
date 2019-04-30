@@ -84,7 +84,12 @@ sendVarToJS('id', $plan->getId());
 				</div>
 			</div>
 		</div>
-		
+		<div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
+			<label class="col-lg-4 control-label">{{Autoriser la fenetre de zoom}}</label>
+			<div class="col-lg-2">
+				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="allowZoom" >
+			</div>
+		</div>
 		<div class="form-group link_type link_graph">
 			<label class="col-lg-4 control-label">{{Période}}</label>
 			<div class="col-lg-2">

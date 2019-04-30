@@ -1018,6 +1018,11 @@ function displayObject(_plan,_html, _noRender) {
       html.find('.title').remove();
     }
   }
+  if(_plan.link_type == 'image'){
+    if(isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1){
+      html.find('.directDisplay').addClass('zoom cursor');
+    }
+  }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
     if(isset(_plan.display) && isset(_plan.display.graph)){
