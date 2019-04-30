@@ -745,99 +745,104 @@ user::isBan();
 							?>
 						</tbody>
 					</table>
-					<div class="form-group has-error">
-						<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
-						<div class="col-xs-4">
-							<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
-						</div>
-					</div>
-					<div class="form-group col-xs-12">
-						<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
-						<div class="col-xs-6">
-							<input type="text"  class="configKey form-control" data-l1key="network::localip" />
-						</div>
-					</div>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group has-error">
+								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
+								<div class="col-xs-4">
+									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 				<div class="col-sm-6">
-					<?php
-					foreach ($repos as $key => $value) {
-						if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
-							continue;
-						}
-						if ($configs[$key . '::enable'] == 0) {
-							continue;
-						}
-						echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
-						if ($configs['dns::token'] == '') {
-							echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
-							continue;
-						}
-						echo '<div class="form-group col-xs-12">';
-						echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
-						echo '<div class="col-xs-8">';
-						echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-						echo '</div>';
-						echo '</div>';
-						echo '<div class="form-group col-xs-12">';
-						echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
-						echo '<div class="col-xs-8">';
-						if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-							echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
-						} else {
-							echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
-						}
-						echo '</div>';
-						echo '</div>';
-						echo '<div class="form-group col-xs-12">';
-						echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
-						echo '<div class="col-xs-8">';
-						echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-						echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
-						echo '</div>';
-						echo '</div>';
-					}
-					
-					?>
+					<form class="form-horizontal">
+						<fieldset>
+							<?php
+							foreach ($repos as $key => $value) {
+								if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
+									continue;
+								}
+								if ($configs[$key . '::enable'] == 0) {
+									continue;
+								}
+								echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
+								if ($configs['dns::token'] == '') {
+									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
+									continue;
+								}
+								echo '<div class="form-group col-xs-12">';
+								echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
+								echo '<div class="col-xs-8">';
+								echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
+								echo '</div>';
+								echo '</div>';
+								echo '<div class="form-group col-xs-12">';
+								echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
+								echo '<div class="col-xs-8">';
+								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
+									echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+								} else {
+									echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
+								}
+								echo '</div>';
+								echo '</div>';
+								echo '<div class="form-group col-xs-12">';
+								echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
+								echo '<div class="col-xs-8">';
+								echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
+								echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
+								echo '</div>';
+								echo '</div>';
+							}
+							?>
+						</fieldset>
+					</form>
+					<form class="form-horizontal">
+						<fieldset>
+							<legend>{{Utiliser un proxy pour le market}}</legend>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Activer le proxy}}</label>
+								<div class="col-xs-1">
+									<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Addresse proxy}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" type="text" data-l1key="proxyAddress">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Port du proxy}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" data-l1key="proxyPort" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" type="text" data-l1key="proxyLogins" autocomplete="new-password">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Mot de passe}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" type="password" data-l1key="proxyPassword" autocomplete="new-password">
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
-				</div>
-			</div>
-			<div class="col-sm-5">
-				<div>
-				<legend>{{Utiliser un proxy pour le market}}</legend>
-					<div class="form-group">
-						<label class="col-2 control-label">Activer le proxy</label>
-						<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-1 control-label">Address proxy</label>
-					<div class="col-4">
-						<input class="configKey form-control" type="text" data-l1key="proxyAddress">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-1 control-label">Port du proxy</label>
-					<div class="col-4">
-						<input class="configKey form-control" data-l1key="proxyPort" type="text">
-					</div>
-				</div> 
-				<div class="form-group">
-					<label class="col-1 control-label">Login</label>
-					<div class="col-4">
-						<input class="configKey form-control" type="text" data-l1key="proxyLogins">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-1 control-label">Mot de passe</label>
-					<div class="col-4">
-						<input class="configKey form-control" type="password" data-l1key="proxyPassword">
-					</div>
-				</div>
-			</div>
-		</fieldset>
-	</form>
-</div>
+		</div>
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
