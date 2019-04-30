@@ -987,8 +987,13 @@ function displayObject(_plan,_html, _noRender) {
       html.find('.cmdName').remove();
       html.find('.title').remove();
     }
-    if(isset(_plan.display.hideCmdAction) && _plan.display.hideCmdAction == 1){
-      html.find('.cmd[data-type=action]').remove();
+    if(isset(_plan.display.cmdHide)){
+      for(var i in _plan.display.cmdHide){
+        if(_plan.display.cmdHide[i] == 0){
+          continue;
+        }
+        html.find('.cmd[data-cmd_id='+i+']').remove();
+      }
     }
     html.css('min-width','');
     html.css('min-height','');

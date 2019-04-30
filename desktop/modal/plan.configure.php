@@ -165,8 +165,8 @@ sendVarToJS('id', $plan->getId());
 			<div class="col-lg-2">
 				<select class="form-control planAttr" data-l1key="link_id">
 					<?php
-					foreach (planHeader::all() as $plan) {
-						echo '<option value="' . $plan->getId() . '">' . $plan->getName() . '</option>';
+					foreach (planHeader::all() as $planHeader) {
+						echo '<option value="' . $planHeader->getId() . '">' . $planHeader->getName() . '</option>';
 					}
 					?>
 				</select>
@@ -240,6 +240,37 @@ sendVarToJS('id', $plan->getId());
 			<div class="col-lg-2">
 				<input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" />
 			</div>
+		</div>
+		<div class="link_eqLogic">
+			<?php
+			if($plan->getLink_type() == 'eqLogic'){
+				echo '<legend>{{Commandes}}</legend>';
+				echo '<table class="table tablecondensed">';
+				echo '<thead>';
+				echo '<tr>';
+				echo '<th>';
+				echo '{{Commande}}';
+				echo '</th>';
+				echo '<th>';
+				echo '{{Masquer}}';
+				echo '</th>';
+				echo '</tr>';
+				echo '</thead>';
+				echo '<tbody>';
+				foreach ($link->getCmd() as $cmd) {
+					echo '<tr>';
+					echo '<td>';
+					echo $cmd->getHumanName();
+					echo '</td>';
+					echo '<td>';
+					echo '<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="cmdHide" data-l3key="'.$cmd->getId().'" />';
+					echo '</td>';
+					echo '</tr>';
+				}
+				echo '</tbody>';
+				echo '</table>';
+			}
+			?>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary">
 			<label class="col-lg-4 control-label">{{Taille de la police (Ex : 50%)}}</label>
