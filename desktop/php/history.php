@@ -11,14 +11,14 @@ $date = array(
 ?>
 
 <ul class="nav nav-tabs" role="tablist" style="margin-top:4px;">
-	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-bar-chart-o"></i> {{Historique}}</a></li>
+	<li role="presentation" class="active"><a href="#historytab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-chart-bar"></i> {{Historique}}</a></li>
 	<li role="presentation"><a id="bt_tabTimeline" href="#timelinetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-clock"></i> {{Timeline}}</a></li>
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-
+		
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -72,7 +72,7 @@ $date = array(
 					?>
 				</ul>
 			</div>
-
+			
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-4 col-sm-12 center">
@@ -140,64 +140,20 @@ $date = array(
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
 		<br/>
-		<div class="row form-group">
-			<div class="col-lg-3 col-sm-12 center">
-				<div class="input-group btn-group" role="group" aria-label="...">
-					<a class="btn btn-sm btn-default bt_timelineZoom roundedLeft" data-zoom="h">H</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="d">J</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="w">S</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="m">M</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="y">A</a>
-					<a class="btn btn-sm btn-default bt_timelineZoom" data-zoom="all">{{Tous}}</a>
-					<a class="btn btn-sm btn-success roundedRight" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-12 center">
-				<a class="btn btn-sm btn-default" id="bt_configureTimelineCommand"><i class="fas fa-cogs"></i> {{Commandes}}</a>
-				<a class="btn btn-sm btn-default" id="bt_configureTimelineScenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a>
-			</div>
-			<div class="col-lg-3 col-sm-12">
-				<select class="form-control input-sm" id="sel_pluginsTimeline">
-					<option value="all">{{Tous (Plugins)}}</option>
-					<?php
-					foreach (plugin::listPlugin() as $plugin) {
-						echo '<option value="' . $plugin->getId() . '">' . $plugin->getName() . '</option>';
-					}
-					?>
-				</select>
-				<select class="form-control input-sm" id="sel_categoryTimeline">
-					<option value="all">{{Tous (Catégories)}}</option>
-					<?php
-					foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
-						echo '<option value="' . $key . '">' . $value['name'] . '</option>';
-					}
-					?>
-				</select>
-			</div>
-			<div class="col-lg-3 col-sm-12">
-				<select class="form-control input-sm" id="sel_objectsTimeline">
-					<option value="all">{{Tous (Objets)}}</option>
-					<?php
-					foreach (jeeObject::all() as $object) {
-						echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-					}
-					?>
-				</select>
-				<select class="form-control input-sm" id="sel_typesTimeline">
-					<option value="all">{{Tous (Types)}}</option>
-					<option value="cmd">{{Commandes}}</option>
-					<option value="scenario">{{Scénarios}}</option>
-				</select>
-			</div>
-		</div>
+		<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
+			<thead>
+				<tr>
+					<th data-sorter="shortDate">{{Date}}</th>
+					<th>{{Type}}</th>
+					<th>{{Visuel}}</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		
 	</div>
-	<div class="row">
-		<div class="col-sm-12">
-			<div id="div_visualization"></div>
-		</div>
-	</div>
-
-</div>
 </div>
 
 <?php include_file("desktop", "history", "js");?>

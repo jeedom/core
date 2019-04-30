@@ -238,7 +238,7 @@ sendVarToJS('id', $plan->getId());
 			<?php
 			if($plan->getLink_type() == 'eqLogic'){
 				echo '<legend>{{Commandes}}</legend>';
-				echo '<table class="table tablecondensed">';
+				echo '<table class="table  table-condensed table-bordered">';
 				echo '<thead>';
 				echo '<tr>';
 				echo '<th>';
