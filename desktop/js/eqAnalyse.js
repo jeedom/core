@@ -44,13 +44,13 @@ $('.cmdAction[data-action=configure]').on('click', function () {
 $('#in_search').off('keyup').on('keyup',function(){
   var search = $(this).value()
   if (search == '') {
-    $('.eqLogic-widget').show()
+    $('.batteryListContainer .eqLogic-widget').show()
     $('.batteryListContainer').packery()
     return
   }
 
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
-  $('.eqLogic-widget').each(function() {
+  $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
 
     text = normText($(this).find('.widget-name').text())
