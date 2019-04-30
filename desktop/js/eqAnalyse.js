@@ -42,6 +42,9 @@ $('.cmdAction[data-action=configure]').on('click', function () {
 
 //searching
 $('#in_search').off('keyup').on('keyup',function(){
+  if ($('.batteryListContainer .eqLogic-widget').length == 0) {
+    return
+  }
   var search = $(this).value()
   if (search == '') {
     $('.batteryListContainer .eqLogic-widget').show()
