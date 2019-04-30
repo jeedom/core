@@ -15,6 +15,12 @@
 */
 actionOptions = [];
 
+//select tab:
+_url = window.location.href
+if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
+  $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
+}
+
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
