@@ -800,44 +800,44 @@ user::isBan();
 					?>
 				</div>
 			</div>
-		<div class="col-sm-10">
-			<div>
-			<legend>{{Utiliser un proxy pour le market}}</legend>
-				<div class="form-group">
-					<label class="col-xs-2 control-label">Activer le proxy</label>
-					<div class="col-xs-6">
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<div>
+				<legend>{{Utiliser un proxy pour le market}}</legend>
+					<div class="form-group">
+						<label class="col-2 control-label">Activer le proxy</label>
 						<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
 					</div>
 				</div>
-			</div>
 				<div class="form-group">
-				<label class="col-xs-2 control-label">Address proxy</label>
-					<div class="col-xs-3">
+					<label class="col-1 control-label">Address proxy</label>
+					<div class="col-4">
 						<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-xs-2 control-label">Port du proxy</label>
-					<div class="col-xs-3">
+					<label class="col-1 control-label">Port du proxy</label>
+					<div class="col-4">
 						<input class="configKey form-control" data-l1key="proxyPort" type="text">
 					</div>
 				</div> 
 				<div class="form-group">
-					<label class="col-xs-2 control-label">Login</label>
-					<div class="col-xs-3">
+					<label class="col-1 control-label">Login</label>
+					<div class="col-4">
 						<input class="configKey form-control" type="text" data-l1key="proxyLogins">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-xs-2 control-label">Mot de passe</label>
-					<div class="col-xs-3">
+					<label class="col-1 control-label">Mot de passe</label>
+					<div class="col-4">
 						<input class="configKey form-control" type="password" data-l1key="proxyPassword">
 					</div>
 				</div>
 			</div>
-			</fieldset>
-		</form>
-	</div>
+		</fieldset>
+	</form>
+</div>
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
