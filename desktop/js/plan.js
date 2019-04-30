@@ -981,7 +981,6 @@ function displayObject(_plan,_html, _noRender) {
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.find('.widget-name').remove();
-      html.find('.cmd.refresh').remove();
     }
     if(isset(_plan.display.hideCmdName) && _plan.display.hideCmdName == 1){
       html.find('.cmdName').remove();
