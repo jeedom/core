@@ -999,18 +999,16 @@ function displayObject(_plan,_html, _noRender) {
         html.find('.cmd[data-cmd_id='+i+'] .title').remove();
       }
     }
-    html.css('min-width','');
-    html.css('min-height','');
-    html.find('*').css('min-width','');
-    html.find('*').css('min-height','');
+    html.css('min-width','0px');
+    html.css('min-height','0px');
+    html.find('*').css('min-width','0px');
+    html.find('*').css('min-height','0px');
   }
   if(_plan.link_type == 'cmd'){
     var insideHtml = html.html();
     html = html.empty().append('<center>'+insideHtml+'</center>');
-    html.css('min-width','');
-    html.css('width','');
-    html.css('min-height','');
-    html.css('height','');
+    html.css('width','').css('min-width','0px');
+    html.css('height','').css('min-height','0px');
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.find('.cmdName').remove();
       html.find('.title').remove();
