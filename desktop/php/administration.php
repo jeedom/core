@@ -1020,7 +1020,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver les ombres}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-							<input type="checkbox" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::shadow" />
+							<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" />
 						</div>
 					</div>
 				</fieldset>
