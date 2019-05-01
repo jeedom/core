@@ -175,6 +175,13 @@ class cache {
 				
 			}
 		}
+		foreach (scenario::all() as $scenario) {
+			try {
+				$scenario->emptyCacheWidget();
+			} catch (Exception $e) {
+				
+			}
+		}
 	}
 	
 	public static function search() {
