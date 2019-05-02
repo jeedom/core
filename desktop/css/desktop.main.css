@@ -1118,6 +1118,10 @@ header.navbar {
   max-width: 105px;
 }
 
+.navbar-collapse.collapse {
+  height: 50px !important;
+}
+
 .navbar {
   background-color: var(--defaultBkg-color) !important;
 }
