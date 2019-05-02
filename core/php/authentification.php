@@ -134,10 +134,11 @@ function loginByHash($_key) {
 	if (!is_array($registerDevice)) {
 		$registerDevice = array();
 	}
-	$registerDevice[$kid] = array();
-	$registerDevice[$kid]['datetime'] = date('Y-m-d H:i:s');
-	$registerDevice[$kid]['ip'] = getClientIp();
-	$registerDevice[$kid]['session_id'] = session_id();
+	$registerDevice[$kid] = array(
+		'datetime' => date('Y-m-d H:i:s'),
+		'ip' => getClientIp(),
+		'session_id' =>session_id(),
+	);
 	$user->setOptions('registerDevice', $registerDevice);
 	$user->save();
 	@session_start();
