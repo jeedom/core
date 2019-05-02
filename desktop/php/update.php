@@ -93,7 +93,7 @@ if (!isConnect('admin')) {
 				</div>
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Mode forcé}}
-                    	<sup><i class="fas fa-question-circle tooltips" title="{{Continuez la mise à jour en cas d'erreur.}}"></i></sup>
+                    	<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
                     </label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="force" />
