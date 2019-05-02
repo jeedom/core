@@ -83,7 +83,6 @@ a > img:hover {
 }
 
 .btn:not(.cmdName),
-.btn:not(.cmdName):focus,
 .btn:not(.cmdName):active {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--btn-default-color) !important;
