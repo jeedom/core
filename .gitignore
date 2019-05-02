@@ -19,6 +19,7 @@ data/*
 !data/php
 !data/3d
 !data/view
+!data/img
 !data/object
 !data/plan
 !data/custom
