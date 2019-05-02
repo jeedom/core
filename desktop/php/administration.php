@@ -1227,11 +1227,10 @@ user::isBan();
 			<form class="form-horizontal">
 				<fieldset>
 					<legend>{{Général}}</legend>
-					<div class="alert alert-info">
-						{{Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.}}
-					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Sensibilité}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Sensibilité}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Plus la sensibilité est basse (de 1 à 99), plus la correspondance doit être exacte.}}"></i></sup>
+						</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
@@ -1246,7 +1245,9 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Distance de Levenshtein pour le calcul de correspondance (Nombre de différences entre les deux chaines) en fonction du nombre de mots.}}"></i></sup>
+						</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
 								<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
@@ -1261,14 +1262,16 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Ne pas répondre si l'interaction n'est pas comprise}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Par défaut Jeedom répond “je n’ai pas compris” si aucune interaction ne correspond.}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="interact::noResponseIfEmpty"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
-						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
+						<div class="col-lg-9 col-md-8 col-sm-8 col-xs-6">
 							<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 						</div>
 					</div>
@@ -1359,8 +1362,8 @@ user::isBan();
 						</div>
 					</div>
 
-					<legend>{{Couleurs}}</legend>
-					<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert" style="font-size: 1.8em;"></i>
+					<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
+					
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
 						<thead>
 							<tr>
