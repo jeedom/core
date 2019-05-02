@@ -297,8 +297,8 @@ sendVarToJs('tabimg',init('tabimg'));
 						echo '<div class="divIconSel">';
 						echo '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
 						echo '</div>';
+						echo '<center>'.basename($file).'</center>';
 						echo '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
-						echo '</div>';
 						echo '</div>';
 					}
 					?>
@@ -314,7 +314,7 @@ sendVarToJs('tabimg',init('tabimg'));
 						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'});
 						return;
 					}
-					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1');
+					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
 			
@@ -328,7 +328,7 @@ sendVarToJs('tabimg',init('tabimg'));
 								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'});
 							},
 							success: function (data) {
-								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1');
+								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 							}
 						})
 					}
