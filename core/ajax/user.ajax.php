@@ -1,26 +1,26 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 	ajax::init(false);
-
+	
 	if (init('action') == 'useTwoFactorAuthentification') {
 		$user = user::byLogin(init('login'));
 		if (!is_object($user)) {
@@ -31,7 +31,7 @@ try {
 		}
 		ajax::success($user->getOptions('twoFactorAuthentification', 0));
 	}
-
+	
 	if (init('action') == 'login') {
 		if (!isConnect()) {
 			if (config::byKey('sso:allowRemoteUser') == 1) {
@@ -40,14 +40,14 @@ try {
 					@session_start();
 					$_SESSION['user'] = $user;
 					@session_write_close();
-					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $_SESSION['user']->getLogin());
 				}
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
 				throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 			}
 		}
-
+		
 		if (init('storeConnection') == 1) {
 			$rdk = config::genKey();
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
@@ -69,20 +69,20 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'getApikey') {
 		if (!login(init('username'), init('password'), init('twoFactorCode'))) {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
 		ajax::success($_SESSION['user']->getHash());
 	}
-
+	
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
+	
 	ajax::init();
-
+	
 	if (init('action') == 'validateTwoFactorCode') {
 		unautorizedInDemo();
 		@session_start();
@@ -95,7 +95,7 @@ try {
 		@session_write_close();
 		ajax::success($result);
 	}
-
+	
 	if (init('action') == 'removeTwoFactorCode') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -109,23 +109,23 @@ try {
 		$user->save();
 		ajax::success($result);
 	}
-
+	
 	if (init('action') == 'isConnect') {
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'refresh') {
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'logout') {
 		logout();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'all') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -138,7 +138,7 @@ try {
 		}
 		ajax::success($users);
 	}
-
+	
 	if (init('action') == 'save') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -164,7 +164,7 @@ try {
 		@session_write_close();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -183,7 +183,7 @@ try {
 		$user->remove();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'saveProfils') {
 		unautorizedInDemo();
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
@@ -204,11 +204,11 @@ try {
 		eqLogic::clearCacheWidget();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'get') {
 		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
 	}
-
+	
 	if (init('action') == 'removeRegisterDevice') {
 		unautorizedInDemo();
 		if (init('key') == '' && init('user_id') == '') {
@@ -238,7 +238,7 @@ try {
 		} else {
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
 		}
-
+		
 		if (init('key') == '') {
 			$registerDevice = array();
 		} elseif (isset($registerDevice[init('key')])) {
@@ -255,7 +255,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'deleteSession') {
 		unautorizedInDemo();
 		$sessions = listSession();
@@ -275,11 +275,11 @@ try {
 		deleteSession(init('id'));
 		ajax::success();
 	}
-
+	
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
+	
 	if (init('action') == 'testLdapConnection') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -291,17 +291,17 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'removeBanIp') {
 		unautorizedInDemo();
 		ajax::success(user::removeBanIp());
 	}
-
+	
 	if (init('action') == 'supportAccess') {
 		unautorizedInDemo();
 		ajax::success(user::supportAccess(init('enable')));
 	}
-
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
