@@ -2545,6 +2545,9 @@ div.cmd > div.center-block {
 
 
 /* __________________________________________________________________________________________________________DIALOGS */
+div.ui-dialog {
+  z-index: 5000 !important;
+}
 .ui-autocomplete .ui-menu-item-wrapper,
 .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
   cursor: pointer;
