@@ -54,10 +54,11 @@ try {
 			if (!is_array($registerDevice)) {
 				$registerDevice = array();
 			}
-			$registerDevice[sha512($rdk)] = array();
-			$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
-			$registerDevice[sha512($rdk)]['ip'] = getClientIp();
-			$registerDevice[sha512($rdk)]['session_id'] = session_id();
+			$registerDevice[sha512($rdk)] = array(
+				'datetime' => date('Y-m-d H:i:s'),
+				'ip' => getClientIp(),
+				'session_id' =>session_id(),
+			);
 			setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
 			@session_start();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
