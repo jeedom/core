@@ -62,11 +62,13 @@ if (!isConnect('admin')) {
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="alert alert-danger">
-				{{Avant toute mise à jour, merci de consulter}} <a class="success" target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{la note de version}}</a> {{du core de Jeedom}}.
+				{{Avant toute mise à jour, merci de consulter}} <a class="warning" style="color:var(--al-warning-color)!important" target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{la note de version}}</a> {{du core de Jeedom}}.
 			</div>
 			<div class="form-group">
 				<div class="form-group">
-					<label class="col-xs-6 control-label">{{Pré-update (mettre à jour le script d'update avant)}}</label>
+					<label class="col-xs-6 control-label">{{Pré-update}}
+                    	<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+                    </label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
 					</div>
@@ -90,7 +92,9 @@ if (!isConnect('admin')) {
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-xs-6 control-label">{{Mode forcé}}</label>
+					<label class="col-xs-6 control-label">{{Mode forcé}}
+                    	<sup><i class="fas fa-question-circle tooltips" title="{{Continuez la mise à jour en cas d'erreur.}}"></i></sup>
+                    </label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="force" />
 					</div>
