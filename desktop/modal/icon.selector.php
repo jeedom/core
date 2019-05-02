@@ -297,7 +297,7 @@ sendVarToJs('tabimg',init('tabimg'));
 						echo '<div class="divIconSel">';
 						echo '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
 						echo '</div>';
-						echo '<center>'.basename($file).'</center>';
+						echo '<center>'.substr(basename($file),0,12).'</center>';
 						echo '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 						echo '</div>';
 					}
