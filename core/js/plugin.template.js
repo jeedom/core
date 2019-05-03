@@ -23,7 +23,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   $('#ul_eqLogic').closest('.bs-sidebar').parent().removeClass().addClass('col-xs-2');
   $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-12');
   $('.eqLogic').removeClass('col-xs-10 col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('eqLogic col-xs-12');
-  
+
   $('#ul_eqLogic').closest('.bs-sidebar').parent().on('mouseleave',function(){
     var timer = setTimeout(function(){
       $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
@@ -36,7 +36,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   }).on("mouseenter", function(){
     clearTimeout($(this).data('timerMouseleave'));
   });
-  
+
   $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
     var timer = setTimeout(function(){
       $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-10');
@@ -125,7 +125,7 @@ $(function(){
             items: contextmenuitems
           })
         }
-        
+
       }
     })
   }catch(err) {
@@ -208,7 +208,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
       $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
         jeedom.cmd.changeType($(this).closest('.cmd'));
       });
-      
+
       $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
         jeedom.cmd.changeSubType($(this).closest('.cmd'));
       });
@@ -310,7 +310,7 @@ $('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined) {
-    
+
     jeedom.eqLogic.getUseBeforeRemove({
       id: $('.eqLogicAttr[data-l1key=id]').value(),
       error: function (error) {
@@ -318,7 +318,7 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
       },
       success: function (data) {
         console.log(data);
-        var text = '{{Etes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
+        var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
         console.log(Object.keys(data).length)
         if(Object.keys(data).length > 0){
           text += ' Liée à : ';
@@ -448,7 +448,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-  
+
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
