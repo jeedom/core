@@ -55,7 +55,7 @@ $("#bt_removeLog").on('click', function(event) {
 });
 
 $("#bt_removeAllLog").on('click', function(event) {
-  bootbox.confirm("{{Etes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
+  bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}", function(result) {
     if (result) {
       jeedom.log.removeAll({
         error: function (error) {
