@@ -78,7 +78,7 @@ $('#bt_checkAllUpdate').off('click').on('click', function () {
 
 $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Etes vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.do({
@@ -97,7 +97,7 @@ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
 
 $('#table_update,#table_updateOther').delegate('.remove', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
-  bootbox.confirm('{{Etes vous sûr de vouloir supprimer cet objet ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet objet ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({
