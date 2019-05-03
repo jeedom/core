@@ -49,7 +49,7 @@ sendVarToJs('tabimg',init('tabimg'));
 				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 			</div>
 		</div>
-		
+
 		<?php
 		foreach (ls('core/css/icon', '*') as $dir) {
 			if (!is_dir('core/css/icon/' . $dir) || !file_exists('core/css/icon/' . $dir . '/style.css')) {
@@ -57,12 +57,12 @@ sendVarToJs('tabimg',init('tabimg'));
 			}
 			$fontfile = 'core/css/icon/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 			if (!file_exists($fontfile)) continue;
-			
+
 			$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
 			$research = strtolower(str_replace('/', '', $dir));
 			preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 			echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-			
+
 			$number = 1;
 			foreach ($matches as $match) {
 				if (isset($match[0])) {
@@ -317,10 +317,10 @@ sendVarToJs('tabimg',init('tabimg'));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-			
+
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
-				bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
+				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
 					if (result) {
 						jeedom.removeImageIcon({
 							filename : filename,
