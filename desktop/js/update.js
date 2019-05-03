@@ -255,9 +255,9 @@ function addUpdate(_update) {
   }
 
   _localVersion = _update.localVersion
-  if (_localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
+  if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
-  if (_remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
+  if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
 
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
