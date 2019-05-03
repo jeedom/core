@@ -62,7 +62,7 @@ $("#bt_saveUser").on('click', function (event) {
 $("#table_user").on('click',".bt_del_user",  function (event) {
   $.hideAlert();
   var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet utilisateur ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet utilisateur ?}}', function (result) {
     if (result) {
       jeedom.user.remove({
         id: user.id,
@@ -102,7 +102,7 @@ $("#table_user").on( 'click',".bt_change_mdp_user", function (event) {
 $("#table_user").on( 'click',".bt_changeHash", function (event) {
   $.hideAlert();
   var user = {id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()};
-  bootbox.confirm("{{Etes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
+  bootbox.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
     if (result) {
       user.hash = '';
       jeedom.user.save({
@@ -223,7 +223,7 @@ $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function ()
       printUsers();
     }
   });
-  
+
 });
 
 $('.bt_deleteSession').on('click',function(){
