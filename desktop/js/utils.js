@@ -53,7 +53,7 @@ function loadPage(_url,_noPushHistory){
   try{
     $(".ui-dialog-content").dialog("close");
   }catch(e){}
-  
+
   if(_url.endsWith('#')){
     _url = _url.slice(0, -1);
   }
@@ -374,7 +374,7 @@ if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_fi
 
 $('#bt_haltSystem').on('click', function () {
   $.hideAlert();
-  bootbox.confirm('{{Etes-vous sûr de vouloir arrêter le système ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
     if (result) {
       window.location.href = 'index.php?v=d&p=shutdown';
     }
@@ -383,7 +383,7 @@ $('#bt_haltSystem').on('click', function () {
 
 $('#bt_rebootSystem').on('click', function () {
   $.hideAlert();
-  bootbox.confirm('{{Etes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
     if (result) {
       window.location.href = 'index.php?v=d&p=reboot';
     }
