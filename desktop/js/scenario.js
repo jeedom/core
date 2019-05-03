@@ -513,7 +513,7 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
       button.closest('.element').remove();
     }
   }else{
-    bootbox.confirm("Etes vous sûr de vouloir supprimer cet élément ?", function (result) {
+    bootbox.confirm("{{Etes vous sûr de vouloir supprimer ce bloc ?}}", function (result) {
       if (result) {
         if (button.closest('.expression').length != 0) {
           button.closest('.expression').remove();
