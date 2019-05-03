@@ -602,6 +602,10 @@ div[data-market_type=plugin]:hover {
 .glyphicon-star-empty::before {
   content: "☆";
 }
+[data-page="plugin"] .rating-symbol-foreground {
+  top: 0;
+  cursor: pointer;
+}
 
 /* analyse equipment */
 #battery,
