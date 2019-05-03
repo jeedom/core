@@ -258,7 +258,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-		
+
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -395,7 +395,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-						
+
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -511,7 +511,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-	
+
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
@@ -555,7 +555,7 @@ $('#bt_eqLogicConfigureSave').on('click', function () {
 });
 
 $('#bt_eqLogicConfigureRemove').on('click',function(){
-	bootbox.confirm('{{Etes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
+	bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function (result) {
 		if (result) {
 			var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 			jeedom.eqLogic.remove({
