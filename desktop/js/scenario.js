@@ -321,7 +321,7 @@ $("#bt_saveScenario,#bt_saveScenario2").off('click').on('click', function (event
 
 $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) {
   $.hideAlert();
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + $('.scenarioAttr[data-l1key=name]').value() + '</span> ?', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + $('.scenarioAttr[data-l1key=name]').value() + '</span> ?', function (result) {
     if (result) {
       jeedom.scenario.remove({
         id: $('.scenarioAttr[data-l1key=id]').value(),
