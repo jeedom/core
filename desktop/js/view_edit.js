@@ -162,7 +162,7 @@ function saveView(_viewResult){
 
 $("#bt_removeView").on('click', function(event) {
   $.hideAlert();
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la vue}} <span style="font-weight: bold ;">' + $(".li_view.active a").text() + '</span> ?', function(result) {
     if (result) {
       jeedom.view.remove({
         id: $(".li_view.active").attr('data-view_id'),
@@ -355,7 +355,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     }
     line += '</tr>';
     table.find('tbody').append(line);
-    
+
   }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){
