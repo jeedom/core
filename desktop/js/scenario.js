@@ -527,6 +527,9 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   SC_CLIPBOARD = $(this).closest('.element')
+  if(event.ctrlKey) {
+    $(this).closest('.element').remove()
+  }
 });
 
 $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
@@ -1629,7 +1632,7 @@ function addSubElement(_subElement, _pColor) {
 
 function addElButtons(_retour) {
   _retour += '  <div ><i class="fas fa-minus-circle pull-right cursor bt_removeElement" title="{{Supprimer ce bloc. Ctrl+Click: sans confirmation.}}"></i></div>'
-  _retour += '  <div ><i class="fas fa-sign-out-alt pull-right cursor bt_copyElement" title="{{Copier ce bloc}}"></i></div>'
+  _retour += '  <div ><i class="fas fa-sign-out-alt pull-right cursor bt_copyElement" title="{{Copier ce bloc. Ctrl+Click: Couper ce bloc.}}"></i></div>'
   _retour += '  <div ><i class="fas fa-sign-in-alt pull-right cursor bt_pasteElement" title="{{Coller un bloc après celui-ci. Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
   return _retour
 }
