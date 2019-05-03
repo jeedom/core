@@ -201,7 +201,7 @@ $('.cb_selEqLogic').on('change',function(){
 });
 
 $('#bt_removeEqlogic').on('click',function(){
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer tous ces équipements ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function (result) {
     if (result) {
       var eqLogics = [];
       $('.cb_selEqLogic').each(function(){
