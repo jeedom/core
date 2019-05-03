@@ -163,7 +163,7 @@ $('#bt_saveFile').on('click',function(){
 $('#bt_deleteFile').on('click',function(){
   $('#span_editorFileName').empty();
   var path=$(this).attr('data-path');
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function (result) {
     if (result) {
       jeedom.deleteFile({
         path : path,
