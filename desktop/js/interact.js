@@ -28,7 +28,7 @@ $('#in_searchInteract').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  
+
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide();
   $('.interactDisplayCard .name').each(function(){
@@ -122,7 +122,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
           $('.nav.nav-tabs').contextMenu({
@@ -266,11 +266,11 @@ $("#bt_saveInteract").on('click', function () {
   $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
     interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
   });
-  
+
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
   console.log(interact)
-  
+
   jeedom.interact.save({
     interact: interact,
     error: function (error) {
@@ -285,7 +285,7 @@ $("#bt_saveInteract").on('click', function () {
 
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
-  bootbox.confirm('{{Etes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
     if (result) {
       jeedom.interact.regenerateInteract({
         interact: {query: result},
@@ -318,7 +318,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
 
 $("#bt_removeInteract").on('click', function () {
   $.hideAlert();
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + $('.interactDisplayCard.active .name').text() + '</span> ?', function (result) {
     if (result) {
       jeedom.interact.remove({
         id: $('.interactDisplayCard.active').attr('data-interact_id'),
