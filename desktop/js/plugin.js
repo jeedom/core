@@ -336,7 +336,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
 
 $('#span_right_button').delegate('.removePlugin','click',function(){
   var _el = $(this);
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce plugin ?}}', function (result) {
     if (result) {
       $.hideAlert();
       jeedom.update.remove({
