@@ -1839,6 +1839,10 @@ textarea {
 #div_scenarioElement > .element {
   border-bottom: 1px solid var(--shd-color);
 }
+#div_scenarioElement .expressions > .expression.noSortable.col-xs-12 {
+  width: calc(100% - 30px) !important;
+}
+
 .expressions,
 .element,
 .expression.noSortable,
@@ -1870,6 +1874,8 @@ textarea {
 .element .bt_sortable,
 .element .bt_hideElement,
 .element .bt_removeElement,
+.element .bt_copyElement,
+.element .bt_pasteElement,
 .element .bt_collapse {
   color: var(--linkHoverLight-color) !important;
   margin: 5px 3px 0 0;
@@ -1877,6 +1883,8 @@ textarea {
 .element .bt_sortable:hover,
 .element .bt_hideElement:hover,
 .element .bt_removeElement:hover,
+.element .bt_copyElement:hover,
+.element .bt_pasteElement:hover,
 .element .bt_collapse:hover {
   color: var(--linkHoverLight-color) !important;
   opacity: 0.7;
@@ -1915,6 +1923,16 @@ textarea {
   position: absolute;
   top: 0;
   right: 0;
+}
+.element .bt_copyElement {
+  position: absolute;
+  top: 0;
+  right: 35px;
+}
+.element .bt_pasteElement {
+  position: absolute;
+  top: 0;
+  right: 18px;
 }
 .element .subElementFields .dropdown {
   width: 90px !important;
@@ -3008,16 +3026,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3025,11 +3043,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3056,5 +3074,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
