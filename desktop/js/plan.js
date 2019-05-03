@@ -295,7 +295,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
           return !this.data('editOption.state');
         },
         callback: function(key, opt){
-          bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce design ?}}', function (result) {
+          bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function (result) {
             if (result) {
               jeedom.plan.removeHeader({
                 id:planHeader_id,
@@ -367,7 +367,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-  
+
   $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
@@ -478,7 +478,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
               displayObject(data.plan,data.html);
             }
           });
-          
+
         }
       },
       lock: {
@@ -497,7 +497,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-  
+
 }
 /**************************************init*********************************************/
 displayPlan();
@@ -704,7 +704,7 @@ function initEditOption(_state) {
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true);
     }catch (e) {
-      
+
     }
   }else{
     try{
@@ -715,13 +715,13 @@ function initEditOption(_state) {
         $(this).attr('href', $(this).attr('data-href'));
       });
     }catch (e) {
-      
+
     }
     $('.div_grid').hide();
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false);
     }catch (e) {
-      
+
     }
   }
 }
@@ -816,7 +816,7 @@ function displayPlan(_code) {
           try {
             $('.div_displayObject').append(objects);
           }catch(e) {
-            
+
           }
           initEditOption(editOption.state);
           initReportMode();
