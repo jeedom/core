@@ -145,7 +145,7 @@ foreach (update::listRepo() as $key => $value) {
 });
 
    $('#bt_scenarioTemplateApply').on('click', function () {
-    bootbox.confirm('{{Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario}}', function (result) {
         if (result) {
             var convert = $('.templateScenario').getValues('.templateScenarioAttr');
             jeedom.scenario.applyTemplate({
