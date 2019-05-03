@@ -23,7 +23,7 @@ $('#in_searchWidgets').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  
+
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.widgetsDisplayCard').hide();
   $('.widgetsDisplayCard .name').each(function(){
@@ -74,7 +74,7 @@ $(function(){
           wg = _widgets[i]
           contextmenuitems[wg.id] = {'name': wg.name}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -331,7 +331,7 @@ $("#bt_saveWidgets").on('click', function (event) {
 });
 
 $('#bt_removeWidgets').on('click', function (event) {
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce widget ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce widget ?}}', function (result) {
     if (result) {
       jeedom.widgets.remove({
         id: $('.widgetsAttr[data-l1key=id]').value(),
