@@ -81,12 +81,12 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
           if ($.mobile) {
-            var result = confirm("{{Etes-vous sûr de vouloir faire cette action ?}}")
+            var result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
             if(result){
               _params.confirmAction = 1;
               jeedom.cmd.execute(_params);
@@ -107,7 +107,7 @@ jeedom.cmd.execute = function(_params) {
               return data;
             }
           }else{
-            bootbox.confirm("{{Etes-vous sûr de vouloir faire cette action ?}}", function (result) {
+            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function (result) {
               if(result){
                 _params.confirmAction = 1;
                 jeedom.cmd.execute(_params);
@@ -127,7 +127,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -340,7 +340,7 @@ jeedom.cmd.refreshValue = function(_params) {
       continue;
     }
     jeedom.cmd.update[_params[i].cmd_id](_params[i]);
-    
+
   }
   for(var i in _params){
     try {
@@ -608,7 +608,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -646,7 +646,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
