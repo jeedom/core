@@ -2905,6 +2905,18 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 
+.jstree-default .jstree-clicked {
+  background-color: transparent;
+  border-left: 2.5px solid var(--logo-primary-color);
+}
+.jstree li a {
+  width: 90% !important;
+}
+.jstree li a:hover {
+  background-color: var(--form-bg-color);
+}
+
+
 /* __________________________________________________________________________________________________________ROUNDING */
 ::-moz-color-swatch {
   border-radius: var(--border-radius) !important;
