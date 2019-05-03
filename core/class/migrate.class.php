@@ -23,6 +23,15 @@ class migrate {
 
 	public static function usbTry(){
 		//log::remove('migrate');
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			if(phpversion() < 7){
+				exec('sudo add-apt-repository "deb http://ftp.debian.org/debian stretch main contrib non-free"');
+				exec('sudo apt-get update');
+			} 
+			if (exec('which rsync | wc -l') == 0) {
+				exec('sudo apt-get install -y rsync');
+			}
+		}
 		$minSize = 7900; //En megaOct.
 		$mediaLink = '/media/migrate';
 		$iSD = 0;
