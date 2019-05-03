@@ -49,11 +49,11 @@ function initLog(_log) {
 					initLog();
 				}
 			});
-		});	
+		});
 	}
 
 	$("#bt_removeAllLog").off('click').on('click', function(event) {
-		var result = confirm("{{Etes-vous sûr de vouloir supprimer tous les logs ?}}");
+		var result = confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}");
 		if (result) {
 			jeedom.log.removeAll({
 				error: function (error) {
