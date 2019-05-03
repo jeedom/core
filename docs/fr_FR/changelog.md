@@ -9,39 +9,45 @@ Changelog
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).
 - Amélioration et réorganisation du menu principal.
-- Amélioration et réorganisation des configurations.
-- Ajout de nombreux *tooltips* (aide) sur les configurations.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
 - Refonte du système de widgets (menu Outils / Widgets).
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.
-- Configuration / Cache : Ajout d'un bouton pour vider le cache des widgets.
-- Configuration / Cache : Ajout d'une option pour désactiver le cache des widgets.
-- Configuration / Interface : Possibilité de centrer verticalement le contenu des tuiles.
-- Possibilité d'attribuer une icône à une interaction.
+
+- Configuration : Amélioration et réorganisation des onglets.
+- Configuration : Ajout d'un bouton pour vider le cache des widgets (onglet Cache).
+- Configuration : Ajout d'une option pour désactiver le cache des widgets (onglet Cache).
+- Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
+- Configuration : Ajout de nombreux *tooltips* (aide).
+- Configuration : Ajout d'un moteur de recherche.
+
 - Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
-- Possibilité de condenser les blocs de scénario.
-- Sur un scénario, l'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
+- Scénario : Possibilité de condenser les blocs.
+- Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
+- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
+- Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
+
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
-- Ajout d'un moteur de recherche dans les configurations.
+- Ajout d'un moteur de recherche dans Analyse / Equipement, onglet Batteries (recherche sur les noms et parents).
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Lors d'une recherche, la touche *echap* annule la recherche.
 - Améliorations des tables avec option de filtre et tri.
+- Possibilité d'attribuer une icône à une interaction.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Page update : différentiation par version (stable, beta, ...).
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
-- Analyse / Equipement : nouveau champ de recherche dans l'onglet Batteries (recherche sur les noms et parents).
 - Possibilité de spécifier l'ordre (position) des designs et designs 3D (Edition, Configurer le design).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+
 - Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Nombreux bugfixs.
