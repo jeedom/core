@@ -478,7 +478,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     elementDiv = $('#div_scenarioElement');
   }
   
-  if ($(PREV_FOCUS).closest("div.element").html() != undefined) {
+  if (PREV_FOCUS != null && $(PREV_FOCUS).closest("div.element").html() != undefined) {
     elementDiv = $(PREV_FOCUS).closest("div.element");
   }
   
@@ -493,8 +493,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
       $('#div_scenarioElement .span_noScenarioElement').remove();
-      newEl = addElement({type: $("#in_addElementType").value()})
-      $(newEl).insertAfter(elementDiv)
+      elementDiv.append(addElement({type: $("#in_addElementType").value()}));
     }
     setEditor();
     updateSortable();
