@@ -493,7 +493,11 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
       elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
     } else {
       $('#div_scenarioElement .span_noScenarioElement').remove();
-      elementDiv.append(addElement({type: $("#in_addElementType").value()}));
+      if(elementDiv[0].id=='div_scenarioElement'){
+        elementDiv.append(addElement({type: $("#in_addElementType").value()}));
+      }else{
+        elementDiv.after(addElement({type: $("#in_addElementType").value()}));
+      }
     }
     setEditor();
     updateSortable();
