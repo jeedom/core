@@ -346,3 +346,57 @@ $('#bt_removeWidgets').on('click', function (event) {
     }
   });
 });
+
+$("#bt_exportWidgets").on('click', function (event) {
+  var widgets = $('.widgets').getValues('.widgetsAttr')[0]
+  widgets.test = $('#div_templateTest .test').getValues('.testAttr')
+  widgets.id = ""
+  jeedom.version({success : function(version) {
+    widgets.jeedomCoreVersion = version
+    downloadObjectAsJson(widgets, widgets.name)
+    }
+  })
+  return false
+});
+
+$("#bt_importWidgets").change(function(event){
+  $('#div_alert').hide()
+  var uploadedFile = event.target.files[0]
+
+  if(uploadedFile.type !== "application/json") {
+    $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
+    return false
+  }
+
+  if (uploadedFile) {
+    var readFile = new FileReader()
+    readFile.onload = function(e) {
+        var contents = e.target.result
+        data = JSON.parse(contents)
+        console.log(data)
+
+        if (!isset(data.jeedomCoreVersion)) {
+          $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
+          return false
+        }
+
+        template = 'cmd.'+data.type+'.'+data.subtype+'.'+data.template
+        loadTemplateConfiguration(template, data)
+    }
+    readFile.readAsText(uploadedFile)
+  } else {
+    $('#div_alert').showAlert({message: "{{Problème lors de la lecture du fichier.}}", level: 'danger'})
+    return false
+  }
+})
+
+function downloadObjectAsJson(exportObj, exportName){
+  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+  var downloadAnchorNode = document.createElement('a')
+  downloadAnchorNode.setAttribute("href",     dataStr)
+  downloadAnchorNode.setAttribute("target", "_blank")
+  downloadAnchorNode.setAttribute("download", exportName + ".json")
+  document.body.appendChild(downloadAnchorNode) // required for firefox
+  downloadAnchorNode.click()
+  downloadAnchorNode.remove()
+}
