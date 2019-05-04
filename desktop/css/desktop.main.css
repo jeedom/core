@@ -681,7 +681,6 @@ div[data-market_type=plugin]:hover {
 }
 
 .form-group .label {
-  display: table;
   padding: 4px 6px !important;
   min-width: 40px !important;
 }
