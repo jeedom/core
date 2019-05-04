@@ -998,6 +998,16 @@ function displayObject(_plan,_html, _noRender) {
         html.find('.cmd[data-cmd_id='+i+'] .title').remove();
       }
     }
+    if(isset(_plan.display.cmdTransparentBackground)){
+      for(var i in _plan.display.cmdTransparentBackground){
+        if(_plan.display.cmdTransparentBackground[i] == 0){
+          continue;
+        }
+        html.find('.cmd[data-cmd_id='+i+']').style('background-color', 'transparent', 'important');
+        html.find('.cmd[data-cmd_id='+i+']').style('border-radius', '0px', 'important');
+        html.find('.cmd[data-cmd_id='+i+']').style('box-shadow', 'none');
+      }
+    }
     html.css('min-width','0px');
     html.css('min-height','0px');
     html.find('*').css('min-width','0px');
