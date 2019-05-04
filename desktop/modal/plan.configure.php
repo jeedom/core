@@ -18,12 +18,6 @@ sendVarToJS('id', $plan->getId());
 		</legend>
 		<input type="text"  class="planAttr form-control" data-l1key="id" style="display: none;"/>
 		<input type="text"  class="planAttr form-control" data-l1key="link_type" style="display: none;"/>
-		<div class="form-group link_type link_eqLogic link_cmd link_scenario">
-			<label class="col-lg-4 control-label">{{Taille du widget}}</label>
-			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
-			</div>
-		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
 			<label class="col-lg-4 control-label">{{Profondeur}}</label>
 			<div class="col-lg-2">
