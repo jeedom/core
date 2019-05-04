@@ -939,10 +939,7 @@ function displayObject(_plan,_html, _noRender) {
     }
   }
   for (var key in _plan.css) {
-    if (_plan.css[key] === ''){
-      continue;
-    }
-    if(key == 'zoom' || key == 'rotate'){
+    if (_plan.css[key] === '' || key == 'zoom' || key == 'rotate'){
       continue;
     }
     if(key == 'z-index' && _plan.css[key] < 999){
