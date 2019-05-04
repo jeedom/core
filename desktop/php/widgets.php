@@ -48,7 +48,7 @@ foreach (widgets::all() as $widget) {
         <a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
       </div>
     </div>
-
+    
     <div class="panel-group" id="accordionWidgets">
       <?php
       if(count($widgets['info']) > 0){
@@ -112,12 +112,12 @@ foreach (widgets::all() as $widget) {
       ?>
     </div>
   </div>
-
+  
   <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
     <div class="input-group pull-right" style="display:inline-flex">
       <span class="input-group-btn">
-        <span class="btn btn-info btn-sm btn-file roundedLeft"><i class="fas fa-chevron-down"></i> {{Importer}}<input  id="bt_importWidgets" type="file" name="file" style="display: inline-block;">
-        </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-chevron-up"></i> {{Exporter}}
+        <span class="btn btn-info btn-sm btn-file roundedLeft"><i class="fas fa-file-export"></i> {{Importer}}<input  id="bt_importWidgets" type="file" name="file" style="display: inline-block;">
+        </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-import"></i> {{Exporter}}
         </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="far fa-check-circle"></i> {{Sauvegarder}}
         </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
       </span>
@@ -218,5 +218,6 @@ foreach (widgets::all() as $widget) {
           </div>
         </div>
       </div>
-
+      
       <?php include_file("desktop", "widgets", "js");?>
+      

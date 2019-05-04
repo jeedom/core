@@ -373,6 +373,11 @@ $("#bt_importWidgets").change(function(event){
         $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
         return false
       }
+      if (isset(data.test)) {
+        for (var i in data.test) {
+          addTest(data.test[i]);
+        }
+      }
       loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template, data)
     }
     readFile.readAsText(uploadedFile)
