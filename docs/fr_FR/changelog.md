@@ -49,6 +49,7 @@ Changelog
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1
 - Correction de bugs
+- Suppression du parametre de taille des widgets (zoom) sur les designs car non supporté par les navigateurs (https://developer.mozilla.org/fr/docs/Web/CSS/zoom)
 
 3.3.24
 =====
