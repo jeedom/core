@@ -23,7 +23,7 @@ $('#in_searchWidgets').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.widgetsDisplayCard').hide();
   $('.widgetsDisplayCard .name').each(function(){
@@ -74,7 +74,7 @@ $(function(){
           wg = _widgets[i]
           contextmenuitems[wg.id] = {'name': wg.name}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -152,6 +152,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function loadTemplateConfiguration(_template,_data){
+  $('.widgetsAttr[data-l1key=template]').off('change')
   jeedom.widgets.getTemplateConfiguration({
     template:_template,
     error: function (error) {
@@ -187,6 +188,12 @@ function loadTemplateConfiguration(_template,_data){
       }else{
         $('.type_test').hide();
       }
+      $('.widgetsAttr[data-l1key=template]').on('change',function(){
+        if($(this).value() == ''){
+          return;
+        }
+        loadTemplateConfiguration('cmd.'+ $('.widgetsAttr[data-l1key=type]').value()+'.'+$('.widgetsAttr[data-l1key=subtype]').value()+'.'+$(this).value());
+      });
     }
   });
 }
@@ -294,14 +301,6 @@ $(".widgetsDisplayCard").on('click', function (event) {
       $('#div_usedBy').empty().append(usedBy);
       loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
       modifyWithoutSave = false;
-      setTimeout(function(){
-        $('.widgetsAttr[data-l1key=template]').on('change',function(){
-          if($(this).value() == ''){
-            return;
-          }
-          loadTemplateConfiguration('cmd.'+ $('.widgetsAttr[data-l1key=type]').value()+'.'+$('.widgetsAttr[data-l1key=subtype]').value()+'.'+$(this).value());
-        });
-      }, 500);
     }
   });
 });
@@ -354,34 +353,27 @@ $("#bt_exportWidgets").on('click', function (event) {
   jeedom.version({success : function(version) {
     widgets.jeedomCoreVersion = version
     downloadObjectAsJson(widgets, widgets.name)
-    }
-  })
-  return false
+  }
+})
+return false
 });
 
 $("#bt_importWidgets").change(function(event){
   $('#div_alert').hide()
   var uploadedFile = event.target.files[0]
-
   if(uploadedFile.type !== "application/json") {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.onload = function(e) {
-        var contents = e.target.result
-        data = JSON.parse(contents)
-        console.log(data)
-
-        if (!isset(data.jeedomCoreVersion)) {
-          $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
-          return false
-        }
-
-        template = 'cmd.'+data.type+'.'+data.subtype+'.'+data.template
-        loadTemplateConfiguration(template, data)
+      data = JSON.parse(e.target.result)
+      if (!isset(data.jeedomCoreVersion)) {
+        $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
+        return false
+      }
+      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template, data)
     }
     readFile.readAsText(uploadedFile)
   } else {
