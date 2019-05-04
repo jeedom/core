@@ -57,12 +57,14 @@ function loadPage(_url,_noPushHistory){
   if(_url.endsWith('#')){
     _url = _url.slice(0, -1);
   }
-  if(!isset(_noPushHistory) || _noPushHistory == false){
-    if(_url.indexOf('#') != -1){
-      window.history.pushState('','', _url.substring(0, _url.indexOf('#')));
-    }else{
-      window.history.pushState('','', _url);
-    }
+  if(!isset(_noPushHistory) || _noPushHistory == false) {
+    try {
+      if (_url.indexOf('#') != -1) {
+        window.history.pushState('','', _url.substring(0, _url.indexOf('#')))
+      } else {
+        window.history.pushState('','', _url)
+      }
+    } catch {}
   }
   if(isset(bootbox)){
     bootbox.hideAll();
