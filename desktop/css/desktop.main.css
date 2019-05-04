@@ -2645,6 +2645,10 @@ div.ui-dialog {
   font-size: 14px;
 }
 
+.bootbox.modal {
+  z-index: 9000;
+}
+
 .modal-footer .btn.bootbox-accept,
 .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
   color: var(--linkHoverLight-color) !important;
