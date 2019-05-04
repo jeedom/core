@@ -478,33 +478,33 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
     elementDiv = $('#div_scenarioElement');
   }
   
-  if (PREV_FOCUS != null && $(PREV_FOCUS).closest("div.element").html() != undefined) {
-    elementDiv = $(PREV_FOCUS).closest("div.element");
-  }
-  
-  var expression = false;
-  if ($(this).hasClass('fromSubElement')) {
-    elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
-    expression = true;
-  }
-  $('#md_addElement').modal('show');
-  $("#bt_addElementSave").off('click').on('click', function (event) {
-    if (expression) {
-      elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
-    } else {
-      $('#div_scenarioElement .span_noScenarioElement').remove();
-      if(elementDiv[0].id=='div_scenarioElement'){
-        elementDiv.append(addElement({type: $("#in_addElementType").value()}));
-      }else{
-        elementDiv.after(addElement({type: $("#in_addElementType").value()}));
-      }
+  /*if (PREV_FOCUS != null && $(PREV_FOCUS).closest("div.element").html() != undefined) {
+  elementDiv = $(PREV_FOCUS).closest("div.element");
+}*/
+
+var expression = false;
+if ($(this).hasClass('fromSubElement')) {
+  elementDiv = $(this).closest('.subElement').find('.expressions').eq(0);
+  expression = true;
+}
+$('#md_addElement').modal('show');
+$("#bt_addElementSave").off('click').on('click', function (event) {
+  if (expression) {
+    elementDiv.append(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}));
+  } else {
+    $('#div_scenarioElement .span_noScenarioElement').remove();
+    if(elementDiv[0].id=='div_scenarioElement'){
+      elementDiv.append(addElement({type: $("#in_addElementType").value()}));
+    }else{
+      elementDiv.after(addElement({type: $("#in_addElementType").value()}));
     }
-    setEditor();
-    updateSortable();
-    updateElseToggle();
-    modifyWithoutSave = true;
-    $('#md_addElement').modal('hide');
-  });
+  }
+  setEditor();
+  updateSortable();
+  updateElseToggle();
+  modifyWithoutSave = true;
+  $('#md_addElement').modal('hide');
+});
 });
 
 $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
