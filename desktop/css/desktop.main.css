@@ -2016,11 +2016,9 @@ textarea {
   height: 50px;
   min-height: 50px !important;
 }
-.subElementDO .expressions {
-  margin-top: 4px !important
+.subElementDO > .expressions {
+  margin-top: 4px !important;
 }
-
-
 
 
 /* Disabled */
