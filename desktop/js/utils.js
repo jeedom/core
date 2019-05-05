@@ -53,7 +53,7 @@ function loadPage(_url,_noPushHistory){
   try{
     $(".ui-dialog-content").dialog("close");
   }catch(e){}
-
+  
   if(_url.endsWith('#')){
     _url = _url.slice(0, -1);
   }
@@ -64,7 +64,9 @@ function loadPage(_url,_noPushHistory){
       } else {
         window.history.pushState('','', _url)
       }
-    } catch {}
+    } catch(e) {
+      
+    }
   }
   if(isset(bootbox)){
     bootbox.hideAll();
@@ -112,7 +114,7 @@ $(function () {
     initRowOverflow();
   }
   $('body').attr('data-page',getUrlVars('p'));
-
+  
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -123,7 +125,7 @@ $(function () {
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]);
     }
   });
-
+  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
       return;
@@ -131,7 +133,7 @@ $(function () {
     var url = window.location.href.split("index.php?");
     loadPage('index.php?'+url[1],true)
   });
-
+  
   $('body').on('click','a',function(e){
     if($(this).hasClass('noOnePageLoad')){
       return;
@@ -156,8 +158,8 @@ $(function () {
     e.preventDefault();
     e.stopPropagation();
   });
-
-
+  
+  
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -172,7 +174,7 @@ $(function () {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   }
-
+  
   $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -226,7 +228,7 @@ $('body').on('focusin','.bootbox-input', function (e) {
 });
 
 $('.bootbox.modal').on('shown.bs.modal', function() {
-   dialog.find(".bootbox-accept").focus();
+  $(this).find(".bootbox-accept").focus();
 })
 
 /************************Help*************************/
@@ -533,7 +535,7 @@ function initTextArea(){
 }
 
 function initCheckBox(){
-
+  
 }
 
 function initPage(){
@@ -572,13 +574,13 @@ function dropDownsKeys() {
     prevDropDownValue = $(this).html()
     prevDropDownDatavalue = $(this).attr('value')
   })
-
+  
   $('.dropdown-toggle').keydown(function(event) {
     if (event.which == 13) {
       $('body').trigger('click')
       return false
     }
-
+    
     key = event.key
     if(key == 'Escape') {
       $(this).html(prevDropDownValue)
@@ -587,13 +589,13 @@ function dropDownsKeys() {
       $('body').trigger('click')
       return false
     }
-
+    
     selected = -1
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       if ($(li).find('a').style('background-color') == 'var(--placeholder-color)' && selected < index) selected = index
       $(li).find('a').style('background-color', '')
     })
-
+    
     $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
       value = $(li).find('a').text().toLowerCase()
       //handle '(kiki) value':
@@ -607,13 +609,13 @@ function dropDownsKeys() {
         }
       }
       value = value.trim()
-
+      
       //handle 'value1, value2':
       values = null
       if (value.indexOf(',') > -1) {
         values = value.split(',')
       }
-
+      
       if (values) {
         for (i = 0; i < values.length; i++) {
           value = values[i].trim()
@@ -623,18 +625,18 @@ function dropDownsKeys() {
       } else {
         match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
       }
-
+      
       if (match && selected < index) {
         ul = $(this).closest('.dropdown').find('ul')
         $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
         $(ul).scrollTop($(li).position().top - $(ul).find('li').first().position().top)
-
+        
         $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
         $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
         $(this).closest('.dropdown').find('button').trigger('change')
         return false
       }
-
+      
     })
   })
 }
@@ -781,12 +783,12 @@ function notify(_title, _text, _class_name) {
 
 jQuery.fn.findAtDepth = function (selector, maxDepth) {
   var depths = [], i;
-
+  
   if (maxDepth > 0) {
     for (i = 1; i <= maxDepth; i++) {
       depths.push('> ' + new Array(i).join('* > ') + selector);
     }
-
+    
     selector = depths.join(', ');
   }
   return this.find(selector);
@@ -1032,14 +1034,14 @@ function editWidgetCmdMode(_mode){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_table table.tableCmd').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default.ui-sortable').length > 0){
       try{
         $('.eqLogic-widget.allowReorderCmd.eqLogic_layout_default').sortable('destroy');
       }catch(e){
-
+        
       }
     }
     if( $('.eqLogic-widget.ui-draggable').length > 0){
@@ -1198,7 +1200,7 @@ function editWidgetCmdMode(_mode){
       });
     }
   }
-
+  
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -1207,37 +1209,37 @@ function editWidgetCmdMode(_mode){
       b: parseInt(result[3], 16)
     } : null;
   }
-
-function componentToHex(c) {
-  var hex = c.toString(16);
-  return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-  if ($.type(r) === 'string' && !g) {
-    r = r.trim()
-    if (r.startsWith('rgb')) {
-      r = r.replace('rgb', '')
-    }
-    if (r.startsWith('(')){
-      r = r.replace('(', '')
-    }
-    if (r.endsWith(')')){
-      r = r.replace(')', '')
-    }
-    strAr = r.split(',')
-    r = parseInt(strAr[0].trim())
-    g = parseInt(strAr[1].trim())
-    b = parseInt(strAr[2].trim())
+  
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
   }
-  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
-}
-
-setTimeout(function() {
-  $("body").on('keydown',"input[id^='in_search']",function(event) {
-    if(event.key == 'Escape') {
-      $(this).val('').keyup();
+  
+  function rgbToHex(r, g, b) {
+    if ($.type(r) === 'string' && !g) {
+      r = r.trim()
+      if (r.startsWith('rgb')) {
+        r = r.replace('rgb', '')
+      }
+      if (r.startsWith('(')){
+        r = r.replace('(', '')
+      }
+      if (r.endsWith(')')){
+        r = r.replace(')', '')
+      }
+      strAr = r.split(',')
+      r = parseInt(strAr[0].trim())
+      g = parseInt(strAr[1].trim())
+      b = parseInt(strAr[2].trim())
     }
-  })
-}, 500)
-
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
+  }
+  
+  setTimeout(function() {
+    $("body").on('keydown',"input[id^='in_search']",function(event) {
+      if(event.key == 'Escape') {
+        $(this).val('').keyup();
+      }
+    })
+  }, 500)
+  
