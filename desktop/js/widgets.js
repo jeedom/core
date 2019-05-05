@@ -300,6 +300,7 @@ $(".widgetsDisplayCard").on('click', function (event) {
       }
       $('#div_usedBy').empty().append(usedBy);
       loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
+      addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
     }
   });

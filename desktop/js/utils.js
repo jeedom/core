@@ -475,10 +475,20 @@ changeThemeAuto();
 if(jeedomBackgroundImg != null){
   setBackgroundImg(jeedomBackgroundImg);
 }
+
 setTimeout(function(){
   $('body').trigger('jeedom_page_load');
 }, 1);
 });
+
+
+setTimeout(function() {
+  $("body").on('keydown',"input[id^='in_search']",function(event) {
+    if(event.key == 'Escape') {
+      $(this).val('').keyup();
+    }
+  })
+}, 500)
 
 setInterval(function () {
   var dateLoc = new Date;
@@ -1235,11 +1245,12 @@ function editWidgetCmdMode(_mode){
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
   }
   
-  setTimeout(function() {
-    $("body").on('keydown',"input[id^='in_search']",function(event) {
-      if(event.key == 'Escape') {
-        $(this).val('').keyup();
-      }
-    })
-  }, 500)
+  function addOrUpdateUrl(_param,_value){
+    var url = new URL(window.location.href );
+    var query_string = url.search;
+    var search_params = new URLSearchParams(query_string);
+    search_params.set(_param, _value);
+    url.search = search_params.toString();
+    window.history.pushState('','', url.toString());
+  }
   

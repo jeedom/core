@@ -28,7 +28,7 @@ $('#in_searchInteract').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide();
   $('.interactDisplayCard .name').each(function(){
@@ -122,9 +122,8 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-
-        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
-        {
+        
+        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object){
           $('.nav.nav-tabs').contextMenu({
             selector: 'li',
             autoHide: true,
@@ -266,11 +265,11 @@ $("#bt_saveInteract").on('click', function () {
   $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
     interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
   });
-
+  
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
   console.log(interact)
-
+  
   jeedom.interact.save({
     interact: interact,
     error: function (error) {
@@ -442,6 +441,7 @@ function displayInteract(_id){
         }
       }
       taAutosize();
+      addOrUpdateUrl('id',data.id);
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,

@@ -1104,6 +1104,7 @@ function printScenario(_id) {
       updateElementCollpase();
       updateElseToggle();
       taAutosize();
+      addOrUpdateUrl('id',data.id);
       setTimeout(function () {
         setEditor();
       }, 100);
