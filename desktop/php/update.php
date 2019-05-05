@@ -53,7 +53,7 @@ if (!isConnect('admin')) {
 		</table>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
-		<legend style="cursor:default;"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
+		<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
 		<pre id="pre_updateInfo"></pre>
 	</div>
 </div>
