@@ -551,7 +551,8 @@ a.action.ui-btn {
   color: var(--logo-secondary-color);
 }
 .info,
-.info i{
+.info i,
+[data-coloredicons="1"] .icon_blue {
   color: var(--al-info-color);
 }
 .success,
@@ -569,14 +570,11 @@ a.action.ui-btn {
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
 }
-
+.yellow,
 [data-coloredicons="1"] .icon_yellow {
-  color: #f1c40f !important;
+  color: var(--lb-yellow-color) !important;
 }
 
-[data-coloredicons="1"] .icon_blue {
-  color: #3498db !important;
-}
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
