@@ -44,12 +44,22 @@ sendVarToJs('tabimg',init('tabimg'));
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="icon">
 		<div class="input-group" style="margin-bottom:5px;">
+			<div class="input-group-btn">
+				<select class="form-control roundedLeft" style="width : 200px;" id="sel_colorIcon">
+					<option value="">{{default}}</option>
+					<option value="icon_green">{{Vert}}</option>
+					<option value="icon_blue">{{Bleu}}</option>
+					<option value="icon_orange">{{Orange}}</option>
+					<option value="icon_red">{{Rouge}}</option>
+					<option value="icon_yellow">{{Jaune}}</option>
+				</select>
+			</div>
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_iconSelectorSearch">
 			<div class="input-group-btn">
 				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 			</div>
 		</div>
-
+		
 		<?php
 		foreach (ls('core/css/icon', '*') as $dir) {
 			if (!is_dir('core/css/icon/' . $dir) || !file_exists('core/css/icon/' . $dir . '/style.css')) {
@@ -57,12 +67,12 @@ sendVarToJs('tabimg',init('tabimg'));
 			}
 			$fontfile = 'core/css/icon/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 			if (!file_exists($fontfile)) continue;
-
+			
 			$css = file_get_contents('core/css/icon/' . $dir . '/style.css');
 			$research = strtolower(str_replace('/', '', $dir));
 			preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 			echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-
+			
 			$number = 1;
 			foreach ($matches as $match) {
 				if (isset($match[0])) {
@@ -317,7 +327,7 @@ sendVarToJs('tabimg',init('tabimg'));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-
+			
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -340,6 +350,10 @@ sendVarToJs('tabimg',init('tabimg'));
 </div>
 
 <script>
+$('#sel_colorIcon').off('change').on('change',function(){
+	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
+});
+
 $('#in_iconSelectorSearch').on('keyup',function(){
 	$('.divIconSel').show();
 	$('.iconCategory').show();
