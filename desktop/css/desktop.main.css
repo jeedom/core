@@ -2572,6 +2572,9 @@ div.cmd > div.center-block {
 
 
 /* __________________________________________________________________________________________________________DIALOGS */
+div.ui-dialog {
+  z-index: 200 !important;
+}
 div.ui-dialog:hover {
   z-index: 5000 !important;
 }
