@@ -230,6 +230,7 @@ class network {
 		}
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
+			usleep(rand(1000,100000));
 			$data = curl_exec($ch);
 			if (curl_errno($ch)) {
 				log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
