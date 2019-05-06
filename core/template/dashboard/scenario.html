@@ -36,7 +36,7 @@
         _options.state = '#state#';
       }
       if (typeof _options.isActive == 'undefined' || _options.isActive == '1') {
-        $('.scenario[data-scenario_id=#id#] .iconCmd').removeClass('disabled');
+        $('.scenario[data-scenario_id=#id#]').removeClass('disabled');
         if (_options.state == 'in progress' || _options.state == 'starting') {
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
@@ -46,7 +46,7 @@
         }
       } else {
         $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
-        $('.scenario[data-scenario_id=#id#] .iconCmd').addClass('disabled');
+        $('.scenario[data-scenario_id=#id#]').addClass('disabled');
       }
     }
     jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#',icon:'#icon#'});
