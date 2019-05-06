@@ -2851,6 +2851,7 @@ input[type=number] {
 /* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
   height: auto;
+  background: var(--sc-form-color);
 }
 
 .CodeMirror:not(class*=cm-s-),
