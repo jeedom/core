@@ -803,19 +803,20 @@ class cmd {
 		$return['category'] = $eqLogic->getCategory();
 
 		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div>' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-			. '<div>' . $_event['options'] . '<div/>'
-			. '</div>';
+			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
+			$return['html'] .= '<div>' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>';
+			$return['html'] .= '<div>' . $_event['options'] . '<div/>';
+			$return['html'] .= '</div>';
 		} else {
 			$class = '';
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
 				$class = ($_event['value'] == 0 ? 'success' : 'warning');
 			}
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">'
-			. '<div class="' . $class . '">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>'
-			. '<div>' . $_event['value'] . '<div/>'
-			. '</div>';
+			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
+			$return['html'] .= '<div class="' . $class . '">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
+			$return['html'] .= ' <span class="label-sm label-info">' . $_event['value'] . '</span>';
+			$return['html'] .= '</div>';
+			$return['html'] .= '</div>';
 		}
 		return $return;
 	}
