@@ -313,9 +313,14 @@ legend {
   font-weight: normal;
   padding: 4px 12px;
 }
-.label:empty {
+.label-sm {
+  padding: 3px 6px;
+}
+.label:empty,
+.label-sm:empty{
   display: none !important;
 }
+
 
 .iconCmd {
   top: 0 !important;
@@ -816,7 +821,7 @@ pre {
 }
 .info,
 [data-coloredicons="1"] .icon_blue {
-  color: var(--al-info-color);
+  color: var(--al-info-color) !important;
 }
 .success,
 [data-coloredicons="1"] .icon_green {
@@ -2962,6 +2967,7 @@ input,
 select,
 textarea,
 .label,
+.label-sm,
 .input-group-addon,
 .market,
 button,
