@@ -575,6 +575,13 @@ a.action.ui-btn {
   color: var(--lb-yellow-color) !important;
 }
 
+[data-coloredicons="1"] .scenario-widget:not(.disabled) .state i {
+  color: var(--bt-success-color) !important;
+}
+[data-coloredicons="1"] .scenario-widget.disabled .state i {
+  color: var(--al-danger-color) !important;
+}
+
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{

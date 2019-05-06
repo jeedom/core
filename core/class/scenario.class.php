@@ -658,10 +658,13 @@ class scenario {
 					}
 					$object = $scenario->getObject();
 					$return['object'] = is_object($object) ? $object->getId() : 'aucun';
-					$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">'
-					. '<div style="background-color:#e7e7e7;padding:1px;font-size:0.9em;font-weight: bold;cursor:help;">' . $_event['name'] . ' <i class="fas fa-file-text-alt pull-right cursor bt_scenarioLog"></i> <i class="fas fa-share pull-right cursor bt_gotoScenario"></i></div>'
-					. '<div style="background-color:white;padding:1px;font-size:0.8em;cursor:default;">Déclenché par ' . $_event['trigger'] . '<div/>'
-					. '</div>';
+					$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">';
+					$return['html'] .= '<div>' . $_event['name'];
+					$return['html'] .= ' <span class="label-sm label-info" title="{{Déclanché par}}">' . $_event['trigger'] . '</span>';
+					$return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog">';
+					$return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario">';
+					$return['html'] .= '</div>';
+					$return['html'] .= '</div>';
 					return $return;
 				}
 
