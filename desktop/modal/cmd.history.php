@@ -33,7 +33,7 @@ $date = array(
 				}
 				?>
 				<div class="dropdown dynDropdown">
-					<button class="btn btn-default dropdown-toggle roundedLeft" type="button" data-toggle="dropdown" id="sel_groupingType" style="width: 180px;">
+					<button class="btn btn-default dropdown-toggle roundedLeft sel_groupingType" type="button" data-toggle="dropdown" style="width: 180px;">
 						{{Aucun groupement}}
 						<span class="caret"></span>
 					</button>
@@ -62,7 +62,7 @@ $date = array(
 					</ul>
 				</div>
 				<div class="dropdown dynDropdown">
-					<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
+					<button class="btn btn-default dropdown-toggle roundedRight sel_chartType" type="button" data-toggle="dropdown" style="width: 100px;">
 						{{Ligne}}
 						<span class="caret"></span>
 					</button>
@@ -106,7 +106,7 @@ $date = array(
 				}
 			}
 			
-			$('.sel_chartType').on('change', function () {
+			$('.sel_chartType').off('change').on('change', function () {
 				jeedom.cmd.save({
 					cmd: {id: <?php echo init('id'); ?>, display: {graphType: $(this).value()}},
 					error: function (error) {
@@ -126,7 +126,7 @@ $date = array(
 					}
 				});
 			});
-			$('.sel_groupingType').on('change', function () {
+			$('.sel_groupingType').off('change').on('change', function () {
 				jeedom.cmd.save({
 					cmd: {id: <?php echo init('id'); ?>, display: {groupingType: $(this).value()}},
 					error: function (error) {
