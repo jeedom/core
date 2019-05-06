@@ -49,6 +49,7 @@ Theme Core 2019 @Jeedom
   --url-iconsLight: url(../img/ui-icons-white.png);
 
   --lb-info-color: rgb(80, 160, 180);
+  --lb-yellow-color: rgb(210, 180, 0);
   --al-info-color: rgb(90, 130, 190);
   --al-primary-color:  rgb(50, 110, 160);
   --al-success-color: rgb(50, 130, 60);
