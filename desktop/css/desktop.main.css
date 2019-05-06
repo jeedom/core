@@ -271,6 +271,7 @@ legend {
   min-width: 32px !important;
   max-height: 30px;
 }
+
 .eqLogic-widget .cmd.refresh {
   margin-top: 5px !important;
   margin-right: 5px !important;
@@ -839,6 +840,13 @@ pre {
 .yellow,
 [data-coloredicons="1"] .icon_yellow {
   color: var(--lb-yellow-color) !important;
+}
+
+[data-coloredicons="1"] .scenario-widget:not(.disabled) .iconCmd {
+  color: var(--bt-success-color) !important;
+}
+[data-coloredicons="1"] .scenario-widget.disabled .iconCmd {
+  color: var(--al-danger-color) !important;
 }
 
 .state,
