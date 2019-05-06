@@ -814,7 +814,8 @@ pre {
 .logoSecondary {
   color: var(--logo-secondary-color);
 }
-.info {
+.info,
+[data-coloredicons="1"] .icon_blue {
   color: var(--al-info-color);
 }
 .success,
@@ -830,12 +831,9 @@ pre {
   color: var(--al-danger-color) !important;
 }
 
+.yellow,
 [data-coloredicons="1"] .icon_yellow {
-  color: #f1c40f !important;
-}
-
-[data-coloredicons="1"] .icon_blue {
-  color: #3498db !important;
+  color: var(--lb-yellow-color) !important;
 }
 
 .state,
