@@ -144,7 +144,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -217,7 +217,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
