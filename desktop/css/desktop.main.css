@@ -835,12 +835,10 @@ pre {
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
 }
-
 .yellow,
 [data-coloredicons="1"] .icon_yellow {
   color: var(--lb-yellow-color) !important;
 }
-
 [data-coloredicons="1"] .scenario-widget:not(.disabled) .iconCmd {
   color: var(--bt-success-color) !important;
 }
@@ -1134,9 +1132,20 @@ header.navbar {
   height: 50px !important;
 }
 
-.navbar {
+.navbar,
+.navbar .container-fluid,
+.navbar-header,
+.navbar-collapse,
+.nav.navbar-nav,
+.dropdown-menu,
+.dropdown > a,
+.dropdown > a:hover {
   background-color: var(--defaultBkg-color) !important;
 }
+.nav.navbar-nav {
+  height: 50px
+}
+
 .nav .dropdown-menu {
   font-size: 14px;
 }
@@ -1157,13 +1166,6 @@ header .navbar-toggle {
   background-color: var(--link-color);
 }
 
-
-.dropdown-menu,
-.dropdown > a,
-.dropdown > a:hover {
-  background-color: var(--defaultBkg-color) !important;
-  border: none;
-}
 .dropdown-menu,
 .dropdown-menu > ul {
   z-index: 9999 !important;
