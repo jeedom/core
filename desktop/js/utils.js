@@ -17,6 +17,9 @@
 var JS_ERROR = [];
 
 window.addEventListener('error', function (evt) {
+  if(evt.filename.indexOf('3rdparty') != -1){
+    return;
+  }
   JS_ERROR.push(evt)
   $('#bt_jsErrorModal').show();
   $.hideLoading();
