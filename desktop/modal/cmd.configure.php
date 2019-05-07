@@ -419,7 +419,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 				?>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend><i class="fas fa-bar-chart-o"></i> {{Historique}}</legend>
+						<legend><i class="far fa-chart-bar"></i> {{Historique}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
 							<div class="col-xs-1">
