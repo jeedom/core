@@ -710,7 +710,11 @@ function initTableSorter(filter) {
       resizable: true,
       stickyHeaders_offset: $('header.navbar-fixed-top').height(),
       zebra: ["ui-widget-content even", "ui-state-default odd"],
-    }
+    },
+    cssIcon: 'tablesorter-icon',
+  	initialized : function(table){
+    $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>');
+  }
   });
   $(".tablesorter").css('width','');
 }
