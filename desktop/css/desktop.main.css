@@ -591,7 +591,6 @@ table.tablesorter .tablesorter-header:focus {
   max-width:100% !important;
 }
 
-
 /* market */
 div[data-market_type=plugin] {
   background-color: var(--form-bg-color) !important;
@@ -1636,13 +1635,17 @@ ul.nav.nav-tabs li,
 i.tablesorter-icon {
   background-image: none !important;
 }
-i.tablesorter-icon::before {
-  font-family: jeedomapp;
-  content: "\e920\e91f" !important;
-  font-style: normal;
-}
 .tablesorter-header[data-sorter=false] {
   cursor: default;
+}
+i.tablesorter-icon.glyphicon-chevron-up::before {
+  content: "\25bc" !important;
+}
+i.tablesorter-icon.glyphicon-chevron-down::before {
+  content: "\25b2" !important;
+}
+i.tablesorter-icon.bootstrap-icon-unsorted::before {
+  content: "-" !important;
 }
 
 table.table,
