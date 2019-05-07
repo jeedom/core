@@ -119,7 +119,7 @@ p.state,
 .iconCmd,
 .iconCmd i,
 .iconCmd span,
-.cmd .iconCmd i,
+.cmd .iconCmd i:not([class*="icon_"]),
 .cmd {
   color: var(--linkHoverLight-color) !important;
 }
