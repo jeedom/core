@@ -79,9 +79,9 @@ usort($list, function ($a, $b) {
 							echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
 							$actions = '';
 							foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
 							}
-							echo trim($actions, '|');
+							echo trim($actions);
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
@@ -94,9 +94,9 @@ usort($list, function ($a, $b) {
 							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
 							}
-							echo trim($actions, '|');
+							echo trim($actions);
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
@@ -107,9 +107,9 @@ usort($list, function ($a, $b) {
 							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
-								$actions .= scenarioExpression::humanAction($actionCmd) . '|';
+								$actions .= scenarioExpression::humanAction($actionCmd)  . '<br/>';
 							}
-							echo trim($actions, '|');
+							echo trim($actions);
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
