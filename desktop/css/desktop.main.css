@@ -1136,10 +1136,6 @@ header.navbar {
   max-width: 105px;
 }
 
-.navbar-collapse.collapse {
-  height: 50px !important;
-}
-
 .navbar,
 .navbar .container-fluid,
 .navbar-header,
@@ -1149,9 +1145,6 @@ header.navbar {
 .dropdown > a,
 .dropdown > a:hover {
   background-color: var(--defaultBkg-color) !important;
-}
-.nav.navbar-nav {
-  height: 50px
 }
 
 .nav .dropdown-menu {
@@ -3097,6 +3090,15 @@ ul.dropdown-menu {
   .panel-title,
   legend {
     font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav.navbar-nav {
+    height: 50px
+  }
+  .navbar-collapse.collapse {
+    height: 50px !important;
   }
 }
 
