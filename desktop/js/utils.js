@@ -183,6 +183,7 @@ $(function () {
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
     $(this).parent().toggleClass('open');
+    $('.dropdown-menu').dropdown('toggle');
   });
 
   if (!navigator.userAgent.match(/Android/i)
@@ -215,12 +216,12 @@ $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',fun
   $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
 })
 
-
 $('ul.nav li.dropdown').hover(function() {
   if ($(window).width() < 768) return
   $(this).find('.dropdown-menu').first().stop(true, true).show();
-}, function() {
-  $(this).find('.dropdown-menu').first().stop(true, true).hide();
+  }, function() {
+    if ($(window).width() < 768) return
+    $(this).find('.dropdown-menu').first().stop(true, true).hide();
 });
 /*********************Gestion des dialogs********************************/
 
