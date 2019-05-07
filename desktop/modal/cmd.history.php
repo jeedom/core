@@ -201,7 +201,8 @@ $date = array(
 					modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
 				}
 			});
-			
+          
+          	$('#div_historyChart').highcharts().setSize( $('#md_modal2').width()-15, $('#md_modal2').height()-40)			
 			$('.ui-dialog').resize(function() {
 				$('#div_historyChart').highcharts().setSize( $('#md_modal2').width()-15, $('#md_modal2').height()-40)
 			})
