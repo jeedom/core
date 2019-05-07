@@ -2238,9 +2238,9 @@ path.highcharts-graph {
 
 .highcharts-tooltip-box,
 .highcharts-label-box {
-  fill: var(--bg-modal-color);
+  fill: var(--sc-form-color);
   fill-opacity: 1 !important;
-  stroke-width: 0.2 !important;
+  stroke-width: 0.6 !important;
 }
 .highcharts-tooltip text {
   fill: var(--txt-color) !important;
