@@ -1090,7 +1090,15 @@ nav.navbar-collapse:not(.in) {
 .navbar {
   min-height: 50px;
   height: 50px;
+  z-index: 100;
 }
+.navbar:hover {
+  z-index: 50000;
+}
+.ui-widget-overlay.ui-front {
+  z-index: 90 !important;
+}
+
 .navbar-collapse {
   background: var(--bg-modal-color);
 }
@@ -2577,12 +2585,6 @@ div.cmd > div.center-block {
 
 
 /* __________________________________________________________________________________________________________DIALOGS */
-div.ui-dialog {
-  z-index: 200 !important;
-}
-div.ui-dialog:hover {
-  z-index: 5000 !important;
-}
 .ui-autocomplete .ui-menu-item-wrapper,
 .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
   cursor: pointer;
