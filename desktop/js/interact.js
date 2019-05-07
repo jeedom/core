@@ -31,13 +31,17 @@ $('#in_searchInteract').keyup(function () {
   
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide();
+  $('.panel-collapse').attr('data-show',0);
   $('.interactDisplayCard .name').each(function(){
     var text = $(this).text().toLowerCase();
     text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     if(text.indexOf(search.toLowerCase()) >= 0){
       $(this).closest('.interactDisplayCard').show();
+      $(this).closest('.panel-collapse').attr('data-show',1);
     }
   });
+  $('.panel-collapse[data-show=1]').collapse('show');
+  $('.panel-collapse[data-show=0]').collapse('hide');
   $('.interactListContainer').packery();
 });
 
