@@ -775,7 +775,7 @@ user::isBan();
 								}
 								echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
 								if ($configs['dns::token'] == '') {
-									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le market)}}</div>';
+									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 									continue;
 								}
 								echo '<div class="form-group col-xs-12">';
