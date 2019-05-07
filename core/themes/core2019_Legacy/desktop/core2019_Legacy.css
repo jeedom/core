@@ -121,7 +121,7 @@ span.cursor > i:hover {
 .eqLogic.eqLogic-widget .state,
 .scenario-widget .state,
 .eqLogic.eqLogic-widget p.state,
-.eqLogic.eqLogic-widget .iconCmd > i,
+.eqLogic.eqLogic-widget .iconCmd > i:not([class*="icon_"]),
 .eqLogic.eqLogic-widget .cmd,
 .eqLogic.eqLogic-widget .cmd-widget > center,
 .eqLogic.eqLogic-widget .cmd-widget .history {
