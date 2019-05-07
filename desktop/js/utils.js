@@ -195,7 +195,10 @@ $(function () {
   & !navigator.userAgent.match(/Windows Phone/i)
 ) {
   $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
+<<<<<<< HEAD
     if ($(window).width() < 768) return
+=======
+>>>>>>> 2dadf079ca7d5041353e16d89ebde1f10c0738b5
     event.preventDefault();
     event.stopPropagation();
     $(this).parent().siblings().removeClass('open');
@@ -204,23 +207,20 @@ $(function () {
 }
 
 $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open a',function(){
-  if ($(window).width() < 768) return
-  if ($(this).closest('.dropdown-submenu').is(':hover')) {
-    return;
-  }
   $(this).trigger('mouseenter');
 })
 
 $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',function(){
-  if ($(window).width() < 768) return
   $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
 })
 
 $('ul.nav li.dropdown').hover(function() {
-  if ($(window).width() < 768) return
   $(this).find('.dropdown-menu').first().stop(true, true).show();
 }, function() {
+<<<<<<< HEAD
   if ($(window).width() < 768) return
+=======
+>>>>>>> 2dadf079ca7d5041353e16d89ebde1f10c0738b5
   $(this).find('.dropdown-menu').first().stop(true, true).hide();
 });
 /*********************Gestion des dialogs********************************/
