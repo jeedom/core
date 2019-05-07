@@ -76,8 +76,8 @@ $date = array(
 		</div>
 	</div>
 	<center><div id="div_historyChart"></div></center>
-
-
+	
+	
 	<script>
 	$(".in_datepicker").datepicker();
 	$('#ui-datepicker-div').hide();
@@ -91,6 +91,7 @@ $date = array(
 		dateStart : $('#in_startDate').value(),
 		dateEnd :  $('#in_endDate').value(),
 		newGraph : true,
+		showLegend : false,
 		height : jQuery(window).height() - 270,
 		success: function (data) {
 			if(isset(data.cmd.display)){
@@ -200,13 +201,13 @@ $date = array(
 					modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
 				}
 			});
-          
-            $('.ui-dialog').resize(function() {
-              $('#div_historyChart').highcharts().setSize( $('#md_modal2').width()-15, $('#md_modal2').height()-40)
-            })
+			
+			$('.ui-dialog').resize(function() {
+				$('#div_historyChart').highcharts().setSize( $('#md_modal2').width()-15, $('#md_modal2').height()-40)
+			})
 		}
 	});
-
+	
 	
 </script>
 </div>
