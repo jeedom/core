@@ -1083,10 +1083,6 @@ button .fas.fa-plus-circle {
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
-nav.navbar-collapse:not(.in) {
-  background: transparent !important;
-}
-
 .navbar {
   min-height: 50px;
   height: 50px;
@@ -3057,16 +3053,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3074,11 +3070,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3101,6 +3097,16 @@ ul.dropdown-menu {
     height: 50px !important;
   }
 }
+@media screen and (max-width: 768px) {
+  .navbar-fixed-top .navbar-collapse {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+    max-height: none;
+    overflow: hidden auto;
+  }
+}
 
 @media screen and (max-width: 992px) {
   .objectListContainer div.cursor > center > i,
@@ -3114,5 +3120,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
