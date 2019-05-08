@@ -62,7 +62,7 @@ if (init('rescue', 0) == 0) {
 		foreach ($categories as $cat) {
 			$name = $cat[0];
 			$icon = $cat[1];
-			$plugin_menu .= '<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
+			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> {{' . $name . '}}</a>';
 			$plugin_menu .= '<ul class="dropdown-menu">';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
@@ -168,7 +168,7 @@ if (init('rescue', 0) == 0) {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-	
+
 	if (!isConnect()) {
 		if (init('rescue', 0) == 0 && is_dir(__DIR__ . '/../../core/themes/' .$jeedom_theme['current_desktop_theme'] . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css')) {
 			echo '<link id="bootstrap_theme_css" href="core/themes/'.$jeedom_theme['current_desktop_theme'].'/desktop/'.$jeedom_theme['current_desktop_theme'].'.css?md5='.md5(__DIR__ . '/../../core/themes/' . $jeedom_theme['current_desktop_theme'] . '/desktop/' . $jeedom_theme['current_desktop_theme'] . '.css').'" rel="stylesheet">';
@@ -251,7 +251,7 @@ if (init('rescue', 0) == 0) {
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php foreach (jeeObject::buildTree(null, false) as $object_li) {
 												echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . $object_li->getHumanName(true) . '</a></li>';
@@ -259,7 +259,7 @@ if (init('rescue', 0) == 0) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php	foreach (view::all() as $view_menu) {
 												echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon')) . ' ' . $view_menu->getName() . '</a></li>';
@@ -267,7 +267,7 @@ if (init('rescue', 0) == 0) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php foreach (planHeader::all() as $plan_menu) {
 												echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon') . ' ' . $plan_menu->getName()) . '</a></li>';
@@ -275,7 +275,7 @@ if (init('rescue', 0) == 0) {
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
+										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
 											<?php foreach (plan3dHeader::all() as $plan3d_menu) {
 												echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
@@ -286,7 +286,7 @@ if (init('rescue', 0) == 0) {
 								</ul>
 							</li>
 							<li class="dropdown cursor">
-								<a data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
+								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu" role="menu">
 									<?php if (isConnect('admin')) { ?>
 										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
@@ -307,7 +307,7 @@ if (init('rescue', 0) == 0) {
 							</li>
 							<?php if (isConnect('admin')) { ?>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
+									<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
@@ -319,7 +319,7 @@ if (init('rescue', 0) == 0) {
 							<?php } ?>
 							<?php if (isConnect('admin')) { ?>
 								<li class="dropdown cursor">
-									<a data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
+									<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
@@ -333,7 +333,7 @@ if (init('rescue', 0) == 0) {
 									</a>
 									<?php if (isConnect('admin')) { ?>
 										<ul class="dropdown-menu">
-											<li class="dropdown-submenu"><a data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
+											<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
 												<ul class="dropdown-menu">
 													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 													<li><a href="index.php?v=d&p=backup"><i class="far fa-save"></i> {{Sauvegardes}}</a></li>
@@ -485,4 +485,3 @@ if (init('rescue', 0) == 0) {
 		<?php } 	?>
 	</body>
 	</html>
-	
