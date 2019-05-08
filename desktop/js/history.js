@@ -97,7 +97,7 @@ $(".li_history .export").on('click', function () {
   window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null);
 });
 
-$('#bt_openCmdHistoryConfigure').on('click',function(){
+$('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"});
   $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
