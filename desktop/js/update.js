@@ -65,6 +65,7 @@ $('#bt_doUpdate').off('click').on('click', function () {
 });
 
 $('#bt_checkAllUpdate').off('click').on('click', function () {
+  if ($('a[href="#log"]').parent().hasClass('active')) $('a[href="#coreplugin"]').trigger('click')
   $.hideAlert();
   jeedom.update.checkAll({
     error: function (error) {
