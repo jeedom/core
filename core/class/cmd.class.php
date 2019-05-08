@@ -1224,6 +1224,15 @@ class cmd {
 			'#generic_type#' => $this->getGeneric_type(),
 			'#hide_name#' => '',
 		);
+		if ($_options != '') {
+			$options = jeedom::toHumanReadable($_options);
+			$options = is_json($options, $options);
+			if (is_array($options)) {
+				foreach ($options as $key => $value) {
+					$replace['#' . $key . '#'] = $value;
+				}
+			}
+		}		
 		if ($this->getConfiguration('listValue', '') != '') {
 			$listOption = '';
 			$elements = explode(';', $this->getConfiguration('listValue', ''));
@@ -1347,15 +1356,6 @@ class cmd {
 			$html .= template_replace($replace, $template);
 			if (trim($html) == '') {
 				return $html;
-			}
-			if ($_options != '') {
-				$options = jeedom::toHumanReadable($_options);
-				$options = is_json($options, $options);
-				if (is_array($options)) {
-					foreach ($options as $key => $value) {
-						$replace['#' . $key . '#'] = $value;
-					}
-				}
 			}
 			if (!isset($replace['#title#'])) {
 				$replace['#title#'] = '';
