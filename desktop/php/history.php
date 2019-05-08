@@ -18,7 +18,7 @@ $date = array(
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-		
+
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -72,7 +72,7 @@ $date = array(
 					?>
 				</ul>
 			</div>
-			
+
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
 					<div class="col-lg-4 col-sm-12 center">
@@ -141,6 +141,7 @@ $date = array(
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
 		<br/>
 		<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+		<a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm pull-right"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
 			<thead>
 				<tr>
@@ -152,7 +153,7 @@ $date = array(
 			<tbody>
 			</tbody>
 		</table>
-		
+
 	</div>
 </div>
 
