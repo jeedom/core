@@ -81,7 +81,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else if(data.code == -32006){
@@ -127,7 +127,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else{
@@ -340,7 +340,7 @@ jeedom.cmd.refreshValue = function(_params) {
       continue;
     }
     jeedom.cmd.update[_params[i].cmd_id](_params[i]);
-
+    
   }
   for(var i in _params){
     try {
@@ -608,7 +608,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-
+            
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -646,7 +646,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-
+      
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -781,34 +781,34 @@ jeedom.cmd.normalizeName = function(_tagname) {
   } else if (arrayOff.indexOf(name) >= 0) {
     return 'off';
   }
-  if (name.indexOf("lock") == 0) {
+  if (name.indexOf(' lock') != -1 || name.indexOf('lock ') != 0) {
     return 'on';
   }
-  if (name.indexOf("unlock") == 0) {
+  if (name.indexOf(' unlock') != -1 || name.indexOf('unlock ') != -1) {
     return 'off';
   }
-  if (name.indexOf("descendre") == 0) {
+  if (name.indexOf('descendre') != -1) {
     return 'off';
   }
-  if (name.indexOf("on") != -1) {
+  if (name.indexOf(' on') != -1 || (name.indexOf('on ') != -1) {
     return 'on';
   }
-  if (name.indexOf("off") != -1) {
+  if (name.indexOf(' off') != -1 || name.indexOf('off ') != -1) {
     return 'off';
   }
-  if (name.indexOf("désactiver") != -1) {
+  if (name.indexOf('désactiver') != -1) {
     return 'off';
   }
-  if (name.indexOf("desactiver") != -1) {
+  if (name.indexOf('desactiver') != -1) {
     return 'off';
   }
-  if (name.indexOf("activer") != -1) {
+  if (name.indexOf('activer') != -1) {
     return 'on';
   }
-  if (name.indexOf("ouvrir") != -1) {
+  if (name.indexOf('ouvrir') != -1 ) {
     return 'ouvrir';
   }
-  if (name.indexOf("fermer") != -1) {
+  if (name.indexOf('fermer') != -1) {
     return 'fermer';
   }
   return _tagname;
