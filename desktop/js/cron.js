@@ -138,13 +138,13 @@ function addCron(_cron) {
   }
   var tr = '<tr id="' + init(_cron.id) + '">';
   tr += '<td style="width:50px;"><span class="cronAttr label label-info" data-l1key="id"></span></td>';
-  tr += '<td style="width:50px;"><center>';
+  tr += '<td style="width:65px;"><center>';
   tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked '+disabled+'/>';
   tr += '</center></td>';
   tr += '<td>';
   tr += init(_cron.pid);
   tr += '</td>';
-  tr += '<td style="width:95px;">';
+  tr += '<td style="width:100px;">';
   tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" '+disabled+' /></span> ';
   tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />';
   tr += '</td>';
