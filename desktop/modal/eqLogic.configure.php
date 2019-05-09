@@ -155,74 +155,76 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 		?>
 		<div role="tabpanel" class="tab-pane" id="eqLogic_display">
 			<br/>
-			<legend><i class="fas fa-tint"></i> {{Widget}}</legend>
-			<table class="table table-bordered table-condensed">
-				<thead>
-					<tr>
-						<th></th>
+			<?php if(is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0){ ?>
+				<legend><i class="fas fa-tint"></i> {{Widget}}</legend>
+				<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th></th>
+							<?php
+							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+								echo '<th style="width:20%">{{' . $value['name'] . '}}';
+								echo '</th>';
+							}
+							?>
+						</tr>
+					</thead>
+					<tbody>
 						<?php
-						foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-							echo '<th style="width:20%">{{' . $value['name'] . '}}';
-							echo '</th>';
+						if (is_array($eqLogic->widgetPossibility('parameters'))) {
+							foreach ($eqLogic->widgetPossibility('parameters') as $pKey => $parameter) {
+								echo '<tr>';
+								echo '<td>';
+								echo $parameter['name'];
+								echo '</td>';
+								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
+									echo '<td>';
+									if (!isset($parameter['allow_displayType'])) {
+										continue;
+									}
+									if (!isset($parameter['type'])) {
+										continue;
+									}
+									if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
+										continue;
+									}
+									if ($parameter['allow_displayType'] === false) {
+										continue;
+									}
+									$default = '';
+									$display = '';
+									if (isset($parameter['default'])) {
+										$display = 'display:none;';
+										$default = $parameter['default'];
+										echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterDefault" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-default" checked /></label>';
+									}
+									switch ($parameter['type']) {
+										case 'color':
+										if ($parameter['allow_transparent']) {
+											echo '<span class="advanceWidgetParameter" style="' . $display . '">';
+											echo ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterColorTransparent" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-transparent" /></label>';
+											echo '<input type="color" class="eqLogicAttr pull-right inline-block advanceWidgetParameterColor" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '" />';
+											echo '</span>';
+										} else {
+											echo '<input type="color" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+										}
+										break;
+										case 'input':
+										echo '<input class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+										break;
+										case 'number':
+										echo '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+										break;
+									}
+									echo '</td>';
+								}
+								echo '</tr>';
+							}
 						}
 						?>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					if (is_array($eqLogic->widgetPossibility('parameters'))) {
-						foreach ($eqLogic->widgetPossibility('parameters') as $pKey => $parameter) {
-							echo '<tr>';
-							echo '<td>';
-							echo $parameter['name'];
-							echo '</td>';
-							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<td>';
-								if (!isset($parameter['allow_displayType'])) {
-									continue;
-								}
-								if (!isset($parameter['type'])) {
-									continue;
-								}
-								if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
-									continue;
-								}
-								if ($parameter['allow_displayType'] === false) {
-									continue;
-								}
-								$default = '';
-								$display = '';
-								if (isset($parameter['default'])) {
-									$display = 'display:none;';
-									$default = $parameter['default'];
-									echo '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterDefault" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-default" checked /></label>';
-								}
-								switch ($parameter['type']) {
-									case 'color':
-									if ($parameter['allow_transparent']) {
-										echo '<span class="advanceWidgetParameter" style="' . $display . '">';
-										echo ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterColorTransparent" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-transparent" /></label>';
-										echo '<input type="color" class="eqLogicAttr pull-right inline-block advanceWidgetParameterColor" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '" />';
-										echo '</span>';
-									} else {
-										echo '<input type="color" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-									}
-									break;
-									case 'input':
-									echo '<input class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-									break;
-									case 'number':
-									echo '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-									break;
-								}
-								echo '</td>';
-							}
-							echo '</tr>';
-						}
-					}
-					?>
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			<?php } ?>
 			<?php
 			if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
 				?>
@@ -258,7 +260,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-
+		
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -395,7 +397,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-
+						
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -511,7 +513,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 });
 
 $('#bt_eqLogicConfigureSave').on('click', function () {
-
+	
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
