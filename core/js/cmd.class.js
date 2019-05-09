@@ -814,7 +814,7 @@ jeedom.cmd.normalizeName = function(_tagname) {
   if (name.indexOf('descendre') != -1) {
     return 'off';
   }
-  if (name.indexOf(' on') != -1 || (name.indexOf('on ') != -1) {
+  if (name.indexOf(' on') != -1 || name.indexOf('on ') != -1) {
     return 'on';
   }
   if (name.indexOf(' off') != -1 || name.indexOf('off ') != -1) {
