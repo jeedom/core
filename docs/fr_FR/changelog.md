@@ -2,6 +2,14 @@
 Changelog
 =========
 
+3.3.25
+=====
+
+- Correction de bug
+- Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
+- Ajout des classes pour les supports de la couleur dans le plugin mode
+
+
 3.3.24
 =====
 
