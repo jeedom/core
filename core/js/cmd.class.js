@@ -790,11 +790,7 @@ jeedom.cmd.normalizeName = function(_tagname) {
   if (name.indexOf('descendre') != -1) {
     return 'off';
   }
-<<<<<<< HEAD
   if (name.indexOf(' on') != -1 || name.indexOf('on ') != -1) {
-=======
-  if (name.indexOf(' on') != -1 || (name.indexOf('on ') != -1) {
->>>>>>> 25cbfba3bd985003219c96cdc1209e7ca8f625c4
     return 'on';
   }
   if (name.indexOf(' off') != -1 || name.indexOf('off ') != -1) {
