@@ -22,7 +22,12 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	unautorizedInDemo();
-	$pathfile = realpath(calculPath(urldecode(init('pathfile'))));
+	$pathfile = calculPath(urldecode(init('pathfile')));
+	if(strpos($pathfile,'*') !== false){
+		$pathfile = realpath(str_replace('*','',$pathfile)).'/*';
+	}else{
+		$pathfile = realpath($pathfile);
+	}
 	if ($pathfile === false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
