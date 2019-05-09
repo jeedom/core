@@ -281,6 +281,7 @@ $("#md_reportBug").dialog({
     $(this).dialog({
       height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
       width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
+      position: { my: "center bottom-10", at: "center bottom", of: window },
     });
   },
   beforeClose: function (event, ui) {
@@ -303,6 +304,7 @@ $("#md_pageHelp").dialog({
     $(this).dialog({
       height: (jQuery(window).height() - 100),
       width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+      position: { my: "center bottom-10", at: "center bottom", of: window },
     });
   },
   beforeClose: function (event, ui) {
@@ -324,6 +326,7 @@ $("#md_modal").dialog({
     $(this).dialog({
       height: (jQuery(window).height() - 125),
       width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+      position: {my: 'center bottom-50', at: 'center bottom', of: window},
     });
   },
   beforeClose: function (event, ui) {
@@ -345,6 +348,7 @@ $("#md_modal2").dialog({
     $(this).dialog({
       height: (jQuery(window).height() - 125),
       width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+      position: {my: 'center bottom-50', at: 'center bottom',  of: window},
     });
   },
   beforeClose: function (event, ui) {
@@ -365,7 +369,8 @@ $("#md_modal3").dialog({
     $(this).closest( ".ui-dialog" ).find(":button").blur();
     $(this).dialog({
       height : (jQuery(window).height() - 125),
-      width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000
+      width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+      position: {my: 'center bottom-50', at: 'center bottom',  of: window},
     });
   },
   beforeClose: function (event, ui) {
