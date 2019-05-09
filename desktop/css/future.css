@@ -35,24 +35,23 @@
   --lb-yellow-color: rgb(250, 225, 0);
 }
 
-.info,
-[data-coloredicons="1"] .icon_blue {
+.icon_blue {
   color: var(--al-info-color) !important;
 }
-.success,
-[data-coloredicons="1"] .icon_green {
+
+.icon_green {
   color: var(--bt-success-color) !important;
 }
-.warning,
-[data-coloredicons="1"] .icon_orange {
+
+.icon_orange {
   color: var(--al-warning-color) !important;
 }
-.danger,
-[data-coloredicons="1"] .icon_red {
+
+.icon_red {
   color: var(--al-danger-color) !important;
 }
-.yellow,
-[data-coloredicons="1"] .icon_yellow {
+
+.icon_yellow {
   color: var(--lb-yellow-color) !important;
 }
 
