@@ -805,34 +805,34 @@ jeedom.cmd.normalizeName = function(_tagname) {
   } else if (arrayOff.indexOf(name) >= 0) {
     return 'off';
   }
-  if (name.indexOf("lock") == 0) {
+  if (name.indexOf(' lock') != -1 || name.indexOf('lock ') != 0) {
     return 'on';
   }
-  if (name.indexOf("unlock") == 0) {
+  if (name.indexOf(' unlock') != -1 || name.indexOf('unlock ') != -1) {
     return 'off';
   }
-  if (name.indexOf("descendre") == 0) {
+  if (name.indexOf('descendre') != -1) {
     return 'off';
   }
-  if (name.indexOf("on") != -1) {
+  if (name.indexOf(' on') != -1 || (name.indexOf('on ') != -1) {
     return 'on';
   }
-  if (name.indexOf("off") != -1) {
+  if (name.indexOf(' off') != -1 || name.indexOf('off ') != -1) {
     return 'off';
   }
-  if (name.indexOf("désactiver") != -1) {
+  if (name.indexOf('désactiver') != -1) {
     return 'off';
   }
-  if (name.indexOf("desactiver") != -1) {
+  if (name.indexOf('desactiver') != -1) {
     return 'off';
   }
-  if (name.indexOf("activer") != -1) {
+  if (name.indexOf('activer') != -1) {
     return 'on';
   }
-  if (name.indexOf("ouvrir") != -1) {
+  if (name.indexOf('ouvrir') != -1 ) {
     return 'ouvrir';
   }
-  if (name.indexOf("fermer") != -1) {
+  if (name.indexOf('fermer') != -1) {
     return 'fermer';
   }
   return _tagname;
