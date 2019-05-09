@@ -218,7 +218,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
   $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-    if(!isNaN(serie.options.id)){
+    if(serie.options && !isNaN(serie.options.id)){
       var cmd_id = serie.options.id;
       addChart(cmd_id, 0);
       addChart(cmd_id, 1);
@@ -275,7 +275,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-
+  
 }
 
 /**************TIMELINE********************/
