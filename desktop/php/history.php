@@ -139,9 +139,12 @@ $date = array(
 		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
-		<br/>
-		<a class="btn btn-sm btn-success pull-right" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-		<a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm pull-right"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+        <div class="input-group input-group-sm">
+			<span class="input-group-btn">
+				<a class="btn btn-sm btn-success pull-right roundedRight" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
+				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm pull-right roundedLeft"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+            </span>
+        </div>
 		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
 			<thead>
 				<tr>
