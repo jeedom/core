@@ -1080,6 +1080,11 @@ button .fas.fa-plus-circle {
 #historytab .label.displayObject i:hover {
   color: inherit !important;
 }
+#timelinetab .cmd,
+#timelinetab .scenario {
+  font-size: 14px;
+  color: var(--txt-color) !important;
+}
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
