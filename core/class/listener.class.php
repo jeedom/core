@@ -169,7 +169,7 @@ class listener {
 			$option = $this->getOption();
 		}
 		if (isset($option['background']) && $option['background'] == false) {
-			$this->execute($_event, $_value);
+			$this->execute($_event, $_value,$_datetime);
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' "value=' . escapeshellarg($_value) . '"';
