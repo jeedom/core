@@ -65,7 +65,7 @@ function initEquipment(_object_id) {
             div += '<div class="div_displayEquipement">';
             div += '<legend>';
             var icon = '';
-            if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
+            if (isset(objects_info[id]) && isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
               icon = objects_info[id].display.icon;
             }
             div += '<span>'+icon+'</span> '+objects_info[id].name;
