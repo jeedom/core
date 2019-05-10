@@ -582,6 +582,19 @@ a.action.ui-btn {
   color: var(--al-danger-color) !important;
 }
 
+.alert-sucess {
+  background-color: var(--al-success-color);
+  color: var(--linkHoverLight-color);
+}
+
+.alert-danger {
+  background-color: var(--al-danger-color);
+  color: var(--linkHoverLight-color);
+}
+
+:not(#div_alert).alert {
+  padding: 0px 7px 0px 7px !important;
+}
 
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
