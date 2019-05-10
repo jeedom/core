@@ -11,12 +11,12 @@ function initScenario() {
       $('#div_displayScenario').packery({gutter : 0});
     }
   });
-
-  $(window).on("orientationchange", function (event) {
+  
+  $(window).on("resize", function (event) {
     setTileSize('.scenario');
     $('#div_displayScenario').packery({gutter : 0});
   });
-
+  
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     var search = $(this).value();
     if(search == ''){
@@ -37,8 +37,8 @@ function initScenario() {
     });
     $('#div_displayScenario').packery();
   });
-
-
+  
+  
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('');
     $('#in_searchWidget').keyup();

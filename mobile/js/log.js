@@ -13,7 +13,7 @@ function initLog(_log) {
 			panel(li);
 		}
 	});
-
+	
 	if (isset(_log)) {
 		setTimeout(function(){
 			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 40);
@@ -24,7 +24,7 @@ function initLog(_log) {
 				control : $('#bt_globalLogStopStart'),
 			});
 		}, 1);
-
+		
 		$("#bt_clearLog").off('click').on('click', function(event) {
 			jeedom.log.clear({
 				log : _log,
@@ -38,7 +38,7 @@ function initLog(_log) {
 				}
 			});
 		});
-
+		
 		$("#bt_removeLog").off('click').on('click', function(event) {
 			jeedom.log.remove({
 				log : _log,
@@ -51,7 +51,7 @@ function initLog(_log) {
 			});
 		});
 	}
-
+	
 	$("#bt_removeAllLog").off('click').on('click', function(event) {
 		var result = confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs ?}}");
 		if (result) {
@@ -65,11 +65,10 @@ function initLog(_log) {
 			});
 		}
 	});
-
-	$(window).on("orientationchange", function (event) {
+	
+	$(window).on("resize", function (event) {
 		setTimeout(function(){
 			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 35);
 		}, 100);
 	});
 }
-

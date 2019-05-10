@@ -33,7 +33,7 @@ function initView(_view_id) {
     $('#bottompanel').panel('open');
   }
   
-  $(window).on("orientationchange", function (event) {
+  $(window).on("resize", function (event) {
     setTimeout(function(){
       if (deviceInfo.type == 'phone') {
         $('.chartContainer').width((deviceInfo.width - 20));
