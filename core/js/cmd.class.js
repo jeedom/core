@@ -805,7 +805,7 @@ jeedom.cmd.normalizeName = function(_tagname) {
   } else if (arrayOff.indexOf(name) >= 0) {
     return 'off';
   }
-  if (name.indexOf(' lock') != -1 || name.indexOf('lock ') != 0) {
+  if (name.indexOf(' lock') != -1 || name.indexOf('lock ') != -1) {
     return 'on';
   }
   if (name.indexOf(' unlock') != -1 || name.indexOf('unlock ') != -1) {
