@@ -136,7 +136,7 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public static function check($_event, $_value, $_datetime) {
+	public static function check($_event, $_value, $_datetime = null) {
 		$listeners = self::searchEvent($_event);
 		if (count($listeners) > 0) {
 			foreach ($listeners as $listener) {
