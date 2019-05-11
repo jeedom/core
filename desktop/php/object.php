@@ -92,19 +92,25 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup>
+							</label>
 							<div class="col-sm-1">
 								<input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Masque cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.}}"></i></sup>
+							</label>
 							<div class="col-sm-1">
 								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icones widgets colorées' dans interface si nécessaire.}}"></i></sup>
+							</label>
 							<div class="col-xs-1">
 								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 							</div>
@@ -112,6 +118,7 @@ $allObject = jeeObject::all();
 								<div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
 							</div>
 						</div>
+						<br>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleurs personnalisées}}</label>
 							<div class="col-sm-1">
@@ -119,7 +126,9 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Couleur de l’objet et des équipements qui lui sont rattachés.}}"></i></sup>
+							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
 							</div>
@@ -130,6 +139,7 @@ $allObject = jeeObject::all();
 								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
 							</div>
 						</div>
+						<br>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Image}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
