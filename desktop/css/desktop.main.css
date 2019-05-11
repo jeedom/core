@@ -2620,11 +2620,6 @@ div.cmd > div.center-block {
   box-shadow: 0px 0px 0px 1500px var(--shd-color) !important;
 }
 
-.ui-dialog.ui-widget-content .row {
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .modal-header {
   border-bottom-width: 0 !important;
 }
