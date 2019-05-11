@@ -157,7 +157,7 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change
 $(".bt_regenerate_api").on('click', function (event) {
   $.hideAlert();
   var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clef API de }}'+el.attr('data-plugin')+' ?', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de }}'+el.attr('data-plugin')+' ?', function (result) {
     if (result) {
       $.ajax({
         type: "POST",
