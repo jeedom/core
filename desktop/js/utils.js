@@ -894,6 +894,7 @@ function chooseIcon(_callback, _params) {
     replaceAr.forEach(function(element) {
       icon = icon.replace(element, '')
     })
+    icon = icon.trim().replace(new RegExp('  ', 'g'), ' ')
     icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
     url += '&selectIcon=' + icon;
   }
