@@ -236,8 +236,8 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clef d'installation}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clé d'installation}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Clé d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
@@ -317,8 +317,8 @@ user::isBan();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Clé API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
@@ -331,8 +331,8 @@ user::isBan();
 					</div>
 
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API Pro}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
@@ -356,8 +356,8 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef Market}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clef Market de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé Market}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Clé Market de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
@@ -388,8 +388,8 @@ user::isBan();
 								continue;
 							}
 							echo '<div class="form-group">';
-							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clef API}} '.$plugin->getName().' ';
-							echo '<sup><i class="fas fa-question-circle tooltips" title="{{Clef API pour le plugin}} '.$plugin->getName().'"></i></sup>';
+							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
+							echo '<sup><i class="fas fa-question-circle tooltips" title="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
 							echo '</label>';
 							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
 							echo '<div class="input-group">';
@@ -1363,7 +1363,7 @@ user::isBan();
 					</div>
 
 					<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
-					
+
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
 						<thead>
 							<tr>
@@ -1477,7 +1477,7 @@ user::isBan();
 					<table class="table table-condensed table-bordered" id="table_objectSummary" >
 						<thead>
 							<tr>
-								<th>{{Clef}}</th>
+								<th>{{Clé}}</th>
 								<th>{{Nom}}</th>
 								<th>{{Calcul}}</th>
 								<th>{{Icône}}</th>
