@@ -161,8 +161,9 @@ if (!is_array($remove_history)) {
 	<div role="tabpanel" class="tab-pane" id="history">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
+		<label class="label-sm"><i class="fas fa-trash"></i> {{Historique des suppressions}}</label>
 		<a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
-		<br/><br/>
+		<br/>
 		<table class="table table-condensed table-bordered tablesorter" id="table_removeHistory">
 			<thead>
 				<tr>
