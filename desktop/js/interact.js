@@ -28,7 +28,7 @@ $('#in_searchInteract').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  
+
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide();
   $('.panel-collapse').attr('data-show',0);
@@ -62,9 +62,14 @@ $('#bt_closeAll').off('click').on('click', function () {
 });
 
 $('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
   chooseIcon(function (_icon) {
     $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  });
+  },{icon:_icon});
 });
 
 $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
@@ -126,7 +131,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object){
           $('.nav.nav-tabs').contextMenu({
             selector: 'li',
@@ -269,11 +274,10 @@ $("#bt_saveInteract").on('click', function () {
   $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
     interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
   });
-  
+
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
-  console.log(interact)
-  
+
   jeedom.interact.save({
     interact: interact,
     error: function (error) {

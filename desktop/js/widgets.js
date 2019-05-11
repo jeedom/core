@@ -23,7 +23,7 @@ $('#in_searchWidgets').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  
+
   $('.widgetsDisplayCard').hide();
   $('.panel-collapse').attr('data-show',0);
   $('.widgetsDisplayCard .name').each(function(){
@@ -77,7 +77,7 @@ $(function(){
           wg = _widgets[i]
           contextmenuitems[wg.id] = {'name': wg.name}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -109,9 +109,14 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 });
 
 $('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
   chooseIcon(function (_icon) {
     $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  });
+  },{icon:_icon});
 });
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
