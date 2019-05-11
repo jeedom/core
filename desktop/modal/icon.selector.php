@@ -42,25 +42,26 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 	<?php } ?>
 </ul>
 
-<div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" id="icon">
-		<div class="input-group" style="margin-bottom:5px;">
-			<div class="input-group-btn">
-				<select class="form-control roundedLeft" style="width : 200px;" id="sel_colorIcon">
-					<option value="">{{default}}</option>
-					<option value="icon_green">{{Vert}}</option>
-					<option value="icon_blue">{{Bleu}}</option>
-					<option value="icon_orange">{{Orange}}</option>
-					<option value="icon_red">{{Rouge}}</option>
-					<option value="icon_yellow">{{Jaune}}</option>
-				</select>
-			</div>
-			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_iconSelectorSearch">
-			<div class="input-group-btn">
-				<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
-			</div>
-		</div>
+<div class="tab-content" style="height:calc(100% - 20px);overflow-y:scroll;">
 
+	<div id="mySearch" class="input-group" style="margin-left:6px;margin-top:6px">
+		<div class="input-group-btn">
+			<select class="form-control roundedLeft" style="width : 200px;" id="sel_colorIcon">
+				<option value="">{{default}}</option>
+				<option value="icon_green">{{Vert}}</option>
+				<option value="icon_blue">{{Bleu}}</option>
+				<option value="icon_orange">{{Orange}}</option>
+				<option value="icon_red">{{Rouge}}</option>
+				<option value="icon_yellow">{{Jaune}}</option>
+			</select>
+		</div>
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_iconSelectorSearch">
+		<div class="input-group-btn">
+			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+		</div>
+	</div>
+
+	<div role="tabpanel" class="tab-pane active" id="icon">
 		<?php
 		foreach (ls('core/css/icon', '*') as $dir) {
 			if (!is_dir('core/css/icon/' . $dir) || !file_exists('core/css/icon/' . $dir . '/style.css')) {
@@ -351,7 +352,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 </div>
 
 <script>
-$('#sel_colorIcon').off('change').on('change',function(){
+$('#sel_colorIcon').off('change').on('change',function() {
 	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
 });
 
@@ -392,15 +393,27 @@ if(tabimg && tabimg == 1){
 	$('#mod_selectIcon ul li a[href="#img"]').click();
 }
 
-if (selectIcon != "0") {
-	$(selectIcon).closest('.divIconSel').addClass('iconSelected')
+$('#mod_selectIcon').css('overflow', 'hidden')
+$(function() {
+	//move select/search in modal bottom:
+    var buttonSet = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('.ui-dialog-buttonpane')
+    buttonSet.find('#mySearch').remove()
+    var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
+	buttonSet.append(mySearch)
 
-	setTimeout(function() {
-		elem = $('div.divIconSel.iconSelected')
-		container = $('#mod_selectIcon')
-		pos = elem.position().top + container.scrollTop() - container.position().top
-		container.animate({scrollTop: pos})
-	}, 750);
+	//auto select actual icon:
+	if (selectIcon != "0") {
+		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
 
-}
+		setTimeout(function() {
+			elem = $('div.divIconSel.iconSelected')
+			container = $('#mod_selectIcon > .tab-content')
+			pos = elem.position().top + container.scrollTop() - container.position().top
+			container.animate({scrollTop: pos})
+		}, 250);
+	}
+})
+
+
+
 </script>
