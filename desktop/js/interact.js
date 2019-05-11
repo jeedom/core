@@ -272,8 +272,7 @@ $("#bt_saveInteract").on('click', function () {
   
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
-  console.log(interact)
-  
+
   jeedom.interact.save({
     interact: interact,
     error: function (error) {
