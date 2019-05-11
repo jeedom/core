@@ -62,7 +62,7 @@ function initEquipment(_object_id) {
               continue;
             }
             var id = i.split('::')[1]
-            if (!isset(objects_info[id].name)) continue
+            if (!isset(objects_info[id]) || !isset(objects_info[id].name)) continue
             div += '<div class="div_displayEquipement">';
             div += '<legend>';
             var icon = '';
