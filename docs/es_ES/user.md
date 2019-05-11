@@ -4,8 +4,8 @@ director
 
 Accesible por la Administración → Usuarios.
 
-En haut à droite vous avez un bouton pour ajouter un utilisateur, un
-pour sauvegarder et un bouton pour ouvrir un accès au support.
+En la parte superior derecha tienes un botón para añadir un usuario, otro
+para guardar y un botón para abrir el acceso a soporte.
 
 A continuación tiene una tabla:
 
@@ -31,7 +31,7 @@ A continuación tiene una tabla:
 
 -   ** ** clave de la API: API personal clave de usuario
 
--   ** ** autenticación de doble indica si la autenticación de dos factores
+-   **Doble autenticación**: indica si la doble autenticación 
     está activo (OK) o no (NOK)
 
 -   ** ** Fecha de la última conexión: Fecha de la última conexión

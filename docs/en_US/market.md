@@ -1,8 +1,8 @@
-Doc a bit special because it will only deal with your page
-market profile.
+Doc un peu particulière car elle va traiter uniquement de votre page
+profil du Market.
 
-Available by going to your username and then profile from the
-market (a bit like Jeedom).
+Disponible en allant sur votre nom d’utilisateur puis profil à partir du
+Market (un peu comme sur Jeedom).
 
 It is broken down into several parts:
 
@@ -14,17 +14,17 @@ profile:
 
 -   **Profile**
 
-    -   **Login**: Your login on the market, it can not be changed
+    -   **Login** : Votre login sur le Market, il ne peut être changé
 
     -   **Name**: Your name (this information is only useful for
-        make the mails more fun)
+        rendre les emails plus sympa)
 
     -   **First name**: Your first name (this information is only useful
-        to make the mails more fun)
+        pour rendre les emails plus sympa)
 
     -   **Username on the forum**: Your nickname on the forum
 
-    -   **Email**: Your email
+    -   **Email** : Votre email
 
     -   **Language**: Your language
 
@@ -35,25 +35,25 @@ For developers:
 
 -   **Username on the forum**: Your nickname on the forum
 
--   **Public email**: Your email to receive any event
+-   **Email public** : Votre email pour recevoir des éventuelles
     communications from us
 
--   **Paypal account**: Your PayPal account email (only used
-    to pay the developers)
+-   **Compte paypal** : Votre email de compte Paypal (uniquement utilisé
+    pour payer les développeurs)
 
 For the pros:
 
--   **Installer mail account**: Your contact email pro
+-   **Compte email installateur** : Votre email de contact pro
 
 -   **Recipient of support requests**: who will receive the
-    support emails (end customer, installer or both)
+    emails de support (client final, installateur ou les deux)
 
     -   ** ** Terms
 
 -   **User**: general conditions of use (pay attention to
     read them carefully because they engage you)
 
--   **Developer**: general conditions of use for
+-   **Développeur** : conditions générales d’utilisation pour les
     developers
 
     -   ** ** Tickets
@@ -62,10 +62,10 @@ For the pros:
     as well as your limit
 
 -   **Support**: button to send a support request (accessible
-    also by the exclamation mark at the top right on the market or
+    aussi par le point d’exclamation en haut à droite sur le Market ou
     on your Jeedom)
 
-    -   **Access to betas**
+    -   **Accès aux betas**
 
 -   **Enable access to beta plugins**: Enable access to
     betas plugins (be careful, you will not have access to support)
@@ -96,9 +96,9 @@ My Jeedoms
 
 > **Tip**
 >
-> It is possible that the market sometimes asks you to reset
-> your installation keys, it's normal, just follow what he
-> asks you
+> Il est possible que le Market vous demande parfois de remettre à zéro
+> vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il
+> vous demande
 
 -   **My Jeedoms**: this is where all your Jeedom are listed
 
@@ -116,17 +116,17 @@ My Jeedoms
 
     -   **URL**: lists the different Jeedom access URLs.
 
-    -   **DNS Server**: tells you if the DNS server you are using
+    -   **Serveur DNS** : vous indique le serveur DNS auquel vous
         are attached
 
     -   **DNS status**: allows to see the status of the DNS
 
     -   **Creation date**: date of creation of this Jeedom on your
-        market account (as a reminder this is done automatically when
-        you link it to the market)
+        compte Market (pour rappel cela se fait automatiquement lorsque
+        vous le liez au Market)
 
     -   **Last update**: last Jeedom communication with
-        the market
+        le Market
 
     -   **Hardware**: Hardware name of the Jeedom
 
@@ -139,9 +139,9 @@ My Jeedoms
 My backups
 ===========
 
-On this tab you can consult the backups present on the
-market and download one. Below you have access to the link for
-buy 1.3.6 or 12 months of cloud backup subscription
+Sur cette onglet vous pouvez consulter les backups présents sur le
+Market et en télécharger un. En dessous vous avez accès au lien pour
+acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
 
 My SMS / Calls
 ==============
@@ -158,9 +158,9 @@ invoice or receipt mail
 
 > **Important**
 >
-> If you buy an official plugin you will receive an invoice. In
-> revenge for a third party plugin is a receipt, for the bill it is necessary
-> ask the developer
+> Si vous achetez un plugin officiel vous recevrez une facture. En
+> revanche pour un plugin tiers c’est un reçu, pour la facture il faut
+> la demander au développeur
 
 You can also from this tab enter a promo code (a code
 for a plugin for example that the developer could send you) and

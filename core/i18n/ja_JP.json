@@ -8,17 +8,13 @@
         "Message": "メッセージ",
         "Valeur": "値",
         "Aucun": "いいえ",
-        "Erreur execution de la commande ": "コマンド実行エラー",
-        "Alert sur la commande ": "コマンドのアラート",
+        "Erreur exécution de la commande ": "コマンドの実行エラー",
+        "Alerte sur la commande ": "Alerte sur la commande",
         " niveau ": "レベル",
-        "[jeedom] Message de ": "【Jeedom]メッセージ",
         "pendant plus de ": "より多くのため",
         " minute(s)": "分（S）",
-        "La commande n'est pas dans la plage de valeur autorisée : ": "コマンドは、値の許容範囲内にありません。",
-        "[jeedom] ": "[Jeedom]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "障害者施設 - コマンドを実行していない：[ガーデン] [カメラのExt] [オン]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "障害者施設 - コマンドを実行していない：[ガーデン] [カメラのExt] [切]",
-        "Erreur exécution de la commande ": "コマンドの実行エラー",
+        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeurs autorisées :",
+        "Equipement désactivé - impossible d'exécuter la commande : ": "Equipement désactivé - impossible d'exécuter la commande :",
         "Impossible de traduire la couleur en code hexadécimal :": "進コードで色を変換することができません。"
     },
     "core/class/scenario.class.php": {
@@ -50,12 +46,14 @@
         "Inconnue": "不明",
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "あなたは2つの起動悪魔の間に少なくとも45秒間待つ必要があります",
         "Erreur sur la fonction deamon_start du plugin : ": "プラグインのdeamon_start機能上のエラー：",
-        "Veuillez executer le script : ": "スクリプトを実行してください：",
+        "Veuillez exécuter le script : ": "Veuillez exécuter le script :",
         "Lancement de : ": "起動します。",
         "Gestion automatique désactivée": "自動管理オフ",
         "Les crons et démons sont désactivés": "cronと悪魔が無効になっています",
         "Erreur sur la fonction cron du plugin : ": "プラグインのcronの機能上のエラー：",
-        "Erreur sur la fonction cron15 du plugin : ": "プラグインのcron15機能上のエラー："
+        "Erreur sur la fonction cron15 du plugin : ": "プラグインのcron15機能上のエラー：",
+        "Erreur sur la fonction cron5 du plugin : ": "Erreur sur la fonction cron5 du plugin :",
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement :"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "型サブ要素の実行[条件]：",
@@ -89,11 +87,12 @@
         " avec comme option(s) : ": "オプション（複数可）などと：",
         "Affectation de la variable ": "変数の割り当て",
         " => ": "=>",
-        "Execution du lancement en arriere plan : ": "バックグラウンドで起動の実行：",
+        "Exécution du lancement en arrière plan : ": "Exécution du lancement en arrière plan :",
         "Lancement provoqué par le scénario  : ": "シナリオによって引き起こさ起動します。",
         "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "不可能なシナリオにアクション。見つかったシナリオ -  IDをチェックしてください：",
         "Arrêt forcé du scénario : ": "強制シャットダウンのシナリオ：",
-        "Commande non trouvée": "コマンドが見つかりません。"
+        "Commande non trouvée": "コマンドが見つかりません。",
+        "Scénario : ": "Scénario :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "繰り返しに起因するいかなる業績株式ません",
@@ -104,7 +103,9 @@
         "Expression non valide : ": "無効な式：",
         "SI": "SI",
         "ALORS": "THEN",
-        "SINON": "その他の方法"
+        "SINON": "その他の方法",
+        "Expression non valide  (": "Expression non valide  (",
+        ") trouvée dans le scénario : ": ") trouvée dans le scénario :"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "シナリオを選択"
@@ -133,7 +134,8 @@
         "Plugins": "プラグイン",
         "Autre": "他の",
         "Déconnexion": "ログアウト",
-        "Plan 3D": "3D地図"
+        "Plan 3D": "3D地図",
+        "3d": "3d"
     },
     "mobile/html/deamon.html": {
         "Nom": "表題",
@@ -166,7 +168,9 @@
         "Alertes": "通知",
         "Analyse équipement": "分析機器",
         "Messages": "投稿",
-        "Message(s)": "メッセージ（S）"
+        "Message(s)": "メッセージ（S）",
+        "Scénarios": "シナリオ",
+        "Scénario": "シナリオ"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "停車"
@@ -198,18 +202,21 @@
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "エラーシナリオ：全てのシナリオが無効になっています。 [ツール]  - > [シナリオを再活性化します",
         "Date système (dernière heure enregistrée)": "システムの日付（最後に記録された時間）",
         "OK ": "OK",
-        "Démarrage de jeedom": "開始jeedom",
-        "Arret des crons": "cronのを停止",
+        "Démarrage de Jeedom": "Démarrage de Jeedom",
+        "Arrêt des crons": "Arrêt des crons",
         "Restauration du cache": "食品キャッシュ",
-        "Nettoyage du cache des péripheriques USB": "キャッシュクリーナーのUSB周辺機器",
-        "Nettoyage du cache des péripheriques Bluetooth": "キャッシュのBluetooth周辺機器のクリーニング",
+        "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des périphériques USB",
+        "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des périphériques Bluetooth",
         "Démarrage des processus internet de jeedom": "インターネットプロセスjeedomを開始",
         "Ecriture du fichier ": "ファイルの書き込み",
         "Vérification de la configuration réseau interne": "内部ネットワーク構成を確認します",
-        "Envoi de l'evenement de démarrage": "送信イベントを開始",
+        "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
         "Démarrage des plugins": "プラグインを起動します",
         "Test de connexion au market": "接続テスト市場",
-        "Démarrage de jeedom fini avec succès": "jeedom開始が正常に終了しました"
+        "Démarrage de Jeedom fini avec succès": "Démarrage de Jeedom fini avec succès",
+        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur :",
+        "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
+        "Apache private tmp": "Apache private tmp"
     },
     "core/class/message.class.php": {
         "Message de ": "メッセージ"
@@ -245,9 +252,12 @@
         "Lumière": "ライト",
         "Automatisme": "オートマ",
         "Multimedia": "マルチメディア",
-        "Defaut": "デフォルト",
+        "Défaut": "欠陥",
         "Autre": "他の",
-        "Scénarios": "シナリオ"
+        "Scénarios": "シナリオ",
+        "Catégorie": "カテゴリ",
+        "Toute": "Toute",
+        "Tags": "Tags"
     },
     "desktop/php/index.php": {
         "Toggle navigation": "トグルナビゲーション",
@@ -303,8 +313,10 @@
         "Redémarrer": "再起動",
         "Eteindre": "オフスイッチ",
         "Plan 3d": "3D地図",
-        "Plan 3d inconnu. Verifier l'id": "不明Map 3Dに。 IDを確認します",
-        "Design 3D": "3Dデザイン"
+        "Plan 3d inconnu. Vérifiez l'id": "Plan 3d inconnu. Vérifiez l'id",
+        "Design 3D": "3Dデザイン",
+        "Note": "Note",
+        "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
         "Vider": "空",
@@ -337,19 +349,20 @@
         "Mode forcé": "強制モード",
         "Tout depuis cette version": "このバージョンからすべて",
         "Valider": "検証",
-        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "更新する前にJeedomのコアノートのバージョンを確認するためにあなたに感謝",
+        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom",
         "ici": "ここに",
         "Pré-update (mettre à jour le script d'update avant)": "更新前（更新スクリプトの前に更新）",
         "Sauvegarder avant": "前に保存します",
         "Mettre à jour les plugins": "プラグインを更新",
         "Mettre à jour le core": "コアを更新",
-        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "任意の更新前に、Jeedomのコアノートのバージョンを確認するためにあなたに感謝"
+        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "任意の更新前に、Jeedomのコアノートのバージョンを確認するためにあなたに感謝",
+        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\"": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\""
     },
     "desktop/js/update.js": {
         "Options": "オプション",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "あなたは更新を行うにしてもよろしいですか？",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "あなたはこのアイテムを更新してもよろしいですか？",
-        "Etes vous sur de vouloir supprimer cet objet ?": "あなたは、この項目を削除してもよろしいですか？",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "L \\「操作が成功しています",
         "L\\'opération a échoué": "L \\「操作に失敗しました",
         "Dernière mise à jour du core : ": "最終更新日コア：",
@@ -383,27 +396,30 @@
         "Panel": "パネル",
         "Fonctionnalités": "特長",
         "Gestion": "管理",
-        "Sources": "ソース"
+        "Sources": "ソース",
+        "Plugins": "プラグイン"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "私は対応しています：",
         " avec ": "とともに",
-        "Correspondance trop éloigné : ": "遠くの対応：",
+        "Correspondance trop éloignée : ": "Correspondance trop éloignée :",
         "Désolé je n'ai pas compris": "申し訳ありませんが、私は理解していませんでした",
-        "Désolé je n'ai pas compris la demande": "申し訳ありませんが、私は要求を理解していませんでした",
-        "Désolé je ne comprends pas la demande": "申し訳ありませんが、私は要求を理解していません",
+        "Désolé je n'ai pas compris la demande": "Désolé, je n'ai pas compris la demande",
+        "Désolé je ne comprends pas la demande": "Désolé, je ne comprends pas la demande",
         "Je ne comprends pas": "私は理解していません",
         "Désolé ": "ソーリー",
         " je n'ai pas compris": "私は理解していませんでした",
         " je n'ai pas compris ta demande": "私はあなたの要求を理解していませんでした",
         "aucune valeur": "価値のありません",
-        "J'ai executé ": "私が実行しています",
+        "J'ai exécuté ": "J'ai exécuté",
         " de ": "の",
         " dans ": "で",
         "C'est fait": "済みました",
         "Erreur : ": "エラー：",
         "Correspondance trouvée : ": "対応が見つかりました：",
-        " mais ne contient pas : ": "しかし、含まれていません。"
+        " mais ne contient pas : ": "しかし、含まれていません。",
+        "Alerte : ": "Alerte :",
+        " valeur : ": "値："
     },
     "desktop/php/log.php": {
         "Rechercher": "検索する",
@@ -461,7 +477,7 @@
         "Accès à l'interface d'administration": "管理インターフェイスへのアクセス",
         "Lancer": "打ち上げ",
         "Securité": "セキュリティ",
-        "Nombre d'échec toléré": "許容故障数",
+        "Nombre d'échec toléré": "Nombre d'échecs tolérés",
         "Temps maximum entre les échecs (s)": "故障の間の最大時間（秒）",
         "Durée du bannissement (s), -1 pour infini": "時間追放（S）、-1無限のために",
         "IP \"blanche\"": "IP「白」",
@@ -522,7 +538,7 @@
         "Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Jeedomを再起動する必要がキャッシュエンジンへの変更に注意してください。",
         "Statistiques": "統計",
         "Moteur de cache": "エンジンカバー",
-        "Système de fichier (/tmp/jeedom-cache)": "ファイルシステム（/ tmpに/ jeedom求めます）",
+        "Système de fichier (/tmp/jeedom-cache)": "Système de fichiers (/tmp/jeedom-cache)",
         "Memcached": "memcachedの",
         "Adresse Memcache": "memcachedの住所",
         "Port Memcache": "ポートのmemcached",
@@ -535,7 +551,7 @@
         "Temps de pause pour le long polling": "長いポーリングのための時間を一時停止",
         "Configuration des interactions": "コンフィギュレーションの相互作用",
         "Général": "コモン",
-        "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte": "より感度の高い対応が、それらが正確でなければならない（1に近い）低いです",
+        "Plus la sensibilité est basse (proche de 1) plus la correspondance doit être exacte": "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte",
         "Sensibilité": "感度",
         "1 mot": "1つの単語",
         "2 mots": "2つのワード",
@@ -545,14 +561,14 @@
         "Ne pas répondre si l'interaction n'est pas comprise": "相互作用が含まれていない場合は応答しません。",
         "Regex général d'exclusion pour les interactions": "相互作用のための正規表現の一般的な除外",
         "Interaction automatique & contextuelle": "自動ポップ＆インタラクション",
-        "Activer les interactions automatique": "自動相互作用を有効にします",
-        "Activer les réponses contextuelle": "文脈の回答を有効にします",
+        "Activer les interactions automatique": "Activer les interactions automatiques",
+        "Activer les réponses contextuelles": "文脈の回答を有効にします",
         "Réponse contextuelle prioritaire si la phrase commence par": "優先コンテキスト応答文が始まる場合",
         "Découper une interaction en 2 si elle contient": "それが含まれている場合の相互作用2をカット",
         "Synonyme pour les objets": "オブジェクトの同義語",
         "Synonyme pour les équipements": "機器の同義語",
         "Synonyme pour les commandes": "注文の同義語",
-        "Synonyme pour les résumé": "要約の同義語",
+        "Synonyme pour les résumés": "Synonyme pour les résumés",
         "Couleurs": "色",
         "Nom": "表題",
         "Code HTML": "HTMLコード",
@@ -615,12 +631,12 @@
         "Sauvegarder": "セーブ",
         "Configuration des rapports": "レポートの設定",
         "Delai d'attente après génération de la page (en ms)": "（ミリ秒）ページの生成後の時間を待っています",
-        "Largeur des rapport (en px)": "（PXによる）幅の比",
-        "Hauteur des rapport (en px)": "（PXにおける）高さの比",
-        "Largeur minimal (en px)": "最小の幅（ピクセルで）",
-        "Hauteur minimal (en px)": "最小の高さ（ピクセル単位）",
-        "Nettoyer les rapport plus viex de (jours)": "クリーンよりViex比（日）",
-        "Système de fichier (/tmp/jeedom/cache)": "ファイルシステム（/ tmpに/ jeedom /キャッシュ）",
+        "Largeur des rapport (en px)": "Largeur des rapports (en px)",
+        "Hauteur des rapport (en px)": "Hauteur des rapports (en px)",
+        "Largeur minimal (en px)": "Largeur minimale (en px)",
+        "Hauteur minimal (en px)": "Hauteur minimale (en px)",
+        "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapports plus vieux de (jours)",
+        "Système de fichier (/tmp/jeedom/cache)": "Système de fichiers (/tmp/jeedom/cache)",
         "Démarré : ": "開始しました：",
         "Configuration des graphiques de lien": "リンクグラフィックの設定",
         "Profondeur pour les scénarios": "シナリオの深さ",
@@ -661,7 +677,7 @@
         "Timeline": "タイムライン",
         "Nombre maximum d'évènements": "イベントの最大数",
         "Supprimer tous les évènements": "すべてのイベントを削除します。",
-        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "LDAPライブラリが見つかりません。あなたは、接続を使用する前にそれをインストールするには、ありがとうDLAP",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP",
         "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "LDAPライブラリが見つかりません。あなたはLDAP接続を使用する前にそれをインストールするありがとう",
         "IPs bannies": "IPを禁止",
         "Sessions active": "アクティブなセッション",
@@ -676,7 +692,6 @@
         "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "より感度が（1に近い）低い、より対応が正確でなければなりません。",
         "Regex générale d'exclusion pour les interactions": "相互作用のための一般的な正規表現の除外",
         "Activer les interactions automatiques": "自動化された相互作用を有効にします",
-        "Activer les réponses contextuelles": "文脈の回答を有効にします",
         "Activer les interactions \"préviens moi\"": "相互作用を有効にする「を私に警告します」",
         "Réponse de type \"préviens moi\" si la phrase commence par": "文が始まる場合型応答は「私を警告します」",
         "Synonymes pour les objets": "オブジェクトの同義語",
@@ -687,13 +702,45 @@
         "Adresse syslog UDP": "アドレスのsyslog UDP",
         "Port syslog UDP": "syslogのUDPポート",
         "Synonyme commande slider maximum": "最大スライダー制御シノニム",
-        "Synonyme commande slider minimum": "最小スライダー制御シノニム"
+        "Synonyme commande slider minimum": "最小スライダー制御シノニム",
+        "Editeur de fichiers": "Editeur de fichiers",
+        "DNS (proxy)": "DNS (proxy)",
+        "Action sur message": "Action sur message",
+        "Ajouter": "加えます",
+        "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
+        "Nom de votre": "Nom de votre",
+        "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
+        "quand il communique avec le market": "quand il communique avec le market",
+        "Langue de votre": "Langue de votre",
+        "Option pour les développeurs permettant à": "Option pour les développeurs permettant à",
+        "de générer les phrases à traduire": "de générer les phrases à traduire",
+        "Durée de vie de votre connexion à": "Durée de vie de votre connexion à",
+        "si vous n'avez pas coché la case enregistrer cet ordinateur": "si vous n'avez pas coché la case enregistrer cet ordinateur",
+        "Fuseau horaire de votre": "Fuseau horaire de votre",
+        "Permet d'ajouter un serveur de temps à": "Permet d'ajouter un serveur de temps à",
+        "utilisé lorsque": "utilisé lorsque",
+        "force la synchronisation de l'heure": "force la synchronisation de l'heure",
+        "Indique à": "Indique à",
+        "de ne pas prendre en compte l'heure du système": "de ne pas prendre en compte l'heure du système",
+        "Clef API globale de": "Clef API globale de",
+        "Clef API Pro de": "Clef API Pro de",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à",
+        ". L'équipe": ". L'équipe",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
+        "Attention : cette configuration n'est là que pour informer": "Attention : cette configuration n'est là que pour informer",
+        "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre",
+        "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
+        "Utiliser les DNS": "Utiliser les DNS",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
+        "Mise à jour de": "Mise à jour de",
+        "Mode développement": "Mode développement",
+        "Vider le cache assets": "Vider le cache assets"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "あなたは、APIキーをリセットしてよろしいです",
         "Commande réalisée avec succès": "成功裏に実施し運用",
         "Sauvegarde réussie": "成功したバックアップ",
-        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "これは危険な操作であることに注意してください。あなたは多くのリスクとそれを理解することを確認することができます\\「非機能Jeedomためには、その後、任意のサポート要求は受け入れられます（この試みの\\アクセスが登録されていますか）？",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "Attention ceci est une opération risquée. Confirmez-vous que vous comprenez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
         "Connexion échouée :": "接続に失敗しました：",
         "Connexion réussie": "ログインに成功",
         "Cache vidé": "空にキャッシュ",
@@ -710,7 +757,13 @@
         "Créer virtuel": "仮想作成",
         "Evènement de la timeline supprimé avec succès": "イベントのタイムラインが正常に削除します",
         "Suppression des IPs bannies réussie": "禁止され成功したIPアドレスを削除します",
-        "Administration base de données": "管理データベース"
+        "Administration base de données": "管理データベース",
+        "Décocher pour desactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxécute en parallèle des autres actions",
+        "Sélectionner un mot-clé": "キーワードを選択",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention, ceci est une opération risquée. Confirmez-vous que vous comprenez bien les risques et qu\\'en cas de",
+        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
+        "Opération réalisée avec succès": "操作は正常に完了しました"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "インタラクションを追加",
@@ -741,7 +794,7 @@
         "Sans unité": "団結なし",
         "Limiter aux commandes appartenant à l'objet": "オブジェクトに属するコントロールを制限します",
         "Limiter aux plugins": "プラグインを制限します",
-        "Limiter aux categories": "カテゴリへの制限",
+        "Limiter aux categories": "Limiter aux catégories",
         "Sans catégorie": "何のカテゴリません",
         "Limiter aux visibles": "目に見えるには限界",
         "Limiter à l'équipement": "リミット機器",
@@ -761,7 +814,10 @@
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "注文を生成するときに彼らの同義語と言葉を置き換え",
         "Liste des utilisateurs (identifiants) séparés par un |": "区切られたユーザーリスト（識別子）|",
         "Limiter aux commandes appartenant aux objets": "オブジェクトに属するコマンドに制限",
-        "Limiter aux catégories": "カテゴリへの制限"
+        "Limiter aux catégories": "カテゴリへの制限",
+        "Regexp de correspondance obligatoire": "Regexp de correspondance obligatoire",
+        "Attendre avant de répondre (s)": "Attendre avant de répondre (s)",
+        "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple"
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "相互作用のリスト",
@@ -822,16 +878,19 @@
         "Identification": "識別",
         "Action": "アクション",
         "Supprimer": "取り除きます",
-        "Péripherique enregistrés": "周辺機器記録",
+        "Péripherique enregistrés": "Périphériques enregistrés",
         "Supprimer tout": "すべて削除",
-        "Date derniere utilisation": "日付最後の使用",
+        "Date derniere utilisation": "Date dernière utilisation",
         "IP": "IP",
         "Sessions actives": "アクティブなセッション",
         "ID": "ID",
         "Login": "ログイン",
         "Date": "日付",
         "Actions": "株式",
-        "Déconnecter": "ディスコネクト"
+        "Déconnecter": "ディスコネクト",
+        "Couleur sur mobile": "Couleur sur mobile",
+        "Périphériques enregistrés": "Périphériques enregistrés",
+        "Date dernière utilisation": "Date dernière utilisation"
     },
     "desktop/js/profils.js": {
         "Authentification 2 étapes": "認証手順2",
@@ -841,14 +900,15 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "コードを記入してください？",
-        "Etes vous sur de vouloir faire cette action ?": "あなたはこのアクションを行うにしてもよろしいですか？",
+        "Etes vous sur de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "コマンドの結果：",
         "Action exécutée avec succès": "アクションが正常に完了",
         "[Jeedom] Message de test": "【Jeedom】テストメッセージ",
         "Ceci est un test de message pour la commande": "これはテストを制御するためのメッセージであります",
         "Info": "インフォ",
         "Action": "アクション",
-        "Sélectionner la commande": "コマンドを選択"
+        "Sélectionner la commande": "コマンドを選択",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?"
     },
     "core/js/history.class.js": {
         "Il n\\'existe encore aucun historique pour cette commande :": "それ\\「sのこのコマンドのまだ歴史：",
@@ -880,7 +940,9 @@
         "Ajouter colonne": "列を追加します",
         "Ajouter ligne": "行を追加します。",
         "Supprimer colonne": "列を削除",
-        "Supprimer ligne": "行を削除"
+        "Supprimer ligne": "行を削除",
+        "A propos": "A propos",
+        "Note": "Note"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "あなたは、移動ウィジェットをファッションサイズを変更し、ウィジェット内のコマンドの順序を変更することができます編集しています"
@@ -898,7 +960,8 @@
         "Valider": "検証",
         "Sélectionner la commande": "コマンドを選択",
         "Erreur de connexion": "接続エラーが発生",
-        "Erreur lors de la connexion à jeedom": "jeedomへの接続エラー"
+        "Erreur lors de la connexion à jeedom": "Erreur lors de la connexion à Jeedom",
+        "Erreur lors de la connexion à Jeedom": "Erreur lors de la connexion à Jeedom"
     },
     "desktop/php/scenarioAssist.php": {
         "Interface simple": "シンプルなインターフェース",
@@ -1041,17 +1104,17 @@
         "Création/modification d’une variable ou de la valeur d’une variable": "作成/変数の変更または変数の値",
         "Permet le contrôle des scénarios": "制御のシナリオを可能にします",
         "Arrête le scénario": "スクリプトを停止します",
-        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "テキストJeedomを言うようにします（jeedomタブがブラウザで開かれている場合のみ動作します）",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "要求されたデザインで設計を表示するすべてのブラウザに表示されたデザインを変更",
         "Permet de rajouter un message dans les logs": "あなたはログにメッセージを追加することができます",
-        "Permet d'ajouter une message dans le centre de message": "メッセージセンターにメッセージを追加します。",
+        "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter un message dans le centre de message",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "機器のオン/オフ特性が見えない/見え取ら変更",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Jeedomが変数に答えを格納し、その後適用することができますアクション。このアクションは、jeedomが受信した場合、応答またはタイムアウトに達していること以上のブロックしています。現時点ではこのアクションは、SMSのプラグイン、スラック、およびSARAH電報とのみ互換性があります。",
-        "Envoi l'ordre à Jeedom de s'éteindre": "絶滅のJeedomにオーダーを送信",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
+        "Envoi l'ordre à Jeedom de s'éteindre": "Envoie l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "テキストまたは例えば相互作用のための値を返します。",
-        "Permet d'affecter une icone au scénario": "あなたはスクリプトにアイコンを割り当てることができます",
-        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "開いているページのjeedomを持っているすべてのブラウザ上に小さなアラートを表示します。また、アラートの4つのレベルから選択することができます",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "絶対にページオープンjeedomを持っているすべてのブラウザで有効にする必要がありますポップアップを表示します。",
+        "Permet d'affecter une icone au scénario": "Permet d'affecter une icône au scénario",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom d'ouvert.",
         "Valider": "検証",
         "Rapport": "レポート",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "メッセージの順序は、ビューのレポート、設計やパネルPNG / PDF / JPEG / SVG送信します。",
@@ -1066,11 +1129,12 @@
         "Variables": "変数",
         "Général": "一般的な",
         "Suivre dans la timeline": "タイムラインに従ってください",
-        "Les executions du scénario pourront etre vu dans la timeline": "シナリオの実行がタイムラインで見ることができます",
+        "Les executions du scénario pourront etre vu dans la timeline": "Les exécutions du scénario pourront être vues dans la timeline",
         "Timeout en secondes (0 = illimité)": "秒単位のタイムアウト（0 =無制限）",
         "Le scénario pourra tourner plusieurs fois en même temps": "このスクリプトは、同時に複数回実行されます",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "スクリプトは、同期モードです。これは、システムが不安定になることができ、警告",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "スクリプトの実行がタイムラインで見ることができます。"
+        "Les exécutions du scénario pourront être vues dans la timeline.": "スクリプトの実行がタイムラインで見ることができます。",
+        "Ajouter bloc": "Ajouter bloc"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
@@ -1121,7 +1185,7 @@
         "Programmation": "プログラミング",
         "Rechercher une commande": "検索順序",
         "Rechercher un scenario": "検索シナリオ",
-        "Rechercher d\\'un équipement": "検索\\「sの機器",
+        "Rechercher d\\'un équipement": "Recherche d\\'un équipement",
         "Supprimer l\\'action": "\\アクションを削除します。",
         "Sélectionner un mot-clé": "キーワードを選択",
         "Sélectionner la commande": "コマンドを選択",
@@ -1142,12 +1206,13 @@
         "Graphique de lien": "リンクグラフ",
         "Avancé": "高度",
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "それは要素が含まれている場合、ブロックを削除することができない場合",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "他のアクションを並列に実行するための\\「sのチェック",
-        "Décocher pour desactiver l\\'action": "\\「sのアクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parallèle des autres actions",
+        "Décocher pour desactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
         "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
         "Afficher/masquer le bloc Sinon": "表示/非表示ブロックそれ以外の場合",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
-        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "\\「のあなたのシナリオを作成するために不可欠な機能要素を追加します（..例えばTHEN IF / ...）"
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "\\「のあなたのシナリオを作成するために不可欠な機能要素を追加します（..例えばTHEN IF / ...）",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core/template/scenario/report.default": {
         "Vue": "眺望",
@@ -1164,7 +1229,7 @@
         "Plugin": "プラグイン",
         "Largeur  (px)": "幅（ピクセル）",
         "Hauteur (px)": "高さ（ピクセル）",
-        "Delai (ms)": "遅延（ミリ秒）"
+        "Delai (ms)": "Délai (ms)"
     },
     "core/template/scenario/gotodesign.default": {
         "Design": "設計"
@@ -1180,7 +1245,7 @@
         "Rechercher": "検索する",
         "Vider les logs": "空のログ",
         "Télécharger": "ダウンロード",
-        "Log vidés avec succès": "ログインが正常に空に",
+        "Logs vidés avec succès": "Logs vidés avec succès",
         "Vider le log": "空のログ",
         "Log vidé avec succès": "ログインが正常にクリア"
     },
@@ -1310,7 +1375,8 @@
         "Etes-vous sûr de vouloir supprimer ce design ?": "あなたはこのデザインを削除してもよろしいですか？"
     },
     "core/com/http.com.php": {
-        "Echec de la requête http : ": "HTTPを要求するために失敗しました："
+        "Echec de la requête http : ": "HTTPを要求するために失敗しました：",
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "desktop/php/report.php": {
         "Type": "タイプ",
@@ -1330,7 +1396,7 @@
         "Aperçu": "調査"
     },
     "core/ajax/report.ajax.php": {
-        "Aucune methode correspondante à : ": "一致する方法ありませんへ："
+        "Aucune methode correspondante à : ": "一致する方法でありません："
     },
     "core/php/downloadFile.php": {
         "Fichier non trouvé : ": "ファイルが見つかりません。",
@@ -1399,12 +1465,12 @@
         "Tout": "全て"
     },
     "desktop/js/dashboard.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "あなたは、移動ウィジェットをファッションサイズを変更し、ウィジェット内のコマンドの順序を変更することができます編集しています",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "あなたは、ウィジェットを移動、サイズ変更やウィジェット内のコマンドの順序を変更することができ、編集モードです。保存するために編集モードを終了することを忘れないでください"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition, vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets",
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition, vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
     "desktop/js/log.js": {
         "Pause": "休止",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "あなたはすべてのログを削除してもよろしいですか？",
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?",
         "Etes-vous sûr de vouloir supprimer tous les logs ?": "あなたはすべてのログを削除してもよろしいですか？"
     },
     "desktop/js/plugin.js": {
@@ -1423,7 +1489,7 @@
         "Inactif": "不活発",
         "Action": "アクション",
         "Désactiver": "無効化",
-        "Votre version de jeedom ne permet pas d\\'activer ce plugin": "jeedomのバージョンが\\このプラグインをアクティブことはできません。",
+        "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de Jeedom ne permet pas d\\'activer ce plugin",
         "Niveau de log local": "ローカルログレベル",
         "Aucun": "何でもありません",
         "Defaut": "デフォルト",
@@ -1432,10 +1498,10 @@
         "Warning": "警告",
         "Error": "エラー",
         "Logs": "ログ",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "あなたは、このプラグインを削除してもよろしいですか？",
+        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
         "Market": "市場",
         "Sauvegarde de la configuration des panels effectuée": "行われたパネルの構成を保存します",
-        "Sauvegarde des fonctionalités effectuée": "バックアップ機能が実行さ",
+        "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionnalités effectuée",
         "Sauvegarde de la configuration des logs effectuée": "実行ログの設定を保存します",
         "Log du plugin": "ログのプラグイン",
         "Sauvegarde effectuée": "バックアップ作ら",
@@ -1444,10 +1510,21 @@
         "Afficher le panneau mobile": "モバイルパネルを見ます",
         "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "Jeedomのバージョンが\\このプラグインをアクティブことはできません。",
         "Etes-vous sûr de vouloir supprimer ce plugin ?": "あなたは、このプラグインを削除してもよろしいですか？",
-        "Sauvegarde de la configuration des panneaux effectuée": "行われたパネルの設定を保存します"
+        "Sauvegarde de la configuration des panneaux effectuée": "行われたパネルの設定を保存します",
+        "Votre version de": "Votre version de",
+        "ne permet pas d\\'activer ce plugin": "ne permet pas d\\'activer ce plugin"
     },
     "core/repo/market.list.repo.php": {
-        "Market Jeedom": "市場Jeedom"
+        "Market Jeedom": "市場Jeedom",
+        "Gratuit": "自由な",
+        "Payant": "Payant",
+        "Officiel": "公式",
+        "Conseillé": "Conseillé",
+        "Installé": "Installé",
+        "Non installé": "Non installé",
+        "Top et nouveautés": "Top et nouveautés",
+        "Aucune": "いいえ",
+        "par": "par"
     },
     "desktop/js/report.js": {
         "Aucun aperçu possible en pdf": "いずれもPDFファイルをプレビューすることができません"
@@ -1483,7 +1560,10 @@
         "Envoi des sauvegardes": "バックアップを送信",
         "Sauvegarder": "セーブ",
         "Informations": "情報",
-        "Envoyer la sauvegarde locale sélectionnée": "選択したローカルバックアップを送ります"
+        "Envoyer la sauvegarde locale sélectionnée": "選択したローカルバックアップを送ります",
+        "Nombre de jours de mémorisation des sauvegardes": "Nombre de jours de mémorisation des sauvegardes",
+        "Taille totale maximale des sauvegardes (Mo)": "Taille totale maximale des sauvegardes (Mo)",
+        "Chargement...": "Chargement..."
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "成功したバックアップ",
@@ -1496,7 +1576,15 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "あなたはクラウドバックアップとJeedomを復元してよろしいです",
         "L\\'opération est réussie": "L \\「操作が成功しています",
         "L\\'opération a échoué": "L \\「操作に失敗しました",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "あなたは、バックアップJeedomクラウドを送信してもよろしいですか？一度立ち上げ、この操作はキャンセルできません"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
+        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée, cette opération ne peut être annulée.",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
+        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
+        "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
+        "avec la sauvegarde Cloud": "avec la sauvegarde Cloud"
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "ユーザーリスト：",
@@ -1520,22 +1608,26 @@
         "Supprimer": "取り除きます",
         "Profil": "プロフィール",
         "Sessions actives": "アクティブなセッション",
-        "Péripherique enregistrés": "周辺機器記録",
+        "Péripherique enregistrés": "Périphériques enregistrés",
         "Supprimer tout": "すべて削除",
         "Identification": "識別",
         "Utilisateur": "ユーザー",
-        "Date derniere utilisation": "日付最後の使用",
+        "Date derniere utilisation": "Date dernière utilisation",
         "Action": "アクション",
         "Déconnecter": "ディスコネクト",
         "Date dernière utilisation": "最後の使用の日付",
-        "Identifiant": "ログイン"
+        "Identifiant": "ログイン",
+        "Liste des utilisateurs": "Liste des utilisateurs",
+        "Activer accès support": "Activer accès support",
+        "Dernière connexion": "Dernière connexion",
+        "Périphériques enregistrés": "Périphériques enregistrés"
     },
     "desktop/js/user.js": {
         "Sauvegarde effectuée": "バックアップ作ら",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "あなたは、このユーザーを削除してもよろしいですか？",
         "L\\'utilisateur a bien été supprimé": "ユーザー\\「を削除されました",
         "Quel est le nouveau mot de passe ?": "新しいパスワードとは何ですか？",
-        "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "あなたはユーザー\\「sののAPIキーを変更してもよろしいですか？",
+        "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "変更作ら",
         "Actif": "財産",
         "Local seulement": "ローカルのみ",
@@ -1545,13 +1637,18 @@
         "OK": "OK",
         "NOK": "NOK",
         "Renouveler la clef API": "APIキーを更新",
-        "Regenérer clef API": "APIキーを再生成",
+        "Regenérer clef API": "Regénérer clef API",
         "Supprimer": "取り除きます",
         "Changer le mot de passe": "パスワードを変更します",
-        "Gerer les droits": "著作権を管理します",
-        "Régénérer clef API": "APIキーを再生成",
+        "Gerer les droits": "Gérer les droits",
+        "Régénérer clef API": "Regénérer clef API",
         "Gérer les droits": "管理権",
-        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "あなたはユーザー\\「sののAPIキーを変更してもよろしいですか？"
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "あなたはユーザー\\「sののAPIキーを変更してもよろしいですか？",
+        "Local": "ローカル",
+        "Désactiver": "無効化",
+        "Régénérer API": "Regénérer API",
+        "Mot de passe": "パスワード",
+        "Droits": "Droits"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "取り除きます",
@@ -1605,7 +1702,7 @@
         "Programmation": "プログラミング",
         "Timeout (min)": "タイムアウト（分）",
         "Dernier lancement": "最後の打ち上げ",
-        "Derniere durée": "前回",
+        "Dernière durée": "Dernière durée",
         "Statut": "ステータス",
         "Activer le système cron": "cronのシステムを有効にします"
     },
@@ -1634,9 +1731,9 @@
     "desktop/php/display.php": {
         "Rechercher": "検索する",
         "Inactif": "不活発",
-        "Nombre d'objet :": "アイテム数：",
-        "Nombre d'équipement :": "設備：",
-        "Nombre de commande :": "オーダーの数：",
+        "Nombre d'objet :": "Nombre d'objets :",
+        "Nombre d'équipement :": "Nombre d'équipements :",
+        "Nombre de commande :": "Nombre de commandes :",
         "Supprimer": "取り除きます",
         "Visible": "目に見えます",
         "Invisible": "インビジブル",
@@ -1648,13 +1745,19 @@
         "Aller sur la configuration de l'équipement": "機器構成に移動します",
         "Non visible": "見えません",
         "Non actif": "アクティブではありません",
-        "Aller sur la configuration de l'objet": "オブジェクトの設定に移動します"
+        "Aller sur la configuration de l'objet": "オブジェクトの設定に移動します",
+        "Historique des suppressions": "Historique des suppressions",
+        "Nombre d'objets :": "Nombre d'objets :",
+        "Nombre d'équipements :": "Nombre d'équipements :",
+        "Nombre de commandes :": "Nombre de commandes :"
     },
     "desktop/js/display.js": {
         "Configuration de l'équipement": "機器構成",
         "Configuration de l'objet": "オブジェクトの設定",
         "Configuration de la commande": "設定された制御",
-        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "あなたはこれらすべての機器を削除してもよろしいですか？"
+        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "あなたはこれらすべての機器を削除してもよろしいですか？",
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
+        "Historique des supression": "Historique des suppressions"
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "表題",
@@ -1679,7 +1782,7 @@
         "Activer/Desactiver Masquer/Afficher un équipement": "有効/無効の表示/非表示機器",
         "Faire une demande": "適用します",
         "Arrêter Jeedom": "ストップJeedom",
-        "Retourner un texte/une données": "テキスト/データを返します。",
+        "Retourner un texte/une données": "/指定したテキストを返します。",
         "Icône": "アイコン",
         "Alerte": "警告",
         "Pop-up": "ポップアップ",
@@ -1689,15 +1792,15 @@
         "Création/modification d’une variable ou de la valeur d’une variable": "作成/変数の変更または変数の値",
         "Permet le contrôle des scénarios": "制御のシナリオを可能にします",
         "Arrête le scénario": "スクリプトを停止します",
-        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "テキストJeedomを言うようにします（jeedomタブがブラウザで開かれている場合のみ動作します）",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "要求されたデザインで設計を表示するすべてのブラウザに表示されたデザインを変更",
         "Permet de rajouter un message dans les logs": "あなたはログにメッセージを追加することができます",
         "Permet d'ajouter une message dans le centre de message": "メッセージセンターにメッセージを追加します。",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "機器のオン/オフ特性が見えない/見え取ら変更",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Jeedomが変数に答えを格納し、その後適用することができますアクション。このアクションは、jeedomが受信した場合、応答またはタイムアウトに達していること以上のブロックしています。現時点ではこのアクションは、SMSプラグイン、スラックやSARAHとのみ互換性があります。",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "絶滅のJeedomにオーダーを送信",
         "Retourne un texte ou une valeur pour une interaction par exemple": "テキストまたは例えば相互作用のための値を返します。",
-        "Permet d'affecter une icone au scénario": "あなたはスクリプトにアイコンを割り当てることができます",
+        "Permet d'affecter une icone au scénario": "Permet d'affecter une icône au scénario",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "開いているページのjeedomを持っているすべてのブラウザ上に小さなアラートを表示します。また、アラートの4つのレベルから選択することができます",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "絶対にページオープンjeedomを持っているすべてのブラウザで有効にする必要がありますポップアップを表示します。",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "メッセージの順序は、ビューのレポート、設計やパネルPNG / PDF / JPEG / SVG送信します。",
@@ -1708,7 +1811,7 @@
         "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "テキストJeedomは（Jeedomタブをブラウザで開いている場合にのみ動作します）と言うことができます",
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "デザインを表示するすべてのブラウザでは、要求されたものに置き換え",
         "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement": "機器のオン/オフ特性が見えない/見え取ら変更",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Jeedomが変数に答えを格納し、その後適用することができますアクション。このアクションは、ブロッキングとJeedomは、応答を受け取るかタイムアウトに達した場合にのみ終了しています。現時点ではこのアクションは、SMSのプラグイン、スラック、およびSARAH電報とのみ互換性があります。",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Permet d'affecter une icône au scénario": "あなたはスクリプトにアイコンを割り当てることができます",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "ページオープンJeedomを持っているすべてのブラウザで小さな警告を表示します。また、アラートの4つのレベルから選択することができます",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "絶対にオープンJeedomページを持っているすべてのブラウザで有効にする必要がありますポップアップを表示します。",
@@ -1747,7 +1850,7 @@
         "Historique": "歴史的",
         "Configuration": "コンフィギュレーション",
         "Rechercher": "検索する",
-        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "過度の日付範囲を警告計算するのに長い時間がかかることがありますかさえも表示されません",
+        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention, une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
         "Ok": "[OK]を",
         "Aucun groupement": "何のグループません",
         "Sommes par heure": "時間について",
@@ -1860,12 +1963,12 @@
         "Seuils spécifiques Batteries": "特定のしきい値バッテリー",
         "Alertes Communications": "警告コミュニケーションズ",
         "(en minute)": "（分）",
-        "Configuration général": "一般的な構成",
+        "Configuration général": "Configuration générale",
         "Tableau": "テーブル",
-        "Nombre de ligne": "数直線",
-        "Nombre de colonne": "番号列",
+        "Nombre de ligne": "Nombre de lignes",
+        "Nombre de colonne": "Nombre de colonnes",
         "Centrer dans les cases": "ボックス内のセンター",
-        "Style générale des cases (CSS)": "ボックスの一般的なスタイル（CSS）",
+        "Style générale des cases (CSS)": "Style général des cases (CSS)",
         "Style du tableau (CSS)": "表スタイル（CSS）",
         "Configuration détaillée": "詳細設定",
         "Texte de la case": "テキストボックス",
@@ -1875,7 +1978,8 @@
         "Défaut": "欠陥",
         "Nombre de lignes": "行数",
         "Nombre de colonnes": "列数",
-        "Style général des cases (CSS)": "ボックスの一般的なスタイル（CSS）"
+        "Style général des cases (CSS)": "ボックスの一般的なスタイル（CSS）",
+        "Tag": "Tag"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "記録",
@@ -1952,8 +2056,8 @@
         "Jamais répéter": "二度と繰り返しません",
         "Push URL": "プッシュURL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "順序の値の更新に呼び出すためにここにURLを入れてください。 ##値（順序値）cmd_id ##（IDコマンド）とcmd_nameのは##（コマンド名）：あなたは、次のタグを使用することができます",
-        "Activer la personalisation du widget": "ウィジェットのカスタマイズを有効にします",
-        "Reinitialiser la personalisation": "パーソナライゼーションをリセット",
+        "Activer la personalisation du widget": "Activer la personnalisation du widget",
+        "Reinitialiser la personalisation": "Réinitialiser la personnalisation",
         "Code": "コード",
         "Dashboard": "計器盤",
         "Vue dashboard": "ビューのダッシュボード",
@@ -1963,7 +2067,7 @@
         "Niveau": "レベル",
         "En": "で",
         "si (#value# pour la valeur)": "もし（値の値は##）",
-        "Pendant plus de (en min, laisser vide pour immediat)": "以上の場合は（分、即時のために空のまま）",
+        "Pendant plus de (en min, laisser vide pour immediat)": "Pendant plus de (en min, laisser vide pour immédiat)",
         "Widget": "ウィジェット",
         "Vue": "眺望",
         "Afficher le nom": "表示名",
@@ -1994,7 +2098,7 @@
         "Action après exécution de la commande": "注文の実行後のアクション",
         "Liens": "接続",
         "Graphique des liens": "グラフィックリンク",
-        "Copie des données historisé": "データのコピーはhistorized",
+        "Copie des données historisé": "Copie des données historisées",
         "Copier l'historique de cette commande sur une autre commande": "別のコマンドには、このコマンドの履歴のコピー",
         "Arrondi (chiffre après la virgule)": "丸め（10進数）",
         "Thermostat": "サーモスタット",
@@ -2004,8 +2108,8 @@
         "Tester": "テスト",
         "Suivre dans la timeline": "タイムラインに従ってください",
         "3 mois": "3ヶ月",
-        "Décocher pour desactiver l\\'action": "\\「sのアクションを無効にするにはチェックを外し",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "他のアクションを並列に実行するための\\「sのチェック",
+        "Décocher pour desactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parallèle des autres actions",
         "Cette commande remplace l'ID": "このコマンドは、IDを置き換えます",
         "Etes-vous sûr de vouloir remplacer l\\'ID": "あなたは\\「sのIDを置き換えてもよろしいです",
         "ID de commande à remplacer ?": "交換するためのID？",
@@ -2014,7 +2118,10 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "コマンド\\「sが並列他のアクションで実行しているかどうかを確認",
         "Activer la personnalisation du widget": "ウィジェットのカスタマイズを有効にします",
         "Réinitialiser la personnalisation": "パーソナライゼーションをリセット",
-        "Interdire dans les interactions automatique": "自動相互作用を禁止"
+        "Interdire dans les interactions automatique": "Interdire dans les interactions automatiques",
+        "Calcul et arrondi": "Calcul et arrondi",
+        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "アイテムを追加します。",
@@ -2053,7 +2160,9 @@
         "Commande": "オーダー",
         "Inverser": "逆",
         "Graphique des liens": "グラフィックリンク",
-        "Résumé objet": "アイテムの概要"
+        "Résumé objet": "アイテムの概要",
+        "Activer": "アクティブ",
+        "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "検索する",
@@ -2069,7 +2178,7 @@
         "nature": "自然",
         "nourriture": "食べ物",
         "personne": "人",
-        "securite": "セキュリティ",
+        "securite": "sécurité",
         "techno": "テクノ",
         "transport": "輸送",
         "Général": "コモン"
@@ -2084,7 +2193,8 @@
         "Data store sauvegardé": "データストアは、保存されました",
         "Graphique de lien": "リンクグラフ",
         "Dépôt de données supprimé": "預金削除されたデータ",
-        "Dépôt de données sauvegardé": "保存されたデータの寄託"
+        "Dépôt de données sauvegardé": "保存されたデータの寄託",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "変数："
@@ -2099,7 +2209,11 @@
     },
     "core/repo/market.repo.php": {
         "Téléchargement de ": "ダウンロード",
-        "Erreur repo_market::getinfo : ": "エラー:: repo_marketのGETINFO："
+        "Erreur repo_market::getinfo : ": "エラー:: repo_marketのGETINFO：",
+        "Cloud monitoring actif": "Cloud monitoring actif",
+        "NOK": "NOK",
+        "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
+        "OK": "OK"
     },
     "core/class/network.class.php": {
         "Le plugin openvpn doit être actif": "OpenVPNのプラグインをアクティブにする必要があります"
@@ -2123,10 +2237,18 @@
         "Nombre de téléchargements": "ダウンロード数",
         "Type": "タイプ",
         "Dernière mise à jour le": "最終の更新します",
-        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "あなたの新しいプラグインの設定ページに行きますか？",
+        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "件名は正常にインストール",
         "Installer": "インストール",
-        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "あなたの新しいプラグインの設定ページに行きたいですか？"
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "あなたの新しいプラグインの設定ページに行きたいですか？",
+        "Taille": "Taille",
+        "Utilisation": "使用",
+        "Informations complémentaires": "Informations complémentaires",
+        "Langue disponible": "Langue disponible",
+        "Market": "市場",
+        "Conseillé": "Conseillé",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention, ce plugin n'est pas un plugin officiel. En cas de soucis avec celui-ci (direct ou indirect), toute demande de support peut être refusée",
+        "Développé par": "Développé par"
     },
     "core/class/view.class.php": {
         "Vue :": "ビュー："
@@ -2173,7 +2295,7 @@
         "Transparent": "透明",
         "Défaut": "欠陥",
         "Couleur du texte": "テキストの色",
-        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "コーナーラウンド（50％、すなわち％を置くことを忘れないでください）",
+        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublier de mettre %, ex 50%)",
         "Bordure (attention syntax css, ex : solid 1px black)": "ボーダー（黒ベタ例えば1ピクセル、CSSの構文を見ます）",
         "Taille de la police (ex 50%, il faut bien mettre le signe %)": "フォントサイズ（例えば、50％、我々は％記号をつけてください）",
         "Gras": "脂肪",
@@ -2185,13 +2307,13 @@
         "Widget au survol": "ウィジェット高架道路",
         "Action": "アクション",
         "Equipement": "設備",
-        "Afficher au survole": "ハエを表示",
+        "Afficher au survole": "Afficher au survol",
         "Afficher sur un clic": "クリックで表示",
         "Information binaire": "バイナリ情報",
         "Action on": "上のアクション",
         "Action off": "アクションオフ",
         "Alignement du texte": "テキストの配置",
-        "Par defaut": "デフォルトでは、",
+        "Par defaut": "Par défaut",
         "Gauche": "左",
         "Droite": "右",
         "Centré": "中心",
@@ -2220,7 +2342,11 @@
     },
     "core/api/jeeApi.php": {
         "Appels de ": "通話",
-        "Requête invalide. Version Jsonrpc invalide : ": "不正な要求。バージョン無効JSONRPC："
+        "Requête invalide. Version Jsonrpc invalide : ": "不正な要求。バージョン無効JSONRPC：",
+        "Demande pour le plugin : ": "Demande pour le plugin :",
+        "Demande API pour les scénarios": "Demande API pour les scénarios",
+        "Démarrage scénario de : ": "Démarrage scénario de :",
+        "Exécution provoquée par un appel API ": "Exécution provoquée par un appel API"
     },
     "mobile/js/message.js": {
         "Vider": "空"
@@ -2364,8 +2490,8 @@
         "Test": "テスト",
         "Exécuter": "行います",
         "Résultat": "結果",
-        "L\\'epression de test ne peut être vide": "L \\「テストepression空にすることはできません",
-        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "結果は\\式と同じであるので、私は\\「の懸念があると思い警告",
+        "L\\'epression de test ne peut être vide": "L\\'expression de test ne peut être vide",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Attention : je pense qu\\'il y a un souci car le résultat est le même que l\\'expression",
         "Je vais évaluer : ": "私は評価します：",
         "Résultat : ": "結果：",
         "L\\'expression de test ne peut être vide": "L \\「テスト式は空にすることはできません",
@@ -2377,7 +2503,7 @@
         "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": " - 質問は<a href='https://jeedom.com/forum'>フォーラムについて</a>頼まれていません",
         "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": " - あなたのチケットが最短時間で処理されるため、カテゴリが選択されていること",
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>": " - 答えは<aのhref='https://jeedom.github.io/documentation'>のドキュメントになっていない</a>に",
-        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "重要：あなたはバグや改善要求のためのチケットを開く場合は、公開されています（あなたが提供する情報に注意を払います）。あなたは、保留中のアプリケーションのリスト<のhref =「https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%を見ることができます2C%20%22To％20Do％22）ここ</a>を%20AND 20resolution%20%3D %%% 20Unresolved%20order 20by%20priority 20DESC %%% 2Cupdated 20DESC \"ターゲット=\" _空白「>。後でアプリケーションを完了することはできませんので、公共のアプリケーションは完全にすべての必要な情報を用いて処方されなければなりません。プロのサービスパックからのすべての要求はプライベートです。",
+        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celui-ci est public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration, celles-ci sont publiques (donc attention aux informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes publiques doivent être parfaitement formulées avec toutes les informations nécessaires car vous ne pouvez pas compléter la demande par la suite. Toute demande d'un service pack pro est privée.",
         "Etape 2 : Catégorie et type de la demande": "ステップ2：サイズと需要のタイプ",
         "Type": "タイプ",
         "Aucun": "いいえ",
@@ -2406,32 +2532,38 @@
         "Assistance technique": "技術支援",
         "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "迅速に対応させていただきます当社のテクニカルサービスの注意にあなたの質問をお書きください。",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "あなたは私たちのパブリックバグトラッカー（<強い> WARNINGに公開されるバグを報告することができます：</ strong>のあなたのメッセージは、公開されます、それはそれはバグではありません場合は、削除することができる、あなたはに取得することはありませんこの文、次の技術支援）",
-        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "あなたは私たちのページ専用のパブリックに公開され、私たちのロードマップに統合することができます改善のための提案を送信することができます。",
+        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre roadmap.",
         "Voir les bugs": "バグを参照してください。",
-        "Voir les propositions d'amélioration": "改善のための提案を参照してください。"
+        "Voir les propositions d'amélioration": "改善のための提案を参照してください。",
+        "Rapport": "レポート",
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
+        "Ouvrir un accès au support": "Ouvrir un accès au support",
+        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
     },
     "core/ajax/cmd.ajax.php": {
         "Commande inconnu verifié l'id :": "未知のコマンドは、IDを検証します：",
         "Cmd ID inconnu : ": "未知のIDをCMD："
     },
     "desktop/php/custom.php": {
-        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "あなたがここに書くことは地球とすべてのページに含まれるように注意してください、わずかなミスがあなたの非機能jeedomを作ることができます",
+        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre Jeedom non fonctionnel",
         "Activer": "アクティブ",
-        "Sauvegarder": "セーブ"
+        "Sauvegarder": "セーブ",
+        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre",
+        "non fonctionel.": "non fonctionnel."
     },
     "desktop/js/system.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "あなたは、このコマンドを実行しますか：",
-        "Celle-ci est classé en dangereuse": "それは危険と分類されます",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classée en dangereuse",
         "Commande : ": "コマンド："
     },
     "desktop/php/database.php": {
         "Rechercher": "検索",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "右のコマンドをクリックするか、下のカスタムコマンドを入力します",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "右のコマンドをクリックするか、下のカスタムコマンドを入力します",
         "OK": "OK"
     },
     "desktop/js/database.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "あなたは、このコマンドを実行しますか：",
-        "Celle-ci est classé en dangereuse": "それは危険と分類されます",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classée en dangereuse",
         "Commande : ": "コマンド："
     },
     "desktop/dashboard.php": {
@@ -2478,13 +2610,13 @@
         "Type de lien": "リンクタイプ",
         "Equipement": "設備",
         "Lien": "リンク",
-        "Rechercher d\\'un équipement": "検索\\「sの機器",
+        "Rechercher d\\'un équipement": "Recherche d\\'un équipement",
         "Spécificité": "特異",
         "Lumière": "ライト",
         "Lumière couleur": "光の色",
         "Aucun": "いいえ",
         "Statut": "ステータス",
-        "Rechercher d\\'une commande": "検索\\「sのコマンド",
+        "Rechercher d\\'une commande": "Recherche d\\'une commande",
         "Puissance": "パワー",
         "Texte": "テキスト",
         "Taille du texte": "文字サイズ",
@@ -2506,10 +2638,30 @@
         "Couleur conditionnel": "条件付きの色",
         "Condition": "条件",
         "Ajouter": "加えます",
-        "Couleur": "カラー"
+        "Couleur": "カラー",
+        "Etat": "状態",
+        "Rotation": "Rotation",
+        "Activer": "アクティブ",
+        "Ouverture": "Ouverture",
+        "Gauche": "左",
+        "Droite": "右",
+        "Devant": "Devant",
+        "Derriere": "Derriere",
+        "Normal": "ノーマル",
+        "Inversé": "Inversé",
+        "Translation": "Translation",
+        "Sens": "Sens",
+        "Haut": "トップ",
+        "Bas": "Bas",
+        "Répeter": "Répeter",
+        "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
+        "Couleur ouverte": "Couleur ouverte",
+        "Couleur fermée": "Couleur fermée",
+        "Masquer quand le volet est ouvert": "Masquer quand le volet est ouvert",
+        "Couleur fermé": "Couleur fermé"
     },
     "core/ajax/plan3d.ajax.php": {
-        "plan3d header inconnu verifiez l'id : ": "plan3d未知のヘッダには、IDを確認します。"
+        "plan3d header inconnu verifiez l'id : ": "plan3d header inconnu, vérifiez l'id :"
     },
     "desktop/modal/plan3dHeader.configure.php": {
         "Sauvegarder": "セーブ",
@@ -2540,7 +2692,7 @@
         "Chargement...": "読み込んでいます..."
     },
     "desktop/3d.php": {
-        "Plan 3d inconnu. Verifier l'id": "不明Map 3Dに。 IDを確認します"
+        "Plan 3d inconnu. Vérifier l'id": "Plan 3d inconnu. Vérifier l'id"
     },
     "desktop/php/system.php": {
         "Rechercher": "検索",
@@ -2595,7 +2747,8 @@
         "Appliquer": "適用します",
         "Partager sur le market": "市場でシェア",
         "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "あなたは、テンプレートを適用してもよろしいですか？これはあなたのシナリオを上書きします",
-        "Template ajouté avec succès": "テンプレートが正常に追加しました"
+        "Template ajouté avec succès": "テンプレートが正常に追加しました",
+        "Envoyer un template": "Envoyer un template"
     },
     "desktop/.php": {
         "Aucune phrase trouvée": "文章見つかりません"
@@ -2605,5 +2758,76 @@
         "Exécuter": "行います",
         "Résultat": "結果",
         "La demande ne peut être vide": "リクエストは空にすることはできません"
+    },
+    "desktop/modal/note.manager.php": {
+        "Supprimer": "取り除きます",
+        "Sauvegarder": "セーブ",
+        "Ajouter": "加えます",
+        "Note crée avec succès": "Note créée avec succès",
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Etês vous sûr de vouloir supprimer la note : ": "Etês-vous sûr de vouloir supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès",
+        "Note créée avec succès": "Note créée avec succès"
+    },
+    "desktop/modal/cmd.selectMultiple.php": {
+        "Basculer": "Basculer",
+        "Valider": "検証",
+        "Nom": "名前"
+    },
+    "desktop/modal/cmd.configureHistory.php": {
+        "Valider": "検証",
+        "Historisé": "Historisé",
+        "Timeline": "タイムライン",
+        "Nom": "名前",
+        "Plugin": "プラグイン",
+        "Mode de lissage": "Mode de lissage",
+        "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
+        "Action": "アクション",
+        "Moyenne": "平均",
+        "Minimum": "Minimum",
+        "Maximum": "Maximum",
+        "Aucun": "いいえ",
+        "Jamais": "今までに",
+        "1 jour": "1日",
+        "7 jours": "7 jours",
+        "1 mois": "1ヶ月",
+        "3 mois": "3ヶ月",
+        "6 mois": "6ヵ月",
+        "1 an": "1 an",
+        "Configuration de la commande": "設定された制御",
+        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
+        "Type": "タイプ",
+        "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
+        "Commande(s) timeline : ": "Commande(s) timeline :"
+    },
+    "desktop/modal/user.rights.php": {
+        "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
+        "Sauvegarder": "セーブ",
+        "Equipements": "施設",
+        "Scénarios": "シナリオ",
+        "Equipement": "設備",
+        "Droits": "Droits",
+        "Aucun": "いいえ",
+        "Visualisation": "Visualisation",
+        "Visualisation et exécution": "Visualisation et exécution",
+        "Scénario": "シナリオ",
+        "Sauvegarde effectuée": "バックアップ作ら"
+    },
+    "desktop/modal/object.summary.php": {
+        "ID": "ID",
+        "Objet": "オブジェクト",
+        "Père": "Père",
+        "Visible": "目に見えます",
+        "Masqué": "Masqué",
+        "Résumé Défini": "Résumé Défini",
+        "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
+        "Résumé Mobile Masqué": "Résumé Mobile Masqué",
+        "Oui": "はい",
+        "Non": "ではありません"
+    },
+    "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
+        "label": "label",
+        "([^}]+?)": "([^}]+?)",
+        "|": "|"
     }
 }

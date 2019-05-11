@@ -1,11 +1,11 @@
-Viewing
-=========
+Logs 
+====
 
 The Logs menu allows you to follow what is happening on your home. In the
 In most cases the logs will only be used to debug and
 solve problems by the support team.
 
-To access it, go to Administration → Logs:
+Pour y accéder il faut aller dans Analyse → Logs :
 
 The Logs page is quite simple, in the top left a drop-down list
 allowing the choice of log to look, in the top right you have 5
@@ -31,7 +31,7 @@ buttons:
 >! if you delete it (in command line for example) this one does not
 > will not recreate itself, it is necessary to restart the system.
 
-The log "Event"
+Temps réel 
 ==============
 
 The log "Event" is a bit special. First of all for him

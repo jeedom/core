@@ -1,11 +1,11 @@
-Jeedom tiene la oportunidad de ser salvados y restaurados a partir o desde
-diferentes lugares.
+Jeedom offre la possibilité d’être sauvegardé et restauré depuis ou à partir
+de différents emplacements.
 
 configuración
 =============
 
-Accesible desde la Administración → ** ** respaldo Esta página permite al
-gestión de copia de seguridad.
+Accessible depuis **Réglages → Système → Sauvegardes**, cette page permet la
+gestion des sauvegardes, restaurations.
 
 Se encuentra, a la izquierda, los parámetros y los botones de acción. En la
 Derecha, este es el estado en tiempo real de la acción actual (copia de seguridad
@@ -96,7 +96,7 @@ Las copias de seguridad Samba ** **
 > **Tip**
 >
 > Lors d’une réinstallation de Jeedom et en ayant pris l’abonnement de
-> sauvegarde vers le cloud du market, vous devez renseigner votre compte
+> sauvegarde vers le cloud du Market, vous devez renseigner votre compte
 > Market sur votre nouveau Jeedom (Administration→Configuration→Onglet
 > Mises à jour) puis venir ici pour lancer la restauration.
 

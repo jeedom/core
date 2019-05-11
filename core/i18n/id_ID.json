@@ -8,17 +8,13 @@
         "Message": "Pesan",
         "Valeur": "Nilai",
         "Aucun": "Tak ada",
-        "Erreur execution de la commande ": "kesalahan perintah eksekusi",
-        "Alert sur la commande ": "Peringatan pada perintah",
+        "Erreur exécution de la commande ": "Kesalahan mengeksekusi perintah",
+        "Alerte sur la commande ": "Alerte sur la commande",
         " niveau ": "tingkat",
-        "[jeedom] Message de ": "[Jeedom] Pesan",
         "pendant plus de ": "selama lebih dari",
         " minute(s)": "menit (s)",
-        "La commande n'est pas dans la plage de valeur autorisée : ": "Perintah ini tidak di kisaran diizinkan nilai:",
-        "[jeedom] ": "[Jeedom]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][On]": "fasilitas orang cacat - tidak menjalankan perintah: [Taman] [Kamera Ext] [Pada]",
-        "Equipement désactivé - impossible d'exécuter la commande : [Jardin][Caméras Ext][Off]": "fasilitas orang cacat - tidak menjalankan perintah: [Taman] [Kamera Ext] [Off]",
-        "Erreur exécution de la commande ": "Kesalahan mengeksekusi perintah",
+        "La commande n'est pas dans la plage de valeur autorisée : ": "La commande n'est pas dans la plage de valeurs autorisées :",
+        "Equipement désactivé - impossible d'exécuter la commande : ": "Equipement désactivé - impossible d'exécuter la commande :",
         "Impossible de traduire la couleur en code hexadécimal :": "Tidak dapat menerjemahkan warna dalam kode heksadesimal:"
     },
     "core/class/scenario.class.php": {
@@ -50,12 +46,14 @@
         "Inconnue": "Tidak dikenal",
         "Vous devez attendre au moins 45s entre 2 lancements du démon": "Anda harus menunggu setidaknya 45 detik antara 2 meluncurkan iblis",
         "Erreur sur la fonction deamon_start du plugin : ": "Kesalahan pada fungsi deamon_start plugin:",
-        "Veuillez executer le script : ": "Silakan mengeksekusi script:",
+        "Veuillez exécuter le script : ": "Veuillez exécuter le script :",
         "Lancement de : ": "peluncuran:",
         "Gestion automatique désactivée": "Otomatis Manajemen Off",
         "Les crons et démons sont désactivés": "Cron dan setan dinonaktifkan",
         "Erreur sur la fonction cron du plugin : ": "Kesalahan pada fungsi cron plugin:",
-        "Erreur sur la fonction cron15 du plugin : ": "Kesalahan pada fungsi cron15 plugin:"
+        "Erreur sur la fonction cron15 du plugin : ": "Kesalahan pada fungsi cron15 plugin:",
+        "Erreur sur la fonction cron5 du plugin : ": "Erreur sur la fonction cron5 du plugin :",
+        "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ": "Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement :"
     },
     "core/class/scenarioSubElement.class.php": {
         "Exécution du sous-élément de type [condition] : ": "Pelaksanaan jenis sub-elemen [kondisi]:",
@@ -89,11 +87,12 @@
         " avec comme option(s) : ": "dengan sebagai pilihan (s):",
         "Affectation de la variable ": "Alokasi variabel",
         " => ": "=>",
-        "Execution du lancement en arriere plan : ": "Pelaksanaan peluncuran di latar belakang:",
+        "Exécution du lancement en arrière plan : ": "Exécution du lancement en arrière plan :",
         "Lancement provoqué par le scénario  : ": "Luncurkan disebabkan oleh skenario:",
         "Action sur scénario impossible. Scénario introuvable - Vérifiez l'id : ": "Aksi skenario mustahil. Ditemukan Skenario - Periksa id:",
         "Arrêt forcé du scénario : ": "Paksa mematikan skenario:",
-        "Commande non trouvée": "Perintah tidak ditemukan"
+        "Commande non trouvée": "Perintah tidak ditemukan",
+        "Scénario : ": "Scénario :"
     },
     "core/class/scenarioElement.class.php": {
         "Non exécution des actions pour cause de répétition": "Tidak ada kinerja saham karena pengulangan",
@@ -104,7 +103,9 @@
         "Expression non valide : ": "ekspresi tidak valid:",
         "SI": "SI",
         "ALORS": "MAKA",
-        "SINON": "LAINNYA"
+        "SINON": "LAINNYA",
+        "Expression non valide  (": "Expression non valide  (",
+        ") trouvée dans le scénario : ": ") trouvée dans le scénario :"
     },
     "core/js/scenario.class.js": {
         "Sélectionner le scénario": "Pilih skenario"
@@ -133,7 +134,8 @@
         "Plugins": "Plugins",
         "Autre": "Yang lainnya",
         "Déconnexion": "Keluar",
-        "Plan 3D": "3D Peta"
+        "Plan 3D": "3D Peta",
+        "3d": "3d"
     },
     "mobile/html/deamon.html": {
         "Nom": "Nama",
@@ -166,7 +168,9 @@
         "Alertes": "pemberitahuan",
         "Analyse équipement": "peralatan analisis",
         "Messages": "posting",
-        "Message(s)": "Pesan (s)"
+        "Message(s)": "Pesan (s)",
+        "Scénarios": "Skenario",
+        "Scénario": "skenario"
     },
     "core/class/cron.class.php": {
         "Arrêt de ": "henti"
@@ -198,18 +202,21 @@
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Kesalahan skenario: semua skenario dinonaktifkan. Pergi ke Tools -> Skenario untuk mengaktifkan",
         "Date système (dernière heure enregistrée)": "Sistem Tanggal (terakhir tercatat waktu)",
         "OK ": "OK",
-        "Démarrage de jeedom": "mulai jeedom",
-        "Arret des crons": "Hentikan cron",
+        "Démarrage de Jeedom": "Démarrage de Jeedom",
+        "Arrêt des crons": "Arrêt des crons",
         "Restauration du cache": "Makanan Cache",
-        "Nettoyage du cache des péripheriques USB": "periferal USB Cache Cleaner",
-        "Nettoyage du cache des péripheriques Bluetooth": "Membersihkan cache periferal Bluetooth",
+        "Nettoyage du cache des péripheriques USB": "Nettoyage du cache des périphériques USB",
+        "Nettoyage du cache des péripheriques Bluetooth": "Nettoyage du cache des périphériques Bluetooth",
         "Démarrage des processus internet de jeedom": "Mulai proses internet jeedom",
         "Ecriture du fichier ": "Menulis file",
         "Vérification de la configuration réseau interne": "Memeriksa konfigurasi jaringan internal",
-        "Envoi de l'evenement de démarrage": "memulai acara Mengirim",
+        "Envoi de l'événement de démarrage": "Envoi de l'événement de démarrage",
         "Démarrage des plugins": "mulai plugin",
         "Test de connexion au market": "Tes koneksi Market",
-        "Démarrage de jeedom fini avec succès": "jeedom Mulai selesai berhasil"
+        "Démarrage de Jeedom fini avec succès": "Démarrage de Jeedom fini avec succès",
+        "Connexion par API de l'utilisateur : ": "Connexion par API de l'utilisateur :",
+        "Démarrage des processus Internet de Jeedom": "Démarrage des processus Internet de Jeedom",
+        "Apache private tmp": "Apache private tmp"
     },
     "core/class/message.class.php": {
         "Message de ": "Pesan dari"
@@ -245,9 +252,12 @@
         "Lumière": "Cahaya",
         "Automatisme": "Otomatisme",
         "Multimedia": "Multimedia",
-        "Defaut": "Standar",
+        "Défaut": "kesalahan",
         "Autre": "Yang lainnya",
-        "Scénarios": "Skenario"
+        "Scénarios": "Skenario",
+        "Catégorie": "kategori",
+        "Toute": "Semua",
+        "Tags": "Tags"
     },
     "desktop/php/index.php": {
         "Toggle navigation": "Toggle navigasi",
@@ -303,8 +313,10 @@
         "Redémarrer": "Mulai lagi",
         "Eteindre": "mematikan",
         "Plan 3d": "3d Peta",
-        "Plan 3d inconnu. Verifier l'id": "Peta diketahui 3D. Periksa id",
-        "Design 3D": "desain 3D"
+        "Plan 3d inconnu. Vérifiez l'id": "Plan 3d inconnu. Vérifiez l'id",
+        "Design 3D": "desain 3D",
+        "Note": "Note",
+        "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
     },
     "desktop/php/message.php": {
         "Vider": "Abisin",
@@ -337,19 +349,20 @@
         "Mode forcé": "modus dipaksa",
         "Tout depuis cette version": "Semuanya dari versi ini",
         "Valider": "Mengesahkan",
-        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Sebelum memperbarui terima kasih untuk memeriksa versi catatan inti Jeedom",
+        "Avant toute mise à jour merci de consulter la note de version du core de Jeedom": "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom",
         "ici": "disini",
         "Pré-update (mettre à jour le script d'update avant)": "Pre-update (pembaruan sebelum script update)",
         "Sauvegarder avant": "Simpan sebelum",
         "Mettre à jour les plugins": "plugin pembaruan",
         "Mettre à jour le core": "Memperbarui inti",
-        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Sebelum update apapun, terima kasih untuk memeriksa versi catatan inti Jeedom"
+        "Avant toute mise à jour, merci de consulter la note de version du core de Jeedom": "Sebelum update apapun, terima kasih untuk memeriksa versi catatan inti Jeedom",
+        "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\"": "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur \"Aucune\""
     },
     "desktop/js/update.js": {
         "Options": "Pilihan",
-        "Etes-vous sur de vouloir faire les mises à jour ?": "Apakah Anda yakin ingin melakukan update?",
-        "Etes vous sur de vouloir mettre à jour cet objet ?": "Apakah Anda yakin ingin memperbarui item ini?",
-        "Etes vous sur de vouloir supprimer cet objet ?": "Apakah Anda yakin ingin menghapus item ini?",
+        "Etes-vous sur de vouloir faire les mises à jour ?": "Etes-vous sûr de vouloir faire les mises à jour ?",
+        "Etes vous sur de vouloir mettre à jour cet objet ?": "Etes-vous sûr de vouloir mettre à jour cet objet ?",
+        "Etes vous sur de vouloir supprimer cet objet ?": "Etes-vous sûr de vouloir supprimer cet objet ?",
         "L\\'opération est réussie": "operasi L \\' berhasil",
         "L\\'opération a échoué": "operasi L \\' gagal",
         "Dernière mise à jour du core : ": "Terakhir diperbarui inti:",
@@ -383,27 +396,30 @@
         "Panel": "Panel",
         "Fonctionnalités": "fitur",
         "Gestion": "Manajemen",
-        "Sources": "sumber"
+        "Sources": "sumber",
+        "Plugins": "Plugins"
     },
     "core/class/interactQuery.class.php": {
         "J'ai une correspondance  : ": "Saya memiliki korespondensi:",
         " avec ": "dengan",
-        "Correspondance trop éloigné : ": "terlalu jauh Correspondence:",
+        "Correspondance trop éloignée : ": "Correspondance trop éloignée :",
         "Désolé je n'ai pas compris": "Maaf saya tidak mengerti",
-        "Désolé je n'ai pas compris la demande": "Maaf saya tidak mengerti permintaan",
-        "Désolé je ne comprends pas la demande": "Maaf saya tidak mengerti permintaan",
+        "Désolé je n'ai pas compris la demande": "Désolé, je n'ai pas compris la demande",
+        "Désolé je ne comprends pas la demande": "Désolé, je ne comprends pas la demande",
         "Je ne comprends pas": "Saya tidak mengerti",
         "Désolé ": "maaf",
         " je n'ai pas compris": "Saya tidak mengerti",
         " je n'ai pas compris ta demande": "Saya tidak mengerti permintaan Anda",
         "aucune valeur": "tak berguna",
-        "J'ai executé ": "Saya telah dieksekusi",
+        "J'ai exécuté ": "J'ai exécuté",
         " de ": "dari",
         " dans ": "di",
         "C'est fait": "Hal ini dilakukan",
         "Erreur : ": "error:",
         "Correspondance trouvée : ": "Korespondensi ditemukan:",
-        " mais ne contient pas : ": "tapi tidak mengandung:"
+        " mais ne contient pas : ": "tapi tidak mengandung:",
+        "Alerte : ": "Alerte :",
+        " valeur : ": "Nilai"
     },
     "desktop/php/log.php": {
         "Rechercher": "Mencari",
@@ -461,7 +477,7 @@
         "Accès à l'interface d'administration": "Akses ke antarmuka administrasi",
         "Lancer": "meluncurkan",
         "Securité": "keamanan",
-        "Nombre d'échec toléré": "Jumlah kegagalan ditoleransi",
+        "Nombre d'échec toléré": "Nombre d'échecs tolérés",
         "Temps maximum entre les échecs (s)": "Waktu maksimum antara kegagalan (s)",
         "Durée du bannissement (s), -1 pour infini": "Waktu pembuangan (s), -1 untuk tak terbatas",
         "IP \"blanche\"": "IP \"putih\"",
@@ -522,7 +538,7 @@
         "Attention toute modification du moteur de cache nécessite un redémarrage de Jeedom": "Harap dicatat perubahan pada mesin cache yang membutuhkan restart Jeedom",
         "Statistiques": "statistika",
         "Moteur de cache": "penutup mesin",
-        "Système de fichier (/tmp/jeedom-cache)": "sistem file (/ tmp / jeedom mencari)",
+        "Système de fichier (/tmp/jeedom-cache)": "Système de fichiers (/tmp/jeedom-cache)",
         "Memcached": "memcached",
         "Adresse Memcache": "memcached Alamat",
         "Port Memcache": "Port memcached",
@@ -535,7 +551,7 @@
         "Temps de pause pour le long polling": "Jeda waktu untuk polling lama",
         "Configuration des interactions": "interaksi konfigurasi",
         "Général": "Umum",
-        "Plus la sensibilité est basse (proche de 1) plus la corrrespondance doit être exacte": "Lebih sensitivitas rendah (mendekati 1) semakin tinggi korespondensi mereka harus akurat",
+        "Plus la sensibilité est basse (proche de 1) plus la correspondance doit être exacte": "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte",
         "Sensibilité": "kepekaan",
         "1 mot": "1 kata",
         "2 mots": "2 kata",
@@ -545,21 +561,21 @@
         "Ne pas répondre si l'interaction n'est pas comprise": "Jangan merespon jika interaksi tidak termasuk",
         "Regex général d'exclusion pour les interactions": "pengecualian umum regex untuk interaksi",
         "Interaction automatique & contextuelle": "otomatis pop & Interaksi",
-        "Activer les interactions automatique": "Aktifkan interaksi otomatis",
-        "Activer les réponses contextuelle": "Aktifkan jawaban kontekstual",
+        "Activer les interactions automatique": "Activer les interactions automatiques",
+        "Activer les réponses contextuelles": "Aktifkan jawaban kontekstual",
         "Réponse contextuelle prioritaire si la phrase commence par": "Prioritas respon kontekstual jika kalimat dimulai",
         "Découper une interaction en 2 si elle contient": "Potong interaksi 2 jika mengandung",
         "Synonyme pour les objets": "Sinonim untuk objek",
         "Synonyme pour les équipements": "Sinonim untuk peralatan",
         "Synonyme pour les commandes": "Sinonim untuk pesanan",
-        "Synonyme pour les résumé": "Sinonim untuk ringkasan",
+        "Synonyme pour les résumés": "Synonyme pour les résumés",
         "Couleurs": "warna",
         "Nom": "Nama",
         "Code HTML": "Kode HTML",
         "Configuration des résumés d'objet": "Konfigurasi Barang ringkasan",
         "Clef": "Kunci",
         "Calcul": "Perhitungan",
-        "Icone": "icon",
+        "Icone": "Icon",
         "Unité": "Satuan",
         "Méthode de comptage": "metode menghitung",
         "Affiché si valeur égale 0": "Ditampilkan jika sama 0",
@@ -615,12 +631,12 @@
         "Sauvegarder": "Menyimpan",
         "Configuration des rapports": "laporan Konfigurasi",
         "Delai d'attente après génération de la page (en ms)": "Menunggu waktu generasi halaman (di ms)",
-        "Largeur des rapport (en px)": "rasio lebar (oleh px)",
-        "Hauteur des rapport (en px)": "Rasio tinggi badan (dalam px)",
-        "Largeur minimal (en px)": "lebar minimum (di px)",
-        "Hauteur minimal (en px)": "tinggi minimum (di px)",
-        "Nettoyer les rapport plus viex de (jours)": "Bersih lebih Viex ratio (hari)",
-        "Système de fichier (/tmp/jeedom/cache)": "sistem file (/ tmp / jeedom / cache)",
+        "Largeur des rapport (en px)": "Largeur des rapports (en px)",
+        "Hauteur des rapport (en px)": "Hauteur des rapports (en px)",
+        "Largeur minimal (en px)": "Largeur minimale (en px)",
+        "Hauteur minimal (en px)": "Hauteur minimale (en px)",
+        "Nettoyer les rapport plus viex de (jours)": "Nettoyer les rapports plus vieux de (jours)",
+        "Système de fichier (/tmp/jeedom/cache)": "Système de fichiers (/tmp/jeedom/cache)",
         "Démarré : ": "mulai:",
         "Configuration des graphiques de lien": "Konfigurasi Link grafis",
         "Profondeur pour les scénarios": "Mendalam untuk skenario",
@@ -661,7 +677,7 @@
         "Timeline": "waktu",
         "Nombre maximum d'évènements": "Jumlah maksimum acara",
         "Supprimer tous les évènements": "Hapus semua acara",
-        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "tidak ditemukan LDAP perpustakaan. Terima kasih untuk menginstalnya sebelum Anda dapat menggunakan koneksi DLAP",
+        "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion DLAP": "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP",
         "Librairie LDAP non trouvée. Merci de l'installer avant de pouvoir utiliser la connexion LDAP": "tidak ditemukan LDAP perpustakaan. Terima kasih untuk menginstalnya sebelum Anda dapat menggunakan koneksi LDAP",
         "IPs bannies": "IP dilarang",
         "Sessions active": "sesi aktif",
@@ -676,7 +692,6 @@
         "Plus la sensibilité est basse (proche de 1), plus la correspondance doit être exacte.": "Lebih sensitivitas rendah (mendekati 1), lebih korespondensi harus akurat.",
         "Regex générale d'exclusion pour les interactions": "pengecualian regex umum untuk interaksi",
         "Activer les interactions automatiques": "Aktifkan interaksi otomatis",
-        "Activer les réponses contextuelles": "Aktifkan jawaban kontekstual",
         "Activer les interactions \"préviens moi\"": "Aktifkan interaksi 'memperingatkan saya'",
         "Réponse de type \"préviens moi\" si la phrase commence par": "Tanggapan jenis \"memperingatkan saya\" jika kalimat dimulai",
         "Synonymes pour les objets": "Sinonim untuk objek",
@@ -687,13 +702,45 @@
         "Adresse syslog UDP": "Alamat syslog UDP",
         "Port syslog UDP": "Syslog UDP Pelabuhan",
         "Synonyme commande slider maximum": "Maksimum kontrol slider Sinonim",
-        "Synonyme commande slider minimum": "slider Minimum kontrol Sinonim"
+        "Synonyme commande slider minimum": "slider Minimum kontrol Sinonim",
+        "Editeur de fichiers": "Editeur de fichiers",
+        "DNS (proxy)": "DNS (proxy)",
+        "Action sur message": "Action sur message",
+        "Ajouter": "Tambahan",
+        "Nom de votre Jeedom2 (utilisé notamment par le market)": "Nom de votre Jeedom2 (utilisé notamment par le market)",
+        "Nom de votre": "Nom de votre",
+        "Clef d'installation qui permet d'identifier votre": "Clef d'installation qui permet d'identifier votre",
+        "quand il communique avec le market": "quand il communique avec le market",
+        "Langue de votre": "Langue de votre",
+        "Option pour les développeurs permettant à": "Option pour les développeurs permettant à",
+        "de générer les phrases à traduire": "de générer les phrases à traduire",
+        "Durée de vie de votre connexion à": "Durée de vie de votre connexion à",
+        "si vous n'avez pas coché la case enregistrer cet ordinateur": "si vous n'avez pas coché la case enregistrer cet ordinateur",
+        "Fuseau horaire de votre": "Fuseau horaire de votre",
+        "Permet d'ajouter un serveur de temps à": "Permet d'ajouter un serveur de temps à",
+        "utilisé lorsque": "utilisé lorsque",
+        "force la synchronisation de l'heure": "force la synchronisation de l'heure",
+        "Indique à": "Indique à",
+        "de ne pas prendre en compte l'heure du système": "de ne pas prendre en compte l'heure du système",
+        "Clef API globale de": "Clef API globale de",
+        "Clef API Pro de": "Clef API Pro de",
+        "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à",
+        ". L'équipe": ". L'équipe",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.",
+        "Attention : cette configuration n'est là que pour informer": "Attention : cette configuration n'est là que pour informer",
+        "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre",
+        "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
+        "Utiliser les DNS": "Utiliser les DNS",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage de": "Attention : toute modification du moteur de cache nécessite un redémarrage de",
+        "Mise à jour de": "Mise à jour de",
+        "Mode développement": "Mode développement",
+        "Vider le cache assets": "Vider le cache assets"
     },
     "desktop/js/administration.js": {
         "Etes-vous sûr de vouloir réinitialiser la clef API de ": "Apakah Anda yakin Anda ingin me-reset kunci API",
         "Commande réalisée avec succès": "berhasil dilakukan Operasi",
         "Sauvegarde réussie": "Menyimpan sukses",
-        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "Harap dicatat ini adalah operasi berisiko. Dapatkah Anda mengkonfirmasi bahwa Anda MEMAHAMI banyak risiko dan itu \\ 'untuk Jeedom non FUNGSIONAL setelahnya permintaan dukungan akan diterima (ini upaya \\ akses terdaftar)?",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "Attention ceci est une opération risquée. Confirmez-vous que vous comprenez bien les risques et qu\\'en cas de Jeedom non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
         "Connexion échouée :": "Koneksi gagal:",
         "Connexion réussie": "berhasil login",
         "Cache vidé": "dikosongkan Cache",
@@ -710,7 +757,13 @@
         "Créer virtuel": "membuat virtual",
         "Evènement de la timeline supprimé avec succès": "Timeline acara berhasil dihapus",
         "Suppression des IPs bannies réussie": "Menghapus IP sukses dilarang",
-        "Administration base de données": "administrasi database"
+        "Administration base de données": "administrasi database",
+        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxécute en parallèle des autres actions",
+        "Sélectionner un mot-clé": "Pilih kata kunci",
+        "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Attention, ceci est une opération risquée. Confirmez-vous que vous comprenez bien les risques et qu\\'en cas de",
+        "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?",
+        "Opération réalisée avec succès": "Operasi berhasil diselesaikan"
     },
     "desktop/php/interact.php": {
         "Ajouter interaction": "menambahkan interaksi",
@@ -741,7 +794,7 @@
         "Sans unité": "tanpa kesatuan",
         "Limiter aux commandes appartenant à l'objet": "Batasi kontrol milik obyek",
         "Limiter aux plugins": "plugin batas",
-        "Limiter aux categories": "Batasi kategori",
+        "Limiter aux categories": "Limiter aux catégories",
         "Sans catégorie": "ada kategori",
         "Limiter aux visibles": "Batasi terlihat",
         "Limiter à l'équipement": "peralatan batas",
@@ -761,7 +814,10 @@
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Mengganti kata-kata dengan sinonim mereka saat membuat perintah",
         "Liste des utilisateurs (identifiants) séparés par un |": "Daftar pengguna (pengidentifikasi) dipisahkan oleh |",
         "Limiter aux commandes appartenant aux objets": "Batasi perintah milik obyek",
-        "Limiter aux catégories": "Batasi kategori"
+        "Limiter aux catégories": "Batasi kategori",
+        "Regexp de correspondance obligatoire": "Regexp de correspondance obligatoire",
+        "Attendre avant de répondre (s)": "Attendre avant de répondre (s)",
+        "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple"
     },
     "desktop/js/interact.js": {
         "Liste des interactions": "Daftar interaksi",
@@ -822,16 +878,19 @@
         "Identification": "identifikasi",
         "Action": "Tindakan",
         "Supprimer": "menghapus",
-        "Péripherique enregistrés": "Unit perifer dicatat",
+        "Péripherique enregistrés": "Périphériques enregistrés",
         "Supprimer tout": "Hapus semua",
-        "Date derniere utilisation": "Tanggal penggunaan terakhir",
+        "Date derniere utilisation": "Date dernière utilisation",
         "IP": "IP",
         "Sessions actives": "sesi aktif",
         "ID": "ID",
         "Login": "Login",
         "Date": "Kencan",
         "Actions": "Tindakan",
-        "Déconnecter": "memutuskan"
+        "Déconnecter": "memutuskan",
+        "Couleur sur mobile": "Couleur sur mobile",
+        "Périphériques enregistrés": "Périphériques enregistrés",
+        "Date dernière utilisation": "Date dernière utilisation"
     },
     "desktop/js/profils.js": {
         "Authentification 2 étapes": "Otentikasi langkah 2",
@@ -841,14 +900,15 @@
     },
     "core/js/cmd.class.js": {
         "Veuillez indiquer le code ?": "Harap menunjukkan kode?",
-        "Etes vous sur de vouloir faire cette action ?": "Apakah Anda yakin ingin melakukan tindakan ini?",
+        "Etes vous sur de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Hasil perintah:",
         "Action exécutée avec succès": "Aksi berhasil menyelesaikan",
         "[Jeedom] Message de test": "[Jeedom] Uji Pesan",
         "Ceci est un test de message pour la commande": "Ini adalah pesan untuk mengendalikan uji",
         "Info": "Info",
         "Action": "Tindakan",
-        "Sélectionner la commande": "Pilih perintah"
+        "Sélectionner la commande": "Pilih perintah",
+        "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?"
     },
     "core/js/history.class.js": {
         "Il n\\'existe encore aucun historique pour cette commande :": "Ini \\ 's masih ada sejarah untuk perintah ini:",
@@ -880,7 +940,9 @@
         "Ajouter colonne": "menambahkan kolom",
         "Ajouter ligne": "Tambahkan baris",
         "Supprimer colonne": "Hapus kolom",
-        "Supprimer ligne": "Hapus baris"
+        "Supprimer ligne": "Hapus baris",
+        "A propos": "A propos",
+        "Note": "Note"
     },
     "desktop/js/view.js": {
         "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Anda mengedit Anda dapat mode bergerak widget, mengubah ukuran dan mengubah urutan perintah dalam widget"
@@ -898,7 +960,8 @@
         "Valider": "Mengesahkan",
         "Sélectionner la commande": "Pilih perintah",
         "Erreur de connexion": "koneksi Kesalahan",
-        "Erreur lors de la connexion à jeedom": "Kesalahan menghubungkan ke jeedom"
+        "Erreur lors de la connexion à jeedom": "Erreur lors de la connexion à Jeedom",
+        "Erreur lors de la connexion à Jeedom": "Erreur lors de la connexion à Jeedom"
     },
     "desktop/php/scenarioAssist.php": {
         "Interface simple": "Antarmuka yang Sederhana",
@@ -1041,17 +1104,17 @@
         "Création/modification d’une variable ou de la valeur d’une variable": "Penciptaan / modifikasi variabel atau nilai dari variabel",
         "Permet le contrôle des scénarios": "Memungkinkan skenario kontrol",
         "Arrête le scénario": "Menghentikan script",
-        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Memungkinkan Anda untuk mengatakan teks Jeedom (hanya bekerja jika tab jeedom dibuka di browser)",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Mengubah desain ditampilkan pada semua browser yang menampilkan desain dengan desain yang diminta",
         "Permet de rajouter un message dans les logs": "Memungkinkan Anda untuk menambahkan pesan di log",
-        "Permet d'ajouter une message dans le centre de message": "Menambahkan pesan di pusat pesan",
+        "Permet d'ajouter une message dans le centre de message": "Permet d'ajouter un message dans le centre de message",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Perubahan properti diambil terlihat / tak terlihat / off peralatan",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Aksi yang memungkinkan Jeedom untuk menerapkan kemudian menyimpan jawaban dalam variabel. Tindakan ini yang menghalangi dan lebih bahwa jika jeedom menerima respon atau timeout tercapai. Untuk saat ini tindakan ini hanya kompatibel dengan plugin SMS, Slack, dan SARAH Telegram.",
-        "Envoi l'ordre à Jeedom de s'éteindre": "Mengirim perintah untuk Jeedom kepunahan",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
+        "Envoi l'ordre à Jeedom de s'éteindre": "Envoie l'ordre à Jeedom de s'éteindre",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Mengembalikan teks atau nilai untuk interaksi misal",
-        "Permet d'affecter une icone au scénario": "Memungkinkan Anda untuk menetapkan ikon untuk script",
-        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Menampilkan peringatan kecil pada semua browser yang memiliki halaman jeedom terbuka. Anda juga dapat memilih dari empat tingkat peringatan",
-        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Menampilkan popup yang mutlak harus diaktifkan pada semua browser yang memiliki halaman terbuka jeedom.",
+        "Permet d'affecter une icone au scénario": "Permet d'affecter une icône au scénario",
+        "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte",
+        "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom d'ouvert.",
         "Valider": "Mengesahkan",
         "Rapport": "laporan",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Mengirim Pesan Orde laporan pandangan, desain atau panel PNG / PDF / JPEG / SVG.",
@@ -1066,11 +1129,12 @@
         "Variables": "variabel",
         "Général": "umum",
         "Suivre dans la timeline": "Ikuti di Timeline",
-        "Les executions du scénario pourront etre vu dans la timeline": "Eksekusi dari skenario dapat dilihat di timeline",
+        "Les executions du scénario pourront etre vu dans la timeline": "Les exécutions du scénario pourront être vues dans la timeline",
         "Timeout en secondes (0 = illimité)": "Timeout dalam detik (0 = unlimited)",
         "Le scénario pourra tourner plusieurs fois en même temps": "script akan dijalankan beberapa kali secara bersamaan",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable": "Script dalam mode sinkron. Peringatan, ini dapat membuat sistem tidak stabil",
-        "Les exécutions du scénario pourront être vues dans la timeline.": "Eksekusi dari script dapat dilihat pada timeline."
+        "Les exécutions du scénario pourront être vues dans la timeline.": "Eksekusi dari script dapat dilihat pada timeline.",
+        "Ajouter bloc": "Ajouter bloc"
     },
     "desktop/js/scenario.js": {
         "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
@@ -1121,7 +1185,7 @@
         "Programmation": "pemrograman",
         "Rechercher une commande": "urutan pencarian",
         "Rechercher un scenario": "skenario pencarian",
-        "Rechercher d\\'un équipement": "peralatan pencarian \\ 's",
+        "Rechercher d\\'un équipement": "Recherche d\\'un équipement",
         "Supprimer l\\'action": "Hapus \\ Aksi",
         "Sélectionner un mot-clé": "Pilih kata kunci",
         "Sélectionner la commande": "Pilih perintah",
@@ -1142,12 +1206,13 @@
         "Graphique de lien": "Link Grafik",
         "Avancé": "maju",
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments": "Jika blok tidak dapat dihapus jika mengandung unsur",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Periksa untuk urutan \\ 's dieksekusi secara paralel untuk tindakan lainnya",
-        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ 's Aksi",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parallèle des autres actions",
+        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
         "Décocher pour désactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
         "Afficher/masquer le bloc Sinon": "Tampilkan / sembunyikan blok Jika tidak",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Periksa perintah \\ 's berjalan secara paralel tindakan lain",
-        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Mari \\ 'menambahkan elemen fungsional penting untuk membuat skenario Anda (misalnya .. IF / THEN ...)"
+        "Permet d\\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)": "Mari \\ 'menambahkan elemen fungsional penting untuk membuat skenario Anda (misalnya .. IF / THEN ...)",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core/template/scenario/report.default": {
         "Vue": "Pemandangan",
@@ -1164,7 +1229,7 @@
         "Plugin": "Plugin",
         "Largeur  (px)": "Lebar (px)",
         "Hauteur (px)": "Tinggi (px)",
-        "Delai (ms)": "Delay (ms)"
+        "Delai (ms)": "Délai (ms)"
     },
     "core/template/scenario/gotodesign.default": {
         "Design": "Disain"
@@ -1180,7 +1245,7 @@
         "Rechercher": "Mencari",
         "Vider les logs": "Tampilkan Tulisan",
         "Télécharger": "Download",
-        "Log vidés avec succès": "Log dikosongkan berhasil",
+        "Logs vidés avec succès": "Logs vidés avec succès",
         "Vider le log": "log kosong",
         "Log vidé avec succès": "Masuk berhasil dibersihkan"
     },
@@ -1194,7 +1259,7 @@
         "Créer une vue": "Buat View",
         "Rechercher": "Mencari",
         "Renommer": "Mengangkat lagi",
-        "Icone": "icon",
+        "Icone": "Icon",
         "Supprimer": "Menghapus",
         "Enregistrer": "Catatan",
         "Voir le résultat": "Melihat hasil",
@@ -1310,7 +1375,8 @@
         "Etes-vous sûr de vouloir supprimer ce design ?": "Apakah Anda yakin ingin menghapus desain ini?"
     },
     "core/com/http.com.php": {
-        "Echec de la requête http : ": "Gagal untuk query http:"
+        "Echec de la requête http : ": "Gagal untuk query http:",
+        "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "desktop/php/report.php": {
         "Type": "Jenis",
@@ -1330,7 +1396,7 @@
         "Aperçu": "penelitian"
     },
     "core/ajax/report.ajax.php": {
-        "Aucune methode correspondante à : ": "Tidak ada metode yang cocok untuk:"
+        "Aucune methode correspondante à : ": "Tidak ada metode yang cocok:"
     },
     "core/php/downloadFile.php": {
         "Fichier non trouvé : ": "File tidak ditemukan:",
@@ -1399,12 +1465,12 @@
         "Tout": "Semua"
     },
     "desktop/js/dashboard.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Anda mengedit Anda dapat mode bergerak widget, mengubah ukuran dan mengubah urutan perintah dalam widget",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Anda berada dalam mode edit Anda dapat memindahkan widget, mengubah ukuran dan mengubah urutan perintah dalam widget. Ingat untuk meninggalkan mode edit untuk menyimpan"
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Vous êtes en mode édition, vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets",
+        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition, vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder"
     },
     "desktop/js/log.js": {
         "Pause": "Berhenti Sebentar",
-        "Etes-vous sur de vouloir supprimer tous les logs ?": "Apakah Anda yakin ingin menghapus semua log?",
+        "Etes-vous sur de vouloir supprimer tous les logs ?": "Etes-vous sûr de vouloir supprimer tous les logs ?",
         "Etes-vous sûr de vouloir supprimer tous les logs ?": "Apakah Anda yakin ingin menghapus semua log?"
     },
     "desktop/js/plugin.js": {
@@ -1423,7 +1489,7 @@
         "Inactif": "non-aktif",
         "Action": "Tindakan",
         "Désactiver": "Penonaktifan",
-        "Votre version de jeedom ne permet pas d\\'activer ce plugin": "versi jeedom tidak memungkinkan \\ mengaktifkan plugin ini",
+        "Votre version de jeedom ne permet pas d\\'activer ce plugin": "Votre version de Jeedom ne permet pas d\\'activer ce plugin",
         "Niveau de log local": "tingkat log lokal",
         "Aucun": "Tak ada",
         "Defaut": "Standar",
@@ -1432,10 +1498,10 @@
         "Warning": "peringatan",
         "Error": "error",
         "Logs": "Logs",
-        "Etes vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
+        "Etes vous sûr de vouloir supprimer ce plugin ?": "Etes-vous sûr de vouloir supprimer ce plugin ?",
         "Market": "Market",
         "Sauvegarde de la configuration des panels effectuée": "Menyimpan konfigurasi panel dilakukan",
-        "Sauvegarde des fonctionalités effectuée": "fungsi backup dilakukan",
+        "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionnalités effectuée",
         "Sauvegarde de la configuration des logs effectuée": "Menyimpan konfigurasi log dilakukan",
         "Log du plugin": "Log Plugin",
         "Sauvegarde effectuée": "backup dibuat",
@@ -1444,10 +1510,21 @@
         "Afficher le panneau mobile": "Lihat panel seluler",
         "Votre version de Jeedom ne permet pas d\\'activer ce plugin": "versi Jeedom tidak memungkinkan \\ mengaktifkan plugin ini",
         "Etes-vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
-        "Sauvegarde de la configuration des panneaux effectuée": "Menyimpan konfigurasi panel dilakukan"
+        "Sauvegarde de la configuration des panneaux effectuée": "Menyimpan konfigurasi panel dilakukan",
+        "Votre version de": "Votre version de",
+        "ne permet pas d\\'activer ce plugin": "ne permet pas d\\'activer ce plugin"
     },
     "core/repo/market.list.repo.php": {
-        "Market Jeedom": "Market Jeedom"
+        "Market Jeedom": "Market Jeedom",
+        "Gratuit": "Gratis",
+        "Payant": "Payant",
+        "Officiel": "Resmi",
+        "Conseillé": "Conseillé",
+        "Installé": "Installé",
+        "Non installé": "Non installé",
+        "Top et nouveautés": "Top et nouveautés",
+        "Aucune": "tidak",
+        "par": "par"
     },
     "desktop/js/report.js": {
         "Aucun aperçu possible en pdf": "Tidak ada dapat melihat pdf"
@@ -1483,7 +1560,10 @@
         "Envoi des sauvegardes": "mengirim backup",
         "Sauvegarder": "Menyimpan",
         "Informations": "Informasi",
-        "Envoyer la sauvegarde locale sélectionnée": "Kirim backup lokal yang dipilih"
+        "Envoyer la sauvegarde locale sélectionnée": "Kirim backup lokal yang dipilih",
+        "Nombre de jours de mémorisation des sauvegardes": "Nombre de jours de mémorisation des sauvegardes",
+        "Taille totale maximale des sauvegardes (Mo)": "Taille totale maximale des sauvegardes (Mo)",
+        "Chargement...": "Chargement..."
     },
     "desktop/js/backup.js": {
         "Sauvegarde réussie": "Menyimpan sukses",
@@ -1496,7 +1576,15 @@
         "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde Cloud": "Apakah Anda yakin Anda ingin mengembalikan Jeedom dengan Cloud Backup",
         "L\\'opération est réussie": "operasi L \\' berhasil",
         "L\\'opération a échoué": "operasi L \\' gagal",
-        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Apakah Anda yakin Anda ingin mengirim cadangan Jeedom awan? Setelah diluncurkan operasi ini tidak dapat dibatalkan"
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée cette opération ne peut être annulée": "Etes-vous sûr de vouloir envoyer une sauvegarde de Jeedom sur le cloud ? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde": "Etes-vous sûr de vouloir restaurer Jeedom avec la sauvegarde",
+        "Une fois lancée cette opération ne peut être annulée.": "Une fois lancée, cette opération ne peut être annulée.",
+        "Etes-vous sûr de vouloir faire une sauvegarde de": "Etes-vous sûr de vouloir faire une sauvegarde de",
+        "? Une fois lancée cette opération ne peut être annulée": "? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir envoyer une sauvegarde de": "Etes-vous sûr de vouloir envoyer une sauvegarde de",
+        "sur le cloud ? Une fois lancée cette opération ne peut être annulée": "sur le cloud ? Une fois lancée, cette opération ne peut être annulée",
+        "Etes-vous sûr de vouloir restaurer": "Etes-vous sûr de vouloir restaurer",
+        "avec la sauvegarde Cloud": "avec la sauvegarde Cloud"
     },
     "desktop/php/user.php": {
         "Liste des utilisateurs :": "Daftar pengguna:",
@@ -1520,22 +1608,26 @@
         "Supprimer": "menghapus",
         "Profil": "profil",
         "Sessions actives": "sesi aktif",
-        "Péripherique enregistrés": "Unit perifer dicatat",
+        "Péripherique enregistrés": "Périphériques enregistrés",
         "Supprimer tout": "Hapus semua",
         "Identification": "identifikasi",
         "Utilisateur": "Pengguna",
-        "Date derniere utilisation": "Tanggal penggunaan terakhir",
+        "Date derniere utilisation": "Date dernière utilisation",
         "Action": "Tindakan",
         "Déconnecter": "memutuskan",
         "Date dernière utilisation": "Tanggal penggunaan terakhir",
-        "Identifiant": "Mengidentifikasi"
+        "Identifiant": "Mengidentifikasi",
+        "Liste des utilisateurs": "Liste des utilisateurs",
+        "Activer accès support": "Activer accès support",
+        "Dernière connexion": "Dernière connexion",
+        "Périphériques enregistrés": "Périphériques enregistrés"
     },
     "desktop/js/user.js": {
         "Sauvegarde effectuée": "backup dibuat",
         "Etes-vous sûr de vouloir supprimer cet utilisateur ?": "Apakah Anda yakin ingin menghapus pengguna ini?",
         "L\\'utilisateur a bien été supprimé": "Pengguna \\ 'telah dihapus",
         "Quel est le nouveau mot de passe ?": "Apa password baru?",
-        "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?",
+        "Etês vous sur de vouloir changer la clef API de l\\'utilisateur ?": "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?",
         "Modification effectuée": "perubahan yang dibuat",
         "Actif": "Aktif",
         "Local seulement": "lokal saja",
@@ -1545,13 +1637,18 @@
         "OK": "OK",
         "NOK": "NOK",
         "Renouveler la clef API": "Memperbaharui API Key",
-        "Regenérer clef API": "Regenerasi API Key",
+        "Regenérer clef API": "Regénérer clef API",
         "Supprimer": "Menghapus",
         "Changer le mot de passe": "Mengubah password",
-        "Gerer les droits": "mengelola hak",
-        "Régénérer clef API": "Regenerasi API Key",
+        "Gerer les droits": "Gérer les droits",
+        "Régénérer clef API": "Regénérer clef API",
         "Gérer les droits": "mengelola hak",
-        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?"
+        "Etes-vous sûr de vouloir changer la clef API de l\\'utilisateur ?": "Apakah Anda yakin Anda ingin mengubah kunci API dari pengguna \\ 's?",
+        "Local": "Local",
+        "Désactiver": "Penonaktifan",
+        "Régénérer API": "Regénérer API",
+        "Mot de passe": "Password",
+        "Droits": "Droits"
     },
     "desktop/modal/log.display.php": {
         "Supprimer": "Menghapus",
@@ -1605,7 +1702,7 @@
         "Programmation": "pemrograman",
         "Timeout (min)": "Timeout (min)",
         "Dernier lancement": "peluncuran terakhir",
-        "Derniere durée": "terakhir kali",
+        "Dernière durée": "Dernière durée",
         "Statut": "status",
         "Activer le système cron": "Aktifkan sistem cron"
     },
@@ -1634,9 +1731,9 @@
     "desktop/php/display.php": {
         "Rechercher": "Mencari",
         "Inactif": "non-aktif",
-        "Nombre d'objet :": "Jumlah item:",
-        "Nombre d'équipement :": "Peralatan yang:",
-        "Nombre de commande :": "Jumlah pesanan:",
+        "Nombre d'objet :": "Nombre d'objets :",
+        "Nombre d'équipement :": "Nombre d'équipements :",
+        "Nombre de commande :": "Nombre de commandes :",
         "Supprimer": "Menghapus",
         "Visible": "Terlihat",
         "Invisible": "tak kelihatan",
@@ -1648,13 +1745,19 @@
         "Aller sur la configuration de l'équipement": "Pergi ke konfigurasi peralatan",
         "Non visible": "tidak terlihat",
         "Non actif": "tidak aktif",
-        "Aller sur la configuration de l'objet": "Pergi ke konfigurasi objek"
+        "Aller sur la configuration de l'objet": "Pergi ke konfigurasi objek",
+        "Historique des suppressions": "Historique des suppressions",
+        "Nombre d'objets :": "Nombre d'objets :",
+        "Nombre d'équipements :": "Nombre d'équipements :",
+        "Nombre de commandes :": "Nombre de commandes :"
     },
     "desktop/js/display.js": {
         "Configuration de l'équipement": "Konfigurasi peralatan",
         "Configuration de l'objet": "Konfigurasi objek",
         "Configuration de la commande": "set Kontrol",
-        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Apakah Anda yakin ingin menghapus semua peralatan ini?"
+        "Etes-vous sûr de vouloir supprimer tous ces équipement ?": "Apakah Anda yakin ingin menghapus semua peralatan ini?",
+        "Etes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
+        "Historique des supression": "Historique des suppressions"
     },
     "desktop/modal/plugin.dependancy.php": {
         "Nom": "Nama",
@@ -1675,11 +1778,11 @@
         "Attendre": "mengharapkan",
         "Aller au design": "pergi desain",
         "Ajouter un log": "Menambahkan log",
-        "Creer un message": "Buat Pesan",
+        "Creer un message": "Buat pesan",
         "Activer/Desactiver Masquer/Afficher un équipement": "Aktifkan / Nonaktifkan Sembunyikan / Tampilkan peralatan",
         "Faire une demande": "berlaku",
         "Arrêter Jeedom": "berhenti Jeedom",
-        "Retourner un texte/une données": "Kembali teks / data",
+        "Retourner un texte/une données": "Kembali teks / diberikan",
         "Icône": "Icon",
         "Alerte": "peringatan",
         "Pop-up": "Pop-up",
@@ -1689,15 +1792,15 @@
         "Création/modification d’une variable ou de la valeur d’une variable": "Penciptaan / modifikasi variabel atau nilai dari variabel",
         "Permet le contrôle des scénarios": "Memungkinkan skenario kontrol",
         "Arrête le scénario": "Menghentikan script",
-        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Memungkinkan Anda untuk mengatakan teks Jeedom (hanya bekerja jika tab jeedom dibuka di browser)",
+        "Permet de faire dire un texte à Jeedom (ne marche que si un onglet jeedom est ouvert dans le navigateur)": "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)",
         "Change le design affiché sur tous les navigateurs qui affichent un design par le design demandé": "Mengubah desain ditampilkan pada semua browser yang menampilkan desain dengan desain yang diminta",
         "Permet de rajouter un message dans les logs": "Memungkinkan Anda untuk menambahkan pesan di log",
         "Permet d'ajouter une message dans le centre de message": "Menambahkan pesan di pusat pesan",
         "Permet de modifier les prorietés visible/invisible actif/inactif d'un équipement": "Perubahan properti diambil terlihat / tak terlihat / off peralatan",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Aksi yang memungkinkan Jeedom untuk menerapkan kemudian menyimpan jawaban dalam variabel. Tindakan ini yang menghalangi dan lebih bahwa jika jeedom menerima respon atau timeout tercapai. Untuk saat ini tindakan ini hanya kompatibel dengan SMS Plugin, Slack dan SARAH.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finie que : si jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que : si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec le plugin SMS, Slack et SARAH.",
         "Envoi l'ordre à Jeedom de s'éteindre": "Mengirim perintah untuk Jeedom kepunahan",
         "Retourne un texte ou une valeur pour une interaction par exemple": "Mengembalikan teks atau nilai untuk interaksi misal",
-        "Permet d'affecter une icone au scénario": "Memungkinkan Anda untuk menetapkan ikon untuk script",
+        "Permet d'affecter une icone au scénario": "Permet d'affecter une icône au scénario",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Menampilkan peringatan kecil pada semua browser yang memiliki halaman jeedom terbuka. Anda juga dapat memilih dari empat tingkat peringatan",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom d'ouvert.": "Menampilkan popup yang mutlak harus diaktifkan pada semua browser yang memiliki halaman terbuka jeedom.",
         "Permet d'envoyer par une commande message un rapport d'une vue, d'un design ou d'un panel en PNG/PDF/JPEG/SVG.": "Mengirim Pesan Orde laporan pandangan, desain atau panel PNG / PDF / JPEG / SVG.",
@@ -1708,7 +1811,7 @@
         "Permet de faire dire un texte à Jeedom (ne marche que si un onglet Jeedom est ouvert dans le navigateur)": "Memungkinkan Anda untuk mengatakan teks Jeedom (hanya bekerja jika tab Jeedom dibuka di browser)",
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Pada semua browser yang menampilkan desain, digantikan oleh salah satu yang diminta",
         "Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement": "Perubahan properti diambil terlihat / tak terlihat / off peralatan",
-        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Aksi yang memungkinkan Jeedom untuk menerapkan kemudian menyimpan jawaban dalam variabel. Tindakan ini yang menghalangi dan berakhir hanya jika Jeedom menerima respon atau timeout tercapai. Untuk saat ini tindakan ini hanya kompatibel dengan plugin SMS, Slack, dan SARAH Telegram.",
+        "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "Action qui permet à Jeedom de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si Jeedom reçoit une réponse ou si le timeout est atteint. Pour le moment, cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.",
         "Permet d'affecter une icône au scénario": "Memungkinkan Anda untuk menetapkan ikon untuk script",
         "Permet d'afficher un petit message d'alerte sur tous les navigateurs qui ont une page Jeedom d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "Menampilkan peringatan kecil pada semua browser yang memiliki halaman terbuka Jeedom. Anda juga dapat memilih dari empat tingkat peringatan",
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page Jeedom ouverte.": "Menampilkan popup yang mutlak harus diaktifkan pada semua browser yang memiliki halaman Jeedom terbuka.",
@@ -1747,7 +1850,7 @@
         "Historique": "Historis",
         "Configuration": "Konfigurasi",
         "Rechercher": "Mencari",
-        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Peringatan berlebihan rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak ditampilkan",
+        "Attention une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher": "Attention, une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher",
         "Ok": "Ok",
         "Aucun groupement": "tidak ada kelompok",
         "Sommes par heure": "Sekitar satu jam",
@@ -1860,12 +1963,12 @@
         "Seuils spécifiques Batteries": "ambang batas tertentu Baterai",
         "Alertes Communications": "peringatan Komunikasi",
         "(en minute)": "(Dalam menit)",
-        "Configuration général": "konfigurasi umum",
+        "Configuration général": "Pengaturan umum",
         "Tableau": "tabel",
-        "Nombre de ligne": "nomor baris",
-        "Nombre de colonne": "kolom nomor",
+        "Nombre de ligne": "Nombre de lignes",
+        "Nombre de colonne": "Nombre de colonnes",
         "Centrer dans les cases": "Pusat di kotak",
-        "Style générale des cases (CSS)": "gaya umum kotak (CSS)",
+        "Style générale des cases (CSS)": "Style général des cases (CSS)",
         "Style du tableau (CSS)": "Tabel Style (CSS)",
         "Configuration détaillée": "konfigurasi rinci",
         "Texte de la case": "kotak teks",
@@ -1875,7 +1978,8 @@
         "Défaut": "kesalahan",
         "Nombre de lignes": "Jumlah baris",
         "Nombre de colonnes": "Jumlah Kolom",
-        "Style général des cases (CSS)": "gaya umum kotak (CSS)"
+        "Style général des cases (CSS)": "gaya umum kotak (CSS)",
+        "Tag": "Tag"
     },
     "desktop/modal/cmd.configure.php": {
         "Enregistrer": "Catatan",
@@ -1952,8 +2056,8 @@
         "Jamais répéter": "tidak pernah mengulangi",
         "Push URL": "mendorong URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Menempatkan di sini URL untuk memanggil update dari nilai pesanan. Anda dapat menggunakan tag berikut: # nilai # (nilai pesanan) cmd_id # # (Command id) dan cmd_name # # (nama perintah)",
-        "Activer la personalisation du widget": "Memungkinkan kustomisasi widget",
-        "Reinitialiser la personalisation": "ulang personalisasi",
+        "Activer la personalisation du widget": "Activer la personnalisation du widget",
+        "Reinitialiser la personalisation": "Réinitialiser la personnalisation",
         "Code": "Kode",
         "Dashboard": "Dashboard",
         "Vue dashboard": "Lihat dashboard",
@@ -1963,7 +2067,7 @@
         "Niveau": "tingkat",
         "En": "di",
         "si (#value# pour la valeur)": "if (nilai # # untuk nilai)",
-        "Pendant plus de (en min, laisser vide pour immediat)": "Selama lebih dari (min, biarkan kosong untuk segera)",
+        "Pendant plus de (en min, laisser vide pour immediat)": "Pendant plus de (en min, laisser vide pour immédiat)",
         "Widget": "Widget",
         "Vue": "Pemandangan",
         "Afficher le nom": "Tampilkan Nama",
@@ -1994,7 +2098,7 @@
         "Action après exécution de la commande": "Tindakan setelah pelaksanaan perintah",
         "Liens": "koneksi",
         "Graphique des liens": "link grafis",
-        "Copie des données historisé": "menyalin data historized",
+        "Copie des données historisé": "Copie des données historisées",
         "Copier l'historique de cette commande sur une autre commande": "Salin sejarah perintah ini untuk perintah lain",
         "Arrondi (chiffre après la virgule)": "Pembulatan (desimal)",
         "Thermostat": "Thermostat",
@@ -2004,8 +2108,8 @@
         "Tester": "Coba",
         "Suivre dans la timeline": "Ikuti di Timeline",
         "3 mois": "3 bulan",
-        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ 's Aksi",
-        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Periksa untuk urutan \\ 's dieksekusi secara paralel untuk tindakan lainnya",
+        "Décocher pour desactiver l\\'action": "Hapus tanda centang untuk menonaktifkan \\ Aksi",
+        "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Cocher pour que la commande s\\'éxecute en parallèle des autres actions",
         "Cette commande remplace l'ID": "Perintah ini menggantikan ID",
         "Etes-vous sûr de vouloir remplacer l\\'ID": "Apakah Anda yakin Anda ingin mengganti \\ 's ID",
         "ID de commande à remplacer ?": "ID Pesanan untuk menggantikan?",
@@ -2014,7 +2118,10 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Periksa perintah \\ 's berjalan secara paralel tindakan lain",
         "Activer la personnalisation du widget": "Memungkinkan kustomisasi widget",
         "Réinitialiser la personnalisation": "ulang personalisasi",
-        "Interdire dans les interactions automatique": "Melarang interaksi otomatis dalam"
+        "Interdire dans les interactions automatique": "Interdire dans les interactions automatiques",
+        "Calcul et arrondi": "Calcul et arrondi",
+        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)"
     },
     "desktop/php/object.php": {
         "Ajouter objet": "Tambahan obyek",
@@ -2053,7 +2160,9 @@
         "Commande": "Pesanan",
         "Inverser": "Membalikkan",
         "Graphique des liens": "link grafis",
-        "Résumé objet": "Item Summary"
+        "Résumé objet": "Item Summary",
+        "Activer": "mengaktifkan",
+        "Résumé Objets": "Résumé Objets"
     },
     "desktop/modal/icon.selector.php": {
         "Rechercher": "Mencari",
@@ -2069,7 +2178,7 @@
         "nature": "alam",
         "nourriture": "makanan",
         "personne": "orang",
-        "securite": "keamanan",
+        "securite": "sécurité",
         "techno": "techno",
         "transport": "angkutan",
         "Général": "Umum"
@@ -2084,7 +2193,8 @@
         "Data store sauvegardé": "menyimpan data disimpan",
         "Graphique de lien": "Link Grafik",
         "Dépôt de données supprimé": "Deposit dihapus Data",
-        "Dépôt de données sauvegardé": "Deposit dari data yang disimpan"
+        "Dépôt de données sauvegardé": "Deposit dari data yang disimpan",
+        "Graphique de lien(s)": "Graphique de lien(s)"
     },
     "core/class/dataStore.class.php": {
         "Variable :": "variabel:"
@@ -2099,7 +2209,11 @@
     },
     "core/repo/market.repo.php": {
         "Téléchargement de ": "Download",
-        "Erreur repo_market::getinfo : ": "getinfo kesalahan :: repo_market:"
+        "Erreur repo_market::getinfo : ": "getinfo kesalahan :: repo_market:",
+        "Cloud monitoring actif": "Cloud monitoring actif",
+        "NOK": "NOK",
+        "Attention 10 minutes si le service ne redémarre pas contacter le support": "Attention 10 minutes si le service ne redémarre pas contacter le support",
+        "OK": "OK"
     },
     "core/class/network.class.php": {
         "Le plugin openvpn doit être actif": "OpenVPN Plugin harus aktif"
@@ -2123,10 +2237,18 @@
         "Nombre de téléchargements": "Jumlah download",
         "Type": "Jenis",
         "Dernière mise à jour le": "Terakhir diperbarui pada",
-        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Anda akan pergi pada halaman konfigurasi plugin baru Anda?",
+        "Voulez vous aller sur la page de configuration de votre nouveau plugin ?": "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?",
         "Objet installé avec succès": "Subjek berhasil diinstal",
         "Installer": "memasang",
-        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Ingin pergi ke halaman konfigurasi plugin baru Anda?"
+        "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Ingin pergi ke halaman konfigurasi plugin baru Anda?",
+        "Taille": "Size",
+        "Utilisation": "penggunaan",
+        "Informations complémentaires": "Informations complémentaires",
+        "Langue disponible": "Bahasa ada",
+        "Market": "Market",
+        "Conseillé": "Conseillé",
+        "Attention ce plugin n'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention, ce plugin n'est pas un plugin officiel. En cas de soucis avec celui-ci (direct ou indirect), toute demande de support peut être refusée",
+        "Développé par": "Développé par"
     },
     "core/class/view.class.php": {
         "Vue :": "View:"
@@ -2173,7 +2295,7 @@
         "Transparent": "Jelas",
         "Défaut": "kesalahan",
         "Couleur du texte": "Teks warna",
-        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Putaran sudut (jangan lupa untuk meletakkan%, yaitu 50%)",
+        "Arrondir les angles (ne pas oublié de mettre %, ex 50%)": "Arrondir les angles (ne pas oublier de mettre %, ex 50%)",
         "Bordure (attention syntax css, ex : solid 1px black)": "Perbatasan (menonton sintaks css, misalnya 1px solid hitam)",
         "Taille de la police (ex 50%, il faut bien mettre le signe %)": "Ukuran font (misalnya 50%, kita harus menempatkan tanda%)",
         "Gras": "lemak",
@@ -2185,13 +2307,13 @@
         "Widget au survol": "flyover widget",
         "Action": "Tindakan",
         "Equipement": "Peralatan",
-        "Afficher au survole": "Tampilkan lalat",
+        "Afficher au survole": "Afficher au survol",
         "Afficher sur un clic": "Lihat pada klik",
         "Information binaire": "informasi biner",
         "Action on": "aksi",
         "Action off": "aksi off",
         "Alignement du texte": "teks Keselarasan",
-        "Par defaut": "secara default",
+        "Par defaut": "Par défaut",
         "Gauche": "kiri",
         "Droite": "benar",
         "Centré": "berpusat",
@@ -2220,7 +2342,11 @@
     },
     "core/api/jeeApi.php": {
         "Appels de ": "panggilan",
-        "Requête invalide. Version Jsonrpc invalide : ": "Permintaan tidak valid. Versi jsonrpc tidak valid:"
+        "Requête invalide. Version Jsonrpc invalide : ": "Permintaan tidak valid. Versi jsonrpc tidak valid:",
+        "Demande pour le plugin : ": "Demande pour le plugin :",
+        "Demande API pour les scénarios": "Demande API pour les scénarios",
+        "Démarrage scénario de : ": "Démarrage scénario de :",
+        "Exécution provoquée par un appel API ": "Exécution provoquée par un appel API"
     },
     "mobile/js/message.js": {
         "Vider": "Abisin"
@@ -2364,8 +2490,8 @@
         "Test": "uji",
         "Exécuter": "melakukan",
         "Résultat": "hasil",
-        "L\\'epression de test ne peut être vide": "L \\ 'test epression tidak boleh kosong",
-        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Peringatan Saya berpikir bahwa \\ 'ada kekhawatiran karena hasilnya adalah sama dengan \\ ekspresi",
+        "L\\'epression de test ne peut être vide": "L\\'expression de test ne peut être vide",
+        "Attention je pense qu\\'il y a un souci car le résultat est le même que l\\'expression": "Attention : je pense qu\\'il y a un souci car le résultat est le même que l\\'expression",
         "Je vais évaluer : ": "Saya akan mengevaluasi:",
         "Résultat : ": "hasil:",
         "L\\'expression de test ne peut être vide": "L \\ 'ekspresi tes tidak boleh kosong",
@@ -2377,7 +2503,7 @@
         "- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>": "- Pertanyaan belum ditanya tentang <a forum href='https://jeedom.com/forum'> </a>",
         "- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais": "- bahwa kategori dipilih untuk tiket Anda untuk diproses dalam waktu sesingkat",
         "- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>": "- jawabannya adalah belum dalam dokumentasi <a href='https://jeedom.github.io/documentation'> </a>",
-        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celle-ci sont public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "PENTING: Jika Anda membuka tiket untuk bug atau permintaan tambahan itu adalah umum (sehingga memperhatikan informasi yang Anda berikan). Anda dapat melihat daftar aplikasi yang tertunda <a href = \"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened% 2C%20%22To% 20Do% 22) %20AND 20resolution%20%3D %%% 20Unresolved%20order 20by%20priority 20DESC %%% 2Cupdated 20DESC \"target =\" _ blank \"> di sini </a>. Aplikasi publik harus dirumuskan secara sempurna dengan semua informasi yang diperlukan karena Anda tidak dapat menyelesaikan aplikasi nanti. Setiap permintaan dari paket layanan pro pribadi.",
+        "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration celui-ci est public (donc attention au informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes public doivent etre parfaitement formuler avec toutes les informations necessaire car vous ne pouvez pas completer la demande par la suite. Toute demande d'un service pack pro est privée.": "IMPORTANT : si vous ouvrez un ticket pour un bug ou une demande d'amélioration, celles-ci sont publiques (donc attention aux informations que vous communiquez). Vous pouvez voir la liste des demandes en cours <a href=\"https://jeedom.atlassian.net/issues/?filter=-5&jql=status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC\" target=\"_blank\">ici</a>. Les demandes publiques doivent être parfaitement formulées avec toutes les informations nécessaires car vous ne pouvez pas compléter la demande par la suite. Toute demande d'un service pack pro est privée.",
         "Etape 2 : Catégorie et type de la demande": "Langkah 2: Ukuran dan jenis permintaan",
         "Type": "Jenis",
         "Aucun": "tidak",
@@ -2406,32 +2532,38 @@
         "Assistance technique": "bantuan teknis",
         "Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.": "Pertanyaan Anda ke perhatian Technical Service kami yang akan segera merespon.",
         "Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)": "Anda dapat melaporkan bug yang akan dipublikasikan pada kami publik Bug Tracker (<strong> PERINGATAN: </ strong> pesan Anda akan publik, mungkin akan dihapus jika bukan bug, Anda tidak akan mendapatkan bantuan teknis berikut pernyataan ini)",
-        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Anda dapat mengirim saran untuk perbaikan yang akan dipublikasikan pada halaman khusus publik dan dapat diintegrasikan ke dalam roadmap kami.",
+        "Vous pouvez envoyer des proposition d'amélioration qui seront publiée sur notre page publique dédiée et qui pourront être intégrés dans notre roadmap.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre roadmap.",
         "Voir les bugs": "Lihat bug",
-        "Voir les propositions d'amélioration": "Lihat saran untuk perbaikan"
+        "Voir les propositions d'amélioration": "Lihat saran untuk perbaikan",
+        "Rapport": "laporan",
+        "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.": "Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.",
+        "Ouvrir un accès au support": "Ouvrir un accès au support",
+        "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre": "Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre"
     },
     "core/ajax/cmd.ajax.php": {
         "Commande inconnu verifié l'id :": "Perintah tidak diketahui diverifikasi id:",
         "Cmd ID inconnu : ": "Cmd tidak diketahui ID:"
     },
     "desktop/php/custom.php": {
-        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Hati-hati apa yang Anda tulis di sini adalah global dan disertakan pada semua halaman, kesalahan sekecil apapun bisa membuat jeedom non FUNGSIONAL Anda",
+        "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre jeedom non fonctionel": "Attention tout ce que vous écrivez ici est global et inclus sur toutes les pages, la moindre erreur peut rendre votre Jeedom non fonctionnel",
         "Activer": "mengaktifkan",
-        "Sauvegarder": "menyimpan"
+        "Sauvegarder": "menyimpan",
+        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre",
+        "non fonctionel.": "non fonctionnel."
     },
     "desktop/js/system.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Apakah Anda yakin Anda ingin menjalankan perintah ini:",
-        "Celle-ci est classé en dangereuse": "Hal ini diklasifikasikan sebagai berbahaya",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classée en dangereuse",
         "Commande : ": "perintah:"
     },
     "desktop/php/database.php": {
         "Rechercher": "pencarian",
-        "Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous": "Klik perintah di sebelah kanan atau ketik perintah custom bawah",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klik perintah di sebelah kanan atau ketik perintah custom bawah",
         "OK": "OK"
     },
     "desktop/js/database.js": {
-        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Apakah Anda yakin Anda ingin menjalankan perintah ini:",
-        "Celle-ci est classé en dangereuse": "Hal ini diklasifikasikan sebagai berbahaya",
+        "Etes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
+        "Celle-ci est classé en dangereuse": "Celle-ci est classée en dangereuse",
         "Commande : ": "perintah:"
     },
     "desktop/dashboard.php": {
@@ -2478,13 +2610,13 @@
         "Type de lien": "Link Type",
         "Equipement": "Peralatan",
         "Lien": "Link",
-        "Rechercher d\\'un équipement": "peralatan pencarian \\ 's",
+        "Rechercher d\\'un équipement": "Recherche d\\'un équipement",
         "Spécificité": "kekhususan",
         "Lumière": "Cahaya",
         "Lumière couleur": "warna cahaya",
         "Aucun": "tidak",
         "Statut": "Status",
-        "Rechercher d\\'une commande": "perintah pencarian \\ 's",
+        "Rechercher d\\'une commande": "Recherche d\\'une commande",
         "Puissance": "Kekuasaan",
         "Texte": "teks",
         "Taille du texte": "Ukuran teks",
@@ -2506,10 +2638,30 @@
         "Couleur conditionnel": "warna bersyarat",
         "Condition": "kondisi",
         "Ajouter": "Tambahan",
-        "Couleur": "Warna"
+        "Couleur": "Warna",
+        "Etat": "negara",
+        "Rotation": "Rotation",
+        "Activer": "mengaktifkan",
+        "Ouverture": "Pembukaan",
+        "Gauche": "kiri",
+        "Droite": "benar",
+        "Devant": "Devant",
+        "Derriere": "Derriere",
+        "Normal": "normal",
+        "Inversé": "Inversé",
+        "Translation": "Translation",
+        "Sens": "Sens",
+        "Haut": "teratas",
+        "Bas": "Bas",
+        "Répeter": "Répeter",
+        "Masquer quand la porte/fenêtre est ouverte": "Masquer quand la porte/fenêtre est ouverte",
+        "Couleur ouverte": "Couleur ouverte",
+        "Couleur fermée": "Couleur fermée",
+        "Masquer quand le volet est ouvert": "Masquer quand le volet est ouvert",
+        "Couleur fermé": "Couleur fermé"
     },
     "core/ajax/plan3d.ajax.php": {
-        "plan3d header inconnu verifiez l'id : ": "plan3d sundulan diketahui Periksa ID:"
+        "plan3d header inconnu verifiez l'id : ": "plan3d header inconnu, vérifiez l'id :"
     },
     "desktop/modal/plan3dHeader.configure.php": {
         "Sauvegarder": "menyimpan",
@@ -2540,7 +2692,7 @@
         "Chargement...": "Loading ..."
     },
     "desktop/3d.php": {
-        "Plan 3d inconnu. Verifier l'id": "Peta diketahui 3D. Periksa id"
+        "Plan 3d inconnu. Vérifier l'id": "Plan 3d inconnu. Vérifier l'id"
     },
     "desktop/php/system.php": {
         "Rechercher": "pencarian",
@@ -2595,7 +2747,8 @@
         "Appliquer": "berlaku",
         "Partager sur le market": "Pangsa di Market",
         "Etes-vous sûr de vouloir appliquer le template ? Cela écrasera votre scénario": "Apakah Anda yakin ingin menerapkan template? Ini akan menimpa skenario Anda",
-        "Template ajouté avec succès": "Template berhasil ditambahkan"
+        "Template ajouté avec succès": "Template berhasil ditambahkan",
+        "Envoyer un template": "Envoyer un template"
     },
     "desktop/.php": {
         "Aucune phrase trouvée": "Tidak ada kalimat ditemukan"
@@ -2605,5 +2758,76 @@
         "Exécuter": "melakukan",
         "Résultat": "hasil",
         "La demande ne peut être vide": "Permintaan tidak boleh kosong"
+    },
+    "desktop/modal/note.manager.php": {
+        "Supprimer": "menghapus",
+        "Sauvegarder": "menyimpan",
+        "Ajouter": "Tambahan",
+        "Note crée avec succès": "Note créée avec succès",
+        "Note sauvegardée avec succès": "Note sauvegardée avec succès",
+        "Etês vous sûr de vouloir supprimer la note : ": "Etês-vous sûr de vouloir supprimer la note :",
+        "Note supprimée avec succès": "Note supprimée avec succès",
+        "Note créée avec succès": "Note créée avec succès"
+    },
+    "desktop/modal/cmd.selectMultiple.php": {
+        "Basculer": "Basculer",
+        "Valider": "Mengesahkan",
+        "Nom": "nama"
+    },
+    "desktop/modal/cmd.configureHistory.php": {
+        "Valider": "Mengesahkan",
+        "Historisé": "Historisé",
+        "Timeline": "waktu",
+        "Nom": "nama",
+        "Plugin": "Plugin",
+        "Mode de lissage": "Mode de lissage",
+        "Purge de l'historique si plus vieux": "Purge de l'historique si plus vieux",
+        "Action": "Tindakan",
+        "Moyenne": "rata-rata",
+        "Minimum": "Minimum",
+        "Maximum": "Maximum",
+        "Aucun": "tidak",
+        "Jamais": "pernah",
+        "1 jour": "A hari",
+        "7 jours": "7 hari",
+        "1 mois": "1 bulan",
+        "3 mois": "3 bulan",
+        "6 mois": "6 bulan",
+        "1 an": "1 an",
+        "Configuration de la commande": "set Kontrol",
+        "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès",
+        "Type": "Jenis",
+        "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
+        "Commande(s) timeline : ": "Commande(s) timeline :"
+    },
+    "desktop/modal/user.rights.php": {
+        "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer": "Attention : le compte utilisateur n'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s'appliquer",
+        "Sauvegarder": "menyimpan",
+        "Equipements": "Peralatan",
+        "Scénarios": "Skenario",
+        "Equipement": "Peralatan",
+        "Droits": "Droits",
+        "Aucun": "tidak",
+        "Visualisation": "Visualisation",
+        "Visualisation et exécution": "Visualisation et exécution",
+        "Scénario": "skenario",
+        "Sauvegarde effectuée": "backup dibuat"
+    },
+    "desktop/modal/object.summary.php": {
+        "ID": "ID",
+        "Objet": "Item",
+        "Père": "Bapa",
+        "Visible": "terlihat",
+        "Masqué": "Masqué",
+        "Résumé Défini": "Résumé Défini",
+        "Résumé Dashboard Masqué": "Résumé Dashboard Masqué",
+        "Résumé Mobile Masqué": "Résumé Mobile Masqué",
+        "Oui": "ya",
+        "Non": "tidak"
+    },
+    "3rdparty/jquery.tablesorter/jquery.tablesorter.widgets.min.js": {
+        "label": "label",
+        "([^}]+?)": "([^}]+?)",
+        "|": "|"
     }
 }

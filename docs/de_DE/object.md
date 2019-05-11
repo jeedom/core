@@ -56,20 +56,21 @@ Voici donc les différentes caractéristiques pour configurer un objet :
     de l’objet. Ce texte sera par dessus la **couleur du tag**. A vous
     de choisir une couleur pour rendre le texte lisible.
 
--   **Couleur du texte du résumé** : Permet de choisir la couleur des
-    résultats du résumé de l’objet dans le dashboard.
-
 -   **Taille sur le dashboard (1 à 12)** : Permet de définir la largeur
     de l’affichage de cet objet dans le dashboard. Par exemple : si vous
     mettez `6` à deux objets qui se suivent dans la liste, alors il
     seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
     objets qui se suivent, ils seront également côte à côte.
 
+-   **Image** : Vous avez la possibilité de télécharger une image ou la
+    supprimer. Au format jpeg cette image sera l'image de fond de l'objet
+    quand vous l'afficherez sur le dashboard.
+
 > **Tip**
 >
 > Vous pouvez modifier l’ordre d’affichage des objets dans le dashboard.
-> Dans le menu, à gauche de votre page, utilisez les flèches verticales
-> en glisser/déposer pour leur donner une nouvelle place.
+> Dans la vue d'ensemble, sélectionnez votre objet à la souris et 
+> en glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >

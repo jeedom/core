@@ -14,10 +14,10 @@ Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
     mostrar / ocultar el árbol de objetos (También muestra
     resúmenes de objetos de información)
 
--   En el medio se puede optar por filtrar solamente ciertos tipos
+-   En el centro, puede elegir filtrar sólo en ciertos tipos
     equipo
 
--   Justo primer botón para entrar en el modo de edición, por
+-   A la derecha, un primer botón para cambiar al modo de edición, para por
     tales como cambiar el orden de widgets (utilizando un depositados hecho clic
     el widget), también se puede en este modo de edición
     cambiar el tamaño de algunos widgets y reorganizar los comandos
@@ -34,22 +34,22 @@ Se accede haciendo clic en Inicio → ** ** tablero de instrumentos
 
 > **Tip**
 >
-> Es posible, desde su perfil, ajuste a Jeedom
-> El árbol de objetos y / o escenarios son visibles por defecto
-> Al llegar al cuadro de instrumentos
+> Es posible, desde su perfil, configurar Jeedom para
+> que el árbol de objetos y/o los escenarios sean visibles por defecto
+> cuando estás en el Dashboard
 
 > **Tip**
 >
-> Al pasar una pulsación larga en un tipo de información de mando
-> Para mostrar un menú que muestran ya sea la historia de la
-> Comando, o poner una advertencia sobre el mismo que jeedom
-> Previene (una vez) cuando el valor pasa un cierto umbral
+> desde el movil, una pulsación prolongada de un comando info permite
+> mostrar un menú que le ofrece la posibilidad de mostrar el historial de los
+> comandos, o para poner una alerta para que jeedom pueda enviarle
+> un aviso (sólo una vez) cuando el valor supera un determinado umbral
 
 el modo de edición
 ============
 
-En el modo de edición se puede cambiar el tamaño de los widgets y
-disponible en el tablero de instrumentos.
+En el modo de edición, puedes cambiar el tamaño de los widgets y su
+disposición en el dashboard.
 
 También puede editar el diseño interno de los controles de widget
 :
@@ -64,7 +64,7 @@ También puede editar el diseño interno de los controles de widget
     -   ** ** Estándar: diseño predeterminado, todo es automático
         con sólo la posibilidad de reorganizar los comandos
 
-    -   ** ** Tabla: Activar los controles en una tabla,
+    -   **Tabla** : permite poner los comandos en una tabla :
         se añaden las columnas y filas y suprimen por clic
         bien, entonces basta con mover los controles en
         casillas correspondientes. Puede poner varios comandos por cuadro

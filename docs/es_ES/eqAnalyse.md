@@ -1,5 +1,5 @@
-El análisis de la página de equipos le permite ver muchas informaciones
-relativa a los equipos en el centro:
+La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
+relatives aux équipements de manière centralisée :
 
 -   el estado de la batería
 
@@ -11,8 +11,8 @@ relativa a los equipos en el centro:
 
 -   órdenes huérfanos
 
-La lengüeta de la batería
-==================
+La pestaña Baterías
+====================
 
 Se puede ver en esta pestaña lista de sus módulos de batería
 su nivel restante (el color de la baldosa depende de ese nivel), la

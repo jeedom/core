@@ -1,7 +1,7 @@
 Reserved for experts, this page allows you to add CSS or JS script
 in addition in Jeedom, which will be executed on each page.
 
-Accessible by **Administration → Advanced Customization**
+Accessible par **Réglages → Système → Personnalisation avancée**
 
 So from this page you can add JS and CSS scripts
 executed everywhere in Jeedom by distinguishing the desktop version from the

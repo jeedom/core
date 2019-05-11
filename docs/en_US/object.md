@@ -56,91 +56,92 @@ Here are the different features to configure an object:
     of the object. This text will be over **the color of the tag**. To you
     to choose a color to make the text readable.
 
--   **Abstract text color**: Allows you to choose the color of the text
-    summary results of the object in the dashboard.
+-   **Taille sur le dashboard (1 à 12)** : Permet de définir la largeur
+    de l’affichage de cet objet dans le dashboard. Par exemple : si vous
+    mettez `6` à deux objets qui se suivent dans la liste, alors il
+    seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
+    objets qui se suivent, ils seront également côte à côte.
 
--   **Size on the dashboard (1 to 12)**: Sets the width
-    the display of this object in the dashboard. For example: if you
-    put `6` to two consecutive objects in the list, then
-    will be side by side on the dashboard. If you put `3` to four
-    objects that follow each other, they will also be side by side.
-
-> **Tip**
->
-> You can change the display order of objects in the dashboard.
-> In the menu, on the left of your page, use the vertical arrows
-> drag and drop to give them a new place.
+-   **Image** : Vous avez la possibilité de télécharger une image ou la
+    supprimer. Au format jpeg cette image sera l'image de fond de l'objet
+    quand vous l'afficherez sur le dashboard.
 
 > **Tip**
 >
-> You can see a graphic representing all the elements of Jeedom
-> attached to this object by clicking on the **Links** button, up to
-> right.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le dashboard.
+> Dans la vue d'ensemble, sélectionnez votre objet à la souris et 
+> en glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >
-> When a device is created and no parent has been defined, it
-> will have as parent: **None**.
+> Vous pouvez voir un graphique représentant tous les éléments de Jeedom
+> rattachés à cet objet en cliquant sur le bouton **Liens**, en haut à
+> droite.
 
-Summary tab
+> **Tip**
+>
+> Quand un équipement est créé et qu’aucun parent n’a été défini, il
+> aura comme parent : **Aucun** .
+
+Onglet Résumé 
 -------------
 
-Summaries are global information, assigned to an object, which
-are displayed on the dashboard next to the name of the dashboard.
+Les résumés sont des informations globales, affectées à un objet, qui
+s’affichent notamment sur le dashboard à côté du nom de ce dernier.
 
-### Bulletin board
+### Tableau d’affichage 
 
-The columns represent the summaries assigned to the current object. Three
-lines are available:
+Les colonnes représentent les résumés affectés à l’objet courant. Trois
+lignes vous sont proposées :
 
--   **Go up in the global summary**: Check the box if you
-    want the summary to be displayed in the menu bar
-    from Jeedom.
+-   **Remonter dans le résumé global** : Cochez la case si vous
+    souhaitez que le résumé soit affiché dans la barre de menu
+    de Jeedom.
 
--   **Hide in desktop**: Check the box if you do not want
-    the summary is displayed next to the object name on the dashboard.
+-   **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que
+    le résumé s’affiche à côté du nom de l’objet sur le dashboard.
 
--   **Hide in mobile**: Check the box if you do not want
-    the summary is displayed when you view it from a mobile.
+-   **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que
+    le résumé s’affiche quand vous l’affichez depuis un mobile.
 
-### Orders
+### Commandes 
 
-Each tab represents a summary type defined in the configuration
-from Jeedom. Click **Add an order** so that it is
-taken into account in the summary. You have the choice to select the
-control of any Jeedom equipment, even if it does not have to
-parent this object.
+Chaque onglet représente un type de résumé défini dans la configuration
+de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit
+prise en compte dans le résumé. Vous avez le choix de sélectionner la
+commande de n’importe quel équipement de Jeedom, même s’il n’a pas pour
+parent cet objet.
 
 > **Tip**
 >
-> If you want to add a summary type or to configure the
-> method of calculating the result, the unit, the icon and the name of an abstract,
-> you have to go to Jeedom's general configuration:
-> **Administration → Configuration → Summaries Tab**.
+> Si vous souhaitez ajouter un type de résumé ou pour configurer la
+> méthode de calcul du résultat, l’unité, l’icône et le nom d’un résumé,
+> vous devez aller dans la configuration générale de Jeedom :
+> **Administration → Configuration → Onglet Résumés**.
 
-Overview
+Vue d’ensemble 
 ==============
 
-The overview allows you to view all the objects in
-Jeedom, as well as their configuration:
+La vue d’ensemble vous permet de visualiser l’ensemble des objets dans
+Jeedom, ainsi que leur configuration :
 
--   **ID**: ID of the object.
+-   **ID** : ID de l’objet.
 
--   **Object**: Name of the object.
+-   **Objet** : Nom de l’objet.
 
--   **Father**: Name of the parent object.
+-   **Père** : Nom de l’objet parent.
 
--   **Visible**: Visibility of the object.
+-   **Visible** : Visibilité de l’objet.
 
--   **Hidden**: Indicates if the object is hidden on the dashboard.
+-   **Masqué** : Indique si l’objet est masqué sur le dashboard.
 
--   **Summary Set**: Indicates the number of orders per summary. This
-    which is in blue is taken into account in the overall summary.
+-   **Résumé Défini** : Indique le nombre de commandes par résumé. Ce
+    qui est en bleu est pris en compte dans le résumé global.
 
--   **Summary Dashboard Hidden**: Indicates hidden summaries on
-    the dashboard.
+-   **Résumé Dashboard Masqué** : Indique les résumés masqués sur
+    le dashboard.
 
--   **Summary Mobile Masked**: Indicates hidden summaries on
-    the cellphone.
+-   **Résumé Mobile Masqué** : Indique les résumés masqués sur
+    le mobile.
 
 

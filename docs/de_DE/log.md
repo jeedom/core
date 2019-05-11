@@ -1,11 +1,11 @@
-Anzeige 
-=========
+Logs 
+====
 
 Im Logs-Menü können Sie verfolgen, was in der Home-Automation
 geschieht. In den meisten Fällen wird das Protokoll verwendet, um die
 Fehlersuche und Problemlösung durch das Support-Team durchzuführen.
 
-Um dorthin zu gelangen muss man auf Analyse -> Logs gehen :
+Pour y accéder il faut aller dans Analyse → Logs :
 
 Die Logs-Seite ist ganz einfach, oben links ist ein Dropdown-Menü, dass
 die Auswahl der Logs ermöglicht und oberen rechts sind 5 
@@ -25,13 +25,13 @@ Schaltflächen :
 
 -   **Alle Protokolle löschen** : Löscht alle vorhandene Protokolle.
 
-> **Tip**
+> **Tipp**
 >
 > Man beachte, daß das Protokoll http.error nicht gelöscht werden kann. Es
 > ist unbedingt erforderlich! Wenn sie es entfernen (zum Beispiel in der
 > Befehlszeile) wird es nicht neu erstellt, dazu muß das System neu gestartet werden.
 
-Das "Ereignis" Protikoll
+Temps réel 
 ==============
 
 Das "Ereignis" Protokoll ist etwas Besonderes. Damit es funktioniert, muss es zuerst in der Info- oder Debug-Ebene sein, dann listet es alle Ereignisse oder Aktionen auf, die in der Hausautomation stattfinden.
