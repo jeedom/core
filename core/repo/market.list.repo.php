@@ -71,22 +71,22 @@ function displayWidgetName($_name) {
 	}
 	switch ($name[2]) {
 		case 'other':
-		$result .= '<span class="label label-warning" style="text-shadow: none;">other</span> ';
+		$result .= '<span class="label label-warning">other</span> ';
 		break;
 		case 'color':
-		$result .= '<span class="label label-success" style="text-shadow: none;">color</span> ';
+		$result .= '<span class="label label-success">color</span> ';
 		break;
 		case 'slider':
-		$result .= '<span class="label label-primary" style="text-shadow: none;">slider</span> ';
+		$result .= '<span class="label label-primary">slider</span> ';
 		break;
 		case 'binary':
-		$result .= '<span class="label label-info" style="text-shadow: none;">binary</span> ';
+		$result .= '<span class="label label-info">binary</span> ';
 		break;
 		case 'numeric':
-		$result .= '<span class="label label-danger" style="text-shadow: none;">numeric</span> ';
+		$result .= '<span class="label label-danger">numeric</span> ';
 		break;
 		case 'string':
-		$result .= '<span class="label label-default" style="text-shadow: none;">string</span> ';
+		$result .= '<span class="label label-default">string</span> ';
 		break;
 		default:
 		$result .= $name[2];
@@ -274,7 +274,7 @@ if ($name !== null && strpos($name, '$') !== false) {
 		if (!is_object($update)) {
 			$install = 'install';
 		}
-		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="background-color : #ffffff; height : 220px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >';
+		echo '<div class="market cursor ' . $install . '" data-market_id="' . $market->getId() . '" data-market_type="' . $market->getType() . '" style="height : 220px;width : 160px;margin-left : 10px;" >';
 
 		if ($market->getType() != 'widget') {
 			if ($market->getCertification() == 'Officiel') {
