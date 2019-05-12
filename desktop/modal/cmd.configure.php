@@ -757,6 +757,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 	<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 
 <script>
+	/*
 	$(function() {
 		$('input[data-l2key="actionConfirm"]').change()
 	})
@@ -768,7 +769,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			$('input[data-l2key="actionCodeAccess"]').val('')
 			$('input[data-l2key="actionCodeAccess"]').prop('disabled', true)
 		}
-	});
+	})
+	*/
 
 	$("#md_cmdConfigureSelectMultiple").dialog({
 		closeText: '',
