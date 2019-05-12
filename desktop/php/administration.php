@@ -980,8 +980,8 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icones widgets colorées}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{{Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{icônes widgets colorées}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
