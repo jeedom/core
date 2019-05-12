@@ -41,25 +41,25 @@ if (init('type') == 'plugin') {
   <hr/>
   <div class="row">
     <div class="col-lg-3">
-      <div style="height: 130px;" class="priceChoose alert alert-success">
+      <div class="priceChoose alert alert-success">
         <br/>
         <center><input type="radio" name="rb_price" class="rb_price free" data-value="" checked/> <h4 style="display: inline-block">{{Gratuit}}</h4></center>
       </div>
     </div>
     <div class="col-lg-3">
-      <div style="height: 100px;" class="priceChoose">
+      <div class="priceChoose">
         <center><input type="radio" name="rb_price" class="rb_price" data-value="2" /> <h4 style="display: inline-block">2 €</h4></center>
         <center>{{Sur ce prix 40 % seront reversés au développeur}}</center>
       </div>
     </div>
     <div class="col-lg-3">
-      <div style="height: 100px;" class="priceChoose">
+      <div class="priceChoose">
         <center><input type="radio" name="rb_price" class="rb_price" data-value="4" /> <h4 style="display: inline-block">4 €</h4></center>
         <center>{{Sur ce prix 60 % seront reversés au développeur}}</center>
       </div>
     </div>
     <div class="col-lg-3">
-      <div style="height: 100px;" class="priceChoose">
+      <div class="priceChoose">
         <center><input type="radio" name="rb_price" class="rb_price" data-value="custom" /> <h4 style="display: inline-block">{{Libre}}</h4> <input class="form-control marketAttr input-sm" data-l1key="cost" placeholder="Prix" style="display : inline-block; width : 80px;"> €</center>
         <center>{{Sur ce prix 65 % seront reversés au développeur (doit être supérieur ou égal à 5 €)}}</center>
       </div>
@@ -136,51 +136,50 @@ if (init('type') == 'plugin') {
     </div>
     <div class="col-lg-6">
      <div class="form-group">
-       <label class="col-sm-2 control-label">{{Video}}</label>
-       <div class="col-sm-9">
+       <label class="col-lg-2 control-label">{{Video}}</label>
+       <div class="col-lg-9">
         <input class="form-control marketAttr" data-l1key="link" data-l2key="video">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">{{Forum}}</label>
-      <div class="col-sm-9">
+      <label class="col-lg-2 control-label">{{Forum}}</label>
+      <div class="col-lg-9">
         <input class="form-control marketAttr" data-l1key="link" data-l2key="forum">
       </div>
     </div>
     <div class="form-group">
-      <div class="form-group">
-        <label class="col-lg-2 control-label">{{Utilisation}}</label>
-        <div class="col-lg-9">
-          <textarea class="form-control marketAttr" data-l1key="utilization" placeholder="{{Utilisation}}" style="height: 150px;"></textarea>
-        </div>
+      <label class="col-lg-2 control-label">{{Utilisation}}</label>
+      <div class="col-lg-9">
+        <textarea class="form-control marketAttr" data-l1key="utilization" placeholder="{{Utilisation}}" style="height: 150px;"></textarea>
       </div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">{{Langue}}</label>
-        <div class="col-sm-10">
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{English}}
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Deutsch}}
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Español}}
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Bahasa Indonesia}}
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
-          </label>
-        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">{{Langue}}</label>
+      <div class="col-lg-9">
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="en_US"> {{English}}
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="de_DE"> {{Deutsch}}
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="sp_SP"> {{Español}}
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="ru_RU"> {{Pусский}}
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="id_ID"> {{Bahasa Indonesia}}
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" class="marketAttr" data-l1key="language" data-l2key="it_IT"> {{Italiano}}
+        </label>
       </div>
-      <div class="form-group">
-        <label class="col-sm-4 control-label">{{Compatibilité matériel}}</label>
-        <div class="col-sm-8">
-         <label class="checkbox-inline">
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">{{Compatibilité matériel}}</label>
+      <div class="col-lg-9">
+        <label class="checkbox-inline">
           <input type="checkbox" class="marketAttr" data-l1key="hardwareCompatibility" data-l2key="Jeedomboard"> Jeedomboard (mini+)
         </label>
          <label class="checkbox-inline">
