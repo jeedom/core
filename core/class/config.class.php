@@ -284,6 +284,19 @@ class config {
 		return $_value;
 	}
 	
+	public static function preConfig_css_border_radius($_value) {
+		if($_value > 1){
+			return 1;
+		}
+		if($_value < 0){
+			return 0;
+		}
+		if(is_nan($_value) || $_value === ''){
+			return 0;
+		}
+		return $_value;
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	/*     * **********************Getteur Setteur*************************** */
