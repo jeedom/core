@@ -135,7 +135,7 @@ foreach (widgets::all() as $widget) {
               <div class="col-sm-6">
                 <legend>{{Général}}</legend>
                 <div class="form-group">
-                  <label class="col-lg-4 col-xs-6 control-label">{{Nom du widgets}}</label>
+                  <label class="col-lg-4 col-xs-6 control-label">{{Nom du widget}}</label>
                   <div class="col-lg-6 col-xs-6">
                     <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
                     <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
@@ -207,12 +207,14 @@ foreach (widgets::all() as $widget) {
             </form>
             <form class="form-horizontal">
               <fieldset>
-                <legend class="type_replace">{{Remplacement}}</legend>
-                <div id="div_templateReplace" class="type_replace"></div>
-                <legend class="type_test">{{Test}}
-                  <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-                </legend>
-                <div id="div_templateTest" class="type_test"></div>
+                <div class="col-sm-12">
+                  <legend class="type_replace">{{Remplacement}}</legend>
+                  <div id="div_templateReplace" class="type_replace"></div>
+                  <legend class="type_test">{{Test}}
+                    <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                  </legend>
+                  <div id="div_templateTest" class="type_test"></div>
+                </div>
               </fieldset>
             </form>
           </div>
