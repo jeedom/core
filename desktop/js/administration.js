@@ -285,6 +285,7 @@ $("#bt_saveGeneraleConfig").on('click', function (event) {
           $('#config').setValues(data, '.configKey');
           loadAactionOnMessage();
           modifyWithoutSave = false;
+          setTimeout(function(){ modifyWithoutSave = false; }, 1000);
           $('#div_alert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
         }
       });
