@@ -61,12 +61,14 @@ function initEquipment(_object_id) {
             if($.trim(html[i]) == ''){
               continue;
             }
+            if (!isset(objects_info[id]){
+              continue;
+            }
             var id = i.split('::')[1]
-            if (!isset(objects_info[id]) || !isset(objects_info[id].name)) continue
             div += '<div class="div_displayEquipement">';
             div += '<legend>';
             var icon = '';
-            if (isset(objects_info[id]) && isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
+            if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
               icon = objects_info[id].display.icon;
             }
             div += '<span>' + icon + '</span> ' + objects_info[id].name;
@@ -95,13 +97,13 @@ function initEquipment(_object_id) {
           $('#div_displayEquipement > .objectHtml').packery({gutter :0});
           $('#div_displayEquipement > .objectHtml').packery({gutter :0});
         }
-
+        
       }
     });
   } else {
     $('#bottompanel').panel('open');
   }
-
+  
   $(window).on("resize", function (event) {
     deviceInfo = getDeviceType();
     setTileSize('.eqLogic');
@@ -109,8 +111,8 @@ function initEquipment(_object_id) {
     $('#div_displayEquipement > .objectHtml').packery({gutter :0});
     $('.div_displayEquipement .objectHtml').packery({gutter :0});
   });
-
-
+  
+  
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').show();
     var search = $(this).value();
@@ -162,8 +164,8 @@ function initEquipment(_object_id) {
       }
     })
   });
-
-
+  
+  
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('');
     $('#in_searchWidget').keyup();
