@@ -61,10 +61,10 @@ function initEquipment(_object_id) {
             if($.trim(html[i]) == ''){
               continue;
             }
+            var id = i.split('::')[1]
             if (!isset(objects_info[id]){
               continue;
             }
-            var id = i.split('::')[1]
             div += '<div class="div_displayEquipement">';
             div += '<legend>';
             var icon = '';
