@@ -76,7 +76,7 @@ class config {
 		
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 		
-		$function = 'preConfig_' . str_replace(array('::', ':'), '_', $_key);
+		$function = 'preConfig_' . str_replace(array('::', ':','-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
@@ -267,6 +267,19 @@ class config {
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);
+		}
+		return $_value;
+	}
+	
+	public static function preConfig_css_background_opacity($_value) {
+		if($_value > 1){
+			return 1;
+		}
+		if($_value < 0){
+			return 0;
+		}
+		if(is_nan($_value) || $_value === ''){
+			return 0;
 		}
 		return $_value;
 	}
