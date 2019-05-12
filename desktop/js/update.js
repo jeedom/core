@@ -201,6 +201,7 @@ function printUpdate() {
       var tr_update = []
       var tr_update_other = [];
       for (var i in data) {
+        if (!isset(data[i].status)) continue
         if (data[i].type == 'core' || data[i].type == 'plugin') {
           tr_update.push(addUpdate(data[i]));
         } else {
