@@ -109,7 +109,7 @@ $allObject = jeeObject::all();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icones widgets colorées' dans interface si nécessaire.}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icônes widgets colorées' dans interface si nécessaire.}}"></i></sup>
 							</label>
 							<div class="col-xs-1">
 								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>

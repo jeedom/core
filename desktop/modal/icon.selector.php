@@ -389,9 +389,16 @@ $('.divIconSel').on('dblclick', function () {
 	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
 });
 
-if(tabimg && tabimg == 1){
+if(tabimg && tabimg == 1) {
 	$('#mod_selectIcon ul li a[href="#img"]').click();
+	$('#mySearch').hide()
 }
+$('#mod_selectIcon ul li a[href="#img"]').click(function(e) {
+	$('#mySearch').hide()
+})
+$('#mod_selectIcon ul li a[href="#icon"]').click(function(e) {
+	$('#mySearch').show()
+})
 
 $('#mod_selectIcon').css('overflow', 'hidden')
 $(function() {

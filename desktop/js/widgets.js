@@ -71,11 +71,28 @@ $(function(){
         if(_widgets.length == 0){
           return;
         }
-        var contextmenuitems = {}
+        widgetsList = []
+        widgetsList['info'] = []
+        widgetsList['action'] = []
         for(i=0; i<_widgets.length; i++)
         {
           wg = _widgets[i]
-          contextmenuitems[wg.id] = {'name': wg.name}
+          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
+          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
+        }
+
+        //set context menu!
+        var contextmenuitems = {}
+        for (var group in widgetsList) {
+          groupWidgets = widgetsList[group]
+          items = {}
+          for (var index in groupWidgets) {
+            wg = groupWidgets[index]
+            wgName = wg[0]
+            wgId = wg[1]
+            items[wgId] = {'name': wgName}
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
         }
 
         $('.nav.nav-tabs').contextMenu({

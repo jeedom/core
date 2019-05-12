@@ -32,7 +32,7 @@ user::isBan();
 
 	<ul class="nav nav-tabs nav-primary" role="tablist" style="max-width:calc(100% - 150px);">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench"></i> {{Général}}</a></li>
-		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-tint"></i> {{Interface}}</a></li>
+		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop"></i> {{Interface}}</a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss"></i> {{Réseaux}}</a></li>
 		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file"></i> {{Logs}}</a></li>
 		<li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon divers-table29"></i> {{Commandes}}</a></li>
@@ -980,8 +980,8 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icones widgets colorées}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Colorisation des icônes de widgets Presence/Ouverture en fonction de leur état. Modifiable par scénario, setColoredIcon (Colorisation des icônes).}}"></i></sup>
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{icônes widgets colorées}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />

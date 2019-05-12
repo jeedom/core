@@ -76,7 +76,7 @@ class config {
 		
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 		
-		$function = 'preConfig_' . str_replace(array('::', ':'), '_', $_key);
+		$function = 'preConfig_' . str_replace(array('::', ':','-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
@@ -250,6 +250,21 @@ class config {
 		return $return;
 	}
 	
+	/*     * *********************Generic check value************************* */
+	
+	public static function checkValue0_1($_value){
+		if($_value > 1){
+			return 1;
+		}
+		if($_value < 0){
+			return 0;
+		}
+		if(is_nan($_value) || $_value === ''){
+			return 0;
+		}
+		return $_value;
+	}
+	
 	/*     * *********************Action sur config************************* */
 	
 	public static function postConfig_market_allowDNS($_value) {
@@ -269,6 +284,14 @@ class config {
 			return sha1($_value);
 		}
 		return $_value;
+	}
+	
+	public static function preConfig_css_background_opacity($_value) {
+		return self::checkValue0_1($_value);
+	}
+	
+	public static function preConfig_css_border_radius($_value) {
+		return self::checkValue0_1($_value);
 	}
 	
 	/*     * *********************Methode d'instance************************* */

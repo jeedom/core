@@ -48,7 +48,7 @@ foreach (widgets::all() as $widget) {
         <a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
       </div>
     </div>
-    
+
     <div class="panel-group" id="accordionWidgets">
       <?php
       if(count($widgets['info']) > 0){
@@ -112,11 +112,11 @@ foreach (widgets::all() as $widget) {
       ?>
     </div>
   </div>
-  
+
   <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
     <div class="input-group pull-right" style="display:inline-flex">
       <span class="input-group-btn">
-        <span class="btn btn-info btn-sm btn-file roundedLeft"><i class="fas fa-file-export"></i> {{Importer}}<input  id="bt_importWidgets" type="file" name="file" style="display: inline-block;">
+        <span class="btn btn-info btn-sm btn-file roundedLeft"><i class="fas fa-file-export"></i> {{Importer}}<input  id="bt_importWidgets" type="file" name="file" title="" style="display: inline-block;">
         </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-import"></i> {{Exporter}}
         </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="far fa-check-circle"></i> {{Sauvegarder}}
         </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
@@ -133,9 +133,9 @@ foreach (widgets::all() as $widget) {
           <fieldset>
             <div class="row">
               <div class="col-sm-6">
-                <legend>{{Général}}</legend>
+                <legend><i class="fas fa-wrench"></i> {{Général}}</legend>
                 <div class="form-group">
-                  <label class="col-lg-4 col-xs-6 control-label">{{Nom du widgets}}</label>
+                  <label class="col-lg-4 col-xs-6 control-label">{{Nom du widget}}</label>
                   <div class="col-lg-6 col-xs-6">
                     <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
                     <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
@@ -196,7 +196,7 @@ foreach (widgets::all() as $widget) {
                     </div>
                   </div>
                   <div class="col-xs-6">
-                    <legend>{{Informations}}</legend>
+                    <legend><i class="fas fa-info-circle"></i> {{Informations}}</legend>
                     <div class="form-group">
                       <label class="col-xs-3 control-label">{{Utilisé par}}</label>
                       <div class="col-xs-9" id="div_usedBy"></div>
@@ -207,17 +207,18 @@ foreach (widgets::all() as $widget) {
             </form>
             <form class="form-horizontal">
               <fieldset>
-                <legend class="type_replace">{{Remplacement}}</legend>
-                <div id="div_templateReplace" class="type_replace"></div>
-                <legend class="type_test">{{Test}}
-                  <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-                </legend>
-                <div id="div_templateTest" class="type_test"></div>
+                <div class="col-sm-12">
+                  <legend class="type_replace"><i class="fas fa-random"></i> {{Remplacement}}</legend>
+                  <div id="div_templateReplace" class="type_replace"></div>
+                  <legend class="type_test"><i class="fas fa-stethoscope"></i> {{Test}}
+                    <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                  </legend>
+                  <div id="div_templateTest" class="type_test"></div>
+                </div>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
-      
+
       <?php include_file("desktop", "widgets", "js");?>
-      
