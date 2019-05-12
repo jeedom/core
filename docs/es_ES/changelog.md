@@ -1,6 +1,3 @@
-
-
-
 Changelog
 
 4.0.0
@@ -34,21 +31,22 @@ Changelog
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
-- Lors d'une recherche, la touche *echap* annule la recherche.
+- Lors d'une recherche, la touche *echap* annule la recherche.<br/><br/>
 - Améliorations des tables avec option de filtre et tri.
 - Possibilité d'attribuer une icône à une interaction.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Page update : différentiation par version (stable, beta, ...).
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
-- Possibilité de spécifier l'ordre (position) des designs et designs 3D (Edition, Configurer le design).
+- Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
-- Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).<br/><br/>
-- Allègement (css / inline styles, refactoring, etc.) et améliorations des performances générales.
+- Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+- Suppression du paramètre de taille des widgets (zoom) sur les *Designs* car [non supporté par les navigateurs](https://developer.mozilla.org/fr/docs/Web/CSS/zoom).
+- Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.<br/><br/>
+- Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
-- Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1
-- Correction de bugs
-- Suppression du parametre de taille des widgets (zoom) sur les designs car non supporté par les navigateurs (https://developer.mozilla.org/fr/docs/Web/CSS/zoom)
+- Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
+- Nombreuses corrections de bugs.
 
 3.3.24
 =====
