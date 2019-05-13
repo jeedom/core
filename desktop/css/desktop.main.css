@@ -431,6 +431,13 @@ select.selectCmd {
 }
 
 /* object/scenario/interact/plugin pages */
+#div_functionalityPanel label > span.label {
+  display: inline-block;
+}
+#div_functionalityPanel label {
+  margin-bottom: 0 !important;
+}
+
 div[class*="ListContainer"] {
   background: transparent;
 }
