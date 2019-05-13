@@ -23,7 +23,7 @@ $('#in_searchWidgets').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.widgetsDisplayCard').hide();
   $('.panel-collapse').attr('data-show',0);
   $('.widgetsDisplayCard .name').each(function(){
@@ -77,7 +77,7 @@ $(function(){
           wg = _widgets[i]
           contextmenuitems[wg.id] = {'name': wg.name}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -382,6 +382,7 @@ $("#bt_importWidgets").change(function(event){
         $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
         return false
       }
+      data.name = $('.widgetsAttr[data-l1key=name]').value();
       if (isset(data.test)) {
         for (var i in data.test) {
           addTest(data.test[i]);
