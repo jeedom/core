@@ -28,7 +28,6 @@ foreach (widgets::all() as $widget) {
         </center>
         <span><center>{{Ajouter}}</center></span>
       </div>
-      <!--
       <div class="cursor logoSecondary" id="bt_mainImportWidgets">
         <center>
           <span class="btn-file"><i class="fas fa-file-import" style="margin-bottom: 20px;"></i>
@@ -37,7 +36,6 @@ foreach (widgets::all() as $widget) {
         </center>
         <span><center>{{Importer}}</center></span>
       </div>
-      -->
       <div class="cursor logoSecondary" id="bt_editCode">
         <center>
           <i class="far fa-file-code"></i>
