@@ -376,9 +376,6 @@ class repo_market {
 		if(!file_exists($base_dir)){
 			mkdir($base_dir);
 		}
-		if(!file_exists($base_dir.'/tmp')){
-			mkdir($base_dir.'/tmp');
-		}
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
@@ -386,7 +383,7 @@ class repo_market {
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --num-retries 1';
-		$cmd .= ' --tempdir '.$base_dir . '/tmp';
+		$cmd .= ' --tempdir '.$base_dir;
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		$cmd .= ' ' . $restore_dir;
