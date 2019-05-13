@@ -868,7 +868,6 @@ class eqLogic {
 		}
 		if($this->getChanged()){
 			if ($this->getId() != '') {
-				
 				$this->emptyCacheWidget();
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
