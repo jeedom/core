@@ -686,7 +686,6 @@ class eqLogic {
 		if($replace['#width#'] == 'auto'){
 			$replace['#width#'] = '230px';
 		}
-		
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
 			$replace['#alert_name#'] = $alert['name'];
