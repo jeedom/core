@@ -321,9 +321,9 @@ class repo_market {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
 			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-				throw new Exception('[restore cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
+				throw new Exception('[backup clean] ' . self::backup_errorAnalyzed($e->getMessage()));
 			}
-			throw new Exception('[restore cloud] ' . $e->getMessage());
+			throw new Exception('[backup clean] ' . $e->getMessage());
 		}
 	}
 	
@@ -375,6 +375,9 @@ class repo_market {
 		$base_dir =  '/usr/jeedom_duplicity';
 		if(!file_exists($base_dir)){
 			mkdir($base_dir);
+		}
+		if(!file_exists($base_dir)){
+			com_shell::execute(system::getCmdSudo() . ' mkdir ' . $base_dir.';'.system::getCmdSudo() .'chmod 777 -R '.$base_dir);
 		}
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
@@ -766,6 +769,10 @@ class repo_market {
 			}
 			if (isset($_result['register::dnsNumber']) && config::byKey('dns::number') != $_result['register::dnsNumber']) {
 				config::save('dns::number', $_result['register::dnsNumber']);
+				$restart_dns = true;
+			}
+			if (isset($_result['register::vpnurl']) && config::byKey('dns::vpnurl') != $_result['register::vpnurl']) {
+				config::save('dns::vpnurl', $_result['register::vpnurl']);
 				$restart_dns = true;
 			}
 			if (isset($_result['register::vpnPort']) && config::byKey('vpn::port') != $_result['register::vpnPort']) {

@@ -49,6 +49,15 @@ sendVarToJS('id', $plan->getId());
 				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
 			</div>
 		</div>
+		<div class="form-group link_type link_eqLogic link_cmd link_scenario">
+			<label class="col-lg-4 control-label">{{Taille du widget}}</label>
+			<div class="col-lg-2">
+				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+			</div>
+			<div class="alert alert-danger col-lg-6">
+				{{Attention cette option est connu pour creer des soucis de placement des widgets sur les bords du design}}
+			</div>
+		</div>
 		<legend>{{Spécifique}}</legend>
 		<div class="form-group link_type link_image">
 			<label class="col-lg-4 control-label">{{Afficher}}</label>
@@ -226,6 +235,15 @@ sendVarToJS('id', $plan->getId());
 			<label class="col-lg-4 control-label">{{Opacité}}</label>
 			<div class="col-lg-2">
 				<input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" />
+			</div>
+		</div>
+		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
+			<label class="col-lg-4 control-label">{{CSS personalisé}}</label>
+			<div class="col-lg-5">
+				<input class="planAttr form-control" data-l1key="display" data-l2key="css" />
+			</div>
+			<div class="alert alert-danger col-lg-3">
+				{{Attention cette option est dangereuse}}
 			</div>
 		</div>
 		<div class="link_eqLogic">
