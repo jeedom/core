@@ -167,8 +167,19 @@ function loadObjectConfiguration(_id){
 
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
         bodyStyles = window.getComputedStyle(document.body);
-        objectBkgdColor = rgbToHex(bodyStyles.getPropertyValue('--objectBkgd-color'));
-        objectTxtColor = rgbToHex(bodyStyles.getPropertyValue('--objectTxt-color'));
+        objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
+        objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
+
+        if (!objectBkgdColor === undefined){
+          objectBkgdColor = rgbToHex(objectBkgdColor)
+        } else {
+          objectBkgdColor = '#696969'
+        }
+        if (!objectTxtColor === undefined) {
+          objectTxtColor = rgbToHex(objectTxtColor)
+        } else {
+          objectTxtColor = '#ebebeb'
+        }
 
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value(objectBkgdColor);
         $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value(objectTxtColor);
