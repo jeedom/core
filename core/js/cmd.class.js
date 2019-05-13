@@ -797,9 +797,10 @@ jeedom.cmd.normalizeName = function(_tagname) {
   cmdTestsList.forEach(function(test) {
     cmdTests.push(cmdName.split(test))
   })
+  console.log(cmdTests);
   for(var i in cmdList){
     for(var j in cmdTests){
-      if (cmdTests[1].includes(cmdList[i][0])) {
+      if (cmdTests[j].includes(cmdList[i][0])) {
         return cmdList[i][1];
       }
     }
