@@ -771,6 +771,10 @@ class repo_market {
 				config::save('dns::number', $_result['register::dnsNumber']);
 				$restart_dns = true;
 			}
+			if (isset($_result['register::vpnurl']) && config::byKey('dns::vpnurl') != $_result['register::vpnurl']) {
+				config::save('dns::vpnurl', $_result['register::vpnurl']);
+				$restart_dns = true;
+			}
 			if (isset($_result['register::vpnPort']) && config::byKey('vpn::port') != $_result['register::vpnPort']) {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
