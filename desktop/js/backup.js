@@ -102,7 +102,7 @@
 });
 
  $('#bt_downloadBackup').on('click', function () {
-    window.open('core/php/downloadFile.php?pathfile=backup/' + $('#sel_restoreBackup option:selected').text(), "_blank", null);
+    window.open('core/php/downloadFile.php?pathfile=' + $('#sel_restoreBackup').value(), "_blank", null);
 });
 
  $('#bt_uploadBackup').fileupload({
