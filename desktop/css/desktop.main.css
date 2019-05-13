@@ -263,11 +263,11 @@ legend {
   z-index: 0;
 }
 
-.eqLogic-widget .btn-default,
-.eqLogic-widget input,
-.scenario-widget .btn-default,
 .eqLogic-widget .btn,
-.scenario-widget .btn {
+.eqLogic-widget .btn-default,
+.eqLogic-widget input[type=text],
+.scenario-widget .btn,
+.scenario-widget .btn-default {
   min-width: 32px !important;
   max-height: 30px;
 }
@@ -431,6 +431,13 @@ select.selectCmd {
 }
 
 /* object/scenario/interact/plugin pages */
+#div_functionalityPanel label > span.label {
+  display: inline-block;
+}
+#div_functionalityPanel label {
+  margin-bottom: 0 !important;
+}
+
 div[class*="ListContainer"] {
   background: transparent;
 }

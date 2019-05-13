@@ -321,7 +321,14 @@ function addEditviewZone(_viewZone) {
         div += '<tr class="viewData">';
         div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
         for(i=0;i<_viewZone.configuration.nbcol;i++){
-          div += '<td><input class="form-control viewDataAttr" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
+          div += '<td>';
+          div += '<div class="input-group">';
+          div += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" />';
+          div += '<span class="input-group-btn">';
+          div += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>';
+          div += '</span>';
+          div += '</div>';
+          div += '</td>';
         }
         div += '</tr>';
       }
@@ -355,7 +362,7 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     }
     line += '</tr>';
     table.find('tbody').append(line);
-
+    
   }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){

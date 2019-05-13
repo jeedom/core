@@ -279,7 +279,7 @@ try {
 			}
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('sha512', sha512($object->getImage('data')));
+		$object->setImage('sha512', sha512(file_get_contents($_FILES['file']['tmp_name'])));
 		
 		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;

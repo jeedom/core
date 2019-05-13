@@ -924,9 +924,11 @@ function displayObject(_plan,_html, _noRender) {
   html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
   html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
   html.css('transform-origin', '0 0', 'important');
-  
+  html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
   html.css('-webkit-transform-origin', '0 0');
+  html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
   html.css('-moz-transform-origin', '0 0');
+  html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
   html.addClass('noResize');
   if(_plan.link_type != 'cmd'){
     if (isset(_plan.display) && isset(_plan.display.width)) {
@@ -1027,6 +1029,9 @@ function displayObject(_plan,_html, _noRender) {
     if(isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1){
       html.find('.directDisplay').addClass('zoom cursor');
     }
+  }
+  if(_plan.display.css && _plan.display.css != ''){
+    html.attr('style',html.attr('style')+';'+_plan.display.css);
   }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);
