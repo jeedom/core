@@ -205,6 +205,7 @@ function getJeedomLog(_autoUpdate, _log) {
             if(_log == 'restore'){
               jeedom.user.refresh();
             }
+            $('.bt_restoreRepoBackup .fa-refresh').hide();
             _autoUpdate = 0;
           }
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
@@ -212,6 +213,7 @@ function getJeedomLog(_autoUpdate, _log) {
             if(_log == 'restore'){
               jeedom.user.refresh();
             }
+            $('.bt_restoreRepoBackup .fa-refresh').hide();
             _autoUpdate = 0;
           }
         }
