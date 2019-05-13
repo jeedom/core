@@ -680,6 +680,12 @@ class eqLogic {
 			'#generic_type#' => $this->getGenericType(),
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':''
 		);
+		if($replace['#height#'] == 'auto'){
+			$replace['#height#'] = '110px';
+		}
+		if($replace['#width#'] == 'auto'){
+			$replace['#width#'] = '230px';
+		}
 		
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
