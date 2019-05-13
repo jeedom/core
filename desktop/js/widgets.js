@@ -393,21 +393,23 @@ $("#bt_importWidgets").change(function(event){
   }
   if (uploadedFile) {
     var readFile = new FileReader()
+    readFile.readAsText(uploadedFile)
+
     readFile.onload = function(e) {
-      data = JSON.parse(e.target.result)
-      if (!isset(data.jeedomCoreVersion)) {
+      objectData = JSON.parse(e.target.result)
+      if (!isset(objectData.jeedomCoreVersion)) {
         $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
         return false
       }
-      data.name = $('.widgetsAttr[data-l1key=name]').value();
-      if (isset(data.test)) {
-        for (var i in data.test) {
-          addTest(data.test[i]);
+      objectData.id = $('.widgetsAttr[data-l1key=id]').value();
+      objectData.name = $('.widgetsAttr[data-l1key=name]').value();
+      if (isset(objectData.test)) {
+        for (var i in objectData.test) {
+          addTest(objectData.test[i]);
         }
       }
-      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template, data)
+      loadTemplateConfiguration('cmd.'+objectData.type+'.'+objectData.subtype+'.'+objectData.template, objectData)
     }
-    readFile.readAsText(uploadedFile)
   } else {
     $('#div_alert').showAlert({message: "{{Problème lors de la lecture du fichier.}}", level: 'danger'})
     return false
