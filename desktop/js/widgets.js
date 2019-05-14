@@ -384,7 +384,60 @@ $("#bt_exportWidgets").on('click', function (event) {
 return false
 });
 
-$("#bt_importWidgets").change(function(event){
+$("#bt_mainImportWidgets").change(function(event) {
+  $('#div_alert').hide()
+  var uploadedFile = event.target.files[0]
+  if(uploadedFile.type !== "application/json") {
+    $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
+    return false
+  }
+
+  if (uploadedFile) {
+    bootbox.prompt("Nom du widget ?", function (result) {
+      if (result !== null) {
+        jeedom.widgets.save({
+          widgets: {name: result},
+          error: function (error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          },
+          success: function (data) {
+            var readFile = new FileReader()
+            readFile.readAsText(uploadedFile)
+
+            readFile.onload = function(e) {
+              objectData = JSON.parse(e.target.result)
+              if (!isset(objectData.jeedomCoreVersion)) {
+                $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
+                return false
+              }
+              objectData.id = data.id
+              objectData.name = data.name
+              if (isset(objectData.test)) {
+                for (var i in objectData.test) {
+                  addTest(objectData.test[i])
+                }
+              }
+              jeedom.widgets.save({
+                widgets: objectData,
+                error: function (error) {
+                  $('#div_alert').showAlert({message: error.message, level: 'danger'});
+                },
+                success: function (data) {
+                  loadPage('index.php?v=d&p=widgets&id=' + objectData.id+ '&saveSuccessFull=1');
+                }
+              })
+            }
+          }
+        })
+      }
+    })
+  } else {
+    $('#div_alert').showAlert({message: "{{Problème lors de la lecture du fichier.}}", level: 'danger'})
+    return false
+  }
+})
+
+$("#bt_importWidgets").change(function(event) {
   $('#div_alert').hide()
   var uploadedFile = event.target.files[0]
   if(uploadedFile.type !== "application/json") {
@@ -393,20 +446,23 @@ $("#bt_importWidgets").change(function(event){
   }
   if (uploadedFile) {
     var readFile = new FileReader()
+    readFile.readAsText(uploadedFile)
+
     readFile.onload = function(e) {
-      data = JSON.parse(e.target.result)
-      if (!isset(data.jeedomCoreVersion)) {
+      objectData = JSON.parse(e.target.result)
+      if (!isset(objectData.jeedomCoreVersion)) {
         $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
         return false
       }
-      if (isset(data.test)) {
-        for (var i in data.test) {
-          addTest(data.test[i]);
+      objectData.id = $('.widgetsAttr[data-l1key=id]').value();
+      objectData.name = $('.widgetsAttr[data-l1key=name]').value();
+      if (isset(objectData.test)) {
+        for (var i in objectData.test) {
+          addTest(objectData.test[i])
         }
       }
-      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template, data)
+      loadTemplateConfiguration('cmd.'+objectData.type+'.'+objectData.subtype+'.'+objectData.template, objectData)
     }
-    readFile.readAsText(uploadedFile)
   } else {
     $('#div_alert').showAlert({message: "{{Problème lors de la lecture du fichier.}}", level: 'danger'})
     return false

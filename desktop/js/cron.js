@@ -125,6 +125,9 @@ function printCron() {
       $('#table_cron tbody').append(tr);
       modifyWithoutSave = false;
       $("#table_cron").trigger("update");
+      setTimeout(function(){
+        modifyWithoutSave = false;
+      },1000)
       $.hideLoading();
     }
   });
@@ -188,7 +191,7 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
-
+  
   tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
     tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';
@@ -198,7 +201,7 @@ function addCron(_cron) {
       tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>';
     }
     if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
-      tr += ' <a class="btn btn-success btn-xs start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>';
+      tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>';
     }
   }
   tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>';
@@ -279,18 +282,22 @@ function getDeamonState(){
             html += deamonInfo.plugin.name;
             html += '</td>';
             html += '<td>';
-            html += deamonInfo.state;
+            if ( deamonInfo.state == 'ok') {
+              html += '<span class="label label-success">OK</span>';
+            } else {
+              html += '<span class="label label-danger">' + deamonInfo.state.toUpperCase() + '</span>';
+            }
             html += '</td>';
             html += '<td>';
             html += deamonInfo.last_launch;
             html += '</td>';
             html += '<td>';
-            html += '<a class="bt_deamonAction btn btn-success" data-action="start" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
+            html += '<a class="bt_deamonAction btn btn-xs  btn-success" data-action="start" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
             if(deamonInfo.auto == 0){
-              html += '<a class="bt_deamonAction btn btn-danger" data-action="stop" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
-              html += '<a class="bt_deamonAction btn btn-danger" data-action="enableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="stop" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="enableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
             }else{
-              html += '<a class="bt_deamonAction btn btn-success" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs  btn-success" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
             }
             html += '</td>';
             html += '</tr>';

@@ -13,43 +13,6 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-var changeLeftMenuObjectOrEqLogicName = false;
-
-
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch && $('.eqLogicThumbnailDisplay').html() != undefined && $('#ul_eqLogic').html() != undefined){
-  $('#div_mainContainer').append('<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" class="bt_pluginTemplateShowSidebar div_smallSideBar"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i><div>');
-  $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
-  $('#ul_eqLogic').closest('.bs-sidebar').parent().css('z-index','999');
-  $('#ul_eqLogic').closest('.bs-sidebar').parent().removeClass().addClass('col-xs-2');
-  $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-12');
-  $('.eqLogic').removeClass('col-xs-10 col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('eqLogic col-xs-12');
-  
-  $('#ul_eqLogic').closest('.bs-sidebar').parent().on('mouseleave',function(){
-    var timer = setTimeout(function(){
-      $('#ul_eqLogic').closest('.bs-sidebar').parent().hide();
-      $('.bt_pluginTemplateShowSidebar').find('i').show();
-      $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-12');
-      $('.eqLogic').removeClass('col-xs-10 col-lg-10 col-md-9 col-sm-8 col-lg-9 col-md-8 col-sm-7').addClass('col-xs-12');
-      $('.eqLogicThumbnailContainer').packery();
-    }, 300);
-    $(this).data('timerMouseleave', timer)
-  }).on("mouseenter", function(){
-    clearTimeout($(this).data('timerMouseleave'));
-  });
-  
-  $('.bt_pluginTemplateShowSidebar').on('mouseenter',function(){
-    var timer = setTimeout(function(){
-      $('.eqLogicThumbnailDisplay').removeClass().addClass('eqLogicThumbnailDisplay col-xs-10');
-      $('.bt_pluginTemplateShowSidebar').find('i').hide();
-      $('.eqLogic').removeClass('col-xs-12').addClass('eqLogic col-xs-10');
-      $('#ul_eqLogic').closest('.bs-sidebar').parent().show();
-      $('.eqLogicThumbnailContainer').packery();
-    }, 100);
-    $(this).data('timerMouseleave', timer)
-  }).off('mouseleave').on("mouseleave", function(){
-    clearTimeout($(this).data('timerMouseleave'));
-  });
-}
 
 //contextMenu
 $(function(){
@@ -212,10 +175,12 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
       $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
         jeedom.cmd.changeSubType($(this).closest('.cmd'));
       });
-      changeLeftMenuObjectOrEqLogicName = false;
       addOrUpdateUrl('id',data.id);
       $.hideLoading();
       modifyWithoutSave = false;
+      setTimeout(function(){
+        modifyWithoutSave = false;
+      },1000)
     }
   });
   return false;
@@ -299,14 +264,6 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
     }
   });
   return false;
-});
-
-$('.eqLogicAttr[data-l1key=name]').on('change', function () {
-  changeLeftMenuObjectOrEqLogicName = true;
-});
-
-$('.eqLogicAttr[data-l1key=object_id]').on('change', function () {
-  changeLeftMenuObjectOrEqLogicName = true;
 });
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
@@ -402,7 +359,6 @@ $('#in_searchEqlogic').off('keyup').keyup(function () {
     var text = $(this).text().toLowerCase();
     text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
     if(text.indexOf(search) >= 0){
-      $(this)
       $(this).closest('.eqLogicDisplayCard').show();
     }
   });

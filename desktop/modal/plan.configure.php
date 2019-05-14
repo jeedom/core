@@ -30,32 +30,34 @@ sendVarToJS('id', $plan->getId());
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
-			<label class="col-lg-4 control-label">{{Position X (%)}}</label>
+			<label class="col-lg-4 control-label">{{Position X }}<sub>%</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
+				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" placeholder="0"/>
 			</div>
-			<label class="col-lg-2 control-label">{{Position Y (%)}}</label>
+			<label class="col-lg-2 control-label">{{Position Y }}<sub>%</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" placeholder="0" />
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
-			<label class="col-lg-4 control-label">{{Largeur (px)}}</label>
+			<label class="col-lg-4 control-label">{{Largeur }}<sub>px</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" />
+				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" placeholder="100" />
 			</div>
-			<label class="col-lg-2 control-label">{{Hauteur (px)}}</label>
+			<label class="col-lg-2 control-label">{{Hauteur }}<sub>px</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
+				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" placeholder="100"/>
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario">
-			<label class="col-lg-4 control-label">{{Taille du widget}}</label>
+			<label class="col-lg-4 control-label">{{Taille du widget}}
+				<sup><i class="fas fa-question-circle tooltips" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
+			</label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2"/>
 			</div>
-			<div class="alert alert-danger col-lg-6">
-				{{Attention cette option est connu pour creer des soucis de placement des widgets sur les bords du design}}
+			<div class="alert alert-danger col-lg-5">
+				{{Attention : cette option crée des problèmes de placement sur les bords du design.}}
 			</div>
 		</div>
 		<legend>{{Spécifique}}</legend>
@@ -88,7 +90,7 @@ sendVarToJS('id', $plan->getId());
 			</div>
 		</div>
 		<div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
-			<label class="col-lg-4 control-label">{{Autoriser la fenetre de zoom}}</label>
+			<label class="col-lg-4 control-label">{{Autoriser la fenêtre de zoom}}</label>
 			<div class="col-lg-2">
 				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="allowZoom" >
 			</div>
@@ -220,30 +222,34 @@ sendVarToJS('id', $plan->getId());
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{Arrondis (Ex : 50%)}}</label>
+			<label class="col-lg-4 control-label">{{Arrondis}} <sub>%</sub></label>
 			<div class="col-lg-2">
-				<input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+				<input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" placeholder="10%"/>
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_graph link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{Bordure (Ex : solid 1px black)}}</label>
+			<label class="col-lg-4 control-label">{{Bordure}} <sub>css</sub>
+				<sup><i class="fas fa-question-circle tooltips" title="{{Code css. Ex: 1px solid black}}"></i></sup>
+			</label>
 			<div class="col-lg-2">
-				<input class="form-control planAttr" data-l1key="css" data-l2key="border" />
+				<input class="form-control planAttr" data-l1key="css" data-l2key="border" placeholder="1px solid black" />
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{Opacité}}</label>
+			<label class="col-lg-4 control-label">{{Opacité}}
+				<sup><i class="fas fa-question-circle tooltips" title="{{Valeur entre 0 et 1. Une couleur de fond doit être définie.}}"></i></sup>
+			</label>
 			<div class="col-lg-2">
-				<input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" />
+				<input type="number" min="0" max="1" class="form-control planAttr" data-l1key="css" data-l2key="opacity" placeholder="0,75"/>
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{CSS personalisé}}</label>
+			<label class="col-lg-4 control-label">{{CSS personnalisé}}  <sub>css</sub></label>
 			<div class="col-lg-5">
 				<input class="planAttr form-control" data-l1key="display" data-l2key="css" />
 			</div>
 			<div class="alert alert-danger col-lg-3">
-				{{Attention cette option est dangereuse}}
+				{{Attention, peut être source de problèmes.}}
 			</div>
 		</div>
 		<div class="link_eqLogic">
@@ -290,7 +296,7 @@ sendVarToJS('id', $plan->getId());
 			?>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary">
-			<label class="col-lg-4 control-label">{{Taille de la police (Ex : 50%)}}</label>
+			<label class="col-lg-4 control-label">{{Taille de la police}} <sub>%</sub></label>
 			<div class="col-lg-2">
 				<input class="planAttr form-control" data-l1key="css" data-l2key="font-size" />
 			</div>
@@ -332,12 +338,12 @@ sendVarToJS('id', $plan->getId());
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="zone_mode zone_simple">
 				<legend>{{Action}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="other"><i class="fas fa-plus"></i></a></legend>
 				<div id="div_planConfigureActionother"></div>
 			</div>
-			
+
 			<div class="zone_mode zone_widget" style="display:none;">
 				<div class="form-group">
 					<label class="col-lg-4 control-label">{{Equipement}}</label>
@@ -385,7 +391,7 @@ sendVarToJS('id', $plan->getId());
 					</div>
 					<legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fas fa-plus"></i></a></legend>
 					<div id="div_planConfigureActionon"></div>
-					
+
 					<legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fas fa-plus"></i></a></legend>
 					<div id="div_planConfigureActionoff"></div>
 				</div>
@@ -397,20 +403,20 @@ sendVarToJS('id', $plan->getId());
 		$('.zone_mode').hide();
 		$('.zone_mode.zone_'+$(this).value()).show();
 	});
-	
+
 	$('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change',function(){
 		$('.display_mode').hide();
 		$('.display_mode.display_mode_'+$(this).value()).show();
 	});
-	
+
 	$('.bt_planConfigurationAction').on('click',function(){
 		addActionPlanConfigure({},$(this).attr('data-type'));
 	});
-	
+
 	$("body").delegate('.bt_removeAction', 'click', function () {
 		$(this).closest('.' +  $(this).attr('data-type')).remove();
 	});
-	
+
 	$("body").delegate(".listCmdAction", 'click', function () {
 		var type = $(this).attr('data-type');
 		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
@@ -422,7 +428,7 @@ sendVarToJS('id', $plan->getId());
 			});
 		});
 	});
-	
+
 	$('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]',  function (event) {
 		var type = $(this).attr('data-type');
 		var el = $(this);
@@ -431,7 +437,7 @@ sendVarToJS('id', $plan->getId());
 			taAutosize();
 		});
 	});
-	
+
 	$('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
 		var expression = $(this).closest('.expression');
 		jeedom.getSelectActionModal({scenario : true}, function (result) {
@@ -442,7 +448,7 @@ sendVarToJS('id', $plan->getId());
 			});
 		});
 	});
-	
+
 	function addActionPlanConfigure(_action, _type) {
 		if (!isset(_action)) {
 			_action = {};
@@ -473,22 +479,22 @@ sendVarToJS('id', $plan->getId());
 		$('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
 		taAutosize();
 	}
-	
-	
+
+
 	$('#bt_planConfigureAddEqLogic').on('click', function() {
 		var el = $(this);
 		jeedom.eqLogic.getSelectModal({}, function(result) {
 			el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=eqLogic]').value(result.human);
 		});
 	});
-	
+
 	$('#bt_planConfigureSelectCamera').on('click', function() {
 		var el = $(this);
 		jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
 			el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human);
 		});
 	});
-	
+
 	$('#bt_planConfigureSelectBinary').on('click', function() {
 		var el = $(this);
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
@@ -506,38 +512,38 @@ sendVarToJS('id', $plan->getId());
 			}
 		}
 	});
-	
+
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
 		if($(this).value() == 1){
 			$('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
 		}
 	});
-	
+
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
 		if($(this).value() != '#000000'){
 			$('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
 		}
 	});
-	
+
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
 		if($(this).value() == 1){
 			$('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
 			$('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
 		}
 	});
-	
+
 	editor = [];
-	
+
 	$('#bt_chooseIcon').on('click', function () {
 		chooseIcon(function (_icon) {
 			$('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
 		});
 	});
-	
+
 	$('#bt_saveConfigurePlan').on('click', function () {
 		save();
 	});
-	
+
 	if (isset(id) && id != '') {
 		jeedom.plan.byId({
 			id : id,
@@ -579,7 +585,7 @@ sendVarToJS('id', $plan->getId());
 			}
 		});
 	}
-	
+
 	function save() {
 		var plans = $('#fd_planConfigure').getValues('.planAttr');
 		if (plans[0].link_type == 'text') {

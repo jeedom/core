@@ -91,7 +91,7 @@ $starttime = getmicrotime();
 				$dependancy_info = $plugin->dependancy_info();
 				$html .= '<tr>';
 				$html .= '<td style="font-weight : bold;">';
-				$html .= '{{Dépendance}}';
+				$html .= '{{Dépendances}}';
 				$html .= '</td>';
 				switch ($dependancy_info['state']) {
 					case 'ok':
