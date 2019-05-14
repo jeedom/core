@@ -32,21 +32,21 @@ sendVarToJS('id', $plan->getId());
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
 			<label class="col-lg-4 control-label">{{Position X }}<sub>%</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" />
+				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" placeholder="0"/>
 			</div>
 			<label class="col-lg-2 control-label">{{Position Y }}<sub>%</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" />
+				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" placeholder="0" />
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
 			<label class="col-lg-4 control-label">{{Largeur }}<sub>px</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" />
+				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" placeholder="100" />
 			</div>
 			<label class="col-lg-2 control-label">{{Hauteur }}<sub>px</sub></label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" />
+				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="height" placeholder="100"/>
 			</div>
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario">
@@ -54,7 +54,7 @@ sendVarToJS('id', $plan->getId());
 				<sup><i class="fas fa-question-circle tooltips" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
 			</label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom"/>
+				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2"/>
 			</div>
 			<div class="alert alert-danger col-lg-5">
 				{{Attention : cette option crée des problèmes de placement sur les bords du design.}}
@@ -224,7 +224,7 @@ sendVarToJS('id', $plan->getId());
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
 			<label class="col-lg-4 control-label">{{Arrondis}} <sub>%</sub></label>
 			<div class="col-lg-2">
-				<input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" />
+				<input class="form-control planAttr" data-l1key="css" data-l2key="border-radius" placeholder="10%"/>
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_graph link_summary link_eqLogic link_cmd">
@@ -232,7 +232,7 @@ sendVarToJS('id', $plan->getId());
 				<sup><i class="fas fa-question-circle tooltips" title="{{Code css. Ex: 1px solid black}}"></i></sup>
 			</label>
 			<div class="col-lg-2">
-				<input class="form-control planAttr" data-l1key="css" data-l2key="border" />
+				<input class="form-control planAttr" data-l1key="css" data-l2key="border" placeholder="1px solid black" />
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
