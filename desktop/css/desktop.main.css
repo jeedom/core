@@ -2837,6 +2837,9 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance:textfield;
 }
+input:invalid {
+  box-shadow: none;
+}
 
 .ui-spinner a.ui-spinner-button {
   border: none;
