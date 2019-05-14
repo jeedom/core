@@ -125,6 +125,9 @@ function printCron() {
       $('#table_cron tbody').append(tr);
       modifyWithoutSave = false;
       $("#table_cron").trigger("update");
+      setTimeout(function(){
+        modifyWithoutSave = false;
+      },1000)
       $.hideLoading();
     }
   });
@@ -188,7 +191,7 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
-
+  
   tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
     tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';

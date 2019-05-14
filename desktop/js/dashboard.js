@@ -199,34 +199,36 @@ function getObjectHtml(_object_id){
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
         
-        $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
-          var container = $(this).packery();
-          var itemElems =  container.find('.eqLogic-widget').draggable();
-          container.packery('bindUIDraggableEvents',itemElems);
-          var itemElems =  container.find('.scenario-widget').draggable();
-          container.packery('bindUIDraggableEvents',itemElems);
-          function orderItems() {
-            setTimeout(function(){
-              $('.div_displayEquipement').packery();
-            },1);
-            var itemElems = container.packery('getItemElements');
-            $(itemElems).each( function( i, itemElem ) {
-              $(itemElem).attr('data-order', i + 1 );
-              value = i + 1;
-              if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
-                if ($(itemElem).find(".counterReorderJeedom").length) {
-                  $(itemElem).find(".counterReorderJeedom").text(value);
-                } else {
-                  $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
-                }
+        var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
+        var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
+        if (isset(packData) && packData.items.length == 1) {
+          $('#div_ob'+_object_id+'.div_displayEquipement').packery('destroy').packery()
+        }
+        var itemElems =  container.find('.eqLogic-widget').draggable();
+        container.packery('bindUIDraggableEvents',itemElems);
+        var itemElems =  container.find('.scenario-widget').draggable();
+        container.packery('bindUIDraggableEvents',itemElems);
+        function orderItems() {
+          setTimeout(function(){
+            $('.div_displayEquipement').packery();
+          },1);
+          var itemElems = container.packery('getItemElements');
+          $(itemElems).each( function( i, itemElem ) {
+            $(itemElem).attr('data-order', i + 1 );
+            value = i + 1;
+            if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
+              if ($(itemElem).find(".counterReorderJeedom").length) {
+                $(itemElem).find(".counterReorderJeedom").text(value);
+              } else {
+                $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
               }
-            });
-          }
-          container.on('dragItemPositioned',orderItems);
-        });
+            }
+          });
+        }
+        container.on('dragItemPositioned',orderItems);
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
         $('#div_ob'+_object_id+'.div_displayEquipement .scenario-widget').draggable('disable');
-      },10);
+      },20);
     }
   });
 }

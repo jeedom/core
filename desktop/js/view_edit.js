@@ -358,7 +358,14 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
     var line = '<tr class="viewData">';
     line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>';
     for(i=0;i<table.find('tbody tr:first td').length - 1;i++){
-      line += '<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>';
+      line += '<td>';
+      line += '<div class="input-group">';
+      line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />';
+      line += '<span class="input-group-btn">';
+      line += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>';
+      line += '</span>';
+      line += '</div>';
+      line += '</td>';
     }
     line += '</tr>';
     table.find('tbody').append(line);
@@ -366,7 +373,15 @@ $('#div_viewZones').on('click','.bt_addViewTable',function(){
   }else if($(this).attr('data-type') == 'col'){
     table.find('thead tr').append('<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>');
     table.find('tbody tr').each(function(){
-      $(this).append('<td><input class="form-control viewDataAttr" data-l1key="configuration" style="width:calc(100% - 50px);display: inline-block;" /> <a class="btn btn-default bt_listEquipementInfo" style="margin-top:-3px;"><i class="fas fa-list-alt"></i></a></td>')
+      var col = '<td>';
+      col += '<div class="input-group">';
+      col += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />';
+      col += '<span class="input-group-btn">';
+      col += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>';
+      col += '</span>';
+      col += '</div>';
+      col += '</td>';
+      $(this).append(col);
     });
   }
 });

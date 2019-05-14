@@ -82,6 +82,10 @@ a > img:hover {
   text-align: center;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  color: var(--link-color);
+}
+
 .btn:not(.cmdName),
 .btn:not(.cmdName):active {
   color: var(--linkHoverLight-color) !important;
@@ -315,7 +319,8 @@ legend {
   padding: 4px 12px;
 }
 .label-sm {
-  padding: 3px 6px;
+  font-size: 12px !important;
+  padding: 2px 4px;
 }
 .label:empty,
 .label-sm:empty{
@@ -406,7 +411,7 @@ sup i {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
 }
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-  border: 2px solid var(--link-color) !important;
+  border: 2px solid var(--logo-primary-color) !important;
 }
 
 /* summary */
@@ -696,7 +701,7 @@ div[data-market_type=script]:hover {
 }
 
 .form-group .label {
-  padding: 4px 6px !important;
+  padding: 3px 6px !important;
   min-width: 40px !important;
 }
 
@@ -712,6 +717,10 @@ pre {
 
 .lazy {
   border: none !important;
+}
+
+.div_rowZones {
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
 }
 
 .viewZone{
@@ -2828,6 +2837,9 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance:textfield;
 }
+input:invalid {
+  box-shadow: none;
+}
 
 .ui-spinner a.ui-spinner-button {
   border: none;
@@ -3063,16 +3075,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3080,11 +3092,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3130,5 +3142,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
