@@ -48,6 +48,8 @@ Changelog
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
+- Suppression du partage de scénario
+- Amélioration de la fenetre de gestion des templates de scénario
 
 3.3.24
 =====
