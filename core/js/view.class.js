@@ -78,8 +78,10 @@ jeedom.view.toHtml = function (_params) {
 
 jeedom.view.handleViewAjax = function (_params) {
   var result = {html: '', scenario: [], cmd: [], eqLogic: []};
+  var colIdx = 0
   for (var i in _params.view.viewZone) {
     var viewZone = _params.view.viewZone[i];
+    if (colIdx == 0 ) result.html += '<div class="col-xs-12 div_rowZones">';
     var div_class = 'div_viewZone ';
     if (!$.mobile) {
       div_class +=' col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12);
@@ -113,6 +115,10 @@ jeedom.view.handleViewAjax = function (_params) {
       result.html += viewZone.html;;
     }
     result.html += '</div>';
+
+    colIdx += parseInt(init(viewZone.configuration.zoneCol,12))
+    if (colIdx > 11) colIdx = 0
+    if (colIdx == 0 ) result.html += '</div>';
   }
   return result;
 }
