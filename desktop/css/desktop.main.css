@@ -315,7 +315,8 @@ legend {
   padding: 4px 12px;
 }
 .label-sm {
-  padding: 3px 6px;
+  font-size: 12px !important;
+  padding: 2px 4px;
 }
 .label:empty,
 .label-sm:empty{
@@ -696,7 +697,7 @@ div[data-market_type=script]:hover {
 }
 
 .form-group .label {
-  padding: 4px 6px !important;
+  padding: 3px 6px !important;
   min-width: 40px !important;
 }
 
