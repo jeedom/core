@@ -226,7 +226,7 @@ function getObjectHtml(_object_id){
         });
         $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
         $('#div_ob'+_object_id+'.div_displayEquipement .scenario-widget').draggable('disable');
-      },10);
+      },20);
     }
   });
 }
