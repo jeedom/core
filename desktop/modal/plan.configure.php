@@ -294,11 +294,16 @@ foreach (planHeader::all() as $plan) {
       <label class="col-lg-4 control-label">{{Position}}</label>
       <div class="col-lg-2">
         <select class="planAttr form-control" data-l1key="configuration" data-l2key="position" >
-          <option value="">{{Défaut}}</option>
-          <option value="bottom:0px">{{Haut}}</option>
-          <option value="right:0px">{{Gauche}}</option>
-          <option value="bottom:0px;right:0p">{{Haut Gauche}}</option>
-        </select>
+		<option value="">{{Défaut}}</option>
+		<option value="bottom:0px;">{{Haut}}</option>
+		<option value="right:0px;">{{Gauche}}</option>
+		<option value="top:0px;">{{Bas}}</option>
+		<option value="left:0px;">{{Droite}}</option>
+		<option value="bottom:0px;right:0px;">{{Haut Gauche}}</option>
+		<option value="bottom:0px;left:0px;">{{Haut Droite}}</option>
+		<option value="top:0px;right:0px">{{Bas Gauche}}</option>
+		<option value="top:0px;left:0px">{{Bas Droite}}</option>
+	</select>
       </div>
     </div>
   </div>
