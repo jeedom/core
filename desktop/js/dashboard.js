@@ -201,8 +201,8 @@ function getObjectHtml(_object_id){
         
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery();
-          if ($('#div_ob'+_object_id+'.div_displayEquipement').data('packery').items.length == 1) {
-            $('#div_ob'+_object_id+'.div_displayEquipement').packery('destroy').packery()
+          if ($(this).data('packery').items.length == 1) {
+            $(this).packery('destroy').packery()
           }
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);
