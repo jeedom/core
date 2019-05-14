@@ -178,6 +178,9 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
       addOrUpdateUrl('id',data.id);
       $.hideLoading();
       modifyWithoutSave = false;
+      settimeout(function(){
+        modifyWithoutSave = false;
+      },1000)
     }
   });
   return false;
