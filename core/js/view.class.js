@@ -88,7 +88,7 @@ jeedom.view.handleViewAjax = function (_params) {
       div_class +=' div_viewZoneTable';
     }
     result.html += '<div class="'+div_class+'">';
-    result.html += '<legend class="lg_viewZone" style="color : #716b7a" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
+    result.html += '<legend class="lg_viewZone" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
     var div_id = 'div_viewZone' + viewZone.id + Date.now();
     /*         * *****************viewZone widget***************** */
     if (viewZone.type == 'widget') {
