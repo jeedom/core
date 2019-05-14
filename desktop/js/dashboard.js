@@ -201,6 +201,9 @@ function getObjectHtml(_object_id){
         
         $('#div_ob'+_object_id+'.div_displayEquipement').each(function(){
           var container = $(this).packery();
+          if(container.length == 0){
+            var container = $(this).packery('destroy').packery();
+          }
           var itemElems =  container.find('.eqLogic-widget').draggable();
           container.packery('bindUIDraggableEvents',itemElems);
           var itemElems =  container.find('.scenario-widget').draggable();
