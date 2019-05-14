@@ -715,6 +715,10 @@ pre {
   border: none !important;
 }
 
+.div_rowZones {
+  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+}
+
 .viewZone{
   padding: 9.5px;
   margin: 0 0px 5px;
