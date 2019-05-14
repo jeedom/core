@@ -125,7 +125,7 @@ function printCron() {
       $('#table_cron tbody').append(tr);
       modifyWithoutSave = false;
       $("#table_cron").trigger("update");
-      settimeout(function(){
+      setTimeout(function(){
         modifyWithoutSave = false;
       },1000)
       $.hideLoading();

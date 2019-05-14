@@ -219,7 +219,7 @@ function loadObjectConfiguration(_id){
       }
       addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
-      settimeout(function(){
+      setTimeout(function(){
         modifyWithoutSave = false;
       },1000)
     }
