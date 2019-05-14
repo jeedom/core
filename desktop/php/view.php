@@ -68,12 +68,12 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 			?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen hidden-xs"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }	?>
 			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen hidden-xs" id="bt_editViewWidgetOrder" data-mode="0"></i>
 		<?php } ?>
-		<center style="font-size:1.5em;">
+		<center><h3>
 			<?php
 			echo trim($view->getDisplay('icon')).' ';
 			echo $view->getName();
 			?>
-		</center>
+		</h3></center>
 	</legend>
 	<div class="row div_displayView"></div>
 </div>
