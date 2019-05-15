@@ -16,7 +16,7 @@ if (!isConnect('admin')) {
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
 	<li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-feather"></i> {{Autres}}</a></li>
-	<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
+	<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -52,15 +52,24 @@ if (!isConnect('admin')) {
 			</tbody>
 		</table>
 	</div>
-	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
+	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
 		<br/>
-		<div class="progress">
-			<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
-				0%
+		<div class="row">
+			<div class="col-sm-11">
+				<div class="progress" style="margin:10px;height:32px;">
+					<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
+						0%
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-1">
+				<a class="btn btn-default" style="margin-top:10px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
 			</div>
 		</div>
-		<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
-		<pre id="pre_updateInfo"></pre>
+		<div id="div_log" style="display:none;">
+			<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Log :}}</legend>
+			<pre id="pre_updateInfo"></pre>
+		</div>
 	</div>
 </div>
 
