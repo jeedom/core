@@ -53,6 +53,11 @@ if (!isConnect('admin')) {
 		</table>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+				0%
+			</div>
+		</div>
 		<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
 		<pre id="pre_updateInfo"></pre>
 	</div>
@@ -67,8 +72,8 @@ if (!isConnect('admin')) {
 			<div class="form-group">
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Pré-update}}
-                    	<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
-                    </label>
+						<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+					</label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
 					</div>
@@ -93,8 +98,8 @@ if (!isConnect('admin')) {
 				</div>
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Mode forcé}}
-                    	<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
-                    </label>
+						<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+					</label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="force" />
 					</div>

@@ -16,6 +16,7 @@
 
 var hasUpdate = false;
 var hasUpdateOther = false;
+var progress = -2;
 printUpdate();
 
 $("#md_specifyUpdate").dialog({
@@ -52,6 +53,8 @@ $('#bt_doUpdate').off('click').on('click', function () {
   $("#md_specifyUpdate").dialog('close');
   var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
   $.hideAlert();
+  progress = -1;
+  updateProgressBar();
   jeedom.update.doAll({
     options: options,
     error: function (error) {
@@ -81,6 +84,8 @@ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
   bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
     if (result) {
+      progress = -1;
+      updateProgressBar();
       $.hideAlert();
       jeedom.update.do({
         id: id,
@@ -168,11 +173,15 @@ function getJeedomLog(_autoUpdate, _log) {
           log += data.result[i]+"\n";
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
             printUpdate();
+            progress = -2;
+            updateProgressBar();
             $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés}}', level: 'success'});
             _autoUpdate = 0;
           }
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
             printUpdate();
+            progress = -2;
+            updateProgressBar();
             $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
             _autoUpdate = 0;
           }
@@ -305,6 +314,7 @@ $('#pre_updateInfo_clean').show()
 //listen change in log to update the cleaned one:
 var prevUpdateText = ''
 $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
+  regex = /\[PROGRESS\]\[(\d.*)]/gm;
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
@@ -319,8 +329,34 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       line += ' ...OK'
       lines[i+1] = ''
     }
+    regExpResult = regex.exec(line);
+    if(regExpResult !== null){
+      progress = regExpResult[1];
+      updateProgressBar();
+    }
     newLogText += line + '\n'
   }
   $('#pre_updateInfo_clean').value(newLogText)
   prevUpdateText = currentUpdateText
 })
+
+function updateProgressBar(){
+  if(progress == -2){
+    $('#div_progressbar').removeClass('active');
+    $('#div_progressbar').width(0);
+    $('#div_progressbar').attr('aria-valuenow',0);
+    $('#div_progressbar').html('0%');
+    return;
+  }
+  if(progress == -1){
+    $('#div_progressbar').addClass('active');
+    $('#div_progressbar').width(100);
+    $('#div_progressbar').attr('aria-valuenow',100);
+    $('#div_progressbar').html('N/A');
+    return;
+  }
+  $('#div_progressbar').addClass('active');
+  $('#div_progressbar').width(progress);
+  $('#div_progressbar').attr('aria-valuenow',progress);
+  $('#div_progressbar').html(progress+'%');
+}
