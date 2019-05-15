@@ -19,6 +19,14 @@ var hasUpdateOther = false;
 var progress = -2;
 printUpdate();
 
+$('#bt_showHideLog').off('click').on('click',function(){
+  if($('#div_log').is(':visible')){
+    $('#div_log').hide();
+  }else{
+    $('#div_log').show();
+  }
+});
+
 $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
