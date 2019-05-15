@@ -260,7 +260,7 @@ try {
 			}
 		}
 		try {
-			echo "Check jeedom consistency...";
+			echo "Check jeedom consistency...\n";
 			require_once __DIR__ . '/consistency.php';
 			echo "OK\n";
 		} catch (Exception $ex) {
