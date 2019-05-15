@@ -53,6 +53,7 @@ if (!isConnect('admin')) {
 		</table>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
+		<br/>
 		<div class="progress">
 			<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
 				0%

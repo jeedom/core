@@ -53,7 +53,7 @@ $('#bt_doUpdate').off('click').on('click', function () {
   $("#md_specifyUpdate").dialog('close');
   var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
   $.hideAlert();
-  progress = -1;
+  progress = 0;
   updateProgressBar();
   jeedom.update.doAll({
     options: options,
@@ -350,13 +350,13 @@ function updateProgressBar(){
   }
   if(progress == -1){
     $('#div_progressbar').addClass('active');
-    $('#div_progressbar').width(100);
+    $('#div_progressbar').width('100%');
     $('#div_progressbar').attr('aria-valuenow',100);
     $('#div_progressbar').html('N/A');
     return;
   }
   $('#div_progressbar').addClass('active');
-  $('#div_progressbar').width(progress);
+  $('#div_progressbar').width(progress+'%');
   $('#div_progressbar').attr('aria-valuenow',progress);
   $('#div_progressbar').html(progress+'%');
 }
