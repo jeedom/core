@@ -200,7 +200,8 @@ function getObjectHtml(_object_id){
         $("select").click(function() { $(this).focus(); });
         
         var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
-        if ($('#div_ob'+_object_id+'.div_displayEquipement').data('packery').items.length == 1) {
+        var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
+        if (isset(packData) && packData.items.length == 1) {
           $('#div_ob'+_object_id+'.div_displayEquipement').packery('destroy').packery()
         }
         var itemElems =  container.find('.eqLogic-widget').draggable();
