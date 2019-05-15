@@ -337,12 +337,12 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       line += ' ...OK'
       lines[i+1] = ''
     }
+    newLogText += line + '\n'
     regExpResult = regex.exec(line);
     if(regExpResult !== null){
       progress = regExpResult[1];
       updateProgressBar();
     }
-    newLogText += line + '\n'
   }
   $('#pre_updateInfo_clean').value(newLogText)
   prevUpdateText = currentUpdateText
