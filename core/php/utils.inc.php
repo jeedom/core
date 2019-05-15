@@ -123,11 +123,11 @@ function resizeImage($contents, $width, $height) {
 	$test = $width / $height > $ratio_orig;
 	$dest_width = $test ? ceil($height * $ratio_orig) : $width;
 	$dest_height = $test ? $height : ceil($width / $ratio_orig);
-
+	
 	$dest_image = imagecreatetruecolor($width, $height);
 	$wh = imagecolorallocate($dest_image, 0xFF, 0xFF, 0xFF);
 	imagefill($dest_image, 0, 0, $wh);
-
+	
 	$offcet_x = ($width - $dest_width) / 2;
 	$offcet_y = ($height - $dest_height) / 2;
 	if ($dest_image && $contents) {
@@ -169,7 +169,7 @@ function convertDuration($time) {
 			$time %= $value;
 		}
 	}
-
+	
 	$result .= $time . 's';
 	return $result;
 }
@@ -242,13 +242,13 @@ function cleanPath($path) {
 		if ($fold == '' || $fold == '.') {
 			continue;
 		}
-
+		
 		if ($fold == '..' && $i > 0 && end($out) != '..') {
 			array_pop($out);
 		} else {
 			$out[] = $fold;
 		}
-
+		
 	}
 	return ($path{0} == '/' ? '/' : '') . join('/', $out);
 }
@@ -288,7 +288,7 @@ function polyfill_glob_brace($pattern, $flags) {
 		$next_brace_sub = function ($pattern, $current) {
 			$length = strlen($pattern);
 			$depth = 0;
-
+			
 			while ($current < $length) {
 				if ('\\' === $pattern[$current]) {
 					if (++$current === $length) {
@@ -303,13 +303,13 @@ function polyfill_glob_brace($pattern, $flags) {
 					}
 				}
 			}
-
+			
 			return $current < $length ? $current : null;
 		};
 	}
-
+	
 	$length = strlen($pattern);
-
+	
 	// Find first opening brace.
 	for ($begin = 0; $begin < $length; $begin++) {
 		if ('\\' === $pattern[$begin]) {
@@ -318,42 +318,42 @@ function polyfill_glob_brace($pattern, $flags) {
 			break;
 		}
 	}
-
+	
 	// Find comma or matching closing brace.
 	if (null === ($next = $next_brace_sub($pattern, $begin + 1))) {
 		return glob($pattern, $flags);
 	}
-
+	
 	$rest = $next;
-
+	
 	// Point `$rest` to matching closing brace.
 	while ('}' !== $pattern[$rest]) {
 		if (null === ($rest = $next_brace_sub($pattern, $rest + 1))) {
 			return glob($pattern, $flags);
 		}
 	}
-
+	
 	$paths = array();
 	$p = $begin + 1;
-
+	
 	// For each comma-separated subpattern.
 	do {
 		$subpattern = substr($pattern, 0, $begin)
 		. substr($pattern, $p, $next - $p)
 		. substr($pattern, $rest + 1);
-
+		
 		if (($result = polyfill_glob_brace($subpattern, $flags))) {
 			$paths = array_merge($paths, $result);
 		}
-
+		
 		if ('}' === $pattern[$next]) {
 			break;
 		}
-
+		
 		$p = $next + 1;
 		$next = $next_brace_sub($pattern, $p);
 	} while (null !== $next);
-
+	
 	return array_values(array_unique($paths));
 }
 
@@ -373,12 +373,12 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			if (!file_exists($folder)) {
 				return array();
 			}
-
+			
 		}
 		if (!is_dir($folder) || !chdir($folder)) {
 			return array();
 		}
-
+		
 	}
 	$get_files = in_array('files', $options);
 	$get_folders = in_array('folders', $options);
@@ -396,13 +396,13 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 	if ($recursivly || $get_folders) {
 		$folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
 	}
-
+	
 	//If a pattern is specified, make sure even the folders match that pattern.
 	$matching_folders = array();
 	if ($pattern !== '*') {
 		$matching_folders = glob($pattern, GLOB_ONLYDIR + GLOB_MARK);
 	}
-
+	
 	//Get just the files by removing the folders from the list of all files.
 	$all = array_values(array_diff($both, $folders));
 	if ($recursivly || $get_folders) {
@@ -413,13 +413,13 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 					if (in_array($this_folder, $matching_folders)) {
 						array_push($all, $this_folder);
 					}
-
+					
 				} else {
 					array_push($all, $this_folder);
 				}
-
+				
 			}
-
+			
 			if ($recursivly) {
 				// Continue calling this function for all the folders
 				$deep_items = ls($pattern, $this_folder, $recursivly, $options); # :RECURSION:
@@ -429,11 +429,11 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			}
 		}
 	}
-
+	
 	if ($folder && is_dir($current_folder)) {
 		chdir($current_folder);
 	}
-
+	
 	if (in_array('datetime_asc', $options)) {
 		global $current_dir;
 		$current_dir = $folder;
@@ -448,7 +448,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			return filemtime($GLOBALS['current_dir'] . '/' . $a) > filemtime($GLOBALS['current_dir'] . '/' . $b);
 		});
 	}
-
+	
 	return $all;
 }
 
@@ -632,7 +632,7 @@ function date_fr($date_en) {
 		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
 		"Aug", "Sep", "Oct", "Nov", "Dec",
 	);
-
+	
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 		$texte_long = array(
@@ -656,7 +656,7 @@ function date_fr($date_en) {
 			"Juni", "July", "August", "September",
 			"October", "November", "December",
 		);
-
+		
 		$texte_short = array(
 			"Mon", "Die", "Mit", "Thu", "Don", "Sam", "Son",
 			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
@@ -810,7 +810,7 @@ function sizeFormat($size) {
 * @return boolean
 */
 function netMatch($network, $ip) {
-
+	
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
@@ -837,7 +837,7 @@ function netMatch($network, $ip) {
 			return true; // if *.*.*.*, then all, so matched
 		}
 	}
-
+	
 	$d = strpos($network, '-');
 	if ($d === false) {
 		if (strpos($network, '/') === false) {
@@ -856,7 +856,7 @@ function netMatch($network, $ip) {
 		$ip_long = ip2long($ip);
 		return ($ip_long & $mask) == ($network_long & $mask);
 	} else {
-
+		
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
 		$ip = ip2long($ip);
@@ -940,18 +940,18 @@ function evaluate($_string) {
 	if (!isset($GLOBALS['ExpressionLanguage'])) {
 		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
 	}
-	$_string = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
-	if (strpos($_string, '"') !== false || strpos($_string, '\'') !== false) {
+	$string = str_ireplace(array(' et ', ' and ', ' ou ', ' or '), array(' && ', ' && ', ' || ', ' || '), $_string);
+	if (strpos($string, '"') !== false || strpos($string, '\'') !== false) {
 		$regex = "/(?:(?:\"(?:\\\\\"|[^\"])+\")|(?:'(?:\\\'|[^'])+'))/is";
-		$r = preg_match_all($regex, $_string, $matches);
+		$r = preg_match_all($regex, $string, $matches);
 		$c = count($matches[0]);
 		for ($i = 0; $i < $c; $i++) {
-			$_string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $_string);
+			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
 	} else {
 		$c = 0;
 	}
-	$expr = str_replace('==', '=', $_string);
+	$expr = str_replace('==', '=', $string);
 	$expr = str_replace('=', '==', $expr);
 	$expr = str_replace('<==', '<=', $expr);
 	$expr = str_replace('>==', '>=', $expr);
@@ -969,39 +969,7 @@ function evaluate($_string) {
 		//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
 	try {
-		$expr = str_replace('""', '"', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-	} catch (Exception $e) {
-		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
-	}
-	if ($c > 0) {
-		for ($i = 0; $i < $c; $i++) {
-			$_string = str_replace('--preparsed' . $i . '--', $matches[0][$i], $_string);
-		}
-	}
-	return $_string;
-}
-
-function evaluate_old($_string) {
-	if (!isset($GLOBALS['ExpressionLanguage'])) {
-		$GLOBALS['ExpressionLanguage'] = new ExpressionLanguage();
-	}
-	$expr = str_replace(array(' et ', ' ET ', ' AND ', ' and ', ' ou ', ' OR ', ' or ', ' OU '), array(' && ', ' && ', ' && ', ' && ', ' || ', ' || ', ' || ', ' || '), $_string);
-	$expr = str_replace('==', '=', $expr);
-	$expr = str_replace('=', '==', $expr);
-	$expr = str_replace('<==', '<=', $expr);
-	$expr = str_replace('>==', '>=', $expr);
-	$expr = str_replace('!==', '!=', $expr);
-	$expr = str_replace('!===', '!==', $expr);
-	$expr = str_replace('====', '===', $expr);
-	try {
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
-	} catch (Exception $e) {
-		//log::add('expression', 'debug', '[Parser 1] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
-	}
-	try {
-		$expr = str_replace('""', '"', $expr);
-		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
+		return $GLOBALS['ExpressionLanguage']->evaluate(str_replace('""', '"', $expr));
 	} catch (Exception $e) {
 		//log::add('expression', 'debug', '[Parser 2] Expression : ' . $_string . ' tranformé en ' . $expr . ' => ' . $e->getMessage());
 	}
@@ -1045,7 +1013,7 @@ function sanitizeAccent($_message) {
 		'$' => 's');
 		return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
 	}
-
+	
 	function isConnect($_right = '') {
 		if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 			return $GLOBALS['isConnect::' . $_right];
@@ -1062,86 +1030,86 @@ function sanitizeAccent($_message) {
 		}
 		return $GLOBALS['isConnect::' . $_right];
 	}
-
+	
 	function ZipErrorMessage($code) {
 		switch ($code) {
 			case 0:
 			return 'No error';
-
+			
 			case 1:
 			return 'Multi-disk zip archives not supported';
-
+			
 			case 2:
 			return 'Renaming temporary file failed';
-
+			
 			case 3:
 			return 'Closing zip archive failed';
-
+			
 			case 4:
 			return 'Seek error';
-
+			
 			case 5:
 			return 'Read error';
-
+			
 			case 6:
 			return 'Write error';
-
+			
 			case 7:
 			return 'CRC error';
-
+			
 			case 8:
 			return 'Containing zip archive was closed';
-
+			
 			case 9:
 			return 'No such file';
-
+			
 			case 10:
 			return 'File already exists';
-
+			
 			case 11:
 			return 'Can\'t open file';
-
+			
 			case 12:
 			return 'Failure to create temporary file';
-
+			
 			case 13:
 			return 'Zlib error';
-
+			
 			case 14:
 			return 'Malloc failure';
-
+			
 			case 15:
 			return 'Entry has been changed';
-
+			
 			case 16:
 			return 'Compression method not supported';
-
+			
 			case 17:
 			return 'Premature EOF';
-
+			
 			case 18:
 			return 'Invalid argument';
-
+			
 			case 19:
 			return 'Not a zip archive';
-
+			
 			case 20:
 			return 'Internal error';
-
+			
 			case 21:
 			return 'Zip archive inconsistent';
-
+			
 			case 22:
 			return 'Can\'t remove file';
-
+			
 			case 23:
 			return 'Entry has been deleted';
-
+			
 			default:
 			return 'An unknown error has occurred(' . intval($code) . ')';
 		}
 	}
-
+	
 	function arg2array($_string) {
 		$return = array();
 		$re = '/[\/-]?(([a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ_#]+)(?:[=:]("[^"]+"|[^\s"]+))?)(?:\s+|$)/';
@@ -1154,7 +1122,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
-
+	
 	function strToHex($string) {
 		$hex = '';
 		$calculateStrLen = strlen($string);
@@ -1165,7 +1133,7 @@ function sanitizeAccent($_message) {
 		}
 		return strToUpper($hex);
 	}
-
+	
 	function hex2rgb($hex) {
 		$hex = str_replace("#", "", $hex);
 		if (strlen($hex) == 3) {
@@ -1179,7 +1147,7 @@ function sanitizeAccent($_message) {
 		}
 		return array($r, $g, $b);
 	}
-
+	
 	function getDominantColor($_pathimg) {
 		$rTotal = 0;
 		$gTotal = 0;
@@ -1202,22 +1170,22 @@ function sanitizeAccent($_message) {
 		}
 		return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
 	}
-
+	
 	function sha512($_string) {
 		return hash('sha512', $_string);
 	}
-
+	
 	function findCodeIcon($_icon) {
 		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
-
+		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
-
+		
 		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
 		preg_match($re, $css, $matches);
 		if (isset($matches[1])) {
 			return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
 		}
-
+		
 		foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
 			if (is_dir(__DIR__ . '/../css/icon/' . $dir) && file_exists(__DIR__ . '/../css/icon/' . $dir . '/style.css')) {
 				$css = file_get_contents(__DIR__ . '/../css/icon/' . $dir . '/style.css');
@@ -1229,7 +1197,7 @@ function sanitizeAccent($_message) {
 		}
 		return array('icon' => '', 'fontfamily' => '');
 	}
-
+	
 	function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
 		//var_dump($_to_type);
 		//var_dump($_to);
@@ -1258,7 +1226,7 @@ function sanitizeAccent($_message) {
 		}
 		return $_data;
 	}
-
+	
 	function getSystemMemInfo() {
 		$data = explode("\n", file_get_contents("/proc/meminfo"));
 		$meminfo = array();
@@ -1272,7 +1240,7 @@ function sanitizeAccent($_message) {
 		}
 		return $meminfo;
 	}
-
+	
 	function strContain($_string, $_words) {
 		foreach ($_words as $word) {
 			if (strpos($_string, $word) !== false) {
@@ -1281,7 +1249,7 @@ function sanitizeAccent($_message) {
 		}
 		return false;
 	}
-
+	
 	function makeZipSupport() {
 		$jeedom_folder = __DIR__ . '/../..';
 		$folder = '/tmp/jeedom_support';
@@ -1298,7 +1266,7 @@ function sanitizeAccent($_message) {
 		rrmdir($folder);
 		return realpath($outputfile);
 	}
-
+	
 	function decodeSessionData($_data) {
 		$return_data = array();
 		$offset = 0;
@@ -1316,7 +1284,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return_data;
 	}
-
+	
 	function listSession() {
 		$return = array();
 		try {
@@ -1339,11 +1307,11 @@ function sanitizeAccent($_message) {
 				$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
 			}
 		} catch (Exception $e) {
-
+			
 		}
 		return $return;
 	}
-
+	
 	function deleteSession($_id) {
 		$cSsid = session_id();
 		@session_start();
@@ -1353,7 +1321,7 @@ function sanitizeAccent($_message) {
 		session_id($cSsid);
 		@session_write_close();
 	}
-
+	
 	function unautorizedInDemo($_user = null) {
 		if ($_user === null) {
 			if (!isset($_SESSION) || !isset($_SESSION['user'])) {
@@ -1368,7 +1336,7 @@ function sanitizeAccent($_message) {
 			throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 		}
 	}
-
+	
 	function checkAndFixCron($_cron){
 		$return = $_cron;
 		$return = str_replace('*/ ','* ',$return);
@@ -1382,7 +1350,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
-
+	
 	function getTZoffsetMin() {
 		$tz = date_default_timezone_get();
 		date_default_timezone_set( "UTC" );
@@ -1390,79 +1358,80 @@ function sanitizeAccent($_message) {
 		date_default_timezone_set($tz);
 		return($seconds/60);
 	}
-
+	
 	function pageTitle($_page){
 		switch ($_page) {
 			case 'view':
-				$return = __('Vues',__FILE__);
-				break;
+			$return = __('Vues',__FILE__);
+			break;
 			case 'plan':
-				$return = __('Designs',__FILE__);
-				break;
+			$return = __('Designs',__FILE__);
+			break;
 			case 'plan3d':
-				$return = __('Designs 3D',__FILE__);
-				break;
+			$return = __('Designs 3D',__FILE__);
+			break;
 			case 'eqAnalyse':
-				$return = __('Equipements',__FILE__);
-				break;
+			$return = __('Equipements',__FILE__);
+			break;
 			case 'display':
-				$return = __('Résumé',__FILE__);
-				break;
+			$return = __('Résumé',__FILE__);
+			break;
 			case 'history':
-				$return = __('Historique',__FILE__);
-				break;
+			$return = __('Historique',__FILE__);
+			break;
 			case 'report':
-				$return = __('Rapports',__FILE__);
-				break;
+			$return = __('Rapports',__FILE__);
+			break;
 			case 'health':
-				$return = __('Santé',__FILE__);
-				break;
+			$return = __('Santé',__FILE__);
+			break;
 			case 'object':
-				$return = __('Objets',__FILE__);
-				break;
+			$return = __('Objets',__FILE__);
+			break;
 			case 'scenario':
-				$return = __('Scénarios',__FILE__);
-				break;
+			$return = __('Scénarios',__FILE__);
+			break;
 			case 'interact':
-				$return = __('Interactions',__FILE__);
-				break;
+			$return = __('Interactions',__FILE__);
+			break;
 			case 'widgets':
-				$return = __('Widgets',__FILE__);
-				break;
+			$return = __('Widgets',__FILE__);
+			break;
 			case 'plugin':
-				$return = __('Gestion Plugins',__FILE__);
-				break;
+			$return = __('Gestion Plugins',__FILE__);
+			break;
 			case 'administration':
-				$return = __('Configuration',__FILE__);
-				break;
+			$return = __('Configuration',__FILE__);
+			break;
 			case 'backup':
-				$return = __('Sauvegardes',__FILE__);
-				break;
+			$return = __('Sauvegardes',__FILE__);
+			break;
 			case 'cron':
-				$return = __('Moteur de tâches',__FILE__);
-				break;
+			$return = __('Moteur de tâches',__FILE__);
+			break;
 			case 'custom':
-				$return = __('Personnalisation',__FILE__);
-				break;
+			$return = __('Personnalisation',__FILE__);
+			break;
 			case 'user':
-				$return = __('Utilisateurs',__FILE__);
-				break;
+			$return = __('Utilisateurs',__FILE__);
+			break;
 			case 'profils':
-				$return = __('Préférences',__FILE__);
-				break;
+			$return = __('Préférences',__FILE__);
+			break;
 			case 'log':
-				$return = __('Logs',__FILE__);
-				break;
+			$return = __('Logs',__FILE__);
+			break;
 			case 'update':
-				$return = __('Mises à jour',__FILE__);
-				break;
+			$return = __('Mises à jour',__FILE__);
+			break;
 			default:
-				$return = $_page;
-				break;
+			$return = $_page;
+			break;
 		}
 		return ucfirst($return);
 	}
-
+	
 	function cleanComponanteName($_name){
 		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
 	}
+	
