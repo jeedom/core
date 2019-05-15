@@ -293,3 +293,37 @@ function addUpdate(_update) {
   html.setValues(_update, '.updateAttr');
   return html;
 }
+
+
+//___log interceptor beautifier___
+//create a second <pre> for cleaned text to avoid change event infinite loop:
+newLogClean = '<pre id="pre_updateInfo_clean" style="display:none"></pre>'
+$('#pre_updateInfo').after($(newLogClean))
+$('#pre_updateInfo').hide()
+$('#pre_updateInfo_clean').show()
+
+//listen change in log to update the cleaned one:
+var prevUpdateText = ''
+$('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
+  currentUpdateText = $('#pre_updateInfo').text()
+  if (currentUpdateText == '') return false
+  if (prevUpdateText == currentUpdateText) return false
+
+  lines = currentUpdateText.split("\n")
+  l = lines.length
+  newLogText = ''
+  for(var i=0; i < l; i++)
+  {
+    line = lines[i]
+    if (line == '') continue
+    if (lines[i+1] == 'OK' || lines[i+1] == '. OK') {
+      line += ' ...OK'
+      lines[i+1] = ''
+    }
+    newLogText += line + '\n'
+  }
+  $('#pre_updateInfo_clean').value(newLogText)
+  prevUpdateText = currentUpdateText
+})
+
+
