@@ -180,16 +180,16 @@ function getJeedomLog(_autoUpdate, _log) {
         for (var i in data.result.reverse()) {
           log += data.result[i]+"\n";
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
-            printUpdate();
             progress = -2;
             updateProgressBar();
+            printUpdate();
             $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés}}', level: 'success'});
             _autoUpdate = 0;
           }
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
-            printUpdate();
-            progress = -2;
+            progress = -3;
             updateProgressBar();
+            printUpdate();
             $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
             _autoUpdate = 0;
           }
@@ -349,28 +349,34 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
 })
 
 function updateProgressBar(){
+  if(progress == -3){
+    $('#div_progressbar').removeClass('active progress-bar-warning');
+    $('#div_progressbar').addClass('progress-bar-danger');
+    return;
+  }
   if(progress == -2){
-    $('#div_progressbar').removeClass('active');
+    $('#div_progressbar').removeClass('active progress-bar-warning');
     $('#div_progressbar').width(0);
     $('#div_progressbar').attr('aria-valuenow',0);
     $('#div_progressbar').html('0%');
     return;
   }
   if(progress == -1){
-    $('#div_progressbar').addClass('active');
+    $('#div_progressbar').addClass('active progress-bar-warning');
     $('#div_progressbar').width('100%');
     $('#div_progressbar').attr('aria-valuenow',100);
     $('#div_progressbar').html('N/A');
     return;
   }
   if(progress == 100){
-    $('#div_progressbar').removeClass('active');
+    $('#div_progressbar').removeClass('active progress-bar-warning');
+    $('#div_progressbar').addClass('progress-bar-success');
     $('#div_progressbar').width(progress+'%');
     $('#div_progressbar').attr('aria-valuenow',progress);
     $('#div_progressbar').html(progress+'%');
     return;
   }
-  $('#div_progressbar').addClass('active');
+  $('#div_progressbar').addClass('active progress-bar-warning');
   $('#div_progressbar').width(progress+'%');
   $('#div_progressbar').attr('aria-valuenow',progress);
   $('#div_progressbar').html(progress+'%');
