@@ -366,8 +366,14 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
+    regExpResult = regex.exec(line);
+    if(regExpResult !== null){
+      progress = regExpResult[1];
+      updateProgressBar();
+    }
+
     if (line == '') continue
-    //if (/[PROGRESS]/.test(line)) continue
+    if (/[PROGRESS]/.test(line)) continue
 
     if (/../.test(lines[i+1]) && /OK/.test(lines[i+1]) || replaceLogLines.includes(lines[i+1])) {
       line.replace('/[.]{2,}/', '')
@@ -376,11 +382,6 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
     }
 
     newLogText += line + '\n'
-    regExpResult = regex.exec(line);
-    if(regExpResult !== null){
-      progress = regExpResult[1];
-      updateProgressBar();
-    }
   }
   $('#pre_updateInfo_clean').value(newLogText)
   prevUpdateText = currentUpdateText
