@@ -558,10 +558,11 @@ div[class*="DisplayCard"] .name > .label {
 }
 
 .eqLogicDisplayCard img {
-  width: 75px !important;
-  max-width: 75px;
-  max-height: 95px;
-  height: auto;
+  min-height: 90px !important;
+  max-height: 90px;
+  width: auto !important;
+  max-width: 75px !important;
+  overflow: hidden;
   vertical-align: baseline;
 }
 
