@@ -18,7 +18,7 @@ if (!isConnect('admin')) {
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo size,pid,user,command --sort -size">Memory Usage</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu">CPU Usage</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dmesg">dmesg</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ifconfig">ifconfig</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ip addr">ip addr</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="lsusb">lsusb</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="free -m">free -m</a></li>
