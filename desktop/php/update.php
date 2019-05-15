@@ -58,7 +58,7 @@ if (!isConnect('admin')) {
 			<div class="col-sm-11">
 				<div class="progress" style="margin:10px;height:32px;">
 					<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
-						0%
+						N/A
 					</div>
 				</div>
 			</div>
