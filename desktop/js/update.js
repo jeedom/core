@@ -363,6 +363,13 @@ function updateProgressBar(){
     $('#div_progressbar').html('N/A');
     return;
   }
+  if(progress == 100){
+    $('#div_progressbar').removeClass('active');
+    $('#div_progressbar').width(progress+'%');
+    $('#div_progressbar').attr('aria-valuenow',progress);
+    $('#div_progressbar').html(progress+'%');
+    return;
+  }
   $('#div_progressbar').addClass('active');
   $('#div_progressbar').width(progress+'%');
   $('#div_progressbar').attr('aria-valuenow',progress);
