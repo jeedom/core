@@ -436,10 +436,9 @@
 
 	$.jstree.plugins.node_customize = function (options, parent) {
 		this.redraw_node = function (obj, deep, callback, force_draw) {
-			var node_id = obj;
 			var el = parent.redraw_node.apply(this, arguments);
 			if (el) {
-				var node = this._model.data[node_id];
+				var node = this.get_node(obj);
 				var cfg = this.settings.node_customize;
 				var key = cfg.key;
 				var type =  (node && node.original && node.original[key]);
@@ -598,4 +597,60 @@
                         }
                 }
         };
+}));
+
+// conditional deselect
+(function (factory) {
+	"use strict";
+	if (typeof define === 'function' && define.amd) {
+		define('jstree.conditionaldeselect', ['jquery','jstree'], factory);
+	}
+	else if(typeof exports === 'object') {
+		factory(require('jquery'), require('jstree'));
+	}
+	else {
+		factory(jQuery, jQuery.jstree);
+	}
+}(function ($, jstree, undefined) {
+	"use strict";
+
+	if($.jstree.plugins.conditionaldeselect) { return; }
+	$.jstree.defaults.conditionaldeselect = function () { return true; };
+	$.jstree.plugins.conditionaldeselect = function (options, parent) {
+		// own function
+		this.deselect_node = function (obj, supress_event, e) {
+			if(this.settings.conditionaldeselect.call(this, this.get_node(obj), e)) {
+				return parent.deselect_node.call(this, obj, supress_event, e);
+			}
+		};
+	};
+
+}));
+
+// conditional close
+(function (factory) {
+	"use strict";
+	if (typeof define === 'function' && define.amd) {
+		define('jstree.conditionalclose', ['jquery','jstree'], factory);
+	}
+	else if(typeof exports === 'object') {
+		factory(require('jquery'), require('jstree'));
+	}
+	else {
+		factory(jQuery, jQuery.jstree);
+	}
+}(function ($, jstree, undefined) {
+	"use strict";
+
+	if($.jstree.plugins.conditionalclose) { return; }
+	$.jstree.defaults.conditionalclose = function () { return true; };
+	$.jstree.plugins.conditionalclose = function (options, parent) {
+		// own function
+		this.close_node = function (obj, animation) {
+			if(this.settings.conditionalclose.close.call(this, this.get_node(obj), e)) {
+				return parent.deselect_node.call(this, obj, animation);
+			}
+		};
+	};
+
 }));
