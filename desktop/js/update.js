@@ -354,9 +354,10 @@ $('#pre_updateInfo_clean').show()
 
 //listen change in log to update the cleaned one:
 var prevUpdateText = ''
-var replaceLogLines = ['OK', '. OK', '.OK', '0K .', 'OK.']
+var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
+var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
 $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
-  regex = /\[PROGRESS\]\[(\d.*)]/gm;
+
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
@@ -366,7 +367,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
-    regExpResult = regex.exec(line);
+    regExpResult = regExLogProgress.exec(line);
     if(regExpResult !== null){
       progress = regExpResult[1];
       updateProgressBar();
@@ -375,9 +376,16 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
     if (line == '') continue
     if (/[PROGRESS]/.test(line)) continue
 
-    if (/../.test(lines[i+1]) && /OK/.test(lines[i+1]) || replaceLogLines.includes(lines[i+1])) {
-      line.replace('/[.]{2,}/', '')
-      line += ' ...OK'
+    matches = line.match(/[.]{2,}/g);
+    if (matches) {
+      matches.forEach(function(match) {
+        line = line.replace(match, '')
+      })
+    }
+    line = line.trim()
+
+    if (replaceLogLines.includes(lines[i+1])) {
+      line += ' | OK'
       lines[i+1] = ''
     }
 
