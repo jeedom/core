@@ -613,18 +613,19 @@ function initPage(){
 }
 
 $(document).on('DOMNodeInserted', function () {
-  initTooltips($(this))
+  //initTooltips($(this))
 })
 function initTooltips(_el) {
   if (!_el) {
-    if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy')
-    $('.tooltips, [title]').tooltipster({
+    if ($('.tooltipstered').lenght) $('.tooltipstered').tooltipster('destroy')
+    $('[title], .tooltips').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
     })
   } else {
-    if(_el.is('[title]')){
+    _el.find('.tooltipstered').tooltipster('destroy');
+    if(_el.is('[title]') || _el.hasClass('tooltips')){
       if (_el.hasClass('tooltipstered')){
         _el.tooltipster('destroy');
       }
@@ -634,8 +635,7 @@ function initTooltips(_el) {
         interactive: true
       })
     }
-    _el.find('.tooltipstered').tooltipster('destroy');
-    _el.find('.tooltips, [title]').tooltipster({
+    _el.find('[title]').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
