@@ -350,7 +350,7 @@ function updateProgressBar(){
 
 //___log interceptor beautifier___
 //create a second <pre> for cleaned text to avoid change event infinite loop:
-newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>' //height:calc(100% - 68px);
+newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>'
 $('#pre_updateInfo').after($(newLogClean))
 $('#pre_updateInfo').hide()
 $('#pre_updateInfo_clean').show()
