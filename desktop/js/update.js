@@ -19,14 +19,6 @@ var hasUpdateOther = false;
 var progress = -2;
 printUpdate();
 
-$('#bt_showHideLog').off('click').on('click',function(){
-  if($('#div_log').is(':visible')){
-    $('#div_log').hide();
-  }else{
-    $('#div_log').show();
-  }
-});
-
 $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
@@ -311,6 +303,17 @@ function addUpdate(_update) {
   return html;
 }
 
+
+$('#bt_showHideLog').off('click').on('click',function() {
+  if($('#div_log').is(':visible')) {
+    $('#div_log').hide()
+    if (progress != 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+  } else {
+    $('#div_log').show()
+    if (progress != 100) $('.progressbarContainer').appendTo('#div_log')
+  }
+});
+
 function updateProgressBar(){
   if(progress == -3){
     $('#div_progressbar').removeClass('active progress-bar-warning');
@@ -347,7 +350,7 @@ function updateProgressBar(){
 
 //___log interceptor beautifier___
 //create a second <pre> for cleaned text to avoid change event infinite loop:
-newLogClean = '<pre id="pre_updateInfo_clean" style="display:none"></pre>'
+newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>' //height:calc(100% - 68px);
 $('#pre_updateInfo').after($(newLogClean))
 $('#pre_updateInfo').hide()
 $('#pre_updateInfo_clean').show()
@@ -362,7 +365,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
   l = lines.length
-  
+
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -371,15 +374,15 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       progress = regExpResult[1]
       updateProgressBar()
       break
-    }    
+    }
   }
-  
+
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-    
+
     //check ok at end of line:
     if (line.endsWith('OK')) {
       matches = line.match(/[. ]{1,}OK/g)
@@ -390,7 +393,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
         line = line.replace('OK', ' | OK')
       }
     }
-    
+
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -409,9 +412,12 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       line += ' | OK'
       lines[i+offset] = ''
     }
-    if (line != '') newLogText += line + '\n'
+    if (line != '') {
+      newLogText += line + '\n'
+      $('#pre_updateInfo_clean').value(newLogText)
+      $(document).scrollTop($(document).height())
+      prevUpdateText = currentUpdateText
+      if (progress == 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+    }
   }
-  $('#pre_updateInfo_clean').value(newLogText)
-  prevUpdateText = currentUpdateText
 })
-
