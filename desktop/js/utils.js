@@ -624,13 +624,17 @@ function initTooltips(_el) {
       interactive: true
     })
   } else {
-    _el.find('tooltipstered').tooltipster('destroy')
-    if (_el.hasClass('tooltipstered')) _el.tooltipster('destroy')
-    _el.tooltipster({
-      arrow: false,
-      delay: 100,
-      interactive: true
-    })
+    if(_el.is('[title]')){
+      if (_el.hasClass('tooltipstered')){
+        _el.tooltipster('destroy');
+      }
+      _el.tooltipster({
+        arrow: false,
+        delay: 100,
+        interactive: true
+      })
+    }
+    _el.find('.tooltipstered').tooltipster('destroy');
     _el.find('.tooltips, [title]').tooltipster({
       arrow: false,
       delay: 100,
