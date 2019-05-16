@@ -17,6 +17,7 @@
 var hasUpdate = false;
 var hasUpdateOther = false;
 var progress = -2;
+var alertTimeout = null
 printUpdate();
 
 $("#md_specifyUpdate").dialog({
@@ -175,6 +176,9 @@ function getJeedomLog(_autoUpdate, _log) {
             progress = -2;
             updateProgressBar();
             printUpdate();
+            if(alertTimeout != null){
+              clearTimeout(alertTimeout);
+            }
             $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés}}', level: 'success'});
             _autoUpdate = 0;
           }
@@ -182,6 +186,9 @@ function getJeedomLog(_autoUpdate, _log) {
             progress = -3;
             updateProgressBar();
             printUpdate();
+            if(alertTimeout != null){
+              clearTimeout(alertTimeout);
+            }
             $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
             _autoUpdate = 0;
           }
@@ -224,7 +231,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -251,7 +258,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -263,12 +270,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-
+  
   _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -315,8 +322,13 @@ $('#bt_showHideLog').off('click').on('click',function() {
 });
 
 function updateProgressBar(){
+  if(progress == -4){
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger');
+    $('#div_progressbar').addClass('progress-bar-warning');
+    return;
+  }
   if(progress == -3){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning');
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-warning');
     $('#div_progressbar').addClass('progress-bar-danger');
     return;
   }
@@ -328,6 +340,7 @@ function updateProgressBar(){
     return;
   }
   if(progress == -1){
+    $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning');
     $('#div_progressbar').addClass('active progress-bar-info');
     $('#div_progressbar').width('100%');
     $('#div_progressbar').attr('aria-valuenow',100);
@@ -335,13 +348,14 @@ function updateProgressBar(){
     return;
   }
   if(progress == 100){
-    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning');
+    $('#div_progressbar').removeClass('active progress-bar-info progress-bar-danger progress-bar-warning');
     $('#div_progressbar').addClass('progress-bar-success');
     $('#div_progressbar').width(progress+'%');
     $('#div_progressbar').attr('aria-valuenow',progress);
     $('#div_progressbar').html(progress+'%');
     return;
   }
+  $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning');
   $('#div_progressbar').addClass('active progress-bar-info');
   $('#div_progressbar').width(progress+'%');
   $('#div_progressbar').attr('aria-valuenow',progress);
@@ -365,7 +379,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
   l = lines.length
-
+  
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -376,13 +390,13 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       break
     }
   }
-
+  
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-
+    
     //check ok at end of line:
     if (line.endsWith('OK')) {
       matches = line.match(/[. ]{1,}OK/g)
@@ -393,7 +407,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
         line = line.replace('OK', ' | OK')
       }
     }
-
+    
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -402,7 +416,7 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       })
     }
     line = line.trim()
-
+    
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -420,4 +434,13 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       if (progress == 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
     }
   }
+  clearTimeout(alertTimeout);
+  alertTimeout = setTimeout(alertTimeout,60000*10);
 })
+
+
+function alertTimeout(){
+  progress = -4;
+  updateProgressBar();
+  $('#div_alert').showAlert({message: '{{La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)}}', level: 'warning'});
+}
