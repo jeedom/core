@@ -55,7 +55,7 @@ if (!isConnect('admin')) {
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
 		<br/>
 		<div class="row">
-			<div class="col-sm-12" style="display: inline-flex;">
+			<div class="col-sm-12 progressbarContainer" style="display: inline-flex;">
 				<div class="progress" style="width:calc(100% - 38px);height:22px;">
 					<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
 						N/A
