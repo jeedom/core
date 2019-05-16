@@ -357,26 +357,42 @@ var prevUpdateText = ''
 var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
 var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
 $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
-
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
-
   lines = currentUpdateText.split("\n")
   l = lines.length
+  
+  //update progress bar and clean text!
+  linesRev = lines.slice().reverse()
+  for(var i=0; i < l; i++) {
+    regExpResult = regExLogProgress.exec(linesRev[i])
+    if(regExpResult !== null) {
+      progress = regExpResult[1]
+      updateProgressBar()
+      break
+    }    
+  }
+  
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
-    regExpResult = regExLogProgress.exec(line);
-    if(regExpResult !== null){
-      progress = regExpResult[1];
-      updateProgressBar();
-    }
-
     if (line == '') continue
-    if (/[PROGRESS]/.test(line)) continue
-
-    matches = line.match(/[.]{2,}/g);
+    if (line.startsWith('[PROGRESS]')) line = ''
+    
+    //check ok at end of line:
+    if (line.endsWith('OK')) {
+      matches = line.match(/[. ]{1,}OK/g)
+      if (matches) {
+        line = line.replace(matches[0], '')
+        line += ' | OK'
+      } else {
+        line = line.replace('OK', ' | OK')
+      }
+    }
+    
+    //remove points ...
+    matches = line.match(/[.]{2,}/g)
     if (matches) {
       matches.forEach(function(match) {
         line = line.replace(match, '')
@@ -384,12 +400,16 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
     }
     line = line.trim()
 
-    if (replaceLogLines.includes(lines[i+1])) {
-      line += ' | OK'
-      lines[i+1] = ''
+    //check ok on next line, escaping progress inbetween:
+    var offset = 1
+    if (lines[i+1].startsWith('[PROGRESS]')) {
+      var offset = 2
     }
-
-    newLogText += line + '\n'
+    if (replaceLogLines.includes(lines[i+offset])) {
+      line += ' | OK'
+      lines[i+offset] = ''
+    }
+    if (line != '') newLogText += line + '\n'
   }
   $('#pre_updateInfo_clean').value(newLogText)
   prevUpdateText = currentUpdateText
