@@ -411,11 +411,9 @@ $(function () {
     }
   });
 
-
   $(window).resize(function () {
     initRowOverflow();
   });
-
 
   if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
@@ -610,6 +608,13 @@ function initPage(){
       $(window).scrollTop(scrollHeight);
     }, 0);
   });
+  if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy');
+  $('.tooltips').tooltipster({
+    arrow: false,
+    delay: 100,
+    interactive: true
+  })
+
   $("input[id^='in_search']").focus();
 }
 
