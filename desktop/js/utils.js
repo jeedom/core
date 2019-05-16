@@ -608,18 +608,30 @@ function initPage(){
       $(window).scrollTop(scrollHeight);
     }, 0);
   });
-  
-  setTimeout(function() {
-    if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy');
-    $('.tooltips, [title]').tooltipster({
+  setTimeout(function() { initTooltips() }, 750)
+  $("input[id^='in_search']").focus();
+}
+
+$('body').on('DOMNodeInserted', '[title]', function () {
+  initTooltips($(this))
+})
+function initTooltips(_el) {
+  if (!_el) {
+    if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy')
+      $('.tooltips, [title]').tooltipster({
+        arrow: false,
+        delay: 100,
+        interactive: true
+      })
+  } else {
+    _el.find('tooltipstered').tooltipster('destroy')
+    if ( _el.hasClass('tooltipstered') ) _el.tooltipster('destroy')
+    _el.tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
     })
-  }, 750)
-  
-
-  $("input[id^='in_search']").focus();
+  }
 }
 
 function initDropdowns(){
