@@ -41,7 +41,7 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
-	echo "[PROGRESS][0]\n";
+	echo "[PROGRESS][1]\n";
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
 		echo "Update in progress. I will wait 10s\n";
 		sleep(10);
