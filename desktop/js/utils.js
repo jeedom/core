@@ -612,7 +612,7 @@ function initPage(){
   $("input[id^='in_search']").focus();
 }
 
-$('body').on('DOMNodeInserted', '[title]', function () {
+$('body').on('DOMNodeInserted', function () {
   initTooltips($(this))
 })
 function initTooltips(_el) {
@@ -627,6 +627,11 @@ function initTooltips(_el) {
     _el.find('tooltipstered').tooltipster('destroy')
     if ( _el.hasClass('tooltipstered') ) _el.tooltipster('destroy')
     _el.tooltipster({
+      arrow: false,
+      delay: 100,
+      interactive: true
+    })
+    _el.find('.tooltips, [title]').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
