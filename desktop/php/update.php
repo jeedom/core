@@ -61,10 +61,10 @@ if (!isConnect('admin')) {
 						N/A
 					</div>
 				</div>
-				<a class="btn btn-xs" style="width:35px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
+				<a class="btn btn-xs" style="width:35px;margin-left: 7px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
 			</div>
 		</div>
-		<div id="div_log" style="display:none;">
+		<div id="div_log" style="display:none; height:calc(100% - 45px)">
 			<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Log :}}</legend>
 			<pre id="pre_updateInfo"></pre>
 		</div>
