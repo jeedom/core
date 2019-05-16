@@ -274,7 +274,6 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        console.log(data);
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
         if(Object.keys(data).length > 0){
           text += ' </br> Il est utilisé par : </br>';
