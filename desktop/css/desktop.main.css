@@ -2874,6 +2874,21 @@ input:invalid {
 }
 
 
+/* __________________________________________________________________________________________________________TooltipSter */
+.TooltipWrapper {
+  display: none;
+}
+.tooltipster-sidetip .tooltipster-box {
+	background: var(--al-info-color);
+	border: none;
+	border-radius: var(--border-radius) !important;
+}
+
+.tooltipster-sidetip .tooltipster-content {
+	color: var(--linkHoverLight-color);
+	padding: 6px;
+}
+
 /* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
   height: auto;
