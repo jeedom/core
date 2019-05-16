@@ -608,12 +608,16 @@ function initPage(){
       $(window).scrollTop(scrollHeight);
     }, 0);
   });
-  if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy');
-  $('.tooltips').tooltipster({
-    arrow: false,
-    delay: 100,
-    interactive: true
-  })
+  
+  setTimeout(function() {
+    if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy');
+    $('.tooltips').tooltipster({
+      arrow: false,
+      delay: 100,
+      interactive: true
+    })
+  }, 500)
+  
 
   $("input[id^='in_search']").focus();
 }
