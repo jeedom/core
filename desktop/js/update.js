@@ -19,14 +19,6 @@ var hasUpdateOther = false;
 var progress = -2;
 printUpdate();
 
-$('#bt_showHideLog').off('click').on('click',function(){
-  if($('#div_log').is(':visible')){
-    $('#div_log').hide();
-  }else{
-    $('#div_log').show();
-  }
-});
-
 $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
@@ -232,7 +224,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-  
+
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -259,7 +251,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-  
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -271,12 +263,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-  
+
   _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-  
+
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -312,41 +304,15 @@ function addUpdate(_update) {
 }
 
 
-//___log interceptor beautifier___
-//create a second <pre> for cleaned text to avoid change event infinite loop:
-newLogClean = '<pre id="pre_updateInfo_clean" style="display:none"></pre>'
-$('#pre_updateInfo').after($(newLogClean))
-$('#pre_updateInfo').hide()
-$('#pre_updateInfo_clean').show()
-
-//listen change in log to update the cleaned one:
-var prevUpdateText = ''
-$('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
-  regex = /\[PROGRESS\]\[(\d.*)]/gm;
-  currentUpdateText = $('#pre_updateInfo').text()
-  if (currentUpdateText == '') return false
-  if (prevUpdateText == currentUpdateText) return false
-  
-  lines = currentUpdateText.split("\n")
-  l = lines.length
-  newLogText = ''
-  for(var i=0; i < l; i++) {
-    line = lines[i]
-    if (line == '') continue
-    if (lines[i+1] == 'OK' || lines[i+1] == '. OK') {
-      line += ' ...OK'
-      lines[i+1] = ''
-    }
-    newLogText += line + '\n'
-    regExpResult = regex.exec(line);
-    if(regExpResult !== null){
-      progress = regExpResult[1];
-      updateProgressBar();
-    }
+$('#bt_showHideLog').off('click').on('click',function() {
+  if($('#div_log').is(':visible')) {
+    $('#div_log').hide()
+    if (progress != 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+  } else {
+    $('#div_log').show()
+    if (progress != 100) $('.progressbarContainer').appendTo('#div_log')
   }
-  $('#pre_updateInfo_clean').value(newLogText)
-  prevUpdateText = currentUpdateText
-})
+});
 
 function updateProgressBar(){
   if(progress == -3){
@@ -381,3 +347,77 @@ function updateProgressBar(){
   $('#div_progressbar').attr('aria-valuenow',progress);
   $('#div_progressbar').html(progress+'%');
 }
+
+//___log interceptor beautifier___
+//create a second <pre> for cleaned text to avoid change event infinite loop:
+newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>'
+$('#pre_updateInfo').after($(newLogClean))
+$('#pre_updateInfo').hide()
+$('#pre_updateInfo_clean').show()
+
+//listen change in log to update the cleaned one:
+var prevUpdateText = ''
+var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
+var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
+$('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
+  currentUpdateText = $('#pre_updateInfo').text()
+  if (currentUpdateText == '') return false
+  if (prevUpdateText == currentUpdateText) return false
+  lines = currentUpdateText.split("\n")
+  l = lines.length
+
+  //update progress bar and clean text!
+  linesRev = lines.slice().reverse()
+  for(var i=0; i < l; i++) {
+    regExpResult = regExLogProgress.exec(linesRev[i])
+    if(regExpResult !== null) {
+      progress = regExpResult[1]
+      updateProgressBar()
+      break
+    }
+  }
+
+  newLogText = ''
+  for(var i=0; i < l; i++) {
+    line = lines[i]
+    if (line == '') continue
+    if (line.startsWith('[PROGRESS]')) line = ''
+
+    //check ok at end of line:
+    if (line.endsWith('OK')) {
+      matches = line.match(/[. ]{1,}OK/g)
+      if (matches) {
+        line = line.replace(matches[0], '')
+        line += ' | OK'
+      } else {
+        line = line.replace('OK', ' | OK')
+      }
+    }
+
+    //remove points ...
+    matches = line.match(/[.]{2,}/g)
+    if (matches) {
+      matches.forEach(function(match) {
+        line = line.replace(match, '')
+      })
+    }
+    line = line.trim()
+
+    //check ok on next line, escaping progress inbetween:
+    var offset = 1
+    if (lines[i+1].startsWith('[PROGRESS]')) {
+      var offset = 2
+    }
+    if (replaceLogLines.includes(lines[i+offset])) {
+      line += ' | OK'
+      lines[i+offset] = ''
+    }
+    if (line != '') {
+      newLogText += line + '\n'
+      $('#pre_updateInfo_clean').value(newLogText)
+      $(document).scrollTop($(document).height())
+      prevUpdateText = currentUpdateText
+      if (progress == 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+    }
+  }
+})

@@ -558,10 +558,11 @@ div[class*="DisplayCard"] .name > .label {
 }
 
 .eqLogicDisplayCard img {
-  width: 75px !important;
-  max-width: 75px;
-  max-height: 95px;
-  height: auto;
+  min-height: 90px !important;
+  max-height: 90px;
+  width: auto !important;
+  max-width: 75px !important;
+  overflow: hidden;
   vertical-align: baseline;
 }
 
@@ -2067,12 +2068,19 @@ textarea {
   transition-duration: 0.6s;
 }
 .element .disableElement,
-.element .disableSubElement,
-.eqLogicDisplayCard.disableCard {
-  opacity: 0.65 !important;
+.element .disableSubElement {
+  opacity: 0.6 !important;
   transition-property: opacity;
   transition-duration: 0.6s;
 }
+.eqLogicDisplayCard.disableCard,
+.eqLogicDisplayCard.disableCard > .name > .label {
+  opacity: 0.4;
+}
+.eqLogicDisplayCard.disableCard:hover {
+  opacity: 0.8;
+}
+
 .disableElement input[type=checkbox][data-l2key=enable],
 .element .disableSubElement input[type=checkbox][data-l2key=enable] {
   background-color: rgb(var(--bg-color)) !important;

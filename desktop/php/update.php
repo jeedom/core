@@ -55,18 +55,16 @@ if (!isConnect('admin')) {
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
 		<br/>
 		<div class="row">
-			<div class="col-sm-11">
-				<div class="progress" style="margin:10px;height:32px;">
+			<div class="col-sm-12 progressbarContainer" style="display: inline-flex;">
+				<div class="progress" style="width:calc(100% - 38px);height:22px;">
 					<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
 						N/A
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-1">
-				<a class="btn btn-default" style="margin-top:10px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
+				<a class="btn btn-xs btn-info" style="width:35px;margin-left: 7px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
 			</div>
 		</div>
-		<div id="div_log" style="display:none;">
+		<div id="div_log" style="display:none; height:calc(100% - 45px)">
 			<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Log :}}</legend>
 			<pre id="pre_updateInfo"></pre>
 		</div>
