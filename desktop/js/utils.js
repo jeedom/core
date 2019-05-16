@@ -611,12 +611,12 @@ function initPage(){
   
   setTimeout(function() {
     if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy');
-    $('.tooltips').tooltipster({
+    $('.tooltips, [title]').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
     })
-  }, 500)
+  }, 750)
   
 
   $("input[id^='in_search']").focus();
