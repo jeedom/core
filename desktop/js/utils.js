@@ -87,6 +87,7 @@ function loadPage(_url,_noPushHistory){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
+
   $('.backgroundforJeedom').css('background-image','');
   $('.backgroundforJeedom').css('background-position','center center');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
@@ -190,341 +191,340 @@ $(function () {
     $('.dropdown-menu').dropdown('toggle');
   });
 
-  if (!navigator.userAgent.match(/Android/i)
-  && !navigator.userAgent.match(/webOS/i)
-  && !navigator.userAgent.match(/iPhone/i)
-  && !navigator.userAgent.match(/iPad/i)
-  && !navigator.userAgent.match(/iPod/i)
-  && !navigator.userAgent.match(/BlackBerry/i)
-  & !navigator.userAgent.match(/Windows Phone/i)
-) {
-  $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
+  navAgent = navigator.userAgent
+  agentTests = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i]
+  matched = agentTests.some(function(item) {
+    if (navAgent.match(item)) {
+        return true
+      }
+  });
+  if (!matched) {
+    $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
+      if ($(window).width() < 768) return
+      event.preventDefault();
+      event.stopPropagation();
+      $(this).parent().siblings().removeClass('open');
+      $(this).parent().toggleClass('open');
+    });
+  }
+
+  $('li.dropdown-submenu a').on('click',function(event) {
+    event.stopPropagation()
+    var opened = false
+    if ($(this).parent().hasClass('open')) opened = true
+    $('li.dropdown-submenu').removeClass('open')
+    if (!opened) $(this).parent().addClass('open')
+  });
+
+  $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open a',function(){
     if ($(window).width() < 768) return
-    event.preventDefault();
-    event.stopPropagation();
-    $(this).parent().siblings().removeClass('open');
-    $(this).parent().toggleClass('open');
-  });
-}
-
-$('li.dropdown-submenu a').on('click',function(event) {
-  event.stopPropagation()
-  var opened = false
-  if ($(this).parent().hasClass('open')) opened = true
-  $('li.dropdown-submenu').removeClass('open')
-  if (!opened) $(this).parent().addClass('open')
-});
-
-$('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open a',function(){
-  if ($(window).width() < 768) return
-  if ($(this).closest('.dropdown-submenu').is(':hover')) {
-    return;
-  }
-  $(this).trigger('mouseenter');
-})
-
-$('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',function(){
-  if ($(window).width() < 768) return
-  $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
-})
-
-$('ul.nav li.dropdown').hover(function() {
-  if ($(window).width() < 768) return
-  $(this).find('.dropdown-menu').first().stop(true, true).show();
-}, function() {
-  if ($(window).width() < 768) return
-  $(this).find('.dropdown-menu').first().stop(true, true).hide();
-});
-/*********************Gestion des dialogs********************************/
-
-$.fn.modal.Constructor.prototype.enforceFocus = function () {};
-
-$('body').on( "show", ".modal",function () {
-  document.activeElement.blur();
-  $(this).find(".modal-body :input:visible").first().focus();
-});
-
-$('body').on('focusin','.bootbox-input', function (e) {
-  e.stopPropagation();
-});
-
-$('.bootbox.modal').on('shown.bs.modal', function() {
-  $(this).find(".bootbox-accept").focus();
-})
-
-/************************Help*************************/
-
-setTimeout(function() {
-  if ( isset(jeedom_langage) ) {
-    lang = jeedom_langage.substr(0, 2)
-    supportedLangs = ['fr', 'de', 'es']
-    if ( lang != 'en' && supportedLangs.includes(lang) ) {
-      bootbox.addLocale('fr', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Annuler'})
-      bootbox.addLocale('de', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Abbrechen'})
-      bootbox.addLocale('es', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Anular'})
-      bootbox.setLocale('fr')
+    if ($(this).closest('.dropdown-submenu').is(':hover')) {
+      return;
     }
-  }
-}, 250)
+    $(this).trigger('mouseenter');
+  })
 
-//Display report bug
-$("#md_reportBug").dialog({
-  autoOpen: false,
-  modal: true,
-  closeText: '',
-  height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
-  width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-  position: { my: "center bottom-10", at: "center bottom", of: window },
-  open: function () {
-    $("body").css({overflow: 'hidden'})
-    $(this).closest( ".ui-dialog" ).find(":button").blur();
-    $(this).dialog({
-      height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
-      width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
-      position: { my: "center bottom-10", at: "center bottom", of: window },
-    });
-  },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'})
-    $("#md_reportBug").empty();
-  }
-});
+  $('.dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',function(){
+    if ($(window).width() < 768) return
+    $(this).closest('.dropdown-submenu').find('a').trigger('mouseenter');
+  })
 
-//Display help
-$("#md_pageHelp").dialog({
-  autoOpen: false,
-  modal: false,
-  closeText: '',
-  height: (jQuery(window).height() - 100),
-  width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-  position: { my: "center bottom-10", at: "center bottom", of: window },
-  open: function () {
-    $("body").css({overflow: 'hidden'});
-    $(this).closest( ".ui-dialog" ).find(":button").blur();
-    $(this).dialog({
-      height: (jQuery(window).height() - 100),
-      width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-      position: { my: "center bottom-10", at: "center bottom", of: window },
-    });
-  },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'});
-    $("#md_pageHelp").empty();
-  }
-});
+  $('ul.nav li.dropdown').hover(function() {
+    if ($(window).width() < 768) return
+    $(this).find('.dropdown-menu').first().stop(true, true).show();
+  }, function() {
+    if ($(window).width() < 768) return
+    $(this).find('.dropdown-menu').first().stop(true, true).hide();
+  });
 
-$("#md_modal").dialog({
-  autoOpen: false,
-  modal: true,
-  closeText: '',
-  height: (jQuery(window).height() - 125),
-  width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-  position: {my: 'center bottom-50', at: 'center bottom', of: window},
-  open: function () {
-    $('body').css({overflow: 'hidden'});
-    $(this).closest('.ui-dialog').find(':button').blur();
-    $(this).dialog({
-      height: (jQuery(window).height() - 125),
-      width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-      position: {my: 'center bottom-50', at: 'center bottom', of: window},
-    });
-  },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'});
-    $("#md_modal").empty();
-  }
-});
+  /*********************Gestion des dialogs********************************/
+  $.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
-$("#md_modal2").dialog({
-  autoOpen: false,
-  modal: true,
-  closeText: '',
-  height: (jQuery(window).height() - 125),
-  width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-  position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-  open: function () {
-    $("body").css({overflow: 'hidden'});
-    $(this).closest( ".ui-dialog" ).find(":button").blur();
-    $(this).dialog({
-      height: (jQuery(window).height() - 125),
-      width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-      position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-    });
-  },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'});
-    $("#md_modal2").empty();
-  }
-});
+  $('body').on( "show", ".modal",function () {
+    document.activeElement.blur();
+    $(this).find(".modal-body :input:visible").first().focus();
+  });
 
-$("#md_modal3").dialog({
-  autoOpen: false,
-  modal: true,
-  closeText: '',
-  height: (jQuery(window).height() - 125),
-  width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
-  position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-  open: function () {
-    $("body").css({overflow: 'hidden'});
-    $(this).closest( ".ui-dialog" ).find(":button").blur();
-    $(this).dialog({
-      height : (jQuery(window).height() - 125),
-      width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
-      position: {my: 'center bottom-50', at: 'center bottom',  of: window},
-    });
-  },
-  beforeClose: function (event, ui) {
-    $("body").css({overflow: 'inherit'});
-    $("#md_modal3").empty();
-  }
-});
+  $('body').on('focusin','.bootbox-input', function (e) {
+    e.stopPropagation();
+  });
 
-$('#bt_jeedomAbout').on('click', function () {
-  $('#md_modal').dialog({title: "{{A propos}}"});
-  $('#md_modal').load('index.php?v=d&modal=about').dialog('open');
-});
+  $('.bootbox.modal').on('shown.bs.modal', function() {
+    $(this).find(".bootbox-accept").focus();
+  })
 
-$('#bt_getHelpPage').on('click',function(){
-  jeedom.getDocumentationUrl({
-    plugin: $(this).attr('data-plugin'),
-    page: $(this).attr('data-page'),
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+  /************************Help*************************/
+  setTimeout(function() {
+    if ( isset(jeedom_langage) ) {
+      lang = jeedom_langage.substr(0, 2)
+      supportedLangs = ['fr', 'de', 'es']
+      if ( lang != 'en' && supportedLangs.includes(lang) ) {
+        bootbox.addLocale('fr', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Annuler'})
+        bootbox.addLocale('de', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Abbrechen'})
+        bootbox.addLocale('es', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Anular'})
+        bootbox.setLocale('fr')
+      }
+    }
+  }, 250)
+
+  //Display report bug
+  $("#md_reportBug").dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
+    width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
+    position: { my: "center bottom-10", at: "center bottom", of: window },
+    open: function () {
+      $("body").css({overflow: 'hidden'})
+      $(this).closest( ".ui-dialog" ).find(":button").blur();
+      $(this).dialog({
+        height: ((jQuery(window).height() - 100) < 700) ? jQuery(window).height() - 100 : 700,
+        width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
+        position: { my: "center bottom-10", at: "center bottom", of: window },
+      });
     },
-    success: function(url) {
-      window.open(url,'_blank');
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'})
+      $("#md_reportBug").empty();
     }
   });
-});
 
-$('body').on( 'click','.bt_pageHelp', function () {
-  showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
-});
-
-$('body').on( 'click','.bt_reportBug', function () {
-  $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
-});
-
-$(window).bind('beforeunload', function (e) {
-  if (modifyWithoutSave) {
-    return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
-  }
-});
-
-
-$(window).resize(function () {
-  initRowOverflow();
-});
-
-
-if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-  $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
-  $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
-}
-
-$('#bt_haltSystem').on('click', function () {
-  $.hideAlert();
-  bootbox.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
-    if (result) {
-      window.location.href = 'index.php?v=d&p=shutdown';
+  //Display help
+  $("#md_pageHelp").dialog({
+    autoOpen: false,
+    modal: false,
+    closeText: '',
+    height: (jQuery(window).height() - 100),
+    width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+    position: { my: "center bottom-10", at: "center bottom", of: window },
+    open: function () {
+      $("body").css({overflow: 'hidden'});
+      $(this).closest( ".ui-dialog" ).find(":button").blur();
+      $(this).dialog({
+        height: (jQuery(window).height() - 100),
+        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        position: { my: "center bottom-10", at: "center bottom", of: window },
+      });
+    },
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'});
+      $("#md_pageHelp").empty();
     }
   });
-});
 
-$('#bt_rebootSystem').on('click', function () {
-  $.hideAlert();
-  bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
-    if (result) {
-      window.location.href = 'index.php?v=d&p=reboot';
+  $("#md_modal").dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (jQuery(window).height() - 125),
+    width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+    position: {my: 'center bottom-50', at: 'center bottom', of: window},
+    open: function () {
+      $('body').css({overflow: 'hidden'});
+      $(this).closest('.ui-dialog').find(':button').blur();
+      $(this).dialog({
+        height: (jQuery(window).height() - 125),
+        width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
+        position: {my: 'center bottom-50', at: 'center bottom', of: window},
+      });
+    },
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'});
+      $("#md_modal").empty();
     }
   });
-});
 
-$('#bt_showEventInRealTime').on('click',function(){
-  $('#md_modal').dialog({title: "{{Evénements en temps réel}}"});
-  $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
-});
+  $("#md_modal2").dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (jQuery(window).height() - 125),
+    width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+    position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+    open: function () {
+      $("body").css({overflow: 'hidden'});
+      $(this).closest( ".ui-dialog" ).find(":button").blur();
+      $(this).dialog({
+        height: (jQuery(window).height() - 125),
+        width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+        position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+      });
+    },
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'});
+      $("#md_modal2").empty();
+    }
+  });
 
-$('#bt_showNoteManager').on('click',function(){
-  $('#md_modal').dialog({title: "{{Notes}}"});
-  $("#md_modal").load('index.php?v=d&modal=note.manager').dialog('open');
-});
+  $("#md_modal3").dialog({
+    autoOpen: false,
+    modal: true,
+    closeText: '',
+    height: (jQuery(window).height() - 125),
+    width: ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+    position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+    open: function () {
+      $("body").css({overflow: 'hidden'});
+      $(this).closest( ".ui-dialog" ).find(":button").blur();
+      $(this).dialog({
+        height : (jQuery(window).height() - 125),
+        width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
+        position: {my: 'center bottom-50', at: 'center bottom',  of: window},
+      });
+    },
+    beforeClose: function (event, ui) {
+      $("body").css({overflow: 'inherit'});
+      $("#md_modal3").empty();
+    }
+  });
 
-$('#bt_gotoDashboard').on('click',function(){
-  if('ontouchstart' in window || navigator.msMaxTouchPoints){
-    return;
+  $('#bt_jeedomAbout').on('click', function () {
+    $('#md_modal').dialog({title: "{{A propos}}"});
+    $('#md_modal').load('index.php?v=d&modal=about').dialog('open');
+  });
+
+  $('#bt_getHelpPage').on('click',function(){
+    jeedom.getDocumentationUrl({
+      plugin: $(this).attr('data-plugin'),
+      page: $(this).attr('data-page'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function(url) {
+        window.open(url,'_blank');
+      }
+    });
+  });
+
+  $('body').on( 'click','.bt_pageHelp', function () {
+    showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
+  });
+
+  $('body').on( 'click','.bt_reportBug', function () {
+    $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
+  });
+
+  $(window).bind('beforeunload', function (e) {
+    if (modifyWithoutSave) {
+      return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
+    }
+  });
+
+
+  $(window).resize(function () {
+    initRowOverflow();
+  });
+
+
+  if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+    $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"});
+    $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
   }
-  $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-  loadPage('index.php?v=d&p=dashboard');
-});
 
-$('#bt_gotoView').on('click',function(){
-  if('ontouchstart' in window || navigator.msMaxTouchPoints){
-    return;
+  $('#bt_haltSystem').on('click', function () {
+    $.hideAlert();
+    bootbox.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
+      if (result) {
+        window.location.href = 'index.php?v=d&p=shutdown';
+      }
+    });
+  });
+
+  $('#bt_rebootSystem').on('click', function () {
+    $.hideAlert();
+    bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
+      if (result) {
+        window.location.href = 'index.php?v=d&p=reboot';
+      }
+    });
+  });
+
+  $('#bt_showEventInRealTime').on('click',function(){
+    $('#md_modal').dialog({title: "{{Evénements en temps réel}}"});
+    $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+  });
+
+  $('#bt_showNoteManager').on('click',function(){
+    $('#md_modal').dialog({title: "{{Notes}}"});
+    $("#md_modal").load('index.php?v=d&modal=note.manager').dialog('open');
+  });
+
+  $('#bt_gotoDashboard').on('click',function(){
+    if('ontouchstart' in window || navigator.msMaxTouchPoints){
+      return;
+    }
+    $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
+    loadPage('index.php?v=d&p=dashboard');
+  });
+
+  $('#bt_gotoView').on('click',function(){
+    if('ontouchstart' in window || navigator.msMaxTouchPoints){
+      return;
+    }
+    $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
+    loadPage('index.php?v=d&p=view');
+  });
+
+  $('#bt_gotoPlan').on('click',function(){
+    if('ontouchstart' in window || navigator.msMaxTouchPoints){
+      return;
+    }
+    $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
+    loadPage('index.php?v=d&p=plan');
+  });
+
+  $('#bt_gotoPlan3d').on('click',function(){
+    if('ontouchstart' in window || navigator.msMaxTouchPoints){
+      return;
+    }
+    $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
+    loadPage('index.php?v=d&p=plan3d');
+  });
+
+  $('#bt_messageModal').on('click',function(){
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"});
+    $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
+  });
+  $('#bt_jsErrorModal').on('click',function(){
+    $('#md_modal').dialog({title: "{{Erreur Javascript}}"});
+    $('#md_modal').load('index.php?v=d&modal=js.error').dialog('open');
+  });
+
+  $('body').on('click','.objectSummaryParent',function(){
+    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
+  });
+
+
+  $('body').on('click','#bt_switchTheme',function(){
+    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
+    if($('#bootstrap_theme_css').attr('href') == theme){
+      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+    }
+    $('#bootstrap_theme_css').attr('href', theme);
+    $('#bootstrap_theme_css').attr('data-nochange',1);
+  });
+
+  if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
+    for(var i in jeedom.theme.css){
+      document.body.style.setProperty(i,jeedom.theme.css[i]);
+    }
   }
-  $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-  loadPage('index.php?v=d&p=view');
-});
 
-$('#bt_gotoPlan').on('click',function(){
-  if('ontouchstart' in window || navigator.msMaxTouchPoints){
-    return;
+  $('body').attr('data-coloredIcons',0);
+  if(typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1'){
+    $('body').attr('data-coloredIcons',1);
   }
-  $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-  loadPage('index.php?v=d&p=plan');
-});
 
-$('#bt_gotoPlan3d').on('click',function(){
-  if('ontouchstart' in window || navigator.msMaxTouchPoints){
-    return;
+  initPage();
+  changeThemeAuto();
+  if(jeedomBackgroundImg != null){
+    setBackgroundImg(jeedomBackgroundImg);
   }
-  $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-  loadPage('index.php?v=d&p=plan3d');
-});
 
-$('#bt_messageModal').on('click',function(){
-  $('#md_modal').dialog({title: "{{Centre de Messages}}"});
-  $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
-});
-$('#bt_jsErrorModal').on('click',function(){
-  $('#md_modal').dialog({title: "{{Erreur Javascript}}"});
-  $('#md_modal').load('index.php?v=d&modal=js.error').dialog('open');
-});
-
-$('body').on('click','.objectSummaryParent',function(){
-  loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
-});
-
-
-$('body').on('click','#bt_switchTheme',function(){
-  var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
-  if($('#bootstrap_theme_css').attr('href') == theme){
-    theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
-  }
-  $('#bootstrap_theme_css').attr('href', theme);
-  $('#bootstrap_theme_css').attr('data-nochange',1);
-});
-
-if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
-  for(var i in jeedom.theme.css){
-    document.body.style.setProperty(i,jeedom.theme.css[i]);
-  }
-}
-
-$('body').attr('data-coloredIcons',0);
-if(typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1'){
-  $('body').attr('data-coloredIcons',1);
-}
-
-initPage();
-changeThemeAuto();
-if(jeedomBackgroundImg != null){
-  setBackgroundImg(jeedomBackgroundImg);
-}
-
-setTimeout(function(){
-  $('body').trigger('jeedom_page_load');
-}, 1);
+  setTimeout(function(){
+    $('body').trigger('jeedom_page_load');
+  }, 1);
 });
 
 
