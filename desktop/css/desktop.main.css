@@ -2887,7 +2887,7 @@ input:invalid {
 
 .tooltipster-sidetip .tooltipster-content {
 	color: var(--linkHoverLight-color);
-	padding: 8px 12px;
+	padding: 6px 8px;
 }
 
 /* __________________________________________________________________________________________________________CodeMirror */
