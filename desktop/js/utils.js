@@ -259,9 +259,9 @@ $(function () {
       lang = jeedom_langage.substr(0, 2)
       supportedLangs = ['fr', 'de', 'es']
       if ( lang != 'en' && supportedLangs.includes(lang) ) {
-        bootbox.addLocale('fr', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Annuler'})
-        bootbox.addLocale('de', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Abbrechen'})
-        bootbox.addLocale('es', {OK: 'Ok', CONFIRM: 'Ok', CANCEL: 'Anular'})
+        bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
+        bootbox.addLocale('de', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Abbrechen'})
+        bootbox.addLocale('es', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Anular'})
         bootbox.setLocale('fr')
       }
     }
