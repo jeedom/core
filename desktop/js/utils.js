@@ -283,7 +283,7 @@ $(function () {
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: { my: "center bottom-10", at: "center bottom", of: window },
       });
-      setTimeout(initTooltips($(this)),750);
+      setTimeout(function(){initTooltips($("#md_reportBug"))},500);
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'})
@@ -307,7 +307,7 @@ $(function () {
         width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
         position: { my: "center bottom-10", at: "center bottom", of: window },
       });
-      setTimeout(initTooltips($(this)),750);
+      setTimeout(function(){initTooltips($("#md_pageHelp"))},500);
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
@@ -330,7 +330,7 @@ $(function () {
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
         position: {my: 'center bottom-50', at: 'center bottom', of: window},
       });
-      setTimeout(initTooltips($(this)),750);
+      setTimeout(function(){initTooltips($("#md_modal"))},500);
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
@@ -353,7 +353,7 @@ $(function () {
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       });
-      setTimeout(initTooltips($(this)),750);
+      setTimeout(function(){initTooltips($("#md_modal2"))},500);
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
@@ -376,7 +376,7 @@ $(function () {
         width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       });
-      setTimeout(initTooltips($(this)),750);
+      setTimeout(function(){initTooltips($("#md_modal3"))},500);
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
@@ -932,7 +932,7 @@ function chooseIcon(_callback, _params) {
           $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50});
         }
         $("body").css({overflow: 'hidden'});
-        setTimeout(initTooltips($(this)),750);
+        setTimeout(function(){initTooltips($("#mod_selectIcon"))},500);
       },
       beforeClose: function (event, ui) {
         $("body").css({overflow: 'inherit'});
