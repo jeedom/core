@@ -314,9 +314,11 @@ function addUpdate(_update) {
 $('#bt_showHideLog').off('click').on('click',function() {
   if($('#div_log').is(':visible')) {
     $('#div_log').hide()
+    $(this).attr('title', '{{Afficher le log d\'update}}')
     if (progress != 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
   } else {
     $('#div_log').show()
+    $(this).attr('title', '{{Masquer le log d\'update}}')
     if (progress != 100) $('.progressbarContainer').appendTo('#div_log')
   }
 });
