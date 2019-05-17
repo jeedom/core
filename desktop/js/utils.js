@@ -630,7 +630,7 @@ function initTooltips(_el) {
   if (!_el) {
     $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster({
       arrow: false,
-      delay: 100,
+      delay: 350,
       interactive: true,
       contentAsHTML: true
     })
@@ -640,7 +640,7 @@ function initTooltips(_el) {
       _el.closest('.cmd-widget[title]').tooltipster('destroy')
       _el.closest('.cmd-widget[title]').tooltipster({
         arrow: false,
-        delay: 100,
+        delay: 350,
         interactive: true,
         contentAsHTML: true
       })
@@ -652,7 +652,7 @@ function initTooltips(_el) {
       }
       _el.tooltipster({
         arrow: false,
-        delay: 100,
+        delay: 350,
         interactive: true,
         contentAsHTML: true
       })
@@ -660,7 +660,7 @@ function initTooltips(_el) {
     _el.find('.tooltipstered[title]').tooltipster('destroy')
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
-      delay: 100,
+      delay: 350,
       interactive: true,
       contentAsHTML: true
     })
