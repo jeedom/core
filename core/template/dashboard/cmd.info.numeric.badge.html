@@ -12,7 +12,7 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});

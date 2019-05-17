@@ -7,7 +7,7 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       if (parseFloat(_options.display_value) >= 1) {
         $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
       } else {

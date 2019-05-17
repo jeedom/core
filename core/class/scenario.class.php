@@ -611,9 +611,9 @@ class scenario {
 					$return['object'] = is_object($object) ? $object->getId() : 'aucun';
 					$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">';
 					$return['html'] .= '<div>' . $_event['name'];
-					$return['html'] .= ' <span class="label-sm label-info" title="{{Déclanché par}}">' . $_event['trigger'] . '</span>';
-					$return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog">';
-					$return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario">';
+					$return['html'] .= ' <span class="label-sm label-info" title="'.__('Scénario déclenché par',__FILE__).'">' . $_event['trigger'] . '</span>';
+					$return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog" title="'.__('Log du scénario',__FILE__).'"></i> ';
+					$return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario" title="'.__('Aller au scénario',__FILE__).'"></i> ';
 					$return['html'] .= '</div>';
 					$return['html'] .= '</div>';
 					return $return;

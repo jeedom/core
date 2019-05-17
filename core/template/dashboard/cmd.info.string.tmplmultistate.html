@@ -8,7 +8,7 @@
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			var state = '';
-			$('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+			$('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate);
 			#test#
 			$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(state);
 		}
