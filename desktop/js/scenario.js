@@ -595,12 +595,12 @@ $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', 
     changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash');
     changeThis.closest('.element').addClass('elementCollapse');
     changeThis.attr('value',1);
-    changeThis.attr('title',"{{Afficher ce bloc (ctrl+click: tous).}}");
+    changeThis.attr('title',"{{Afficher ce bloc.<br>Ctrl+click: tous.}}");
   }else{
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash');
     changeThis.closest('.element').removeClass('elementCollapse');
     changeThis.attr('value',0);
-    changeThis.attr('title',"{{Masquer ce bloc (ctrl+click: tous).}}");
+    changeThis.attr('title',"{{Masquer ce bloc.<br>Ctrl+click: tous.}}");
     setEditor();
   }
 });
@@ -1361,9 +1361,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément" />';
@@ -1456,9 +1456,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
@@ -1484,9 +1484,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
@@ -1512,9 +1512,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
@@ -1565,9 +1565,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
@@ -1594,9 +1594,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     retour += '</div>';
     retour += '<div>';
@@ -1618,9 +1618,9 @@ function addSubElement(_subElement, _pColor) {
     retour += '<div>';
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
     if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
     }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc (ctrl+click: tous).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
     }
     if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
@@ -1658,9 +1658,9 @@ function addSubElement(_subElement, _pColor) {
 }
 
 function addElButtons(_retour) {
-  _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" title="{{Supprimer ce bloc. Ctrl+Click: sans confirmation.}}"></i></div>'
-  _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" title="{{Copier ce bloc. Ctrl+Click: Couper ce bloc.}}"></i></div>'
-  _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" title="{{Coller un bloc après celui-ci. Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
+  _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" title="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
+  _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" title="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
+  _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" title="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
   return _retour
 }
 
