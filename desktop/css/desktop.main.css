@@ -65,6 +65,7 @@ a,
 a i,
 a > span,
 .badge,
+sup,
 a.btn,
 .btn,
 .btn > *,
@@ -72,6 +73,9 @@ a.btn,
 .cursor,
 .cursor * {
   cursor: pointer !important;
+}
+.cmd-widget {
+  cursor: default;
 }
 
 a > img:hover {
@@ -558,10 +562,11 @@ div[class*="DisplayCard"] .name > .label {
 }
 
 .eqLogicDisplayCard img {
-  width: 75px !important;
-  max-width: 75px;
-  max-height: 95px;
-  height: auto;
+  min-height: 90px !important;
+  max-height: 90px;
+  width: auto !important;
+  max-width: 75px !important;
+  overflow: hidden;
   vertical-align: baseline;
 }
 
@@ -2067,12 +2072,19 @@ textarea {
   transition-duration: 0.6s;
 }
 .element .disableElement,
-.element .disableSubElement,
-.eqLogicDisplayCard.disableCard {
-  opacity: 0.65 !important;
+.element .disableSubElement {
+  opacity: 0.6 !important;
   transition-property: opacity;
   transition-duration: 0.6s;
 }
+.eqLogicDisplayCard.disableCard,
+.eqLogicDisplayCard.disableCard > .name > .label {
+  opacity: 0.4;
+}
+.eqLogicDisplayCard.disableCard:hover {
+  opacity: 0.8;
+}
+
 .disableElement input[type=checkbox][data-l2key=enable],
 .element .disableSubElement input[type=checkbox][data-l2key=enable] {
   background-color: rgb(var(--bg-color)) !important;
@@ -2855,9 +2867,6 @@ input:invalid {
   margin-top: 0;
 }
 
-
-
-
 /* Designs */
 .nav>li>a:focus,
 .nav>li>a:hover {
@@ -2865,6 +2874,21 @@ input:invalid {
   background-color: var(--defaultBkg-color)
 }
 
+
+/* __________________________________________________________________________________________________________TooltipSter */
+.tooltipWrapper {
+  display: none;
+}
+.tooltipster-sidetip .tooltipster-box {
+	background: var(--al-info-color);
+	border: none;
+	border-radius: var(--border-radius) !important;
+}
+
+.tooltipster-sidetip .tooltipster-content {
+	color: var(--linkHoverLight-color);
+	padding: 8px 12px;
+}
 
 /* __________________________________________________________________________________________________________CodeMirror */
 .CodeMirror {
@@ -3075,16 +3099,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3092,11 +3116,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3142,5 +3166,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }

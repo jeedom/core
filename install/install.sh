@@ -60,6 +60,7 @@ step_2_mainpackage() {
   apt-get -y install espeak
   apt-get -y install mbrola
   apt-get -y remove brltty
+  apt-get -y remove net-tools
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 

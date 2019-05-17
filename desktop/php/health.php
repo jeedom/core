@@ -218,7 +218,7 @@ $starttime = getmicrotime();
 			$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 			$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 			$globalhtml .= $errorMessage . $pendingMessage;
-			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}"" style=font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
+			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" style=font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
 			$globalhtml .= '</h3>';
 			$globalhtml .= '</div>';
 			$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';

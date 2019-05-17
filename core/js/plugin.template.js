@@ -268,20 +268,21 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
 
 $('.eqLogicAction[data-action=remove]').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined) {
-    
     jeedom.eqLogic.getUseBeforeRemove({
       id: $('.eqLogicAttr[data-l1key=id]').value(),
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function (data) {
-        console.log(data);
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
-        console.log(Object.keys(data).length)
         if(Object.keys(data).length > 0){
-          text += ' Liée à : ';
+          text += ' </br> Il est utilisé par : </br>';
           for(var i in data){
-            text += data[i].title+' ('+data[i].type+'), ';
+                var complement = '';
+                if ('sourceName' in data[i]) {
+                    complement = ' ('+data[i].sourceName+')';
+                }
+                text += '- ' + '<a href="'+data[i].url+'" target="_blank">' +data[i].type +'</a> : <b>'+ data[i].name + '</b>'+ complement+' <sup><a href="'+data[i].url+'" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>';
           }
         }
         text = text.substring(0, text.length - 2)

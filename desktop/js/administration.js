@@ -979,7 +979,7 @@ $('#bt_cleanFileSystemRight').off('click').on('click',function(){
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      $('#div_alert').showAlert({message: '{{Remise à plat des droits fait avec succès}}', level: 'success'});
+      $('#div_alert').showAlert({message: '{{Rétablissement des droits d\'accès effectué avec succès}}', level: 'success'});
     }
   });
 });
@@ -990,7 +990,7 @@ $('#bt_consitency').off('click').on('click',function(){
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      $('#div_alert').showAlert({message: '{{Lance de la vérification fait, voir le log consistency pour voir le résultat}}', level: 'success'});
+      $('#div_alert').showAlert({message: '{{Vérification effectuée, afficher le log consistency pour le résultat.}}', level: 'success'});
     }
   });
 });

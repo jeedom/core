@@ -280,16 +280,31 @@ try {
 	}
 	
 	if (init('action') == 'getUseBeforeRemove') {
+		$used = array();
 		$eqLogic = eqLogic::byId(init('id'));
 		$data = array('node' => array(), 'link' => array());
-		$used = $eqLogic->getLinkData($data, 0, 2);
-		$used = $used['node'];
+		$data = $eqLogic->getLinkData($data, 0, 2);
+		$used = $data['node'];
 		if(isset($used['eqLogic'.$eqLogic->getId()])){
 			unset($used['eqLogic'.$eqLogic->getId()]);
 		}
 		foreach ($eqLogic->getCmd() as $cmd) {
 			if(isset($used['cmd'.$cmd->getId()])){
 				unset($used['cmd'.$cmd->getId()]);
+			}
+			$cmdData = array('node' => array(), 'link' => array());
+			$cmdData = $cmd->getLinkData($cmdData, 0, 2);
+			if(isset($cmdData['node']['eqLogic'.$eqLogic->getId()])){
+				unset($cmdData['node']['eqLogic'.$eqLogic->getId()]);
+			}
+			if(isset($cmdData['node']['cmd'.$cmd->getId()])){
+				unset($cmdData['node']['cmd'.$cmd->getId()]);
+			}
+			if (count($cmdData['node'])>0){
+				foreach ($cmdData['node'] as $name=>$data){
+					$data['sourceName'] = $cmd->getName();
+					$used[$name.$cmd->getName()] = $data;
+				}
 			}
 		}
 		ajax::success($used);

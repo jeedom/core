@@ -17,12 +17,12 @@ if (!isConnect('admin')) {
         <?php }?>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo size,pid,user,command --sort -size">Memory Usage</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu">CPU Usage</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="dmesg">dmesg</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ifconfig">ifconfig</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="lsusb">lsusb</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo dmesg">dmesg</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ip addr">ip addr</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo lsusb">lsusb</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ls -la /dev/ttyUSB*">ls -la /dev/ttyUSB*</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="free -m">free -m</a></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps ax">ps ax</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax">ps ax</a></li>
         <?php if (jeedom::isCapable('sudo')) {?>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
         <?php }?>

@@ -244,9 +244,9 @@ sendVarToJS('id', $plan->getId());
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{CSS personnalisé}}  <sub>css</sub></label>
+			<label class="col-lg-4 control-label">{{CSS personnalisé}} <sub>css</sub></label>
 			<div class="col-lg-5">
-				<input class="planAttr form-control" data-l1key="display" data-l2key="css" />
+				<input class="planAttr form-control" data-l1key="display" data-l2key="css" placeholder="font-weight: bold;"/>
 			</div>
 			<div class="alert alert-danger col-lg-3">
 				{{Attention, peut être source de problèmes.}}

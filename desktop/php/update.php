@@ -16,7 +16,7 @@ if (!isConnect('admin')) {
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
 	<li role="presentation"><a href="#other" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-feather"></i> {{Autres}}</a></li>
-	<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
+	<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -52,9 +52,22 @@ if (!isConnect('admin')) {
 			</tbody>
 		</table>
 	</div>
-	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;">
-		<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Informations :}}</legend>
-		<pre id="pre_updateInfo"></pre>
+	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
+		<br/>
+		<div class="row">
+			<div class="col-sm-12 progressbarContainer" style="display: inline-flex;">
+				<div class="progress" style="width:calc(100% - 38px);height:22px;">
+					<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
+						N/A
+					</div>
+				</div>
+				<a class="btn btn-xs btn-info" style="width:35px;margin-left: 7px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
+			</div>
+		</div>
+		<div id="div_log" style="display:none; height:calc(100% - 45px)">
+			<legend style="cursor:default; width:calc(100% - 50px);"><i class="fas fa-info-circle"></i>  {{Log :}}</legend>
+			<pre id="pre_updateInfo"></pre>
+		</div>
 	</div>
 </div>
 
@@ -67,8 +80,8 @@ if (!isConnect('admin')) {
 			<div class="form-group">
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Pré-update}}
-                    	<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
-                    </label>
+						<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+					</label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
 					</div>
@@ -93,8 +106,8 @@ if (!isConnect('admin')) {
 				</div>
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Mode forcé}}
-                    	<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
-                    </label>
+						<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+					</label>
 					<div class="col-xs-4">
 						<input type="checkbox" class="updateOption" data-l1key="force" />
 					</div>
