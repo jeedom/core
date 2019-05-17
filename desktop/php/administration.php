@@ -237,7 +237,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clé d'installation}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Clé d'installation qui permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
@@ -429,7 +429,7 @@ user::isBan();
 					<legend><i class="fas fa-brain"></i> {{Général}}</legend>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification général}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de lancer le test de consistence de Jeedom}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_consitency"><i class="fas fa-check"></i> {{Lancer}}</a>
@@ -446,7 +446,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Rétablissement des droits des dossiers et fichiers}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de réappliquer les bons droits sur les fichiers}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de réappliquer les bons droits sur les fichiers.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_cleanFileSystemRight"><i class="fas fa-check"></i> {{Lancer}}</a>
@@ -575,7 +575,7 @@ user::isBan();
 					<legend>{{Connexion}}</legend>
 					<div class="form-group">
 						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion, en heure, à}} <?php echo config::byKey('product_name'); ?> {{si vous n'avez pas coché la case enregistrer cet ordinateur}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Durée de vie de votre connexion, en heure<br>(si vous n'avez pas coché la case enregistrer cet ordinateur)}}"></i></sup>
 							<sub>h</sub>
 						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
@@ -602,7 +602,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Durée en secondes, -1 pour un bannissement infini}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Durée en secondes.<br> -1 : bannissement infini}}"></i></sup>
 							<sub>s</sub>
 						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
@@ -611,7 +611,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Liste blanche}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{IPs ou masques séparés par ; ex: 127.0.0.1;192.168.*.*}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{IPs ou masques séparés par ;<br>ex: 127.0.0.1;192.168.*.*}}"></i></sup>
 						</label>
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
@@ -981,7 +981,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{icônes widgets colorées}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
@@ -991,7 +991,7 @@ user::isBan();
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
-							<sup><i class="fas fa-question-circle tooltips" title="Activer la personnalisation pour écraser les paramètres par défaut des thèmes"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="Permet de modifier les paramètres par défaut des thèmes"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
@@ -1003,7 +1003,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Transparence des tuiles}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Transparence (Opacité) des tuiles}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
@@ -1011,7 +1011,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Arrondi des éléments de l'interface (Tuiles, boutons etc). 0 pour pas d'arrondi}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" />
@@ -1106,7 +1106,7 @@ user::isBan();
 				<fieldset>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
 						</label>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 							<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl">
@@ -1183,24 +1183,24 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Force la suppression des objets qui ne sont plus utiles. Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Force la suppression des objets qui ne sont plus utiles.<br>Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanCache"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
+							<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider toutes les données en cache}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Vide complètement le cache. Attention cela peut faire perdre des données.}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Vide complètement le cache.<br>Attention cela peut faire perdre des données.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_flushCache"><i class="fas fa-trash"></i> {{Vider}}</a>
+							<a class="btn btn-danger" id="bt_flushCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider le cache des widgets}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_flushWidgetCache"><i class="fas fa-trash"></i> {{Vider}}</a>
+							<a class="btn btn-warning" id="bt_flushWidgetCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -1246,7 +1246,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Distance de Levenshtein pour le calcul de correspondance (Nombre de différences entre les deux chaines) en fonction du nombre de mots.}}"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Distance de Levenshtein pour le calcul de correspondance<br>Nombre de différences entre les deux chaines en fonction du nombre de mots.}}"></i></sup>
 						</label>
 						<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
 							<div class="input-group">
