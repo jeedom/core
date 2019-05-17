@@ -629,14 +629,17 @@ function initTooltips(_el) {
       interactive: true
     })
   } else {
-    if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || $(this).is('[title]')) {
+    if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
+      if(_el.is('[title]') && _el.hasClass('tooltipstered')){
+        _el.tooltipster('destory');
+      }
       _el.tooltipster({
         arrow: false,
         delay: 100,
         interactive: true
       })
     }
-    
+    _el.find('.tooltipstered[title]').tooltipster('destory');
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
       delay: 100,
