@@ -616,7 +616,7 @@ function initPage(){
 }
 
 function bindInsert() {
-  $('#div_mainContainer').bind('DOMNodeInserted', function (event) {
+  $('#div_mainContainer').unbind('DOMNodeInserted').bind('DOMNodeInserted', function (event) {
     initTooltips($(event.target))
   })
 }
