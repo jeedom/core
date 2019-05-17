@@ -12,6 +12,10 @@
  z-index: 5;
 }
 
+.tooltipster-sidetip .tooltipster-box {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+
 .panel {
  box-shadow: 0 4px 2px -2px rgba(0,0,0,.1);
  z-index: 0;
