@@ -1,6 +1,6 @@
 <div class="cmd reportModeHidden cmd-widget" style="display: inline;margin-right: 2px;" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="content-sm">
-    <a class="btn btn-sm btn-default action tooltips" title="#name#">#name_display#</a>
+    <a class="btn btn-sm btn-default action tooltips">#name_display#</a>
   </div>
   <script>
     $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
@@ -9,6 +9,9 @@
     if ($('.cmd[data-cmd_uid=#uid#]').last().prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').last().prev().data('subtype') != 'other'
     && $('.cmd[data-cmd_uid=#uid#]').last().prev().css('display') != 'block') {
       $('.cmd[data-cmd_uid=#uid#]').last().prepend('<br/>');
+    }
+    if("#name#" != '#name_display#'){
+      $('.cmd[data-cmd_uid=#uid#]:last .action').attr('title',"#name#")
     }
   </script>
 </div>
