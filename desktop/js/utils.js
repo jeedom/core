@@ -611,11 +611,11 @@ function initPage(){
   });
   
   setTimeout(function() { initTooltips() }, 750)
-  setTimeout(function() { bindInsert()}, 1000)
+  setTimeout(function() { bindTooltipster() }, 1000)
   $("input[id^='in_search']").focus()
 }
 
-function bindInsert() {
+function bindTooltipster() {
   $('#div_mainContainer').unbind('DOMNodeInserted').bind('DOMNodeInserted', function (event) {
     initTooltips($(event.target))
   })
