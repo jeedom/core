@@ -101,15 +101,21 @@ $allObject = jeeObject::all();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Masque cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
 							</div>
 						</div>
 						<div class="form-group">
+							<div class="tooltipWrapper" style="display:none">
+							    <span id="objectIconTip">
+							        {{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}
+							        <br><a href="/index.php?v=d&p=administration#interfacetab">Configuration / Interface</a>
+							    </span>
+							</div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icônes widgets colorées' dans interface si nécessaire.}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" data-tooltip-content="#objectIconTip"></i></sup>
 							</label>
 							<div class="col-xs-1">
 								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
