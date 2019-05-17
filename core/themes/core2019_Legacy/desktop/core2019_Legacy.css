@@ -146,6 +146,10 @@ span.cursor > i:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
+div.cmd-widget div[class^="content"] {
+  color: var(--linkHoverLight-color) !important;
+}
+
 #bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
