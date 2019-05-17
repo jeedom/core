@@ -9,28 +9,28 @@
     <span class="timeCmd#uid# timeCmd label label-default value"></span>
   </div>
   <script>
-   jeedom.cmd.update['#id#'] = function(_options){
-            jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
-            $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-            if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
-                if (jeedom.cmd.normalizeName('#name#') == 'on') {
-                    $('.cmd[data-cmd_id=#id#]').hide();
-                }else{
-                    $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
-                }
-            } else {
-                if (jeedom.cmd.normalizeName('#name#') == 'off') {
-                    $('.cmd[data-cmd_id=#id#]').hide();
-                }else{
-                    $('.cmd[data-cmd_id=#id#]').show();
-                    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
-                }
-            }
+    jeedom.cmd.update['#id#'] = function(_options){
+      jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
+          $('.cmd[data-cmd_id=#id#]').hide();
+        }else{
+          $('.cmd[data-cmd_id=#id#]').show();
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
         }
-        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-        $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
-            jeedom.cmd.execute({id: '#id#'});
-        });
-    </script>
+      } else {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+          $('.cmd[data-cmd_id=#id#]').hide();
+        }else{
+          $('.cmd[data-cmd_id=#id#]').show();
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
+        }
+      }
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
+      jeedom.cmd.execute({id: '#id#'});
+    });
+  </script>
 </div>
