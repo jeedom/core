@@ -626,7 +626,8 @@ function initTooltips(_el) {
     $('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
       delay: 100,
-      interactive: true
+      interactive: true,
+      contentAsHTML: true
     })
   } else {
     //cmd update:
@@ -635,7 +636,8 @@ function initTooltips(_el) {
       _el.closest('.cmd-widget[title]').tooltipster({
         arrow: false,
         delay: 100,
-        interactive: true
+        interactive: true,
+        contentAsHTML: true
       })
       return;
     }
@@ -646,14 +648,16 @@ function initTooltips(_el) {
       _el.tooltipster({
         arrow: false,
         delay: 100,
-        interactive: true
+        interactive: true,
+        contentAsHTML: true
       })
     }
     _el.find('.tooltipstered[title]').tooltipster('destroy')
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
       delay: 100,
-      interactive: true
+      interactive: true,
+      contentAsHTML: true
     })
   }
 }
