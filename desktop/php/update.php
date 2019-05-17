@@ -61,7 +61,7 @@ if (!isConnect('admin')) {
 						N/A
 					</div>
 				</div>
-				<a class="btn btn-xs btn-info" style="width:35px;margin-left: 7px;" id="bt_showHideLog"><i class="fas fa-file"></i></a>
+				<a class="btn btn-xs btn-info" style="width:35px;margin-left: 7px;" id="bt_showHideLog" title="{{Afficher le log d'update}}"><i class="fas fa-file"></i></a>
 			</div>
 		</div>
 		<div id="div_log" style="display:none; height:calc(100% - 45px)">
