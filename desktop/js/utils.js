@@ -609,14 +609,14 @@ function initPage(){
       $(window).scrollTop(scrollHeight);
     }, 0);
   });
+
   setTimeout(function() { initTooltips() }, 750)
-  $("input[id^='in_search']").focus();
   setTimeout(function() { bindInsert()}, 1000)
+  $("input[id^='in_search']").focus()
 }
 
 function bindInsert() {
-  $('#div_mainContainer').on('DOMNodeInserted', function (event) {
-    //console.log('DOMNodeInserted')
+  $('#div_mainContainer').bind('DOMNodeInserted', function (event) {
     var element = event.target
     initTooltips($(element))
   })
@@ -624,25 +624,21 @@ function bindInsert() {
 
 function initTooltips(_el) {
   if (!_el) {
-    //console.log('no _el!')
-    if ($('.tooltipstered').lenght) $('.tooltips').tooltipster('destroy')
-    $('.tooltips, [title]').tooltipster({
+    $('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
     })
   } else {
-    if ( _el.hasClass('tooltipstered') ) {
-      //console.log('_el tooltipstered!')
-      _el.tooltipster('destroy')
+    if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || $(this).is('[title]')) {
       _el.tooltipster({
         arrow: false,
         delay: 100,
         interactive: true
       })
     }
-    _el.find('tooltipstered').tooltipster('destroy')
-    _el.find('.tooltips, [title]').tooltipster({
+
+    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster({
       arrow: false,
       delay: 100,
       interactive: true
