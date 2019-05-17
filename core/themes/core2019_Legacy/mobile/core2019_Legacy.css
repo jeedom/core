@@ -158,6 +158,12 @@ p.state,
   color: var(--linkHoverLight-color) !important;
 }
 
+.hgauge-value,
+.vgauge-value,
+.shuttergauge-value{
+  background: var(--linkHoverLight-color) !important;
+}
+
 .tableCmd,
 .highcharts-axis-title > tspan,
 .cmd-widget > center {
