@@ -89,10 +89,6 @@ function getUrlVars(_key) {
   return vars;
 }
 
-function initTooltips() {
-  
-}
-
 function getDeviceType() {
   var result = {};
   result.type = 'desktop';
