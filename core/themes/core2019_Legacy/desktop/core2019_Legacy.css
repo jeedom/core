@@ -201,6 +201,9 @@ div[data-subtype=select] select {
 .shuttergauge-value{
   background: var(--linkHoverLight-color) !important;
 }
+.state.valueshutter strong {
+  color: var(--link-color) !important;
+}
 
 .highcharts-data-label > span > span {
   color: var(--linkHoverLight-color) !important;
