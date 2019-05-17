@@ -191,14 +191,7 @@ $(function () {
     $('.dropdown-menu').dropdown('toggle');
   });
   
-  navAgent = navigator.userAgent
-  agentTests = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i]
-  matched = agentTests.some(function(item) {
-    if (navAgent.match(item)) {
-      return true
-    }
-  });
-  if (!matched) {
+  if (getDeviceType()['type'] == 'desktop') {
     $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
       if ($(window).width() < 768) return
       event.preventDefault();
