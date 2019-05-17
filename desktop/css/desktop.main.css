@@ -74,6 +74,9 @@ a.btn,
 .cursor * {
   cursor: pointer !important;
 }
+.cmd-widget {
+  cursor: default;
+}
 
 a > img:hover {
   opacity: 0.75;
