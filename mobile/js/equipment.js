@@ -71,7 +71,9 @@ function initEquipment(_object_id) {
             if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
               icon = objects_info[id].display.icon;
             }
-            div += '<span>' + icon + '</span> ' + objects_info[id].name;
+            objectName = objects_info[id].name;
+            objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
+            div += '<span>' + icon + '</span> ' + objectName;
             div += '</legend>';
             div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important;"><div class="card-title has-supporting-text"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>';
             div += '<div class="objectHtml">';
