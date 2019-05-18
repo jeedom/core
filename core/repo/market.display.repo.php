@@ -26,7 +26,7 @@ sendVarToJS('market_display_info', $market_array);
 ?>
 
 
-<div class='row' style='background-color: #e7e7e7; padding-top: 10px; padding-bottom: 10px;position: relative; top: -10px;'>
+<div class='row' style='padding-top: 10px; padding-bottom: 10px;'>
 	<div class='col-sm-3'>
 		<center>
 			<?php
@@ -243,7 +243,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-			
+
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -278,7 +278,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 <style>
@@ -344,7 +344,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-	
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {
