@@ -68,7 +68,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	<?php
 	if (init('category', 'all') == 'all') {?>
 		<div class="input-group-btn">
-			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn roundedRight"><i class="fas fa-pencil-alt"></i></a>
+			<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
 		</div>
 	<?php } ?>
 </div>
