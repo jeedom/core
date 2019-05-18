@@ -79,3 +79,23 @@ $('#bt_resetSearch').on('click', function () {
   $('#in_search').val('')
   $('#in_search').keyup();
 })
+
+
+$(function() {
+  //tabs icons colors:
+  if ($('.batteryListContainer div.eqLogic-widget.critical').length) {
+    $('a[href="#battery"] > i').addClass('danger')
+  } else if ($('.batteryListContainer div.eqLogic-widget.warning').length) {
+    $('a[href="#battery"] > i').addClass('warning')
+  } else {
+    $('a[href="#battery"] > i').addClass('success')
+  }
+
+  if ($('.alertListContainer div.eqLogic-widget').length) {
+    $('a[href="#alertEqlogic"] > i').addClass('warning')
+  }
+
+  if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
+    $('a[href="#deadCmd"] > i').addClass('warning')
+  }
+})
