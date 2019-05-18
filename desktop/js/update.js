@@ -173,7 +173,7 @@ function getJeedomLog(_autoUpdate, _log) {
         for (var i in data.result.reverse()) {
           log += data.result[i]+"\n";
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
-            progress = -2;
+            progress = 100;
             updateProgressBar();
             printUpdate();
             if(alertTimeout != null){
