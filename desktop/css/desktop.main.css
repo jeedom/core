@@ -1769,7 +1769,9 @@ hr {
 }
 
 .tablesorter-filter {
-  opacity: 0.45 !important;
+  background-color: var(--defaultBkg-color);
+  color: var(--link-color);
+  opacity: 0.85 !important;
 }
 
 
