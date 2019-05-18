@@ -1636,8 +1636,8 @@ ul.nav.nav-tabs li,
 .nav-tabs > li > a:hover {
   background-color: var(--panel-bg-color) !important;
   color: var(--link-color) !important;
-  border-top : 1px var(--logo-primary-color) solid !important;
-  height: 40px;
+  border-left : 1px var(--logo-primary-color) solid !important;
+  height: 39px;
 }
 .nav-tabs,
 .nav-tabs * {
@@ -2880,14 +2880,14 @@ input:invalid {
   display: none;
 }
 .tooltipster-sidetip .tooltipster-box {
-	background: var(--al-info-color);
-	border: none;
-	border-radius: var(--border-radius) !important;
+  background: var(--al-info-color);
+  border: none;
+  border-radius: var(--border-radius) !important;
 }
 
 .tooltipster-sidetip .tooltipster-content {
-	color: var(--linkHoverLight-color);
-	padding: 6px 8px;
+  color: var(--linkHoverLight-color);
+  padding: 6px 8px;
 }
 
 /* __________________________________________________________________________________________________________CodeMirror */
