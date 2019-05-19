@@ -60,6 +60,9 @@ class view {
 				continue;
 			}
 			$view = $viewZone->getView();
+			if(!is_object($view)){
+				continue;
+			}
 			$return[$view->getId()] = $view;
 		}
 		return $return;

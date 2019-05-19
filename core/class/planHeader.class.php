@@ -59,6 +59,9 @@ class planHeader {
 		$plans = array_merge(plan::byLinkTypeLinkId($_type, $_id), plan::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plans as $plan) {
 			$planHeader = $plan->getPlanHeader();
+			if(!is_object($planHeader)){
+				continue;
+			}
 			$return[$planHeader->getId()] = $planHeader;
 		}
 		return $return;
