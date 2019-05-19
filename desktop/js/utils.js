@@ -641,7 +641,7 @@ function initTooltips(_el) {
     }
     if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
       if (_el.is('[title]') && _el.hasClass('tooltipstered')){
-        _el.tooltipster('destory');
+        _el.tooltipster('destroy');
       }
       _el.tooltipster({
         arrow: false,
