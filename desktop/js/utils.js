@@ -217,7 +217,7 @@ $(function () {
     });
   }
   
-  $('li.dropdown-submenu a').on('click',function(event) {
+  $('li.dropdown-submenu a.dropdown-toggle').on('click',function(event) {
     event.stopPropagation()
     var opened = false
     if ($(this).parent().hasClass('open')) opened = true
