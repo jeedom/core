@@ -64,13 +64,13 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-7 control-label">{{Date de création}}</label>
+							<label class="col-sm-7 control-label">{{Création}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime"></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-7 control-label">{{Date de changement de pile(s)}}</label>
+							<label class="col-sm-7 control-label">{{Changement de pile}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime"></span>
 							</div>
@@ -104,13 +104,13 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-6 control-label">{{Date de dernière communication}}</label>
+							<label class="col-sm-6 control-label">{{Dernière communication}}</label>
 							<div class="col-sm-4">
 								<span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-6 control-label">{{Dernière mise à jour}}</label>
+							<label class="col-sm-6 control-label">{{Dernière sauvegarde}}</label>
 							<div class="col-sm-4">
 								<span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime"></span>
 							</div>
