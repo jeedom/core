@@ -1088,10 +1088,7 @@ function rgbToHex(r, g, b) {
 
 function addOrUpdateUrl(_param,_value){
   var url = new URL(window.location.href);
-  if(url.toString() != PREVIOUS_PAGE || PREVIOUS_PAGE == null){
-    window.history.pushState('','', url.toString());
-    PREVIOUS_PAGE = url.toString();
-  }
+  window.history.replaceState('','', url.toString());
   var query_string = url.search;
   var search_params = new URLSearchParams(query_string);
   search_params.set(_param, _value);
