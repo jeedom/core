@@ -102,7 +102,6 @@ function loadPage(_url,_noPushHistory){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
-  
   $('.backgroundforJeedom').css('background-image','');
   $('.backgroundforJeedom').css('background-position','center center');
   $('.backgroundforJeedom').css('background-repeat','no-repeat');
@@ -121,6 +120,9 @@ function loadPage(_url,_noPushHistory){
     $('body').trigger('jeedom_page_load');
     if(jeedomBackgroundImg !== null){
       setBackgroundImg(jeedomBackgroundImg);
+    }
+    if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
+      $('.nav-tabs a[href="'+window.location.hash+'"]').click();
     }
     if(__OBSERVER__) __OBSERVER__.connect();
   });
@@ -148,13 +150,14 @@ $(function () {
     }
   });
   
-  if(window.location.hash != ''){
-    if($('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
-      $('.nav-tabs a[href="'+window.location.hash+'"]').click();
-    }
+  if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
+    $('.nav-tabs a[href="'+window.location.hash+'"]').click();
   }
   
   $('body').on('shown.bs.tab','.nav-tabs a', function (e) {
+    if(e.target.hash == ''){
+      return;
+    }
     if(PREVIOUS_PAGE == null){
       window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
       PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
@@ -168,8 +171,13 @@ $(function () {
   
   window.addEventListener('popstate', function (event){
     if(event.state === null){
-      if(NO_POPSTAT){
+      if(NO_POPSTAT || window.location.hash == ''){
         NO_POPSTAT = false;
+      }
+      if(PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
+        modifyWithoutSave = false;
+        loadPage('index.php?'+window.location.href.split("index.php?")[1],true);
+        PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
         return;
       }
       if(window.location.hash == ''){
@@ -180,9 +188,9 @@ $(function () {
       }
       return;
     }
-    console.log('history goto '+window.location.href.split("index.php?")[1])
     modifyWithoutSave = false;
-    loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
+    loadPage('index.php?'+window.location.href.split("index.php?")[1],true);
+    PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
   });
   
   $('body').on('click','a',function(e){

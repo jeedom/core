@@ -210,9 +210,6 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
 $('.scenarioDisplayCard').off('click').on('click', function () {
   $('#scenarioThumbnailDisplay').hide();
   printScenario($(this).attr('data-scenario_id'));
-  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
-    $('.nav-tabs a[href="#generaltab"]').click();
-  }
 });
 
 $('.accordion-toggle').off('click').on('click', function () {
@@ -1124,6 +1121,9 @@ function printScenario(_id) {
         title = data.name +' - Jeedom';
       }
       addOrUpdateUrl('id',data.id,title);
+      if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
+        $('.nav-tabs a[href="#generaltab"]').click();
+      }
       setTimeout(function () {
         setEditor();
       }, 100);
