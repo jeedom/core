@@ -489,10 +489,10 @@ $("img.lazy").each(function () {
   }
 });
 
-$('body').delegate('.cmdAttr', 'change', function () {
+$('#div_pageContainer').delegate('.cmdAttr', 'change', function () {
   modifyWithoutSave = true;
 });
 
-$('body').delegate('.eqLogicAttr', 'change', function () {
+$('#div_pageContainer').delegate('.eqLogicAttr', 'change', function () {
   modifyWithoutSave = true;
 });
