@@ -67,6 +67,9 @@ $('#bt_resetScenarioSearch').on('click', function () {
 
 document.addEventListener('keydown', function(event) {
   //in expression input or textarea:
+  if ($(event.target).parent().hasClass('expression')) {
+    return false
+  }
   if (event.target.classList.contains('expressionAttr')){
     if ((27 === event.which) || (13 === event.which)){
       event.preventDefault()
