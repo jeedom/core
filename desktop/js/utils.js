@@ -155,6 +155,9 @@ $(function () {
   }
   
   $('body').on('shown.bs.tab','.nav-tabs a', function (e) {
+    if(e.target.hash == ''){
+      return;
+    }
     if(PREVIOUS_PAGE == null){
       window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
       PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
