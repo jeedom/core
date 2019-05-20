@@ -383,7 +383,7 @@ public static function backup_restore($_backup) {
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --num-retries 1';
-		$cmd .= ' --tempdir '.$base_dir . '/tmp';
+		$cmd .= ' --tempdir '.$base_dir;
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		$cmd .= ' ' . $restore_dir;
