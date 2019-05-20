@@ -155,6 +155,7 @@ $(function () {
     if(event.state === null){
       return;
     }
+    modifyWithoutSave = false;
     loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
   });
   
