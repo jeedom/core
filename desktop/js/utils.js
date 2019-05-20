@@ -155,6 +155,10 @@ $(function () {
   }
   
   $('body').on('shown.bs.tab','.nav-tabs a', function (e) {
+    if(PREVIOUS_PAGE == null){
+      window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
+      PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
+    }
     NO_POPSTAT = true
     window.location.hash = e.target.hash;
     setTimeout(function(){
