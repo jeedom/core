@@ -1097,7 +1097,7 @@ function addOrUpdateUrl(_param,_value){
   search_params.set(_param, _value);
   url.search = search_params.toString();
   window.history.pushState('','', url.toString());
-  PREVIOUS_PAGE = url.toString();
+  PREVIOUS_PAGE = 'index.php?'+url.toString().split("index.php?")[1];
 }
 
 function saveWidgetDisplay(_params) {
