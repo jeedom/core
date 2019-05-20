@@ -173,7 +173,7 @@ function getJeedomLog(_autoUpdate, _log) {
         for (var i in data.result.reverse()) {
           log += data.result[i]+"\n";
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
-            progress = -2;
+            progress = 100;
             updateProgressBar();
             printUpdate();
             if(alertTimeout != null){
@@ -314,9 +314,11 @@ function addUpdate(_update) {
 $('#bt_showHideLog').off('click').on('click',function() {
   if($('#div_log').is(':visible')) {
     $('#div_log').hide()
+    $(this).attr('title', '{{Afficher le log d\'update}}')
     if (progress != 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
   } else {
     $('#div_log').show()
+    $(this).attr('title', '{{Masquer le log d\'update}}')
     if (progress != 100) $('.progressbarContainer').appendTo('#div_log')
   }
 });
@@ -373,7 +375,33 @@ $('#pre_updateInfo_clean').show()
 var prevUpdateText = ''
 var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
 var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
-$('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
+
+var _UpdateObserver_ = null
+$(function () {
+  createUpdateObserver()
+})
+
+function createUpdateObserver() {
+  var _UpdateObserver_ = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if ( mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
+        cleanUpdateLog()
+      }
+    })
+  })
+
+  var observerConfig = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+  }
+
+  var targetNode = document.getElementById('pre_updateInfo')
+  _UpdateObserver_.observe(targetNode, observerConfig)
+}
+
+function cleanUpdateLog() {
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
@@ -431,12 +459,15 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       $('#pre_updateInfo_clean').value(newLogText)
       $(document).scrollTop($(document).height())
       prevUpdateText = currentUpdateText
-      if (progress == 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+      if (progress == 100) {
+        if (_UpdateObserver_) _UpdateObserver_.disconnect()
+        $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+      }
     }
   }
   clearTimeout(alertTimeout);
   alertTimeout = setTimeout(alertTimeout,60000*10);
-})
+}
 
 
 function alertTimeout(){

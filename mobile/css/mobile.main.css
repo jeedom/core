@@ -137,6 +137,14 @@ body {
   box-shadow: none !important;
 }
 
+.ui-page-theme-a .ui-body-inherit {
+  color: var(--link-color) !important;
+  background-color: var(--bg-modal-color) !important;
+}
+.ui-mobile label {
+  color: var(--link-color) !important;
+  text-shadow: none !important;
+}
 .ui-header > .ui-btn {
   color: var(--txt-color) !important;
 }
@@ -603,7 +611,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 
 #searchContainer {
   width: 100%;
-  z-index: 9000;
+  z-index: 900;
 }
 #in_searchWidget {
   position: fixed;
@@ -612,7 +620,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   padding-left: 5px;
   height: 35px;
   width: calc(100% - 38px);
-  z-index: 9000;
+  z-index: 900;
   box-sizing: border-box;
 }
 #bt_eraseSearchInput {
@@ -624,7 +632,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   margin: 0;
   background: var(--form-bg-color) !important;
   box-shadow: none;
-  z-index: 9000;
+  z-index: 900;
   box-sizing: border-box;
 }
 #bt_eraseSearchInput i {

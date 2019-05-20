@@ -74,7 +74,8 @@ a.btn,
 .cursor * {
   cursor: pointer !important;
 }
-.cmd-widget {
+.cmd-widget,
+legend {
   cursor: default;
 }
 
@@ -1636,8 +1637,8 @@ ul.nav.nav-tabs li,
 .nav-tabs > li > a:hover {
   background-color: var(--panel-bg-color) !important;
   color: var(--link-color) !important;
-  border-top : 1px var(--logo-primary-color) solid !important;
-  height: 40px;
+  border-bottom : 1px var(--logo-primary-color) solid !important;
+  height: 39px;
 }
 .nav-tabs,
 .nav-tabs * {
@@ -1769,7 +1770,9 @@ hr {
 }
 
 .tablesorter-filter {
-  opacity: 0.45 !important;
+  background-color: var(--defaultBkg-color);
+  color: var(--link-color);
+  opacity: 0.85 !important;
 }
 
 
@@ -2356,7 +2359,6 @@ path.highcharts-graph {
 .eqLogic-widget div.cmd-widget {
   position: relative;
   padding: 0;
-  top: 0 !important;
   min-width: 70px;
 }
 div.cmd-widget .title {
@@ -2880,14 +2882,14 @@ input:invalid {
   display: none;
 }
 .tooltipster-sidetip .tooltipster-box {
-	background: var(--al-info-color);
-	border: none;
-	border-radius: var(--border-radius) !important;
+  background: var(--al-info-color);
+  border: none;
+  border-radius: var(--border-radius) !important;
 }
 
 .tooltipster-sidetip .tooltipster-content {
-	color: var(--linkHoverLight-color);
-	padding: 8px 12px;
+  color: var(--linkHoverLight-color);
+  padding: 6px 8px;
 }
 
 /* __________________________________________________________________________________________________________CodeMirror */
@@ -3099,16 +3101,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3116,11 +3118,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3166,5 +3168,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }

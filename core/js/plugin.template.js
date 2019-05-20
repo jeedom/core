@@ -96,19 +96,7 @@ $(function(){
   }
 })
 
-var url = document.location.toString();
-if (url.match('#')) {
-  if(url.split('#')[1] == ''){
-    $('.nav-tabs a:not(.eqLogicAction)').first().click();
-  }else{
-    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').click();
-  }
-}else{
-  $('.nav-tabs a:not(.eqLogicAction)').first().click();
-}
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
+$('.nav-tabs a:not(.eqLogicAction)').first().click();
 
 $('.eqLogicAction[data-action=gotoPluginConf]').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration du plugin}}"});
@@ -120,6 +108,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   $('.eqLogicThumbnailDisplay').show();
   $('.li_eqLogic').removeClass('active');
   $('.eqLogicThumbnailContainer').packery();
+  addOrUpdateUrl('id',null,);
 });
 
 $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
@@ -278,11 +267,11 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
         if(Object.keys(data).length > 0){
           text += ' </br> Il est utilisé par : </br>';
           for(var i in data){
-                var complement = '';
-                if ('sourceName' in data[i]) {
-                    complement = ' ('+data[i].sourceName+')';
-                }
-                text += '- ' + '<a href="'+data[i].url+'" target="_blank">' +data[i].type +'</a> : <b>'+ data[i].name + '</b>'+ complement+' <sup><a href="'+data[i].url+'" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>';
+            var complement = '';
+            if ('sourceName' in data[i]) {
+              complement = ' ('+data[i].sourceName+')';
+            }
+            text += '- ' + '<a href="'+data[i].url+'" target="_blank">' +data[i].type +'</a> : <b>'+ data[i].name + '</b>'+ complement+' <sup><a href="'+data[i].url+'" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>';
           }
         }
         text = text.substring(0, text.length - 2)

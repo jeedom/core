@@ -12,8 +12,8 @@ function initHome() {
   }
   $('#bottompanel_otherActionList').append('<a id="bt_forceReload" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-retweet"></i> {{Forcer mise à jour}}</a>');
   $('#bottompanel_otherActionList').append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>');
-
-
+  
+  
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -21,7 +21,7 @@ function initHome() {
     success: function (objects) {
       var li = '';
       var summaries = [];
-      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a>';
+      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class="fas fa-globe"></i> {{Tout}}</a>';
       for (var i in objects) {
         if (objects[i].isVisible == 1) {
           var icon = '';
@@ -36,7 +36,7 @@ function initHome() {
       jeedom.object.summaryUpdate(summaries);
     }
   });
-
+  
   jeedom.view.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -53,7 +53,7 @@ function initHome() {
       $('#bottompanel_viewList').empty().append(li);
     }
   });
-
+  
   jeedom.plan.allHeader({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -70,7 +70,7 @@ function initHome() {
       $('#bottompanel_planList').empty().append(li);
     }
   });
-
+  
   jeedom.plan3d.allHeader({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -87,8 +87,8 @@ function initHome() {
       $('#bottompanel_plan3dList').empty().append(li);
     }
   });
-
-
+  
+  
   if (plugins.length > 0) {
     var li = '';
     for (var i in plugins) {
@@ -111,7 +111,7 @@ function initHome() {
   } else {
     $('#bt_listPlugin').hide();
   }
-
+  
   $('#bt_logout').off('click').on('click', function () {
     $.ajax({
       type: "POST",
@@ -132,22 +132,22 @@ function initHome() {
       }
     });
   });
-
+  
   $('#bt_forceReload').off('click').on('click', function () {
     window.location.reload(true);
   })
-
+  
   jeedom.version({success : function(version) {
     $('#homeVersion').html(version)
-    }
-  })
+  }
+})
 
-  jeedom.config.load({
-       configuration: 'name',
-       success: function (data) {
-         $('#jeedomName').html(data+'<br>WebApp Jeedom<br>')
-       }
-  })
+jeedom.config.load({
+  configuration: 'name',
+  success: function (data) {
+    $('#jeedomName').html(data+'<br>WebApp Jeedom<br>')
+  }
+})
 
-  setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
 }

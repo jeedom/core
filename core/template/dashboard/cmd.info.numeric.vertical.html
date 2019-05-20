@@ -1,5 +1,5 @@
-<div class="tooltips vgauge cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Valeur du #valueDate#, collectée le #collectDate#" >
-  <div class="title cursor #history# #hide_name#" data-cmd_id="#id#">
+<div class="tooltips vgauge cmd cmd-widget cursor #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-sm" data-cmd_id="#id#">
@@ -18,12 +18,14 @@
 
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+
       height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
       height = Math.round(parseFloat(height) * 10) / 10
       $('.cmd[data-cmd_uid=#uid#] .vgauge-value').height(height+'%')
       $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
   </script>
 </div>

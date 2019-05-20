@@ -43,10 +43,6 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup();
 })
 
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
-
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -98,6 +94,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('#div_conf').hide();
   $('#div_resumeObjectList').show();
   $('.objectListContainer').packery();
+  addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME);
 });
 
 $(".objectDisplayCard").on('click', function (event) {

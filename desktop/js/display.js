@@ -137,7 +137,7 @@ $('.configureCmd').on('click',function(){
 $('#in_search').on('keyup',function(){
   try {
     var search = $(this).value().toLowerCase();
-
+    
     $('.cmd').show().removeClass('alert-success').addClass('alert-warning');
     $('.eqLogic').show();
     $('.cmdSortable').hide();
@@ -145,7 +145,7 @@ $('#in_search').on('keyup',function(){
       $('.packeryContainer').packery();
       return;
     }
-
+    
     search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     $('.eqLogic').each(function(){
       var eqLogic = $(this);
@@ -166,7 +166,7 @@ $('#in_search').on('keyup',function(){
           cmd.removeClass('alert-warning').addClass('alert-success');
         }
       });
-    $('.packeryContainer').packery();
+      $('.packeryContainer').packery();
     });
   }
   catch(error) {
@@ -176,10 +176,6 @@ $('#in_search').on('keyup',function(){
 $('#bt_resetdisplaySearch').on('click', function () {
   $('#in_search').val('')
   $('#in_search').keyup();
-})
-
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
 })
 
 $('.cb_selEqLogic').on('change',function(){

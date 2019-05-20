@@ -146,6 +146,10 @@ span.cursor > i:hover {
   color: var(--linkHoverLight-color) !important;
 }
 
+div.cmd-widget div[class^="content"] {
+  color: var(--linkHoverLight-color) !important;
+}
+
 #bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject {
@@ -196,6 +200,9 @@ div[data-subtype=select] select {
 .vgauge-value,
 .shuttergauge-value{
   background: var(--linkHoverLight-color) !important;
+}
+.state.valueshutter strong {
+  color: var(--link-color) !important;
 }
 
 .highcharts-data-label > span > span {

@@ -68,7 +68,7 @@ if (!isConnect('admin')) {
 </div>
 
 <div role="tabpanel" class="tab-pane" id="deamon">
-  <a class="btn btn-default pull-right" id="bt_refreshDeamon" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+  <a class="btn btn-sm btn-default pull-right" id="bt_refreshDeamon" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
   <br/><br/><br/>
   <table id="table_deamon" class="table table-bordered table-condensed" >
     <thead>

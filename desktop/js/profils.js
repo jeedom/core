@@ -14,14 +14,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var url = document.location.toString();
-if (url.match('#')) {
-  $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').click();
-}
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
-
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_saveProfils").click();
