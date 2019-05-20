@@ -168,11 +168,8 @@ $(function () {
   
   window.addEventListener('popstate', function (event){
     if(event.state === null){
-      if(NO_POPSTAT){
+      if(NO_POPSTAT || window.location.hash == ''){
         NO_POPSTAT = false;
-        return;
-      }
-      if(window.location.hash == ''){
         return;
       }
       if($('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
@@ -180,7 +177,6 @@ $(function () {
       }
       return;
     }
-    console.log('history goto '+window.location.href.split("index.php?")[1])
     modifyWithoutSave = false;
     loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
   });
