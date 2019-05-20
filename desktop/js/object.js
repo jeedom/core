@@ -43,10 +43,6 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup();
 })
 
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
-
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));

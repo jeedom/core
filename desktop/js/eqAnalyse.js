@@ -14,9 +14,6 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
 positionEqLogic();
 
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
@@ -51,17 +48,17 @@ $('#in_search').off('keyup').on('keyup',function(){
     $('.batteryListContainer').packery()
     return
   }
-
+  
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
   $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
-
+    
     text = normText($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-
+    
     text = normText($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
-
+    
     if(match) {
       $(this).show()
     } else {
@@ -90,11 +87,11 @@ $(function() {
   } else {
     $('a[href="#battery"] > i').addClass('success')
   }
-
+  
   if ($('.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
-
+  
   if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
     $('a[href="#deadCmd"] > i').addClass('warning')
   }

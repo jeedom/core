@@ -23,7 +23,7 @@ $('#in_searchWidgets').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-
+  
   $('.widgetsDisplayCard').hide();
   $('.panel-collapse').attr('data-show',0);
   $('.widgetsDisplayCard .name').each(function(){
@@ -80,7 +80,7 @@ $(function(){
           if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
           if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
         }
-
+        
         //set context menu!
         var contextmenuitems = {}
         for (var group in widgetsList) {
@@ -94,7 +94,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -113,11 +113,6 @@ $(function(){
     })
   }
   catch(err) {}
-})
-
-
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
 })
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
@@ -391,7 +386,7 @@ $("#bt_mainImportWidgets").change(function(event) {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-
+  
   if (uploadedFile) {
     bootbox.prompt("Nom du widget ?", function (result) {
       if (result !== null) {
@@ -403,7 +398,7 @@ $("#bt_mainImportWidgets").change(function(event) {
           success: function (data) {
             var readFile = new FileReader()
             readFile.readAsText(uploadedFile)
-
+            
             readFile.onload = function(e) {
               objectData = JSON.parse(e.target.result)
               if (!isset(objectData.jeedomCoreVersion)) {
@@ -447,7 +442,7 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-
+    
     readFile.onload = function(e) {
       objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {

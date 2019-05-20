@@ -102,10 +102,6 @@ $(function(){
   initPickers()
 })
 
-$('.nav-tabs.nav-primary a').on('shown.bs.tab', function (e) {
-  window.location.hash = e.target.hash;
-})
-
 $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.configKey[data-l1key="network::disableMangement"]', 'change', function () {
   setTimeout(function(){
     if($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0){
