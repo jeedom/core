@@ -17,6 +17,7 @@
 var JS_ERROR = [];
 var __OBSERVER__ = null;
 var PREVIOUS_PAGE = null;
+var NO_POPSTAT = false;
 
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
@@ -65,25 +66,21 @@ function loadPage(_url,_noPushHistory){
   }
   try{
     $(".ui-dialog-content").dialog("close");
-  }catch(e){}
-  
-  if(_url.endsWith('#')){
-    _url = _url.slice(0, -1);
+  }catch(e){
+    
+  }
+  if (_url.indexOf('#') != -1) {
+    _url = _url.substring(0, _url.indexOf('#'));
   }
   if(!isset(_noPushHistory) || _noPushHistory == false) {
     try {
-      if (_url.indexOf('#') != -1) {
-        var hUrl = _url.substring(0, _url.indexOf('#'));
-      } else {
-        hUrl = _url;
-      }
       if(PREVIOUS_PAGE == null){
         window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
         PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
       }
-      if(PREVIOUS_PAGE == null || PREVIOUS_PAGE != hUrl){
-        window.history.pushState('','', hUrl)
-        PREVIOUS_PAGE = hUrl;
+      if(PREVIOUS_PAGE == null || PREVIOUS_PAGE != _url){
+        window.history.pushState('','', _url)
+        PREVIOUS_PAGE = _url;
       }
     } catch(e) {
       
@@ -151,10 +148,39 @@ $(function () {
     }
   });
   
+  if(window.location.hash != ''){
+    if($('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
+      $('.nav-tabs a[href="'+window.location.hash+'"]').click();
+    }
+  }
+  
+  $('body').on('shown.bs.tab','.nav-tabs a', function (e) {
+    if(PREVIOUS_PAGE == null){
+      window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
+      PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
+    }
+    NO_POPSTAT = true
+    window.location.hash = e.target.hash;
+    setTimeout(function(){
+      NO_POPSTAT = false;
+    },200)
+  })
+  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
+      if(NO_POPSTAT){
+        NO_POPSTAT = false;
+        return;
+      }
+      if(window.location.hash == ''){
+        return;
+      }
+      if($('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
+        $('.nav-tabs a[href="'+window.location.hash+'"]').click();
+      }
       return;
     }
+    console.log('history goto '+window.location.href.split("index.php?")[1])
     modifyWithoutSave = false;
     loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
   });
@@ -1103,7 +1129,11 @@ function addOrUpdateUrl(_param,_value,_title){
     search_params.set(_param, _value);
   }
   url.search = search_params.toString();
-  if(url.toString() != window.location.href){
+  url = url.toString();
+  if(url != window.location.href){
+    if (url.indexOf('#') != -1) {
+      url = url.substring(0, url.indexOf('#'));
+    }
     if(PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]){
       window.history.pushState('','', window.location.href);
     }
@@ -1111,7 +1141,7 @@ function addOrUpdateUrl(_param,_value,_title){
       document.title = _title;
     }
     window.history.pushState('','', url.toString());
-    PREVIOUS_PAGE = 'index.php?'+url.toString().split("index.php?")[1];
+    PREVIOUS_PAGE = 'index.php?'+url.split("index.php?")[1];
   }else{
     if(_title && _title != ''){
       document.title = _title;
