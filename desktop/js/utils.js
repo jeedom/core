@@ -148,7 +148,6 @@ $(function () {
   });
   
   window.addEventListener('popstate', function (event){
-    console.log(event);
     if(event.state === null){
       return;
     }
