@@ -206,9 +206,9 @@ $date = array(
 			if ($(window).width() > 768) {
 				width = 780
 				height = 500
-				$('.ui-dialog[aria-labelledby="ui-id-4"]').width(width).height(height)
+				$('.ui-dialog[aria-describedby="md_modal2"]').width(width).height(height)
 				$('#md_modal2').width(width-26).height(height-40)
-				$('.ui-dialog[aria-labelledby="ui-id-4"]').position({
+				$('.ui-dialog[aria-describedby="md_modal2"]').position({
 				   my: "center",
 				   at: "center",
 				   of: window
