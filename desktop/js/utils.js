@@ -65,25 +65,21 @@ function loadPage(_url,_noPushHistory){
   }
   try{
     $(".ui-dialog-content").dialog("close");
-  }catch(e){}
-  
-  if(_url.endsWith('#')){
-    _url = _url.slice(0, -1);
+  }catch(e){
+    
+  }
+  if (_url.indexOf('#') != -1) {
+    _url = _url.substring(0, _url.indexOf('#'));
   }
   if(!isset(_noPushHistory) || _noPushHistory == false) {
     try {
-      if (_url.indexOf('#') != -1) {
-        var hUrl = _url.substring(0, _url.indexOf('#'));
-      } else {
-        hUrl = _url;
-      }
       if(PREVIOUS_PAGE == null){
         window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
         PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
       }
-      if(PREVIOUS_PAGE == null || PREVIOUS_PAGE != hUrl){
-        window.history.pushState('','', hUrl)
-        PREVIOUS_PAGE = hUrl;
+      if(PREVIOUS_PAGE == null || PREVIOUS_PAGE != _url){
+        window.history.pushState('','', _url)
+        PREVIOUS_PAGE = _url;
       }
     } catch(e) {
       
@@ -1103,7 +1099,11 @@ function addOrUpdateUrl(_param,_value,_title){
     search_params.set(_param, _value);
   }
   url.search = search_params.toString();
-  if(url.toString() != window.location.href){
+  url = url.toString();
+  if(url != window.location.href){
+    if (url.indexOf('#') != -1) {
+      url = url.substring(0, url.indexOf('#'));
+    }
     if(PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]){
       window.history.pushState('','', window.location.href);
     }
@@ -1111,7 +1111,7 @@ function addOrUpdateUrl(_param,_value,_title){
       document.title = _title;
     }
     window.history.pushState('','', url.toString());
-    PREVIOUS_PAGE = 'index.php?'+url.toString().split("index.php?")[1];
+    PREVIOUS_PAGE = 'index.php?'+url.split("index.php?")[1];
   }else{
     if(_title && _title != ''){
       document.title = _title;
