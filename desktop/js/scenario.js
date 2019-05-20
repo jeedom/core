@@ -204,6 +204,7 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
+  addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
 });
 
 $('.scenarioDisplayCard').off('click').on('click', function () {
@@ -1044,9 +1045,7 @@ function printScenario(_id) {
     success: function (data) {
       pColor = 0;
       $('.scenarioAttr').value('');
-      if(data.name){
-        document.title = data.name +' - Jeedom';
-      }
+      
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
       $('.scenarioAttr[data-l1key=object_id]').val('');
       $('#div_pageContainer').setValues(data, '.scenarioAttr');
@@ -1120,7 +1119,11 @@ function printScenario(_id) {
       updateElementCollpase();
       updateElseToggle();
       taAutosize();
-      addOrUpdateUrl('id',data.id);
+      var title = '';
+      if(data.name){
+        title = data.name +' - Jeedom';
+      }
+      addOrUpdateUrl('id',data.id,title);
       setTimeout(function () {
         setEditor();
       }, 100);

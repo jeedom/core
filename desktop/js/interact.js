@@ -169,6 +169,7 @@ $('#bt_interactThumbnailDisplay').on('click', function () {
   $('#div_conf').hide();
   $('#interactThumbnailDisplay').show();
   $('.interactListContainer').packery();
+  addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME);
 });
 
 $('.interactDisplayCard').on('click', function () {

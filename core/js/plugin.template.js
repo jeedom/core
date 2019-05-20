@@ -108,6 +108,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   $('.eqLogicThumbnailDisplay').show();
   $('.li_eqLogic').removeClass('active');
   $('.eqLogicThumbnailContainer').packery();
+  addOrUpdateUrl('id',null,);
 });
 
 $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {

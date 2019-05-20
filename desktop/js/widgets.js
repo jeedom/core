@@ -232,6 +232,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('#div_conf').hide();
   $('#div_widgetsList').show();
   $('.widgetsListContainer').packery();
+  addOrUpdateUrl('id',null,'{{Widgets}} - '+JEEDOM_PRODUCT_NAME);
 });
 
 $('#bt_widgetsAddTest').off('click').on('click', function (event) {

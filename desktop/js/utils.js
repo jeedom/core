@@ -148,6 +148,7 @@ $(function () {
   });
   
   window.addEventListener('popstate', function (event){
+    console.log(event);
     if(event.state === null){
       return;
     }
@@ -1089,15 +1090,30 @@ function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
-function addOrUpdateUrl(_param,_value){
+function addOrUpdateUrl(_param,_value,_title){
   var url = new URL(window.location.href);
-  window.history.replaceState('','', url.toString());
   var query_string = url.search;
   var search_params = new URLSearchParams(query_string);
-  search_params.set(_param, _value);
+  if(_value == null){
+    search_params.delete(_param);
+  }else{
+    search_params.set(_param, _value);
+  }
   url.search = search_params.toString();
-  window.history.pushState('','', url.toString());
-  PREVIOUS_PAGE = 'index.php?'+url.toString().split("index.php?")[1];
+  if(url.toString() != window.location.href){
+    if(PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]){
+      window.history.pushState('','', window.location.href);
+    }
+    if(_title && _title != ''){
+      document.title = _title;
+    }
+    window.history.pushState('','', url.toString());
+    PREVIOUS_PAGE = 'index.php?'+url.toString().split("index.php?")[1];
+  }else{
+    if(_title && _title != ''){
+      document.title = _title;
+    }
+  }
 }
 
 function saveWidgetDisplay(_params) {

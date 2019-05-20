@@ -326,9 +326,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       $('#div_confPlugin').show();
       modifyWithoutSave = false;
-      
-      __pluginPageTitle = document.title
-      document.title = data.name + ' - ' + JEEDOM_PRODUCT_NAME
+      addOrUpdateUrl('id',$('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME);
     }
   });
   return false;
@@ -382,7 +380,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   $('#div_resumePluginList').show();
   $('#div_confPlugin').hide();
   $('.pluginListContainer').packery();
-  document.title = __pluginPageTitle
+  addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME);
 });
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
