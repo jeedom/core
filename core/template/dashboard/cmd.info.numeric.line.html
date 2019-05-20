@@ -1,4 +1,4 @@
-<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="display: block;">
+<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="display:block;">
 	<div class="content-xs">
 		<span class="cmdName #hide_name#">#name_display# </span> <strong class="state"></strong> #unite#
 	</div>
@@ -7,11 +7,11 @@
 			$('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
 			if(_options.alertLevel){
-				$('.cmd[data-cmd_id=#id#]').removeClass('label label-warning label-danger')
+				$('.cmd[data-cmd_id=#id#] .content-xs').removeClass('label label-warning label-danger')
 				if(_options.alertLevel == 'warning'){
-					$('.cmd[data-cmd_id=#id#]').addClass('label label-warning');
+					$('.cmd[data-cmd_id=#id#] .content-xs').addClass('label label-warning');
 				}else if(_options.alertLevel == 'danger'){
-					$('.cmd[data-cmd_id=#id#]').addClass('label label-danger');
+					$('.cmd[data-cmd_id=#id#] .content-xs').addClass('label label-danger');
 				}
 			}
 		}
