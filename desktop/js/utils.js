@@ -77,6 +77,10 @@ function loadPage(_url,_noPushHistory){
       } else {
         hUrl = _url;
       }
+      if(PREVIOUS_PAGE == null){
+        window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
+        PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
+      }
       if(PREVIOUS_PAGE == null || PREVIOUS_PAGE != hUrl){
         window.history.pushState('','', hUrl)
         PREVIOUS_PAGE = hUrl;
