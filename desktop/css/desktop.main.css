@@ -1855,6 +1855,8 @@ hr {
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
+  min-height: 62px;
+  overflow: auto !important;
 }
 .element input.expressionAttr {
   font-weight: bold;
@@ -3101,16 +3103,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3118,11 +3120,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3168,5 +3170,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
