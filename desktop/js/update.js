@@ -375,7 +375,33 @@ $('#pre_updateInfo_clean').show()
 var prevUpdateText = ''
 var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
 var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
-$('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
+
+var _UpdateObserver_ = null
+$(function () {
+  createUpdateObserver()
+})
+
+function createUpdateObserver() {
+  var _UpdateObserver_ = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if ( mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
+        cleanUpdateLog()
+      }
+    })
+  })
+
+  var observerConfig = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+  }
+
+  var targetNode = document.getElementById('pre_updateInfo')
+  _UpdateObserver_.observe(targetNode, observerConfig)
+}
+
+function cleanUpdateLog() {
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
@@ -433,12 +459,15 @@ $('#pre_updateInfo').bind("DOMSubtreeModified",function(event) {
       $('#pre_updateInfo_clean').value(newLogText)
       $(document).scrollTop($(document).height())
       prevUpdateText = currentUpdateText
-      if (progress == 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+      if (progress == 100) {
+        if (_UpdateObserver_) _UpdateObserver_.disconnect()
+        $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+      }
     }
   }
   clearTimeout(alertTimeout);
   alertTimeout = setTimeout(alertTimeout,60000*10);
-})
+}
 
 
 function alertTimeout(){
