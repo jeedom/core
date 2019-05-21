@@ -32,6 +32,7 @@ Changelog
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Lors d'une recherche, la touche *echap* annule la recherche.<br/><br/>
+- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
 - Améliorations des tables avec option de filtre et tri.
 - Possibilité d'attribuer une icône à une interaction.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
