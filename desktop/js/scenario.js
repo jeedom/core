@@ -856,14 +856,18 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
-        console.log(ui.item.wrapAll("<div/>"));
-        var el = ui.item.wrapAll('<div/>');
-        el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
-          $(this).attr('data-tmp-value',$(this).value());
+        ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
+          var value = $(this).value();
+          if(value != undefined && value != ''){
+            $(this).attr('data-tmp-value',value);
+          }
         })
-        el = $(addExpression({type: 'element', element: {html: el.parent().html()}}));
+        el = $(addExpression({type: 'element', element: {html: ui.item.clone().wrapAll("<div/>").parent().html()}}));
         el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
-          $(this).value($(this).attr('data-tmp-value'));
+          var value = $(this).attr('data-tmp-value');
+          if(value != undefined && value != ''){
+            $(this).value(value);
+          }
         })
         ui.item.replaceWith(el);
       }
