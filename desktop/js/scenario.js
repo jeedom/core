@@ -856,7 +856,16 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
-        ui.item.replaceWith(addExpression({type: 'element', element: {html: ui.item.clone().wrapAll("<div/>").parent().html()}}));
+        console.log(ui.item.wrapAll("<div/>"));
+        var el = ui.item.wrapAll('<div/>');
+        el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
+          $(this).attr('data-tmp-value',$(this).value());
+        })
+        el = $(addExpression({type: 'element', element: {html: el.parent().html()}}));
+        el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
+          $(this).value($(this).attr('data-tmp-value'));
+        })
+        ui.item.replaceWith(el);
       }
       if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
         $("#div_scenarioElement").sortable("cancel");
