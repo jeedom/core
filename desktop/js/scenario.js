@@ -852,7 +852,9 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
     forceHelperSize: true,
     placeholder: "sortable-placeholder",
     update: function (event, ui) {
-      $(ui.sender).sortable('cancel');
+      if(ui.item.closest('.subElement').hasClass('subElementCOMMENT')){
+        $("#div_scenarioElement").sortable('cancel');
+      }
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
