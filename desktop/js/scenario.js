@@ -868,6 +868,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
           if(value != undefined && value != ''){
             $(this).value(value);
           }
+          $(this).removeAttr('data-tmp-value');
         })
         ui.item.replaceWith(el);
       }
