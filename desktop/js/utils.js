@@ -177,7 +177,7 @@ $(function () {
       if(NO_POPSTAT || window.location.hash == ''){
         NO_POPSTAT = false;
       }
-      if(PREVIOUS_PAGE.includes('#') && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
+      if(PREVIOUS_PAGE && PREVIOUS_PAGE.includes('#') && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
         if (modifyWithoutSave) {
           if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
             return;
