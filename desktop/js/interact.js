@@ -191,6 +191,10 @@ $('.interactDisplayCard').on('click',function(){
   }
 });
 
+$('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr:visible', function () {
+  modifyWithoutSave = true;
+});
+
 $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){
     $('.interactListContainer').packery();

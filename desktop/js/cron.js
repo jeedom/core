@@ -108,7 +108,7 @@ $('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function () 
   }
 });
 
-$('#div_pageContainer').delegate('.cronAttr', 'change', function () {
+$('#div_pageContainer').off('change','.cronAttr').on('change','.cronAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 

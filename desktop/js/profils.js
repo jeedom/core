@@ -100,7 +100,7 @@ jeedom.user.get({
   }
 });
 
-$('#div_pageContainer').delegate('.userAttr', 'change', function () {
+$('#div_pageContainer').off('change','.userAttr').on('change','.userAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 

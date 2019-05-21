@@ -236,11 +236,11 @@ $('#div_viewZones').delegate('.bt_removeViewData', 'click', function() {
 });
 
 
-$('#div_pageContainer').delegate('.viewZoneAttr', 'change', function() {
+$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewZoneAttr:visible', function() {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').delegate('.viewDataAttr', 'change', function() {
+$('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewDataAttr:visible', function() {
   modifyWithoutSave = true;
 });
 

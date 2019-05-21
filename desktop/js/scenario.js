@@ -914,19 +914,19 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 /**************** Initialisation **********************/
 
-$('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr',  function () {
+$('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr',  function () {
+$('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr',  function () {
+$('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr', function () {
+$('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
 });
 

@@ -319,7 +319,7 @@ if (is_numeric(getUrlVars('id'))) {
   }
 }
 
-$('#div_pageContainer').delegate('.objectAttr', 'change', function () {
+$('#div_pageContainer').off('change','.objectAttr').on('change','.objectAttr:visible', function () {
   modifyWithoutSave = true;
 });
 
