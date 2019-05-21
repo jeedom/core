@@ -69,9 +69,6 @@ function loadPage(_url,_noPushHistory){
   }catch(e){
     
   }
-  if (_url.indexOf('#') != -1) {
-    _url = _url.substring(0, _url.indexOf('#'));
-  }
   if(!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if(PREVIOUS_PAGE == null){
@@ -145,11 +142,11 @@ $(function () {
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]);
+      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash);
     }
     if (getUrlVars('removeSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
-      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]);
+      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash);
     }
   });
   
