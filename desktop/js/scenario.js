@@ -852,6 +852,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
     forceHelperSize: true,
     placeholder: "sortable-placeholder",
     update: function (event, ui) {
+      $(ui.sender).sortable('cancel');
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
@@ -862,7 +863,7 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
             $(this).attr('data-tmp-value',value);
           }
         })
-        el = $(addExpression({type: 'element', element: {html: ui.item.clone().wrapAll("<div/>").parent().html()}}));
+        el = $(addExpression({type: 'element', element: {html: ui.item.wrapAll("<div/>").parent().html()}}));
         el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
           var value = $(this).attr('data-tmp-value');
           if(value != undefined && value != ''){
