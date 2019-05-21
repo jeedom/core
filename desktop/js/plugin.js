@@ -377,6 +377,16 @@ if (sel_plugin_id != -1) {
 }
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return;
+    }
+    modifyWithoutSave = false;
+  }
   $('#div_resumePluginList').show();
   $('#div_confPlugin').hide();
   $('.pluginListContainer').packery();
@@ -403,7 +413,7 @@ $('#div_pageContainer').delegate('.sendPluginTo', 'click', function () {
   $('#md_modal2').load('index.php?v=d&modal=update.send&type=plugin&logicalId=' + $(this).attr('data-logicalId')+'&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
-$('#div_pageContainer').delegate('.configKey', 'change', function () {
+$('#div_pageContainer').off( 'change', '.configKey').on( 'change','.configKey:visible',function () {
   modifyWithoutSave = true;
 });
 

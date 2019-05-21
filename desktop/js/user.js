@@ -120,11 +120,11 @@ $("#table_user").on( 'click',".bt_changeHash", function (event) {
   });
 });
 
-$('#div_pageContainer').on('change','.userAttr',  function () {
+$('#div_pageContainer').off('change','.userAttr').on('change','.userAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').on('change','.configKey',  function () {
+$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function () {
   modifyWithoutSave = true;
 });
 
@@ -223,7 +223,7 @@ $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function ()
       printUsers();
     }
   });
-
+  
 });
 
 $('.bt_deleteSession').on('click',function(){

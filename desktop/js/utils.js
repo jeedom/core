@@ -69,9 +69,6 @@ function loadPage(_url,_noPushHistory){
   }catch(e){
     
   }
-  if (_url.indexOf('#') != -1) {
-    _url = _url.substring(0, _url.indexOf('#'));
-  }
   if(!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if(PREVIOUS_PAGE == null){
@@ -124,6 +121,9 @@ function loadPage(_url,_noPushHistory){
     if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
       $('.nav-tabs a[href="'+window.location.hash+'"]').click();
     }
+    setTimeout(function(){
+      modifyWithoutSave = false;
+    },500)
     if(__OBSERVER__) __OBSERVER__.connect();
   });
   return;
@@ -142,11 +142,11 @@ $(function () {
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]);
+      window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash);
     }
     if (getUrlVars('removeSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
-      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]);
+      window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash);
     }
   });
   
@@ -162,12 +162,15 @@ $(function () {
       window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
       PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
     }
-    NO_POPSTAT = true
     window.location.hash = e.target.hash;
+  })
+  
+  window.addEventListener('hashchange', function (event){
+    NO_POPSTAT = true
     setTimeout(function(){
       NO_POPSTAT = false;
     },200)
-  })
+  });
   
   window.addEventListener('popstate', function (event){
     if(event.state === null){
@@ -175,7 +178,12 @@ $(function () {
         NO_POPSTAT = false;
       }
       if(PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
-        modifyWithoutSave = false;
+        if (modifyWithoutSave) {
+          if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+            return;
+          }
+          modifyWithoutSave = false;
+        }
         loadPage('index.php?'+window.location.href.split("index.php?")[1],true);
         PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
         return;
@@ -188,7 +196,12 @@ $(function () {
       }
       return;
     }
-    modifyWithoutSave = false;
+    if (modifyWithoutSave) {
+      if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+        return;
+      }
+      modifyWithoutSave = false;
+    }
     loadPage('index.php?'+window.location.href.split("index.php?")[1],true);
     PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
   });

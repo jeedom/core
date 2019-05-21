@@ -91,6 +91,16 @@ setTimeout(function(){
 },100);
 
 $('#bt_returnToThumbnailDisplay').on('click',function(){
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return;
+    }
+    modifyWithoutSave = false;
+  }
   $('#div_conf').hide();
   $('#div_resumeObjectList').show();
   $('.objectListContainer').packery();
@@ -319,7 +329,7 @@ if (is_numeric(getUrlVars('id'))) {
   }
 }
 
-$('#div_pageContainer').delegate('.objectAttr', 'change', function () {
+$('#div_pageContainer').off('change','.objectAttr').on('change','.objectAttr:visible', function () {
   modifyWithoutSave = true;
 });
 

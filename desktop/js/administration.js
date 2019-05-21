@@ -481,7 +481,7 @@ jeedom.config.load({
   }
 });
 
-$('#div_pageContainer').delegate('.configKey', 'change', function () {
+$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function () {
   modifyWithoutSave = true;
 });
 

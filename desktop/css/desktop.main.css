@@ -243,13 +243,18 @@ legend {
   font-size: 17px;
   color: var(--link-color);
   text-align: center;
-  border-left: 2.5px solid var(--logo-primary-color);
   margin: 12px 5px !important;
   padding: 5px 0 5px 5px !important;
   line-height: 1em !important;
 }
 :not(.div_object) > legend > i {
   padding-right: 3px
+}
+[data-page="administration"] legend:not(.no-bordered),
+[data-page="backup"] legend:not(.no-bordered),
+[data-page="user"] legend:not(.no-bordered),
+[data-page="profils"] legend:not(.no-bordered) {
+  border-left: 2.5px solid var(--logo-primary-color);
 }
 
 
@@ -1855,6 +1860,8 @@ hr {
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
+  min-height: 62px;
+  overflow: auto !important;
 }
 .element input.expressionAttr {
   font-weight: bold;
@@ -3101,16 +3108,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3118,11 +3125,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3168,5 +3175,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }

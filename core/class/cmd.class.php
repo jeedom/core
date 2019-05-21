@@ -936,6 +936,12 @@ class cmd {
 			$this->setGeneric_type($this->getDisplay('generic_type'));
 			$this->setDisplay('generic_type', '');
 		}
+		if($this->getTemplate('dashboard','') == ''){
+			$this->setTemplate('dashboard','default');
+		}
+		if($this->getTemplate('mobile','') == ''){
+			$this->setTemplate('mobile','default');
+		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
