@@ -243,13 +243,18 @@ legend {
   font-size: 17px;
   color: var(--link-color);
   text-align: center;
-  border-left: 2.5px solid var(--logo-primary-color);
   margin: 12px 5px !important;
   padding: 5px 0 5px 5px !important;
   line-height: 1em !important;
 }
 :not(.div_object) > legend > i {
   padding-right: 3px
+}
+[data-page="administration"] legend:not(.no-bordered),
+[data-page="backup"] legend:not(.no-bordered),
+[data-page="user"] legend:not(.no-bordered),
+[data-page="profils"] legend:not(.no-bordered) {
+  border-left: 2.5px solid var(--logo-primary-color);
 }
 
 
