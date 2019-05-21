@@ -228,7 +228,21 @@ $('.accordion-toggle').off('click').on('click', function () {
   },100);
 });
 
+$('#div_pageContainer').off('change','.widgetsAttr').on('change','.widgetsAttr:visible', function () {
+  modifyWithoutSave = true;
+});
+
 $('#bt_returnToThumbnailDisplay').on('click',function(){
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return;
+    }
+    modifyWithoutSave = false;
+  }
   $('#div_conf').hide();
   $('#div_widgetsList').show();
   $('.widgetsListContainer').packery();

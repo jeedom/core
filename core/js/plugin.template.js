@@ -104,6 +104,10 @@ $('.eqLogicAction[data-action=gotoPluginConf]').on('click', function () {
 });
 
 $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off('click').on('click', function (event) {
+  setTimeout(function(){
+    $('.nav li.active').removeClass('active');
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  },500);
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       return;
@@ -112,7 +116,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   }
   $('.eqLogic').hide();
   $('.eqLogicThumbnailDisplay').show();
-  $('.li_eqLogic').removeClass('active');
+  $(this).closest('ul').find('li').removeClass('active');
   $('.eqLogicThumbnailContainer').packery();
   addOrUpdateUrl('id',null,);
 });
