@@ -180,8 +180,8 @@ $(function () {
       }
       if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
         $('.nav-tabs a[href="'+window.location.hash+'"]').click();
-      }
-      if(PREVIOUS_PAGE != null){
+        
+      }else if(PREVIOUS_PAGE != null){
         if (modifyWithoutSave) {
           if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
             return;
