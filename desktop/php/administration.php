@@ -541,7 +541,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}</label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
-									<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+									<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="ldap:password" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -829,13 +829,13 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
 								<div class="col-xs-4">
-									<input class="configKey form-control" type="text" data-l1key="proxyLogins" autocomplete="new-password">
+									<input class="configKey form-control" type="text" data-l1key="proxyLogins" >
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-4 control-label">{{Mot de passe}}</label>
 								<div class="col-xs-4">
-									<input class="configKey form-control" type="password" data-l1key="proxyPassword" autocomplete="new-password">
+									<input class="configKey form-control" type="password" autocomplete="new-password" data-l1key="proxyPassword" >
 								</div>
 							</div>
 						</fieldset>
@@ -1814,7 +1814,7 @@ user::isBan();
 											echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'password':
-											echo '<input type="password" autocomplete="new-password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											echo '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'select':
 											echo '<div class="dropdown dropup dynDropdown">';

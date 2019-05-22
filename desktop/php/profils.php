@@ -304,13 +304,13 @@ if (!isConnect()) {
 									<div class="form-group">
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-											<input type="password" class="userAttr form-control" data-l1key="password" />
+											<input type="password" autocomplete="new-password" class="userAttr form-control" data-l1key="password" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
 										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-											<input type="password" class="form-control" id="in_passwordCheck" />
+											<input type="password" autocomplete="new-password" class="form-control" id="in_passwordCheck" />
 										</div>
 									</div>
 								<?php }

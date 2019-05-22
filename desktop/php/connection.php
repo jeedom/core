@@ -21,7 +21,7 @@
             <label>{{Nom d'utilisateur}}</label>
           </div>
           <div class="passwd">
-            <input type="password" id="in_login_password">
+            <input type="password" autocomplete="new-password" id="in_login_password">
             <label>{{Mot de passe}}</label>
           </div>
           <div class="passwd" id="div_twoFactorCode" style="display:none;">
@@ -48,7 +48,7 @@
             <label>{{Nom d'utilisateur}}</label>
           </div>
           <div class="passwd">
-            <input type="password" id="in_login_password_market">
+            <input type="password" autocomplete="new-password" id="in_login_password_market">
             <label>{{Mot de passe}}</label>
           </div>
           <div class="submit">
@@ -62,11 +62,11 @@
         <div id="register" tabindex="500" class="form-group">
           <h3>CHANGER VOTRE MOT DE PASSE</h3>
           <div class="passwd">
-            <input type="password" id="in_change_password">
+            <input type="password" autocomplete="new-password" id="in_change_password">
             <label>Mot de passe</label>
           </div>
           <div class="passwd">
-            <input type="password" id="in_change_passwordToo">
+            <input type="password" autocomplete="new-password" id="in_change_passwordToo">
             <label>Mot de passe</label>
           </div>
           <div class="submit">
