@@ -681,7 +681,10 @@ function draggableStartFix(event, ui) {
   	clientWidth = $(ui.helper[0]).width()
   	clientHeight = $(ui.helper[0]).height()
   
-  	minLeft = 0
+  	marginLeft = $(ui.helper[0]).css('margin-left')
+  	marginLeft = parseFloat(marginLeft.replace('px', ''))
+  
+  	minLeft = 0 - marginLeft
   	minTop = 0
 
   	maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
