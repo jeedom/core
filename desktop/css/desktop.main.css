@@ -838,9 +838,13 @@ pre {
 }
 .alert-danger,
 .label-danger {
-  color: var(--sc-lightTxt-color);
+  color: var(--sc-lightTxt-color) !important;
   background-color: var(--al-danger-color);
   border: none;
+}
+
+.label-danger .state {
+  color: var(--sc-lightTxt-color) !important;
 }
 
 .logoPrimary {
@@ -3108,16 +3112,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3125,11 +3129,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3175,5 +3179,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
