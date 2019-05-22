@@ -275,7 +275,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-  
+
 }
 
 /**************TIMELINE********************/
@@ -324,6 +324,7 @@ function displayTimeline(){
         tr += '</tr>';
       }
       $('#table_timeline tbody').empty().append(tr).trigger('update');
+      $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
     }
   });
 }

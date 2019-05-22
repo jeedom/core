@@ -148,6 +148,10 @@ function displayFile(_path){
 }
 
 $('#bt_saveFile').on('click',function(){
+  if (!fileEditor){
+    $('#div_alert').showAlert({message: '{{Aucun fichier ouvert.}}', level: 'warning'});
+    return
+  }
   jeedom.setFileContent({
     path : $(this).attr('data-path'),
     content :fileEditor.getValue(),
@@ -161,8 +165,12 @@ $('#bt_saveFile').on('click',function(){
 })
 
 $('#bt_deleteFile').on('click',function(){
+  if (!fileEditor){
+    $('#div_alert').showAlert({message: '{{Aucun fichier ouvert.}}', level: 'warning'});
+    return
+  }
   $('#span_editorFileName').empty();
-  var path=$(this).attr('data-path');
+  var path = $(this).attr('data-path');
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function (result) {
     if (result) {
       jeedom.deleteFile({

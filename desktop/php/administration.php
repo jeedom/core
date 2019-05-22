@@ -322,7 +322,7 @@ user::isBan();
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['api']; ?>" />
+								<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['api']; ?>" />
 								<span class="input-group-btn">
 									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="core"><i class="fas fa-sync"></i></a>
 								</span>
@@ -336,7 +336,7 @@ user::isBan();
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apipro']; ?>" />
+								<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apipro']; ?>" />
 								<span class="input-group-btn">
 									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-sync"></i></a>
 								</span>
@@ -361,7 +361,7 @@ user::isBan();
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 							<div class="input-group">
-								<input class="span_apikey roundedLeft form-control" disabled value="<?php echo $configs['apimarket']; ?>" />
+								<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apimarket']; ?>" />
 								<span class="input-group-btn">
 									<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
 								</span>
@@ -393,7 +393,7 @@ user::isBan();
 							echo '</label>';
 							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
 							echo '<div class="input-group">';
-							echo '<input class="span_apikey roundedLeft form-control" disabled value="' . config::byKey('api', $plugin->getId()) . '" />';
+							echo '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
 							echo '<span class="input-group-btn">';
 							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 							echo '</span>';
@@ -541,7 +541,7 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Mot de passe}}</label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
-									<input type="password"  class="configKey form-control" data-l1key="ldap:password" />
+									<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="ldap:password" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -829,13 +829,13 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
 								<div class="col-xs-4">
-									<input class="configKey form-control" type="text" data-l1key="proxyLogins" autocomplete="new-password">
+									<input class="configKey form-control" type="text" data-l1key="proxyLogins" >
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-xs-4 control-label">{{Mot de passe}}</label>
 								<div class="col-xs-4">
-									<input class="configKey form-control" type="password" data-l1key="proxyPassword" autocomplete="new-password">
+									<input class="configKey form-control" type="password" autocomplete="new-password" data-l1key="proxyPassword" >
 								</div>
 							</div>
 						</fieldset>
@@ -1814,7 +1814,7 @@ user::isBan();
 											echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'password':
-											echo '<input type="password" autocomplete="new-password" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											echo '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'select':
 											echo '<div class="dropdown dropup dynDropdown">';

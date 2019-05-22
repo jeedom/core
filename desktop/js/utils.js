@@ -174,10 +174,13 @@ $(function () {
   
   window.addEventListener('popstate', function (event){
     if(event.state === null){
-      if(NO_POPSTAT || window.location.hash == ''){
+      if(NO_POPSTAT){
         NO_POPSTAT = false;
+        return;
       }
-      if(PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
+      if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0){
+        $('.nav-tabs a[href="'+window.location.hash+'"]').click();
+      }else if(PREVIOUS_PAGE !== null && PREVIOUS_PAGE.includes('#') && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
         if (modifyWithoutSave) {
           if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
             return;
@@ -186,13 +189,6 @@ $(function () {
         }
         loadPage('index.php?'+window.location.href.split("index.php?")[1],true);
         PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
-        return;
-      }
-      if(window.location.hash == ''){
-        return;
-      }
-      if($('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
-        $('.nav-tabs a[href="'+window.location.hash+'"]').click();
       }
       return;
     }

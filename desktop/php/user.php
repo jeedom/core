@@ -133,7 +133,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 				<div style="display: none;" id="div_newUserAlert"></div>
 				<center>
 					<input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Identifiant}}"/><br/><br/>
-					<input class="form-control" type="password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
+					<input class="form-control" type="password" autocomplete="new-password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
 				</center>
 			</div>
 			<div class="modal-footer">

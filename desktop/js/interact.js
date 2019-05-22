@@ -28,7 +28,7 @@ $('#in_searchInteract').keyup(function () {
     return;
   }
   search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  
+
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide();
   $('.panel-collapse').attr('data-show',0);
@@ -127,7 +127,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object){
           $('.nav.nav-tabs').contextMenu({
             selector: 'li',
@@ -275,10 +275,10 @@ $("#bt_saveInteract").on('click', function () {
   $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
     interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0';
   });
-  
+
   interact.actions = {};
   interact.actions.cmd = $('#div_action .action').getValues('.expressionAttr');
-  
+
   jeedom.interact.save({
     interact: interact,
     error: function (error) {
@@ -317,6 +317,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
+          modifyWithoutSave = false;
           loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1');
         }
       });
@@ -334,6 +335,7 @@ $("#bt_removeInteract").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
+          modifyWithoutSave = false;
           loadPage('index.php?v=d&p=interact&removeSuccessFull=1');
         }
       });
@@ -466,6 +468,7 @@ function displayInteract(_id){
           taAutosize();
         }
       });
+      modifyWithoutSave = false;
     }
   });
 }

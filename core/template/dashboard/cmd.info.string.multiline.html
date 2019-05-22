@@ -1,0 +1,23 @@
+<div class="tooltips cmd cmd-widget #history#" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="display: block;max-height:50px;overflow:auto;">
+	<div class="content-xs">
+		<span class="cmdName #hide_name#">#name_display# </span><strong class="state" ></strong>
+	</div>
+	<script>
+		jeedom.cmd.update['#id#'] = function(_options){
+			$('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
+			if(_options.alertLevel){
+				$('.cmd[data-cmd_id=#id#]').removeClass('label label-warning label-danger');
+				if(_options.alertLevel == 'warning'){
+					$('.cmd[data-cmd_id=#id#]').addClass('label label-warning');
+				}else if(_options.alertLevel == 'danger'){
+					$('.cmd[data-cmd_id=#id#]').addClass('label label-danger');
+				}
+			}
+		}
+		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+		if(!isNaN(parseInt('#maxHeight#'))){
+			$('.cmd[data-cmd_id=#id#]').css('max-height',parseInt('#maxHeight#')+'px');
+		}
+	</script>
+</div>

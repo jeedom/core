@@ -54,7 +54,7 @@ sendVarToJS('id', $plan->getId());
 				<sup><i class="fas fa-question-circle tooltips" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
 			</label>
 			<div class="col-lg-2">
-				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2"/>
+				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1"/>
 			</div>
 			<div class="alert alert-danger col-lg-5">
 				{{Attention : cette option crée des problèmes de placement sur les bords du design.}}
