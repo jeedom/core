@@ -180,7 +180,7 @@ $(function () {
       }
       if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0){
         $('.nav-tabs a[href="'+window.location.hash+'"]').click();
-      }else{
+      }else if(PREVIOUS_PAGE !== null && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]){
         if (modifyWithoutSave) {
           if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
             return;
