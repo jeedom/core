@@ -37,13 +37,13 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').packery();
     return;
   }
-  
+
   search = normText(search)
   $('.eqLogic-widget').each(function(){
     var match = false;
     text = normText($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
+
     if ($(this).attr('data-tags') != undefined) {
       text = normText($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -60,7 +60,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       text = normText($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-    
+
     if(match) {
       $(this).show()
     } else {
@@ -135,7 +135,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-    
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -198,7 +198,7 @@ function getObjectHtml(_object_id){
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-        
+
         var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
         var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
         if (isset(packData) && packData.items.length == 1) {
@@ -235,6 +235,7 @@ function getObjectHtml(_object_id){
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
   if($(this).attr('data-mode') == 1){
+  	$('.tooltipstered').tooltipster('enable')
     $.hideAlert();
     $(this).attr('data-mode',0);
     editWidgetMode(0);
@@ -243,6 +244,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     $('.counterReorderJeedom').remove();
     $('.div_displayEquipement').packery();
   }else{
+  	$('.tooltipstered').tooltipster('disable')
     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
     $(this).attr('data-mode',1);
     $('.bt_editDashboardWidgetAutoResize').show();
