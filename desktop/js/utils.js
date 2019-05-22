@@ -178,7 +178,7 @@ $(function () {
         NO_POPSTAT = false;
         return;
       }
-      if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
+      if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0){
         $('.nav-tabs a[href="'+window.location.hash+'"]').click();
         
       }else if(PREVIOUS_PAGE != null){
