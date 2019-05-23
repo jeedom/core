@@ -1040,6 +1040,11 @@ button.dropdown-toggle {
   font-size: 14px;
   min-width: 50px;
 }
+button[disabled],
+button[disabled]:hover {
+  opacity: 0.4 !important;
+}
+
 .dropdown-menu {
   font-size: 14px;
 }
@@ -1832,11 +1837,15 @@ hr {
   color:  var(--linkHoverLight-color) !important;
   background-color: var(--sc-formTxt-color) !important;
 }
-.element button.dropdown-toggle > .caret {
-  color:  var(--linkHoverLight-color) !important;
-  right: 3px;
-  top: 9px !important;
+.subElementFields button.dropdown-toggle .caret {
+  right: 5px;
+  top: 8px !important;
+  border-top-color: var(--linkHoverLight-color) !important;
 }
+.subElementFields ul.dropdown-menu {
+  border-bottom: none !important;
+}
+
 .element .dropdown-submenu.open > a,
 .element .dropdown-menu > li > a:focus,
 .element .dropdown-menu > li > a:hover {
@@ -2900,7 +2909,7 @@ input:invalid {
 
 .tooltipster-sidetip .tooltipster-content {
   color: var(--linkHoverLight-color);
-  padding: 6px 8px;
+  padding: 2px 8px 4px 8px;
 }
 
 /* __________________________________________________________________________________________________________CodeMirror */

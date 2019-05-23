@@ -463,7 +463,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
 
   //is scenario empty:
   var elementDiv = $(this).closest('.element')
-  if(elementDiv.html() == undefined){
+  if($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {

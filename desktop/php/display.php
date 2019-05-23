@@ -22,6 +22,7 @@ foreach ($objects as $object) {
 	}
 	$nbEqlogic += count($eqLogics[$object->getId()]);
 }
+sendVarToJs('_nbCmd_', $nbCmd);
 
 if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
 	$remove_history = json_decode(file_get_contents(__DIR__ . '/../../data/remove_history.json'), true);

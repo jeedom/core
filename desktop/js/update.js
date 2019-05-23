@@ -450,10 +450,22 @@ function cleanUpdateLog() {
     if (lines[i+1].startsWith('[PROGRESS]')) {
       var offset = 2
     }
-    if (replaceLogLines.includes(lines[i+offset])) {
+    nextLine = lines[i+offset]
+    var letters = /^[0-9a-zA-Z]+$/
+    if(!nextLine.replace('OK', '').match(letters)) {
+      matches = nextLine.match(/[.]{2,}/g)
+      if (matches) {
+        matches.forEach(function(match) {
+          nextLine = nextLine.replace(match, '')
+        })
+      }
+    }
+    nextLine = nextLine.trim()
+    if (replaceLogLines.includes(nextLine)) {
       line += ' | OK'
       lines[i+offset] = ''
     }
+
     if (line != '') {
       newLogText += line + '\n'
       $('#pre_updateInfo_clean').value(newLogText)
