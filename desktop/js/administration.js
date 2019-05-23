@@ -84,10 +84,6 @@ $('#bt_resetConfigSearch').on('click', function () {
 })
 
 $(function () {
-  if ($('input[data-l1key="theme_changeAccordingTime"]').prop('checked')) {
-    $('button[data-l1key="default_bootstrap_theme_night"]').prop('disabled', false)
-    $('button[data-l1key="mobile_theme_color_night"]').prop('disabled', false)
-  }
   setTimeout(function(){
     modifyWithoutSave = false;
   }, 1000);
@@ -104,16 +100,6 @@ function initPickers() {
 }
 $(function(){
   initPickers()
-})
-
-$('input[data-l1key="theme_changeAccordingTime"]').on('click', function (event) {
-  if ($(this).prop('checked')) {
-    $('button[data-l1key="default_bootstrap_theme_night"]').prop('disabled', false)
-    $('button[data-l1key="mobile_theme_color_night"]').prop('disabled', false)
-  } else {
-    $('button[data-l1key="default_bootstrap_theme_night"]').prop('disabled', true)
-    $('button[data-l1key="mobile_theme_color_night"]').prop('disabled', true)
-  }
 })
 
 $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.configKey[data-l1key="network::disableMangement"]', 'change', function () {
