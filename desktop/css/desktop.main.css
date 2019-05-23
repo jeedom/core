@@ -1040,6 +1040,11 @@ button.dropdown-toggle {
   font-size: 14px;
   min-width: 50px;
 }
+button[disabled],
+button[disabled]:hover {
+  opacity: 0.4 !important;
+}
+
 .dropdown-menu {
   font-size: 14px;
 }
