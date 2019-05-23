@@ -869,7 +869,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
+								<button disabled class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="default_bootstrap_theme_night">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -905,7 +905,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile alternatif}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<div class="dropdown dynDropdown">
-								<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
+								<button disabled class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="mobile_theme_color_night">
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-right">
@@ -931,7 +931,9 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}</label>
+						<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}
+							<sup><i class="fas fa-question-circle tooltips" title="{{Activer pour basculer automatiquement en thème alternatif aux heures choisies.}}"></i></sup>
+						</label>
 						<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime"/>
 						</div>
@@ -949,7 +951,7 @@ user::isBan();
 					<legend>{{Tuiles}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
-							<sup><i class="fas fa-question-circle tooltips" title="Contraint la largeur des tuiles tous les x pixels"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" class="configKey form-control" data-l1key="widget::step::width" />
@@ -957,7 +959,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
-							<sup><i class="fas fa-question-circle tooltips" title="Contraint la hauteur des tuiles tous les x pixels"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" class="configKey form-control" data-l1key="widget::step::height" />
@@ -965,7 +967,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Marge}}
-							<sup><i class="fas fa-question-circle tooltips" title="Espace vertical et horizontal entre les tuiles, en pixel"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="number" class="configKey form-control" data-l1key="widget::margin" />
@@ -991,7 +993,7 @@ user::isBan();
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
-							<sup><i class="fas fa-question-circle tooltips" title="Permet de modifier les paramètres par défaut des thèmes"></i></sup>
+							<sup><i class="fas fa-question-circle tooltips" title="{{Permet de modifier les paramètres par défaut des thèmes}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable" />
@@ -1319,7 +1321,7 @@ user::isBan();
 							<div class="input-group">
 								<input type="text"  class="configKey form-control roundedLeft" data-l1key="interact::warnme::defaultreturncmd" />
 								<span class="input-group-btn">
-									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="Rechercher une commande"><i class="fas fa-list-alt"></i></a>
+									<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
 								</span>
 							</div>
 						</div>
@@ -1559,7 +1561,7 @@ user::isBan();
 								echo '<div class="input-group">';
 								echo '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
 								echo '<span class="input-group-btn">';
-								echo '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" title="Rechercher une commande" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+								echo '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" title="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
 								echo '</span>';
 								echo '</div>';
 								echo '</div>';
