@@ -38,6 +38,7 @@
 - Possibilité d'attribuer une icône à une interaction.
 - Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Page update : différentiation par version (stable, beta, ...).
+- Page update : ajout d'une barre de progression pendant l'update.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
@@ -48,9 +49,9 @@
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
-- Suppression du partage de scénario
-- Amélioration de la fenetre de gestion des templates de *scénario*
-- Ajout d'un champs CSS personnalisé sur les éléments du *design*
+- Suppression du partage de scénario.
+- Amélioration de la fenêtre de gestion des templates de *scénario*.
+- Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 
 3.3.24
 =====
