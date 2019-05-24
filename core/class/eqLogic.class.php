@@ -454,7 +454,7 @@ class eqLogic {
 	}
 	
 	public static function byString($_string) {
-		$eqLogic = self::byId(str_replace('#', '', self::fromHumanReadable($_string)));
+		$eqLogic = self::byId(str_replace(array('#','eqLogic'), '', self::fromHumanReadable($_string)));
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . __(' => ', __FILE__) . self::fromHumanReadable($_string));
 		}
