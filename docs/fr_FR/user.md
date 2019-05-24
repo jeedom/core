@@ -2,7 +2,7 @@ C’est ici que l’on va pouvoir définir la liste des utilisateurs
 autorisés à se connecter à Jeedom, mais également leurs droits
 d’administrateur
 
-Accessible par Administration → Utilisateurs.
+Accessible par Réglages → Système → Utilisateurs.
 
 En haut à droite vous avez un bouton pour ajouter un utilisateur, un
 pour sauvegarder et un bouton pour ouvrir un accès au support.
@@ -44,10 +44,10 @@ En dessous vous avez un tableau :
 
 -   **Supprimer** : permet de supprimer l’utilisateur
 
--   **Regénerer clef API** : regénère la clef API de l’utilisateur
+-   **Régénérer clef API** : régénère la clef API de l’utilisateur
 
 -   **Gérer les droits** : permet de gérer finement les droits de
-    l’utilisateur (attention le profils doit être en
+    l’utilisateur (attention le profil doit être en
     "utilisateur limité")
 
 Gestion des droits 

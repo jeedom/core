@@ -164,7 +164,7 @@ class jeedom {
 			'name' => __('Cron actif', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver', __FILE__),
+			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver', __FILE__),
 		);
 		
 		$state = (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) ? false : true;
@@ -316,7 +316,7 @@ class jeedom {
 			'name' => __('Configuration réseau interne', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 		
 		$state = network::test('external');
@@ -324,7 +324,7 @@ class jeedom {
 			'name' => __('Configuration réseau externe', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
 		);
 		
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
