@@ -1224,83 +1224,88 @@ function addExpression(_expression) {
   if (_expression.type == 'condition') {
     sortable = 'noSortable';
   }
-  var retour = '<div class="expression ' + sortable + ' col-xs-12" >';
+
+  if (_expression.type == 'action') {
+    var retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
+  } else {
+    var retour = '<div class="expression ' + sortable + ' col-xs-12" >';
+  }
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
   switch (_expression.type) {
     case 'condition' :
-    if (isset(_expression.expression)) {
-      _expression.expression = _expression.expression.replace(/"/g, '&quot;');
-    }
-    retour += '<div class="input-group input-group-sm" >';
-    retour += '<textarea class="expressionAttr form-control roundedLeft" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
-    retour += '<span class="input-group-btn">';
-    retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression tooltips"  title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
-    retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression tooltips"  title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
-    retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression tooltips roundedRight"  title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>';
-    retour += '</span>';
-    retour += '</div>';
-
-    break;
-    case 'element' :
-    retour += '<div class="col-xs-12" >';
-    if (isset(_expression.element) && isset(_expression.element.html)) {
-      retour += _expression.element.html;
-    } else {
-      var element = addElement(_expression.element, true);
-      if ($.trim(element) == '') {
-        return '';
+      if (isset(_expression.expression)) {
+        _expression.expression = _expression.expression.replace(/"/g, '&quot;');
       }
-      retour += element;
-    }
-    retour += '</div>';
-    break;
+      retour += '<div class="input-group input-group-sm" >';
+      retour += '<textarea class="expressionAttr form-control roundedLeft" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
+      retour += '<span class="input-group-btn">';
+      retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression"  title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
+      retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
+      retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>';
+      retour += '</span>';
+      retour += '</div>';
+
+      break;
+    case 'element' :
+      retour += '<div class="col-xs-12" >';
+      if (isset(_expression.element) && isset(_expression.element.html)) {
+        retour += _expression.element.html;
+      } else {
+        var element = addElement(_expression.element, true);
+        if ($.trim(element) == '') {
+          return '';
+        }
+        retour += element;
+      }
+      retour += '</div>';
+      break;
     case 'action' :
-    retour += '<div class="col-xs-1" >';
-    retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>';
-    if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  title="{{Décocher pour désactiver l\'action}}"/>';
-    } else {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  title="{{Décocher pour désactiver l\'action}}"/>';
-    }
-    if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
-    } else {
-      retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
-    }
-    var expression_txt = init(_expression.expression);
-    if(typeof expression_txt != 'string'){
-      expression_txt = json_encode(expression_txt);
-    }
-    retour += '</div>';
-    retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">';
-    retour += '<span class="input-group-btn">';
-    retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>';
-    retour += '</span>';
-    retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g,'&quot;') + '"/>';
-    retour += '<span class="input-group-btn">';
-    retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
-    retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';
-    retour += '</span>';
-    retour += '</div></div>';
-    var actionOption_id = uniqId();
-    retour += '<div class="col-xs-7 expressionOptions"  id="'+actionOption_id+'">';
-    retour += '</div>';
-    actionOptions.push({
-      expression : init(_expression.expression, ''),
-      options : _expression.options,
-      id : actionOption_id
-    });
-    break;
+      retour += '<div class="col-xs-1" >';
+      retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>';
+      if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
+        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  title="{{Décocher pour désactiver l\'action}}"/>';
+      } else {
+        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  title="{{Décocher pour désactiver l\'action}}"/>';
+      }
+      if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
+        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
+      } else {
+        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>';
+      }
+      var expression_txt = init(_expression.expression);
+      if(typeof expression_txt != 'string'){
+        expression_txt = json_encode(expression_txt);
+      }
+      retour += '</div>';
+      retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">';
+      retour += '<span class="input-group-btn">';
+      retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>';
+      retour += '</span>';
+      retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g,'&quot;') + '"/>';
+      retour += '<span class="input-group-btn">';
+      retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>';
+      retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>';
+      retour += '</span>';
+      retour += '</div></div>';
+      var actionOption_id = uniqId();
+      retour += '<div class="col-xs-7 expressionOptions"  id="'+actionOption_id+'">';
+      retour += '</div>';
+      actionOptions.push({
+        expression : init(_expression.expression, ''),
+        options : _expression.options,
+        id : actionOption_id
+      });
+      break;
     case 'code' :
-    retour += '<div class="col-xs-12">';
-    retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
-    retour += '</div>';
-    break;
-    case 'comment' :
-    retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
-    break;
+      retour += '<div class="col-xs-12">';
+      retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
+      retour += '</div>';
+      break;
+      case 'comment' :
+      retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
+      break;
   }
   retour += '</div>';
   return retour;
@@ -1312,7 +1317,7 @@ $('#div_pageContainer').on('click','.subElementAttr[data-l1key=options][data-l2k
     $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
   }else{
     $(this).attr('value',0);
-    $(this).html('<span><i class="fas fa-refresh"></span>');
+    $(this).html('<span><i class="fas fa-sync"></span>');
   }
 });
 
@@ -1331,35 +1336,35 @@ function addSubElement(_subElement, _pColor) {
   blocClass = '';
   switch (_subElement.type) {
     case 'if':
-    blocClass = 'subElementIF';
-    break;
+      blocClass = 'subElementIF';
+      break;
     case 'then':
-    blocClass = 'subElementTHEN';
-    break;
+      blocClass = 'subElementTHEN';
+      break;
     case 'else':
-    blocClass = 'subElementELSE';
-    break;
+      blocClass = 'subElementELSE';
+      break;
     case 'for':
-    blocClass = 'subElementFOR';
-    break;
+      blocClass = 'subElementFOR';
+      break;
     case 'in':
-    blocClass = 'subElementIN';
-    break;
+      blocClass = 'subElementIN';
+      break;
     case 'at':
-    blocClass = 'subElementAT';
-    break;
+      blocClass = 'subElementAT';
+      break;
     case 'do':
-    blocClass = 'subElementDO';
-    break;
+      blocClass = 'subElementDO';
+      break;
     case 'code':
-    blocClass = 'subElementCODE';
-    break;
+      blocClass = 'subElementCODE';
+      break;
     case 'comment':
-    blocClass = 'subElementCOMMENT';
-    break;
+      blocClass = 'subElementCOMMENT';
+      break;
     case 'action':
-    blocClass = 'subElementACTION';
-    break;
+      blocClass = 'subElementACTION';
+      break;
   }
   var retour = '<div class="subElement ' + blocClass + ' ' + noSortable + '">';
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
@@ -1368,301 +1373,301 @@ function addSubElement(_subElement, _pColor) {
 
   switch (_subElement.type) {
     case 'if' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément" />';
-    }
-    retour += '</div>';
-    retour += '<div >';
-    retour += '<legend >{{SI}}';
-    retour += '</legend>';
-    retour += '</div>';
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="Décocher pour désactiver l\'élément" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="Décocher pour désactiver l\'élément" />';
+      }
+      retour += '</div>';
+      retour += '<div >';
+      retour += '<legend >{{SI}}';
+      retour += '</legend>';
+      retour += '</div>';
 
-    retour += '<div >';
-    if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0){
-      retour += '<a class="bt_repeat cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-refresh"></i></span></a>';
-    }else{
-      retour += '<a class="bt_repeat cursor subElementAttr tooltips" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
-    }
-    retour += '</div>';
+      retour += '<div >';
+      if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
+        retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>';
+      } else {
+        retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
+      }
+      retour += '</div>';
 
-    retour += '<div class="expressions" >';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '  </div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<div class="expressions" >';
+      var expression = {type: 'condition'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '  </div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'then' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<div class="subElementFields">';
-    retour += '<legend >{{ALORS}}</legend>';
-    retour += '<div class="input-group">';
-    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-chevron-down"></i>';
-    retour += '</button>';
-    retour += '<span class="input-group-btn">';
-    retour += '<div class="dropdown" >';
-    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</span>';
-    retour += '</div>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    if (isset(_subElement.expressions)) {
-      for (var k in _subElement.expressions) {
-        retour += addExpression(_subElement.expressions[k]);
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+      retour += '<div class="subElementFields">';
+      retour += '<legend >{{ALORS}}</legend>';
+      retour += '<div class="input-group">';
+      retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
+      retour += '<i class="fas fa-chevron-down"></i>';
+      retour += '</button>';
+      retour += '<span class="input-group-btn">';
+      retour += '<div class="dropdown" >';
+      retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+      retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
+      retour += '<span class="caret"></span>';
+      retour += '</button>';
+      retour += '<ul class="dropdown-menu">';
+      retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+      retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
+      retour += '</ul>';
+      retour += '</div>';
+      retour += '</span>';
+      retour += '</div>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      if (isset(_subElement.expressions)) {
+        for (var k in _subElement.expressions) {
+          retour += addExpression(_subElement.expressions[k]);
+        }
       }
-    }
-    retour += '</div>';
-    break;
+      retour += '</div>';
+      break;
 
     case 'else' :
-    retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<div class="subElementFields">';
-    retour += '<legend >{{SINON}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    if (isset(_subElement.expressions)) {
-      for (var k in _subElement.expressions) {
-        retour += addExpression(_subElement.expressions[k]);
+      retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
+      retour += '<div class="subElementFields">';
+      retour += '<legend >{{SINON}}</legend>';
+      retour += '<div class="dropdown">';
+      retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+      retour += '<i class="fas fa-plus-circle"></i> Ajouter';
+      retour += '<span class="caret"></span>';
+      retour += '</button>';
+      retour += '<ul class="dropdown-menu">';
+      retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
+      retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
+      retour += '</ul>';
+      retour += '</div>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      if (isset(_subElement.expressions)) {
+        for (var k in _subElement.expressions) {
+          retour += addExpression(_subElement.expressions[k]);
+        }
       }
-    }
-    retour += '</div>';
-    break;
+      retour += '</div>';
+      break;
 
     case 'for' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
-    }
-    retour += '</div>';
-    retour += '<div>';
-    retour += '<legend >{{DE 1 A}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions" >';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
+      }
+      retour += '</div>';
+      retour += '<div>';
+      retour += '<legend >{{DE 1 A}}</legend>';
+      retour += '</div>';
+      retour += '<div class="expressions" >';
+      var expression = {type: 'condition'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'in' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
-    }
-    retour += '</div>';
-    retour += '<div>';
-    retour += '<legend title="Action DANS x minutes">{{DANS}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions" >';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
+      }
+      retour += '</div>';
+      retour += '<div>';
+      retour += '<legend title="Action DANS x minutes">{{DANS}}</legend>';
+      retour += '</div>';
+      retour += '<div class="expressions" >';
+      var expression = {type: 'condition'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'at' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
-    }
-    retour += '</div>';
-    retour += '<div>';
-    retour += '<legend >{{A (Hmm)}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions" >';
-    var expression = {type: 'condition'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
+      }
+      retour += '</div>';
+      retour += '<div>';
+      retour += '<legend >{{A (Hmm)}}</legend>';
+      retour += '</div>';
+      retour += '<div class="expressions" >';
+      var expression = {type: 'condition'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'do' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<div class="subElementFields">';
-    retour += '<legend >{{FAIRE}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    if (isset(_subElement.expressions)) {
-      for (var k in _subElement.expressions) {
-        retour += addExpression(_subElement.expressions[k]);
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+      retour += '<div class="subElementFields">';
+      retour += '<legend >{{FAIRE}}</legend>';
+      retour += '<div class="dropdown">';
+      retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+      retour += '<i class="fas fa-plus-circle"></i> Ajouter';
+      retour += '<span class="caret"></span>';
+      retour += '</button>';
+      retour += '<ul class="dropdown-menu">';
+      retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
+      retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
+      retour += '</ul>';
+      retour += '</div>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      if (isset(_subElement.expressions)) {
+        for (var k in _subElement.expressions) {
+          retour += addExpression(_subElement.expressions[k]);
+        }
       }
-    }
-    retour += '</div>';
-    break;
+      retour += '</div>';
+      break;
 
     case 'code' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
-    }
-    retour += '</div>';
-    retour += '<div>';
-    retour += '<legend >{{CODE}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    var expression = {type: 'code'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
+      }
+      retour += '</div>';
+      retour += '<div>';
+      retour += '<legend >{{CODE}}</legend>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      var expression = {type: 'code'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'comment' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    retour += '</div>';
-    retour += '<div>';
-    retour += '<legend >{{COMMENTAIRE}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    var expression = {type: 'comment'};
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-      expression = _subElement.expressions[0];
-    }
-    retour += addExpression(expression);
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
+      }
+      retour += '</div>';
+      retour += '<div>';
+      retour += '<legend >{{COMMENTAIRE}}</legend>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      var expression = {type: 'comment'};
+      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+        expression = _subElement.expressions[0];
+      }
+      retour += addExpression(expression);
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
 
     case 'action' :
-    retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
-    retour += '<div>';
-    retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
-    if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
-    }else{
-      retour += '<a class="bt_collapse cursor subElementAttr tooltips" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
-    }
-    if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
-    }else{
-      retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
-    }
-    retour += '<legend class="legendHidden">ACTION</legend>';
-    retour += '</div>';
-    retour += '<div class="subElementFields">';
-    retour += '<legend >{{ACTION}}</legend><br/>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += ' <i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</div>';
-    retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
-    retour += '<div class="sortable empty" ></div>';
-    if (isset(_subElement.expressions)) {
-      for (var k in _subElement.expressions) {
-        retour += addExpression(_subElement.expressions[k]);
+      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
+      retour += '<div>';
+      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>';
+      if(!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0){
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>';
+      }else{
+        retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>';
       }
-    }
-    retour += '</div>';
-    retour = addElButtons(retour)
-    break;
+      if(!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1){
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />';
+      }else{
+        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />';
+      }
+      retour += '<legend class="legendHidden">ACTION</legend>';
+      retour += '</div>';
+      retour += '<div class="subElementFields">';
+      retour += '<legend >{{ACTION}}</legend><br/>';
+      retour += '<div class="dropdown">';
+      retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+      retour += ' <i class="fas fa-plus-circle"></i> Ajouter';
+      retour += '<span class="caret"></span>';
+      retour += '</button>';
+      retour += '<ul class="dropdown-menu">';
+      retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" title="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
+      retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
+      retour += '</ul>';
+      retour += '</div>';
+      retour += '</div>';
+      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="sortable empty" ></div>';
+      if (isset(_subElement.expressions)) {
+        for (var k in _subElement.expressions) {
+          retour += addExpression(_subElement.expressions[k]);
+        }
+      }
+      retour += '</div>';
+      retour = addElButtons(retour)
+      break;
   }
   retour += '</div>';
   return retour;
@@ -1687,80 +1692,105 @@ function addElement(_element) {
   if (pColor > 8) {
     pColor = 0;
   }
+
+  elementClass = ''
+  switch (_element.type) {
+    case 'if' :
+      elementClass = 'elementIF'
+      break
+    case 'for' :
+      elementClass = 'elementFOR'
+      break
+    case 'in' :
+      elementClass = 'elementIN'
+      break
+    case 'at' :
+      elementClass = 'elementAT'
+      break
+    case 'code' :
+      elementClass = 'elementCODE'
+      break
+    case 'comment' :
+      elementClass = 'elementCOM'
+      break
+    case 'action' :
+      elementClass = 'elementACTION'
+  }
+
   var color = pColor;
-  var div = '<div class="element ' + 'scBlocColor' + color + '">';
+  var div = '<div class="element ' + elementClass + ' scBlocColor' + color + '">';
 
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
     case 'if' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'if'}, color);
+        div += addSubElement({type: 'then'}, color);
+        div += addSubElement({type: 'else'}, color);
       }
-    } else {
-      div += addSubElement({type: 'if'}, color);
-      div += addSubElement({type: 'then'}, color);
-      div += addSubElement({type: 'else'}, color);
-    }
-    break;
+      break;
     case 'for' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'for'}, color);
+        div += addSubElement({type: 'do'}, color);
       }
-    } else {
-      div += addSubElement({type: 'for'}, color);
-      div += addSubElement({type: 'do'}, color);
-    }
-    break;
+      break;
     case 'in' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'in'}, color);
+        div += addSubElement({type: 'do'}, color);
       }
-    } else {
-      div += addSubElement({type: 'in'}, color);
-      div += addSubElement({type: 'do'}, color);
-    }
-    break;
+      break;
     case 'at' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'at'}, color);
+        div += addSubElement({type: 'do'}, color);
       }
-    } else {
-      div += addSubElement({type: 'at'}, color);
-      div += addSubElement({type: 'do'}, color);
-    }
-    break;
+      break;
     case 'code' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'code'}, color);
       }
-    } else {
-      div += addSubElement({type: 'code'}, color);
-    }
-    break;
+      break;
     case 'comment' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'comment'}, color);
       }
-    } else {
-      div += addSubElement({type: 'comment'}, color);
-    }
-    break;
+      break;
     case 'action' :
-    if (isset(_element.subElements) && isset(_element.subElements)) {
-      for (var j in _element.subElements) {
-        div += addSubElement(_element.subElements[j], color);
+      if (isset(_element.subElements) && isset(_element.subElements)) {
+        for (var j in _element.subElements) {
+          div += addSubElement(_element.subElements[j], color);
+        }
+      } else {
+        div += addSubElement({type: 'action'}, color);
       }
-    } else {
-      div += addSubElement({type: 'action'}, color);
-    }
-    break;
+      break;
   }
   div += '</div>';
   return div;
