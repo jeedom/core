@@ -142,7 +142,6 @@ $(function(){
 })
 
 editor = [];
-pColor = 0;
 
 autoCompleteCondition = [
   {val: 'rand(MIN,MAX)'},
@@ -1055,7 +1054,6 @@ function printScenario(_id) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      pColor = 0;
       $('.scenarioAttr').value('');
 
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
@@ -1321,7 +1319,7 @@ $('#div_pageContainer').on('click','.subElementAttr[data-l1key=options][data-l2k
   }
 });
 
-function addSubElement(_subElement, _pColor) {
+function addSubElement(_subElement) {
   if (!isset(_subElement.type) || _subElement.type == '') {
     return '';
   }
@@ -1432,7 +1430,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '</span>';
       retour += '</div>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       if (isset(_subElement.expressions)) {
         for (var k in _subElement.expressions) {
@@ -1457,7 +1455,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '</ul>';
       retour += '</div>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       if (isset(_subElement.expressions)) {
         for (var k in _subElement.expressions) {
@@ -1566,7 +1564,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '</ul>';
       retour += '</div>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       if (isset(_subElement.expressions)) {
         for (var k in _subElement.expressions) {
@@ -1594,7 +1592,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '<div>';
       retour += '<legend >{{CODE}}</legend>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       var expression = {type: 'code'};
       if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1618,7 +1616,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '<div>';
       retour += '<legend >{{COMMENTAIRE}}</legend>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       var expression = {type: 'comment'};
       if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1658,7 +1656,7 @@ function addSubElement(_subElement, _pColor) {
       retour += '</ul>';
       retour += '</div>';
       retour += '</div>';
-      retour += '<div class="expressions ' + 'scBlocColor' + _pColor + '">';
+      retour += '<div class="expressions">';
       retour += '<div class="sortable empty" ></div>';
       if (isset(_subElement.expressions)) {
         for (var k in _subElement.expressions) {
@@ -1688,11 +1686,6 @@ function addElement(_element) {
     return '';
   }
 
-  pColor++;
-  if (pColor > 8) {
-    pColor = 0;
-  }
-
   elementClass = ''
   switch (_element.type) {
     case 'if' :
@@ -1717,8 +1710,7 @@ function addElement(_element) {
       elementClass = 'elementACTION'
   }
 
-  var color = pColor;
-  var div = '<div class="element ' + elementClass + ' scBlocColor' + color + '">';
+  var div = '<div class="element ' + elementClass + '">';
 
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
@@ -1726,69 +1718,69 @@ function addElement(_element) {
     case 'if' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'if'}, color);
-        div += addSubElement({type: 'then'}, color);
-        div += addSubElement({type: 'else'}, color);
+        div += addSubElement({type: 'if'});
+        div += addSubElement({type: 'then'});
+        div += addSubElement({type: 'else'});
       }
       break;
     case 'for' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'for'}, color);
-        div += addSubElement({type: 'do'}, color);
+        div += addSubElement({type: 'for'});
+        div += addSubElement({type: 'do'});
       }
       break;
     case 'in' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'in'}, color);
-        div += addSubElement({type: 'do'}, color);
+        div += addSubElement({type: 'in'});
+        div += addSubElement({type: 'do'});
       }
       break;
     case 'at' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'at'}, color);
-        div += addSubElement({type: 'do'}, color);
+        div += addSubElement({type: 'at'});
+        div += addSubElement({type: 'do'});
       }
       break;
     case 'code' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'code'}, color);
+        div += addSubElement({type: 'code'});
       }
       break;
     case 'comment' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'comment'}, color);
+        div += addSubElement({type: 'comment'});
       }
       break;
     case 'action' :
       if (isset(_element.subElements) && isset(_element.subElements)) {
         for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j], color);
+          div += addSubElement(_element.subElements[j]);
         }
       } else {
-        div += addSubElement({type: 'action'}, color);
+        div += addSubElement({type: 'action'});
       }
       break;
   }
