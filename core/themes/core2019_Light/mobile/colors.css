@@ -6,33 +6,35 @@ Theme Core 2019 @Jeedom
   /* keet it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
-  
+
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
   --logo-secondary-color: rgb(69, 68, 73);
   --bg-color: 235, 235, 238;
   --bg-modal-color: rgb(247, 248, 248);
   --contrast-color: 30, 30, 30;
-  
+
   --txt-color: rgb(115, 115, 115);
   --link-color: rgb(90, 90, 90);
   --linkHover-color: rgb(140, 140, 148);
   --linkHoverLight-color: rgb(254, 254, 254);
   --placeholder-color: rgb(160, 160, 160);
-  
+
   --sc-form-color: rgba(248, 250, 256, 0.85);
   --sc-formTxt-color: rgb(75, 75, 75);
   --sc-lightTxt-color: rgb(240, 240, 240);
-  
+
   --el-defaultColor: rgb(200, 200, 200);
   --defaultBkg-color: rgb(250, 250, 250);
   --form-bg-color: rgb(224, 226, 226);
   --btnEq-default-color: rgb(220, 220, 220);
   --btn-default-color: rgb(100, 100, 100);
   --panel-bg-color: rgb(240, 241, 242);
-  
+
   --eqTitle-color: rgb(240, 240, 240);
-  
+  --objectBkgd-color: rgb(105, 105, 105);
+  --objectTxt-color: rgb(235, 235, 235);
+
   --eq-bg-color: 249, 249, 250;
   --cat-security-color: 180, 40, 40;
   --cat-heating-color: 60, 115, 165;
@@ -42,11 +44,12 @@ Theme Core 2019 @Jeedom
   --cat-energy-color: 58, 165, 72;
   --cat-other-color: 58, 120, 85;
   --cat-scenario-color: 80, 80, 84;
-  
+
   --url-iconsDark: url(../img/ui-icons-white.png);
   --url-iconsLight: url(../img/ui-icons-black.png);
-  
+
   --lb-info-color: rgb(110, 180, 240);
+  --lb-yellow-color: rgb(240, 215, 0);
   --lb-yellow-color: rgb(240, 215, 0);
   --al-info-color: rgb(100, 160, 230);
   --al-primary-color:  rgb(60, 120, 180);
@@ -54,16 +57,14 @@ Theme Core 2019 @Jeedom
   --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(190, 0, 0);
   --bt-success-color: rgb(150, 201, 39);
-  
-  --scBloc-color1: rgb(172,163,148);
-  --scBloc-color2: rgb(158,148,138);
-  --scBloc-color3: rgb(142,134,128);
-  --scBloc-color4: rgb(124,118,118);
-  --scBloc-color5: rgb(111,109,108);
-  --scBloc-color6: rgb(98, 98, 102);
-  --scBloc-color7: rgb(88, 92, 96);
-  --scBloc-color8: rgb(78, 82, 85);
-  --scBloc-color0: rgb(65, 69, 72);
-  
-  --shd-color: rgba(0, 0, 0, 0.5);
+
+  --scBlocIF: rgb(123,123,129);
+  --scBlocACTION: rgb(180,175,170);
+  --scBlocIN: rgb(95,148,82);
+  --scBlocAT: rgb(78,106,158);
+  --scBlocFOR: rgb(172,146,42);
+  --scBlocCODE: rgb(70,82,95);
+  --scBlocCOM: rgb(100,110,108);
+
+  --shd-color: rgba(0, 0, 0, 0.55);
 }
