@@ -20,7 +20,7 @@ Theme Core 2019 @Jeedom
   --linkHoverLight-color: rgb(230, 230, 230);
   --placeholder-color: rgb(100, 100, 100);
 
-  --sc-form-color: rgba(235, 235, 235, 0.85);
+  --sc-form-color: rgba(215, 215, 215, 0.85);
   --sc-formTxt-color: rgb(56, 56, 56);
   --sc-lightTxt-color: rgb(230, 230, 230);
 
@@ -56,16 +56,14 @@ Theme Core 2019 @Jeedom
   --al-warning-color: rgb(195, 125, 40);
   --al-danger-color: rgb(185, 58, 62);
   --bt-success-color: rgb(150, 201, 39);
-  
-  --scBloc-color1: rgb(140,132,120);
-  --scBloc-color2: rgb(130,122,118);
-  --scBloc-color3: rgb(120,114,106);
-  --scBloc-color4: rgb(110,104,99);
-  --scBloc-color5: rgb(100,103,98);
-  --scBloc-color6: rgb(90, 92, 92);
-  --scBloc-color7: rgb(80, 83, 85);
-  --scBloc-color8: rgb(70, 73, 77);
-  --scBloc-color0: rgb(60, 65, 70);
+
+  --scBlocIF: rgb(103,107,109);
+  --scBlocACTION: rgb(160,155,150);
+  --scBlocIN: rgb(75,128,62);
+  --scBlocAT: rgb(58,86,138);
+  --scBlocFOR: rgb(152,126,22);
+  --scBlocCODE: rgb(50,62,75);
+  --scBlocCOM: rgb(80,90,88);
 
   --shd-color: rgba(15, 15, 15, 0.55);
 }
