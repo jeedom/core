@@ -1813,37 +1813,37 @@ hr {
 
 .elementIN > div > div > div > div > .elementIN{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocIN-sep);
 }
 
 .elementIF > div > div > div > div > .elementIF{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocIF-sep);
 }
 
 .elementFOR > div > div > div > div > .elementFOR{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocFOR-sep);
 }
 
 .elementAT > div > div > div > div > .elementAT{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocAT-sep);
 }
 
 .elementCODE > div > div > div > div > .elementCODE{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocCODE-sep);
 }
 
 .elementCOM > div > div > div > div > .elementCOM{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocCOM-sep);
 }
 
 .elementACTION > div > div > div > div > .elementACTION{
   width : 100%;
-  border-left: 3px solid var(--sc-formTxt-color);
+  border-left: 3px solid var(--scBlocACTION-sep);
 }
 
 /*
