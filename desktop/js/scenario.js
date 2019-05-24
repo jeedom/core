@@ -527,6 +527,7 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
       }
     });
   }
+  modifyWithoutSave = true;
 });
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
@@ -534,6 +535,7 @@ $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyEleme
   if(event.ctrlKey) {
     $(this).closest('.element').remove()
   }
+  modifyWithoutSave = true;
 });
 
 $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
