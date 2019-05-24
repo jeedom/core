@@ -21,7 +21,7 @@ $('.bt_systemCommand').off('click').on('click',function(){
   var command = $(this).attr('data-command');
   $('#pre_commandResult').empty();
   if($(this).parent().hasClass('list-group-item-danger')){
-    bootbox.confirm('{{Etes-vous sûr de vouloir éxécuter cette commande : }}<strong>'+command+'</strong> ? {{Celle-ci est classé en dangereuse}}', function (result) {
+    bootbox.confirm('{{Etes-vous sûr de vouloir exécuter cette commande : }}<strong>'+command+'</strong> ? {{Celle-ci est classée en dangereuse}}', function (result) {
       if (result) {
         jeedom.ssh({
           command : command,
@@ -113,7 +113,7 @@ $('#bt_consitency').off('click').on('click',function(){
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-     $('#div_alert').showAlert({message: '{{Lance de la vérification fait, voir le log consistency pour voir le résultat}}', level: 'success'});
+     $('#div_alert').showAlert({message: '{{Exécution de la vérification effectuée, voir le log consistency pour afficher le résultat}}', level: 'success'});
     }
   });
 });
