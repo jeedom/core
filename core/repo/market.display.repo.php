@@ -94,7 +94,7 @@ if ($market->getPurchase() == 1) {
 		$purchase_info = repo_market::getPurchaseInfo();
 		if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 			?>
-     <a class="btn btn-default" href='https://market.jeedom.fr/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
+     <a class="btn btn-default" href='https://www.jeedom.com/market/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
      <?php
 			if ($market->getCertification() == 'Premium') {
 				echo '<a class="btn btn-default" target="_blank" href="mailto:supportpro@jeedom.com"><i class="fa fa-envelope"></i> {{Nous Contacter}}</a>';
