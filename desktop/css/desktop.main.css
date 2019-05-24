@@ -1793,16 +1793,44 @@ hr {
 
 
 /* __________________________________________________________________________________________________________SCENARIO */
-
-.scBlocColor0 { background-color: var(--scBloc-color0); border: 1px solid var(--scBloc-color0); border-right: none;}
-.scBlocColor1 { background-color: var(--scBloc-color1); border: 1px solid var(--scBloc-color1); border-right: none;}
-.scBlocColor2 { background-color: var(--scBloc-color2); border: 1px solid var(--scBloc-color2); border-right: none;}
-.scBlocColor3 { background-color: var(--scBloc-color3); border: 1px solid var(--scBloc-color3); border-right: none;}
-.scBlocColor4 { background-color: var(--scBloc-color4); border: 1px solid var(--scBloc-color4); border-right: none;}
-.scBlocColor5 { background-color: var(--scBloc-color5); border: 1px solid var(--scBloc-color5); border-right: none;}
-.scBlocColor6 { background-color: var(--scBloc-color6); border: 1px solid var(--scBloc-color6); border-right: none;}
-.scBlocColor7 { background-color: var(--scBloc-color7); border: 1px solid var(--scBloc-color7); border-right: none;}
-.scBlocColor8 { background-color: var(--scBloc-color8); border: 1px solid var(--scBloc-color8); border-right: none;}
+#div_scenarioElement .element .element {
+  box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
+}
+.elementIF { background-color: var(--scBlocIF) !important; }
+.elementFOR { background-color: var(--scBlocFOR) !important; }
+.elementIN { background-color: var(--scBlocIN) !important; }
+.elementAT { background-color: var(--scBlocAT) !important; }
+.elementCODE { background-color: var(--scBlocCODE) !important; }
+.elementCOM { background-color: var(--scBlocCOM) !important; }
+.elementACTION,
+.expressionACTION {
+  background-color: var(--scBlocACTION) !important;
+}
+.elementIF .elementIF {
+  border-left: 3px solid var(--sc-formTxt-color);
+}
+/*
+.elementIF .elementIF:before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: -2px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14px 0 14px 12px;
+  border-color: transparent transparent transparent var(--sc-formTxt-color);
+}
+*/
+.expressionACTION .col-xs-1 input[type="checkbox"] {
+  top: 5px !important;
+}
+.expressionACTION .input-group {
+  top: 2px !important;
+}
+.expressionACTION {
+  width: calc(100% - 6px);
+}
 
 .element legend {
   background-color: transparent !important;
@@ -1828,6 +1856,7 @@ hr {
   height: 22px;
   padding-left: 5px;
   padding-top: 2px;
+  margin-left: 5px;
 }
 .element button.dropdown-toggle:hover {
   color: var(--sc-lightTxt-color) !important;
@@ -1838,7 +1867,7 @@ hr {
   background-color: var(--sc-formTxt-color) !important;
 }
 .subElementFields button.dropdown-toggle .caret {
-  right: 5px;
+  right: 0px;
   top: 8px !important;
   border-top-color: var(--linkHoverLight-color) !important;
 }
@@ -1987,18 +2016,18 @@ textarea {
 }
 .element .bt_removeElement {
   position: absolute;
-  top: 0;
-  right: 0;
-}
-.element .bt_copyElement {
-  position: absolute;
-  top: 0;
-  right: 35px;
+  top: 3px;
+  right: 3px;
 }
 .element .bt_pasteElement {
   position: absolute;
-  top: 0;
-  right: 18px;
+  top: 3px;
+  right: 20px;
+}
+.element .bt_copyElement {
+  position: absolute;
+  top: 3px;
+  right: 37px;
 }
 .element .subElementFields .dropdown {
   width: 90px !important;
@@ -2006,6 +2035,8 @@ textarea {
 }
 .element .bt_showElse {
   height: 22px !important;
+  margin-left: 5px;
+  margin-right: -5px;
 }
 .element .subElementAttr {
   position: absolute !important;
@@ -3011,7 +3042,8 @@ div[id^=__lpform_] { /*lastpass*/
 .scenario-widget,
 #div_alert,
 .alert,
-.jqAlert{
+.jqAlert,
+.expressionACTION {
   border-radius: var(--border-radius) !important;
 }
 
@@ -3121,16 +3153,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3138,11 +3170,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3188,5 +3220,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
