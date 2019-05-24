@@ -1806,9 +1806,6 @@ hr {
 .expressionACTION {
   background-color: var(--scBlocACTION) !important;
 }
-.elementIF .elementIF {
-  border-left: 3px solid var(--sc-formTxt-color);
-}
 
 .subElement .element{
   width : calc(100% - 5px);
@@ -1816,30 +1813,37 @@ hr {
 
 .elementIN > div > div > div > div > .elementIN{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementIF > div > div > div > div > .elementIF{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementFOR > div > div > div > div > .elementFOR{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementAT > div > div > div > div > .elementAT{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementCODE > div > div > div > div > .elementCODE{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementCOM > div > div > div > div > .elementCOM{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 .elementACTION > div > div > div > div > .elementACTION{
   width : 100%;
+  border-left: 3px solid var(--sc-formTxt-color);
 }
 
 /*
