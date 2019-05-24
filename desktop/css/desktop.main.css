@@ -1809,17 +1809,50 @@ hr {
 .elementIF .elementIF {
   border-left: 3px solid var(--sc-formTxt-color);
 }
+
+.subElement .element{
+  width : calc(100% - 5px);
+}
+
+.elementIN > div > div > div > div > .elementIN{
+  width : 100%;
+}
+
+.elementIF > div > div > div > div > .elementIF{
+  width : 100%;
+}
+
+.elementFOR > div > div > div > div > .elementFOR{
+  width : 100%;
+}
+
+.elementAT > div > div > div > div > .elementAT{
+  width : 100%;
+}
+
+.elementCODE > div > div > div > div > .elementCODE{
+  width : 100%;
+}
+
+.elementCOM > div > div > div.expression.sortable.col-xs-12 > div > .elementCOM{
+  width : 100%;
+}
+
+.elementACTION > div > div > div > div > .elementACTION{
+  width : 100%;
+}
+
 /*
 .elementIF .elementIF:before {
-  content: '';
-  position: absolute;
-  top: 22px;
-  left: -2px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 14px 0 14px 12px;
-  border-color: transparent transparent transparent var(--sc-formTxt-color);
+content: '';
+position: absolute;
+top: 22px;
+left: -2px;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 14px 0 14px 12px;
+border-color: transparent transparent transparent var(--sc-formTxt-color);
 }
 */
 .expressionACTION .col-xs-1 input[type="checkbox"] {
@@ -3157,16 +3190,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3174,11 +3207,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3224,5 +3257,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
