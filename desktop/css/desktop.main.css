@@ -1831,7 +1831,11 @@ hr {
 .expressionACTION {
   width: calc(100% - 6px);
 }
-
+.subElementCODE,
+.subElementCOMMENT {
+  padding-right: 4px;
+  padding-left: 4px;
+}
 .element legend {
   background-color: transparent !important;
   color: var(--sc-lightTxt-color) !important;
