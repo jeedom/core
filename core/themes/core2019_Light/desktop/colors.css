@@ -67,12 +67,10 @@ Theme Core 2019 @Jeedom
   --scBlocCOM: rgb(100,110,108);
   
   --scBlocIF-sep: rgb(75, 75, 75);
-  --scBlocACTION-sep: rgb(75, 75, 75);
-  --scBlocIN-sep: rgb(75, 75, 75);
-  --scBlocAT-sep: rgb(75, 75, 75);
-  --scBlocFOR-sep: rgb(75, 75, 75);
-  --scBlocCODE-sep: rgb(75, 75, 75);
-  --scBlocCOM-sep: rgb(75, 75, 75);
+  --scBlocACTION-sep: rgb(108,105,102);
+  --scBlocIN-sep: rgb(57, 89, 50);
+  --scBlocAT-sep: rgb(47, 64, 95);
+  --scBlocFOR-sep: rgb(103, 88, 25);
   
   --shd-color: rgba(0, 0, 0, 0.55);
 }
