@@ -290,6 +290,7 @@ $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) 
             url += tab;
           }
           modifyWithoutSave = false;
+          resetUndo()
           loadPage(url);
         }
       });
@@ -317,6 +318,7 @@ $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) 
         },
         success: function () {
           modifyWithoutSave = false;
+          resetUndo()
           loadPage('index.php?v=d&p=scenario');
         }
       });
@@ -490,6 +492,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
 
   $('#md_addElement').modal('show')
   $("#bt_addElementSave").off('click').on('click', function (event) {
+    setUndoStack()
     if (expression) {
       newEL = $(addExpression({type: 'element', element: {type: $("#in_addElementType").value()}}))
     } else {
@@ -511,6 +514,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
 })
 
 $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
+  setUndoStack()
   var button = $(this);
   if(event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
@@ -533,6 +537,7 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
 });
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
+  setUndoStack()
   SC_CLIPBOARD = $(this).closest('.element')
   if(event.ctrlKey) {
     $(this).closest('.element').remove()
@@ -541,6 +546,7 @@ $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyEleme
 });
 
 $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
+  setUndoStack()
   clickedBloc = $(this).closest('.element')
   newBloc = $(SC_CLIPBOARD).clone()
   newBloc.find('input[data-l1key="id"]').attr("value", "")
@@ -590,6 +596,7 @@ $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', 
 });
 
 $('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
+  setUndoStack()
   $(this).closest('.expression').remove();
   updateSortable();
 });
@@ -603,6 +610,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
   }
   jeedom.cmd.getSelectModal({cmd: {type: type}}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
+      setUndoStack()
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
         expression.find('.expressionOptions').html(html);
@@ -718,6 +726,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
             label: "Valider",
             className: "btn-primary",
             callback: function () {
+              setUndoStack()
               var condition = result.human;
               condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
               if(result.cmd.subType == 'string'){
@@ -745,6 +754,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
 $('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
+    setUndoStack()
     expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
     jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
       expression.find('.expressionOptions').html(html);
@@ -898,9 +908,13 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
       if (expressions.find('.sortable').length < 3) {
         expressions.find('.sortable.empty').show();
       }
-    },
+    }
   });
   $("#div_scenarioElement").sortable("enable");
+});
+
+$('#div_pageContainer').on('mousedown','.bt_sortable',  function () {
+  setUndoStack()
 });
 
 $('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
@@ -931,18 +945,22 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 $('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
+  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
+  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
+  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
+  //setUndoStack()
 });
 
 if (is_numeric(getUrlVars('id'))) {
@@ -1145,6 +1163,7 @@ function printScenario(_id) {
         setEditor();
       }, 100);
       modifyWithoutSave = false;
+      resetUndo()
       setTimeout(function () {
         modifyWithoutSave = false;
       }, 1000);
@@ -1173,6 +1192,7 @@ function saveScenario(_callback) {
     },
     success: function (data) {
       modifyWithoutSave = false;
+      resetUndo()
       url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1';
       if (window.location.hash != '') {
         url += window.location.hash;
@@ -1827,3 +1847,64 @@ function getElement(_element) {
   });
   return element;
 }
+
+
+//UNDO Management
+var _undoStack_ = new Array()
+var _undoState_ = -1
+var _firstState_ = 0
+var _undoLimit_ = 10
+var _redo_ = 0
+
+jwerty.key('ctrl+z/⌘+z', function (e) {
+  e.preventDefault();
+  undo();
+});
+jwerty.key('ctrl+y/⌘+y', function (e) {
+  e.preventDefault();
+  redo();
+});
+
+function setUndoStack(state=0) {
+  newStack = $('#div_scenarioElement').clone()
+  if (newStack ==  $(_undoStack_[state-1])) return
+  if (state == 0) {
+    state = _undoState_ = _undoStack_.length
+    _redo_ = 0
+  }
+  _undoStack_[state] = newStack
+  //limit stack:
+  if (state >= _firstState_ + _undoLimit_) {
+    _firstState_ += 1
+    _undoStack_[_firstState_ -1] = 0
+  }
+}
+
+function undo() {
+  if (_undoState_ < _firstState_) return
+  try {
+    loadState = _undoState_
+    if (_redo_ == 0) setUndoStack(_undoState_ + 1)
+    loadStack = $(_undoStack_[loadState])
+    $('#div_scenarioElement').replaceWith(loadStack)
+    _undoState_ -= 1
+  } catch(e) {}
+}
+
+function redo() {
+  _redo_ = 1
+  if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
+  try {
+    loadState = _undoState_ + 2
+    $('#div_scenarioElement').replaceWith($(_undoStack_[loadState]))
+    _undoState_ += 1
+  } catch(e) {}
+}
+
+function resetUndo() {
+  _undoStack_ = new Array()
+  _undoState_ = -1
+  _firstState_ = 0
+  _undoLimit_ = 10
+}
+
