@@ -1894,6 +1894,7 @@ function undo() {
     loadState = _undoState_
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
     loadStack = $(_undoStack_[loadState])
+    $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
     $('#div_scenarioElement').replaceWith(loadStack)
     $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
       arrow: false,
@@ -1912,6 +1913,7 @@ function redo() {
   if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
   try {
     loadState = _undoState_ + 2
+    $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
     $('#div_scenarioElement').replaceWith($(_undoStack_[loadState]))
     $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
       arrow: false,
