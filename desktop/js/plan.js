@@ -668,40 +668,39 @@ function fullScreen(_mode) {
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
 function draggableStartFix(event, ui) {
-  	zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-  
-  	dragClick.x = event.clientX
-    dragClick.y = event.clientY
-  	dragStartPos = ui.originalPosition
+  zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
 
-    $container = $('.div_displayObject')
-  	containerWidth = $container.width()
-    containerHeight = $container.height()
-  
-  	clientWidth = $(ui.helper[0]).width()
-  	clientHeight = $(ui.helper[0]).height()
-  
-  	marginLeft = $(ui.helper[0]).css('margin-left')
-  	marginLeft = parseFloat(marginLeft.replace('px', ''))
-  
-  	minLeft = 0 - marginLeft
-  	minTop = 0
+  dragClick.x = event.clientX
+  dragClick.y = event.clientY
+  dragStartPos = ui.originalPosition
 
-  	maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
-  	maxTop = containerHeight + minTop - (clientHeight * zoomScale)
+  $container = $('.div_displayObject')
+  containerWidth = $container.width()
+  containerHeight = $container.height()
+
+  clientWidth = $(ui.helper[0]).width()
+  clientHeight = $(ui.helper[0]).height()
+
+  marginLeft = $(ui.helper[0]).css('margin-left')
+  marginLeft = parseFloat(marginLeft.replace('px', ''))
+
+  minLeft = 0 - marginLeft
+  minTop = 0
+
+  maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
+  maxTop = containerHeight + minTop - (clientHeight * zoomScale)
 }
-
 function draggableDragFix(event, ui) {
-  	newLeft = event.clientX - dragClick.x + dragStartPos.left
-  	newTop = event.clientY - dragClick.y + dragStartPos.top
-  
-  	if (newLeft < minLeft) newLeft = minLeft
-  	if (newLeft > maxLeft) newLeft = maxLeft
-  
-  	if (newTop < minTop) newTop = minTop
-  	if (newTop > maxTop) newTop = maxTop
-  
-  	ui.position = {left: newLeft, top: newTop}
+  newLeft = event.clientX - dragClick.x + dragStartPos.left
+  newTop = event.clientY - dragClick.y + dragStartPos.top
+
+  if (newLeft < minLeft) newLeft = minLeft
+  if (newLeft > maxLeft) newLeft = maxLeft
+
+  if (newTop < minTop) newTop = minTop
+  if (newTop > maxTop) newTop = maxTop
+
+  ui.position = {left: newLeft, top: newTop}
 }
 
 
@@ -709,6 +708,7 @@ function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
   if (_state) {
     $('.tooltipstered').tooltipster('disable')
+    $('.div_displayObject').addClass('editingMode')
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
       snap : (editOption.snap == 1),
       grid : (editOption.grid == 1) ? editOption.gridSize : false,
@@ -732,7 +732,6 @@ function initEditOption(_state) {
       $('.div_grid').hide();
     }
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
-      containment: "parent",
       cancel : '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
       resize: function( event, ui ) {
@@ -753,6 +752,7 @@ function initEditOption(_state) {
 
     }
   }else{
+    $('.div_displayObject').removeClass('editingMode')
     try{
       $('.tooltipstered').tooltipster('enable')
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy");
@@ -820,11 +820,11 @@ function displayPlan(_code) {
         $('.div_displayObject').append(data.image);
       }
       if (isset(data.configuration.backgroundTransparent) && data.configuration.backgroundTransparent == 1) {
-        $('.div_backgroundPlan').css('background-color','transparent');
+        $('.div_displayObject').css('background-color','transparent');
       }else if (isset(data.configuration.backgroundColor)) {
-        $('.div_backgroundPlan').css('background-color',data.configuration.backgroundColor);
+        $('.div_displayObject').css('background-color',data.configuration.backgroundColor);
       }else{
-        $('.div_backgroundPlan').css('background-color','#ffffff');
+        $('.div_displayObject').css('background-color','#ffffff');
       }
       if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
         $('.div_displayObject').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX);
