@@ -730,7 +730,22 @@ function initEditOption(_state) {
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
       cancel : '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
+      start: function( event, ui ) {
+        zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+        if (editOption.grid == 1) {
+          dragStep = editOption.gridSize[0]
+          dragStep = dragStep / zoomScale
+        } else {
+          dragStep = false
+        }
+      },
       resize: function( event, ui ) {
+        if (dragStep) {
+          newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
+          newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
+          ui.element.width(newWidth)
+          ui.element.height(newHeight)
+        }
         ui.element.find('.camera').trigger('resize');
       },
       stop: function( event, ui ) {
