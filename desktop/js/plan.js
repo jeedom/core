@@ -249,18 +249,6 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
             }
           },
           sep4 : "---------",
-          snap: {
-            name: "{{Aimanter les élements}}",
-            type: 'checkbox',
-            radio: 'radio',
-            selected:  editOption.snap,
-            events: {
-              click : function(e) {
-                editOption.snap = $(this).value();
-                initEditOption(1);
-              }
-            }
-          },
           snapGrid: {
             name: "{{Aimanter à la grille}}",
             type: 'checkbox',
@@ -667,8 +655,10 @@ function fullScreen(_mode) {
 
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
+var dragStep = false
 function draggableStartFix(event, ui) {
   zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+  if (editOption.grid == 1) dragStep = editOption.gridSize[0]
 
   dragClick.x = event.clientX
   dragClick.y = event.clientY
@@ -700,9 +690,13 @@ function draggableDragFix(event, ui) {
   if (newTop < minTop) newTop = minTop
   if (newTop > maxTop) newTop = maxTop
 
+  if (dragStep) {
+    newLeft = (Math.round(newLeft / dragStep) * dragStep)
+    newTop = (Math.round(newTop / dragStep) * dragStep)
+  }
+
   ui.position = {left: newLeft, top: newTop}
 }
-
 
 function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
