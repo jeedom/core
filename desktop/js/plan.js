@@ -658,7 +658,11 @@ var dragStartPos = {top: 0, left: 0}
 var dragStep = false
 function draggableStartFix(event, ui) {
   zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-  if (editOption.grid == 1) dragStep = editOption.gridSize[0]
+  if (editOption.grid == 1) {
+    dragStep = editOption.gridSize[0]
+  } else {
+    dragStep = false
+  }
 
   dragClick.x = event.clientX
   dragClick.y = event.clientY
