@@ -462,7 +462,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
 
   //is scenario empty:
   var elementDiv = $(this).closest('.element')
-  if($('#div_scenarioElement').children('.element').length == 0) {
+  if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
@@ -482,6 +482,8 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
           elementDiv = elementDiv.parents('.expression').eq(0)
           expression = true
         }
+      } else {
+        elementDiv = $('#div_scenarioElement')
       }
     }
   }
