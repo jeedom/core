@@ -17,7 +17,7 @@ que des fonctions pour les gérer au mieux :
 -   **Désactiver scénarios** : Permet de désactiver tous les scénarios.
 
 -   **Voir variables** : Permet de voir les variables, leur valeur ainsi
-    que l’endroit où elle sont utilisées. Vous pouvez également y en
+    que l’endroit où elles sont utilisées. Vous pouvez également y en
     créer une. Les variables sont décrites dans un chapitre de
     esta página.
 
@@ -41,12 +41,12 @@ et son **objet parent**. Les **scénarios grisés** sont ceux qui sont
 désactivés.
 
 La nouvelle barre de recherche vous permet de trouver facilement un scénario
-ou un ensemble de scénario commençant par les même lettres.
+ou un ensemble de scénarios commençant par les même lettres.
 
 Edición de un escenario 
 
 Après avoir cliqué sur **Ajouter**, vous devez choisir le nom de votre
-scénario et vous êtes redirigé vers la page de ses paramètres généraux.
+scénario, vous êtes ensuite redirigé vers la page de ses paramètres généraux.
 En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 :
 
@@ -60,7 +60,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Exécuter** : Permet de lancer le scénario manuellement (N’oubliez
     pas de sauvegarder au préalable !). Les déclencheurs ne sont donc
-    no se tiene en cuenta.
+    pas pris en compte. 
 
 -   **Supprimer** : Permet de supprimer le scénario.
 
@@ -79,7 +79,13 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 -   **Liens** : Permet de visualiser le graphique des éléments en lien
     con el escenario.
 
-Pestaña General
+> **Tip**
+>
+> Un Ctrl+Click sur le bouton exécuter vous permet de sauvegarder, exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun)
+
+
+Onglet Général
+--------------
 
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
 notre scénario :
@@ -89,16 +95,16 @@ notre scénario :
 -   **Nom à afficher** : Le nom utilisé pour son affichage.
 
 -   **Groupe** : Permet d’organiser les scénarios, en les classant dans
-    de los grupos.
+    des groupes.
 
--   **Activo**: Permite activar el escenario.
+-   **Actif** : Permet d’activer le scénario.
 
 -   **Visible** : Permet de rendre visible le scénario.
 
 -   **Objet parent** : Affectation à un objet parent.
 
 -   **Timeout secondes (0 = illimité)** : La durée d’exécution maximale
-    autorizada
+    autorisée
 
 -   **Multi lancement** : Cochez cette case si vous souhaitez que le
     scénario puisse être lancé plusieurs fois en même temps.
@@ -111,8 +117,7 @@ notre scénario :
 
 -   **Icone** : Permet de choisir une icone pour le scénario en lieu et place de l'icone standard.
 
--   **Description** : Permet d’écrire un petit texte pour décrire
-    tu escenario.
+-   **Description** : Permet d’écrire un petit texte pour décrire votre scénario.
 
 -   **Mode du scénario** : Le scénario peut être programmé, déclenché ou
     les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s)
@@ -134,6 +139,8 @@ créé, vous pourrez y ajouter un autre **bloc**ou une**action**.
 > **Tip**
 >
 > Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
+>
+> Pour éviter la confirmation de suppression d'un bloc, faites Ctrl+Click 
 
 ### Les blocs
 
@@ -173,6 +180,13 @@ Chacun de ces blocs a ses options pour mieux les manipuler :
     bloc par glisser/déposer.
 
 -   Le bouton, tout à droite, permet de supprimer le bloc entier.
+
+> **Tip**
+>
+> Possibilité de condenser les blocs.
+> L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
+> Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur coller remplace le bloc par le bloc copié.
+> Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous aviez cliqué.
 
 #### Blocs Si/Alors/Sinon , Boucle, Dans et A
 
@@ -214,7 +228,7 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 
 > **Tip**
 >
-> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seule les parentheses () sont possible
+> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles
 
 #### Bloc Code
 
@@ -256,6 +270,10 @@ Scénario :
 -   $scenario->removeData($key); : Supprime une donnée.
 -   $scenario->setLog($message); : Ecrit un message dans le log du scénario.
 -   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
+
+> **Tip**
+>
+> Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 
 ### Les Actions
 
@@ -702,13 +720,13 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
-    para una interacción por ejemplo.
+    pour une interaction par exemple.
 
 -   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 
 -   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
     les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
-    además, eligir 4 niveles de alerta.
+    plus, choisir 4 niveaux d’alerte.
 
 -   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
     validé sur tous les navigateurs qui ont une page jeedom ouverte.

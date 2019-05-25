@@ -9,13 +9,13 @@ sont diponibles (supprimer, réinstaller, vérifier, etc.)
 The Update Center page
 ================================
 
-Elle est accessible par le menu **Administration → Centre de mise à
+Elle est accessible par le menu **Réglages → Système → Centre de mise à
 jour** et se composent de 3 onglets et une partie haute.
 
 Les fonctions du haut de la page. 
 ---------------------------------
 
-En haut de la page,indépendant de l'onglet, se trouvent les boutons de commande. 
+En haut de la page, indépendant de l'onglet, se trouvent les boutons de commande. 
 Jeedom se connecte périodiquement au Market pour voir si des mises à jour
 sont disponibles (la date de dernière vérification est indiquée en haut
 à gauche de la page). Si vous voulez réaliser une vérification manuelle,
@@ -41,7 +41,7 @@ options :
     la sauvegarde. (Ce mode désactive la sauvegarde !)
 
 -   **Mise à jour à réappliquer** : Permet de réappliquer une mise
-    à jour. (NB : Toutes les mises à jour ne peuvent être réappliquées.)
+    à jour. (NB : Toutes les mises à jour ne peuvent pas être réappliquées.)
 
 > **Important**
 >
@@ -55,15 +55,15 @@ options :
 > Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
 > en propose pas.
 
-Onglets Core et Plugins et l'onglet Autre
------------------------------------------
+Onglets Core et Plugins et l'onglet Autres
+------------------------------------------
 
-Ces deux onglets similaires, secomposent d'un tableau :
+Ces deux onglets similaires, se composent d'un tableau :
 
 -   **Core et Plugins** : Contient le logiciel de base de Jeedom (core) et la
     liste des plugins installés.
 
--   **Autre** : Contient les widgets, les scripts, etc.
+-   **Autres** : Contient les widgets, les scripts, etc.
 
 Vous y trouverez les informations suivants : \* **Statut** : OK ou NOK.
 Permet de connaître l’état actuel du plugin. \* **Nom** : Vous y
@@ -77,7 +77,7 @@ jour lors de la mise à jour générale (Bouton **Mettre à jour**).
 > Pour chaque tableau, la première ligne permet de filter suivant
 > le nom des éléments présents.
 
-Sur chaque ligne, vous pouvez utiliser les fonctions suivants pour
+Sur chaque ligne, vous pouvez utiliser les fonctions suivantes pour
 chaque élément :
 
 -   **Réinstaller** : Force la réinstallation.

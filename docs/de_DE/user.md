@@ -2,7 +2,7 @@ Hier ist die Seite, wo man die Liste der Benutzer definieren kann, die befugt
 sind, sich in Jeedom einzuloggen und auch ihre Administratorrechte
 definieren kann.
 
-Erreichbar unter Einstellungen → Benutzer.
+Accessible par Réglages → Système → Utilisateurs.
 
 Oben rechts haben Sie eine Schaltfläche zum Hinzufügen eines Benutzers,
 eine zum Speichern und eine Schaltfläche zum Öffnen eines Support-Zugriffs.
@@ -44,10 +44,10 @@ Darunter haben Sie eine Tabelle :
 
 -   **Löschen** : um den Benutzer zu löschen
 
--   **API regenerieren** : Den API-Schlüssel des Benutzers regenerieren
+-   **Régénérer clef API** : régénère la clef API de l’utilisateur
 
 -   **Rechte** : erlaubt, die Rechte des Benutzers genau zu
-    verwalten (Achtung die Profile müssen
+    l’utilisateur (attention le profil doit être en
     "Eingeschränkter Benutzer" sein)
 
 Rechteverwaltung

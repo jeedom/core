@@ -2,7 +2,7 @@ Es aquí donde vamos a ser capaces de definir la lista de usuarios
 permitido para conectarse a Jeedom sino también sus derechos
 director
 
-Accesible por la Administración → Usuarios.
+Accessible par Réglages → Système → Utilisateurs.
 
 En la parte superior derecha tienes un botón para añadir un usuario, otro
 para guardar y un botón para abrir el acceso a soporte.
@@ -44,10 +44,10 @@ A continuación tiene una tabla:
 
 -   ** ** Eliminar: Eliminar usuario
 
--   ** ** clave de API regenerado: regenera la clave de la API del usuario
+-   **Régénérer clef API** : régénère la clef API de l’utilisateur
 
 -   ** ** Manejo de los derechos: a finamente gestionar los derechos
-    Usuario (ver los perfiles deben ser
+    l’utilisateur (attention le profil doit être en
     "Usuario limitado")
 
 Gestión de derechos
