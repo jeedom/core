@@ -18,7 +18,13 @@ var JS_ERROR = [];
 var __OBSERVER__ = null;
 var PREVIOUS_PAGE = null;
 var NO_POPSTAT = false;
-
+var TOOLTIPSOPTIONS = {
+      arrow: false,
+      delay: 350,
+      interactive: true,
+      contentAsHTML: true,
+      restoration: 'current'
+    }
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
     return;
@@ -695,25 +701,13 @@ function createObserver() {
 
 function initTooltips(_el) {
   if (!_el) {
-    $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster({
-      arrow: false,
-      delay: 350,
-      interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
-    })
+    $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
       me = _el.closest('.cmd-widget[title]')
       if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
-      me.tooltipster({
-        arrow: false,
-        delay: 350,
-        interactive: true,
-        contentAsHTML: true,
-        restoration: 'current'
-      })
+      me.tooltipster(TOOLTIPSOPTIONS)
       return;
     }
 
@@ -721,23 +715,11 @@ function initTooltips(_el) {
       if (_el.is('[title]') && _el.hasClass('tooltipstered')){
         _el.tooltipster('destroy');
       }
-      _el.tooltipster({
-        arrow: false,
-        delay: 350,
-        interactive: true,
-        contentAsHTML: true,
-        restoration: 'current'
-      })
+      _el.tooltipster(TOOLTIPSOPTIONS)
     }
 
     _el.find('.tooltipstered[title]').tooltipster('destroy')
-    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster({
-      arrow: false,
-      delay: 350,
-      interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
-    })
+    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(TOOLTIPSOPTIONS)
 
   }
 }
