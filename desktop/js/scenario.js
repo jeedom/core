@@ -304,7 +304,8 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 });
 
 $("#bt_saveScenario,#bt_saveScenario2").off('click').on('click', function (event) {
-  saveScenario();
+  saveScenario()
+  SC_CLIPBOARD = null
 });
 
 $("#bt_delScenario,#bt_delScenario2").off('click').on('click', function (event) {
@@ -537,27 +538,66 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
 });
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
-  setUndoStack()
-  SC_CLIPBOARD = $(this).closest('.element')
-  if(event.ctrlKey) {
-    $(this).closest('.element').remove()
-  }
-  modifyWithoutSave = true;
-});
-
-$('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
-  setUndoStack()
+  $(this).closest('.element').addClass('copyMe')
+  $('.copyMe .tooltipstered').tooltipster('destroy')
+  $('.copyMe').removeClass('copyMe')
   clickedBloc = $(this).closest('.element')
-  newBloc = $(SC_CLIPBOARD).clone()
-  newBloc.find('input[data-l1key="id"]').attr("value", "")
-  newBloc.insertAfter(clickedBloc)
+
+  //if element in an expression, copy the entire expression:
+  if (!clickedBloc.parent('#div_scenarioElement').length) {
+    SC_CLIPBOARD = clickedBloc.parent().parent().clone()
+  } else {
+    SC_CLIPBOARD = clickedBloc.clone()
+  }
   if(event.ctrlKey) {
+    setUndoStack()
     clickedBloc.remove()
   }
   modifyWithoutSave = true;
 });
 
+$('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
+  if (!SC_CLIPBOARD) return
+  setUndoStack()
+  //clone clipboard and removes its id for later save:
+  newBloc = $(SC_CLIPBOARD).clone()
+  newBloc.find('input[data-l1key="id"]').attr("value", "")
+  newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
+  newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
+  newBloc.addClass('inserted')
+  clickedBloc = $(this).closest('.element')
+  //Are we pasting inside an expresion:
+  if (clickedBloc.parent('#div_scenarioElement').length) {
+    //get the element if copied from an expression:
+    if (newBloc.hasClass('expression')) newBloc = newBloc.find('.element')
+    newBloc.insertAfter(clickedBloc)
+  } else {
+    //make it an expression if not yet:
+    if (newBloc.hasClass('expression')) {
+      newBloc.insertAfter(clickedBloc.parent().parent())
+    } else {
+      newDiv = '<div class="expression sortable col-xs-12">'
+      newDiv += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element">'
+      newDiv += '<div class="col-xs-12" id="insertHere">'
+      newDiv += '</div>'
+      newDiv += '</div>'
+      $(newDiv).insertAfter(clickedBloc.parent().parent())
+      newBloc.appendTo('#insertHere')
+      $('#insertHere').removeAttr('id')
+    }
+  }
+  $('.inserted .tooltips:not(.tooltipstered), .inserted [title]').tooltipster(TOOLTIPSOPTIONS)
+  $('.inserted').removeClass('inserted')
+
+  if(event.ctrlKey) {
+    clickedBloc.remove()
+  }
+  updateSortable()
+  modifyWithoutSave = true
+});
+
 $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction', function (event) {
+  setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
   updateSortable();
@@ -1868,13 +1908,7 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 function setUndoStack(state=0) {
   $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
   newStack = $('#div_scenarioElement').clone()
-  $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
-      arrow: false,
-      delay: 350,
-      interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
-    })
+  $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -1896,13 +1930,7 @@ function undo() {
     loadStack = $(_undoStack_[loadState])
     $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
     $('#div_scenarioElement').replaceWith(loadStack)
-    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
-      arrow: false,
-      delay: 350,
-      interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
-    })
+    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
     $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ -= 1
   } catch(e) {}
@@ -1915,13 +1943,7 @@ function redo() {
     loadState = _undoState_ + 2
     $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
     $('#div_scenarioElement').replaceWith($(_undoStack_[loadState]))
-    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
-      arrow: false,
-      delay: 350,
-      interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
-    })
+    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
     $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ += 1
   } catch(e) {}
