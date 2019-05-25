@@ -708,8 +708,6 @@ function initEditOption(_state) {
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
-      snap : (editOption.snap == 1),
-      grid : (editOption.grid == 1) ? editOption.gridSize : false,
       containment: 'parent',
       cursor: 'move',
       cancel : '.locked',
