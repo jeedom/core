@@ -1866,7 +1866,15 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 });
 
 function setUndoStack(state=0) {
+  $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
   newStack = $('#div_scenarioElement').clone()
+  $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
+      arrow: false,
+      delay: 350,
+      interactive: true,
+      contentAsHTML: true,
+      restoration: 'current'
+    })
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -1887,6 +1895,14 @@ function undo() {
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
     loadStack = $(_undoStack_[loadState])
     $('#div_scenarioElement').replaceWith(loadStack)
+    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
+      arrow: false,
+      delay: 350,
+      interactive: true,
+      contentAsHTML: true,
+      restoration: 'current'
+    })
+    $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ -= 1
   } catch(e) {}
 }
@@ -1897,6 +1913,14 @@ function redo() {
   try {
     loadState = _undoState_ + 2
     $('#div_scenarioElement').replaceWith($(_undoStack_[loadState]))
+    $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster({
+      arrow: false,
+      delay: 350,
+      interactive: true,
+      contentAsHTML: true,
+      restoration: 'current'
+    })
+    $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ += 1
   } catch(e) {}
 }
