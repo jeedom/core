@@ -539,7 +539,11 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   $(this).closest('.element').addClass('copyMe')
-  $('.copyMe .tooltipstered').tooltipster('destroy')
+  try {
+    $('.copyMe .tooltipstered').tooltipster('destroy')
+  } catch(error) {
+    console.log('_copyElement ERROR:', error)
+  }
   $('.copyMe').removeClass('copyMe')
   clickedBloc = $(this).closest('.element')
 
@@ -1906,7 +1910,11 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 });
 
 function setUndoStack(state=0) {
-  $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
+  try {
+    $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
+  } catch(error) {
+    console.log('setUndoStack ERROR:', error)
+  }
   newStack = $('#div_scenarioElement').clone()
   $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
   if (newStack ==  $(_undoStack_[state-1])) return
@@ -1928,12 +1936,14 @@ function undo() {
     loadState = _undoState_
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
     loadStack = $(_undoStack_[loadState])
-    $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
+    //$('#div_scenarioElement .tooltipstered').tooltipster('destroy')
     $('#div_scenarioElement').replaceWith(loadStack)
     $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
     $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ -= 1
-  } catch(e) {}
+  } catch(error) {
+    console.log('undo ERROR:', error)
+  }
 }
 
 function redo() {
@@ -1941,12 +1951,15 @@ function redo() {
   if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
   try {
     loadState = _undoState_ + 2
-    $('#div_scenarioElement .tooltipstered').tooltipster('destroy')
-    $('#div_scenarioElement').replaceWith($(_undoStack_[loadState]))
+    loadStack = $(_undoStack_[loadState])
+    //$('#div_scenarioElement .tooltipstered').tooltipster('destroy')
+    $('#div_scenarioElement').replaceWith(loadStack)
     $('#div_scenarioElement .tooltips:not(.tooltipstered), #div_scenarioElement [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
     $('#div_scenarioElement').on('focus', ':input', function() { PREV_FOCUS = $(this) })
     _undoState_ += 1
-  } catch(e) {}
+  } catch(error) {
+    console.log('redo ERROR:', error)
+  }
 }
 
 function resetUndo() {
