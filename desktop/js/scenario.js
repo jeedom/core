@@ -568,7 +568,7 @@ $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteEle
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-  newBloc.addClass('inserted')
+  //newBloc.addClass('inserted')
   clickedBloc = $(this).closest('.element')
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
@@ -590,8 +590,8 @@ $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteEle
       $('#insertHere').removeAttr('id')
     }
   }
-  $('.inserted .tooltips:not(.tooltipstered), .inserted [title]').tooltipster(TOOLTIPSOPTIONS)
-  $('.inserted').removeClass('inserted')
+  //$('.inserted .tooltips:not(.tooltipstered), .inserted [title]').tooltipster(TOOLTIPSOPTIONS)
+  //$('.inserted').removeClass('inserted')
 
   if(event.ctrlKey) {
     clickedBloc.remove()
