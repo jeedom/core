@@ -539,21 +539,14 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
 });
 
 $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
-  $(this).closest('.element').addClass('copyMe')
-  try {
-    $('.copyMe .tooltipstered').tooltipster('destroy')
-  } catch(error) {
-    console.log('_copyElement ERROR:', error)
-  }
-  $('.copyMe').removeClass('copyMe')
   clickedBloc = $(this).closest('.element')
-
   //if element in an expression, copy the entire expression:
   if (!clickedBloc.parent('#div_scenarioElement').length) {
     SC_CLIPBOARD = clickedBloc.parent().parent().clone()
   } else {
     SC_CLIPBOARD = clickedBloc.clone()
   }
+  SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
   if(event.ctrlKey) {
     setUndoStack()
     clickedBloc.remove()
@@ -569,7 +562,7 @@ $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteEle
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-  //newBloc.addClass('inserted')
+
   clickedBloc = $(this).closest('.element')
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
@@ -591,13 +584,12 @@ $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteEle
       $('#insertHere').removeAttr('id')
     }
   }
-  //$('.inserted .tooltips:not(.tooltipstered), .inserted [title]').tooltipster(TOOLTIPSOPTIONS)
-  //$('.inserted').removeClass('inserted')
 
   if(event.ctrlKey) {
     clickedBloc.remove()
   }
   updateSortable()
+  updateTooltips()
   modifyWithoutSave = true
 });
 
