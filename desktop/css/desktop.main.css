@@ -1945,13 +1945,27 @@ border-color: transparent transparent transparent var(--sc-formTxt-color);
 .element .cursor {
   color: var(--linkHoverLight-color) !important;
 }
-.expressions .sortable-placeholder {
-  background-color: var(--logo-primary-color);
-}
 textarea {
   resize: vertical !important;
 }
 
+/* sortable ui */
+.sortable-placeholder,
+.ui-sortable-placeholder {
+  display: none;
+}
+.sortable-placeholder + div,
+.sortable-placeholder + .expression .element {
+  background-color: var(--logo-primary-color) !important;
+}
+.expressions .sortable.empty.ui-sortable-handle {
+  height: 25px !important;
+}
+.sortable-placeholderLast {
+  display: inline-block;
+  height: 25px !important;
+  background-color: var(--logo-primary-color) !important;
+}
 
 /*    __DESIGN__    */
 .element legend {
@@ -3184,16 +3198,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3201,11 +3215,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3251,5 +3265,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
