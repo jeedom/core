@@ -1225,7 +1225,9 @@ function printScenario(_id) {
       setTimeout(function () {
         modifyWithoutSave = false;
       }, 1000);
-      updateTooltips()
+      setTimeout(function () {
+        updateTooltips();
+      }, 500);
     }
   });
 }
