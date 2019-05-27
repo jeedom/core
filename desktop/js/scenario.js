@@ -902,7 +902,27 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
     forcePlaceholderSize: true,
     forceHelperSize: true,
     placeholder: "sortable-placeholder",
+    start: function (event, ui) {
+      if (expressions.find('.sortable').length < 3) {
+        expressions.find('.sortable.empty').show();
+      }
+    },
     change: function (event, ui) {
+      if (ui.placeholder.next().length == 0) {
+        ui.placeholder.addClass('sortable-placeholderLast')
+      } else {
+        ui.placeholder.removeClass('sortable-placeholderLast')
+      }
+
+      if (ui.placeholder.parent().hasClass('subElement')) {
+          ui.placeholder.removeClass('sortable-placeholder')
+          return
+      }
+      if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
+        ui.placeholder.removeClass('sortable-placeholder')
+        return
+      }
+
       thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
           ui.placeholder.removeClass('sortable-placeholder')
@@ -911,12 +931,13 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
       }
     },
     update: function (event, ui) {
-      if(ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
+      if (ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
         $("#div_scenarioElement").sortable('cancel');
       }
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
+
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
         ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
           var value = $(this).value();
@@ -932,20 +953,18 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
           }
           $(this).removeAttr('data-tmp-value');
         })
-        ui.item.replaceWith(el);
+        ui.item.parent().replaceWith(el);
       }
+
       if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
         $("#div_scenarioElement").sortable("cancel");
       }
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-      updateSortable();
-    },
-    start: function (event, ui) {
-      if (expressions.find('.sortable').length < 3) {
-        expressions.find('.sortable.empty').show();
-      }
+
+      updateTooltips()
+      updateSortable()
     }
   });
   $("#div_scenarioElement").sortable("enable");
