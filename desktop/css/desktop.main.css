@@ -1945,8 +1945,8 @@ border-color: transparent transparent transparent var(--sc-formTxt-color);
 .element .cursor {
   color: var(--linkHoverLight-color) !important;
 }
-.expressions .sortable-placeholder{
-  background-color: #94CA02;
+.expressions .sortable-placeholder {
+  background-color: var(--logo-primary-color);
 }
 textarea {
   resize: vertical !important;
