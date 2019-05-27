@@ -237,15 +237,7 @@ function addChart(_cmd_id, _action,_options) {
     }
     return;
   }
-  lastId = _cmd_id
-  if(init(_options) == ''){
-    _options = {};
-    if(_cmd_id.indexOf('#') != 1){
-      _options.graphType = $('#sel_chartType').value()
-      _options.groupingType = $('#sel_groupingType').value()
-      _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
-    }
-  }
+  lastId = _cmd_id;
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
     el: 'div_graph',
