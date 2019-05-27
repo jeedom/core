@@ -245,7 +245,7 @@ if (init('rescue', 0) == 0) {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<center><span class="visible-xs-inline-block" style="margin-top:20px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
+						<center><span class="visible-xs-inline-block" style="margin-top:10px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
