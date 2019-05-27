@@ -660,7 +660,7 @@ function initPage(){
   });
 
   setTimeout(function() { initTooltips() }, 750)
-  $("input[id^='in_search']").focus()
+  if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
 }
 
 $(function () {
