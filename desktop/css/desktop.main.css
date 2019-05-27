@@ -1127,6 +1127,12 @@ button .fas.fa-plus-circle {
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
+.navbar-fixed-top .visible-xs-inline-block {
+  max-width: calc(100% - 150px) !important;
+  max-height: 38x !important;
+  overflow: hidden;
+}
+
 .navbar {
   min-height: 50px;
   height: 50px;
