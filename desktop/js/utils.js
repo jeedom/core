@@ -22,8 +22,7 @@ var TOOLTIPSOPTIONS = {
       arrow: false,
       delay: 350,
       interactive: true,
-      contentAsHTML: true,
-      restoration: 'current'
+      contentAsHTML: true
     }
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
