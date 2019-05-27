@@ -858,14 +858,17 @@ pre {
   color: var(--al-info-color) !important;
 }
 .success,
+.success i,
 [data-coloredicons="1"] .icon_green {
   color: var(--bt-success-color) !important;
 }
 .warning,
+.warning i,
 [data-coloredicons="1"] .icon_orange {
   color: var(--al-warning-color) !important;
 }
 .danger,
+.danger i,
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
 }
@@ -1133,6 +1136,9 @@ button .fas.fa-plus-circle {
   overflow: hidden;
 }
 
+.navbar-fixed-top .visible-xs-inline-block .objectSummaryglobal .objectSummaryParent:nth-child(n+8) {
+  //display: none !important;
+}
 .navbar {
   min-height: 50px;
   height: 50px;
