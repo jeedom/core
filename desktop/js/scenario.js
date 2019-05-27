@@ -915,20 +915,23 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
         ui.placeholder.removeClass('sortable-placeholderLast')
       }
 
+      getClass = true
       if (ui.placeholder.parent().hasClass('subElement')) {
-          ui.placeholder.removeClass('sortable-placeholder')
-          return
+        getClass = false
       }
       if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
-        ui.placeholder.removeClass('sortable-placeholder')
-        return
+        getClass = false
       }
 
       thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
-          ui.placeholder.removeClass('sortable-placeholder')
-      } else {
+        getClass = false
+      }
+
+      if (getClass) {
         ui.placeholder.addClass('sortable-placeholder')
+      } else {
+        ui.placeholder.removeClass('sortable-placeholder')
       }
     },
     update: function (event, ui) {
