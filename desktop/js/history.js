@@ -227,6 +227,7 @@ $('#bt_validChangeDate').on('click',function(){
 });
 
 function addChart(_cmd_id, _action,_options) {
+  
   if (_action == 0) {
     if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
       $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
@@ -241,14 +242,6 @@ function addChart(_cmd_id, _action,_options) {
     return;
   }
   lastId = _cmd_id
-  if(init(_options) == ''){
-    _options = {};
-    if(_cmd_id.indexOf('#') != 1){
-      _options.graphType = $('#sel_chartType').value()
-      _options.groupingType = $('#sel_groupingType').value()
-      _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
-    }
-  }
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
     el: 'div_graph',
@@ -275,7 +268,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-
+  
 }
 
 /**************TIMELINE********************/
