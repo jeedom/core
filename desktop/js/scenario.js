@@ -832,6 +832,7 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function (html) {
       el.closest('.expression').find('.expressionOptions').html(html);
       taAutosize();
+      updateTooltips()
     });
   }
 });
