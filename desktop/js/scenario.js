@@ -653,6 +653,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function (html) {
         expression.find('.expressionOptions').html(html);
         taAutosize();
+        updateTooltips()
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
