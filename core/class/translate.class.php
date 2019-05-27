@@ -70,7 +70,7 @@ class translate {
 	
 	public static function exec($_content, $_name = '', $_backslash = false) {
 		if ($_content == '' || $_name == '') {
-			return '';
+			return $_content;
 		}
 		$language = self::getLanguage();
 		
