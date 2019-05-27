@@ -249,18 +249,6 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
             }
           },
           sep4 : "---------",
-          snap: {
-            name: "{{Aimanter les élements}}",
-            type: 'checkbox',
-            radio: 'radio',
-            selected:  editOption.snap,
-            events: {
-              click : function(e) {
-                editOption.snap = $(this).value();
-                initEditOption(1);
-              }
-            }
-          },
           snapGrid: {
             name: "{{Aimanter à la grille}}",
             type: 'checkbox',
@@ -667,51 +655,59 @@ function fullScreen(_mode) {
 
 var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
+var dragStep = false
 function draggableStartFix(event, ui) {
-  	zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-  
-  	dragClick.x = event.clientX
-    dragClick.y = event.clientY
-  	dragStartPos = ui.originalPosition
+  zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+  if (editOption.grid == 1) {
+    dragStep = editOption.gridSize[0]
+  } else {
+    dragStep = false
+  }
 
-    $container = $('.div_displayObject')
-  	containerWidth = $container.width()
-    containerHeight = $container.height()
-  
-  	clientWidth = $(ui.helper[0]).width()
-  	clientHeight = $(ui.helper[0]).height()
-  
-  	marginLeft = $(ui.helper[0]).css('margin-left')
-  	marginLeft = parseFloat(marginLeft.replace('px', ''))
-  
-  	minLeft = 0 - marginLeft
-  	minTop = 0
+  dragClick.x = event.clientX
+  dragClick.y = event.clientY
+  dragStartPos = ui.originalPosition
 
-  	maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
-  	maxTop = containerHeight + minTop - (clientHeight * zoomScale)
+  $container = $('.div_displayObject')
+  containerWidth = $container.width()
+  containerHeight = $container.height()
+
+  clientWidth = $(ui.helper[0]).width()
+  clientHeight = $(ui.helper[0]).height()
+
+  marginLeft = $(ui.helper[0]).css('margin-left')
+  marginLeft = parseFloat(marginLeft.replace('px', ''))
+
+  minLeft = 0 - marginLeft
+  minTop = 0
+
+  maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
+  maxTop = containerHeight + minTop - (clientHeight * zoomScale)
 }
-
 function draggableDragFix(event, ui) {
-  	newLeft = event.clientX - dragClick.x + dragStartPos.left
-  	newTop = event.clientY - dragClick.y + dragStartPos.top
-  
-  	if (newLeft < minLeft) newLeft = minLeft
-  	if (newLeft > maxLeft) newLeft = maxLeft
-  
-  	if (newTop < minTop) newTop = minTop
-  	if (newTop > maxTop) newTop = maxTop
-  
-  	ui.position = {left: newLeft, top: newTop}
-}
+  newLeft = event.clientX - dragClick.x + dragStartPos.left
+  newTop = event.clientY - dragClick.y + dragStartPos.top
 
+  if (newLeft < minLeft) newLeft = minLeft
+  if (newLeft > maxLeft) newLeft = maxLeft
+
+  if (newTop < minTop) newTop = minTop
+  if (newTop > maxTop) newTop = maxTop
+
+  if (dragStep) {
+    newLeft = (Math.round(newLeft / dragStep) * dragStep)
+    newTop = (Math.round(newTop / dragStep) * dragStep)
+  }
+
+  ui.position = {left: newLeft, top: newTop}
+}
 
 function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
   if (_state) {
     $('.tooltipstered').tooltipster('disable')
+    $('.div_displayObject').addClass('editingMode')
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
-      snap : (editOption.snap == 1),
-      grid : (editOption.grid == 1) ? editOption.gridSize : false,
       containment: 'parent',
       cursor: 'move',
       cancel : '.locked',
@@ -732,10 +728,24 @@ function initEditOption(_state) {
       $('.div_grid').hide();
     }
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
-      containment: "parent",
       cancel : '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
+      start: function( event, ui ) {
+        zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+        if (editOption.grid == 1) {
+          dragStep = editOption.gridSize[0]
+          dragStep = dragStep / zoomScale
+        } else {
+          dragStep = false
+        }
+      },
       resize: function( event, ui ) {
+        if (dragStep) {
+          newWidth = (Math.round(ui.size.width / dragStep) * dragStep)
+          newHeight = (Math.round(ui.size.height / dragStep) * dragStep)
+          ui.element.width(newWidth)
+          ui.element.height(newHeight)
+        }
         ui.element.find('.camera').trigger('resize');
       },
       stop: function( event, ui ) {
@@ -753,6 +763,7 @@ function initEditOption(_state) {
 
     }
   }else{
+    $('.div_displayObject').removeClass('editingMode')
     try{
       $('.tooltipstered').tooltipster('enable')
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy");
@@ -820,11 +831,11 @@ function displayPlan(_code) {
         $('.div_displayObject').append(data.image);
       }
       if (isset(data.configuration.backgroundTransparent) && data.configuration.backgroundTransparent == 1) {
-        $('.div_backgroundPlan').css('background-color','transparent');
+        $('.div_displayObject').css('background-color','transparent');
       }else if (isset(data.configuration.backgroundColor)) {
-        $('.div_backgroundPlan').css('background-color',data.configuration.backgroundColor);
+        $('.div_displayObject').css('background-color',data.configuration.backgroundColor);
       }else{
-        $('.div_backgroundPlan').css('background-color','#ffffff');
+        $('.div_displayObject').css('background-color','#ffffff');
       }
       if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
         $('.div_displayObject').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX);
