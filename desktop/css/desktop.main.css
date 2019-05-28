@@ -1293,6 +1293,25 @@ div.panel {
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
   background-color: var(--defaultBkg-color) !important;
 }
+.panel-heading {
+  padding:0;
+}
+[data-page="plugin"] .panel-heading {
+  padding: 10px 15px;
+}
+.panel-title > a.accordion-toggle {
+  width: calc(100% - 550px);
+  height: 100%;
+  margin-right: 200px !important;
+  padding: 10px 15px;
+  display: inline-block;
+}
+body:not([data-page="plugin"]) .panel-title .pull-right {
+  position: relative;
+  top: 10px !important;
+  display: inline-block;
+}
+
 .panel {
   color: var(--txt-color) !important;
   background-color: var(--defaultBkg-color) !important;
