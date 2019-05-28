@@ -660,7 +660,6 @@ class eqLogic {
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
 			'#name_display#' => (strlen($this->getName()) <25) ? $this->getName() : substr($this->getName(),0,25)."...",
-			'#hideEqLogicName#' => '',
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
@@ -702,13 +701,6 @@ class eqLogic {
 		}
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
-		}
-		if ($this->getDisplay('showObjectNameOn' . $_version, 0) == 1) {
-			$object = $this->getObject();
-			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		}
-		if ($this->getDisplay('showNameOn' . $_version, 1) == 0) {
-			$replace['#hideEqLogicName#'] = 'display:none;';
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
 		if (is_array($this->widgetPossibility('parameters'))) {
