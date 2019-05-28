@@ -696,6 +696,7 @@ class eqLogic {
 			foreach ($this->getCmd('action') as $cmd) {
 				if ($cmd->getConfiguration('isRefreshCmd') == 1) {
 					$refresh_cmd = $cmd;
+					break;
 				}
 			}
 		}
@@ -703,7 +704,10 @@ class eqLogic {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
-		if (is_array($this->widgetPossibility('parameters'))) {
+		foreach ($this->getDisplay('parameters') as $key => $value) {
+			$replace['#'.$key.'#'] = $value;
+		}
+		if (is_array($this->widgetPossibility('parameters')) && count($this->widgetPossibility('parameters')) > 0) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
 				if (!isset($parameter['allow_displayType']) || !isset($parameter['type'])) {
 					continue;
