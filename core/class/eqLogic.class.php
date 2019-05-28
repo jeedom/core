@@ -660,7 +660,6 @@ class eqLogic {
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
 			'#name_display#' => (strlen($this->getName()) <25) ? $this->getName() : substr($this->getName(),0,25)."...",
-			'#hideEqLogicName#' => '',
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
@@ -697,21 +696,18 @@ class eqLogic {
 			foreach ($this->getCmd('action') as $cmd) {
 				if ($cmd->getConfiguration('isRefreshCmd') == 1) {
 					$refresh_cmd = $cmd;
+					break;
 				}
 			}
 		}
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
-		if ($this->getDisplay('showObjectNameOn' . $_version, 0) == 1) {
-			$object = $this->getObject();
-			$replace['#object_name#'] = (is_object($object)) ? '(' . $object->getName() . ')' : '';
-		}
-		if ($this->getDisplay('showNameOn' . $_version, 1) == 0) {
-			$replace['#hideEqLogicName#'] = 'display:none;';
+		foreach ($this->getDisplay('parameters') as $key => $value) {
+			$replace['#'.$key.'#'] = $value;
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
-		if (is_array($this->widgetPossibility('parameters'))) {
+		if (is_array($this->widgetPossibility('parameters')) && count($this->widgetPossibility('parameters')) > 0) {
 			foreach ($this->widgetPossibility('parameters') as $pKey => $parameter) {
 				if (!isset($parameter['allow_displayType']) || !isset($parameter['type'])) {
 					continue;

@@ -31,18 +31,21 @@ $allObject = jeeObject::all();
 				<a id="bt_resetObjectSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 			</div>
 		</div>
-
-		<div class="objectListContainer">
-			<?php
-			foreach ($allObject as $object) {
-				echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
-				echo $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>');
-				echo "<br/>";
-				echo '<span class="name">' . $object->getName() . '</span><br/>';
-				echo $object->getHtmlSummary();
-				echo '</div>';
-			}
-			?>
+		<div class="panel">
+			<div class="panel-body">
+				<div class="objectListContainer">
+					<?php
+					foreach ($allObject as $object) {
+						echo '<div class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>') . '\'>';
+						echo $object->getDisplay('icon', '<i class="fas fa-lemon-o"></i>');
+						echo "<br/>";
+						echo '<span class="name">' . $object->getName() . '</span><br/>';
+						echo $object->getHtmlSummary();
+						echo '</div>';
+					}
+					?>
+				</div>
+			</div>
 		</div>
 	</div>
 

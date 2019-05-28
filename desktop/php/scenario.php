@@ -98,7 +98,7 @@ if (is_array($scenarioListGroup)) {
 				echo '<div class="panel panel-default">';
 				echo '<div class="panel-heading">';
 				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '" style="text-decoration:none;">' . $group['group'] . ' - ';
+				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
 				$c = count($scenarios[$group['group']]);
 				echo $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
 				echo '</h3>';

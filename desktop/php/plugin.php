@@ -13,9 +13,7 @@ $plugins_list = plugin::listPlugin(false, true);
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="pluginListContainer">
 			<div class="cursor success" id="bt_addPluginFromOtherSource">
-				<center>
-					<i class="fas fa-plus"></i>
-				</center>
+				<center><i class="fas fa-plus"></i></center>
 				<span><center>{{Plugins}}</center></span>
 			</div>
 			<?php
@@ -26,12 +24,11 @@ $plugins_list = plugin::listPlugin(false, true);
 					if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
 						continue;
 					}
-					echo '<div class="cursor displayStore success" data-repo="' . $key . '">
-					<center>
-					<i class="fas fa-shopping-cart"></i>
-					</center>
-					<span><center>' . $value['name'] . '</center></span>
-					</div>';
+					$div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
+					$div .= '<center><i class="fas fa-shopping-cart"></i></center>';
+					$div .= '<span><center>' . $value['name'] . '</center></span>';
+					$div .= '</div>';
+					echo $div;
 				}
 			?>
 		</div>
@@ -42,24 +39,29 @@ $plugins_list = plugin::listPlugin(false, true);
 			<a id="bt_resetPluginSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		  </div>
 		</div>
-		<div class="pluginListContainer">
-			<?php
-			foreach (plugin::listPlugin() as $plugin) {
-				$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-				echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
-				echo '<center>';
-				echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
-				echo '</center>';
-				echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
-				echo '</div>';
-			}
-			?>
-		</div>
+
+        <div class="panel">
+			<div class="panel-body">
+              <div class="pluginListContainer">
+              	<?php
+					foreach (plugin::listPlugin() as $plugin) {
+						$opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+						echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
+						echo '<center>';
+						echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
+						echo '</center>';
+						echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
+						echo '</div>';
+					}
+				?>
+              </div>
+            </div>
+        </div>
 	</div>
 	<div class="col-xs-12" id="div_confPlugin" style="display:none;">
 		<legend>
 			<i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
-			<span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
+			<span id="span_plugin_name"></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
 			<div class="input-group pull-right" style="display:inline-flex">
 				<span class="input-group-btn" id="span_right_button"></span>
 			</div>
@@ -96,18 +98,18 @@ $plugins_list = plugin::listPlugin(false, true);
 			</div>
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-primary" id="div_configLog">
-					<div class="panel-heading"><h3 class="panel-title"><i class="far fa-file"></i> {{Logs et surveillance}}
-						<a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-					</h3></div>
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="far fa-file"></i> {{Logs et surveillance}}
+							<a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+						</h3>
+					</div>
 					<div class="panel-body">
 						<form class="form-horizontal">
 							<fieldset>
 								<div id="div_plugin_log"></div>
 							</fieldset>
 						</form>
-						<div class="form-actions">
-
-						</div>
+						<div class="form-actions"></div>
 					</div>
 				</div>
 			</div>
@@ -140,24 +142,25 @@ $plugins_list = plugin::listPlugin(false, true);
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
-				<a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-			</h3></div>
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
+					<a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+				</h3>
+			</div>
 			<div class="panel-body">
 				<div id="div_plugin_configuration"></div>
-
-				<div class="form-actions">
-
-				</div>
+				<div class="form-actions"></div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-primary" id="div_functionalityPanel">
-					<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-satellite"></i> {{Fonctionnalités}}
-						<a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-					</h3></div>
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fas fa-satellite"></i> {{Fonctionnalités}}
+							<a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+						</h3>
+					</div>
 					<div class="panel-body">
 						<form class="form-horizontal">
 							<fieldset>
@@ -169,9 +172,11 @@ $plugins_list = plugin::listPlugin(false, true);
 			</div>
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-primary" id="div_configPanel">
-					<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-chalkboard"></i> {{Panel}}
-						<a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
-					</h3></div>
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fas fa-chalkboard"></i> {{Panel}}
+							<a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+						</h3>
+					</div>
 					<div class="panel-body">
 						<form class="form-horizontal">
 							<fieldset>

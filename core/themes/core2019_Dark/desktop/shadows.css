@@ -8,6 +8,7 @@
 }
 .eqLogic-widget:hover,
 .scenario-widget:hover,
+.panel.panel-default:hover,
 .panel:hover,
 .context-menu-list:hover {
  box-shadow: 0 8px 22px 2px rgba(0,0,0,0.4);
@@ -18,7 +19,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.35);
 }
 
-.panel-group .panel{
+.panel-group .panel {
   box-shadow: none
 }
 .panel-collapse.collapse.in {
