@@ -38,9 +38,9 @@ Aquí está la URL =
     "Activar" para comenzar a detener, respectivamente, desactivar o
     activar el escenario.
 
--   ** ** etiquetas \ [opcional \]: si la acción es "start", puede cambiar
+-   **etiquetas** \[opcional\] : si la acción es "start", puede pasar
     des tags au scénario (voir la documentation sur les scénarios) sous
-    etiquetas de formulario = foo% 3D1%20tata 3D2% (tenga en cuenta que el 20% corresponde a una
+    la forma etiquetas=toto% 3D1%20tata%3D2 (tenga en cuenta que el 20% corresponde a una
     El espacio y el% = 3D)
 
 Información / Control de Acción

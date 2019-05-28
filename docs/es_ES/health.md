@@ -20,7 +20,7 @@ encontrar los iconos:
 
 -   equipos plugin de puerto de acceso (tipo llave Zwave)
 
--   demonio de la moda
+-   Modo del deamon
 
 -   Visualización de la página plugin de equipos Salud
 

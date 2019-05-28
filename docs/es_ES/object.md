@@ -62,7 +62,7 @@ Aquí están las diferentes características para configurar un objeto:
     seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
     objets qui se suivent, ils seront également côte à côte.
 
--   **Image** : Vous avez la possibilité de télécharger une image ou la
+-   **Imagen**: Tienes la opción de subir una imagen o la
     supprimer. Au format jpeg cette image sera l'image de fond de l'objet
     quand vous l'afficherez sur le dashboard.
 
@@ -89,7 +89,7 @@ Onglet Résumé
 Les résumés sont des informations globales, affectées à un objet, qui
 s’affichent notamment sur le dashboard à côté du nom de ce dernier.
 
-### Tableau d’affichage 
+### Cuadro de indicadores
 
 Les colonnes représentent les résumés affectés à l’objet courant. Trois
 lignes vous sont proposées :
@@ -104,7 +104,7 @@ lignes vous sont proposées :
 -   **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que
     le résumé s’affiche quand vous l’affichez depuis un mobile.
 
-### Commandes 
+### Comandos
 
 Chaque onglet représente un type de résumé défini dans la configuration
 de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit
@@ -119,13 +119,13 @@ parent cet objet.
 > vous devez aller dans la configuration générale de Jeedom :
 > **Administration → Configuration → Onglet Résumés**.
 
-Vue d’ensemble 
+Visión general
 ==============
 
 La vue d’ensemble vous permet de visualiser l’ensemble des objets dans
 Jeedom, ainsi que leur configuration :
 
--   **ID** : ID de l’objet.
+-   **ID** : ID del objeto.
 
 -   **Objet** : Nom de l’objet.
 
@@ -139,7 +139,7 @@ Jeedom, ainsi que leur configuration :
     qui est en bleu est pris en compte dans le résumé global.
 
 -   **Résumé Dashboard Masqué** : Indique les résumés masqués sur
-    le dashboard.
+    el dashboard.
 
 -   **Résumé Mobile Masqué** : Indique les résumés masqués sur
     le mobile.

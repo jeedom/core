@@ -83,7 +83,7 @@ Dépendances :
 -   **Dernière installation** : date de la dernière installation des
     dépendances
 
-Démon :
+Deamon : 
 
 -   **Nom** : généralement sera local
 

@@ -640,7 +640,7 @@ Parámetros:
 plugin::deamonStart
 -------------------
 
-Force le démarrage du démon
+Forzar el inicio del deamon
 
 Parámetros:
 
