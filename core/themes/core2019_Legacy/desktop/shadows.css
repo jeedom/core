@@ -21,7 +21,8 @@
  z-index: 0;
  transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
 }
-.panel:hover {
+.panel:hover,
+.panel.panel-default:hover {
  box-shadow: 0 8px 22px rgba(0,0,0,.2);
  z-index: 5;
 }
