@@ -68,3 +68,8 @@ $("#bt_removeAllLog").on('click', function(event) {
     }
   });
 });
+
+
+$(function() {
+  $('#div_displayLogList .li_log').first().trigger('click')
+});
