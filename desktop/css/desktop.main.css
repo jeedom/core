@@ -32,6 +32,10 @@ body {
   margin: 0 !important;
   scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
+.row.row-overflow {
+  background-color: rgb(var(--bg-color));
+}
+  
 .backgroundforJeedom{
   width:100%;
   height:calc(100% - 50px);
