@@ -122,7 +122,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo '</td>';
 							echo '<td>';
 							echo '<a class="btn btn-danger btn-xs bt_removePlanComposant pull-right"><i class="fas fa-trash"></i> {{Supprimer}}</a> ';
-							echo '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-gear"></i> {{Configuration}}</a>';
+							echo '<a class="btn btn-default btn-xs bt_configurePlanComposant pull-right"><i class="fas fa-cog"></i> {{Configuration}}</a>';
 							echo '</td>';
 							echo '</tr>';
 						}
