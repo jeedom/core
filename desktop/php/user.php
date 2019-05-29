@@ -79,7 +79,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 </form>
 <form class="form-horizontal">
 	<fieldset>
-		<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-warning pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+		<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
 		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
@@ -111,7 +111,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 						echo $value['datetime'];
 						echo '</td>';
 						echo '<td>';
-						echo '<a class="btn btn-warning btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+						echo '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
 						echo '</td>';
 						echo '</tr>';
 					}
