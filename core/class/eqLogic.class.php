@@ -703,8 +703,10 @@ class eqLogic {
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
-		foreach ($this->getDisplay('parameters') as $key => $value) {
-			$replace['#'.$key.'#'] = $value;
+		if(is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0){
+			foreach ($this->getDisplay('parameters') as $key => $value) {
+				$replace['#'.$key.'#'] = $value;
+			}
 		}
 		$replace['#style#'] = trim($replace['#style#'], ';');
 		if (is_array($this->widgetPossibility('parameters')) && count($this->widgetPossibility('parameters')) > 0) {
