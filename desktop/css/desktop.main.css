@@ -824,6 +824,9 @@ pre {
 :not(#div_alert).alert {
   padding: 7px !important;
 }
+#div_pageContainer > div.alert {
+  margin-top: 7px;
+}
 .alert-info,
 .label-info {
   color: var(--linkHoverLight-color);
