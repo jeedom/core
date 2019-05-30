@@ -1320,6 +1320,9 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   top: 10px !important;
   display: inline-block;
 }
+#div_confPlugin .panel-title .pull-right {
+  top: 0 !important;
+}
 
 .panel {
   color: var(--txt-color) !important;
