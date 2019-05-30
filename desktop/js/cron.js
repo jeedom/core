@@ -25,7 +25,7 @@ $("#bt_refreshCron").on('click', function () {
 });
 
 $("#bt_addCron").on('click', function () {
-  $('#table_cron tbody').append(addCron({}));
+  $('#table_cron tbody').prepend(addCron({}));
 });
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
