@@ -43,14 +43,14 @@ function initView(_view_id) {
       setTileSize('.eqLogic');
       setTileSize('.scenario');
       $('.eqLogicZone').packery({gutter : 0});
-      var screenWidth = $(window).width() - 8;
+      var screenWidth = $(window).width() - 26;
       $('.div_viewZone .table-responsive').each(function(){
         $(this).width('auto')
         $(this).css('max-width','none');
         if($(this).width() < screenWidth){
           $(this).width(screenWidth);
         }else{
-          $(this).css('overflow','scroll');
+          $(this).css('overflow','auto');
           $(this).css('max-width',screenWidth+'px');
         }
       });
@@ -80,12 +80,12 @@ function displayView(html) {
     $('.eqLogicZone').packery({gutter : 0});
   }, 50);
   $('#div_displayView .ui-table-columntoggle-btn').remove();
-  var screenWidth = $(window).width() - 8;
+  var screenWidth = $(window).width() - 26;
   $('.div_viewZone .table-responsive').each(function(){
     if($(this).width() < screenWidth){
       $(this).width(screenWidth);
     }else{
-      $(this).css('overflow','scroll');
+      $(this).css('overflow','auto');
       $(this).css('max-width',screenWidth+'px');
     }
   });
