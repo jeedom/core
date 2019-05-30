@@ -27,6 +27,10 @@ $(function() {
 	refreshDataStoreMangementTable();
 	$('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
+      	if (tr.attr('data-datastore_id') == '') {
+          tr.remove()
+          return
+        }
 		bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
 			if (result) {
 				jeedom.dataStore.remove({
@@ -83,7 +87,7 @@ $(function() {
 		tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>';
 		tr += '</td>';
 		tr += '</tr>';
-		$('#table_dataStore tbody').append(tr);
+		$('#table_dataStore tbody').prepend(tr);
 		$("#table_dataStore").trigger("update");
 	});
 
