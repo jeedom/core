@@ -644,8 +644,8 @@ function date_fr($date_en) {
 		);
 		$texte_short = array(
 			"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
-			"Jan", "Fev", "Mar", "Avr", "Mai", "Jui",
-			"Jui", "Aou;", "Sep", "Oct", "Nov", "Dec",
+			"Janv.", "Févr.", "Mars", "Avril", "Mai", "Juin",
+			"Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc.",
 		);
 		break;
 		case 'de_DE':

@@ -113,3 +113,8 @@ a:focus {
 #div_displayObject .btn:hover {
   color: var(--linkHoverLight-color) !important;
 }
+
+
+ul[role="tablist"] li:not(.active) a {
+  background-color: var(--el-defaultColor) !important;
+}

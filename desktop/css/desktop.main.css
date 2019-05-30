@@ -78,8 +78,10 @@ a.btn,
 .cursor * {
   cursor: pointer !important;
 }
+.widget-name,
 .cmd-widget,
-legend {
+legend,
+span {
   cursor: default;
 }
 
@@ -822,6 +824,9 @@ pre {
 :not(#div_alert).alert {
   padding: 7px !important;
 }
+#div_pageContainer > div.alert {
+  margin-top: 7px;
+}
 .alert-info,
 .label-info {
   color: var(--linkHoverLight-color);
@@ -1315,6 +1320,9 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   top: 10px !important;
   display: inline-block;
 }
+#div_confPlugin .panel-title .pull-right {
+  top: -2px !important;
+}
 
 .panel {
   color: var(--txt-color) !important;
@@ -1585,7 +1593,7 @@ input[type=password]{
   padding: 6px 12px !important;
 }
 select option {
-  color: var(--link-color) !important;
+  color: var(--txt-color) !important;
   background-color: var(--defaultBkg-color) !important;
 }
 select optgroup {
