@@ -1321,7 +1321,7 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   display: inline-block;
 }
 #div_confPlugin .panel-title .pull-right {
-  top: 0 !important;
+  top: -2px !important;
 }
 
 .panel {
