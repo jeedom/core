@@ -36,6 +36,7 @@ if ($selectPlugin != '') {
 			<th>{{Source}}</th>
 			<th>{{Description}}</th>
 			<th data-sorter="false" data-filter="false">{{Action}}</th>
+			<th>{{Occurrences}}</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -47,6 +48,7 @@ if ($selectPlugin != '') {
 			echo '<td class="plugin">' . $message->getPlugin() . '</td>';
 			echo '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
 			echo '<td class="message_action">' . $message->getAction() . '</td>';
+			echo '<td class="occurrences">' . $message->getOccurrences() . '</td>';
 			echo '</tr>';
 		}
 		?>
