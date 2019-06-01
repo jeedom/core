@@ -144,19 +144,19 @@ class message {
 			AND message=:message';
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			if ($result['count(*)'] != 0) {
-                                $values = array(
-                                        'message' => $this->getMessage(),
-                                        'plugin' => $this->getPlugin(),
-                                        'date' => $this->getDate(),
-                                );
-                                $sql = 'UPDATE message
-                                SET date=:date,occurrences=ifnull(occurrences, 1)+1
-                                WHERE plugin=:plugin
-                                AND message=:message
-                                LIMIT 1';
-                                $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                                return;
-                        }
+				$values = array(
+					'message' => $this->getMessage(),
+					'plugin' => $this->getPlugin(),
+					'date' => $this->getDate(),
+				);
+				$sql = 'UPDATE message
+				SET date=:date,occurrences=ifnull(occurrences, 1)+1
+				WHERE plugin=:plugin
+				AND message=:message
+				LIMIT 1';
+				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				return;
+			}
 		} else {
 			$values = array(
 				'logicalId' => $this->getLogicalId(),
@@ -168,24 +168,24 @@ class message {
 			AND logicalId=:logicalId';
 			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			if ($result['count(*)'] != 0) {
-                                $values = array(
-                                        'logicalId' => $this->getLogicalId(),
-                                        'plugin' => $this->getPlugin(),
-                                        'date' => $this->getDate(),
-                                );
-                                $sql = 'UPDATE message
-                                SET date=:date,occurrences=ifnull(occurrences, 1)+1
-                                WHERE plugin=:plugin
-                                AND logicalId=:logicalId
-                                LIMIT 1';
-                                $result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-                                return;
-                        }
+				$values = array(
+					'logicalId' => $this->getLogicalId(),
+					'plugin' => $this->getPlugin(),
+					'date' => $this->getDate(),
+				);
+				$sql = 'UPDATE message
+				SET date=:date,occurrences=ifnull(occurrences, 1)+1
+				WHERE plugin=:plugin
+				AND logicalId=:logicalId
+				LIMIT 1';
+				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+				return;
+			}
 		}
-	//	if ($result['count(*)'] != 0) {
-	//		return;
-	//	}
-	//	event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
+		//	if ($result['count(*)'] != 0) {
+		//		return;
+		//	}
+		//	event::add('notify', array('title' => __('Message de ', __FILE__) . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 		if ($_writeMessage) {
 			DB::save($this);
 			$params = array(
@@ -238,9 +238,9 @@ class message {
 	}
 	
 	public function getOccurrences() {
-                return $this->occurrences;
-        }
-
+		return $this->occurrences;
+	}
+	
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
