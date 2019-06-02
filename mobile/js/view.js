@@ -43,7 +43,7 @@ function initView(_view_id) {
       setTileSize('.eqLogic');
       setTileSize('.scenario');
       $('.eqLogicZone').packery({gutter : 0});
-      var screenWidth = $(window).width() - 26;
+      var screenWidth = $(window).width() - 5;
       $('.div_viewZone .table-responsive').each(function(){
         $(this).width('auto')
         $(this).css('max-width','none');
@@ -80,7 +80,7 @@ function displayView(html) {
     $('.eqLogicZone').packery({gutter : 0});
   }, 50);
   $('#div_displayView .ui-table-columntoggle-btn').remove();
-  var screenWidth = $(window).width() - 26;
+  var screenWidth = $(window).width() - 5;
   $('.div_viewZone .table-responsive').each(function(){
     if($(this).width() < screenWidth){
       $(this).width(screenWidth);
