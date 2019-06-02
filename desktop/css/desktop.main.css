@@ -33,7 +33,7 @@ body {
   scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
 .row.row-overflow {
-  background-color: rgb(var(--bg-color));
+  /*background-color: rgba(var(--bg-color), var(--opacity))  !important;*/
 }
 
 .backgroundforJeedom{
@@ -738,6 +738,7 @@ pre {
 
 .div_rowZones {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 
 .viewZone{
@@ -749,7 +750,8 @@ pre {
 }
 
 .div_viewZone{
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  /*  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;*/
 }
 
 .view-link-widget,
@@ -2279,7 +2281,8 @@ textarea {
   position: static;
 }
 .bs-sidebar {
-  background: rgba(var(--bg-color), var(--opacity)) !important;;
+  background: rgba(var(--bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 .bs-sidebar .label,
 .bs-sidebar .label > i {
@@ -2297,7 +2300,7 @@ textarea {
 }
 .div_smallSideBar,
 .bs-sidebar > ul {
-  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  /*background-color: rgba(var(--bg-color), var(--opacity)) !important;*/
 }
 .bs-sidebar li.active {
   border-right: 3px solid var(--logo-primary-color) !important;

@@ -902,6 +902,7 @@ a.ui-table-columntoggle-btn {
 .div_viewZoneTable{
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   margin-bottom: 5px;
+  border-radius: var(--border-radius) !important;
 }
 
 .div_viewZoneTable table{
