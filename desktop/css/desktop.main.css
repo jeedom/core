@@ -32,9 +32,6 @@ body {
   margin: 0 !important;
   scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
-.row.row-overflow {
-  /*background-color: rgba(var(--bg-color), var(--opacity))  !important;*/
-}
 
 .backgroundforJeedom{
   width:100%;
@@ -2267,16 +2264,6 @@ textarea {
   border-left-width: 0 !important;
 }
 
-/* main div border left screen */
-#div_resumeObjectList,
-#div_resumePluginList,
-#interactThumbnailDisplay,
-#scenarioThumbnailDisplay,
-#div_confPlugin,
-.eqLogicThumbnailDisplay {
-  border-left: none !important;
-}
-
 .bs-sidebar.affix {
   position: static;
 }
@@ -2606,6 +2593,19 @@ div.cmd > div.center-block {
   margin : 0;
   padding: 0;
   line-height:0px;
+}
+
+.cmd-widget[data-subtype="select"] .title,
+.cmd-widget[data-subtype="select"] .content-xs {
+  clear: both !important;
+  display: inline;
+  text-align: left;
+}
+.cmd-widget[data-subtype="select"] .cmdName {
+  font-size: 11px !important;
+}
+.cmd-widget[data-subtype="select"] .content-xs {
+  top: -4px !important;
 }
 
 .verticalAlign {
@@ -3244,16 +3244,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3261,11 +3261,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3311,5 +3311,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
