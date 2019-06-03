@@ -32,6 +32,27 @@
   --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(190, 0, 0);
   --bt-success-color: rgb(150, 201, 39);
+  --lb-yellow-color: rgb(250, 225, 0);
+}
+
+.icon_blue {
+  color: var(--al-info-color) !important;
+}
+
+.icon_green {
+  color: var(--bt-success-color) !important;
+}
+
+.icon_orange {
+  color: var(--al-warning-color) !important;
+}
+
+.icon_red {
+  color: var(--al-danger-color) !important;
+}
+
+.icon_yellow {
+  color: var(--lb-yellow-color) !important;
 }
 
 .eqLogicThumbnailContainer .label {

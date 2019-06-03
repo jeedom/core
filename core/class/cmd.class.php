@@ -1185,6 +1185,9 @@ class cmd {
 				$replace['#state#'] = $cmdValue->execCmd();
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
+				$replace['#valueDate#'] = $cmdValue->getValueDate();
+				$replace['#collectDate#'] = $cmdValue->getCollectDate();
+				$replace['#alertLevel#'] = $cmdValue->getCache('alertLevel', 'none');
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
 					$replace['#state#'] = 0;
 				}

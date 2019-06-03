@@ -1016,12 +1016,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           state = true;
           $(this).attr('data-state', 1);
           $(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(1);
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(1);
         } else {
           state = false;
           $(this).attr('data-state', 0);
           $(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd').value(0);
+          $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
         }
       });
       

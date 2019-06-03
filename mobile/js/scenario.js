@@ -11,7 +11,7 @@ function initScenario() {
       $('#div_displayScenario').packery({gutter : 0});
     }
   });
-  $(window).on("orientationchange", function (event) {
+  $(window).on("resize", function (event) {
     setTileSize('.scenario');
     $('#div_displayScenario').packery({gutter : 0});
   });

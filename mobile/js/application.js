@@ -21,7 +21,7 @@ $(function () {
   
   $.mobile.orientationChangeEnabled = false;
   
-  $(window).on("orientationchange", function (event) {
+  $(window).on("resize", function (event) {
     deviceInfo = getDeviceType();
   });
   

@@ -22,6 +22,15 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 class migrate {
 
 	public static function usbTry(){
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			if(phpversion() < 7){
+				exec('sudo add-apt-repository "deb http://ftp.debian.org/debian stretch main contrib non-free"');
+				exec('sudo apt-get update');
+			} 
+			if (exec('which rsync | wc -l') == 0) {
+				exec('sudo apt-get install -y rsync');
+			}
+		}
 		//log::remove('migrate');
 		$minSize = 7900; //En megaOct.
 		$mediaLink = '/media/migrate';
@@ -71,9 +80,7 @@ class migrate {
 		log::remove('migrate');
 		exec('sudo rm '.$mediaLink.'/*');
 	    $backups = jeedom::listBackup();
-	    foreach ($backups as $backup) {
-		    	$lienBackup = $backup;
-	    }
+	    $lienBackup = reset($backups);
 	    if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = dirname(__FILE__) . '/../../' . config::byKey('backup::path');
 		} else {

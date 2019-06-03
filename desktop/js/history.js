@@ -237,15 +237,7 @@ function addChart(_cmd_id, _action,_options) {
     }
     return;
   }
-  lastId = _cmd_id
-  if(init(_options) == ''){
-    _options = {};
-    if(_cmd_id.indexOf('#') != 1){
-      _options.graphType = $('#sel_chartType').value()
-      _options.groupingType = $('#sel_groupingType').value()
-      _options.graphStep =  ($('#cb_step').value() == 0) ? false : true;
-    }
-  }
+  lastId = _cmd_id;
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
     el: 'div_graph',
@@ -310,113 +302,28 @@ $('#bt_refreshTimeline').on('click',function(){
   displayTimeline();
 });
 
-$("#sel_typesTimeline").change(function(){
-  displayTimeline();
-});
-
-$("#sel_objectsTimeline").change(function(){
-  displayTimeline();
-});
-
-$("#sel_categoryTimeline").change(function(){
-  displayTimeline();
-});
-
-$("#sel_pluginsTimeline").change(function(){
-  displayTimeline();
-});
-
-$('.bt_timelineZoom').on('click',function(){
-  zoom = $(this).attr('data-zoom');
-  var end = new Date();
-  var start = new Date();
-  if(zoom == 'all'){
-    timeline.fit();
-    return;
-  }else if (zoom == 'y'){
-    start.setFullYear(end.getFullYear() - 1);
-    end.setTime(start.getTime() + 390 * 24 *3600 *1000);
-  }else if (zoom == 'm'){
-    if(end.getMonth() == 1){
-      start.setFullYear(end.getFullYear() - 1);
-      start.setMonth(12);
-      end.setTime(start.getTime() + 35 * 24 *3600 *1000);
-    }else{
-      start.setMonth(end.getMonth() - 1);
-      end.setTime(start.getTime() + 33 * 24 *3600 *1000);
-    }
-  }else if (zoom == 'w'){
-    start.setTime(end.getTime() - 7 * 24 *3600 * 1000);
-    end.setTime(start.getTime() + 7.5 * 24 *3600 *1000);
-  }else if (zoom == 'd'){
-    start.setTime(end.getTime() - 1 * 24 *3600 * 1000);
-    end.setTime(start.getTime() + 1.1 * 24 *3600 *1000);
-  }else if (zoom == 'h'){
-    start.setTime(end.getTime() -  3600 * 1000);
-    end.setTime(start.getTime() + 3700 *1000);
-  }
-  timeline.setWindow(start,end);
-});
-
-timeline = null;
-
 function displayTimeline(){
-  var typefilter = $("#sel_typesTimeline").value();
-  var pluginfilter = $("#sel_pluginsTimeline").value();
-  var categoryfilter = $("#sel_categoryTimeline").value();
-  var objectfilter = $("#sel_objectsTimeline").value();
-  var end = new Date();
-  var start = new Date();
-  start.setTime(end.getTime() -  3600 * 1000);
-  end.setTime(start.getTime() + 3700 *1000);
   jeedom.getTimelineEvents({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      if(timeline != null){
-        windowTimeline = timeline.getWindow()
-        end=windowTimeline.end
-        start = windowTimeline.start
-        timeline.destroy()
-      }
-      data_item = [];
-      id = 0;
+      data = data.reverse()
+      var tr = '';
       for(var i in data){
-        if (typefilter != 'all' && data[i].type != typefilter) {
-          continue;
-        }
-        if (pluginfilter != 'all' && data[i].plugins != pluginfilter && typefilter != 'scenario') {
-          continue;
-        }
-        if (objectfilter != 'all' && data[i].object != objectfilter) {
-          continue;
-        }
-        if (categoryfilter != 'all' && typefilter != 'scenario'){
-          var hascat =0;
-          for (var category in data[i].category){
-            if (category == categoryfilter && data[i].category[category] == 1) {
-              hascat += 1;
-            }
-          }
-          if (hascat==0){
-            continue;
-          }
-        }
-        item = {id : id,start : data[i].date,content : data[i].html,group : data[i].group,title:data[i].date};
-        id++;
-        data_item.push(item);
+        tr += '<tr>';
+        tr += '<td>';
+        tr += data[i].date
+        tr += '</td>';
+        tr += '<td>';
+        tr += data[i].type
+        tr += '</td>';
+        tr += '<td>';
+        tr += data[i].html
+        tr += '</td>';
+        tr += '</tr>';
       }
-      var items = new vis.DataSet(data_item);
-      var options = {
-        groupOrder:'content',
-        verticalScroll: true,
-        zoomKey: 'ctrlKey',
-        orientation : 'top',
-        maxHeight: $('body').height() - $('header').height() - 75
-      };
-      timeline = new vis.Timeline(document.getElementById('div_visualization'),items,options);
-      timeline.setWindow(start,end);
+      $('#table_timeline tbody').empty().append(tr).trigger('update');
     }
   });
 }

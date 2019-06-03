@@ -66,7 +66,7 @@ function initLog(_log) {
 		}
 	});
 
-	$(window).on("orientationchange", function (event) {
+	$(window).on("resize", function (event) {
 		setTimeout(function(){
 			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 35);
 		}, 100);

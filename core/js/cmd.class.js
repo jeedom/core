@@ -797,43 +797,36 @@ jeedom.cmd.displayActionsOption = function(_params) {
 };
 
 jeedom.cmd.normalizeName = function(_tagname) {
-  var arrayOn = ['on', 'marche', 'go', 'lock'];
-  var arrayOff = ['off', 'arret', 'arrêt', 'stop', 'unlock'];
-  var name = $.trim(_tagname.toLowerCase().replace('<br/>','').replace('<br>',''));
-  if (arrayOn.indexOf(name) >= 0) {
-    return 'on';
-  } else if (arrayOff.indexOf(name) >= 0) {
-    return 'off';
-  }
-  if (name.indexOf("lock") == 0) {
-    return 'on';
-  }
-  if (name.indexOf("unlock") == 0) {
-    return 'off';
-  }
-  if (name.indexOf("descendre") == 0) {
-    return 'off';
-  }
-  if (name.indexOf("on") != -1) {
-    return 'on';
-  }
-  if (name.indexOf("off") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("désactiver") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("desactiver") != -1) {
-    return 'off';
-  }
-  if (name.indexOf("activer") != -1) {
-    return 'on';
-  }
-  if (name.indexOf("ouvrir") != -1) {
-    return 'ouvrir';
-  }
-  if (name.indexOf("fermer") != -1) {
-    return 'fermer';
+  cmdName = _tagname.toLowerCase().trim()
+  var cmdTests = []
+  var cmdType = null
+  var cmdList = [
+    ['on','on'],
+    ['off','off'],
+    ['monter','on'],
+    ['descendre','off'],
+    ['ouvrir','on'],
+    ['fermer','off'],
+    ['activer','on'],
+    ['desactiver','off'],
+    ['lock','on'],
+    ['unlock','off'],
+    ['marche','on'],
+    ['arret','off'],
+    ['arrêt','off'],
+    ['stop','off'],
+    ['go','on']
+  ]
+  var cmdTestsList = [' ', '-', '_']
+  cmdTestsList.forEach(function(test) {
+    cmdTests = cmdTests.concat(cmdName.split(test))
+  })
+  for(var i in cmdList){
+    for(var j in cmdTests){
+      if (cmdTests[j].includes(cmdList[i][0])) {
+        return cmdList[i][1];
+      }
+    }
   }
   return _tagname;
 }
