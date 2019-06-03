@@ -61,6 +61,15 @@ body {
   cursor: pointer;
 }
 
+#div_mainContainer,
+#div_pageContainer,
+div.row.row-overflow,
+#div_resumePluginList,
+#div_resumeObjectList {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 a,
 a i,
