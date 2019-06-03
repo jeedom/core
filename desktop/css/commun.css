@@ -104,6 +104,10 @@ legend:first-letter {
   font-weight: bold;
 }
 
+.eqLogic-widget[data-eqtype=camera] .btn-default{
+  color : black !important;
+}
+
 .view-link-widget,.plan-link-widget{
   padding: 3px;
   margin: 3px;
