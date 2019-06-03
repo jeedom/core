@@ -1135,7 +1135,9 @@ button .fas.fa-plus-circle {
   font-size: 14px;
   color: var(--txt-color) !important;
 }
-
+#ul_expressionHistory li a {
+  color: var(--sc-lightTxt-color) !important;
+}
 
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
