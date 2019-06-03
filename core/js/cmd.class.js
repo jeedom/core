@@ -800,32 +800,32 @@ jeedom.cmd.normalizeName = function(_tagname) {
   cmdName = _tagname.toLowerCase().trim()
   var cmdTests = []
   var cmdType = null
-  var cmdList = [
-    ['on','on'],
-    ['off','off'],
-    ['monter','on'],
-    ['descendre','off'],
-    ['ouvrir','on'],
-    ['fermer','off'],
-    ['activer','on'],
-    ['desactiver','off'],
-    ['lock','on'],
-    ['unlock','off'],
-    ['marche','on'],
-    ['arret','off'],
-    ['arrêt','off'],
-    ['stop','off'],
-    ['go','on']
-  ]
+  var cmdList = {
+    'on':'on',
+    'off':'off',
+    'monter':'on',
+    'descendre':'off',
+    'ouvrir':'on',
+    'ouvert':'on',
+    'fermer':'off',
+    'activer':'on',
+    'desactiver':'off',
+    'désactiver':'off',
+    'lock':'on',
+    'unlock':'off',
+    'marche':'on',
+    'arret':'off',
+    'arrêt':'off',
+    'stop':'off',
+    'go':'on'
+  }
   var cmdTestsList = [' ', '-', '_']
-  cmdTestsList.forEach(function(test) {
-    cmdTests = cmdTests.concat(cmdName.split(test))
-  })
-  for(var i in cmdList){
-    for(var j in cmdTests){
-      if (cmdTests[j].includes(cmdList[i][0])) {
-        return cmdList[i][1];
-      }
+  for(var i in cmdTestsList){
+    cmdTests = cmdTests.concat(cmdName.split(cmdTestsList[i]))
+  }
+  for(var j in cmdTests){
+    if(cmdList[cmdTests[j]]){
+      return cmdList[cmdTests[j]];
     }
   }
   return _tagname;
