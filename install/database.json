@@ -1194,6 +1194,14 @@
           "key": "",
           "default": null,
           "extra": ""
+        },
+        {
+          "name": "occurrences",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
         }
       ],
       "indexes": {

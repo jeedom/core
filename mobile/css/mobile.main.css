@@ -898,14 +898,11 @@ a.ui-table-columntoggle-btn {
 }
 
 /* ___________________________________________________________VIEW */
-.div_viewZone{
-  margin-left:10px;
-  width:calc(100% - 20px);
-}
 
 .div_viewZoneTable{
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   margin-bottom: 5px;
+  border-radius: var(--border-radius) !important;
 }
 
 .div_viewZoneTable table{

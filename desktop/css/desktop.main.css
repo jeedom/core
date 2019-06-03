@@ -32,6 +32,10 @@ body {
   margin: 0 !important;
   scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
+.row.row-overflow {
+  /*background-color: rgba(var(--bg-color), var(--opacity))  !important;*/
+}
+
 .backgroundforJeedom{
   width:100%;
   height:calc(100% - 50px);
@@ -74,8 +78,10 @@ a.btn,
 .cursor * {
   cursor: pointer !important;
 }
+.widget-name,
 .cmd-widget,
-legend {
+legend,
+span {
   cursor: default;
 }
 
@@ -732,6 +738,7 @@ pre {
 
 .div_rowZones {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 
 .viewZone{
@@ -743,7 +750,8 @@ pre {
 }
 
 .div_viewZone{
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  /*  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;*/
 }
 
 .view-link-widget,
@@ -818,6 +826,9 @@ pre {
 :not(#div_alert).alert {
   padding: 7px !important;
 }
+#div_pageContainer > div.alert {
+  margin-top: 7px;
+}
 .alert-info,
 .label-info {
   color: var(--linkHoverLight-color);
@@ -858,14 +869,17 @@ pre {
   color: var(--al-info-color) !important;
 }
 .success,
+.success i,
 [data-coloredicons="1"] .icon_green {
   color: var(--bt-success-color) !important;
 }
 .warning,
+.warning i,
 [data-coloredicons="1"] .icon_orange {
   color: var(--al-warning-color) !important;
 }
 .danger,
+.danger i,
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
 }
@@ -1127,6 +1141,15 @@ button .fas.fa-plus-circle {
 
 
 /* __________________________________________________________________________________________________________NAVBAR */
+.navbar-fixed-top .visible-xs-inline-block {
+  max-width: calc(100% - 150px) !important;
+  max-height: 38x !important;
+  overflow: hidden;
+}
+
+.navbar-fixed-top .visible-xs-inline-block .objectSummaryglobal .objectSummaryParent:nth-child(n+8) {
+  //display: none !important;
+}
 .navbar {
   min-height: 50px;
   height: 50px;
@@ -1281,6 +1304,28 @@ div.panel {
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
   background-color: var(--defaultBkg-color) !important;
 }
+.panel-group .panel-heading {
+  padding:0;
+}
+[data-page="plugin"] .panel-heading {
+  padding: 10px 15px;
+}
+.panel-title > a.accordion-toggle {
+  width: calc(100% - 550px);
+  height: 100%;
+  margin-right: 200px !important;
+  padding: 10px 15px;
+  display: inline-block;
+}
+body:not([data-page="plugin"]) .panel-title .pull-right {
+  position: relative;
+  top: 10px !important;
+  display: inline-block;
+}
+#div_confPlugin .panel-title .pull-right {
+  top: -2px !important;
+}
+
 .panel {
   color: var(--txt-color) !important;
   background-color: var(--defaultBkg-color) !important;
@@ -1550,7 +1595,7 @@ input[type=password]{
   padding: 6px 12px !important;
 }
 select option {
-  color: var(--link-color) !important;
+  color: var(--txt-color) !important;
   background-color: var(--defaultBkg-color) !important;
 }
 select optgroup {
@@ -2236,7 +2281,8 @@ textarea {
   position: static;
 }
 .bs-sidebar {
-  background: rgba(var(--bg-color), var(--opacity)) !important;;
+  background: rgba(var(--bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 .bs-sidebar .label,
 .bs-sidebar .label > i {
@@ -2254,7 +2300,7 @@ textarea {
 }
 .div_smallSideBar,
 .bs-sidebar > ul {
-  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  /*background-color: rgba(var(--bg-color), var(--opacity)) !important;*/
 }
 .bs-sidebar li.active {
   border-right: 3px solid var(--logo-primary-color) !important;
@@ -3198,16 +3244,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3215,11 +3261,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3265,5 +3311,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }

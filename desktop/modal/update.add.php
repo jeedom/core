@@ -63,7 +63,7 @@ foreach ($repos as $key => $value) {
 	echo '</div>';
 	foreach ($value['configuration']['parameters_for_add'] as $pKey => $parameter) {
 		echo '<div class="form-group">';
-		echo '<label class="col-lg-4">';
+		echo '<label class="col-lg-4 control-label">';
 		echo $parameter['name'];
 		echo '</label>';
 		echo '<div class="col-lg-8">';

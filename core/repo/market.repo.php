@@ -280,7 +280,7 @@ class repo_market {
 			}
 			system::kill('duplicity');
 			shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir . '/tmp/duplicity*');
-			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
+			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
 			com_shell::execute($cmd);
 		}
 	}
@@ -347,7 +347,7 @@ class repo_market {
 		try {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
-			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity/*');
+			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
 			$results = explode("\n", com_shell::execute($cmd));
 		}
 		foreach ($results as $line) {

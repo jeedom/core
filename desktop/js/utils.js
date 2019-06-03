@@ -15,7 +15,6 @@
 */
 
 var JS_ERROR = [];
-var __OBSERVER__ = null;
 var PREVIOUS_PAGE = null;
 var NO_POPSTAT = false;
 var TOOLTIPSOPTIONS = {
@@ -24,6 +23,15 @@ var TOOLTIPSOPTIONS = {
       interactive: true,
       contentAsHTML: true
     }
+
+var __OBSERVER__ = null;
+var _observerConfig_ = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+  }
+
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
     return;
@@ -111,7 +119,8 @@ function loadPage(_url,_noPushHistory){
   setBackgroundImg('');
   jeedomBackgroundImg = null;
 
-  if(__OBSERVER__) __OBSERVER__.disconnect();
+  if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
+
   $('#div_pageContainer').empty().load(url,function(){
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click');
@@ -129,8 +138,19 @@ function loadPage(_url,_noPushHistory){
     setTimeout(function(){
       modifyWithoutSave = false;
     },500)
-    if(__OBSERVER__) __OBSERVER__.connect();
   });
+
+  setTimeout(function() {
+    //scenarios uses special tooltips not requiring destroy.
+    if ($('body').attr('data-page') != 'scenario') {
+      if (__OBSERVER__ !== null) {
+        __OBSERVER__.observe(document.getElementById('div_mainContainer'), _observerConfig_)
+      } else {
+        createObserver()
+      }
+    }
+  }, 750)
+
   return;
 }
 
@@ -588,8 +608,10 @@ $(function () {
   }
 
   setTimeout(function(){
-    $('body').trigger('jeedom_page_load');
-  }, 1);
+    initTooltips()
+    createObserver()
+    $('body').trigger('jeedom_page_load')
+  }, 1)
 });
 
 setTimeout(function() {
@@ -660,15 +682,11 @@ function initPage(){
   });
 
   setTimeout(function() { initTooltips() }, 750)
-  $("input[id^='in_search']").focus()
+  if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
 }
 
-$(function () {
-  createObserver()
-})
-
 function createObserver() {
-  var __OBSERVER__ = new MutationObserver(function(mutations) {
+  __OBSERVER__ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if ( mutation.type == 'childList' ) {
         if (mutation.addedNodes.length >= 1) {
@@ -686,16 +704,7 @@ function createObserver() {
       }
     })
   })
-
-  var observerConfig = {
-    attributes: true,
-    childList: true,
-    characterData: true,
-    subtree: true
-  }
-
-  var targetNode = document.getElementById('div_mainContainer')
-  __OBSERVER__.observe(targetNode, observerConfig)
+  __OBSERVER__.observe(document.getElementById('div_mainContainer'), _observerConfig_)
 }
 
 function initTooltips(_el) {

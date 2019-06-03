@@ -20,27 +20,31 @@ $starttime = getmicrotime();
 	</div>
 
 	<table id="jeedomTable" class="table table-condensed table-bordered">
-		<thead><tr><th style="width : 250px;"></th><th style="width : 500px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>
 		<tbody>
 			<?php
+				$count = 0;
 				foreach (jeedom::health() as $datas) {
-					echo '<tr>';
-					echo '<td style="font-weight : bold;">';
+					if ($count == 0) echo '<tr>';
+
+					echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:20%;">';
 					echo $datas['name'];
+					if ($datas['comment'] != '') {
+						echo ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$datas['comment'].'}}"></i></sup>';
+					}
 					echo '</td>';
 					if ($datas['state'] === 2) {
-						echo '<td class="alert alert-warning" style="">';
+						echo '<td class="alert-warning" style="width:20%;">';
 					} else if ($datas['state']) {
-						echo '<td class="alert alert-success" style="">';
+						echo '<td class="alert-success" style="width:20%;">';
 					} else {
-						echo '<td class="alert alert-danger" style="">';
+						echo '<td class="alert-danger" style="width:20%;">';
 					}
 					echo $datas['result'];
 					echo '</td>';
-					echo '<td>';
-					echo $datas['comment'];
-					echo '</td>';
-					echo '</tr>';
+
+					$count ++;
+					if ($count == 2) $count = 0;
+					if ($count == 0) echo '</tr>';
 				}
 				echo '</tr>';
 			?>
@@ -61,17 +65,17 @@ $starttime = getmicrotime();
 		$asPending = 0;
 		if ($plugin->getHasOwnDeamon() == 1) {
 			if ($plugin->deamon_info()['auto'] == 1) {
-				$daemonInfo = ' <i class="fas fa-university pull-right" style="font-size:0.8em" title="{{Démon en mode automatique}}"></i>';
+				$daemonInfo = ' <i class="fas fa-university pull-right" title="{{Démon en mode automatique}}"></i>';
 			} else {
-				$daemonInfo = ' <i class="fas fa-university pull-right" style="color:#ff4c4c;font-size:0.8em" title="{{Démon en mode manuel}}"></i>';
+				$daemonInfo = ' <i class="fas fa-university pull-right" style="color:#ff4c4c;" title="{{Démon en mode manuel}}"></i>';
 			}
 		}
 		if (config::byKey('port', $plugin->getId()) != '') {
-			$port = ' <i class="icon techno-fleches pull-right" style="font-size:0.8em" title="{{Port configuré}}"></i><span style="font-size:0.8em title="{{Port configuré}}" class="pull-right"> ' . ucfirst(config::byKey('port', $plugin->getId())) . '</span>';
+			$port = ' <i class="icon techno-fleches pull-right" title="{{Port configuré}}"></i><span title="{{Port configuré}}" class="pull-right"> ' . ucfirst(config::byKey('port', $plugin->getId())) . '</span>';
 		}
 		if (file_exists(dirname(plugin::getPathById($plugin_id)) . '/../desktop/modal/health.php')) {
 			$hasSpecificHealth = 1;
-			$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fas fa-medkit bt_healthSpecific pull-right cursor" style="font-size:0.8em" title="Santé spécifique"></i>';
+			$hasSpecificHealthIcon = '  <i data-pluginname="' . $plugin->getName() . '" data-pluginid="' . $plugin->getId() . '" class="fas fa-medkit bt_healthSpecific pull-right cursor" title="Santé spécifique"></i>';
 		}
 		if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health') || $hasSpecificHealth == 1) {
 			$count += 1;
@@ -80,38 +84,35 @@ $starttime = getmicrotime();
 				<h3 class="panel-title">';
 			if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 				$html .= '<table class="table table-condensed table-bordered">';
-				$html .= '<thead><tr><th style="width : 250px;"></th><th style="width : 150px;">{{Résultat}}</th><th style="">{{Conseil}}</th></tr></thead>';
 				$html .= '<tbody>';
 			} else {
-				$html .= '<span class="label label-primary" style="">{{Aucune santé spécifique}}</span>';
+				$html .= '<span class="label label-primary">{{Aucune santé spécifique}}</span>';
 			}
 		}
 		try {
 			if ($plugin->getHasDependency() == 1) {
 				$dependancy_info = $plugin->dependancy_info();
 				$html .= '<tr>';
-				$html .= '<td style="font-weight : bold;">';
+				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 				$html .= '{{Dépendances}}';
 				$html .= '</td>';
 				switch ($dependancy_info['state']) {
 					case 'ok':
-						$html .= '<td class="alert alert-success"  style="">{{OK}}</td>';
+						$html .= '<td class="alert alert-success" >{{OK}}</td>';
 						break;
 					case 'nok':
-						$html .= '<td class="alert alert-danger"  style="">{{NOK}}</td>';
+						$html .= '<td class="alert alert-danger" >{{NOK}}</td>';
 						$asNok += 1;
 						break;
 					case 'in_progress':
-						$html .= '<td class="alert alert-info" style="">{{En cours}}</td>';
+						$html .= '<td class="alert alert-info">{{En cours}}</td>';
 						$asPending += 1;
 						break;
 					default:
-						$html .= '<td class="alert alert-danger" style="">{{NOK}}</td>';
+						$html .= '<td class="alert alert-danger">{{NOK}}</td>';
 						$asNok += 1;
 						break;
 				}
-				$html .= '<td>';
-				$html .= '</td>';
 				$html .= '</tr>';
 			}
 		} catch (Exception $e) {
@@ -125,46 +126,44 @@ $starttime = getmicrotime();
 					$alert = 'alert-success';
 				}
 				$html .= '<tr>';
-				$html .= '<td style="font-weight : bold;">';
+				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 				$html .= '{{Configuration démon}}';
-				echo '</td>';
+				if ($deamon_info['launchable_message'] != '') {
+					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$deamon_info['launchable_message'].'}}"></i></sup>';
+				}
+				$html .= '</td>';
 				switch ($deamon_info['launchable']) {
 					case 'ok':
-						$html .= '<td class="alert alert-success" style="">{{OK}}</td>';
+						$html .= '<td class="alert alert-success">{{OK}}</td>';
 						break;
 					case 'nok':
 						if ($deamon_info['auto'] != 1) {
-							$html .= '<td class="alert alert-success" style="">{{Désactivé}}</td>';
+							$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
 						} else {
-							$html .= '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '" style="">{{NOK}}</td>';
+							$html .= '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
 							$asNok += 1;
 						}
 						break;
 				}
-				$html .= '<td style="">';
-				$html .= $deamon_info['launchable_message'];
-				$html .= '</td>';
 				$html .= '</tr>';
 				$html .= '<tr>';
-				$html .= '<td style="font-weight : bold;">';
+				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 				$html .= '{{Statut démon}}';
 				$html .= '</td>';
 				switch ($deamon_info['state']) {
 					case 'ok':
-						$html .= '<td class="alert alert-success" style="">';
+						$html .= '<td class="alert alert-success">';
 						$html .= '{{OK}}</td>';
 						break;
 					case 'nok':
 						if ($deamon_info['auto'] != 1) {
-							$html .= '<td class="alert alert-success" style="">{{Désactivé}}</td>';
+							$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
 						} else {
-							$html .= '<td class="alert alert-danger" style="">{{NOK}}</td>';
+							$html .= '<td class="alert alert-danger">{{NOK}}</td>';
 							$asNok += 1;
 						}
 						break;
 				}
-				$html .= '<td>';
-				$html .= '</td>';
 				$html .= '</tr>';
 			}
 		} catch (Exception $e) {
@@ -175,19 +174,19 @@ $starttime = getmicrotime();
 			if (method_exists($plugin->getId(), 'health')) {
 				foreach ($plugin_id::health() as $result) {
 					$html .= '<tr>';
-					$html .= '<td style="font-weight : bold;">';
+					$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
 					$html .= $result['test'];
+					if ($result['advice'] != '') {
+						$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$result['advice'].'}}"></i></sup>';
+					}
 					$html .= '</td>';
 					if ($result['state']) {
-						$html .= '<td class="alert alert-success" style="">';
+						$html .= '<td class="alert alert-success">';
 					} else {
-						$html .= '<td class="alert alert-danger" style="">';
+						$html .= '<td class="alert alert-danger">';
 						$asNok += 1;
 					}
 					$html .= $result['result'];
-					$html .= '</td>';
-					$html .= '<td style="">';
-					$html .= $result['advice'];
 					$html .= '</td>';
 					$html .= '</tr>';
 				}
@@ -218,7 +217,7 @@ $starttime = getmicrotime();
 			$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 			$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 			$globalhtml .= $errorMessage . $pendingMessage;
-			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" style=font-size:0.8em" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
+			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
 			$globalhtml .= '</h3>';
 			$globalhtml .= '</div>';
 			$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';
@@ -232,20 +231,18 @@ $starttime = getmicrotime();
 
 	if ($globalhtml != '') {
 		echo '<tr>
-		<td style="font-weight : bold;">{{Plugins}}</td>';
+		<td style="font-weight:bold;text-align:right;padding-right:12px;">{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
 		if ($totalNok == 0 && $totalPending == 0) {
-			echo '<td class="alert alert-success" style="">{{OK}}</td>';
+			echo '<td class="alert alert-success">{{OK}}</td>';
 			echo '<td></td>';
 		} else if ($totalNok == 0 && $totalPending != 0) {
-			echo '<td class="alert alert-warning" style="">' . $totalPending . ' {{En cours}}</td>';
-			echo '<td style="">Vous pouvez voir les détails des plugins sur la partie basse de cette page</td>';
+			echo '<td class="alert alert-warning">' . $totalPending . ' {{En cours}}</td>';
 		} else if ($totalNok != 0) {
 			$pending = '';
 			if ($totalPending != 0) {
 				$pending = ' {{et}} ' . $totalPending . ' {{En cours}}';
 			}
-			echo '<td class="alert alert-danger" style="">' . $totalNok . ' {{NOK}}' . $pending . '</td>';
-			echo '<td style="">Vous pouvez voir les détails des plugins sur la partie basse de cette page</td>';
+			echo '<td class="alert alert-danger">' . $totalNok . ' {{NOK}}' . $pending . '</td>';
 		}
 		echo '</tr>';
 		echo '</tbody></table>';
