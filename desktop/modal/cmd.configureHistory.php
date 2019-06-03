@@ -40,12 +40,12 @@ foreach ($cmds as $cmd) {
     <?php
     foreach ($cmds as $cmd) {
       echo '<tr data-cmd_id="'.$cmd->getId(). '">';
-      echo '<td style="width:85px;">';
+      echo '<td style="width:95px;">';
       if($cmd->getType() == 'info'){
         echo '<center><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized() == 1) ? 'checked' : '').' /></center>';
       }
       echo '</td>';
-      echo '<td style="width:135px;">';
+      echo '<td style="width:155px;">';
       echo '<center><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable') == 1) ? 'checked' : '').' /></center>';
       echo '</td>';
       echo '<td style="width:130px;">';
@@ -95,56 +95,55 @@ foreach ($cmds as $cmd) {
 </table>
 
 <script>
-initTableSorter();
-$("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
-$('#table_cmdConfigureHistory tbody tr').attr('data-change','0');
-$("#table_cmdConfigureHistory").trigger("update");
-$("#table_cmdConfigureHistory").width('100%');
+  initTableSorter();
+  $("#table_cmdConfigureHistory").tablesorter({headers:{0:{sorter:'checkbox'}}});
+  $('#table_cmdConfigureHistory tbody tr').attr('data-change','0');
+  $("#table_cmdConfigureHistory").trigger("update");
+  $("#table_cmdConfigureHistory").width('100%');
 
-$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
-});
-
-$(".bt_configureHistoryExportData").on('click', function () {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
-});
-
-$('.cmdAttr').on('change click',function(){
-  $(this).closest('tr').attr('data-change','1');
-});
-
-$('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
-  var cmds = [];
-  $('#table_cmdConfigureHistory tbody tr').each(function(){
-    if($(this).attr('data-change') == '1'){
-      cmds.push($(this).getValues('.cmdAttr')[0]);
-    }
-  })
-  jeedom.cmd.multiSave({
-    cmds : cmds,
-    error: function (error) {
-      $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $("#table_cmdConfigureHistory").trigger("update");
-      $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
-    }
+  $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function () {
+    $('#md_modal2').dialog({title: "{{Configuration de la commande}}"});
+    $('#md_modal2').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open');
   });
-});
 
-$('#bt_canceltimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', false);
+  $(".bt_configureHistoryExportData").on('click', function () {
+    window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null);
+  });
+
+  $('.cmdAttr').on('change click',function(){
     $(this).closest('tr').attr('data-change','1');
   });
-});
 
-$('#bt_applytimeline').on('click',function(){
-  $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
-    $(this).prop('checked', true);
-    $(this).closest('tr').attr('data-change','1');
+  $('#bt_cmdConfigureCmdHistoryApply').on('click',function(){
+    var cmds = [];
+    $('#table_cmdConfigureHistory tbody tr').each(function(){
+      if($(this).attr('data-change') == '1'){
+        cmds.push($(this).getValues('.cmdAttr')[0]);
+      }
+    })
+    jeedom.cmd.multiSave({
+      cmds : cmds,
+      error: function (error) {
+        $('#md_cmdConfigureHistory').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (data) {
+        $("#table_cmdConfigureHistory").trigger("update");
+        $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'});
+      }
+    });
   });
-});
 
+  $('#bt_canceltimeline').on('click',function(){
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
+      $(this).prop('checked', false);
+      $(this).closest('tr').attr('data-change','1');
+    });
+  });
+
+  $('#bt_applytimeline').on('click',function(){
+    $('.cmdAttr[data-l1key=configuration][data-l2key="timeline::enable"]:visible').each(function(){
+      $(this).prop('checked', true);
+      $(this).closest('tr').attr('data-change','1');
+    });
+  });
 </script>
