@@ -541,7 +541,8 @@ $(function () {
       return
     }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      return;
+      event.preventDefault()
+      return
     }
     $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
     loadPage('index.php?v=d&p=dashboard');
@@ -553,7 +554,8 @@ $(function () {
       return
     }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      return;
+      event.preventDefault()
+      return
     }
     $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
     loadPage('index.php?v=d&p=view');
@@ -565,7 +567,8 @@ $(function () {
       return
     }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      return;
+      event.preventDefault()
+      return
     }
     $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
     loadPage('index.php?v=d&p=plan');
@@ -577,7 +580,8 @@ $(function () {
       return
     }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      return;
+      event.preventDefault()
+      return
     }
     $('ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
     loadPage('index.php?v=d&p=plan3d');
