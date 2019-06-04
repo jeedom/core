@@ -535,7 +535,11 @@ $(function () {
     $("#md_modal").load('index.php?v=d&modal=note.manager').dialog('open');
   });
 
-  $('#bt_gotoDashboard').on('click',function(){
+  $('#bt_gotoDashboard').on('click',function(event){
+    if ($(window).width() < 768) {
+      event.preventDefault()
+      return
+    }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
       return;
     }
@@ -544,6 +548,10 @@ $(function () {
   });
 
   $('#bt_gotoView').on('click',function(){
+    if ($(window).width() < 768) {
+      event.preventDefault()
+      return
+    }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
       return;
     }
@@ -552,6 +560,10 @@ $(function () {
   });
 
   $('#bt_gotoPlan').on('click',function(){
+    if ($(window).width() < 768) {
+      event.preventDefault()
+      return
+    }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
       return;
     }
@@ -560,6 +572,10 @@ $(function () {
   });
 
   $('#bt_gotoPlan3d').on('click',function(){
+    if ($(window).width() < 768) {
+      event.preventDefault()
+      return
+    }
     if('ontouchstart' in window || navigator.msMaxTouchPoints){
       return;
     }
