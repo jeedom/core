@@ -1985,7 +1985,7 @@ function syncEditors() {
     var expression = $(this).closest('.expression')
     var code = expression.find('.expressionAttr[data-l1key=expression]')
     var id = code.attr('id')
-    code.html(editor[id].getValue())
+    if (isset(editor[id])) code.html(editor[id].getValue())
   })
 }
 function resetEditors() {
