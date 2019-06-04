@@ -141,7 +141,7 @@ $(function(){
   catch(err) {}
 })
 
-editor = [];
+var editor = [];
 
 autoCompleteCondition = [
   {val: 'rand(MIN,MAX)'},
@@ -1927,8 +1927,10 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 });
 
 function setUndoStack(state=0) {
+  syncEditors()
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -1954,6 +1956,7 @@ function undo() {
     console.log('undo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
 function redo() {
   _redo_ = 1
@@ -1968,6 +1971,7 @@ function redo() {
     console.log('redo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
 function resetUndo() {
   _undoStack_ = new Array()
@@ -1976,3 +1980,26 @@ function resetUndo() {
   _undoLimit_ = 10
 }
 
+function syncEditors() {
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var id = code.attr('id')
+    code.html(editor[id].getValue())
+  })
+}
+function resetEditors() {
+  editor = []
+
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var element = expression.parents('elementCODE').first()
+
+    code.show()
+    code.removeAttr('id')
+    expression.find('.CodeMirror-wrap').remove()
+  })
+
+  setEditor()
+}
