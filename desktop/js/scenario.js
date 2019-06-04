@@ -208,13 +208,6 @@ $('.accordion-toggle').off('click').on('click', function () {
 });
 
 
-$("#div_tree").jstree({
-  "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-  $('#div_tree').jstree(true).search($('#in_treeSearch').val());
-});
-
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
   if ( $('div[data-l2key="icon"] > i').length ) {
@@ -1007,22 +1000,18 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 $('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 if (is_numeric(getUrlVars('id'))) {
@@ -1920,11 +1909,12 @@ function updateTooltips() {
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
 }
+
 //UNDO Management
 var _undoStack_ = new Array()
 var _undoState_ = -1
 var _firstState_ = 0
-var _undoLimit_ = 10
+var _undoLimit_ = 12
 var _redo_ = 0
 
 jwerty.key('ctrl+z/⌘+z', function (e) {
@@ -1951,7 +1941,6 @@ function setUndoStack(state=0) {
     _undoStack_[_firstState_ -1] = 0
   }
 }
-
 function undo() {
   if (_undoState_ < _firstState_) return
   try {
@@ -1966,7 +1955,6 @@ function undo() {
   }
   updateTooltips()
 }
-
 function redo() {
   _redo_ = 1
   if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
@@ -1981,7 +1969,6 @@ function redo() {
   }
   updateTooltips()
 }
-
 function resetUndo() {
   _undoStack_ = new Array()
   _undoState_ = -1
