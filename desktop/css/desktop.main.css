@@ -3305,9 +3305,10 @@ ul.dropdown-menu {
 @media screen and (max-width: 768px) {
   .navbar-fixed-top .navbar-collapse {
     position: fixed;
-    top: 50px;
+    left: 70px;
+    top: 0;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 70px);
     max-height: none;
     overflow: hidden auto;
   }
