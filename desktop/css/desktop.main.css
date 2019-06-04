@@ -1304,6 +1304,10 @@ ul.dropdown-menu {
 div.panel {
   border : none;
 }
+#div_resumeObjectList > .panel,
+#div_resumePluginList > .panel {
+  margin-bottom: 30px;
+}
 #md_modal .panel-heading {
   padding: 6px 12px;
   border: none;
@@ -2565,6 +2569,9 @@ div.cmd-widget div[class^="content"] > select {
   font-size: 16px !important;
   height: 22px;
 }
+div.cmd-widget div[class^="content"] > select > option {
+  font-size: 12px !important;
+}
 div.cmd-widget[data-subtype="select"]::after {
   font-size: 14px;
   top: 5px!important;
@@ -3301,9 +3308,10 @@ ul.dropdown-menu {
 @media screen and (max-width: 768px) {
   .navbar-fixed-top .navbar-collapse {
     position: fixed;
-    top: 50px;
+    left: 70px;
+    top: 0;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 70px);
     max-height: none;
     overflow: hidden auto;
   }

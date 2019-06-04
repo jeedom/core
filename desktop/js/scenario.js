@@ -141,7 +141,7 @@ $(function(){
   catch(err) {}
 })
 
-editor = [];
+var editor = [];
 
 autoCompleteCondition = [
   {val: 'rand(MIN,MAX)'},
@@ -207,13 +207,6 @@ $('.accordion-toggle').off('click').on('click', function () {
   },100);
 });
 
-
-$("#div_tree").jstree({
-  "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-  $('#div_tree').jstree(true).search($('#in_treeSearch').val());
-});
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
@@ -1007,22 +1000,18 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 $('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 if (is_numeric(getUrlVars('id'))) {
@@ -1920,11 +1909,12 @@ function updateTooltips() {
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
 }
+
 //UNDO Management
 var _undoStack_ = new Array()
 var _undoState_ = -1
 var _firstState_ = 0
-var _undoLimit_ = 10
+var _undoLimit_ = 12
 var _redo_ = 0
 
 jwerty.key('ctrl+z/⌘+z', function (e) {
@@ -1937,8 +1927,10 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 });
 
 function setUndoStack(state=0) {
+  syncEditors()
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -1951,7 +1943,6 @@ function setUndoStack(state=0) {
     _undoStack_[_firstState_ -1] = 0
   }
 }
-
 function undo() {
   if (_undoState_ < _firstState_) return
   try {
@@ -1965,8 +1956,8 @@ function undo() {
     console.log('undo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
-
 function redo() {
   _redo_ = 1
   if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
@@ -1980,8 +1971,8 @@ function redo() {
     console.log('redo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
-
 function resetUndo() {
   _undoStack_ = new Array()
   _undoState_ = -1
@@ -1989,3 +1980,26 @@ function resetUndo() {
   _undoLimit_ = 10
 }
 
+function syncEditors() {
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var id = code.attr('id')
+    if (isset(editor[id])) code.html(editor[id].getValue())
+  })
+}
+function resetEditors() {
+  editor = []
+
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var element = expression.parents('elementCODE').first()
+
+    code.show()
+    code.removeAttr('id')
+    expression.find('.CodeMirror-wrap').remove()
+  })
+
+  setEditor()
+}
