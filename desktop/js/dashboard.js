@@ -103,7 +103,7 @@ $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
 $('#bt_displayObject').on('click', function () {
   if ($(this).attr('data-display') == 1) {
     $('#div_displayObjectList').hide();
-    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
+    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-9 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
     $('.div_displayEquipement').each(function () {
       $(this).packery();
     });
