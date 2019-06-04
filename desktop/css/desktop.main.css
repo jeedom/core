@@ -2569,6 +2569,9 @@ div.cmd-widget div[class^="content"] > select {
   font-size: 16px !important;
   height: 22px;
 }
+div.cmd-widget div[class^="content"] > select > option {
+  font-size: 12px !important;
+}
 div.cmd-widget[data-subtype="select"]::after {
   font-size: 14px;
   top: 5px!important;
