@@ -1325,7 +1325,7 @@ div.panel {
   width: calc(100% - 550px);
   height: 100%;
   margin-right: 200px !important;
-  padding: 10px 15px;
+  padding: 8px 15px;
   display: inline-block;
 }
 body:not([data-page="plugin"]) .panel-title .pull-right {
