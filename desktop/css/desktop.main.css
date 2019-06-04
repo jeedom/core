@@ -1304,6 +1304,10 @@ ul.dropdown-menu {
 div.panel {
   border : none;
 }
+#div_resumeObjectList > .panel,
+#div_resumePluginList > .panel {
+  margin-bottom: 30px;
+}
 #md_modal .panel-heading {
   padding: 6px 12px;
   border: none;
