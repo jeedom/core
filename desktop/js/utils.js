@@ -536,7 +536,7 @@ $(function () {
   });
 
   $('#bt_gotoDashboard').on('click',function(event){
-    if ($(window).width() < 768) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
       return
     }
@@ -548,7 +548,7 @@ $(function () {
   });
 
   $('#bt_gotoView').on('click',function(){
-    if ($(window).width() < 768) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
       return
     }
@@ -560,7 +560,7 @@ $(function () {
   });
 
   $('#bt_gotoPlan').on('click',function(){
-    if ($(window).width() < 768) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
       return
     }
@@ -572,7 +572,7 @@ $(function () {
   });
 
   $('#bt_gotoPlan3d').on('click',function(){
-    if ($(window).width() < 768) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
       return
     }
