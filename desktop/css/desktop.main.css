@@ -2620,6 +2620,7 @@ div.cmd > div.center-block {
 }
 .cmd-widget[data-subtype="select"] .cmdName {
   font-size: 11px !important;
+  margin-left: 5px;
 }
 .cmd-widget[data-subtype="select"] .content-xs {
   top: -4px !important;
