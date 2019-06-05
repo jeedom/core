@@ -654,6 +654,7 @@ class scenario {
 							while($state == 'starting'){
 								sleep(1);
 								$state = $this->getState();
+								$i++;
 								if($i>5){
 									break;
 								}
