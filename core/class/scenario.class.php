@@ -649,9 +649,6 @@ class scenario {
 					}
 					$state = $this->getState();
 					if($state == 'starting'){
-						if($this->getConfiguration('allowMultiInstance',0) == 0){
-							return false;
-						}
 						if(($this->getCache('startingTime')+2)>strtotime('now')){
 							$i = 0;
 							while($state == 'starting'){
@@ -663,10 +660,8 @@ class scenario {
 							}
 						}
 					}
-					if($state == 'in progress'){
-						if($this->getConfiguration('allowMultiInstance',0) == 0){
-							return false;
-						}
+					if($state == 'in progress' && $this->getConfiguration('allowMultiInstance',0) == 0){
+						return false;
 					}
 					$this->setCache(array('startingTime' =>strtotime('now'),'state' => 'starting'));
 					if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
