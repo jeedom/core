@@ -60,4 +60,7 @@ if (init('scenarioElement_id') != '') {
 		$scenario->persistLog();
 		die();
 	}
+}catch (Error $e) {
+	log::add('scenario', 'error', __('Scenario  : ', __FILE__) . init('scenario_id') . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
+	cache::set('scenarioCacheAttr' . init('scenario_id'), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . init('scenario_id'))->getValue(), 'state', 'error'));
 }
