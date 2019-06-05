@@ -190,10 +190,18 @@ $("#div_listScenario").trigger('resize');
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return
+    }
+    modifyWithoutSave = false
+  }
+
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
+
 });
 
 $('.scenarioDisplayCard').off('click').on('click', function () {
@@ -419,7 +427,6 @@ $('#bt_scenarioTab').on('click',function(){
 });
 
 /*******************Element***********************/
-
 $('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
   var checkbox = $(this);
   var element = checkbox.closest('.element');
@@ -745,7 +752,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
       }
 
       bootbox.dialog({
-        title: "{{Ajout d'un nouveau scénario}}",
+        title: "{{Ajout d'une nouvelle condition}}",
         message: message,
         buttons: {
           "Ne rien mettre": {
@@ -759,20 +766,21 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
             className: "btn-primary",
             callback: function () {
               setUndoStack()
+              modifyWithoutSave = true;
               var condition = result.human;
               condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
-              if(result.cmd.subType == 'string'){
-                if($('.conditionAttr[data-l1key=operator]').value() == 'matches'){
+              if (result.cmd.subType == 'string') {
+                if ($('.conditionAttr[data-l1key=operator]').value() == 'matches') {
                   condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
-                }else{
-                  condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+                } else {
+                  condition += " '" + $('.conditionAttr[data-l1key=operande]').value() + "'";
                 }
-              }else{
+              } else {
                 condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
               }
-              condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
+              condition += ' ' + $('.conditionAttr[data-l1key=next]').value() + ' ';
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
-              if($('.conditionAttr[data-l1key=next]').value() != ''){
+              if ($('.conditionAttr[data-l1key=next]').value() != '') {
                 el.click();
               }
             }
@@ -833,7 +841,6 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
 
 
 /**************** Scheduler **********************/
-
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
   $('#bt_addSchedule').removeClass('roundedRight');
   $('#bt_addTrigger').removeClass('roundedRight');
@@ -1158,7 +1165,7 @@ function printScenario(_id) {
         if (data.trigger != '' && data.trigger != null) {
           addTrigger(data.trigger);
         }
-      }
+      } 
       if ($.isArray(data.schedule)) {
         for (var i in data.schedule) {
           if (data.schedule[i] != '' && data.schedule[i] != null) {
@@ -1315,7 +1322,7 @@ function addExpression(_expression) {
         _expression.expression = _expression.expression.replace(/"/g, '&quot;');
       }
       retour += '<div class="input-group input-group-sm" >';
-      retour += '<textarea class="expressionAttr form-control roundedLeft" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
+      retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />';
       retour += '<span class="input-group-btn">';
       retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression"  tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
       retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  tooltip="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
