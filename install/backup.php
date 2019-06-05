@@ -127,7 +127,7 @@ try {
 		echo $e->getMessage();
 	}
 
-	echo 'Créetion de l\'archive...';
+	echo 'Création de l\'archive...';
 
 	$excludes = array(
 		'tmp',
