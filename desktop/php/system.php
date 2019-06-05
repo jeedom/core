@@ -34,8 +34,8 @@ if (!isConnect('admin')) {
     </div>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8" style="overflow-y:hidden;overflow-x:hidden;">
-    
-    <h3 id="h3_executeCommand">{{Cliquez sur une commande à droite ou tapez une commande personnalisée ci-dessous}}</h3>
+
+    <div class="alert alert-info" id="h3_executeCommand">{{Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous}}</div>
     <div class="input-group">
       <span class="input-group-btn">
         <input id="in_specificCommand" class="form-control roundedLeft" style="width:calc(100% - 50px);" />
