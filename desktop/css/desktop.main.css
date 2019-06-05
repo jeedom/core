@@ -3254,8 +3254,6 @@ ul.dropdown-menu {
 }
 
 
-
-
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
 @media screen and (max-width: 1280px) {
   :root {
@@ -3264,6 +3262,24 @@ ul.dropdown-menu {
 
   body {
     font-size: 14px !important;
+  }
+
+  [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
+    content:'';
+    position:absolute;
+    top:-4px;
+    bottom:-4px;
+    left:-4px;
+    right:-4px;
+  }
+
+  [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
+    display: none;
+  }
+  [data-page="administration"] ul.nav-tabs.nav-primary li {
+    min-width: 5%;
+    max-width: 60px;
+    text-align: center;
   }
 
   .btn,
