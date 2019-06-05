@@ -36,7 +36,13 @@ if (isset($argv)) {
 if (init('scenarioElement_id') != '') {
 	scenario::doIn(array('scenario_id' => init('scenario_id'), 'scenarioElement_id' => init('scenarioElement_id'), 'second' => 0, 'tags' => json_decode(init('tags'), true)));
 } else {
-	$scenario = scenario::byId(init('scenario_id'));
+	try {
+		$scenario = scenario::byId(init('scenario_id'));
+	}catch (Error $e) {
+		log::add('scenario', 'error', __('Scenario  : ', __FILE__) . init('scenario_id') . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
+		cache::set('scenarioCacheAttr' . init('scenario_id'), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . init('scenario_id'))->getValue(), 'state', 'error'));
+		die();
+	}
 	if (!is_object($scenario)) {
 		log::add('scenario', 'info', __('Scénario non trouvé. Vérifiez ID : ', __FILE__) . init('scenario_id'));
 		die(__('Scénario non trouvé. Vérifiez ID : ', __FILE__) . init('scenario_id'));
@@ -53,6 +59,13 @@ if (init('scenarioElement_id') != '') {
 		}
 		$scenario->execute(init('trigger'), init('message'));
 	} catch (Exception $e) {
+		log::add('scenario', 'error', __('Scenario  : ', __FILE__) . $scenario->getHumanName() . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
+		$scenario->setState('error');
+		$scenario->setLog(__('Erreur : ', __FILE__) . $e->getMessage());
+		$scenario->setPID('');
+		$scenario->persistLog();
+		die();
+	}catch (Error $e) {
 		log::add('scenario', 'error', __('Scenario  : ', __FILE__) . $scenario->getHumanName() . '. ' . __('Erreur : ', __FILE__) . $e->getMessage());
 		$scenario->setState('error');
 		$scenario->setLog(__('Erreur : ', __FILE__) . $e->getMessage());

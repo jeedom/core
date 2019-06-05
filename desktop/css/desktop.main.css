@@ -32,10 +32,7 @@ body {
   margin: 0 !important;
   scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
 }
-.row.row-overflow {
-  background-color: rgb(var(--bg-color));
-}
-  
+
 .backgroundforJeedom{
   width:100%;
   height:calc(100% - 50px);
@@ -62,6 +59,14 @@ body {
 
 .cursor {
   cursor: pointer;
+}
+
+#div_mainContainer,
+#div_pageContainer,
+#div_resumePluginList,
+#div_resumeObjectList {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* __________________________________________________________________________________________________________LINKS */
@@ -738,6 +743,7 @@ pre {
 
 .div_rowZones {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 
 .viewZone{
@@ -749,7 +755,8 @@ pre {
 }
 
 .div_viewZone{
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  /*  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;*/
 }
 
 .view-link-widget,
@@ -1136,7 +1143,9 @@ button .fas.fa-plus-circle {
   font-size: 14px;
   color: var(--txt-color) !important;
 }
-
+#ul_expressionHistory li a {
+  color: var(--sc-lightTxt-color) !important;
+}
 
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
@@ -1295,6 +1304,10 @@ ul.dropdown-menu {
 div.panel {
   border : none;
 }
+#div_resumeObjectList > .panel,
+#div_resumePluginList > .panel {
+  margin-bottom: 30px;
+}
 #md_modal .panel-heading {
   padding: 6px 12px;
   border: none;
@@ -1302,7 +1315,7 @@ div.panel {
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
   background-color: var(--defaultBkg-color) !important;
 }
-.panel-heading {
+.panel-group .panel-heading {
   padding:0;
 }
 [data-page="plugin"] .panel-heading {
@@ -1312,7 +1325,7 @@ div.panel {
   width: calc(100% - 550px);
   height: 100%;
   margin-right: 200px !important;
-  padding: 10px 15px;
+  padding: 8px 15px;
   display: inline-block;
 }
 body:not([data-page="plugin"]) .panel-title .pull-right {
@@ -2265,21 +2278,12 @@ textarea {
   border-left-width: 0 !important;
 }
 
-/* main div border left screen */
-#div_resumeObjectList,
-#div_resumePluginList,
-#interactThumbnailDisplay,
-#scenarioThumbnailDisplay,
-#div_confPlugin,
-.eqLogicThumbnailDisplay {
-  border-left: none !important;
-}
-
 .bs-sidebar.affix {
   position: static;
 }
 .bs-sidebar {
-  background: rgba(var(--bg-color), var(--opacity)) !important;;
+  background: rgba(var(--bg-color), var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
 }
 .bs-sidebar .label,
 .bs-sidebar .label > i {
@@ -2297,7 +2301,7 @@ textarea {
 }
 .div_smallSideBar,
 .bs-sidebar > ul {
-  background-color: rgba(var(--bg-color), var(--opacity)) !important;
+  /*background-color: rgba(var(--bg-color), var(--opacity)) !important;*/
 }
 .bs-sidebar li.active {
   border-right: 3px solid var(--logo-primary-color) !important;
@@ -2565,6 +2569,9 @@ div.cmd-widget div[class^="content"] > select {
   font-size: 16px !important;
   height: 22px;
 }
+div.cmd-widget div[class^="content"] > select > option {
+  font-size: 12px !important;
+}
 div.cmd-widget[data-subtype="select"]::after {
   font-size: 14px;
   top: 5px!important;
@@ -2603,6 +2610,19 @@ div.cmd > div.center-block {
   margin : 0;
   padding: 0;
   line-height:0px;
+}
+
+.cmd-widget[data-subtype="select"] .title,
+.cmd-widget[data-subtype="select"] .content-xs {
+  clear: both !important;
+  display: inline;
+  text-align: left;
+}
+.cmd-widget[data-subtype="select"] .cmdName {
+  font-size: 11px !important;
+}
+.cmd-widget[data-subtype="select"] .content-xs {
+  top: -4px !important;
 }
 
 .verticalAlign {
@@ -3234,8 +3254,6 @@ ul.dropdown-menu {
 }
 
 
-
-
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
 @media screen and (max-width: 1280px) {
   :root {
@@ -3244,6 +3262,24 @@ ul.dropdown-menu {
 
   body {
     font-size: 14px !important;
+  }
+
+  [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
+    content:'';
+    position:absolute;
+    top:-4px;
+    bottom:-4px;
+    left:-4px;
+    right:-4px;
+  }
+
+  [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
+    display: none;
+  }
+  [data-page="administration"] ul.nav-tabs.nav-primary li {
+    min-width: 5%;
+    max-width: 60px;
+    text-align: center;
   }
 
   .btn,
@@ -3288,9 +3324,10 @@ ul.dropdown-menu {
 @media screen and (max-width: 768px) {
   .navbar-fixed-top .navbar-collapse {
     position: fixed;
-    top: 50px;
+    left: 70px;
+    top: 0;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 70px);
     max-height: none;
     overflow: hidden auto;
   }

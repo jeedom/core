@@ -141,7 +141,7 @@ $(function(){
   catch(err) {}
 })
 
-editor = [];
+var editor = [];
 
 autoCompleteCondition = [
   {val: 'rand(MIN,MAX)'},
@@ -190,10 +190,18 @@ $("#div_listScenario").trigger('resize');
 $('.scenarioListContainer').packery();
 
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return
+    }
+    modifyWithoutSave = false
+  }
+
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
+
 });
 
 $('.scenarioDisplayCard').off('click').on('click', function () {
@@ -207,13 +215,6 @@ $('.accordion-toggle').off('click').on('click', function () {
   },100);
 });
 
-
-$("#div_tree").jstree({
-  "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-  $('#div_tree').jstree(true).search($('#in_treeSearch').val());
-});
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
@@ -426,7 +427,6 @@ $('#bt_scenarioTab').on('click',function(){
 });
 
 /*******************Element***********************/
-
 $('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
   var checkbox = $(this);
   var element = checkbox.closest('.element');
@@ -752,7 +752,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
       }
 
       bootbox.dialog({
-        title: "{{Ajout d'un nouveau scénario}}",
+        title: "{{Ajout d'une nouvelle condition}}",
         message: message,
         buttons: {
           "Ne rien mettre": {
@@ -766,20 +766,21 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
             className: "btn-primary",
             callback: function () {
               setUndoStack()
+              modifyWithoutSave = true;
               var condition = result.human;
               condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
-              if(result.cmd.subType == 'string'){
-                if($('.conditionAttr[data-l1key=operator]').value() == 'matches'){
+              if (result.cmd.subType == 'string') {
+                if ($('.conditionAttr[data-l1key=operator]').value() == 'matches') {
                   condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"';
-                }else{
-                  condition += ' "' + $('.conditionAttr[data-l1key=operande]').value()+'"';
+                } else {
+                  condition += " '" + $('.conditionAttr[data-l1key=operande]').value() + "'";
                 }
-              }else{
+              } else {
                 condition += ' ' + $('.conditionAttr[data-l1key=operande]').value();
               }
-              condition += ' ' + $('.conditionAttr[data-l1key=next]').value()+' ';
+              condition += ' ' + $('.conditionAttr[data-l1key=next]').value() + ' ';
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition);
-              if($('.conditionAttr[data-l1key=next]').value() != ''){
+              if ($('.conditionAttr[data-l1key=next]').value() != '') {
                 el.click();
               }
             }
@@ -840,7 +841,6 @@ $('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=e
 
 
 /**************** Scheduler **********************/
-
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function () {
   $('#bt_addSchedule').removeClass('roundedRight');
   $('#bt_addTrigger').removeClass('roundedRight');
@@ -1007,22 +1007,18 @@ $('#bt_templateScenario').off('click').on('click', function () {
 
 $('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 $('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
-  //setUndoStack()
 });
 
 if (is_numeric(getUrlVars('id'))) {
@@ -1169,7 +1165,7 @@ function printScenario(_id) {
         if (data.trigger != '' && data.trigger != null) {
           addTrigger(data.trigger);
         }
-      }
+      } 
       if ($.isArray(data.schedule)) {
         for (var i in data.schedule) {
           if (data.schedule[i] != '' && data.schedule[i] != null) {
@@ -1326,7 +1322,7 @@ function addExpression(_expression) {
         _expression.expression = _expression.expression.replace(/"/g, '&quot;');
       }
       retour += '<div class="input-group input-group-sm" >';
-      retour += '<textarea class="expressionAttr form-control roundedLeft" data-l1key="expression" rows="1" style="resize:vertical;">' + init(_expression.expression) + '</textarea>';
+      retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />';
       retour += '<span class="input-group-btn">';
       retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression"  tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
       retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  tooltip="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
@@ -1920,11 +1916,12 @@ function updateTooltips() {
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
 }
+
 //UNDO Management
 var _undoStack_ = new Array()
 var _undoState_ = -1
 var _firstState_ = 0
-var _undoLimit_ = 10
+var _undoLimit_ = 12
 var _redo_ = 0
 
 jwerty.key('ctrl+z/⌘+z', function (e) {
@@ -1937,8 +1934,10 @@ jwerty.key('ctrl+y/⌘+y', function (e) {
 });
 
 function setUndoStack(state=0) {
+  syncEditors()
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -1951,7 +1950,6 @@ function setUndoStack(state=0) {
     _undoStack_[_firstState_ -1] = 0
   }
 }
-
 function undo() {
   if (_undoState_ < _firstState_) return
   try {
@@ -1965,8 +1963,8 @@ function undo() {
     console.log('undo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
-
 function redo() {
   _redo_ = 1
   if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) return
@@ -1980,8 +1978,8 @@ function redo() {
     console.log('redo ERROR:', error)
   }
   updateTooltips()
+  resetEditors()
 }
-
 function resetUndo() {
   _undoStack_ = new Array()
   _undoState_ = -1
@@ -1989,3 +1987,26 @@ function resetUndo() {
   _undoLimit_ = 10
 }
 
+function syncEditors() {
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var id = code.attr('id')
+    if (isset(editor[id])) code.html(editor[id].getValue())
+  })
+}
+function resetEditors() {
+  editor = []
+
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    var element = expression.parents('elementCODE').first()
+
+    code.show()
+    code.removeAttr('id')
+    expression.find('.CodeMirror-wrap').remove()
+  })
+
+  setEditor()
+}

@@ -1,8 +1,10 @@
 <div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="select" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div class="content-xs">
-    <select class="selectCmd" title="#name_display#">#listValue#</select>
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
   </div>
-  
+  <div class="content-xs">
+    <select class="selectCmd">#listValue#</select>
+  </div>
   <script>
     $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
       jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});

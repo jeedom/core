@@ -32,14 +32,14 @@ if (!isConnect()) {
 			<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 			<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 		</ul>
-		
+
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="interfacetab">
 				<br>
 				<form class="form-horizontal">
 					<fieldset>
 						<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
-						
+
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}
 								<sup><i class="fas fa-question-circle tooltips" title="Affiche le panneau des objets sur le dashboard"></i></sup>
@@ -259,8 +259,8 @@ if (!isConnect()) {
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 							</div>
 						</div>
-						
-						
+
+
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}</label>
@@ -274,11 +274,11 @@ if (!isConnect()) {
 							</div>
 							<div class="col-sm-4 col-xs-12 alert alert-info">Commande par défaut pour vous joindre (commande de type message).</div>
 						</div>
-						
+
 						<fieldset>
 						</form>
 					</div>
-					
+
 					<div role="tabpanel" class="tab-pane" id="securitytab">
 						<br/>
 						<form class="form-horizontal">
@@ -300,7 +300,7 @@ if (!isConnect()) {
 										<?php }
 										?>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -320,13 +320,16 @@ if (!isConnect()) {
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 										<span class="userAttr" data-l1key="hash"></span>
 									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
 									<div class="col-lg-2 col-md-3 col-sm-3">
-										<a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer}}</a>
+										<a class="btn btn-default form-control" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
 									</div>
 								</div>
 							</fieldset>
 						</form>
-						
+
 						<form class="form-horizontal">
 							<fieldset>
 								<legend>{{Session(s) active(s)}}</legend>
@@ -357,7 +360,7 @@ if (!isConnect()) {
 								</table>
 							</fieldset>
 						</form>
-						
+
 						<form class="form-horizontal">
 							<fieldset>
 								<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
@@ -388,15 +391,14 @@ if (!isConnect()) {
 											echo '</td>';
 											echo '</tr>';
 										}
-										
+
 										?>
 									</tbody>
 								</table>
 							</fieldset>
 						</form>
 					</div>
-					
+
 				</div>
 			</div>
 			<?php include_file("desktop", "profils", "js");?>
-			

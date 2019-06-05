@@ -23,6 +23,16 @@ if (!isConnect('admin')) {
 <ul id="ul_expressionHistory"></ul>
 <script>
 
+
+
+if ($('body').attr('data-page') == 'scenario' && $('#div_editScenario').is(':visible')) {
+	$('.subElementIF .expressions input[data-l1key="expression"]').each(function() {
+		expression = $(this).val().replace(/"/g, '\'')
+		newLi = '<li class="cursor list-group-item list-group-item-success bt_expressionHistory" data-command="'+ expression +'"><a>' + expression + '</a></li>'
+		$('#ul_expressionHistory').append(newLi)
+	})
+}
+
 $('#in_testExpression').keypress(function(e) {
 	if(e.which == 13) {
 		$('#bt_executeExpressionOk').trigger('click');
@@ -71,13 +81,13 @@ $('#bt_executeExpressionOk').on('click',function(){
 		},
 		success: function (data) {
 			$('#div_expressionTestResult').empty();
-			var html = '<div class="alert alert-info">';
+			var html = '<ul><div class="alert alert-info">';
 			if(data.correct == 'nok'){
 				html += '<strong>{{Attention : il doit y avoir un souci, car le résultat est le même que l\'expression}}</strong><br\>';
 			}
 			html += '{{Je vais évaluer : }} <strong>'+data.evaluate+'</strong><br/>';
 			html += '{{Résultat : }} <strong>'+data.result+'</strong>';
-			html += '</div>';
+			html += '</div></ul>';
 			$('#div_expressionTestResult').append(html);
 		}
 	});

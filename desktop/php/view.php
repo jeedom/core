@@ -33,8 +33,6 @@ sendVarToJS('view_id', $view->getId());
 	?>
 	<div class="bs-sidebar">
 		<ul id="ul_viewSummary" class="nav nav-list bs-sidenav" style="font-size:0.9em;"></ul>
-	</div>
-	<div class="bs-sidebar">
 		<ul id="ul_view" class="nav nav-list bs-sidenav">
 			<?php if (isConnect('admin')) {?>
 				<a class="btn btn-default bt_hideFullScreen" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" href="index.php?v=d&p=view_edit"><i class="fas fa-plus-circle"></i> {{Ajouter une vue}}</a>
