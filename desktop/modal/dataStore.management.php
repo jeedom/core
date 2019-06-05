@@ -103,10 +103,10 @@ $(function() {
 				var tr = '';
 				for (var i in data) {
 					tr += '<tr data-dataStore_id="' + data[i].id + '">';
-					tr += '<td>';
+					tr += '<td style="min-width:55px;">';
 					tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
 					tr += '</td>';
-					tr += '<td>';
+					tr += '<td style="min-width:90px;">';
 					tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';
 					tr += '</td>';
 					tr += '<td>';
