@@ -61,7 +61,7 @@ function refreshScenarioSummary(){
 				tr += '<td>';
 				tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:75px;">';
 				switch (data[i].state) {
 					case 'error' :
 					tr += '<span class="label label-warning">{{Erreur}}</span>';
@@ -77,29 +77,29 @@ function refreshScenarioSummary(){
 					break;
 				}
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:155px;">';
 				tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:70px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:78px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:140px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:145px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode"></center>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:60px;">';
 				tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">';
 				tr += '<option value="default">{{Défaut}}</option>';
 				tr += '<option value="none">{{Aucun}}</option>';
 				tr += '<option value="realtime">{{Temps réel}}</option>';
 				tr += '</select>';
 				tr += '</td>';
-				tr += '<td>';
+				tr += '<td style="min-width:90px;">';
 				tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable"></center>';
 				tr += '</td>';
 				tr += '<td>';
