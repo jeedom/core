@@ -26,7 +26,7 @@ if (!isConnect('admin')) {
 
 
 if ($('body').attr('data-page') == 'scenario' && $('#div_editScenario').is(':visible')) {
-	$('.subElementIF .expressions textarea[data-l1key="expression"]').each(function() {
+	$('.subElementIF .expressions input[data-l1key="expression"]').each(function() {
 		expression = $(this).val().replace(/"/g, '\'')
 		newLi = '<li class="cursor list-group-item list-group-item-success bt_expressionHistory" data-command="'+ expression +'"><a>' + expression + '</a></li>'
 		$('#ul_expressionHistory').append(newLi)
