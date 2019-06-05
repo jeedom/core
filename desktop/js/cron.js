@@ -18,6 +18,7 @@
 printCron();
 printListener();
 initTableSorter(filter=false)
+setTimeout(function(){$('#table_cron').find('th[data-column="0"]').trigger('sort')}, 100)
 
 $("#bt_refreshCron").on('click', function () {
   printCron();
@@ -123,13 +124,12 @@ function printCron() {
         tr.push(addCron(data[i]));
       }
       $('#table_cron tbody').append(tr);
-      modifyWithoutSave = false;
-      $("#table_cron").trigger("update");
+      $("#table_cron").trigger("updateAll");
+      modifyWithoutSave = false;      
       setTimeout(function(){
         modifyWithoutSave = false;
       },1000)
       $.hideLoading();
-      $('#table_cron').find('th[data-column="0"]').trigger('sort')
     }
   });
 }
