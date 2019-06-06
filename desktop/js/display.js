@@ -18,10 +18,12 @@ $('.backgroundforJeedom').css('background-position','bottom right');
 $('.backgroundforJeedom').css('background-repeat','no-repeat');
 $('.backgroundforJeedom').css('background-size','auto');
 $(function(){
+  $('#display').show()
   $('.packeryContainer').packery({
     itemSelector: ".object",
     gutter : 0}
   );
+
 });
 
 $( ".eqLogicSortable" ).sortable({
@@ -148,7 +150,7 @@ $('#in_search').on('keyup',function(){
       if(search == '*') return
       search = search.substr(1)
     }
-    
+
     search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     $('.eqLogic').each(function(){
       var eqLogic = $(this);
