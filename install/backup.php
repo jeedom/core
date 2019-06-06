@@ -119,7 +119,7 @@ try {
 	}
 	echo "OK" . "\n";
 
-	echo "Persist cache : \n";
+	echo "Persistance du cache : \n";
 	try {
 		cache::persist();
 		echo "OK" . "\n";
@@ -127,7 +127,7 @@ try {
 		echo $e->getMessage();
 	}
 
-	echo 'Créer l\'archive...';
+	echo 'Création de  l\'archive...';
 
 	$excludes = array(
 		'tmp',
@@ -158,11 +158,11 @@ try {
 		throw new Exception('Echec du backup. Impossible de trouver : ' . $backup_dir . '/' . $backup_name);
 	}
 
-	echo 'Nettoyage l\'ancienne sauvegarde...';
+	echo 'Nettoyage de l\'ancienne sauvegarde...';
 	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 
-	echo 'Limite la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
+	echo 'Limitation de la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
