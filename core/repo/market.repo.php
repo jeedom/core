@@ -457,6 +457,9 @@ class repo_market {
 	}
 	
 	public static function monitoring_status() {
+		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
+			return false;
+		}
 		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') == 0){
 			return false;
 		}

@@ -402,7 +402,9 @@ if (init('rescue', 0) == 0) {
 								<?php } ?>
 								<li class="hidden-xs"><a href="#" style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li class="hidden-xs navTime">
-									<span id="horloge"><?php echo date('H:i:s'); ?></span>
+									<a href="index.php?v=d&p=log">
+										<span id="horloge"><?php echo date('H:i:s'); ?></span>
+									</a>
 									<a href="index.php?v=d&p=administration#generaltab">
 										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 									</a>
