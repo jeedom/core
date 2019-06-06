@@ -38,7 +38,7 @@ if (!is_array($remove_history)) {
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-	<div role="tabpanel" class="tab-pane active" id="display">
+	<div role="tabpanel" class="tab-pane active" id="display" style="display:none">
 		<br/>
 		<div>
 			<div class="pull-left">
