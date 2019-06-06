@@ -10,7 +10,7 @@
       console.log(_options.display_value);
       if(_options.display_value == '0'){
         // Closed
-        if (jeedom.cmd.normalizeName('#name#') == 'fermer') {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
@@ -19,7 +19,7 @@
                 }
       }else if(_options.display_value == '252'){
         // Closing
-        if (jeedom.cmd.normalizeName('#name#') == 'fermer') {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                     $('.cmd[data-cmd_id=#id#]').show();
@@ -29,7 +29,7 @@
         
       }else if(_options.display_value == '253'){
         // Stopped
-        if (jeedom.cmd.normalizeName('#name#') == 'fermer') {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                   $('.cmd[data-cmd_id=#id#]').show();
@@ -39,7 +39,7 @@
          
       }else if(_options.display_value == '254'){
         // Opening
-        if (jeedom.cmd.normalizeName('#name#') == 'ouvrir') {
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                    $('.cmd[data-cmd_id=#id#]').show();
@@ -49,7 +49,7 @@
         
       }else if(_options.display_value == '255'){
         // Opened
-        if (jeedom.cmd.normalizeName('#name#') == 'ouvrir') {
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                   $('.cmd[data-cmd_id=#id#]').show();
@@ -59,7 +59,7 @@
         
       }else{
         // Unknown
-        if (jeedom.cmd.normalizeName('#name#') == 'fermer') {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
                     $('.cmd[data-cmd_id=#id#]').hide();
                 }else{
                   $('.cmd[data-cmd_id=#id#]').show();
