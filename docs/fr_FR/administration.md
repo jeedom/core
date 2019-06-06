@@ -3,7 +3,7 @@ Bien que nombreux, une majorité sont pré-configurés par défaut.
 
 La page est accessible via  **Réglages → Système → Configuration**.
 
-Général 
+Général
 =======
 
 Dans cet onglet on retrouve des informations générales sur Jeedom :
@@ -34,15 +34,15 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
     lequel il tourne. Peut être utile par exemple, si vous ne connectez
     pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
     matériel utilisé.
-    
+
 -   **Système** : Indique le type de matériel sur lequel Jeedom est installé.   
-    
+
 -   **Clef d’installation** : Clef matérielle de votre Jeedom sur
     le Market. Si votre Jeedom n’apparaît pas dans la liste de vos
     Jeedom sur le Market, il est conseillé de cliquer sur le bouton
     **Remise à zéro**.
 
--   **Dernière date connue** : Date enregistrée par Jeedom, utilisée après 
+-   **Dernière date connue** : Date enregistrée par Jeedom, utilisée après
     un redémarrage pour des systèmes n'ayant pas de pile RTC.
 
 Interface
@@ -50,25 +50,25 @@ Interface
 
 Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichage.
 
-Thèmes 
+Thèmes
 ------
 
 -   **Desktop clair et sombre** : Vous permet de choisir un thème clair
     et un sombre pour le Desktop.
-    
+
 -   **Mobile clair et sombre** : idem que précédement pour la version Mobile.
 
 -   **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle
     le thème clair choisit précédement sera utilisé. Il faut cependant cocher l'option
     **Bascule du thème en fonction de l'heure**.
-    
--   **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer 
+
+-   **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer
     generic extra sensor dans chrome, page chrome://flags
 
 -   **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve
     dans les pages scénarios, objets, interactions, etc.
 
-Tuiles 
+Tuiles
 ------
 
 -   **Tuiles Pas horizontal** : Contraint la largeur des tuiles tous les x pixels.
@@ -77,10 +77,10 @@ Tuiles
 
 -   **Tuiles Marge** : Espace vertical et horizontal entre les tuiles, en pixels.
 
-Personnalisation 
+Personnalisation
 ----------------
 
-Réseaux 
+Réseaux
 =======
 
 Il faut absolument configurer correctement cette partie importante de
@@ -132,17 +132,17 @@ externe** (depuis un autre réseau notamment depuis Internet).
 
     -   **Complément** : le fragment d’URL complémentaire (exemple
         : /jeedom) pour accéder à Jeedom.
-        
+
 -   **Proxy pour market** : activation du proxy.
-    
+
     - Cocher la case activer le proxy
-    
+
     - **Adresse Proxy** : Renseigner l'adresse du proxy,
-    
+
     - **Port du Proxy** : Renseigner le port du proxy,
-    
+
     - **Login** : Renseigner le login du proxy,
-    
+
     - **Mot de passe** : Renseigner le mot de passe.
 
 > **Tip**
@@ -184,10 +184,10 @@ externe** (depuis un autre réseau notamment depuis Internet).
 -   **Durée de vie des sessions (heure)** : durée de vie des sessions
     PHP, il est déconseillé de toucher à ce paramètre.
 
-Logs 
+Logs
 ====
 
-Timeline 
+Timeline
 --------
 
 -   **Nombre maximum d’évènements** : Définit le nombre maximum d'évènements à
@@ -196,7 +196,7 @@ Timeline
 -   **Supprimer tous les évènements** : Permet de vider la timeline de
     tous ses évènements enregistrés.
 
-Messages 
+Messages
 --------
 
 -   **Ajouter un message à chaque erreur dans les logs** : si un plugin
@@ -204,11 +204,11 @@ Messages
     automatiquement un message dans le centre des messages (au moins
     vous êtes sûr de ne pas le manquer).
 
--   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre des messages. Vous avez 2 tags pour ces actions : 
-        - #message# : message en question
+-   **Action sur message** : Permet de faire une action lors de l'ajout d'un message dans le centre des messages. Vous avez 2 tags pour ces actions :
+        - #subject# : message en question
         - #plugin# : plugin qui a déclenché le message
 
-Alertes 
+Alertes
 -------
 
 -   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
@@ -243,7 +243,7 @@ Alertes
 -   **Commande sur Danger** : Commande de type **message** à utiliser si
     une commande passe en alerte **danger**.
 
-Logs 
+Logs
 ----
 
 -   **Moteur de log** : Permet de changer le moteur de log pour, par
@@ -266,7 +266,7 @@ En dessous vous retrouvez un tableau permettant de gérer finement le
 niveau de log des éléments essentiels de Jeedom ainsi que celui des
 plugins.
 
-Commandes 
+Commandes
 =========
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans
@@ -274,7 +274,7 @@ Analyse→Historique, vous obtenez des graphiques représentant leur
 utilisation. Cet onglet permet de fixer des paramètres globaux à
 l’historisation des commandes.
 
-Historique 
+Historique
 ----------
 
 -   **Afficher les statistiques sur les widgets** : Permet d’afficher
@@ -325,7 +325,7 @@ Historique
 > [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
 > pour le détail).
 
-Push 
+Push
 ----
 
 **URL de push globale** : permet de rajouter une URL à appeler en cas de
@@ -335,7 +335,7 @@ nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
 commande, **\#humanname\#** pour le nom complet de la commande (ex :
 \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#), `#eq_name#` pour le nom de l'équipement
 
-Résumés 
+Résumés
 =======
 
 Permet d’ajouter des résumés d’objets. Cette information est affichée
@@ -375,7 +375,7 @@ objets :
 -   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
     de supprimer le résumé de la ligne.
 
-Equipements 
+Equipements
 ===========
 
 -   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
@@ -385,7 +385,7 @@ Equipements
 -   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
     sur les piles.
 
-Rapports 
+Rapports
 ========
 
 Permet de configurer la génération et la gestion des rapports
@@ -399,7 +399,7 @@ Permet de configurer la génération et la gestion des rapports
     un peu de place donc attention à ne pas mettre trop
     de conservation).
 
-Liens 
+Liens
 =====
 
 Permet de configurer les graphiques de liens. Ces liens permettent de
@@ -424,7 +424,7 @@ voir, sous forme d’un graphique, les relations entre les objets, les
 
 -   **Paramètre de render** : Idem.
 
-Interactions 
+Interactions
 ============
 
 Cet onglet permet de fixer des paramètres globaux concernant les
@@ -436,7 +436,7 @@ interactions que vous trouverez dans Outils→Interactions.
 > Administration→Configuration→Logs, puis cocher **Debug** dans la liste
 > du bas. Attention : les logs seront alors très verbeux !
 
-Général 
+Général
 -------
 
 Vous avez ici trois paramètres :
@@ -469,7 +469,7 @@ Vous avez ici trois paramètres :
     chapitre **Regexp d’exclusion** de la documentation sur
     les interactions.
 
-Interaction automatique, contextuelle & avertissement 
+Interaction automatique, contextuelle & avertissement
 -----------------------------------------------------
 
 -   Les **interactions automatiques** permettent à Jeedom de tenter de
@@ -560,10 +560,10 @@ Voici donc les différentes options disponibles :
     commande de type slider au minimu (ex ferme pour fermer le volet de
     la chambre ⇒ volet chambre à 0%).
 
-Sécurité 
+Sécurité
 ========
 
-LDAP 
+LDAP
 ----
 
 -   **Activer l’authentification LDAP** : active l’authentification à
@@ -590,7 +590,7 @@ LDAP
 -   **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO
     par exemple)
 
-Connexion 
+Connexion
 ---------
 
 -   **Nombre d’échecs tolérés** : définit le nombre de tentatives
@@ -610,11 +610,11 @@ Connexion
 La liste des IP bannies se trouve au bas de cette page. Vous y trouverez
 l’IP, la date de bannissement et la date de fin de bannissement
 programmée.
-    
-Mise à jour et fichiers 
+
+Mise à jour et fichiers
 =======================
 
-Mise à jour de Jeedom 
+Mise à jour de Jeedom
 ---------------------
 
 -   **Source de mise à jour** : Choisissez la source de mise à jour du
@@ -627,18 +627,18 @@ Mise à jour de Jeedom
     (attention pour éviter de surcharger le market, l’heure de
     vérification peut changer).
 
-Les dépôts 
+Les dépôts
 ----------
 
 Les dépôts sont des espaces de stockage (et de service) pour pouvoir
 déplacer des sauvegardes, récupérer des plugins, récupérer le core de
 Jeedom, etc.
 
-### Fichier 
+### Fichier
 
 Dépôt servant à activer l’envoi de plugins par des fichiers.
 
-### Github 
+### Github
 
 Dépôt servant à relier Jeedom à Github.
 
@@ -651,7 +651,7 @@ Dépôt servant à relier Jeedom à Github.
 
 -   **Branche pour le core Jeedom** : Branche du dépôt pour le core.
 
-### Market 
+### Market
 
 Dépôt servant à relier Jeedom au market, il est vivement conseillé
 d’utiliser ce dépôt. Attention : toute demande de support pourra être
@@ -669,7 +669,7 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémental (qui n'envoie que les différences). Il est recommandé d'en faire 1 par mois
 
-### Samba 
+### Samba
 
 Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
 un partage Samba (ex : NAS Synology).
@@ -710,7 +710,7 @@ un partage Samba (ex : NAS Synology).
 
 > **Important**
 >
-> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau 
+> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau
 > sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2
 > ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
 > failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
@@ -728,13 +728,13 @@ un partage Samba (ex : NAS Synology).
 > première sauvegarde, le dossier ne doit contenir aucun fichier ou
 > dossier).
 
-### URL 
+### URL
 
 -   **URL core Jeedom**
 
 -   **URL version core Jeedom**
 
-Cache 
+Cache
 =====
 
 Permet de surveiller et d’agir sur le cache de Jeedom :
@@ -746,7 +746,7 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 
 -   **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
-    
+
 -   **Vider le cache des widgets** : Vide le cache dédié aux widgets
 
 -   **Désactiver le cache des widgets** : Cocher la case pour désactiver
@@ -758,7 +758,7 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     l’interface se mettra à jour rapidement, en contre partie cela
     utilise plus de ressources et peut donc ralentir Jeedom.
 
-API 
+API
 ===
 
 Vous trouvez ici la liste des différentes clés API disponibles dans
@@ -785,7 +785,7 @@ TTS, vous pouvez définir leur portée :
 -   **Activé** : aucune restriction, n’importe quel système ayant accès
     à votre Jeedom pourra accéder à cette API.
 
-&gt;\_OS/DB 
+&gt;\_OS/DB
 ===========
 
 Deux parties réservées aux experts sont présentes dans cet onglet.
@@ -799,18 +799,18 @@ Deux parties réservées aux experts sont présentes dans cet onglet.
     d’administration système. C’est une sorte de console shell dans
     laquelle vous pouvez lancer les commandes les plus utiles, notamment
     pour obtenir des informations sur le système.
-    
+
 -   **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système
-    d'exploitation et de les éditer ou supprimer ou d'en créer. 
+    d'exploitation et de les éditer ou supprimer ou d'en créer.
 
 -   **Base de données** : Administration / Lancer : Permet d’accéder à la base de données
     de Jeedom. Vous pouvez alors lancer des commandes dans le champs
-    du haut. 
+    du haut.
     Vérification / Lancer : Permet de lancer une vérification sur la base de données
     de Jeedom et de corriger si nécessaire les erreurs
-    
+
     Deux paramètres s’affichent, en dessous, pour information :
-    
+
     -   **Utilisateur** : Nom de l’utilisateur utilisé par Jeedom dans
         la base de données,
 
