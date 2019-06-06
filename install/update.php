@@ -112,7 +112,6 @@ try {
 		if (init('mode') == 'force') {
 			echo "/!\ Force update /!\ \n";
 		}
-		jeedom::stop();
 		echo "[PROGRESS][15]\n";
 		if (init('update::reapply') == '' && config::byKey('update::allowCore', 'core', 1) != 0) {
 			$tmp_dir = jeedom::getTmpFolder('install');
@@ -205,6 +204,7 @@ try {
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
+				jeedom::stop();
 				echo "[PROGRESS][45]\n";
 				echo "Moving files...";
 				$update_begin = true;
@@ -229,6 +229,8 @@ try {
 					echo '***ERROR***' . $e->getMessage();
 				}
 			}
+		}else{
+			jeedom::stop();
 		}
 		echo "[PROGRESS][55]\n";
 		if (init('update::reapply') != '') {
