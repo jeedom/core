@@ -264,7 +264,7 @@ if (!isConnect()) {
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}
-								<sup><i class="fas fa-question-circle tooltips" title="Commande par défaut pour vous joindre (commande de type message).}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" title="{{Commande par défaut pour vous joindre (commande de type message).}}"></i></sup>
 							</label>
 							<div class="col-sm-3 col-xs-12">
 								<div class="input-group">
