@@ -29,35 +29,35 @@ $(function(){
 
 //searching
 $('#in_searchWidget').off('keyup').on('keyup',function(){
-  var search = $(this).value();
-  $('.div_object:not(.hideByObjectSel)').show();
-  if(search == ''){
-    $('.eqLogic-widget').show();
-    $('.scenario-widget').show();
-    $('.div_displayEquipement').packery();
-    return;
+  var search = $(this).value()
+  $('.div_object:not(.hideByObjectSel)').show()
+  if (search == '') {
+    $('.eqLogic-widget').show()
+    $('.scenario-widget').show()
+    $('.div_displayEquipement').packery()
+    return
   }
 
-  search = normText(search)
-  $('.eqLogic-widget').each(function(){
-    var match = false;
-    text = normText($(this).find('.widget-name').text())
+  search = normTextLower(search)
+  $('.eqLogic-widget').each(function() {
+    var match = false
+    text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
 
     if ($(this).attr('data-tags') != undefined) {
-      text = normText($(this).attr('data-tags'))
+      text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-category') != undefined) {
-      text = normText($(this).attr('data-category'))
+      text = normTextLower($(this).attr('data-category'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-eqType') != undefined) {
-      text = normText($(this).attr('data-eqType'))
+      text = normTextLower($(this).attr('data-eqType'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-translate-category') != undefined) {
-      text = normText($(this).attr('data-translate-category'))
+      text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
 
@@ -67,9 +67,9 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       $(this).hide()
     }
   })
-  $('.scenario-widget').each(function(){
+  $('.scenario-widget').each(function() {
     var match = false
-    text = normText($(this).find('.widget-name').text())
+    text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
     if (match) {
       $(this).show()
@@ -86,13 +86,9 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
   })
 })
 
-function normText(_text) {
-  return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
-}
-
 $('#bt_resetDashboardSearch').on('click', function () {
   $('#in_searchWidget').val('')
-  $('#in_searchWidget').keyup();
+  $('#in_searchWidget').keyup()
 })
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
