@@ -906,6 +906,10 @@ function initHelp(){
 }
 
 //Commons__
+function normTextLower(_text) {
+  return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+}
+
 function linkify(inputText) {
   var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
   var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
