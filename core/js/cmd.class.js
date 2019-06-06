@@ -783,7 +783,6 @@ jeedom.cmd.normalizeName = function(_tagname) {
     'descendre':'off',
     'ouvrir':'on',
     'ouvrirStop':'on',
-    'ouvrirStop':'on',
     'ouvert':'on',
     'fermer':'off',
     'activer':'on',
