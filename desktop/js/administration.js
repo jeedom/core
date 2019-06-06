@@ -33,24 +33,23 @@ $('#in_searchConfig').keyup(function () {
   })
 
   $('#searchResult').empty()
-  if(search == '') {
+  if (search == '') {
     $('.nav-tabs.nav-primary').show()
     $('.tab-content').show()
     initPickers()
     return
   }
   if (search.length < 3) return
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+  search = normTextLower(search)
 
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
 
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
-    var text = $(this).html().toLowerCase()
-    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-    if (text.indexOf(search.toLowerCase()) >= 0){
-
+    var text = $(this).html()
+    text = normTextLower(text)
+    if (text.indexOf(search) >= 0) {
       //get element tab to create link to:
       var tabId = $(this).closest('div[role="tabpanel"]').attr('id')
       tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
@@ -80,7 +79,7 @@ function initSearchLinks() {
 
 $('#bt_resetConfigSearch').on('click', function () {
   $('#in_searchConfig').val('')
-  $('#in_searchConfig').keyup();
+  $('#in_searchConfig').keyup()
 })
 
 $(function () {
