@@ -1362,82 +1362,82 @@ function sanitizeAccent($_message) {
 	function pageTitle($_page){
 		switch ($_page) {
 			case 'view':
-				$return = __('Vues',__FILE__);
-				break;
+			$return = __('Vues',__FILE__);
+			break;
 			case 'plan':
-				$return = __('Designs',__FILE__);
-				break;
+			$return = __('Designs',__FILE__);
+			break;
 			case 'plan3d':
-				$return = __('Designs 3D',__FILE__);
-				break;
+			$return = __('Designs 3D',__FILE__);
+			break;
 			case 'eqAnalyse':
-				$return = __('Equipements',__FILE__);
-				break;
+			$return = __('Equipements',__FILE__);
+			break;
 			case 'display':
-				$return = __('Résumé',__FILE__);
-				break;
+			$return = __('Résumé',__FILE__);
+			break;
 			case 'history':
-				$return = __('Historique',__FILE__);
-				break;
+			$return = __('Historique',__FILE__);
+			break;
 			case 'report':
-				$return = __('Rapports',__FILE__);
-				break;
+			$return = __('Rapports',__FILE__);
+			break;
 			case 'health':
-				$return = __('Santé',__FILE__);
-				break;
+			$return = __('Santé',__FILE__);
+			break;
 			case 'object':
-				$return = __('Objets',__FILE__);
-				break;
+			$return = __('Objets',__FILE__);
+			break;
 			case 'scenario':
-				$return = __('Scénarios',__FILE__);
-				break;
+			$return = __('Scénarios',__FILE__);
+			break;
 			case 'interact':
-				$return = __('Interactions',__FILE__);
-				break;
+			$return = __('Interactions',__FILE__);
+			break;
 			case 'widgets':
-				$return = __('Widgets',__FILE__);
-				break;
+			$return = __('Widgets',__FILE__);
+			break;
 			case 'plugin':
-				$return = __('Gestion Plugins',__FILE__);
-				break;
+			$return = __('Gestion Plugins',__FILE__);
+			break;
 			case 'administration':
-				$return = __('Configuration',__FILE__);
-				break;
+			$return = __('Configuration',__FILE__);
+			break;
 			case 'backup':
-				$return = __('Sauvegardes',__FILE__);
-				break;
+			$return = __('Sauvegardes',__FILE__);
+			break;
 			case 'cron':
-				$return = __('Moteur de tâches',__FILE__);
-				break;
+			$return = __('Moteur de tâches',__FILE__);
+			break;
 			case 'custom':
-				$return = __('Personnalisation',__FILE__);
-				break;
+			$return = __('Personnalisation',__FILE__);
+			break;
 			case 'user':
-				$return = __('Utilisateurs',__FILE__);
-				break;
+			$return = __('Utilisateurs',__FILE__);
+			break;
 			case 'profils':
-				$return = __('Préférences',__FILE__);
-				break;
+			$return = __('Préférences',__FILE__);
+			break;
 			case 'log':
-				$return = __('Logs',__FILE__);
-				break;
+			$return = __('Logs',__FILE__);
+			break;
 			case 'update':
-				$return = __('Mises à jour',__FILE__);
-				break;
+			$return = __('Mises à jour',__FILE__);
+			break;
 			case 'panel':
-				try {
-					$url = $_SERVER[REQUEST_URI];
-					$plugin = explode('m=', $url)[1];
-					$plugin = explode('&', $plugin)[0];
-					$return = __('Panel '.ucfirst($plugin),__FILE__);
-					break;
-				} catch(Exception $e) {
-					$return = __('Panel',__FILE__);
-					break;
-				}
-			default:
-				$return = $_page;
+			try {
+				$url = $_SERVER[REQUEST_URI];
+				$plugin = explode('m=', $url)[1];
+				$plugin = explode('&', $plugin)[0];
+				$return = __('Panel '.ucfirst($plugin),__FILE__);
 				break;
+			} catch(Exception $e) {
+				$return = __('Panel',__FILE__);
+				break;
+			}
+			default:
+			$return = $_page;
+			break;
 		}
 		return ucfirst($return);
 	}
