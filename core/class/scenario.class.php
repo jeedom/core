@@ -649,15 +649,28 @@ class scenario {
 					}
 					$state = $this->getState();
 					if($state == 'starting'){
+						//Scénario bloqué en starting (Exemple de cause : trop de connexions à MySql, la connexion est refusée, le scénario plante)
+						if(strtotime('now')-$this->getCache('startingTime')>5){
+							log::add('scenario', 'error', __('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario', __FILE__)." \"".$this->getName()."\".");
+							$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à ', __FILE__).date('Y-m-d H:i:s',$this->getCache('startingTime')).".");
+							$this->persistLog();
+						}
+						//Retarde le lancement du scénario si une autre instance est déjà en cours de démarrage
 						if(($this->getCache('startingTime')+2)>strtotime('now')){
 							$i = 0;
 							while($state == 'starting'){
 								sleep(1);
 								$state = $this->getState();
 								$i++;
-								if($i>5){
+								if($i>10){
 									break;
 								}
+							}
+							if ($state == 'starting') {
+								log::add('scenario', 'error', __('Trop d\'appel simultané du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario', __FILE__)." \"".$this->getName()."\".");
+								$this->setLog(__('Trop d\'appel simultané du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels à ce scénario', __FILE__).".");
+								$this->persistLog();
+								return false;
 							}
 						}
 					}

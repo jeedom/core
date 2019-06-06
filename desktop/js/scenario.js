@@ -28,43 +28,43 @@ $('.backgroundforJeedom').css('background-repeat','no-repeat');
 
 //searching
 $('#in_searchScenario').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
+  var search = $(this).value()
+  if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
-    $('.scenarioDisplayCard').show();
-    $('.scenarioListContainer').packery();
+    $('.scenarioDisplayCard').show()
+    $('.scenarioListContainer').packery()
     return;
   }
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-  $('.panel-collapse').attr('data-show',0);
-  $('.scenarioDisplayCard').hide();
+  search = normTextLower(search)
+  $('.panel-collapse').attr('data-show',0)
+  $('.scenarioDisplayCard').hide()
   $('.scenarioDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-    if(text.indexOf(search.toLowerCase()) >= 0){
+    var text = $(this).text()
+    text = normTextLower(text)
+    if (text.indexOf(search) >= 0) {
       $(this).closest('.scenarioDisplayCard').show();
-      $(this).closest('.panel-collapse').attr('data-show',1);
+      $(this).closest('.panel-collapse').attr('data-show',1)
     }
   });
-  $('.panel-collapse[data-show=1]').collapse('show');
-  $('.panel-collapse[data-show=0]').collapse('hide');
-  $('.scenarioListContainer').packery();
+  $('.panel-collapse[data-show=1]').collapse('show')
+  $('.panel-collapse[data-show=0]').collapse('hide')
+  $('.scenarioListContainer').packery()
 });
 
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
     $(this).click()
   })
-});
+})
 $('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").each(function(){
     $(this).click()
   })
-});
+})
 
 $('#bt_resetScenarioSearch').on('click', function () {
   $('#in_searchScenario').val('')
-  $('#in_searchScenario').keyup();
+  $('#in_searchScenario').keyup()
 })
 
 /* contextMenu */
@@ -1165,7 +1165,7 @@ function printScenario(_id) {
         if (data.trigger != '' && data.trigger != null) {
           addTrigger(data.trigger);
         }
-      } 
+      }
       if ($.isArray(data.schedule)) {
         for (var i in data.schedule) {
           if (data.schedule[i] != '' && data.schedule[i] != null) {

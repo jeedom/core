@@ -15,40 +15,40 @@
 */
 
 $('#in_searchWidgets').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
+  var search = $(this).value()
+  if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
-    $('.widgetsDisplayCard').show();
-    $('.widgetsListContainer').packery();
+    $('.widgetsDisplayCard').show()
+    $('.widgetsListContainer').packery()
     return;
   }
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+  search = normTextLower(search)
 
-  $('.widgetsDisplayCard').hide();
-  $('.panel-collapse').attr('data-show',0);
-  $('.widgetsDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-    if(text.indexOf(search.toLowerCase()) >= 0){
+  $('.widgetsDisplayCard').hide()
+  $('.panel-collapse').attr('data-show',0)
+  $('.widgetsDisplayCard .name').each(function() {
+    var text = $(this).text()
+    text = normTextLower(text)
+    if(text.indexOf(search) >= 0){
       $(this).closest('.widgetsDisplayCard').show();
-      $(this).closest('.panel-collapse').attr('data-show',1);
+      $(this).closest('.panel-collapse').attr('data-show',1)
     }
-  });
-  $('.panel-collapse[data-show=1]').collapse('show');
-  $('.panel-collapse[data-show=0]').collapse('hide');
-  $('.widgetsListContainer').packery();
-});
+  })
+  $('.panel-collapse[data-show=1]').collapse('show')
+  $('.panel-collapse[data-show=0]').collapse('hide')
+  $('.widgetsListContainer').packery()
+})
 
 $('#bt_openAll').off('click').on('click', function () {
-  $(".accordion-toggle[aria-expanded='false']").each(function(){
+  $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
   })
 });
 $('#bt_closeAll').off('click').on('click', function () {
-  $(".accordion-toggle[aria-expanded='true']").each(function(){
+  $(".accordion-toggle[aria-expanded='true']").each(function() {
     $(this).click()
   })
-});
+})
 
 $('#bt_resetWidgetsSearch').on('click', function () {
   $('#in_searchWidgets').val('')

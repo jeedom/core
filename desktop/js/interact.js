@@ -20,46 +20,46 @@ $('.backgroundforJeedom').css('background-size','auto');
 
 //searching
 $('#in_searchInteract').keyup(function () {
-  var search = $(this).value();
-  if(search == ''){
+  var search = $(this).value()
+  if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
-    $('.interactDisplayCard').show();
-    $('.interactListContainer').packery();
-    return;
+    $('.interactDisplayCard').show()
+    $('.interactListContainer').packery()
+    return
   }
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+  search = normTextLower(search)
 
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
-  $('.interactDisplayCard').hide();
-  $('.panel-collapse').attr('data-show',0);
+  $('.interactDisplayCard').hide()
+  $('.panel-collapse').attr('data-show',0)
   $('.interactDisplayCard .name').each(function(){
-    var text = $(this).text().toLowerCase();
-    text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-    if(text.indexOf(search.toLowerCase()) >= 0){
-      $(this).closest('.interactDisplayCard').show();
-      $(this).closest('.panel-collapse').attr('data-show',1);
+    var text = $(this).text()
+    text = normTextLower(text)
+    if (text.indexOf(search) >= 0) {
+      $(this).closest('.interactDisplayCard').show()
+      $(this).closest('.panel-collapse').attr('data-show',1)
     }
-  });
-  $('.panel-collapse[data-show=1]').collapse('show');
-  $('.panel-collapse[data-show=0]').collapse('hide');
-  $('.interactListContainer').packery();
-});
+  })
+  $('.panel-collapse[data-show=1]').collapse('show')
+  $('.panel-collapse[data-show=0]').collapse('hide')
+  $('.interactListContainer').packery()
+})
 
 $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').val('')
-  $('#in_searchInteract').keyup();
+  $('#in_searchInteract').keyup()
 })
 
 $('#bt_openAll').off('click').on('click', function () {
-  $(".accordion-toggle[aria-expanded='false']").each(function(){
+  $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
   })
-});
+})
 $('#bt_closeAll').off('click').on('click', function () {
-  $(".accordion-toggle[aria-expanded='true']").each(function(){
+  $(".accordion-toggle[aria-expanded='true']").each(function() {
     $(this).click()
   })
-});
+})
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false

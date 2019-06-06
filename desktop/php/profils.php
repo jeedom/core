@@ -263,7 +263,9 @@ if (!isConnect()) {
 
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}</label>
+							<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}
+								<sup><i class="fas fa-question-circle tooltips" title="Commande par défaut pour vous joindre (commande de type message).}}"></i></sup>
+							</label>
 							<div class="col-sm-3 col-xs-12">
 								<div class="input-group">
 									<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
@@ -272,7 +274,6 @@ if (!isConnect()) {
 									</span>
 								</div>
 							</div>
-							<div class="col-sm-4 col-xs-12 alert alert-info">Commande par défaut pour vous joindre (commande de type message).</div>
 						</div>
 
 						<fieldset>
