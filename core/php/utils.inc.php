@@ -1426,10 +1426,14 @@ function sanitizeAccent($_message) {
 			break;
 			case 'panel':
 			try {
-				$url = $_SERVER[REQUEST_URI];
-				$plugin = explode('m=', $url)[1];
-				$plugin = explode('&', $plugin)[0];
-				$return = __('Panel '.ucfirst($plugin),__FILE__);
+				if(isset($_SERVER['REQUEST_URI'])){
+					$url = $_SERVER['REQUEST_URI'];
+					$plugin = explode('m=', $url)[1];
+					$plugin = explode('&', $plugin)[0];
+					$return = __('Panel '.ucfirst($plugin),__FILE__);
+				}else{
+					$return = __('Panel',__FILE__);
+				}
 				break;
 			} catch(Exception $e) {
 				$return = __('Panel',__FILE__);
