@@ -112,10 +112,13 @@ function loadPage(_url,_noPushHistory){
     var n=_url.lastIndexOf("#");
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
-  $('.backgroundforJeedom').css('background-image','');
-  $('.backgroundforJeedom').css('background-position','center center');
-  $('.backgroundforJeedom').css('background-repeat','no-repeat');
-  $('.backgroundforJeedom').css('background-size','cover');
+
+  $('.backgroundforJeedom').css({
+      'background-image':'',
+      'background-position':'center center',
+      'background-repeat':'no-repeat',
+      'background-size':'cover'
+  });
   setBackgroundImg('');
   jeedomBackgroundImg = null;
 
