@@ -1085,7 +1085,7 @@ function displayObject(_plan,_html, _noRender) {
     var insideHtml = html.html();
     html = html.empty().append('<center>'+insideHtml+'</center>');
     html.css({
-      'width':''
+      'width':'',
       'min-width':'0px',
       'height':'',
       'min-height':'0px'
