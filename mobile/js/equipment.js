@@ -8,7 +8,7 @@ function initEquipment(_object_id) {
     success: function (objects) {
       var summaries = [];
       var li = ' <ul data-role="listview" data-inset="false">';
-      li += '<li><a href="#" class="link" data-page="equipment" data-title="<i class=\'fa fa-circle-o-notch\'></i> {{Tout}}" data-option="all"><span><i class=\'fa fa-circle-o-notch\'></i> {{Tout}}</a></li>';
+      li += '<li><a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><span><i class=\'fas fa-globe\'></i> {{Tout}}</a></li>';
       for (var i in objects) {
         if (objects[i].isVisible == 1) {
           var icon = '';
