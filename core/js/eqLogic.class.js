@@ -387,8 +387,8 @@ jeedom.eqLogic.refreshValue = function (_params) {
           eqLogic.attr('data-eqLogic_uid',uid);
         }
         eqLogic.empty().html(html.children());
-        eqLogic.attr("class", html.attr("class"));
-        eqLogic.trigger('change');
+        eqLogic.attr("class", html.attr("class"))
+        .trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
           setTileSize('.eqLogic');
