@@ -13,7 +13,13 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-actionOptions = [];
+actionOptions = []
+var $pageContainer = $('#div_pageContainer')
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  $("#bt_saveGeneraleConfig").click();
+});
+
 
 //select tab:
 _url = window.location.href
@@ -101,7 +107,7 @@ $(function(){
   initPickers()
 })
 
-$('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.configKey[data-l1key="network::disableMangement"]', 'change', function () {
+$pageContainer.delegate('.configKey[data-l1key="market::allowDNS"],.configKey[data-l1key="network::disableMangement"]', 'change', function () {
   setTimeout(function(){
     if($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0){
       $('.configKey[data-l1key=externalProtocol]').attr('disabled',true);
@@ -117,7 +123,7 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="market::allowDNS"],.con
   }, 100);
 });
 
-$('#div_pageContainer').off('change','.enableRepository').on('change','.enableRepository', function () {
+$pageContainer.off('change','.enableRepository').on('change','.enableRepository', function () {
   if($(this).value() == 1){
     $('.repositoryConfiguration'+$(this).attr('data-repo')).show();
   }else{
@@ -125,7 +131,7 @@ $('#div_pageContainer').off('change','.enableRepository').on('change','.enableRe
   }
 });
 
-$('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
+$pageContainer.delegate('.configKey[data-l1key="ldap:enable"]', 'change', function () {
   if($(this).value() == 1){
     $('#div_config_ldap').show();
   }else{
@@ -133,7 +139,7 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="ldap:enable"]', 'change
   }
 });
 
-$('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
+$pageContainer.delegate('.configKey[data-l1key="cache::engine"]', 'change', function () {
   $('.cacheEngine').hide();
   if($(this).value() == ''){
     return;
@@ -141,7 +147,7 @@ $('#div_pageContainer').delegate('.configKey[data-l1key="cache::engine"]', 'chan
   $('.cacheEngine.'+$(this).value()).show();
 });
 
-$('#div_pageContainer').delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
+$pageContainer.delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
   $('.logEngine').hide();
   if($(this).value() == ''){
     return;
@@ -210,7 +216,6 @@ $('#bt_restartDns').on('click', function () {
   });
 });
 
-
 $('#bt_haltDns').on('click', function () {
   $.hideAlert();
   jeedom.config.save({
@@ -247,16 +252,9 @@ $("#bt_flushWidgetCache").on('click', function (event) {
   flushWidgetCache();
 });
 
-
-
 $("#bt_clearJeedomLastDate").on('click', function (event) {
   $.hideAlert();
   clearJeedomDate();
-});
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveGeneraleConfig").click();
 });
 
 $("#bt_saveGeneraleConfig").on('click', function (event) {
@@ -480,7 +478,7 @@ jeedom.config.load({
   }
 });
 
-$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function () {
+$pageContainer.off('change','.configKey').on('change','.configKey:visible',  function () {
   modifyWithoutSave = true;
 });
 
@@ -582,7 +580,6 @@ function clearJeedomDate() {
   });
 }
 
-
 function flushCache() {
   jeedom.cache.flush({
     error: function (error) {
@@ -606,8 +603,6 @@ function flushWidgetCache() {
     }
   });
 }
-
-
 
 function cleanCache() {
   jeedom.cache.clean({
@@ -773,25 +768,23 @@ $('#bt_checkDatabase').on('click',function(){
   $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
 });
 
-
 /**************************Summary***********************************/
-
 $('#bt_addObjectSummary').on('click', function () {
   addObjectSummary();
 });
 
-$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
+$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=chooseIcon]', 'click', function () {
   var objectSummary = $(this).closest('.objectSummary');
   chooseIcon(function (_icon) {
     objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon);
   });
 });
 
-$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
+$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=remove]', 'click', function () {
   $(this).closest('.objectSummary').remove();
 });
 
-$('#div_pageContainer').undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
+$pageContainer.undelegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click').delegate('.objectSummary .objectSummaryAction[data-l1key=createVirtual]', 'click', function () {
   var objectSummary = $(this).closest('.objectSummary');
   $.ajax({
     type: "POST",
