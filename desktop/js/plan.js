@@ -978,16 +978,18 @@ function displayObject(_plan,_html, _noRender) {
   var html = $(_html);
   html.attr('data-plan_id',_plan.id)
   .addClass('jeedomAlreadyPosition')
-  .css('z-index', 1000)
-  .css('position', 'absolute')
-  .css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100)
-  .css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100)
-  .css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
-  .css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
-  .css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
-  .css('transform-origin', '0 0', 'important')
-  .css('-webkit-transform-origin', '0 0')
-  .css('-moz-transform-origin', '0 0')
+  .css({
+    'z-index': 1000,
+    'position': 'absolute',
+    'top':  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100,
+    'left': init(_plan.position.left, '10') * $('.div_displayObject').width() / 100,
+    'transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
+    '-webkit-transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
+    '-moz-transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
+    '-webkit-transform-origin': '0 0',
+    '-moz-transform-origin': '0 0'
+  })
+  .style('transform-origin', '0 0','important')
   .attr('data-zoom', init(_plan.css.zoom, 1))
   .addClass('noResize');
   if(_plan.link_type != 'cmd'){
