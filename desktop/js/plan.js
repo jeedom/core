@@ -355,7 +355,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-
+  
   $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
@@ -466,7 +466,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
               displayObject(data.plan,data.html);
             }
           });
-
+          
         }
       },
       lock: {
@@ -485,7 +485,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-
+  
 }
 /**************************************init*********************************************/
 displayPlan();
@@ -663,42 +663,42 @@ function draggableStartFix(event, ui) {
   } else {
     dragStep = false
   }
-
+  
   dragClick.x = event.clientX
   dragClick.y = event.clientY
   dragStartPos = ui.originalPosition
-
+  
   $container = $('.div_displayObject')
   containerWidth = $container.width()
   containerHeight = $container.height()
-
+  
   clientWidth = $(ui.helper[0]).width()
   clientHeight = $(ui.helper[0]).height()
-
+  
   marginLeft = $(ui.helper[0]).css('margin-left')
   marginLeft = parseFloat(marginLeft.replace('px', ''))
-
+  
   minLeft = 0 - marginLeft
   minTop = 0
-
+  
   maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
   maxTop = containerHeight + minTop - (clientHeight * zoomScale)
 }
 function draggableDragFix(event, ui) {
   newLeft = event.clientX - dragClick.x + dragStartPos.left
   newTop = event.clientY - dragClick.y + dragStartPos.top
-
+  
   if (newLeft < minLeft) newLeft = minLeft
   if (newLeft > maxLeft) newLeft = maxLeft
-
+  
   if (newTop < minTop) newTop = minTop
   if (newTop > maxTop) newTop = maxTop
-
+  
   if (dragStep) {
     newLeft = (Math.round(newLeft / dragStep) * dragStep)
     newTop = (Math.round(newTop / dragStep) * dragStep)
   }
-
+  
   ui.position = {left: newLeft, top: newTop}
 }
 
@@ -760,7 +760,7 @@ function initEditOption(_state) {
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true);
     }catch (e) {
-
+      
     }
   }else{
     $('.div_displayObject').removeClass('editingMode')
@@ -773,13 +773,13 @@ function initEditOption(_state) {
         $(this).attr('href', $(this).attr('data-href'));
       });
     }catch (e) {
-
+      
     }
     $('.div_grid').hide();
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false);
     }catch (e) {
-
+      
     }
   }
 }
@@ -874,7 +874,7 @@ function displayPlan(_code) {
           try {
             $('.div_displayObject').append(objects);
           }catch(e) {
-
+            
           }
           initEditOption(editOption.state);
           initReportMode();
@@ -975,21 +975,20 @@ function displayObject(_plan,_html, _noRender) {
     $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
   }
   var html = $(_html);
-  html.attr('data-plan_id',_plan.id);
-  html.addClass('jeedomAlreadyPosition');
-  html.css('z-index', 1000);
-  html.css('position', 'absolute');
-  html.css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100);
-  html.css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100);
-  html.css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-  html.css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-  html.css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')');
-
-  html.css('transform-origin', '0 0', 'important');
-  html.css('-webkit-transform-origin', '0 0');
-  html.css('-moz-transform-origin', '0 0');
-  html.attr('data-zoom', init(_plan.css.zoom, 1))
-  html.addClass('noResize');
+  html.attr('data-plan_id',_plan.id)
+  .addClass('jeedomAlreadyPosition')
+  .css('z-index', 1000)
+  .css('position', 'absolute')
+  .css('top',  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100)
+  .css('left', init(_plan.position.left, '10') * $('.div_displayObject').width() / 100)
+  .css('transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
+  .css('-webkit-transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
+  .css('-moz-transform', 'scale(' + init(_plan.css.zoom, 1) + ')')
+  .css('transform-origin', '0 0', 'important')
+  .css('-webkit-transform-origin', '0 0')
+  .css('-moz-transform-origin', '0 0')
+  .attr('data-zoom', init(_plan.css.zoom, 1))
+  .addClass('noResize');
   if(_plan.link_type != 'cmd'){
     if (isset(_plan.display) && isset(_plan.display.width)) {
       html.css('width', init(_plan.display.width, 50));
@@ -1065,21 +1064,23 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdTransparentBackground[i] == 0){
           continue;
         }
-        html.find('.cmd[data-cmd_id='+i+']').style('background-color', 'transparent', 'important');
-        html.find('.cmd[data-cmd_id='+i+']').style('border-radius', '0px', 'important');
-        html.find('.cmd[data-cmd_id='+i+']').style('box-shadow', 'none');
+        html.find('.cmd[data-cmd_id='+i+']').style('background-color', 'transparent', 'important')
+        .style('border-radius', '0px', 'important')
+        .style('box-shadow', 'none');
       }
     }
-    html.css('min-width','0px');
-    html.css('min-height','0px');
-    html.find('*').css('min-width','0px');
-    html.find('*').css('min-height','0px');
+    html.css('min-width','0px')
+    .css('min-height','0px')
+    html.find('*').css('min-width','0px')
+    .css('min-height','0px')
   }
   if(_plan.link_type == 'cmd'){
     var insideHtml = html.html();
     html = html.empty().append('<center>'+insideHtml+'</center>');
-    html.css('width','').css('min-width','0px');
-    html.css('height','').css('min-height','0px');
+    html.css('width','')
+    .css('min-width','0px')
+    .css('height','')
+    .css('min-height','0px');
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.find('.cmdName').remove();
       html.find('.title').remove();
