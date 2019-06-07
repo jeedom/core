@@ -23,7 +23,8 @@ Changelog
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
-- Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.<br/><br/>
+- Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
+- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Z / Ctrl+Y)<br/><br/>
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
