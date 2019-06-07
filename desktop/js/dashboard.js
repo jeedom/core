@@ -183,50 +183,16 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-<<<<<<< HEAD
-      setTimeout(function(){
-        positionEqLogic();
-        $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
-        $("input").click(function() { $(this).focus(); });
-        $("textarea").click(function() { $(this).focus(); });
-        $("select").click(function() { $(this).focus(); });
-        
-        var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
-        var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
-        if (isset(packData) && packData.items.length == 1) {
-          $('#div_ob'+_object_id+'.div_displayEquipement').packery('destroy').packery()
-        }
-        var itemElems =  container.find('.eqLogic-widget').draggable();
-        container.packery('bindUIDraggableEvents',itemElems);
-        var itemElems =  container.find('.scenario-widget').draggable();
-        container.packery('bindUIDraggableEvents',itemElems);
-        function orderItems() {
-          setTimeout(function(){
-            $('.div_displayEquipement').packery();
-          },1);
-          var itemElems = container.packery('getItemElements');
-          $(itemElems).each( function( i, itemElem ) {
-            $(itemElem).attr('data-order', i + 1 );
-            value = i + 1;
-            if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
-              if ($(itemElem).find(".counterReorderJeedom").length) {
-                $(itemElem).find(".counterReorderJeedom").text(value);
-              } else {
-                $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
-              }
-=======
-
       positionEqLogic();
-      var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
-      $divDisplayEq.disableSelection();
+      $('#div_ob'+_object_id+'.div_displayEquipement').disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-
-      var container = $divDisplayEq.packery();
-      var packData = $divDisplayEq.data('packery');
+      
+      var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
+      var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
       if (isset(packData) && packData.items.length == 1) {
-        $divDisplayEq.packery('destroy').packery()
+        $('#div_ob'+_object_id+'.div_displayEquipement').packery('destroy').packery()
       }
       var itemElems =  container.find('.eqLogic-widget').draggable();
       container.packery('bindUIDraggableEvents',itemElems);
@@ -237,17 +203,14 @@ function getObjectHtml(_object_id) {
           $('.div_displayEquipement').packery();
         },1);
         var itemElems = container.packery('getItemElements');
-        var isEditing = false;
-        if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) isEditing = true;
         $(itemElems).each( function( i, itemElem ) {
           $(itemElem).attr('data-order', i + 1 );
           value = i + 1;
-          if (isEditing) {
+          if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
             if ($(itemElem).find(".counterReorderJeedom").length) {
               $(itemElem).find(".counterReorderJeedom").text(value);
             } else {
               $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
->>>>>>> 1872dc08d0d18a8fb51dcfd3f10a19e8d2fbf5b3
             }
           }
         });
@@ -320,12 +283,8 @@ $('.li_object').on('click',function(){
 
 function displayChildObject(_object_id,_recursion){
   if(_recursion === false){
-<<<<<<< HEAD
     $('.div_object').addClass('hideByObjectSel')
     .hide();
-=======
-    $('.div_object').addClass('hideByObjectSel').hide()
->>>>>>> 1872dc08d0d18a8fb51dcfd3f10a19e8d2fbf5b3
   }
   $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false})
   .each(function(){
