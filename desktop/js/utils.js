@@ -603,9 +603,12 @@ $(function () {
 
   $('body').on('click','#bt_switchTheme',function(){
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
-    if($('#bootstrap_theme_css').attr('href') == theme){
+    var themeCook = 'alternate'
+    if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+      themeCook = 'default'
     }
+    document.cookie = "currentTheme=" + themeCook + "; path=/";
     $('#bootstrap_theme_css').attr('href', theme);
     $('#bootstrap_theme_css').attr('data-nochange',1);
   });
