@@ -88,6 +88,7 @@ if (init('rescue', 0) == 0) {
 
 function setTheme() {
 	global $jeedom_theme;
+	$dataNoChange = false;
 
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
@@ -98,11 +99,15 @@ function setTheme() {
 		$_COOKIE['currentTheme'] = 'default';
 	}
 	$currentTheme = $_COOKIE['currentTheme'];
-	if ($currentTheme == 'alternate') $themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
+	if ($currentTheme == 'alternate') {
+		$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
+		$dataNoChange = true;
+	}
 
 	if (init('rescue', 0) == 0) {
 		if (is_dir(__DIR__ . '/../../core/themes/' .$themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
 			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/'.$themeDefinition.'/desktop/'.$themeDefinition.'.css?md5='.md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css').'" rel="stylesheet">';
+			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
 		if(file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.js')) {
 			$themeJs = $themeDefinition . '/desktop/' . $themeDefinition;
