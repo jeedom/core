@@ -14,6 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var deviceInfo = getDeviceType();
+var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
+var clickedOpen = false;
+var $pageContainer = $('#div_pageContainer')
+
 function unload_page(){
   if(getUrlVars('p') != 'plan'){
     return;
@@ -22,10 +27,6 @@ function unload_page(){
 }
 
 $('main').css('padding-right','0px').css('padding-left','0px').css('margin-right','0px').css('margin-left','0px');
-
-var deviceInfo = getDeviceType();
-var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
-var clickedOpen = false;
 
 planHeaderContextMenu = {};
 for(var i in planHeader){
@@ -494,14 +495,14 @@ $('#bt_createNewDesign').on('click',function(){
   createNewDesign();
 });
 
-$('#div_pageContainer').delegate('.plan-link-widget', 'click', function () {
+$pageContainer.delegate('.plan-link-widget', 'click', function () {
   if (!editOption.state) {
     planHeader_id = $(this).attr('data-link_id');
     displayPlan();
   }
 });
 
-$('#div_pageContainer').on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
+$pageContainer.on( 'click','.zone-widget:not(.zoneEqLogic)', function () {
   var el = $(this);
   if (!editOption.state) {
     el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>');
@@ -523,7 +524,7 @@ $('#div_pageContainer').on( 'click','.zone-widget:not(.zoneEqLogic)', function (
   }
 });
 
-$('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
+$pageContainer.on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly',  function () {
   if (!editOption.state) {
     clickedOpen = true;
     var el = $(this);
@@ -547,7 +548,7 @@ $('#div_pageContainer').on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnF
   }
 });
 
-$('#div_pageContainer').on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
+$pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function () {
   if (!editOption.state && !clickedOpen) {
     clickedOpen = true;
     var el = $(this);
@@ -599,13 +600,13 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
   }
 });
 
-$('#div_pageContainer').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
+$pageContainer.delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
   if (!editOption.state) {
     $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
   }
 });
 
-$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
+$pageContainer.delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
   if (!editOption.state) {
     $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
   }
