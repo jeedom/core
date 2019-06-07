@@ -17,14 +17,22 @@
 SC_CLIPBOARD = null
 PREV_FOCUS = null
 tab = null
+var $pageContainer = $('#div_pageContainer')
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  saveScenario();
+});
 
 $('#div_scenarioElement').on('focus', ':input', function() {
   PREV_FOCUS = $(this)
 })
 
-$('.backgroundforJeedom').css('background-position','bottom right');
-$('.backgroundforJeedom').css('background-size','auto');
-$('.backgroundforJeedom').css('background-repeat','no-repeat');
+$('.backgroundforJeedom').css({
+  'background-position':'bottom right',
+  'background-repeat':'no-repeat',
+  'background-size':'auto'
+});
+
 
 //searching
 $('#in_searchScenario').keyup(function () {
@@ -201,7 +209,6 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
-
 });
 
 $('.scenarioDisplayCard').off('click').on('click', function () {
@@ -214,7 +221,6 @@ $('.accordion-toggle').off('click').on('click', function () {
     $('.scenarioListContainer').packery();
   },100);
 });
-
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
@@ -297,11 +303,6 @@ $("#bt_addScenario,#bt_addScenario2").off('click').on('click', function (event) 
       });
     }
   });
-});
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  saveScenario();
 });
 
 $("#bt_saveScenario,#bt_saveScenario2").off('click').on('click', function (event) {
@@ -427,7 +428,7 @@ $('#bt_scenarioTab').on('click',function(){
 });
 
 /*******************Element***********************/
-$('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
+$pageContainer.off('change','.subElementAttr[data-l1key=options][data-l2key=enable]').on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function(){
   var checkbox = $(this);
   var element = checkbox.closest('.element');
   if(checkbox.value() == 1){
@@ -443,7 +444,7 @@ $('#div_pageContainer').off('change','.subElementAttr[data-l1key=options][data-l
   }
 });
 
-$('#div_pageContainer').off('change','.expressionAttr[data-l1key=options][data-l2key=enable]').on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function(){
+$pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enable]').on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function(){
   var checkbox = $(this);
   var element = checkbox.closest('.expression');
   if(checkbox.value() == 1){
@@ -453,14 +454,14 @@ $('#div_pageContainer').off('change','.expressionAttr[data-l1key=options][data-l
   }
 });
 
-$('#div_pageContainer').off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
+$pageContainer.off('click','.helpSelectCron').on('click','.helpSelectCron',function(){
   var el = $(this).closest('.schedule').find('.scenarioAttr[data-l1key=schedule]');
   jeedom.getCronSelectModal({},function (result) {
     el.value(result.value);
   });
 });
 
-$('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
+$pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
 
   //is scenario empty:
@@ -515,7 +516,7 @@ $('#div_pageContainer').off('click','.bt_addScenarioElement').on( 'click','.bt_a
   })
 })
 
-$('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
+$pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
   setUndoStack()
   var button = $(this);
   if(event.ctrlKey) {
@@ -538,7 +539,7 @@ $('#div_pageContainer').off('click','.bt_removeElement').on('click','.bt_removeE
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
+$pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   clickedBloc = $(this).closest('.element')
   //if element in an expression, copy the entire expression:
   if (!clickedBloc.parent('#div_scenarioElement').length) {
@@ -554,7 +555,7 @@ $('#div_pageContainer').off('click','.bt_copyElement').on('click','.bt_copyEleme
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
+$pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
   if (!SC_CLIPBOARD) return
   setUndoStack()
   //clone clipboard and removes its id for later save:
@@ -593,7 +594,7 @@ $('#div_pageContainer').off('click','.bt_pasteElement').on('click','.bt_pasteEle
   modifyWithoutSave = true
 });
 
-$('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction', function (event) {
+$pageContainer.off('click','.bt_addAction').on( 'click','.bt_addAction', function (event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
   setAutocomplete();
@@ -601,7 +602,7 @@ $('#div_pageContainer').off('click','.bt_addAction').on( 'click','.bt_addAction'
   updateTooltips()
 });
 
-$('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', function (event) {
+$pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function (event) {
   if($(this).children('i').hasClass('fa-chevron-right')){
     $(this).children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
     $(this).closest('.element').children('.subElementELSE').show();
@@ -615,7 +616,7 @@ $('#div_pageContainer').off('click','.bt_showElse').on( 'click','.bt_showElse', 
   }
 });
 
-$('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
+$pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
   changeThis = $(this)
   if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse');
 
@@ -633,13 +634,13 @@ $('#div_pageContainer').off('click','.bt_collapse').on( 'click','.bt_collapse', 
   }
 });
 
-$('#div_pageContainer').off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
+$pageContainer.off('click','.bt_removeExpression').on('click','.bt_removeExpression',  function (event) {
   setUndoStack()
   $(this).closest('.expression').remove();
   updateSortable();
 });
 
-$('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdExpression',  function (event) {
+$pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdExpression',  function (event) {
   var el = $(this);
   var expression = $(this).closest('.expression');
   var type = 'info';
@@ -791,7 +792,7 @@ $('#div_pageContainer').off('click','.bt_selectCmdExpression').on('click','.bt_s
   });
 });
 
-$('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
+$pageContainer.off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.getSelectActionModal({scenario : true}, function (result) {
     setUndoStack()
@@ -803,7 +804,7 @@ $('#div_pageContainer').off('click','.bt_selectOtherActionExpression').on('click
   });
 });
 
-$('#div_pageContainer').off('click','.bt_selectScenarioExpression').on('click','.bt_selectScenarioExpression',  function (event) {
+$pageContainer.off('click','.bt_selectScenarioExpression').on('click','.bt_selectScenarioExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.scenario.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -815,7 +816,7 @@ $('#div_pageContainer').off('click','.bt_selectScenarioExpression').on('click','
   });
 });
 
-$('#div_pageContainer').off('click','.bt_selectEqLogicExpression').on('click','.bt_selectEqLogicExpression',  function (event) {
+$pageContainer.off('click','.bt_selectEqLogicExpression').on('click','.bt_selectEqLogicExpression',  function (event) {
   var expression = $(this).closest('.expression');
   jeedom.eqLogic.getSelectModal({}, function (result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -827,7 +828,7 @@ $('#div_pageContainer').off('click','.bt_selectEqLogicExpression').on('click','.
   });
 });
 
-$('#div_pageContainer').off('focusout','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
+$pageContainer.off('focusout','.expression .expressionAttr[data-l1key=expression]').on('focusout','.expression .expressionAttr[data-l1key=expression]',  function (event) {
   var el = $(this);
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr');
@@ -873,29 +874,29 @@ $('#bt_addSchedule').off('click').on('click', function () {
   addSchedule('');
 });
 
-$('#div_pageContainer').off('click','.bt_removeTrigger').on('click','.bt_removeTrigger',  function (event) {
+$pageContainer.off('click','.bt_removeTrigger').on('click','.bt_removeTrigger',  function (event) {
   $(this).closest('.trigger').remove();
 });
 
-$('#div_pageContainer').off('click','.bt_removeSchedule').on('click','.bt_removeSchedule',  function (event) {
+$pageContainer.off('click','.bt_removeSchedule').on('click','.bt_removeSchedule',  function (event) {
   $(this).closest('.schedule').remove();
 });
 
-$('#div_pageContainer').off('click','.bt_selectTrigger').on('click','.bt_selectTrigger',  function (event) {
+$pageContainer.off('click','.bt_selectTrigger').on('click','.bt_selectTrigger',  function (event) {
   var el = $(this);
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
   });
 });
 
-$('#div_pageContainer').off('click','.bt_selectDataStoreTrigger').on( 'click','.bt_selectDataStoreTrigger', function (event) {
+$pageContainer.off('click','.bt_selectDataStoreTrigger').on( 'click','.bt_selectDataStoreTrigger', function (event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human);
   });
 });
 
-$('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
+$pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable',  function () {
   var expressions = $(this).closest('.expressions');
   $("#div_scenarioElement").sortable({
     cursor: "move",
@@ -975,11 +976,11 @@ $('#div_pageContainer').off('mouseenter','.bt_sortable').on('mouseenter','.bt_so
   $("#div_scenarioElement").sortable("enable");
 });
 
-$('#div_pageContainer').on('mousedown','.bt_sortable',  function () {
+$pageContainer.on('mousedown','.bt_sortable',  function () {
   setUndoStack()
 });
 
-$('#div_pageContainer').off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
+$pageContainer.off('mouseout','.bt_sortable').on('mouseout','.bt_sortable',  function () {
   $("#div_scenarioElement").sortable("disable");
 });
 
@@ -1003,21 +1004,21 @@ $('#bt_templateScenario').off('click').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
+
 /**************** Initialisation **********************/
-
-$('#div_pageContainer').off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
+$pageContainer.off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
+$pageContainer.off('change','.expressionAttr').on('change','.expressionAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
+$pageContainer.off('change','.elementAttr').on('change','.elementAttr:visible',  function () {
   modifyWithoutSave = true;
 });
 
-$('#div_pageContainer').off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
+$pageContainer.off('change','.subElementAttr').on('change', '.subElementAttr:visible', function () {
   modifyWithoutSave = true;
 });
 
@@ -1098,7 +1099,7 @@ function setAutocomplete() {
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
-    if(_options.scenario_id =! $('#div_pageContainer').getValues('.scenarioAttr')[0]['id']){
+    if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
       return;
     }
     switch(_options.state){
@@ -1138,7 +1139,7 @@ function printScenario(_id) {
 
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
       $('.scenarioAttr[data-l1key=object_id]').val('');
-      $('#div_pageContainer').setValues(data, '.scenarioAttr');
+      $pageContainer.setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
 
@@ -1234,7 +1235,7 @@ function printScenario(_id) {
 
 function saveScenario(_callback) {
   $.hideAlert();
-  var scenario = $('#div_pageContainer').getValues('.scenarioAttr')[0];
+  var scenario = $pageContainer.getValues('.scenarioAttr')[0];
   if(typeof scenario.trigger == 'undefined'){
     scenario.trigger = '';
   }
@@ -1394,7 +1395,7 @@ function addExpression(_expression) {
   return retour;
 }
 
-$('#div_pageContainer').on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
+$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
   if($(this).attr('value') == 0){
     $(this).attr('value',1);
     $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
