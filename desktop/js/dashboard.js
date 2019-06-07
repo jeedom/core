@@ -37,13 +37,13 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').packery()
     return
   }
-
+  
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-
+    
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -60,7 +60,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-
+    
     if(match) {
       $(this).show()
     } else {
@@ -92,8 +92,8 @@ $('#bt_resetDashboardSearch').on('click', function () {
 })
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
-  $('#md_modal2').dialog({title: "Historique"});
-  $("#md_modal2").load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+  $('#md_modal2').dialog({title: "Historique"})
+  .load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
 });
 
 $('#bt_displayObject').on('click', function () {
@@ -131,7 +131,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-
+    
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -140,8 +140,8 @@ function editWidgetMode(_mode,_save){
     }
     $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
   }else{
-    $('.div_displayEquipement .eqLogic-widget').addClass('editingMode');
-    $('.div_displayEquipement .eqLogic-widget').draggable('enable');
+    $('.div_displayEquipement .eqLogic-widget').addClass('editingMode')
+    .draggable('enable');
     $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
@@ -152,8 +152,8 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     });
-    $('.div_displayEquipement .scenario-widget').addClass('editingMode');
-    $('.div_displayEquipement .scenario-widget').draggable('enable');
+    $('.div_displayEquipement .scenario-widget').addClass('editingMode')
+    .draggable('enable');
     $('.div_displayEquipement .scenario-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
@@ -194,7 +194,7 @@ function getObjectHtml(_object_id){
         $("input").click(function() { $(this).focus(); });
         $("textarea").click(function() { $(this).focus(); });
         $("select").click(function() { $(this).focus(); });
-
+        
         var container = $('#div_ob'+_object_id+'.div_displayEquipement').packery();
         var packData = $('#div_ob'+_object_id+'.div_displayEquipement').data('packery');
         if (isset(packData) && packData.items.length == 1) {
@@ -231,7 +231,7 @@ function getObjectHtml(_object_id){
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
   if($(this).attr('data-mode') == 1){
-  	$('.tooltipstered').tooltipster('enable')
+    $('.tooltipstered').tooltipster('enable')
     $.hideAlert();
     $(this).attr('data-mode',0);
     editWidgetMode(0);
@@ -240,7 +240,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     $('.counterReorderJeedom').remove();
     $('.div_displayEquipement').packery();
   }else{
-  	$('.tooltipstered').tooltipster('disable')
+    $('.tooltipstered').tooltipster('disable')
     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
     $(this).attr('data-mode',1);
     $('.bt_editDashboardWidgetAutoResize').show();
@@ -290,13 +290,13 @@ $('.li_object').on('click',function(){
 
 function displayChildObject(_object_id,_recursion){
   if(_recursion === false){
-    $('.div_object').addClass('hideByObjectSel');
-    $('.div_object').hide();
+    $('.div_object').addClass('hideByObjectSel')
+    .hide();
   }
-  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false});
-  $('.div_object[data-father_id='+_object_id+']').each(function(){
-    $(this).show({effect : 'drop',queue : false});
-    $(this).find('.div_displayEquipement').packery();
+  $('.div_object[data-object_id='+_object_id+']').show({effect : 'drop',queue : false})
+  .each(function(){
+    $(this).show({effect : 'drop',queue : false})
+    .find('.div_displayEquipement').packery();
     displayChildObject($(this).attr('data-object_id'),true);
   });
 }
