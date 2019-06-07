@@ -47,11 +47,6 @@ if (!isConnect()) {
 							<div class="col-sm-1 col-xs-6">
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
 							</div>
-							<div class="col-sm-3 col-xs-6">
-							</div>
-							<div class="col-sm-2 col-xs-6">
-								<a class="btn btn-primary form-control" href="index.php?v=d&amp;p=administration#interfacetab"><i class="fas fa-wrench"></i>&nbsp;&nbsp;{{Interface Système}}</a>
-							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-6 control-label">{{Afficher les menus}}
@@ -65,7 +60,7 @@ if (!isConnect()) {
 							<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="Page affichée après connexion"></i></sup>
 							</label>
-							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePage">
@@ -80,7 +75,7 @@ if (!isConnect()) {
 									</ul>
 								</div>
 							</div>
-							<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePageMobile">
@@ -101,7 +96,7 @@ if (!isConnect()) {
 							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-columns"></i> {{Objet par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="Objet affiché lors de l’arrivée sur le dashboard"></i></sup>
 							</label>
-							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardObject">
@@ -116,7 +111,7 @@ if (!isConnect()) {
 									</ul>
 								</div>
 							</div>
-							<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileObject">
@@ -138,7 +133,7 @@ if (!isConnect()) {
 							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-eye"></i> {{Vue par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="Vue affichée lors de l’arrivée sur le dashboard"></i></sup>
 							</label>
-							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDesktopView">
@@ -153,7 +148,7 @@ if (!isConnect()) {
 									</ul>
 								</div>
 							</div>
-							<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileView">
@@ -180,7 +175,7 @@ if (!isConnect()) {
 							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="Design affiché lors de l’arrivée sur le dashboard"></i></sup>
 							</label>
-							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan">
@@ -195,7 +190,7 @@ if (!isConnect()) {
 									</ul>
 								</div>
 							</div>
-							<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan">
@@ -222,7 +217,7 @@ if (!isConnect()) {
 							<label class="col-sm-4 col-xs-12 control-label"><i class="fas fa-paint-brush"></i> {{Design 3D par défaut}}
 								<sup><i class="fas fa-question-circle tooltips" title="Design 3D affiché lors de l’arrivée sur le dashboard"></i></sup>
 							</label>
-							<label class="col-sm-1 col-xs-6 control-label">{{Desktop}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan3d">
@@ -237,7 +232,7 @@ if (!isConnect()) {
 									</ul>
 								</div>
 							</div>
-							<label class="col-sm-1 col-xs-6 control-label">{{Mobile}}</label>
+							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
 								<div class="dropdown dynDropdown">
 									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan3d">
@@ -259,7 +254,6 @@ if (!isConnect()) {
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 							</div>
 						</div>
-
 
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
