@@ -14,16 +14,18 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('.backgroundforJeedom').css('background-position','bottom right');
-$('.backgroundforJeedom').css('background-repeat','no-repeat');
-$('.backgroundforJeedom').css('background-size','auto');
+$('.backgroundforJeedom').css({
+  'background-position':'bottom right',
+  'background-repeat':'no-repeat',
+  'background-size':'auto'
+});
+
 $(function(){
   $('#display').show()
   $('.packeryContainer').packery({
     itemSelector: ".object",
     gutter : 0}
   );
-
 });
 
 $( ".eqLogicSortable" ).sortable({
@@ -182,6 +184,7 @@ $('#bt_resetdisplaySearch').on('click', function () {
   $('#in_search').val('')
   $('#in_search').keyup();
 })
+
 
 $('.cb_selEqLogic').on('change',function(){
   var found = false;

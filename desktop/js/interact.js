@@ -14,9 +14,17 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('.backgroundforJeedom').css('background-position','bottom right');
-$('.backgroundforJeedom').css('background-repeat','no-repeat');
-$('.backgroundforJeedom').css('background-size','auto');
+$('.backgroundforJeedom').css({
+  'background-position':'bottom right',
+  'background-repeat':'no-repeat',
+  'background-size':'auto'
+});
+
+
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  $("#bt_saveInteract").click();
+});
 
 //searching
 $('#in_searchInteract').keyup(function () {
@@ -44,7 +52,6 @@ $('#in_searchInteract').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.interactListContainer').packery()
 })
-
 $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').val('')
   $('#in_searchInteract').keyup()
@@ -240,11 +247,6 @@ $('#div_pageContainer').delegate('.listEquipementInfoReply', 'click', function (
   });
 });
 
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveInteract").click();
-});
-
 $("#bt_saveInteract").on('click', function () {
   var interact = $('.interact').getValues('.interactAttr')[0];
   interact.filtres.type = {};
@@ -290,7 +292,6 @@ $("#bt_saveInteract").on('click', function () {
     }
   });
 });
-
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
   bootbox.confirm('{{Êtes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {

@@ -13,9 +13,16 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-$('.backgroundforJeedom').css('background-position','bottom right');
-$('.backgroundforJeedom').css('background-repeat','no-repeat');
-$('.backgroundforJeedom').css('background-size','auto');
+$('.backgroundforJeedom').css({
+  'background-position':'bottom right',
+  'background-repeat':'no-repeat',
+  'background-size':'auto'
+});
+
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  $("#bt_saveObject").click();
+});
 
 //searching
 $('#in_searchObject').keyup(function () {
@@ -37,7 +44,6 @@ $('#in_searchObject').keyup(function () {
   })
   $('.objectListContainer').packery()
 })
-
 $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').val('')
   $('#in_searchObject').keyup()
@@ -251,11 +257,6 @@ $("#bt_addObject,#bt_addObject2").on('click', function (event) {
   });
 });
 
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveObject").click();
-});
-
 $('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
   $('.objectAttr[data-l1key=display][data-l2key=icon]').value('');
 });
@@ -309,7 +310,6 @@ $("#bt_removeObject").on('click', function (event) {
   return false;
 });
 
-
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
   if ( $('div[data-l2key="icon"] > i').length ) {
@@ -349,7 +349,6 @@ $('#div_pageContainer').delegate(".listCmdInfo", 'click', function () {
 $('#div_pageContainer').delegate('.bt_removeSummary', 'click', function () {
   $(this).closest('.summary').remove();
 });
-
 
 function addSummaryInfo(_el, _summary) {
   if (!isset(_summary)) {
