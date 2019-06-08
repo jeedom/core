@@ -14,6 +14,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var $interactListContainer = $('.interactListContainer')
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -32,7 +33,7 @@ $('#in_searchInteract').keyup(function () {
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.interactDisplayCard').show()
-    $('.interactListContainer').packery()
+    $interactListContainer.packery()
     return
   }
   search = normTextLower(search)
@@ -50,11 +51,10 @@ $('#in_searchInteract').keyup(function () {
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')
-  $('.interactListContainer').packery()
+  $interactListContainer.packery()
 })
 $('#bt_resetInteractSearch').on('click', function () {
-  $('#in_searchInteract').val('')
-  $('#in_searchInteract').keyup()
+  $('#in_searchInteract').val('').keyup()
 })
 
 $('#bt_openAll').off('click').on('click', function () {
@@ -80,7 +80,7 @@ $('#bt_chooseIcon').on('click', function () {
 });
 
 $('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
-  $('.interactAttr[data-l1key=display][data-l2key=icon]').value('');
+  $(this).value('');
 });
 
 //contextMenu:
@@ -165,17 +165,24 @@ $('.displayInteracQuery').on('click', function () {
 });
 
 setTimeout(function(){
-  $('.interactListContainer').packery();
+  $interactListContainer.packery();
 },100);
 
 $("#div_listInteract").trigger('resize');
 
-$('.interactListContainer').packery();
+$interactListContainer.packery();
 
 $('#bt_interactThumbnailDisplay').on('click', function () {
+  if (modifyWithoutSave) {
+    if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
+      return
+    }
+    modifyWithoutSave = false
+  }
+
   $('#div_conf').hide();
   $('#interactThumbnailDisplay').show();
-  $('.interactListContainer').packery();
+  $interactListContainer.packery();
   addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME);
 });
 
@@ -204,7 +211,7 @@ $('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr
 
 $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){
-    $('.interactListContainer').packery();
+    $interactListContainer.packery();
   },100);
 });
 
