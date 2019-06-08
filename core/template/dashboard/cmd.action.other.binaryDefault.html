@@ -6,23 +6,23 @@
     jeedom.cmd.update['#id#'] = function(_options){
       if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          $('.cmd[data-cmd_id=#id#]').hide();
-        }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>');
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>')
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          $('.cmd[data-cmd_id=#id#]').hide();
-        }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-times"></i>');
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-times"></i>')
         }
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#'})
     $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'});
+      jeedom.cmd.execute({id: '#id#'})
     });
   </script>
 </div>
