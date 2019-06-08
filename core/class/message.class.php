@@ -190,6 +190,7 @@ class message {
 			DB::save($this);
 			$params = array(
 				'#plugin#' => $this->getPlugin(),
+				'#subject#' => $this->getMessage(),
 				'#message#' => $this->getMessage(),
 			);
 			$actions = config::byKey('actionOnMessage');

@@ -1636,7 +1636,7 @@ class cmd {
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
 				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
 			}
-			$message .= ' => ' . str_replace('#value#', $_value, $this->getAlert($_level . 'if'));
+			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {

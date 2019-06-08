@@ -66,7 +66,7 @@ body {
 #div_resumePluginList,
 #div_resumeObjectList {
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% - 5px) !important;
 }
 
 /* __________________________________________________________________________________________________________LINKS */
@@ -2306,7 +2306,8 @@ textarea {
 .bs-sidebar > ul {
   /*background-color: rgba(var(--bg-color), var(--opacity)) !important;*/
 }
-.bs-sidebar li.active {
+.bs-sidebar li.active,
+#ul_object li.li_object.active {
   border-right: 3px solid var(--logo-primary-color) !important;
 }
 .bs-sidebar .nav > li > a:not(.btn) {
@@ -2336,8 +2337,7 @@ textarea {
 }
 .li_object a,
 .li_object a span {
-  float: left !important;
-  padding-left: 2px;
+  padding-left: 4px;
 }
 
 #div_displayScenario > legend {

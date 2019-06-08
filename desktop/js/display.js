@@ -14,10 +14,14 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('.backgroundforJeedom').css('background-position','bottom right');
-$('.backgroundforJeedom').css('background-repeat','no-repeat');
-$('.backgroundforJeedom').css('background-size','auto');
+$('.backgroundforJeedom').css({
+  'background-position':'bottom right',
+  'background-repeat':'no-repeat',
+  'background-size':'auto'
+});
+
 $(function(){
+  $('#display').show()
   $('.packeryContainer').packery({
     itemSelector: ".object",
     gutter : 0}
@@ -148,7 +152,7 @@ $('#in_search').on('keyup',function(){
       if(search == '*') return
       search = search.substr(1)
     }
-    
+
     search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     $('.eqLogic').each(function(){
       var eqLogic = $(this);
@@ -180,6 +184,7 @@ $('#bt_resetdisplaySearch').on('click', function () {
   $('#in_search').val('')
   $('#in_search').keyup();
 })
+
 
 $('.cb_selEqLogic').on('change',function(){
   var found = false;

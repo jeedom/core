@@ -382,77 +382,38 @@ jeedom.eqLogic.refreshValue = function (_params) {
         var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
-        //var visible = eqLogic.is(":visible");
         var uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }
         eqLogic.empty().html(html.children());
-        eqLogic.attr("class", html.attr("class"));
-        /*var top =  eqLogic.css('top');
-        var left =  eqLogic.css('left');
-        var width =  eqLogic.css('width');
-        var height =  eqLogic.css('height');
-        var marginTop =  eqLogic.css('margin-top');
-        var marginBottom =  eqLogic.css('margin-bottom');
-        var marginLeft =  eqLogic.css('margin-left');
-        var marginRight =  eqLogic.css('margin-right');
-        var paddingTop =  eqLogic.css('padding-top');
-        var paddingBottom =  eqLogic.css('padding-bottom');
-        var paddingRight =  eqLogic.css('padding-left');
-        var paddingLeft =  eqLogic.css('padding-right');
-        var position =  eqLogic.css('position');
-        var transform_origin =  eqLogic.css('transform-origin');
-        var transform =  eqLogic.css('transform');
-        var zindex =  eqLogic.css('z-index');
-        var backgroundColor =  eqLogic.css('background-color');
-        eqLogic.attr("style", html.attr("style"));
-        eqLogic.css('top',top);
-        eqLogic.css('left',left);
-        eqLogic.css('width',width);
-        eqLogic.css('height',height);
-        eqLogic.css('margin-top',marginTop);
-        eqLogic.css('margin-bottom',marginBottom);
-        eqLogic.css('margin-left',marginLeft);
-        eqLogic.css('margin-right',marginRight);
-        eqLogic.css('padding-top',paddingTop);
-        eqLogic.css('padding-bottom',paddingBottom);
-        eqLogic.css('padding-left',paddingLeft);
-        eqLogic.css('padding-right',paddingRight);
-        eqLogic.css('position',position);
-        eqLogic.css('transform-origin',transform_origin);
-        eqLogic.css('transform',transform);
-        eqLogic.css('z-index',zindex);
-        eqLogic.css('background-color',backgroundColor);
-        if(!visible){
-        eqLogic.hide();
-      }*/
-      eqLogic.trigger('change');
-      if ($.mobile) {
-        $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
-        setTileSize('.eqLogic');
-      } else {
-        if (typeof editWidgetMode == 'function') {
-          editWidgetMode();
+        eqLogic.attr("class", html.attr("class"))
+        .trigger('change');
+        if ($.mobile) {
+          $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
+          setTileSize('.eqLogic');
+        } else {
+          if (typeof editWidgetMode == 'function') {
+            editWidgetMode();
+          }
         }
       }
     }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
   }
-};
-try {
-  jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-} catch (e) {
-  (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-  return;
-}
-var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-var paramsAJAX = jeedom.private.getParamsAJAX(params);
-paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
-paramsAJAX.data = {
-  action: 'toHtml',
-  ids: json_encode(sends),
-};
-$.ajax(paramsAJAX);
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'toHtml',
+    ids: json_encode(sends),
+  };
+  $.ajax(paramsAJAX);
 };
 
 
