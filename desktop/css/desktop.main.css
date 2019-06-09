@@ -1376,6 +1376,9 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
 [data-page=plugin] #div_state .panel-body {
   min-height: 150px;
 }
+#md_modal #div_confPlugin .panel-body {
+  min-height: 140px;
+}
 
 /* __________________________________________________________________________________________________________FORMS */
 ::-moz-color-swatch {
