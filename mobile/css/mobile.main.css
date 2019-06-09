@@ -407,7 +407,11 @@ p.state {
 .ui-bottom-sheet-list {
   background-color: var(--defaultBkg-color) !important;
 }
-
+.ui-bottom-sheet-list img {
+  height: 18px;
+  top: 3px;
+  position: relative;
+}
 .cmd a.ui-btn-raised > i {
   font-size: 1.2em !important;
 }
@@ -659,7 +663,14 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   color: var(--txt-color) !important;
   background: rgb(var(--bg-color));
 }
-
+#pre_globallog {
+  font-size: 14px;
+  line-height: 15px;
+  font-family: "Roboto";
+}
+#in_globalLogSearch {
+  margin-top: 5px;
+}
 /* ________________HIGHCHARTS */
 /* arc gauges and sliders */
 .highcharts-pane {
