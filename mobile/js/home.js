@@ -1,4 +1,5 @@
 $('body').attr('data-page', 'home')
+$('#searchContainer').hide()
 
 function initHome() {
   refreshMessageNumber()
