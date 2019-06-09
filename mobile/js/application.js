@@ -321,6 +321,7 @@ function initApplication(_reinit) {
 }
 
 function page(_page, _title, _option, _plugin,_dialog) {
+  $('#searchContainer').hide()
   setBackgroundImage('');
   $.showLoading();
   try {
@@ -331,9 +332,9 @@ function page(_page, _title, _option, _plugin,_dialog) {
 
   }
   if (isset(_title)) {
-    if(!isset(_dialog) || !_dialog){
+    if (!isset(_dialog) || !_dialog) {
       $('#pageTitle').empty().append(_title);
-    }else{
+    } else {
       $('#popupDialog .nd-title').text(_title);
     }
   }
