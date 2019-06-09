@@ -37,13 +37,11 @@ $(function () {
     modal(false);
     panel(false);
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));
-    if ($(this).attr('data-page') != 'equipment') $('#searchContainer').hide()
   });
 
   $('body').on('click','.objectSummaryParent',function(){
     modal(false);
     panel(false);
-    $('#searchContainer').hide()
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
   });
 
@@ -323,6 +321,7 @@ function initApplication(_reinit) {
 }
 
 function page(_page, _title, _option, _plugin,_dialog) {
+  $('#searchContainer').hide()
   setBackgroundImage('');
   $.showLoading();
   try {
@@ -333,9 +332,9 @@ function page(_page, _title, _option, _plugin,_dialog) {
 
   }
   if (isset(_title)) {
-    if(!isset(_dialog) || !_dialog){
+    if (!isset(_dialog) || !_dialog) {
       $('#pageTitle').empty().append(_title);
-    }else{
+    } else {
       $('#popupDialog .nd-title').text(_title);
     }
   }
