@@ -36,12 +36,14 @@ $(function () {
   $('body').delegate('.link', 'click', function () {
     modal(false);
     panel(false);
+    if ($(this).attr('data-page') != 'equipment') $('#searchContainer').hide()
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));
   });
 
   $('body').on('click','.objectSummaryParent',function(){
     modal(false);
     panel(false);
+    $('#searchContainer').hide()
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
   });
 

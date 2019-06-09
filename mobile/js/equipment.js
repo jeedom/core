@@ -1,4 +1,5 @@
 $('body').attr('data-page', 'dashboard')
+$('#searchContainer').show()
 
 function initEquipment(_object_id) {
   var objectMapping = {}
@@ -118,6 +119,7 @@ $(window).on("resize", function (event) {
 })
 
 $('#in_searchWidget').off('keyup').on('keyup',function() {
+  window.scrollTo(0, 0)
   $('.div_displayEquipement').show()
   var search = $(this).value()
   if(search == ''){
