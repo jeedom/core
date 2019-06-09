@@ -36,8 +36,8 @@ $(function () {
   $('body').delegate('.link', 'click', function () {
     modal(false);
     panel(false);
-    if ($(this).attr('data-page') != 'equipment') $('#searchContainer').hide()
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));
+    if ($(this).attr('data-page') != 'equipment') $('#searchContainer').hide()
   });
 
   $('body').on('click','.objectSummaryParent',function(){
