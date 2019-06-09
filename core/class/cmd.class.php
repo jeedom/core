@@ -1972,8 +1972,7 @@ class cmd {
 	}
 	
 	public function getUse() {
-		$json = jeedom::fromHumanReadable(json_encode(utils::o2a($this)));
-		return jeedom::getTypeUse($json);
+		return jeedom::getTypeUse(jeedom::fromHumanReadable(json_encode(utils::o2a($this))));
 	}
 	
 	public function hasRight($_user = null) {
