@@ -181,10 +181,14 @@ $('#in_search').on('keyup',function(){
   }
 });
 $('#bt_resetdisplaySearch').on('click', function () {
-  $('#in_search').val('')
-  $('#in_search').keyup();
+  $('#in_search').val('').keyup()
 })
-
+$('#bt_openAll').off('click').on('click', function () {
+  $('legend > .fa-chevron-right').click()
+})
+$('#bt_closeAll').off('click').on('click', function () {
+  $('legend > .fa-chevron-down').click()
+})
 
 $('.cb_selEqLogic').on('change',function(){
   var found = false;
