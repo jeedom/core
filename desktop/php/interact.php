@@ -37,93 +37,94 @@ $optionMaxSize = 15;
 				<span ><center>{{Tester}}</center></span>
 			</div>
 		</div>
-		
+
 		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
 		<?php
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
 		} else {
-			echo '<div class="input-group" style="margin-bottom:5px;">';
-			echo '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
-			echo '<div class="input-group-btn">';
-			echo '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
-			echo '</div>';
-			echo '<div class="input-group-btn">';
-			echo '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
-			echo '</div>';
-			echo '<div class="input-group-btn">';
-			echo '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-			echo '</div>';
-			echo '</div>';
-			
-			echo '<div class="panel-group" id="accordionInteract">';
+			$div = '<div class="input-group" style="margin-bottom:5px;">';
+			$div .= '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
+			$div .= '<div class="input-group-btn">';
+			$div .= '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
+			$div .= '</div>';
+			$div .= '<div class="input-group-btn">';
+			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+			$div .= '</div>';
+			$div .= '<div class="input-group-btn">';
+			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '</div>';
+			$div .= '</div>';
+
+			$div .= '<div class="panel-group" id="accordionInteract">';
 			if (count($interacts[-1]) > 0) {
-				echo '<div class="panel panel-default">';
-				echo '<div class="panel-heading">';
-				echo '<h3 class="panel-title">';
-				echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_aucun">Aucun - ';
+				$div .= '<div class="panel panel-default">';
+				$div .= '<div class="panel-heading">';
+				$div .= '<h3 class="panel-title">';
+				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_aucun">Aucun - ';
 				$c = count($interacts[-1]);
-				echo $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
-				echo '</h3>';
-				echo '</div>';
-				echo '<div id="config_aucun" class="panel-collapse collapse">';
-				echo '<div class="panel-body">';
-				echo '<div class="interactListContainer">';
+				$div .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
+				$div .= '</h3>';
+				$div .= '</div>';
+				$div .= '<div id="config_aucun" class="panel-collapse collapse">';
+				$div .= '<div class="panel-body">';
+				$div .= '<div class="interactListContainer">';
 				foreach ($interacts[-1] as $interact) {
 					$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
+					$div .= '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
 					if($interact->getDisplay('icon') != ''){
-						echo '<span>'.$interact->getDisplay('icon').'</span>';
+						$div .= '<span>'.$interact->getDisplay('icon').'</span>';
 					}else{
-						echo '<span><i class="icon noicon far fa-comments"></i></span>';
+						$div .= '<span><i class="icon noicon far fa-comments"></i></span>';
 					}
-					echo "<br>";
-					echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
-					echo '</div>';
+					$div .= "<br>";
+					$div .= '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
+					$div .= '</div>';
 				}
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
+				$div .= '</div>';
 			}
 			$i = 0;
 			foreach ($interactListGroup as $group) {
 				if ($group['group'] != '') {
-					echo '<div class="panel panel-default">';
-					echo '<div class="panel-heading">';
-					echo '<h3 class="panel-title">';
-					echo '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
+					$div .= '<div class="panel panel-default">';
+					$div .= '<div class="panel-heading">';
+					$div .= '<h3 class="panel-title">';
+					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
 					$c = count($interacts[$group['group']]);
-					echo $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
-					echo '</h3>';
-					echo '</div>';
-					echo '<div id="config_' . $i . '" class="panel-collapse collapse">';
-					echo '<div class="panel-body">';
-					echo '<div class="interactListContainer">';
+					$div .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
+					$div .= '</h3>';
+					$div .= '</div>';
+					$div .= '<div id="config_' . $i . '" class="panel-collapse collapse">';
+					$div .= '<div class="panel-body">';
+					$div .= '<div class="interactListContainer">';
 					foreach ($interacts[$group['group']] as $interact) {
 						$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-						echo '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
+						$div .= '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
 						if($interact->getDisplay('icon') != ''){
-							echo '<span>'.$interact->getDisplay('icon').'</span>';
+							$div .= '<span>'.$interact->getDisplay('icon').'</span>';
 						}else{
-							echo '<span><i class="icon noicon far fa-comments"></i></span>';
+							$div .= '<span><i class="icon noicon far fa-comments"></i></span>';
 						}
-						echo "<br>";
-						echo '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
-						echo '</div>';
+						$div .= "<br>";
+						$div .= '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
+						$div .= '</div>';
 					}
-					echo '</div>';
-					echo '</div>';
-					echo '</div>';
-					echo '</div>';
+					$div .= '</div>';
+					$div .= '</div>';
+					$div .= '</div>';
+					$div .= '</div>';
 				}
 				$i += 1;
 			}
-			echo '</div>';
+			$div .= '</div>';
+			echo $div;
 		}
 		?>
 	</div>
-	
+
 	<div class="interact col-xs-12" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -133,7 +134,7 @@ $optionMaxSize = 15;
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
@@ -141,7 +142,7 @@ $optionMaxSize = 15;
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 	</ul>
-	
+
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
@@ -235,7 +236,7 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="filtertab">
 			<br/>
 			<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
@@ -340,7 +341,7 @@ $optionMaxSize = 15;
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-sm-12">
 							<div class="col-sm-2">
@@ -374,18 +375,17 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="actiontab">
 			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 			<br/><br/>
 			<form class="form-horizontal">
 				<fieldset>
-					
+
 					<div id="div_action"></div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-	
+
 	<?php include_file('desktop', 'interact', 'js');?>
-	
