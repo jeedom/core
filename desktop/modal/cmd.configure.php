@@ -36,7 +36,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</ul>
-
+	
 	<div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
 		<div role="tabpanel" class="tab-pane active" id="cmd_information">
 			<br/>
@@ -189,7 +189,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</form>
 				</div>
 			</div>
-
+			
 			<form class="form-horizontal">
 				<fieldset id="fd_cmdUsedBy">
 					<legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
@@ -311,7 +311,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 				</fieldset>
 			</form>
 			<?php if ($cmd->getType() == 'action') {?>
-
+				
 				<form class="form-horizontal">
 					<fieldset>
 						<legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
@@ -355,7 +355,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 								<input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -363,10 +363,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionCheckCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
+						
 						$('#bt_addActionCheckCmd').off('click').on('click',function(){
 							addActionCmd({}, 'actionCheckCmd','{{Action}}');
 						});
@@ -405,7 +405,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionPostExecCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 						$('#bt_addActionPostExecCmd').off('click').on('click',function(){
@@ -415,7 +415,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</fieldset>
 				</form>
 			<?php }?>
-
+			
 			<?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
 				?>
 				<form class="form-horizontal">
@@ -547,7 +547,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			</div>
 		<?php }
 		?>
-
+		
 		<?php if ($cmd->widgetPossibility('custom')) {
 			?>
 			<div role="tabpanel" class="tab-pane" id="cmd_display">
@@ -632,7 +632,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 													usort($type, function ($a, $b) {
 														return strcmp($a['name'], $b['name']);
 													});
-
+													
 													foreach ($type as $key => $widget) {
 														if ($widget['name'] == 'default') {
 															continue;
@@ -703,7 +703,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						?>
 					</tbody>
 				</table>
-
+				
 				<div class="form-group">
 					<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
 					<div class="col-xs-1">
@@ -714,7 +714,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
 					</div>
 				</div>
-
+				
 				<br/><br/>
 				<?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 					?>
@@ -754,147 +754,124 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</div>
-
+	
 	<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 </div>
 
 <script>
-	$("#md_cmdConfigureSelectMultiple").dialog({
-		closeText: '',
-		autoOpen: false,
-		modal: true,
-		height: (jQuery(window).height() - 150),
-		width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
-		position: {my: 'center', at: 'center', of: window},
-		open: function () {
-			$("body").css({overflow: 'hidden'});
-		},
-		beforeClose: function (event, ui) {
-			$("body").css({overflow: 'inherit'});
-		}
-	});
+$("#md_cmdConfigureSelectMultiple").dialog({
+	closeText: '',
+	autoOpen: false,
+	modal: true,
+	height: (jQuery(window).height() - 150),
+	width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
+	position: {my: 'center', at: 'center', of: window},
+	open: function () {
+		$("body").css({overflow: 'hidden'});
+	},
+	beforeClose: function (event, ui) {
+		$("body").css({overflow: 'inherit'});
+	}
+});
 
-	$('#table_widgetParametersCmd').delegate('.removeWidgetParameter', 'click', function () {
-		$(this).closest('tr').remove();
-	});
+$('#table_widgetParametersCmd').delegate('.removeWidgetParameter', 'click', function () {
+	$(this).closest('tr').remove();
+});
 
-	$('#bt_addWidgetParametersCmd').off().on('click', function () {
-		var tr = '<tr>';
-		tr += '<td>';
-		tr += '<input class="form-control key" />';
-		tr += '</td>';
-		tr += '<td>';
-		tr += '<input class="form-control value" />';
-		tr += '</td>';
-		tr += '<td>';
-		tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
-		tr += '</td>';
-		tr += '</tr>';
-		$('#table_widgetParametersCmd tbody').append(tr);
-	});
+$('#bt_addWidgetParametersCmd').off().on('click', function () {
+	var tr = '<tr>';
+	tr += '<td>';
+	tr += '<input class="form-control key" />';
+	tr += '</td>';
+	tr += '<td>';
+	tr += '<input class="form-control value" />';
+	tr += '</td>';
+	tr += '<td>';
+	tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+	tr += '</td>';
+	tr += '</tr>';
+	$('#table_widgetParametersCmd tbody').append(tr);
+});
 
-	$('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
-	$('#bt_cmdConfigureRawObject').off('click').on('click',function(){
-		$('#md_modal3').dialog({title: "{{Informations}}"});
-		$("#md_modal3").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
-	});
-	$('#bt_cmdConfigureGraph').on('click', function () {
-		$('#md_modal3').dialog({title: "{{Graphique des liens}}"});
-		$("#md_modal3").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
-	});
+$('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr');
+$('#bt_cmdConfigureRawObject').off('click').on('click',function(){
+	$('#md_modal3').dialog({title: "{{Informations}}"});
+	$("#md_modal3").load('index.php?v=d&modal=object.display&class=cmd&id='+cmdInfo.id).dialog('open');
+});
+$('#bt_cmdConfigureGraph').on('click', function () {
+	$('#md_modal3').dialog({title: "{{Graphique des liens}}"});
+	$("#md_modal3").load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open');
+});
 
-	$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
-		jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
-			var target_id = result.cmd.id
-			var name = result.human
-			bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>'+cmdInfo.name+'</strong> {{vers}} <strong>'+name+'</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>'+name+'</strong> {{ avant la copie}}', function (result) {
-				if (result) {
-					jeedom.history.copyHistoryToCmd({
-						source_id : cmdInfo.id,
-						target_id : target_id,
-						error: function (error) {
-							$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-						},
-						success: function (data) {
-							$('#md_displayCmdConfigure').showAlert({message: '{{Historique copié avec succès}}', level: 'success'});
-						}
-					});
-				}
-			});
+$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
+	jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
+		var target_id = result.cmd.id
+		var name = result.human
+		bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>'+cmdInfo.name+'</strong> {{vers}} <strong>'+name+'</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>'+name+'</strong> {{ avant la copie}}', function (result) {
+			if (result) {
+				jeedom.history.copyHistoryToCmd({
+					source_id : cmdInfo.id,
+					target_id : target_id,
+					error: function (error) {
+						$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (data) {
+						$('#md_displayCmdConfigure').showAlert({message: '{{Historique copié avec succès}}', level: 'success'});
+					}
+				});
+			}
 		});
 	});
+});
 
-	$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
-		jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
-			var target_id = result.cmd.id
-			var name = result.human
-			bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>'+cmdInfo.name+'</strong> {{vers}} <strong>'+name+'</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>'+name+'</strong> {{ avant la copie}}', function (result) {
-				if (result) {
-					jeedom.history.copyHistoryToCmd({
-						source_id : cmdInfo.id,
-						target_id : target_id,
-						error: function (error) {
-							$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-						},
-						success: function (data) {
-							$('#md_displayCmdConfigure').showAlert({message: '{{Historique copié avec succès}}', level: 'success'});
-						}
-					});
-				}
-			});
+$('#bt_cmdConfigureCopyHistory').off('click').on('click',function(){
+	jeedom.cmd.getSelectModal({cmd: {type: 'info', subType: cmdInfo.subType}}, function (result) {
+		var target_id = result.cmd.id
+		var name = result.human
+		bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>'+cmdInfo.name+'</strong> {{vers}} <strong>'+name+'</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>'+name+'</strong> {{ avant la copie}}', function (result) {
+			if (result) {
+				jeedom.history.copyHistoryToCmd({
+					source_id : cmdInfo.id,
+					target_id : target_id,
+					error: function (error) {
+						$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (data) {
+						$('#md_displayCmdConfigure').showAlert({message: '{{Historique copié avec succès}}', level: 'success'});
+					}
+				});
+			}
 		});
 	});
+});
 
 
-	$('#bt_cmdConfigureReplaceMeBy').off('click').on('click',function(){
-		jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
-			var target_id = result.cmd.id
-			var name = result.human
-			bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+cmdInfo.name+'</strong> {{par}} <strong>'+name+'</strong> ?', function (result) {
-				if (result) {
-					jeedom.cmd.replaceCmd({
-						source_id : cmdInfo.id,
-						target_id : target_id,
-						error: function (error) {
-							$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-						},
-						success: function (data) {
-							$('#md_displayCmdConfigure').showAlert({message: '{{Remplacement réalisé avec succès}}', level: 'success'});
-						}
-					});
-				}
-			});
+$('#bt_cmdConfigureReplaceMeBy').off('click').on('click',function(){
+	jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
+		var target_id = result.cmd.id
+		var name = result.human
+		bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+cmdInfo.name+'</strong> {{par}} <strong>'+name+'</strong> ?', function (result) {
+			if (result) {
+				jeedom.cmd.replaceCmd({
+					source_id : cmdInfo.id,
+					target_id : target_id,
+					error: function (error) {
+						$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function (data) {
+						$('#md_displayCmdConfigure').showAlert({message: '{{Remplacement réalisé avec succès}}', level: 'success'});
+					}
+				});
+			}
 		});
 	});
+});
 
-	$('#bt_cmdConfigureReplaceByMe').off('click').on('click',function(){
-		jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
-			var target_id = result.cmd.id
-			var name = result.human
-			bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
-				if (result) {
-					jeedom.cmd.replaceCmd({
-						source_id : target_id,
-						target_id : cmdInfo.id,
-						error: function (error) {
-							$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-						},
-						success: function (data) {
-							$('#md_displayCmdConfigure').showAlert({message: '{{Remplacement réalisé avec succès}}', level: 'success'});
-						}
-					});
-				}
-			});
-		});
-	});
-
-
-	$('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
-		var target_id = prompt("{{ID de commande à remplacer ?}}");
-		if(target_id == null){
-			return;
-		}
-		bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+target_id+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
+$('#bt_cmdConfigureReplaceByMe').off('click').on('click',function(){
+	jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function (result) {
+		var target_id = result.cmd.id
+		var name = result.human
+		bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
 			if (result) {
 				jeedom.cmd.replaceCmd({
 					source_id : target_id,
@@ -909,200 +886,223 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			}
 		});
 	});
+});
 
 
-	if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
-		for(var i in cmdInfo.configuration.actionCheckCmd){
-			addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
-		}
+$('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function(){
+	var target_id = prompt("{{ID de commande à remplacer ?}}");
+	if(target_id == null){
+		return;
 	}
-
-	if(isset(cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(cmdInfo.configuration.jeedomPreExecCmd) && cmdInfo.configuration.jeedomPreExecCmd.length != null){
-		for(var i in cmdInfo.configuration.jeedomPreExecCmd){
-			addActionCmd(cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd','{{Action}}');
-		}
-	}
-
-	if(isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configuration.jeedomPostExecCmd) && cmdInfo.configuration.jeedomPostExecCmd.length != null){
-		for(var i in cmdInfo.configuration.jeedomPostExecCmd){
-			addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}');
-		}
-	}
-	$('#bt_cmdConfigureSave').on('click', function () {
-		var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-		if (!isset(cmd.display)) {
-			cmd.display = {};
-		}
-		if (!isset(cmd.display.parameters)) {
-			cmd.display.parameters = {};
-		}
-		$('#table_widgetParametersCmd tbody tr').each(function () {
-			cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-		});
-		var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
-		if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
-			cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
-		}
-		cmd.configuration.actionCheckCmd = {};
-		cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
-		cmd.configuration.jeedomPreExecCmd = $('#div_actionPreExecCmd .actionPreExecCmd').getValues('.expressionAttr');
-		cmd.configuration.jeedomPostExecCmd = $('#div_actionPostExecCmd .actionPostExecCmd').getValues('.expressionAttr');
-		jeedom.cmd.save({
-			cmd: cmd,
-			error: function (error) {
-				$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function () {
-				modifyWithoutSave = false;
-				$('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
-			}
-		});
-	});
-
-
-	$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
-		var type = $(this).attr('data-type');
-		$(this).closest('.' + type).remove();
-	});
-
-	$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
-		var type = $(this).attr('data-type');
-		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
-		jeedom.cmd.getSelectModal({cmd : {type :'action'}}, function (result) {
-			el.value(result.human);
-			jeedom.cmd.displayActionOption(el.value(), '', function (html) {
-				el.closest('.' + type).find('.actionOptions').html(html);
-				taAutosize();
-			});
-		});
-	});
-
-	$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function () {
-		var type = $(this).attr('data-type');
-		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
-		jeedom.getSelectActionModal({}, function (result) {
-			el.value(result.human);
-			jeedom.cmd.displayActionOption(el.value(), '', function (html) {
-				el.closest('.' + type).find('.actionOptions').html(html);
-				taAutosize();
-			});
-		});
-	});
-
-	$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
-		var type = $(this).attr('data-type')
-		var expression = $(this).closest('.' + type).getValues('.expressionAttr');
-		var el = $(this);
-		jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
-			el.closest('.' + type).find('.actionOptions').html(html);
-			taAutosize();
-		})
-	});
-
-	function addActionCmd(_action, _type, _name) {
-		if (!isset(_action)) {
-			_action = {};
-		}
-		if (!isset(_action.options)) {
-			_action.options = {};
-		}
-		var div = '<div class="' + _type + '">';
-		div += '<div class="form-group ">';
-		div += '<div class="col-sm-1">';
-		div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />';
-		div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />';
-		div += '</div>';
-		div += '<div class="col-sm-4">';
-		div += '<div class="input-group">';
-		div += '<span class="input-group-btn">';
-		div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
-		div += '</span>';
-		div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
-		div += '<span class="input-group-btn">';
-		div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
-		div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
-		div += '</span>';
-		div += '</div>';
-		div += '</div>';
-		div += '<div class="col-sm-7 actionOptions">';
-		div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
-		div += '</div>';
-		$('#div_' + _type).append(div);
-		$('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
-		taAutosize();
-	}
-
-	$('#bt_cmdConfigureSaveOn').on('click',function(){
-		var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
-		if (!isset(cmd.display)) {
-			cmd.display = {};
-		}
-		if (!isset(cmd.display.parameters)) {
-			cmd.display.parameters = {};
-		}
-		$('#table_widgetParametersCmd tbody tr').each(function () {
-			cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
-		});
-		cmd = {display : cmd.display,template : cmd.template };
-		$('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
-			initTableSorter();
-			$('#bt_cmdConfigureSelectMultipleAlertToogle').off().on('click', function () {
-				var state = false;
-				if ($(this).attr('data-state') == 0) {
-					state = true;
-					$(this).attr('data-state', 1);
-					$(this).find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
-					$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(1);
-				} else {
-					state = false;
-					$(this).attr('data-state', 0);
-					$(this).find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
-					$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
+	bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+target_id+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function (result) {
+		if (result) {
+			jeedom.cmd.replaceCmd({
+				source_id : target_id,
+				target_id : cmdInfo.id,
+				error: function (error) {
+					$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+				},
+				success: function (data) {
+					$('#md_displayCmdConfigure').showAlert({message: '{{Remplacement réalisé avec succès}}', level: 'success'});
 				}
 			});
-
-			$('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-				$('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
-					if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-						cmd.id = $(this).attr('data-cmd_id');
-						jeedom.cmd.save({
-							cmd: cmd,
-							error: function (error) {
-								$('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
-							},
-							success: function () {
-							}
-						});
-					}
-				});
-				$('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
-			});
-		}).dialog('open');
+		}
 	});
-	$('#bt_cmdConfigureChooseIcon').on('click', function () {
-		var iconeGeneric = $(this).closest('.iconeGeneric');
-		chooseIcon(function (_icon) {
-			iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-			$('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+});
+
+
+if(isset(cmdInfo.configuration.actionCheckCmd) && $.isArray(cmdInfo.configuration.actionCheckCmd) && cmdInfo.configuration.actionCheckCmd.length != null){
+	for(var i in cmdInfo.configuration.actionCheckCmd){
+		addActionCmd(cmdInfo.configuration.actionCheckCmd[i], 'actionCheckCmd','{{Action}}');
+	}
+}
+
+if(isset(cmdInfo.configuration.jeedomPreExecCmd) && $.isArray(cmdInfo.configuration.jeedomPreExecCmd) && cmdInfo.configuration.jeedomPreExecCmd.length != null){
+	for(var i in cmdInfo.configuration.jeedomPreExecCmd){
+		addActionCmd(cmdInfo.configuration.jeedomPreExecCmd[i], 'actionPreExecCmd','{{Action}}');
+	}
+}
+
+if(isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configuration.jeedomPostExecCmd) && cmdInfo.configuration.jeedomPostExecCmd.length != null){
+	for(var i in cmdInfo.configuration.jeedomPostExecCmd){
+		addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}');
+	}
+}
+$('#bt_cmdConfigureSave').on('click', function () {
+	var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+	if (!isset(cmd.display)) {
+		cmd.display = {};
+	}
+	if (!isset(cmd.display.parameters)) {
+		cmd.display.parameters = {};
+	}
+	$('#table_widgetParametersCmd tbody tr').each(function () {
+		cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
+	});
+	var checkCmdParameter = $('#div_jeedomCheckCmdCmdOption').getValues('.expressionAttr')[0];
+	if (isset(checkCmdParameter) && isset(checkCmdParameter.options)) {
+		cmd.configuration.jeedomCheckCmdCmdActionOption = checkCmdParameter.options;
+	}
+	cmd.configuration.actionCheckCmd = {};
+	cmd.configuration.actionCheckCmd = $('#div_actionCheckCmd .actionCheckCmd').getValues('.expressionAttr');
+	cmd.configuration.jeedomPreExecCmd = $('#div_actionPreExecCmd .actionPreExecCmd').getValues('.expressionAttr');
+	cmd.configuration.jeedomPostExecCmd = $('#div_actionPostExecCmd .actionPostExecCmd').getValues('.expressionAttr');
+	jeedom.cmd.save({
+		cmd: cmd,
+		error: function (error) {
+			$('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'});
+		},
+		success: function () {
+			modifyWithoutSave = false;
+			$('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+		}
+	});
+});
+
+
+$("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', 'click', function () {
+	var type = $(this).attr('data-type');
+	$(this).closest('.' + type).remove();
+});
+
+$("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function () {
+	var type = $(this).attr('data-type');
+	var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+	jeedom.cmd.getSelectModal({cmd : {type :'action'}}, function (result) {
+		el.value(result.human);
+		jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+			el.closest('.' + type).find('.actionOptions').html(html);
+			taAutosize();
 		});
 	});
+});
 
-	$('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
-		$(this).empty();
-		$('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty();
+$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function () {
+	var type = $(this).attr('data-type');
+	var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
+	jeedom.getSelectActionModal({}, function (result) {
+		el.value(result.human);
+		jeedom.cmd.displayActionOption(el.value(), '', function (html) {
+			el.closest('.' + type).find('.actionOptions').html(html);
+			taAutosize();
+		});
 	});
+});
 
-	$('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
-		$('#md_modal3').dialog({title: "{{Logs}}"});
-		$('#md_modal3').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
-	});
+$('body').undelegate(".cmdAction.expressionAttr[data-l1key=cmd]", 'focusout').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
+	var type = $(this).attr('data-type')
+	var expression = $(this).closest('.' + type).getValues('.expressionAttr');
+	var el = $(this);
+	jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
+		el.closest('.' + type).find('.actionOptions').html(html);
+		taAutosize();
+	})
+});
 
-	$('#bt_cmdConfigureShowHistory').on( 'click',function () {
-		$('#md_modal3').dialog({title: "Historique"});
-		$("#md_modal3").load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open');
-	});
+function addActionCmd(_action, _type, _name) {
+	if (!isset(_action)) {
+		_action = {};
+	}
+	if (!isset(_action.options)) {
+		_action.options = {};
+	}
+	var div = '<div class="' + _type + '">';
+	div += '<div class="form-group ">';
+	div += '<div class="col-sm-1">';
+	div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />';
+	div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}" />';
+	div += '</div>';
+	div += '<div class="col-sm-4">';
+	div += '<div class="input-group">';
+	div += '<span class="input-group-btn">';
+	div += '<a class="btn btn-default btn-sm bt_removeAction roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>';
+	div += '</span>';
+	div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />';
+	div += '<span class="input-group-btn">';
+	div += '<a class="btn  btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fa fa-tasks"></i></a>';
+	div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>';
+	div += '</span>';
+	div += '</div>';
+	div += '</div>';
+	div += '<div class="col-sm-7 actionOptions">';
+	div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options);
+	div += '</div>';
+	$('#div_' + _type).append(div);
+	$('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
+	taAutosize();
+}
 
-	$('#bt_cmdConfigureTest').on('click',function(){
-		jeedom.cmd.test({id: cmdInfo.id, alert : '#md_displayCmdConfigure'});
+$('#bt_cmdConfigureSaveOn').on('click',function(){
+	var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
+	if (!isset(cmd.display)) {
+		cmd.display = {};
+	}
+	if (!isset(cmd.display.parameters)) {
+		cmd.display.parameters = {};
+	}
+	$('#table_widgetParametersCmd tbody tr').each(function () {
+		cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value();
 	});
+	cmd = {display : cmd.display,template : cmd.template };
+	$('#md_cmdConfigureSelectMultiple').load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
+		initTableSorter();
+		$('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
+			var state = false;
+			if ($(this).attr('data-state') == 0) {
+				state = true;
+				$(this).attr('data-state', 1)
+				.find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o');
+				$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(1);
+			} else {
+				state = false;
+				$(this).attr('data-state', 0)
+				.find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o');
+				$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
+			}
+		});
+		
+		$('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
+			$('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+				if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
+					cmd.id = $(this).attr('data-cmd_id');
+					jeedom.cmd.save({
+						cmd: cmd,
+						error: function (error) {
+							$('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function () {
+						}
+					});
+				}
+			});
+			$('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
+		});
+	}).dialog('open');
+});
+$('#bt_cmdConfigureChooseIcon').on('click', function () {
+	var iconeGeneric = $(this).closest('.iconeGeneric');
+	chooseIcon(function (_icon) {
+		iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+		$('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+	});
+});
+
+$('body').undelegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click').delegate('.cmdAttr[data-l1key=display][data-l2key=icon]', 'click', function () {
+	$(this).empty();
+	$('tr[data-cmd_id="' +  cmdInfo.id + '"] .cmdAttr[data-l1key=display][data-l2key=icon]').empty();
+});
+
+$('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
+	$('#md_modal3').dialog({title: "{{Logs}}"});
+	$('#md_modal3').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
+});
+
+$('#bt_cmdConfigureShowHistory').on( 'click',function () {
+	$('#md_modal3').dialog({title: "Historique"});
+	$("#md_modal3").load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open');
+});
+
+$('#bt_cmdConfigureTest').on('click',function(){
+	jeedom.cmd.test({id: cmdInfo.id, alert : '#md_displayCmdConfigure'});
+});
 </script>

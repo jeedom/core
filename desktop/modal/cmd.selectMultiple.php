@@ -3,8 +3,13 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 $cmd = cmd::byId(init('cmd_id'));
-if (!is_object($cmd)) {
-  throw new Exception('Commande non trouvée : ' . init('cmd_id'));
+if(is_object($cmd)){
+  $listeCmds = cmd::byTypeSubType($cmd->getType(), $cmd->getSubType());
+}else{
+  $listeCmds = cmd::byTypeSubType(init('type'), init('subtype'));
+}
+if(!is_array($listeCmds) || count($listeCmds) == 0){
+  throw new Exception(__('Aucune commande trouvées',__FILE__));
 }
 ?>
 
@@ -23,10 +28,10 @@ if (!is_object($cmd)) {
   </thead>
   <tbody>
     <?php
-    foreach (cmd::byTypeSubType($cmd->getType(), $cmd->getSubType()) as $listCmd) {
+    foreach ($listeCmds as $listCmd) {
       echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
       echo '<td>';
-      if ($listCmd->getId() == $cmd->getId()) {
+      if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
         echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
       } else {
         echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
