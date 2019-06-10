@@ -63,7 +63,9 @@ if (!is_array($remove_history)) {
 			<div class="input-group" style="margin-bottom:5px;display: inline-table;">
 				<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_search"/>
 				<div class="input-group-btn">
-					<a id="bt_resetdisplaySearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+					<a id="bt_resetdisplaySearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+					</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+					</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
 				</div>
 			</div>
 		</div>
