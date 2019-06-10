@@ -72,87 +72,89 @@ if (!is_array($remove_history)) {
 			<div class="row packeryContainer">
 			<?php
 			if (count($eqLogics[-1]) > 0) {
-				echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">';
-				echo '<div>';
-				echo '<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>';
-				echo '<ul class="eqLogicSortable">';
+				$div = '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="-1">';
+				$div .= '<div>';
+				$div .= '<legend><i class="far fa-circle"></i>  {{Aucun}} <i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i></legend>';
+				$div .= '<ul class="eqLogicSortable">';
 
 				foreach ($eqLogics[-1] as $eqLogic) {
-					echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-					echo '<input type="checkbox" class="cb_selEqLogic" /> ';
-					echo $eqLogic->getName() . ' ';
-					echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
+					$div .= $eqLogic->getName() . ' ';
+					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 					if ($eqLogic->getIsEnable() != 1) {
-						echo '<i class="fas fa-times" title="{{Non actif}}"></i> ';
+						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
 					if ($eqLogic->getIsVisible() != 1) {
-						echo '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
-					echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					$div .= '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
+					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 
-					echo '<ul class="cmdSortable" style="display:none;" >';
+					$div .= '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
-						echo '<i class="fas fa-cog pull-right configureCmd"></i>';
-						echo '</li>';
+						$div .= '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
+						$div .= '<i class="fas fa-cog pull-right configureCmd"></i>';
+						$div .= '</li>';
 					}
-					echo '</ul>';
-					echo '</li>';
+					$div .= '</ul>';
+					$div .= '</li>';
 				}
 
-				echo '</ul>';
-				echo '</div>';
-				echo '</div>';
+				$div .= '</ul>';
+				$div .= '</div>';
+				$div .= '</div>';
+				echo $div;
 			}
 
 			foreach ($objects as $object) {
-				echo '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
+				$div = '<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 object" data-id="' . $object->getId() . '">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
-					echo '<div style="background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor') . '">';
-					echo '<legend style="color : ' . $object->getDisplay('tagTextColor') . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
+					$div .= '<div style="background-color: ' . $object->getDisplay('tagColor') . ';color: ' . $object->getDisplay('tagTextColor') . '">';
+					$div .= '<legend style="color : ' . $object->getDisplay('tagTextColor') . '">' . $object->getDisplay('icon') . '  ' . $object->getName();
 				} else {
-					echo '<div class="labelObjectHuman">';
-					echo '<legend class="labelObjectHuman">' . $object->getDisplay('icon') . '  ' . $object->getName();
+					$div .= '<div class="labelObjectHuman">';
+					$div .= '<legend class="labelObjectHuman">' . $object->getDisplay('icon') . '  ' . $object->getName();
 				}
-				echo '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
-				echo '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+				$div .= '<i class="fas fa-chevron-down pull-right showEqLogic cursor" title="{{Voir les équipements}}"></i>';
+				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 
 				if ($object->getConfiguration('useCustomColor') == 1) {
-					echo '<a style="color:' . $object->getDisplay('tagTextColor') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+					$div .= '<a style="color:' . $object->getDisplay('tagTextColor') . '" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
 				} else {
-					echo '<a class="labelObjectHuman" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
+					$div .= '<a class="labelObjectHuman" href="index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-alt"></i></a>';
 				}
 
-				echo '</legend>';
-				echo '<ul class="eqLogicSortable">';
+				$div .= '</legend>';
+				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-					echo '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-					echo '<input type="checkbox" class="cb_selEqLogic" /> ';
-					echo $eqLogic->getName() . ' ';
-					echo '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= '<li class="alert alert-info eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
+					$div .= $eqLogic->getName() . ' ';
+					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 					if ($eqLogic->getIsEnable() != 1) {
-						echo '<i class="fas fa-times" title="{{Non actif}}"></i> ';
+						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
 					if ($eqLogic->getIsVisible() != 1) {
-						echo '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					echo '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
-					echo '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					echo '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-					echo '<ul class="cmdSortable" style="display:none;" >';
+					$div .= '<i class="fas fa-chevron-right pull-right showCmd" title="{{Voir les commandes}}"></i> ';
+					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					$div .= '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						echo '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
-						echo '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
-						echo '</li>';
+						$div .= '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' . $cmd->getName();
+						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						$div .= '</li>';
 					}
-					echo '</ul>';
-					echo '</li>';
+					$div .= '</ul>';
+					$div .= '</li>';
 				}
-				echo '</ul>';
-				echo '</div>';
-				echo '</div>';
+				$div .= '</ul>';
+				$div .= '</div>';
+				$div .= '</div>';
+				echo $div;
 			}
 			?>
 			</div>
