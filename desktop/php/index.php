@@ -89,11 +89,9 @@ if (init('rescue', 0) == 0) {
 function setTheme() {
 	global $jeedom_theme;
 	$dataNoChange = false;
-	
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
-	
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
 			$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
@@ -112,7 +110,6 @@ function setTheme() {
 			$themeJs = $themeDefinition . '/desktop/' . $themeDefinition;
 		}
 	}
-	
 	echo $themeCss;
 	include_file('core', $themeJs, 'themes.js');
 }
