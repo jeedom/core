@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.26
+=====
+
+- Correction de bug
+
 3.3.25
 =====
 
