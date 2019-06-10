@@ -473,6 +473,12 @@ class jeeObject {
 	}
 	
 	public function save() {
+		if($this->_changed){
+			cache::set('globalSummaryHtmldashboard', '');
+			cache::set('globalSummaryHtmlmobile', '');
+			$this->setCache('summaryHtmldashboard', '');
+			$this->setCache('summaryHtmlmobile', '');
+		}
 		DB::save($this);
 		return true;
 	}
