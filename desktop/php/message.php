@@ -52,7 +52,7 @@ if ($selectPlugin != '') {
 			$trs .= '<td class="occurrences">' . $message->getOccurrences() . '</td>';
 			$trs .= '</tr>';
 		}
-		if ($tr != '') echo $tr;
+		if ($trs != '') echo $trs;
 		?>
 	</tbody>
 </table>
