@@ -204,11 +204,16 @@ legend {
 [data-page=display] #div_pageContainer #display ul > li {
   list-style-type: none;
   margin: 2px 0 !important;
-  padding: 1.3px 5px !important;
+  padding: 1px 5px !important;
+  border-bottom: 1px solid var(--el-defaultColor);
+}
+[data-page=display] #div_pageContainer #display ul > li input {
+  top: 2px;
 }
 [data-page=display] #div_pageContainer #display ul > li > ul > li {
-  margin: 1.3px !important;
-  padding: 2px 5px !important;
+  margin: 0 !important;
+  padding: 3px 5px !important;
+  color: var(--linkHoverLight-color) !important;
 }
 [data-page=display] #div_pageContainer #display ul > li > ul > li > i {
   margin: 0 !important;
