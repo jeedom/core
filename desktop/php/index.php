@@ -363,7 +363,7 @@ function setTheme() {
 										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
-											<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a></li>
+											<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Thème alternatif}}</a></li>
 										<?php } ?>
 										<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 										<li role="separator" class="divider"></li>
