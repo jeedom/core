@@ -89,21 +89,18 @@ if (init('rescue', 0) == 0) {
 function setTheme() {
 	global $jeedom_theme;
 	$dataNoChange = false;
-
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-	$themeDefinition = $jeedom_theme['default_bootstrap_theme'];
-
-	if (!isset($_COOKIE['currentTheme'])) {
-		setcookie('currentTheme', 'default');
-		$_COOKIE['currentTheme'] = 'default';
+	$themeDefinition = $jeedom_theme['current_desktop_theme'];
+	if (isset($_COOKIE['currentTheme'])) {
+		if ($_COOKIE['currentTheme'] == 'alternate') {
+			$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
+			$dataNoChange = true;
+		}else{
+			$themeDefinition = $jeedom_theme['default_bootstrap_theme'];
+			$dataNoChange = true;
+		}
 	}
-	$currentTheme = $_COOKIE['currentTheme'];
-	if ($currentTheme == 'alternate') {
-		$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
-		$dataNoChange = true;
-	}
-
 	if (init('rescue', 0) == 0) {
 		if (is_dir(__DIR__ . '/../../core/themes/' .$themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
 			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/'.$themeDefinition.'/desktop/'.$themeDefinition.'.css?md5='.md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css').'" rel="stylesheet">';
@@ -113,7 +110,6 @@ function setTheme() {
 			$themeJs = $themeDefinition . '/desktop/' . $themeDefinition;
 		}
 	}
-
 	echo $themeCss;
 	include_file('core', $themeJs, 'themes.js');
 }
@@ -204,9 +200,9 @@ function setTheme() {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -499,3 +495,4 @@ function setTheme() {
 		<?php } 	?>
 	</body>
 	</html>
+	

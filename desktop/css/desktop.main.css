@@ -2421,17 +2421,22 @@ path.highcharts-graph {
   stroke-width: 1.2;
 }
 
-.highcharts-tooltip-box,
-.highcharts-label-box {
-  fill: var(--sc-form-color);
-  fill-opacity: 1 !important;
+
+.highcharts-tooltip .highcharts-tooltip-box,
+.highcharts-tooltip .highcharts-label-box {
   stroke-width: 0.6 !important;
 }
-.highcharts-tooltip text {
-  fill: var(--txt-color) !important;
-  text-shadow: none !important;
+.highcharts-tooltip .highcharts-tooltip-box path {
+  fill: rgb(var(--bg-color)) !important;
 }
-
+.highcharts-tooltip .highcharts-tooltip-box text,
+.highcharts-tooltip .highcharts-tooltip-box text tspan {
+  fill: rgb(var(--contrast-color)) !important;
+  font-weight: 400 !important;
+}
+.highcharts-tooltip .highcharts-shadow {
+  display: none;
+}
 
 
 #div_graphLinkRenderer g {
@@ -3196,6 +3201,13 @@ textarea,
 button,
 pre {
   border-radius: var(--border-radius) !important;
+}
+
+pre {
+  font-family: "Roboto";
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  line-height: 14px;
 }
 
 .input-group .btn,

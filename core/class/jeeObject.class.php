@@ -491,7 +491,6 @@ class jeeObject {
 	
 	public function save() {
 		if($this->_changed){
-			log::add('debug','debug','object change : '.$this->getName());
 			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$this->setCache('summaryHtmldashboard', '');
