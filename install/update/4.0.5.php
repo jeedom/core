@@ -19,10 +19,10 @@ foreach (cmd::all() as $cmd) {
     foreach ($plans as $plan) {
       try {
         if($cmd->getDisplay('showOnplan') == 0){
-          $plan->setDisplay('cmdHide',array_merge(array($cmd->getId() => 1),$plan->getDisplay('cmdHide',array()));
+          $plan->setDisplay('cmdHide',array_merge(array($cmd->getId() => 1),$plan->getDisplay('cmdHide',array())));
         }
         if($cmd->getDisplay('showNameOn') == 0){
-          $plan->setDisplay('cmdHideName',array_merge(array($cmd->getId() => 1),$plan->getDisplay('cmdHideName',array()));
+          $plan->setDisplay('cmdHideName',array_merge(array($cmd->getId() => 1),$plan->getDisplay('cmdHideName',array())));
         }
         $plan->save();
       } catch (\Exception $e) {
