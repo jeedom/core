@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../core/php/core.inc.php';
+echo "Begin migrate plan\n";
 foreach (cmd::all() as $cmd) {
   $plans =  plan::byLinkTypeLinkId('cmd',$cmd->getId());
   if(count($plans) != 0){
@@ -10,7 +11,7 @@ foreach (cmd::all() as $cmd) {
         }
         $plan->save();
       } catch (\Exception $e) {
-        echo 'Error on convert design : '.$e->getMessage().'<br/>';
+        echo 'Error on convert design : '.$e->getMessage()."\n";
       }
     }
   }
@@ -26,7 +27,7 @@ foreach (cmd::all() as $cmd) {
         }
         $plan->save();
       } catch (\Exception $e) {
-        echo 'Error on convert design : '.$e->getMessage().'<br/>';
+        echo 'Error on convert design : '.$e->getMessage()."\n";
       }
     }
   }
@@ -52,7 +53,7 @@ foreach (eqLogic::all() as $eqLogic) {
         $plan->setCss('opacity',$eqLogic->getDisplay('background-opacityplan'));
         $plan->save();
       } catch (\Exception $e) {
-        echo 'Error on convert design : '.$e->getMessage().'<br/>';
+        echo 'Error on convert design : '.$e->getMessage()."\n";
       }
     }
   }
