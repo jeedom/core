@@ -117,8 +117,8 @@ if (!is_array($remove_history)) {
 
 			//one panel per parent:
 			$i = 0;
+			$div = '';
 			foreach ($objects as $object) {
-				$div = '';
 				$numParents = $object->getConfiguration('parentNumber');
 				if ($numParents > 0) {
 					$aStyle = ' style="margin-left:' . (10 + 10*$object->getConfiguration('parentNumber')) . 'px;"';
@@ -170,8 +170,9 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				$div .= '</div>';
 				$div .= '</div>';
-				echo $div;
 			}
+			echo $div;
+			$div = null;
 			?>
 		</div>
 	</div>
