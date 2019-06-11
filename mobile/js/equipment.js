@@ -1,6 +1,5 @@
 
 function initEquipment(_object_id) {
-  $('body').attr('data-page', 'dashboard');
   $('#searchContainer').show();
   var objectMapping = {}
   var objects_info = {}
