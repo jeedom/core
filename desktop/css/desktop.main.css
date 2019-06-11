@@ -203,7 +203,7 @@ legend {
 }
 [data-page=display] #div_pageContainer #display ul > li {
   list-style-type: none;
-  margin: 2px 0 !important;
+  margin: 2px 25px !important;
   padding: 1px 5px !important;
   border-bottom: 1px solid var(--el-defaultColor);
 }
