@@ -364,7 +364,9 @@ if(method_exists('utils','attrChanged')){
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
 	try {
-		cache::flushWidget();
+		if(method_exists('cache','flushWidget')){
+			cache::flushWidget();
+		}
 	} catch (Exception $e) {
 		
 	} catch (Error $e) {
