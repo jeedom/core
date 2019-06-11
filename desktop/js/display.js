@@ -150,14 +150,14 @@ $('.cmdSortable').sortable({
 }).disableSelection()
 
 //Modals:
-$('.configureEqLogic').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
-  $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
-})
-
 $('.configureObject').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration de l'objet}}"})
   $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
+})
+
+$('.configureEqLogic').on('click',function(){
+  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
+  $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
 })
 
 $('.configureCmd').on('click',function() {
@@ -168,6 +168,7 @@ $('.configureCmd').on('click',function() {
 
 //events:
 $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
+  if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:
   if (event.target.tagName.toUpperCase() == 'INPUT') return
   //cmd cliked inside li:
