@@ -119,14 +119,20 @@ if (!is_array($remove_history)) {
 			$i = 0;
 			foreach ($objects as $object) {
 				$div = '';
+				$numParents = $object->getConfiguration('parentNumber');
+				if ($numParents > 0) {
+					$aStyle = ' style="margin-left:' . (10 + 10*$object->getConfiguration('parentNumber')) . 'px;"';
+				} else {
+					$aStyle = ' style=""';
+				}
 				$div .= '<div class="panel panel-default objectSortable">';
 				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
 					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
-					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
+					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
 				} else {
 					$div .= '<h3 class="panel-title">';
-					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
+					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
 				}
 				$div .= '</a>';
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i></h3>';
