@@ -3168,7 +3168,8 @@ div[id^=__lpform_] { /*lastpass*/
 #div_alert,
 .alert,
 .jqAlert,
-.expressionACTION {
+.expressionACTION,
+.progressbarContainer .progress {
   border-radius: var(--border-radius) !important;
 }
 
