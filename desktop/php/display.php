@@ -116,19 +116,27 @@ if (!is_array($remove_history)) {
 			
 			//one panel per parent:
 			$i = 0;
+			$div = '';
 			foreach ($objects as $object) {
-				$div = '';
+				$numParents = $object->getConfiguration('parentNumber');
+				if ($numParents > 0) {
+					$aStyle = ' style="margin-left:' . (10 + 10*$object->getConfiguration('parentNumber')) . 'px;"';
+				} else {
+					$aStyle = ' style=""';
+				}
 				$div .= '<div class="panel panel-default objectSortable">';
 				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
-					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
-					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
+					$aStyle = str_replace('style="', 'style="color:'.$object->getDisplay('tagTextColor').'!important;', $aStyle);
+					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'">';
+					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
 				} else {
 					$div .= '<h3 class="panel-title">';
-					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
+					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
 				}
 				$div .= '</a>';
-				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i></h3>';
+				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
 				$div .= '</div>';
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
@@ -161,8 +169,9 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				$div .= '</div>';
 				$div .= '</div>';
-				echo $div;
 			}
+			echo $div;
+			$div = null;
 			?>
 		</div>
 	</div>
