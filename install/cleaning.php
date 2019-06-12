@@ -96,7 +96,7 @@ try {
         continue;
       }
     }
-    $cmd->save();
+    $cmd->save(true);
   }
   
   foreach (eqLogic::all() as $eqLogic) {
@@ -140,7 +140,7 @@ try {
         continue;
       }
     }
-    $eqLogic->save();
+    $eqLogic->save(true);
   }
   
 }catch (Exception $e) {
