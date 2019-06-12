@@ -73,78 +73,82 @@ usort($list, function ($a, $b) {
 			<tbody>
 				<?php
 				foreach (eqLogic::all() as $eqLogic) {
+					$div = '';
 					foreach ($eqLogic->getCmd('info') as $cmd) {
 						if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
-							echo '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
+							$div .= '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
 							$actions = '';
 							foreach ($cmd->getConfiguration('actionCheckCmd') as $actionCmd) {
 								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
 							}
-							echo trim($actions);
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo '</td>';
-							echo '</tr>';
+							$div .= trim($actions);
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
 						}
 					}
+					if ($div != '') echo $div;
+					$div = '';
 					foreach ($eqLogic->getCmd('action') as $cmd) {
 						if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
 								$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
 							}
-							echo trim($actions);
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo '</td>';
-							echo '</tr>';
+							$div .= trim($actions);
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
 						}
 						if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
 							$actions = '';
 							foreach ($cmd->getConfiguration('jeedomPostExecCmd') as $actionCmd) {
 								$actions .= scenarioExpression::humanAction($actionCmd)  . '<br/>';
 							}
-							echo trim($actions);
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo '</td>';
-							echo '</tr>';
+							$div .= trim($actions);
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
 						}
 						if ($cmd->getConfiguration('actionConfirm')) {
 							$code = '';
 							if ($cmd->getConfiguration('actionCodeAccess')) {
 								$code = ' avec code';
 							}
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-							echo 'Confirmation de l\'action' . $code;
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo '</td>';
-							echo '</tr>';
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
+							$div .= 'Confirmation de l\'action' . $code;
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
 						}
 						if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
-							echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-							echo 'Code de confirmation de l\'action';
-							echo '</td>';
-							echo '<td>';
-							echo '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-							echo '</td>';
-							echo '</tr>';
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
+							$div .= 'Code de confirmation de l\'action';
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
 						}
 					}
+					if ($div != '') echo $div;
 				}
 				?>
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -217,7 +221,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">

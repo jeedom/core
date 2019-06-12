@@ -203,12 +203,17 @@ legend {
 }
 [data-page=display] #div_pageContainer #display ul > li {
   list-style-type: none;
-  margin: 2px 0 !important;
-  padding: 1.3px 5px !important;
+  margin: 2px 25px !important;
+  padding: 1px 5px !important;
+  border-bottom: 1px solid var(--el-defaultColor);
+}
+[data-page=display] #div_pageContainer #display ul > li input {
+  top: 2px;
 }
 [data-page=display] #div_pageContainer #display ul > li > ul > li {
-  margin: 1.3px !important;
-  padding: 2px 5px !important;
+  margin: 0 !important;
+  padding: 3px 5px !important;
+  color: var(--linkHoverLight-color) !important;
 }
 [data-page=display] #div_pageContainer #display ul > li > ul > li > i {
   margin: 0 !important;
@@ -1322,11 +1327,13 @@ div.panel {
   padding: 10px 15px;
 }
 .panel-title > a.accordion-toggle {
-  width: calc(100% - 550px);
+  width: calc(100% - 100px);
   height: 100%;
-  margin-right: 200px !important;
   padding: 8px 15px;
   display: inline-block;
+}
+[data-page="health"] .panel-title > a.accordion-toggle {
+  width: calc(100% - 250px);
 }
 body:not([data-page="plugin"]) .panel-title .pull-right {
   position: relative;
@@ -2421,17 +2428,22 @@ path.highcharts-graph {
   stroke-width: 1.2;
 }
 
-.highcharts-tooltip-box,
-.highcharts-label-box {
-  fill: var(--sc-form-color);
-  fill-opacity: 1 !important;
+
+.highcharts-tooltip .highcharts-tooltip-box,
+.highcharts-tooltip .highcharts-label-box {
   stroke-width: 0.6 !important;
 }
-.highcharts-tooltip text {
-  fill: var(--txt-color) !important;
-  text-shadow: none !important;
+.highcharts-tooltip .highcharts-tooltip-box path {
+  fill: rgb(var(--bg-color)) !important;
 }
-
+.highcharts-tooltip .highcharts-tooltip-box text,
+.highcharts-tooltip .highcharts-tooltip-box text tspan {
+  fill: rgb(var(--contrast-color)) !important;
+  font-weight: 400 !important;
+}
+.highcharts-tooltip .highcharts-shadow {
+  display: none;
+}
 
 
 #div_graphLinkRenderer g {
@@ -3158,7 +3170,8 @@ div[id^=__lpform_] { /*lastpass*/
 #div_alert,
 .alert,
 .jqAlert,
-.expressionACTION {
+.expressionACTION,
+.progressbarContainer .progress {
   border-radius: var(--border-radius) !important;
 }
 
@@ -3196,6 +3209,13 @@ textarea,
 button,
 pre {
   border-radius: var(--border-radius) !important;
+}
+
+pre {
+  font-family: "Roboto";
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  line-height: 14px;
 }
 
 .input-group .btn,

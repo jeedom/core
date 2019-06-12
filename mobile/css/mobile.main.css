@@ -676,6 +676,22 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   margin-top: 5px;
 }
 /* ________________HIGHCHARTS */
+.highcharts-tooltip .highcharts-tooltip-box,
+.highcharts-tooltip .highcharts-label-box {
+  stroke-width: 0.6 !important;
+}
+.highcharts-tooltip .highcharts-tooltip-box path {
+  fill: rgb(var(--bg-color)) !important;
+}
+.highcharts-tooltip .highcharts-tooltip-box text,
+.highcharts-tooltip .highcharts-tooltip-box text tspan {
+  fill: rgb(var(--contrast-color)) !important;
+  font-weight: 400 !important;
+}
+.highcharts-tooltip .highcharts-shadow {
+  display: none;
+}
+
 /* arc gauges and sliders */
 .highcharts-pane {
   stroke-width: 0;

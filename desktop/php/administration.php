@@ -383,38 +383,40 @@ user::isBan();
 					<hr class="hrPrimary">
 					<?php
 					if (init('rescue', 0) == 0) {
+						$div = '';
 						foreach (plugin::listPlugin(true) as $plugin) {
 							if (config::byKey('api', $plugin->getId()) == '') {
 								continue;
 							}
-							echo '<div class="form-group">';
-							echo '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
-							echo '<sup><i class="fas fa-question-circle tooltips" title="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
-							echo '</label>';
-							echo '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
-							echo '<div class="input-group">';
-							echo '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
-							echo '<span class="input-group-btn">';
-							echo '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
-							echo '</span>';
-							echo '</div>';
-							echo '</div>';
-							echo '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
-							echo '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
-							echo '<div class="dropdown dropup dynDropdown">';
-							echo '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::' . $plugin->getId() . '::mode">';
-							echo '<span class="caret"></span>';
-							echo '</button>';
-							echo '<ul class="dropdown-menu dropdown-menu-right">';
-							echo '<li><a href="#" data-value="enable">{{Activé}}</a></li>';
-							echo '<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>';
-							echo '<li><a href="#" data-value="localhost">{{Localhost}}</a></li>';
-							echo '<li><a href="#" data-value="disable">{{Désactivé}}</a></li>';
-							echo '</ul>';
-							echo '</div>';
-							echo '</div>';
-							echo '</div>';
+							$div =  '<div class="form-group">';
+							$div .= '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
+							$div .= '<sup><i class="fas fa-question-circle tooltips" title="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
+							$div .= '</label>';
+							$div .= '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
+							$div .= '<div class="input-group">';
+							$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
+							$div .= '<span class="input-group-btn">';
+							$div .= '<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
+							$div .= '</span>';
+							$div .= '</div>';
+							$div .= '</div>';
+							$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
+							$div .= '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
+							$div .= '<div class="dropdown dropup dynDropdown">';
+							$div .= '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="api::' . $plugin->getId() . '::mode">';
+							$div .= '<span class="caret"></span>';
+							$div .= '</button>';
+							$div .= '<ul class="dropdown-menu dropdown-menu-right">';
+							$div .= '<li><a href="#" data-value="enable">{{Activé}}</a></li>';
+							$div .= '<li><a href="#" data-value="whiteip">{{IP blanche}}</a></li>';
+							$div .= '<li><a href="#" data-value="localhost">{{Localhost}}</a></li>';
+							$div .= '<li><a href="#" data-value="disable">{{Désactivé}}</a></li>';
+							$div .= '</ul>';
+							$div .= '</div>';
+							$div .= '</div>';
+							$div .= '</div>';
 						}
+						echo $div;
 					}
 					?>
 				</fieldset>
@@ -637,17 +639,19 @@ user::isBan();
 								$values = array();
 							}
 							if (count($values) != 0) {
+								$div = '';
 								foreach ($values as $value) {
-									echo '<tr>';
-									echo '<td>' . $value['ip'] . '</td>';
-									echo '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+									$div .= '<tr>';
+									$div .= '<td>' . $value['ip'] . '</td>';
+									$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
 									if (config::byKey('security::bantime') < 0) {
-										echo '<td>{{Jamais}}</td>';
+										$div .= '<td>{{Jamais}}</td>';
 									} else {
-										echo '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
 									}
-									echo '</tr>';
+									$div .= '</tr>';
 								}
+								echo $div;
 							}
 							?>
 						</tbody>
@@ -728,20 +732,22 @@ user::isBan();
 						</thead>
 						<tbody>
 							<?php
+							$div = '';
 							foreach (network::getInterfaces() as $interface) {
 								$mac = network::getInterfaceMac($interface);
-								echo '<tr>';
-								echo '<td>';
-								echo $interface;
-								echo '</td>';
-								echo '<td>';
-								echo network::getInterfaceIp($interface);
-								echo '</td>';
-								echo '<td>';
-								echo network::getInterfaceMac($interface);
-								echo '</td>';
-								echo '</tr>';
+								$div .= '<tr>';
+								$div .= '<td>';
+								$div .= $interface;
+								$div .= '</td>';
+								$div .= '<td>';
+								$div .= network::getInterfaceIp($interface);
+								$div .= '</td>';
+								$div .= '<td>';
+								$div .= network::getInterfaceMac($interface);
+								$div .= '</td>';
+								$div .= '</tr>';
 							}
+							echo $div;
 							?>
 						</tbody>
 					</table>
@@ -778,29 +784,30 @@ user::isBan();
 									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 									continue;
 								}
-								echo '<div class="form-group col-xs-12">';
-								echo '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
-								echo '<div class="col-xs-8">';
-								echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-								echo '</div>';
-								echo '</div>';
-								echo '<div class="form-group col-xs-12">';
-								echo '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
-								echo '<div class="col-xs-8">';
+								$div = '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
+								$div .= '<div class="col-xs-8">';
+								$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
+								$div .= '<div class="col-xs-8">';
 								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-									echo '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+									$div .= '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 								} else {
-									echo '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
+									$div .= '<span class="label label-warning" title="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 								}
-								echo '</div>';
-								echo '</div>';
-								echo '<div class="form-group col-xs-12">';
-								echo '<label class="col-xs-4 control-label">{{Gestion}}</label>';
-								echo '<div class="col-xs-8">';
-								echo '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-								echo '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
-								echo '</div>';
-								echo '</div>';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Gestion}}</label>';
+								$div .= '<div class="col-xs-8">';
+								$div .= '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
+								$div .= '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
+								$div .= '</div>';
+								$div .= '</div>';
+								echo $div;
 							}
 							?>
 						</fieldset>
@@ -1548,26 +1555,28 @@ user::isBan();
 						<fieldset>
 							<br/>
 							<?php
+							$div = '';
 							foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-								echo '<div class="form-group">';
-								echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
-								echo '<div class="col-sm-1">';
-								echo '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
-								echo '</div>';
-								echo '</div>';
-								echo '<div class="form-group">';
-								echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
-								echo '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
-								echo '<div class="input-group">';
-								echo '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
-								echo '<span class="input-group-btn">';
-								echo '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" title="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
-								echo '</span>';
-								echo '</div>';
-								echo '</div>';
-								echo '</div>';
-								echo '<hr/>';
+								$div .= '<div class="form-group">';
+								$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
+								$div .= '<div class="col-sm-1">';
+								$div .= '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<div class="form-group">';
+								$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
+								$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
+								$div .= '<div class="input-group">';
+								$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
+								$div .= '<span class="input-group-btn">';
+								$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" title="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+								$div .= '</span>';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<hr/>';
 							}
+							echo $div;
 							?>
 						</fieldset>
 					</form>
@@ -1637,35 +1646,39 @@ user::isBan();
 							<?php
 
 							$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
+							$div = '';
 							foreach ($other_log as $name) {
-								echo '<form class="form-horizontal">';
-								echo '<div class="form-group">';
-								echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . ucfirst($name) . '</label>';
-								echo '<div class="col-sm-8">';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /> {{Debug}}</label>';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /> {{Info}}</label>';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /> {{Warning}}</label>';
-								echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /> {{Erreur}}</label>';
-								echo '</div>';
-								echo '</div>';
+								$div .= '<form class="form-horizontal">';
+								$div .= '<div class="form-group">';
+								$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . ucfirst($name) . '</label>';
+								$div .= '<div class="col-sm-8">';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /> {{Debug}}</label>';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /> {{Info}}</label>';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /> {{Warning}}</label>';
+								$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /> {{Erreur}}</label>';
+								$div .= '</div>';
+								$div .= '</div>';
 							}
+							if ($div != '') echo $div;
 							if (init('rescue', 0) == 0) {
+								$div = '';
 								foreach (plugin::listPlugin(true) as $plugin) {
-									echo '<form class="form-horizontal">';
-									echo '<div class="form-group">';
-									echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . $plugin->getName() . '</label>';
-									echo '<div class="col-sm-8">';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
-									echo '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
-									echo '</div>';
-									echo '</div>';
+									$div .= '<form class="form-horizontal">';
+									$div .= '<div class="form-group">';
+									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . $plugin->getName() . '</label>';
+									$div .= '<div class="col-sm-8">';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
+									$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
+									$div .= '</div>';
+									$div .= '</div>';
 								}
+								if ($div != '') echo $div;
 							}
 							?>
 						</fieldset>
@@ -1784,66 +1797,69 @@ user::isBan();
 							<div class="tab-content">
 								<?php
 								foreach ($repos as $key => $value) {
+									$div = '';
 									$active = ($key == 'market') ? 'active' : '';
-									echo '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
-									echo '<br/>';
-									echo '<div class="form-group">';
-									echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
-									echo '<div class="col-sm-1">';
-									echo '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
-									echo '</div>';
-									echo '</div>';
+									$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
+									$div .= '<br/>';
+									$div .= '<div class="form-group">';
+									$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
+									$div .= '<div class="col-sm-1">';
+									$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
+									$div .= '</div>';
+									$div .= '</div>';
 									if ($value['scope']['hasConfiguration'] === false) {
-										echo '</div>';
+										$div .= '</div>';
+										echo $div;
 										continue;
 									}
-									echo '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
+									$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
 									foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
-										echo '<div class="form-group">';
-										echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
-										echo $parameter['name'];
-										echo '</label>';
-										echo '<div class="col-sm-6">';
+										$div .= '<div class="form-group">';
+										$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
+										$div .= $parameter['name'];
+										$div .= '</label>';
+										$div .= '<div class="col-sm-6">';
 										$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 										switch ($parameter['type']) {
 											case 'checkbox':
-											echo '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'input':
-											echo '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'number':
-											echo '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'password':
-											echo '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+											$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 											break;
 											case 'select':
-											echo '<div class="dropdown dropup dynDropdown">';
-											echo '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="' . $key . '::' . $pKey . '">';
-											echo '<span class="caret"></span>';
-											echo '</button>';
-											echo '<ul class="dropdown-menu dropdown-menu-right">';
+											$div .= '<div class="dropdown dropup dynDropdown">';
+											$div .= '<button class="btn btn-default dropdown-toggle configKey" type="button" data-toggle="dropdown" data-l1key="' . $key . '::' . $pKey . '">';
+											$div .= '<span class="caret"></span>';
+											$div .= '</button>';
+											$div .= '<ul class="dropdown-menu dropdown-menu-right">';
 											foreach ($parameter['values'] as $optkey => $optval) {
-												echo '<li><a href="#" data-value="' . $optkey . '">' . $optval . '</a></li>';
+												$div .= '<li><a href="#" data-value="' . $optkey . '">' . $optval . '</a></li>';
 											}
-											echo '</ul>';
-											echo '</div>';
+											$div .= '</ul>';
+											$div .= '</div>';
 											break;
 										}
-										echo '</div>';
-										echo '</div>';
+										$div .= '</div>';
+										$div .= '</div>';
 									}
 									if (isset($value['scope']['test']) && $value['scope']['test']) {
-										echo '<div class="form-group">';
-										echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
-										echo '<div class="col-sm-4">';
-										echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
-										echo '</div>';
-										echo '</div>';
+										$div .= '<div class="form-group">';
+										$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
+										$div .= '<div class="col-sm-4">';
+										$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+										$div .= '</div>';
+										$div .= '</div>';
 									}
-									echo '</div>';
-									echo '</div>';
+									$div .= '</div>';
+									$div .= '</div>';
+									echo $div;
 								}
 								?>
 							</fieldset>

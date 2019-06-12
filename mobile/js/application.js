@@ -271,6 +271,23 @@ function initApplication(_reinit) {
         if (isset(jeedom.theme.current_mobile_theme) && jeedom.theme.current_mobile_theme != '') {
           include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.js');
         }
+
+        var widget_shadow = true
+        var useAdvance = 0
+        if(typeof jeedom.theme != 'undefined'){
+          if(typeof jeedom.theme['interface::advance::enable'] != 'undefined'){
+            useAdvance = parseInt(jeedom.theme['interface::advance::enable'])
+          }
+          if(typeof jeedom.theme['widget::shadow'] != 'undefined' && useAdvance == 1 && jeedom.theme['widget::shadow'] == '1'){
+            widget_shadow = false
+          }
+        }
+        if(widget_shadow){
+          themePath = 'core/themes/' + jeedom.theme['mobile_theme_color'] + '/mobile'
+          include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + 'shadows.css');
+        }
+
+
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
             include.push('mobile/custom/custom.css');
@@ -341,9 +358,10 @@ function page(_page, _title, _option, _plugin,_dialog) {
   if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page;
     $('#page').load(page, function () {
+      $('body').attr('data-page', page);
       $('#page').trigger('create');
       $('#pagecontainer').css('padding-top','64px');
-      setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100);
+      setTimeout(function(){$('#pagecontainer').css('padding-top','64px');}, 100);
     });
     return;
   }
@@ -386,6 +404,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     });
   }else{
     $('#page').hide().load(page, function () {
+      $('body').attr('data-page', page);
       window.history.pushState('','','index.php?v=m&p=' +_page);
       $('#page').trigger('create');
       var functionName = '';

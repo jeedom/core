@@ -603,17 +603,27 @@ $(function () {
     loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
   });
 
-
+  if (getCookie('currentTheme') == 'alternate') {
+  	var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
+    $('#bt_switchTheme').html(themeButton)
+  	$('#bootstrap_theme_css').attr('data-nochange',0)
+  }
+  
   $('body').on('click','#bt_switchTheme',function(){
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
     var themeCook = 'alternate'
+    var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
       themeCook = 'default'
+      themeButton = '<i class="fas fa-sync-alt"></i> Thème alternatif'
+      $('#bootstrap_theme_css').attr('data-nochange',0)
+    } else {
+      $('#bootstrap_theme_css').attr('data-nochange',1);
     }
-    document.cookie = "currentTheme=" + themeCook + "; path=/";
+    document.cookie = "currentTheme=" + themeCook + "; path=/"
     $('#bootstrap_theme_css').attr('href', theme);
-    $('#bootstrap_theme_css').attr('data-nochange',1);
+    $('#bt_switchTheme').html(themeButton)
   });
 
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -912,6 +922,15 @@ function initHelp(){
 }
 
 //Commons__
+function getCookie(name) {
+  let cookie = {};
+  document.cookie.split(';').forEach(function(el) {
+    let [k,v] = el.split('=');
+    cookie[k.trim()] = v;
+  })
+  return cookie[name];
+}
+
 function normTextLower(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
@@ -1478,16 +1497,16 @@ function editWidgetCmdMode(_mode) {
     }
   }
 
-  //Extensions__
-  jQuery.fn.findAtDepth = function (selector, maxDepth) {
-    var depths = [], i;
-    if (maxDepth > 0) {
-      for (i = 1; i <= maxDepth; i++) {
-        depths.push('> ' + new Array(i).join('* > ') + selector);
-      }
-      selector = depths.join(', ');
+//Extensions__
+jQuery.fn.findAtDepth = function (selector, maxDepth) {
+  var depths = [], i;
+  if (maxDepth > 0) {
+    for (i = 1; i <= maxDepth; i++) {
+      depths.push('> ' + new Array(i).join('* > ') + selector);
     }
-    return this.find(selector);
-  };
+    selector = depths.join(', ');
+  }
+  return this.find(selector);
+};
 
-  function initCheckBox(){}
+function initCheckBox(){}
