@@ -55,6 +55,7 @@ $('#bt_doUpdate').off('click').on('click', function () {
   var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
   $.hideAlert();
   progress = 0;
+  if ($('#div_log').is(':visible')) $('.progressbarContainer').appendTo('#div_log')
   updateProgressBar();
   jeedom.update.doAll({
     options: options,
