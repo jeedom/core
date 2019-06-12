@@ -1567,9 +1567,9 @@ class eqLogic {
 	public function setDisplay($_key, $_value) {
 		if ($this->getDisplay($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
+			$this->_changed = true;
 		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 	}
 	

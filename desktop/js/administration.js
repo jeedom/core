@@ -30,14 +30,14 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
-
+  
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-
+  
   $('#searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary').show()
@@ -47,10 +47,10 @@ $('#in_searchConfig').keyup(function () {
   }
   if (search.length < 3) return
   search = normTextLower(search)
-
+  
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-
+  
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
     var text = $(this).html()
@@ -63,7 +63,7 @@ $('#in_searchConfig').keyup(function () {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-
+      
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
@@ -98,7 +98,7 @@ $(function () {
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-
+  
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   });
@@ -325,7 +325,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-
+  
   return false;
 });
 
@@ -646,7 +646,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-
+      
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
@@ -753,19 +753,30 @@ $('.testRepoConnection').on('click',function(){
 
 /**************************SYSTEM***********************************/
 $('#bt_accessSystemAdministration').on('click',function(){
-  $('#md_modal').dialog({title: "{{Administration système}}"});
-  $("#md_modal").load('index.php?v=d&modal=system.action').dialog('open');
+  $('#md_modal').dialog({title: "{{Administration système}}"})
+  .load('index.php?v=d&modal=system.action').dialog('open');
 });
 
 /**************************Database***********************************/
 $('#bt_accessDbAdministration').on('click',function(){
-  $('#md_modal').dialog({title: "{{Administration base de données}}"});
-  $("#md_modal").load('index.php?v=d&modal=db.action').dialog('open');
+  $('#md_modal').dialog({title: "{{Administration base de données}}"})
+  .load('index.php?v=d&modal=db.action').dialog('open');
 });
 
 $('#bt_checkDatabase').on('click',function(){
-  $('#md_modal').dialog({title: "{{Vérification base de données}}"});
-  $("#md_modal").load('index.php?v=d&modal=db.check').dialog('open');
+  $('#md_modal').dialog({title: "{{Vérification base de données}}"})
+  .load('index.php?v=d&modal=db.check').dialog('open');
+});
+
+$('#bt_cleanDatabase').off('click').on('click',function(){
+  jeedom.cleanDatabase({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#div_alert').showAlert({message: '{{Nettoyage lancé avec succès. Pour suivre l\'avancement merci de regarder le log cleaningdb}}', level: 'success'});
+    }
+  });
 });
 
 /**************************Summary***********************************/
