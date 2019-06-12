@@ -116,6 +116,17 @@ try {
       }
     }
     
+    if($eqLogic->getDisplay('layout::dashboard') != 'table'){
+      $displays = $eqLogic->getDisplay();
+      foreach ($displays as $key => $value) {
+        if(strpos($key,'layout::') === 0){
+          $eqLogic->setDisplay($key,null);
+          $nb_cleaning++;
+          continue;
+        }
+      }
+    }
+    
     $configurations = $eqLogic->getConfiguration();
     foreach ($configurations as $key => $value) {
       if($value === ''){
@@ -130,8 +141,6 @@ try {
     $eqLogic->save();
   }
   
-  
-  echo 'Cleaning field : '.$nb_cleaning."\n";
 }catch (Exception $e) {
   echo "\nError : ";
   echo $e->getMessage();
