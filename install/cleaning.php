@@ -44,14 +44,10 @@ try {
       'showOnview',
       'showOnplan',
       'showOndashboard',
-      'showNameOndashboard',
       'showNameOnplan',
       'showNameOnview',
-      'showIconAndNamedashboard',
-      'showNameOnmobile',
       'showIconAndNameplan',
       'showIconAndNameview',
-      'showIconAndNamemobile',
       'generic_type'
     )
   );
