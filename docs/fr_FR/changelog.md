@@ -50,6 +50,7 @@ Changelog
 - Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+- Refonte complète du *résumé domotique*. Possibilité d'ordonner les objets, équipements, commandes.
 - Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
