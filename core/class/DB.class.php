@@ -191,15 +191,15 @@ class DB {
 			}else{
 				$res = true;
 			}
-			if(method_exists($object, 'setChanged')){
-				$object->setChanged(false);
-			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
 			}
 		}
 		if (!$_direct && method_exists($object, 'postSave')) {
 			$object->postSave();
+		}
+		if(method_exists($object, 'setChanged')){
+			$object->setChanged(false);
 		}
 		return (null !== $res && false !== $res);
 	}
