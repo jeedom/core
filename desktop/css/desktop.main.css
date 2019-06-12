@@ -1327,11 +1327,13 @@ div.panel {
   padding: 10px 15px;
 }
 .panel-title > a.accordion-toggle {
-  width: calc(100% - 550px);
+  width: calc(100% - 100px);
   height: 100%;
-  margin-right: 200px !important;
   padding: 8px 15px;
   display: inline-block;
+}
+[data-page="health"] .panel-title > a.accordion-toggle {
+  width: calc(100% - 250px);
 }
 body:not([data-page="plugin"]) .panel-title .pull-right {
   position: relative;
