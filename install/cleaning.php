@@ -66,6 +66,7 @@ try {
   
   $nb_cleaning = 0;
   foreach (cmd::all() as $cmd) {
+    echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
     $displays = $cmd->getDisplay();
     foreach ($displays as $key => $value) {
       if($value === ''){
@@ -99,6 +100,7 @@ try {
   }
   
   foreach (eqLogic::all() as $eqLogic) {
+    echo 'Cleaning eqLogic : '.$eqLogic->getHumanName()."\n";
     $displays = $eqLogic->getDisplay();
     foreach ($displays as $key => $value) {
       if($value === ''){
