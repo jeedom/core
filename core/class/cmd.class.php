@@ -2103,7 +2103,7 @@ class cmd {
 		if(($_key == 'dashboard' || $_key == 'mobile') && $_value != 'default' && strpos($_value,'::') === false){
 			$_value = 'core::'.$_value;
 		}
-		if ($this->getTemplate($_key) != $_value) {
+		if ($this->getTemplate($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
 		}
@@ -2132,7 +2132,7 @@ class cmd {
 	}
 	
 	public function setDisplay($_key, $_value) {
-		if ($this->getDisplay($_key) != $_value) {
+		if ($this->getDisplay($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
 		}
