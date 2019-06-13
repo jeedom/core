@@ -275,7 +275,7 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
       success: function (data) {
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?';
         if(Object.keys(data).length > 0){
-          text += ' </br> Il est utilisé par : </br>';
+          text += ' </br> Il est utilisé par ou utilise : </br>';
           for(var i in data){
             var complement = '';
             if ('sourceName' in data[i]) {
