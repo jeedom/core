@@ -60,6 +60,10 @@ try {
     )
   );
   
+  $removeFolders = array(
+    __DIR__ . '/../font-awesome'
+  );
+  
   $nb_cleaning = 0;
   foreach (cmd::all() as $cmd) {
     echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
@@ -138,6 +142,13 @@ try {
     }
     $eqLogic->save(true);
   }
+  
+  foreach ($removeFolders as $folder) {
+    if(file_exists($folder)){
+      rrmdir($folder);
+    }
+  }
+  
   
 }catch (Exception $e) {
   echo "\nError : ";
