@@ -608,13 +608,15 @@ $(function () {
     $('#bt_switchTheme').html(themeButton)
   	$('#bootstrap_theme_css').attr('data-nochange',0)
   }
-  
+
   $('body').on('click','#bt_switchTheme',function(){
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
+    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+      themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
       themeButton = '<i class="fas fa-sync-alt"></i> Thème alternatif'
       $('#bootstrap_theme_css').attr('data-nochange',0)
@@ -624,6 +626,7 @@ $(function () {
     document.cookie = "currentTheme=" + themeCook + "; path=/"
     $('#bootstrap_theme_css').attr('href', theme);
     $('#bt_switchTheme').html(themeButton)
+    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
   });
 
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -676,12 +679,14 @@ function changeThemeAuto(){
       return;
     }
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
+    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
     var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
     if(parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime){
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
     }
     if($('#bootstrap_theme_css').attr('href') != theme){
       $('#bootstrap_theme_css').attr('href', theme);
+      if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
     }
   }, 60000);
 }
