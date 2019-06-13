@@ -25,7 +25,9 @@
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Z / Ctrl+Y)<br/><br/>
+- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Z / Ctrl+Y).
+- Suppression du partage de scénario.
+- Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
 - Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
 - Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
@@ -53,8 +55,7 @@
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
-- Suppression du partage de scénario.
-- Amélioration de la fenêtre de gestion des templates de *scénario*.
+
 
 3.3.24
 =====
