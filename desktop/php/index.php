@@ -121,7 +121,7 @@ function setTheme() {
 	if ($loadShadows) {
 		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
 		if(file_exists($shdPath)) {
-			echo '<link href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
+			echo '<link id="shadows_theme_css" href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
 		}
 	}
 }
