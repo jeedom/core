@@ -35,7 +35,8 @@ Changelog
 - Les champs de recherche supportent maintenant les accents.
 - Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
-- Lors d'une recherche, la touche *echap* annule la recherche.<br/><br/>
+- Lors d'une recherche, la touche *echap* annule la recherche.
+- Page Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
 - Ajout d'informations d'utilisation lors de la suppression d'un équipement.
 - Améliorations des tables avec option de filtre et tri.
 - Possibilité d'attribuer une icône à une interaction.
@@ -44,13 +45,13 @@ Changelog
 - Page update : ajout d'une barre de progression pendant l'update.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
+- Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
 - Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
 - Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 - Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
 - Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
-- Refonte complète du *résumé domotique*. Possibilité d'ordonner les objets, équipements, commandes.
 - Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
