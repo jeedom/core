@@ -1027,7 +1027,7 @@ class eqLogic {
 		if ($_pourcent < 0) {
 			$_pourcent = 0;
 		}
-		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.1)){
+		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.5)){
 			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
 			$this->save();
 		}
