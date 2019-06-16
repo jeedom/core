@@ -606,7 +606,7 @@ $(function () {
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
     $('#bt_switchTheme').html(themeButton)
-    $('#bootstrap_theme_css').attr('data-nochange',0)
+    $('#bootstrap_theme_css').attr('data-nochange',1)
   }
   
   $('body').on('click','#bt_switchTheme',function(){

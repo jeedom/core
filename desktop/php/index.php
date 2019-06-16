@@ -112,7 +112,7 @@ function setTheme() {
 	}
 	echo $themeCss;
 	include_file('core', $themeJs, 'themes.js');
-
+	
 	//shadows:
 	$loadShadows = true;
 	if (isset($jeedom_theme['interface::advance::enable']) && isset($jeedom_theme['widget::shadow'])) {
@@ -212,9 +212,9 @@ function setTheme() {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -507,4 +507,4 @@ function setTheme() {
 		<?php } 	?>
 	</body>
 	</html>
-
+	
