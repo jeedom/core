@@ -604,23 +604,21 @@ $(function () {
   });
   
   if (getCookie('currentTheme') == 'alternate') {
-    var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
-    $('#bt_switchTheme').html(themeButton)
-    $('#bootstrap_theme_css').attr('data-nochange',1)
+    $('#bt_switchTheme').html('<i class="fas fa-sync-alt"></i> {{Thème principal}}');
   }
   
   $('body').on('click','#bt_switchTheme',function(){
-    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
-    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
-    var themeCook = 'alternate'
-    var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
-      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
-      themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
-      themeCook = 'default'
-      themeButton = '<i class="fas fa-sync-alt"></i> Thème alternatif'
+      var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+      var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
+      var themeCook = 'default';
+      var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème alternatif}}';
       $('#bootstrap_theme_css').attr('data-nochange',0)
     } else {
+      var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
+      var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
+      var themeCook = 'alternate';
+      var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}';
       $('#bootstrap_theme_css').attr('data-nochange',1);
     }
     document.cookie = "currentTheme=" + themeCook + "; path=/"
