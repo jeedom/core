@@ -144,6 +144,11 @@ try {
         $nb_cleaning++;
         continue;
       }
+      if(strpos($key,'layout::mobile') !== false){
+        $eqLogic->setDisplay($key,null);
+        $nb_cleaning++;
+        continue;
+      }
     }
     
     if($eqLogic->getDisplay('layout::dashboard') != 'table'){
