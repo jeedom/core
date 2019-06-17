@@ -646,7 +646,7 @@ class eqLogic {
 		if (!$_noCache && config::byKey('widget::disableCache','core',0) == 0) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if (trim($mc->getValue()) != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				//		return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$translate_category = '';
@@ -755,13 +755,13 @@ class eqLogic {
 		switch ($this->getDisplay('layout::' . $_version)) {
 			case 'table':
 			$replace['#eqLogic_class#'] = 'eqLogic_layout_table';
-			$table = self::generateHtmlTable($this->getDisplay('layout::' . $_version . '::table::nbLine', 1), $this->getDisplay('layout::' . $_version . '::table::nbColumn', 1), $this->getDisplay('layout::' . $_version . '::table::parameters'));
+			$table = self::generateHtmlTable($this->getDisplay('layout::'.$_version.'::table::nbLine', 1), $this->getDisplay('layout::'.$_version.'::table::nbColumn', 1), $this->getDisplay('layout::'.$_version.'::table::parameters'));
 			$br_before = 0;
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				$tag = '#cmd::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::' . $_version . '::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
+				$tag = '#cmd::' . $this->getDisplay('layout::'.$_version.'::table::cmd::' . $cmd->getId() . '::line', 1) . '::' . $this->getDisplay('layout::'.$_version.'::table::cmd::' . $cmd->getId() . '::column', 1) . '#';
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$table['tag'][$tag] .= '<br/>';
 				}
@@ -891,7 +891,8 @@ class eqLogic {
 					}
 				}
 			}else{
-				foreach (array('dashboard', 'mobile') as $key) {
+				$cmd_ids = array();
+				foreach (array('dashboard') as $key) {
 					if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
 						$this->setDisplay('layout::' . $key . '::table::parameters', array('center' => 1, 'styletd' => 'padding:3px;'));
 					}
@@ -904,6 +905,7 @@ class eqLogic {
 						}
 					}
 					foreach ($this->getCmd() as $cmd) {
+						$cmd_ids[$cmd->getId()] = $cmd->getId();
 						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line') == '' && $cmd->getDisplay('layout::' . $key . '::table::cmd::line') != '') {
 							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::line', $cmd->getDisplay('layout::' . $key . '::table::cmd::line'));
 						}
@@ -922,6 +924,13 @@ class eqLogic {
 						if ($this->getDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column') == '') {
 							$this->setDisplay('layout::' . $key . '::table::cmd::' . $cmd->getId() . '::column', 1);
 						}
+					}
+				}
+				$displays = $this->getDisplay();
+				foreach ($displays as $key => $value) {
+					preg_match_all('/::cmd::(.*?)::/m', $key, $matches, PREG_SET_ORDER, 0);
+					if(isset($matches[1]) && !isset($cmd_ids[$matches[1]])){
+						$this->setDisplay($key,null);
 					}
 				}
 			}
@@ -1027,7 +1036,7 @@ class eqLogic {
 		if ($_pourcent < 0) {
 			$_pourcent = 0;
 		}
-		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.1)){
+		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.5)){
 			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
 			$this->save();
 		}
