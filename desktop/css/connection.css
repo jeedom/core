@@ -1,6 +1,6 @@
 body{
-	background: linear-gradient(180deg, rgba(147,204,1,0.6), rgba(147,204,1,1));
 	transition: all .5s;
+	background-image: linear-gradient(to bottom right, rgba(147,204,1,0.6), rgba(147,204,1,1));
 }
 
 .veen {
@@ -56,6 +56,7 @@ body{
 	transition: all .5s;
 	color: #303030;
 	overflow: hidden;
+	box-shadow: 0 8px 22px 2px rgba(0,0,0,0.2);
 }
 .veen .wrapper > .form-group{
 	padding: 15px 30px 30px;
