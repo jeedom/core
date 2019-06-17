@@ -1333,7 +1333,7 @@ div.panel {
   display: inline-block;
 }
 [data-page="health"] .panel-title > a.accordion-toggle {
-  width: calc(100% - 250px);
+  width: auto;
 }
 body:not([data-page="plugin"]) .panel-title .pull-right {
   position: relative;
