@@ -288,6 +288,10 @@ class plugin {
 	
 	public static function cron() {
 		$cache = cache::byKey('plugin::cron::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cron::inprogress', -1);
+			$cache = cache::byKey('plugin::cron::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cron n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -313,6 +317,10 @@ class plugin {
 	
 	public static function cron5() {
 		$cache = cache::byKey('plugin::cron5::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cron5::inprogress', -1);
+			$cache = cache::byKey('plugin::cron5::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cron5 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron5::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -338,6 +346,10 @@ class plugin {
 	
 	public static function cron10() {
 		$cache = cache::byKey('plugin::cron10::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cron10::inprogress', -1);
+			$cache = cache::byKey('plugin::cron10::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cron10 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron10::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -363,6 +375,10 @@ class plugin {
 	
 	public static function cron15() {
 		$cache = cache::byKey('plugin::cron15::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cron15::inprogress', -1);
+			$cache = cache::byKey('plugin::cron15::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cron15 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron15::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -388,6 +404,10 @@ class plugin {
 	
 	public static function cron30() {
 		$cache = cache::byKey('plugin::cron30::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cron30::inprogress', -1);
+			$cache = cache::byKey('plugin::cron30::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cron30 n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cron30::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -413,6 +433,10 @@ class plugin {
 	
 	public static function cronDaily() {
 		$cache = cache::byKey('plugin::cronDaily::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cronDaily::inprogress', -1);
+			$cache = cache::byKey('plugin::cronDaily::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cronDaily n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronDaily::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}
@@ -438,6 +462,10 @@ class plugin {
 	
 	public static function cronHourly() {
 		$cache = cache::byKey('plugin::cronHourly::inprogress');
+		if(is_array($cache->getValue(0))){
+			cache::set('plugin::cronHourly::inprogress', -1);
+			$cache = cache::byKey('plugin::cronHourly::inprogress');
+		}
 		if ($cache->getValue(0) > 3) {
 			message::add('core', __('La tache plugin::cronHourly n\'arrive pas à finir à cause du plugin : ', __FILE__) . cache::byKey('plugin::cronHourly::last')->getValue() . __(' nous vous conseillons de désactiver le plugin et de contacter l\'auteur', __FILE__));
 		}

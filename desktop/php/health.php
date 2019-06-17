@@ -204,20 +204,20 @@ $starttime = getmicrotime();
 			$pendingMessage = '';
 			if ($asNok != 0) {
 				$totalNok += 1;
-				$errorMessage = '<span class="label label-danger pull-right" style="position:relative;top:-3px;">' . $asNok . ' {{erreurs}} </span>';
+				$errorMessage = '<span class="label label-danger pull-right">' . $asNok . ' {{erreurs}} </span>';
 			}
 			if ($asPending != 0) {
 				$totalPending += 1;
-				$pendingMessage = '<span class="label label-warning pull-right" style="position:relative;top:-3px;">' . $asPending . ' {{en cours}} </span>';
+				$pendingMessage = '<span class="label label-warning pull-right">' . $asPending . ' {{en cours}} </span>';
 			}
 			if ($asPending == 0 && $asNok == 0) {
-				$errorMessage = '<span class="label label-success pull-right" style="position:relative;top:-3px;">{{OK}}</span>';
+				$errorMessage = '<span class="label label-success pull-right">{{OK}}</span>';
 			}
 			$globalhtml .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '">';
 			$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
 			$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
 			$globalhtml .= $errorMessage . $pendingMessage;
-			$globalhtml .= '<i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port;
+			$globalhtml .= '<span><i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port.'</span>';
 			$globalhtml .= '</h3>';
 			$globalhtml .= '</div>';
 			$globalhtml .= '<div id="config_' . $plugin->getId() . '" class="panel-collapse collapse">';

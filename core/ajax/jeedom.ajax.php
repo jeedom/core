@@ -245,6 +245,11 @@ try {
 		ajax::success(jeedom::rebootSystem());
 	}
 	
+	if (init('action') == 'cleanDatabase') {
+		unautorizedInDemo();
+		ajax::success(jeedom::cleanDatabase());
+	}
+	
 	if (init('action') == 'cleanFileSystemRight') {
 		unautorizedInDemo();
 		ajax::success(jeedom::cleanFileSytemRight());

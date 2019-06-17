@@ -112,7 +112,7 @@ function setTheme() {
 	}
 	echo $themeCss;
 	include_file('core', $themeJs, 'themes.js');
-
+	
 	//shadows:
 	$loadShadows = true;
 	if (isset($jeedom_theme['interface::advance::enable']) && isset($jeedom_theme['widget::shadow'])) {
@@ -121,7 +121,7 @@ function setTheme() {
 	if ($loadShadows) {
 		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
 		if(file_exists($shdPath)) {
-			echo '<link href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
+			echo '<link id="shadows_theme_css" href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
 		}
 	}
 }
@@ -212,9 +212,9 @@ function setTheme() {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -356,7 +356,7 @@ function setTheme() {
 											<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
 												<ul class="dropdown-menu">
 													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-													<li><a href="index.php?v=d&p=backup"><i class="far fa-save"></i> {{Sauvegardes}}</a></li>
+													<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 													<?php if(jeedom::getHardwareName() == 'smart'){
 														echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
@@ -507,4 +507,4 @@ function setTheme() {
 		<?php } 	?>
 	</body>
 	</html>
-
+	

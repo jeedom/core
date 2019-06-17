@@ -475,6 +475,7 @@ function cleanUpdateLog() {
       if (progress == 100) {
         if (_UpdateObserver_) _UpdateObserver_.disconnect()
         $('.progressbarContainer').appendTo('#log.tab-pane > .row')
+        window.scrollTo(0, 0)
       }
     }
   }

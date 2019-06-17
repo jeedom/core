@@ -1572,10 +1572,7 @@ class cmd {
 				}
 			}
 		}
-		if ($this->getCache('alertLevel') == $currentLevel) {
-			return $currentLevel;
-		}
-		if ($_allowDuring && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
+		if ($_allowDuring && $currentLevel != 'none' && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			if (!is_object($cron)) {
@@ -2103,7 +2100,7 @@ class cmd {
 		if(($_key == 'dashboard' || $_key == 'mobile') && $_value != 'default' && strpos($_value,'::') === false){
 			$_value = 'core::'.$_value;
 		}
-		if ($this->getTemplate($_key) != $_value) {
+		if ($this->getTemplate($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
 		}
@@ -2132,7 +2129,7 @@ class cmd {
 	}
 	
 	public function setDisplay($_key, $_value) {
-		if ($this->getDisplay($_key) != $_value) {
+		if ($this->getDisplay($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
 		}
