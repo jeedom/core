@@ -604,21 +604,23 @@ $(function () {
   });
   
   if (getCookie('currentTheme') == 'alternate') {
-    $('#bt_switchTheme').html('<i class="fas fa-sync-alt"></i> {{Thème principal}}');
+    var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
+    $('#bt_switchTheme').html(themeButton)
+    $('#bootstrap_theme_css').attr('data-nochange',0)
   }
   
   $('body').on('click','#bt_switchTheme',function(){
+    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
+    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
+    var themeCook = 'alternate'
+    var themeButton = '<i class="fas fa-sync-alt"></i> Thème principal'
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
-      var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
-      var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
-      var themeCook = 'default';
-      var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème alternatif}}';
+      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+      themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
+      themeCook = 'default'
+      themeButton = '<i class="fas fa-sync-alt"></i> Thème alternatif'
       $('#bootstrap_theme_css').attr('data-nochange',0)
     } else {
-      var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
-      var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
-      var themeCook = 'alternate';
-      var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}';
       $('#bootstrap_theme_css').attr('data-nochange',1);
     }
     document.cookie = "currentTheme=" + themeCook + "; path=/"
@@ -926,14 +928,12 @@ function initHelp(){
 
 //Commons__
 function getCookie(name) {
-  var cookies = document.cookie.split(';');
-  for(var i in cookies){
-    var csplit = cookies[i].split('=');
-    if(name.trim() == csplit[0].trim()){
-      return csplit[1];
-    }
-  }
-  return '';
+  let cookie = {};
+  document.cookie.split(';').forEach(function(el) {
+    let [k,v] = el.split('=');
+    cookie[k.trim()] = v;
+  })
+  return cookie[name];
 }
 
 function normTextLower(_text) {
