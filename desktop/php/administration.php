@@ -388,7 +388,7 @@ user::isBan();
 							if (config::byKey('api', $plugin->getId()) == '') {
 								continue;
 							}
-							$div =  '<div class="form-group">';
+							$div .=  '<div class="form-group">';
 							$div .= '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
 							$div .= '<sup><i class="fas fa-question-circle tooltips" title="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
 							$div .= '</label>';
