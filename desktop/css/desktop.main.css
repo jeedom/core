@@ -86,8 +86,9 @@ a.btn,
 .widget-name,
 .cmd-widget,
 legend,
-span {
-  cursor: default;
+span,
+.label {
+  cursor: default !important;
 }
 
 a > img:hover {

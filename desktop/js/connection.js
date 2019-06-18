@@ -78,7 +78,7 @@ $('#in_login_username').on('focusout change keypress',function(){
 	    	$('#div_alert').showAlert({message: 'Les deux mots de passe ne sont pas identiques', level: 'danger'});
     	}
     });
-    
+
     $('#bt_login_validate_market').on('click', function() {
     	var username = $('#in_login_username_market').val();
         var password = $('#in_login_password_market').val();
@@ -134,6 +134,9 @@ $('#in_login_username').on('focusout change keypress',function(){
 	 });
 // ADD //
 $(document).ready(function(){
+	var theme = 'core/themes/core2019_Light/desktop/core2019_Light.css';
+	$('#bootstrap_theme_css').attr('href', theme);
+
 	$(".veen .login-btn button").click(function(){
 		$('.veen .wrapper').removeClass('move');
 		$('.body').css('background','#ff4931');
@@ -154,7 +157,7 @@ $(document).ready(function(){
 			},3000);
 			},5000);
 	}, 10000);
-	
+
 });
 
 // Function //

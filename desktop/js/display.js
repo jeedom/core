@@ -22,7 +22,7 @@ $('.backgroundforJeedom').css({
 
 $(function(){
   $('#display').show()
-  $('#in_search').focus()
+  if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
 })
 
 //searching

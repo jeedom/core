@@ -81,7 +81,7 @@ $starttime = getmicrotime();
 			$count += 1;
 			$globalhtml .= '<div class="panel panel-default">';
 			$globalhtml .= ' <div class="panel-heading">
-				<h3 class="panel-title">';
+				<h3 class="panel-title cursor">';
 			if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 				$html .= '<table class="table table-condensed table-bordered">';
 				$html .= '<tbody>';
