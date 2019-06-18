@@ -945,7 +945,10 @@ class cmd {
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
-			$this->getEqLogic()->refreshWidget();
+			$eqLogic = $this->getEqLogic();
+			if(is_object($eqLogic)){
+				$eqLogic->refreshWidget();
+			}
 		}
 		if ($this->_needRefreshAlert && $this->getType() == 'info') {
 			$value = $this->execCmd();
