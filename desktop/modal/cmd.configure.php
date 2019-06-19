@@ -281,8 +281,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 								foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
 									if (strtolower($cmd->getType()) != strtolower($info['type'])) {
 										continue;
-									} elseif (isset($info['ignore']) && $info['ignore']) {
-										continue;
 									}
 									$info['key'] = $key;
 									if (!isset($groups[$info['family']])) {
@@ -300,7 +298,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 										if ($key == 0) {
 											echo '<optgroup label="{{' . $info['family'] . '}}">';
 										}
-										echo '<option value="' . $info['key'] . '">' . $info['name'] . '</option>';
+										$name = $info['name'];
+										if (isset($info['noapp']) && $info['noapp']) {
+											$name .= ' (Non géré par Application Mobile)';
+										}
+										echo '<option value="' . $info['key'] . '">' . $name . '</option>';
 									}
 									echo '</optgroup>';
 								}
