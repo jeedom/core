@@ -3352,12 +3352,11 @@ ul.dropdown-menu {
 @media screen and (max-width: 768px) {
   .navbar-fixed-top .navbar-collapse {
     position: fixed;
-    left: 70px;
-    top: 0;
-    bottom: 0;
-    width: calc(100% - 70px);
-    max-height: none;
-    overflow: hidden auto;
+    left: 15px;
+    top: 50px;
+    width: 100%;
+    max-height: calc(100% - 60px);
+    box-shadow: 0 12px 22px rgba(0,0,0,0.25);
   }
 }
 
