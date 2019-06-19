@@ -945,7 +945,10 @@ class cmd {
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
-			$this->getEqLogic()->refreshWidget();
+			$eqLogic = $this->getEqLogic();
+			if(is_object($eqLogic)){
+				$eqLogic->refreshWidget();
+			}
 		}
 		if ($this->_needRefreshAlert && $this->getType() == 'info') {
 			$value = $this->execCmd();
@@ -964,7 +967,10 @@ class cmd {
 	public function remove() {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
-		$this->getEqLogic()->emptyCacheWidget();
+		$eqLogic = $this->getEqLogic();
+		if(is_object($eqLogic)){
+			$eqLogic->emptyCacheWidget();
+		}
 		$this->emptyHistory();
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());

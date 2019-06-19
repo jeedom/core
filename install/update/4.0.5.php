@@ -42,10 +42,10 @@ foreach (eqLogic::all() as $eqLogic) {
           $plan->setCss('background-transparent',$eqLogic->getDisplay('background-color-transparentplan'));
         }
         if($eqLogic->getDisplay('border-defaultplan') != 1){
-          $plan->setCss('border',$eqLogic->getDisplay('borderplan'));
+          $plan->setCss('border',$eqLogic->getDisplay('borderplan').'px solid black');
         }
         if($eqLogic->getDisplay('border-radius-defaultplan') != 1){
-          $plan->setCss('border-radius',$eqLogic->getDisplay('border-radiusplan'));
+          $plan->setCss('border-radius',$eqLogic->getDisplay('border-radiusplan').'px');
         }
         if($eqLogic->getDisplay('color-defaultplan') != 1){
           $plan->setCss('color',$eqLogic->getDisplay('colorplan'));

@@ -896,25 +896,6 @@ function getNtpTime() {
 function cast($sourceObject, $destination) {
 	$obj_in = serialize($sourceObject);
 	return unserialize('O:' . strlen($destination) . ':"' . $destination . '":' . substr($obj_in, $obj_in[2] + 7));
-	/*if (is_string($destination)) {
-	$destination = new $destination();
-}
-$sourceReflection = new ReflectionObject($sourceObject);
-$destinationReflection = new ReflectionObject($destination);
-$sourceProperties = $sourceReflection->getProperties();
-foreach ($sourceProperties as $sourceProperty) {
-$sourceProperty->setAccessible(true);
-$name = $sourceProperty->getName();
-$value = $sourceProperty->getValue($sourceObject);
-if ($destinationReflection->hasProperty($name)) {
-$propDest = $destinationReflection->getProperty($name);
-$propDest->setAccessible(true);
-$propDest->setValue($destination, $value);
-} else {
-$destination->$name = $value;
-}
-}
-*/
 }
 
 function getIpFromString($_string) {

@@ -32,6 +32,15 @@ if (!is_array($remove_history)) {
 }
 ?>
 <br/>
+<div class="eqActions pull-right">
+	<div class="input-group">
+		<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
+		</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
+		</a><a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
+		</a><a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
+		</a><a class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
+	</div>
+</div>
 <ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
 	<li role="presentation" class="active"><a href="#display" aria-controls="display" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
 	<li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
@@ -46,16 +55,6 @@ if (!is_array($remove_history)) {
 				<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
 				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
-			</div>
-
-			<div class="pull-right">
-				<div class="input-group">
-					<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
-					</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
-					</a><a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
-					</a><a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
-					</a><a class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
-				</div>
 			</div>
 		</div>
 		<br/><br/>
@@ -85,7 +84,7 @@ if (!is_array($remove_history)) {
 				$div .= '<div class="panel-body">';
 
 				$div .= '<ul class="eqLogicSortable">';
-				foreach ($eqLogics[$object->getId()] as $eqLogic) {
+				foreach ($eqLogics[-1] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getName() . ' ';
@@ -139,7 +138,7 @@ if (!is_array($remove_history)) {
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
 				$div .= '</div>';
-				
+
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
 

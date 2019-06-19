@@ -94,6 +94,11 @@ try {
   
   $nb_cleaning = 0;
   foreach (cmd::all() as $cmd) {
+    if(!is_object($cmd->getEqLogic())){
+      echo 'Remove cmd because no eqLogic found : '.$cmd->getHumanName()."\n";
+      $cmd->remove(true);
+      continue;
+    }
     echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
     $displays = $cmd->getDisplay();
     foreach ($displays as $key => $value) {

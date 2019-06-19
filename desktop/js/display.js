@@ -21,8 +21,10 @@ $('.backgroundforJeedom').css({
 })
 
 $(function(){
-  $('#display').show()
-  $('#in_search').focus()
+  if ($('[aria-controls="display"]').parent().hasClass('active')) {
+    $('#display').show()
+  	if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
+  }
 })
 
 //searching
@@ -195,6 +197,14 @@ $('#cb_actifDisplay').on('change',function() {
   } else {
     $('.eqLogic[data-enable=0]').hide()
   }
+})
+
+$('[aria-controls="history"]').on('click',function() {
+	$('.eqActions').hide()
+})
+$('[aria-controls="display"]').on('click',function() {
+	$('#display').show()
+	$('.eqActions').show()
 })
 
 $('.cb_selEqLogic').on('change',function(){

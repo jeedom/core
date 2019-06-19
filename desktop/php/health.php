@@ -8,7 +8,7 @@ $starttime = getmicrotime();
 <div class="panel-group" id="accordionHealth">
 	<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
 		<div class="panel-heading">
-			<h3 class="panel-title">
+			<h3 class="panel-title cursor">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
 					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span></a>
 				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="Benchmark Jeedom"></i>
@@ -81,7 +81,7 @@ $starttime = getmicrotime();
 			$count += 1;
 			$globalhtml .= '<div class="panel panel-default">';
 			$globalhtml .= ' <div class="panel-heading">
-				<h3 class="panel-title">';
+				<h3 class="panel-title cursor">';
 			if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 				$html .= '<table class="table table-condensed table-bordered">';
 				$html .= '<tbody>';
