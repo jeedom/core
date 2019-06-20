@@ -1500,6 +1500,10 @@ input.knob {
 .input-group-sm > .input-group-btn .btn {
   height: 28px !important;
 }
+.input-group-sm .btn{
+  height: 28px !important;
+  padding: 5px 10px;
+}
 .input-group-sm > .input-group-addon {
   padding: 0 0 0 3px;
 }
