@@ -22,19 +22,19 @@ $optionMaxSize = 15;
 				<center>
 					<i class="fas fa-plus-circle"></i>
 				</center>
-				<span><center>{{Ajouter}}</center></span>
+				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_regenerateInteract2">
 				<center>
 					<i class="fas fa-sync"></i>
 				</center>
-				<span><center>{{Regénérer}}</center></span>
+				<span class="txtColor"><center>{{Regénérer}}</center></span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_testInteract2">
 				<center>
 					<i class="fas fa-comment"></i>
 				</center>
-				<span ><center>{{Tester}}</center></span>
+				<span class="txtColor"><center>{{Tester}}</center></span>
 			</div>
 		</div>
 
