@@ -58,15 +58,27 @@ Changelog
 - Nombreuses corrections de bugs.
 
 
+3.3.26
+=====
+- Correction de bug
+- Correction d'un bug sur le multi-lancement de scénario
+- Correction d'un bug sur les alertes sur la valeur des commandes
+
+3.3.25
+=====
+- Correction de bug
+- Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
+- Ajout des classes pour les supports de la couleur dans le plugin mode
+
 3.3.24
 =====
-- Correction d'un bug sur l'affichage du nombre de mise à jour.
-- Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs.
-- Corrections de bugs.
-- Amélioration de la fenêtre de choix des icônes.
-- Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente.
-- Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...).
-- Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus.
+-   Correction d'un bug sur l'affichage du nombre de mise à jour
+-   Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
+-   Corrections de bugs
+-   Amélioration de la fenêtre de choix des icônes
+-   Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
+-   Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
+-   Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====

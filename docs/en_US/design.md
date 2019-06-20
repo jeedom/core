@@ -17,7 +17,7 @@ Elle est accessible par Acceuil → Design
 Dans le menu (clic droit donc), nous retrouvons les
 actions suivantes :
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   **Designs** : Affiche la liste de vos designs et permet d’y accéder
 
 -   **Edition** : Permet de passer en mode édition
 
@@ -45,7 +45,7 @@ actions suivantes :
 -   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
     d’une caméra
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
+-   **Ajouter zone** : Permet d’ajouter une zone transparente cliquable
     qui pourra exécuter une série d’actions lors d’un clic (en fonction
     ou non de l’état d’une autre commande)
 
@@ -74,7 +74,7 @@ actions suivantes :
 
 -   **Supprimer le design** : supprime le design
 
--   **Créer un design** : permet d’ajouter un design
+-   **Créer un design** : permet d’ajouter un nouveau design
 
 -   **Dupliquer le design** : duplique le design courant
 
@@ -222,7 +222,7 @@ Text/html
 >
 > Si vous mettez du code HTML (en particulier du Javascript), attention
 > à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter completement le design et
+> ou si il écrase un composant Jeedom planter complètement le design et
 > il ne restera plus qu’à le supprimer directement en base de données
 
 Scénario 
@@ -231,7 +231,7 @@ Scénario
 Paramètres d’affichage 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+Aucun paramètre spécifique d’affichage
 
 Lien 
 ====
@@ -283,7 +283,7 @@ Commande
 Paramètres d’affichage 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+Aucun paramètre spécifique d’affichage
 
 Configuration avancée 
 ---------------------
@@ -323,10 +323,10 @@ sur la zone
 
 ### Macro binaire 
 
-Dans ce mode, Jeedom va exécuter la ou les action(s) On ou Off en
+Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en
 fonction de l’état de la commande que vous donnez. Ex : si la commande
-vaut 0 alors Jeedom exécutera la ou les action(s) On sinon il exécutera
-la ou les action(s) Off
+vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
+la ou les actions Off
 
 -   **Information binaire** : Commande donnant l’état à vérifier pour
     décider de l’action à faire (On ou Off)

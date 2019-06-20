@@ -17,7 +17,7 @@ Es accesible a través de Inicio → Diseño
 Dans le menu (clic droit donc), nous retrouvons les
 actions suivantes :
 
--   **Diseños** : Muestra una lista de sus diseños y accede a ellos
+-   **Designs** : Affiche la liste de vos designs et permet d’y accéder
 
 -   **Edición** : Cambiar al modo de edición
 
@@ -45,7 +45,7 @@ actions suivantes :
 -   **Agregar imagen/cámara** : Le permite agregar una imagen o video
     de una cámara
 
--   **Agregar zona** : Le permite agregar un área transparente seleccionable
+-   **Ajouter zone** : Permet d’ajouter une zone transparente cliquable
     qui pourra exécuter une série d’actions lors d’un clic (en fonction
     o no del status de otra comando)
 
@@ -74,7 +74,7 @@ actions suivantes :
 
 -   **Eliminar diseño**: Elimina el diseño
 
--   **Crear un diseño**: Agregar un diseño
+-   **Créer un design** : permet d’ajouter un nouveau design
 
 -   **Duplicar design**: Duplica el diseño actual
 
@@ -222,7 +222,7 @@ Texto / html
 >
 > Si vous mettez du code HTML (en particulier du Javascript), attention
 > à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter completement le design et
+> ou si il écrase un composant Jeedom planter complètement le design et
 > il ne restera plus qu’à le supprimer directement en base de données
 
 Escenario
@@ -231,7 +231,7 @@ Escenario
 Paramètres d’affichage 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+Aucun paramètre spécifique d’affichage
 
 Link 
 ====
@@ -283,7 +283,7 @@ Commando
 Paramètres d’affichage 
 ---------------------
 
-Aucun paramètres spécifiques d’affichage
+Aucun paramètre spécifique d’affichage
 
 Configuración avanzada
 ---------------------
@@ -323,10 +323,10 @@ la zona
 
 ### Macro binario
 
-Dans ce mode, Jeedom va exécuter la ou les action(s) On ou Off en
+Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en
 fonction de l’état de la commande que vous donnez. Ex : si la commande
-vaut 0 alors Jeedom exécutera la ou les action(s) On sinon il exécutera
-la ou les action(s) Off
+vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
+la ou les actions Off
 
 -   **Information binaire** : Commande donnant l’état à vérifier pour
     décider de l’action à faire (On ou Off)
