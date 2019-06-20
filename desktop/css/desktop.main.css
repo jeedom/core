@@ -1492,6 +1492,7 @@ fieldset > div {
   color: var(--sc-lightTxt-color);
   background: var(--sc-formTxt-color) !important;
   border: none;
+  padding: 0 12px !important;
 }
 .form-control:not(.btn):not(.expressionAttr),
 input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
@@ -1518,6 +1519,7 @@ input.knob {
   background-color: var(--sc-formTxt-color) !important;
   left: -3px;
   position: relative;
+  padding: 0 !important;
 }
 .element .expressionOptions textarea {
   min-height: 28px;
