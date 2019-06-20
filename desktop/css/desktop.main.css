@@ -875,6 +875,11 @@ pre {
 .logoSecondary {
   color: var(--logo-secondary-color);
 }
+.txtColor,
+[data-action="add"] > span,
+.eqLogicThumbnailContainer div.logoSecondary > span {
+  color: var(--txt-color);
+}
 .info,
 [data-coloredicons="1"] .icon_blue {
   color: var(--al-info-color) !important;
