@@ -14,7 +14,7 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="pluginListContainer">
       <div class="cursor success" id="bt_addPluginFromOtherSource">
         <center><i class="fas fa-plus"></i></center>
-        <span><center>{{Plugins}}</center></span>
+        <span class="txtColor"><center>{{Plugins}}</center></span>
       </div>
       <?php
       $div = '';
@@ -27,7 +27,7 @@ $plugins_list = plugin::listPlugin(false, true);
         }
         $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
         $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
-        $div .= '<span><center>' . $value['name'] . '</center></span>';
+        $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
         $div .= '</div>';
         echo $div;
       }
