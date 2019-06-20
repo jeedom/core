@@ -1496,9 +1496,12 @@ input.knob {
   line-height: 16px !important;
   height: 28px !important;
 }
-.input-group-sm .input-group-addon,
-.input-group-sm .input-group-btn .btn {
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn .btn {
   height: 28px !important;
+}
+.input-group-sm > .input-group-addon {
+  padding: 0 0 0 3px;
 }
 .input-xs {
   height: 22px;
