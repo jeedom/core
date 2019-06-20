@@ -30,7 +30,16 @@ body {
   background-size: cover;
   background-position: center center;
   margin: 0 !important;
-  scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
+  scrollbar-color: var(--el-defaultColor) var(--btnEq-default-color) !important;
+
+}
+div,
+p.state {
+  scrollbar-width: thin;
+}
+textarea {
+  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
+  scrollbar-width: thin;
 }
 
 .backgroundforJeedom{
@@ -1505,13 +1514,27 @@ input.knob {
 .input-group-sm > .input-group-btn .btn {
   height: 28px !important;
 }
-.input-group-sm .btn{
+.element .input-group-addon.roundedRight {
+  background-color: var(--sc-formTxt-color) !important;
+  left: -3px;
+  position: relative;
+}
+.element .expressionOptions textarea {
+  min-height: 28px;
+}
+.element .input-group-addon.roundedRight > .btn {
+  width: 32px !important;
+  padding-left: 14px;
+}
+
+.input-group-sm .btn {
   height: 28px !important;
   padding: 5px 10px;
 }
 .input-group-sm > .input-group-addon {
-  padding: 0 0 0 3px;
+  padding: 0;
 }
+
 .input-xs {
   height: 22px;
   padding: 5px 5px;
@@ -1532,6 +1555,9 @@ input:focus, textarea:focus {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+}
+textarea {
+  min-height: 28px;
 }
 .input-group {
   margin-bottom: 1.2px;
@@ -1918,19 +1944,6 @@ hr {
   border-left: 3px solid var(--scBlocACTION-sep);
 }
 
-/*
-.elementIF .elementIF:before {
-content: '';
-position: absolute;
-top: 22px;
-left: -2px;
-width: 0;
-height: 0;
-border-style: solid;
-border-width: 14px 0 14px 12px;
-border-color: transparent transparent transparent var(--sc-formTxt-color);
-}
-*/
 .expressionACTION .col-xs-1 input[type="checkbox"] {
   top: 5px !important;
 }
@@ -2010,7 +2023,7 @@ border-color: transparent transparent transparent var(--sc-formTxt-color);
   font-size: 12px !important;
   height:28px;
 }
-.element textarea.expressionAttr:not([data-l2key=graphColor]) {
+.element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
 }
 .subElementCOMMENT textarea {
@@ -3247,7 +3260,8 @@ pre {
 .input-group .roundedLeft {
   border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
 }
-.input-group .roundedRight {
+.input-group .roundedRight,
+.input-group-addon.roundedRight > .btn {
   border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
   margin-right: 3px !important;
 }
