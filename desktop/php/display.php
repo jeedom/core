@@ -68,7 +68,7 @@ if (!is_array($remove_history)) {
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="panel-group" id="accordionObject">
 			<?php
 			//No parent objects:
@@ -82,7 +82,7 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
@@ -112,7 +112,7 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				echo $div;
 			}
-
+			
 			//one panel per parent:
 			$i = 0;
 			$div = '';
@@ -138,10 +138,10 @@ if (!is_array($remove_history)) {
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
 				$div .= '</div>';
-
+				
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
@@ -176,7 +176,7 @@ if (!is_array($remove_history)) {
 			?>
 		</div>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="history">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
@@ -218,7 +218,7 @@ if (!is_array($remove_history)) {
 			</tbody>
 		</table>
 	</div>
-
+	
 </div>
 
 <?php include_file('desktop', 'display', 'js');?>
