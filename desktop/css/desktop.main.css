@@ -1515,7 +1515,7 @@ input.knob {
 .input-group-sm > .input-group-btn .btn {
   height: 28px !important;
 }
-.element .input-group-addon.roundedRight {
+.element .input-group-addon.hasBtn {
   background-color: var(--sc-formTxt-color) !important;
   left: -3px;
   position: relative;
@@ -1524,7 +1524,7 @@ input.knob {
 .element .expressionOptions textarea {
   min-height: 28px;
 }
-.element .input-group-addon.roundedRight > .btn {
+.element .input-group-addon.hasBtn > .btn {
   width: 32px !important;
   padding-left: 14px;
 }
@@ -3262,8 +3262,7 @@ pre {
 .input-group .roundedLeft {
   border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
 }
-.input-group .roundedRight,
-.input-group-addon.roundedRight > .btn {
+.input-group .roundedRight {
   border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
   margin-right: 3px !important;
 }
