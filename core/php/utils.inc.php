@@ -621,46 +621,46 @@ function date_fr($date_en) {
 		return $date_en;
 	}
 	$texte_long_en = array(
-		"Monday", "Tuesday", "Wednesday", "Thursday",
-		"Friday", "Saturday", "Sunday", "January",
-		"February", "March", "April", "May",
-		"June", "July", "August", "September",
-		"October", "November", "December",
+	"Monday", "Tuesday", "Wednesday", "Thursday",
+	"Friday", "Saturday", "Sunday", "January",
+	"February", "March", "April", "May",
+	"June", "July", "August", "September",
+	"October", "November", "December",
 	);
 	$texte_short_en = array(
-		"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
-		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-		"Aug", "Sep", "Oct", "Nov", "Dec",
+	"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+	"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+	"Aug", "Sep", "Oct", "Nov", "Dec",
 	);
 	
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 		$texte_long = array(
-			"Lundi", "Mardi", "Mercredi", "Jeudi",
-			"Vendredi", "Samedi", "Dimanche", "Janvier",
-			"Février", "Mars", "Avril", "Mai",
-			"Juin", "Juillet", "Août", "Septembre",
-			"Octobre", "Novembre", "Décembre",
+		"Lundi", "Mardi", "Mercredi", "Jeudi",
+		"Vendredi", "Samedi", "Dimanche", "Janvier",
+		"Février", "Mars", "Avril", "Mai",
+		"Juin", "Juillet", "Août", "Septembre",
+		"Octobre", "Novembre", "Décembre",
 		);
 		$texte_short = array(
-			"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
-			"Janv.", "Févr.", "Mars", "Avril", "Mai", "Juin",
-			"Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc.",
+		"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim",
+		"Janv.", "Févr.", "Mars", "Avril", "Mai", "Juin",
+		"Juil.", "Août", "Sept.", "Oct.", "Nov.", "Déc.",
 		);
 		break;
 		case 'de_DE':
 		$texte_long = array(
-			"Montag", "Dienstag", "Mittwoch", "Donnerstag",
-			"Freitag", "Samstag", "Sonntag", "Januar",
-			"Februar", "März", "April", "May",
-			"Juni", "July", "August", "September",
-			"October", "November", "December",
+		"Montag", "Dienstag", "Mittwoch", "Donnerstag",
+		"Freitag", "Samstag", "Sonntag", "Januar",
+		"Februar", "März", "April", "May",
+		"Juni", "July", "August", "September",
+		"October", "November", "December",
 		);
 		
 		$texte_short = array(
-			"Mon", "Die", "Mit", "Thu", "Don", "Sam", "Son",
-			"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-			"Aug", "Sep", "Oct", "Nov", "Dec",
+		"Mon", "Die", "Mit", "Thu", "Don", "Sam", "Son",
+		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+		"Aug", "Sep", "Oct", "Nov", "Dec",
 		);
 		break;
 		default:
@@ -678,38 +678,38 @@ function convertDayEnToFr($_day) {
 function convertDayFromEn($_day) {
 	$result = $_day;
 	$daysMapping = array(
-		'fr_FR' => array(
-			'Monday' => 'Lundi', 'Mon' => 'Lundi',
-			'monday' => 'lundi', 'mon' => 'lundi',
-			'Tuesday' => 'Mardi', 'Tue' => 'Mardi',
-			'tuesday' => 'mardi', 'tue' => 'mardi',
-			'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
-			'wednesday' => 'mercredi', 'wed' => 'mercredi',
-			'Thursday' => 'Jeudi', 'Thu' => 'Jeudi',
-			'thursday' => 'jeudi', 'thu' => 'jeudi',
-			'Friday' => 'Vendredi', 'Fri' => 'Vendredi',
-			'friday' => 'vendredi', 'fri' => 'vendredi',
-			'Saturday' => 'Samedi', 'Sat' => 'Samedi',
-			'saturday' => 'samedi', 'sat' => 'samedi',
-			'Sunday' => 'Dimanche', 'Sun' => 'Dimanche',
-			'sunday' => 'dimanche', 'sun' => 'dimanche',
-		),
-		'de_DE' => array(
-			'Monday' => 'Montag', 'Mon' => 'Montag',
-			'monday' => 'montag', 'mon' => 'montag',
-			'Tuesday' => 'Dienstag', 'Tue' => 'Dienstag',
-			'tuesday' => 'dienstag', 'tue' => 'dienstag',
-			'Wednesday' => 'Mittwoch', 'Wed' => 'Mittwoch',
-			'wednesday' => 'mittwoch', 'wed' => 'mittwoch',
-			'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
-			'thursday' => 'donnerstag', 'thu' => 'donnerstag',
-			'Friday' => 'Freitag', 'Fri' => 'Freitag',
-			'friday' => 'freitag', 'fri' => 'freitag',
-			'Saturday' => 'Samstag', 'Sat' => 'Samstag',
-			'saturday' => 'samstag', 'sat' => 'samstag',
-			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
-			'sunday' => 'sonntag', 'sun' => 'sonntag',
-		),
+	'fr_FR' => array(
+	'Monday' => 'Lundi', 'Mon' => 'Lundi',
+	'monday' => 'lundi', 'mon' => 'lundi',
+	'Tuesday' => 'Mardi', 'Tue' => 'Mardi',
+	'tuesday' => 'mardi', 'tue' => 'mardi',
+	'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
+	'wednesday' => 'mercredi', 'wed' => 'mercredi',
+	'Thursday' => 'Jeudi', 'Thu' => 'Jeudi',
+	'thursday' => 'jeudi', 'thu' => 'jeudi',
+	'Friday' => 'Vendredi', 'Fri' => 'Vendredi',
+	'friday' => 'vendredi', 'fri' => 'vendredi',
+	'Saturday' => 'Samedi', 'Sat' => 'Samedi',
+	'saturday' => 'samedi', 'sat' => 'samedi',
+	'Sunday' => 'Dimanche', 'Sun' => 'Dimanche',
+	'sunday' => 'dimanche', 'sun' => 'dimanche',
+	),
+	'de_DE' => array(
+	'Monday' => 'Montag', 'Mon' => 'Montag',
+	'monday' => 'montag', 'mon' => 'montag',
+	'Tuesday' => 'Dienstag', 'Tue' => 'Dienstag',
+	'tuesday' => 'dienstag', 'tue' => 'dienstag',
+	'Wednesday' => 'Mittwoch', 'Wed' => 'Mittwoch',
+	'wednesday' => 'mittwoch', 'wed' => 'mittwoch',
+	'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
+	'thursday' => 'donnerstag', 'thu' => 'donnerstag',
+	'Friday' => 'Freitag', 'Fri' => 'Freitag',
+	'friday' => 'freitag', 'fri' => 'freitag',
+	'Saturday' => 'Samstag', 'Sat' => 'Samstag',
+	'saturday' => 'samstag', 'sat' => 'samstag',
+	'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
+	'sunday' => 'sonntag', 'sun' => 'sonntag',
+	),
 	);
 	$language = config::byKey('language', 'core', 'fr_FR');
 	if (array_key_exists($language, $daysMapping)) {
@@ -867,11 +867,11 @@ function netMatch($network, $ip) {
 
 function getNtpTime() {
 	$time_servers = array(
-		'ntp2.emn.fr',
-		'time-a.timefreq.bldrdoc.gov',
-		'utcnist.colorado.edu',
-		'time.nist.gov',
-		'ntp.pads.ufrj.br',
+	'ntp2.emn.fr',
+	'time-a.timefreq.bldrdoc.gov',
+	'utcnist.colorado.edu',
+	'time.nist.gov',
+	'ntp.pads.ufrj.br',
 	);
 	$time_adjustment = 0;
 	foreach ($time_servers as $time_server) {
@@ -971,463 +971,462 @@ function secureXSS($_string) {
 
 function minify($_buffer) {
 	$search = array(
-		'/\>[^\S ]+/s', // strip whitespaces after tags, except space
-		'/[^\S ]+\</s', // strip whitespaces before tags, except space
-		'/(\s)+/s', // shorten multiple whitespace sequences
+	'/\>[^\S ]+/s', // strip whitespaces after tags, except space
+	'/[^\S ]+\</s', // strip whitespaces before tags, except space
+	'/(\s)+/s', // shorten multiple whitespace sequences
 	);
 	$replace = array(
-		'>',
-		'<',
-		'\\1',
+	'>',
+	'<',
+	'\\1',
 	);
 	return preg_replace($search, $replace, $_buffer);
 }
 
 function sanitizeAccent($_message) {
 	$caracteres = array(
-		'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
-		'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
-		'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
-		'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
-		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
-		'Œ' => 'oe', 'œ' => 'oe',
-		'$' => 's');
-		return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
-	}
-	
-	function isConnect($_right = '') {
-		if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
-			return $GLOBALS['isConnect::' . $_right];
-		}
-		$GLOBALS['isConnect::' . $_right] = false;
-		if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
-			$GLOBALS['isConnect::' . $_right] = false;
-		} else if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
-			if ($_right != '') {
-				$GLOBALS['isConnect::' . $_right] = ($_SESSION['user']->getProfils() == $_right);
-			} else {
-				$GLOBALS['isConnect::' . $_right] = true;
-			}
-		}
+	'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
+	'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
+	'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
+	'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
+	'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
+	'Œ' => 'oe', 'œ' => 'oe',
+	'$' => 's');
+	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
+}
+
+function isConnect($_right = '') {
+	if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 		return $GLOBALS['isConnect::' . $_right];
 	}
-	
-	function ZipErrorMessage($code) {
-		switch ($code) {
-			case 0:
-			return 'No error';
-			
-			case 1:
-			return 'Multi-disk zip archives not supported';
-			
-			case 2:
-			return 'Renaming temporary file failed';
-			
-			case 3:
-			return 'Closing zip archive failed';
-			
-			case 4:
-			return 'Seek error';
-			
-			case 5:
-			return 'Read error';
-			
-			case 6:
-			return 'Write error';
-			
-			case 7:
-			return 'CRC error';
-			
-			case 8:
-			return 'Containing zip archive was closed';
-			
-			case 9:
-			return 'No such file';
-			
-			case 10:
-			return 'File already exists';
-			
-			case 11:
-			return 'Can\'t open file';
-			
-			case 12:
-			return 'Failure to create temporary file';
-			
-			case 13:
-			return 'Zlib error';
-			
-			case 14:
-			return 'Malloc failure';
-			
-			case 15:
-			return 'Entry has been changed';
-			
-			case 16:
-			return 'Compression method not supported';
-			
-			case 17:
-			return 'Premature EOF';
-			
-			case 18:
-			return 'Invalid argument';
-			
-			case 19:
-			return 'Not a zip archive';
-			
-			case 20:
-			return 'Internal error';
-			
-			case 21:
-			return 'Zip archive inconsistent';
-			
-			case 22:
-			return 'Can\'t remove file';
-			
-			case 23:
-			return 'Entry has been deleted';
-			
-			default:
-			return 'An unknown error has occurred(' . intval($code) . ')';
-		}
-	}
-	
-	function arg2array($_string) {
-		$return = array();
-		$re = '/[\/-]?(([a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ_#]+)(?:[=:]("[^"]+"|[^\s"]+))?)(?:\s+|$)/';
-		preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
-		foreach ($matches as $match) {
-			if (count($match) != 4) {
-				continue;
-			}
-			$return[$match[2]] = $match[3];
-		}
-		return $return;
-	}
-	
-	function strToHex($string) {
-		$hex = '';
-		$calculateStrLen = strlen($string);
-		for ($i = 0; $i < $calculateStrLen; $i++) {
-			$ord = ord($string[$i]);
-			$hexCode = dechex($ord);
-			$hex .= substr('0' . $hexCode, -2);
-		}
-		return strToUpper($hex);
-	}
-	
-	function hex2rgb($hex) {
-		$hex = str_replace("#", "", $hex);
-		if (strlen($hex) == 3) {
-			$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-			$g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-			$b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+	$GLOBALS['isConnect::' . $_right] = false;
+	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
+		$GLOBALS['isConnect::' . $_right] = false;
+	} else if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
+		if ($_right != '') {
+			$GLOBALS['isConnect::' . $_right] = ($_SESSION['user']->getProfils() == $_right);
 		} else {
-			$r = hexdec(substr($hex, 0, 2));
-			$g = hexdec(substr($hex, 2, 2));
-			$b = hexdec(substr($hex, 4, 2));
+			$GLOBALS['isConnect::' . $_right] = true;
 		}
-		return array($r, $g, $b);
+	}
+	return $GLOBALS['isConnect::' . $_right];
+}
+
+function ZipErrorMessage($code) {
+	switch ($code) {
+		case 0:
+		return 'No error';
+		
+		case 1:
+		return 'Multi-disk zip archives not supported';
+		
+		case 2:
+		return 'Renaming temporary file failed';
+		
+		case 3:
+		return 'Closing zip archive failed';
+		
+		case 4:
+		return 'Seek error';
+		
+		case 5:
+		return 'Read error';
+		
+		case 6:
+		return 'Write error';
+		
+		case 7:
+		return 'CRC error';
+		
+		case 8:
+		return 'Containing zip archive was closed';
+		
+		case 9:
+		return 'No such file';
+		
+		case 10:
+		return 'File already exists';
+		
+		case 11:
+		return 'Can\'t open file';
+		
+		case 12:
+		return 'Failure to create temporary file';
+		
+		case 13:
+		return 'Zlib error';
+		
+		case 14:
+		return 'Malloc failure';
+		
+		case 15:
+		return 'Entry has been changed';
+		
+		case 16:
+		return 'Compression method not supported';
+		
+		case 17:
+		return 'Premature EOF';
+		
+		case 18:
+		return 'Invalid argument';
+		
+		case 19:
+		return 'Not a zip archive';
+		
+		case 20:
+		return 'Internal error';
+		
+		case 21:
+		return 'Zip archive inconsistent';
+		
+		case 22:
+		return 'Can\'t remove file';
+		
+		case 23:
+		return 'Entry has been deleted';
+		
+		default:
+		return 'An unknown error has occurred(' . intval($code) . ')';
+	}
+}
+
+function arg2array($_string) {
+	$return = array();
+	$re = '/[\/-]?(([a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ_#]+)(?:[=:]("[^"]+"|[^\s"]+))?)(?:\s+|$)/';
+	preg_match_all($re, $_string, $matches, PREG_SET_ORDER, 0);
+	foreach ($matches as $match) {
+		if (count($match) != 4) {
+			continue;
+		}
+		$return[$match[2]] = $match[3];
+	}
+	return $return;
+}
+
+function strToHex($string) {
+	$hex = '';
+	$calculateStrLen = strlen($string);
+	for ($i = 0; $i < $calculateStrLen; $i++) {
+		$ord = ord($string[$i]);
+		$hexCode = dechex($ord);
+		$hex .= substr('0' . $hexCode, -2);
+	}
+	return strToUpper($hex);
+}
+
+function hex2rgb($hex) {
+	$hex = str_replace("#", "", $hex);
+	if (strlen($hex) == 3) {
+		$r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+		$g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+		$b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+	} else {
+		$r = hexdec(substr($hex, 0, 2));
+		$g = hexdec(substr($hex, 2, 2));
+		$b = hexdec(substr($hex, 4, 2));
+	}
+	return array($r, $g, $b);
+}
+
+function getDominantColor($_pathimg) {
+	$rTotal = 0;
+	$gTotal = 0;
+	$bTotal = 0;
+	$total = 0;
+	$i = imagecreatefromjpeg($_pathimg);
+	$imagesX = imagesx($i);
+	for ($x = 0; $x < $imagesX; $x++) {
+		$imagesY = imagesy($i);
+		for ($y = 0; $y < $imagesY; $y++) {
+			$rgb = imagecolorat($i, $x, $y);
+			$r = ($rgb >> 16) & 0xFF;
+			$g = ($rgb >> 8) & 0xFF;
+			$b = $rgb & 0xFF;
+			$rTotal += $r;
+			$gTotal += $g;
+			$bTotal += $b;
+			$total++;
+		}
+	}
+	return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+}
+
+function sha512($_string) {
+	return hash('sha512', $_string);
+}
+
+function findCodeIcon($_icon) {
+	$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+	
+	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
+	
+	$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
+	preg_match($re, $css, $matches);
+	if (isset($matches[1])) {
+		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
 	}
 	
-	function getDominantColor($_pathimg) {
-		$rTotal = 0;
-		$gTotal = 0;
-		$bTotal = 0;
-		$total = 0;
-		$i = imagecreatefromjpeg($_pathimg);
-		$imagesX = imagesx($i);
-		for ($x = 0; $x < $imagesX; $x++) {
-			$imagesY = imagesy($i);
-			for ($y = 0; $y < $imagesY; $y++) {
-				$rgb = imagecolorat($i, $x, $y);
-				$r = ($rgb >> 16) & 0xFF;
-				$g = ($rgb >> 8) & 0xFF;
-				$b = $rgb & 0xFF;
-				$rTotal += $r;
-				$gTotal += $g;
-				$bTotal += $b;
-				$total++;
+	foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
+		if (is_dir(__DIR__ . '/../css/icon/' . $dir) && file_exists(__DIR__ . '/../css/icon/' . $dir . '/style.css')) {
+			$css = file_get_contents(__DIR__ . '/../css/icon/' . $dir . '/style.css');
+			preg_match($re, $css, $matches);
+			if (isset($matches[1])) {
+				return array('icon' => trim($matches[1], '\\'), 'fontfamily' => trim($dir, '/'));
 			}
 		}
-		return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
 	}
-	
-	function sha512($_string) {
-		return hash('sha512', $_string);
+	return array('icon' => '', 'fontfamily' => '');
+}
+
+function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
+	//var_dump($_to_type);
+	//var_dump($_to);
+	if (is_array($_to) && count($_to) == 0) {
+		return;
 	}
-	
-	function findCodeIcon($_icon) {
-		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
-		
-		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
-		
-		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
-		preg_match($re, $css, $matches);
-		if (isset($matches[1])) {
-			return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
-		}
-		
-		foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
-			if (is_dir(__DIR__ . '/../css/icon/' . $dir) && file_exists(__DIR__ . '/../css/icon/' . $dir . '/style.css')) {
-				$css = file_get_contents(__DIR__ . '/../css/icon/' . $dir . '/style.css');
-				preg_match($re, $css, $matches);
-				if (isset($matches[1])) {
-					return array('icon' => trim($matches[1], '\\'), 'fontfamily' => trim($dir, '/'));
-				}
-			}
-		}
-		return array('icon' => '', 'fontfamily' => '');
-	}
-	
-	function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
-		//var_dump($_to_type);
-		//var_dump($_to);
-		if (is_array($_to) && count($_to) == 0) {
+	if (!is_array($_to)) {
+		if (!is_object($_to)) {
 			return;
 		}
-		if (!is_array($_to)) {
-			if (!is_object($_to)) {
-				return;
-			}
-			$_to = array($_to);
-		}
-		foreach ($_to as $to) {
-			$to->getLinkData($_data, $_level, $_drill);
-			if (isset($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()])) {
-				continue;
-			}
-			if (isset($_data['link'][$_from_type . $_from->getId() . '-' . $_to_type . $to->getId()])) {
-				continue;
-			}
-			$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array(
-				'from' => $_to_type . $to->getId(),
-				'to' => $_from_type . $_from->getId(),
-			);
-			$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array_merge($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()], $_display);
-		}
-		return $_data;
+		$_to = array($_to);
 	}
-	
-	function getSystemMemInfo() {
-		$data = explode("\n", file_get_contents("/proc/meminfo"));
-		$meminfo = array();
-		foreach ($data as $line) {
-			$info = explode(":", $line);
-			if (count($info) != 2) {
-				continue;
-			}
-			$value = explode(' ', trim($info[1]));
-			$meminfo[$info[0]] = trim($value[0]);
+	foreach ($_to as $to) {
+		$to->getLinkData($_data, $_level, $_drill);
+		if (isset($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()])) {
+			continue;
 		}
-		return $meminfo;
+		if (isset($_data['link'][$_from_type . $_from->getId() . '-' . $_to_type . $to->getId()])) {
+			continue;
+		}
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array(
+		'from' => $_to_type . $to->getId(),
+		'to' => $_from_type . $_from->getId(),
+		);
+		$_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()] = array_merge($_data['link'][$_to_type . $to->getId() . '-' . $_from_type . $_from->getId()], $_display);
 	}
-	
-	function strContain($_string, $_words) {
-		foreach ($_words as $word) {
-			if (strpos($_string, $word) !== false) {
-				return true;
-			}
+	return $_data;
+}
+
+function getSystemMemInfo() {
+	$data = explode("\n", file_get_contents("/proc/meminfo"));
+	$meminfo = array();
+	foreach ($data as $line) {
+		$info = explode(":", $line);
+		if (count($info) != 2) {
+			continue;
 		}
-		return false;
+		$value = explode(' ', trim($info[1]));
+		$meminfo[$info[0]] = trim($value[0]);
 	}
-	
-	function makeZipSupport() {
-		$jeedom_folder = __DIR__ . '/../..';
-		$folder = '/tmp/jeedom_support';
-		$outputfile = $jeedom_folder . '/support/jeedom_support_' . date('Y-m-d_His') . '.tar.gz';
-		if (file_exists($folder)) {
-			rrmdir($folder);
+	return $meminfo;
+}
+
+function strContain($_string, $_words) {
+	foreach ($_words as $word) {
+		if (strpos($_string, $word) !== false) {
+			return true;
 		}
-		mkdir($folder);
-		system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null;cp -R .[^.]* "' . $folder . '" > /dev/null');
-		system('sudo dmesg >> ' . $folder . '/dmesg');
-		system('sudo cp /var/log/messages "' . $folder . '/" > /dev/null');
-		system('sudo chmod 777 -R "' . $folder . '" > /dev/null');
-		system('cd ' . $folder . ';tar cfz "' . $outputfile . '" * > /dev/null;chmod 777 ' . $outputfile);
+	}
+	return false;
+}
+
+function makeZipSupport() {
+	$jeedom_folder = __DIR__ . '/../..';
+	$folder = '/tmp/jeedom_support';
+	$outputfile = $jeedom_folder . '/support/jeedom_support_' . date('Y-m-d_His') . '.tar.gz';
+	if (file_exists($folder)) {
 		rrmdir($folder);
-		return realpath($outputfile);
 	}
-	
-	function decodeSessionData($_data) {
-		$return_data = array();
-		$offset = 0;
-		while ($offset < strlen($_data)) {
-			if (!strstr(substr($_data, $offset), "|")) {
-				throw new Exception("invalid data, remaining: " . substr($_data, $offset));
-			}
-			$pos = strpos($_data, "|", $offset);
-			$num = $pos - $offset;
-			$varname = substr($_data, $offset, $num);
-			$offset += $num + 1;
-			$data = unserialize(substr($_data, $offset));
-			$return_data[$varname] = $data;
-			$offset += strlen(serialize($data));
+	mkdir($folder);
+	system('cd ' . $jeedom_folder . '/log;cp -R * "' . $folder . '" > /dev/null;cp -R .[^.]* "' . $folder . '" > /dev/null');
+	system('sudo dmesg >> ' . $folder . '/dmesg');
+	system('sudo cp /var/log/messages "' . $folder . '/" > /dev/null');
+	system('sudo chmod 777 -R "' . $folder . '" > /dev/null');
+	system('cd ' . $folder . ';tar cfz "' . $outputfile . '" * > /dev/null;chmod 777 ' . $outputfile);
+	rrmdir($folder);
+	return realpath($outputfile);
+}
+
+function decodeSessionData($_data) {
+	$return_data = array();
+	$offset = 0;
+	while ($offset < strlen($_data)) {
+		if (!strstr(substr($_data, $offset), "|")) {
+			throw new Exception("invalid data, remaining: " . substr($_data, $offset));
 		}
-		return $return_data;
+		$pos = strpos($_data, "|", $offset);
+		$num = $pos - $offset;
+		$varname = substr($_data, $offset, $num);
+		$offset += $num + 1;
+		$data = unserialize(substr($_data, $offset));
+		$return_data[$varname] = $data;
+		$offset += strlen(serialize($data));
 	}
-	
-	function listSession() {
-		$return = array();
-		try {
-			$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
-			foreach ($sessions as $session) {
-				$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
-				if ($data == '') {
-					continue;
-				}
-				$data_session = decodeSessionData($data);
-				if (!isset($data_session['user']) || !is_object($data_session['user'])) {
-					continue;
-				}
-				$session_id = str_replace('sess_', '', $session);
-				$return[$session_id] = array(
-					'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
-				);
-				$return[$session_id]['login'] = $data_session['user']->getLogin();
-				$return[$session_id]['user_id'] = $data_session['user']->getId();
-				$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
+	return $return_data;
+}
+
+function listSession() {
+	$return = array();
+	try {
+		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
+		foreach ($sessions as $session) {
+			$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
+			if ($data == '') {
+				continue;
 			}
-		} catch (Exception $e) {
-			
-		}
-		return $return;
-	}
-	
-	function deleteSession($_id) {
-		$cSsid = session_id();
-		@session_start();
-		session_id($_id);
-		session_unset();
-		session_destroy();
-		session_id($cSsid);
-		@session_write_close();
-	}
-	
-	function unautorizedInDemo($_user = null) {
-		if ($_user === null) {
-			if (!isset($_SESSION) || !isset($_SESSION['user'])) {
-				return;
+			$data_session = decodeSessionData($data);
+			if (!isset($data_session['user']) || !is_object($data_session['user'])) {
+				continue;
 			}
-			$_user = $_SESSION['user'];
+			$session_id = str_replace('sess_', '', $session);
+			$return[$session_id] = array(
+			'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
+			);
+			$return[$session_id]['login'] = $data_session['user']->getLogin();
+			$return[$session_id]['user_id'] = $data_session['user']->getId();
+			$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
 		}
-		if (!is_object($_user)) {
+	} catch (Exception $e) {
+		
+	}
+	return $return;
+}
+
+function deleteSession($_id) {
+	$cSsid = session_id();
+	@session_start();
+	session_id($_id);
+	session_unset();
+	session_destroy();
+	session_id($cSsid);
+	@session_write_close();
+}
+
+function unautorizedInDemo($_user = null) {
+	if ($_user === null) {
+		if (!isset($_SESSION) || !isset($_SESSION['user'])) {
 			return;
 		}
-		if ($_user->getLogin() == 'demo') {
-			throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
-		}
+		$_user = $_SESSION['user'];
 	}
-	
-	function checkAndFixCron($_cron){
-		$return = $_cron;
-		$return = str_replace('*/ ','* ',$return);
-		preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
-		if(count($matches) > 0){
-			return '';
-		}
-		preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
-		if(count($matches) > 0){
-			return '';
-		}
-		return $return;
+	if (!is_object($_user)) {
+		return;
 	}
-	
-	function getTZoffsetMin() {
-		$tz = date_default_timezone_get();
-		date_default_timezone_set( "UTC" );
-		$seconds = timezone_offset_get( timezone_open($tz), new DateTime() );
-		date_default_timezone_set($tz);
-		return($seconds/60);
+	if ($_user->getLogin() == 'demo') {
+		throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 	}
-	
-	function pageTitle($_page){
-		switch ($_page) {
-			case 'view':
-			$return = __('Vues',__FILE__);
-			break;
-			case 'plan':
-			$return = __('Designs',__FILE__);
-			break;
-			case 'plan3d':
-			$return = __('Designs 3D',__FILE__);
-			break;
-			case 'eqAnalyse':
-			$return = __('Equipements',__FILE__);
-			break;
-			case 'display':
-			$return = __('Résumé',__FILE__);
-			break;
-			case 'history':
-			$return = __('Historique',__FILE__);
-			break;
-			case 'report':
-			$return = __('Rapports',__FILE__);
-			break;
-			case 'health':
-			$return = __('Santé',__FILE__);
-			break;
-			case 'object':
-			$return = __('Objets',__FILE__);
-			break;
-			case 'scenario':
-			$return = __('Scénarios',__FILE__);
-			break;
-			case 'interact':
-			$return = __('Interactions',__FILE__);
-			break;
-			case 'widgets':
-			$return = __('Widgets',__FILE__);
-			break;
-			case 'plugin':
-			$return = __('Gestion Plugins',__FILE__);
-			break;
-			case 'administration':
-			$return = __('Configuration',__FILE__);
-			break;
-			case 'backup':
-			$return = __('Sauvegardes',__FILE__);
-			break;
-			case 'cron':
-			$return = __('Moteur de tâches',__FILE__);
-			break;
-			case 'custom':
-			$return = __('Personnalisation',__FILE__);
-			break;
-			case 'user':
-			$return = __('Utilisateurs',__FILE__);
-			break;
-			case 'profils':
-			$return = __('Préférences',__FILE__);
-			break;
-			case 'log':
-			$return = __('Logs',__FILE__);
-			break;
-			case 'update':
-			$return = __('Mises à jour',__FILE__);
-			break;
-			case 'panel':
-			try {
-				if(isset($_SERVER['REQUEST_URI'])){
-					$url = $_SERVER['REQUEST_URI'];
-					$plugin = explode('m=', $url)[1];
-					$plugin = explode('&', $plugin)[0];
-					$return = __('Panel '.ucfirst($plugin),__FILE__);
-				}else{
-					$return = __('Panel',__FILE__);
-				}
-				break;
-			} catch(Exception $e) {
+}
+
+function checkAndFixCron($_cron){
+	$return = $_cron;
+	$return = str_replace('*/ ','* ',$return);
+	preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
+	if(count($matches) > 0){
+		return '';
+	}
+	preg_match_all('/(\*\/0)/m', $return, $matches, PREG_SET_ORDER, 0);
+	if(count($matches) > 0){
+		return '';
+	}
+	return $return;
+}
+
+function getTZoffsetMin() {
+	$tz = date_default_timezone_get();
+	date_default_timezone_set( "UTC" );
+	$seconds = timezone_offset_get( timezone_open($tz), new DateTime() );
+	date_default_timezone_set($tz);
+	return($seconds/60);
+}
+
+function pageTitle($_page){
+	switch ($_page) {
+		case 'view':
+		$return = __('Vues',__FILE__);
+		break;
+		case 'plan':
+		$return = __('Designs',__FILE__);
+		break;
+		case 'plan3d':
+		$return = __('Designs 3D',__FILE__);
+		break;
+		case 'eqAnalyse':
+		$return = __('Equipements',__FILE__);
+		break;
+		case 'display':
+		$return = __('Résumé',__FILE__);
+		break;
+		case 'history':
+		$return = __('Historique',__FILE__);
+		break;
+		case 'report':
+		$return = __('Rapports',__FILE__);
+		break;
+		case 'health':
+		$return = __('Santé',__FILE__);
+		break;
+		case 'object':
+		$return = __('Objets',__FILE__);
+		break;
+		case 'scenario':
+		$return = __('Scénarios',__FILE__);
+		break;
+		case 'interact':
+		$return = __('Interactions',__FILE__);
+		break;
+		case 'widgets':
+		$return = __('Widgets',__FILE__);
+		break;
+		case 'plugin':
+		$return = __('Gestion Plugins',__FILE__);
+		break;
+		case 'administration':
+		$return = __('Configuration',__FILE__);
+		break;
+		case 'backup':
+		$return = __('Sauvegardes',__FILE__);
+		break;
+		case 'cron':
+		$return = __('Moteur de tâches',__FILE__);
+		break;
+		case 'custom':
+		$return = __('Personnalisation',__FILE__);
+		break;
+		case 'user':
+		$return = __('Utilisateurs',__FILE__);
+		break;
+		case 'profils':
+		$return = __('Préférences',__FILE__);
+		break;
+		case 'log':
+		$return = __('Logs',__FILE__);
+		break;
+		case 'update':
+		$return = __('Mises à jour',__FILE__);
+		break;
+		case 'panel':
+		try {
+			if(isset($_SERVER['REQUEST_URI'])){
+				$url = $_SERVER['REQUEST_URI'];
+				$plugin = explode('m=', $url)[1];
+				$plugin = explode('&', $plugin)[0];
+				$return = __('Panel '.ucfirst($plugin),__FILE__);
+			}else{
 				$return = __('Panel',__FILE__);
-				break;
 			}
-			default:
-			$return = $_page;
+			break;
+		} catch(Exception $e) {
+			$return = __('Panel',__FILE__);
 			break;
 		}
-		return ucfirst($return);
+		default:
+		$return = $_page;
+		break;
 	}
-	
-	function cleanComponanteName($_name){
-		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
-	}
-	
+	return ucfirst($return);
+}
+
+function cleanComponanteName($_name){
+	return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
+}
