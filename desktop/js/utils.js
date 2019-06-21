@@ -170,10 +170,12 @@ $(function () {
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
+      PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash;
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash);
     }
     if (getUrlVars('removeSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'});
+      PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash;
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash);
     }
   });
