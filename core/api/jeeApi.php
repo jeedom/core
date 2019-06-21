@@ -626,6 +626,9 @@ try {
 	if ($jsonrpc->getMethod() == 'cmd::all') {
 		$return = array();
 		foreach (cmd::all() as $cmd) {
+			if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+				continue;
+		        }
 			$return[] = $cmd->exportApi();
 		}
 		$jsonrpc->makeSuccess($return);
@@ -634,6 +637,9 @@ try {
 	if ($jsonrpc->getMethod() == 'cmd::byEqLogicId') {
 		$return = array();
 		foreach (cmd::byEqLogicId($params['eqLogic_id']) as $cmd) {
+			if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+				continue;
+		        }
 			$return[] = $cmd->exportApi();
 		}
 		$jsonrpc->makeSuccess($return);
@@ -643,6 +649,9 @@ try {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
 			throw new Exception(__('Cmd introuvable : ', __FILE__) . secureXSS($params['id']), -32701);
+		}
+		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess($cmd->exportApi());
 	}
@@ -705,6 +714,9 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 		}
+		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
+		}
 		$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 	}
 	
@@ -713,6 +725,9 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 		}
+		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
+		}
 		$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 	}
 	
@@ -720,6 +735,9 @@ try {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
 			throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
+		}
+		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 	}
@@ -752,6 +770,9 @@ try {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
 			throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
+		}
+		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
 		}
 		if(!isset($params['datetime'])){
 			$params['datetime'] = null;
