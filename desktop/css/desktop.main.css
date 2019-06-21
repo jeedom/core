@@ -34,6 +34,7 @@ body {
 
 }
 div,
+pre,
 p.state {
   scrollbar-width: thin;
 }
