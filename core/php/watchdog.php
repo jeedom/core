@@ -40,7 +40,7 @@ $output = array();
 /********************************Date****************************************/
 echo 'Check Date => ';
 echo date('Y-m-d')."\n";
-if(date('Y') < 2000 || date('Y') > 2040){
+if(date('Y') < 2019 || date('Y') > 2040){
 	echo 'Invalid date found, try correct it';
 	exec('sudo service ntp stop;sudo ntpdate -s time.nist.gov;sudo service ntp start');
 }
