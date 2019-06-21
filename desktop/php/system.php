@@ -25,6 +25,7 @@ if (!isConnect('admin')) {
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ps ax">ps ax</a></li>
         <?php if (jeedom::isCapable('sudo')) {?>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo cat /var/log/mysql/error.log">MySQL log</a></li>
+          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='sudo fdtput -t s /media/boot/multiboot/meson64_odroidc2.dtb.linux /i2c@c1108500/pcf8563@51 status "okay"'>RTC Jeedom Pro</a></li>
         <?php }?>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="df -h">df -h</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="w">w</a></li>
@@ -34,7 +35,7 @@ if (!isConnect('admin')) {
     </div>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8" style="overflow-y:hidden;overflow-x:hidden;">
-
+    
     <div class="alert alert-info" id="h3_executeCommand">{{Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous}}</div>
     <div class="input-group">
       <span class="input-group-btn">

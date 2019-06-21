@@ -19,30 +19,30 @@ if (is_array($scenarioListGroup)) {
 		<div class="scenarioListContainer">
 			<div class="cursor logoPrimary" id="bt_addScenario2">
 				<center><i class="fas fa-plus-circle"></i></center>
-				<span><center>{{Ajouter}}</center></span>
+				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
 				<div class="cursor success" id="bt_changeAllScenarioState2" data-state="1">
 					<center><i class="fas fa-check"></i></center>
-					<span><center>{{Activer scénarios}}</center></span>
+					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
 				</div>
 			<?php } else {?>
 				<div class="cursor danger" id="bt_changeAllScenarioState2" data-state="0">
 					<center><i class="fas fa-times"></i></center>
-					<span><center>{{Désactiver scénarios}}</center></span>
+					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
 			<?php } ?>
 			<div class="cursor logoSecondary" id="bt_displayScenarioVariable2">
 				<center><i class="fas fa-eye"></i></center>
-				<span><center>{{Voir variables}}</center></span>
+				<span class="txtColor"><center>{{Voir variables}}</center></span>
 			</div>
 			<div class="cursor logoSecondary  bt_showScenarioSummary">
 				<center><i class="fas fa-list"></i></center>
-				<span><center>{{Vue d'ensemble}}</center></span>
+				<span class="txtColor"><center>{{Vue d'ensemble}}</center></span>
 			</div>
 			<div class="cursor logoSecondary  bt_showExpressionTest">
 				<center><i class="fas fa-check"></i></center>
-				<span><center>{{Testeur d'expression}}</center></span>
+				<span class="txtColor"><center>{{Testeur d'expression}}</center></span>
 			</div>
 		</div>
 

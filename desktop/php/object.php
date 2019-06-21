@@ -14,13 +14,13 @@ $allObject = jeeObject::all();
 				<center>
 					<i class="fas fa-plus-circle"></i>
 				</center>
-				<span><center>{{Ajouter}}</center></span>
+				<span class="txtColor"><center>{{Ajouter}}</center></span>
 			</div>
 			<div class="cursor bt_showObjectSummary logoSecondary" >
 				<center>
 					<i class="fas fa-list"></i>
 				</center>
-				<span>{{Vue d'ensemble}}</span>
+				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
 

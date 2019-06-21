@@ -30,32 +30,34 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
-  
+
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-  
+
   $('#searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary').show()
     $('.tab-content').show()
     initPickers()
+    updateTooltips()
     return
   }
   if (search.length < 3) return
   search = normTextLower(search)
-  
+
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-  
+
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
-    var text = $(this).html()
-    text = normTextLower(text)
-    if (text.indexOf(search) >= 0) {
+    var text = normTextLower($(this).text())
+    var tooltip = $(this).find('sup i').attr('tooltip')
+    if (tooltip) { tooltip = normTextLower(tooltip) } else { tooltip = '' }
+    if (text.indexOf(search) >= 0 || tooltip.indexOf(search) >= 0) {
       //get element tab to create link to:
       var tabId = $(this).closest('div[role="tabpanel"]').attr('id')
       tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
@@ -63,16 +65,20 @@ $('#in_searchConfig').keyup(function () {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-      
+
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
       el.replaceWith('<span searchId='+ searchId + '></span>')
+      el.find('.tooltipstered').each(function() {
+        $(this).removeClass('tooltipstered')
+      })
       $('#searchResult').append(el)
     }
   })
   initPickers()
   initSearchLinks()
+  updateTooltips()
 })
 
 function initSearchLinks() {
@@ -83,6 +89,14 @@ function initSearchLinks() {
   })
 }
 
+function updateTooltips() {
+  //management of tooltip with search enginein scenarios, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
+  $('[tooltip]:not(.tooltipstered)').each(function() {
+    $(this).attr('title', $(this).attr('tooltip'))
+  })
+  $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
+}
+
 $('#bt_resetConfigSearch').on('click', function () {
   $('#in_searchConfig').val('')
   $('#in_searchConfig').keyup()
@@ -90,15 +104,16 @@ $('#bt_resetConfigSearch').on('click', function () {
 
 $(function () {
   setTimeout(function(){
-    modifyWithoutSave = false;
-  }, 1000);
-});
+    modifyWithoutSave = false
+  }, 1000)
+  updateTooltips()
+})
 
 //DateTimePickers and Spinners
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-  
+
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   });
@@ -325,7 +340,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-  
+
   return false;
 });
 
@@ -646,7 +661,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-      
+
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);

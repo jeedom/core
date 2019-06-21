@@ -1,10 +1,13 @@
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft" style="width: 100px">{{Condition}}</span>
   <textarea class="message expressionAttr form-control ta_autosize" data-l1key="options" data-l2key="condition" rows="1" style="resize:vertical;" placeholder="Condition" data-cmd_id="#id#" data-uid="#uid#">#condition#</textarea>
-  <span class="input-group-btn">
-    <button class="btn btn-default listEquipementInfo" type="button" tooltip="{{Sélectionner la commande}}" data-cmd_id="#id#" data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
+  <span class="input-group-addon hasBtn roundedRight">
+    <button class="btn btn-default listEquipementInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-cmd_id="#id#" data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
   </span>
-  <span class="input-group-addon" style="width: 100px">{{Time out}}</span>
+
+</div>
+<div class="input-group input-group-sm" style="width: calc(100% - 3px)">
+  <span class="input-group-addon roundedLeft" style="width: 100px">{{Time out}}</span>
   <input value="#timeout#" class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="timeout" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 <script>
