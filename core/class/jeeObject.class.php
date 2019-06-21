@@ -562,6 +562,10 @@ class jeeObject {
 	
 	public function preRemove() {
 		dataStore::removeByTypeLinkId('object', $this->getId());
+		$sql = 'UPDATE eqLogic set object_id= NULL where object_id=:object_id';
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$sql = 'UPDATE scenario set object_id= NULL where object_id=:object_id';
+		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 	
 	public function remove() {
