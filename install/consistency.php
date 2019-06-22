@@ -414,7 +414,7 @@ if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
 	if(!file_exists('/etc/systemd/system/mariadb.service.d')){
 		exec('sudo mkdir /etc/systemd/system/mariadb.service.d');
 	}
-	exec('sudo chmod 775 -R /etc/systemd/system/mariadb.service.d');
+	exec('sudo chmod 777 -R /etc/systemd/system/mariadb.service.d');
 	exec('sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf');
 	exec('sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf');
 	exec('sudo systemctl daemon-reload');
