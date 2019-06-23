@@ -930,12 +930,14 @@ function initHelp(){
 
 //Commons__
 function getCookie(name) {
-  let cookie = {};
-  document.cookie.split(';').forEach(function(el) {
-    let [k,v] = el.split('=');
-    cookie[k.trim()] = v;
-  })
-  return cookie[name];
+  var cookies = document.cookie.split(';');
+  for(var i in cookies){
+    var csplit = cookies[i].split('=');
+    if(name.trim() == csplit[0].trim()){
+      return csplit[1];
+    }
+  }
+  return '';
 }
 
 function normTextLower(_text) {
