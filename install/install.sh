@@ -69,7 +69,7 @@ step_3_database() {
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
   echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
   echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWD}" | debconf-set-selections
-  apt_install mysql-client mysql-common mysql-server
+  apt_install mariadb-client mariadb-common mariadb-server
   
   mysqladmin -u root password ${MYSQL_ROOT_PASSWD}
   
@@ -104,13 +104,20 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
-  apt-get -y install php php-curl php-gd php-imap php-json php-mcrypt php-mysql php-xml php-opcache php-soap php-xmlrpc libapache2-mod-php php-common php-dev php-zip php-ssh2 php-mbstring
-  if [ $? -ne 0 ]; then
-    apt_install libapache2-mod-php5 php5 php5-common php5-curl php5-dev php5-gd php5-json php5-memcached php5-mysqlnd php5-cli php5-ssh2 php5-redis php5-mbstring
-    apt_install php5-ldap
-  else
-    apt-get -y install php-ldap
-  fi
+  apt_install php libapache2-mod-php php-json php-mysql
+  apt install -y php-curl 
+  apt install -y php-gd
+  apt install -y php-imap
+  apt install -y php-xml
+  apt install -y php-opcache
+  apt install -y php-soap
+  apt install -y php-xmlrpc
+  apt install -y php-common
+  apt install -y php-dev
+  apt install -y php-zip
+  apt install -y php-ssh2
+  apt install -y php-mbstring
+  apt install -y php-ldap
   echo "${VERT}étape 5 php réussie${NORMAL}"
 }
 
