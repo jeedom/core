@@ -932,9 +932,9 @@ class cmd {
 		if ($this->getEqType() == '') {
 			$this->setEqType($this->getEqLogic()->getEqType_name());
 		}
-		if ($this->getDisplay('generic_type') !== '' && $this->getGeneric_type() == '') {
+		if ($this->getDisplay('generic_type') != '' && $this->getGeneric_type() == '') {
 			$this->setGeneric_type($this->getDisplay('generic_type'));
-			$this->setDisplay('generic_type', '');
+			$this->setDisplay('generic_type', null);
 		}
 		if($this->getTemplate('dashboard','') == ''){
 			$this->setTemplate('dashboard','default');
