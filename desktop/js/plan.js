@@ -708,6 +708,7 @@ function initEditOption(_state) {
   if (_state) {
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
+    jeedom.cmd.disableExecute = true;
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
       containment: 'parent',
       cursor: 'move',
@@ -764,6 +765,7 @@ function initEditOption(_state) {
       
     }
   }else{
+    jeedom.cmd.disableExecute = false;
     $('.div_displayObject').removeClass('editingMode')
     try{
       $('.tooltipstered').tooltipster('enable')
