@@ -298,26 +298,47 @@ $('#bt_refreshTimeline').on('click',function(){
 function displayTimeline(){
   jeedom.getTimelineEvents({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (data) {
       data = data.reverse()
-      var tr = '';
+      var tr = ''
       for(var i in data){
-        tr += '<tr>';
-        tr += '<td>';
+        tr += '<tr>'
+        tr += '<td>'
         tr += data[i].date
-        tr += '</td>';
-        tr += '<td>';
+        tr += '</td>'
+        tr += '<td>'
         tr += data[i].type
-        tr += '</td>';
-        tr += '<td>';
+        tr += '</td>'
+        tr += '<td>'
         tr += data[i].html
-        tr += '</td>';
-        tr += '</tr>';
+        tr += '</td>'
+        tr += '</tr>'
       }
-      $('#table_timeline tbody').empty().append(tr).trigger('update');
+      $('#table_timeline tbody').empty().append(tr).trigger('update')
+      $('#table_timeline').on('sortEnd', function(){
+        sepDays()
+	  })
       $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
     }
   });
+}
+
+
+
+function sepDays() {
+  doIt = false
+  if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
+    
+  prevDate = ''
+  $('#table_timeline tbody tr').each(function() {
+    thisDate = $(this).text().substring(0,10)
+    if (doIt && thisDate != prevDate) {
+      $(this).style('border-top', '1px dotted var(--txt-color)', 'important')
+    } else {
+      $(this).removeAttr('style')
+    }
+    prevDate = thisDate
+  })
 }
