@@ -942,6 +942,9 @@ class cmd {
 		if($this->getTemplate('mobile','') == ''){
 			$this->setTemplate('mobile','default');
 		}
+		if($this->getType() == 'action' && $this->getIsHistorized() == 1){
+			$this->setIsHistorized(0);
+		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
