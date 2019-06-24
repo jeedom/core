@@ -149,6 +149,7 @@ function editWidgetMode(_mode,_save){
     return;
   }
   if(_mode == 0 || _mode == '0'){
+    jeedom.cmd.disableExecute = false;
     if(!isset(_save) || _save){
       saveWidgetDisplay({view : 1});
     }
@@ -157,8 +158,8 @@ function editWidgetMode(_mode,_save){
       $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy');
     }
   }else{
+    jeedom.cmd.disableExecute = true;
     $('.eqLogicZone .eqLogic-widget').draggable('enable');
-    
     $( ".eqLogicZone .eqLogic-widget.allowResize").resizable({
       grid: [ 2, 2 ],
       resize: function( event, ui ) {

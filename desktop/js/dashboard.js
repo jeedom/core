@@ -37,13 +37,13 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').packery()
     return
   }
-
+  
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-
+    
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -60,7 +60,7 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-
+    
     if(match) {
       $(this).show()
     } else {
@@ -119,6 +119,7 @@ function editWidgetMode(_mode,_save){
     return;
   }
   if(_mode == 0){
+    jeedom.cmd.disableExecute = false;
     if(!isset(_save) || _save){
       saveWidgetDisplay({dashboard : 1});
     }
@@ -129,7 +130,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-
+    
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -138,6 +139,7 @@ function editWidgetMode(_mode,_save){
     }
     $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
   }else{
+    jeedom.cmd.disableExecute = true;
     $('.div_displayEquipement .eqLogic-widget').addClass('editingMode').draggable('enable');
     $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
@@ -180,14 +182,14 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-
+      
       positionEqLogic();
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       $divDisplayEq.disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-
+      
       var container = $divDisplayEq.packery();
       var packData = $divDisplayEq.data('packery');
       if (isset(packData) && packData.items.length == 1) {
@@ -225,7 +227,7 @@ function getObjectHtml(_object_id) {
 
 $('#bt_editDashboardWidgetOrder').on('click',function(){
   if($(this).attr('data-mode') == 1){
-  	$('.tooltipstered').tooltipster('enable')
+    $('.tooltipstered').tooltipster('enable')
     $.hideAlert();
     $(this).attr('data-mode',0);
     editWidgetMode(0);
@@ -234,7 +236,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     $('.counterReorderJeedom').remove();
     $('.div_displayEquipement').packery();
   }else{
-  	$('.tooltipstered').tooltipster('disable')
+    $('.tooltipstered').tooltipster('disable')
     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
     $(this).attr('data-mode',1);
     $('.bt_editDashboardWidgetAutoResize').show();

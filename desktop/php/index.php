@@ -106,19 +106,10 @@ function setTheme() {
 			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/'.$themeDefinition.'/desktop/'.$themeDefinition.'.css?md5='.md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css').'" rel="stylesheet">';
 			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
-		if(file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.js')) {
-			$themeJs = $themeDefinition . '/desktop/' . $themeDefinition;
-		}
 	}
+	$jeedom_theme['currentTheme'] = $themeDefinition;
 	echo $themeCss;
-	include_file('core', $themeJs, 'themes.js');
-	
-	//shadows:
-	$loadShadows = true;
-	if (isset($jeedom_theme['interface::advance::enable']) && isset($jeedom_theme['widget::shadow'])) {
-		if ($jeedom_theme['interface::advance::enable'] == 1 && $jeedom_theme['widget::shadow'] == 1) $loadShadows = false;
-	}
-	if ($loadShadows) {
+	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
 		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
 		if(file_exists($shdPath)) {
 			echo '<link id="shadows_theme_css" href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
