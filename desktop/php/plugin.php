@@ -84,7 +84,6 @@ foreach (plugin::listPlugin() as $plugin) {
  <legend>
    <i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
    <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
-   <span id="span_plugin_market" class="pull-right"></span>
    <span id="span_plugin_delete" class="pull-right"></span>
    <span id="span_plugin_doc" class="pull-right"></span>
  </legend>
