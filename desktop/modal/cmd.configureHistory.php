@@ -5,10 +5,10 @@ if (!isConnect('admin')) {
 $count = array('history' => 0, 'timeline' => 0);
 $cmds = cmd::all();
 foreach ($cmds as $cmd) {
-  if ($cmd->getIsHistorized() == 1) {
+  if ($cmd->getType() == 'info' && $cmd->getIsHistorized()) {
     $count['history']++;
   }
-  if ($cmd->getConfiguration('timeline::enable') == 1) {
+  if ($cmd->getConfiguration('timeline::enable')) {
     $count['timeline']++;
   }
 }
@@ -32,63 +32,65 @@ foreach ($cmds as $cmd) {
       <th>{{Nom}}</th>
       <th>{{Plugin}}</th>
       <th data-sorter="select-text">{{Mode de lissage}}</th>
-      <th data-sorter="select-text">{{Purge de l'historique si plus vieux}}</th>
+      <th data-sorter="select-text">{{Purge si plus vieux}}</th>
       <th data-sorter="false" data-filter="false">{{Action}}</th>
     </tr>
   </thead>
   <tbody>
     <?php
     foreach ($cmds as $cmd) {
-      echo '<tr data-cmd_id="'.$cmd->getId(). '">';
-      echo '<td style="width:95px;">';
-      if($cmd->getType() == 'info'){
-        echo '<center><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized() == 1) ? 'checked' : '').' /></center>';
+      $tr = '';
+      $tr .= '<tr data-cmd_id="'.$cmd->getId(). '">';
+      $tr .= '<td style="width:95px;">';
+      if ($cmd->getType() == 'info') {
+        $tr .= '<center><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' /></center>';
       }
-      echo '</td>';
-      echo '<td style="width:155px;">';
-      echo '<center><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable') == 1) ? 'checked' : '').' /></center>';
-      echo '</td>';
-      echo '<td style="width:130px;">';
-      echo '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
-      echo '</td>';
-      echo '<td>';
-      echo '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
-      echo '<span class="cmdAttr" data-l1key="humanName">'.$cmd->getHumanName().'</span>';
-      echo '</td>';
-      echo '<td style="width:100px;">';
-      echo '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
-      echo '</td>';
-      echo '<td>';
-      if($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric'){
-        echo '<div class="form-group">';
-        echo '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
-        echo '<option value="avg" '.(($cmd->getConfiguration('historizeMode') == 'avg') ? 'selected' : '').'>{{Moyenne}}</option>';
-        echo '<option value="min" '.(($cmd->getConfiguration('historizeMode') == 'min') ? 'selected' : '').'>{{Minimum}}</option>';
-        echo '<option value="max" '.(($cmd->getConfiguration('historizeMode') == 'max') ? 'selected' : '').'>{{Maximum}}</option>';
-        echo '<option value="none" '.(($cmd->getConfiguration('historizeMode') == 'none') ? 'selected' : '').'>{{Aucun}}</option>';
-        echo '</select>';
+      $tr .= '</td>';
+      $tr .= '<td style="width:155px;">';
+      $tr .= '<center><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' /></center>';
+      $tr .= '</td>';
+      $tr .= '<td style="width:130px;">';
+      $tr .= '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
+      $tr .= '</td>';
+      $tr .= '<td>';
+      $tr .= '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
+      $tr .= '<span class="cmdAttr" data-l1key="humanName">'.$cmd->getHumanName().'</span>';
+      $tr .= '</td>';
+      $tr .= '<td style="width:100px;">';
+      $tr .= '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
+      $tr .= '</td>';
+      $tr .= '<td>';
+      if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') {
+        $tr .= '<div class="form-group">';
+        $tr .= '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
+        $tr .= '<option value="avg" '.(($cmd->getConfiguration('historizeMode') == 'avg') ? 'selected' : '').'>{{Moyenne}}</option>';
+        $tr .= '<option value="min" '.(($cmd->getConfiguration('historizeMode') == 'min') ? 'selected' : '').'>{{Minimum}}</option>';
+        $tr .= '<option value="max" '.(($cmd->getConfiguration('historizeMode') == 'max') ? 'selected' : '').'>{{Maximum}}</option>';
+        $tr .= '<option value="none" '.(($cmd->getConfiguration('historizeMode') == 'none') ? 'selected' : '').'>{{Aucun}}</option>';
+        $tr .= '</select>';
       }
-      echo '</td>';
-      echo '<td>';
-      if($cmd->getType() == 'info'){
-        echo '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
-        echo '<option value="" '.(($cmd->getConfiguration('historyPurge') == '') ? 'selected' : '').'>{{Jamais}}</option>';
-        echo '<option value="-1 day" '.(($cmd->getConfiguration('historyPurge') == '-1 day') ? 'selected' : '').'>{{1 jour}}</option>';
-        echo '<option value="-7 days" '.(($cmd->getConfiguration('historyPurge') == '-7 days') ? 'selected' : '').'>{{7 jours}}</option>';
-        echo '<option value="-1 month" '.(($cmd->getConfiguration('historyPurge') == '-1 month') ? 'selected' : '').'>{{1 mois}}</option>';
-        echo '<option value="-3 month" '.(($cmd->getConfiguration('historyPurge') == '-3 month') ? 'selected' : '').'>{{3 mois}}</option>';
-        echo '<option value="-6 month" '.(($cmd->getConfiguration('historyPurge') == '-6 month') ? 'selected' : '').'>{{6 mois}}</option>';
-        echo '<option value="-1 year" '.(($cmd->getConfiguration('historyPurge') == '-1 year') ? 'selected' : '').'>{{1 an}}</option>';
-        echo '</select>';
+      $tr .= '</td>';
+      $tr .= '<td>';
+      if ($cmd->getType() == 'info') {
+        $tr .= '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
+        $tr .= '<option value="" '.(($cmd->getConfiguration('historyPurge') == '') ? 'selected' : '').'>{{Jamais}}</option>';
+        $tr .= '<option value="-1 day" '.(($cmd->getConfiguration('historyPurge') == '-1 day') ? 'selected' : '').'>{{1 jour}}</option>';
+        $tr .= '<option value="-7 days" '.(($cmd->getConfiguration('historyPurge') == '-7 days') ? 'selected' : '').'>{{7 jours}}</option>';
+        $tr .= '<option value="-1 month" '.(($cmd->getConfiguration('historyPurge') == '-1 month') ? 'selected' : '').'>{{1 mois}}</option>';
+        $tr .= '<option value="-3 month" '.(($cmd->getConfiguration('historyPurge') == '-3 month') ? 'selected' : '').'>{{3 mois}}</option>';
+        $tr .= '<option value="-6 month" '.(($cmd->getConfiguration('historyPurge') == '-6 month') ? 'selected' : '').'>{{6 mois}}</option>';
+        $tr .= '<option value="-1 year" '.(($cmd->getConfiguration('historyPurge') == '-1 year') ? 'selected' : '').'>{{1 an}}</option>';
+        $tr .= '</select>';
       }
-      echo '</td>';
-      echo '<td style="width:90px;">';
-      if($cmd->getType() == 'info'){
-        echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
+      $tr .= '</td>';
+      $tr .= '<td style="width:90px;">';
+      if ($cmd->getType() == 'info') {
+        $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
-      echo '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
-      echo '</td>';
-      echo '</tr>';
+      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
+      $tr .= '</td>';
+      $tr .= '</tr>';
+      echo $tr;
     }
     ?>
   </tbody>
