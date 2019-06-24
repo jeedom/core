@@ -244,7 +244,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			<div class="panel-heading">
 				<h3 class="panel-title cursor">
 					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_phpextension">
-						<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extension php}}</span></a>
+						<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extensions php}}</span></a>
 					</h3>
 				</div>
 				<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
