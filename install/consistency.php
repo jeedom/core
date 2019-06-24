@@ -249,6 +249,18 @@ if(method_exists('utils','attrChanged')){
 	$cron->setDeamon(0);
 	$cron->save();
 	
+	$cron = cron::byClassAndFunction('plugin', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * * *');
+	$cron->setTimeout(10);
+	$cron->setDeamon(0);
+	$cron->save();
+	
 	$cron = cron::byClassAndFunction('plugin', 'cron15');
 	if (!is_object($cron)) {
 		echo "Create plugin::cron15\n";
