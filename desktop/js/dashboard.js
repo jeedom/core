@@ -111,6 +111,7 @@ function editWidgetMode(_mode,_save){
     return;
   }
   if(_mode == 0){
+    jeedom.cmd.disableExecute = false;
     if(!isset(_save) || _save){
       saveWidgetDisplay({dashboard : 1});
     }
@@ -130,6 +131,7 @@ function editWidgetMode(_mode,_save){
     }
     $('.div_displayEquipement .scenario-widget').css('box-shadow','');
   }else{
+    jeedom.cmd.disableExecute = true;
     $('.div_displayEquipement .eqLogic-widget').css('box-shadow','0 0 4px rgba(147,204,1,.14), 0 10px 16px rgba(147,204,1,.30)');
     $('.div_displayEquipement .eqLogic-widget').draggable('enable');
     $( ".div_displayEquipement .eqLogic-widget.allowResize").resizable({
