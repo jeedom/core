@@ -7,9 +7,9 @@
 			var $cmd_id = $('.cmd[data-cmd_id=#id#]')
 			$cmd_id.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
 			if (_options.display_value == '1') {
-				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="fas fa-check"></i>')
+				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="icon_green fas fa-check"></i>')
 			} else {
-				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="fas fa-times"></i>')
+				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="icon_red fas fa-times"></i>')
 			}
 			if (_options.alertLevel) {
 				$cmd_id.removeClass('label label-warning label-danger')
