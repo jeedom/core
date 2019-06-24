@@ -2,6 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+if(init('type') == 'plugin'){
+	throw new Exception('{{Vous ne pouvez plus partager un plugin directement depuis Jeedom. Il faut le faire maintenant en synchronisation github depuis le market}}');
+}
 sendVarToJS('market_display_info', array(
 	'logicalId' => init('logicalId'),
 	'name' => init('name'),
