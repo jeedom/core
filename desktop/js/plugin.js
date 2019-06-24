@@ -23,7 +23,7 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
     return;
   }
   search = normTextLower(search)
-
+  
   $('.pluginDisplayCard').hide()
   $('.pluginDisplayCard .name').each(function(){
     var text = $(this).text()
@@ -85,13 +85,13 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#span_plugin_installation').closest('.panel').show();
         $('#span_plugin_installation').html(data.installation);
       }
-
+      
       if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
         $('#span_plugin_install_version').html(data.update.configuration.version);
       }else{
         $('#span_plugin_install_version').html('');
       }
-
+      
       $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
       $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
       if(data.hasDependency == 0 || data.activate != 1){
@@ -102,7 +102,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_dependancy').closest('.panel')
         $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
       }
-
+      
       if(data.hasOwnDeamon == 0 || data.activate != 1){
         $('#div_plugin_deamon').closest('.panel').hide();
         $('#div_plugin_dependancy').closest('.panel').parent().removeClass('col-md-6')
@@ -112,14 +112,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       $('#span_right_button').empty();
       $('#span_right_button').append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>');
-      if (isset(data.status) && isset(data.status.owner)) {
-        for(var i in data.status.owner){
-          if(data.status.owner[i] != 1){
-            continue;
-          }
-          $('#span_right_button').append('<a class="btn btn-warning btn-sm sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload-alt"></i> {{Envoyer sur le}} '+i+'</a>');
-        }
-      }
       if(isset(data.documentation) && data.documentation != ''){
         $('#span_right_button').append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.documentation+'"><i class="fas fa-book"></i> {{Documentation}}</a>');
       }
@@ -135,7 +127,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       } else {
         $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>');
       }
-
+      
       $('#div_configPanel').hide();
       $('#div_plugin_panel').empty();
       if(isset(data.display) && data.display != ''){
@@ -148,7 +140,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);
       }
-
+      
       if(isset(data.mobile) && data.mobile != ''){
         $('#div_configPanel').show();
         var config_panel_html = '<div class="form-group">';
@@ -159,7 +151,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         config_panel_html += '</div>';
         $('#div_plugin_panel').append(config_panel_html);
       }
-
+      
       $('#div_plugin_functionality').empty();
       count = 0;
       var config_panel_html = '<div class="row">';
@@ -191,7 +183,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       config_panel_html += '</div>';
       config_panel_html += '</div>';
       $('#div_plugin_functionality').append(config_panel_html);
-
+      
       $('#div_plugin_toggleState').empty();
       if (data.checkVersion != -1) {
         var html = '<form class="form-horizontal"><fieldset>';
@@ -245,7 +237,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         log_conf += '</div>';
         log_conf += '</form>';
       }
-
+      
       log_conf += '<form class="form-horizontal">';
       log_conf += '<div class="form-group">';
       log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>';
@@ -260,7 +252,7 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
       }
       log_conf += '</div>';
       log_conf += '</form>';
-
+      
       $('#div_plugin_log').empty().append(log_conf);
       $('#div_plugin_configuration').empty();
       if (data.checkVersion != -1) {
