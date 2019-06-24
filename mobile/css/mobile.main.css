@@ -117,6 +117,9 @@ body {
   animation: loading 6s 1s infinite;
 }
 
+.ui-bar {
+  border: none;
+}
 
 .ui-link[data-title=Accueil] .fa-home::before {
   content: '' !important;
@@ -447,6 +450,9 @@ legend,
 .ui-bar-a {
   background:  var(--el-defaultColor) !important;
   height: 5px;
+}
+.cmd .ui-bar-a {
+  height: auto;
 }
 a.ui-slider-handle {
   border-radius: 1em !important;
@@ -830,7 +836,8 @@ textarea,
 .input-group-addon,
 .market,
 button,
-pre {
+pre,
+.ui-bar {
   border-radius: var(--border-radius) !important;
 }
 .ui-controlgroup .ui-btn,
