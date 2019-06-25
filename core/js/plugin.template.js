@@ -188,29 +188,34 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
 /**************************EqLogic*********************************************/
 $('.eqLogicAction[data-action=copy]').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined && $('.eqLogicAttr[data-l1key=id]').value() != '') {
-    bootbox.prompt("{{Nom de la copie de l'équipement ?}}", function (result) {
-      if (result !== null) {
-        jeedom.eqLogic.copy({
-          id: $('.eqLogicAttr[data-l1key=id]').value(),
-          name: result,
-          error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'});
-          },
-          success: function (data) {
-            modifyWithoutSave = false;
-            var vars = getUrlVars();
-            var url = 'index.php?';
-            for (var i in vars) {
-              if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
-                url += i + '=' + vars[i].replace('#', '') + '&';
+    bootbox.prompt({
+      size: 'small',
+      value : $('.eqLogicAttr[data-l1key=name]').value(),
+      title:'{{Nom de la copie de l\'équipement ?}}',
+      callback : function (result) {
+        if (result !== null) {
+          jeedom.eqLogic.copy({
+            id: $('.eqLogicAttr[data-l1key=id]').value(),
+            name: result,
+            error: function (error) {
+              $('#div_alert').showAlert({message: error.message, level: 'danger'});
+            },
+            success: function (data) {
+              modifyWithoutSave = false;
+              var vars = getUrlVars();
+              var url = 'index.php?';
+              for (var i in vars) {
+                if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
+                  url += i + '=' + vars[i].replace('#', '') + '&';
+                }
               }
+              url += 'id=' + data.id + '&saveSuccessFull=1';
+              loadPage(url);
+              bootbox.hideAll();
             }
-            url += 'id=' + data.id + '&saveSuccessFull=1';
-            loadPage(url);
-            bootbox.hideAll();
-          }
-        });
-        return false;
+          });
+          return false;
+        }
       }
     });
   }
