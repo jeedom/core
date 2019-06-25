@@ -13,7 +13,7 @@ $div = '';
 $div .= '<a class="btn btn-success pull-right bt_downloadScenario"><i class="fa fa-download"></i> {{ Télécharger}}</a>';
 $div .= '<a class="btn btn-success pull-right bt_copyScenario"><i class="fa fa-copy"></i> {{ Copier}}</a>';
 $div .= '<br><br>';
-$div .= '<textarea id="scExport" style="height:100%;width:100%">' . $scenario->export() . '</textarea>';
+$div .= '<textarea id="scExport" style="height:calc(100% - 40px);width:100%">' . $scenario->export() . '</textarea>';
 echo $div;
 
 ?>
