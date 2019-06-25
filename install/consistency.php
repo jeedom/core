@@ -365,7 +365,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	
 		
-	foreach (object::all() as $object) {
+	foreach (jeeObject::all() as $object) {
 		try {
 			$object->save();
 		} catch (Exception $exc) {
