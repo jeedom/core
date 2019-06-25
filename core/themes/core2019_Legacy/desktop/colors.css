@@ -25,11 +25,11 @@ Theme Core 2019 @Jeedom
   --sc-lightTxt-color: rgb(240, 240, 240);
   
   --el-defaultColor: rgb(200, 200, 200);
-  --defaultBkg-color: rgb(255, 255, 255);
+  --defaultBkg-color: 255, 255, 255;
   --form-bg-color: rgb(220, 220, 220);
   --btnEq-default-color: rgb(220, 220, 220);
   --btn-default-color: rgb(100, 100, 100);
-  --panel-bg-color: rgb(248, 249, 250);
+  --panel-bg-color: 248, 249, 250;
   
   --eqTitle-color: rgb(240, 240, 240);
   --objectBkgd-color: rgb(105, 105, 105);

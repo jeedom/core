@@ -419,7 +419,7 @@ sup i {
 
 .list-group-item {
   padding: 0 5px;
-  background-color: var(--defaultBkg-color);
+  background-color: rgb(var(--defaultBkg-color));
 }
 .list-group-item-success {
   background-color: var(--al-success-color);
@@ -959,7 +959,7 @@ hr.hrSecondary {
 /* résumé */
 li.alert-info.eqLogic {
   color: var(--txt-color);
-  background-color: var(--defaultBkg-color) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
 }
 .row .objectSummaryParent{ font-size : 14px !important; }
 
@@ -1236,7 +1236,7 @@ header.navbar {
 .dropdown-menu,
 .dropdown > a,
 .dropdown > a:hover {
-  background-color: var(--defaultBkg-color) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
 }
 
 .nav .dropdown-menu {
@@ -1335,7 +1335,7 @@ div.panel {
   border: none;
 }
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
-  background-color: var(--defaultBkg-color) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
 }
 .panel-group .panel-heading {
   padding:0;
@@ -1363,15 +1363,14 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
 
 .panel {
   color: var(--txt-color) !important;
-  background-color: var(--defaultBkg-color) !important;
   border-color: var(--el-defaultColor) !important;
+  background-color: rgba(var(--defaultBkg-color), var(--opacity)) !important;
 }
 .panel-title {
   color: var(--linkHoverLight-color) !important;
 }
-.panel-body,
 .list-group li {
-  background-color: var(--panel-bg-color) !important;
+  background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;
 }
 .panel-body {
   padding: 12px 0 0 5px;
@@ -1660,7 +1659,7 @@ input[type=password]{
 }
 select option {
   color: var(--txt-color) !important;
-  background-color: var(--defaultBkg-color) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
 }
 select optgroup {
   color: var(--txt-color) !important;
@@ -1741,7 +1740,7 @@ input[type=checkbox].summaryAttr {
 
 /* __________________________________________________________________________________________________________TABS */
 .tab-content {
-  background-color: var(--panel-bg-color)!important;
+  background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   padding-bottom: 2px !important;
 }
 ul.nav.nav-tabs li,
@@ -1758,7 +1757,7 @@ ul.nav.nav-tabs li,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li > a:hover {
-  background-color: var(--panel-bg-color) !important;
+  background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;
   color: var(--link-color) !important;
   border-bottom : 1px var(--logo-primary-color) solid !important;
   height: 39px;
@@ -1834,7 +1833,7 @@ th {
 }
 .table-striped>tbody>tr:nth-of-type(2n+1),
 .table > thead > tr {
-  background-color: var(--panel-bg-color)!important;
+  background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
 }
 
 :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
@@ -1896,7 +1895,7 @@ hr {
 }
 
 .tablesorter-filter {
-  background-color: var(--defaultBkg-color);
+  background-color: rgb(var(--defaultBkg-color));
   color: var(--link-color);
   opacity: 0.85 !important;
 }
@@ -2397,7 +2396,7 @@ textarea {
 #ul_noteList .li_noteDisplay a:active,
 #ul_noteList .li_noteDisplay a:focus,
 #ul_noteList .li_noteDisplay a:hover{
-  background-color: var(--defaultBkg-color) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
 }
 
 
@@ -2425,7 +2424,7 @@ textarea {
 .highcharts-axis-labels text tspan { fill: var(--txt-color)!important; }
 
 .highcharts-background {
-  fill: var(--panel-bg-color) !important;
+  fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
   fill-opacity: var(--opacity);
 }
 .eqLogic-widget .highcharts-background {
@@ -2910,7 +2909,7 @@ div.cmd > div.center-block {
 }
 
 .ui-dialog {
-  background-color: var(--defaultBkg-color);
+  background-color: rgb(var(--defaultBkg-color));
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
@@ -3081,7 +3080,7 @@ input:invalid {
 .nav>li>a:focus,
 .nav>li>a:hover {
   text-decoration: none;
-  background-color: var(--defaultBkg-color)
+  background-color: rgb(var(--defaultBkg-color))
 }
 
 
