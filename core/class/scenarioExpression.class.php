@@ -318,10 +318,10 @@ class scenarioExpression {
 		}else{
 			$value = round($_value);
 		}
-		$graduations = $_max - $_min;
-		$graduations--;
-		$startcol = str_replace("#", "", $_from_color);
-		$endcol = str_replace("#", "", $_to_color);
+		$graduations = $_max - $_min - 1;
+		$value -= $_min + 1;
+		$startcol = str_replace('#', '', $_from_color);
+		$endcol = str_replace('#', '', $_to_color);
 		$RedOrigin = hexdec(substr($startcol, 0, 2));
 		$GrnOrigin = hexdec(substr($startcol, 2, 2));
 		$BluOrigin = hexdec(substr($startcol, 4, 2));
