@@ -89,8 +89,9 @@ if (is_array($scenarioListGroup)) {
 				$div .= '</div>';
 				$div .= '</div>';
 				$div .= '</div>';
-				echo $div;
 			}
+          	echo $div;
+
 			$i = 0;
 			$div = '';
 			foreach ($scenarioListGroup as $group) {
