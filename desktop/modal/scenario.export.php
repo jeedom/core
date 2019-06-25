@@ -9,5 +9,5 @@ if (!is_object($scenario)) {
     throw new Exception('{{Scénario introuvable}}');
 }
 
-echo '<pre>' . $scenario->export() . '</pre>';
+echo '<textarea style="height:100%;width:100%" disabled>' . $scenario->export() . '</textarea>';
 ?>
