@@ -318,17 +318,17 @@ class scenarioExpression {
 		}else{
 			$value = round($_value);
 		}
-		$graduations = $_max - $_min;
-		$graduations--;
-		$startcol = str_replace("#", "", $_from_color);
-		$endcol = str_replace("#", "", $_to_color);
-		$RedOrigin = hexdec(substr($startcol, 0, 2));
-		$GrnOrigin = hexdec(substr($startcol, 2, 2));
-		$BluOrigin = hexdec(substr($startcol, 4, 2));
+		$graduations = $_max - $_min - 1;
+		$value -= $_min + 1;
+		$startcol = str_replace('#', '', $_from_color);
+		$endcol = str_replace('#', '', $_to_color);
+		$RedOrigin = hexdec(substr($startcol, 1, 2));
+		$GrnOrigin = hexdec(substr($startcol, 3, 2));
+		$BluOrigin = hexdec(substr($startcol, 5, 2));
 		if ($graduations >= 2) {
-			$GradientSizeRed = (hexdec(substr($endcol, 0, 2)) - $RedOrigin) / $graduations;
-			$GradientSizeGrn = (hexdec(substr($endcol, 2, 2)) - $GrnOrigin) / $graduations;
-			$GradientSizeBlu = (hexdec(substr($endcol, 4, 2)) - $BluOrigin) / $graduations;
+			$GradientSizeRed = (hexdec(substr($endcol, 1, 2)) - $RedOrigin) / $graduations;
+			$GradientSizeGrn = (hexdec(substr($endcol, 3, 2)) - $GrnOrigin) / $graduations;
+			$GradientSizeBlu = (hexdec(substr($endcol, 5, 2)) - $BluOrigin) / $graduations;
 			for ($i = 0; $i <= $graduations; $i++) {
 				$RetVal[$i] = strtoupper("#" . str_pad(dechex($RedOrigin + ($GradientSizeRed * $i)), 2, '0', STR_PAD_LEFT) .
 				str_pad(dechex($GrnOrigin + ($GradientSizeGrn * $i)), 2, '0', STR_PAD_LEFT) .

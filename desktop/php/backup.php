@@ -41,7 +41,7 @@ echo '</script>';
 							<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
 						<div class="col-xs-12">
@@ -78,7 +78,7 @@ echo '</script>';
 					continue;
 				}
 				$class = 'repo_' . $rkey;
-
+				
 				$icon = '<i class="fas fa-network-wired"></i>';
 				if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
 				echo '<legend>'.$icon.' {{Sauvegardes}} ' . $value['name'] . '</legend>';
