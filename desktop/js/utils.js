@@ -120,7 +120,6 @@ function loadPage(_url,_noPushHistory){
     'background-repeat':'no-repeat',
     'background-size':'cover'
   });
-  setBackgroundImg('');
   jeedomBackgroundImg = null;
   
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
