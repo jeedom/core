@@ -135,6 +135,8 @@ function loadPage(_url,_noPushHistory){
     $('body').trigger('jeedom_page_load');
     if(jeedomBackgroundImg !== null){
       setBackgroundImg(jeedomBackgroundImg);
+    }else{
+      setBackgroundImg('');
     }
     if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
       $('.nav-tabs a[href="'+window.location.hash+'"]').click();
