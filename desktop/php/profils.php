@@ -32,14 +32,14 @@ if (!isConnect()) {
 			<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 			<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="interfacetab">
 				<br>
 				<form class="form-horizontal">
 					<fieldset>
 						<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
-
+						
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}
 								<sup><i class="fas fa-question-circle tooltips" title="Affiche le panneau des objets sur le dashboard"></i></sup>
@@ -62,34 +62,24 @@ if (!isConnect()) {
 							</label>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePage">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach ($homePageDesktop as $key => $value) {
-											echo '<li><a href="#" data-value="'.$key.'">'.$value.'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="homePage">
+									<?php
+									foreach ($homePageDesktop as $key => $value) {
+										echo '<option value="'.$key.'">'.$value.'</option>';
+									}
+									?>
+								</select>
 							</div>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="homePageMobile">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a href="#" data-value="home">{{Accueil}}</a></li>
-										<?php
-										foreach ($homePageMobile as $key => $value) {
-											echo '<li><a href="#" data-value="'.$key.'">'.$value.'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="homePageMobile">
+									<option value="home">{{Accueil}}</option>
+									<?php
+									foreach ($homePageMobile as $key => $value) {
+										echo '<option value="'.$key.'">'.$value.'</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -98,34 +88,24 @@ if (!isConnect()) {
 							</label>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardObject">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (jeeObject::all() as $object) {
-											echo '<li><a href="#" data-value="'.$object->getId().'">'.$object->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardObject">
+									<?php
+									foreach (jeeObject::all() as $object) {
+										echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileObject">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a href="#" data-value="all">{{Tout}}</a></li>
-										<?php
-										foreach (jeeObject::all() as $object) {
-											echo '<li><a href="#" data-value="'.$object->getId().'">'.$object->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileObject">
+									<option value="all">{{Tout}}</option>
+									<?php
+									foreach (jeeObject::all() as $object) {
+										echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<hr class="hrPrimary">
@@ -135,33 +115,23 @@ if (!isConnect()) {
 							</label>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDesktopView">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (view::all() as $view) {
-											echo '<li><a href="#" data-value="'.$view->getId().'">'.$view->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDesktopView">
+									<?php
+									foreach (view::all() as $view) {
+										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobileView">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (view::all() as $view) {
-											echo '<li><a href="#" data-value="'.$view->getId().'">'.$view->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileView">
+									<?php
+									foreach (view::all() as $view) {
+										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -177,33 +147,23 @@ if (!isConnect()) {
 							</label>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (planHeader::all() as $plan) {
-											echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan">
+									<?php
+									foreach (planHeader::all() as $plan) {
+										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (planHeader::all() as $plan) {
-											echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan">
+									<?php
+									foreach (planHeader::all() as $plan) {
+										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -219,33 +179,23 @@ if (!isConnect()) {
 							</label>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-desktop"></i>  {{Desktop}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultDashboardPlan3d">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (plan3dHeader::all() as $plan) {
-											echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardPlan3d">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 							<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
 							<div class="col-sm-2 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle userAttr" type="button" data-toggle="dropdown" data-l1key="options" data-l2key="defaultMobilePlan3d">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<?php
-										foreach (plan3dHeader::all() as $plan) {
-											echo '<li><a href="#" data-value="'.$plan->getId().'">'.$plan->getName().'</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobilePlan3d">
+									<?php
+									foreach (plan3dHeader::all() as $plan) {
+										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -254,7 +204,7 @@ if (!isConnect()) {
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 							</div>
 						</div>
-
+						
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
 							<label class="col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}
@@ -269,11 +219,11 @@ if (!isConnect()) {
 								</div>
 							</div>
 						</div>
-
+						
 						<fieldset>
 						</form>
 					</div>
-
+					
 					<div role="tabpanel" class="tab-pane" id="securitytab">
 						<br/>
 						<form class="form-horizontal">
@@ -295,7 +245,7 @@ if (!isConnect()) {
 										<?php }
 										?>
 									</div>
-
+									
 									<div class="form-group">
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -324,7 +274,7 @@ if (!isConnect()) {
 								</div>
 							</fieldset>
 						</form>
-
+						
 						<form class="form-horizontal">
 							<fieldset>
 								<legend>{{Session(s) active(s)}}</legend>
@@ -355,7 +305,7 @@ if (!isConnect()) {
 								</table>
 							</fieldset>
 						</form>
-
+						
 						<form class="form-horizontal">
 							<fieldset>
 								<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
@@ -386,14 +336,15 @@ if (!isConnect()) {
 											echo '</td>';
 											echo '</tr>';
 										}
-
+										
 										?>
 									</tbody>
 								</table>
 							</fieldset>
 						</form>
 					</div>
-
+					
 				</div>
 			</div>
 			<?php include_file("desktop", "profils", "js");?>
+			

@@ -88,46 +88,34 @@ $date = array(
 						<div class="input-group input-group-sm pull-right">
 							<span> {{Variation}} <input type="checkbox" id="cb_derive" /></span>
 							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-							<div class="dropdown dynDropdown">
-								<button class="btn btn-default dropdown-toggle roundedLeft" type="button" data-toggle="dropdown" id="sel_groupingType" style="width: 180px;">
-									{{Aucun groupement}}
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li><a href="#" data-value="">{{Aucun groupement}}</a></li>
-									<li><a href="#" data-value="sum::hour">{{Somme par heure}}</a></li>
-									<li><a href="#" data-value="average::hour">{{Moyenne par heure}}</a></li>
-									<li><a href="#" data-value="low::hour">{{Minimum par heure}}</a></li>
-									<li><a href="#" data-value="high::hour">{{Maximum par heure}}</a></li>
-									<li><a href="#" data-value="sum::day">{{Somme par jour}}</a></li>
-									<li><a href="#" data-value="average::day">{{Moyenne par jour}}</a></li>
-									<li><a href="#" data-value="low::day">{{Minimum par jour}}</a></li>
-									<li><a href="#" data-value="high::day">{{Maximum par jour}}</a></li>
-									<li><a href="#" data-value="sum::week">{{Somme par semaine}}</a></li>
-									<li><a href="#" data-value="average::week">{{Moyenne par semaine}}</a></li>
-									<li><a href="#" data-value="low::week">{{Minimum par semaine}}</a></li>
-									<li><a href="#" data-value="high::week">{{Maximum par semaine}}</a></li>
-									<li><a href="#" data-value="sum::month">{{Somme par mois}}</a></li>
-									<li><a href="#" data-value="average::month">{{Moyenne par mois}}</a></li>
-									<li><a href="#" data-value="low::month">{{Minimum par mois}}</a></li>
-									<li><a href="#" data-value="high::month">{{Maximum par mois}}</a></li>
-									<li><a href="#" data-value="sum::year">{{Somme par année}}</a></li>
-									<li><a href="#" data-value="average::year">{{Moyenne par année}}</a></li>
-									<li><a href="#" data-value="low::year">{{Minimum par année}}</a></li>
-									<li><a href="#" data-value="high::year">{{Maximum par année}}</a></li>
-								</ul>
-							</div>
-							<div class="dropdown dynDropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="sel_chartType" style="width: 100px;">
-									{{Ligne}}
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu dropdown-menu-right">
-									<li><a href="#" data-value="line">{{Ligne}}</a></li>
-									<li><a href="#" data-value="areaspline">{{Aire}}</a></li>
-									<li><a href="#" data-value="column">{{Barre}}</a></li>
-								</ul>
-							</div>
+							<select class="form-control roundedLeft" id="sel_groupingType" style="width: 180px;">
+								<option value="">{{Aucun groupement}}</option>
+								<option value="sum::hour">{{Somme par heure}}</option>
+								<option value="average::hour">{{Moyenne par heure}}</option>
+								<option value="low::hour">{{Minimum par heure}}</option>
+								<option value="high::hour">{{Maximum par heure}}</option>
+								<option value="sum::day">{{Somme par jour}}</option>
+								<option value="average::day">{{Moyenne par jour}}</option>
+								<option value="low::day">{{Minimum par jour}}</option>
+								<option value="high::day">{{Maximum par jour}}</option>
+								<option value="sum::week">{{Somme par semaine}}</option>
+								<option value="average::week">{{Moyenne par semaine}}</option>
+								<option value="low::week">{{Minimum par semaine}}</option>
+								<option value="high::week">{{Maximum par semaine}}</option>
+								<option value="sum::month">{{Somme par mois}}</option>
+								<option value="average::month">{{Moyenne par mois}}</option>
+								<option value="low::month">{{Minimum par mois}}</option>
+								<option value="high::month">{{Maximum par mois}}</option>
+								<option value="sum::year">{{Somme par année}}</option>
+								<option value="average::year">{{Moyenne par année}}</option>
+								<option value="low::year">{{Minimum par année}}</option>
+								<option value="high::year">{{Maximum par année}}</option>
+							</select>
+							<select class="form-control" id="sel_chartType" style="width: 100px;">
+								<option value="line">{{Ligne}}</option>
+								<option value="areaspline">{{Aire}}</option>
+								<option value="column">{{Barre}}</option>
+							</select>
 							<a class="btn btn-warning roundedRight" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
 								<i class="fas fa-times"></i> {{Affichage}}
 							</a>

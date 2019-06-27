@@ -32,56 +32,44 @@ $date = array(
 					echo '<span>{{Escalier}} <input type="checkbox" class="cb_step" /></span>';
 				}
 				?>
-				<div class="dropdown dynDropdown">
-					<button class="btn btn-default dropdown-toggle roundedLeft sel_groupingType" type="button" data-toggle="dropdown" style="width: 180px;">
-						{{Aucun groupement}}
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="#" data-value="">{{Aucun groupement}}</a></li>
-						<li><a href="#" data-value="sum::hour">{{Somme par heure}}</a></li>
-						<li><a href="#" data-value="average::hour">{{Moyenne par heure}}</a></li>
-						<li><a href="#" data-value="low::hour">{{Minimum par heure}}</a></li>
-						<li><a href="#" data-value="high::hour">{{Maximum par heure}}</a></li>
-						<li><a href="#" data-value="sum::day">{{Somme par jour}}</a></li>
-						<li><a href="#" data-value="average::day">{{Moyenne par jour}}</a></li>
-						<li><a href="#" data-value="low::day">{{Minimum par jour}}</a></li>
-						<li><a href="#" data-value="high::day">{{Maximum par jour}}</a></li>
-						<li><a href="#" data-value="sum::week">{{Somme par semaine}}</a></li>
-						<li><a href="#" data-value="average::week">{{Moyenne par semaine}}</a></li>
-						<li><a href="#" data-value="low::week">{{Minimum par semaine}}</a></li>
-						<li><a href="#" data-value="high::week">{{Maximum par semaine}}</a></li>
-						<li><a href="#" data-value="sum::month">{{Somme par mois}}</a></li>
-						<li><a href="#" data-value="average::month">{{Moyenne par mois}}</a></li>
-						<li><a href="#" data-value="low::month">{{Minimum par mois}}</a></li>
-						<li><a href="#" data-value="high::month">{{Maximum par mois}}</a></li>
-						<li><a href="#" data-value="sum::year">{{Somme par année}}</a></li>
-						<li><a href="#" data-value="average::year">{{Moyenne par année}}</a></li>
-						<li><a href="#" data-value="low::year">{{Minimum par année}}</a></li>
-						<li><a href="#" data-value="high::year">{{Maximum par année}}</a></li>
-					</ul>
-				</div>
-				<div class="dropdown dynDropdown">
-					<button class="btn btn-default dropdown-toggle roundedRight sel_chartType" type="button" data-toggle="dropdown" style="width: 100px;">
-						{{Ligne}}
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="#" data-value="line">{{Ligne}}</a></li>
-						<li><a href="#" data-value="areaspline">{{Aire}}</a></li>
-						<li><a href="#" data-value="column">{{Barre}}</a></li>
-					</ul>
-				</div>
+				<select class="form-control roundedLeft sel_groupingType" style="width: 180px;">
+					<option value="">{{Aucun groupement}}</option>
+					<option value="sum::hour">{{Somme par heure}}</option>
+					<option value="average::hour">{{Moyenne par heure}}</option>
+					<option value="low::hour">{{Minimum par heure}}</option>
+					<option value="high::hour">{{Maximum par heure}}</option>
+					<option value="sum::day">{{Somme par jour}}</option>
+					<option value="average::day">{{Moyenne par jour}}</option>
+					<option value="low::day">{{Minimum par jour}}</option>
+					<option value="high::day">{{Maximum par jour}}</option>
+					<option value="sum::week">{{Somme par semaine}}</option>
+					<option value="average::week">{{Moyenne par semaine}}</option>
+					<option value="low::week">{{Minimum par semaine}}</option>
+					<option value="high::week">{{Maximum par semaine}}</option>
+					<option value="sum::month">{{Somme par mois}}</option>
+					<option value="average::month">{{Moyenne par mois}}</option>
+					<option value="low::month">{{Minimum par mois}}</option>
+					<option value="high::month">{{Maximum par mois}}</option>
+					<option value="sum::year">{{Somme par année}}</option>
+					<option value="average::year">{{Moyenne par année}}</option>
+					<option value="low::year">{{Minimum par année}}</option>
+					<option value="high::year">{{Maximum par année}}</option>
+				</select>
+				<select class="form-control roundedRight sel_chartType" style="width: 100px;">
+					<option value="line">{{Ligne}}</option>
+					<option value="areaspline">{{Aire}}</option>
+					<option value="column">{{Barre}}</option>
+				</select>
 			</div>
 		</div>
 	</div>
 	<center><div id="div_historyChart"></div></center>
-
-
+	
+	
 	<script>
 	$(".in_datepicker").datepicker();
 	$('#ui-datepicker-div').hide();
-
+	
 	$('#div_historyChart').css('position', 'relative').css('width', '100%');
 	delete jeedom.history.chart['div_historyChart'];
 	jeedom.history.drawChart({
@@ -108,7 +96,7 @@ $date = array(
 					$('.cb_derive').off().value(init(data.cmd.display.graphDerive));
 				}
 			}
-
+			
 			$('.sel_chartType').off('change').on('change', function () {
 				jeedom.cmd.save({
 					cmd: {id: <?php echo init('id'); ?>, display: {graphType: $(this).value()}},
@@ -201,27 +189,27 @@ $date = array(
 					modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
 				}
 			});
-
-
+			
+			
 			if ($(window).width() > 768) {
 				width = 780
 				height = 500
 				$('.ui-dialog[aria-describedby="md_modal2"]').width(width).height(height)
 				$('#md_modal2').width(width-26).height(height-40)
 				$('.ui-dialog[aria-describedby="md_modal2"]').position({
-				   my: "center",
-				   at: "center",
-				   of: window
+					my: "center",
+					at: "center",
+					of: window
 				})
 			}
-
-          	$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
+			
+			$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
 			$('.ui-dialog[aria-labelledby="ui-id-4"]').resize(function() {
 				$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
 			})
 		}
 	});
-
-
+	
+	
 </script>
 </div>

@@ -71,7 +71,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<select class="configKey" data-l1key="language">
+							<select class="form-control configKey" data-l1key="language">
 								<option value="fr_FR">French</option>
 								<option value="en_US">English</option>
 								<option value="de_DE">German</option>
@@ -97,7 +97,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 						</label>
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-							<select class="configKey" data-l1key="timezone">
+							<select class="form-control configKey" data-l1key="timezone">
 								<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
 								<option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
 								<option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
@@ -260,7 +260,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="configKey" data-l1key="api::core::http::mode">
+							<select class="form-control configKey" data-l1key="api::core::http::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
 								<option value="localhost">{{Localhost}}</option>
@@ -271,7 +271,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="configKey" data-l1key="api::core::jsonrpc::mode">
+							<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
 								<option value="localhost">{{Localhost}}</option>
@@ -282,7 +282,7 @@ user::isBan();
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="configKey" data-l1key="api::core::tts::mode">
+							<select class="form-control configKey" data-l1key="api::core::tts::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="whiteip">{{IP blanche}}</option>
 								<option value="localhost">{{Localhost}}</option>
@@ -318,7 +318,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="configKey" data-l1key="api::core::pro::mode">
+							<select class="form-control configKey" data-l1key="api::core::pro::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="disable">{{Désactivé}}</option>
 							</select>
@@ -338,7 +338,7 @@ user::isBan();
 						</div>
 						<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-							<select class="configKey" data-l1key="api::core::market::mode">
+							<select class="form-control configKey" data-l1key="api::core::market::mode">
 								<option value="enable">{{Activé}}</option>
 								<option value="disable">{{Désactivé}}</option>
 							</select>
@@ -366,7 +366,7 @@ user::isBan();
 							$div .= '</div>';
 							$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
 							$div .= '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
-							$div .= '<select class="configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
+							$div .= '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
 							$div .= '<option value="enable">{{Activé}}</option>';
 							$div .= '<option value="whiteip">{{IP blanche}}</option>';
 							$div .= '<option value="localhost">{{Localhost}}</option>';
@@ -811,7 +811,7 @@ user::isBan();
 										<div class="form-group">
 											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop principal}}</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<select class="configKey" data-l1key="default_bootstrap_theme">
+												<select class="form-control configKey" data-l1key="default_bootstrap_theme">
 													<?php
 													foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 														if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -823,7 +823,7 @@ user::isBan();
 											</div>
 											<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<select class="configKey" data-l1key="default_bootstrap_theme_night">
+												<select class="form-control configKey" data-l1key="default_bootstrap_theme_night">
 													<?php
 													foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 														if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -837,7 +837,7 @@ user::isBan();
 										<div class="form-group">
 											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile principal}}</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<select class="configKey" data-l1key="mobile_theme_color">
+												<select class="form-control configKey" data-l1key="mobile_theme_color">
 													<?php
 													foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 														if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
@@ -849,7 +849,7 @@ user::isBan();
 											</div>
 											<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile alternatif}}</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<select class="configKey" data-l1key="mobile_theme_color_night">
+												<select class="form-control configKey" data-l1key="mobile_theme_color_night">
 													<?php
 													foreach (ls(__DIR__ . '/../../core/themes') as $dir) {
 														if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
@@ -1027,7 +1027,7 @@ user::isBan();
 										<div class="form-group">
 											<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 											<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-												<select class="configKey" data-l1key="history::defautShowPeriod">
+												<select class="form-control configKey" data-l1key="history::defautShowPeriod">
 													<option value="-6 month">{{6 mois}}</option>
 													<option value="-3 month">{{3 mois}}</option>
 													<option value="-1 month">{{1 mois}}</option>
@@ -1088,7 +1088,7 @@ user::isBan();
 										<div class="form-group">
 											<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 											<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-												<select class="configKey" data-l1key="cache::engine">
+												<select class="form-control configKey" data-l1key="cache::engine">
 													<option value="FilesystemCache">{{Système de fichiers (<?php echo cache::getFolder(); ?>)}}</option>
 													<?php if (class_exists('memcached')) {?>
 														<option value="MemcachedCache">{{Memcached}}</option>
@@ -1525,7 +1525,7 @@ user::isBan();
 															<div class="form-group">
 																<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
 																<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																	<select class="configKey" data-l1key="log::engine">
+																	<select class="form-control configKey" data-l1key="log::engine">
 																		<option value="StreamHandler">{{Defaut}}</option>
 																		<option value="SyslogHandler">{{Syslog}}</option>
 																		<option value="SyslogUdp">{{SyslogUdp}}</option>
@@ -1560,7 +1560,7 @@ user::isBan();
 																<div class="form-group">
 																	<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Niveau de log par défaut}}</label>
 																	<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																		<select class="configKey" data-l1key="log::level">
+																		<select class="form-control configKey" data-l1key="log::level">
 																			<option value="100">{{Debug}}</option>
 																			<option value="200">{{Info}}</option>
 																			<option value="300">{{Warning}}</option>
@@ -1659,7 +1659,7 @@ user::isBan();
 																	<div class="form-group">
 																		<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
 																		<div class="col-lg-4 col-xs-6">
-																			<select class="configKey" data-l1key="core::repo::provider">
+																			<select class="form-control configKey" data-l1key="core::repo::provider">
 																				<option value="default">{{Défaut}}</option>
 																				<?php
 																				foreach ($repos as $key => $value) {
@@ -1679,7 +1679,7 @@ user::isBan();
 																				<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 																			</label>
 																			<div class="col-lg-4 col-xs-6">
-																				<select class="configKey" data-l1key="core::branch">
+																				<select class="form-control configKey" data-l1key="core::branch">
 																					<option value="master">{{Stable}}</option>
 																					<option value="release">{{Release (Pas de support)}}</option>
 																					<option value="beta">{{Beta (Pas de support)}}</option>
@@ -1746,7 +1746,7 @@ user::isBan();
 																							$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 																							break;
 																							case 'select':
-																							$div .= '<select class="configKey" data-l1key="' . $key . '::' . $pKey . '">';
+																							$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
 																							foreach ($parameter['values'] as $optkey => $optval) {
 																								$div .= '<option value="' . $optkey . '">' . $optval . '</option>';
 																							}
