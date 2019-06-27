@@ -98,7 +98,8 @@ a:focus {
 .scenario-widget .btn,
 #bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
-#bt_displayObject {
+#bt_displayObject,
+#bt_displaySummaries {
   background-color: var(--btnEq-default-color) !important;
 }
 

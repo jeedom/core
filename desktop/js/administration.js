@@ -30,14 +30,14 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
-
+  
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-
+  
   $('#searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary').show()
@@ -48,10 +48,10 @@ $('#in_searchConfig').keyup(function () {
   }
   if (search.length < 3) return
   search = normTextLower(search)
-
+  
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-
+  
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
     var text = normTextLower($(this).text())
@@ -65,7 +65,7 @@ $('#in_searchConfig').keyup(function () {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-
+      
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
@@ -113,7 +113,7 @@ $(function () {
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-
+  
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   });
@@ -340,7 +340,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-
+  
   return false;
 });
 
@@ -661,7 +661,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-
+      
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);
@@ -889,25 +889,11 @@ function addObjectSummary(_summary, _direction=1) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="name" />';
   tr += '</td>';
   tr += '<td>';
-  if (_direction == 1) {
-    tr += '<div class="dropdown dynDropdown dropup">';
-  } else {
-    tr += '<div class="dropdown dynDropdown">';
-  }
-  tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="calcul">';
-  if(isset(_summary) && isset(_summary.calcul)) {
-    tr += _summary.calcul;
-  } else {
-    tr += 'Somme';
-  }
-  tr += '<span class="caret"></span>';
-  tr += '</button>';
-  tr += '<ul class="dropdown-menu dropdown-menu-right">';
-  tr += '<li><a href="#" data-value="sum">{{Somme}}</a></li>';
-  tr += '<li><a href="#" data-value="avg">{{Moyenne}}</a></li>';
-  tr += '<li><a href="#" data-value="text">{{Texte}}</a></li>';
-  tr += '</ul>';
-  tr += '</div>';
+  tr += '<select class="form-control objectSummaryAttr" data-l1key="calcul">';
+  tr += '<option value="sum">{{Somme}}</option>';
+  tr += '<option value="avg">{{Moyenne}}</option>>';
+  tr += '<option value="text">{{Texte}}</option>';
+  tr += '</select>';
   tr += '</td>';
   tr += '<td>';
   tr += '<a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>';
@@ -917,20 +903,10 @@ function addObjectSummary(_summary, _direction=1) {
   tr += '<input class="objectSummaryAttr form-control input-sm" data-l1key="unit" />';
   tr += '</td>';
   tr += '<td>';
-  tr += '<div class="dropdown dynDropdown">';
-  tr += '<button class="btn btn-sm dropdown-toggle objectSummaryAttr" type="button" data-toggle="dropdown" data-l1key="count">';
-  if(isset(_summary) && isset(_summary.count)) {
-    tr += _summary.count;
-  } else {
-    tr += 'Aucun';
-  }
-  tr += '<span class="caret"></span>';
-  tr += '</button>';
-  tr += '<ul class="dropdown-menu dropdown-menu-right">';
-  tr += '<li><a href="#" data-value="">{{Aucun}}</a></li>';
-  tr += '<li><a href="#" data-value="binary">{{Binaire}}</a></li>';
-  tr += '</ul>';
-  tr += '</div>';
+  tr += '<select class="objectSummaryAttr" data-l1key="count">';
+  tr += '<option value="">{{Aucun}}</option>';
+  tr += '<option value="binary">{{Binaire}}</option>';
+  tr += '</select>';
   tr += '</td>';
   tr += '<td>';
   tr += '<center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center>';

@@ -40,7 +40,7 @@ class jeedom {
 			'theme_end_day_hour',
 			'theme_changeAccordingTime',
 			'mobile_theme_useAmbientLight',
-			'hideBackgroundImg',
+			'showBackgroundImg',
 			'widget::step::width',
 			'widget::step::height',
 			'widget::margin',

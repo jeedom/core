@@ -15,6 +15,7 @@
 */
 
 var JS_ERROR = [];
+var BACKGROUND_IMG = '';
 var PREVIOUS_PAGE = null;
 var NO_POPSTAT = false;
 var TOOLTIPSOPTIONS = {
@@ -119,7 +120,6 @@ function loadPage(_url,_noPushHistory){
     'background-repeat':'no-repeat',
     'background-size':'cover'
   });
-  setBackgroundImg('');
   jeedomBackgroundImg = null;
   
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
@@ -134,6 +134,8 @@ function loadPage(_url,_noPushHistory){
     $('body').trigger('jeedom_page_load');
     if(jeedomBackgroundImg !== null){
       setBackgroundImg(jeedomBackgroundImg);
+    }else{
+      setBackgroundImg('');
     }
     if(window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0){
       $('.nav-tabs a[href="'+window.location.hash+'"]').click();
@@ -634,7 +636,8 @@ $(function () {
     document.cookie = "currentTheme=" + themeCook + "; path=/"
     $('#bootstrap_theme_css').attr('href', theme);
     $('#bt_switchTheme').html(themeButton)
-    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
+    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows);
+    setBackgroundImg(BACKGROUND_IMG);
   });
   
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -652,6 +655,8 @@ $(function () {
   changeThemeAuto();
   if(jeedomBackgroundImg != null){
     setBackgroundImg(jeedomBackgroundImg);
+  }else{
+    setBackgroundImg('');
   }
   
   setTimeout(function(){
@@ -697,17 +702,33 @@ function changeThemeAuto(){
       $('#bootstrap_theme_css').attr('href', themeCss);
       $('body').attr('data-theme',theme);
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css');
+      setBackgroundImg(BACKGROUND_IMG);
     }
   }, 60000);
 }
 
 function setBackgroundImg(_path){
-  if(isset(jeedom) && isset(jeedom.theme) && isset(jeedom.theme.hideBackgroundImg) && jeedom.theme.hideBackgroundImg == 1){
+  if(!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0){
     return;
   }
-  if(_path == ''){
+  BACKGROUND_IMG = _path;
+  if(_path === null){
     document.body.style.setProperty('--dashBkg-url','url("")');
     $('.backgroundforJeedom').css('background-image','url("")');
+  }else if(_path === ''){
+    var mode = 'light'
+    if ($('body').attr('data-theme') == 'core2019_Dark') {
+      mode = 'dark';
+    }
+    _path = 'core/img/background/jeedom_abstract_01_'+mode+'.jpg';
+    if(['administration','profils'].indexOf($('body').attr('data-page')) != -1){
+      _path = 'core/img/background/jeedom_abstract_03_'+mode+'.jpg';
+    }
+    if(['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1){
+      _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg';
+    }
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
   }else{
     $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
@@ -722,7 +743,6 @@ function initPage(){
   initRowOverflow();
   initHelp();
   initTextArea();
-  initDropdowns();
   $('.nav-tabs a').on('click',function (e) {
     var scrollHeight = $(document).scrollTop();
     $(this).tab('show');
@@ -781,90 +801,6 @@ function initTooltips(_el) {
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(TOOLTIPSOPTIONS)
     
   }
-}
-
-function initDropdowns(){
-  $('body').off('click','.dynDropdown .dropdown-menu a').on('click','.dynDropdown .dropdown-menu a', function() {
-    $(this).closest('.dropdown').find('button').html($(this).text() + '<span class="caret"></span>')
-    $(this).closest('.dropdown').find('button').attr('value', $(this).attr('data-value'))
-    $(this).closest('.dropdown').find('button').trigger('change')
-  })
-  setTimeout(function() {
-    dropDownsKeys()
-  }, 200)
-}
-
-function dropDownsKeys() {
-  //store values on click for escape handling:
-  $('.dropdown-toggle').on('click', function(event) {
-    prevDropDownValue = $(this).html()
-    prevDropDownDatavalue = $(this).attr('value')
-  })
-  
-  $('.dropdown-toggle').keydown(function(event) {
-    if (event.which == 13) {
-      $('body').trigger('click')
-      return false
-    }
-    
-    key = event.key
-    if(key == 'Escape') {
-      $(this).html(prevDropDownValue)
-      $(this).attr('value', prevDropDownDatavalue)
-      $(this).trigger('change')
-      $('body').trigger('click')
-      return false
-    }
-    
-    selected = -1
-    $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
-      if ($(li).find('a').style('background-color') == 'var(--placeholder-color)' && selected < index) selected = index
-      $(li).find('a').style('background-color', '')
-    })
-    
-    $(this).closest('.dropdown.open').find('ul li').each(function(index, li) {
-      value = $(li).find('a').text().toLowerCase()
-      //handle '(kiki) value':
-      if (value.indexOf(')') > -1)
-      {
-        cut = value.split(')')[1]
-        if (cut == '') {
-          value = value.split(')')[0]
-        } else {
-          value = cut
-        }
-      }
-      value = value.trim()
-      
-      //handle 'value1, value2':
-      values = null
-      if (value.indexOf(',') > -1) {
-        values = value.split(',')
-      }
-      
-      if (values) {
-        for (i = 0; i < values.length; i++) {
-          value = values[i].trim()
-          match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
-          if (match) break
-        }
-      } else {
-        match = value.startsWith(key) && $(li).find('a').style('background-color') != 'var(--placeholder-color)'
-      }
-      
-      if (match && selected < index) {
-        ul = $(this).closest('.dropdown').find('ul')
-        $(li).find('a').style('background-color', 'var(--placeholder-color)', 'important')
-        $(ul).scrollTop($(li).position().top - $(ul).find('li').first().position().top)
-        
-        $(this).closest('.dropdown').find('button').html($(li).find('a').text() + '<span class="caret"></span>')
-        $(this).closest('.dropdown').find('button').attr('value', $(li).find('a').attr('data-value'))
-        $(this).closest('.dropdown').find('button').trigger('change')
-        return false
-      }
-      
-    })
-  })
 }
 
 function initTextArea(){

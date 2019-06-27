@@ -29,6 +29,7 @@ $(function(){
 
 //searching
 $('#in_searchWidget').off('keyup').on('keyup',function(){
+  $('#bt_displaySummaries').attr('data-display', '0')
   var search = $(this).value()
   $('.div_object:not(.hideByObjectSel)').show()
   if (search == '') {
@@ -37,13 +38,13 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
     $('.div_displayEquipement').packery()
     return
   }
-  
+
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
+
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -60,8 +61,8 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-    
-    if(match) {
+
+    if (match) {
       $(this).show()
     } else {
       $(this).hide()
@@ -84,6 +85,21 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
       $(this).closest('.div_object').hide()
     }
   })
+})
+
+$('#bt_displaySummaries').on('click', function () {
+  $('.div_object').show()
+  if ($(this).attr('data-display') == 0) {
+    $('.eqLogic-widget').hide()
+    $('.scenario-widget').hide()
+    $('.div_displayEquipement').packery()
+    $(this).attr('data-display', '1')
+} else {
+	$('.eqLogic-widget').show()
+    $('.scenario-widget').show()
+    $('.div_displayEquipement').packery()
+    $(this).attr('data-display', '0')
+}
 })
 
 $('#bt_resetDashboardSearch').on('click', function () {
@@ -130,7 +146,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-    
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -182,14 +198,14 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-      
+
       positionEqLogic();
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       $divDisplayEq.disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-      
+
       var container = $divDisplayEq.packery();
       var packData = $divDisplayEq.data('packery');
       if (isset(packData) && packData.items.length == 1) {

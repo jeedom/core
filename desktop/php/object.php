@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('jeedomBackgroundImg', 'core/img/background/object.png');
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
 ?>
@@ -23,7 +22,7 @@ $allObject = jeeObject::all();
 				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
-
+		
 		<legend><i class="fas fa-image"></i>  {{Mes objets}}</legend>
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
@@ -48,7 +47,7 @@ $allObject = jeeObject::all();
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="col-xs-12 object" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -57,13 +56,13 @@ $allObject = jeeObject::all();
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-
+		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
@@ -79,19 +78,14 @@ $allObject = jeeObject::all();
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<div class="dropdown dynDropdown">
-									<button class="btn btn-default dropdown-toggle objectAttr" type="button" data-toggle="dropdown" data-l1key="father_id">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a href="#" data-value="">{{Aucun}}</a></li>
-										<?php
-										foreach ($allObject as $object) {
-											echo '<li><a href="#" data-value="' . $object->getId() . '">' . $object->getName() . '</a></li>';
-										}
-										?>
-									</ul>
-								</div>
+								<select class="form-control objectAttr" data-l1key="father_id">
+									<option value="">{{Aucun}}</option>
+									<?php
+									foreach ($allObject as $object) {
+										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+									}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -112,10 +106,10 @@ $allObject = jeeObject::all();
 						</div>
 						<div class="form-group">
 							<div class="tooltipWrapper" style="display:none">
-							    <span id="objectIconTip">
-							        {{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}
-							        <br><a href="/index.php?v=d&p=administration#interfacetab">Configuration / Interface</a>
-							    </span>
+								<span id="objectIconTip">
+									{{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}
+									<br><a href="/index.php?v=d&p=administration#interfacetab">Configuration / Interface</a>
+								</span>
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}
 								<sup><i class="fas fa-question-circle tooltips" data-tooltip-content="#objectIconTip"></i></sup>
@@ -172,7 +166,7 @@ $allObject = jeeObject::all();
 				if (count(config::byKey('object:summary')) == 0) {
 					echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 				} else {
-
+					
 					?>
 					<form class="form-horizontal">
 						<fieldset>

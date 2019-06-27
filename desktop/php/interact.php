@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('jeedomBackgroundImg', 'core/img/background/interact.png');
 $interacts = array();
 $totalInteract = interactDef::all();
 $interacts[-1] = interactDef::all(null);
