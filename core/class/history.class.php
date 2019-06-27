@@ -112,9 +112,9 @@ class history {
 	*/
 	public static function archive() {
 		global $JEEDOM_INTERNAL_CONFIG;
-		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
 		DB::Prepare($sql, array());
-		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2020-01-01 01:00:00"';
+		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM history WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
@@ -147,16 +147,20 @@ class history {
 			if (!is_object($cmd) || $cmd->getType() != 'info' || $cmd->getIsHistorized() != 1) {
 				continue;
 			}
-			if ($cmd->getConfiguration('historyPurge', '') != '') {
+			$purgeTime = false;
+			
+			if ($cmd->getConfiguration('historyPurge', '') != '' ){
 				$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-				if ($purgeTime !== false) {
-					$values = array(
-						'cmd_id' => $cmd->getId(),
-						'datetime' => $purgeTime,
-					);
-					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
-					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-				}
+			}else if (config::byKey('historyPurge') != '') {
+				$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
+			}
+			if ($purgeTime !== false) {
+				$values = array(
+					'cmd_id' => $cmd->getId(),
+					'datetime' => $purgeTime,
+				);
+				$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			}
 			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
