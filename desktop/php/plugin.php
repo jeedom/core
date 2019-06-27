@@ -74,7 +74,7 @@ foreach (plugin::listPlugin() as $plugin) {
 	echo '<center>';
 	echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
 	echo '</center>';
-	echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
+	echo '<center><span class="name" style="top: 5px !important;font-size: 12px;font-weight: 700;line-height: 14px !important;">' . $plugin->getName() . '</span></center>';
 	echo '</div>';
 }
 ?>
