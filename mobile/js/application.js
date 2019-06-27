@@ -106,7 +106,7 @@ $(function () {
 
 
 function setBackgroundImage(_path){
-  if(typeof jeedom.theme == 'undefined' || typeof jeedom.theme.hideBackgroundImg  == 'undefined' || jeedom.theme.hideBackgroundImg == 1){
+  if(typeof jeedom.theme == 'undefined' || typeof jeedom.theme.showBackgroundImg  == 'undefined' || jeedom.theme.showBackgroundImg == 0){
     return;
   }
   $backForJeedom = $('.backgroundforJeedom')

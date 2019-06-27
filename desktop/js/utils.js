@@ -707,7 +707,7 @@ function changeThemeAuto(){
 }
 
 function setBackgroundImg(_path){
-  if(isset(jeedom) && isset(jeedom.theme) && isset(jeedom.theme.hideBackgroundImg) && jeedom.theme.hideBackgroundImg == 1){
+  if(!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0){
     return;
   }
   BACKGROUND_IMG = _path;
@@ -720,10 +720,10 @@ function setBackgroundImg(_path){
       mode = 'dark';
     }
     _path = 'core/img/background/jeedom_abstract_01_'+mode+'.jpg';
-    if(['administration','profils'].indexOf(($('body').attr('data-page')) != -1){
+    if(['administration','profils'].indexOf($('body').attr('data-page')) != -1){
       _path = 'core/img/background/jeedom_abstract_03_'+mode+'.jpg';
     }
-    if(['display','eqAnalyse','log','history','report','health'].indexOf(($('body').attr('data-page')) != -1){
+    if(['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1){
       _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg';
     }
     $('.backgroundforJeedom').css('background-image','url("'+_path+'")');

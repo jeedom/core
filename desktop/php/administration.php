@@ -883,9 +883,9 @@ user::isBan();
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Masquer les images de fond}}</label>
+											<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="checkbox" class="configKey" data-l1key="hideBackgroundImg"/>
+												<input type="checkbox" class="configKey" data-l1key="showBackgroundImg"/>
 											</div>
 										</div>
 										<legend>{{Tuiles}}</legend>
