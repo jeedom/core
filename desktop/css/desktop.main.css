@@ -746,7 +746,7 @@ div[data-market_type=script]:hover {
 
 pre {
   color: var(--link-color);
-  background-color: var(--form-bg-color);
+  background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   border: none;
 }
 
