@@ -1076,74 +1076,6 @@ button:focus {
   height: 22px;
 }
 
-/* dropdown select alternative */
-button.dropdown-toggle {
-  font-size: 14px;
-  min-width: 50px;
-}
-button[disabled],
-button[disabled]:hover {
-  opacity: 0.4 !important;
-}
-
-.dropdown-menu {
-  font-size: 14px;
-}
-.dropdown.dynDropdown li a {
-  line-height: 14px !important;
-}
-.dropdown button.dropdown-toggle {
-  color: var(--txt-color) !important;
-  background: var(--form-bg-color) !important;
-  text-align: left;
-  width: 100%;
-  height: 32px;
-  padding: 6px 12px;
-}
-.dropdown button.dropdown-toggle.btn-sm {
-  height: 28px;
-  padding: 3px 12px;
-}
-.dropdown button.dropdown-toggle:hover {
-  color: var(--txt-color) !important;
-}
-.dropdown button.dropdown-toggle:focus,
-.dropdown button.dropdown-toggle a:focus {
-  color: var(--txt-color) !important;
-  background-color: var(--form-bg-color) !important;
-}
-.dropdown button.dropdown-toggle .caret {
-  color: var(--txt-color) !important;
-  position: absolute;
-  top: 45% !important;
-  right: 10px;
-  border-width: 6px;
-}
-.caret  {
-  border-top: 4px solid var(--txt-color);
-}
-.dropdown.open > button {
-  color: var(--txt-color)  !important;
-  background: var(--form-bg-color) !important;
-}
-
-.input-group > .dropdown {
-  vertical-align: top !important;
-  display: table-cell;
-}
-
-.dropdown.open > .scrollable-menu,
-.dropdown.open > .scrollable-menu:hover {
-  position: absolute;
-  z-index: 9999 !important;
-}
-.scrollable-menu {
-  height: auto;
-  max-height: 200px;
-  overflow-x: hidden;
-  z-index: 9999 !important;
-}
-
 button .fas.fa-plus-circle {
   font-size: 10px;
 }
@@ -1433,7 +1365,7 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   height: 32px;
   border: none !important;
   cursor: text;
-  background: var(--form-bg-color) !important;
+  background-color: var(--form-bg-color) !important;
 }
 .form-control::placeholder {
   color: var(--placeholder-color);
@@ -1498,7 +1430,7 @@ fieldset > div {
 .form-control:not(.btn):not(.expressionAttr),
 input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox]),
 textarea:not(.expressionAttr) {
-  background: var(--form-bg-color) !important;
+  background-color: var(--form-bg-color) !important;
   color: var(--txt-color) !important;
   border-color: transparent !important;
   border-image-width: 0 !important;
@@ -1632,18 +1564,7 @@ div[data-subtype=select]::after {
   position: absolute;
   pointer-events: none;
 }
-div[data-subtype=select]::after { /*  Custom dropdown arrow */
-  content: "\25BC";
-  font-size: 14px;
-  right: 2px;
-  top: 25%;
-  margin: 0 !important;
-}
-div[data-subtype=select] select option {
-  margin: 40px;
-  background-color: var(--btnEq-default-color) !important;
-  color: var(--link-color) !important;
-}
+
 div[data-subtype=select][data-version=dplan] {
   font-size: 20px; /* no zoom on iOS */
   overflow: scroll;
@@ -1665,11 +1586,27 @@ select optgroup {
   color: var(--txt-color) !important;
   background-color: var(--bg-modal-color) !important;
 }
+select {
+  background: initial !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(115, 115, 115)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(100% - 7px) center !important;
+  background-size: 12px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+body[data-theme*="Dark"] select:not(.expressionAttr) {
+   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+}
+select::-ms-expand {
+  display: none;
+}
 
 .input-xs {
   padding: 0 5px !important;
 }
-
 
 /* custom checkbox ! */
 .input-group-btn {
@@ -2021,7 +1958,7 @@ hr {
 .element select.expressionAttr:not([data-l2key=graphColor]),
 .element textarea.expressionAttr:not([data-l2key=graphColor]) {
   color: var(--sc-formTxt-color);
-  background: var(--sc-form-color)!important;
+  background-color: var(--sc-form-color)!important;
   border: 0 !important;
   font-size: 12px !important;
   height:28px;
@@ -3315,11 +3252,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3328,7 +3265,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3337,12 +3274,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3350,11 +3287,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3400,5 +3337,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
