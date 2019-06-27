@@ -70,7 +70,7 @@ body {
   opacity : 0.35;
   top : 65px;
   background-size:cover;
-  background-position: center center;
+  background-position: right bottom !important;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
