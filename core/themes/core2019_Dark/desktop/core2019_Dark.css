@@ -4,6 +4,12 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
+html,
+body,
+textarea {
+  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
+}
+
 header a.navbar-brand {
   background-image: url(logo-jeedom.svg) !important;
   background-size: 60px !important;
