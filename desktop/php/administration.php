@@ -1674,109 +1674,111 @@ user::isBan();
 																				?>
 																			</select>
 																		</div>
+																	</div>
+																	<div class="form-group">
+																		<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
+																			<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
+																		</label>
+																		<div class="col-lg-4 col-xs-6">
+																			<select class="form-control configKey" data-l1key="core::branch">
+																				<option value="master">{{Stable}}</option>
+																				<option value="release">{{Release (Pas de support)}}</option>
+																				<option value="v4-release">{{V4 Release (Pas de support)}}</option>
+																				<option value="beta">{{Beta (Pas de support)}}</option>
+																				<option value="alpha">{{Alpha (Pas de support)}}</option>
+																			</select>
+																		</div>
 																		<div class="form-group">
-																			<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
-																				<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
-																			</label>
-																			<div class="col-lg-4 col-xs-6">
-																				<select class="form-control configKey" data-l1key="core::branch">
-																					<option value="master">{{Stable}}</option>
-																					<option value="release">{{Release (Pas de support)}}</option>
-																					<option value="beta">{{Beta (Pas de support)}}</option>
-																					<option value="alpha">{{Alpha (Pas de support)}}</option>
-																				</select>
+																			<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
+																			<div class="col-sm-1">
+																				<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
 																			</div>
-																			<div class="form-group">
-																				<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
-																				<div class="col-sm-1">
-																					<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
-																				</div>
-																			</div>
-																		</fieldset>
-																	</form>
-																</div>
-																<div class="col-sm-6">
-																	<form class="form-horizontal">
-																		<fieldset>
-																			<ul class="nav nav-tabs" role="tablist">
-																				<?php
-																				foreach ($repos as $key => $value) {
-																					$active = ($key == 'market') ? 'active' : '';
-																					echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</option>';
-																				}
-																				?>
-																			</ul>
-																			<div class="tab-content">
-																				<?php
-																				foreach ($repos as $key => $value) {
-																					$div = '';
-																					$active = ($key == 'market') ? 'active' : '';
-																					$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
-																					$div .= '<br/>';
-																					$div .= '<div class="form-group">';
-																					$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
-																					$div .= '<div class="col-sm-1">';
-																					$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
-																					$div .= '</div>';
-																					$div .= '</div>';
-																					if ($value['scope']['hasConfiguration'] === false) {
-																						$div .= '</div>';
-																						echo $div;
-																						continue;
-																					}
-																					$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
-																					foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
-																						$div .= '<div class="form-group">';
-																						$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
-																						$div .= $parameter['name'];
-																						$div .= '</label>';
-																						$div .= '<div class="col-sm-6">';
-																						$default = (isset($parameter['default'])) ? $parameter['default'] : '';
-																						switch ($parameter['type']) {
-																							case 'checkbox':
-																							$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																							break;
-																							case 'input':
-																							$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																							break;
-																							case 'number':
-																							$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																							break;
-																							case 'password':
-																							$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																							break;
-																							case 'select':
-																							$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
-																							foreach ($parameter['values'] as $optkey => $optval) {
-																								$div .= '<option value="' . $optkey . '">' . $optval . '</option>';
-																							}
-																							$div .= '</select>';
-																							break;
-																						}
-																						$div .= '</div>';
-																						$div .= '</div>';
-																					}
-																					if (isset($value['scope']['test']) && $value['scope']['test']) {
-																						$div .= '<div class="form-group">';
-																						$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
-																						$div .= '<div class="col-sm-4">';
-																						$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
-																						$div .= '</div>';
-																						$div .= '</div>';
-																					}
-																					$div .= '</div>';
+																		</div>
+																	</fieldset>
+																</form>
+															</div>
+															<div class="col-sm-6">
+																<form class="form-horizontal">
+																	<fieldset>
+																		<ul class="nav nav-tabs" role="tablist">
+																			<?php
+																			foreach ($repos as $key => $value) {
+																				$active = ($key == 'market') ? 'active' : '';
+																				echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</option>';
+																			}
+																			?>
+																		</ul>
+																		<div class="tab-content">
+																			<?php
+																			foreach ($repos as $key => $value) {
+																				$div = '';
+																				$active = ($key == 'market') ? 'active' : '';
+																				$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
+																				$div .= '<br/>';
+																				$div .= '<div class="form-group">';
+																				$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
+																				$div .= '<div class="col-sm-1">';
+																				$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
+																				$div .= '</div>';
+																				$div .= '</div>';
+																				if ($value['scope']['hasConfiguration'] === false) {
 																					$div .= '</div>';
 																					echo $div;
+																					continue;
 																				}
-																				?>
-																			</fieldset>
-																		</form>
-																	</div>
+																				$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
+																				foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
+																					$div .= '<div class="form-group">';
+																					$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
+																					$div .= $parameter['name'];
+																					$div .= '</label>';
+																					$div .= '<div class="col-sm-6">';
+																					$default = (isset($parameter['default'])) ? $parameter['default'] : '';
+																					switch ($parameter['type']) {
+																						case 'checkbox':
+																						$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																						break;
+																						case 'input':
+																						$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																						break;
+																						case 'number':
+																						$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																						break;
+																						case 'password':
+																						$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																						break;
+																						case 'select':
+																						$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
+																						foreach ($parameter['values'] as $optkey => $optval) {
+																							$div .= '<option value="' . $optkey . '">' . $optval . '</option>';
+																						}
+																						$div .= '</select>';
+																						break;
+																					}
+																					$div .= '</div>';
+																					$div .= '</div>';
+																				}
+																				if (isset($value['scope']['test']) && $value['scope']['test']) {
+																					$div .= '<div class="form-group">';
+																					$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
+																					$div .= '<div class="col-sm-4">';
+																					$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+																					$div .= '</div>';
+																					$div .= '</div>';
+																				}
+																				$div .= '</div>';
+																				$div .= '</div>';
+																				echo $div;
+																			}
+																			?>
+																		</fieldset>
+																	</form>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-												
-												<?php include_file("desktop", "administration", "js");?>
-												
+											</div>
+											
+											<?php include_file("desktop", "administration", "js");?>
+											

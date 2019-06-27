@@ -51,7 +51,7 @@ $plugins_list = plugin::listPlugin(false, true);
             echo '<center>';
             echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
             echo '</center>';
-            echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
+            echo '<span class="name">' . $plugin->getName() . '</span>';
             echo '</div>';
           }
           ?>
