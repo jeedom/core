@@ -51,9 +51,9 @@ textarea {
   z-index : -1;
   position:fixed;
   opacity : 0.35;
-  top : 50;
-  background-size:cover;
-  background-position: center center;
+  background-size: cover;
+  background-position: right bottom !important;
+  background-repeat: no-repeat;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
 }
