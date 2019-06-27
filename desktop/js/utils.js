@@ -15,6 +15,7 @@
 */
 
 var JS_ERROR = [];
+var BACKGROUND_IMG = '';
 var PREVIOUS_PAGE = null;
 var NO_POPSTAT = false;
 var TOOLTIPSOPTIONS = {
@@ -634,7 +635,8 @@ $(function () {
     document.cookie = "currentTheme=" + themeCook + "; path=/"
     $('#bootstrap_theme_css').attr('href', theme);
     $('#bt_switchTheme').html(themeButton)
-    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
+    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows);
+    setBackgroundImg(BACKGROUND_IMG);
   });
   
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -699,6 +701,7 @@ function changeThemeAuto(){
       $('#bootstrap_theme_css').attr('href', themeCss);
       $('body').attr('data-theme',theme);
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css');
+      setBackgroundImg(BACKGROUND_IMG);
     }
   }, 60000);
 }
@@ -707,6 +710,7 @@ function setBackgroundImg(_path){
   if(isset(jeedom) && isset(jeedom.theme) && isset(jeedom.theme.hideBackgroundImg) && jeedom.theme.hideBackgroundImg == 1){
     return;
   }
+  BACKGROUND_IMG = _path;
   if(_path === null){
     document.body.style.setProperty('--dashBkg-url','url("")');
     $('.backgroundforJeedom').css('background-image','url("")');
