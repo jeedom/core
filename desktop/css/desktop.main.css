@@ -45,17 +45,20 @@ textarea {
   scrollbar-width: thin;
 }
 
-.backgroundforJeedom{
-  width:100%;
-  height:calc(100% - 50px);
-  z-index : -1;
-  position:fixed;
-  opacity : 0.35;
+.backgroundforJeedom {
+  width: 100%;
+  height: calc(100% - 50px);
+  z-index: -1;
+  position: fixed;
+  opacity: 0.4;
   background-size: cover;
   background-position: right bottom !important;
   background-repeat: no-repeat;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
+}
+[data-theme*="Dark"] .backgroundforJeedom {
+  opacity : 0.6;
 }
 .ui-widget-overlay.ui-front {
   background: rgba(10,10,10,1);
