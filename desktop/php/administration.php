@@ -635,7 +635,7 @@ user::isBan();
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 						<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 							<div class="input-group">
-								<select class="roundedLeft configKey" data-l1key="internalProtocol">
+								<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
 									<option value="">{{Aucun}}</a></li>
 										<option value="http://">{{HTTP}}</a></li>
 											<option value="https://">{{HTTPS}}</a></li>
@@ -657,7 +657,7 @@ user::isBan();
 										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 										<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
 											<div class="input-group">
-												<select class="roundedLeft configKey" data-l1key="externalProtocol">
+												<select class="roundedLeft configKey form-control" data-l1key="externalProtocol">
 													<option value="">{{Aucun}}</option>
 													<option value="http://">{{HTTP}}</option>
 													<option value="https://">{{HTTPS}}</option>
