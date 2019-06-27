@@ -652,6 +652,8 @@ $(function () {
   changeThemeAuto();
   if(jeedomBackgroundImg != null){
     setBackgroundImg(jeedomBackgroundImg);
+  }else{
+    setBackgroundImg('');
   }
   
   setTimeout(function(){
@@ -705,9 +707,20 @@ function setBackgroundImg(_path){
   if(isset(jeedom) && isset(jeedom.theme) && isset(jeedom.theme.hideBackgroundImg) && jeedom.theme.hideBackgroundImg == 1){
     return;
   }
-  if(_path == ''){
+  if(_path === null){
     document.body.style.setProperty('--dashBkg-url','url("")');
     $('.backgroundforJeedom').css('background-image','url("")');
+  }else if(_path === ''){
+    if($('body').attr('data-theme') == 'core2019_Light'){
+      $('.backgroundforJeedom').css('background-image','url("core/img/background/jeedom_abstract_03_light.jpg")');
+      document.body.style.setProperty('--dashBkg-url','url("../../../../core/img/background/jeedom_abstract_03_light.jpg")');
+    }else if ($('body').attr('data-theme') == 'core2019_Dark') {
+      $('.backgroundforJeedom').css('background-image','url("core/img/background/jeedom_abstract_03_dark.jpg")');
+      document.body.style.setProperty('--dashBkg-url','url("../../../../core/img/background/jeedom_abstract_03_dark.jpg")');
+    }else{
+      document.body.style.setProperty('--dashBkg-url','url("")');
+      $('.backgroundforJeedom').css('background-image','url("")');
+    }
   }else{
     $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
