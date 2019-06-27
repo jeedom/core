@@ -15,7 +15,7 @@ Theme Core 2019 @Jeedom
 
 html {
   height: 100%;
-  scrollbar-color: var(--el-defaultColor) var(--btnEq-default-color) !important;
+  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
   scrollbar-width: thin;
 }
 
@@ -32,7 +32,7 @@ body {
   background-size: cover;
   background-position: center center;
   margin: 0 !important;
-  scrollbar-color: var(--el-defaultColor) var(--btnEq-default-color) !important;
+  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
   scrollbar-width: thin;
 }
 div,
@@ -1693,6 +1693,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
+
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -1701,7 +1702,6 @@ ul.nav.nav-tabs li,
   background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;
   color: var(--link-color) !important;
   border-bottom : 1px var(--logo-primary-color) solid !important;
-  height: 39px;
 }
 .nav-tabs,
 .nav-tabs * {
