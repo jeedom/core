@@ -715,16 +715,13 @@ function setBackgroundImg(_path){
     document.body.style.setProperty('--dashBkg-url','url("")');
     $('.backgroundforJeedom').css('background-image','url("")');
   }else if(_path === ''){
-    if($('body').attr('data-theme') == 'core2019_Light'){
-      $('.backgroundforJeedom').css('background-image','url("core/img/background/jeedom_abstract_03_light.jpg")');
-      document.body.style.setProperty('--dashBkg-url','url("../../../../core/img/background/jeedom_abstract_03_light.jpg")');
-    }else if ($('body').attr('data-theme') == 'core2019_Dark') {
-      $('.backgroundforJeedom').css('background-image','url("core/img/background/jeedom_abstract_03_dark.jpg")');
-      document.body.style.setProperty('--dashBkg-url','url("../../../../core/img/background/jeedom_abstract_03_dark.jpg")');
-    }else{
-      document.body.style.setProperty('--dashBkg-url','url("")');
-      $('.backgroundforJeedom').css('background-image','url("")');
+    var mode = 'light'
+    if ($('body').attr('data-theme') == 'core2019_Dark') {
+      mode = 'dark';
     }
+    _path = 'core/img/background/jeedom_abstract_03_'+mode+'.jpg';
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
   }else{
     $('.backgroundforJeedom').css('background-image','url("'+_path+'")');
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")');
