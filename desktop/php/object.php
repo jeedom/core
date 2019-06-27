@@ -2,7 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('jeedomBackgroundImg', 'core/img/background/object.png');
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
 ?>
