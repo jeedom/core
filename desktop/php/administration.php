@@ -1704,7 +1704,7 @@ user::isBan();
 																			<?php
 																			foreach ($repos as $key => $value) {
 																				$active = ($key == 'market') ? 'active' : '';
-																				echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</option>';
+																				echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 																			}
 																			?>
 																		</ul>
