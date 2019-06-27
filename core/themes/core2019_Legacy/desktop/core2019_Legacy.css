@@ -152,7 +152,8 @@ div.cmd-widget div[class^="content"] {
 
 #bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
-#bt_displayObject {
+#bt_displayObject,
+#bt_displaySummaries {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }
