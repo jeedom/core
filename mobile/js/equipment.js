@@ -25,7 +25,7 @@ function initEquipment(_object_id) {
               objectMapping[objects[i].father_id] = [parseInt(objects[i].id)]
             }
           }
-          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span style="float:rightfont-size:0.6emcolor:#787c84"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
+          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
       }
