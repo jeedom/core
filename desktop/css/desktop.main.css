@@ -2297,9 +2297,9 @@ textarea {
 .bs-sidebar .nav > li > i {
   padding-right: 5px;
 }
-.bs-sidebar .nav li a:hover,
-.bs-sidebar .nav li a:focus,
-.bs-sidebar .nav li a:active {
+.bs-sidebar .nav li a:not(.btn):hover,
+.bs-sidebar .nav li a:not(.btn):focus,
+.bs-sidebar .nav li a:not(.btn):active {
   background-color: var(--btnEq-default-color) !important;
 }
 .bs-sidenav .cmdList li > a {
