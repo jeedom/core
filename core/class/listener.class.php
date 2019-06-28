@@ -31,6 +31,26 @@ class listener {
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
+	public static function clean(){
+		foreach (self::all() as $listener) {
+			$events = $listener->getEvent();
+			if(count($events) > 0){
+				$listener->emptyEvent();
+				foreach ($events as $event) {
+					$cmd = cmd::byId(str_replace('#','',$event));
+					if(is_object($cmd)){
+						$listener->addEvent($cmd->getId());
+					}
+				}
+				$listener->save();
+				$events = $listener->getEvent();
+			}
+			if(count($events) == 0){
+				$listener->remove();
+			}
+		}
+	}
+	
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener';
@@ -196,7 +216,7 @@ class listener {
 				if (class_exists($class) && method_exists($class, $function)) {
 					$class::$function($option);
 				} else {
-					log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $this->getName());
+					log::add('listener', 'debug', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . json_encode(utils::o2a($this)));
 					$this->remove();
 					return;
 				}
@@ -205,7 +225,7 @@ class listener {
 				if (function_exists($function)) {
 					$function($option);
 				} else {
-					log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . $this->getName());
+					log::add('listener', 'error', __('[Erreur] Non trouvée ', __FILE__) . json_encode(utils::o2a($this)));
 					return;
 				}
 			}
