@@ -973,6 +973,7 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			cache::clean();
+			listener::clean();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {

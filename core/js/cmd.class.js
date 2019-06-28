@@ -434,6 +434,26 @@ jeedom.cmd.save = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.setIsVisibles = function(_params) {
+  var paramsRequired = ['cmds','isVisible'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'setIsVisibles',
+    cmds: json_encode(_params.cmds),
+    isVisible : _params.isVisible
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.multiSave = function(_params) {
   var paramsRequired = ['cmds'];
   var paramsSpecifics = {

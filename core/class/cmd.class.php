@@ -1697,9 +1697,9 @@ class cmd {
 		try {
 			$http->exec();
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		} catch (Error $e) {
-			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
 	}
 	

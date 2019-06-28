@@ -174,7 +174,7 @@ try {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$eqLogic->setIsEnable(init('isEnable'));
-		$eqLogic->save();
+		$eqLogic->save(true);
 		ajax::success();
 	}
 	
@@ -223,7 +223,7 @@ try {
 				continue;
 			}
 			$eqLogic->setIsVisible(init('isVisible'));
-			$eqLogic->save();
+			$eqLogic->save(true);
 		}
 		ajax::success();
 	}

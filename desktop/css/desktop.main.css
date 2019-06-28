@@ -15,8 +15,6 @@ Theme Core 2019 @Jeedom
 
 html {
   height: 100%;
-  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
-  scrollbar-width: thin;
 }
 
 body {
@@ -26,36 +24,41 @@ body {
   padding-top: 50px;
   height: 100%;
   box-sizing: border-box;
+   margin: 0 !important;
   background-color: rgb(var(--bg-color));
   color: var(--txt-color) !important;
   background-repeat : no-repeat;
   background-size: cover;
   background-position: center center;
-  margin: 0 !important;
-  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
-  scrollbar-width: thin;
 }
-div,
-pre,
-p.state {
-  scrollbar-width: thin;
-}
+
+html,
+body,
 textarea {
   scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
   scrollbar-width: thin;
 }
 
-.backgroundforJeedom{
-  width:100%;
-  height:calc(100% - 50px);
-  z-index : -1;
-  position:fixed;
-  opacity : 0.35;
-  background-size: cover;
+div,
+pre,
+p.state {
+  scrollbar-width: thin;
+}
+
+.backgroundforJeedom {
+  width: 100%;
+  height: calc(100% - 50px);
+  z-index: -1;
+  position: fixed;
+  opacity: 0.4;
+  background-size: cover !important;
   background-position: right bottom !important;
   background-repeat: no-repeat;
   background-image: var(--dashBkg-url) !important;
   background-color: transparent !important;
+}
+[data-theme*="Dark"] .backgroundforJeedom {
+  opacity : 0.6;
 }
 .ui-widget-overlay.ui-front {
   background: rgba(10,10,10,1);
@@ -67,10 +70,6 @@ textarea {
   margin: 5px 0px;
   max-height: calc(100% - 100px);
   z-index: 9999;
-}
-
-.cursor {
-  cursor: pointer;
 }
 
 #div_mainContainer,
@@ -1587,7 +1586,6 @@ select optgroup {
   background-color: var(--bg-modal-color) !important;
 }
 select {
-  background: initial !important;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(115, 115, 115)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
   background-repeat: no-repeat !important;
   background-position: calc(100% - 7px) center !important;
@@ -1598,7 +1596,7 @@ select {
   width: 100%;
 }
 body[data-theme*="Dark"] select:not(.expressionAttr) {
-   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
 }
 select::-ms-expand {
   display: none;
@@ -2272,6 +2270,7 @@ textarea {
 .bs-sidebar .label > i {
   font-size: 14px;
   display: inline-block;
+  cursor: pointer !important;
 }
 .bs-sidebar .label > i {
   color: inherit !important;
@@ -2297,9 +2296,9 @@ textarea {
 .bs-sidebar .nav > li > i {
   padding-right: 5px;
 }
-.bs-sidebar .nav li a:hover,
-.bs-sidebar .nav li a:focus,
-.bs-sidebar .nav li a:active {
+.bs-sidebar .nav li a:not(.btn):hover,
+.bs-sidebar .nav li a:not(.btn):focus,
+.bs-sidebar .nav li a:not(.btn):active {
   background-color: var(--btnEq-default-color) !important;
 }
 .bs-sidenav .cmdList li > a {
