@@ -363,7 +363,7 @@ p.state {
 
 .ui-page-theme-a .ui-btn.ui-btn-raised {
   color: var(--link-color) !important;
-  background-color: rgb(var(--defaultBkg-color)) !important;
+  background-color: rgba(var(--defaultBkg-color), var(--opacity)) !important;
   box-shadow: none;
 }
 .ui-link i:hover {
