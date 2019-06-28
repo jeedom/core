@@ -363,7 +363,7 @@ p.state {
 
 .ui-page-theme-a .ui-btn.ui-btn-raised {
   color: var(--link-color) !important;
-  background-color: rgba(var(--defaultBkg-color), var(--opacity)) !important;
+  background-color: rgb(var(--defaultBkg-color)) !important;
   box-shadow: none;
 }
 .ui-link i:hover {
@@ -454,7 +454,7 @@ legend,
   height: 5px;
 }
 .cmd .ui-bar-a {
-  height: auto;
+  height: 5px;
 }
 a.ui-slider-handle {
   border-radius: 1em !important;
