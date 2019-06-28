@@ -13,7 +13,7 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-
+var GLOBAL_ACTION_MODE = null
 $('.backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
@@ -23,7 +23,7 @@ $('.backgroundforJeedom').css({
 $(function(){
   if ($('[aria-controls="display"]').parent().hasClass('active')) {
     $('#display').show()
-  	if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
+    if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
   }
 })
 
@@ -43,7 +43,7 @@ $('#in_search').on('keyup',function(){
       if(search == '*') return
       search = search.substr(1)
     }
-
+    
     search = normTextLower(search)
     $('.eqLogic').each(function(){
       var eqLogic = $(this)
@@ -178,7 +178,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
     $(this).find('.configureCmd').click()
     return false
   }
-
+  
   if (!$(event.target).hasClass('eqLogic')) {
     event.stopPropagation()
     return false
@@ -200,28 +200,52 @@ $('#cb_actifDisplay').on('change',function() {
 })
 
 $('[aria-controls="history"]').on('click',function() {
-	$('.eqActions').hide()
+  $('.eqActions').hide()
 })
 $('[aria-controls="display"]').on('click',function() {
-	$('#display').show()
-	$('.eqActions').show()
+  $('#display').show()
+  $('.eqActions').show()
 })
 
 $('.cb_selEqLogic').on('change',function(){
   var found = false
   $('.cb_selEqLogic').each(function() {
     if ($(this).value() == 1) {
-      found = true
+      found = true;
+      return;
     }
   })
   if (found) {
-    $('#bt_removeEqlogic').show()
-    $('.bt_setIsVisible').show()
-    $('.bt_setIsEnable').show()
+    GLOBAL_ACTION_MODE = 'eqLogic';
+    $('.cb_selCmd').hide();
+    $('#bt_removeEqlogic').show();
+    $('.bt_setIsVisible').show();
+    $('.bt_setIsEnable').show();
   } else {
+    GLOBAL_ACTION_MODE = null;
+    $('.cb_selCmd').show();
     $('#bt_removeEqlogic').hide()
     $('.bt_setIsVisible').hide()
     $('.bt_setIsEnable').hide()
+  }
+})
+
+$('.cb_selCmd').on('change',function(){
+  var found = false
+  $('.cb_selCmd').each(function() {
+    if ($(this).value() == 1) {
+      found = true;
+      return;
+    }
+  })
+  if (found) {
+    GLOBAL_ACTION_MODE = 'cmd';
+    $('.cb_selEqLogic').hide();
+    $('.bt_setIsVisible').show();
+  } else {
+    GLOBAL_ACTION_MODE = null;
+    $('.cb_selEqLogic').show();
+    $('.bt_setIsVisible').hide();
   }
 })
 
@@ -248,22 +272,44 @@ $('#bt_removeEqlogic').on('click',function(){
 })
 
 $('.bt_setIsVisible').on('click',function(){
-  var eqLogics = []
-  $('.cb_selEqLogic').each(function(){
-    if($(this).value() == 1){
-      eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
-    }
-  })
-  jeedom.eqLogic.setIsVisibles({
-    eqLogics: eqLogics,
-    isVisible : $(this).attr('data-value'),
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(){
-      loadPage('index.php?v=d&p=display')
-    }
-  })
+  if(GLOBAL_ACTION_MODE == 'eqLogic'){
+    var eqLogics = []
+    $('.cb_selEqLogic').each(function(){
+      if($(this).value() == 1){
+        eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
+      }
+    });
+    jeedom.eqLogic.setIsVisibles({
+      eqLogics: eqLogics,
+      isVisible : $(this).attr('data-value'),
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success : function(){
+        loadPage('index.php?v=d&p=display')
+      }
+    });
+  }
+  if(GLOBAL_ACTION_MODE == 'cmd'){
+    var cmds = []
+    $('.cb_selCmd').each(function(){
+      if($(this).value() == 1){
+        cmds.push($(this).closest('.cmd').attr('data-id'))
+      }
+    });
+    jeedom.cmd.setIsVisibles({
+      cmds: cmds,
+      isVisible : $(this).attr('data-value'),
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success : function(){
+        loadPage('index.php?v=d&p=display')
+      }
+    });
+  }
+  
+  
 })
 
 $('.bt_setIsEnable').on('click',function(){
