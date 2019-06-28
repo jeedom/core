@@ -15,8 +15,6 @@ Theme Core 2019 @Jeedom
 
 html {
   height: 100%;
-  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
-  scrollbar-width: thin;
 }
 
 body {
@@ -26,22 +24,24 @@ body {
   padding-top: 50px;
   height: 100%;
   box-sizing: border-box;
+   margin: 0 !important;
   background-color: rgb(var(--bg-color));
   color: var(--txt-color) !important;
   background-repeat : no-repeat;
   background-size: cover;
   background-position: center center;
-  margin: 0 !important;
-  scrollbar-color: var(--txt-color) var(--btnEq-default-color) !important;
+}
+
+html,
+body,
+textarea {
+  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
   scrollbar-width: thin;
 }
+
 div,
 pre,
 p.state {
-  scrollbar-width: thin;
-}
-textarea {
-  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
   scrollbar-width: thin;
 }
 
@@ -51,7 +51,7 @@ textarea {
   z-index: -1;
   position: fixed;
   opacity: 0.4;
-  background-size: cover;
+  background-size: cover !important;
   background-position: right bottom !important;
   background-repeat: no-repeat;
   background-image: var(--dashBkg-url) !important;
@@ -1692,7 +1692,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-  
+
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -2271,6 +2271,7 @@ textarea {
 .bs-sidebar .label > i {
   font-size: 14px;
   display: inline-block;
+  cursor: pointer !important;
 }
 .bs-sidebar .label > i {
   color: inherit !important;
@@ -3249,24 +3250,17 @@ ul.dropdown-menu {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
-.cursor {
-  cursor: pointer !important;
-}
-
-.cursor *{
-  cursor: pointer !important;
-}
 
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
 @media screen and (max-width: 1280px) {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3275,7 +3269,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3284,12 +3278,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3297,11 +3291,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3347,5 +3341,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
