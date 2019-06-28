@@ -72,10 +72,6 @@ textarea {
   z-index: 9999;
 }
 
-.cursor {
-  cursor: pointer;
-}
-
 #div_mainContainer,
 #div_resumePluginList,
 #div_resumeObjectList {
@@ -1601,7 +1597,7 @@ select {
   width: 100%;
 }
 body[data-theme*="Dark"] select:not(.expressionAttr) {
-   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
 }
 select::-ms-expand {
   display: none;
@@ -1696,7 +1692,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-
+  
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -3253,17 +3249,24 @@ ul.dropdown-menu {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
+.cursor {
+  cursor: pointer !important;
+}
+
+.cursor *{
+  cursor: pointer !important;
+}
 
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
 @media screen and (max-width: 1280px) {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3272,7 +3275,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3281,12 +3284,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3294,11 +3297,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3344,5 +3347,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }
