@@ -293,7 +293,7 @@ function is_array(a) {
           }
         }
         $(this).empty();
-        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
+        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative;top:-2px; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
         $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
         $(this).addClass('jqAlert');
         if (options.level != '') {
