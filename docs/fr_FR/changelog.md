@@ -2,6 +2,14 @@
 Changelog
 =========
 
+3.3.27
+=====
+
+- Correction de bug sur la traduction des jours en francais
+- Amélioration de la stabilité (redemarrage auto du service MySql et watchdog de verification de l'heure au démarrage)
+- Correction de bugs
+- Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
+
 3.3.26
 =====
 

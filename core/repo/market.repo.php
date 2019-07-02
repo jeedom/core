@@ -374,8 +374,9 @@ public static function backup_restore($_backup) {
 		self::backup_install();
 		$base_dir =  '/usr/jeedom_duplicity';
 		if(!file_exists($base_dir)){
-			mkdir($base_dir);
+			com_shell::execute(system::getCmdSudo() .' mkdir '.$base_dir);
 		}
+		com_shell::execute(system::getCmdSudo() .' chmod 777 -R '.$base_dir);
 		mkdir($restore_dir);
 		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');

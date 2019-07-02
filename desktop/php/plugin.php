@@ -74,7 +74,7 @@ foreach (plugin::listPlugin() as $plugin) {
 	echo '<center>';
 	echo '<img class="img-responsive" style="width : 120px;" src="' . $plugin->getPathImgIcon() . '" />';
 	echo '</center>';
-	echo '<span style="display:none;" class="name">' . $plugin->getName() . '</span>';
+	echo '<center><span class="name" style="top: 5px !important;font-size: 12px;font-weight: 700;line-height: 14px !important;">' . $plugin->getName() . '</span></center>';
 	echo '</div>';
 }
 ?>
@@ -84,7 +84,6 @@ foreach (plugin::listPlugin() as $plugin) {
  <legend>
    <i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
    <span id="span_plugin_name" ></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
-   <span id="span_plugin_market" class="pull-right"></span>
    <span id="span_plugin_delete" class="pull-right"></span>
    <span id="span_plugin_doc" class="pull-right"></span>
  </legend>

@@ -140,16 +140,6 @@ $(".li_plugin,.pluginDisplayCard").on('click', function () {
         $('#div_plugin_deamon').closest('.panel').show();
         $("#div_plugin_deamon").load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id);
       }
-      
-      $('#span_plugin_market').empty();
-      if (isset(data.status) && isset(data.status.owner)) {
-        for(var i in data.status.owner){
-          if(data.status.owner[i] != 1){
-            continue;
-          }
-          $('#span_plugin_market').append('<a class="btn btn-warning btn-xs sendPluginTo" data-repo="'+i+'" data-logicalId="' + data.id + '"><i class="fas fa-cloud-upload-alt"></i> {{Envoyer sur le}} '+i+'</a> ');
-        }
-      }
       $('#span_plugin_delete').empty().append('<a class="btn btn-danger btn-xs removePlugin" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a> ');
       $('#span_plugin_doc').empty();
       $('#span_plugin_doc').append('<a class="btn btn-default btn-xs bt_refreshPluginInfo"><i class="fas fa-refresh"></i> {{Rafraichir}}</a> ');

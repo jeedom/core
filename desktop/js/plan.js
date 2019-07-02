@@ -666,6 +666,7 @@ function fullScreen(_mode) {
 
 function initEditOption(_state) {
     if (_state) {
+     jeedom.cmd.disableExecute = true;
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
         snap : (editOption.snap == 1),
         grid : (editOption.grid == 1) ? editOption.gridSize : false,
@@ -703,6 +704,7 @@ try{
 
 }
 }else{
+ jeedom.cmd.disableExecute = false;
     try{
         $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy");
         $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('widget-shadow-edit');

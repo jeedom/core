@@ -14,6 +14,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 jeedom.cmd = function() {};
+jeedom.cmd.disableExecute = false;
 jeedom.cmd.cache = Array();
 if (!isset(jeedom.cmd.cache.byId)) {
   jeedom.cmd.cache.byId = Array();
@@ -25,6 +26,9 @@ if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
 jeedom.cmd.execute = function(_params) {
+  if(jeedom.cmd.disableExecute){
+    return;
+  }
   var notify = _params.notify || true;
   if (notify) {
     var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
