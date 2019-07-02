@@ -1,20 +1,20 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
 	header("Statut: 404 Page non trouvée");
@@ -38,7 +38,7 @@ if (isset($argv)) {
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
-
+	
 	try {
 		echo "Envoi l'évènement de début de sauvegarde...";
 		jeedom::event('begin_backup', true);
@@ -46,7 +46,7 @@ try {
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
 	}
-
+	
 	try {
 		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
@@ -54,7 +54,7 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-
+	
 	global $CONFIG;
 	$jeedom_dir = realpath(__DIR__ . '/..');
 	$backup_dir = calculPath(config::byKey('backup::path'));
@@ -75,7 +75,7 @@ try {
 	);
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
 	$backup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
-
+	
 	global $NO_PLUGIN_BACKUP;
 	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
@@ -87,7 +87,7 @@ try {
 			}
 		}
 	}
-
+	
 	echo "Vérification de la base de données...";
 	if(isset($CONFIG['db']['unix_socket'])) {
 		system("mysqlcheck --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
@@ -95,7 +95,7 @@ try {
 		system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
 	}
 	echo "OK" . "\n";
-
+	
 	echo 'Sauvegarde la base de données...';
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		unlink($jeedom_dir . "/DB_backup.sql");
@@ -118,7 +118,7 @@ try {
 		throw new Exception('Echec durant la sauvegarde de la base de données. Date du fichier de sauvegarde de la base trop vieux. Vérifiez les droits');
 	}
 	echo "OK" . "\n";
-
+	
 	echo "Persistance du cache : \n";
 	try {
 		cache::persist();
@@ -126,9 +126,9 @@ try {
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
-
+	
 	echo 'Création de  l\'archive...';
-
+	
 	$excludes = array(
 		'tmp',
 		'log',
@@ -142,32 +142,32 @@ try {
 		'core/config/common.config.php',
 		config::byKey('backup::path'),
 	);
-
+	
 	if (config::byKey('recordDir', 'camera') != '') {
 		$excludes[] = config::byKey('recordDir', 'camera');
 	}
-
+	
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
-
+	
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
 		throw new Exception('Echec du backup. Impossible de trouver : ' . $backup_dir . '/' . $backup_name);
 	}
-
+	
 	echo 'Nettoyage de l\'ancienne sauvegarde...';
-	shell_exec('find "' . $backup_dir . '" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
+	shell_exec('find "' . $backup_dir . '" -name "*.gz" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
-
+	
 	echo 'Limitation de la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
-
+		
 		foreach (ls($backup_dir, '*') as $file) {
 			if (count(ls($backup_dir, '*')) < 2) {
 				break (2);
@@ -234,7 +234,7 @@ try {
 		}
 	}
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
-
+	
 	try {
 		echo 'Vérification des droits sur les fichiers...';
 		jeedom::cleanFileSytemRight();
@@ -242,7 +242,7 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-
+	
 	try {
 		echo 'Envoi l\'évènement de fin de sauvegarde...';
 		jeedom::event('end_backup');
