@@ -261,38 +261,40 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           <div class="form-group">
             <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-              <select class="cmdAttr form-control" data-l1key="generic_type">
-                <option value="">{{Aucun}}</option>
-                <?php
-                $groups = array();
-                foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
-                  if (strtolower($cmd->getType()) != strtolower($info['type'])) {
-                    continue;
-                  } elseif (isset($info['ignore']) && $info['ignore']) {
-                    continue;
-                  }
-                  $info['key'] = $key;
-                  if (!isset($groups[$info['family']])) {
-                    $groups[$info['family']][0] = $info;
-                  } else {
-                    array_push($groups[$info['family']], $info);
-                  }
-                }
-                ksort($groups);
-                foreach ($groups as $group) {
-                  usort($group, function ($a, $b) {
-                    return strcmp($a['name'], $b['name']);
-                  });
-                  foreach ($group as $key => $info) {
-                    if ($key == 0) {
-                      echo '<optgroup label="{{' . $info['family'] . '}}">';
-                    }
-                    echo '<option value="' . $info['key'] . '">' . $info['name'] . '</option>';
-                  }
-                  echo '</optgroup>';
-                }
-                ?>
-              </select>
+            			<select class="cmdAttr form-control" data-l1key="generic_type">
+								<option value="">{{Aucun}}</option>
+								<?php
+								$groups = array();
+								foreach (jeedom::getConfiguration('cmd::generic_type') as $key => $info) {
+									if (strtolower($cmd->getType()) != strtolower($info['type'])) {
+										continue;
+									}
+									$info['key'] = $key;
+									if (!isset($groups[$info['family']])) {
+										$groups[$info['family']][0] = $info;
+									} else {
+										array_push($groups[$info['family']], $info);
+									}
+								}
+								ksort($groups);
+								foreach ($groups as $group) {
+									usort($group, function ($a, $b) {
+										return strcmp($a['name'], $b['name']);
+									});
+									foreach ($group as $key => $info) {
+										if ($key == 0) {
+											echo '<optgroup label="{{' . $info['family'] . '}}">';
+										}
+										$name = $info['name'];
+										if (isset($info['noapp']) && $info['noapp']) {
+											$name .= ' (Non géré par Application Mobile)';
+										}
+										echo '<option value="' . $info['key'] . '">' . $name . '</option>';
+									}
+									echo '</optgroup>';
+								}
+								?>
+							</select>
             </div>
           </div>
         </fieldset>
