@@ -1150,11 +1150,17 @@ class eqLogic {
 				}
 			}
 		} else {
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId()) as $message) {
-				$message->remove();
+			$wmessage = message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId());
+			if(count($wmessage) >  0){
+				foreach ($wmessage as $message) {
+					$message->remove();
+				}
 			}
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
-				$message->remove();
+			$lmessage = message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId());
+			if(count($lmessage) >  0){
+				foreach ($lmessage as $message) {
+					$message->remove();
+				}
 			}
 			$this->setStatus('batterydanger', 0);
 			$this->setStatus('batterywarning', 0);
