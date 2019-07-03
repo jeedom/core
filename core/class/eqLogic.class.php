@@ -859,9 +859,11 @@ class eqLogic {
 		foreach (array('dashboard', 'mobile', 'mview', 'dview', 'dplan', 'view', 'plan') as $version) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
 			$mc->remove();
-			foreach ($users as $user) {
-				$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
-				$mc->remove();
+			if(count($users) > 0){
+				foreach ($users as $user) {
+					$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
+					$mc->remove();
+				}
 			}
 		}
 	}
