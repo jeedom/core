@@ -31,6 +31,7 @@ class com_http {
 	private $sleepTime = 500000;
 	private $post = '';
 	private $put = '';
+	private $delete = '';
 	private $header = array('Connection: close');
 	private $cookiesession = false;
 	private $allowEmptyReponse = false;
@@ -91,6 +92,10 @@ class com_http {
 			if ($this->getPut() != '') {
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPut());
+			}
+			if ($this->getDelete() != '') {
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getDelete());
 			}
 			if ($this->getUserAgent() != '') {
 				curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
@@ -242,6 +247,15 @@ class com_http {
 	
 	public function setUserAgent($userAgent) {
 		$this->userAgent = $userAgent;
+		return $this;
+	}
+	
+	public function getDelete() {
+		return $this->delete;
+	}
+	
+	public function setDelete($delete) {
+		$this->delete = $delete;
 		return $this;
 	}
 	
