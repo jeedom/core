@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.1.1 (2019-04-09)
+ * @license  Highcharts JS v7.1.2 (2019-06-03)
  *
  * Timeline series
  *
@@ -283,9 +283,7 @@
                                     dataLabel.targetPosition = {};
                                 }
 
-                                return !point.connector ?
-                                    point.drawConnector() :
-                                    point.alignConnector();
+                                return point.drawConnector();
                             }
                         });
                     });
@@ -554,7 +552,8 @@
                             y2: isNumber(targetDLPos.y) ? targetDLPos.y : dl.y
                         },
                         negativeDistance = (
-                            dl.alignAttr[direction[0]] < point.series.yAxis.len / 2
+                            (dl.alignAttr || dl)[direction[0]] <
+                                point.series.yAxis.len / 2
                         ),
                         path;
 
@@ -576,7 +575,7 @@
 
                     // Change coordinates so that they will be relative to data label.
                     H.objectEach(coords, function (_coord, i) {
-                        coords[i] -= dl.alignAttr[i[0]];
+                        coords[i] -= (dl.alignAttr || dl)[i[0]];
                     });
 
                     path = chart.renderer.crispLine([
@@ -594,14 +593,20 @@
                     var point = this,
                         series = point.series;
 
-                    point.connector = series.chart.renderer
-                        .path(point.getConnectorPath())
-                        .attr({
-                            zIndex: -1
-                        })
-                        .add(point.dataLabel);
+                    if (!point.connector) {
+                        point.connector = series.chart.renderer
+                            .path(point.getConnectorPath())
+                            .attr({
+                                zIndex: -1
+                            })
+                            .add(point.dataLabel);
+                    }
 
-                    point.alignConnector();
+                    if (point.series.chart.isInsidePlot( // #10507
+                        point.dataLabel.x, point.dataLabel.y
+                    )) {
+                        point.alignConnector();
+                    }
                 },
                 alignConnector: function () {
                     var point = this,

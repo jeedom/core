@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Client side exporting module
  *
@@ -133,7 +133,7 @@
 
     });
     _registerModule(_modules, 'modules/offline-exporting.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
-        /**
+        /* *
          * Client side exporting module
          *
          * (c) 2015 Torstein Honsi / Oystein Moseng
@@ -744,6 +744,19 @@
                             fallbackToExportServer
                         );
                     }
+                },
+
+                // Return true if the SVG contains images with external data. With the
+                // boost module there are `image` elements with encoded PNGs, these are
+                // supported by svg2pdf and should pass (#10243).
+                hasExternalImages = function () {
+                    return [].some.call(
+                        chart.container.getElementsByTagName('image'),
+                        function (image) {
+                            var href = image.getAttribute('href');
+                            return href !== '' && href.indexOf('data:') !== 0;
+                        }
+                    );
                 };
 
             // If we are on IE and in styled mode, add a whitelist to the renderer for
@@ -795,7 +808,7 @@
                     )
                 ) || (
                     options.type === 'application/pdf' &&
-                    chart.container.getElementsByTagName('image').length
+                    hasExternalImages()
                 )
             ) {
                 fallbackToExportServer(
@@ -814,7 +827,7 @@
 
         // Extend the default options to use the local exporter logic
         merge(true, Highcharts.getOptions().exporting, {
-            libURL: 'https://code.highcharts.com/7.1.1/lib/',
+            libURL: 'https://code.highcharts.com/7.1.2/lib/',
 
             // When offline-exporting is loaded, redefine the menu item definitions
             // related to download.

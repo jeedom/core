@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * StaticScale
  *
@@ -58,10 +58,17 @@
          */
 
         H.addEvent(H.Axis, 'afterSetOptions', function () {
+            var chartOptions = this.chart.options && this.chart.options.chart;
             if (
                 !this.horiz &&
                 H.isNumber(this.options.staticScale) &&
-                !this.chart.options.chart.height
+                (
+                    !chartOptions.height ||
+                    (
+                        chartOptions.scrollablePlotArea &&
+                        chartOptions.scrollablePlotArea.minHeight
+                    )
+                )
             ) {
                 this.staticScale = this.options.staticScale;
             }

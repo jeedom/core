@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2016-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -2071,12 +2071,12 @@
                 },
 
                 /**
-                * Workaround for `inactive` state. Since `series.opacity` option is
-                * already reserved, don't use that state at all by disabling
-                * `inactiveOtherPoints` and not inheriting states by points.
-                *
-                * @private
-                */
+                 * Workaround for `inactive` state. Since `series.opacity` option is
+                 * already reserved, don't use that state at all by disabling
+                 * `inactiveOtherPoints` and not inheriting states by points.
+                 *
+                 * @private
+                 */
                 setState: function (state) {
                     this.options.inactiveOtherPoints = true;
                     Series.prototype.setState.call(this, state, false);
@@ -2671,6 +2671,7 @@
          *               navigatorOptions, pointRange
          * @product      highcharts
          * @optionparent plotOptions.sunburst
+         * @private
          */
         var sunburstOptions = {
 
@@ -2806,7 +2807,8 @@
              */
             opacity: 1,
             /**
-             * @type {Highcharts.SeriesSunburstDataLabelsOptionsObject|Highcharts.DataLabelsOptionsObject}
+             * @type    {Highcharts.SeriesSunburstDataLabelsOptionsObject|Array<Highcharts.SeriesSunburstDataLabelsOptionsObject>}
+             * @default {"allowOverlap": true, "defer": true, "rotationMode": "auto", "style": {"textOverflow": "ellipsis"}}
              */
             dataLabels: {
                 /** @ignore-option */
@@ -3106,7 +3108,8 @@
                     nodeRoot = mapIdToNode && mapIdToNode[rootId],
                     nodeTop,
                     tree,
-                    values;
+                    values,
+                    nodeIds = {};
 
                 series.shapeRoot = nodeRoot && nodeRoot.shapeArgs;
                 // Call prototype function
@@ -3161,6 +3164,18 @@
                 this.setShapeArgs(nodeTop, values, mapOptionsToLevel);
                 // Set mapOptionsToLevel on series for use in drawPoints.
                 series.mapOptionsToLevel = mapOptionsToLevel;
+
+                // #10669 - verify if all nodes have unique ids
+                series.data.forEach(function (child) {
+                    if (nodeIds[child.id]) {
+                        H.error(31, false, series.chart);
+                    }
+                    // map
+                    nodeIds[child.id] = true;
+                });
+
+                // reset object
+                nodeIds = {};
             },
 
             // Animate the slices in. Similar to the animation of polar charts.
@@ -3239,6 +3254,12 @@
          * @excluding x, y
          * @product   highcharts
          * @apioption series.sunburst.data
+         */
+
+        /**
+         * @type      {Highcharts.SeriesSunburstDataLabelsOptionsObject|Array<Highcharts.SeriesSunburstDataLabelsOptionsObject>}
+         * @product   highcharts
+         * @apioption series.sunburst.data.dataLabels
          */
 
         /**

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.1.1 (2019-04-09)
+ * @license  Highcharts JS v7.1.2 (2019-06-03)
  *
  * Highcharts variwide module
  *
@@ -54,33 +54,33 @@
         seriesType('variwide', 'column'
 
             /**
-         * A variwide chart (related to marimekko chart) is a column chart with a
-         * variable width expressing a third dimension.
-         *
-         * @sample {highcharts} highcharts/demo/variwide/
-         *         Variwide chart
-         * @sample {highcharts} highcharts/series-variwide/inverted/
-         *         Inverted variwide chart
-         * @sample {highcharts} highcharts/series-variwide/datetime/
-         *         Variwide columns on a datetime axis
-         *
-         * @extends      plotOptions.column
-         * @since        6.0.0
-         * @product      highcharts
-         * @excluding    boostThreshold, crisp, depth, edgeColor, edgeWidth,
-         *               groupZPadding
-         * @optionparent plotOptions.variwide
-         */
-            , {
-            /**
-             * In a variwide chart, the point padding is 0 in order to express the
-             * horizontal stacking of items.
+             * A variwide chart (related to marimekko chart) is a column chart with a
+             * variable width expressing a third dimension.
+             *
+             * @sample {highcharts} highcharts/demo/variwide/
+             *         Variwide chart
+             * @sample {highcharts} highcharts/series-variwide/inverted/
+             *         Inverted variwide chart
+             * @sample {highcharts} highcharts/series-variwide/datetime/
+             *         Variwide columns on a datetime axis
+             *
+             * @extends      plotOptions.column
+             * @since        6.0.0
+             * @product      highcharts
+             * @excluding    boostThreshold, crisp, depth, edgeColor, edgeWidth,
+             *               groupZPadding
+             * @optionparent plotOptions.variwide
              */
+            , {
+                /**
+                 * In a variwide chart, the point padding is 0 in order to express the
+                 * horizontal stacking of items.
+                 */
                 pointPadding: 0,
                 /**
-             * In a variwide chart, the group padding is 0 in order to express the
-             * horizontal stacking of items.
-             */
+                 * In a variwide chart, the group padding is 0 in order to express the
+                 * horizontal stacking of items.
+                 */
                 groupPadding: 0
             }, {
                 pointArrayMap: ['y', 'z'],
@@ -107,21 +107,21 @@
                 },
 
                 /**
-             * Translate an x value inside a given category index into the distorted
-             * axis translation.
-             *
-             * @private
-             * @function Highcharts.Series#postTranslate
-             *
-             * @param {number} index
-             *        The category index
-             *
-             * @param {number} x
-             *        The X pixel position in undistorted axis pixels
-             *
-             * @return {number}
-             *         Distorted X position
-             */
+                 * Translate an x value inside a given category index into the distorted
+                 * axis translation.
+                 *
+                 * @private
+                 * @function Highcharts.Series#postTranslate
+                 *
+                 * @param {number} index
+                 *        The category index
+                 *
+                 * @param {number} x
+                 *        The X pixel position in undistorted axis pixels
+                 *
+                 * @return {number}
+                 *         Distorted X position
+                 */
                 postTranslate: function (index, x, point) {
 
                     var axis = this.xAxis,

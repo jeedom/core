@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Advanced Highstock tools
  *
@@ -30,7 +30,7 @@
         }
     }
     _registerModule(_modules, 'modules/full-screen.src.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * (c) 2009-2019 Sebastian Bochann
          *
          * Full screen for Highcharts

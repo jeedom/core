@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2009-2019 Torstein Honsi
  *
@@ -27,7 +27,7 @@
         }
     }
     _registerModule(_modules, 'modules/draggable-points.src.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * (c) 2009-2019 Highsoft AS
          * Authors: Øystein Moseng, Torstein Hønsi, Jon A. Nygård
          *

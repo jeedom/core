@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Accessibility module
  *
@@ -394,10 +394,10 @@
                     var rectEl = el.getBoundingClientRect(),
                         rectDiv = div.getBoundingClientRect();
                     return {
-                        x: rectEl.x - rectDiv.x,
-                        y: rectEl.y - rectDiv.y,
-                        width: rectEl.width,
-                        height: rectEl.height
+                        x: rectEl.left - rectDiv.left,
+                        y: rectEl.top - rectDiv.top,
+                        width: rectEl.right - rectEl.left,
+                        height: rectEl.bottom - rectEl.top
                     };
                 }
             },
@@ -816,11 +816,20 @@
              */
             addExitAnchor: function () {
                 var chart = this.chart,
+                    exitAnchorWrapper = this.exitAnchorWrapper =
+                        doc.createElement('div'),
                     exitAnchor = this.exitAnchor = doc.createElement('h6'),
                     keyboardNavigation = this,
                     exitAnchorLabel = chart.langFormat(
                         'accessibility.svgContainerEnd', { chart: chart }
                     );
+
+                exitAnchorWrapper.setAttribute('aria-hidden', 'false');
+                exitAnchorWrapper.setAttribute(
+                    'class', 'highcharts-exit-anchor-wrapper'
+                );
+                exitAnchorWrapper.style.position = 'relative';
+                exitAnchorWrapper.style.outline = 'none';
 
                 exitAnchor.setAttribute('tabindex', '0');
                 exitAnchor.setAttribute('aria-label', exitAnchorLabel);
@@ -831,16 +840,18 @@
                     position: 'absolute',
                     width: '1px',
                     height: '1px',
+                    bottom: '5px', // Avoid scrollbars (#10637)
                     zIndex: 0,
                     overflow: 'hidden',
                     outline: 'none'
                 });
 
-                chart.renderTo.appendChild(exitAnchor);
+                exitAnchorWrapper.appendChild(exitAnchor);
+                chart.renderTo.appendChild(exitAnchorWrapper);
 
                 // Update position on render
                 this.unbindExitAnchorUpdate = addEvent(chart, 'render', function () {
-                    this.renderTo.appendChild(exitAnchor);
+                    this.renderTo.appendChild(exitAnchorWrapper);
                 });
 
                 // Handle focus
@@ -905,9 +916,11 @@
                     this.unbindExitAnchorUpdate();
                     delete this.unbindExitAnchorUpdate;
                 }
-                if (this.exitAnchor && this.exitAnchor.parentNode) {
-                    this.exitAnchor.parentNode.removeChild(this.exitAnchor);
+                if (this.exitAnchorWrapper && this.exitAnchorWrapper.parentNode) {
+                    this.exitAnchorWrapper.parentNode
+                        .removeChild(this.exitAnchorWrapper);
                     delete this.exitAnchor;
+                    delete this.exitAnchorWrapper;
                 }
 
                 // Remove keydown handler
@@ -1542,6 +1555,113 @@
 
 
         /**
+         * Keep track of forcing markers.
+         * @private
+         */
+        H.addEvent(H.Series, 'render', function () {
+            var series = this,
+                chart = series.chart,
+                options = series.options,
+                a11yOptions = chart.options.accessibility || {},
+                points = series.points || [],
+                dataLength = points.length,
+                resetMarkerOptions = series.resetA11yMarkerOptions,
+                // We need markers for a11y
+                forceMarkers = a11yOptions.enabled &&
+                    (
+                        options.accessibility &&
+                        options.accessibility.enabled
+                    ) !== false &&
+                    (
+                        dataLength < a11yOptions.pointDescriptionThreshold ||
+                        a11yOptions.pointDescriptionThreshold === false
+                    );
+
+            if (forceMarkers) {
+                // If markers are explicitly disabled on series, replace with markers
+                // that have zero opacity.
+                if (options.marker && options.marker.enabled === false) {
+                    series.a11yMarkersForced = true;
+                    merge(true, series.options, {
+                        marker: {
+                            enabled: true,
+                            states: {
+                                normal: {
+                                    opacity: 0
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // If we have point markers, we need to handle them
+                if (series._hasPointMarkers && series.points && series.points.length) {
+                    var i = dataLength,
+                        pointOptions;
+                    while (i--) {
+                        pointOptions = points[i].options;
+                        if (pointOptions.marker) {
+                            if (pointOptions.marker.enabled) {
+                                // Make sure opacity is overridden to show enabled
+                                // markers
+                                merge(true, pointOptions.marker, {
+                                    states: {
+                                        normal: {
+                                            opacity: pointOptions.marker.states &&
+                                                pointOptions.marker.states.normal &&
+                                                pointOptions.marker.states.normal
+                                                    .opacity || 1
+                                        }
+                                    }
+                                });
+                            } else {
+                                // Make sure hidden markers are enabled instead, and
+                                // opacity is out.
+                                merge(true, pointOptions.marker, {
+                                    enabled: true,
+                                    states: {
+                                        normal: {
+                                            opacity: 0
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
+
+            } else if (series.a11yMarkersForced && resetMarkerOptions) {
+                // Series markers should not be forced, and we should reset to old
+                // options.
+                delete series.a11yMarkersForced;
+                merge(true, series.options, {
+                    marker: {
+                        enabled: resetMarkerOptions.enabled,
+                        states: {
+                            normal: {
+                                opacity: resetMarkerOptions.states &&
+                                    resetMarkerOptions.states.normal &&
+                                    resetMarkerOptions.states.normal.opacity
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+
+        /**
+         * Keep track of options to reset markers to if no longer forced.
+         * @private
+         */
+        H.addEvent(H.Series, 'afterSetOptions', function (e) {
+            this.resetA11yMarkerOptions = merge(
+                e.options.marker || {}, this.userOptions.marker || {}
+            );
+        });
+
+
+        /**
          * Get the index of a point in a series. This is needed when using e.g. data
          * grouping.
          *
@@ -2012,9 +2132,10 @@
 
 
             /**
-             * Called on first render/updates to the chart, including options changes.
+             * Called on chart render. It is necessary to do this for render in case
+             * markers change on zoom/pixel density.
              */
-            onChartUpdate: function () {
+            onChartRender: function () {
                 var component = this,
                     chart = this.chart;
                 chart.series.forEach(function (series) {
@@ -2969,7 +3090,7 @@
             /**
              * Get keyboard navigation handlers for this component.
              * @return {Array<Highcharts.KeyboardNavigationHandler>}
-             *      List of module objects
+             *         List of module objects
              */
             getKeyboardNavigation: function () {
                 return [
@@ -3179,7 +3300,8 @@
             /**
              * Get navigation for the range selector input boxes.
              * @private
-             * @return {Highcharts.KeyboardNavigationHandler} The module object.
+             * @return {Highcharts.KeyboardNavigationHandler}
+             *         The module object.
              */
             getRangeSelectorInputNavigation: function () {
                 var chart = this.chart,
@@ -3250,7 +3372,7 @@
             /**
              * Get keyboard navigation handlers for this component.
              * @return {Array<Highcharts.KeyboardNavigationHandler>}
-             *      List of module objects.
+             *         List of module objects.
              */
             getKeyboardNavigation: function () {
                 return [
@@ -3812,7 +3934,7 @@
                  * @type  {boolean|number}
                  * @since 5.0.0
                  */
-                pointDescriptionThreshold: 500, // set to false to disable
+                pointDescriptionThreshold: 200, // set to false to disable
 
                 /**
                  * Whether or not to add a shortcut button in the screen reader
@@ -4121,6 +4243,7 @@
                      * components can be added here.
                      *
                      * @since 7.1.0
+                     * @type {Array<string>}
                      */
                     order: ['series', 'zoom', 'rangeSelector', 'chartMenu', 'legend'],
 

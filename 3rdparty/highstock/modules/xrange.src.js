@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * X-range series
  *
@@ -162,10 +162,9 @@
                         if (isObject(amount)) {
                             amount = amount.amount;
                         }
-                        if (!defined(amount)) {
-                            amount = 0;
+                        if (isNumber(amount) && amount > 0) {
+                            return correctFloat(amount * 100) + '%';
                         }
-                        return correctFloat(amount * 100) + '%';
                     },
                     /** @ignore-option */
                     inside: true,
@@ -193,15 +192,16 @@
                 cropShoulder: 1,
                 getExtremesFromAll: true,
                 autoIncrement: H.noop,
+                buildKDTree: H.noop,
                 /**
-             * Borrow the column series metrics, but with swapped axes. This gives free
-             * access to features like groupPadding, grouping, pointWidth etc.
-             *
-             * @private
-             * @function Higcharts.Series#getColumnMetrics
-             *
-             * @return {Highcharts.ColumnMetricsObject}
-             */
+                 * Borrow the column series metrics, but with swapped axes. This gives
+                 * free access to features like groupPadding, grouping, pointWidth etc.
+                 *
+                 * @private
+                 * @function Higcharts.Series#getColumnMetrics
+                 *
+                 * @return {Highcharts.ColumnMetricsObject}
+                 */
                 getColumnMetrics: function () {
                     var metrics,
                         chart = this.chart;
@@ -225,24 +225,24 @@
                 },
 
                 /**
-             * Override cropData to show a point where x or x2 is outside visible range,
-             * but one of them is inside.
-             *
-             * @private
-             * @function Highcharts.Series#cropData
-             *
-             * @param {Array<number>} xData
-             *
-             * @param {Array<number>} yData
-             *
-             * @param {number} min
-             *
-             * @param {number} max
-             *
-             * @param {number} [cropShoulder]
-             *
-             * @return {*}
-             */
+                 * Override cropData to show a point where x or x2 is outside visible
+                 * range, but one of them is inside.
+                 *
+                 * @private
+                 * @function Highcharts.Series#cropData
+                 *
+                 * @param {Array<number>} xData
+                 *
+                 * @param {Array<number>} yData
+                 *
+                 * @param {number} min
+                 *
+                 * @param {number} max
+                 *
+                 * @param {number} [cropShoulder]
+                 *
+                 * @return {*}
+                 */
                 cropData: function (xData, yData, min, max) {
 
                     // Replace xData with x2Data to find the appropriate cropStart
@@ -300,11 +300,11 @@
                     return pointIndex;
                 },
                 /**
-             * @private
-             * @function Highcharts.Series#translatePoint
-             *
-             * @param {Highcharts.Point} point
-             */
+                 * @private
+                 * @function Highcharts.Series#translatePoint
+                 *
+                 * @param {Highcharts.Point} point
+                 */
                 translatePoint: function (point) {
                     var series = this,
                         xAxis = series.xAxis,
@@ -443,9 +443,9 @@
                 },
 
                 /**
-             * @private
-             * @function Highcharts.Series#translate
-             */
+                 * @private
+                 * @function Highcharts.Series#translate
+                 */
                 translate: function () {
                     columnType.prototype.translate.apply(this, arguments);
                     this.points.forEach(function (point) {
@@ -454,20 +454,20 @@
                 },
 
                 /**
-             * Draws a single point in the series. Needed for partial fill.
-             *
-             * This override turns point.graphic into a group containing the original
-             * graphic and an overlay displaying the partial fill.
-             *
-             * @private
-             * @function Highcharts.Series#drawPoint
-             *
-             * @param {Highcharts.Point} point
-             *        An instance of Point in the series.
-             *
-             * @param {"animate"|"attr"} verb
-             *        'animate' (animates changes) or 'attr' (sets options)
-             */
+                 * Draws a single point in the series. Needed for partial fill.
+                 *
+                 * This override turns point.graphic into a group containing the
+                 * original graphic and an overlay displaying the partial fill.
+                 *
+                 * @private
+                 * @function Highcharts.Series#drawPoint
+                 *
+                 * @param {Highcharts.Point} point
+                 *        An instance of Point in the series.
+                 *
+                 * @param {"animate"|"attr"} verb
+                 *        'animate' (animates changes) or 'attr' (sets options)
+                 */
                 drawPoint: function (point, verb) {
                     var series = this,
                         seriesOpts = series.options,
@@ -481,7 +481,7 @@
                         cutOff = seriesOpts.stacking && !seriesOpts.borderRadius,
                         pointState = point.state,
                         stateOpts = seriesOpts.states[pointState || 'normal'] || {},
-                        attrOrAnim = pointState === undefined ? 'attr' : 'animate',
+                        pointStateVerb = pointState === undefined ? 'attr' : verb,
                         pointAttr = series.pointAttribs(point, pointState),
                         animation = pick(
                             series.chart.options.chart.animation,
@@ -511,7 +511,7 @@
                                 point.graphicOverlay[verb](
                                     merge(partShapeArgs)
                                 );
-                                point.clipRect.animate(
+                                point.clipRect[verb](
                                     merge(clipRectArgs)
                                 );
 
@@ -534,8 +534,11 @@
 
                         // Presentational
                         if (!series.chart.styledMode) {
-                            point.graphicOriginal
-                                .animate(pointAttr, animation)
+                            point
+                                .graphicOriginal[verb](
+                                    pointAttr,
+                                    animation
+                                )
                                 .shadow(seriesOpts.shadow, null, cutOff);
 
                             if (partShapeArgs) {
@@ -557,7 +560,11 @@
                                 );
 
                                 pointAttr.fill = fill;
-                                point.graphicOverlay[attrOrAnim](pointAttr, animation)
+                                point
+                                    .graphicOverlay[pointStateVerb](
+                                        pointAttr,
+                                        animation
+                                    )
                                     .shadow(seriesOpts.shadow, null, cutOff);
                             }
                         }
@@ -568,9 +575,9 @@
                 },
 
                 /**
-             * @private
-             * @function Highcharts.Series#drawPoints
-             */
+                 * @private
+                 * @function Highcharts.Series#drawPoints
+                 */
                 drawPoints: function () {
                     var series = this,
                         verb = series.getAnimationVerb();
@@ -583,14 +590,14 @@
 
 
                 /**
-             * Returns "animate", or "attr" if the number of points is above the
-             * animation limit.
-             *
-             * @private
-             * @function Highcharts.Series#getAnimationVerb
-             *
-             * @return {string}
-             */
+                 * Returns "animate", or "attr" if the number of points is above the
+                 * animation limit.
+                 *
+                 * @private
+                 * @function Highcharts.Series#getAnimationVerb
+                 *
+                 * @return {string}
+                 */
                 getAnimationVerb: function () {
                     return (
                         this.chart.pointCount < (this.options.animationLimit || 250) ?
@@ -600,26 +607,27 @@
                 }
 
                 /*
-            // Override to remove stroke from points. For partial fill.
-            pointAttribs: function () {
-                var series = this,
-                    retVal = columnType.prototype.pointAttribs.apply(series, arguments);
+                // Override to remove stroke from points. For partial fill.
+                pointAttribs: function () {
+                    var series = this,
+                        retVal = columnType.prototype.pointAttribs
+                            .apply(series, arguments);
 
-                //retVal['stroke-width'] = 0;
-                return retVal;
-            }
-            //*/
+                    //retVal['stroke-width'] = 0;
+                    return retVal;
+                }
+                //*/
 
             }, { // Point class properties
-            /**
-             * Extend applyOptions so that `colorByPoint` for x-range means that one
-             * color is applied per Y axis category.
-             *
-             * @private
-             * @function Highcharts.Point#applyOptions
-             *
-             * @return {Highcharts.Series}
-             */
+                /**
+                 * Extend applyOptions so that `colorByPoint` for x-range means that one
+                 * color is applied per Y axis category.
+                 *
+                 * @private
+                 * @function Highcharts.Point#applyOptions
+                 *
+                 * @return {Highcharts.Series}
+                 */
                 resolveColor: function () {
                     var series = this.series,
                         colorByPoint;
@@ -640,13 +648,13 @@
 
                 },
                 /**
-             * Extend init to have y default to 0.
-             *
-             * @private
-             * @function Highcharts.Point#init
-             *
-             * @return {Highcharts.Series}
-             */
+                 * Extend init to have y default to 0.
+                 *
+                 * @private
+                 * @function Highcharts.Point#init
+                 *
+                 * @return {Highcharts.Series}
+                 */
                 init: function () {
                     Point.prototype.init.apply(this, arguments);
 
@@ -658,9 +666,9 @@
                 },
 
                 /**
-             * @private
-             * @function Highcharts.Point#setState
-             */
+                 * @private
+                 * @function Highcharts.Point#setState
+                 */
                 setState: function () {
                     Point.prototype.setState.apply(this, arguments);
 
@@ -668,11 +676,11 @@
                 },
 
                 /**
-             * @private
-             * @function Highcharts.Point#getLabelConfig
-             *
-             * @return {Highcharts.PointLabelObject}
-             */
+                 * @private
+                 * @function Highcharts.Point#getLabelConfig
+                 *
+                 * @return {Highcharts.PointLabelObject}
+                 */
                 // Add x2 and yCategory to the available properties for tooltip formats
                 getLabelConfig: function () {
                     var point = this,
@@ -686,11 +694,11 @@
                 tooltipDateKeys: ['x', 'x2'],
 
                 /**
-             * @private
-             * @function Highcharts.Point#isValid
-             *
-             * @return {boolean}
-             */
+                 * @private
+                 * @function Highcharts.Point#isValid
+                 *
+                 * @return {boolean}
+                 */
                 isValid: function () {
                     return typeof this.x === 'number' &&
                     typeof this.x2 === 'number';

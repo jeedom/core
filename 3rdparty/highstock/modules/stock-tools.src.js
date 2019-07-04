@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Advanced Highstock tools
  *
@@ -2118,7 +2118,7 @@
 
     });
     _registerModule(_modules, 'modules/stock-tools-gui.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * GUI generator for Stock tools
          *
          * (c) 2009-2017 Sebastian Bochan
@@ -2326,7 +2326,7 @@
                      * Path where Highcharts will look for icons. Change this to use
                      * icons from a different server.
                      */
-                    iconsURL: 'https://code.highcharts.com/7.1.1/gfx/stock-icons/',
+                    iconsURL: 'https://code.highcharts.com/7.1.2/gfx/stock-icons/',
                     /**
                      * A collection of strings pointing to config options for the
                      * toolbar items. Each name refers to unique key from definitions

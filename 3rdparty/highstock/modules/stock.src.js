@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Highstock as a plugin for Highcharts
  *
@@ -1079,7 +1079,9 @@
                         pick(axis.dataMax, axis.max) // #6930
                     ),
                     scrollbar = axis.scrollbar,
-                    titleOffset = axis.titleOffset || 0,
+                    offset = axis.axisTitleMargin + (axis.titleOffset || 0),
+                    scrollbarsOffsets = axis.chart.scrollbarsOffsets,
+                    axisMargin = axis.options.margin || 0,
                     offsetsIndex,
                     from,
                     to;
@@ -1087,49 +1089,62 @@
                 if (scrollbar) {
 
                     if (axis.horiz) {
+
+                        // Reserve space for labels/title
+                        if (!axis.opposite) {
+                            scrollbarsOffsets[1] += offset;
+                        }
+
                         scrollbar.position(
                             axis.left,
-                            axis.top + axis.height + 2 +
-                                axis.chart.scrollbarsOffsets[1] +
-                                (axis.opposite ?
-                                    0 :
-                                    titleOffset + axis.axisTitleMargin + axis.offset
-                                ),
+                            axis.top + axis.height + 2 + scrollbarsOffsets[1] -
+                                (axis.opposite ? axisMargin : 0),
                             axis.width,
                             axis.height
                         );
+
+                        // Next scrollbar should reserve space for margin (if set)
+                        if (!axis.opposite) {
+                            scrollbarsOffsets[1] += axisMargin;
+                        }
+
                         offsetsIndex = 1;
                     } else {
+
+                        // Reserve space for labels/title
+                        if (axis.opposite) {
+                            scrollbarsOffsets[0] += offset;
+                        }
+
                         scrollbar.position(
-                            axis.left + axis.width + 2 +
-                                axis.chart.scrollbarsOffsets[0] +
-                                (axis.opposite ?
-                                    titleOffset + axis.axisTitleMargin + axis.offset :
-                                    0
-                                ),
+                            axis.left + axis.width + 2 + scrollbarsOffsets[0] -
+                                (axis.opposite ? 0 : axisMargin),
                             axis.top,
                             axis.width,
                             axis.height
                         );
+
+                        // Next scrollbar should reserve space for margin (if set)
+                        if (axis.opposite) {
+                            scrollbarsOffsets[0] += axisMargin;
+                        }
+
                         offsetsIndex = 0;
                     }
 
-                    if (
-                        (!axis.opposite && !axis.horiz) || (axis.opposite && axis.horiz)
-                    ) {
-                        axis.chart.scrollbarsOffsets[offsetsIndex] +=
-                            axis.scrollbar.size + axis.scrollbar.options.margin;
-                    }
+                    scrollbarsOffsets[offsetsIndex] += scrollbar.size +
+                        scrollbar.options.margin;
 
                     if (
                         isNaN(scrollMin) ||
                         isNaN(scrollMax) ||
                         !defined(axis.min) ||
-                        !defined(axis.max)
+                        !defined(axis.max) ||
+                        axis.min === axis.max // #10733
                     ) {
-                        // default action: when there is not extremes on the axis, but
-                        // scrollbar exists, make it full size
-                        scrollbar.setRange(0, 0);
+                        // default action: when extremes are the same or there is not
+                        // extremes on the axis, but scrollbar exists, make it full size
+                        scrollbar.setRange(0, 1);
                     } else {
                         from = (axis.min - scrollMin) / (scrollMax - scrollMin);
                         to = (axis.max - scrollMin) / (scrollMax - scrollMin);
@@ -4648,13 +4663,25 @@
             }
         });
 
+        // For ordinal axis, that loads data async, redraw axis after data is loaded.
+        // If we don't do that, axis will have the same extremes as previously, but
+        // ordinal positions won't be calculated. See #10290
+        addEvent(Axis, 'afterSetScale', function () {
+            var axis = this;
+
+            if (axis.horiz && !axis.isDirty) {
+                axis.isDirty = axis.isOrdinal &&
+                    axis.chart.navigator &&
+                    !axis.chart.navigator.adaptToUpdatedData;
+            }
+        });
         /* ************************************************************************** *
          * End ordinal axis logic                                                     *
          * ************************************************************************** */
 
     });
     _registerModule(_modules, 'modules/broken-axis.src.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * (c) 2009-2019 Torstein Honsi
          *
          * License: www.highcharts.com/license
@@ -7613,7 +7640,8 @@
                         outsideRight,
                         yAxis = series.yAxis,
                         boxesMap = {},
-                        boxes = [];
+                        boxes = [],
+                        centered;
 
                     i = points.length;
                     while (i--) {
@@ -7635,6 +7663,7 @@
                         // skip connectors for higher level stacked points
                         point.anchorX = stackIndex ? undefined : point.plotX;
                         anchorY = stackIndex ? undefined : point.plotY;
+                        centered = shape !== 'flag';
 
                         graphic = point.graphic;
 
@@ -7661,7 +7690,7 @@
                                 }
 
                                 graphic.attr({
-                                    align: shape === 'flag' ? 'left' : 'center',
+                                    align: centered ? 'center' : 'left',
                                     width: options.width,
                                     height: options.height,
                                     'text-align': options.textAlign
@@ -7702,7 +7731,7 @@
                             if (!options.allowOverlapX) {
                                 if (!boxesMap[point.plotX]) {
                                     boxesMap[point.plotX] = {
-                                        align: 0,
+                                        align: centered ? 0.5 : 0,
                                         size: graphic.width,
                                         target: plotX,
                                         anchorX: plotX
@@ -7743,7 +7772,7 @@
                                 point.graphic[
                                     point.graphic.isNew ? 'attr' : 'animate'
                                 ]({
-                                    x: box.pos,
+                                    x: box.pos + box.align * box.size,
                                     anchorX: point.anchorX
                                 });
                                 // Hide flag when its box position is not specified
@@ -9249,13 +9278,15 @@
                 };
                 // Hide away the input box
                 input.onblur = function () {
+                    // update extermes only when inputs are active
                     if (input === H.doc.activeElement) { // Only when focused
                         // Update also when no `change` event is triggered, like when
                         // clicking inside the SVG (#4710)
                         updateExtremes();
-                        rangeSelector.hideInput(name);
-                        input.blur(); // #4606
                     }
+                    // #10404 - move hide and blur outside focus
+                    rangeSelector.hideInput(name);
+                    input.blur(); // #4606
                 };
 
                 // handle changes in the input boxes
@@ -9835,7 +9866,7 @@
                     time.set(timeName, date, basePeriod + count);
 
                     if (basePeriod === time.get(timeName, date)) {
-                        date.setDate(0); // #6537
+                        time.set('Date', date, 0); // #6537
                     }
 
                     return date.getTime() - base;
@@ -10195,20 +10226,7 @@
                 disableStartOnTick = navigatorEnabled ? {
                     startOnTick: false,
                     endOnTick: false
-                } : null,
-
-                lineOptions = {
-
-                    marker: {
-                        enabled: false,
-                        radius: 2
-                    }
-                    // gapSize: 0
-                },
-                columnOptions = {
-                    shadow: false,
-                    borderWidth: 0
-                };
+                } : null;
 
             // apply X axis options to both single and multi y axes
             options.xAxis = splat(options.xAxis || {}).map(function (xAxisOptions, i) {
@@ -10298,19 +10316,6 @@
                     },
                     legend: {
                         enabled: false
-                    },
-
-                    plotOptions: {
-                        line: lineOptions,
-                        spline: lineOptions,
-                        area: lineOptions,
-                        areaspline: lineOptions,
-                        arearange: lineOptions,
-                        areasplinerange: lineOptions,
-                        column: columnOptions,
-                        columnrange: columnOptions,
-                        candlestick: columnOptions,
-                        ohlc: columnOptions
                     }
 
                 },
@@ -10328,6 +10333,40 @@
                 new Chart(a, options, c) :
                 new Chart(options, b);
         };
+
+        // Handle som Stock-specific series defaults, override the plotOptions before
+        // series options are handled.
+        addEvent(Series, 'setOptions', function (e) {
+            var series = this,
+                overrides;
+
+            function is(type) {
+                return H.seriesTypes[type] && series instanceof H.seriesTypes[type];
+            }
+            if (this.chart.options.isStock) {
+
+                if (is('column') || is('columnrange')) {
+                    overrides = {
+                        borderWidth: 0,
+                        shadow: false
+                    };
+
+                } else if (is('line') && !is('scatter') && !is('sma')) {
+                    overrides = {
+                        marker: {
+                            enabled: false,
+                            radius: 2
+                        }
+                    };
+                }
+                if (overrides) {
+                    e.plotOptions[this.type] = merge(
+                        e.plotOptions[this.type],
+                        overrides
+                    );
+                }
+            }
+        });
 
         // Override the automatic label alignment so that the first Y axis' labels
         // are drawn on top of the grid line, and subsequent axes are drawn outside
@@ -10413,8 +10452,13 @@
                 });
             }
 
-            // Ignore in case of colorAxis or zAxis. #3360, #3524, #6720
-            if (axis.coll === 'xAxis' || axis.coll === 'yAxis') {
+            if (
+                // For stock chart, by default render paths across the panes
+                // except the case when `acrossPanes` is disabled by user (#6644)
+                (chart.options.isStock && e.acrossPanes !== false) &&
+                // Ignore in case of colorAxis or zAxis. #3360, #3524, #6720
+                axis.coll === 'xAxis' || axis.coll === 'yAxis'
+            ) {
 
                 e.preventDefault();
 

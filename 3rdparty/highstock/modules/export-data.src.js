@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Exporting module
  *
@@ -257,7 +257,7 @@
 
     });
     _registerModule(_modules, 'modules/export-data.src.js', [_modules['parts/Globals.js']], function (Highcharts) {
-        /**
+        /* *
          * Experimental data export module for Highcharts
          *
          * (c) 2010-2019 Torstein Honsi
@@ -675,13 +675,6 @@
                         key = point.x;
                         name = series.data[pIdx] && series.data[pIdx].name;
 
-                        if (xTaken) {
-                            if (xTaken[key]) {
-                                key += '|' + pIdx;
-                            }
-                            xTaken[key] = true;
-                        }
-
                         j = 0;
 
                         // Pies, funnels, geo maps etc. use point name in X row
@@ -689,6 +682,12 @@
                             key = name;
                         }
 
+                        if (xTaken) {
+                            if (xTaken[key]) {
+                                key += '|' + pIdx;
+                            }
+                            xTaken[key] = true;
+                        }
 
                         if (!rows[key]) {
                             // Generate the row

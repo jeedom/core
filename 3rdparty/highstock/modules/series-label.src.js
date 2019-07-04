@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2009-2019 Torstein Honsi
  *
@@ -27,7 +27,7 @@
         }
     }
     _registerModule(_modules, 'modules/series-label.src.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * (c) 2009-2019 Torstein Honsi
          *
          * License: www.highcharts.com/license
@@ -731,6 +731,7 @@
                     points = series.interpolatedPoints,
                     onArea = pick(labelOptions.onArea, !!series.area),
                     label = series.labelBySeries,
+                    isNew = !label,
                     minFontSize = labelOptions.minFontSize,
                     maxFontSize = labelOptions.maxFontSize,
                     dataExtremes,
@@ -799,8 +800,7 @@
                                 'stroke-width': 1,
                                 zIndex: 3
                             })
-                            .add()
-                            .animate({ opacity: 1 }, { duration: 200 });
+                            .add();
                     }
 
                     bBox = label.getBBox();
@@ -960,7 +960,18 @@
                                     anchorY: best.connectorPoint &&
                                         best.connectorPoint.plotY + paneTop
                                 }))
-                                .animate(anim);
+                                .animate(
+                                    anim,
+                                    isNew ?
+                                        // Default initial animation to a fraction of
+                                        // the series animation (#9396)
+                                        H.animObject(
+                                            series.options.animation
+                                        ).duration * 0.2 :
+                                        // On updating, default to the general chart
+                                        // animation
+                                        chart.renderer.globalAnimation
+                                );
 
                             // Record closest point to stick to for sync redraw
                             series.options.kdNow = true;
@@ -999,10 +1010,7 @@
         function drawLabels(e) {
 
             var chart = this,
-                delay = Math.max(
-                    H.animObject(chart.renderer.globalAnimation).duration,
-                    250
-                );
+                delay = H.animObject(chart.renderer.globalAnimation).duration;
 
             chart.labelSeries = [];
             chart.labelSeriesMaxSum = 0;

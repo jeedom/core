@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Highcharts 3D funnel module
  *
@@ -139,7 +139,7 @@
          *         Config objects
          *
          * @type      {Array<number|Array<number>|*>}
-         * @extends   series.pyramid3d.data
+         * @extends   series.funnel3d.data
          * @product   highcharts
          * @apioption series.pyramid3d.data
          */

@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Debugger module
  *
@@ -128,6 +128,10 @@
                 "title": "Invalid instrument",
                 "text": "<h1>Invalid instrument</h1><p>This happens when you try to use a sonification instrument that is not valid. If you are using a predefined instrument, make sure your spelling is correct.</p>"
             },
+            "31": {
+                "title": "Non-unique point or node id",
+                "text": "<h1>Non-unique point or node id</h1><p>This error occurs when using the same <code>id</code> for two or more points or nodes.</p>"
+            },
             "meta": {
                 "files": [
                     "errors/10/readme.md",
@@ -151,7 +155,8 @@
                     "errors/27/readme.md",
                     "errors/28/readme.md",
                     "errors/29/readme.md",
-                    "errors/30/readme.md"
+                    "errors/30/readme.md",
+                    "errors/31/readme.md"
                 ]
             }
         };

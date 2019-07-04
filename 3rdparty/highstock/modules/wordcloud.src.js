@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2016-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -1108,6 +1108,7 @@
             animate: Series.prototype.animate,
             animateDrilldown: noop,
             animateDrillupFrom: noop,
+            setClip: noop,
             bindAxes: function () {
                 var wordcloudAxis = {
                     endOnTick: false,

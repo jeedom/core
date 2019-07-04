@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2017-2019 Highsoft AS
  * Authors: Jon Arild Nygard
@@ -1477,12 +1477,14 @@
 
                 // Iterate all points and calculate and draw their graphics.
                 points.forEach(function (point) {
-                    var attribs,
+                    var attribs = {
+                            zIndex: isArray(point.sets) ? point.sets.length : 0
+                        },
                         shapeArgs = point.shapeArgs;
 
                     // Add point attribs
                     if (!chart.styledMode) {
-                        attribs = series.pointAttribs(point, point.state);
+                        extend(attribs, series.pointAttribs(point, point.state));
                     }
                     // Draw the point graphic.
                     point.draw({

@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.1.1 (2019-04-09)
+ * @license  Highcharts JS v7.1.2 (2019-06-03)
  *
  * All technical indicators for Highstock
  *
@@ -326,10 +326,12 @@
                                 );
 
                                 for (i = 0; i < croppedData.xData.length; i++) {
+                                    // (#10774)
                                     croppedDataValues.push([
-                                        croppedData.xData[i],
-                                        croppedData.yData[i]
-                                    ]);
+                                        croppedData.xData[i]
+                                    ].concat(
+                                        H.splat(croppedData.yData[i])
+                                    ));
                                 }
 
                                 oldFirstPointIndex = processedData.xData.indexOf(

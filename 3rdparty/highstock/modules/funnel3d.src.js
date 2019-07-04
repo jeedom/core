@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Highcharts funnel module
  *
@@ -147,11 +147,18 @@
                 edgeWidth: 0,
                 colorByPoint: true,
                 showInLegend: false,
+                /**
+                 * @default {"align": "right", "crop": false, "inside": false, "overflow": "allow"}
+                 */
                 dataLabels: {
-                    overflow: 'allow',
+                    /** @ignore-option */
+                    align: 'right',
+                    /** @ignore-option */
                     crop: false,
+                    /** @ignore-option */
                     inside: false,
-                    align: 'right'
+                    /** @ignore-option */
+                    overflow: 'allow'
                 }
             }, {
                 // Override default axis options with series required options for axes
@@ -461,7 +468,7 @@
          *         Config objects
          *
          * @type      {Array<number|Array<number>|*>}
-         * @extends   series.funnel3d.data
+         * @extends   series.column.data
          * @product   highcharts
          * @apioption series.funnel3d.data
          */

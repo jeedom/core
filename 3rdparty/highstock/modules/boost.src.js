@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Boost module
  *
@@ -334,8 +334,9 @@
                 // Texture uniform
                 uSamplerUniform;
 
-            /*
+            /**
              * Handle errors accumulated in errors stack
+             * @private
              */
             function handleErrors() {
                 if (errors.length) {
@@ -343,7 +344,9 @@
                 }
             }
 
-            /* String to shader program
+            /**
+             * String to shader program
+             * @private
              * @param {string} str - the program source
              * @param {string} type - the program type: either `vertex` or `fragment`
              * @returns {bool|shader}
@@ -368,9 +371,10 @@
                 return shader;
             }
 
-            /*
+            /**
              * Create the shader.
              * Loads the shader program statically defined above
+             * @private
              */
             function createShader() {
                 var v = stringToProgram(vertShade, 'vertex'),
@@ -418,8 +422,9 @@
                 return true;
             }
 
-            /*
+            /**
              * Destroy the shader
+             * @private
              */
             function destroy() {
                 if (gl && shaderProgram) {
@@ -428,10 +433,11 @@
                 }
             }
 
-            /*
+            /**
              * Bind the shader.
              * This makes the shader the active one until another one is bound,
              * or until 0 is bound.
+             * @private
              */
             function bind() {
                 if (gl && shaderProgram) {
@@ -439,9 +445,10 @@
                 }
             }
 
-            /*
+            /**
              * Set a uniform value.
              * This uses a hash map to cache uniform locations.
+             * @private
              * @param name {string} - the name of the uniform to set
              * @param val {float} - the value to set
              */
@@ -457,8 +464,9 @@
                 }
             }
 
-            /*
+            /**
              * Set the active texture
+             * @private
              * @param texture - the texture
              */
             function setTexture(texture) {
@@ -467,8 +475,9 @@
                 }
             }
 
-            /*
+            /**
              * Set if inversion state
+             * @private
              * @flag is the state
              */
             function setInverted(flag) {
@@ -477,8 +486,9 @@
                 }
             }
 
-            /*
+            /**
              * Enable/disable circle drawing
+             * @private
              */
             function setDrawAsCircle(flag) {
                 if (gl && shaderProgram) {
@@ -486,8 +496,9 @@
                 }
             }
 
-            /*
+            /**
              * Flush
+             * @private
              */
             function reset() {
                 if (gl && shaderProgram) {
@@ -496,8 +507,9 @@
                 }
             }
 
-            /*
+            /**
              * Set bubble uniforms
+             * @private
              * @param series {Highcharts.Series} - the series to use
              */
             function setBubbleUniforms(series, zCalcMin, zCalcMax) {
@@ -536,8 +548,9 @@
                 }
             }
 
-            /*
+            /**
              * Set the Color uniform.
+             * @private
              * @param color {Array<float>} - an array with RGBA values
              */
             function setColor(color) {
@@ -552,8 +565,9 @@
                 }
             }
 
-            /*
+            /**
              * Set skip translation
+             * @private
              */
             function setSkipTranslation(flag) {
                 if (gl && shaderProgram) {
@@ -561,8 +575,9 @@
                 }
             }
 
-            /*
+            /**
              * Set the perspective matrix
+             * @private
              * @param m {Matrix4x4} - the matrix
              */
             function setPMatrix(m) {
@@ -571,8 +586,9 @@
                 }
             }
 
-            /*
+            /**
              * Set the point size.
+             * @private
              * @param p {float} - point size
              */
             function setPointSize(p) {
@@ -581,8 +597,9 @@
                 }
             }
 
-            /*
+            /**
              * Get the shader program handle
+             * @private
              * @returns {GLInt} - the handle for the program
              */
             function getProgram() {
@@ -676,8 +693,9 @@
                 data = [];
             }
 
-            /*
+            /**
              * Build the buffer
+             * @private
              * @param dataIn {Array<float>} - a 0 padded array of indices
              * @param attrib {String} - the name of the Attribute to bind the buffer to
              * @param dataComponents {Integer} - the number of components per. indice
@@ -721,8 +739,9 @@
                 return true;
             }
 
-            /*
+            /**
              * Bind the buffer
+             * @private
              */
             function bind() {
                 if (!buffer) {
@@ -738,8 +757,9 @@
                 // gl.enableVertexAttribArray(vertAttribute);
             }
 
-            /*
+            /**
              * Render the buffer
+             * @private
              * @param from {Integer} - the start indice
              * @param to {Integer} - the end indice
              * @param drawMode {String} - the draw mode
@@ -783,9 +803,10 @@
                 }
             }
 
-            /*
+            /**
              * Note about pre-allocated buffers:
              *     - This is slower for charts with many series
+             * @private
              */
             function allocate(size) {
                 size *= 4;
@@ -968,8 +989,9 @@
                 vbuffer.allocate(s);
             }
 
-            /*
+            /**
              * Returns an orthographic perspective matrix
+             * @private
              * @param {number} width - the width of the viewport in pixels
              * @param {number} height - the height of the viewport in pixels
              */
@@ -985,25 +1007,28 @@
                 ];
             }
 
-            /*
+            /**
              * Clear the depth and color buffer
+             * @private
              */
             function clear() {
                 gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             }
 
-            /*
+            /**
              * Get the WebGL context
+             * @private
              * @returns {WebGLContext} - the context
              */
             function getGL() {
                 return gl;
             }
 
-            /*
+            /**
              * Push data for a single series
              * This calculates additional vertices and transforms the data to be
              * aligned correctly in memory
+             * @private
              */
             function pushSeriesData(series, inst) {
                 var isRange = series.pointArrayMap &&
@@ -1630,9 +1655,10 @@
                 closeSegment();
             }
 
-            /*
+            /**
              * Push a series to the renderer
              * If we render the series immediatly, we don't have to loop later
+             * @private
              * @param s {Highchart.Series} - the series to push
              */
             function pushSeries(s) {
@@ -1685,10 +1711,11 @@
                 }
             }
 
-            /*
+            /**
              * Flush the renderer.
              * This removes pushed series and vertices.
              * Should be called after clearing and before rendering
+             * @private
              */
             function flush() {
                 series = [];
@@ -1700,8 +1727,9 @@
                 }
             }
 
-            /*
+            /**
              * Pass x-axis to shader
+             * @private
              * @param axis {Highcharts.Axis} - the x-axis
              */
             function setXAxis(axis) {
@@ -1720,8 +1748,9 @@
                 shader.setUniform('xAxisReversed', !!axis.reversed);
             }
 
-            /*
+            /**
              * Pass y-axis to shader
+             * @private
              * @param axis {Highcharts.Axis} - the y-axis
              */
             function setYAxis(axis) {
@@ -1740,8 +1769,9 @@
                 shader.setUniform('yAxisReversed', !!axis.reversed);
             }
 
-            /*
+            /**
              * Set the translation threshold
+             * @private
              * @param has {boolean} - has threshold flag
              * @param translation {Float} - the threshold
              */
@@ -1750,9 +1780,10 @@
                 shader.setUniform('translatedThreshold', translation);
             }
 
-            /*
+            /**
              * Render the data
              * This renders all pushed series.
+             * @private
              */
             function render(chart) {
 
@@ -1971,8 +2002,9 @@
                 flush();
             }
 
-            /*
+            /**
              * Render the data when ready
+             * @private
              */
             function renderWhenReady(chart) {
                 clear();
@@ -1990,9 +2022,10 @@
                 }
             }
 
-            /*
+            /**
              * Set the viewport size in pixels
              * Creates an orthographic perspective matrix and applies it.
+             * @private
              * @param w {Integer} - the width of the viewport
              * @param h {Integer} - the height of the viewport
              */
@@ -2009,8 +2042,9 @@
                 shader.setPMatrix(orthoMatrix(width, height));
             }
 
-            /*
+            /**
              * Init OpenGL
+             * @private
              * @param canvas {HTMLCanvas} - the canvas to render to
              */
             function init(canvas, noFlush) {
@@ -2188,16 +2222,18 @@
                 return true;
             }
 
-            /*
+            /**
              * Check if we have a valid OGL context
+             * @private
              * @returns {Boolean} - true if the context is valid
              */
             function valid() {
                 return gl !== false;
             }
 
-            /*
+            /**
              * Check if the renderer has been initialized
+             * @private
              * @returns {Boolean} - true if it has, false if not
              */
             function inited() {
@@ -2878,6 +2914,12 @@
                     // If we're rendering per. series we should create the marker groups
                     // as usual.
                     if (!chart.isChartSeriesBoosting()) {
+                        // If all series were boosting, but are not anymore
+                        // restore private markerGroup
+                        if (this.markerGroup === chart.markerGroup) {
+                            this.markerGroup = undefined;
+                        }
+
                         this.markerGroup = series.plotGroup(
                             'markerGroup',
                             'markers',
@@ -2886,6 +2928,14 @@
                             chart.seriesGroup
                         );
                     } else {
+                        // If series has a private markeGroup, remove that
+                        // and use common markerGroup
+                        if (
+                            this.markerGroup &&
+                            this.markerGroup !== chart.markerGroup
+                        ) {
+                            this.markerGroup.destroy();
+                        }
                         // Use a single group for the markers
                         this.markerGroup = chart.markerGroup;
 
@@ -3528,11 +3578,21 @@
             var options = this.options,
                 data = options.data,
                 xAxis = this.xAxis && this.xAxis.options,
-                yAxis = this.yAxis && this.yAxis.options;
+                yAxis = this.yAxis && this.yAxis.options,
+                colorAxis = this.colorAxis && this.colorAxis.options;
 
             return data.length > (options.boostThreshold || Number.MAX_VALUE) &&
-                    isNumber(yAxis.min) && isNumber(yAxis.max) &&
-                    (!checkX || (isNumber(xAxis.min) && isNumber(xAxis.max)));
+                    // Defined yAxis extremes
+                    isNumber(yAxis.min) &&
+                    isNumber(yAxis.max) &&
+                    // Defined (and required) xAxis extremes
+                    (!checkX ||
+                        (isNumber(xAxis.min) && isNumber(xAxis.max))
+                    ) &&
+                    // Defined (e.g. heatmap) colorAxis extremes
+                    (!colorAxis ||
+                        (isNumber(colorAxis.min) && isNumber(colorAxis.max))
+                    );
         };
 
         /**

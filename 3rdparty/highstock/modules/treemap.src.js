@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * (c) 2014-2019 Highsoft AS
  * Authors: Jon Arild Nygard / Oystein Moseng
@@ -2071,12 +2071,12 @@
                 },
 
                 /**
-                * Workaround for `inactive` state. Since `series.opacity` option is
-                * already reserved, don't use that state at all by disabling
-                * `inactiveOtherPoints` and not inheriting states by points.
-                *
-                * @private
-                */
+                 * Workaround for `inactive` state. Since `series.opacity` option is
+                 * already reserved, don't use that state at all by disabling
+                 * `inactiveOtherPoints` and not inheriting states by points.
+                 *
+                 * @private
+                 */
                 setState: function (state) {
                     this.options.inactiveOtherPoints = true;
                     Series.prototype.setState.call(this, state, false);

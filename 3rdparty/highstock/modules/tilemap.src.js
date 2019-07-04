@@ -1,5 +1,5 @@
 /**
- * @license  Highcharts JS v7.1.1 (2019-04-09)
+ * @license  Highcharts JS v7.1.2 (2019-06-03)
  *
  * Tilemap module
  *
@@ -506,27 +506,28 @@
         seriesType('tilemap', 'heatmap'
 
             /**
-         * A tilemap series is a type of heatmap where the tile shapes are configurable.
-         *
-         * @sample highcharts/demo/honeycomb-usa/
-         *         Honeycomb tilemap, USA
-         * @sample maps/plotoptions/honeycomb-brazil/
-         *         Honeycomb tilemap, Brazil
-         * @sample maps/plotoptions/honeycomb-china/
-         *         Honeycomb tilemap, China
-         * @sample maps/plotoptions/honeycomb-europe/
-         *         Honeycomb tilemap, Europe
-         * @sample maps/demo/circlemap-africa/
-         *         Circlemap tilemap, Africa
-         * @sample maps/demo/diamondmap
-         *         Diamondmap tilemap
-         *
-         * @extends      plotOptions.heatmap
-         * @since        6.0.0
-         * @excluding    jitter, joinBy, shadow, allAreas, mapData, data
-         * @product      highcharts highmaps
-         * @optionparent plotOptions.tilemap
-         */
+             * A tilemap series is a type of heatmap where the tile shapes are
+             * configurable.
+             *
+             * @sample highcharts/demo/honeycomb-usa/
+             *         Honeycomb tilemap, USA
+             * @sample maps/plotoptions/honeycomb-brazil/
+             *         Honeycomb tilemap, Brazil
+             * @sample maps/plotoptions/honeycomb-china/
+             *         Honeycomb tilemap, China
+             * @sample maps/plotoptions/honeycomb-europe/
+             *         Honeycomb tilemap, Europe
+             * @sample maps/demo/circlemap-africa/
+             *         Circlemap tilemap, Africa
+             * @sample maps/demo/diamondmap
+             *         Diamondmap tilemap
+             *
+             * @extends      plotOptions.heatmap
+             * @since        6.0.0
+             * @excluding    jitter, joinBy, shadow, allAreas, mapData, data
+             * @product      highcharts highmaps
+             * @optionparent plotOptions.tilemap
+             */
             , { // Default options
 
                 states: {
@@ -550,42 +551,42 @@
                 },
 
                 /**
-             * The padding between points in the tilemap.
-             *
-             * @sample maps/plotoptions/tilemap-pointpadding
-             *         Point padding on tiles
-             */
+                 * The padding between points in the tilemap.
+                 *
+                 * @sample maps/plotoptions/tilemap-pointpadding
+                 *         Point padding on tiles
+                 */
                 pointPadding: 2,
 
                 /**
-             * The column size - how many X axis units each column in the tilemap
-             * should span. Works as in [Heatmaps](#plotOptions.heatmap.colsize).
-             *
-             * @sample {highcharts} maps/demo/heatmap/
-             *         One day
-             * @sample {highmaps} maps/demo/heatmap/
-             *         One day
-             *
-             * @type      {number}
-             * @default   1
-             * @product   highcharts highmaps
-             * @apioption plotOptions.tilemap.colsize
-             */
+                 * The column size - how many X axis units each column in the tilemap
+                 * should span. Works as in [Heatmaps](#plotOptions.heatmap.colsize).
+                 *
+                 * @sample {highcharts} maps/demo/heatmap/
+                 *         One day
+                 * @sample {highmaps} maps/demo/heatmap/
+                 *         One day
+                 *
+                 * @type      {number}
+                 * @default   1
+                 * @product   highcharts highmaps
+                 * @apioption plotOptions.tilemap.colsize
+                 */
 
                 /**
-             * The row size - how many Y axis units each tilemap row should span.
-             * Analogous to [colsize](#plotOptions.tilemap.colsize).
-             *
-             * @sample {highcharts} maps/demo/heatmap/
-             *         1 by default
-             * @sample {highmaps} maps/demo/heatmap/
-             *         1 by default
-             *
-             * @type      {number}
-             * @default   1
-             * @product   highcharts highmaps
-             * @apioption plotOptions.tilemap.rowsize
-             */
+                 * The row size - how many Y axis units each tilemap row should span.
+                 * Analogous to [colsize](#plotOptions.tilemap.colsize).
+                 *
+                 * @sample {highcharts} maps/demo/heatmap/
+                 *         1 by default
+                 * @sample {highmaps} maps/demo/heatmap/
+                 *         1 by default
+                 *
+                 * @type      {number}
+                 * @default   1
+                 * @product   highcharts highmaps
+                 * @apioption plotOptions.tilemap.rowsize
+                 */
 
                 /**
                  * The shape of the tiles in the tilemap. Possible values are `hexagon`,
@@ -678,11 +679,11 @@
             }, H.extend({
 
                 /**
-             * @private
-             * @function Highcharts.Point#haloPath
-             *
-             * @return {Highcharts.SVGPathArray}
-             */
+                 * @private
+                 * @function Highcharts.Point#haloPath
+                 *
+                 * @return {Highcharts.SVGPathArray}
+                 */
                 haloPath: function () {
                     return this.series.tileShape.haloPath.apply(
                         this,

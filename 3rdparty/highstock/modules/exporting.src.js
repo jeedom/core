@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Exporting module
  *
@@ -29,7 +29,7 @@
         }
     }
     _registerModule(_modules, 'modules/full-screen.src.js', [_modules['parts/Globals.js']], function (H) {
-        /**
+        /* *
          * (c) 2009-2019 Sebastian Bochann
          *
          * Full screen for Highcharts
@@ -131,7 +131,7 @@
         return chartNavigation;
     });
     _registerModule(_modules, 'modules/exporting.src.js', [_modules['parts/Globals.js'], _modules['mixins/navigation.js']], function (H, chartNavigationMixin) {
-        /**
+        /* *
          * Exporting module
          *
          * (c) 2010-2019 Torstein Honsi
@@ -1262,6 +1262,12 @@
                     // Copy the options and add extra options
                     options = merge(chart.options, chartOptions);
 
+                // Use userOptions to make the options chain in series right (#3881)
+                options.plotOptions = merge(
+                    chart.userOptions.plotOptions,
+                    chartOptions && chartOptions.plotOptions
+                );
+
                 // create a sandbox where a new chart will be generated
                 sandbox = createElement('div', null, {
                     position: 'absolute',
@@ -1645,6 +1651,7 @@
                             button.setState(0);
                         }
                         chart.openMenu = false;
+                        css(chart.renderTo, { overflow: 'hidden' }); // #10361
                         H.clearTimeout(menu.hideTimer);
                         fireEvent(chart, 'exportMenuHidden');
                     };
@@ -1749,6 +1756,7 @@
                 }
 
                 css(menu, menuStyle);
+                css(chart.renderTo, { overflow: '' }); // #10361
                 chart.openMenu = true;
             },
 

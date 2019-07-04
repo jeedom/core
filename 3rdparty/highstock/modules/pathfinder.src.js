@@ -1,5 +1,5 @@
 /**
- * @license Highcharts JS v7.1.1 (2019-04-09)
+ * @license Highcharts JS v7.1.2 (2019-06-03)
  *
  * Pathfinder
  *
@@ -305,8 +305,8 @@
                     // If we are going back again, switch direction to get around start
                     // obstacle.
                     if (
-                        waypoint[dir] > start[dir] === // Going towards max from start
-                        waypoint[dir] > endPoint[dir] // Going towards min to end
+                        waypoint[dir] >= start[dir] === // Going towards max from start
+                        waypoint[dir] >= endPoint[dir] // Going towards min to end
                     ) {
                         dir = dir === 'y' ? 'x' : 'y';
                         useMax = start[dir] < end[dir];
