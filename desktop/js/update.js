@@ -188,23 +188,18 @@ function printUpdate() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      $('#table_update tbody').empty();
-      $('#table_updateOther tbody').empty();
+      var tr_update = []
+      var tr_update_other = [];
       for (var i in data) {
-        addUpdate(data[i]);
+        if (!isset(data[i].status)) continue
+        if (data[i].type == 'core' || data[i].type == 'plugin') {
+          tr_update.push(addUpdate(data[i]));
+        } else {
+          tr_update_other.push(addUpdate(data[i]));
+        }
       }
-      $('#table_update').trigger('update');
-      $('#table_updateOther').trigger('update');
-    }
-  });
-  jeedom.config.load({
-    configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $('#span_lastUpdateCheck').value(data['update::lastCheck']);
-      $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core : }}'+data['update::lastDateCore']);
+      $('#table_update tbody').empty().append(tr_update).trigger('update');
+      $('#table_updateOther tbody').empty().append(tr_update_other).trigger('update');
     }
   });
 }
@@ -221,6 +216,7 @@ function addUpdate(_update) {
   tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.8em;text-transform: uppercase;"></span>';
   tr += '</td>';
   tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span>';
+ 
   if(_update.configuration && _update.configuration.version){
     tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
   }
@@ -248,19 +244,15 @@ function addUpdate(_update) {
     }
   }
   tr += '<a class="btn btn-info btn-xs pull-right checkUpdate" style="margin-bottom : 5px;" ><i class="fas fa-check"></i> {{Vérifier}}</a>';
+
   if (_update.type != 'core') {
     tr += '<a class="btn btn-danger btn-xs pull-right remove" style="margin-bottom : 5px;" ><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
   }
   tr += '</td>';
   tr += '</tr>';
-  
-  if(_update.type == 'core' || _update.type == 'plugin'){
-    $('#table_update').append(tr);
-    $('#table_update tbody tr:last').setValues(_update, '.updateAttr');
-  }else{
-    $('#table_updateOther').append(tr);
-    $('#table_updateOther tbody tr:last').setValues(_update, '.updateAttr');
-  }
+  var html = $(tr);
+  html.setValues(_update, '.updateAttr');
+  return html;
 }
 
 $('#bt_saveUpdate').on('click',function(){
