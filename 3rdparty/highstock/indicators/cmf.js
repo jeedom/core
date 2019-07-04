@@ -1,12 +1,13 @@
 /*
-  Highcharts JS v7.0.1 (2018-12-19)
+  Highcharts JS v7.1.2 (2019-06-03)
 
- (c) 2010-2018 Highsoft AS
+ (c) 2010-2019 Highsoft AS
  Author: Sebastian Domas
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?module.exports=c:"function"===typeof define&&define.amd?define(function(){return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){(function(c){c.seriesType("cmf","sma",{params:{period:14,volumeSeriesID:"volume"}},{nameBase:"Chaikin Money Flow",isValid:function(){var d=this.chart,e=this.options,b=this.linkedParent,d=this.volumeSeries||(this.volumeSeries=d.get(e.params.volumeSeriesID)),f=b&&b.yData&&4===b.yData[0].length;return!!(b&&
-d&&b.xData&&b.xData.length>=e.params.period&&d.xData&&d.xData.length>=e.params.period&&f)},getValues:function(d,e){return this.isValid()?this.getMoneyFlow(d.xData,d.yData,this.volumeSeries.yData,e.period):!1},getMoneyFlow:function(d,e,b,f){function c(b,d){var c=b[1],e=b[2];b=b[3];return null!==d&&null!==c&&null!==e&&null!==b&&c!==e?(b-e-(c-b))/(c-e)*d:(p=a,null)}var r=e.length,h=[],g=0,k=0,m=[],n=[],q=[],a,l,p=-1;if(0<f&&f<=r){for(a=0;a<f;a++)h[a]=c(e[a],b[a]),g+=b[a],k+=h[a];m.push(d[a-1]);n.push(a-
-p>=f&&0!==g?k/g:null);for(q.push([m[0],n[0]]);a<r;a++)h[a]=c(e[a],b[a]),g-=b[a-f],g+=b[a],k-=h[a-f],k+=h[a],l=[d[a],a-p>=f?k/g:null],m.push(l[0]),n.push(l[1]),q.push([l[0],l[1]])}return{values:q,xData:m,yData:n}}})})(c)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/cmf",["highcharts","highcharts/modules/stock"],function(f){a(f);a.Highcharts=f;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function f(a,h,d,c){a.hasOwnProperty(h)||(a[h]=c.apply(null,d))}a=a?a._modules:{};f(a,"indicators/cmf.src.js",[a["parts/Globals.js"]],function(a){a.seriesType("cmf","sma",{params:{period:14,
+volumeSeriesID:"volume"}},{nameBase:"Chaikin Money Flow",isValid:function(){var a=this.chart,d=this.options,c=this.linkedParent,a=this.volumeSeries||(this.volumeSeries=a.get(d.params.volumeSeriesID)),e=c&&c.yData&&4===c.yData[0].length;return!!(c&&a&&c.xData&&c.xData.length>=d.params.period&&a.xData&&a.xData.length>=d.params.period&&e)},getValues:function(a,d){return this.isValid()?this.getMoneyFlow(a.xData,a.yData,this.volumeSeries.yData,d.period):!1},getMoneyFlow:function(a,d,c,e){function f(a,
+c){var d=a[1],e=a[2];a=a[3];return null!==c&&null!==d&&null!==e&&null!==a&&d!==e?(a-e-(d-a))/(d-e)*c:(q=b,null)}var h=d.length,k=[],g=0,l=0,n=[],p=[],r=[],b,m,q=-1;if(0<e&&e<=h){for(b=0;b<e;b++)k[b]=f(d[b],c[b]),g+=c[b],l+=k[b];n.push(a[b-1]);p.push(b-q>=e&&0!==g?l/g:null);for(r.push([n[0],p[0]]);b<h;b++)k[b]=f(d[b],c[b]),g-=c[b-e],g+=c[b],l-=k[b-e],l+=k[b],m=[a[b],b-q>=e?l/g:null],n.push(m[0]),p.push(m[1]),r.push([m[0],m[1]])}return{values:r,xData:n,yData:p}}})});f(a,"masters/indicators/cmf.src.js",
+[],function(){})});
 //# sourceMappingURL=cmf.js.map

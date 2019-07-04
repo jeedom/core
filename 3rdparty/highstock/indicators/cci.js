@@ -1,12 +1,13 @@
 /*
-  Highcharts JS v7.0.1 (2018-12-19)
+  Highcharts JS v7.1.2 (2019-06-03)
 
  Indicator series type for Highstock
 
- (c) 2010-2018 Sebastian Bochan
+ (c) 2010-2019 Sebastian Bochan
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?module.exports=a:"function"===typeof define&&define.amd?define(function(){return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){(function(a){function r(a){return a.reduce(function(a,h){return a+h},0)}var t=a.isArray;a=a.seriesType;a("cci","sma",{params:{period:14}},{getValues:function(a,d){d=d.period;var k=a.xData,h=(a=a.yData)?a.length:0,l=[],e,c=1,m=[],n=[],p=[],b,f;if(k.length<=d||!t(a[0])||4!==a[0].length)return!1;for(;c<
-d;)b=a[c-1],l.push((b[1]+b[2]+b[3])/3),c++;for(c=d;c<=h;c++){b=a[c-1];b=(b[1]+b[2]+b[3])/3;f=l.push(b);e=l.slice(f-d);f=r(e)/d;var u=e.length,q=0,g;for(g=0;g<u;g++)q+=Math.abs(f-e[g]);e=q/d;b=(b-f)/(.015*e);m.push([k[c-1],b]);n.push(k[c-1]);p.push(b)}return{values:m,xData:n,yData:p}}})})(a)});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/cci",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,c,k,l){a.hasOwnProperty(c)||(a[c]=l.apply(null,k))}a=a?a._modules:{};c(a,"indicators/cci.src.js",[a["parts/Globals.js"]],function(a){function c(a){return a.reduce(function(a,
+c){return a+c},0)}var k=a.isArray;a=a.seriesType;a("cci","sma",{params:{period:14}},{getValues:function(a,e){e=e.period;var m=a.xData,l=(a=a.yData)?a.length:0,n=[],f,d=1,p=[],q=[],r=[],b,g;if(m.length<=e||!k(a[0])||4!==a[0].length)return!1;for(;d<e;)b=a[d-1],n.push((b[1]+b[2]+b[3])/3),d++;for(d=e;d<=l;d++){b=a[d-1];b=(b[1]+b[2]+b[3])/3;g=n.push(b);f=n.slice(g-e);g=c(f)/e;var u=f.length,t=0,h;for(h=0;h<u;h++)t+=Math.abs(g-f[h]);f=t/e;b=(b-g)/(.015*f);p.push([m[d-1],b]);q.push(m[d-1]);r.push(b)}return{values:p,
+xData:q,yData:r}}})});c(a,"masters/indicators/cci.src.js",[],function(){})});
 //# sourceMappingURL=cci.js.map
