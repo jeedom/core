@@ -6,7 +6,7 @@ Changelog
 3.3.28
 =====
 
-- Correciton d'un bug de roue infini sur la page des mises à jour
+- Correction d'un bug de roue infinie sur la page des mises à jour
 
 3.3.27
 =====
