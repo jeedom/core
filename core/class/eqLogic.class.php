@@ -1189,7 +1189,7 @@ class eqLogic {
 		return false;
 	}
 	
-	public function import($_configuration) {
+	public function import($_configuration,$_dontRemove = false) {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
@@ -1217,11 +1217,13 @@ class eqLogic {
 					$arrayToRemove[] = $eqLogic_cmd;
 				}
 			}
-			foreach ($arrayToRemove as $cmdToRemove) {
-				try {
-					$cmdToRemove->remove();
-				} catch (Exception $e) {
-					
+			if(!$_dontRemove){
+				foreach ($arrayToRemove as $cmdToRemove) {
+					try {
+						$cmdToRemove->remove();
+					} catch (Exception $e) {
+						
+					}
 				}
 			}
 			foreach ($_configuration['commands'] as $command) {
