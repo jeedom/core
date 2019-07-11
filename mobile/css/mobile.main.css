@@ -459,6 +459,9 @@ legend,
 a.ui-slider-handle {
   border-radius: 1em !important;
 }
+.cmd .ui-bar.state {
+  height: auto;
+}
 
 .break{
   position:absolute;
