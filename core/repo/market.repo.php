@@ -378,7 +378,7 @@ class repo_market {
 		}
 		com_shell::execute(system::getCmdSudo() .' chmod 777 -R '.$base_dir);
 		mkdir($restore_dir);
-		$timestamp = strtotime(trim(str_replace(array('Full', 'Incremental'), '', $_backup)));
+		$timestamp = strtotime(trim(str_replace(array('Full','Incremental','Incrémental','Complète'), '', $_backup)));
 		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity --file-to-restore /';
