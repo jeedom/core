@@ -306,7 +306,7 @@ class update {
 						throw new Exception(__('Impossible de trouver le fichier zip : ', __FILE__) . $this->getConfiguration('path'));
 					}
 					if (filesize($tmp) < 100) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être du à une non connexion au market (verifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistente avec votre version de Jeedom, un soucis du plugin sur le market, etc.', __FILE__));
+						throw new Exception(__('Échec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être du à une non connexion au market (verifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un soucis du plugin sur le market, etc.', __FILE__));
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
@@ -482,7 +482,7 @@ class update {
 	*/
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
+			log::add('update', 'alert', __('Vérification des mises à jour : mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {
