@@ -100,6 +100,17 @@ class message {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
+	public static function removeByPluginLogicalId($_plugin, $_logicalId) {
+		$values = array(
+			'logicalId' => $_logicalId,
+			'plugin' => $_plugin,
+		);
+		$sql = 'DELETE FROM message
+		WHERE logicalId=:logicalId
+		AND plugin=:plugin';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+	}
+	
 	public static function byPlugin($_plugin) {
 		$values = array(
 			'plugin' => $_plugin,

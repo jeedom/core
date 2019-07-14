@@ -1038,6 +1038,7 @@ class jeedom {
 			$datas = array_merge($datas, viewData::searchByConfiguration($key));
 			$datas = array_merge($datas, plan::searchByConfiguration($key));
 			$datas = array_merge($datas, plan3d::searchByConfiguration($key));
+			$datas = array_merge($datas, listener::searchEvent($key));
 		}
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {

@@ -454,10 +454,13 @@ legend,
   height: 5px;
 }
 .cmd .ui-bar-a {
-  height: auto;
+  height: 5px;
 }
 a.ui-slider-handle {
   border-radius: 1em !important;
+}
+.cmd .ui-bar.state {
+  height: auto;
 }
 
 .break{

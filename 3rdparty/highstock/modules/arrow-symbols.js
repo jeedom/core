@@ -1,5 +1,5 @@
 /*
- Highcharts JS v7.1.1 (2019-04-09)
+ Highcharts JS v7.1.2 (2019-06-03)
 
  Arrow Symbols
 
