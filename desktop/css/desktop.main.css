@@ -1779,6 +1779,10 @@ th {
   background-color: rgb(var(--bg-color)) !important;
 }
 
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
+  background-color: var(--bg-modal-color) !important;
+}
+
 tr.tablesorter-filter-row td {
   background-color: rgb(var(--bg-color)) !important;
 }
