@@ -659,21 +659,26 @@ effectuer des conversions ou des calculs :
     des minutes en heures (floor(time/3600) pour des secondes
     en horas)
 
-Y los ejemplos prácticos :
+- convertDuration(secondes) : Permet de convertir des secondes en j/h/mn/s.
+
+Et les exemples pratiques :
 
 
-| Ejemplo de función                  | Résultat retourné                    |
+| Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#) | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
 | randomColor(40,60)                 | Retourne une couleur aléatoire  proche du vert.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
-| odd(3)                             | Devuelve 1                            |
-| median(15,25,20)                   | Devuelve 20                           |
+| odd(3)                             | Renvoie 1                            |
+| median(15,25,20)                   | Renvoie 20                           |
 | time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
-| formatTime(1650)                   | Devuelve 16h50                        |
-| floor(130/60)                      | Devuelve 2 (minutos si 130s, o horas si 130m)                      |
+| formatTime(1650)                   | Renvoie 16h50                        |
+| floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
+| convertDuration(3600)              | Renvoie 1h 0min 0s                      |
+| convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60) | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
+
 
 Les commandes spécifiques
 =========================
@@ -683,7 +688,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Pause** (sleep) : Pause de x seconde(s).
 
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
-    de una variable.
+    d’une variable.
 
 -   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
 
@@ -693,10 +698,10 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
     d’accents et pas de caractères spéciaux). On récupère le tag dans le
     scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
--   **Stop** (stop) : Detener el escenario.
+-   **Stop** (stop) : Arrête le scénario.
 
 -   **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide
-    (máximo 2h), el tiempo de espera es en segundo (s).
+    (maximum 2h), le timeout est en seconde(s).
 
 -   **Aller au design** (gotodesign) : Change le design affiché sur tous les
     navigateurs par le design demandé.
@@ -704,11 +709,11 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
-    de mensajes.
+    de messages.
 
 -   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
-    Visible/invisible, activo/inactivo.
+    visible/invisible, actif/inactif.
 
 -   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
     une question à l’utilisateur. La réponse est stockée dans une
@@ -720,7 +725,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
-    para una interacción por ejemplo.
+    pour une interaction par exemple.
 
 -   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 

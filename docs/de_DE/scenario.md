@@ -661,6 +661,8 @@ effectuer des conversions ou des calculs :
     des minutes en heures (floor(time/3600) pour des secondes
     en heures)
 
+- convertDuration(secondes) : Permet de convertir des secondes en j/h/mn/s.
+
 Et les exemples pratiques :
 
 
@@ -676,6 +678,9 @@ Et les exemples pratiques :
 | time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
 | formatTime(1650)                   | Renvoie 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
+| convertDuration(3600)              | Renvoie 1h 0min 0s                      |
+| convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60) | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
+
 
 Les commandes spécifiques
 =========================
