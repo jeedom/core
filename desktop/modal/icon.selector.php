@@ -54,7 +54,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 				<option value="icon_green">{{Vert}}</option>
 			</select>
 		</div>
-		<input class="form-control" placeholder="{{Rechercher}}" id="in_iconSelectorSearch">
+		<input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
 		<div class="input-group-btn">
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
@@ -355,11 +355,15 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 </div>
 
 <script>
+setTimeout(function() {
+	if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
+}, 500);
+
 $('#sel_colorIcon').off('change').on('change',function() {
 	$('.iconSel i').removeClass('icon_green icon_blue icon_orange icon_red icon_yellow').addClass($(this).value());
 });
 
-$('#in_iconSelectorSearch').on('keyup',function(){
+$('#in_searchIconSelector').on('keyup',function(){
 	$('.divIconSel').show();
 	$('.iconCategory').show();
 	var search = $(this).value();
@@ -378,8 +382,8 @@ $('#in_iconSelectorSearch').on('keyup',function(){
 	});
 });
 $('#bt_resetSearch').on('click', function () {
-	$('#in_iconSelectorSearch').val('')
-	$('#in_iconSelectorSearch').keyup();
+	$('#in_searchIconSelector').val('')
+	$('#in_searchIconSelector').keyup();
 })
 
 $('.divIconSel').on('click', function () {
