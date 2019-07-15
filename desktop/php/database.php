@@ -15,7 +15,12 @@ if (!isConnect('admin')) {
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlHistory'></ul>
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlRequest'>
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SHOW TABLES;">Tables</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SHOW TABLES;">{{Tables}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT table_schema as `Database`, table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `MB` FROM information_schema.TABLES ORDER BY table_schema DESC;">{{Taille}}</a></li>
+        
+        
+        
+        
       </ul>
     </div>
   </div>
