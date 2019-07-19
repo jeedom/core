@@ -2920,6 +2920,7 @@ div.cmd > div.center-block {
 }
 #ui-datepicker-div {
   background: rgb(var(--bg-color)) !important;
+  z-index: 1020 !important;
 }
 #ui-datepicker-div .ui-datepicker-header a {
   color: red !important;
