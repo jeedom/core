@@ -26,6 +26,7 @@ function addChart(_cmd_id, _action) {
 			dateStart : $('#in_startDate').value(),
 			dateEnd :  $('#in_endDate').value(),
 			height : $('#div_graph').height(),
+			mobile : true,
 			success: function (data) {
 				if(isset(data.cmd.display)){
 					if (init(data.cmd.display.graphStep) != '') {
