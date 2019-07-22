@@ -213,7 +213,7 @@ $('#bt_addEditviewZoneSave').on('click', function() {
     addEditviewZone(viewZone);
     $('#md_addEditviewZone').modal('hide');
   } else {
-    alert('div_addEditviewZoneError', '{{Le nom de la viewZone ne peut être vide}}')
+    alert('{{Le nom de la viewZone ne peut être vide}}')
   }
 });
 
