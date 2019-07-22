@@ -2,25 +2,32 @@
 Changelog
 =========
 
+
+3.3.28
+=====
+
+- Correction d'un bug de roue infini sur la page des mises à jour
+- Corrections et optimisations diverse
+
 3.3.27
 =====
 
-- Correction de bug sur la traduction des jours en francais
-- Amélioration de la stabilité (redemarrage auto du service MySql et watchdog de verification de l'heure au démarrage)
+- Correction d'un bug sur la traduction des jours en français
+- Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
 - Correction de bugs
 - Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
 
 3.3.26
 =====
 
-- Correction de bug
+- Correction de bugs
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
 3.3.25
 =====
 
-- Correction de bug
+- Correction de bugs
 - Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 

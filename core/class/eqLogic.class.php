@@ -859,9 +859,11 @@ class eqLogic {
 		foreach (array('dashboard', 'mobile', 'mview', 'dview', 'dplan', 'view', 'plan') as $version) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $version);
 			$mc->remove();
-			foreach ($users as $user) {
-				$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
-				$mc->remove();
+			if(count($users) > 0){
+				foreach ($users as $user) {
+					$mc = cache::byKey('widgetHtml' . $this->getId() . $version . $user->getId());
+					$mc->remove();
+				}
 			}
 		}
 	}
@@ -1150,12 +1152,8 @@ class eqLogic {
 				}
 			}
 		} else {
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId()) as $message) {
-				$message->remove();
-			}
-			foreach (message::byPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId()) as $message) {
-				$message->remove();
-			}
+			message::removeByPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId());
+			message::removeByPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId());
 			$this->setStatus('batterydanger', 0);
 			$this->setStatus('batterywarning', 0);
 		}
@@ -1191,7 +1189,7 @@ class eqLogic {
 		return false;
 	}
 	
-	public function import($_configuration) {
+	public function import($_configuration,$_dontRemove = false) {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
@@ -1219,11 +1217,13 @@ class eqLogic {
 					$arrayToRemove[] = $eqLogic_cmd;
 				}
 			}
-			foreach ($arrayToRemove as $cmdToRemove) {
-				try {
-					$cmdToRemove->remove();
-				} catch (Exception $e) {
-					
+			if(!$_dontRemove){
+				foreach ($arrayToRemove as $cmdToRemove) {
+					try {
+						$cmdToRemove->remove();
+					} catch (Exception $e) {
+						
+					}
 				}
 			}
 			foreach ($_configuration['commands'] as $command) {

@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 $count = array('history' => 0, 'timeline' => 0);
 $cmds = cmd::all();
 foreach ($cmds as $cmd) {
-  if ($cmd->getIsHistorized() == 1 && $cmd->getType() == 'info') {
+ if ($cmd->getIsHistorized() == 1 && $cmd->getType() == 'info') {
     $count['history']++;
   }
   if ($cmd->getConfiguration('timeline::enable') == 1) {
