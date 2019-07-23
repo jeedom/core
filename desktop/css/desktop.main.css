@@ -3091,43 +3091,6 @@ input:invalid {
   height: 100% !important;
 }
 
-.elfinder-dialog-title {
-  color: rgb(var(--bg-color)) !important;
-  font-weight: bold;
-}
-.elfinder-contextmenu-item {
-  color: var(--sc-formTxt-color) !important;
-  font-size: 14px;
-}
-
-
-.elfinder-cwd-wrapper {
-  color: var(--txt-color) !important;
-}
-.elfinder-cwd-view-list table {
-  background-color: var(--sc-formTxt-color)  !important;
-  color: var(--sc-lightTxt-color);
-}
-.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:hover {
-  background-color: var(--placeholder-color)  !important;
-}
-.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(2n) {
-  background-color: var(--sc-formTxt-color)  !important;
-}
-.elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(2n):hover {
-  background-color: var(--placeholder-color)  !important;
-}
-.elfinder-cwd-view-list table .elfinder-cwd-file.ui-selected,
-.elfinder-cwd-view-list table .elfinder-cwd-file.ui-selected:nth-child(2n) {
-  background-color: var(--placeholder-color) !important;
-}
-
-#elfinder,
-.ui-widget-content.elfinder-buttonset {
-  background-image: none !important;
-  background: none !important;
-}
-
 /* hihgly special */
 div[id^=__lpform_] { /*lastpass*/
   display: none;
