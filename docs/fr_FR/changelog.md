@@ -2,6 +2,12 @@
 Changelog
 =========
 
+3.3.29
+=====
+
+- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction d'un bug pouvant bloquer les backups cloud
+
 
 3.3.28
 =====
