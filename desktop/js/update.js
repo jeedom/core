@@ -202,6 +202,16 @@ function printUpdate() {
       $('#table_updateOther tbody').empty().append(tr_update_other).trigger('update');
     }
   });
+  jeedom.config.load({
+    configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('#span_lastUpdateCheck').value(data['update::lastCheck']);
+      $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core : }}'+data['update::lastDateCore']);
+    }
+  });
 }
 
 function addUpdate(_update) {
