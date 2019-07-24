@@ -35,13 +35,12 @@ if (!isConnect('admin')) {
     </div>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8" style="overflow-y:hidden;overflow-x:hidden;">
-    
     <div class="alert alert-info" id="h3_executeCommand">{{Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous}}</div>
     <div class="input-group">
-      <span class="input-group-btn">
-        <input id="in_specificCommand" class="form-control roundedLeft" style="width:calc(100% - 50px);" />
-        <a id="bt_validateSpecifiCommand" class="btn btn-warning roundedRight" style="width:50px;"><i class="fas fa-check"></i> {{OK}}</a>
-      </span>
+      <input id="in_specificCommand" class="form-control roundedLeft" />
+      <div class="input-group-btn">
+        <a id="bt_validateSpecifiCommand" class="btn btn-warning roundedRight"><i class="fas fa-check"></i> {{OK}}</a>
+      </div>
     </div>
     <pre id="pre_commandResult" style="height : calc(100% - 110px);width:100%;margin-top:5px;"></pre>
   </div>

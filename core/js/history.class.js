@@ -284,7 +284,7 @@ jeedom.history.drawChart = function (_params) {
             type: _params.option.graphType,
             id: _params.cmd_id,
             cursor: 'pointer',
-            name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
+            name: (isset(_params.mobile))? data.result.unite : ((isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite),
             data: data.result.data,
             color: _params.option.graphColor,
             stack: _params.option.graphStack,

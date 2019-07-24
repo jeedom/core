@@ -28,13 +28,13 @@ foreach (widgets::all() as $widget) {
         </center>
         <span class="txtColor"><center>{{Ajouter}}</center></span>
       </div>
-      <div class="cursor logoSecondary" id="bt_mainImportWidgets">
-        <center>
+      <div class="cursor logoSecondary" id="bt_mainImportWidgets" style="cursor: default !important;">
+        <center style="cursor: default !important;">
           <span class="btn-file"><i class="fas fa-file-import" style="margin-bottom: 20px;"></i>
-            <input type="file" name="file" title="">
+            <input type="file" name="file">
           </span>
         </center>
-        <span class="txtColor"><center>{{Importer}}</center></span>
+        <span class="txtColor"><center style="cursor: default !important;">{{Importer}}</center></span>
       </div>
       <div class="cursor logoSecondary" id="bt_editCode">
         <center>
