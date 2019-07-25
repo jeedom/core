@@ -152,19 +152,24 @@ $('.cmdSortable').sortable({
 }).disableSelection()
 
 //Modals:
-$('.configureObject').on('click',function(){
+$('.configureObject').off('click').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration de l'objet}}"})
   $('#md_modal').load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
 })
 
-$('.configureEqLogic').on('click',function(){
+$('.configureEqLogic').off('click').on('click',function(){
   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
   $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
 })
 
-$('.configureCmd').on('click',function() {
+$('.configureCmd').off('click').on('click',function() {
   $('#md_modal').dialog({title: "{{Configuration de la commande}}"})
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
+})
+
+$('.cmd').off('dblclick').on('dblclick',function() {
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"})
+  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
 })
 
 
@@ -175,7 +180,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
   if (event.target.tagName.toUpperCase() == 'INPUT') return
   //cmd cliked inside li:
   if ($(event.target).hasClass('cmd')) {
-    $(this).find('.configureCmd').click()
+    $(event.target).find('.configureCmd').click()
     return false
   }
   
