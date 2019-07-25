@@ -147,6 +147,12 @@ $('#bt_saveUpdate').on('click',function(){
   });
 });
 
+$(function () {
+  $('[data-l2key="doNotUpdate"]').on('click',function(){
+    $(this).tooltipster('open')
+  })
+})
+
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
     type: 'POST',
@@ -232,7 +238,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-  
+
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -259,7 +265,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-  
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -271,18 +277,18 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-  
+
   _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-  
+
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
   tr += '<td style="width:180px;">';
   if (_update.type != 'core') {
-    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate"><span>{{Ne pas mettre à jour}}</span>';
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="Sauvegarder pour conserver les modications"><span>{{Ne pas mettre à jour}}</span>';
   }
   tr += '</td>';
   tr += '<td style="width:350px;">';
@@ -374,10 +380,12 @@ newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>'
 $('#pre_updateInfo').after($(newLogClean))
 $('#pre_updateInfo').hide()
 $('#pre_updateInfo_clean').show()
+
 //listen change in log to update the cleaned one:
 var prevUpdateText = ''
 var replaceLogLines = ['OK', '. OK', '.OK', 'OK .', 'OK.']
 var regExLogProgress = /\[PROGRESS\]\[(\d.*)]/gm;
+
 var _UpdateObserver_ = null
 $(function () {
   createUpdateObserver()
@@ -391,12 +399,14 @@ function createUpdateObserver() {
       }
     })
   })
+
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
+
   var targetNode = document.getElementById('pre_updateInfo')
   _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -407,6 +417,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
   l = lines.length
+
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -417,11 +428,13 @@ function cleanUpdateLog() {
       break
     }
   }
+
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
+
     //check ok at end of line:
     if (line.endsWith('OK')) {
       matches = line.match(/[. ]{1,}OK/g)
@@ -432,6 +445,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
+
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -440,6 +454,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
+
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -460,6 +475,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
+
     if (line != '') {
       newLogText += line + '\n'
       $('#pre_updateInfo_clean').value(newLogText)
