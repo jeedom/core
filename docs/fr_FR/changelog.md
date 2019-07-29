@@ -2,6 +2,13 @@
 Changelog
 =========
 
+3.3.29
+=====
+
+- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction d'un bug pouvant bloquer les backups cloud
+- Correction d'un bugs sur le calcul d'utilisation des variable si c'est de la forme variable(toto,mavaleur)
+
 
 3.3.28
 =====
