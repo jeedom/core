@@ -59,6 +59,7 @@ Changelog
 - Nombreuses corrections de bugs.
 - Ajout d'un parametre de configuration pour la purge globale par défaut des historiques (ex : maximum 6 mois par défaut)
 - Possibilité depuis le résumé domotique de rendre visible ou non une ou des commandes
+- Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
 
 
 3.3.26
