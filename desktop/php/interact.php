@@ -77,7 +77,7 @@ $optionMaxSize = 15;
 						$div .= '<span><i class="icon noicon far fa-comments"></i></span>';
 					}
 					$div .= "<br>";
-					$div .= '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
+					$div .= '<span class="name">' . $interact->getHumanName() . '</span>';
 					$div .= '</div>';
 				}
 				$div .= '</div>';
