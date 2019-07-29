@@ -173,7 +173,7 @@ class com_http {
 		return $this->post;
 	}
 	
-	public function setPost($post) {
+	public function setPost($post = array()) {
 		$this->post = $post;
 		return $this;
 	}
@@ -236,7 +236,7 @@ class com_http {
 		return $this->put;
 	}
 	
-	public function setPut($put) {
+	public function setPut($put = array()) {
 		$this->put = $put;
 		return $this;
 	}
@@ -254,7 +254,7 @@ class com_http {
 		return $this->delete;
 	}
 	
-	public function setDelete($delete) {
+	public function setDelete($delete = array()) {
 		$this->delete = $delete;
 		return $this;
 	}
