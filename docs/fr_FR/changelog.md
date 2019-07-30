@@ -1,11 +1,10 @@
-
 Changelog
 =========
 
 3.3.29
 =====
 
-- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction de la disparition de la date de dernière vérification des mises à jour
 - Correction d'un bug pouvant bloquer les backups cloud
 - Correction d'un bugs sur le calcul d'utilisation des variable si c'est de la forme variable(toto,mavaleur)
 
@@ -35,7 +34,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
+- Passage de la timeline en mode tableau (du à des erreurs dans la lib indépendante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
 
@@ -43,12 +42,12 @@ Changelog
 =====
 
 -   Correction d'un bug sur l'affichage du nombre de mise à jour
--	Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
--	Corrections de bugs
--	Amélioration de la fenêtre de choix des icônes
--	Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
--	Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
--	Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
+-       Suppression de l'édition du code HTML depuis la configuration avancée des commandes dû à de trop nombreux bugs
+-       Corrections de bugs
+-       Amélioration de la fenêtre de choix des icônes
+-       Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
+-       Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
+-       Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l’équipement sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====
@@ -97,7 +96,7 @@ Changelog
 =====
 
 -   Possibilité de supprimer une variable.
--   Ajout d'un affichage 3D (beta)
+-   Ajout d'un affichage 3D (bêta)
 -   Refonte du système de backup cloud (backup incrémental et chiffré).
 -   Ajout d'un système de prise de note intégré (dans Analyse -> Note).
 -   Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
@@ -108,27 +107,27 @@ Changelog
 -   Ajout d'une commande dans les scénarios : value(commande) permet d'avoir la valeur d'une commande si elle n'est pas donnée automatiquement par jeedom (cas lors du stockage du nom de la commande dans une variable).
 -   Ajout d'un bouton pour rafraichir les messages du centre message.
 -   Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scénario, pause...).
--   Ajout d'un action "Remise à zero des SI" sur les scénarios
+-   Ajout d'un action "Remise à zéro des SI" sur les scénarios
 -   Possibilité d'ajouter des images en fond sur les vues
 -   Possibilité d'ajouter des images en fond sur les objets
 -   L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 -   Amélioration du support des () dans le calcul d'expressions
 -   Possibilité d'éditer les scénarios en mode text/json
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
--   Possibilitée d'ajouter des options dans les rapports
--   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
+-   Possibilité d'ajouter des options dans les rapports
+-   Ajout d'un heartbeat par plugin et de redémarrage automatique de démon en cas de soucis
 -   Ajout des listeners sur la page de moteur de tâche
 -   Optimisations
 -   Possibilité de consulter les logs en version mobile (wepapp)
 -   Ajout d'une action tag dans les scénarios (voir documentation)
--   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
--   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+-   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l’URL
+-   Ajout de communicationnelle dans les scénarios (pour avoir la date de dernière communication d'un équipement)
 -   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 -   Possibilité de supprimer un élément à partir de la configuration du design
 -   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
 -   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
 -   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget)
--   Possibilité de mettre une icone sur les sénarios
+-   Possibilité de mettre une icône sur les scénarios
 -   Ajout de la gestion des démons sur le moteur de tache
 -   Ajout de la fonction color_gradient dans les scénarios
 
@@ -174,7 +173,7 @@ Changelog
 
 - Correction de bugs
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
-- Correction de bugs sur les listenners
+- Correction de bugs sur les listeners
 - Ajout d'une alerte si un plugin bloque les crons
 - Correction d'un bug dans le système de monitoring cloud si la version de l'agent est inférieure à 3.X.X
 
@@ -182,7 +181,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
+- Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'IP locale (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
 - Amélioration de l'éditeur de fichier
@@ -191,7 +190,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Mise à jour de la docs
+- Mise à jour de la documentation
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
@@ -199,7 +198,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Mise à jour de la docs
+- Mise à jour de la documentation
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
@@ -215,7 +214,7 @@ Changelog
 - Correction de bugs
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
-- Préparation pour le futur système d'alerting
+- Préparation pour le futur système d'alerte
 
 3.2.3
 =====
@@ -227,9 +226,9 @@ Changelog
 =====
 
 -   Suppression de l'ancien système de mise à jour des widget (déprécié depuis la version 3.0). Attention si votre widget n'utilise pas le nouveau système il y a des risques de dysfonctionnement (dédoublement de celui-ci en l’occurrence). Exemple de widget [ici](https://github.com/jeedom/core/tree/beta/core/template/dashboard)
--   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en csv ou xls
+-   Possibilité d'afficher les graphiques sous forme de tableau ou d'exporter ceux-ci en CSV ou xls
 
--   Les utilisateurs peuvent maintenant ajouter leur propre fonction php pour les scénarios. Voir documentation des scénarios pour la mise en place
+-   Les utilisateurs peuvent maintenant ajouter leur propre fonction PHP pour les scénarios. Voir documentation des scénarios pour la mise en place
 
 -   JEED-417 : ajout d'une fonction time_diff dans les scénarios
 
@@ -243,7 +242,7 @@ Changelog
 
 -   Mise à jour des traductions
 
--   Mise à jour des librairies (jquery et highcharts)
+-   Mise à jour des librairies (jQuery et Highcharts)
 
 -   Possibilité d’interdire une commande dans les interactions
     automatique
@@ -252,7 +251,7 @@ Changelog
 
 -   Correction de bug sur la gestion des synonyme des interactions
 
--   Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD
+-   Ajout d’un champs recherche utilisateur pour les connexions LDAP/AD
     (permet de rendre Jeedom compatible AD)
 
 -   Corrections d’orthographe (merci à dab0u pour son énorme travail)
@@ -274,7 +273,7 @@ Changelog
     unique utilisateur et périphérique (et non plus que utilisateur)
 
 -   JEED-283 : ajout d’un mode *rescue* à jeedom en rajoutant &rescue=1
-    dans l’url
+    dans l’URL
 
 -   JEED-8 : ajout du nom du scénario sur le titre de la page lors de
     l’édition
@@ -301,7 +300,7 @@ Changelog
 
 -   JEED-2 : Amélioration de la gestion de l’heure lors d’un redémarrage
 
--   JEED-77 : Ajout de la gestion des variables dans l’API http
+-   JEED-77 : Ajout de la gestion des variables dans l’API HTTP
 
 -   JEED-78 : ajout de la fonction tag pour les scénarios. Attention il
     faut dans les scénarios utilisant les tags passer de \#montag\#
@@ -316,7 +315,7 @@ Changelog
 -   Ajout d’un éditeur de fichiers (réservé aux
     utilisateurs expérimentés)
 
--   Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière
+-   Ajout des génériques Types "Lumière État" (Binaire), "Lumière
     Température Couleur" (Info), "Lumière Température Couleur" (Action)
 
 -   Possibilité de rendre des mots obligatoires dans une interaction
@@ -375,7 +374,7 @@ Changelog
 -   Suppression des scénarios "simples" (redondant avec la configuration
     avancée des commandes)
 
--   Ajout de hachure sur les graphs pour distinguer les jours
+-   Ajout de hachure sur les graphiques pour distinguer les jours
 
 -   Refonte de la page des interactions
 
@@ -399,7 +398,7 @@ Changelog
 
 -   Remise à jour de toute la documentation :
 
-    -   Toute les docs ont été revues
+    -   Toute les documentations ont été revues
 
     -   Suppression des images pour faciliter la mise à jour et le
         multilingue
@@ -508,7 +507,7 @@ Changelog
 -   Sauvegarde automatique des vues lors du clic sur le bouton "voir le
     résultat"
 
--   Possibilité d’avoir les docs en local
+-   Possibilité d’avoir les documentations en local
 
 -   Les développeurs tiers peuvent ajouter leur propre système de
     gestion de tickets
@@ -516,7 +515,7 @@ Changelog
 -   Refonte de la configuration des droits utilisateurs (tout est sur la
     page de gestion des utilisateurs)
 
--   Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock
+-   Mise à jour des bibliothèques : jQuery (en 3.0) , jQuery mobile, Hightstock
     et table sorter, font-awesome
 
 -   Grosse amélioration des designs:
@@ -598,7 +597,7 @@ Changelog
 -   Ajout d’un système d’alerte sur les commandes avec 2 niveaux :
     alerte et danger. La configuration se trouve dans la configuration
     avancée des commandes (de type info seulement bien sûr). Vous pouvez
-    voir les modules en alerte sur la page Analyse → Equipements. Vous
+    voir les modules en alerte sur la page Analyse → Équipements. Vous
     pouvez configurer les actions sur alerte sur la page de
     configuration générale de Jeedom
 
@@ -689,7 +688,7 @@ Changelog
 
 -   Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
 
--   Possibilité d’avoir un graph des différentes liaisons d’un scénario,
+-   Possibilité d’avoir un graphique des différentes liaisons d’un scénario,
     équipement, objet, commande ou variable
 
 -   Possibilité de régler la profondeur des graphiques de lien en
@@ -734,7 +733,7 @@ Changelog
         modifications, installation, mise à jour…​)
 
 -   Suppression du fail2ban (car facilement contournable en envoyant une
-    fausse adresse ip), cela permet d’accélérer Jeedom
+    fausse adresse IP), cela permet d’accélérer Jeedom
 
 -   Ajout dans les interactions d’une option sans catégorie pour que
     l’on puisse générer des interactions sur des équipements sans
@@ -755,7 +754,7 @@ Changelog
     permettre de synchroniser des équipements pour, par exemple, que 2
     lumières s’allument toujours ensemble avec la même intensité.
 
--   Optimisation des listenner
+-   Optimisation des listener
 
 -   Ajout de modal pour afficher les informations brutes (attribut de
     l’objet en base) d’un équipement ou d’une commande
@@ -771,10 +770,10 @@ Changelog
 
 -   Correction des filtres sur le market
 
--   Correction des checkbox sur la page d’édition des vues (sur une
+-   Correction des cases à cocher sur la page d’édition des vues (sur une
     zone graphique)
 
--   Correction des checkbox historiser, visible et inverser dans le
+-   Correction des cases à cocher hhistoriser, visible et inverser dans le
     tableau des commandes
 
 -   Correction d’un soucis sur la traduction des javascripts
@@ -906,7 +905,7 @@ Changelog
 -   Suppression du démarrage en debug des démons, maintenant le niveau
     de logs du démon est le même que celui du plugin
 
--   Nettoyage de lib tierce
+-   Nettoyage de bibliothèque tierce
 
 -   Suppression de responsive voice (fonction dit dans les scénarios qui
     marchait de moins en moins bien)
@@ -988,19 +987,19 @@ Changelog
 -   Correction de nombreux warning
 
 -   Possibilité lors d’un appel api à un scénario de passer des tags
-    dans l’url
+    dans l’URL
 
 -   Support d’apache
 
 -   Optimisation pour docker avec support officiel de docker
 
--   Optimisation pour les synology
+-   Optimisation pour les Synology
 
 -   Support + optimisation pour php7
 
 -   Refonte des menus Jeedom
 
--   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+-   Suppression de toute la partie gestion réseau : wifi, IP fixe…
     (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
     mode maître/esclave de jeedom qui est supprimé
 
@@ -1012,7 +1011,7 @@ Changelog
 -   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
     plugin openvpn)
 
--   Mise à jour de toutes les libs
+-   Mise à jour de toutes les bibliothèques
 
 -   Interaction : ajout d’un système d’analyse syntaxique (permet de
     supprimer les interactions avec de grosses erreurs de syntaxe type «
@@ -1055,7 +1054,7 @@ Changelog
 
 -   Ajout de widgets standards Jeedom
 
--   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+-   Ajout d’un système en bêta pour trouver l’IP de Jeedom sur le réseau
     (il faut connecter Jeedom sur le réseau, puis aller sur le market et
     cliquer sur « Mes Jeedoms » dans votre profil)
 
@@ -1085,19 +1084,19 @@ Changelog
 -   Correction de nombreux warning
 
 -   Possibilité lors d’un appel api à un scénario de passer des tags
-    dans l’url
+    dans l’URL
 
 -   Support d’apache
 
 -   Optimisation pour docker avec support officiel de docker
 
--   Optimisation pour les synology
+-   Optimisation pour les Synology
 
 -   Support + optimisation pour php7
 
 -   Refonte des menus Jeedom
 
--   Suppression de toute la partie gestion réseau : wifi, ip fixe…
+-   Suppression de toute la partie gestion réseau : wifi, IP fixe…
     (reviendra sûrement sous forme de plugin). ATTENTION ce n’est pas le
     mode maître/esclave de jeedom qui est supprimé
 
@@ -1109,7 +1108,7 @@ Changelog
 -   Refonte du DNS Jeedom, utilisation d’openvpn (et donc du
     plugin openvpn)
 
--   Mise à jour de toutes les libs
+-   Mise à jour de toutes les bibliothèques
 
 -   Interaction : ajout d’un système d’analyse syntaxique (permet de
     supprimer les interactions avec de grosses erreurs de syntaxe type «
@@ -1152,7 +1151,7 @@ Changelog
 
 -   Ajout de widgets standards Jeedom
 
--   Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau
+-   Ajout d’un système en bêta pour trouver l’IP de Jeedom sur le réseau
     (il faut connecter Jeedom sur le réseau, puis aller sur le market et
     cliquer sur « Mes Jeedoms » dans votre profil)
 
