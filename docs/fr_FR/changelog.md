@@ -25,7 +25,7 @@ Changelog
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Z / Ctrl+Y).
+- Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
 - Suppression du partage de scénario.
 - Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
@@ -62,9 +62,31 @@ Changelog
 - Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
 
 
+3.3.29
+=====
+
+- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction d'un bug pouvant bloquer les backups cloud
+- Correction d'un bugs sur le calcul d'utilisation des variable si c'est de la forme variable(toto,mavaleur)
+
+3.3.28
+=====
+
+- Correction d'un bug de roue infini sur la page des mises à jour
+- Corrections et optimisations diverse
+
+3.3.27
+=====
+
+- Correction d'un bug sur la traduction des jours en français
+- Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
+- Correction de bugs
+- Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
+
 3.3.26
 =====
-- Correction de bug
+
+- Correction de bugs
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
