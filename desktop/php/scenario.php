@@ -44,7 +44,7 @@ if (is_array($scenarioListGroup)) {
 				<span class="txtColor"><center>{{Testeur d'expression}}</center></span>
 			</div>
 		</div>
-		
+
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
 		<?php
 		if (count($totalScenario) == 0) {
@@ -58,7 +58,7 @@ if (is_array($scenarioListGroup)) {
 			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
-			
+
 			$div .= '<div class="panel-group" id="accordionScenario">';
 			if (count($scenarios[-1]) > 0) {
 				$div .= '<div class="panel panel-default">';
@@ -90,7 +90,7 @@ if (is_array($scenarioListGroup)) {
 				$div .= '</div>';
 			}
 			echo $div;
-			
+
 			$i = 0;
 			$div = '';
 			foreach ($scenarioListGroup as $group) {
@@ -131,7 +131,7 @@ if (is_array($scenarioListGroup)) {
 		}
 		?>
 	</div>
-	
+
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -182,13 +182,16 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label"></label>
-									<label>
-										{{Actif}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isActive">
-									</label>
-									<label>
-										{{Visible}}&nbsp;&nbsp;<input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
-									</label>
+									<label class="col-xs-5 control-label">{{Actif}}</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="isActive">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Visible}}</label>
+									<div class="col-xs-1">
+										<input type="checkbox" class="scenarioAttr" data-l1key="isVisible">
+									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-xs-5 control-label" >{{Objet parent}}</label>
@@ -220,19 +223,25 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label">{{Multi-lancement}}</label>
+									<label class="col-xs-5 control-label">{{Multi-lancement}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra tourner plusieurs fois en même temps}}"></i></sup>
+									</label>
 									<div class="col-xs-1">
-										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance" title="{{Le scénario pourra tourner plusieurs fois en même temps}}">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">
 									</div>
-									<label class="col-xs-2 control-label">{{Synchrone}}</label>
+									<label class="col-xs-2 control-label">{{Synchrone}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}"></i></sup>
+									</label>
 									<div class="col-xs-1">
-										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode" title="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label">{{Timeline}}</label>
+									<label class="col-xs-5 control-label">{{Timeline}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Les exécutions du scénario pourront être vues dans la timeline.}}"></i></sup>
+									</label>
 									<div class="col-xs-1">
-										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable" title="{{Les exécutions du scénario pourront être vues dans la timeline.}}">
+										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
 								</div>
 								<div class="form-group">
@@ -280,7 +289,7 @@ if (is_array($scenarioListGroup)) {
 								<div class="scheduleMode"></div>
 							</div>
 							<div class="provokeMode provokeDisplay" style="display: none;">
-								
+
 							</div>
 						</form>
 					</div>
@@ -290,7 +299,7 @@ if (is_array($scenarioListGroup)) {
 				<div id="div_scenarioElement" class="element" style="padding-bottom: 20px;"></div>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 
@@ -338,31 +347,31 @@ if (is_array($scenarioListGroup)) {
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription action" style="display:none;">
 					Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 					Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription in" style="display:none;">
 					Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription at" style="display:none;">
 					A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription code" style="display:none;">
 					Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
 					Permet de commenter votre scénario.
 				</div>
-				
+
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
