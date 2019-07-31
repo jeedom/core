@@ -128,31 +128,33 @@ if (!isConnect()) {
 		select.html(select.find('option').sort(function(x, y) {
 			return $(x).text() > $(y).text() ? 1 : -1
 		}))
+		select.prop("selectedIndex", 0)
+		select.trigger("change")
 	})
 
-	$('#mod_actionValue_sel').on('change',function(){
+	$('#mod_actionValue_sel').on('change',function() {
 		var value = $(this).value();
-		if(value == 'alert'){
-			value = 'alert2';
+		if(value == 'alert') {
+			value = 'alert2'
 		}
-		$('.mod_actionValue_selDescription').hide();
-		$('.mod_actionValue_selDescription.'+value).show();
+		$('.mod_actionValue_selDescription').hide()
+		$('.mod_actionValue_selDescription.'+value).show()
 	});
 
 	function mod_insertAction() {}
 
-	mod_insertAction.options = {};
+	mod_insertAction.options = {}
 
 	mod_insertAction.setOptions = function (_options) {
 		mod_insertAction.options = _options;
-		if(init(_options.scenario,false) == false){
-			$('#mod_actionValue_sel .scenarioOnly').hide();
-		}else{
-			$('#mod_actionValue_sel .scenarioOnly').show();
+		if (init(_options.scenario,false) == false) {
+			$('#mod_actionValue_sel .scenarioOnly').hide()
+		} else {
+			$('#mod_actionValue_sel .scenarioOnly').show()
 		}
 	}
 
 	mod_insertAction.getValue = function () {
-		return $('#mod_actionValue_sel').value();
+		return $('#mod_actionValue_sel').value()
 	}
 </script>
