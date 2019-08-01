@@ -1926,14 +1926,16 @@ var _firstState_ = 0
 var _undoLimit_ = 12
 var _redo_ = 0
 
-jwerty.key('ctrl+z/⌘+z', function (e) {
-  e.preventDefault();
-  undo();
-});
-jwerty.key('ctrl+y/⌘+y', function (e) {
-  e.preventDefault();
-  redo();
-});
+jwerty.key('shift+z', function (e) {
+  e.preventDefault()
+  undo()
+  PREV_FOCUS = null
+})
+jwerty.key('shift+y', function (e) {
+  e.preventDefault()
+  redo()
+  PREV_FOCUS = null
+})
 
 function setUndoStack(state=0) {
   syncEditors()
