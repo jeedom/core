@@ -674,15 +674,6 @@ setTimeout(function() {
   })
 }, 500)
 
-document.addEventListener('visibilitychange',function(){
-  if(!document.hidden){
-    if(jeedom.changes_timeout != null){
-      clearTimeout(jeedom.changes_timeout);
-    }
-    jeedom.changes();
-  }
-});
-
 function changeThemeAuto(){
   if(typeof jeedom.theme == 'undefined'){
     return;
