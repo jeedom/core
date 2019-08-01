@@ -21,6 +21,7 @@ jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
+jeedom.changes_timeout = null;
 
 if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
@@ -66,15 +67,14 @@ jeedom.changes = function(){
       if(object_summary_update.length > 0){
         $('body').trigger('jeeObject::summary::update',[object_summary_update]);
       }
-      
-      setTimeout(jeedom.changes, 1);
+      jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
     },
     error: function(_error){
       if(typeof(user_id) != "undefined" && jeedom.connect == 100){
         notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
       }
       jeedom.connect++;
-      setTimeout(jeedom.changes, 1);
+      jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
     }
   };
   try {
