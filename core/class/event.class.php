@@ -94,7 +94,7 @@ class event {
 			}
 			$find[$id] = array('datetime' => $event['datetime'],'key' => $key);
 		}
-		return $events;
+		return array_values($events);
 	}
 	
 	public static function orderEvent($a, $b) {
