@@ -119,7 +119,8 @@ class event {
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
-		return self::cleanEvent($return);
+		$return['result'] = self::cleanEvent($return['result']);
+		return $return;
 	}
 	
 	private static function filterEvent($_data = array(), $_filter = null) {
