@@ -1618,6 +1618,9 @@ class cmd {
 		if ($cmd->getType() != 'info') {
 			return;
 		}
+		if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
+			return;
+		}
 		$value = $cmd->execCmd();
 		$level = $cmd->checkAlertLevel($value, false);
 		if ($level != 'none') {
