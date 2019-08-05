@@ -1267,14 +1267,21 @@ function sanitizeAccent($_message) {
 	
 	function listSession() {
 		$return = array();
-		try {
-			$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
-			foreach ($sessions as $session) {
+		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
+		if(count($sessions) > 100){
+			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : sudo rm -rf ',__FILE__).session_save_path());
+		}
+		foreach ($sessions as $session) {
+			try {
 				$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
 				if ($data == '') {
 					continue;
 				}
-				$data_session = decodeSessionData($data);
+				try {
+					$data_session = decodeSessionData($data);
+				} catch (Exception $e) {
+					continue;
+				}
 				if (!isset($data_session['user']) || !is_object($data_session['user'])) {
 					continue;
 				}
@@ -1285,12 +1292,13 @@ function sanitizeAccent($_message) {
 				$return[$session_id]['login'] = $data_session['user']->getLogin();
 				$return[$session_id]['user_id'] = $data_session['user']->getId();
 				$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
+			} catch (Exception $e) {
+				
 			}
-		} catch (Exception $e) {
-			
 		}
 		return $return;
 	}
+	
 	
 	function deleteSession($_id) {
 		$cSsid = session_id();
