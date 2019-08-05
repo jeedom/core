@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.30
+=====
+
+- Correction d'un bug sur l'affichage des sessions utilisateur
+
 3.3.29
 =====
 
