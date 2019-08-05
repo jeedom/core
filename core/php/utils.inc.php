@@ -1320,7 +1320,7 @@ function sanitizeAccent($_message) {
 		$return = array();
 		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
 		if(count($sessions) > 100){
-			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : sudo rm -rf ',__FILE__).session_save_path());
+			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : sudo rm -rf ',__FILE__).session_save_path().'/*');
 		}
 		foreach ($sessions as $session) {
 			try {
