@@ -81,6 +81,11 @@ class event {
 				$id = 'scenario::update::' . $event['option']['scenario_id'];
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
 				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
+				if(is_array($event['option']['keys']) && count($event['option']['keys']) > 0){
+					foreach ($event['option']['keys'] as $key => $value) {
+						$id .= $key;
+					}
+				}
 			} else {
 				continue;
 			}
@@ -94,7 +99,7 @@ class event {
 			}
 			$find[$id] = array('datetime' => $event['datetime'],'key' => $key);
 		}
-		return $events;
+		return array_values($events);
 	}
 	
 	public static function orderEvent($a, $b) {
@@ -119,6 +124,7 @@ class event {
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
+		$return['result'] = self::cleanEvent($return['result']);
 		return $return;
 	}
 	
