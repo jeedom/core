@@ -54,7 +54,11 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</thead>
 			<tbody>
 				<?php
-				$sessions = listSession();
+				try{
+					$sessions = listSession();
+				}catch (Exception $e) {
+					echo '<div class="alert alert-danger">'.$e->getMessage().'</div>';
+				}
 				if (is_array($sessions) && count($sessions) > 0) {
 					foreach ($sessions as $id => $session) {
 						if (!isset($session['ip'])) {

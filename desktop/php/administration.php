@@ -1430,6 +1430,7 @@ user::isBan();
 													<th>{{Unité}}</th>
 													<th>{{Méthode de comptage}}</th>
 													<th>{{Affiché même si nulle}}</th>
+													<th>{{Ignorer commande si plus veille que (min)}}</th>
 													<th>{{Lier à un virtuel}}</th>
 													<th></th>
 												</tr>
@@ -1482,304 +1483,305 @@ user::isBan();
 									<div id="div_actionOnMessage"></div>
 								</form>
 								<ul class="nav nav-tabs" role="tablist">
-									<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</option>
-										<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</option>
-										</ul>
-										
-										<div class="tab-content">
-											<div role="tabpanel" class="tab-pane active" id="log_alertes">
-												<form class="form-horizontal">
-													<fieldset>
-														<br/>
+									<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
+									<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
+								</ul>
+								
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="log_alertes">
+										<form class="form-horizontal">
+											<fieldset>
+												<br/>
+												<?php
+												$div = '';
+												foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+													$div .= '<div class="form-group">';
+													$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
+													$div .= '<div class="col-sm-1">';
+													$div .= '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
+													$div .= '</div>';
+													$div .= '</div>';
+													$div .= '<div class="form-group">';
+													$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
+													$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
+													$div .= '<div class="input-group">';
+													$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
+													$div .= '<span class="input-group-btn">';
+													$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+													$div .= '</span>';
+													$div .= '</div>';
+													$div .= '</div>';
+													$div .= '</div>';
+													$div .= '<hr/>';
+												}
+												echo $div;
+												?>
+											</fieldset>
+										</form>
+									</div>
+									
+									<div role="tabpanel" class="tab-pane" id="log_log">
+										<form class="form-horizontal">
+											<fieldset>
+												<br/>
+												<div class="form-group">
+													<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
+													<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+														<select class="form-control configKey" data-l1key="log::engine">
+															<option value="StreamHandler">{{Defaut}}</option>
+															<option value="SyslogHandler">{{Syslog}}</option>
+															<option value="SyslogUdp">{{SyslogUdp}}</option>
+														</select>
+													</div>
+												</div>
+												<div class="logEngine SyslogUdp">
+													<div class="form-group">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Adresse syslog UDP}}</label>
+														<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+															<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Port syslog UDP}}</label>
+														<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+															<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Format des logs}}</label>
+													<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+														<input type="text" class="configKey form-control" data-l1key="log::formatter" />
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+													<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+														<input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Niveau de log par défaut}}</label>
+													<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+														<select class="form-control configKey" data-l1key="log::level">
+															<option value="100">{{Debug}}</option>
+															<option value="200">{{Info}}</option>
+															<option value="300">{{Warning}}</option>
+															<option value="400">{{Erreur}}</option>
+														</select>
+													</div>
+												</div>
+												<?php
+												$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
+												$div = '';
+												foreach ($other_log as $name) {
+													$div .= '<form class="form-horizontal">';
+													$div .= '<div class="form-group">';
+													$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . ucfirst($name) . '</label>';
+													$div .= '<div class="col-sm-8">';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /> {{Debug}}</label>';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /> {{Info}}</label>';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /> {{Warning}}</label>';
+													$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /> {{Erreur}}</label>';
+													$div .= '</div>';
+													$div .= '</div>';
+												}
+												if ($div != '') echo $div;
+												if (init('rescue', 0) == 0) {
+													$div = '';
+													foreach (plugin::listPlugin(true) as $plugin) {
+														$div .= '<form class="form-horizontal">';
+														$div .= '<div class="form-group">';
+														$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . $plugin->getName() . '</label>';
+														$div .= '<div class="col-sm-8">';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
+														$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
+														$div .= '</div>';
+														$div .= '</div>';
+													}
+													if ($div != '') echo $div;
+												}
+												?>
+											</fieldset>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+							<div role="tabpanel" class="tab-pane" id="eqlogictab">
+								<br/>
+								<form class="form-horizontal">
+									<fieldset>
+										<div class="col-lg-12 form-group">
+											<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Échecs avant désactivation}}
+												<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'échecs avant désactivation de l'équipement.}}"></i></sup>
+											</label>
+											<div class="col-lg-1 col-sm-1 col-xs-4">
+												<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
+											</div>
+											<br/><br/>
+										</div>
+										<div class="col-lg-12 form-group">
+											<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Seuil des piles}}</label>
+										</div>
+										<div class="col-lg-12 form-group">
+											<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+												<sup><i class="fas fa-question-circle" tooltip="{{Si la charge passe en dessous de}}"></i></sup>
+											</label>
+											<div class="col-lg-1 col-sm-1 col-xs-4">
+												<input class="configKey form-control" data-l1key="battery::warning" />
+											</div>
+											<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-warning">{{Warning}}</label>
+										</div>
+										<div class="col-lg-12 form-group">
+											<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+												<sup><i class="fas fa-question-circle" tooltip="{{Si la charge passe en dessous de}}"></i></sup>
+											</label>
+											<div class="col-lg-1 col-sm-1 col-xs-4">
+												<input class="configKey form-control" data-l1key="battery::danger" />
+											</div>
+											<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-danger">{{Danger}}</label>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							
+							<div role="tabpanel" class="tab-pane" id="updatetab">
+								<br/>
+								<div class="row">
+									<div class="col-sm-6">
+										<form class="form-horizontal">
+											<fieldset>
+												<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
+												<div class="form-group">
+													<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
+													<div class="col-lg-4 col-xs-6">
+														<select class="form-control configKey" data-l1key="core::repo::provider">
+															<option value="default">{{Défaut}}</option>
+															<?php
+															foreach ($repos as $key => $value) {
+																if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
+																	continue;
+																}
+																if ($configs[$key . '::enable'] == 0) {
+																	continue;
+																}
+																echo '<option value="' . $key . '">' . $value['name'] . '</option>';
+															}
+															?>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
+														<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
+													</label>
+													<div class="col-lg-4 col-xs-6">
+														<select class="form-control configKey" data-l1key="core::branch">
+															<option value="master">{{Stable}}</option>
+															<option value="release">{{Release (Pas de support)}}</option>
+															<option value="v4-release">{{V4 Release (Pas de support)}}</option>
+															<option value="beta">{{Beta (Pas de support)}}</option>
+															<option value="alpha">{{Alpha (Pas de support)}}</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
+														<div class="col-sm-1">
+															<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
+														</div>
+													</div>
+												</fieldset>
+											</form>
+										</div>
+										<div class="col-sm-6">
+											<form class="form-horizontal">
+												<fieldset>
+													<ul class="nav nav-tabs" role="tablist">
 														<?php
-														$div = '';
-														foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-															$div .= '<div class="form-group">';
-															$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
-															$div .= '<div class="col-sm-1">';
-															$div .= '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
-															$div .= '</div>';
-															$div .= '</div>';
-															$div .= '<div class="form-group">';
-															$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
-															$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
-															$div .= '<div class="input-group">';
-															$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
-															$div .= '<span class="input-group-btn">';
-															$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
-															$div .= '</span>';
-															$div .= '</div>';
-															$div .= '</div>';
-															$div .= '</div>';
-															$div .= '<hr/>';
+														foreach ($repos as $key => $value) {
+															$active = ($key == 'market') ? 'active' : '';
+															echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
 														}
-														echo $div;
+														?>
+													</ul>
+													<div class="tab-content">
+														<?php
+														foreach ($repos as $key => $value) {
+															$div = '';
+															$active = ($key == 'market') ? 'active' : '';
+															$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
+															$div .= '<br/>';
+															$div .= '<div class="form-group">';
+															$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
+															$div .= '<div class="col-sm-1">';
+															$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
+															$div .= '</div>';
+															$div .= '</div>';
+															if ($value['scope']['hasConfiguration'] === false) {
+																$div .= '</div>';
+																echo $div;
+																continue;
+															}
+															$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
+															foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
+																$div .= '<div class="form-group">';
+																$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
+																$div .= $parameter['name'];
+																$div .= '</label>';
+																$div .= '<div class="col-sm-6">';
+																$default = (isset($parameter['default'])) ? $parameter['default'] : '';
+																switch ($parameter['type']) {
+																	case 'checkbox':
+																	$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																	break;
+																	case 'input':
+																	$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																	break;
+																	case 'number':
+																	$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																	break;
+																	case 'password':
+																	$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+																	break;
+																	case 'select':
+																	$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
+																	foreach ($parameter['values'] as $optkey => $optval) {
+																		$div .= '<option value="' . $optkey . '">' . $optval . '</option>';
+																	}
+																	$div .= '</select>';
+																	break;
+																}
+																$div .= '</div>';
+																$div .= '</div>';
+															}
+															if (isset($value['scope']['test']) && $value['scope']['test']) {
+																$div .= '<div class="form-group">';
+																$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
+																$div .= '<div class="col-sm-4">';
+																$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+																$div .= '</div>';
+																$div .= '</div>';
+															}
+															$div .= '</div>';
+															$div .= '</div>';
+															echo $div;
+														}
 														?>
 													</fieldset>
 												</form>
 											</div>
-											
-											<div role="tabpanel" class="tab-pane" id="log_log">
-												<form class="form-horizontal">
-													<fieldset>
-														<br/>
-														<div class="form-group">
-															<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
-															<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																<select class="form-control configKey" data-l1key="log::engine">
-																	<option value="StreamHandler">{{Defaut}}</option>
-																	<option value="SyslogHandler">{{Syslog}}</option>
-																	<option value="SyslogUdp">{{SyslogUdp}}</option>
-																</select>
-															</div>
-															<div class="logEngine SyslogUdp">
-																<div class="form-group">
-																	<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Adresse syslog UDP}}</label>
-																	<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																		<input type="text"  class="configKey form-control" data-l1key="log::syslogudphost" />
-																	</div>
-																</div>
-																<div class="form-group">
-																	<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Port syslog UDP}}</label>
-																	<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																		<input type="text"  class="configKey form-control" data-l1key="log::syslogudpport" />
-																	</div>
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Format des logs}}</label>
-																<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																	<input type="text" class="configKey form-control" data-l1key="log::formatter" />
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
-																<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																	<input type="text" class="configKey form-control" data-l1key="maxLineLog"/>
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Niveau de log par défaut}}</label>
-																<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-																	<select class="form-control configKey" data-l1key="log::level">
-																		<option value="100">{{Debug}}</option>
-																		<option value="200">{{Info}}</option>
-																		<option value="300">{{Warning}}</option>
-																		<option value="400">{{Erreur}}</option>
-																	</select>
-																</div>
-																<?php
-																
-																$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
-																$div = '';
-																foreach ($other_log as $name) {
-																	$div .= '<form class="form-horizontal">';
-																	$div .= '<div class="form-group">';
-																	$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . ucfirst($name) . '</label>';
-																	$div .= '<div class="col-sm-8">';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="1000" /> {{Aucun}}</label>';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="default" /> {{Défaut}}</label>';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="100" /> {{Debug}}</label>';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="200" /> {{Info}}</label>';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="300" /> {{Warning}}</label>';
-																	$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $name . '" class="configKey" data-l1key="log::level::' . $name . '" data-l2key="400" /> {{Erreur}}</label>';
-																	$div .= '</div>';
-																	$div .= '</div>';
-																}
-																if ($div != '') echo $div;
-																if (init('rescue', 0) == 0) {
-																	$div = '';
-																	foreach (plugin::listPlugin(true) as $plugin) {
-																		$div .= '<form class="form-horizontal">';
-																		$div .= '<div class="form-group">';
-																		$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">' . $plugin->getName() . '</label>';
-																		$div .= '<div class="col-sm-8">';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="1000" /> {{Aucun}}</label>';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="default" /> {{Défaut}}</label>';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="100" /> {{Debug}}</label>';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="200" /> {{Info}}</label>';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="300" /> {{Warning}}</label>';
-																		$div .= '<label class="radio-inline"><input type="radio" name="rd_logupdate' . $plugin->getId() . '" class="configKey" data-l1key="log::level::' . $plugin->getId() . '" data-l2key="400" /> {{Erreur}}</label>';
-																		$div .= '</div>';
-																		$div .= '</div>';
-																	}
-																	if ($div != '') echo $div;
-																}
-																?>
-															</fieldset>
-														</form>
-													</div>
-												</div>
-											</div>
-											
-											<div role="tabpanel" class="tab-pane" id="eqlogictab">
-												<br/>
-												<form class="form-horizontal">
-													<fieldset>
-														<div class="col-lg-12 form-group">
-															<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Échecs avant désactivation}}
-																<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'échecs avant désactivation de l'équipement.}}"></i></sup>
-															</label>
-															<div class="col-lg-1 col-sm-1 col-xs-4">
-																<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
-															</div>
-															<br/><br/>
-														</div>
-														<div class="col-lg-12 form-group">
-															<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Seuil des piles}}</label>
-														</div>
-														<div class="col-lg-12 form-group">
-															<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
-																<sup><i class="fas fa-question-circle" tooltip="{{Si la charge passe en dessous de}}"></i></sup>
-															</label>
-															<div class="col-lg-1 col-sm-1 col-xs-4">
-																<input class="configKey form-control" data-l1key="battery::warning" />
-															</div>
-															<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-warning">{{Warning}}</label>
-														</div>
-														<div class="col-lg-12 form-group">
-															<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
-																<sup><i class="fas fa-question-circle" tooltip="{{Si la charge passe en dessous de}}"></i></sup>
-															</label>
-															<div class="col-lg-1 col-sm-1 col-xs-4">
-																<input class="configKey form-control" data-l1key="battery::danger" />
-															</div>
-															<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-danger">{{Danger}}</label>
-														</div>
-													</fieldset>
-												</form>
-											</div>
-											
-											<div role="tabpanel" class="tab-pane" id="updatetab">
-												<br/>
-												<div class="row">
-													<div class="col-sm-6">
-														<form class="form-horizontal">
-															<fieldset>
-																<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
-																<div class="form-group">
-																	<label class="col-lg-6 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
-																	<div class="col-lg-4 col-xs-6">
-																		<select class="form-control configKey" data-l1key="core::repo::provider">
-																			<option value="default">{{Défaut}}</option>
-																			<?php
-																			foreach ($repos as $key => $value) {
-																				if (!isset($value['scope']['core']) || $value['scope']['core'] === false) {
-																					continue;
-																				}
-																				if ($configs[$key . '::enable'] == 0) {
-																					continue;
-																				}
-																				echo '<option value="' . $key . '">' . $value['name'] . '</option>';
-																			}
-																			?>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group">
-																	<label class="col-lg-6 col-xs-6 control-label">{{Version du core}}
-																		<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
-																	</label>
-																	<div class="col-lg-4 col-xs-6">
-																		<select class="form-control configKey" data-l1key="core::branch">
-																			<option value="master">{{Stable}}</option>
-																			<option value="release">{{Release (Pas de support)}}</option>
-																			<option value="v4-release">{{V4 Release (Pas de support)}}</option>
-																			<option value="beta">{{Beta (Pas de support)}}</option>
-																			<option value="alpha">{{Alpha (Pas de support)}}</option>
-																		</select>
-																	</div>
-																	<div class="form-group">
-																		<label class="col-lg-6 col-xs-6 control-label">{{Vérification automatique des mises à jour}}</label>
-																		<div class="col-sm-1">
-																			<input type="checkbox" class="configKey" data-l1key="update::autocheck"/>
-																		</div>
-																	</div>
-																</fieldset>
-															</form>
-														</div>
-														<div class="col-sm-6">
-															<form class="form-horizontal">
-																<fieldset>
-																	<ul class="nav nav-tabs" role="tablist">
-																		<?php
-																		foreach ($repos as $key => $value) {
-																			$active = ($key == 'market') ? 'active' : '';
-																			echo '<li role="presentation" class="' . $active . '"><a href="#tab' . $key . '" aria-controls="tab' . $key . '" role="tab" data-toggle="tab">' . $value['name'] . '</a></li>';
-																		}
-																		?>
-																	</ul>
-																	<div class="tab-content">
-																		<?php
-																		foreach ($repos as $key => $value) {
-																			$div = '';
-																			$active = ($key == 'market') ? 'active' : '';
-																			$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
-																			$div .= '<br/>';
-																			$div .= '<div class="form-group">';
-																			$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Activer}} ' . $value['name'] . '</label>';
-																			$div .= '<div class="col-sm-1">';
-																			$div .= '<input type="checkbox" class="configKey enableRepository" data-repo="' . $key . '" data-l1key="' . $key . '::enable"/>';
-																			$div .= '</div>';
-																			$div .= '</div>';
-																			if ($value['scope']['hasConfiguration'] === false) {
-																				$div .= '</div>';
-																				echo $div;
-																				continue;
-																			}
-																			$div .= '<div class="repositoryConfiguration' . $key . '" style="display:none;">';
-																			foreach ($value['configuration']['configuration'] as $pKey => $parameter) {
-																				$div .= '<div class="form-group">';
-																				$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">';
-																				$div .= $parameter['name'];
-																				$div .= '</label>';
-																				$div .= '<div class="col-sm-6">';
-																				$default = (isset($parameter['default'])) ? $parameter['default'] : '';
-																				switch ($parameter['type']) {
-																					case 'checkbox':
-																					$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																					break;
-																					case 'input':
-																					$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																					break;
-																					case 'number':
-																					$div .= '<input type="number" class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																					break;
-																					case 'password':
-																					$div .= '<input type="password" autocomplete="new-password"  class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
-																					break;
-																					case 'select':
-																					$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
-																					foreach ($parameter['values'] as $optkey => $optval) {
-																						$div .= '<option value="' . $optkey . '">' . $optval . '</option>';
-																					}
-																					$div .= '</select>';
-																					break;
-																				}
-																				$div .= '</div>';
-																				$div .= '</div>';
-																			}
-																			if (isset($value['scope']['test']) && $value['scope']['test']) {
-																				$div .= '<div class="form-group">';
-																				$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
-																				$div .= '<div class="col-sm-4">';
-																				$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
-																				$div .= '</div>';
-																				$div .= '</div>';
-																			}
-																			$div .= '</div>';
-																			$div .= '</div>';
-																			echo $div;
-																		}
-																		?>
-																	</fieldset>
-																</form>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
 										</div>
-										
-										<?php include_file("desktop", "administration", "js");?>
-										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<?php include_file("desktop", "administration", "js");?>
+						
