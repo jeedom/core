@@ -1430,6 +1430,7 @@ user::isBan();
 													<th>{{Unité}}</th>
 													<th>{{Méthode de comptage}}</th>
 													<th>{{Affiché même si nulle}}</th>
+													<th>{{Ignorer commande si plus veille que (min)}}</th>
 													<th>{{Lier à un virtuel}}</th>
 													<th></th>
 												</tr>
