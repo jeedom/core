@@ -161,10 +161,6 @@ body {
 	background: rgb(240,240,240) !important;
 }
 
-.img-responsive {
-	max-width: 350px;
-}
-
 .btn_help{
 	right: 3%;
 	bottom: 8%;
