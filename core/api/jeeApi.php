@@ -243,6 +243,9 @@ if (init('type') != '') {
 	die();
 }
 try {
+	if (!headers_sent()) {
+		header('Content-Type: application/json');
+	}
 	$IP = getClientIp();
 	$request = init('request');
 	if ($request == '') {
