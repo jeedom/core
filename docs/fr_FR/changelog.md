@@ -7,6 +7,7 @@ Changelog
 
 - Correction d'un bug sur l'affichage des sessions utilisateur
 - Possibilité de passer en V4 stable (menue configuration des mises à jour)
+- Mise à jour de la doc
 
 3.3.29
 =====
