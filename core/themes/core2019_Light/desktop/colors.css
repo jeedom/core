@@ -7,6 +7,8 @@ Theme Core 2019 @Jeedom
   --border-radius: 0rem;
   --opacity: 1;
   
+  --url-logo-svg : url(logo-jeedom.svg);
+  
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
   --logo-secondary-color: rgb(69, 68, 73);

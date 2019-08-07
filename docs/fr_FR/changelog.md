@@ -60,6 +60,7 @@ Changelog
 - Ajout d'un parametre de configuration pour la purge globale par défaut des historiques (ex : maximum 6 mois par défaut)
 - Possibilité depuis le résumé domotique de rendre visible ou non une ou des commandes
 - Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
+- Possibilité dans les résumé d'ajouter une exclusion des commandes n'ayant pas étaient mise à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
 
 
 3.3.29
