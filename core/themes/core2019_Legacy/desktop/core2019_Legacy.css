@@ -5,7 +5,7 @@ Theme Core 2019 @Jeedom
 @import url("colors.css");
 
 header a.navbar-brand {
-  background-image: url(logo-jeedom.svg) !important;
+  background-image: var(--url-logo-svg) !important;
   background-size: 60px !important;
   background-repeat: no-repeat;
   background-position: 10px 7px;
@@ -178,10 +178,10 @@ div.cmd-widget div[class^="content"] {
 #battery .eqLogic-widget.critical {
   background-color: var(--al-danger-color) !important;
 }
-#battery .eqLogic-widget.warning { 
+#battery .eqLogic-widget.warning {
   background-color: var(--al-warning-color) !important;
 }
-#battery .eqLogic-widget.good { 
+#battery .eqLogic-widget.good {
   background-color: var(--al-success-color) !important;
 }
 #battery .eqLogic-widget .jeedom-batterie i,

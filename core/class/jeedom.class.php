@@ -48,6 +48,9 @@ class jeedom {
 			'interface::advance::enable',
 			'interface::advance::coloredIcons'
 		);
+		$css_convert = array(
+			'url-logo-svg' => '--url-logo-svg',
+		);
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
@@ -57,32 +60,32 @@ class jeedom {
 		}
 		$return['css'] = array();
 		if($return['interface::advance::enable'] == 1){
-			$css_convert = array(
-				'css::background-opacity' => '--opacity',
-				'css::border-radius' => '--border-radius',
-			);
-			$css = config::byKeys(array_keys($css_convert));
-			foreach ($css as $key => $value) {
-				if($value == ''){
-					continue;
-				}
-				if(isset($css_convert[$key])){
-					$return['css'][$css_convert[$key]] = $value;
-				}
+			$css_convert['css::background-opacity'] = '--opacity';
+			$css_convert['css::border-radius'] = '--border-radius';
+		}
+		$css = config::byKeys(array_keys($css_convert));
+		foreach ($css as $key => $value) {
+			if($value == ''){
+				continue;
 			}
-			if(count($return['css']) > 0){
-				foreach ($return['css'] as $key => &$value) {
-					switch ($key) {
-						case '--border-radius':
-						if($value == ''){
-							$value=0;
-						}
-						if($value > 1){
-							$value = 1;
-						}
-						$value.='rem';
-						break;
+			if(isset($css_convert[$key])){
+				$return['css'][$css_convert[$key]] = $value;
+			}
+		}
+		if(count($return['css']) > 0){
+			foreach ($return['css'] as $key => &$value) {
+				switch ($key) {
+					case '--url-logo-svg':
+					$value = 'url('.$value.')';
+					break;
+					case '--border-radius':
+					if($value == ''){
+						$value=0;
+					}else if($value > 1){
+						$value = 1;
 					}
+					$value.='rem';
+					break;
 				}
 			}
 		}
