@@ -533,13 +533,15 @@ $(function () {
   });
   
   $('#bt_showEventInRealTime').on('click',function(){
-    $('#md_modal').dialog({title: "{{Evénements en temps réel}}"});
-    $("#md_modal").load('index.php?v=d&modal=log.display&log=event').dialog('open');
+    $('#md_modal').dialog({title: "{{Evénements en temps réel}}"}).load('index.php?v=d&modal=log.display&log=event').dialog('open');
   });
   
   $('#bt_showNoteManager').on('click',function(){
-    $('#md_modal').dialog({title: "{{Notes}}"});
-    $("#md_modal").load('index.php?v=d&modal=note.manager').dialog('open');
+    $('#md_modal').dialog({title: "{{Notes}}"}).load('index.php?v=d&modal=note.manager').dialog('open');
+  });
+  
+  $('#bt_showExpressionTesting').on('click',function(){
+    $('#md_modal').dialog({title: "{{Testeur d'expression}}"}).load('index.php?v=d&modal=expression.test').dialog('open');
   });
   
   $('#bt_gotoDashboard').on('click',function(event){
