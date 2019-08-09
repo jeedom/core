@@ -5,25 +5,25 @@ Changelog
 3.3.30
 =====
 
-- Correction d'un bug sur l'affichage des sessions utilisateur
-- Possibilité de passer en V4 stable (menue configuration des mises à jour)
-- Mise à jour de la doc
-- Suppression de la mise à jour des graphiques suite au nombreux bugs remontés
-- Correction d'un bug pouvant empecher l'affichage de certain log
+- Correction d'un bug sur l'affichage des sessions d'utilisateur
+- Possibilité de passer en V4 stable (menu : configuration des mises à jour)
+- Mise à jour de la documentation
+- Suppression de la mise à jour des graphiques, suite aux nombreux bugs remontés
+- Correction d'un bug pouvant empêcher l'affichage de certain log
 
 3.3.29
 =====
 
-- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction de la disparition de la date de dernière vérification des mises à jour
 - Correction d'un bug pouvant bloquer les backups cloud
-- Correction d'un bugs sur le calcul d'utilisation des variable si c'est de la forme variable(toto,mavaleur)
+- Correction d'un bug sur le calcul d'utilisation des variables si c'est de la forme variable(toto,mavaleur)
 
 
 3.3.28
 =====
 
-- Correction d'un bug de roue infini sur la page des mises à jour
-- Corrections et optimisations diverse
+- Correction d'un bug de roue infinie sur la page des mises à jour
+- Corrections et optimisations diverses
 
 3.3.27
 =====
