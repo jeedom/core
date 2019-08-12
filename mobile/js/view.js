@@ -18,7 +18,7 @@ function initView(_view_id) {
       panel(li)
     }
   })
-
+  
   if (isset(_view_id) && is_numeric(_view_id)) {
     jeedom.history.chart = []
     jeedom.view.toHtml({
@@ -34,7 +34,7 @@ function initView(_view_id) {
   } else {
     $('#bottompanel').panel('open')
   }
-
+  
   $(window).on("resize", function (event) {
     setTimeout(function(){
       if (deviceInfo.type == 'phone') {
@@ -69,6 +69,12 @@ function displayView(html) {
     $('#div_displayView').empty().html(html.html).trigger('create')
   }catch(err) {
     console.log(err)
+  }
+  if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
+    console.log(html.raw);
+    jeedom.eqLogic.changeDisplayObjectName(html.raw.configuration.displayObjectName);
+  }else{
+    jeedom.eqLogic.changeDisplayObjectName(false);
   }
   if (deviceInfo.type == 'phone') {
     $('.chartContainer').width((deviceInfo.width - 20))
