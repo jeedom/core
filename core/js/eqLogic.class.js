@@ -20,7 +20,16 @@ jeedom.eqLogic = function () {
 };
 
 jeedom.eqLogic.cache = Array();
-jeedom.eqLogic.bt_displayObjectName = false;
+jeedom.eqLogic.displayObjectName = false;
+
+jeedom.eqLogic.changeDisplayObjectName(_display){
+  jeedom.eqLogic.displayObjectName = _display;
+  if(_display){
+    $('.object_name').show();
+  }else{
+    $('.object_name').false();
+  }
+}
 
 if (!isset(jeedom.eqLogic.cache.getCmd)) {
   jeedom.eqLogic.cache.getCmd = Array();
