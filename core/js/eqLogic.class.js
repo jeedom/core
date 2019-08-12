@@ -22,7 +22,7 @@ jeedom.eqLogic = function () {
 jeedom.eqLogic.cache = Array();
 jeedom.eqLogic.displayObjectName = false;
 
-jeedom.eqLogic.changeDisplayObjectName(_display){
+jeedom.eqLogic.changeDisplayObjectName = function(_display){
   jeedom.eqLogic.displayObjectName = _display;
   if(_display){
     $('.object_name').show();
@@ -408,7 +408,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
           }
         }
       }
-      if(jeedom.eqLogic.bt_displayObjectName){
+      if(jeedom.eqLogic.displayObjectName){
         $('.object_name').show();
       }
     }
