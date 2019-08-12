@@ -20,6 +20,7 @@ jeedom.eqLogic = function () {
 };
 
 jeedom.eqLogic.cache = Array();
+jeedom.eqLogic.bt_displayObjectName = false;
 
 if (!isset(jeedom.eqLogic.cache.getCmd)) {
   jeedom.eqLogic.cache.getCmd = Array();
@@ -397,6 +398,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
             editWidgetMode();
           }
         }
+      }
+      if(jeedom.eqLogic.bt_displayObjectName){
+        $('.object_name').show();
       }
     }
   };
