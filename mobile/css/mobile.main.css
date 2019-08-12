@@ -166,7 +166,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-
+  
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -211,6 +211,10 @@ body {
 [data-category] .widget-name {
   display:block;
   min-height: 1.5em !important;
+}
+.eqLogic.eqLogic-widget .widget-name .object_name {
+  vertical-align: super;
+  font-size: 11px !important;
 }
 
 .widget-name,
@@ -926,7 +930,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-
+  
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);

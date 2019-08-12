@@ -608,6 +608,10 @@ div[class*="DisplayCard"] .name > .label {
   color: var(--linkHoverLight-color);
   font-size: 14px !important;
 }
+.eqLogic.eqLogic-widget .widget-name .object_name {
+  vertical-align: super;
+  font-size: 11px;
+}
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
