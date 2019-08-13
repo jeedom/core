@@ -27,7 +27,7 @@ jeedom.eqLogic.changeDisplayObjectName = function(_display){
   if(_display){
     $('.object_name').show();
   }else{
-    $('.object_name').false();
+    $('.object_name').hide();
   }
 }
 
