@@ -1104,6 +1104,7 @@ button .fas.fa-plus-circle {
   color: var(--sc-lightTxt-color) !important;
 }
 
+
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
   max-width: calc(100% - 150px) !important;
@@ -1111,13 +1112,10 @@ button .fas.fa-plus-circle {
   overflow: hidden;
 }
 
-.navbar-fixed-top .visible-xs-inline-block .objectSummaryglobal .objectSummaryParent:nth-child(n+8) {
-  //display: none !important;
-}
 .navbar {
   min-height: 50px;
   height: 50px;
-  z-index: 1300;
+  z-index: 100;
 }
 .navbar:hover {
   z-index: 50000;
@@ -2009,6 +2007,10 @@ textarea {
 }
 
 /*    __DESIGN__    */
+.div_backgroundPlan > .div_displayObject {
+  z-index: 50 !important;
+}
+
 .element legend {
   border-left: none!important;
 }
@@ -3173,6 +3175,11 @@ pre {
   font-size: 14px;
   letter-spacing: 0.05em;
   line-height: 14px;
+}
+#pre_globallog {
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  line-height: 12px;
 }
 
 .input-group .btn,
