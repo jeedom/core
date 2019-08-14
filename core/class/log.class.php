@@ -244,7 +244,11 @@ class log {
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = trim($log->current()); //get current line
 				if ($line != '') {
-					array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
+					if(function_exists('mb_convert_encoding')){
+						array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
+					}else{
+						array_unshift($page, $line);
+					}
 				}
 				$log->next(); //go to next line
 				$linesRead++;
