@@ -879,6 +879,11 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
+          if(isset(data.configuration) && isset(data.configuration.displayObjectName)){
+            jeedom.eqLogic.changeDisplayObjectName(data.configuration.displayObjectName);
+          }else{
+            jeedom.eqLogic.changeDisplayObjectName(false);
+          }
           initEditOption(editOption.state);
           initReportMode();
         }

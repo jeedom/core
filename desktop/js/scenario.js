@@ -405,11 +405,6 @@ $('#bt_displayScenarioVariable,#bt_displayScenarioVariable2').off('click').on('c
   .load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
 });
 
-$('.bt_showExpressionTest').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Testeur d'expression}}"})
-  .load('index.php?v=d&modal=expression.test').dialog('open');
-});
-
 $('.bt_showScenarioSummary').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé scénario}}"})
   .load('index.php?v=d&modal=scenario.summary').dialog('open');

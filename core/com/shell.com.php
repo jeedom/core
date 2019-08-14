@@ -1,76 +1,76 @@
 <?php
 
 /* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
 
 /* ------------------------------------------------------------ Inclusions */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class com_shell {
 	/*     * ***********************Attributs************************* */
-
+	
 	private static $instance;
-
+	
 	private $cmds = array();
 	private $background;
 	private $cache = array();
 	private $history = array();
-
+	
 	/*     * ********************Functions static********************* */
-
+	
 	/**
-	 * @access public
-	 * @param type $_cmd
-	 * @param type $_background
-	 */
+	* @access public
+	* @param type $_cmd
+	* @param type $_background
+	*/
 	public function __construct($_cmd = null, $_background = false) {
 		$this->setBackground($_background);
 		if ($_cmd !== null) {
 			$this->addCmd($_cmd);
 		}
 	}
-
+	
 	/**
-	 * Get the instance of com_shell
-	 * @return com_shell
-	 */
+	* Get the instance of com_shell
+	* @return com_shell
+	*/
 	public static function getInstance() {
 		if (self::$instance === null) {
 			self::$instance = new self();
 		}
 		return self::$instance;
 	}
-
+	
 	/**
-	 * Execute a command
-	 * @param string $_cmd
-	 * @param bool $_background
-	 */
+	* Execute a command
+	* @param string $_cmd
+	* @param bool $_background
+	*/
 	public static function execute($_cmd, $_background = false) {
 		$shell = self::getInstance();
 		$shell->clear();
 		$shell->addCmd($_cmd, $_background);
 		return $shell->exec();
 	}
-
+	
 	/**
-	 * Test if a command exists
-	 * @param string $_cmd
-	 * @return boolean
-	 */
+	* Test if a command exists
+	* @param string $_cmd
+	* @return boolean
+	*/
 	public static function commandExists($_cmd) {
 		$fp = popen("which " . $_cmd, "r");
 		$value = fgets($fp, 255);
@@ -78,14 +78,14 @@ class com_shell {
 		pclose($fp);
 		return $exists;
 	}
-
+	
 	/*     * ************* Functions ************************************ */
-
+	
 	/**
-	 * Execute commands
-	 * @throws Exception
-	 * @return string
-	 */
+	* Execute commands
+	* @throws Exception
+	* @return string
+	*/
 	public function exec() {
 		$output = array();
 		$retval = 0;
@@ -97,7 +97,7 @@ class com_shell {
 			exec($cmd, $output, $retval);
 			$return[] = implode("\n", $output);
 			if ($retval != 0) {
-				throw new Exception('Erreur dans l\'exécution du terminal, la valeur retournée est : ' . $retval . '. Détails : ' . implode("\n", $output));
+				throw new Exception(__('Erreur sur ',__FILE__).$cmd.__(' valeur retournée : ',__FILE__).$retval.__('. Détails : ' ,__FILE__). implode("\n", $output));
 			}
 			$this->history[] = $cmd;
 		}
@@ -105,51 +105,51 @@ class com_shell {
 		$this->cache = array();
 		return implode("\n", $return);
 	}
-
+	
 	/**
-	 * @deprecated Replaced by com_shell::commandExists
-	 * @param string $_cmd
-	 * @return boolean
-	 */
+	* @deprecated Replaced by com_shell::commandExists
+	* @param string $_cmd
+	* @return boolean
+	*/
 	public function commandExist($_cmd) {
 		return self::commandExists($_cmd);
 	}
-
+	
 	public function clear() {
 		$this->cache = array_merge($this->cache, $this->cmds);
 		$this->cmds = array();
 	}
-
+	
 	public function clearHistory() {
 		$this->history = array();
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getCmd() {
 		return implode("\n", $this->cmds);
 	}
-
+	
 	public function addCmd($_cmd, $_background = null) {
 		$bg = ($_background === null) ? $this->getBackground() : $_background;
 		$add = $bg ? ' >> /dev/null 2>&1 &' : '';
 		$this->cmds[] = $_cmd . $add;
 		return true;
 	}
-
+	
 	public function setBackground($background) {
 		$this->background = $background;
 		return $this;
 	}
-
+	
 	public function getBackground() {
 		return $this->background;
 	}
-
+	
 	/**
-	 * Get the history of commands
-	 * @return array
-	 */
+	* Get the history of commands
+	* @return array
+	*/
 	public function getHistory() {
 		return $this->history;
 	}

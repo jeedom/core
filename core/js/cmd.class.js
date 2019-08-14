@@ -344,24 +344,6 @@ jeedom.cmd.refreshValue = function(_params) {
       continue;
     }
     jeedom.cmd.update[_params[i].cmd_id](_params[i]);
-    
-  }
-  for(var i in _params){
-    try {
-      for(var j in jeedom.history.chart){
-        if (isset(jeedom.history.chart[j].chart) && isset(jeedom.history.chart[j].chart.series)) {
-          $(jeedom.history.chart['div_graph'].chart.series).each(function(k, serie){
-            try {
-              if(serie.options.id ==  _params[i].cmd_id){
-                serie.addPoint([Date.parse(_params[i].collectDate+' UTC') - 1, _params[i].value], true, true);
-              }
-            }catch(error) {
-            }
-          });
-        }
-      }
-    } catch (e) {
-    }
   }
 };
 

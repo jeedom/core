@@ -71,6 +71,11 @@ if (view_id != '') {
       }catch(err) {
         console.log(err);
       }
+      if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
+        jeedom.eqLogic.changeDisplayObjectName(html.raw.configuration.displayObjectName);
+      }else{
+        jeedom.eqLogic.changeDisplayObjectName(false);
+      }
       setTimeout(function () {
         initReportMode();
         positionEqLogic();

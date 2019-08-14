@@ -22,7 +22,7 @@ function replaceAndSaveFA5($objects){
     }
   }
 }
-
+ob_start();
 replaceAndSaveFA5(jeeObject::all());
 replaceAndSaveFA5(eqLogic::all());
 replaceAndSaveFA5(cmd::all());
@@ -33,4 +33,5 @@ replaceAndSaveFA5(viewData::all());
 replaceAndSaveFA5(view::all());
 replaceAndSaveFA5(plan::all());
 replaceAndSaveFA5(planHeader::all());
+ob_end_clean();
 ?>
