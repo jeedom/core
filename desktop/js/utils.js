@@ -191,6 +191,9 @@ $(function () {
     if(e.target.hash == ''){
       return;
     }
+    if($(this).closest('.ui-dialog-content').html() !== undefined){
+      return;
+    }
     if(PREVIOUS_PAGE == null){
       window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1]);
       PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1];
