@@ -13,10 +13,13 @@ function replaceAndSaveFA5($objects){
   );
   foreach ($objects as $object) {
     try {
-      $json =  json_encode(utils::o2a($object));
-      $json = str_replace(array_keys($replace), $replace,$json);
+      $json1 =  json_encode(utils::o2a($object));
+      $json = str_replace(array_keys($replace), $replace,$json1);
+      if($json1 == $json){
+        continue;
+      }
       utils::a2o($object,json_decode($json,true));
-      $object->save();
+      $object->save(true);
     } catch (\Exception $e) {
       
     }
