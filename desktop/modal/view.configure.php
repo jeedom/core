@@ -41,6 +41,12 @@ sendVarToJS('view', utils::o2a($view));
 					<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-lg-4 control-label">{{Afficher le nom des objets sur les widgets}}</label>
+				<div class="col-lg-2">
+					<input type="checkbox" class="viewAttr form-control" data-l1key="configuration" data-l2key="displayObjectName" />
+				</div>
+			</div>
 		</fieldset>
 	</form>
 </div>

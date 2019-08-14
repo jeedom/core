@@ -646,7 +646,7 @@ class eqLogic {
 		if (!$_noCache && config::byKey('widget::disableCache','core',0) == 0) {
 			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
 			if (trim($mc->getValue()) != '') {
-				//		return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
+				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
 			}
 		}
 		$translate_category = '';
@@ -665,7 +665,7 @@ class eqLogic {
 			'#translate_category#' => $translate_category,
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
-			'#object_name#' => '',
+			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun',__FILE__),
 			'#height#' => $this->getDisplay('height', '110px'),
 			'#width#' => $this->getDisplay('width', '230px'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,

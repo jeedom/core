@@ -608,6 +608,10 @@ div[class*="DisplayCard"] .name > .label {
   color: var(--linkHoverLight-color);
   font-size: 14px !important;
 }
+.eqLogic.eqLogic-widget .widget-name .object_name {
+  vertical-align: super;
+  font-size: 11px;
+}
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
@@ -1100,6 +1104,7 @@ button .fas.fa-plus-circle {
   color: var(--sc-lightTxt-color) !important;
 }
 
+
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
   max-width: calc(100% - 150px) !important;
@@ -1107,13 +1112,10 @@ button .fas.fa-plus-circle {
   overflow: hidden;
 }
 
-.navbar-fixed-top .visible-xs-inline-block .objectSummaryglobal .objectSummaryParent:nth-child(n+8) {
-  //display: none !important;
-}
 .navbar {
   min-height: 50px;
   height: 50px;
-  z-index: 1300;
+  z-index: 100;
 }
 .navbar:hover {
   z-index: 50000;
@@ -1687,7 +1689,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-  
+
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -2005,6 +2007,10 @@ textarea {
 }
 
 /*    __DESIGN__    */
+.div_backgroundPlan > .div_displayObject {
+  z-index: 50 !important;
+}
+
 .element legend {
   border-left: none!important;
 }
@@ -2870,6 +2876,7 @@ div.cmd > div.center-block {
 
 .ui-dialog {
   background-color: rgb(var(--defaultBkg-color));
+  overflow: initial !important;
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
@@ -3170,6 +3177,11 @@ pre {
   letter-spacing: 0.05em;
   line-height: 14px;
 }
+#pre_globallog {
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  line-height: 12px;
+}
 
 .input-group .btn,
 .input-group input,
@@ -3239,11 +3251,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3252,7 +3264,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3261,12 +3273,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3274,11 +3286,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3324,5 +3336,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }

@@ -23,8 +23,6 @@ if (!isConnect('admin')) {
 <ul id="ul_expressionHistory"></ul>
 <script>
 
-
-
 if ($('body').attr('data-page') == 'scenario' && $('#div_editScenario').is(':visible')) {
 	$('.subElementIF .expressions input[data-l1key="expression"]').each(function() {
 		expression = $(this).val().replace(/"/g, '\'')
