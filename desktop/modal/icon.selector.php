@@ -36,9 +36,9 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 }
 </style>
 <ul class="nav nav-tabs" role="tablist">
-	<li role="presentation" class="active"><a href="#icon" aria-controls="home" role="tab" data-toggle="tab">{{Icône}}</a></li>
+	<li role="presentation" class="active"><a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab">{{Icône}}</a></li>
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
-		<li role="presentation" ><a href="#img" aria-controls="home" role="tab" data-toggle="tab">{{Image}}</a></li>
+		<li role="presentation" ><a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab">{{Image}}</a></li>
 	<?php } ?>
 </ul>
 
@@ -60,7 +60,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 		</div>
 	</div>
 	
-	<div role="tabpanel" class="tab-pane active" id="icon">
+	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
 		foreach ($scanPaths as $root) {
@@ -300,7 +300,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 		</div>
 	</div>
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
-		<div role="tabpanel" class="tab-pane" id="img">
+		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
 				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImageIcon" type="file" name="file" style="display: inline-block;">
 			</span>
