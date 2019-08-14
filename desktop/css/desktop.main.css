@@ -2876,7 +2876,6 @@ div.cmd > div.center-block {
 
 .ui-dialog {
   background-color: rgb(var(--defaultBkg-color));
-  overflow: initial !important;
 }
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
