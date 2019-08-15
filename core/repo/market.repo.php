@@ -795,14 +795,6 @@ class repo_market {
 				config::save('market::monitoringServer', $_result['user::monitoringServer']);
 				$restart_monitoring = true;
 			}
-			if (isset($_result['register::monitoringPsk']) && config::byKey('market::monitoringPsk') != $_result['register::monitoringPsk']) {
-				config::save('market::monitoringPsk', $_result['register::monitoringPsk']);
-				$restart_monitoring = true;
-			}
-			if (isset($_result['register::monitoringPskIdentity']) && config::byKey('market::monitoringPskIdentity') != $_result['register::monitoringPskIdentity']) {
-				config::save('market::monitoringPskIdentity', $_result['register::monitoringPskIdentity']);
-				$restart_monitoring = true;
-			}
 			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
 				config::save('market::monitoringName', $_result['register::monitoringName']);
 				$restart_monitoring = true;
