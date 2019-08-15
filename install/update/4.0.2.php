@@ -13,16 +13,19 @@ function replaceAndSaveFA5($objects){
   );
   foreach ($objects as $object) {
     try {
-      $json =  json_encode(utils::o2a($object));
-      $json = str_replace(array_keys($replace), $replace,$json);
+      $json1 =  json_encode(utils::o2a($object));
+      $json = str_replace(array_keys($replace), $replace,$json1);
+      if($json1 == $json){
+        continue;
+      }
       utils::a2o($object,json_decode($json,true));
-      $object->save();
+      $object->save(true);
     } catch (\Exception $e) {
       
     }
   }
 }
-
+ob_start();
 replaceAndSaveFA5(jeeObject::all());
 replaceAndSaveFA5(eqLogic::all());
 replaceAndSaveFA5(cmd::all());
@@ -33,4 +36,5 @@ replaceAndSaveFA5(viewData::all());
 replaceAndSaveFA5(view::all());
 replaceAndSaveFA5(plan::all());
 replaceAndSaveFA5(planHeader::all());
+ob_end_clean();
 ?>

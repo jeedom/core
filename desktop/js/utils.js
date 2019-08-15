@@ -102,6 +102,7 @@ function loadPage(_url,_noPushHistory){
   }
   jeedom.cmd.update = Array();
   jeedom.scenario.update = Array();
+  jeedom.eqLogic.bt_displayObjectName = false;
   $('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');
   $('#div_pageContainer').add("#div_pageContainer *").off();
   $.hideAlert();
@@ -188,6 +189,9 @@ $(function () {
   
   $('body').on('shown.bs.tab','.nav-tabs a', function (e) {
     if(e.target.hash == ''){
+      return;
+    }
+    if($(this).closest('.ui-dialog-content').html() !== undefined){
       return;
     }
     if(PREVIOUS_PAGE == null){

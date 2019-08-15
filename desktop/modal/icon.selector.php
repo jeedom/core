@@ -36,9 +36,9 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 }
 </style>
 <ul class="nav nav-tabs" role="tablist">
-	<li role="presentation" class="active"><a href="#icon" aria-controls="home" role="tab" data-toggle="tab">{{Icône}}</a></li>
+	<li role="presentation" class="active"><a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icône}}</a></li>
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
-		<li role="presentation" ><a href="#img" aria-controls="home" role="tab" data-toggle="tab">{{Image}}</a></li>
+		<li role="presentation" ><a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Image}}</a></li>
 	<?php } ?>
 </ul>
 
@@ -59,8 +59,63 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
 	</div>
-	
-	<div role="tabpanel" class="tab-pane active" id="icon">
+
+
+	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
+		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
+			<span class="btn btn-default btn-file pull-right">
+				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImageIcon" type="file" name="file" style="display: inline-block;">
+			</span>
+			<div class="imgContainer" style="width:calc(100% - 15px)">
+				<div class="row">
+					<?php
+					foreach (ls(__DIR__.'/../../data/img/','*') as $file) {
+						echo '<div class="col-lg-1">';
+						echo '<div class="divIconSel">';
+						echo '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
+						echo '</div>';
+						echo '<center>'.substr(basename($file),0,12).'</center>';
+						echo '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
+						echo '</div>';
+					}
+					?>
+				</div>
+			</div>
+			<script>
+			$('#bt_uploadImageIcon').fileupload({
+				replaceFileInput: false,
+				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&jeedom_token='+JEEDOM_AJAX_TOKEN,
+				dataType: 'json',
+				done: function (e, data) {
+					if (data.result.state != 'ok') {
+						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'});
+						return;
+					}
+					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
+				}
+			});
+
+			$('.bt_removeImgIcon').on('click',function(){
+				var filename = $(this).attr('data-filename');
+				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
+					if (result) {
+						jeedom.removeImageIcon({
+							filename : filename,
+							error: function (error) {
+								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'});
+							},
+							success: function (data) {
+								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
+							}
+						})
+					}
+				});
+			});
+			</script>
+		</div>
+	<?php } ?>
+
+	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
 		foreach ($scanPaths as $root) {
@@ -71,12 +126,12 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 				}
 				$fontfile = $root . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-				
+
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-				
+
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -299,59 +354,6 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 			</div>
 		</div>
 	</div>
-	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
-		<div role="tabpanel" class="tab-pane" id="img">
-			<span class="btn btn-default btn-file pull-right">
-				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImageIcon" type="file" name="file" style="display: inline-block;">
-			</span>
-			<div class="imgContainer">
-				<div class="row">
-					<?php
-					foreach (ls(__DIR__.'/../../data/img/','*') as $file) {
-						echo '<div class="col-lg-1">';
-						echo '<div class="divIconSel">';
-						echo '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
-						echo '</div>';
-						echo '<center>'.substr(basename($file),0,12).'</center>';
-						echo '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
-						echo '</div>';
-					}
-					?>
-				</div>
-			</div>
-			<script>
-			$('#bt_uploadImageIcon').fileupload({
-				replaceFileInput: false,
-				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&jeedom_token='+JEEDOM_AJAX_TOKEN,
-				dataType: 'json',
-				done: function (e, data) {
-					if (data.result.state != 'ok') {
-						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'});
-						return;
-					}
-					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
-				}
-			});
-			
-			$('.bt_removeImgIcon').on('click',function(){
-				var filename = $(this).attr('data-filename');
-				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
-					if (result) {
-						jeedom.removeImageIcon({
-							filename : filename,
-							error: function (error) {
-								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'});
-							},
-							success: function (data) {
-								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
-							}
-						})
-					}
-				});
-			});
-			</script>
-		</div>
-	<?php } ?>
 </div>
 
 <script>
@@ -400,16 +402,19 @@ if(tabimg && tabimg == 1) {
 	$('#mod_selectIcon ul li a[href="#img"]').click();
 	$('#mySearch').hide()
 }
-$('#mod_selectIcon ul li a[href="#img"]').click(function(e) {
-	$('#mySearch').hide()
-})
-$('#mod_selectIcon ul li a[href="#icon"]').click(function(e) {
+$('#mod_selectIcon ul li a[href="#tabicon"]').click(function(e) {
 	$('#mySearch').show()
+	$('.iconCategory').show()
+})
+$('#mod_selectIcon ul li a[href="#tabimg"]').click(function(e) {
+	$('#mySearch').hide()
+	$('.iconCategory').hide()
 })
 
 $('#mod_selectIcon').css('overflow', 'hidden');
 
 $(function() {
+	$('.imgContainer').show()
 	//move select/search in modal bottom:
 	var buttonSet = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('.ui-dialog-buttonpane')
 	buttonSet.find('#mySearch').remove()
@@ -418,7 +423,7 @@ $(function() {
 	//auto select actual icon:
 	if (selectIcon != "0") {
 		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
-		
+
 		setTimeout(function() {
 			elem = $('div.divIconSel.iconSelected')
 			container = $('#mod_selectIcon > .tab-content')
@@ -426,5 +431,6 @@ $(function() {
 			container.animate({scrollTop: pos})
 		}, 250);
 	}
+
 })
 </script>
