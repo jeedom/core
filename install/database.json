@@ -351,7 +351,7 @@
         },
         {
           "name": "option",
-          "type": "varchar(255)",
+          "type": "varchar(511)",
           "null": "YES",
           "key": "",
           "default": null,
