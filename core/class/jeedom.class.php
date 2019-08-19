@@ -982,6 +982,18 @@ class jeedom {
 		} catch (Error $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
+		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cronDaily') && config::byKey($name . '::enable') == 1) {
+					$class::cronDaily();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
 	}
 	
 	public static function cronHourly() {
