@@ -640,6 +640,10 @@ a.action.ui-btn {
   padding: 0px 7px 0px 7px !important;
 }
 
+.hidden  {
+  display: none !important;
+}
+
 /* ________________DIVERS */
 div.ui-header.ui-bar-inherit > a[data-rel=back]{
   background-color: var(--btn-default-color) !important;
