@@ -276,6 +276,15 @@ body {
   padding: 5px 8px;
   min-width: 30px;
 }
+
+.cmd.label .cmdName{
+  color : white !important;
+}
+
+.cmd.label{
+  text-align: -webkit-center !important;
+}
+
 .state {
   font-size: 14px !important;
   font-weight: bold;
@@ -611,6 +620,10 @@ a.action.ui-btn {
 }
 [data-coloredicons="1"] .scenario-widget.disabled .state i {
   color: var(--al-danger-color) !important;
+}
+
+.cmd.label i{
+  color : white !important;
 }
 
 .alert-sucess {

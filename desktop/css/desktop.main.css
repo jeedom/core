@@ -925,6 +925,10 @@ pre {
   color: var(--al-danger-color) !important;
 }
 
+.cmd.label i{
+  color : white !important;
+}
+
 .state,
 .cmd {
   color: var(--link-color) !important;
@@ -945,6 +949,14 @@ p.state {
   margin: auto;
   height: 14px;
   padding: 1px;
+}
+
+.cmd.label .cmdName{
+  color : white !important;
+}
+
+.cmd.label{
+  text-align: -webkit-center !important;
 }
 
 hr.hrPrimary {
