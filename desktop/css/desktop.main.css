@@ -926,7 +926,7 @@ pre {
 }
 
 .cmd.label i{
-  color : white !important;
+  color : var(--link-color) !important;
 }
 
 .state,
@@ -952,7 +952,7 @@ p.state {
 }
 
 .cmd.label .cmdName{
-  color : white !important;
+  color : var(--link-color) !important;
 }
 
 .cmd.label{

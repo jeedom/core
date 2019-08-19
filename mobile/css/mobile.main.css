@@ -278,7 +278,7 @@ body {
 }
 
 .cmd.label .cmdName{
-  color : white !important;
+  color : var(--link-color) !important;
 }
 
 .cmd.label{
@@ -623,7 +623,7 @@ a.action.ui-btn {
 }
 
 .cmd.label i{
-  color : white !important;
+  color : var(--link-color) !important;
 }
 
 .alert-sucess {
