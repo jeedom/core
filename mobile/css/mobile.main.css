@@ -215,6 +215,7 @@ body {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px !important;
+  display: none;
 }
 
 .widget-name,
