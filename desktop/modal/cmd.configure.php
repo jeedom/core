@@ -577,6 +577,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 										<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
 											<option value="default">Défaut</option>
 											<?php
+											
 											if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
 												$types = array();
 												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
@@ -601,7 +602,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 														if ($key == 0) {
 															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
 														}
-														echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+														if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
+															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+														}else{
+															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+														}
 													}
 													echo '</optgroup>';
 												}
@@ -642,7 +647,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 														if ($key == 0) {
 															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
 														}
-														echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+														if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
+															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+														}else{
+															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+														}
 													}
 													echo '</optgroup>';
 												}
