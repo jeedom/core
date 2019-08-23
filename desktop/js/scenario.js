@@ -1921,12 +1921,12 @@ var _firstState_ = 0
 var _undoLimit_ = 12
 var _redo_ = 0
 
-jwerty.key('alt+z', function (e) {
+jwerty.key('ctrl+shift+z', function (e) {
   e.preventDefault()
   undo()
   PREV_FOCUS = null
 })
-jwerty.key('alt+y', function (e) {
+jwerty.key('ctrl+shift+y', function (e) {
   e.preventDefault()
   redo()
   PREV_FOCUS = null
