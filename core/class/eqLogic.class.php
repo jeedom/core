@@ -551,16 +551,16 @@ class eqLogic {
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
 		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
 		$html .= '</center>';
-		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("d/m/y G:H:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
+		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
 		$html .= '<span class="pull-left batteryTime">';
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
 			$html .= '<i class="icon techno-fingerprint41 pull-right" title="Seuil manuel défini"></i>';
 		}
 		if ($batteryTime != 'NA') {
-			$html .= '<i class="icon divers-calendar2" title="Pile(s) changée(s) il y a ' . $batterySince . ' jour(s) (' . $batteryTime . ')"></i><span> ('.$batterySince.'j)</span>';
+			$html .= '<i class="icon divers-calendar2" title="{{Pile(s) changée(s) il y a}} ' . $batterySince . ' {{jour(s)}} (' . $batteryTime . ')"></i><span> ('.$batterySince.'j)</span>';
 		} else {
-			$html .= '<i class="icon divers-calendar2" title="Pas de date de changement de pile(s) renseignée"></i>';
+			$html .= '<i class="icon divers-calendar2" title="{{Pas de date de changement de pile(s) renseignée}}"></i>';
 		}
 		$html .= '</span>';
 		if ($this->getConfiguration('battery_type', '') != '') {

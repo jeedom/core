@@ -290,6 +290,9 @@ try {
 		$return = array('node' => array(), 'link' => array());
 		$object = null;
 		$type = init('filter_type');
+		if($type == 'object'){
+			$type = 'jeeObject';
+		}
 		$object = $type::byId(init('filter_id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));

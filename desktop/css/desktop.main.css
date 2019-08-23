@@ -611,6 +611,7 @@ div[class*="DisplayCard"] .name > .label {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px;
+  display: none;
 }
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
@@ -924,6 +925,10 @@ pre {
   color: var(--al-danger-color) !important;
 }
 
+.cmd.label i{
+  color : var(--link-color) !important;
+}
+
 .state,
 .cmd {
   color: var(--link-color) !important;
@@ -944,6 +949,14 @@ p.state {
   margin: auto;
   height: 14px;
   padding: 1px;
+}
+
+.cmd.label .cmdName{
+  color : var(--link-color) !important;
+}
+
+.cmd.label{
+  text-align: -webkit-center !important;
 }
 
 hr.hrPrimary {
@@ -1689,7 +1702,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-
+  
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -3250,11 +3263,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3263,7 +3276,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3272,12 +3285,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3285,11 +3298,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
@@ -3335,5 +3348,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
+  
 }

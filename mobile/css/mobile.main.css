@@ -215,6 +215,7 @@ body {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px !important;
+  display: none;
 }
 
 .widget-name,
@@ -275,6 +276,15 @@ body {
   padding: 5px 8px;
   min-width: 30px;
 }
+
+.cmd.label .cmdName{
+  color : var(--link-color) !important;
+}
+
+.cmd.label{
+  text-align: -webkit-center !important;
+}
+
 .state {
   font-size: 14px !important;
   font-weight: bold;
@@ -612,6 +622,10 @@ a.action.ui-btn {
   color: var(--al-danger-color) !important;
 }
 
+.cmd.label i{
+  color : var(--link-color) !important;
+}
+
 .alert-sucess {
   background-color: var(--al-success-color);
   color: var(--linkHoverLight-color);
@@ -624,6 +638,10 @@ a.action.ui-btn {
 
 :not(#div_alert).alert {
   padding: 0px 7px 0px 7px !important;
+}
+
+.hidden  {
+  display: none !important;
 }
 
 /* ________________DIVERS */
