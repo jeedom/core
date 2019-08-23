@@ -62,7 +62,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Exécuter** : Permet de lancer le scénario manuellement (N’oubliez
     pas de sauvegarder au préalable !). Les déclencheurs ne sont donc
-    pas pris en compte. 
+    pas pris en compte.
 
 -   **Supprimer** : Permet de supprimer le scénario.
 
@@ -80,11 +80,14 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Liens** : Permet de visualiser le graphique des éléments en lien
     avec le scénario.
-    
+
 > **Tip**
 >
 > Un Ctrl+Click sur le bouton exécuter vous permet de sauvegarder, exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun)
 
+> **Tip**
+>
+> Un Ctrl+Shift+z ou Ctrl+Shift+y vous permet d'annuler ou de refaire une modification (ajout d'action, de bloc...)
 
 Onglet Général
 --------------
@@ -142,7 +145,7 @@ créé, vous pourrez y ajouter un autre **bloc** ou une **action**.
 >
 > Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (")
 >
-> Pour éviter la confirmation de suppression d'un bloc, faites Ctrl+Click 
+> Pour éviter la confirmation de suppression d'un bloc, faites Ctrl+Click
 
 ### Les blocs
 
