@@ -508,6 +508,18 @@ class repo_market {
 		}
 	}
 	
+	public static function cronDaily(){
+		try {
+			$monitoring_state = self::monitoring_status();
+			if (self::monitoring_allow() && $monitoring_state){
+				self::monitoring_stop();
+				self::monitoring_start();
+			}
+		} catch (\Exception $e) {
+			
+		}
+	}
+	
 	/*******************************health********************************/
 	
 	public static function health() {

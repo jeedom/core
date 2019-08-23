@@ -338,23 +338,6 @@ class network {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
-		$interface = $openvpn->getInterfaceName();
-		if ($interface !== null && $interface != '' && $interface !== false) {
-			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port 80 -j ACCEPT');
-			if (config::byKey('dns::openport') != '') {
-				foreach (explode(',', config::byKey('dns::openport')) as $port) {
-					if (is_nan($port)) {
-						continue;
-					}
-					try {
-						shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -p tcp  --destination-port ' . $port . ' -j ACCEPT');
-					} catch (Exception $e) {
-						
-					}
-				}
-			}
-			shell_exec(system::getCmdSudo() . 'iptables -A INPUT -i ' . $interface . ' -j DROP');
-		}
 	}
 	
 	public static function dns_run() {
