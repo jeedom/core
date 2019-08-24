@@ -1472,6 +1472,9 @@ class cmd {
 		if ($cmd->getType() != 'info') {
 			return;
 		}
+		if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
+			return;
+		}
 		$value = $cmd->execCmd();
 		$level = $cmd->checkAlertLevel($value, false);
 		if ($level != 'none') {
@@ -1496,7 +1499,7 @@ class cmd {
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
 				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
 			}
-			$message .= ' => ' . str_replace('#value#', $_value, $this->getAlert($_level . 'if'));
+			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
