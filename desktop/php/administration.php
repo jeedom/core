@@ -31,7 +31,7 @@ user::isBan();
 		<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-table"></i> {{Résumés}}</a></li>
 		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="far fa-file"></i> {{Logs}}</a></li>
 		<li role="presentation"><a href="#eqlogictab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="icon divers-svg"></i> {{Equipements}}</a></li>
-		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour}}</a></li>
+		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab" style="padding:10px 5px !important"><i class="fas fa-credit-card"></i> {{Mises à jour/Market}}</a></li>
 	</ul>
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<br/><a class="btn btn-success pull-right" id="bt_saveGeneraleConfig"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><br/>
