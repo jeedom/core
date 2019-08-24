@@ -1494,7 +1494,7 @@ user::isBan();
 									}
 									if (isset($value['scope']['test']) && $value['scope']['test']) {
 										echo '<div class="form-group">';
-										echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
+										echo '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
 										echo '<div class="col-sm-4">';
 										echo '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
 										echo '</div>';
