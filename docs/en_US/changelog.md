@@ -25,7 +25,7 @@ Changelog
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
+- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
 - Suppression du partage de scénario.
 - Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
