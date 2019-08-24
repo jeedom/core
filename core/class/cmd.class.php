@@ -1486,6 +1486,9 @@ class cmd {
 		if ($this->getType() != 'info') {
 			return;
 		}
+		if($_level == $this->getCache('alertLevel')){
+			return;
+		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
 		$eqLogic = $this->getEqLogic();
