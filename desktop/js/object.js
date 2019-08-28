@@ -312,6 +312,8 @@ $("#bt_removeObject").on('click', function (event) {
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
+  var icon = false
+  var color = false
   if ( $('div[data-l2key="icon"] > i').length ) {
     color = '';
     class_icon = $('div[data-l2key="icon"] > i').attr('class')
