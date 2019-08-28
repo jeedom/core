@@ -1158,7 +1158,7 @@ class jeedom {
 	}
 	
 	public static function getTypeUse($_string = '') {
-		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array(), 'plan' => array(), 'view' => array());
+		$return = array('cmd' => array(), 'scenario' => array(), 'eqLogic' => array(), 'dataStore' => array(), 'plan' => array(), 'plan3d' => array(),'view' => array());
 		preg_match_all("/#([0-9]*)#/", $_string, $matches);
 		foreach ($matches[1] as $cmd_id) {
 			if (isset($return['cmd'][$cmd_id])) {
@@ -1246,6 +1246,17 @@ class jeedom {
 				continue;
 			}
 			$return['plan'][$plan_id] = $plan;
+		}
+		preg_match_all('/"plan3d_id":"([0-9]*)"/', $_string, $matches);
+		foreach ($matches[1] as $plan3d_id) {
+			if (isset($return['plan3d'][$plan3d_id])) {
+				continue;
+			}
+			$plan3d = plan3dHeader::byId($plan3d_id);
+			if (!is_object($plan3d)) {
+				continue;
+			}
+			$return['plan3d'][$plan3d_id] = $plan3d;
 		}
 		return $return;
 	}

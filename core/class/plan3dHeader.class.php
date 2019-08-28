@@ -88,6 +88,30 @@ class plan3dHeader {
 		return plan3d::byPlan3dHeaderId($this->getId());
 	}
 	
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+		if (isset($_data['node']['plan3d' . $this->getId()])) {
+			return;
+		}
+		$_level++;
+		if ($_level > $_drill) {
+			return $_data;
+		}
+		$icon = findCodeIcon($this->getConfiguration('icon','<i class="fas fa-paint-brush"></i>'));
+		$_data['node']['plan3d' . $this->getId()] = array(
+			'id' => 'plan3d' . $this->getId(),
+			'type' => __('Design 3d',__FILE__),
+			'name' => substr($this->getName(), 0, 20),
+			'icon' => $icon['icon'],
+			'fontfamily' => $icon['fontfamily'],
+			'fontsize' => '1.5em',
+			'fontweight' => ($_level == 1) ? 'bold' : 'normal',
+			'texty' => -14,
+			'textx' => 0,
+			'title' => __('Design 3d :', __FILE__) . ' ' . $this->getName(),
+			'url' => 'index.php?v=d&p=plan3d&plan3d_id=' . $this->getId(),
+		);
+	}
+	
 	/*     * **********************Getteur Setteur*************************** */
 	
 	public function getId() {
