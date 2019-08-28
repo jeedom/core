@@ -1047,6 +1047,8 @@ user::isBan();
 													<option value="-3 month">{{3 mois}}</option>
 													<option value="-6 month">{{6 mois}}</option>
 													<option value="-1 year">{{1 an}}</option>
+													<option value="-2 years">{{2 ans}}</option>
+													<option value="-3 years">{{3 ans}}</option>
 												</select>
 											</div>
 										</div>
