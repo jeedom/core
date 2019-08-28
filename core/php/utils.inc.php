@@ -1156,7 +1156,7 @@ function sanitizeAccent($_message) {
 	}
 	
 	function findCodeIcon($_icon) {
-		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"','icon_green','icon_blue','icon_yellow','icon_orange','icon_red'), '', trim($_icon)));
 		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
 		
