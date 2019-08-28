@@ -2416,7 +2416,8 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.highcharts-plot-band {
+#div_graph .highcharts-plot-band,
+#div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-button-box {
