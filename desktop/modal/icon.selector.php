@@ -4,6 +4,7 @@ if (!isConnect()) {
 }
 sendVarToJs('tabimg',init('tabimg'));
 sendVarToJs('selectIcon', init('selectIcon', 0));
+sendVarToJs('colorIcon', init('colorIcon', 0));
 ?>
 <div style="display: none;" id="div_iconSelectorAlert"></div>
 <style>
@@ -59,8 +60,8 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
 	</div>
-
-
+	
+	
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
@@ -94,7 +95,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-
+			
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -114,7 +115,7 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 			</script>
 		</div>
 	<?php } ?>
-
+	
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
@@ -126,12 +127,12 @@ sendVarToJs('selectIcon', init('selectIcon', 0));
 				}
 				$fontfile = $root . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-
+				
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-
+				
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -423,7 +424,6 @@ $(function() {
 	//auto select actual icon:
 	if (selectIcon != "0") {
 		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
-
 		setTimeout(function() {
 			elem = $('div.divIconSel.iconSelected')
 			container = $('#mod_selectIcon > .tab-content')
@@ -431,6 +431,8 @@ $(function() {
 			container.animate({scrollTop: pos})
 		}, 250);
 	}
-
+	if (colorIcon != "0") {
+		$('#sel_colorIcon').value(colorIcon);
+	}
 })
 </script>

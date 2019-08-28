@@ -1020,6 +1020,9 @@ function chooseIcon(_callback, _params) {
     icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
     url += '&selectIcon=' + icon;
   }
+  if(_params && _params.color) {
+    url += '&colorIcon=' + _params.color;
+  }
   $('#mod_selectIcon').empty().load(url,function(){
     $("#mod_selectIcon").dialog('option', 'buttons', {
       "Annuler": function () {
