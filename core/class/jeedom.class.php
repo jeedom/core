@@ -281,7 +281,13 @@ class jeedom {
 		);
 		
 		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
-		$value += shell_exec('sudo dmesg | grep "I/O error" | wc -l');
+		if(!is_numeric($value)){
+			$value = 0;
+		}
+		$value2 = @shell_exec('sudo dmesg | grep "I/O error" | wc -l');
+		if(is_numeric($value2)){
+			$value += $value2;
+		}
 		$return[] = array(
 			'name' => __('Erreur I/O', __FILE__),
 			'state' => ($value == 0),
