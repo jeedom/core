@@ -80,6 +80,8 @@ foreach ($cmds as $cmd) {
         $tr .= '<option value="-3 month" '.(($cmd->getConfiguration('historyPurge') == '-3 month') ? 'selected' : '').'>{{3 mois}}</option>';
         $tr .= '<option value="-6 month" '.(($cmd->getConfiguration('historyPurge') == '-6 month') ? 'selected' : '').'>{{6 mois}}</option>';
         $tr .= '<option value="-1 year" '.(($cmd->getConfiguration('historyPurge') == '-1 year') ? 'selected' : '').'>{{1 an}}</option>';
+        $tr .= '<option value="-2 years" '.(($cmd->getConfiguration('historyPurge') == '-2 years') ? 'selected' : '').'>{{2 ans}}</option>';
+        $tr .= '<option value="-3 years" '.(($cmd->getConfiguration('historyPurge') == '-3 years') ? 'selected' : '').'>{{3 ans}}</option>';
         $tr .= '</select>';
       }
       $tr .= '</td>';
