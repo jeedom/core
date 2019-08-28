@@ -26,3 +26,11 @@ Ensuite vous selectionner le nom du rapport en question puis vous allez voir tou
 Une fois le rapport selectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
 
 Vous pouvez aussi supprimer toute les sauvegardes d'un rapport donné
+
+# FAQ
+
+> **Si vous avez une erreur du type Détails : cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory**
+>
+> Il faut en ssh ou dans Administration -> Configuration -> OS/DB -> Systeme -> Administration faire :
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
+>sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so

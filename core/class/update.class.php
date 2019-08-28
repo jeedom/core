@@ -214,10 +214,14 @@ class update {
 	}
 	
 	public static function nbNeedUpdate() {
+		$value = array(
+			'configuration' => '%"doNotUpdate":"1"%'
+		);
 		$sql = 'SELECT count(*)
 		FROM `update`
-		WHERE `status`="update"';
-		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		WHERE `status`="update"
+		AND `configuration` NOT LIKE :configuration';
+		$result = DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
 	}
 	

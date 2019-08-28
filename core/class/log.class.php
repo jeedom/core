@@ -154,7 +154,11 @@ class log {
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		try {
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+		} catch (\Exception $e) {
+			
+		}
 		@chown($_path, system::get('www-uid'));
 		@chgrp($_path, system::get('www-gid'));
 		if (filesize($_path) > (1024 * 1024 * 10)) {
@@ -240,7 +244,11 @@ class log {
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = trim($log->current()); //get current line
 				if ($line != '') {
-					array_unshift($page, $line);
+					if(function_exists('mb_convert_encoding')){
+						array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
+					}else{
+						array_unshift($page, $line);
+					}
 				}
 				$log->next(); //go to next line
 				$linesRead++;

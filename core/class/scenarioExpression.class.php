@@ -1458,9 +1458,10 @@ class scenarioExpression {
 					$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $scenario->getId() . ',');
 					if (is_array($crons)) {
 						foreach ($crons as $cron) {
-							if ($cron->getState() != 'run') {
-								$cron->remove();
+							if($cron->getPID() == getmypid()){
+								continue;
 							}
+							$cron->remove();
 						}
 					}
 					return;

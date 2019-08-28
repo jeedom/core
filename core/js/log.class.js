@@ -19,6 +19,7 @@
  jeedom.log = function () {
  };
 
+ jeedom.log.timeout = null;
  jeedom.log.currentAutoupdate = [];
 
  jeedom.log.list = function (_params) {
@@ -200,12 +201,18 @@
  			}
  			_params.display.text(log);
  			_params.display.scrollTop(_params.display.height() + 200000);
- 			setTimeout(function() {
+ 			  if(jeedom.log.timeout !== null){
+        clearTimeout(jeedom.log.timeout);
+      }
+      jeedom.log.timeout = setTimeout(function() {
  				jeedom.log.autoupdate(_params)
  			}, 1000);
  		},
  		error : function(){
- 			setTimeout(function() {
+ 			  if(jeedom.log.timeout !== null){
+        clearTimeout(jeedom.log.timeout);
+      }
+      jeedom.log.timeout = setTimeout(function() {
  				jeedom.log.autoupdate(_params)
  			}, 1000);
  		},

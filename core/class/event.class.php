@@ -81,6 +81,11 @@ class event {
 				$id = 'scenario::update::' . $event['option']['scenario_id'];
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
 				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
+				if(is_array($event['option']['keys']) && count($event['option']['keys']) > 0){
+					foreach ($event['option']['keys'] as $key => $value) {
+						$id .= $key;
+					}
+				}
 			} else {
 				continue;
 			}

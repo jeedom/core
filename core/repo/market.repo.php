@@ -234,7 +234,7 @@ class repo_market {
 			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
-			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud', __FILE__));
+			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
 		}
 		self::backup_createFolderIsNotExist();
 		self::backup_install();
@@ -457,6 +457,12 @@ public static function backup_restore($_backup) {
 	}
 	
 	public static function monitoring_status() {
+		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
+			return false;
+		}
+		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') == 0){
+			return false;
+		}
 		return (count(system::ps('zabbix')) > 0);
 	}
 	
@@ -500,6 +506,18 @@ public static function backup_restore($_backup) {
 				self::monitoring_stop();
 			}
 		} catch (Exception $e) {
+			
+		}
+	}
+	
+	public static function cronDaily(){
+		try {
+			$monitoring_state = self::monitoring_status();
+			if (self::monitoring_allow() && $monitoring_state){
+				self::monitoring_stop();
+				self::monitoring_start();
+			}
+		} catch (\Exception $e) {
 			
 		}
 	}

@@ -20,6 +20,11 @@ jeedom.eqLogic = function () {
 };
 
 jeedom.eqLogic.cache = Array();
+jeedom.eqLogic.displayObjectName = false;
+
+jeedom.eqLogic.changeDisplayObjectName = function(_display){
+  
+}
 
 if (!isset(jeedom.eqLogic.cache.getCmd)) {
   jeedom.eqLogic.cache.getCmd = Array();
