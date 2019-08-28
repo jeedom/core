@@ -55,8 +55,10 @@ sendVarToJS('view', utils::o2a($view));
 $('.viewAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
 	$('.viewAttr[data-l1key=display][data-l2key=icon]').value('');
 });
-                                                                                                     $('#bt_chooseIcon').on('click', function () {
+$('#bt_chooseIcon').on('click', function () {
   var _icon = false
+  var icon = false
+  var color = false
   if ( $('div[data-l2key="icon"] > i').length ) {
     color = '';
     class_icon = $('div[data-l2key="icon"] > i').attr('class')
