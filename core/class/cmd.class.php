@@ -1580,6 +1580,9 @@ class cmd {
 				}
 			}
 		}
+		if($currentLevel == $this->getCache('alertLevel')){
+			return $currentLevel;
+		}
 		if ($_allowDuring && $currentLevel != 'none' && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
@@ -1598,7 +1601,7 @@ class cmd {
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
-			return $this->getCache('alertLevel');
+			return 'none';
 		}
 		if ($_allowDuring && $currentLevel == 'none') {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
