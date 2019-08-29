@@ -1568,7 +1568,6 @@ class cmd {
 			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
-		
 		$currentLevel = 'none';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 			if (!$value['check']) {
@@ -1599,7 +1598,7 @@ class cmd {
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->setLastRun(date('Y-m-d H:i:s'));
 			$cron->save();
-			return 'none';
+			return $this->getCache('alertLevel');
 		}
 		if ($_allowDuring && $currentLevel == 'none') {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
