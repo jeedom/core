@@ -42,7 +42,7 @@ user::isBan();
 		<li role="presentation"><a href="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-sitemap" title="{{Liens}}"></i><span> {{Liens}}</span></a></li>
 		<li role="presentation"><a href="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone" title="{{Interactions}}"></i><span> {{Interactions}}</span></a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt" title="{{Securité}}"></i><span> {{Securité}}</span></a></li>
-		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card" title="{{Mises à jour}}"></i><span> {{Mises à jour}}</span></a></li>
+		<li role="presentation"><a href="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card" title="{{Mises à jour}}"></i><span> {{Mises à jour/Market}}</span></a></li>
 		<li role="presentation"><a href="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-hdd" title="{{Cache}}"></i><span> {{Cache}}</span></a></li>
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
@@ -1047,6 +1047,8 @@ user::isBan();
 													<option value="-3 month">{{3 mois}}</option>
 													<option value="-6 month">{{6 mois}}</option>
 													<option value="-1 year">{{1 an}}</option>
+													<option value="-2 years">{{2 ans}}</option>
+													<option value="-3 years">{{3 ans}}</option>
 												</select>
 											</div>
 										</div>
@@ -1763,7 +1765,7 @@ user::isBan();
 															}
 															if (isset($value['scope']['test']) && $value['scope']['test']) {
 																$div .= '<div class="form-group">';
-																$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester}}</label>';
+																$div .= '<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
 																$div .= '<div class="col-sm-4">';
 																$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
 																$div .= '</div>';

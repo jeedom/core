@@ -1156,7 +1156,7 @@ function sanitizeAccent($_message) {
 	}
 	
 	function findCodeIcon($_icon) {
-		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"'), '', trim($_icon)));
+		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"','icon_green','icon_blue','icon_yellow','icon_orange','icon_red'), '', trim($_icon)));
 		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
 		
@@ -1269,7 +1269,7 @@ function sanitizeAccent($_message) {
 		$return = array();
 		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
 		if(count($sessions) > 100){
-			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : sudo rm -rf ',__FILE__).session_save_path());
+			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : ',__FILE__).'"sudo rm -rf '.session_save_path().';mkdir '.session_save_path().';chmod 777 '.session_save_path().'"');
 		}
 		foreach ($sessions as $session) {
 			try {

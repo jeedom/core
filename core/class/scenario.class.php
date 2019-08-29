@@ -1445,11 +1445,13 @@ class scenario {
 					addGraphLink($this, 'scenario', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $use['view'], 'view', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $use['plan'], 'plan', $_data, $_level, $_drill);
+					addGraphLink($this, 'scenario', $use['plan3d'], 'plan3d', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 					addGraphLink($this, 'scenario', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 					addGraphLink($this, 'scenario', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
+					addGraphLink($this, 'scenario', $usedBy['plan3d'], 'plan3d', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 					addGraphLink($this, 'scenario', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 					return $_data;
 				}
@@ -1477,6 +1479,7 @@ class scenario {
 					));
 					$return['view'] = view::searchByUse('scenario', $this->getId());
 					$return['plan'] = planHeader::searchByUse('scenario', $this->getId());
+					$return['plan3d'] = plan3dHeader::searchByUse('scenario', $this->getId());
 					if ($_array) {
 						foreach ($return as &$value) {
 							$value = utils::o2a($value);
