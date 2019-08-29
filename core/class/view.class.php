@@ -215,7 +215,7 @@ class view {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = findCodeIcon('fa-picture-o');
+		$icon = findCodeIcon($this->getDisplay('icon','<i class="far fa-image"></i>'));
 		$_data['node']['view' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
 			'type' => __('Vue',__FILE__),

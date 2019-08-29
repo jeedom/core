@@ -33,7 +33,7 @@ $('#in_searchObject').keyup(function () {
     return;
   }
   search = normTextLower(search)
-
+  
   $('.objectDisplayCard').hide()
   $('.objectDisplayCard .name').each(function(){
     var text = $(this).text()
@@ -66,7 +66,7 @@ $(function(){
           ob = _objects[i]
           contextmenuitems[ob.id] = {'name': ob.name}
         }
-
+        
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -140,7 +140,7 @@ function loadObjectConfiguration(_id){
     $('#bt_uploadImage').fileupload('destroy');
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">');
   } catch(error) {
-
+    
   }
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
@@ -177,12 +177,12 @@ function loadObjectConfiguration(_id){
       $('.objectAttr[data-l1key=father_id] option').show();
       $('#summarytab input[type=checkbox]').value(0);
       $('.object').setValues(data, '.objectAttr');
-
+      
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
         bodyStyles = window.getComputedStyle(document.body);
         objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
         objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
-
+        
         if (!objectBkgdColor === undefined){
           objectBkgdColor = rgbToHex(objectBkgdColor)
         } else {
@@ -193,10 +193,10 @@ function loadObjectConfiguration(_id){
         } else {
           objectTxtColor = '#ebebeb'
         }
-
+        
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').value(objectBkgdColor);
         $('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').value(objectTxtColor);
-
+        
         $('.objectAttr[data-l1key=display][data-l2key=tagColor]').click(function () {
           $('input[data-l2key="useCustomColor"').prop('checked', true)
         })
@@ -204,18 +204,18 @@ function loadObjectConfiguration(_id){
           $('input[data-l2key="useCustomColor"').prop('checked', true)
         })
       }
-
+      
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide();
       $('.div_summary').empty();
       $('.tabnumber').empty();
-
+      
       if (isset(data.img)) {
         $('.objectImg img').attr('src',data.img);
         $('.objectImg img').show()
       } else {
         $('.objectImg img').hide()
       }
-
+      
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         for(var i in data.configuration.summary){
           var el = $('.type'+i);
@@ -227,7 +227,7 @@ function loadObjectConfiguration(_id){
               $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')');
             }
           }
-
+          
         }
       }
       addOrUpdateUrl('id',data.id);
@@ -312,13 +312,20 @@ $("#bt_removeObject").on('click', function (event) {
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
+  var icon = false
+  var color = false
   if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
+    color = '';
+    class_icon = $('div[data-l2key="icon"] > i').attr('class')
+    class_icon = class_icon.replace(' ', '.').split(' ');
+    icon = '.'+class_icon[0];
+    if(class_icon[1]){
+      color = class_icon[1];
+    }
   }
   chooseIcon(function (_icon) {
     $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
+  },{icon:icon,color:color});
 });
 
 if (is_numeric(getUrlVars('id'))) {

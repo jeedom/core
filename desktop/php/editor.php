@@ -55,7 +55,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 		<fieldset>
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Version}}</label>
-				<div class="col-xs-4">
+				<div class="col-xs-8">
 					<select id="sel_widgetVersion">
 						<option value="dashboard">{{Dashboard}}</option>
 						<option value="mobile">{{Mobile}}</option>
@@ -64,7 +64,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 			</div>
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Type}}</label>
-				<div class="col-xs-4">
+				<div class="col-xs-8">
 					<select  id="sel_widgetType">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
@@ -76,7 +76,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 			</div>
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Sous-type}}</label>
-				<div class="col-xs-4">
+				<div class="col-xs-8">
 					<select id="sel_widgetSubtype">
 						<option value="" data-default="1"><a></option>
 							<?php
@@ -91,13 +91,13 @@ global $JEEDOM_INTERNAL_CONFIG;
 				</div>
 				<div class="form-group">
 					<label class="col-xs-4 control-label">{{Nom}}</label>
-					<div class="col-xs-4">
+					<div class="col-xs-8">
 						<input id="in_widgetName" class="form-control" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-xs-4 control-label"></label>
-					<div class="col-xs-4">
+					<div class="col-xs-8">
 						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
 					</div>
 				</div>

@@ -99,6 +99,7 @@ legend,
 span,
 .label {
   cursor: default !important;
+  word-break: break-all;
 }
 
 a > img:hover {
@@ -926,7 +927,7 @@ pre {
 }
 
 .cmd.label i{
-  color : var(--link-color) !important;
+  color : var(--linkHoverLight-color) !important;
 }
 
 .state,
@@ -952,7 +953,7 @@ p.state {
 }
 
 .cmd.label .cmdName{
-  color : var(--link-color) !important;
+  color : var(--linkHoverLight-color) !important;
 }
 
 .cmd.label{
@@ -2415,7 +2416,8 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
-.highcharts-plot-band {
+#div_graph .highcharts-plot-band,
+#div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
 }
 .highcharts-button-box {

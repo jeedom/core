@@ -33,6 +33,9 @@ try {
 	}
 	
 	if (init('action') == 'login') {
+		if(!file_exists(session_save_path())){
+			mkdir(session_save_path());
+		}
 		if (!isConnect()) {
 			if (config::byKey('sso:allowRemoteUser') == 1) {
 				$user = user::byLogin($_SERVER['REMOTE_USER']);
