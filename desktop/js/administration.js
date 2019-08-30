@@ -801,11 +801,11 @@ function saveObjectSummary() {
     summary = {};
     temp = $('#table_objectSummary tbody tr').getValues('.objectSummaryAttr');
     for(var i in temp){
-        temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
-        if(temp[i].key == ''){
-            temp[i].key = temp[i].name.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
-        }
-        summary[temp[i].key] = temp[i]
+     if(temp[i].key == ''){
+       temp[i].key = temp[i].name
+     }
+     temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
+     summary[temp[i].key] = temp[i]
     }
     value = {'object:summary' : summary};
     $.ajax({
