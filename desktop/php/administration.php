@@ -1419,7 +1419,7 @@ user::isBan();
 										<option value="beta">{{Beta (Plus d'accès au support)}}</option>
 										<option value="release">{{Release (Plus d'accès au support)}}</option>
 										<option value="master">{{Stable}}</option>
-										<option value="V4-stable">{{Stable V4}}</option>
+										<option value="V4-stable">{{Release Candidat V4}}</option>
 									</select>
 								</div>
 							</div>
