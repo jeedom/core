@@ -6,7 +6,7 @@ aussi de changer votre mot de passe.
 A encontrar la parte superior derecha hacer clic en el icono del hombre
 y Perfil (seguido de su identificación).
 
-temas
+Thèmes
 ======
 
 El panel de temas le permite ajustar los parámetros de la interfaz:
@@ -35,7 +35,7 @@ El panel de temas le permite ajustar los parámetros de la interfaz:
 -   **La opacidad de los widgets móviles**: permite dar opacidad
     (Entre 0 y 1) de widgets móviles
 
-interfaz
+Interface
 ---------
 
 Se puede definir ciertos comportamientos de la interfaz:
@@ -75,27 +75,27 @@ Se puede definir ciertos comportamientos de la interfaz:
     -   **Déplier le panneau des vues** : permet de rendre visible par
         défaut le menu des vues (à gauche) sur les vues
 
-Sécurité 
+Sécurité
 --------
 
 -   **Authentification en 2 étapes** : permet de configurer
     l’authentification en 2 étapes (pour rappel, c’est un code changeant
     toutes les X secondes qui s’affiche sur une application mobile, type
-    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé.
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que jeedom (voir sur la page santé) et votre téléphone sont bien à la meme heure (1 min de difference suffit pour que ca ne marche pas)
 
 -   **Mot de passe** : permet de changer votre mot de passe (ne pas
     oublier de le retaper en dessous)
 
 -   **Hash de l’utilisateur** : votre clef API d’utilisateur
 
-### Sessions actives 
+### Sessions actives
 
 Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
 leur IP ainsi que la date de derniere communication. En cliquant sur
 "Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
 un péripherique enregistré cela supprimera églagement l’enregistrement.
 
-### Péripherique enregistrés 
+### Péripherique enregistrés
 
 Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
 connecte sans authentification) à votre Jeedom ainsi que la date de
@@ -103,10 +103,8 @@ derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
 peripherique. Attention cela ne le deconnecte pas mais empechera juste
 sa reconnection automatique.
 
-Notifications 
+Notifications
 -------------
 
 -   **Commande de notification utilisateur** : Commande par défaut pour
     vous joindre (commande de type message)
-
-
