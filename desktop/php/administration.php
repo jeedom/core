@@ -1414,12 +1414,12 @@ user::isBan();
 							<div class="form-group">
 								<label class="col-lg-4 col-md-6 col-sm-6 col-xs-6 control-label">{{Version du core}}</label>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-									<select class="configKey form-control" data-l1key="core::branch">
+									<select class="configKey form-control" id="versionCore" data-l1key="core::branch">
 										<option value="alpha">{{Alpha (Plus d'accès au support)}}</option>
 										<option value="beta">{{Beta (Plus d'accès au support)}}</option>
 										<option value="release">{{Release (Plus d'accès au support)}}</option>
 										<option value="master">{{Stable}}</option>
-										<option value="V4-stable">{{Release Candidat V4}}</option>
+										<option value="V4-stable">{{Release Candidate V4}}</option>
 									</select>
 								</div>
 							</div>
