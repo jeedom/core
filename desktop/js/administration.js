@@ -851,3 +851,9 @@ $('#bt_consitency').off('click').on('click',function(){
     }
   });
 });
+
+$('#versionCore').on('change', function() {
+  if(this.value == 'V4-stable'){
+    alert('{{Attention cette version change la gestion des widgets ainsi que celle des designs. Il est fortement conseillé de ne pas passer sur cette version si vous en utilisez, veuillez-vous rendre sur le blog de Jeedom pour plus d\'informations Merci.}}');
+  }
+});
