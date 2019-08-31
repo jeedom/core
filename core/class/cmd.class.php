@@ -1638,6 +1638,9 @@ class cmd {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$this->setCache('alertLevel', $_level);
 		$eqLogic = $this->getEqLogic();
+		if($eqLogic->getIsEnable() == 0){
+			return;
+		}
 		$maxAlert = $eqLogic->getMaxCmdAlert();
 		$prevAlert = $eqLogic->getAlert();
 		if (!$_value) {

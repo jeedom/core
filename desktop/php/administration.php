@@ -1686,8 +1686,8 @@ user::isBan();
 													</label>
 													<div class="col-lg-4 col-xs-6">
 														<select class="form-control configKey" data-l1key="core::branch">
-															<option value="v4-stable">{{Stable}}</option>
-															<option value="v4-release">{{Release (Pas de support)}}</option>
+															<option value="V4-stable">{{Stable}}</option>
+															<option value="V4-release">{{Release (Pas de support)}}</option>
 															<option value="beta">{{Beta (Pas de support)}}</option>
 															<option value="alpha">{{Alpha (Pas de support)}}</option>
 														</select>
