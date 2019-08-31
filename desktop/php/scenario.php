@@ -31,10 +31,6 @@ if (is_array($scenarioListGroup)) {
 					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
 				</div>
 			<?php } ?>
-			<div class="cursor logoSecondary" id="bt_displayScenarioVariable2">
-				<center><i class="fas fa-eye"></i></center>
-				<span class="txtColor"><center>{{Voir variables}}</center></span>
-			</div>
 			<div class="cursor logoSecondary  bt_showScenarioSummary">
 				<center><i class="fas fa-list"></i></center>
 				<span class="txtColor"><center>{{Vue d'ensemble}}</center></span>
@@ -133,7 +129,6 @@ if (is_array($scenarioListGroup)) {
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
 				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}
-				</a><a class="btn btn-primary btn-sm" id="bt_displayScenarioVariable"><i class="fas fa-eye"></i> {{Variables}}
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>

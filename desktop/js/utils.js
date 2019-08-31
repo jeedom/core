@@ -548,6 +548,10 @@ $(function () {
     $('#md_modal').dialog({title: "{{Testeur d'expression}}"}).load('index.php?v=d&modal=expression.test').dialog('open');
   });
   
+  $('#bt_showDatastoreVariable').off('click').on('click', function () {
+    $('#md_modal').dialog({title: "{{Variables des scénarios}}"}).load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
+  });
+  
   $('#bt_gotoDashboard').on('click',function(event){
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
