@@ -50,6 +50,7 @@ foreach (eqLogic::all() as $eqLogic) {
         if($eqLogic->getDisplay('color-defaultplan') != 1){
           $plan->setCss('color',$eqLogic->getDisplay('colorplan'));
         }
+        $plan->setDisplay('hideName',1 - $eqLogic->getDisplay('showNameOnplan'));
         $plan->setCss('opacity',$eqLogic->getDisplay('background-opacityplan'));
         $plan->save();
       } catch (\Exception $e) {
