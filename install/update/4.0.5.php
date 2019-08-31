@@ -39,7 +39,7 @@ foreach (eqLogic::all() as $eqLogic) {
       try {
         if($eqLogic->getDisplay('background-color-defaultplan') != 1){
           $plan->setCss('background-color',$eqLogic->getDisplay('background-colorplan'));
-          $plan->setCss('background-transparent',$eqLogic->getDisplay('background-color-transparentplan'));
+          $plan->setDisplay('background-transparent',$eqLogic->getDisplay('background-color-transparentplan'));
         }
         if($eqLogic->getDisplay('border-defaultplan') != 1){
           $plan->setCss('border',$eqLogic->getDisplay('borderplan').'px solid black');
