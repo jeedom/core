@@ -34,7 +34,5 @@ replaceAndSaveFA5(scenarioExpression::all());
 replaceAndSaveFA5(viewZone::all());
 replaceAndSaveFA5(viewData::all());
 replaceAndSaveFA5(view::all());
-replaceAndSaveFA5(plan::all());
-replaceAndSaveFA5(planHeader::all());
 ob_end_clean();
 ?>
