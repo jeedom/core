@@ -879,9 +879,10 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
-          if(isset(data.configuration) && isset(data.configuration.displayObjectName)){
+          if(isset(data.configuration) && isset(data.configuration.displayObjectName) && data.configuration.displayObjectName != '0'){
             jeedom.eqLogic.changeDisplayObjectName(data.configuration.displayObjectName);
           }else{
+            console.log('je passe');
             jeedom.eqLogic.changeDisplayObjectName(false);
           }
           initEditOption(editOption.state);

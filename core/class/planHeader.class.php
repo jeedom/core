@@ -26,7 +26,7 @@ class planHeader {
 	private $name;
 	private $image;
 	private $configuration;
-	private $order;
+	private $order = 9999;
 	private $_changed = false;
 	
 	/*     * ***********************Méthodes statiques*************************** */
@@ -173,6 +173,9 @@ class planHeader {
 	}
 	
 	public function getOrder() {
+		if ($this->order == '' || !is_numeric($this->order)) {
+			return 0;
+		}
 		return $this->order;
 	}
 	
