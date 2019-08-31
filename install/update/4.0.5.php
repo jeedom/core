@@ -38,6 +38,7 @@ foreach (eqLogic::all() as $eqLogic) {
     foreach ($plans as $plan) {
       try {
         if($eqLogic->getDisplay('background-color-defaultplan') != 1){
+          $plan->setDisplay('background-defaut',0);
           $plan->setCss('background-color',$eqLogic->getDisplay('background-colorplan'));
           $plan->setDisplay('background-transparent',$eqLogic->getDisplay('background-color-transparentplan'));
         }
@@ -49,6 +50,10 @@ foreach (eqLogic::all() as $eqLogic) {
         }
         if($eqLogic->getDisplay('color-defaultplan') != 1){
           $plan->setCss('color',$eqLogic->getDisplay('colorplan'));
+          $plan->setDisplay('color-defaut',0);
+        }else{
+          $plan->setCss('color','#FFFFFF');
+          $plan->setDisplay('color-defaut',0);
         }
         $plan->setDisplay('hideName',1 - $eqLogic->getDisplay('showNameOnplan'));
         $plan->setCss('opacity',$eqLogic->getDisplay('background-opacityplan'));
