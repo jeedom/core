@@ -4,19 +4,23 @@
 	</div>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
-			var $cmd_id = $('.cmd[data-cmd_id=#id#]')
-			$cmd_id.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+			var cmd = $('.cmd[data-cmd_id=#id#]')
+			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
 			if (_options.display_value == '1') {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="icon_green fas fa-check"></i>')
 			} else {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append('<i class="icon_red fas fa-times"></i>')
 			}
-			if (_options.alertLevel) {
-				$cmd_id.removeClass('label label-warning label-danger')
-				if (_options.alertLevel == 'warning') {
-					$cmd_id.addClass('label label-warning')
-				} else if(_options.alertLevel == 'danger') {
-					$cmd_id.addClass('label label-danger')
+			if(_options.alertLevel){
+				if(_options.alertLevel == 'warning'){
+					cmd.addClass('label label-warning')
+					cmd.attr('data-alertlevel','warning');
+				}else if(_options.alertLevel == 'danger'){
+					cmd.addClass('label label-danger')
+					cmd.attr('data-alertlevel','danger');
+				}else{
+					cmd.removeClass('label label-warning label-danger')
+					cmd.attr('data-alertlevel','none');
 				}
 			}
 		}
