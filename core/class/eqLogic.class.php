@@ -520,7 +520,7 @@ class eqLogic {
 			$batterySince = round($batterySince, 1);
 		}
 		if (strpos($battery, ' ') !== false) {
-			$battery = substr(strrchr($battery, " "), 1);
+			$battery = mb_substr(strrchr($battery, " "), 1);
 		}
 		$plugins = $this->getEqType_name();
 		$object_name = 'Aucun';
@@ -541,7 +541,7 @@ class eqLogic {
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
 		
 		$eqName = $this->getName();
-		if (strlen($eqName) > 23) $eqName = substr($eqName,0,23)."...";
+		if (strlen($eqName) > 23) $eqName = mb_substr($eqName,0,23)."...";
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name">' . $eqName . '<br/><span>' . $object_name . '</span></div>';
 		} else {
@@ -659,7 +659,7 @@ class eqLogic {
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#name_display#' => (strlen($this->getName()) <25) ? $this->getName() : substr($this->getName(),0,25)."...",
+			'#name_display#' => (strlen($this->getName()) <25) ? $this->getName() : mb_substr($this->getName(),0,25)."...",
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
