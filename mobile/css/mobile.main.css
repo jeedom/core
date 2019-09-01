@@ -330,9 +330,11 @@ p.state {
 }
 .label-danger {
   background-color:var(--al-danger-color) !important;
+  color : var(--linkHoverLight-color) !important;
 }
 .label-warning {
   background-color:var(--al-warning-color) !important;
+  color : var(--linkHoverLight-color) !important;
 }
 .full-width-slider {
   width: 100% !important;
