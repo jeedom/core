@@ -327,7 +327,6 @@ p.state {
 .label {
   font-size: 12px !important;
   font-weight: normal;
-  color : var(--linkHoverLight-color) !important;
 }
 .label-danger {
   background-color:var(--al-danger-color) !important;
