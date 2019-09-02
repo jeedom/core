@@ -226,9 +226,11 @@ function loadTemplateConfiguration(_template,_data){
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
           replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
-          replace += '<span class="input-group-btn">';
-          replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
-          replace += '</span>';
+          if(data.replace[i].indexOf('icon') != -1){
+            replace += '<span class="input-group-btn">';
+            replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+            replace += '</span>';
+          }
           replace += '</div>';
           replace += '</div>';
           replace += '</div>';
