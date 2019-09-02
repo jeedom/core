@@ -15,5 +15,11 @@
       }
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    if(isInteger('#_width_#')){
+      $('.cmd[data-cmd_id=#id#] .iconCmd img').css('max-width','#_width_#');
+    }
+    if(isInteger('#_height_#')){
+      $('.cmd[data-cmd_id=#id#] .iconCmd img').css('max-height','#_height_#');
+    }
   </script>
 </div>

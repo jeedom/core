@@ -181,13 +181,12 @@ $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblcl
 
 $('.widgetsAttr[data-l1key=type]').off('change').on('change',function(){
   $('.selectWidgetSubType').hide().removeClass('widgetsAttr');
-  $('.selectWidgetSubType[data-type='+$(this).value()+']').show().addClass('widgetsAttr');
-  $('.widgetsAttr[data-l1key=subtype]').change();
+  $('.selectWidgetSubType[data-type='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
 
 $('.selectWidgetSubType').off('change').on('change',function(){
   $('.selectWidgetTemplate').hide().removeClass('widgetsAttr');
-  $('.selectWidgetTemplate[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show().addClass('widgetsAttr');
+  $('.selectWidgetTemplate[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
 
 $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', function () {
@@ -209,7 +208,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function loadTemplateConfiguration(_template,_data){
-  $('.widgetsAttr[data-l1key=template]').off('change')
+  $('.selectWidgetTemplate').off('change')
   jeedom.widgets.getTemplateConfiguration({
     template:_template,
     error: function (error) {
@@ -247,8 +246,8 @@ function loadTemplateConfiguration(_template,_data){
       }else{
         $('.type_test').hide();
       }
-      $('.widgetsAttr[data-l1key=template]').on('change',function(){
-        if($(this).value() == ''){
+      $('.selectWidgetTemplate').on('change',function(){
+        if($(this).value() == '' || !$(this).hasClass('widgetsAttr')){
           return;
         }
         loadTemplateConfiguration('cmd.'+ $('.widgetsAttr[data-l1key=type]').value()+'.'+$('.widgetsAttr[data-l1key=subtype]').value()+'.'+$(this).value());
@@ -361,7 +360,7 @@ $(".widgetsDisplayCard").on('click', function (event) {
     },
     success: function (data) {
       $('a[href="#widgetstab"]').click();
-      $('.widgetsAttr[data-l1key=template]').off('change')
+      $('.selectWidgetTemplate').off('change')
       $('.widgetsAttr').value('');
       $('.widgetsAttr[data-l1key=type]').value('info')
       $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'));
