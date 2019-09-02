@@ -55,7 +55,7 @@ $('#bt_editCode').off('click').on('click', function () {
 })
 
 $('#bt_applyToCmd').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé scénario}}"})
+  $('#md_modal').dialog({title: "{{Résumé widgets}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
@@ -180,21 +180,14 @@ $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblcl
 });
 
 $('.widgetsAttr[data-l1key=type]').off('change').on('change',function(){
-  $('.widgetsAttr[data-l1key=subtype] option').hide();
-  if($(this).value() != ''){
-    $('.widgetsAttr[data-l1key=subtype] option[data-type='+$(this).value()+']').show();
-  }
-  $('.widgetsAttr[data-l1key=subtype] option[data-default=1]').show();
-  $('.widgetsAttr[data-l1key=subtype]').value('');
+  $('.selectWidgetSubType').hide().removeClass('widgetsAttr');
+  $('.selectWidgetSubType[data-type='+$(this).value()+']').show().addClass('widgetsAttr');
+  $('.widgetsAttr[data-l1key=subtype]').change();
 });
 
-$('.widgetsAttr[data-l1key=subtype]').off('change').on('change',function(){
-  $('.widgetsAttr[data-l1key=template] option').hide();
-  if($(this).value() != '' && $('.widgetsAttr[data-l1key=type]').value() != ''){
-    $('.widgetsAttr[data-l1key=template] option[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show();
-  }
-  $('.widgetsAttr[data-l1key=template] option[data-default=1]').show();
-  $('.widgetsAttr[data-l1key=template]').value('');
+$('.selectWidgetSubType').off('change').on('change',function(){
+  $('.selectWidgetTemplate').hide().removeClass('widgetsAttr');
+  $('.selectWidgetTemplate[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show().addClass('widgetsAttr');
 });
 
 $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', function () {
@@ -368,6 +361,8 @@ $(".widgetsDisplayCard").on('click', function (event) {
       $('a[href="#widgetstab"]').click();
       $('.widgetsAttr[data-l1key=template]').off('change')
       $('.widgetsAttr').value('');
+      $('.widgetsAttr[data-l1key=type]').value('info')
+      $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'));
       $('.widgets').setValues(data, '.widgetsAttr');
       if (isset(data.test)) {
         for (var i in data.test) {
