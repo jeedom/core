@@ -354,6 +354,18 @@ class user {
 		}
 	}
 	
+	public static function deadCmd() {
+		foreach (user::all() as $user) {
+			$cmd = $user->getOptions('notification::cmd');
+			if ($cmd != '') {
+				if (!cmd::byId(str_replace('#', '', $cmd))) {
+					$return[] = array('detail' => __('Utilisateur',__FILE__), 'help' => __('Commande notification utilisateur', __FILE__), 'who' => $cmd);
+				}
+			}
+		}
+		return $return;
+	}
+	
 	/*     * *********************Méthodes d'instance************************* */
 	
 	public function preInsert() {
