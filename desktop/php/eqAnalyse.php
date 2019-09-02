@@ -148,7 +148,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -221,7 +221,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -270,6 +270,14 @@ usort($list, function ($a, $b) {
 				foreach (interactDef::deadCmd() as $datas) {
 					echo '<tr>';
 					echo '<td>Interaction</td>';
+					echo '<td>' . $datas['detail'] . '</td>';
+					echo '<td>' . $datas['who'] . '</td>';
+					echo '<td>' . $datas['help'] . '</td>';
+					echo '</tr>';
+				}
+				foreach (user::deadCmd() as $datas) {
+					echo '<tr>';
+					echo '<td>Utilisateur</td>';
 					echo '<td>' . $datas['detail'] . '</td>';
 					echo '<td>' . $datas['who'] . '</td>';
 					echo '<td>' . $datas['help'] . '</td>';
