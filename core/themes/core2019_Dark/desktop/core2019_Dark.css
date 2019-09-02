@@ -11,12 +11,14 @@ textarea {
 }
 
 header a.navbar-brand {
-  background-image: var(--url-logo-svg) !important;
   background-size: 60px !important;
   background-repeat: no-repeat;
   background-position: 10px 7px;
-  height: 50px;
+  background-attachment: fixed;
+  background-origin: border-box;
   width: 90px;
+  height: 50px;
+  background-image: var(--url-logo) !important;
 }
 
 a,
@@ -121,6 +123,11 @@ a:focus {
   color: var(--linkHoverLight-color) !important;
 }
 
+/* CodeMirror */
+.expressions .CodeMirror-wrap,
+body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.8 !important; }
+body:not([data-page="editor"]) .CodeMirror-focused,
+body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(165,165,165) !important; }
 
 ul[role="tablist"] li:not(.active) a {
   background-color: var(--el-defaultColor) !important;
