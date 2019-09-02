@@ -777,12 +777,13 @@ pre {
   margin: 0 0px 5px;
   font-size: 13px;
   line-height: 20px;
-  background: var(--bg-modal-color);
+  background: rgb(var(--bg-color));
+  
+  
 }
 
-.div_viewZone{
-  /*  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border-radius: var(--border-radius) !important;*/
+.div_rowZones {
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 .view-link-widget,
