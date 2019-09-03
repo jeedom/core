@@ -78,9 +78,7 @@ if (view_id != '') {
         $( "input").click(function() { $(this).focus(); });
         $( "textarea").click(function() { $(this).focus(); });
         $('.eqLogicZone').each(function () {
-          var container = $(this).packery({
-            gutter : 2
-          });
+          var container = $(this).packery();
           var itemElems =  container.find('.eqLogic-widget');
           itemElems.draggable();
           container.packery( 'bindUIDraggableEvents', itemElems );
