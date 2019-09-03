@@ -35,7 +35,6 @@ if ($update_in_progress > 1) {
 	die();
 }
 $output = array();
-/******************************Database***************************************/
 
 /********************************Date****************************************/
 echo 'Check Date => ';
@@ -44,6 +43,31 @@ if(date('Y') < 2019 || date('Y') > 2040){
 	echo 'Invalid date found, try correct it';
 	exec('sudo service ntp stop;sudo ntpdate -s time.nist.gov;sudo service ntp start');
 }
+
+/********************************Free space****************************************/
+
+$freespace = round(disk_free_space(__DIR__ . '/../../') / disk_total_space(__DIR__ . '/../../') * 100);
+echo 'Check Free space ('.$freespace.'%) => ';
+if($freespace <= 1){
+	echo "NOK\n";
+	echo "Trying cleaning\n";
+	if(file_exists(__DIR__.'/../../tmp')){
+		shell_exec('rm -rf '.__DIR__.'/../../tmp/*');
+	}
+	if(file_exists(__DIR__.'/../../log')){
+		shell_exec('rm -rf '.__DIR__.'/../../log/*');
+	}
+	$freespace = round(disk_free_space(__DIR__ . '/../../') / disk_total_space(__DIR__ . '/../../') * 100);
+	echo "Recheck Free space ('.$freespace.'%) => ";
+	if($freespace <= 1){
+		echo "NOK. Please do somethink manually...\n";
+	}else{
+		echo "OK\n";
+	}
+}else{
+	echo "OK\n";
+}
+
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
 $rc = 0;
