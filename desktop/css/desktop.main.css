@@ -103,7 +103,6 @@ legend,
 span,
 .label {
   cursor: default !important;
-  word-break: break-all;
 }
 
 a > img:hover {
