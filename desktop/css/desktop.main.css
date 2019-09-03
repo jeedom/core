@@ -32,6 +32,10 @@ body {
   background-position: center center;
 }
 
+.hidden  {
+  display: none !important;
+}
+
 html,
 body,
 textarea {
@@ -99,7 +103,6 @@ legend,
 span,
 .label {
   cursor: default !important;
-  word-break: break-all;
 }
 
 a > img:hover {
@@ -773,12 +776,13 @@ pre {
   margin: 0 0px 5px;
   font-size: 13px;
   line-height: 20px;
-  background: var(--bg-modal-color);
+  background: rgb(var(--bg-color));
+  
+  
 }
 
-.div_viewZone{
-  /*  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border-radius: var(--border-radius) !important;*/
+.div_rowZones {
+  background-color: rgb(var(--bg-color)) !important;
 }
 
 .view-link-widget,
@@ -1703,7 +1707,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-  
+
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -1856,7 +1860,55 @@ hr {
 }
 
 
+/* __________________________________________________________________________________________________________CodeMirror */
+div.CodeMirror {
+  height: auto;
+  background: var(--form-bg-color) !important;
+}
+.CodeMirror-sizer {
+  background: var(--form-bg-color) !important;
+}
 
+.CodeMirror-code { background: rgb(250,250,250) !important; }
+.CodeMirror-selected { background: rgba(5,5,5,1) !important; }
+
+.CodeMirror:not(class*=cm-s-),
+.CodeMirror-code,
+.CodeMirror-sizer {
+  color: var(--sc-formTxt-color)!important;
+}
+.CodeMirror-gutters {
+  background: var(--form-bg-color)!important;
+  border-right: 0;
+  border: none !important;
+}
+
+.CodeMirror-line {
+  background: var(--sc-form-color) !important;
+}
+
+[data-page=custom] .CodeMirror,
+[data-page=custom] .CodeMirror textarea,
+[data-page=custom] .CodeMirror-gutters {
+  height: 100% !important;
+}
+
+/* hihgly special */
+div[id^=__lpform_] { /*lastpass*/
+  display: none;
+}
+
+
+.jstree-default .jstree-clicked {
+  background-color: transparent;
+  border-left: 2.5px solid var(--logo-primary-color);
+}
+.jstree li a {
+  width: 90% !important;
+}
+.jstree li a:hover {
+  background-color: var(--form-bg-color);
+}
 
 /* __________________________________________________________________________________________________________SCENARIO */
 #div_scenarioElement .element .element {
@@ -3081,56 +3133,6 @@ input:invalid {
   padding: 2px 8px 4px 8px;
 }
 
-/* __________________________________________________________________________________________________________CodeMirror */
-.CodeMirror {
-  height: auto;
-  background: var(--sc-form-color);
-}
-
-.CodeMirror:not(class*=cm-s-),
-.CodeMirror-code,
-.CodeMirror-sizer {
-  background: var(--sc-form-color)!important;
-  color: var(--sc-formTxt-color)!important;
-}
-.CodeMirror-gutters {
-  background: var(--form-bg-color)!important;
-  border-right: 0;
-  border: none !important;
-}
-.CodeMirror-selected {
-  background: var(--txt-color)!important;
-}
-
-[data-page=custom] .CodeMirror,
-[data-page=custom] .CodeMirror textarea,
-[data-page=custom] .CodeMirror-gutters {
-  height: 100% !important;
-}
-
-/* hihgly special */
-div[id^=__lpform_] { /*lastpass*/
-  display: none;
-}
-
-
-.hidden  {
-  display: none !important;
-}
-
-
-.jstree-default .jstree-clicked {
-  background-color: transparent;
-  border-left: 2.5px solid var(--logo-primary-color);
-}
-.jstree li a {
-  width: 90% !important;
-}
-.jstree li a:hover {
-  background-color: var(--form-bg-color);
-}
-
-
 /* __________________________________________________________________________________________________________ROUNDING */
 ::-moz-color-swatch {
   border-radius: var(--border-radius) !important;
@@ -3194,7 +3196,7 @@ pre {
 #pre_globallog {
   font-size: 12px;
   letter-spacing: 0.07em;
-  line-height: 12px;
+  line-height: 13px;
 }
 
 .input-group .btn,
@@ -3265,11 +3267,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3278,7 +3280,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3287,12 +3289,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3300,11 +3302,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3350,5 +3352,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }

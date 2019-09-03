@@ -167,70 +167,68 @@ foreach (widgets::all() as $widget) {
                 <div class="form-group">
                   <label class="col-lg-4 col-xs-6 control-label">{{Sous-Type}}</label>
                   <div class="col-lg-6 col-xs-6">
-                    <select class="form-control widgetsAttr" data-l1key="subtype">
-                      <option value="" data-default="1"><a></option>
-                        <?php
-                        foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                          foreach ($value['subtype'] as $skey => $svalue) {
-                            echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
-                          }
+                    <?php
+                    foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+                      echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="'.$key.'">';
+                      foreach ($value['subtype'] as $skey => $svalue) {
+                        echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+                      }
+                      echo '</select>';
+                    }
+                    ?>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-4 col-xs-6 control-label">{{Template}}</label>
+                  <div class="col-lg-6 col-xs-6">
+                    <?php
+                    foreach (widgets::listTemplate() as $type => $values) {
+                      foreach ($values as $subtype => $namelist) {
+                        echo '<select class="form-control selectWidgetTemplate" data-l1key="template" data-type="'.$type.'" data-subtype="'.$subtype.'">';
+                        foreach ($namelist as $name) {
+                          echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.ucfirst(str_replace('tmpl','',$name)).'</option>';
                         }
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-lg-4 col-xs-6 control-label">{{Template}}</label>
-                    <div class="col-lg-6 col-xs-6">
-                      <select class="form-control widgetsAttr" data-l1key="template">
-                        <option value="" data-default="1"><a></option>
-                          <?php
-                          foreach (widgets::listTemplate() as $type => $values) {
-                            foreach ($values as $subtype => $namelist) {
-                              foreach ($namelist as $name) {
-                                echo '<option data-type="'.$type.'" data-subtype="'.$subtype.'" value="'.$name.'">'.ucfirst(str_replace('tmpl','',$name)).'</option>';
-                              }
-                            }
-                          }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-lg-4 col-xs-6 control-label">{{Icône}}</label>
-                      <div class="col-lg-2 col-xs-3">
-                        <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
-                      </div>
-                      <div class="col-lg-2 col-xs-3">
-                        <div class="widgetsAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
-                    <legend><i class="fas fa-info-circle"></i> {{Informations}}</legend>
-                    <div class="form-group">
-                      <label class="col-xs-3 control-label">{{Utilisé par}}</label>
-                      <div class="col-xs-9" id="div_usedBy"></div>
-                    </div>
+                        echo '</select>';
+                      }
+                    }
+                    ?>
                   </div>
                 </div>
-              </fieldset>
-            </form>
-            <form class="form-horizontal">
-              <fieldset>
-                <div class="col-sm-12">
-                  <legend class="type_replace"><i class="fas fa-random"></i> {{Remplacement}}</legend>
-                  <div id="div_templateReplace" class="type_replace"></div>
-                  <legend class="type_test"><i class="fas fa-stethoscope"></i> {{Test}}
-                    <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-                  </legend>
-                  <div id="div_templateTest" class="type_test"></div>
+                <div class="form-group">
+                  <label class="col-lg-4 col-xs-6 control-label">{{Icône}}</label>
+                  <div class="col-lg-2 col-xs-3">
+                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+                  </div>
+                  <div class="col-lg-2 col-xs-3">
+                    <div class="widgetsAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+                  </div>
                 </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
+              </div>
+              <div class="col-xs-6">
+                <legend><i class="fas fa-info-circle"></i> {{Informations}}</legend>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">{{Utilisé par}}</label>
+                  <div class="col-xs-9" id="div_usedBy"></div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="col-sm-12">
+              <legend class="type_replace"><i class="fas fa-random"></i> {{Remplacement}}</legend>
+              <div id="div_templateReplace" class="type_replace"></div>
+              <legend class="type_test"><i class="fas fa-stethoscope"></i> {{Test}}
+                <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+              </legend>
+              <div id="div_templateTest" class="type_test"></div>
+            </div>
+          </fieldset>
+        </form>
       </div>
-      
-      <?php include_file("desktop", "widgets", "js");?>
-      
+    </div>
+  </div>
+  
+  <?php include_file("desktop", "widgets", "js");?>
+  

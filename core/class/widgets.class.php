@@ -134,7 +134,7 @@ class widgets {
     if (count($matches[1]) == 0) {
       return $return ;
     }
-    $return['replace'] = $matches[1];
+    $return['replace'] = array_values(array_unique($matches[1]));
     return $return;
   }
   

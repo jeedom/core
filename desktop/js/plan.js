@@ -269,7 +269,6 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
             selected:  editOption.highlight,
             events: {
               click : function(e) {
-                console.log($(this).value())
                 editOption.highlight = ($(this).value() == 1) ? false : true;
                 initEditOption(1);
               }
@@ -475,12 +474,12 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
         type: 'checkbox',
         events: {
           click : function(opt) {
-            console.log(opt);
             if($(this).value() == 1){
               opt.handleObj.data.$trigger.addClass('locked');
             }else{
               opt.handleObj.data.$trigger.removeClass('locked');
             }
+            $('.context-menu-root').hide()
           }
         }
       },
@@ -658,6 +657,12 @@ var dragClick = {x: 0, y: 0}
 var dragStartPos = {top: 0, left: 0}
 var dragStep = false
 function draggableStartFix(event, ui) {
+  isDragLocked = false
+  if ($(event.target).hasClass('locked')) {
+    isDragLocked = true
+    document.body.style.cursor = "default"
+    return false
+  }
   zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
   if (editOption.grid == 1) {
     dragStep = editOption.gridSize[0]
@@ -686,6 +691,7 @@ function draggableStartFix(event, ui) {
   maxTop = containerHeight + minTop - (clientHeight * zoomScale)
 }
 function draggableDragFix(event, ui) {
+  if (isDragLocked == true) return false
   newLeft = event.clientX - dragClick.x + dragStartPos.left
   newTop = event.clientY - dragClick.y + dragStartPos.top
   
@@ -710,9 +716,9 @@ function initEditOption(_state) {
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
+      cancel: '.locked',
       containment: 'parent',
       cursor: 'move',
-      cancel : '.locked',
       start: draggableStartFix,
       drag: draggableDragFix,
       stop: function( event, ui ) {
@@ -730,7 +736,7 @@ function initEditOption(_state) {
       $('.div_grid').hide();
     }
     $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
-      cancel : '.locked',
+      cancel: '.locked',
       handles: 'n,e,s,w,se,sw,nw,ne',
       start: function( event, ui ) {
         zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
@@ -882,7 +888,6 @@ function displayPlan(_code) {
           if(isset(data.configuration) && isset(data.configuration.displayObjectName) && data.configuration.displayObjectName != '0'){
             jeedom.eqLogic.changeDisplayObjectName(data.configuration.displayObjectName);
           }else{
-            console.log('je passe');
             jeedom.eqLogic.changeDisplayObjectName(false);
           }
           initEditOption(editOption.state);
