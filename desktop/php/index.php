@@ -324,6 +324,7 @@ function setTheme() {
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
 										<li><a href="index.php?v=d&p=widgets"><i class="fas fa-camera-retro"></i> {{Widgets}}</a></li>
+										<li role="separator" class="divider"></li>
 										<li><a id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
 										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>

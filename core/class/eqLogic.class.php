@@ -656,10 +656,14 @@ class eqLogic {
 			}
 		}
 		$translate_category = trim($translate_category,',');
+      	$name_display = $this->getName();
+      	if (mb_strlen($name_display) > 25) {
+          $name_display = mb_substr($name_display,0,25)."...";
+        }
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
-			'#name_display#' => (strlen($this->getName()) <25) ? $this->getName() : mb_substr($this->getName(),0,25)."...",
+			'#name_display#' => $name_display,
 			'#eqLink#' => $this->getLinkToConfiguration(),
 			'#category#' => $this->getPrimaryCategory(),
 			'#translate_category#' => $translate_category,
