@@ -71,11 +71,6 @@ if (view_id != '') {
       }catch(err) {
         console.log(err);
       }
-      if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
-        jeedom.eqLogic.changeDisplayObjectName(html.raw.configuration.displayObjectName);
-      }else{
-        jeedom.eqLogic.changeDisplayObjectName(false);
-      }
       setTimeout(function () {
         initReportMode();
         positionEqLogic();
@@ -116,6 +111,11 @@ if (view_id != '') {
             $(this).css('color','rgb(46, 176, 75)');
           }
         });
+        if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1){
+          jeedom.eqLogic.changeDisplayObjectName(true);
+        }else{
+          jeedom.eqLogic.changeDisplayObjectName(false);
+        }
         if (getUrlVars('fullscreen') == 1) {
           fullScreen(true);
         }
