@@ -399,10 +399,11 @@ $('.divIconSel').on('dblclick', function () {
 	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
 });
 
-if(tabimg && tabimg == 1) {
-	$('#mod_selectIcon ul li a[href="#img"]').click();
-	$('#mySearch').hide()
-}
+setTimeout(function() {
+	if(tabimg && tabimg == 1) {
+		$('#mod_selectIcon ul li a[href="#img"]').click();
+	}
+}, 500);
 $('#mod_selectIcon ul li a[href="#tabicon"]').click(function(e) {
 	$('#mySearch').show()
 	$('.iconCategory').show()

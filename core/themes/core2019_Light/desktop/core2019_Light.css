@@ -5,12 +5,14 @@ Theme Core 2019 @Jeedom
 @import url("colors.css");
 
 header a.navbar-brand {
-  background-image: var(--url-logo-svg) !important;
   background-size: 60px !important;
   background-repeat: no-repeat;
   background-position: 10px 7px;
-  height: 50px;
+  background-attachment: fixed;
+  background-origin: border-box;
   width: 90px;
+  height: 50px;
+  background-image: var(--url-logo) !important;
 }
 
 a,
@@ -114,3 +116,9 @@ a:focus {
 #div_displayObject .btn:hover {
   color: var(--txt-color) !important;
 }
+
+/* CodeMirror */
+.expressions .CodeMirror-wrap,
+body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.88 !important; }
+body:not([data-page="editor"]) .CodeMirror-focused,
+body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(185,185,185) !important; }
