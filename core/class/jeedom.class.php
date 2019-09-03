@@ -1371,7 +1371,7 @@ class jeedom {
 					}
 				}
 				$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
-				cache::set('jeedom::isCapable::sudo', $result);
+				cache::set('jeedom::isCapable::sudo', $result,3600*24);
 				return $result;
 			}
 			$hardware = self::getHardwareName();

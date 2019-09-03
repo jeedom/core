@@ -541,7 +541,7 @@ class eqLogic {
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
 		
 		$eqName = $this->getName();
-		if (strlen($eqName) > 23) $eqName = mb_substr($eqName,0,23)."...";
+		if (strlen($eqName) > 20) $eqName = mb_substr($eqName,0,20)."...";
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name">' . $eqName . '<br/><span>' . $object_name . '</span></div>';
 		} else {
