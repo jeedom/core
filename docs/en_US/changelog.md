@@ -25,7 +25,7 @@ Changelog
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
+- Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
 - Suppression du partage de scénario.
 - Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
@@ -62,6 +62,11 @@ Changelog
 - Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
 - Possibilité dans les résumé d'ajouter une exclusion des commandes n'ayant pas étaient mise à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
 - Ajout dans le menu outils d'un bouton pour avoir accès au testeur d'expression
+- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres
+
+>**IMPORTANT**
+>
+>Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
 
 3.3.29
 =====
