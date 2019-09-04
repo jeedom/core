@@ -644,9 +644,12 @@ effectuer des conversions ou des calculs :
 -   median(commande1,commande2…​.commandeN) : Renvoie la médiane
     de los valores.
 
+-   avg(commande1,commande2…​.commandeN) : Renvoie la moyenne
+        des valeurs.
+
 -   time_op(time,value) : Permet de faire des opérations sur le temps,
     avec time=temps (ex : 1530) et value=valeur à ajouter ou à
-    restar en minutos.
+    soustraire en minutes.
 
 -   `time_between(time,start,end)` : Permet de tester si un temps est
     entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
@@ -660,7 +663,7 @@ effectuer des conversions ou des calculs :
 
 -   floor(time/60) : Permet de convertir des secondes en minutes, ou
     des minutes en heures (floor(time/3600) pour des secondes
-    en horas)
+    en heures)
 
 - convertDuration(secondes) : Permet de convertir des secondes en j/h/mn/s.
 
@@ -675,7 +678,8 @@ Et les exemples pratiques :
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | odd(3)                             | Renvoie 1                            |
-| median(15,25,20)                   | Renvoie 20                           |
+| median(15,25,20)                   | Renvoie 20        
+| avg(10,15,18)                      | Renvoie 14.3                     |
 | time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
 | formatTime(1650)                   | Renvoie 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
