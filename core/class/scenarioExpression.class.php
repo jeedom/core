@@ -1560,12 +1560,15 @@ class scenarioExpression {
 						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));
 					}
 					if ($this->getOptions('cmd') != '') {
-						$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
-						if (!is_object($cmd)) {
-							throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+						$cmdArray = explode('&&',$this->getOptions('cmd'));
+						foreach ($cmdArray as $cmdname){
+							$cmd = cmd::byId(str_replace('#', '', $cmdname));
+							if (!is_object($cmd)) {
+								throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+							}
+							$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
+							$cmd->execCmd($cmd_parameters);
 						}
-						$this->setLog($scenario, __('Envoi du rapport généré sur ', __FILE__) . $cmd->getHumanName());
-						$cmd->execCmd($cmd_parameters);
 					}
 				} elseif ($this->getExpression() == 'tag') {
 					$tags = $scenario->getTags();
