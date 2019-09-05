@@ -8,9 +8,17 @@
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			var state = '';
-			$('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate);
+			var cmd = $('.cmd[data-cmd_id=#id#]');
+			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate);
 			#test#
-			$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(state);
+			cmd.find('.iconCmd').empty().append(state);
+			if(!isNaN('#_width_#')){
+				style = 'max-width:#_width_#px !important;'
+			}
+			if(!isNaN('#_height_#')){
+				style += 'max-height:#_height_#px !important;'
+			}
+			cmd.find('.iconCmd img').attr('style',style);
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 	</script>

@@ -103,6 +103,7 @@ legend,
 span,
 .label {
   cursor: default !important;
+  word-break: break-word;
 }
 
 a > img:hover {
@@ -580,7 +581,7 @@ div[class*="DisplayCard"] .name > .label {
   overflow: hidden;
 }
 .eqLogicDisplayCard .name {
-  word-break: keep-all !important;
+  word-break: break-word !important;
   font-size: 12px !important;
   position: relative;
   top: 3px !important;
@@ -607,6 +608,14 @@ div[class*="DisplayCard"] .name > .label {
   vertical-align: baseline;
 }
 
+
+.eqLogic.eqLogic-widget .widget-name {
+  padding-right: 22px;
+  padding-left: 12px;
+}
+.eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
+  display: none;
+}
 .eqLogic.eqLogic-widget .widget-name span.warning i {
   margin-right: 5px;
   color: var(--linkHoverLight-color);
