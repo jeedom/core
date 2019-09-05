@@ -14,7 +14,8 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      $(".cmd[data-cmd_id=#id#] .slider").slider({
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      cmd.find('.slider').slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
         value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
@@ -24,12 +25,18 @@
         }
       });
       if (parseInt(_options.display_value) > 0) {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
-        $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'on');
+        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
       }else {
-        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
-        $('.cmd[data-cmd_id=#id#] .iconCmd').attr('data-state', 'off');
+        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
       }
+      var style = '';
+      if(!isNaN('#_width_#')){
+        style = 'max-width:#_width_#px !important;'
+      }
+      if(!isNaN('#_height_#')){
+        style += 'max-height:#_height_#px !important;'
+      }
+      cmd.find('.iconCmd img').attr('style',style);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#'});
     $('.iconCmd#uid#').off().on('click', function() {
