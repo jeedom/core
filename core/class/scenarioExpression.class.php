@@ -1640,14 +1640,14 @@ class scenarioExpression {
 	
 	public function getAllId() {
 		$return = array(
-			'element' => array(),
-			'subelement' => array(),
-			'expression' => array($this->getId()),
+		'element' => array(),
+		'subelement' => array(),
+		'expression' => array($this->getId()),
 		);
 		$result = array(
-			'element' => array(),
-			'subelement' => array(),
-			'expression' => array(),
+		'element' => array(),
+		'subelement' => array(),
+		'expression' => array(),
 		);
 		if ($this->getType() == 'element') {
 			$element = scenarioElement::byId($this->getExpression());
