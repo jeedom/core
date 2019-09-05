@@ -281,6 +281,8 @@ if (is_array($scenarioListGroup)) {
 							<div class="provokeMode provokeDisplay" style="display: none;">
 								
 							</div>
+							<legend>{{Scénarios liés}}</legend>
+							<div class="scenario_link"></div>
 						</form>
 					</div>
 				</div>
