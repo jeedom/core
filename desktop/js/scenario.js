@@ -1088,6 +1088,10 @@ function setAutocomplete() {
   });
 }
 
+$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){
+  printScenario($(this).attr('data-scenario_id'));
+});
+
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
@@ -1170,6 +1174,18 @@ function printScenario(_id) {
           addSchedule(data.schedule);
         }
       }
+      $('.scenario_link').empty();
+      html = '';
+      if(data.scenario_link.scenario){
+        for(var i in data.scenario_link.scenario){
+          if(data.scenario_link.scenario[i].isActive == 1){
+            html  += '<span class="label label-success scenario_link" style="cursor:pointer !important" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
+          }else{
+            html  += '<span class="label label-danger scenario_link" style="cursor:pointer !important" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
+          }
+        }
+      }
+      $('.scenario_link').append(html);
       if(data.elements.length == 0){
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
       }

@@ -6,11 +6,12 @@
 	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
-			jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+			var cmd = $('.cmd[data-cmd_id=#id#]');
+			jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
 			if (_options.display_value == '1') {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
+				cmd.find('.iconCmd').empty().append("#_icon_on_#");
 			}else {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
+				cmd.find('.iconCmd').empty().append("#_icon_off_#");
 			}
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});

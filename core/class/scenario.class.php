@@ -799,7 +799,7 @@ class scenario {
 						'#id#' => $this->getId(),
 						'#state#' => $this->getState(),
 						'#isActive#' => $this->getIsActive(),
-						'#name#' => (strlen($name) <25) ?$name : substr($name,0,25)."...",
+						'#name#' => (mb_strlen($name) <25) ?$name : mb_substr($name,0,25)."...",
 						'#icon#' => $this->getIcon(),
 						'#lastLaunch#' => $this->getLastLaunch(),
 						'#scenarioLink#' => $this->getLinkToConfiguration(),
@@ -1474,7 +1474,7 @@ class scenario {
 					$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 					$return['interactDef'] = interactDef::searchByUse(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 					$return['scenario'] = scenario::searchByUse(array(
-						array('action' => 'scenario', 'option' => $this->getId(), 'and' => true),
+						array('action' => 'scenario', 'option' => 'scenario_id":"'.$this->getId().'"', 'and' => true),
 						array('action' => '#scenario' . $this->getId() . '#'),
 					));
 					$return['view'] = view::searchByUse('scenario', $this->getId());

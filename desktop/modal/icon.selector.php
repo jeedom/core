@@ -427,9 +427,11 @@ $(function() {
 		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
 		setTimeout(function() {
 			elem = $('div.divIconSel.iconSelected')
-			container = $('#mod_selectIcon > .tab-content')
-			pos = elem.position().top + container.scrollTop() - container.position().top
-			container.animate({scrollTop: pos})
+            if (elem.position()) {
+				container = $('#mod_selectIcon > .tab-content')
+				pos = elem.position().top + container.scrollTop() - container.position().top
+				container.animate({scrollTop: pos})
+            }
 		}, 250);
 	}
 	if (colorIcon != "0") {

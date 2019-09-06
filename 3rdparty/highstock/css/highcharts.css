@@ -184,8 +184,20 @@
   stroke-width: 3;
 }
 
+.highcharts-point-inactive {
+  opacity: 0.2;
+  transition: opacity 50ms;
+  /* quick in */
+}
+
+.highcharts-series-inactive {
+  opacity: 0.2;
+  transition: opacity 50ms;
+  /* quick in */
+}
+
 .highcharts-state-hover path {
-  transition: stroke-width 50;
+  transition: stroke-width 50ms;
   /* quick in */
 }
 
@@ -391,6 +403,16 @@ g.highcharts-series,
 
 .highcharts-treemap-series .highcharts-internal-node-interactive:hover {
   fill-opacity: 0.75;
+}
+
+.highcharts-vector-series .highcharts-point {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.highcharts-windbarb-series .highcharts-point {
+  fill: none;
+  stroke-width: 2px;
 }
 
 /* Legend */

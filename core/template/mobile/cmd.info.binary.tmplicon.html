@@ -5,10 +5,11 @@
 	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
+			var cmd = $('.cmd[data-cmd_id=#id#]');
 			if (_options.display_value == '1') {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_on_#");
+				cmd.find('.iconCmd').empty().append("#_icon_on_#");
 			}else {
-				$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append("#_icon_off_#");
+				cmd.find('.iconCmd').empty().append("#_icon_off_#");
 			}
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#'});

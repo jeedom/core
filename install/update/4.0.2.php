@@ -9,7 +9,8 @@ function replaceAndSaveFA5($objects){
     '<i class=\"fa ' => '<i class=\"fas ',
     '-o>' => '>',
     '-o">' => '">',
-    "-o'>" => "'>"
+    "-o'>" => "'>",
+    "fa-video-camera" => "fa-video"
   );
   foreach ($objects as $object) {
     try {

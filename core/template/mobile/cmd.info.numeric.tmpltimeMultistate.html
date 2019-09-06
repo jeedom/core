@@ -2,16 +2,17 @@
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <span class="iconCmd"></span><br/>
-	<span class="timeCmd#uid# timeCmd"></span>
+    <span class="timeCmd#uid# timeCmd"></span>
   </center>
 </div>
 <script>
   jeedom.cmd.update['#id#'] = function(_options){
-    jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
+    var cmd = $('.cmd[data-cmd_id=#id#]');
+    jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
     var state = '';
-    $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+    cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
     #test#
-    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(state);
+    cmd.find('.iconCmd').empty().append(state);
   }
   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   

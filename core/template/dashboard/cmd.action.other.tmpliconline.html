@@ -4,21 +4,30 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          $('.cmd[data-cmd_id=#id#]').hide();
+          cmd.hide();
         }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#");
+          cmd.show();
+          cmd.find('.iconCmdLine').empty().append("#_icon_on_#");
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          $('.cmd[data-cmd_id=#id#]').hide();
+          cmd.hide();
         }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_off_#");
+          cmd.show();
+          cmd.find('.iconCmdLine').empty().append("#_icon_off_#");
         }
       }
+      var style = '';
+      if(!isNaN('#_width_#')){
+        style = 'max-width:#_width_#px !important;'
+      }
+      if(!isNaN('#_height_#')){
+        style += 'max-height:#_height_#px !important;'
+      }
+      cmd.find('.iconCmdLine img').attr('style',style);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#'});
     $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function () {

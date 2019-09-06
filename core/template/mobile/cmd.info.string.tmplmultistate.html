@@ -7,9 +7,10 @@
 <script>
   jeedom.cmd.update['#id#'] = function(_options){
     var state = '';
-    $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+    var cmd = $('.cmd[data-cmd_id=#id#]');
+    cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
     #test#
-    $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(state);
+    cmd.find('.iconCmd').empty().append(state);
   }
   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
