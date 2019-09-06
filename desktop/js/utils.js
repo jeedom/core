@@ -21,7 +21,7 @@ var NO_POPSTAT = false;
 var TOOLTIPSOPTIONS = {
   arrow: false,
   delay: 350,
-  interactive: true,
+  interactive: false,
   contentAsHTML: true
 }
 
