@@ -26,14 +26,14 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			<strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
 			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
-
+			
 			<center>
 				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Bug%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les bugs}}</a><br/>
 				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Am%C3%A9lioration%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les propositions d'amélioration}}</a>
 			</center>
 		</div>
 	</div>
-
+	
 	<div class="panel panel-primary">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
 		<div class="panel-body">
@@ -72,7 +72,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 					<input class="form-control ticketAttr" data-l1key="title"/>
 				</div>
 			</div>
-
+			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Message}}</label>
 				<div class="col-sm-9">
@@ -86,7 +86,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
@@ -128,6 +128,7 @@ $('#bt_sendBugReport').on('click', function () {
 			}
 			$('#form_reportBug').hide();
 			$('#bt_sendBugReport').hide();
+			$('#md_reportBug').animate({ scrollTop: 0 }, "slow");
 			if(data.result != '' && data.result != null && data.result != 'ok'){
 				$('#div_alertReportBug').showAlert({message: '{{Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre}} <a target="_blank" href="'+data.result+'">ici</a><br/><br/><strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s\'il ne s\'agit pas d\'un bug, vous ne recevrez pas d\'assistance technique suite à cette déclaration)', level: 'success'});
 			}else{
