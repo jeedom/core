@@ -1474,7 +1474,7 @@ class scenario {
 					$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 					$return['interactDef'] = interactDef::searchByUse(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 					$return['scenario'] = scenario::searchByUse(array(
-						array('action' => 'scenario', 'option' => $this->getId(), 'and' => true),
+						array('action' => 'scenario', 'option' => 'scenario_id":"'.$this->getId().'"', 'and' => true),
 						array('action' => '#scenario' . $this->getId() . '#'),
 					));
 					$return['view'] = view::searchByUse('scenario', $this->getId());
