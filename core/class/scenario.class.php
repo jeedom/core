@@ -799,7 +799,7 @@ class scenario {
 						'#id#' => $this->getId(),
 						'#state#' => $this->getState(),
 						'#isActive#' => $this->getIsActive(),
-						'#name#' => (strlen($name) <25) ?$name : substr($name,0,25)."...",
+						'#name#' => (mb_strlen($name) <25) ?$name : mb_substr($name,0,25)."...",
 						'#icon#' => $this->getIcon(),
 						'#lastLaunch#' => $this->getLastLaunch(),
 						'#scenarioLink#' => $this->getLinkToConfiguration(),
