@@ -2077,19 +2077,28 @@ class cmd {
 	*/
 	public function setName($_name) {
 		$_name = cleanComponanteName($_name);
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		if ($this->name != $_name) {
+			$this->_needRefreshWidget = true;
+			$this->_changed = true;
+		}
 		$this->name = $_name;
 		return $this;
 	}
 	
 	public function setType($_type) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		if ($this->type != $_type) {
+			$this->_needRefreshWidget = true;
+			$this->_changed = true;
+		}
 		$this->type = $_type;
 		return $this;
 	}
 	
 	public function setSubType($_subType) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->subType,$_subType);
+		if ($this->subType != $_subType) {
+			$this->_needRefreshWidget = true;
+			$this->_changed = true;
+		}
 		$this->subType = $_subType;
 		return $this;
 	}
@@ -2107,7 +2116,10 @@ class cmd {
 	}
 	
 	public function setUnite($_unite) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->unite,$_unite);
+		if ($this->unite != $_unite) {
+			$this->_needRefreshWidget = true;
+			$this->_changed = true;
+		}
 		$this->unite = $_unite;
 		return $this;
 	}
