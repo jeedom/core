@@ -1605,7 +1605,7 @@ class cmd {
 			$cron->save();
 			return $this->getCache('alertLevel');
 		}
-		if ($currentLevel == 'none') {
+		if ($_allowDuring && $currentLevel == 'none') {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			if (is_object($cron)) {
 				$cron->remove(false);
