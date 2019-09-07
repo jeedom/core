@@ -166,7 +166,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-  
+
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -803,10 +803,13 @@ path.highcharts-graph {
   margin-top: 10px;
 }
 
-.shuttergauge {
+.shuttergauge, .timeShuttergauge {
   position: relative;
   width: 100% !important;
   height: 120px;
+}
+.timeShuttergauge {
+  height: 140px;
 }
 .shuttergauge-bckg {
   width: 42px;
@@ -826,6 +829,12 @@ path.highcharts-graph {
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+.shuttergauge-state .timeCmd {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
 }
 .shuttergauge .slider {
   margin-top: 55px;
@@ -956,7 +965,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-  
+
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);
