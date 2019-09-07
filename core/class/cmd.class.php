@@ -945,6 +945,10 @@ class cmd {
 		if($this->getType() == 'action' && $this->getIsHistorized() == 1){
 			$this->setIsHistorized(0);
 		}
+		if($this->getIsHistorized() == 0){
+			$this->setDisplay('showStatsOnmobile',0);
+			$this->setDisplay('showStatsOndashboard',0);
+		}
 		DB::save($this);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
@@ -1581,7 +1585,7 @@ class cmd {
 			}
 		}
 		
-		if ($_allowDuring && $currentLevel != 'none' && $currentLevel !=$this->getCache('alertLevel')&& $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
+		if ($_allowDuring && $currentLevel != 'none' && $currentLevel != $this->getCache('alertLevel')&& $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
 			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
 			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
 			if (!is_object($cron)) {
