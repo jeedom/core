@@ -1306,7 +1306,7 @@ class cmd {
 				}
 			}
 			
-			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
+			$replace['#state#'] = str_replace(array("\'", "'","\n"), array("'", "\'",'<br/>'), $replace['#state#']);
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
