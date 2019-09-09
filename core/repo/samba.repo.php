@@ -184,7 +184,7 @@ class repo_samba {
 	public static function backup_list() {
 		$return = array();
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if (strpos($file['filename'],'.tar.gz') !== false) ) {
+			if (strpos($file['filename'],'.tar.gz') !== false) {
 				$return[] = $file['filename'];
 			}
 		}
