@@ -649,7 +649,7 @@ $(function () {
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
     setBackgroundImg(BACKGROUND_IMG)
     currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light') || currentTheme.endsWith('Legacy')) {
+    if (currentTheme.endsWith('Light') {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
       $('body').trigger('changeThemeEvent', ['Dark'])
@@ -726,7 +726,7 @@ function changeThemeAuto(){
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
       setBackgroundImg(BACKGROUND_IMG)
-      if (theme.endsWith('Light') || theme.endsWith('Legacy')) {
+      if (theme.endsWith('Light')) {
         $('body').trigger('changeThemeEvent', ['Light'])
       } else {
         $('body').trigger('changeThemeEvent', ['Dark'])
