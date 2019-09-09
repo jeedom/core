@@ -158,7 +158,7 @@ class listener {
 	
 	public static function check($_event, $_value, $_datetime = null) {
 		$listeners = self::searchEvent($_event);
-		if (count($listeners) > 0) {
+		if (is_array($listeners) && count($listeners) > 0) {
 			foreach ($listeners as $listener) {
 				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
 			}
