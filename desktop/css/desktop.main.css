@@ -692,7 +692,7 @@ div[data-market_type=script]:hover {
   position: relative;
   font-family: "Roboto";
   color: var(--txt-color);
-  width: 190px !important;
+  width: 210px !important;
   height: 155px !important;
 }
 #battery .eqLogic-widget .widget-name {
