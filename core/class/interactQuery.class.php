@@ -132,7 +132,7 @@ class interactQuery {
 		GROUP BY id
 		HAVING score > 1';
 		$queries = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if (count($queries) == 0) {
+		if (!is_array($queries) || count($queries) == 0) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM interactQuery
 			WHERE query=:query';
