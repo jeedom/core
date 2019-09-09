@@ -182,7 +182,7 @@ class interactQuery {
 		}
 		$weigh = array(1 => config::byKey('interact::weigh1'), 2 => config::byKey('interact::weigh2'), 3 => config::byKey('interact::weigh3'), 4 => config::byKey('interact::weigh4'));
 		foreach (str_word_count($_query, 1) as $word) {
-			if (isset($weigh[strlen($word)])) {
+			if (isset($weigh[strlen($word)]) && is_numeric($weigh[strlen($word)])) {
 				$shortest += $weigh[strlen($word)];
 			}
 		}
