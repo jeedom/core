@@ -13,7 +13,7 @@
 			jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'));
 			var state = '';
 			var cmd = $('.cmd[data-cmd_id=#id#]');
-			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value);
+			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'#unite#');
 			#test#
 			cmd.find('.iconCmd').empty().append(state);
 			var style = '';
