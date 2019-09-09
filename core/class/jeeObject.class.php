@@ -179,7 +179,7 @@ class jeeObject {
 	
 	public static function checkSummaryUpdate($_cmd_id) {
 		$objects = self::searchConfiguration('#' . $_cmd_id . '#');
-		if (count($objects) == 0) {
+		if (!is_array($objects) || count($objects) == 0) {
 			return;
 		}
 		$toRefreshCmd = array();

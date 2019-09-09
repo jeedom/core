@@ -117,21 +117,27 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						array('operation' => '#value# == 1','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
 						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-conf\'></i>')
 					)),
+					'timeHeatPiloteWire' => array('template' => 'tmpltimeMultistate','test' => array(
+						array('operation' => '#value# == 3','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
+						array('operation' => '#value# == 2','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
+						array('operation' => '#value# == 1','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
+						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-conf\'></i>')
+					)),
 					'heatPiloteWireQubino' => array('template' => 'tmplmultistate','test' => array(
-						array('operation' => '#value# == 255','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
-						array('operation' => '#value# == 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
-						array('operation' => '#value# == 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
-						array('operation' => '#value# == 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
-						array('operation' => '#value# == 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
-						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
+						array('operation' => '#value# >= 51 && #value# <= 99','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
+						array('operation' => '#value# >= 41 && #value# <= 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
+						array('operation' => '#value# >= 31 && #value# <= 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
+						array('operation' => '#value# >= 21 && #value# <= 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
+						array('operation' => '#value# >= 11 && #value# <= 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
+						array('operation' => '#value# >= 0 && #value# <= 10','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
 					)),
 					'timeHeatPiloteWireQubino' => array('template' => 'tmpltimeMultistate','test' => array(
-						array('operation' => '#value# == 255','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
-						array('operation' => '#value# == 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
-						array('operation' => '#value# == 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
-						array('operation' => '#value# == 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
-						array('operation' => '#value# == 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
-						array('operation' => '#value# == 0','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
+						array('operation' => '#value# >= 51 && #value# <= 99','state' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
+						array('operation' => '#value# >= 41 && #value# <= 50','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
+						array('operation' => '#value# >= 31 && #value# <= 40','state' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
+						array('operation' => '#value# >= 21 && #value# <= 30','state' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
+						array('operation' => '#value# >= 11 && #value# <= 20','state' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
+						array('operation' => '#value# >= 0 && #value# <= 10','state' => '<i class=\'icon jeedom-pilote-off\'></i>'),
 					))
 				)
 			)

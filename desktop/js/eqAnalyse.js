@@ -48,17 +48,17 @@ $('#in_search').off('keyup').on('keyup',function(){
     $('.batteryListContainer').packery()
     return
   }
-  
-  search = search.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  search = normTextLower(search)
+
   $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
-    
-    text = normText($(this).find('.widget-name').text())
+
+    text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
-    text = normText($(this).find('.widget-name span').text())
+
+    text = normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
-    
+
     if(match) {
       $(this).show()
     } else {
@@ -67,10 +67,6 @@ $('#in_search').off('keyup').on('keyup',function(){
   });
   $('.batteryListContainer').packery();
 });
-
-function normText(_text) {
-  return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
-}
 
 $('#bt_resetSearch').on('click', function () {
   $('#in_search').val('')
@@ -87,11 +83,11 @@ $(function() {
   } else {
     $('a[href="#battery"] > i').addClass('success')
   }
-  
+
   if ($('.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
-  
+
   if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
     $('a[href="#deadCmd"] > i').addClass('warning')
   }

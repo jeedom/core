@@ -627,28 +627,34 @@ $(function () {
     $('body').attr('data-theme',jeedom.theme.currentTheme);
   }
 
-  $('body').on('click','#bt_switchTheme',function(){
-    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css';
-    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css';
+  $('body').on('click','#bt_switchTheme',function() {
+    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
+    var themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
-    var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}';
-    $('body').attr('data-theme',jeedom.theme.default_bootstrap_theme_night);
+    var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}'
+    $('body').attr('data-theme',jeedom.theme.default_bootstrap_theme_night)
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
-      $('body').attr('data-theme',jeedom.theme.default_bootstrap_theme);
-      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css';
+      $('body').attr('data-theme',jeedom.theme.default_bootstrap_theme)
+      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
       themShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
       themeButton = '<i class="fas fa-sync-alt"></i> {{Thème alternatif}}'
       $('#bootstrap_theme_css').attr('data-nochange',0)
     } else {
-      $('#bootstrap_theme_css').attr('data-nochange',1);
+      $('#bootstrap_theme_css').attr('data-nochange',1)
     }
     document.cookie = "currentTheme=" + themeCook + "; path=/"
-    $('#bootstrap_theme_css').attr('href', theme);
+    $('#bootstrap_theme_css').attr('href', theme)
     $('#bt_switchTheme').html(themeButton)
-    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows);
-    setBackgroundImg(BACKGROUND_IMG);
-  });
+    if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
+    setBackgroundImg(BACKGROUND_IMG)
+    currentTheme = $('body').attr('data-theme')
+    if (currentTheme.endsWith('Light') || currentTheme.endsWith('Legacy')) {
+      $('body').trigger('changeThemeEvent', ['Light'])
+    } else {
+      $('body').trigger('changeThemeEvent', ['Dark'])
+    }
+  })
 
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
     for(var i in jeedom.theme.css){
@@ -719,7 +725,12 @@ function changeThemeAuto(){
       $('#bootstrap_theme_css').attr('href', themeCss)
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      setBackgroundImg(BACKGROUND_IMG);
+      setBackgroundImg(BACKGROUND_IMG)
+      if (theme.endsWith('Light') || theme.endsWith('Legacy')) {
+        $('body').trigger('changeThemeEvent', ['Light'])
+      } else {
+        $('body').trigger('changeThemeEvent', ['Dark'])
+      }
     }
   }, 60000);
 }
