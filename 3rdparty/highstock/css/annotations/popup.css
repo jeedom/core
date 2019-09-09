@@ -2,7 +2,6 @@
   right: 10%;
   left: auto;
   height: 40px;
-  overflow: hidden;
   padding-right: 40px;
   width: auto;
   min-width: 0;
@@ -158,8 +157,7 @@
 }
 
 .highcharts-popup-close {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background: url("https://code.highcharts.com/7.1.2/gfx/stock-icons/close.svg") no-repeat 50% 50%;
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -203,14 +201,12 @@
 }
 
 .highcharts-popup button.highcharts-annotation-edit-button {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background: url("https://code.highcharts.com/7.1.2/gfx/stock-icons/edit.svg") no-repeat 50% 50% transparent;
   text-indent: -9999px;
 }
 
 .highcharts-popup button.highcharts-annotation-remove-button {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background: url("https://code.highcharts.com/7.1.2/gfx/stock-icons/destroy.svg") no-repeat 50% 50% transparent;
   text-indent: -9999px;
 }
 
