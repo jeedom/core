@@ -9,7 +9,7 @@
 		jeedom.cmd.update['#id#'] = function(_options){
 			var state = '';
 			var cmd = $('.cmd[data-cmd_id=#id#]');
-			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate);
+			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value);
 			#test#
 			cmd.find('.iconCmd').empty().append(state);
 			var style = '';
