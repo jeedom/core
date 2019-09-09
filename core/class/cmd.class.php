@@ -1567,55 +1567,74 @@ class cmd {
 		}
 	}
 	
-	public function checkAlertLevel($_value, $_allowDuring = true) {
+	public function checkAlertLevel($_value, $_allowDuring = true, $_checkLevel = 'none') {
 		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
 			return 'none';
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
 		$currentLevel = 'none';
+		$returnLevel = 'none';
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-			if (!$value['check']) {
-				continue;
-			}
+			
 			if ($this->getAlert($level . 'if') != '') {
 				$check = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getAlert($level . 'if')));
 				if ($check == 1 || $check || $check == '1') {
 					$currentLevel = $level;
-				}
-			}
-		}
+			
 		
-		if ($_allowDuring && $currentLevel != 'none' && $currentLevel != $this->getCache('alertLevel') && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
-			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
-			$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
-			if (!is_object($cron)) {
-				$cron = new cron();
-			} else {
-				$nextRun = $cron->getNextRunDate();
-				if ($nextRun !== false && $next > strtotime($nextRun) && strtotime($nextRun) > strtotime('now')) {
-					return $this->getCache('alertLevel');
+					if ($_allowDuring && $currentLevel != 'none' && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0) {
+						$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId()),'Level'=> $currentLevel));
+						$next = strtotime('+ ' . $this->getAlert($currentLevel . 'during', 1) . ' minutes ' . date('Y-m-d H:i:s'));
+						if ($currentLevel != $this->getCache('alertLevel')) {
+							if (!is_object($cron)) {
+								if (!( $currentLevel =='warning' && $this->getCache('alertLevel') == 'danger')) {
+									$cron = new cron();
+									$cron->setClass('cmd');
+									$cron->setFunction('duringAlertLevel');
+									$cron->setOnce(1);
+									$cron->setOption(array('cmd_id' => intval($this->getId()),'Level' => $currentLevel));
+									$cron->setSchedule(cron::convertDateToCron($next));
+									$cron->setLastRun(date('Y-m-d H:i:s'));
+									$cron->save();
+								}
+								else { //je suis en condition de warning et le cron n'existe pas mais j'etais en danger, je suppose que le cron a expiré
+									$returnLevel = $currentLevel;
+								}
+							} 
+
+						}
+						else { // il n'y a pas de cron mais j'etais deja dans ce niveau, j'y reste
+							$returnLevel = $this->getCache('alertLevel');
+
+						}
+					}
+
+					if (!($_allowDuring  && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0)){ //je suis en alerte sans delai ou en execution de cron
+						if ($_checkLevel == $currentLevel || $_checkLevel == 'none') { //si c'etait un cron, je ne teste que le niveau demandé
+							if (!($_checkLevel == 'warning' && $this->getCache('alertLevel') == 'danger')){
+								$returnLevel = $currentLevel;
+							}
+							else { // le cron me demande de passer en warning mais je suis deja en danger, je reste en danger
+								$returnLevel = $this->getCache('alertLevel');
+							}
+						}
+					}
 				}
-			}
-			$cron->setClass('cmd');
-			$cron->setFunction('duringAlertLevel');
-			$cron->setOnce(1);
-			$cron->setOption(array('cmd_id' => intval($this->getId())));
-			$cron->setSchedule(cron::convertDateToCron($next));
-			$cron->setLastRun(date('Y-m-d H:i:s'));
-			$cron->save();
-			return $this->getCache('alertLevel');
+				else { // je ne suis pas dans la condition, je supprime le cron
+					$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId()),'Level'=> $level));
+					if (is_object($cron)) {
+						$cron->remove(false);
+					}
+				}
+			}		
+
 		}
-		if ($_allowDuring && $currentLevel == 'none') {
-			$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId())));
-			if (is_object($cron)) {
-				$cron->remove(false);
-			}
-		}
-		return $currentLevel;
+		return $returnLevel;
 	}
 	
 	public static function duringAlertLevel($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
+		$checkLevel = $_options['Level'];
 		if (!is_object($cmd)) {
 			return;
 		}
@@ -1626,7 +1645,7 @@ class cmd {
 			return;
 		}
 		$value = $cmd->execCmd();
-		$level = $cmd->checkAlertLevel($value, false);
+		$level = $cmd->checkAlertLevel($value, false,$checkLevel);
 		if ($level != 'none') {
 			$cmd->actionAlertLevel($level, $value);
 		}
