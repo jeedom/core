@@ -36,6 +36,14 @@ try {
 		if(!file_exists(session_save_path())){
 			mkdir(session_save_path());
 		}
+		try {
+			$nbsessions = com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path().' | wc -l');
+			if($nbsessions > 500){
+				com_shell::execute(system::getCmdSudo() .'/usr/lib/php/sessionclean');
+			}
+		} catch (\Exception $e) {
+			
+		}
 		if (!isConnect()) {
 			if (config::byKey('sso:allowRemoteUser') == 1) {
 				$user = user::byLogin($_SERVER['REMOTE_USER']);
