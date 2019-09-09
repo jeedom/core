@@ -37,8 +37,7 @@ try {
 			mkdir(session_save_path());
 		}
 		try {
-			$nbsessions = com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path().' | wc -l');
-			if($nbsessions > 500){
+			if(com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path().' | wc -l') > 500){
 				com_shell::execute(system::getCmdSudo() .'/usr/lib/php/sessionclean');
 			}
 		} catch (\Exception $e) {
