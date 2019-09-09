@@ -248,10 +248,10 @@ $(function () {
     if($(this).hasClass('fancybox-nav')){
       return;
     }
-    if($(this).attr('href').match("^data:")){
+    if($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#'){
       return;
     }
-    if($(this).attr('href') == undefined || $(this).attr('href') == '' || $(this).attr('href') == '#'){
+    if($(this).attr('href').match("^data:")){
       return;
     }
     if ($(this).attr('href').match("^http")) {
