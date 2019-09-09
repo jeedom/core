@@ -53,7 +53,9 @@ foreach ($cmds as $cmd) {
       echo '<span class="cmdAttr" data-l1key="humanName">'.$cmd->getHumanName().'</span>';
       echo '</td>';
       echo '<td>';
-      echo '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
+      if(is_object($cmd->getEqLogic())){
+        echo '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
+      }
       echo '</td>';
       echo '<td>';
       if($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric'){
