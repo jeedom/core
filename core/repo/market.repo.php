@@ -322,9 +322,9 @@ class repo_market {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
 			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-				throw new Exception('[restore cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
+				throw new Exception('[backup clean] ' . self::backup_errorAnalyzed($e->getMessage()));
 			}
-			throw new Exception('[restore cloud] ' . $e->getMessage());
+			throw new Exception('[backup clean] ' . $e->getMessage());
 		}
 	}
 	

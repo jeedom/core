@@ -578,7 +578,7 @@ class eqLogic {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		if ($_updateTime !== null) {
+		if ($_updateTime !== null && $_updateTime !== false) {
 			if (strtotime($cmd->getCollectDate()) < strtotime($_updateTime)) {
 				$cmd->event($_value, $_updateTime);
 				return true;
@@ -588,8 +588,10 @@ class eqLogic {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
-		$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
-		$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+		if ($_updateTime !== false) {
+			$cmd->setCache('collectDate', date('Y-m-d H:i:s'));
+			$this->setStatus(array('lastCommunication' => date('Y-m-d H:i:s'), 'timeout' => 0));
+		}
 		return false;
 	}
 	
