@@ -649,7 +649,7 @@ $(function () {
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
     setBackgroundImg(BACKGROUND_IMG)
     currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light') {
+    if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
       $('body').trigger('changeThemeEvent', ['Dark'])
