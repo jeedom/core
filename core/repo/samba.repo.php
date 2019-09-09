@@ -184,13 +184,12 @@ class repo_samba {
 	public static function backup_list() {
 		$return = array();
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if ($file['filename'] == '.' || $file['filename'] == '..') {
-				continue;
+			if (!(strpos($file['filename'],'.tar.gz') === false) ) { // Si ça contient .tar.gz, on l'ajoute à l'objet que l'on va retourner
+			  $return[] = $file['filename'];
 			}
-			$return[] = $file['filename'];
 		}
 		return $return;
-	}
+	}	
 	
 	public static function backup_restore($_backup) {
 		$backup_dir = calculPath(config::byKey('backup::path'));
