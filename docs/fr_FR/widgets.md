@@ -46,11 +46,11 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 
 - #value# > 1
 - #value# >= 1 && #value# <= 5
-- '#value#' == 'toto'
+- #value# == 'toto'
 
 >**Note**
 >
->Il est important de noter les ' autour de #value# et du texte a comparé si la valeur est un texte
+>Il est important de noter les ' autour du texte a comparé si la valeur est un texte
 
 >**Note**
 >
