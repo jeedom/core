@@ -148,9 +148,10 @@ if (!is_array($remove_history)) {
 				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
+                  	$eqName = strip_tags($eqLogic->getName());
+					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqName.'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getName() . ' ';
+					$div .= $eqName . ' ';
 					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
@@ -161,10 +162,15 @@ if (!is_array($remove_history)) {
 					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
+
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">';
-						$div .= '<input type="checkbox" class="cb_selCmd" /> ';
-						$div .=  $cmd->getName();
+                      	$cmdName = strip_tags($cmd->getName());
+						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmdName . '">' ;
+						$div .= '<input type="checkbox" class="cb_selCmd"> ';
+						$div .=  $cmdName;
+						if ($cmd->getIsVisible() != 1) {
+							$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+						}
 						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
 						$div .= '</li>';
 					}
