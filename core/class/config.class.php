@@ -279,6 +279,10 @@ class config {
 		}
 	}
 	
+	public static function postConfig_interface_advance_vertCentering($_value){
+		cache::flushWidget();
+	}
+	
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);
