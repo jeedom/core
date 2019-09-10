@@ -40,21 +40,25 @@ $plugins_list = plugin::listPlugin(false, true);
         <a id="bt_resetPluginSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
       </div>
     </div>
-    
-    
-    <div class="pluginListContainer">
-      <?php
-      foreach (plugin::listPlugin() as $plugin) {
-        $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-        echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
-        echo '<center>';
-        echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
-        echo '</center>';
-        echo '<span class="name">' . $plugin->getName() . '</span>';
-        echo '</div>';
-      }
-      ?>
+        
+    <div class="panel">
+      <div class="panel-body">
+        <div class="pluginListContainer">
+          <?php
+          foreach (plugin::listPlugin() as $plugin) {
+            $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+            echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
+            echo '<center>';
+            echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
+            echo '</center>';
+            echo '<span class="name">' . $plugin->getName() . '</span>';
+            echo '</div>';
+          }
+          ?>
+        </div>
+      </div>
     </div>
+    
   </div>
   <div class="col-xs-12" id="div_confPlugin" style="display:none;">
     <legend>
