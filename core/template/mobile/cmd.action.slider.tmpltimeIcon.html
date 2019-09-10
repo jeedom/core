@@ -1,0 +1,36 @@
+<div style="width:96%;min-height:90px;" data-version="#version#" data-eqLogic_id="#eqLogic_id#" class="cmd #history# cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <center>
+    <div class="cmdName #hide_name#">#name_display#</div>
+    <span class="cursor iconCmd"></span>
+    <div class="slider full-width-slider ui-slider">
+      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
+    </div>
+    <span class="timeCmd#uid# timeCmd"></span>
+  </center>
+  <script>
+    $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
+      if ($(this).attr('data-state') == 'on') {
+        var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider:value }});
+      } else {
+        var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}});
+      }
+    });
+    $("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
+    $("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
+    });
+    jeedom.cmd.update['#id#'] = function(_options){
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
+      cmd.find('.slider input").value(_options.display_value);
+      if (parseInt(_options.display_value) > 0) {
+        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
+      }else {
+        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
+      }
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+  </script>
+</div>
