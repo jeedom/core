@@ -1300,6 +1300,7 @@ ul.dropdown-menu {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   z-index: 0;
   transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
+  margin-top: 5px;
   margin-bottom: 30px;
 }
 
