@@ -157,7 +157,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			}
 		}
 		?>
-		<div class="iconCategory">
+		<div class="iconCategory generalCategory">
 			<legend>{{Général}}</legend>
 			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-glasses'></i></span><br/><span class="iconDesc">fa-glasses</span></div>
@@ -353,6 +353,9 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-moon'></i></span><br/><span class="iconDesc">fa-moon</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-archive'></i></span><br/><span class="iconDesc">fa-archive</span></div>
 			</div>
+			<div class="row">
+				<div class="col-lg-1 divIconSel customIcon" style="display: none;"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -368,6 +371,7 @@ $('#sel_colorIcon').off('change').on('change',function() {
 
 $('#in_searchIconSelector').on('keyup',function(){
 	$('.divIconSel').show();
+	$('.customIcon').hide();
 	$('.iconCategory').show();
 	var search = $(this).value();
 	if(search != ''){
@@ -377,12 +381,21 @@ $('#in_searchIconSelector').on('keyup',function(){
 			}
 		})
 	}
+	var somethingFound = 0;
 	$('.iconCategory').each(function(){
 		var hide = true;
 		if($(this).find('.divIconSel:visible').length == 0){
 			$(this).hide();
+		} else {
+			somethingFound +=1;
 		}
 	});
+	if (somethingFound == 0) {
+		$('.customIcon').show();
+		$('.generalCategory').show();
+		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>');
+	}
+
 });
 $('#bt_resetSearch').on('click', function () {
 	$('#in_searchIconSelector').val('')
@@ -423,15 +436,26 @@ $(function() {
 	var mySearch = $('.ui-dialog[aria-describedby="mod_selectIcon"]').find('#mySearch')
 	buttonSet.append(mySearch)
 	//auto select actual icon:
+	var iconName = (selectIcon.split('.').join(' ')).trim();
 	if (selectIcon != "0") {
 		$(selectIcon).closest('.divIconSel').addClass('iconSelected')
 		setTimeout(function() {
 			elem = $('div.divIconSel.iconSelected')
-            if (elem.position()) {
+			if (elem.position()) {
 				container = $('#mod_selectIcon > .tab-content')
 				pos = elem.position().top + container.scrollTop() - container.position().top
 				container.animate({scrollTop: pos})
-            }
+			} else {
+				$('.customIcon').show();
+				$('.customIcon').empty().append('<span class="iconSel"><i class="' + iconName + '"></i></span><br/><span class="iconDesc">' + iconName + '</span>');
+				$(selectIcon).closest('.divIconSel').addClass('iconSelected');
+				elem = $('div.divIconSel.iconSelected')
+				if (elem.position()) {
+					container = $('#mod_selectIcon > .tab-content')
+					pos = elem.position().top + container.scrollTop() - container.position().top
+					container.animate({scrollTop: pos})
+				}
+			}
 		}, 250);
 	}
 	if (colorIcon != "0") {
