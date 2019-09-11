@@ -1782,6 +1782,10 @@ ul.nav.nav-tabs li,
 .table > tbody > tr > th {
   border: none !important;
 }
+.table-condensed tbody tr td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
 
 i.tablesorter-icon {
   background-image: none !important;
