@@ -13,19 +13,21 @@
     <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
   <div class="cmdStats #hide_history#">
-  <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-</div>
-
+    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
+  
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-
-      height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
       height = Math.round(parseFloat(height) * 10) / 10
-      $('.cmd[data-cmd_uid=#uid#] .vgauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
+      cmd.find('.vgauge-value').height(height+'%')
+      cmd.find('.state strong').first().text(_options.display_value)
     }
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
   </script>
 </div>
