@@ -18,13 +18,13 @@
 		})
 		jeedom.cmd.update['#id#'] = function(_options) {
 			var cmd = $('.cmd[data-cmd_uid=#uid#]')
-			height_#uid# = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
-			height_#uid# = 100 - (Math.round(parseFloat(height_#uid#) * 10) / 10)
+			var height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+			height = 100 - (Math.round(parseFloat(height) * 10) / 10)
 			if ('#invert#' == '1') {
 				var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-				height_#uid# = maxValue - height_#uid#
+				height = maxValue - height
 			}
-			cmd.find('.shuttergauge-value').height(height_#uid#+'%')
+			cmd.find('.shuttergauge-value').height(height+'%')
 			cmd.find('.state strong').first().text(_options.display_value)
 			cmd.find('.slider input').value(_options.display_value)
 		}
