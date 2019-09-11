@@ -27,7 +27,7 @@
         position = maxValue - position;
       }
       var height = ((position - minValue) * 100) / (maxValue - minValue);
-      height = 100 - (Math.round(parseFloat(height#uid#) * 10) / 10);
+      height = 100 - (Math.round(parseFloat(height) * 10) / 10);
       if (height > 65) {
         cmd.find('.state strong').css('color','var(--bg-modal-color)')
         cmd.find('.value').css({'margin-top':'-35px', 'min-height':'51px'})
@@ -69,18 +69,22 @@
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
       slide: function(event, ui) {
-        $('.cmd[data-cmd_uid=#uid#] .valueshutter').hide()
-        $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').show()
+        var cmd = $('.cmd[data-cmd_id=#id#]')
+        var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        cmd.find('.valueshutter').hide()
+        cmd.find('.dynamicshutter').show()
         if('#invert#' == '1'){
-          var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
-          $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').html('<strong>' + (maxValue - ui.value) +'</strong> <strong>#unite#</strong>')
+          cmd.find('.dynamicshutter').html('<strong>' + (maxValue - ui.value) +'</strong> <strong>#unite#</strong>')
         }else{
-          $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').html('<strong>' + ui.value +'</strong> <strong>#unite#</strong>')
+          cmd.find('.dynamicshutter').html('<strong>' + ui.value +'</strong> <strong>#unite#</strong>')
         }
-        if (height#uid# > 65) {
-          $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
+        var height = ((position - minValue) * 100) / (maxValue - minValue);
+        height = 100 - (Math.round(parseFloat(height) * 10) / 10);
+        if (height > 65) {
+          cmd.find('.state strong').css('color','var(--bg-modal-color)')
         } else {
-          $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
+          cmd.find('.state strong').css('color','var(--txt-color)')
         }
       }
     })
