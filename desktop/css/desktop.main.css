@@ -1749,7 +1749,7 @@ ul.nav.nav-tabs li,
 }
 .nav-tabs > li > a {
   padding: 10px 6px;
-  
+  z-index: 3;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
