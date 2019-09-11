@@ -18,14 +18,13 @@
   </div>
 
   <script>
-    var cmd_#uid# = $('.cmd[data-cmd_uid=#uid#]')
-
     jeedom.cmd.update['#id#'] = function(_options) {
       jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'))
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      var position = _options.display_value
+      position = _options.display_value
+      cmd_#uid# = $('.cmd[data-cmd_uid=#uid#]')
       if ('#invert#' == '1') {
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+        maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         position = maxValue - position
       }
       height_#uid# = ((position - #minValue#) * 100) / (#maxValue# - #minValue#)
@@ -44,8 +43,8 @@
       cmd_#uid#.find('.slider').slider( "option", "value",position);
     }
 
-    cmd_#uid#.find('.shuttergauge-bckg').off().on('click', function() {
-      shutterPos = cmd_#uid#.find('.state strong').first().html()
+    $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
+      shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
       if (shutterPos > 50) {
         jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
       } else {
@@ -53,7 +52,8 @@
       }
     })
 
-    $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
+    $('.cmd[data-cmd_uid=#uid#] .slider').on('slidestop', function (event,ui) {
+      cmd_#uid# = $('.cmd[data-cmd_uid=#uid#]')
       cmd_#uid#.find('.valueshutter').show()
       cmd_#uid#.find('.dynamicshutter').hide()
       if('#invert#' == '1'){
@@ -64,13 +64,14 @@
       }
       $(".value#uid#").hide()
     })
-    
-    $(".cmd[data-cmd_id=#id#] .slider").slider({
+
+    $('.cmd[data-cmd_uid=#uid#] .slider').slider({
       orientation: "vertical",
       min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
       slide: function(event, ui) {
+        cmd_#uid# = $('.cmd[data-cmd_uid=#uid#]')
         cmd_#uid#.find('.valueshutter').hide()
         cmd_#uid#.find('.dynamicshutter').show()
         if ('#invert#' == '1') {
