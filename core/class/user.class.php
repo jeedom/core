@@ -355,6 +355,7 @@ class user {
 	}
 	
 	public static function deadCmd() {
+		$return = array();
 		foreach (user::all() as $user) {
 			$cmd = $user->getOptions('notification::cmd');
 			if ($cmd != '') {

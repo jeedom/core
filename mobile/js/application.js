@@ -27,36 +27,36 @@ $(function () {
   nbActiveAjaxRequest = 0;
   utid = Date.now();
   $.mobile.orientationChangeEnabled = false;
-  
+
   $(window).on("resize", function (event) {
     deviceInfo = getDeviceType();
   });
-  
+
   initApplication();
-  
+
   $('body').delegate('.link', 'click', function () {
     modal(false);
     panel(false);
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'));
   });
-  
+
   $('body').on('click','.objectSummaryParent',function(){
     modal(false);
     panel(false);
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'));
   });
-  
+
   $('body').on('taphold','.cmd[data-type=info]',function(){
     $('#bottompanel_mainoption').empty();
     $('#bottompanel_mainoption').append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>');
     $('#bottompanel_mainoption').append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>');
     $('#bottompanel_mainoption').panel('open');
   });
-  
+
   $('body').on('click','#bt_warnmeCmd',function(){
     page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true);
   });
-  
+
   $('body').on('click','#bt_switchTheme',function(){
     $('body').attr('data-theme',userProfils.mobile_theme_color_night);
     var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css';
@@ -67,8 +67,14 @@ $(function () {
     $('#jQMnDColor').attr('href', theme);
     $('#jQMnDColor').attr('data-nochange',1);
     setBackgroundImage(BACKGROUND_IMG);
+    currentTheme = $('body').attr('data-theme')
+    if (currentTheme.endsWith('Light')) {
+      $('body').trigger('changeThemeEvent', ['Light'])
+    } else {
+      $('body').trigger('changeThemeEvent', ['Dark'])
+    }
   });
-  
+
   var webappCache = window.applicationCache;
   function updateCacheEvent(e) {
     if (webappCache.status == 3) {
@@ -98,7 +104,7 @@ $(function () {
     try{
       webappCache.update();
     } catch(e) {
-      
+
     }
   }
 });
@@ -204,6 +210,11 @@ function changeThemeAuto(_ambiantLight){
             $('body').attr('data-theme',theme);
             $('#jQMnDColor').attr('href', themeCss);
             setBackgroundImage(BACKGROUND_IMG);
+            if (theme.endsWith('Light')) {
+              $('body').trigger('changeThemeEvent', ['Light'])
+            } else {
+              $('body').trigger('changeThemeEvent', ['Dark'])
+            }
           }
         }, 500);
       }
@@ -301,7 +312,7 @@ function initApplication(_reinit) {
         if (isset(jeedom.theme.current_mobile_theme) && jeedom.theme.current_mobile_theme != '') {
           include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.js');
         }
-        
+
         var widget_shadow = true
         var useAdvance = 0
         if(typeof jeedom.theme != 'undefined'){
@@ -329,7 +340,7 @@ function initApplication(_reinit) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js');
           }
         }
-        
+
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data);
           $.include(include, function () {
@@ -375,7 +386,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#bottompanel_mainoption').panel('close');
     $('.ui-popup').popup('close');
   } catch (e) {
-    
+
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {

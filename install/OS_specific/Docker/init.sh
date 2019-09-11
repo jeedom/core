@@ -23,7 +23,7 @@ else
 fi
 
 if [ ! -z ${SSH_PORT} ]; then
-	echo 'Change SSH listen port to : '${APACHE_PORT}
+	echo 'Change SSH listen port to : '${SSH_PORT}
 	sed '/Port /d' /etc/ssh/sshd_config
 	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
 else
