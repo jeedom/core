@@ -1435,6 +1435,6 @@ function sanitizeAccent($_message) {
 	}
 	
 	function cleanComponanteName($_name){
-		return str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name);
+		return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name));
 	}
 	
