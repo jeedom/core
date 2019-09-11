@@ -148,10 +148,9 @@ if (!is_array($remove_history)) {
 				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-                  	$eqName = strip_tags($eqLogic->getName());
-					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqName.'" data-type="'.$eqLogic->getEqType_name().'">';
+					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqName . ' ';
+					$div .= $eqLogic->getName() . ' ';
 					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
@@ -162,12 +161,11 @@ if (!is_array($remove_history)) {
 					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
-
+					
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-                      	$cmdName = strip_tags($cmd->getName());
-						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmdName . '">' ;
+						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd"> ';
-						$div .=  $cmdName;
+						$div .=  $cmd->getName();
 						if ($cmd->getIsVisible() != 1) {
 							$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
