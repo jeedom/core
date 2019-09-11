@@ -524,7 +524,7 @@ div[class*="ListContainer"] span.objectSummaryParent i {
 
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
-.interactDisplayCard, 
+.interactDisplayCard,
 div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div,
 .scenarioDisplayCard,
 .widgetDisplayCard,
@@ -807,8 +807,8 @@ pre {
   font-size: 13px;
   line-height: 20px;
   background: rgb(var(--bg-color));
-  
-  
+
+
 }
 
 .div_rowZones {
@@ -1563,8 +1563,6 @@ textarea {
   margin-top: -2px;
 }
 
-
-
 .checkbox-inline.disabled,
 .checkbox.disabled label,
 .radio-inline.disabled,
@@ -1782,10 +1780,6 @@ ul.nav.nav-tabs li,
 .table > tbody > tr > th {
   border: none !important;
 }
-.table-condensed tbody tr td {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
 
 i.tablesorter-icon {
   background-image: none !important;
@@ -1866,6 +1860,17 @@ tr.tablesorter-filter-row td {
 
 .tablesorter-filter-row {
   background-color: var(--btn-default-color)!important;
+}
+
+.table-condensed tbody tr td {
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+.table-condensed tbody tr:hover td,
+.table-condensed tbody tr:hover td div.cmd div,
+.table-condensed tbody tr:hover > td input,
+.table-condensed tbody tr:hover > td input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox])  {
+  color: rgb(var(--contrast-color)) !important;
 }
 
 :not(.eqLogic-widget) + table.tableCmd td {
@@ -3040,11 +3045,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3053,7 +3058,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3062,12 +3067,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3075,11 +3080,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3125,5 +3130,5 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
