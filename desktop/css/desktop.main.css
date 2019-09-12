@@ -2804,11 +2804,13 @@ div.vis-item-content {
   opacity: 0.65;
 }
 
-button.ui-dialog-titlebar-close:before {
-  font-weight: normal;
-  content: "X";
-  color: rgb(var(--bg-color)) !important;
-  z-index: 50;
+button.ui-dialog-titlebar-close::before {
+   font-family: "Font Awesome 5 Free";
+   font-size: 18px !important;
+   font-weight: 900;
+   content: "\f00d";
+   color: rgb(var(--bg-color)) !important;
+   vertical-align: middle;
 }
 button.ui-dialog-titlebar-close {
   position: absolute;
