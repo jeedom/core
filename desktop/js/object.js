@@ -88,8 +88,11 @@ $(function(){
 })
 
 $('#bt_graphObject').on('click', function () {
-  $('#md_modal').dialog({title: "{{Graphique des liens}}"});
-  $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
+  $('#md_modal').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
+});
+
+$('#bt_libraryBackgroundImage').on('click', function () {
+  $('#md_modal').dialog({title: "{{Bibliotheque d'images}}"}).load('index.php?v=d&modal=object.img.selector&object_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
 });
 
 setTimeout(function(){

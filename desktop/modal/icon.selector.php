@@ -61,7 +61,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 		</div>
 	</div>
 	
-	
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
@@ -395,7 +394,7 @@ $('#in_searchIconSelector').on('keyup',function(){
 		$('.generalCategory').show();
 		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>');
 	}
-
+	
 });
 $('#bt_resetSearch').on('click', function () {
 	$('#in_searchIconSelector').val('')
