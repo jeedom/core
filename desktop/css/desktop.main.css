@@ -103,7 +103,7 @@ a.btn,
 .cmd-widget,
 legend,
 span,
-.label {
+.label:not(.cursor) {
   cursor: default !important;
   word-break: break-word;
 }
@@ -807,8 +807,6 @@ pre {
   font-size: 13px;
   line-height: 20px;
   background: rgb(var(--bg-color));
-
-
 }
 
 .div_rowZones {
@@ -3107,6 +3105,7 @@ ul.dropdown-menu {
     height: 50px !important;
   }
 }
+
 @media screen and (max-width: 768px) {
   .navbar-fixed-top .navbar-collapse {
     position: fixed;
@@ -3130,5 +3129,4 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-
 }
