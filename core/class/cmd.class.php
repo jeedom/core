@@ -629,45 +629,7 @@ class cmd {
 	
 	public static function availableWidget($_version) {
 		global $JEEDOM_INTERNAL_CONFIG;
-		$path = __DIR__ . '/../template/' . $_version;
-		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 		$return = array();
-		foreach ($files as $file) {
-			$informations = explode('.', $file);
-			if(count($informations) < 4){
-				continue;
-			}
-			if(stripos($informations[3],'tmpl') !== false){
-				continue;
-			}
-			if (!isset($return[$informations[1]])) {
-				$return[$informations[1]] = array();
-			}
-			if (!isset($return[$informations[1]][$informations[2]])) {
-				$return[$informations[1]][$informations[2]] = array();
-			}
-			if (isset($informations[3])) {
-				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core', 'type' => 'core');
-			}
-		}
-		$path = __DIR__ . '/../../plugins/widget/core/template/' . $_version;
-		if (file_exists($path)) {
-			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
-			foreach ($files as $file) {
-				$informations = explode('.', $file);
-				if (count($informations) > 3) {
-					if (!isset($return[$informations[1]])) {
-						$return[$informations[1]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]])) {
-						$return[$informations[1]][$informations[2]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
-						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget' ,  'type' => 'widget');
-					}
-				}
-			}
-		}
 		$path = __DIR__ . '/../../data/customTemplates/' . $_version;
 		if (file_exists($path)) {
 			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
@@ -730,6 +692,26 @@ class cmd {
 				$return[$widgets->getType()][$widgets->getSubtype()] = array();
 			}
 			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom', 'type' => 'custom');
+		}
+		$path = __DIR__ . '/../template/' . $_version;
+		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
+		foreach ($files as $file) {
+			$informations = explode('.', $file);
+			if(count($informations) < 4){
+				continue;
+			}
+			if(stripos($informations[3],'tmpl') !== false){
+				continue;
+			}
+			if (!isset($return[$informations[1]])) {
+				$return[$informations[1]] = array();
+			}
+			if (!isset($return[$informations[1]][$informations[2]])) {
+				$return[$informations[1]][$informations[2]] = array();
+			}
+			if (isset($informations[3])) {
+				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core', 'type' => 'core');
+			}
 		}
 		return $return;
 	}

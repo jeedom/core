@@ -159,6 +159,9 @@ class translate {
 			} else {
 				$plugin = substr($page, strpos($page, 'plugins/') + 8);
 				$plugin = substr($plugin, 0, strpos($plugin, '/'));
+				if(trim($plugin) == '' || trim($plugin) == 'core'){
+					continue;
+				}
 				if (!isset($plugins[$plugin])) {
 					$plugins[$plugin] = array();
 				}

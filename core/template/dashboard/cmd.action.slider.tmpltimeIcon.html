@@ -1,0 +1,56 @@
+<div style="width:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-sm ">
+    <span class="cursor iconCmd#uid# iconCmd"></span>
+  </div>
+  <div class="value">
+    <div class="slider" value="#state#">
+      <span class="value#uid# sliderValue"></span>
+    </div>
+    <span class="timeCmd#uid# timeCmd label label-default"></span>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
+      cmd.find('.slider').slider({
+        min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
+        max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
+        value: ('#state#' == '') ? 0 : parseInt(_options.display_value),
+        slide: function(event, ui) {
+          $(".value#uid#").show();
+          $(".value#uid#").html(ui.value);
+        }
+      });
+      if (parseInt(_options.display_value) > 0) {
+        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
+      }else {
+        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
+      }
+      var style = '';
+      if(!isNaN('#_width_#')){
+        style = 'max-width:#_width_#px !important;'
+      }
+      if(!isNaN('#_height_#')){
+        style += 'max-height:#_height_#px !important;'
+      }
+      cmd.find('.iconCmd img').attr('style',style);
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    $('.iconCmd#uid#').off().on('click', function() {
+      if ($(this).attr('data-state') == 'on') {
+        var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}});
+      } else {
+        var value = ('#minValue#' == '') ? 100 : parseInt('#maxValue#');
+        jeedom.cmd.execute({id: '#id#', value: {slider: value}});
+      }
+    });
+    $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
+      $(".value#uid#").hide();
+    });
+  </script>
+</div>

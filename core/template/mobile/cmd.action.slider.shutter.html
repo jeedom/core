@@ -1,36 +1,33 @@
 <div class="cmd shuttergauge" data-version="#version#" data-eqLogic_id="#eqLogic_id#" class="cmd #history# cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
 	<center>
 		<div style="#hideCmdName#">#name_display#</div>
-		
 		<div class="shuttergauge-chart">
 			<div class="shuttergauge-bckg cursor">
 				<div class="shuttergauge-value"></div>
 			</div>
 		</div>
 		<div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
-		
 		<div class="slider full-width-slider ui-slider">
 			<input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
 		</div>
 	</center>
-	
 	<script>
-		$("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
-		$("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
-			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
-		});
-		
-		jeedom.cmd.update['#id#'] = function(_options){
-			height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
+		$('body').undelegate('.cmd[data-cmd_uid=#uid#] .slider')
+		$('body').delegate('.cmd[data-cmd_uid=#uid#] .slider','slidestop', function (event, ui) {
+			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
+		})
+		jeedom.cmd.update['#id#'] = function(_options) {
+			var cmd = $('.cmd[data-cmd_uid=#uid#]')
+			var height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
 			height = 100 - (Math.round(parseFloat(height) * 10) / 10)
-			if('#invert#' == '1'){
-				height = 100 - height;
+			if ('#invert#' == '1') {
+				var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+				height = maxValue - height
 			}
-			$('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
-			$('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
-			$(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value)
+			cmd.find('.shuttergauge-value').height(height+'%')
+			cmd.find('.state strong').first().text(_options.display_value)
+			cmd.find('.slider input').value(_options.display_value)
 		}
-		
 		$('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
 			shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
 			if (shutterPos > 50) {
@@ -39,7 +36,6 @@
 				jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
 			}
 		})
-		
 		jeedom.cmd.update['#id#']({display_value:'#state#'})
 	</script>
 </div>

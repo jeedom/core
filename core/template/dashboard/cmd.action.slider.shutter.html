@@ -15,75 +15,80 @@
     <div class="state valueshutter"><strong>#state#</strong> <strong>#unite#</strong></div>
     <div class="state dynamicshutter" style="display:none;"></div>
   </div>
-
+  
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-
-      var position = _options.display_value;
-      if('#invert#' == '1'){
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
-        position = maxValue - position;
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+      var position = _options.display_value
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      if ('#invert#' == '1') {
+        position = maxValue - position
       }
-      height#uid# = ((position - #minValue#) * 100) / (#maxValue# - #minValue#);
-      height#uid# = 100 - (Math.round(parseFloat(height#uid#) * 10) / 10);
-
-      if (height#uid# > 65) {
-        $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
-        $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-35px', 'min-height':'51px'})
+      height_#uid# = ((position - minValue) * 100) / (maxValue - minValue)
+      height_#uid# = 100 - (Math.round(parseFloat(height_#uid#) * 10) / 10)
+      if (height_#uid# > 65) {
+        cmd.find('.state strong').css('color','var(--bg-modal-color)')
+        cmd.find('.value').css({'margin-top':'-35px', 'min-height':'51px'})
+        cmd.find('.value .timeCmd').css('top','28px')
       } else {
-        $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
-        $('.cmd[data-cmd_uid=#uid#] .value').css({'margin-top':'-12px', 'min-height':'28px'})
+        cmd.find('.state strong').css('color','var(--txt-color)')
+        cmd.find('.value').css({'margin-top':'-12px', 'min-height':'28px'})
+        cmd.find('.value .timeCmd').css('top','5px')
       }
-
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height#uid#+'%')
-      $('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
-      $('.cmd[data-cmd_uid=#uid#] .slider').slider( "option", "value",position);
+      cmd.find('.shuttergauge-value').height(height_#uid#+'%')
+      cmd.find('.state strong').first().text(_options.display_value)
+      cmd.find('.slider').slider( "option", "value",position);
     }
-
+    
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (shutterPos > 50) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #minValue#}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: minValue}})
       } else {
-        jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: maxValue}})
       }
     })
-
-    $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
-      $('.cmd[data-cmd_uid=#uid#] .valueshutter').show()
-      $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').hide()
+    
+    $('.cmd[data-cmd_uid=#uid#] .slider').on('slidestop', function (event,ui) {
+      var cmd = $('.cmd[data-cmd_uid=#uid#]')
+      cmd.find('.valueshutter').show()
+      cmd.find('.dynamicshutter').hide()
       if('#invert#' == '1'){
-        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
+        var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider:maxValue - ui.value}})
-      }else{
+      } else {
         jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       }
       $(".value#uid#").hide()
     })
-
-    $(".cmd[data-cmd_id=#id#] .slider").slider({
+    
+    $('.cmd[data-cmd_uid=#uid#] .slider').slider({
       orientation: "vertical",
       min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
       slide: function(event, ui) {
-        $('.cmd[data-cmd_uid=#uid#] .valueshutter').hide()
-        $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').show()
-        if('#invert#' == '1'){
-          var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#');
-          $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').html('<strong>' + (maxValue - ui.value) +'</strong> <strong>#unite#</strong>')
-        }else{
-          $('.cmd[data-cmd_uid=#uid#] .dynamicshutter').html('<strong>' + ui.value +'</strong> <strong>#unite#</strong>')
+        var cmd = $('.cmd[data-cmd_uid=#uid#]')
+        cmd.find('.valueshutter').hide()
+        cmd.find('.dynamicshutter').show()
+        if ('#invert#' == '1') {
+          var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+          cmd.find('.dynamicshutter').html('<strong>' + (maxValue - ui.value) +'</strong> <strong>#unite#</strong>')
+        } else {
+          cmd.find('.dynamicshutter').html('<strong>' + ui.value +'</strong> <strong>#unite#</strong>')
         }
-        if (height#uid# > 65) {
-            $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--bg-modal-color)')
-         } else {
-            $('.cmd[data-cmd_uid=#uid#] .state strong').css('color','var(--txt-color)')
-         }
+        if (height_#uid# > 65) {
+          cmd.find('.state strong').css('color','var(--bg-modal-color)')
+        } else {
+          cmd.find('.state strong').css('color','var(--txt-color)')
+        }
       }
     })
-
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
   </script>
 </div>

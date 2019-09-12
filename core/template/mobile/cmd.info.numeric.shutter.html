@@ -8,10 +8,11 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      var height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height(height+'%')
-      $('.cmd[data-cmd_uid=#uid#] .shuttergauge-state strong').first().text(_options.display_value)
+      cmd.find('.shuttergauge-value').height(height+'%')
+      cmd.find('.shuttergauge-state strong').first().text(_options.display_value)
     }
     
     jeedom.cmd.update['#id#']({display_value:'#state#'});

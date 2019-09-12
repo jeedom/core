@@ -1,0 +1,111 @@
+/*
+Core Widgets CSS @Jeedom
+*/
+
+/* __________________________________________________________________________________________________________Global */
+/* arc gauges and sliders */
+.highcharts-pane {
+  stroke-width: 0;
+}
+.highcharts-data-label > span > span {
+  font-size: 12px !important;
+}
+.highcharts-color-0 {
+  fill: var(--link-color);
+}
+.ui-slider-handle {
+  font-size: 1em;
+  border-radius: 1em !important;
+  cursor: pointer !important;
+}
+.ui-slider-horizontal{
+  height: 5px !important;
+}
+.ui-slider{
+  border:none !important;
+}
+
+/* less space under arc gauges */
+.gauge.cursor{ height: 85px !important; }
+.container-fluid.cmd-widget { min-height: 85px !important; }
+
+h4.modal-title {
+  font-size: 14px;
+}
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+  font-weight: normal !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  font-weight: normal !important;
+  font-style: italic;
+}
+
+path.highcharts-graph {
+  stroke-width: 1;
+}
+
+
+/* __________________________________________________________________________________________________________Specific */
+.hgauge-value,
+.shuttergauge-value {
+  background: var(--link-color);
+}
+
+.hgauge {
+  position: relative;
+  width: calc(100% - 16px);
+  height: 60px;
+  top: 12px;
+}
+.hgauge-bckg {
+  position:relative;
+  height: 5px;
+  top: -3px;
+  background: var(--el-defaultColor);
+}
+.hgauge-value {
+  height: 10px;
+  position: absolute;
+  left: 0;
+  margin-top: -4px;
+}
+.hgauge .state {
+  margin-top: 10px;
+}
+
+.shuttergauge, .timeShuttergauge {
+  position: relative;
+  width: 100% !important;
+  height: 120px;
+}
+.timeShuttergauge {
+  height: 140px;
+}
+.shuttergauge-bckg {
+  width: 42px;
+  height: 45px;
+  margin-left: -26px;
+  position: absolute;
+  top: 20px;
+}
+.shuttergauge-chart {
+  display: inline-block;
+  text-align: center !important;
+}
+.shuttergauge-state {
+  font-size: 16px;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.shuttergauge-state .timeCmd {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+}
+.shuttergauge .slider {
+  margin-top: 55px;
+}

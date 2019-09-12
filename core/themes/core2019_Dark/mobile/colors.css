@@ -1,5 +1,6 @@
 /*
 Theme Core 2019 @Jeedom
+colors Dark
 */
 :root {
   --lineheight : 1.42em;
@@ -10,8 +11,8 @@ Theme Core 2019 @Jeedom
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
   --logo-secondary-color: rgb(189, 188, 190);
-  --bg-color: 25, 25, 25;
-  --bg-modal-color: rgb(35, 35, 36);
+  --bg-color: 35, 35, 37;
+  --bg-modal-color: rgb(39, 39, 40);
   --contrast-color: 205, 205, 205;
 
   --txt-color: rgb(172, 172, 172);

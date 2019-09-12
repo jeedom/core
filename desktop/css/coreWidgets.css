@@ -1,0 +1,277 @@
+/*
+Core Widgets CSS @Jeedom
+*/
+
+/* __________________________________________________________________________________________________________Global */
+.eqLogic-widget div.cmd-widget {
+  position: relative;
+  padding: 0;
+  min-width: 70px;
+}
+div.cmd-widget .title {
+  color: var(--txt-color);
+  width: 100%;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  line-height: 14px;
+  position: relative;
+  display: table;
+  text-align: center;
+}
+
+div.cmd-widget div[class^="content"] {
+  display: table-cell;
+  vertical-align: middle !important;
+}
+
+div.cmd-widget .content-xs {
+  color: var(--txt-color);
+  width: 100%;
+  height: 12px;
+  min-height: 12px;
+  line-height: 14px;
+  margin: 0;
+  position: relative;
+  text-align: center;
+}
+div.cmd-widget .content-xs .slider {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+div.cmd-widget .content-sm {
+  height: 40px !important;
+  min-height: 40px;
+  max-height: 40px;
+}
+div.cmd-widget .content {
+  height: 56px !important;
+  min-height: 56px;
+  max-height: 56px;
+}
+div.cmd-widget .content-lg {
+  height: 72px !important;
+  min-height: 72px;
+  max-height: 72px;
+}
+div.cmd-widget .value {
+  font-weight: bold;
+  width: 100%;
+  height: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  margin-bottom: 2px;
+}
+div.cmd-widget .value > .center-block {
+  color: var(--txt-color);
+  font-size: 11px;
+  font-weight: normal;
+  padding: 0 !important;
+  margin: 0;
+}
+div.cmd-widget div[class^="content"] > select {
+  font-size: 16px !important;
+  height: 22px;
+}
+div.cmd-widget div[class^="content"] > select > option {
+  font-size: 12px !important;
+}
+div.cmd-widget[data-subtype="select"]::after {
+  font-size: 14px;
+  top: 5px!important;
+  right: 5px;
+}
+div.eqLogic_layout_table table.tableCmd {
+  min-width: 100%;
+}
+div.eqLogic_layout_table table.tableCmd td {
+  vertical-align: top;
+}
+.eqLogic.eqLogic-widget > .widget-name {
+  margin-bottom: 5px;
+}
+
+.cmdStats,
+div.cmd > div.center-block {
+  color: var(--txt-color) !important;
+  font-size: 10px !important;
+  font-weight: normal;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+.cmd-widget {
+  display: inline-block;
+  position : relative;
+  vertical-align: top;
+}
+
+.cmd-widget .statistiques {
+  position : absolute;
+  bottom: 0;
+  font-size: 0.80em;
+  left : 0;
+  margin : 0;
+  padding: 0;
+  line-height:0px;
+}
+
+.cmd-widget[data-subtype="select"] .title,
+.cmd-widget[data-subtype="select"] .content-xs {
+  clear: both !important;
+  display: inline;
+  text-align: left;
+}
+.cmd-widget[data-subtype="select"] .cmdName {
+  font-size: 11px !important;
+  margin-left: 5px;
+}
+.cmd-widget[data-subtype="select"] .content-xs {
+  top: -4px !important;
+}
+
+.verticalAlign {
+  position: relative;
+  transform: translateY(-50%);
+  top: calc(50% - 18px);
+  z-index: -1;
+}
+
+/* __________________________________________________________________________________________________________Sliders */
+.slider.ui-slider-horizontal {
+  position: relative;
+  margin: 5px;
+  width: 65px;
+  left: 0;
+}
+.slider.ui-slider-vertical {
+  position: absolute;
+  margin: 5px;
+  height: 50px;
+  top: 16px !important;
+  right: 3px;
+}
+
+.sliderValue {
+  font-size: 12px;
+  color: var(--txt-color);
+  font-weight: normal;
+  position: absolute;
+  z-index: 1;
+}
+.ui-slider-horizontal > .sliderValue {
+  top: -7px;
+  right: -22px;
+}
+.ui-slider-vertical > .sliderValue {
+  bottom: -1px;
+  right: 10px;
+}
+
+/* __________________________________________________________________________________________________________Specifics */
+.gauge {
+  position: relative;
+  width: 100px;
+  height: 54px;
+  margin: 0 auto;
+}
+.gauge .highcharts-pane {
+  fill: var(--el-defaultColor);
+}
+.arcgauge .cmdStats {
+  position: relative;
+  top: 3px;
+}
+.arcgauge .highcharts-background {
+  fill-opacity: 0 !important;
+}
+.gauge .highcharts-yaxis-grid {
+  display: none;
+}
+.hgauge-value,
+.vgauge-value,
+.shuttergauge-value {
+  background: var(--link-color);
+}
+.hgauge-bckg,
+.vgauge-bckg {
+  background: var(--el-defaultColor);
+}
+.hgauge-bckg {
+  position:relative;
+  width: 70px;
+  height: 5px;
+  left: 0;
+}
+.vgauge-bckg {
+  position: relative;
+  top: -4px;
+  left: -6px;
+  width: 5px;
+  height: 38px;
+  margin-bottom: -7px;
+}
+.hgauge,
+.vgauge,
+.shuttergauge {
+  width: 90px;
+  max-width: 90px;
+  margin-left: 5px;
+  margin-right: 5px;
+  line-height: 10px;
+}
+
+.shuttergauge .center-block {
+  top: -3px;
+}
+.shuttergauge .content-sm {
+  width: 90px;
+  min-width: 90px;
+  max-width: 90px;
+}
+.shuttergauge-bckg {
+  width: 39px;
+  height: 40px;
+  border-top: 5px solid var(--el-defaultColor);
+  border-left: 3px solid var(--el-defaultColor);
+  border-right: 3px solid var(--el-defaultColor);
+  position: absolute;
+  top: 16px;
+  left: 25px;
+}
+.shuttergauge-chart {
+  position: relative;
+  top: -18px;
+  height: 37px;
+}
+.shuttergauge[data-type=action] .shuttergauge-bckg {
+  left: 18px;
+}
+.shuttergauge[data-type=action] .state {
+  position: relative;
+  left: -7px;
+}
+.shuttergauge .slider {
+  width: 60px;
+  top: 12px !important;
+}
+.shuttergauge .timeCmd {
+  position: relative;
+  margin-left: -15px !important;
+}
+.hgauge .content-sm {
+  width: 70px !important;
+  text-align: left;
+}
+.hgauge-value {
+  position: relative;
+  padding: 0;
+  margin-top: -1px;
+  height: 10px;
+}
+.vgauge-value {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  margin-left: 4px;
+}
