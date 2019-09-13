@@ -45,12 +45,12 @@ sendVarToJs('img_object_id',init('object_id'));
 	<div class="imgContainer" style="width:calc(100% - 15px)">
 		<?php
 		foreach (ls(__DIR__.'/../../core/img/object_background','*') as $category) {
-			echo '<div class="imgCategory"><legend>'.str_replace('/','',ucfirst($category)).'</legend>';
+			echo '<div class="imgCategory"><legend>'.ucfirst(str_replace(array('/','_'),array('',' '),$category)).'</legend>';
 			echo '<div class="row">';
 			foreach (ls(__DIR__.'/../../core/img/object_background/'.$category,'*') as $file) {
 				echo '<div class="col-lg-1 divImgSel">';
 				echo '<span class="imgSel"><img src="core/img/object_background/'.$category.$file.'" /></span>';
-				echo '<center class="imgDesc">'.substr(basename($file),0,12).'</center>';
+				echo '<center class="imgDesc">'.ucfirst(substr(str_replace(array('/','_','.jpg'),array('',' ',''),basename($file)),0,12)).'</center>';
 				echo '<center><a class="btn btn-success btn-xs btSelectImgObj" data-filename="'.__DIR__.'/../../core/img/object_background/'.$category.$file.'"><i class="fas fa-check"></i> {{Selectionner}}</a></center>';
 				echo '</div>';
 			}
