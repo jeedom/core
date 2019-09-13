@@ -1056,7 +1056,6 @@ function displayObject(_plan,_html, _noRender) {
   }
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
-      //  html.find('.widget-name').remove();
       html.addClass('hideEqLogicName')
     }
     if(isset(_plan.display.cmdHide)){

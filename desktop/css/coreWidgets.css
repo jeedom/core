@@ -13,6 +13,7 @@ Core Widgets CSS @Jeedom
   display: none !important;
 }
 
+
 div.cmd-widget .title {
   color: var(--txt-color);
   width: 100%;
