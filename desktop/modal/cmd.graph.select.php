@@ -19,10 +19,7 @@ if (!isConnect()) {
 	<tbody>
 		<?php
 		$html = '';
-		foreach (cmd::all() as $cmd) {
-			if ($cmd->getIsHistorized() != 1) {
-				continue;
-			}
+		foreach (cmd::isHistorized() as $cmd) {
 			$eqLogic = $cmd->getEqLogic();
 			if (!is_object($eqLogic)) {
 				continue;
