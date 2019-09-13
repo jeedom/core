@@ -295,6 +295,9 @@ body {
   font-size: 35px !important;
   padding: 5px;
 }
+.scenario-widget  {
+  min-height: 72px !important;
+}
 .scenario-widget .state {
   padding-top: 12px;
   line-height: 40px !important;
