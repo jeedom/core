@@ -910,7 +910,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::margin" />
+												<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" />
 											</div>
 										</div>
 										<div class="form-group">

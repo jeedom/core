@@ -290,6 +290,13 @@ class config {
 		return $_value;
 	}
 	
+	public static function preConfig_widget_margin($_value) {
+		if($_value < 0){
+			return 0;
+		}
+		return $_value;
+	}
+	
 	public static function preConfig_css_background_opacity($_value) {
 		return self::checkValue0_1($_value);
 	}
