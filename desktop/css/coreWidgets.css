@@ -3,6 +3,10 @@ Core Widgets CSS @Jeedom
 */
 
 /* __________________________________________________________________________________________________________Global */
+[data-page=plan3d] .verticalAlign{
+  z-index : auto !important;
+}
+
 .eqLogic-widget div.cmd-widget {
   position: relative;
   padding: 0;
@@ -12,7 +16,6 @@ Core Widgets CSS @Jeedom
 .eqLogic-widget.hideEqLogicName .widget-name{
   display: none !important;
 }
-
 
 div.cmd-widget .title {
   color: var(--txt-color);
