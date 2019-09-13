@@ -8,6 +8,11 @@ Core Widgets CSS @Jeedom
   padding: 0;
   min-width: 70px;
 }
+
+.eqLogic-widget.hideEqLogicName .widget-name{
+  display: none !important;
+}
+
 div.cmd-widget .title {
   color: var(--txt-color);
   width: 100%;
