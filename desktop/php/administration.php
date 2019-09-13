@@ -894,7 +894,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::step::width" />
+												<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -902,7 +902,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::step::height" />
+												<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -922,7 +922,7 @@ user::isBan();
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{icônes widgets colorées}}
+											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icônes widgets colorées}}
 												<sup><i class="fas fa-question-circle" tooltip="{{Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
