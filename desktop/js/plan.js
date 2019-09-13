@@ -1133,6 +1133,11 @@ function displayObject(_plan,_html, _noRender) {
             showNavigator : init(_plan.display.showNavigator, true),
             enableExport : false,
             global: false,
+            success : function(){
+              if(init(_plan.display.transparentBackground, false)){
+                $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+              }
+            }
           });
         }
       }
