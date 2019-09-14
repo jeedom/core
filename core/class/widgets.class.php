@@ -162,7 +162,20 @@ class widgets {
         }
       }
     }
-    
+    if($widgets->getType() != $this->getType() || $widgets->getSubType() != $this->getSubType()){
+      $usedBy = $widgets->getUsedBy();
+      if(is_array($usedBy) && count($usedBy) > 0){
+        foreach ($usedBy as $cmd) {
+          if($cmd->getTemplate('dashboard') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('dashboard','default');
+          }
+          if($cmd->getTemplate('mobile') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('mobile','default');
+          }
+          $cmd->save(true);
+        }
+      }
+    }
   }
   
   public function save() {
