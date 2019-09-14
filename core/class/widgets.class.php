@@ -146,6 +146,25 @@ class widgets {
     }
   }
   
+  public function preUpdate(){
+    $widgets = self::byId($this->getId());
+    if($widgets->getName() != $this->getName()){
+      $usedBy = $widgets->getUsedBy();
+      if(is_array($usedBy) && count($usedBy) > 0){
+        foreach ($usedBy as $cmd) {
+          if($cmd->getTemplate('dashboard') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('dashboard','custom::'.$this->getName());
+          }
+          if($cmd->getTemplate('mobile') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('mobile','custom::'.$this->getName());
+          }
+          $cmd->save(true);
+        }
+      }
+    }
+    
+  }
+  
   public function save() {
     DB::save($this);
     return true;
