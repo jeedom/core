@@ -1,5 +1,5 @@
 <div style="width:220px;height:220px;" class="cmd #history# tooltips cmd-widget widget-hygrothermographe" data-type="info" data-subtype="numeric" data-cmd_id="#id#" title="#collectDate#">
-  <img width="220px" height="220px" src="core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100.png">
+  <img class="hygrothermographe-background" width="220px" height="220px" src="core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100.png">
   <span class="intNumTemp fontDigital value"></span>
   <span class="decNumTemp fontDigital value"></span>
   <span class="uniteTemp fontDigital">°C</span>
@@ -43,7 +43,7 @@
       font-size:20px;
       font-weight: bold;
       top: 55px;
-      right: 65px;
+      right: 85px;
     }
     .widget-hygrothermographe span.intNumHumidity {
       font-size: 65px;
@@ -61,7 +61,7 @@
       font-size:20px;
       font-weight: bold;
       top: 130px;
-      right: 74px;
+      right: 85px;
     }
   </style>
   <script>
@@ -84,5 +84,31 @@
         $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:not(:first-child)').hide();
       }
     },100)
+    
+    if('#scale#' != ''){
+      let cmd = $('.cmd[data-cmd_id=#id#]');
+      cmd.width(cmd.width()*'#scale#');
+      cmd.height(cmd.height()*'#scale#');
+      cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#');
+      cmd.find('.hygrothermographe-background').height(cmd.find('.hygrothermographe-background').height()*'#scale#');
+      cmd.find('.intNumTemp').css('font-size',(cmd.find('.intNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.intNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.intNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+      cmd.find('.decNumTemp').css('font-size',(cmd.find('.decNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.decNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.decNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+      cmd.find('.uniteTemp').css('font-size',(cmd.find('.uniteTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.uniteTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.uniteTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
+      cmd.find('.intNumHumidity').css('font-size',(cmd.find('.intNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.intNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.intNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+      cmd.find('.decNumHumidity').css('font-size',(cmd.find('.decNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.decNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.decNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+      cmd.find('.uniteHumidity').css('font-size',(cmd.find('.uniteHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
+      .css('top',(cmd.find('.uniteHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
+      .css('right',(cmd.find('.uniteHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+    }
   </script>
 </div>
