@@ -5,10 +5,10 @@ Theme Core 2019 @Jeedom
 @import url("colors.css");
 
 .ui-link[data-title=Accueil] {
-	background: url(./jeedom_home.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 32px 32px;
+  background: url(./jeedom_home.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px 32px;
 }
 
 /* ___________________________________________________________DASHBOARD CATEGORIES coloring */
@@ -84,13 +84,13 @@ Theme Core 2019 @Jeedom
 #div_displayBattery .eqLogic-widget {
   color: var(--eqTitle-color);
 }
-#div_displayBattery .eqLogic-widget.critical { 
+#div_displayBattery .eqLogic-widget.critical {
   background-color: var(--al-danger-color);
 }
-#div_displayBattery .eqLogic-widget.warning { 
+#div_displayBattery .eqLogic-widget.warning {
   background-color: var(--al-warning-color);
 }
-#div_displayBattery .eqLogic-widget.good { 
+#div_displayBattery .eqLogic-widget.good {
   background-color: var(--al-success-color);
 }
 #div_displayBattery .eqLogic-widget .jeedom-batterie,
@@ -110,7 +110,7 @@ Theme Core 2019 @Jeedom
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
 .cmdName {
-	color: var(--linkHoverLight-color) !important;
+  color: var(--linkHoverLight-color) !important;
 }
 
 .state,
@@ -120,6 +120,7 @@ p.state,
 .iconCmd i,
 .iconCmd span,
 .cmd .iconCmd i:not([class*="icon_"]),
+[data-coloredicons="0"] .cmd .iconCmd i[class*="icon_"],
 .cmd {
   color: var(--linkHoverLight-color) !important;
 }
