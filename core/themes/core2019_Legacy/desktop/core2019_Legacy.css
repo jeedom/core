@@ -129,6 +129,9 @@ span.cursor > i:hover {
 .eqLogic.eqLogic-widget .cmd-widget .history {
   color: var(--linkHoverLight-color) !important;
 }
+.eqLogic.eqLogic-widget .tableCmd td {
+  color: var(--sc-lightTxt-color) !important;
+}
 
 .gauge.history tspan {
   fill: var(--linkHoverLight-color) !important;
