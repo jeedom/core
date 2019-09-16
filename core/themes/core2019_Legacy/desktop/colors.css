@@ -5,7 +5,7 @@ colors Legacy
 :root {
   --lineheight : 1.42em;
   /* keet it as rem even when zero!!*/
-  --border-radius: 1rem;
+  --border-radius: 0rem;
   --opacity: 1;
   
   --url-logo: url('/core/themes/core2019_Light/desktop/logo-jeedom.png');
