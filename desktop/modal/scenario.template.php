@@ -29,10 +29,10 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 			<ul id="ul_scenarioTemplateList" class="nav nav-list bs-sidenav"></ul>
 		</div>
 	</div>
-	
-	<div class="col-lg-10 col-md-9 col-sm-7" id="div_listScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;">
+
+	<div class="col-lg-10 col-md-9 col-sm-7" id="div_listScenarioTemplate" style="display:none;">
 		<form class="form-horizontal">
-			<legend>{{Général}}</legend>
+			<legend><i class="fas fa-home"></i> {{Général}}</legend>
 			<div class="form-group">
 				<label class="col-xs-2 control-label">{{Gérer}}</label>
 				<div class="col-xs-6">
@@ -40,13 +40,13 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 					<a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
 				</div>
 			</div>
-			<div id='div_scenarioTemplateParametreConfiguration' style='display : none;'>
-				<legend>{{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="far fa-check-circle"></i> {{Appliquer}}</a></legend>
+			<div id='div_scenarioTemplateParametreConfiguration' style='display:none;'>
+				<legend><i class="fas fa-tools"></i> {{Paramètres du scénario}}<a class='btn btn-success btn-xs pull-right' id='bt_scenarioTemplateApply'><i class="far fa-check-circle"></i> {{Appliquer}}</a></legend>
 				<div id='div_scenarioTemplateParametreList'></div>
 			</div>
 		</form>
 	</div>
-	<div class="col-lg-10 col-md-9 col-sm-7" id="div_marketScenarioTemplate" style="border-left: solid 1px #EEE; padding-left: 25px;display : none;"></div>
+	<div class="col-lg-10 col-md-9 col-sm-7" id="div_marketScenarioTemplate" style="display:none;"></div>
 </div>
 
 <script>
@@ -154,7 +154,7 @@ $('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function 
 			$('#div_scenarioTemplateParametreConfiguration').show();
 		}
 	});
-	
+
 });
 
 $('#bt_scenarioTemplateDownload').on('click',function(){
