@@ -340,6 +340,18 @@ legend {
   color: var(--txt-color);
   font-weight: bold;
 }
+.tableCmd {
+  font-size: 12px;
+}
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss center,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss div.cmd,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss div[class*="content"],
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss span.cmdName,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss strong.state {
+  font-size: unset !important;
+  color: unset !important;
+}
+
 
 .pull-right {
   float: right;
@@ -349,10 +361,6 @@ legend {
 .pull-left {
   float: left!important;
   margin-right: 3px;
-}
-.cmdName {
-  font-size: 12px;
-  font-weight: bold;
 }
 .btn.action {
   margin-top: 2px;
@@ -973,7 +981,11 @@ pre {
   color : var(--linkHoverLight-color) !important;
 }
 
-.state,
+:not(.tableCmdcss) .cmdName {
+  font-size: 12px;
+  font-weight: bold;
+}
+:not(.tableCmdcss) .state,
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
@@ -1813,7 +1825,7 @@ table.table .table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
+td:not(.tableCmdcss),
 th {
   padding: 0;
   font-size: 14px !important;
@@ -3054,11 +3066,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3067,7 +3079,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3076,12 +3088,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3089,11 +3101,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
