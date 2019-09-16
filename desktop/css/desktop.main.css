@@ -472,9 +472,20 @@ select.selectCmd {
 }
 
 .divIconSel {
-  height: 70px !important;
+  min-width: 100px;
+  width: 100px;
+  height: 75px !important;
   overflow: hidden !important;
+  border: none !important;
 }
+.divImgSel {
+  min-width: 120px;
+  width: 120px;
+  height: 115px !important;
+  overflow: hidden !important;
+  text-align: center;
+}
+
 .iconDesc {
   word-wrap: break-word;
 }
@@ -1876,9 +1887,6 @@ tr.tablesorter-filter-row td {
   vertical-align: top !important;
 }
 
-.divIconSel {
-  border: none !important;
-}
 .well {
   padding: 20px;
   margin-bottom: 20px;
