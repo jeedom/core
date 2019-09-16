@@ -188,6 +188,7 @@ try {
 		}
 		$content = str_replace(array_keys($converts), $converts, file_get_contents($path . '/' . init('template')));
 		$scenario_ajax = json_decode($content, true);
+      	$scenario_ajax['order'] = 9999;
 		if (isset($scenario_ajax['name'])) {
 			unset($scenario_ajax['name']);
 		}
