@@ -780,6 +780,12 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 </div>
 
 <script>
+$(function() {
+	if ($('body').attr('data-page')=="widgets") {
+      $('a[href="#cmd_display"]').click()
+    }
+})
+          
 $('#cmdConfigureTab').off('click').on('click',function(){
 	setTimeout(function(){ taAutosize(); }, 100);
 })
