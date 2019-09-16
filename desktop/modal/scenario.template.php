@@ -14,7 +14,7 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
 		<div class="bs-sidebar nav nav-list bs-sidenav">
 			<div class="form-group">
 				<span class="btn btn-default btn-file" style="width:100%;">
-					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;width:100%;">
+					<i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" data-url="core/ajax/scenario.ajax.php?action=templateupload&jeedom_token=<?php echo ajax::getToken(); ?>" style="display : inline-block;width:100%;">
 				</span>
 			</div>
 			<div class="form-group">
