@@ -621,9 +621,7 @@ sendVarToJS('id', $plan->getId());
 						$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (plan) {
-						console.log(plan_configure_plan.link_type);
 						if(plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id){
-							console.log('je passe');
 							$('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove();
 						}
 						displayObject(plan.plan,plan.html,false);
