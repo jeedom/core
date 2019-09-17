@@ -1616,6 +1616,12 @@ div[data-subtype=select] {
   min-width: 100% !important;
   display: inline-table;
 }
+
+[data-page="plan"] div[data-subtype=select] {
+  min-width: unset !important;
+  width: 100px !important;
+}
+
 div[data-subtype=select] select {
   color: var(--link-color) !important;
   font-weight: bold !important;
