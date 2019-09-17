@@ -60,14 +60,14 @@ $('#in_search').on('keyup',function() {
         if (eqId != searchID) {
         	eqLogic.hide()
       	} else {
-        	eqParent.find('.accordion-toggle[aria-expanded="false"]').click()
+        	eqParent.find('div.panel-collapse').addClass('in')
           	return
       	}
         $(this).find('.cmd').each(function() {
           var cmd = $(this)
           var cmdId = cmd.attr('data-id')
           if (cmdId == searchID) {
-            eqParent.find('.accordion-toggle[aria-expanded="false"]').click()
+            eqParent.find('div.panel-collapse').addClass('in')
             eqLogic.show()
             eqLogic.find('.cmdSortable').show()
             cmd.removeClass('alert-warning').addClass('alert-success')
