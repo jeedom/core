@@ -6,7 +6,7 @@ $repos = update::listRepo();
 ?>
  <div style="display: none;" id="div_repoAddAlert"></div>
  <legend>{{Source}}</legend>
- <div class="alert alert-danger">{{Attention, il n’y a pas d’assistance de l’équipe Jeedom sur les plugins installés depuis une autre source que le Market Jeedom. De plus, l’installation d’un plugin depuis une autre source que le Market jeedom peut dans certains cas entrainer la perte globale d’assistance par l’équipe Jeedom.}}</div>
+ <div class="alert alert-danger">{{Attention, il n’y a pas d’assistance de l’équipe }}<?php echo config::byKey('product_name'); ?>{{ sur les plugins installés depuis une autre source que le Market }}<?php echo config::byKey('product_name'); ?>{{.De plus, l’installation d’un plugin depuis une autre source que le Market }}<?php echo config::byKey('product_name'); ?>{{ peut dans certains cas entrainer la perte globale d’assistance par l’équipe }}<?php echo config::byKey('product_name'); ?>.</div>
  <form class="form-horizontal">
  	<fieldset>
  		<div class="form-group">
