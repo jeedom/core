@@ -102,6 +102,17 @@ class cmd {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 	
+	public static function isHistorized($_state = true) {
+		$values = array(
+			'isHistorized' => ($_state) ? 1 : 0
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE isHistorized=:isHistorized
+		ORDER BY id';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+	
 	public static function allHistoryCmd() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
@@ -629,45 +640,7 @@ class cmd {
 	
 	public static function availableWidget($_version) {
 		global $JEEDOM_INTERNAL_CONFIG;
-		$path = __DIR__ . '/../template/' . $_version;
-		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
 		$return = array();
-		foreach ($files as $file) {
-			$informations = explode('.', $file);
-			if(count($informations) < 4){
-				continue;
-			}
-			if(stripos($informations[3],'tmpl') !== false){
-				continue;
-			}
-			if (!isset($return[$informations[1]])) {
-				$return[$informations[1]] = array();
-			}
-			if (!isset($return[$informations[1]][$informations[2]])) {
-				$return[$informations[1]][$informations[2]] = array();
-			}
-			if (isset($informations[3])) {
-				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core', 'type' => 'core');
-			}
-		}
-		$path = __DIR__ . '/../../plugins/widget/core/template/' . $_version;
-		if (file_exists($path)) {
-			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
-			foreach ($files as $file) {
-				$informations = explode('.', $file);
-				if (count($informations) > 3) {
-					if (!isset($return[$informations[1]])) {
-						$return[$informations[1]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]])) {
-						$return[$informations[1]][$informations[2]] = array();
-					}
-					if (!isset($return[$informations[1]][$informations[2]][$informations[3]])) {
-						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'widget' ,  'type' => 'widget');
-					}
-				}
-			}
-		}
 		$path = __DIR__ . '/../../data/customTemplates/' . $_version;
 		if (file_exists($path)) {
 			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
@@ -730,6 +703,26 @@ class cmd {
 				$return[$widgets->getType()][$widgets->getSubtype()] = array();
 			}
 			$return[$widgets->getType()][$widgets->getSubtype()][$widgets->getName()] = array('name' => $widgets->getName(), 'location' => 'custom', 'type' => 'custom');
+		}
+		$path = __DIR__ . '/../template/' . $_version;
+		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
+		foreach ($files as $file) {
+			$informations = explode('.', $file);
+			if(count($informations) < 4){
+				continue;
+			}
+			if(stripos($informations[3],'tmpl') !== false){
+				continue;
+			}
+			if (!isset($return[$informations[1]])) {
+				$return[$informations[1]] = array();
+			}
+			if (!isset($return[$informations[1]][$informations[2]])) {
+				$return[$informations[1]][$informations[2]] = array();
+			}
+			if (isset($informations[3])) {
+				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => 'core', 'type' => 'core');
+			}
 		}
 		return $return;
 	}
@@ -1234,8 +1227,8 @@ class cmd {
 			'#history#' => '',
 			'#hide_history#' => 'hidden',
 			'#unite#' => $this->getUnite(),
-			'#minValue#' => $this->getConfiguration('minValue', ''),
-			'#maxValue#' => $this->getConfiguration('maxValue', ''),
+			'#minValue#' => $this->getConfiguration('minValue', 0),
+			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
 			'#uid#' => 'cmd' . $this->getId() . eqLogic::UIDDELIMITER . mt_rand() . eqLogic::UIDDELIMITER,
 			'#version#' => $_version,
@@ -1418,7 +1411,7 @@ class cmd {
 		}
 		$oldValue = $this->execCmd();
 		$repeat = ($oldValue === $value && $oldValue !== '' && $oldValue !== null);
-		$this->setCollectDate(($_datetime != null) ? $_datetime : date('Y-m-d H:i:s'));
+		$this->setCollectDate(($_datetime !== null && $_datetime !== false) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));

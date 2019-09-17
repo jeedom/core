@@ -894,7 +894,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::step::width" />
+												<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -902,7 +902,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::step::height" />
+												<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -910,7 +910,7 @@ user::isBan();
 												<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-												<input type="number" class="configKey form-control" data-l1key="widget::margin" />
+												<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -922,7 +922,7 @@ user::isBan();
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{icônes widgets colorées}}
+											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icônes widgets colorées}}
 												<sup><i class="fas fa-question-circle" tooltip="{{Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 											</label>
 											<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -1058,10 +1058,10 @@ user::isBan();
 								<form class="form-horizontal">
 									<fieldset>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{URL de push globale}}
+											<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{URL de push globale}}
 												<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
 											</label>
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+											<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 												<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl">
 											</div>
 										</div>
@@ -1179,7 +1179,7 @@ user::isBan();
 											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Sensibilité}}
 												<sup><i class="fas fa-question-circle" tooltip="{{Plus la sensibilité est basse (de 1 à 99), plus la correspondance doit être exacte.}}"></i></sup>
 											</label>
-											<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<div class="input-group">
 													<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 													<input type="text" class="configKey form-control" data-l1key="interact::confidence1"/>
@@ -1196,7 +1196,7 @@ user::isBan();
 											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Réduire le poids de}}
 												<sup><i class="fas fa-question-circle" tooltip="{{Distance de Levenshtein pour le calcul de correspondance<br>Nombre de différences entre les deux chaines en fonction du nombre de mots.}}"></i></sup>
 											</label>
-											<div class="col-lg-6 col-md-8 col-sm-8 col-xs-6">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<div class="input-group">
 													<span class="input-group-addon roundedLeft" style="width:90px">{{1 mot}}</span>
 													<input type="text" class="configKey form-control" data-l1key="interact::weigh1"/>
@@ -1219,51 +1219,53 @@ user::isBan();
 										</div>
 										<div class="form-group">
 											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Regex générale d'exclusion pour les interactions}}</label>
-											<div class="col-lg-9 col-md-8 col-sm-8 col-xs-6">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 											</div>
 										</div>
+                                        
+                                        
 										<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input type="checkbox" class="configKey" data-l1key="interact::autoreply::enable" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Activer les réponses contextuelles}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input type="checkbox" class="configKey" data-l1key="interact::contextual::enable" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse contextuelle prioritaire si la phrase commence par}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Réponse contextuelle prioritaire si la phrase commence par}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::contextual::startpriority" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Découper une interaction en 2 si elle contient}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Découper une interaction en 2 si elle contient}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::contextual::splitword" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Activer les interactions "préviens moi"}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Activer les interactions "préviens moi"}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input type="checkbox" class="configKey" data-l1key="interact::warnme::enable" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Réponse de type "préviens moi" si la phrase commence par}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Réponse de type "préviens moi" si la phrase commence par}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::warnme::start" />
 											</div>
 										</div>
 										
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
-											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<div class="input-group">
 													<input type="text"  class="configKey form-control roundedLeft" data-l1key="interact::warnme::defaultreturncmd" />
 													<span class="input-group-btn">
@@ -1274,38 +1276,38 @@ user::isBan();
 										</div>
 										
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::jeeObject::synonym" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les équipements}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les équipements}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::eqLogic::synonym" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les commandes}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les commandes}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::cmd::synonym" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonymes pour les résumés}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les résumés}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::summary::synonym" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider maximum}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider maximum}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::max" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider minimum}}</label>
-											<div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+											<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonyme commande slider minimum}}</label>
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 												<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 											</div>
 										</div>

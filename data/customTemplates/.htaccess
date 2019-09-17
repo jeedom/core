@@ -1,5 +1,5 @@
 Order allow,deny
-<Files ~ "\.(jpeg|png|js|html|ttf)$">
+<Files ~ "\.(jpeg|png|gif|js|html|ttf)$">
 allow from all
 </Files>
 Deny from all

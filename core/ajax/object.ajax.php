@@ -262,15 +262,21 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		if (!isset($_FILES['file'])) {
-			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
-		}
-		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
-		}
-		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+		if(init('file') == ''){
+			if (!isset($_FILES['file'])) {
+				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+			}
+			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+			if (!in_array($extension, array('.jpg', '.png'))) {
+				throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+			}
+			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+			}
+			$upfilepath = $_FILES['file']['tmp_name'];
+		}else{
+			$extension = strtolower(strrchr(init('file'), '.'));
+			$upfilepath = init('file');
 		}
 		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'*');
 		if(count($files)  > 0){
@@ -279,11 +285,10 @@ try {
 			}
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
-		$object->setImage('sha512', sha512(file_get_contents($_FILES['file']['tmp_name'])));
-		
+		$object->setImage('sha512', sha512(file_get_contents($upfilepath)));
 		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;
-		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
+		file_put_contents($filepath,file_get_contents($upfilepath));
 		if(!file_exists($filepath)){
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}

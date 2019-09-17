@@ -484,7 +484,8 @@ class eqLogic {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
 				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : $_options['styletd'];
-				$return['html'] .= '<td style="' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
+				$classTd = ($styletd != '') ? 'tableCmdcss' : '';
+				$return['html'] .= '<td class="'.$classTd.'" style="' . $styletd . '" data-line="' . $i . '" data-column="' . $j . '">';
 				if ($_options['center'] == 1) {
 					$return['html'] .= '<center>';
 				}

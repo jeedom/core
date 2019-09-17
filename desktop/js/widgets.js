@@ -378,6 +378,16 @@ $(".widgetsDisplayCard").on('click', function (event) {
       loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
       addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
+      jeedom.widgets.getPreview({
+        id: data.id,
+        cache: false,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          $('#div_widgetPreview').empty().html(data.html);
+        }
+      })
     }
   });
 });

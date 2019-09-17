@@ -158,11 +158,9 @@ jeedom.history.drawChart = function (_params) {
       if(charts.height < 10){
         charts.height = null;
       }
-      
       if(isset(_params.transparentBackground) && _params.transparentBackground == "1"){
         charts.backgroundColor = 'rgba(255, 255, 255, 0)';
       }
-      
       if (isset(jeedom.history.chart[_params.el]) && jeedom.history.chart[_params.el].type == 'pie') {
         _params.option.graphType = 'pie';
       }
