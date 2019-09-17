@@ -306,7 +306,7 @@ class plan {
 			if ($this->getDisplay('background-transparent', false)) {
 				$background_color = '';
 			}
-			$color = 'color : ' . $this->getCss('color', 'black') . ';';
+			$color = 'color : ' . $this->getCss('color', 'white') . ';';
 			if ($this->getDisplay('color-defaut', false)) {
 				$color = '';
 			}
