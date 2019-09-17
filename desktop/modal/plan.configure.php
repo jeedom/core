@@ -39,7 +39,7 @@ sendVarToJS('id', $plan->getId());
 				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" placeholder="0" />
 			</div>
 		</div>
-		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
+		<div class="form-group link_type link_eqLogic link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
 			<label class="col-lg-4 control-label">{{Largeur }}<sub>px</sub></label>
 			<div class="col-lg-2">
 				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" placeholder="100" />
