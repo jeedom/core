@@ -86,7 +86,7 @@ if (!is_array($remove_history)) {
 				foreach ($eqLogics[-1] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getId().' | '.$eqLogic->getName() . ' | '.'<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
@@ -149,7 +149,7 @@ if (!is_array($remove_history)) {
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-                   $div .= $eqLogic->getId().' | '.$eqLogic->getName() . ' | '.'<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
