@@ -977,11 +977,7 @@ function displayObject(_plan,_html, _noRender) {
   _plan = init(_plan, {});
   _plan.position = init(_plan.position, {});
   _plan.css = init(_plan.css, {});
-<<<<<<< HEAD
-  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'summary') {
-=======
-  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'zone') {
->>>>>>> 4475176faa84c5588bd1f542cd43a3c1fecfb1b8
+  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'zone' || _plan.link_type == 'summary') {
     $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
   }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
     $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
