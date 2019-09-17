@@ -973,7 +973,6 @@ function savePlan(_refreshDisplay,_async) {
 }
 
 function displayObject(_plan,_html, _noRender) {
-  console.log(_plan);
   _plan = init(_plan, {});
   _plan.position = init(_plan.position, {});
   _plan.css = init(_plan.css, {});
