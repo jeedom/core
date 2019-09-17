@@ -404,6 +404,8 @@ sendVarToJS('id', $plan->getId());
 		</fieldset>
 	</form>
 	<script>
+	var plan_configure_plan = null;
+	
 	$('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change',function(){
 		$('.zone_mode').hide();
 		$('.zone_mode.zone_'+$(this).value()).show();
@@ -556,6 +558,7 @@ sendVarToJS('id', $plan->getId());
 				$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 			},
 			success: function (plan) {
+				plan_configure_plan = plan;
 				$('.link_type:not(.link_'+plan.plan.link_type+')').remove()
 				$('#fd_planConfigure').setValues(plan.plan, '.planAttr');
 				if (isset(plan.plan.configuration.action_on)) {
@@ -618,6 +621,11 @@ sendVarToJS('id', $plan->getId());
 						$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (plan) {
+						console.log(plan_configure_plan.link_type);
+						if(plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id){
+							console.log('je passe');
+							$('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove();
+						}
 						displayObject(plan.plan,plan.html,false);
 						$('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
 					}
