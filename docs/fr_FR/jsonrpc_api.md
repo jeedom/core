@@ -685,6 +685,14 @@ update::update
 
 Permet de mettre à jour Jeedom et tous les plugins
 
+update::doUpdate
+--------------
+
+Paramètres:
+
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
+
 API JSON network
 ================
 
