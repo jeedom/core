@@ -8,8 +8,10 @@ Changelog
 - En mobile le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).
 - Amélioration et réorganisation du menu principal.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
+- Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
+- Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
 - Refonte du système de widgets (menu Outils / Widgets).
-- Possibilité de remplacer un widget par un autre facilement
+- Possibilité de remplacer un widget par un autre facilement.
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
@@ -18,6 +20,7 @@ Changelog
 - Configuration : Ajout d'une option pour désactiver le cache des widgets (onglet Cache).
 - Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
 - Configuration : Ajout de nombreux *tooltips* (aide).
+- Configuration : Ajout d'un parametre pour la purge globale des historiques (onglet Commandes)
 - Configuration : Ajout d'un moteur de recherche.<br/><br/>
 - Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
@@ -49,6 +52,7 @@ Changelog
 - Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
 - Résumé domotique : Ajout des IDs d'équipement et de commande, à l'affichage et dans la recherche.
 - Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id,commande.
+- Résumé domotique : Possibilité de rendre visible ou non une ou des commandes.
 - Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
 - Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 - Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
@@ -56,16 +60,13 @@ Changelog
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
 - Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
+- Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
+- Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étées mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
+- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
-- Ajout d'un parametre de configuration pour la purge globale par défaut des historiques (ex : maximum 6 mois par défaut)
-- Possibilité depuis le résumé domotique de rendre visible ou non une ou des commandes
-- Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
-- Possibilité dans les résumé d'ajouter une exclusion des commandes n'ayant pas étaient mise à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
-- Ajout dans le menu outils d'un bouton pour avoir accès au testeur d'expression
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres
 
 >**IMPORTANT**
 >
