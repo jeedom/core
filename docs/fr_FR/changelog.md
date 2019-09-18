@@ -5,6 +5,7 @@ Changelog
 =====
 
 - Correction de bugs
+- Support en mobile des sliders sur les designs
 
 3.3.31
 =====
