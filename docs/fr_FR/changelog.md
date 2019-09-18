@@ -9,6 +9,7 @@ Changelog
 - Amélioration et réorganisation du menu principal.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
 - Refonte du système de widgets (menu Outils / Widgets).
+- Possibilité de remplacer un widget par un autre facilement
 - Ajout d'un widget horizontal (core).
 - Ajout d'un widget vertical (core).
 - Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
