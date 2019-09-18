@@ -138,6 +138,22 @@ class widgets {
     return $return;
   }
   
+  public static function replacement($_version,$_replace,$_by){
+    $cmds = cmd::searchTemplate($_version.'":"'.$_replace.'"');
+    if(!is_array($cmds) || count($cmds) == 0){
+      return 0;
+    }
+    $replace_number = 0;
+    foreach ($cmds as $cmd) {
+      if($cmd->getTemplate($_version) == $_replace){
+        $cmd->setTemplate($_version,$_by);
+        $cmd->save();
+        $replace_number++;
+      }
+    }
+    return $replace_number;
+  }
+  
   /*     * *********************Méthodes d'instance************************* */
   
   public function preSave(){

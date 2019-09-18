@@ -130,3 +130,24 @@ jeedom.widgets.getPreview = function(_params) {
   };
   $.ajax(paramsAJAX);
 }
+
+jeedom.widgets.replacement = function(_params) {
+  var paramsRequired = ['version','replace','by'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
+  paramsAJAX.data = {
+    action: "replacement",
+    version: _params.version,
+    replace: _params.replace,
+    by: _params.by
+  };
+  $.ajax(paramsAJAX);
+}

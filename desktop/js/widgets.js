@@ -54,6 +54,12 @@ $('#bt_editCode').off('click').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
 })
 
+$('#bt_replaceWidget').off('click').on('click',function(){
+  $('#md_modal').dialog({title: "{{Remplacement de widget}}"});
+  $('#md_modal').load('index.php?v=d&modal=widget.replace').dialog('open');
+});
+
+
 $('#bt_applyToCmd').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé widgets}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {

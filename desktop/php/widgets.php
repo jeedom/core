@@ -42,6 +42,12 @@ foreach (widgets::all() as $widget) {
         </center>
         <span class="txtColor"><center>{{Code}}</center></span>
       </div>
+      <div class="cursor logoSecondary" id="bt_replaceWidget">
+        <center>
+          <i class="fab fa-replyd"></i>
+        </center>
+        <span class="txtColor"><center>{{Remplacement}}</center></span>
+      </div>
     </div>
     <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
     <div class="input-group" style="margin-bottom:5px;">

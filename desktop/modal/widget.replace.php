@@ -1,0 +1,111 @@
+<?php
+if (!isConnect('admin')) {
+  throw new Exception('{{401 - Accès non autorisé}}');
+}
+
+$select = array('dashboard' => '','mobile'=>'');
+foreach (cmd::availableWidget('dashboard') as $type => $value) {
+  foreach ($value as $subtype => $value2) {
+    if($subtype == ''){
+      continue;
+    }
+    foreach ($value2 as $name => $widget) {
+      $select['dashboard'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
+    }
+  }
+}
+foreach (cmd::availableWidget('mobile') as $type => $value) {
+  foreach ($value as $subtype => $value2) {
+    if($subtype == ''){
+      continue;
+    }
+    foreach ($value2 as $name => $widget) {
+      $select['mobile'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
+    }
+  }
+}
+?>
+<div id="form_widgetReplace">
+  <div style="display: none;" id="md_widgetReplaceAlert"></div>
+  <legend>{{Dashboard}}</legend>
+  <form class="form-horizontal">
+    <fieldset>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label">{{Je veux remplacer}}</label>
+        <div class="col-lg-6 col-xs-6">
+          <select class="form-control widgetReplaceAttrdashboard" data-l1key="replace">
+            <?php echo $select['dashboard']; ?>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label">{{Par}}</label>
+        <div class="col-lg-6 col-xs-6">
+          <select class="form-control widgetReplaceAttrdashboard" data-l1key="by">
+            <?php echo $select['dashboard']; ?>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label"></label>
+        <div class="col-lg-6 col-xs-6">
+          <a class="btn btn-success bt_replaceWidget" data-version="dashboard"><i class="fas fa-check"></i> {{Remplacer}}</a>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <legend>{{Mobile}}</legend>
+  <form class="form-horizontal">
+    <fieldset>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label">{{Je veux remplacer}}</label>
+        <div class="col-lg-6 col-xs-6">
+          <select class="form-control widgetReplaceAttrmobile" data-l1key="replace">
+            <?php echo $select['mobile']; ?>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label">{{Par}}</label>
+        <div class="col-lg-6 col-xs-6">
+          <select class="form-control widgetReplaceAttrmobile" data-l1key="by">
+            <?php echo $select['mobile']; ?>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 col-xs-3 control-label"></label>
+        <div class="col-lg-6 col-xs-6">
+          <a class="btn btn-success bt_replaceWidget" data-version="mobile"><i class="fas fa-check"></i> {{Remplacer}}</a>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<script>
+$('.bt_replaceWidget').off('click').on('click',function(){
+  var version = $(this).attr('data-version');
+  var opt1 = $('.widgetReplaceAttr'+version+'[data-l1key=replace] option:selected');
+  var opt2 = $('.widgetReplaceAttr'+version+'[data-l1key=by] option:selected');
+  if(opt1.attr('data-type') != opt2.attr('data-type')){
+    $('#md_widgetReplaceAlert').showAlert({message: '{{Le type de la commande à replacer doit etre le meme que le type de la commande remplacante}}', level: 'danger'});
+    return;
+  }
+  if(opt1.attr('data-subtype') != opt2.attr('data-subtype')){
+    $('#md_widgetReplaceAlert').showAlert({message: '{{Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante}}', level: 'danger'});
+    return;
+  }
+  var info = $('#form_widgetReplace').getValues('.widgetReplaceAttr'+version)[0];
+  jeedom.widgets.replacement({
+    version : version,
+    replace : info.replace,
+    by : info.by,
+    error: function (error) {
+      $('#md_widgetReplaceAlert').showAlert({message: error.message, level: 'danger'});
+    },
+    success : function(data){
+      $('#md_widgetReplaceAlert').showAlert({message: '{{Remplacement réalisé avec succès. Nombre de widget remplacé :}} '+data, level: 'success'});
+    }
+  })
+});
+</script>
