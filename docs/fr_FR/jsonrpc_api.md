@@ -599,7 +599,8 @@ Installation/Mise à jour d’un plugin donné
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::remove
 --------------
@@ -608,7 +609,8 @@ Suppression d’un plugin donné
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInfo
 ----------------------
@@ -617,7 +619,8 @@ Renvoi les informations sur le status des dépendances du plugins
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInstall
 -------------------------
@@ -626,7 +629,8 @@ Force l’installation des dépendances du plugin
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonInfo
 ------------------
@@ -635,7 +639,8 @@ Renvoi les informations sur le status du démon du plugin
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStart
 -------------------
@@ -644,7 +649,8 @@ Force le démarrage du démon
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStop
 ------------------
@@ -653,7 +659,8 @@ Force l’arret du démon
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonChangeAutoMode
 ----------------------------
@@ -662,8 +669,8 @@ Change le mode de gestion du démon
 
 Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
-
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 -   int mode : 1 pour automatique, 0 pour manuel
 
 API JSON update
@@ -684,6 +691,14 @@ update::update
 --------------
 
 Permet de mettre à jour Jeedom et tous les plugins
+
+update::doUpdate
+--------------
+
+Paramètres:
+
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 API JSON network
 ================
