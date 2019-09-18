@@ -209,6 +209,21 @@ $('.cmd').off('dblclick').on('dblclick',function() {
 
 
 //events:
+$('.bt_exportcsv').on('click',function() {
+  var fullFile = ''
+  $('.eqLogic').each(function(){
+    var eqLogic = $(this)
+    var eqParent = eqLogic.parents('.panel.panel-default').first()
+	eqParent = eqParent.find('a.accordion-toggle').text()
+    fullFile += eqParent + ','  + eqLogic.attr('data-id') + ',' + eqLogic.attr('data-name') + ',' + eqLogic.attr('data-type') + "\n"
+    eqLogic.find('.cmd').each(function() {
+      var cmd = $(this)
+      fullFile += "\t\t" + cmd.attr('data-id') + ',' + cmd.attr('data-name') + "\n"
+    })
+  })
+  $('.bt_exportcsv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile))
+})
+
 $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
   if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:
