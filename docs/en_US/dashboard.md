@@ -14,10 +14,10 @@ It is accessible by clicking on **Home → Dashboard**
     show / hide the object tree (this one also displays the
     information of the object summaries)
 
--   In the middle you can choose to filter only on certain types
+-   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
     equipment
 
--   On the right a first button to switch to edit mode, for by
+-   A droite, un premier bouton pour passer en mode édition, pour par
     example, change the order of the widgets (using a dropped click
     on the widget), you can also in this edit mode
     resize some widgets and rearrange the order of the commands
@@ -34,22 +34,22 @@ It is accessible by clicking on **Home → Dashboard**
 
 > **Tip**
 >
-> It is possible, from your profile, to configure Jeedom for
-> that the object tree and / or the scenarios are visible by default
-> when you arrive on the Dashboard
+> Il est possible, à partir de votre profil, de configurer Jeedom pour
+> que l’arbre des objets et/ou les scénarios soient visibles par défaut
+> lorsque vous arrivez sur le Dashboard
 
 > **Tip**
 >
-> In mobile a long press on a command of type info allows
-> to display a menu proposing you to display the history of the
-> command, or put an alert on it so that jeedom you
-> previenne (once) as soon as the value passes a certain threshold
+> En mobile un appui long sur une commande de type info permet
+> d’afficher un menu vous proposant soit d’afficher l’historique de la
+> commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
+> prévienne (une seule fois) dès que la valeur passe un certain seuil
 
 Editing mode
 ============
 
-In edit mode you can change the size of widgets and their
-provision on the dashboard.
+En mode édition, vous pouvez changer la taille des widgets et leur
+disposition sur le dashboard.
 
 You can also edit the internal layout of the widget's commands
 :
@@ -64,7 +64,7 @@ You can also edit the internal layout of the widget's commands
     -   **Standard**: default layout, everything is in automatic
         with just the ability to rearrange the order of orders
 
-    -   **Table**: allows to put the commands in a table,
+    -   **Tableau** : permet de mettre les commandes dans un tableau :
         columns and lines are added and deleted by click
         right, then just move the commands in the
         boxes wanted. You can put multiple orders per box

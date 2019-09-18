@@ -1,8 +1,8 @@
-parte importante en el software: la parte real de archivado
-la memoria del mismo. Es posible historizar cualquier Jeedom
-lo que la información de tipo de comando (binaria o digital). esta voluntad
-de este modo permitir, por ejemplo, historizar una curva de temperatura de
-el consumo o la apertura de una puerta ...
+Partie importante dans un logiciel : la partie historisation, véritable
+mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
+quelle commande de type information (binaire ou numérique). Cela vous
+permettra donc par exemple d’historiser une courbe de température, de
+consommation ou les ouvertures d’une porte, etc.​
 
 principio
 ========
@@ -16,13 +16,13 @@ caso.
 archivado
 ---------
 
-El archivo de datos permite Jeedom reducir la cantidad de datos
-almacenado. Esto permite no utilizar demasiado espacio y
-no ralentizar el sistema. De hecho, si se mantiene todo el
-medidas, se hace aún más puntos a ser visualizados y por lo tanto puede
-alargar significativamente el tiempo para hacer un gráfico. En caso
-de demasiados puntos, incluso puede bloquearse
-visualización de gráficos.
+L’archivage de données permet à Jeedom de réduire la quantité de données
+conservées en mémoire. Cela permet de ne pas utiliser trop de place et
+de ne pas ralentir le système. En effet, si vous conservez toutes les
+mesures, cela fait d’autant plus de points à afficher et donc peut
+considérablement allonger les temps pour rendre un graphique. En cas
+d’un nombre trop important de points, cela peut même faire planter
+l’affichage du graphique.
 
 El archivo es una tarea que se lanza a la noche y compacta
 Los datos recogidos en el día. Por defecto recupera todos Jeedom
@@ -63,11 +63,11 @@ Hay varias maneras de acceder a la historia:
 Si ve un gráfico de histórica o haciendo clic
 el widget, usted tiene acceso a múltiples opciones de visualización:
 
-Nos encontramos en la parte superior derecha de la duración de visualización (aquí la última
-semana porque, por defecto quiero que sea sólo una semana - véase
-Dos párrafos anteriores), seguido de los parámetros de la curva
-(Estos valores se mantienen de una pantalla a la otra, por lo que hacen
-tiene el conjunto una vez).
+On retrouve en haut à droite la période d’affichage (ici sur la dernière
+semaine car, par défaut je veux que ça soit seulement une semaine - voir
+2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
+(ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
+qu’à les configurer une seule fois).
 
 -   Escalera ** **: muestra la curva como una
     escalera o visualización continua.
@@ -116,11 +116,11 @@ La página de historial proporciona acceso a algunas opciones adicionales
 historia calculada
 ------------------
 
-Le permite visualizar una curva de acuerdo con un cálculo en varias
-comando (que puede bastante listo para hacer todo, + - / \ * absoluta ... Ver
-PHP documentación para determinada función). por ejemplo:
-abs (* \ [Jardín \] \ [humedad \] \ [Temperatura \] * - * \ [Espacio
-La vida \] \ [Humedad \] \ [Temperatura \] *)
+Permet d’afficher une courbe en fonction d’un calcul sur plusieurs
+commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
+documentation PHP pour certaines fonctions). Ex :
+abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
+vie\]\[Hygrométrie\]\[Température\]*)
 
 También tiene acceso a una fórmulas de gestión que le permite
 guardarlos para el remostrado más fácil
@@ -161,26 +161,26 @@ Para verlos, debe habilitar el seguimiento en la línea de tiempo de la primera
 controles o escenarios apropiados:
 
 -   ** ** Escenario: ya sea directamente en la página de la escritura, o en el
-    Resumen de una página de escenarios para que la "masa"
+    page de résumé des scénarios pour le faire en "masse"
 
 -   ** ** Orden ya sea en la configuración de control avanzada,
     ya sea en la historia de configuración para que sea a la "masa"
 
 > **Tip**
 >
-> Puede acceder a los escenarios ventanas sumarias o
-> Historia de la configuración directamente desde la página
-> Línea de tiempo.
+> Vous avez accès aux fenêtres de résumé des scénarios ou de la
+> configuration de l’historique directement à partir de la page de
+> timeline.
 
-Una vez que haya participado en la línea de tiempo de los comandos y
-escenarios apropiados, verá aparecer en la línea de tiempo.
+Une fois que vous avez activé le suivi dans la timeline des commandes et
+scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 > **Importante**
 >
 > Los nuevos eventos después de la activación de la monitorización debe esperar
 > En la línea de tiempo antes de ver el espectáculo.
 
-Las tarjetas de los espectáculos de línea de tiempo:
+Les cartes sur la timeline affichent :
 
 -   ** ** cuota de comandos: fondo rojo, un icono de la derecha que permite
     mostrar la ventana de configuración extendida del control

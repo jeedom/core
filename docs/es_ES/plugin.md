@@ -1,5 +1,5 @@
-El submenú Administración de Plugin permite manipular a los plugins
-a saber: descargar, actualizar y activar ...
+El submenú Gestión de plugins le permite manipular plugins, para
+poder : descargarlos, actualizarlos y activarlos,....
 
 Plugin de gestión
 ===================
@@ -16,14 +16,14 @@ personas con discapacidad se atenúan.
 > Su perfil en dejar la siempre visible). A continuación, el menú
 > Para obtener la lista de plugins ordenados por categorías.
 
-Al hacer clic en un plugin de acceso de configuración. por encima de usted
-encontrar el nombre del plugin y los soportes nombre en Jeedom
-(ID) y, finalmente, el tipo versión instalada (estable, beta).
+Al hacer clic en un plugin, puede acceder a su configuración. En la parte superior, usted
+puede buscar el nombre del plugin, luego entre paréntesis, su nombre en Jeedom
+(ID) y finalmente, el tipo de versión instalada (estable, beta).
 
 > **Importante**
 >
-> Al descargar un plugin que está desactivado por defecto.
-> Esto requiere que se activa por sí mismo.
+> Cuando se descarga un plugin, éste esta desactivado de forma predeterminada.
+> Por lo tanto, debe activarlo usted mismo.
 
 Arriba a la derecha, un par de botones:
 
@@ -37,189 +37,196 @@ Arriba a la derecha, un par de botones:
 
 -   ** ** Detalles: recupera la página del plugin en el mercado
 
--   ** ** Eliminar: Eliminar el plugin su Jeedom. Tenga en cuenta que
+-   **Borrar**: Borra el plugin de tu Jeedom. Atención, este
     También elimina de forma permanente todas las instalaciones de este plugin
 
-Abajo a la izquierda nos encontramos con un área de estado con:
+Abajo a la izquierda, hay una zona estado con :
 
 -   ** ** Estado: muestra el estado del plugin (activo / inactivo)
 
 -   ** ** Versión: la versión del plug-in instalado
 
--   ** ** Autor: El autor del plugin
+-   **Autor** : el autor del plugin
 
--   ** ** Acción: Activar o desactivar el plugin
+-   **Acción** : Permite activar o desactivar el plugin
 
--   ** ** jeedom Versión: Indica la versión del mínimo requerido Jeedom
+-   **Versión Jeedom** : Indica la versión mínima requerida de Jeedom
     para el plugin
 
--   ** ** Licencia: Indica la licencia plugin para ser generalmente
+-   **Licencia** : Indica la licencia del plugin que generalmente será
     AGPL
 
-A la derecha se encuentra el área de registro que define el nivel de registro
-complemento específico (nos encontramos con esta misma oportunidad de
-Administation → Configuración de la ficha de registro en la parte inferior de la página).
+A la derecha, encontramos el área de Log que nos permite definir
 
-Si el plugin tiene dependencias y / o demonio estas áreas
-Adicionales aparecen en las áreas mencionadas anteriormente.
+-   el nivel de registro específico del plugin (encontramos esta misma posibilidad en
+Administration → Configuración en la pestaña registros, en la parte inferior de la página)
 
-dependencias:
+-   para ver los registros del plugin
 
--   **Nombre:** generalmente ser local
+-   Heartbeat: cada 5 minutos, Jeedom comprueba si al menos un dispositivo del plugin se ha comunicado en los últimos X minutos (si quieres deshabilitar la función, pon 0).
 
--   ** ** Estado: dirá si las dependencias son OK o KO
+-   Reiniciar el demonio: si el heartbeat da error, Jeedom reiniciará el demonio.
 
--   ** ** Instalación: se instalar o reinstalar
-    dependencias (si no lo hace de forma manual y está
-    KO Jeedom se carga en sí mismo después de un tiempo)
+Si el plugin tiene dependencias y/o un demonio, estas zonas
+se muestran debajo de las áreas listadas arriba.
 
--   ** ** Instalación Último: fecha de la última instalación
+Dependencias :
+
+-   **Nombre** : normalmente será local
+
+-   **Estado** : le dirá si el deamon es OK o KO
+
+-   **Instalación**: instalará o reinstalará las
+    dependencias (si no lo haces manualmente y esta
+    KO, Jeedom se encargará de ello después de un tiempo)
+
+-   **Última instalación** : fecha de la última instalación de las
     dependencias
 
-demonio:
+Deamon : 
 
--   **Nombre:** generalmente ser local
+-   **Nombre** : normalmente será local
 
--   ** ** Estado: le diga si el diablo está OK o KO
+-   **Estado** : te dirá si el demonio está OK o KO
 
--   ** ** Configuración va a estar bien si todos los criterios para el diablo
-    correr juntos o dar a la causa de la obstrucción
+-   **Configuración**: estará OK si todos los criterios para que el demonio
+    corre son correcto o producen la causa del bloqueo
 
--   **(Re) Inicio**: para iniciar o reiniciar el demonio
+-   **(Re)Iniciar** : permite iniciar o reiniciar el demonio
 
--   ** ** Detener: Detener el demonio (sólo en el caso
-    gestión automática está desactivada)
+-   **Parar**: te permite detener al demonio (Sólo si
+    la gestión automática está desactivada)
 
--   ** ** Gestión automática: Activar o desactivar la administración
-    automática (permitiendo Jeedom administrar a sí mismo y el diablo
-    Si necesita aumentar salvo en contra de la indicación se recomienda
-    dejar que la gestión automática activa)
+-   **Gestión automática** : permite activar o desactivar la gestión
+    automática (lo que permite a Jeedom gestionar el demonio y el
+    reinicio si es necesario. A menos que se indique lo contrario, es aconsejable
+    dejar la gestión automática activa)
 
--   ** ** Último lanzamiento: fecha de la última puesta en marcha del diablo
-
-> **Tip**
->
-> Algunos plugins tienen una sección de configuración. Si ese es el caso,
-> Aparecen en las dependencias y áreas demonio descritos anteriormente.
-> En este caso, es necesario hacer referencia a la documentación del plugin
-> Pregunta para saber cómo configurarlo.
-
-A continuación se encuentra una zona de características. Esto le permite ver
-si el plugin utiliza una de las funciones básicas Jeedom como:
-
--   Interactuar ** **: interacciones específicas
-
--   Cron ** ** Minuto cron
-
--   ** ** Cron5: cron cada 5 minutos
-
--   ** ** Cron15: cada 15 minutos
-
--   ** ** Cron30: cada 30 minutos
-
--   ** ** CronHourly cada hora
-
--   ** ** CronDaily: diario
+-   **Último lanzamiento** : fecha del último lanzamiento del demonio
 
 > **Tip**
 >
-> Si el plugin utiliza una de estas funciones. Puede específicamente
-> Prohibirle hacerlo desmarcando "Activar" para ser
-> Presente en el exterior.
+> Algunos plugins tienen una parte de configuración. Si este es el caso,  debe
+> aparecer bajo las dependencias y áreas de demonio descritas anteriormente.
+> En este caso, es necesario consultar la documentación del plugin.
+> pregunta para saber cómo configurarlo.
 
-Por último podemos encontrar una sección de panel que permitirá o
-desactivar el panel de la pantalla en el salpicadero o móvil si
-ofertas plugin.
+Debajo, hay un área funcional. Esta le permite ver
+si el plugin utiliza una de las funciones principales de Jeedom, tales como :
 
-La instalación de un plug-in
+-   **Interacción** : interacciones específicas
+
+-   **Cron** : un cron por minuto
+
+-   **Cron5** : un cron cada 5 minutos
+
+-   **Cron15** : un cron cada 15 minutos
+
+-   **Cron30** : un cron cada 30 minutos
+
+-   **CronHourly** : un cron cada hora
+
+-   **CronDaily** : un cron diario
+
+> **Tip**
+>
+> Si el plugin utiliza una de estas funciones, usted puede específicamente
+> prohibirlo desmarcando la casilla "activar", que está
+> presente junto a él.
+
+Por último, hay una sección del Panel que le permitirá activar o desactivar
+la pantalla del panel en el dashboard o en el móvil si lo
+ofrece el plugin.
+
+Installation de un plugin 
 ========================
 
-Para instalar un nuevo plugin simplemente haga clic en el botón
-"Mercado" (y Jeedom está conectado a Internet). Después de un breve periodo de tiempo
-cargar obtendrá la página.
+Para instalar un nuevo plugin, simplemente haga clic en el botón
+"Market" (Jeedom debe estar conectado a Internet). Después de un corto período de tiempo de
+cargando, obtendrá la página.
 
 > **Tip**
 >
-> Debe haber introducido la información de su cuenta en el mercado
-> Administración (Configuración → → pestaña Actualizaciones de mercado) a
-> Encuentra los plugins que ya ha adquirido tal.
+> Debe haber ingresado la información de su cuenta de Market en
+> administración (Configuration→Actualizaciones→Pestaña market) con el fin de
+> encontrar los plugins que ya ha comprado, por ejemplo.
 
-En la parte superior de la ventana que tiene filtros:
+En la parte superior de la ventana, hay filtros:
 
--   **libre / Pago**: sólo muestra los libres o
-    pagar.
+-   **Gratis/Pago** : permite mostrar solamente los gratis o
+    los de pago.
 
--   Oficial **/** recomendados: Muestra sólo los plugins
-    oficial o recomendadas
+-   **Oficial/Aconsejado** : permite mostrar solamente los plugins
+    oficiales o recomendados
 
--   Ubicado **/** no se instala: Muestra sólo los plugins
-    instalado o no instalado
+-   **Instalado/No instalado** : permite mostrar solamente los plugins
+    instalados o no instalados
 
--   ** ** Categoría Hover: muestra solamente
-    ciertas categorías de plugins
+-   **Menú desplegable de categoría** : le permite mostrar sólo
+    algunas categorías de plugins
 
--   ** ** Buscar: Búsquedas un plugin (en el nombre o
-    descripción de la misma)
+-   **Buscar** : permite buscar un plugin (por nombre o la
+    descripción de este)
 
--   ** ** Nombre de usuario: Muestra el nombre de usuario utilizado para
-    conexión con el mercado y el estado de conexión
+-   **Nombre de usuario** : muestra el nombre de usuario utilizado para la
+    conexión al Market así como el estado de la conexión
 
 > **Tip**
 >
-> La pequeña cruz restablece el filtro en cuestión
+> La pequeña cruz le permite reajustar el filtro en cuestión
 
-Una vez que haya encontrado el plugin deseado, basta con hacer clic en
-una para mostrar su página. Esta tarjeta le da mucha
-información sobre el plugin incluye:
+Una vez que haya encontrado el plugin deseado, simplemente haga clic en
+el para mostrar su ficha. Esta ficha te da mucha
+información sobre el plugin, incluyendo:
 
--   Si funcionario / o recomendado es obsoleta (que realmente
-    evitar la instalación de complementos obsoletos)
+-   Si es oficial/recomendado u obsoleto (es realmente necesario
+    evitar la instalación de plugins obsoletos)
 
--   4 acciones:
+-   4 acciones :
 
-    -   ** ** Instalar Estable instala el plugin en su
+    -   **Instalar estable** : permite instalar el plugin en su
         versión estable
 
-    -   Instalar beta ** ** instala el plugin en su
-        beta (sólo para betatesters)
+    -   **Instalar beta**: permite instalar el plugin en su
+        versión beta (solo para betatesters)
 
-    -   ** ** Instalar Pro: Se instala la versión Pro (muy
+    -   **Installer pro**: permite instalar la versión pro (muy
         poco utilizado)
 
-    -   ** ** Eliminar: si el plugin está instalado actualmente,
-        elimina el botón
+    -   **Eliminar**: si el plugin está instalado actualmente, este
+        botón permite borrarlo
 
-A continuación encontrará una descripción de la compatibilidad plug-in
-(Si Jeedom detecta una falta de coincidencia, se le advertirá) comentarios
-el plug-in (puedes aquí la nota) y la información
-Además (el autor, la persona que hizo la última actualización
-día, un enlace al documento, el número de descargas). Sobre la derecha
-a encontrar un botón de "Cambios" que le permite tener todo
-el historial de cambios, un botón de "documentación" que devuelve
-la documentación del plugin. Entonces usted tiene el idioma disponibles
-y diversa información sobre la fecha de la última versión estable.
-
-> **Importante**
->
-> Está realmente no recomienda poner un plugin beta en una
-> Jeedom no beta, muchas preocupaciones pueden operar
-> Resultado.
+A continuación, encontrará la descripción del plugin, compatibilidad
+(si Jeedom detecta una incompatibilidad, te lo notificará), los avisos
+en el plugin (puedes verlo aquí) e información
+(el autor, la persona que hizo la última actualización
+, un enlace al manual, el número de descargas). En el lado derecho
+encontrará un botón "Changelog" que le permite ver todo
+el historial de modificaciones, un botón "Documentación" que devuelve
+a la documentación del plugin. Entonces tienes el idioma disponible
+e información diversa sobre la fecha de la última versión estable.
 
 > **Importante**
 >
-> Algunos plugins están pagando, en este caso el plugin se conecta
-> Oferta de compra, una vez hecho esto se necesita una
-> Diez minutos (tiempo de confirmación de pago) y el retorno
-> En el archivo plugin para instalar normalmente.
+> Realmente no es recomendable poner un plugin beta en un sistema
+> Jeedom no beta, muchos problemas de funcionamiento pueden ocurrir como
+> resultado.
+
+> **Importante**
+>
+> Algunos plugins no son libres, en este caso en la ficha del plugin se
+> le ofrecerá comprarlo. Una vez hecho esto, tienes que esperar a que aparezca el mensaje
+> 10 minutos (tiempo de validación del pago) y, a continuación, devolución
+> en el archivo del plugin para instalarlo normalmente.
 
 > **Tip**
 >
-> También puede añadir un plugin para Jeedom desde un archivo o
-> A partir de un repositorio de Github. Para ello, tenemos que, en la configuración
-> Jeedom, activar la función correspondiente en el "Actualizaciones y
-> Archivos. "Entonces será posible, utilizando el ratón mientras que en
-> Izquierda, y aparecerá el menú de la página del plugin, haga clic
-> "Añadir de otra fuente." A continuación, puede elegir el
-> Fuente "archivo". Atención en el caso de añadir un archivo
-> Postal, nombre postal debe ser el mismo que el ID plugin y pronto
-> Abrir la carpeta ZIP plug-in \ _info debe estar presente.
+> También puedes añadir un plugin a Jeedom desde un fichero o
+> de un depósito de Github. Para ello, en la configuración de
+> Jeedom, active la función correspondiente en la sección "Actualizaciones y
+> archivos". Entonces será posible, colocando el ratón en la posición
+> a la izquierda, y al abrir el menú de la página del plugin, haga clic en
+> sobre "Añadir de otra fuente". A continuación, puede seleccionar la opción
+> Fuente "Archivo". Atención, en el caso de la adición de un archivo
+> zip, el nombre del zip debe ser el mismo que el ID del plugin y 
+> cuando se abre el ZIP, debe estar presente una carpeta  plugin\_info.

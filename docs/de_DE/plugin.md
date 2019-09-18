@@ -16,13 +16,13 @@ désactivés sont grisés.
 > partir de votre profil le laisser toujours visible). Ici, le menu
 > permet d’avoir la liste des plugins triés par catégories.
 
-En cliquant sur un plugin vous accédez à sa configuration. En haut vous
-retrouvez le nom du plugin, puis entre parenthèse son nom dans Jeedom
-(ID) et enfin le type de version installée (stable, beta).
+En cliquant sur un plugin, vous accédez à sa configuration. En haut, vous
+retrouvez le nom du plugin, puis entre parenthèses, son nom dans Jeedom
+(ID) et enfin, le type de version installée (stable, beta).
 
 > **Important**
 >
-> Lors du téléchargement d’un plugin celui-ci est désactivé par défaut.
+> Lors du téléchargement d’un plugin, celui-ci est désactivé par défaut.
 > Il faut donc que vous l’activiez par vous-même.
 
 En haut à droite, quelques boutons :
@@ -37,10 +37,10 @@ En haut à droite, quelques boutons :
 
 -   **Détails** : permet de retrouver la page du plugin sur le market
 
--   **Supprimer** : Supprime le plugin de votre Jeedom. Attention cela
+-   **Supprimer** : Supprime le plugin de votre Jeedom. Attention, cela
     supprime également définitivement tous les équipements de ce plugin
 
-En dessous à gauche on retrouve une zone état avec :
+En dessous à gauche, on retrouve une zone état avec :
 
 -   **Statut** : permet de voir le statut du plugin (actif / inactif)
 
@@ -56,11 +56,18 @@ En dessous à gauche on retrouve une zone état avec :
 -   **Licence** : Indique la licence du plugin qui sera généralement
     AGPL
 
-A droite on retrouve la zone Log qui permet de définir le niveau de log
-spécifique au plugin (on retrouve cette même possibilité dans
-Administation → Configuration sur l’onglet logs, en bas de page).
+A droite, on retrouve la zone Log qui permet de définir 
 
-Si le plugin possède des dépendances et/ou un démon ces zones
+-   le niveau de logs spécifique au plugin (on retrouve cette même possibilité dans
+Administation → Configuration sur l’onglet logs, en bas de page)
+
+-   de voir les logs du plugin
+
+-   Heartbeat : toute les 5 mins, Jeedom regarde si au moins un équipement du plugin a communiqué dans les X dernières minutes (si vous voulez désactiver la fonctionnalité, il suffit de mettre 0)
+
+-   Redemarrer démon : si le hertbeat tombe en erreur alors Jeedom va redémarrer le démon
+
+Si le plugin possède des dépendances et/ou un démon, ces zones
 supplémentaires s’affichent sous les zones citées ci-dessus.
 
 Dépendances :
@@ -92,7 +99,7 @@ Démon :
 
 -   **Gestion automatique** : permet d’activer ou désactiver la gestion
     automatique (ce qui permet à Jeedom de gérer lui même le démon et le
-    relancer si besoin, sauf contre indication il est conseillé de
+    relancer si besoin. Sauf contre indication, il est conseillé de
     laisser la gestion automatique active)
 
 -   **Dernier lancement** : date du dernier lancement du démon
@@ -100,11 +107,11 @@ Démon :
 > **Tip**
 >
 > Certains plugins ont une partie configuration. Si tel est le cas, elle
-> apparaitra sous les zones dépendances et démon décrites ci-dessus.
+> apparaîtra sous les zones dépendances et démon décrites ci-dessus.
 > Dans ce cas, il faut se référer à la documentation du plugin en
 > question pour savoir comment le configurer.
 
-En dessous on retrouve une zone fonctionnalités. Celle-ci permet de voir
+En dessous, on retrouve une zone fonctionnalités. Celle-ci permet de voir
 si le plugin utilise une des fonctions core Jeedom tel que :
 
 -   **Interact** : des interactions spécifiques
@@ -113,38 +120,38 @@ si le plugin utilise une des fonctions core Jeedom tel que :
 
 -   **Cron5** : un cron toutes les 5 minutes
 
--   **Cron15** : toutes les 15 minutes
+-   **Cron15** : un cron toutes les 15 minutes
 
--   **Cron30** : toutes les 30 minutes
+-   **Cron30** : un cron toutes les 30 minutes
 
--   **CronHourly** : toutes les heures
+-   **CronHourly** : un cron toutes les heures
 
--   **CronDaily** : journalier
+-   **CronDaily** : un cron journalier
 
 > **Tip**
 >
-> Si le plugin utilise une de ces fonctions. Vous pourrez spécifiquement
+> Si le plugin utilise une de ces fonctions, vous pourrez spécifiquement
 > lui interdire de le faire en décochant la case "activer" qui sera
 > présente à côté.
 
-Enfin on peut retrouver une section Panel qui permettra d’activer ou
+Enfin, on peut retrouver une section Panel qui permettra d’activer ou
 désactiver l’affichage du panel sur le dashboard ou en mobile si le
 plugin en propose un.
 
 Installation d’un plugin 
 ========================
 
-Pour installer un nouveau plugin il suffit de cliquer sur le bouton
+Pour installer un nouveau plugin, il suffit de cliquer sur le bouton
 "Market" (et que Jeedom soit relié à Internet). Après un petit temps de
-chargement vous obtiendrez la page.
+chargement, vous obtiendrez la page.
 
 > **Tip**
 >
-> Vous devez avoir saisi les informations de votre compte du market dans
+> Vous devez avoir saisi les informations de votre compte du Market dans
 > l’administration (Configuration→Mises à jour→Onglet market) afin de
-> retrouver les plugins que vous avez déjà acheté par exemple.
+> retrouver les plugins que vous avez déjà achetés par exemple.
 
-En haut de la fenêtre vous avez des filtres :
+En haut de la fenêtre, vous avez des filtres :
 
 -   **Gratuit/Payant** : permet d’afficher uniquement les gratuits ou
     les payants.
@@ -208,7 +215,7 @@ et les diverses informations sur la date de la dernière version stable.
 > **Important**
 >
 > Certains plugins sont payants, dans ce cas la fiche du plugin vous
-> proposera de l’acheter, une fois cela fait il faut attendre une
+> proposera de l’acheter. Une fois cela fait, il faut attendre une
 > dizaine de minutes (temps de validation du paiement), puis retourner
 > sur la fiche du plugin pour l’installer normalement.
 
@@ -218,7 +225,7 @@ et les diverses informations sur la date de la dernière version stable.
 > depuis un dépôt Github. Pour cela, il faut, dans la configuration de
 > Jeedom, activer la fonction adéquate dans la partie "Mises à jour et
 > fichiers". Il sera ensuite possible, en mettant la souris tout à
-> gauche, et en faisant apparaitre le menu de la page plugin, de cliquer
+> gauche, et en faisant apparaître le menu de la page plugin, de cliquer
 > sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la
 > source "Fichier". Attention, dans le cas de l’ajout par un fichier
 > zip, le nom du zip doit être le même que l’ID du plugin et dès

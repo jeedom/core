@@ -1,8 +1,8 @@
-Doc un poco especial porque va a tratar sólo con su página
-mercado de perfiles.
+Doc un peu particulière car elle va traiter uniquement de votre page
+profil du Market.
 
-Disponible yendo a su nombre de usuario y el perfil de la
-mercado (al igual que en Jeedom).
+Disponible en allant sur votre nom d’utilisateur puis profil à partir du
+Market (un peu comme sur Jeedom).
 
 Se divide en varias partes:
 
@@ -14,17 +14,17 @@ perfil:
 
 -   ** ** Perfil
 
-    -   ** ** ingreso: Su nombre de usuario en el mercado, no puede ser cambiado
+    -   **Login** : Votre login sur le Market, il ne peut être changé
 
     -   ** ** Nombre: Su nombre (esta información sólo es útil para
-        hacer que el correo más fresco)
+        rendre les emails plus sympa)
 
     -   ** ** Nombre: Su nombre (esta información sólo es útil
-        para hacer el correo más fresco)
+        pour rendre les emails plus sympa)
 
     -   ** ** Nombre de usuario en el foro: Su nombre del foro
 
-    -   ** ** Tu email
+    -   **Email** : Votre email
 
     -   ** ** Idioma: Su lengua
 
@@ -35,25 +35,25 @@ Para los desarrolladores:
 
 -   ** ** Nombre de usuario en el foro: Su nombre del foro
 
--   ** ** Pública Email: mail para recibir cualquier
+-   **Email public** : Votre email pour recevoir des éventuelles
     comunicaciones de nosotros
 
--   ** ** cuenta PayPal: Su correo electrónico cuenta de Paypal (sólo se utiliza
-    para pagar los desarrolladores)
+-   **Compte paypal** : Votre email de compte Paypal (uniquement utilisé
+    pour payer les développeurs)
 
 Para los profesionales:
 
--   ** ** cuenta de correo instalador: Su contactos de correo electrónico Pro
+-   **Compte email installateur** : Votre email de contact pro
 
 -   **Receptor de solicitudes de apoyo**: que recibirá
-    apoyo mail (cliente final, instalador o ambos)
+    emails de support (client final, installateur ou les deux)
 
     -   ** ** Condiciones
 
 -   ** ** Usuario: términos y condiciones (nota
     leerlos porque se cometen)
 
--   Desarrollador ** ** términos y condiciones para
+-   **Développeur** : conditions générales d’utilisation pour les
     desarrolladores
 
     -   ** ** Entradas
@@ -62,10 +62,10 @@ Para los profesionales:
     y su límite
 
 -   ** ** Soporte botón para enviar una solicitud de soporte (accesible
-    También por el signo de exclamación en la parte superior derecha en el mercado o
+    aussi par le point d’exclamation en haut à droite sur le Market ou
     su Jeedom)
 
-    -   ** ** El acceso a versiones beta
+    -   **Accès aux betas**
 
 -   **Habilitar el acceso a los plugins beta**: Habilitar el acceso
     plugins betas (tenga en cuenta que va a prohibir cualquier acceso al soporte)
@@ -96,9 +96,9 @@ mis Jeedoms
 
 > **Tip**
 >
-> Es posible que el mercado a veces exige que restablezca
-> Su instalación de llaves, esto es normal, simplemente seguirlo
-> Pide
+> Il est possible que le Market vous demande parfois de remettre à zéro
+> vos clefs d’installation, c’est normal, il suffit de suivre ce qu’il
+> vous demande
 
 -   ** ** Mi Jeedoms: es aquí que indique todos sus Jeedom
 
@@ -116,17 +116,17 @@ mis Jeedoms
 
     -   ** ** URL: enumerar los diversos URL para acceder a Jeedom.
 
-    -   Servidor DNS ** ** le indica si el servidor DNS
+    -   **Serveur DNS** : vous indique le serveur DNS auquel vous
         se adjuntan
 
     -   ** ** DNS Estado: muestra el estado del DNS
 
     -   ** ** Fecha de Inicio: Fecha de creación de este en su Jeedom
-        cuenta de mercado (recuerda que esto se hace automáticamente cuando
-        se enlaza al mercado)
+        compte Market (pour rappel cela se fait automatiquement lorsque
+        vous le liez au Market)
 
     -   ** ** Última actualización: última comunicación con el Jeedom
-        el mercado
+        le Market
 
     -   ** ** hardware: el hardware Nombre Jeedom
 
@@ -139,9 +139,9 @@ mis Jeedoms
 mis copias de seguridad
 ===========
 
-En esta pestaña se pueden ver las copias de seguridad en el presente
-Mercado y descargar uno. A continuación puede acceder al enlace
-comprar 1,3,6 ó 12 meses de suscripción a la copia de seguridad de nube
+Sur cette onglet vous pouvez consulter les backups présents sur le
+Market et en télécharger un. En dessous vous avez accès au lien pour
+acheter 1,3,6 ou 12 mois d’abonnement à la sauvegarde cloud
 
 Mis SMS / Llamadas
 ==============
@@ -156,11 +156,11 @@ Compras / especiales / donaciones
 Aquí encontrará todas sus compras y se puede solicitar la devolución de
 factura o recibo electrónico
 
-> **Importante**
+> **Important**
 >
-> Si usted compra un plugin oficial recibe una factura. en
-> Sin embargo, para una tercera plugin es un recibo de la factura debe
-> Preguntar al desarrollador
+> Si vous achetez un plugin officiel vous recevrez une facture. En
+> revanche pour un plugin tiers c’est un reçu, pour la facture il faut
+> la demander au développeur
 
 Puede también de esta ficha para introducir un código de cupón (código de
 un plugin, por ejemplo, que el desarrollador fue capaz de transmitir a usted) y

@@ -28,7 +28,7 @@ Aquí está la URL =
 [Http: // \ # ip \ _JEEDOM \ # / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = escenario & id = \ #ID \ # & action = \ #ACTION \ #?] (Http: // # # IP_JEEDOM / core / api / jeeApi.php? apikey apikey = # # & type = & id = escenario # ID # & action = aCCIÓN # #)
 
 -   ** ** Identificación: es el ID de su escenario. ID está en la
-    página escenario s en "Herramientas" → "escenarios", una vez que el
+    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
     escenario seleccionado, junto al nombre de la pestaña "General". otro
     forma de recuperarla: "Herramientas" → "escenarios", haga clic
     "Información general".
@@ -38,9 +38,9 @@ Aquí está la URL =
     "Activar" para comenzar a detener, respectivamente, desactivar o
     activar el escenario.
 
--   ** ** etiquetas \ [opcional \]: si la acción es "start", puede cambiar
-    etiquetas escenario (véase la documentación sobre los escenarios) bajo
-    etiquetas de formulario = foo% 3D1%20tata 3D2% (tenga en cuenta que el 20% corresponde a una
+-   **etiquetas** \[opcional\] : si la acción es "start", puede pasar
+    des tags au scénario (voir la documentation sur les scénarios) sous
+    la forma etiquetas=toto% 3D1%20tata%3D2 (tenga en cuenta que el 20% corresponde a una
     El espacio y el% = 3D)
 
 Información / Control de Acción
@@ -52,23 +52,23 @@ Aquí está la URL =
 -   ** ** Identificación: es el identificador que desea controlar o cual
     que desea recibir la información
 
-La forma más sencilla de obtener esta URL es ir a la página Herramientas →
-Resumen Automation, buscan el control entonces abrir su configuración
-Avanzado (el icono "reductor") y no verá una URL que contenga
-Ya que todo dependiendo del tipo y subtipo de
-mando.
+La forma más fácil de obtener esta URL es ir a la página de Herramientas →
+Resumen de domótica, buscar el coamando y abrir su configuración
+(el icono "rueda") y allí verá una URL que contiene
+ya todo lo que se necesita dependiendo del tipo y subtipo de los
+comandos.
 
 > **Nota**
 >
-> Es posible que los campos \ #ID \ # para pasar varios pedidos
-> Una vez, para eso se necesita para pasar una matriz en JSON (por ejemplo,
-> 5B12,58,23% 5D%, se ha observado que \ [y \] debe ser codificada en el que el% 5B
->% Y 5D). El retorno será un Jeedom JSON
+> Es posible que el campo \#ID\# pueda contener varios comandos.
+> repentinamente. Para hacer esto, es necesario pasar una tabla en json (ex
+> %5B12,58,23%5D, tenga en cuenta que \[ y \] debe ser codificado, de ahí el %5B
+> y %5D). El retorno de Jeedom será un json
 
 > **Nota**
 >
-> Los parámetros deben ser codificados para la dirección URL, puede utilizar
-> Una herramienta, [aquí] (https://meyerweb.com/eric/tools/dencoder/)
+> Los parámetros deben estar codificados para la url. Puede utilizar la
+> siguiente herramienta,[aquí](https://meyerweb.com/eric/tools/dencoder/)
 
 interacción
 ===========

@@ -2,7 +2,7 @@ Partie importante dans un logiciel : la partie historisation, véritable
 mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
 quelle commande de type information (binaire ou numérique). Cela vous
 permettra donc par exemple d’historiser une courbe de température, de
-consommation ou les ouvertures d’une porte…​
+consommation ou les ouvertures d’une porte, etc.​
 
 Principe 
 ========
@@ -18,7 +18,7 @@ Archivierung
 
 L’archivage de données permet à Jeedom de réduire la quantité de données
 conservées en mémoire. Cela permet de ne pas utiliser trop de place et
-de ne pas ralentir le système. En effet, si vous conservez toute les
+de ne pas ralentir le système. En effet, si vous conservez toutes les
 mesures, cela fait d’autant plus de points à afficher et donc peut
 considérablement allonger les temps pour rendre un graphique. En cas
 d’un nombre trop important de points, cela peut même faire planter
@@ -67,7 +67,7 @@ On retrouve en haut à droite la période d’affichage (ici sur la dernière
 semaine car, par défaut je veux que ça soit seulement une semaine - voir
 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
 (ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
-qu’a les configurer une fois).
+qu’à les configurer une seule fois).
 
 -   **Escalier** : permet d’afficher la courbe sous la forme d’un
     escalier ou d’un affichage continu.
@@ -116,9 +116,9 @@ La page d’historique donne accès à quelques options supplémentaires
 Historique calculé 
 ------------------
 
-Permet d’affiché une courbe en fonction d’un calcul sur plusieurs
-commande (vous pouvez à peu pret tout faire, +-/\* valeur absolue…​ voir
-documentation PHP pour certaine fonction). Ex :
+Permet d’afficher une courbe en fonction d’un calcul sur plusieurs
+commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
+documentation PHP pour certaines fonctions). Ex :
 abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
 vie\]\[Hygrométrie\]\[Température\]*)
 
@@ -161,26 +161,26 @@ Pour les voir, il vous faut d’abord activer le suivi sur la timeline des
 commandes ou scénarios voulus :
 
 -   **Scenario** : soit directement sur la page de scénario, soit sur la
-    page de résumé des scénarii pour le faire en "masse"
+    page de résumé des scénarios pour le faire en "masse"
 
 -   **Commande** : soit dans la configuration avancée de la commande,
     soit dans la configuration de l’historique pour le faire en "masse"
 
 > **Tip**
 >
-> Vous avez accès aux fenêtres de résumé des scénarii ou de la
+> Vous avez accès aux fenêtres de résumé des scénarios ou de la
 > configuration de l’historique directement à partir de la page de
 > timeline.
 
 Une fois que vous avez activé le suivi dans la timeline des commandes et
-scénarii voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
+scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 > **Important**
 >
 > Il faut attendre de nouveaux événements après avoir activé le suivi
 > sur la timeline avant de les voir apparaître.
 
-Les cartes sur la timeline affiche :
+Les cartes sur la timeline affichent :
 
 -   **Commande action** : en fond rouge, une icône à droite vous permet
     d’afficher la fenêtre de configuration avancée de la commande

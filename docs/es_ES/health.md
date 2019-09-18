@@ -1,26 +1,26 @@
-Página de la salud Jeedom le da una visión general de
-la salud de su Jeedom. También indica (si plugins
-usarlo) por la salud plugin.
+La página de Salud de Jeedom le permite obtener una rápida visión general de
+la salud de tu Jeedom. También indica (si los plugins
+lo usan) el estado de salud por plugin.
 
-La página es accesible por análisis de salud →
+La página es accesible desde Análisis  → Salud
 
-> **Nota**
+> **Note**
 >
-> Un clic en el icono a la derecha proporciona acceso a su punto de referencia
+> Un clic sur l’icône en haut à droite permet d’accéder au benchmark de votre
 > Jeedom.
 
-La página de la salud Jeedom en forma de una tabla. la primera
-le da una descripción de lo que comprueba Jeedom cuyo estado
-se muestra en la segunda columna. Finalmente la última columna que pueda
-proporcionar sugerencias para solucionar problemas si el control no es correcto.
+La page santé de Jeedom se présente sous la forme d’un tableau. La 1ère
+colonne vous donne une description de ce que Jeedom vérifie et dont le statut
+est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
+donner des conseils de résolution si la vérification n’est pas OK.
 
-A continuación encontrará la salud para cada plug-in, haga clic en
-nombre del plugin da el detalle de la salud de la misma. A la derecha
-Encuentra los iconos:
+A continuación encontrará el estado de salud de cada plugin, haga clic en el botón
+da los detalles de salud del plugin. A la derecha encontrará
+encontrar los iconos:
 
 -   equipos plugin de puerto de acceso (tipo llave Zwave)
 
--   demonio de la moda
+-   Modo del deamon
 
 -   Visualización de la página plugin de equipos Salud
 
@@ -30,9 +30,9 @@ Encuentra los iconos:
 
 > **Nota**
 >
-> Los iconos pueden variar dependiendo del plug-in
+> Los iconos pueden variar dependiendo del plugin
 
 > **Nota**
 >
-> En general, cuando la línea es de color verde, es que todo está bien,
-> Y cuando es de color rojo, es que hay una preocupación.
+> En general, cuando la línea es verde, todo está bien
+> y cuando está rojo, es porque hay un problema.

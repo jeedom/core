@@ -2,10 +2,10 @@ Es aquí donde vamos a ser capaces de definir la lista de usuarios
 permitido para conectarse a Jeedom sino también sus derechos
 director
 
-Accesible por la Administración → Usuarios.
+Accesible por Ajustes → Sistema → Usuarios.
 
-En haut à droite vous avez un bouton pour ajouter un utilisateur, un
-pour sauvegarder et un bouton pour ouvrir un accès au support.
+En la parte superior derecha tienes un botón para añadir un usuario, otro
+para guardar y un botón para abrir el acceso a soporte.
 
 A continuación tiene una tabla:
 
@@ -25,13 +25,13 @@ A continuación tiene una tabla:
         no tendrá acceso a los comandos de configuración / instalaciones
         o la Jeedom configuración.
 
-    -   ** ** limitada de usuario: el usuario sólo ve la
+    -   **Usuario limitado**: el usuario sólo ve las
         equipo autorizado (configurable con el "Administrar
         los derechos")
 
 -   ** ** clave de la API: API personal clave de usuario
 
--   ** ** autenticación de doble indica si la autenticación de dos factores
+-   **Doble autenticación**: indica si la doble autenticación 
     está activo (OK) o no (NOK)
 
 -   ** ** Fecha de la última conexión: Fecha de la última conexión
@@ -44,10 +44,10 @@ A continuación tiene una tabla:
 
 -   ** ** Eliminar: Eliminar usuario
 
--   ** ** clave de API regenerado: regenera la clave de la API del usuario
+-   **Régénérer clef API** : régénère la clef API de l’utilisateur
 
 -   ** ** Manejo de los derechos: a finamente gestionar los derechos
-    Usuario (ver los perfiles deben ser
+    el usuario (atención el perfil debe estar en
     "Usuario limitado")
 
 Gestión de derechos

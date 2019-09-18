@@ -1,7 +1,7 @@
 Diese Seite ist für die Experten Reserviert, es erlaubt einen in Jeedom CSS-
 Scripte oder JS hinzuzufügen, das auf jeder Seite ausgeführt wird.
 
-Erreichbar unter **Einstellungen → Erweiterte Anpassung**
+Accessible par **Réglages → Système → Personnalisation avancée**
 
 Sie können auf dieser Seite JS und CSS Skripte hinzufügen, die im ganzen
 Jeedom ausgeführt werden, jeweils für die Desktop-Version und die

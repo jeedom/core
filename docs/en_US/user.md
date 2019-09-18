@@ -2,7 +2,7 @@ This is where we will be able to define the list of users
 allowed to connect to Jeedom, but also their rights
 director
 
-Accessible by Administration → Users.
+Accessible par Réglages → Système → Utilisateurs.
 
 En haut à droite vous avez un bouton pour ajouter un utilisateur, un
 pour sauvegarder et un bouton pour ouvrir un accès au support.
@@ -44,10 +44,10 @@ Below you have a table:
 
 -   **Delete**: delete the user
 
--   **Regenerate API key**: regenerates the API key of the user
+-   **Régénérer clef API** : régénère la clef API de l’utilisateur
 
 -   **Manage rights**: allows to manage finely the rights of
-    the user (be careful the profiles must be in
+    l’utilisateur (attention le profil doit être en
     "limited user")
 
 Rights management

@@ -1,17 +1,17 @@
-The Profile page allows you to configure certain behaviors of
-Jeedom specific to the user: homepage, themes of the
-desktop version, mobile version, graphics ... It allows
-also to change your password.
+La page Profil vous permet de configurer certains comportements de
+Jeedom spécifiques à l’utilisateur : page d’accueil, thèmes de la
+version desktop, de la version mobile, des graphiques…​ Elle permet
+aussi de changer votre mot de passe.
 
 You find it at the top right by clicking on the icon man
 then Profile (followed by your login).
 
-themes
+Thèmes
 ======
 
 The themes panel allows you to adjust interface settings:
 
--   **Desktop**: themes to use in desktop mode, be careful only the
+-   **Desktop** : thèmes à utiliser en mode desktop, attention seul le
     default theme is officially supported by Jeedom
 
 -   **Mobile color**: allows to choose the color of the interface
@@ -44,69 +44,67 @@ Allows you to define certain interface behaviors:
 
     -   **Show menus**: tells Jeedom to display the panel
         left, when it exists, as a reminder this panel is
-        available on most pages of plugins, as well as the
-        page of scenarios, interactions, objects ....
+        disponible sur la plupart des pages des plugins, ainsi que la
+        page des scénarii, des interactions, des objets…​.
 
--   **Default Page**: Default page to display when
-    desktop / mobile connection
+-   **Page par défaut** : page par défaut à afficher lors de la
+    connexion en desktop/mobile
 
--   **Default object on the dashboard**: object to display by default
-    when arriving on the dashboard / mobile
+-   **Objet par défaut sur le dashboard** : objet à afficher par défaut
+    lors de l’arrivée sur le dashboard/mobile
 
--   **Default view**: view to display by default when arriving on
-    the dashboard / mobile
+-   **Vue par défaut** : vue à afficher par défaut lors de l’arrivée sur
+    le dashboard/mobile
 
--   **Default Design**: Design to display by default when
-    the arrival on the dashboard / mobile
+-   **Design par défaut** : design à afficher par défaut lors de
+    l’arrivée sur le dashboard/mobile
 
-    -   **Full Screen**: default full screen view when
-        the arrival on the designs
+    -   **Plein écran** : affichage par défaut en plein écran lors de
+        l’arrivée sur les designs
 
--   ** ** Dashboard
+-   **Dashboard**
 
-    -   **Unfold the Scenarios Panel**: make visible
-        default the scenario menu (right) on the dashboard
+    -   **Déplier le panneau des scénarii** : permet de rendre visible
+        par défaut le menu des scénarii (à droite) sur le dashboard
 
-    -   **Unfold objects panel**: allows to make visible by
-        default the objects menu (left) on the dashboard
+    -   **Déplier le panneau des objets** : permet de rendre visible par
+        défaut le menu des objets (à gauche) sur le dashboard
 
--   **View**
+-   **Vue**
 
-    -   **Unfold view panel**: make visible by
-        default view menu (left) on views
+    -   **Déplier le panneau des vues** : permet de rendre visible par
+        défaut le menu des vues (à gauche) sur les vues
 
-security
+Sécurité
 --------
 
--   **2-step authentication**: allows you to configure
-    2-step authentication (as a reminder, it's a changing code
-    every X seconds that appears on a mobile app, type
-    google authenticator)
+-   **Authentification en 2 étapes** : permet de configurer
+    l’authentification en 2 étapes (pour rappel, c’est un code changeant
+    toutes les X secondes qui s’affiche sur une application mobile, type
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que jeedom (voir sur la page santé) et votre téléphone sont bien à la meme heure (1 min de difference suffit pour que ca ne marche pas)
 
--   **Password**: allows you to change your password (do not
-    forget to retype it below)
+-   **Mot de passe** : permet de changer votre mot de passe (ne pas
+    oublier de le retaper en dessous)
 
--   **User Hash**: Your User API Key
+-   **Hash de l’utilisateur** : votre clef API d’utilisateur
 
-### Active sessions
+### Sessions actives
 
-Here you have the list of your currently connected sessions, their ID,
-their IP and the date of last communication. Clicking on
-"Disconnect" this will disconnect the user. Be careful if he is on
-a registered device will delete the registration.
+Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
+leur IP ainsi que la date de derniere communication. En cliquant sur
+"Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
+un péripherique enregistré cela supprimera églagement l’enregistrement.
 
-### Recorded device
+### Péripherique enregistrés
 
-Here you will find the list of all devices registered (which is
-connects without authentication) to your Jeedom as well as the date of
-last use. Here you can delete the registration of a
-peripheral. Be careful this does not disconnect it but will just prevent
-its automatic reconnection.
+Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
+connecte sans authentification) à votre Jeedom ainsi que la date de
+derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
+peripherique. Attention cela ne le deconnecte pas mais empechera juste
+sa reconnection automatique.
 
 Notifications
 -------------
 
--   **User Notification Command**: Default Command for
-    reach you (message type command)
-
-
+-   **Commande de notification utilisateur** : Commande par défaut pour
+    vous joindre (commande de type message)
