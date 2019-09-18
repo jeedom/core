@@ -202,8 +202,8 @@ class widgets {
   public function getUsedBy(){
     $return = array();
     $return = array_merge(
-      cmd::searchTemplate('dashboard":"custom::'.$this->getName()),
-      cmd::searchTemplate('mobile":"custom::'.$this->getName())
+      cmd::searchTemplate('dashboard":"custom::'.$this->getName().'"'),
+      cmd::searchTemplate('mobile":"custom::'.$this->getName().'"')
     );
     return $return;
   }
