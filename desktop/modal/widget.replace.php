@@ -39,55 +39,55 @@ foreach (cmd::availableWidget('mobile') as $type => $value) {
 ?>
 <div id="form_widgetReplace">
   <div style="display: none;" id="md_widgetReplaceAlert"></div>
-  <legend>{{Dashboard}}</legend>
+  <legend><i class="fas fa-desktop"></i> {{Dashboard}}</legend>
   <form class="form-horizontal">
     <fieldset>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label">{{Je veux remplacer}}</label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label">{{Je veux remplacer}}</label>
+        <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrdashboard" data-l1key="replace">
             <?php echo $select['dashboard']; ?>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label">{{Par}}</label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label">{{Par}}</label>
+        <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrdashboard" data-l1key="by">
             <?php echo $select['dashboard']; ?>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label"></label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label"></label>
+        <div class="col-lg-8">
           <a class="btn btn-success bt_replaceWidget" data-version="dashboard"><i class="fas fa-check"></i> {{Remplacer}}</a>
         </div>
       </div>
     </fieldset>
   </form>
-  <legend>{{Mobile}}</legend>
+  <legend><i class="fas fa-tablet-alt"></i> {{Mobile}}</legend>
   <form class="form-horizontal">
     <fieldset>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label">{{Je veux remplacer}}</label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label">{{Je veux remplacer}}</label>
+        <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrmobile" data-l1key="replace">
             <?php echo $select['mobile']; ?>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label">{{Par}}</label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label">{{Par}}</label>
+        <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrmobile" data-l1key="by">
             <?php echo $select['mobile']; ?>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 col-xs-3 control-label"></label>
-        <div class="col-lg-6 col-xs-6">
+        <label class="col-lg-3 control-label"></label>
+        <div class="col-lg-8">
           <a class="btn btn-success bt_replaceWidget" data-version="mobile"><i class="fas fa-check"></i> {{Remplacer}}</a>
         </div>
       </div>
