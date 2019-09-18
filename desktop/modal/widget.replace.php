@@ -2,24 +2,36 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+global $JEEDOM_INTERNAL_CONFIG;
 $select = array('dashboard' => '','mobile'=>'');
 foreach (cmd::availableWidget('dashboard') as $type => $value) {
+  if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
+    continue;
+  }
   foreach ($value as $subtype => $value2) {
-    if($subtype == ''){
+    if($subtype == '' || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['subtype'][$subtype])){
       continue;
     }
     foreach ($value2 as $name => $widget) {
+      if($name == ''){
+        continue;
+      }
       $select['dashboard'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
     }
   }
 }
 foreach (cmd::availableWidget('mobile') as $type => $value) {
+  if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type])){
+    continue;
+  }
   foreach ($value as $subtype => $value2) {
-    if($subtype == ''){
+    if($subtype == '' || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['subtype'][$subtype])){
       continue;
     }
     foreach ($value2 as $name => $widget) {
+      if($name == ''){
+        continue;
+      }
       $select['mobile'] .= '<option data-type="'.$type.'"  data-subtype="'.$subtype.'" value="'.$widget['location'].'::'.$widget['name'].'">'.$type.' - '.$subtype.' - '.$widget['name'].'</option>';
     }
   }
