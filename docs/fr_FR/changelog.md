@@ -45,8 +45,10 @@ Changelog
 - Page update : différentiation par version (stable, beta, ...).
 - Page update : ajout d'une barre de progression pendant l'update.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
-- Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
+- Résumé domotique : L'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
+- Résumé domotique : Ajout des IDs d'équipement et de commande, à l'affichage et dans la recherche.
+- Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id,commande.
 - Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
 - Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 - Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
@@ -68,6 +70,22 @@ Changelog
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+3.3.31
+=====
+
+- Correction de bugs
+
+3.3.30
+=====
+
+- Correction d'un bug sur l'affichage des sessions utilisateur
+- Mise à jour de la documentation
+- Suppression de la mise à jour des graphiques en temps réel, suite aux nombreux bugs remontés
+- Correction d'un bug pouvant empêcher l'affichage de certains logs
+- Correction d'un bug sur le service de monitoring
+- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte 
+- Amélioration de l'action remove_inat dans les scénarios
 
 3.3.29
 =====
