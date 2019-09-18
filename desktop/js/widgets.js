@@ -55,9 +55,16 @@ $('#bt_editCode').off('click').on('click', function () {
 })
 
 $('#bt_replaceWidget').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Remplacement de widget}}"});
-  $('#md_modal').load('index.php?v=d&modal=widget.replace').dialog('open');
-});
+  $('#md_modal').dialog({title: "{{Remplacement de widget}}"}).load('index.php?v=d&modal=widget.replace').dialog('open')
+  $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 500)
+  $("#md_modal").dialog({
+    position: {
+        my: "center center",
+        at: "center center",
+        of: window
+    }
+  })
+})
 
 
 $('#bt_applyToCmd').off('click').on('click', function () {
