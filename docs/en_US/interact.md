@@ -17,8 +17,8 @@ These orders can be obtained by:
 The interest of interactions lies in the simplified integration into
 other systems like smartphone, tablet, other home automation box, etc.
 
-To access the interaction page, go to Tools →
-Interactions:
+Pour accéder à la page d’interaction, il faut aller sur Outils →
+Interactions :
 
 At the top of the page, there are 3 buttons:
 
@@ -27,24 +27,24 @@ At the top of the page, there are 3 buttons:
 -   **Regenerate**: who will recreate all interactions (can be
     very long &gt; 5mn).
 
--   **Test**: which opens a dialog box for writing and
+-   **Tester** : qui permet d’ouvrir une boîte de dialogue pour écrire et
     test a sentence.
 
 > **Tip**
 >
 > Si vous avez une interaction qui génère les phrases pour les lumières
 > par exemple et que vous ajoutez un nouveau module de commande de
-> lumière, il vous faudra soit régénérer toutes les interactions, soit
+> lumière, il vous faudra soit regénérer toutes les interactions, soit
 > aller dans l’interaction en question et la sauvegarder de nouveau pour
 > créer les phrases de ce nouveau module.
 
 Principle
 ========
 
-The creation principle is quite simple, we will define a sentence
-generator model that will allow Jeedom to create one or more
-hundreds of other phrases that will be possible combinations of the
-model.
+Le principe de création est assez simple : on va définir une phrase
+modèle génératrice qui va permettre à Jeedom de créer une ou plusieurs
+centaines d’autres phrases qui seront des combinaisons possibles du
+modèle.
 
 We will define answers in the same way with a model (this allows
 Jeedom to have several answers for one and the same question).
@@ -67,7 +67,7 @@ buttons:
 
 -   **Delete**: delete the current interaction
 
--   **Duplicate**: Duplicate the current interaction
+-   **Dupliquer** : duplique l’interaction courante
 
 General
 =======
@@ -82,12 +82,12 @@ General
 
 -   **Request**: the generating model sentence (required).
 
--   **Synonym**: allows you to define synonyms on the names
-    some orders.
+-   **Synonyme** : permet de définir des synonymes sur les noms
+    des commandes.
 
--   **Answer**: the answer to provide.
+-   **Réponse** : la réponse à fournir.
 
--   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de generer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de réponse.
+-   **Attendre avant de répondre (s)** : permet d'ajouter un délai de X secondes avant de générer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de répondre.
 
 -   **Conversion binaire** : permet de convertir les valeurs binaires en
     ouvert/fermé par exemple (uniquement pour les commandes de type
@@ -205,7 +205,7 @@ phrases).
 C’est mieux, mais on peut faire encore plus naturel. Si je prends
 l’exemple généré "On entrée", il serait bien de pouvoir transformer
 cette phrase en "allume l’entrée" ou en "allumer l’entrée". Pour faire
-cela Jeedom dispose, sous le champ demande, d’un champ synonyme qui va
+cela, Jeedom dispose, sous le champ demande, d’un champ synonyme qui va
 nous permettre de nommer différemment le nom des commandes dans nos
 phrases "générées", ici c’est "on", j’ai même des "on2" dans les modules
 qui peuvent contrôler 2 sorties.
@@ -243,7 +243,7 @@ rapidement beaucoup de phrases (ici 168).
 Afin d’affiner et de ne pas avoir des choses improbables telles que
 "allume l’télé", on peut autoriser Jeedom à supprimer les demandes
 syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné
-de la syntaxe réelle d’une phrase. Dans notre cas on passe de 168
+de la syntaxe réelle d’une phrase. Dans notre cas, on passe de 168
 phrases à 130 phrases.
 
 ![interact010](../images/interact010.png)
@@ -252,7 +252,7 @@ Il devient donc important de bien construire ses phrases modèles et
 synonymes ainsi que de sélectionner les bons filtres pour ne pas générer
 trop de phrases inutiles. Personnellement, je trouve intéressant d’avoir
 quelques incohérences du style "un entrée" car si chez vous, vous avez
-une personne étrangère qui ne parle pas correctement le français les
+une personne étrangère qui ne parle pas correctement le français, les
 interactions fonctionneront tout de même.
 
 Personnaliser les réponses 
@@ -265,7 +265,7 @@ précisément. C’est là qu’intervient le champ réponse dans lequel on va
 pouvoir personnaliser le retour en fonction de la commande exécutée.
 
 Pour ce faire, nous allons à nouveau utiliser les Tag Jeedom. Pour nos
-lumières on peut utiliser une phrase du style : J’ai bien allumé
+lumières, on peut utiliser une phrase du style : J’ai bien allumé
 \#equipement\# (voir capture ci-dessous).
 
 ![interact011](../images/interact011.png)
@@ -281,7 +281,7 @@ Conversion binaire
 Les conversions binaires s’appliquent aux commandes de type info dont le
 sous-type est binaire (retourne 0 ou 1 uniquement). Il faut donc activer
 les bons filtres, comme on peut le voir sur la capture un peu plus bas
-(pour les catégories on peut toutes les cocher, pour l’exemple je n’ai
+(pour les catégories, on peut toutes les cocher, pour l’exemple je n’ai
 gardé que lumière).
 
 ![interact013](../images/interact013.png)
@@ -335,14 +335,14 @@ On a 2 endroits pour appliquer une Regexp :
 
 Pour le champ "Regex général d’exclusion pour les interactions", cette
 règle sera appliquée à toutes les interactions, qui seront créées ou
-sauvegardées de nouveau par la suite, si on veut l’appliquer à toutes
-les interactions existantes il faut régénérer les interactions.
-Généralement on l’utilise pour effacer des phrases incorrectement
+sauvegardées de nouveau par la suite. Si on veut l’appliquer à toutes
+les interactions existantes, il faut régénérer les interactions.
+Généralement, on l’utilise pour effacer des phrases incorrectement
 formées se retrouvant dans la plupart des interactions générées.
 
 Pour le champ "Regexp d’exclusion" dans la page de configuration de
 chaque interaction, on peut mettre une Regexp spécifique qui va agir
-uniquement sur ladite interaction, elle vous permet donc de supprimer
+uniquement sur ladite interaction. Elle vous permet donc de supprimer
 plus précisément pour une interaction. Cela peut aussi permettre
 d’effacer une interaction pour une commande spécifique pour laquelle on
 ne veut pas offrir cette possibilité dans le cadre d’une génération de
@@ -357,7 +357,7 @@ avec la configuration de l’interaction.
 
 Comme vous pouvez le voir sur la capture suivante, j’ai ajouté une
 regexp simple qui va chercher le mot "Julie" dans les phrases générées
-et les supprimer, toutefois on peut voir dans la liste de gauche qu’il y
+et les supprimer. Toutefois, on peut voir dans la liste de gauche qu’il y
 a toujours des phrases avec le mot "julie", dans les expressions
 régulières, Julie n’est pas égale à julie, on appelle cela une
 sensibilité à la casse ou en bon français une majuscule est différente
@@ -366,7 +366,7 @@ reste plus que 71 phrases, les 5 avec un "Julie" ont été supprimées.
 
 Une expression régulière se compose comme suit :
 
--   En premier un délimiteur, ici c’est une barre oblique "/" placée en
+-   En premier, un délimiteur, ici c’est une barre oblique "/" placée en
     début et fin d’expression.
 
 -   Le point qui suit la barre oblique représente n’importe quel
@@ -379,12 +379,12 @@ Une expression régulière se compose comme suit :
 -   Puis Julie, qui est le mot à rechercher (mot ou autre schéma
     d’expression), suivi à nouveau d’un point puis barre oblique.
 
-Si on traduit cette expression en une phrase cela donnerait "cherche le
+Si on traduit cette expression en une phrase, cela donnerait "cherche le
 mot Julie qui est précédé par n’importe quoi et suivi de n’importe
 quoi".
 
 C’est une version extrêmement simple des expressions régulières mais
-déjà très compliquée à comprendre, il m’a fallu un moment pour en saisir
+déjà très compliquée à comprendre. Il m’a fallu un moment pour en saisir
 le fonctionnement. Comme exemple un peu plus complexe, une regexp pour
 vérifier une adresse URL :
 
@@ -399,7 +399,7 @@ régulières.
 Pour résoudre le problème de majuscule et minuscule, on peut ajouter à
 notre expression une option qui va la rendre insensible à la casse, ou
 autrement dit, qui considère une lettre minuscule égale à une majuscule;
-pour ce faire on doit simplement ajouter à la fin de notre expression un
+pour ce faire, on doit simplement ajouter à la fin de notre expression un
 "i".
 
 ![interact016](../images/interact016.png)
@@ -467,17 +467,17 @@ la réponse de l’exemple par "non il n’y a personne dans la chambre de
 -   Il n’y a pas de commande qui réponde à ça dans la partie Action vu
     que c’est une interaction Multiple commandes
 
--   En ajoutant une expression régulière on peut nettoyer les commandes
+-   En ajoutant une expression régulière, on peut nettoyer les commandes
     que l’on ne veut pas voir pour n’avoir que les phrases sur les
     commandes "Présence".
 
 ![interact018](../images/interact018.png)
 
-Sans le Regexp on obtient ici 11 phrases, or mon interaction a pour but
+Sans le Regexp, on obtient ici 11 phrases, or mon interaction a pour but
 de générer des phrases uniquement pour demander s’il y a quelqu’un dans
 une pièce, donc je n’ai pas besoin d’état de lampe ou autre comme les
 prises, ce qui peut être résolu avec le filtrage regexp. Pour rendre
-encore plus flexible on peut ajouter des synonymes, mais dans ce cas il
+encore plus flexible, on peut ajouter des synonymes, mais dans ce cas il
 ne faudra pas oublier de modifier la regexp.
 
 Connaître la température/humidité/luminosité 
@@ -506,7 +506,7 @@ l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
     existantes (en fonction des filtres) en remplaçant \#commande\# par
     le nom de la commande et \#objet\# par le nom de l’objet.
 
--   La réponse sera de type "21 °C" ou "200 lux" il suffit de mettre :
+-   La réponse sera de type "21 °C" ou "200 lux". Il suffit de mettre :
     \#valeur\# \#unite\# (l’unité est à compléter dans la configuration
     de chaque commande pour laquelle on veut en avoir une)
 
@@ -523,13 +523,13 @@ n’ont rien à voir avec notre interaction.
 Ajout de synonyme, permet de dire à Jeedom qu’une commande s’appellant
 "X" peut aussi s’appeler "Y" et donc dans notre phrase si on a "allume
 y", Jeedom sait que c’est allumer x. Cette méthode est très pratique
-pour renommer des noms de commande qui quand elles sont affichées à
-l’écran sont écrites d’une façon qui n’est pas naturelle vocalement ou
-dans une phrase écrite comme les "ON", un bouton écrit comme cela est
+pour renommer des noms de commande qui, quand elles sont affichées à
+l’écran, sont écrites d’une façon qui n’est pas naturelle vocalement ou
+dans une phrase écrite comme les "ON". Un bouton écrit comme cela est
 totalement logique mais pas dans le contexte d’une phrase.
 
 On peut aussi ajouter un filtre Regexp pour enlever quelques commandes.
-En reprenant l’exemple simple on voit des phrases "batterie" ou encore
+En reprenant l’exemple simple, on voit des phrases "batterie" ou encore
 "latence", qui n’ont rien à voir avec notre interaction
 température/humidité/luminosité.
 
@@ -579,19 +579,19 @@ la valeur on lui passe notre tag *consigne*.
 ### Evolution 
 
 On peut vouloir piloter toutes les commandes de type curseur avec une
-seule interaction. Avec l’exemple qui suit on va donc pouvoir commander
+seule interaction. Avec l’exemple qui suit, on va donc pouvoir commander
 plusieurs variateurs avec une seule interaction et donc générer un
 ensemble de phrases pour les contrôler.
 
 ![interact033](../images/interact033.png)
 
 Dans cette interaction, on n’a pas de commande dans la partie action, on
-laisse Jeedom générer à partir des tags la liste de phrases, on peut
+laisse Jeedom générer à partir des tags la liste de phrases. On peut
 voir le tag **\#slider\#**. Il est impératif d’utiliser ce tag pour les
 consignes dans une interaction multiple commandes, il peut ne pas être
 le dernier mot de la phrase. On peut aussi voir dans l’exemple que l’on
 peut utiliser dans la réponse un tag qui ne fait pas partie de la
-demande, la majorité des tags disponibles dans les scénarios sont
+demande. La majorité des tags disponibles dans les scénarios sont
 disponibles aussi dans les interactions et donc peuvent être utilisés
 dans une réponse.
 

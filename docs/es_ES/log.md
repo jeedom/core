@@ -1,11 +1,11 @@
-Viendo
-=========
+Logs 
+====
 
 El menú Registros de seguir lo que está pasando en su automatización del hogar. En la
 la mayoría de los casos el registro se utiliza para realizar la depuración y
 resolver los problemas por el equipo de apoyo.
 
-Para llegar a ella hay que ir a los registros de la Administración →:
+Pour y accéder il faut aller dans Analyse → Logs :
 
 La página Registros es bastante simple, arriba a la izquierda un combo
 permitiendo la elección del registro que debe buscar en la parte superior derecha tienes 5
@@ -31,7 +31,7 @@ botones:
 >! si se quita el (línea de comandos, por ejemplo) lo hace
 > Para volver a crear no solo, tiene que reiniciar el sistema.
 
-El registro "Evento"
+Temps réel 
 ==============
 
 El registro "Evento" es un poco particular. En primer lugar por ella

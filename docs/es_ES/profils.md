@@ -1,17 +1,17 @@
-La página de perfil le permite configurar ciertos comportamientos
-Jeedom específica para el usuario: Inicio de los temas
-versión de escritorio, la versión móvil, gráficos ... Permite
-también cambiar su contraseña.
+La page Profil vous permet de configurer certains comportements de
+Jeedom spécifiques à l’utilisateur : page d’accueil, thèmes de la
+version desktop, de la version mobile, des graphiques…​ Elle permet
+aussi de changer votre mot de passe.
 
 A encontrar la parte superior derecha hacer clic en el icono del hombre
 y Perfil (seguido de su identificación).
 
-temas
+Thèmes
 ======
 
 El panel de temas le permite ajustar los parámetros de la interfaz:
 
--   ** ** escritorio: temas para su uso en el modo de escritorio, sólo el enfoque
+-   **Desktop** : thèmes à utiliser en mode desktop, attention seul le
     tema por defecto es apoyado oficialmente por Jeedom
 
 -   ** ** móvil de color: elegir el color de la interfaz
@@ -35,7 +35,7 @@ El panel de temas le permite ajustar los parámetros de la interfaz:
 -   **La opacidad de los widgets móviles**: permite dar opacidad
     (Entre 0 y 1) de widgets móviles
 
-interfaz
+Interface
 ---------
 
 Se puede definir ciertos comportamientos de la interfaz:
@@ -44,69 +44,67 @@ Se puede definir ciertos comportamientos de la interfaz:
 
     -   ** ** Muestra los menús dice panel de visualización Jeedom
         la izquierda, en su caso, para devolver este panel es
-        disponible en la mayoría de las páginas plugins, así como
-        escenarios de página, interacciones, objetos ....
+        disponible sur la plupart des pages des plugins, ainsi que la
+        page des scénarii, des interactions, des objets…​.
 
--   ** ** defecto Página: página por defecto para mostrar cuando
-    escritorio conexión / móvil
+-   **Page par défaut** : page par défaut à afficher lors de la
+    connexion en desktop/mobile
 
--   **objeto predeterminado en el salpicadero** objeto a visualizar de forma predeterminada
-    a su llegada en el salpicadero / móvil
+-   **Objet par défaut sur le dashboard** : objet à afficher par défaut
+    lors de l’arrivée sur le dashboard/mobile
 
--   ** ** Vista predeterminada: Ver para mostrar de forma predeterminada a la llegada de
-    el salpicadero / móvil
+-   **Vue par défaut** : vue à afficher par défaut lors de l’arrivée sur
+    le dashboard/mobile
 
--   ** ** predeterminado Diseño: Diseño que se mostrará por defecto cuando
-    la llegada en el salpicadero / móvil
+-   **Design par défaut** : design à afficher par défaut lors de
+    l’arrivée sur le dashboard/mobile
 
-    -   ** ** pantalla completa: pantalla completa por defecto cuando
-        llegada en diseños
+    -   **Plein écran** : affichage par défaut en plein écran lors de
+        l’arrivée sur les designs
 
--   ** ** tablero de instrumentos
+-   **Dashboard**
 
-    -   **Se desarrollan los escenarios del panel**: permite hacer visible
-        escenarios de incumplimiento del menú (derecha) en el salpicadero
+    -   **Déplier le panneau des scénarii** : permet de rendre visible
+        par défaut le menu des scénarii (à droite) sur le dashboard
 
-    -   **Se desarrollan los objetos del panel**: permite hacer visible
-        elementos de menú por defecto (izquierda) en el salpicadero
+    -   **Déplier le panneau des objets** : permet de rendre visible par
+        défaut le menu des objets (à gauche) sur le dashboard
 
--   ** ** Ver
+-   **Vue**
 
-    -   **Se desarrollan las vistas del panel**: permite hacer visible
-        menú de puntos de vista por defecto (izquierda) en vistas
+    -   **Déplier le panneau des vues** : permet de rendre visible par
+        défaut le menu des vues (à gauche) sur les vues
 
-seguridad
+Sécurité
 --------
 
--   Autenticación ** ** 2 pasos: Configurar
-    la autenticación en dos pasos (como un recordatorio, este es un cambio de código
-    cada X segundos que se muestra en un tipo de aplicación móvil
-    Google Authenticator)
+-   **Authentification en 2 étapes** : permet de configurer
+    l’authentification en 2 étapes (pour rappel, c’est un code changeant
+    toutes les X secondes qui s’affiche sur une application mobile, type
+    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que jeedom (voir sur la page santé) et votre téléphone sont bien à la meme heure (1 min de difference suffit pour que ca ne marche pas)
 
--   ** ** Contraseña: Cambiar la contraseña (no hacer
-    se olvide de volver a escribir a continuación)
+-   **Mot de passe** : permet de changer votre mot de passe (ne pas
+    oublier de le retaper en dessous)
 
--   ** ** hash de usuario: su clave de usuario API
+-   **Hash de l’utilisateur** : votre clef API d’utilisateur
 
-### sesiones activas
+### Sessions actives
 
-Aquí tienes una lista de sus sesiones que están conectados, identificaciones,
-su IP y fecha de la última comunicación. Al hacer clic
-"Desconexión" que desconecta el usuario. Tenga cuidado si está en
-un dispositivo registrado se eliminará grabación églagement.
+Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
+leur IP ainsi que la date de derniere communication. En cliquant sur
+"Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
+un péripherique enregistré cela supprimera églagement l’enregistrement.
 
-### unidad periférica registró
+### Péripherique enregistrés
 
-Aquí encontrará la lista de todos los periféricos registrados (que
-conectarse sin autenticación) a su Jeedom y la fecha de
-último uso. Aquí se puede anular el registro de una
-periférica. Tenga en cuenta que esto no se desconecta pero evitará la derecha
-su reconexión automática.
+Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
+connecte sans authentification) à votre Jeedom ainsi que la date de
+derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
+peripherique. Attention cela ne le deconnecte pas mais empechera juste
+sa reconnection automatique.
 
-Notificaciones
+Notifications
 -------------
 
--   **Control de usuario de notificación**: control por defecto para
-    join (control de mensajes estándar)
-
-
+-   **Commande de notification utilisateur** : Commande par défaut pour
+    vous joindre (commande de type message)

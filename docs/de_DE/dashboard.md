@@ -1,36 +1,36 @@
-Une des pages principales de Jeedom affiche un compte-rendu de toute
-votre domotique. Ce compte-rendu (contrairement aux vues et design) est
-auto-généré par Jeedom.
+Das ist die Hauptseite von Jeedom, es zeigt eine Übersicht über die ganze
+Heimautomation. Dieser Bericht (im Gegensatz zu den Ansichten und
+Design) wird von Jeedom selbst erzeugt.
 
-Il est accessible en cliquant sur **Accueil → Dashboard**
+Es kann zugegriffen werden, indem Sie auf **Mein Haus → Armaturenbrett** klicken.
 
 > **Tip**
 >
-> Il est possible d’aller directement sur un objet de votre domotique.
-> Cela permet de n’avoir que les équipements qui vous intéressent et
-> donc de charger la page plus rapidement
+> Es ist möglich, direkt zu einem Objekt Ihrer Hausautomation zu gehen.
+> Dadurch können Sie nur das Gerät wählen, das Sie interessiert, und die
+> Seite wird daher schneller geladen.
 
--   Vous avez en haut à gauche une petite icône pour faire
-    afficher/masquer l’arbre des objets (celui-ci affiche aussi les
-    informations des résumés d’objet)
+-   Oben links haben Sie ein kleines Symbol, um den Objektbaum
+    ein-/auszublenden (dieser zeigt auch die Informationen
+    der Objektzusammenfassungen an)
 
--   Au milieu vous pouvez choisir de ne filtrer que sur certains types
-    d’équipements
+-   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
+    Filtern kann
 
--   A droite un premier bouton pour passer en mode édition, pour par
-    exemple modifier l’ordre des widgets (à l’aide d’un cliqué déposé
-    sur le widget), vous pouvez aussi dans ce mode édition
-    redimensionner certains widgets et réorganiser l’ordre des commandes
-    à l’intérieur de celui-ci
+-   A droite, un premier bouton pour passer en mode édition, pour par
+    zu wechseln z. B. ändern der Reihenfolge der Widgets (mit einem 
+    Klick auf das Widget), Sie können auch in diesem Bearbeitungsmodus
+    die Größe einiger Widgets ändern und die Reihenfolge der darin enthaltenen 
+    Befehle neu anordnen
 
--   Un deuxième bouton pour afficher/masquer les scénarios
+-   Eine zweite Schaltfläche zum Ein-/Ausblenden der Szenarien
 
 -   En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que
     les équipements ayant pour parent cet objet et qui concernent ce
     résumé d’objet.
 
--   Un clic sur une commande de type information permet d’afficher
-    l’historique de la commande (si elle est historisée)
+-   Ein Klick auf einen Informationsbefehl zeigt den Verlauf des 
+    Befehls an (falls er archiviert ist)
 
 > **Tip**
 >
@@ -43,42 +43,41 @@ Il est accessible en cliquant sur **Accueil → Dashboard**
 > En mobile un appui long sur une commande de type info permet
 > d’afficher un menu vous proposant soit d’afficher l’historique de la
 > commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
-> previenne (une seule fois) dès que la valeur passe un certain seuil
+> prévienne (une seule fois) dès que la valeur passe un certain seuil
 
-Mode édition 
+Bearbeitungsmodus
 ============
 
-En mode édition vous pouvez changer la taille des widgets et leur
+En mode édition, vous pouvez changer la taille des widgets et leur
 disposition sur le dashboard.
 
-Vous pouvez aussi éditer la disposition interne des commandes du widget
-:
+Sie können auch das interne Layout der Widget Befehle bearbeiten :
 
--   soit les réorganiser par glisser/déposer
+-   Sie können sie entweder durch Ziehen/Ablegen neu anordnen
 
--   soit en faisant un clic droit sur le widget. Vous accédez alors à :
+-   Klicken Sie entweder mit der rechten Maustaste auf das Widget. Dann haben Sie zugriff auf :
 
-    -   **Configuration avancée** : permet d’accéder à la configuration
-        avancée de la commande
+    -   **Erweiterte Konfiguration** : Ermöglicht den Zugriff auf die erweiterte 
+        Konfiguration des Befehls
 
-    -   **Standard** : disposition par défaut, tout est en automatique
-        avec juste la possibilité de réorganiser l’ordre des commandes
+    -   **Standard** : Standard-Layout, alles ist automatisch, nur mit der Möglichkeit, 
+        die Reihenfolge der Befehle neu zu ordnen
 
-    -   **Tableau** : permet de mettre les commandes dans un tableau,
-        les colonnes et les lignes s’ajoutent et se suppriment par clic
-        droit, ensuite il suffit de déplacer les commandes dans les
-        cases voulues. Vous pouvez mettre plusieurs commandes par case
+    -   **Tableau** : permet de mettre les commandes dans un tableau :
+        Spalten und Zeilen werden hinzugefügt und gelöscht durch Rechtsklick,
+        dann können Sie einfach die Befehle in der Kachel verschieben.
+        Sie können mehrere Befehle pro Kachel einsetzen.
 
-    -   **Ajouter colonne** : ajoute une colonne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Spalte hinzufügen** : Fügt eine Spalte in die Tabelle ein (nur zugänglich, 
+        wenn Sie sich im Tabellenlayout befinden)
 
-    -   **Ajouter ligne** : ajoute une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Zeile hinzufügen** : Fügt eine Zeile in die Tabelle ein (nur zugänglich,
+        wenn Sie sich im Tabellenlayout befinden)
 
-    -   **Supprimer colonne** : supprime une colonne au tableau
-        (accessible uniquement si vous êtes en disposition tableau)
+    -   **Spalte löschen** : Löscht eine Spalte in der Tabelle
+        (nur zugänglich, wenn Sie sich im Tabellenlayout befinden)
 
-    -   **Supprimer ligne** : supprime une ligne au tableau (accessible
-        uniquement si vous êtes en disposition tableau)
+    -   **Zeile löschen** : Löscht eine Zeile in der Tabelle (nur zugänglich,
+        wenn Sie sich im Tabellenlayout befinden)
 
 

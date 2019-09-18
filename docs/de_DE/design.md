@@ -1,53 +1,53 @@
-Cette page permet de configurer l’affichage de toute votre domotique de
-manière très fine. Celle-ci demande du temps mais sa seule limite est
-votre imagination.
+Auf dieser Seite können sie die Anzeige der gesamten Haustechnik ganz
+genau konfigurieren. Dies braucht Zeit, aber die einzige Grenze ist Ihre
+Vorstellungskraft.
 
-Elle est accessible par Acceuil → Dashboard
+Er ist erreichbar über Mein Haus → Design
 
-> **Tip**
+> **Tipp**
 >
-> Il est possible d’aller directement sur un design grâce au sous-menu.
+> Über das Untermenü kann direkt zu einem Design gesprungen werden.
 
-> **Important**
+> **Wichtig**
 >
-> Toutes les actions se font par un clic droit sur cette page, attention
-> à bien le faire dans le design. Lors de la création, il faut donc le
-> faire au milieu de la page (pour être sûr d’être sur le design).
+> Alle Aktionen werden ausgeführt, indem Sie mit der rechten Maustaste auf
+> diese Seite klicken, achten Sie darauf, dass Sie es richtig im Design machen.
+> Beim Erstellen müssen Sie es in der Mitte der Seite tun (um sicher zu sein, dass es auf dem Design ist).
 
-Dans le menu nous retrouvons (clic droit donc) nous retrouvons les
+Dans le menu (clic droit donc), nous retrouvons les
 actions suivantes :
 
--   **Designs** : Affiche la liste de vos designs et d’y accéder
+-   **Designs** : Affiche la liste de vos designs et permet d’y accéder
 
--   **Edition** : Permet de passer en mode édition
+-   **Bearbeiten** : Ermöglicht den Wechsel in den Bearbeitungsmodus
 
--   **Plein ecran** : Permet d’utiliser toute la page Internet, ce qui
-    enlèvera le menu de Jeedom du haut
+-   **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite,
+    indem das Jeedom-Menü oben entfernt wird
 
--   **Ajouter graphique** : Permet d’ajouter un graphique
+-   **Diagramm hinzufügen** : Ermöglicht das hinzufügen eines Diagramms
 
--   **Ajouter texte/html** : Permet d’ajouter du texte ou du code
-    html/javascript
+-   **Text/html** : Ermöglicht das hinzufügen eines Textes oder eines Codes
+    html/javascript Codes
 
--   **Ajouter scénario** : Permet d’ajouter un scénario
+-   **Szenario hinzufügen** : Ermöglicht das hinzufügen eines Szenarios
 
--   **Ajouter lien**
+-   **Link hinzufügen**
 
-    -   **Vers une vue** : Permet d’ajouter un lien vers une vue
+    -   **Von einer Ansicht** : Fügt einen Link zu einer Ansicht hinzu
 
-    -   **Vers un design** : Permet d’ajouter un lien vers un autre
-        design
+    -   **Zu einem Design** : Fügt einen Link zu einem anderen Design
+        hinzu
 
--   **Ajouter équipement** : Permet d’ajouter un équipement
+-   **Gerät hinzufügen** : Ermöglicht das hinzufügen eines Gerätes
 
--   **Ajouter commande** : Permet d’ajouter une commande
+-   **Befehl hinzufügen** : Ermöglicht das hinzufügen eines Befehls
 
--   **Ajouter image/caméra** : Permet d’ajouter une image ou le flux
-    d’une caméra
+-   **Bild/Kamera hinzufügen** : Ermöglicht das hinzufügen von einem Bild oder den Stream
+    von einer Kamera
 
--   **Ajouter zone** : Permet d’ajouter une zone transparante cliquable
-    qui pourra executer une série d’actions lors d’un clic (en fonction
-    ou non de l’état d’une autre commande)
+-   **Ajouter zone** : Permet d’ajouter une zone transparente cliquable
+    qui pourra exécuter une série d’actions lors d’un clic (en fonction
+    nach Zustand eines anderen Befehls)
 
 -   **Ajouter résumé** : Ajoute les informations d’un résumé d’objet ou
     général
@@ -74,18 +74,18 @@ actions suivantes :
 
 -   **Supprimer le design** : supprime le design
 
--   **Créer un design** : permet d’ajouter un design
+-   **Créer un design** : permet d’ajouter un nouveau design
 
 -   **Dupliquer le design** : duplique le design courant
 
 -   **Configurer le design** : accès à la configuration du design
 
--   **Sauvegarder** : permet de sauvegarder le design (attention il y a
+-   **Sauvegarder** : permet de sauvegarder le design (attention, il y a
     aussi des sauvegardes automatiques lors de certaines actions)
 
 > **Important**
 >
-> La configuration des éléments du désign se fait par un clic sur
+> La configuration des éléments du design se fait par un clic sur
 > ceux-ci.
 
 Configuration du design 
@@ -95,18 +95,18 @@ On retrouve ici :
 
 -   **Général**
 
-    -   **Nom** : Le nom de votre design
+    -   **Name** : Der Name Ihres Designs
 
     -   **Fond transparent** : rend le fond transparent. Attention si la
-        case est coché la couleur de fond n’est pas utilisée
+        case est cochée, la couleur de fond n’est pas utilisée
 
     -   **Couleur de fond** : couleur de fond du design (blanc
         par défaut)
 
-    -   **Code** : Code d’accès à votre design (si vide aucun code
+    -   **Code** : Code d’accès à votre design (si vide, aucun code
         n’est demandé)
 
-    -   **Icône** : Une icône pour celui-ci (apparait dans le menu de
+    -   **Icône** : Une icône pour celui-ci (apparaît dans le menu de
         choix de design)
 
     -   **Image**
@@ -129,7 +129,7 @@ Configuration générale des éléments
 
 > **Note**
 >
-> L’élément sélectionné apparait en surbrillance rouge (au lieu de vert
+> L’élément sélectionné apparaît en surbrillance rouge (au lieu de vert
 > pour tous les autres).
 
 Paramètre d’affichage 
@@ -141,30 +141,30 @@ Paramètre d’affichage
 
 -   **Position Y (%)** :
 
--   **Largeur (px)** :
+-   **Breite (px)** :
 
--   **Hauteur (px)** :
+-   **Höhe (px)** :
 
-Supprimer 
+Löschen 
 ---------
 
 Permet de supprimer l’élément
 
-Dupliquer 
+Kopieren 
 ---------
 
 Permet de dupliquer l’élément
 
-Verrouiller 
+Sperren 
 -----------
 
 Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
-redimmensionnable.
+redimensionnable.
 
-Graphique 
+Diagramm
 =========
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
 -   **Période** : permet de choisir la période d’affichage
@@ -222,13 +222,13 @@ Text/html
 >
 > Si vous mettez du code HTML (en particulier du Javascript), attention
 > à bien le vérifier avant car vous pouvez si il y a une erreur dedans
-> ou si il écrase un composant Jeedom planter completement le design et
-> il ne restera plus qu’a le supprimer directement base de données
+> ou si il écrase un composant Jeedom planter complètement le design et
+> il ne restera plus qu’à le supprimer directement en base de données
 
 Scénario 
 ========
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
@@ -236,7 +236,7 @@ Aucun paramètre spécifique d’affichage
 Lien 
 ====
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
 -   **Nom** : Nom du lien (texte affiché)
@@ -266,7 +266,7 @@ Paramètre d’affichage
 Equipement 
 ==========
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
@@ -274,13 +274,13 @@ Aucun paramètre spécifique d’affichage
 Configuration avancée 
 ---------------------
 
-Affiche la fenetre de configuration avancé de l’équipement (voir
+Affiche la fenêtre de configuration avancée de l’équipement (voir
 documentation Résumé domotique ("display"))
 
 Commande 
 ========
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
 Aucun paramètre spécifique d’affichage
@@ -288,16 +288,16 @@ Aucun paramètre spécifique d’affichage
 Configuration avancée 
 ---------------------
 
-Affiche la fenetre de configuration avancé de la commande (voir
+Affiche la fenêtre de configuration avancée de la commande (voir
 documentation Résumé domotique ("display"))
 
 Image/Caméra 
 ============
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
--   **Afficher** : défini ceux que vous voulez afficher, image fixe ou
+-   **Afficher** : définit ce que vous voulez afficher, image fixe ou
     flux d’une caméra
 
 -   **Image** : permet d’envoyer l’image en question (si vous avez
@@ -305,55 +305,55 @@ Paramètre d’affichage
 
 -   **Caméra** : caméra à afficher (si vous avez choisi caméra)
 
-Zone 
+Bereich 
 ====
 
-Paramètre d’affichage 
+Paramètres d’affichage 
 ---------------------
 
--   **Type de zone** : C’est ici que vous choissez le type de la zone :
+-   **Type de zone** : C’est ici que vous choisissez le type de la zone :
     Macro simple, Macro Binaire ou Widget au survol
 
 ### Macro simple 
 
-Dans ce mode la un clic sur la zone execute une ou plusieurs action.
+Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
 
 Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
 sur la zone
 
 ### Macro binaire 
 
-Dans ce mode Jeedom va executer la ou les action(s) On ou Off en
-fonction de l’état de la commande que vous donnez. Ex si la commande
-vaut 0 alors Jeedom executera la ou les action(s) On sinon il executera
-la ou les action(s) off
+Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en
+fonction de l’état de la commande que vous donnez. Ex : si la commande
+vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
+la ou les actions Off
 
--   **Information binaire** : Commande donnant l’état à verifier pour
-    decider de l’action à faire (on ou off)
+-   **Information binaire** : Commande donnant l’état à vérifier pour
+    décider de l’action à faire (On ou Off)
 
-Il vous suffit en dessous de mettre les actions à faire pour le on et
-pour le off
+Il vous suffit en dessous de mettre les actions à faire pour le On et
+pour le Off
 
 ### Widget au survol 
 
-Dans ce mode lors du survole ou du clic dans la zone jeedom vous
-affichera le widget en question
+Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous
+afficherez le widget en question
 
--   **Equipement** : widget à afficher lors du survole ou du clic
+-   **Equipement** : widget à afficher lors du survol ou du clic
 
--   **Afficher au survol** : si coché affiche le widget au survol
+-   **Afficher au survol** : si coché, affiche le widget au survol
 
--   **Afficher sur un clic** : si coché alors le widget est affiché au
+-   **Afficher sur un clic** : si coché, alors le widget est affiché au
     clic
 
 -   **Position** : permet de choisir l’emplacement d’apparition du
-    widget (par defaut bas droite)
+    widget (par défaut bas droite)
 
 Résumé 
 ======
 
--   **Lien** : Permet d’indiqué le résumé à afficher (Général pour le
-    globale sinon indiquer l’objet)
+-   **Lien** : Permet d’indiquer le résumé à afficher (Général pour le
+    global sinon indiquer l’objet)
 
 -   **Couleur de fond** : permet de changer la couleur de fond ou de le
     mettre transparent, ne pas oublier de passer "Défaut" sur NON
@@ -373,3 +373,13 @@ Résumé
 -   **Gras** : met le texte en gras
 
 
+FAQ 
+======
+
+>**Je n'arrive plus à éditer mon design**
+>
+>Si vous avez mis un widget ou une image qui prend quasiment la totalité du design, il faut bien cliquer en dehors du widget ou de l'image pour avoir accès au menu par clic droit.
+
+>**Supprimer un design qui ne marche plus**
+>
+>Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précedemment.

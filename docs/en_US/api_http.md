@@ -28,7 +28,7 @@ Here is the URL =
 [Http: // \ #IP \ _JEEDOM \ # / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = scenario & id = \ #ID \ # & action = \ #ACTION \ #?] (Http: // # # IP_JEEDOM / core / api / jeeApi.php? apikey aPIKEY = # # & type = scenario & id = # ID # & action = ACTION # #)
 
 -   **id**: corresponds to the id of your scenario. The ID is on the
-    page of the scenario concerned, in "tools" → "Scenarios", once the
+    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
     selected scenario, next to the name of the "General" tab. Other
     way to find it: in "Tools" → "Scenarios", click on
     "Overview".
@@ -39,7 +39,7 @@ Here is the URL =
     activate the scenario.
 
 -   **tags** \ [optional]: if the action is "start", you can pass
-    tags to the scenario (see the documentation on the scenarios) under
+    des tags au scénario (voir la documentation sur les scénarios) sous
     the form tags = foo% 3D1%20tata% 3D2 (note that% 20 corresponds to a
     space and% 3D to =)
 
@@ -53,7 +53,7 @@ Here is the URL =
     you want to receive information
 
 The easiest way to get this URL is to go to the Tools page →
-Home automation summary, search for the command and open its configuration
+Home Automation Summary, search for the command and open its configuration
 advanced (the "gear" icon) and there you will see a URL that contains
 already all that is needed depending on the type and subtype of the
 command.
@@ -61,7 +61,7 @@ command.
 > **Note**
 >
 > It is possible for the \ #ID \ # field to pass several commands
-> all of a sudden, for that you have to pass a painting in json (ex
+> all of a sudden. For that you have to pass a array in json (ex
 >% 5B12,58,23% 5D, note that \ [and \] must be encoded hence the% 5B
 > and% 5D). The return of Jeedom will be a json
 

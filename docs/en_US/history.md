@@ -1,8 +1,8 @@
-Important part in a software: the historization part, true
-memory of it. It is possible in Jeedom to historize anywhere
-which information type command (binary or digital). this will
-Thus, for example, it will be possible to record a temperature curve,
-consumption or the openings of a door ...
+Partie importante dans un logiciel : la partie historisation, véritable
+mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe
+quelle commande de type information (binaire ou numérique). Cela vous
+permettra donc par exemple d’historiser une courbe de température, de
+consommation ou les ouvertures d’une porte, etc.​
 
 Principle
 ========
@@ -16,13 +16,13 @@ case.
 archiving
 ---------
 
-Data archiving allows Jeedom to reduce the amount of data
-kept in memory. This makes it possible not to use too much space and
-not to slow down the system. Indeed, if you keep all
-measures, this makes all the more points to display and so can
-considerably lengthen the time to render a graph. In case
-Too many points, it can even crash
-the graph display.
+L’archivage de données permet à Jeedom de réduire la quantité de données
+conservées en mémoire. Cela permet de ne pas utiliser trop de place et
+de ne pas ralentir le système. En effet, si vous conservez toutes les
+mesures, cela fait d’autant plus de points à afficher et donc peut
+considérablement allonger les temps pour rendre un graphique. En cas
+d’un nombre trop important de points, cela peut même faire planter
+l’affichage du graphique.
 
 Archiving is a task that starts at night and compacts
 data recovered in the day. By default Jeedom recovers all
@@ -63,11 +63,11 @@ There are several ways to access the history:
 If you are viewing a graphic through the history page or by clicking
 the widget, you have access to several display options:
 
-We find in the upper right the display period (here on the last
-week because, by default I want it to be only a week - see
-2 paragraphs above), then come the parameters of the curve
-(These settings are kept from one display to another, so you do not have
-than configure them once).
+On retrouve en haut à droite la période d’affichage (ici sur la dernière
+semaine car, par défaut je veux que ça soit seulement une semaine - voir
+2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe
+(ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc
+qu’à les configurer une seule fois).
 
 -   **Staircase**: Displays the curve in the form of a
     staircase or continuous display.
@@ -116,11 +116,11 @@ The history page gives you access to some additional options
 Calculated history
 ------------------
 
-Displays a curve based on a multiple calculation
-command (you can do everything, + - / \ * absolute value ... see
-PHP documentation for some function). Ex:
-abs (* \ [Garden \] \ [Hygrometry \] \ [Temperature \] * - * \ [Space of
-Life \] \ [Humidity \] \ [Temperature \] *)
+Permet d’afficher une courbe en fonction d’un calcul sur plusieurs
+commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir
+documentation PHP pour certaines fonctions). Ex :
+abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de
+vie\]\[Hygrométrie\]\[Température\]*)
 
 You also have access to a calculation formulas management that allows you
 save them for easier viewing
@@ -161,26 +161,26 @@ To see them, you must first activate the tracking on the timeline of
 desired commands or scenarios:
 
 -   **Scenario**: either directly on the scenario page, or on the
-    Scenarios summary page to do it in "mass"
+    page de résumé des scénarios pour le faire en "masse"
 
 -   **Command**: either in the advanced configuration of the command,
     in the configuration of the history to do it in "mass"
 
 > **Tip**
 >
-> You have access to the summary windows of the scenarios or the
-> history configuration directly from the page of
+> Vous avez accès aux fenêtres de résumé des scénarios ou de la
+> configuration de l’historique directement à partir de la page de
 > timeline.
 
-Once you have enabled tracking in the timeline of commands and
-scenarios, you can see them appear on the timeline.
+Une fois que vous avez activé le suivi dans la timeline des commandes et
+scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 > **Important**
 >
 > You have to wait for new events after activating the follow-up
 > on the timeline before seeing them appear.
 
-The cards on the timeline display:
+Les cartes sur la timeline affichent :
 
 -   **Action command**: in red background, an icon on the right allows you
     to display the advanced configuration window of the command

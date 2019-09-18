@@ -1,8 +1,8 @@
-Die Nachrichtenzentrale beinhaltet alle wichtigen Nachrichten, die Sie sich
-ansehen sollten. Sie findet sich neben der Zeit rechts oben wieder.
+Le centre des messages regroupe tous les messages importants que vous
+devez regarder. Il se trouve à côté de l’heure en haut à droite.
 
-Es ist nur verfügbar, wenn Nachrichten vorhanden sind, einfach auf die
-Anzahl der Nachrichten klicken.
+Il n’est accessible que lorsqu’il y a des messages, en cliquant sur le
+nombre de messages.
 
 Es ist ziemlich einfach. Es zeigt Ihnen das Datum und die Uhrzeit der
 Nachricht, das Plugin, das es ausgegeben hat und die betreffende Nachricht.
@@ -14,7 +14,7 @@ Oben finden wir eine Auswahlliste zum Filtern von Nachrichten von ein
 bestimmtem Plugin und rechts eine Schaltfläche, um alle Nachrichten zu
 löschen.
 
-> **Tip**
+> **Tipp**
 >
 > Wenn Sie einen Fehler in der Nachrichtenzentrale haben, versuchen Sie
 > zunächst die Nachricht zu entfernen und sehen dann ob der Fehler

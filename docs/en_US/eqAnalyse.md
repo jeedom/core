@@ -1,5 +1,5 @@
-The Equipment Analysis page allows you to see many informations
-for equipment centrally:
+La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
+relatives aux équipements de manière centralisée :
 
 -   the state of your batteries
 

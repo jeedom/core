@@ -26,7 +26,7 @@ Hier ist die URL =
 [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
 -   **id** : Entspricht der ID Ihres Szenarios. Die ID befindet sich auf der
-    entsprechenden Szenarioseite unter "Werkzeuge" → "Szenarien", sobald das 
+    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
     Szenario ausgewählt wurde, neben dem Namen der Registerkarte "Allgemein".
     Eine andere Möglichkeit, sie zu finden ist : Klicken Sie in "Werkzeuge" → 
     "Szenarien" auf "Übersicht".
@@ -37,7 +37,7 @@ Hier ist die URL =
     zu aktivieren.
 
 -   **tags** [optional] : Wenn die Aktion "Start" ist, können Sie Tags an das 
-    Szenario übergeben (siehe Dokumentation zu den Szenarien) in dem
+    des tags au scénario (voir la documentation sur les scénarios) sous
     Format tags=toto%3D1%20tata%3D2 (beachten Sie, dass %20 einem 
     Leerzeichen und %3D einem = entspricht)
 
@@ -50,22 +50,23 @@ Hier ist die URL =
 -   **id** : Entspricht der ID, was Sie steuern oder von dem Sie 
     Informationen erhalten möchten
 
-Der einfachste Weg, um diese URL zu erhalten, ist auf die Seite Werkzeuge →
-Übersicht Haus-Automatisierung zu gehen, suchen Sie nach dem Befehl und
-dann öffnen sie seine erweiterte Konfiguration (das "Zahnrad"-Symbol). Dort sehen Sie eine URL, die basierend auf dem Typ und Subtyp des Befehls
-bereits alles enthält, was Sie benötigen.
+Le plus simple pour avoir cette URL est d’aller sur la page Outils →
+Résumé domotique, de chercher la commande puis d’ouvrir sa configuration
+avancée (l’icône "engrenage") et là, vous allez voir une URL qui contient
+déjà tout ce qu’il faut en fonction du type et du sous-type de la
+commande.
 
-> **Notiz**
+> **Note**
 >
-> Es ist möglich, dass dem Feld \#ID# mehrere Befehle gleichzeitig
-> übergeben werden. Dazu muss ein Array in json übergeben werden (zB.
-> %5B12,58,23%5D, beachten Sie, dass [und] von dem aus codiert werden
-> muß %5B und %5D). Die Rückgabe von Jeedom wird in JSON efolgen.
+> Il est possible pour le champs \#ID\# de passer plusieurs commandes
+> d’un coup. Pour cela, il faut passer un tableau en json (ex
+> %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B
+> et %5D). Le retour de Jeedom sera un json
 
-> **Notiz**
+> **Note**
 >
-> Die Parameter müssen für die URL kodiert werden, Sie können dieses
-> Werkzeug benutzen, [hier](https://meyerweb.com/eric/tools/dencoder/)
+> Les paramètres doivent être encodés pour les url, Vous pouvez utiliser
+> un outil, [ici](https://meyerweb.com/eric/tools/dencoder/)
 
 Interaktion
 ===========
@@ -102,48 +103,47 @@ Hier ist die URL =
 Objekt
 =====
 
-Voici l’URL =
+InhaltHier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
-Renvoie en json la liste de tous les objets de Jeedom
+Gibt die Liste aller Jeedom-Objekte in json zurück.
 
-Equipement 
+Geräte
 ==========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
--   **object\_id** : ID de l’objet dont on veut récupérer les
-    équipements
+-   **object_id** : ID des Objekts, dessen Gerät wir wiederherstellen
+    wollen
 
-Commande 
+Befehle
 ========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
--   **eqLogic\_id** : ID de l’équipement dont on veut récupérer les
-    commandes
+-   **eqLogic\_id** :  ID der Geräte, deren Befehl man wiederbekommen 
+    will
 
-Full Data 
+Vollständige Daten
 =========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
-Renvoie tous les objets, équipements, commandes (et leur valeur si ce
-sont des infos) en json
+Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
 
-Variable 
+Variable
 ========
 
-Voici l’URL =
+Hier ist die URL =
 [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/jeedom/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
--   **name** : nom de la variable dont on veut la valeur (lecture de
-    la valeur)
+-   **name** : Name der Variablen, deren Wert man haben will (Lesen 
+    des Wertes)
 
--   **value** \[optionnel\] : si "value" est précisé alors la variable
-    prendra cette valeur (écriture d’une valeur)
+-   **value** [optional] : Wenn "value" angegeben wird, wird die Variable diesen 
+    Wert annehmen (einen Wert schreiben)
 
 
