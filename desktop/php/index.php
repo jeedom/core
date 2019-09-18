@@ -159,6 +159,7 @@ function setTheme() {
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
+	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 	include_file('core', 'js.inc', 'php');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 	include_file('3rdparty', 'highstock/highstock', 'js');
