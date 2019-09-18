@@ -55,6 +55,7 @@ if (!is_array($remove_history)) {
 				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
 			</div>
+          	<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
 		</div>
 		<br/><br/>
 		<div>
@@ -86,8 +87,7 @@ if (!is_array($remove_history)) {
 				foreach ($eqLogics[-1] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getName() . ' ';
-					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
@@ -100,9 +100,9 @@ if (!is_array($remove_history)) {
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd" /> ';
-						$div .=  $cmd->getName();
+						$div .=  $cmd->getId().' | '.$cmd->getName();
 						if ($cmd->getIsVisible() != 1) {
-							$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
 						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
 						$div .= '</li>';
@@ -150,8 +150,7 @@ if (!is_array($remove_history)) {
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getName() . ' ';
-					$div .= '<i style="font-size:0.9em;">(' . $eqLogic->getEqType_name() . ')</i> ';
+					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
 					if ($eqLogic->getIsEnable() != 1) {
 						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
 					}
@@ -165,9 +164,9 @@ if (!is_array($remove_history)) {
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd"> ';
-						$div .=  $cmd->getName();
+						$div .=  $cmd->getId().' | '.$cmd->getName();
 						if ($cmd->getIsVisible() != 1) {
-							$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
 						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
 						$div .= '</li>';

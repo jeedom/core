@@ -146,9 +146,53 @@ class widgets {
     }
   }
   
+  public function preUpdate(){
+    $widgets = self::byId($this->getId());
+    if($widgets->getName() != $this->getName()){
+      $usedBy = $widgets->getUsedBy();
+      if(is_array($usedBy) && count($usedBy) > 0){
+        foreach ($usedBy as $cmd) {
+          if($cmd->getTemplate('dashboard') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('dashboard','custom::'.$this->getName());
+          }
+          if($cmd->getTemplate('mobile') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('mobile','custom::'.$this->getName());
+          }
+          $cmd->save(true);
+        }
+      }
+    }
+    if($widgets->getType() != $this->getType() || $widgets->getSubType() != $this->getSubType()){
+      $usedBy = $widgets->getUsedBy();
+      if(is_array($usedBy) && count($usedBy) > 0){
+        foreach ($usedBy as $cmd) {
+          if($cmd->getTemplate('dashboard') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('dashboard','default');
+          }
+          if($cmd->getTemplate('mobile') == 'custom::'.$widgets->getName()){
+            $cmd->setTemplate('mobile','default');
+          }
+          $cmd->save(true);
+        }
+      }
+    }
+  }
+  
   public function save() {
     DB::save($this);
     return true;
+  }
+  
+  public function postSave(){
+    $usedBy = $this->getUsedBy();
+    if(is_array($usedBy) && count($usedBy) > 0){
+      foreach ($usedBy as $cmd) {
+        $eqLogic = $cmd->getEqLogic();
+        if(is_object($eqLogic)){
+          $eqLogic->emptyCacheWidget();
+        }
+      }
+    }
   }
   
   public function remove() {
@@ -158,8 +202,8 @@ class widgets {
   public function getUsedBy(){
     $return = array();
     $return = array_merge(
-      cmd::searchTemplate('dashboard":"custom::'.$this->getName()),
-      cmd::searchTemplate('mobile":"custom::'.$this->getName())
+      cmd::searchTemplate('dashboard":"custom::'.$this->getName().'"'),
+      cmd::searchTemplate('mobile":"custom::'.$this->getName().'"')
     );
     return $return;
   }

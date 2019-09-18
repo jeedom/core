@@ -60,21 +60,18 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
 	</div>
-	
-	
+
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
 				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImageIcon" type="file" name="file" style="display: inline-block;">
 			</span>
-			<div class="imgContainer" style="width:calc(100% - 15px)">
+			<div class="imgContainer" style="width:calc(100% - 15px);padding-top: 32px;">
 				<div class="row">
 					<?php
 					foreach (ls(__DIR__.'/../../data/img/','*') as $file) {
-						echo '<div class="col-lg-1">';
-						echo '<div class="divIconSel">';
-						echo '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
-						echo '</div>';
+						echo '<div class="col-lg-1 divImgSel">';
+						echo '<span class="imgSel"><img src="data/img/'.$file.'" /></span>';
 						echo '<center>'.substr(basename($file),0,12).'</center>';
 						echo '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 						echo '</div>';
@@ -95,7 +92,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-			
+
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -115,7 +112,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			</script>
 		</div>
 	<?php } ?>
-	
+
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
@@ -127,12 +124,12 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				}
 				$fontfile = $root . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-				
+
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				echo '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-				
+
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -143,10 +140,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 						$icon = str_replace(array(':', '.'), '', $match[0]);
 						echo '<span class="iconSel"><i class=\'icon ' . $icon . '\'></i></span><br/><span class="iconDesc">' . $icon . '</span>';
 						echo '</div>';
-						if ($number == 12) {
-							echo '</div>';
-							$number = 0;
-						}
 						$number++;
 					}
 				}
@@ -172,8 +165,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-check'></i></span><br/><span class="iconDesc">fa-check</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-times'></i></span><br/><span class="iconDesc">fa-times</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-power-off'></i></span><br/><span class="iconDesc">fa-power-off</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-list-alt'></i></span><br/><span class="iconDesc">fa-list-alt</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-signal'></i></span><br/><span class="iconDesc">fa-signal</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-cog'></i></span><br/><span class="iconDesc">fa-cog</span></div>
@@ -186,8 +177,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-inbox'></i></span><br/><span class="iconDesc">fa-inbox</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='far fa-play-circle'></i></span><br/><span class="iconDesc">fa-play-circle</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-sync'></i></span><br/><span class="iconDesc">fa-sync</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-lock'></i></span><br/><span class="iconDesc">fa-lock</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-flag'></i></span><br/><span class="iconDesc">fa-flag</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-headphones'></i></span><br/><span class="iconDesc">fa-headphones</span></div>
@@ -200,8 +189,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-book'></i></span><br/><span class="iconDesc">fa-book</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-print'></i></span><br/><span class="iconDesc">fa-print</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-camera'></i></span><br/><span class="iconDesc">fa-camera</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='far fa-image'></i></span><br/><span class="iconDesc">fa-image</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-pencil-alt'></i></span><br/><span class="iconDesc">fa-pencil</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-map-marker'></i></span><br/><span class="iconDesc">fa-map-marker</span></div>
@@ -214,8 +201,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-play'></i></span><br/><span class="iconDesc">fa-play</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-pause'></i></span><br/><span class="iconDesc">fa-pause</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-video'></i></span><br/><span class="iconDesc">fa-video</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-stop'></i></span><br/><span class="iconDesc">fa-stop</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-forward'></i></span><br/><span class="iconDesc">fa-forward</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-fast-forward'></i></span><br/><span class="iconDesc">fa-fast-forward</span></div>
@@ -228,8 +213,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='far fa-times-circle'></i></span><br/><span class="iconDesc">fa-times-circle</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='far fa-check-circle'></i></span><br/><span class="iconDesc">fa-check-circle</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-question-circle'></i></span><br/><span class="iconDesc">fa-question-circle</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-info-circle'></i></span><br/><span class="iconDesc">fa-info-circle</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-crosshairs'></i></span><br/><span class="iconDesc">fa-crosshairs</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='far fa-times-circle'></i></span><br/><span class="iconDesc">fa-times-circle-o</span></div>
@@ -242,8 +225,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-minus'></i></span><br/><span class="iconDesc">fa-minus</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-asterisk'></i></span><br/><span class="iconDesc">fa-asterisk</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-wheelchair'></i></span><br/><span class="iconDesc">fa-wheelchair</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-exclamation-circle'></i></span><br/><span class="iconDesc">fa-exclamation-circle</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-gift'></i></span><br/><span class="iconDesc">fa-gift</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-leaf'></i></span><br/><span class="iconDesc">fa-leaf</span></div>
@@ -256,8 +237,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-random'></i></span><br/><span class="iconDesc">fa-random</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-comment'></i></span><br/><span class="iconDesc">fa-comment</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-magnet'></i></span><br/><span class="iconDesc">fa-magnet</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-chevron-up'></i></span><br/><span class="iconDesc">fa-chevron-up</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-chevron-down'></i></span><br/><span class="iconDesc">fa-chevron-down</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-shopping-cart'></i></span><br/><span class="iconDesc">fa-shopping-cart</span></div>
@@ -270,8 +249,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-thumbtack'></i></span><br/><span class="iconDesc">fa-thumbtack</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-sign-in-alt'></i></span><br/><span class="iconDesc">fa-sign-in</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-phone'></i></span><br/><span class="iconDesc">fa-phone</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-unlock'></i></span><br/><span class="iconDesc">fa-unlock</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-credit-card'></i></span><br/><span class="iconDesc">fa-credit-card</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-rss'></i></span><br/><span class="iconDesc">fa-rss</span></div>
@@ -284,8 +261,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-briefcase'></i></span><br/><span class="iconDesc">fa-briefcase</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-cloud'></i></span><br/><span class="iconDesc">fa-cloud</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-flask'></i></span><br/><span class="iconDesc">fa-flask</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-cut'></i></span><br/><span class="iconDesc">fa-cut</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-paperclip'></i></span><br/><span class="iconDesc">fa-paperclip</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-save'></i></span><br/><span class="iconDesc">fa-save</span></div>
@@ -298,8 +273,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-gavel'></i></span><br/><span class="iconDesc">fa-gavel</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-tachometer-alt'></i></span><br/><span class="iconDesc">fa-tachometer-alt</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-bolt'></i></span><br/><span class="iconDesc">fa-bolt</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-sitemap'></i></span><br/><span class="iconDesc">fa-sitemap</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-umbrella'></i></span><br/><span class="iconDesc">fa-umbrella</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-lightbulb'></i></span><br/><span class="iconDesc">fa-lightbulb</span></div>
@@ -312,8 +285,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-beer'></i></span><br/><span class="iconDesc">fa-beer</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-h-square'></i></span><br/><span class="iconDesc">fa-square</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-desktop'></i></span><br/><span class="iconDesc">fa-desktop</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-laptop'></i></span><br/><span class="iconDesc">fa-laptop</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-tablet'></i></span><br/><span class="iconDesc">fa-tablet</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-mobile'></i></span><br/><span class="iconDesc">fa-mobile</span></div>
@@ -326,8 +297,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-gamepad'></i></span><br/><span class="iconDesc">fa-gamepad</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-keyboard'></i></span><br/><span class="iconDesc">fa-keyboard</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-terminal'></i></span><br/><span class="iconDesc">fa-terminal</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-location-arrow'></i></span><br/><span class="iconDesc">fa-location-arrow</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-microphone'></i></span><br/><span class="iconDesc">fa-microphone</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-microphone-slash'></i></span><br/><span class="iconDesc">fa-microphone-slash</span></div>
@@ -340,8 +309,6 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fas fa-compass'></i></span><br/><span class="iconDesc">fa-compass</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fab fa-apple'></i></span><br/><span class="iconDesc">fa-apple</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fab fa-windows'></i></span><br/><span class="iconDesc">fa-windows</span></div>
-			</div>
-			<div class="row">
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fab fa-android'></i></span><br/><span class="iconDesc">fa-android</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fab fa-linux'></i></span><br/><span class="iconDesc">fa-linux</span></div>
 				<div class="col-lg-1 divIconSel"><span class="iconSel"><i class='fab fa-dribbble'></i></span><br/><span class="iconDesc">fa-dribbble</span></div>

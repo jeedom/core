@@ -39,7 +39,7 @@ sendVarToJS('id', $plan->getId());
 				<input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" placeholder="0" />
 			</div>
 		</div>
-		<div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
+		<div class="form-group link_type link_eqLogic link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
 			<label class="col-lg-4 control-label">{{Largeur }}<sub>px</sub></label>
 			<div class="col-lg-2">
 				<input type="text" class="planAttr form-control" data-l1key="display" data-l2key="width" placeholder="100" />
@@ -191,7 +191,7 @@ sendVarToJS('id', $plan->getId());
 				<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
 			</div>
 		</div>
-		<div class="form-group link_eqLogic link_cmd">
+		<div class="form-group link_type link_eqLogic link_cmd">
 			<label class="col-lg-4 control-label">{{Masquer le nom}}</label>
 			<div class="col-lg-2">
 				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="hideName" />
@@ -338,12 +338,12 @@ sendVarToJS('id', $plan->getId());
 					</select>
 				</div>
 			</div>
-
+			
 			<div class="zone_mode zone_simple">
 				<legend>{{Action}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="other"><i class="fas fa-plus"></i></a></legend>
 				<div id="div_planConfigureActionother"></div>
 			</div>
-
+			
 			<div class="zone_mode zone_widget" style="display:none;">
 				<div class="form-group">
 					<label class="col-lg-4 control-label">{{Equipement}}</label>
@@ -396,7 +396,7 @@ sendVarToJS('id', $plan->getId());
 					</div>
 					<legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fas fa-plus"></i></a></legend>
 					<div id="div_planConfigureActionon"></div>
-
+					
 					<legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fas fa-plus"></i></a></legend>
 					<div id="div_planConfigureActionoff"></div>
 				</div>
@@ -404,24 +404,26 @@ sendVarToJS('id', $plan->getId());
 		</fieldset>
 	</form>
 	<script>
+	var plan_configure_plan = null;
+	
 	$('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change',function(){
 		$('.zone_mode').hide();
 		$('.zone_mode.zone_'+$(this).value()).show();
 	});
-
+	
 	$('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change',function(){
 		$('.display_mode').hide();
 		$('.display_mode.display_mode_'+$(this).value()).show();
 	});
-
+	
 	$('.bt_planConfigurationAction').on('click',function(){
 		addActionPlanConfigure({},$(this).attr('data-type'));
 	});
-
+	
 	$("body").delegate('.bt_removeAction', 'click', function () {
 		$(this).closest('.' +  $(this).attr('data-type')).remove();
 	});
-
+	
 	$("body").delegate(".listCmdAction", 'click', function () {
 		var type = $(this).attr('data-type');
 		var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
@@ -433,7 +435,7 @@ sendVarToJS('id', $plan->getId());
 			});
 		});
 	});
-
+	
 	$('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]',  function (event) {
 		var type = $(this).attr('data-type');
 		var el = $(this);
@@ -442,7 +444,7 @@ sendVarToJS('id', $plan->getId());
 			taAutosize();
 		});
 	});
-
+	
 	$('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression',  function (event) {
 		var expression = $(this).closest('.expression');
 		jeedom.getSelectActionModal({scenario : true}, function (result) {
@@ -453,7 +455,7 @@ sendVarToJS('id', $plan->getId());
 			});
 		});
 	});
-
+	
 	function addActionPlanConfigure(_action, _type) {
 		if (!isset(_action)) {
 			_action = {};
@@ -484,22 +486,22 @@ sendVarToJS('id', $plan->getId());
 		$('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr');
 		taAutosize();
 	}
-
-
+	
+	
 	$('#bt_planConfigureAddEqLogic').on('click', function() {
 		var el = $(this);
 		jeedom.eqLogic.getSelectModal({}, function(result) {
 			el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=eqLogic]').value(result.human);
 		});
 	});
-
+	
 	$('#bt_planConfigureSelectCamera').on('click', function() {
 		var el = $(this);
 		jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
 			el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human);
 		});
 	});
-
+	
 	$('#bt_planConfigureSelectBinary').on('click', function() {
 		var el = $(this);
 		jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
@@ -517,38 +519,38 @@ sendVarToJS('id', $plan->getId());
 			}
 		}
 	});
-
+	
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
 		if($(this).value() == 1){
 			$('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
 		}
 	});
-
+	
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
 		if($(this).value() != '#000000'){
 			$('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0);
 		}
 	});
-
+	
 	$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
 		if($(this).value() == 1){
 			$('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0);
 			$('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000');
 		}
 	});
-
+	
 	editor = [];
-
+	
 	$('#bt_chooseIcon').on('click', function () {
 		chooseIcon(function (_icon) {
 			$('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
 		});
 	});
-
+	
 	$('#bt_saveConfigurePlan').on('click', function () {
 		save();
 	});
-
+	
 	if (isset(id) && id != '') {
 		jeedom.plan.byId({
 			id : id,
@@ -556,6 +558,7 @@ sendVarToJS('id', $plan->getId());
 				$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 			},
 			success: function (plan) {
+				plan_configure_plan = plan;
 				$('.link_type:not(.link_'+plan.plan.link_type+')').remove()
 				$('#fd_planConfigure').setValues(plan.plan, '.planAttr');
 				if (isset(plan.plan.configuration.action_on)) {
@@ -590,7 +593,7 @@ sendVarToJS('id', $plan->getId());
 			}
 		});
 	}
-
+	
 	function save() {
 		var plans = $('#fd_planConfigure').getValues('.planAttr');
 		if (plans[0].link_type == 'text') {
@@ -618,6 +621,9 @@ sendVarToJS('id', $plan->getId());
 						$('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'});
 					},
 					success: function (plan) {
+						if(plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id){
+							$('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove();
+						}
 						displayObject(plan.plan,plan.html,false);
 						$('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close");
 					}

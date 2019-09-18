@@ -976,7 +976,7 @@ function displayObject(_plan,_html, _noRender) {
   _plan = init(_plan, {});
   _plan.position = init(_plan.position, {});
   _plan.css = init(_plan.css, {});
-  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image') {
+  if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'zone' || _plan.link_type == 'summary') {
     $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
   }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
     $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
@@ -1056,7 +1056,7 @@ function displayObject(_plan,_html, _noRender) {
   }
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
-      html.find('.widget-name').remove();
+      html.addClass('hideEqLogicName')
     }
     if(isset(_plan.display.cmdHide)){
       for(var i in _plan.display.cmdHide){
@@ -1133,6 +1133,11 @@ function displayObject(_plan,_html, _noRender) {
             showNavigator : init(_plan.display.showNavigator, true),
             enableExport : false,
             global: false,
+            success : function(){
+              if(init(_plan.display.transparentBackground, false)){
+                $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+              }
+            }
           });
         }
       }

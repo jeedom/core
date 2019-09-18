@@ -396,8 +396,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }
-        eqLogic.empty().html(html.children());
-        eqLogic.attr("class", html.attr("class"))
+        eqLogic.empty().html(html.children())
         .trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");

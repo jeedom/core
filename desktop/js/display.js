@@ -28,15 +28,21 @@ $(function(){
 })
 
 //searching
-$('#in_search').on('keyup',function(){
+$('#in_search').on('keyup',function() {
   try {
-    search = $(this).value()
-    $(".accordion-toggle[aria-expanded='true']").click()
+    var search = $(this).value()
+    var searchID = search
+    if (isNaN(search)) searchID = false
+
+    $('div.panel-collapse').removeClass('in')
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
     $('.cmdSortable').hide()
-    if (!search.startsWith('*')) {
-      if(search == '' || _nbCmd_ <= 1500 && search.length < 3 || _nbCmd_ > 1500 && search.length < 4) {
+    
+    console.log(search + ' - ' + searchID)
+    
+    if (!search.startsWith('*') && searchID == false) {
+      if( (search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4) ) {
         return
       }
     } else {
@@ -47,27 +53,50 @@ $('#in_search').on('keyup',function(){
     search = normTextLower(search)
     $('.eqLogic').each(function(){
       var eqLogic = $(this)
-      var name = eqLogic.attr('data-name')
-      name = normTextLower(name)
-      var type = eqLogic.attr('data-type')
-      type = normTextLower(type)
-      eqParent = eqLogic.parents('.panel.panel-default').first()
-      if (name.indexOf(search) < 0 && type.indexOf(search) < 0) {
-        eqLogic.hide()
+      var eqParent = eqLogic.parents('.panel.panel-default').first()
+      if (searchID) {
+        console.log('->searchID')
+        var eqId = eqLogic.attr('data-id')
+        if (eqId != searchID) {
+        	eqLogic.hide()
+      	} else {
+        	eqParent.find('div.panel-collapse').addClass('in')
+          	return
+      	}
+        $(this).find('.cmd').each(function() {
+          var cmd = $(this)
+          var cmdId = cmd.attr('data-id')
+          if (cmdId == searchID) {
+            eqParent.find('div.panel-collapse').addClass('in')
+            eqLogic.show()
+            eqLogic.find('.cmdSortable').show()
+            cmd.removeClass('alert-warning').addClass('alert-success')
+            return
+          }
+        })
       } else {
-        eqParent.find('.accordion-toggle[aria-expanded="false"]').click()
+        console.log('->searchName')
+        var eqName = eqLogic.attr('data-name')
+      	eqName = normTextLower(eqName)
+      	var type = eqLogic.attr('data-type')
+      	type = normTextLower(type)
+      	if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0) {
+        	eqLogic.hide()
+      	} else {
+          eqParent.find('div.panel-collapse').addClass('in')
+      	}
+        eqLogic.find('.cmd').each(function() {
+          var cmd = $(this)
+          var cmdName = cmd.attr('data-name')
+          cmdName = normTextLower(cmdName)
+          if (cmdName.indexOf(search) >= 0) {
+            eqParent.find('div.panel-collapse').addClass('in')
+            eqLogic.show()
+            eqLogic.find('.cmdSortable').show()
+            cmd.removeClass('alert-warning').addClass('alert-success')
+          }
+        })
       }
-      $(this).find('.cmd').each(function() {
-        var cmd = $(this)
-        var name = cmd.attr('data-name')
-        name = normTextLower(name)
-        if (name.indexOf(search) >= 0) {
-          eqParent.find('.accordion-toggle[aria-expanded="false"]').click()
-          eqLogic.show()
-          eqLogic.find('.cmdSortable').show()
-          cmd.removeClass('alert-warning').addClass('alert-success')
-        }
-      })
     })
   }
   catch(error) {
@@ -79,9 +108,15 @@ $('#bt_resetdisplaySearch').on('click', function () {
 })
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").click()
+  if(event.ctrlKey) {
+    $('.cmdSortable').show()
+  }
 })
 $('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").click()
+  if(event.ctrlKey) {
+    $('.cmdSortable').hide()
+  }
 })
 
 //Sorting:
@@ -174,6 +209,21 @@ $('.cmd').off('dblclick').on('dblclick',function() {
 
 
 //events:
+$('.bt_exportcsv').on('click',function() {
+  var fullFile = ''
+  $('.eqLogic').each(function(){
+    var eqLogic = $(this)
+    var eqParent = eqLogic.parents('.panel.panel-default').first()
+	eqParent = eqParent.find('a.accordion-toggle').text()
+    fullFile += eqParent + ','  + eqLogic.attr('data-id') + ',' + eqLogic.attr('data-name') + ',' + eqLogic.attr('data-type') + "\n"
+    eqLogic.find('.cmd').each(function() {
+      var cmd = $(this)
+      fullFile += "\t\t" + cmd.attr('data-id') + ',' + cmd.attr('data-name') + "\n"
+    })
+  })
+  $('.bt_exportcsv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile))
+})
+
 $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
   if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:

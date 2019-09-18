@@ -340,6 +340,18 @@ legend {
   color: var(--txt-color);
   font-weight: bold;
 }
+.tableCmd {
+  font-size: 12px;
+}
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss center,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss div.cmd,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss div[class*="content"],
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss span.cmdName,
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss strong.state {
+  font-size: unset !important;
+  color: unset !important;
+}
+
 
 .pull-right {
   float: right;
@@ -349,10 +361,6 @@ legend {
 .pull-left {
   float: left!important;
   margin-right: 3px;
-}
-.cmdName {
-  font-size: 12px;
-  font-weight: bold;
 }
 .btn.action {
   margin-top: 2px;
@@ -472,9 +480,20 @@ select.selectCmd {
 }
 
 .divIconSel {
-  height: 70px !important;
+  min-width: 100px;
+  width: 100px;
+  height: 75px !important;
   overflow: hidden !important;
+  border: none !important;
 }
+.divImgSel {
+  min-width: 120px;
+  width: 120px;
+  height: 115px !important;
+  overflow: hidden !important;
+  text-align: center;
+}
+
 .iconDesc {
   word-wrap: break-word;
 }
@@ -515,10 +534,10 @@ div[class*="ListContainer"] span.objectSummaryParent i {
 .scenarioDisplayCard:hover,
 .objectDisplayCard:hover,
 .widgetsDisplayCard:hover {
-  transform: translateY(-4px);
-  transition-duration: 0.4s;
-  transition-property: transform;
-  transition-timing-function: ease-out;
+transform: translateY(-4px);
+transition-duration: 0.4s;
+transition-property: transform;
+transition-timing-function: ease-out;
 }
 */
 
@@ -962,7 +981,11 @@ pre {
   color : var(--linkHoverLight-color) !important;
 }
 
-.state,
+:not(.tableCmdcss) .cmdName {
+  font-size: 12px;
+  font-weight: bold;
+}
+:not(.tableCmdcss) .state,
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
@@ -1593,6 +1616,12 @@ div[data-subtype=select] {
   min-width: 100% !important;
   display: inline-table;
 }
+
+[data-page="plan"] div[data-subtype=select] {
+  min-width: unset !important;
+  width: 100px !important;
+}
+
 div[data-subtype=select] select {
   color: var(--link-color) !important;
   font-weight: bold !important;
@@ -1802,7 +1831,7 @@ table.table .table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-td,
+td:not(.tableCmdcss),
 th {
   padding: 0;
   font-size: 14px !important;
@@ -1867,6 +1896,7 @@ tr.tablesorter-filter-row td {
 .table-condensed tbody tr:hover td,
 .table-condensed tbody tr:hover td div.cmd div,
 .table-condensed tbody tr:hover > td input,
+.table-condensed tbody tr:hover > td not(i),
 .table-condensed tbody tr:hover > td input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox])  {
   color: rgb(var(--contrast-color)) !important;
 }
@@ -1875,9 +1905,6 @@ tr.tablesorter-filter-row td {
   vertical-align: top !important;
 }
 
-.divIconSel {
-  border: none !important;
-}
 .well {
   padding: 20px;
   margin-bottom: 20px;
@@ -2805,12 +2832,12 @@ div.vis-item-content {
 }
 
 button.ui-dialog-titlebar-close::before {
-   font-family: "Font Awesome 5 Free";
-   font-size: 18px !important;
-   font-weight: 900;
-   content: "\f00d";
-   color: rgb(var(--bg-color)) !important;
-   vertical-align: middle;
+  font-family: "Font Awesome 5 Free";
+  font-size: 18px !important;
+  font-weight: 900;
+  content: "\f00d";
+  color: rgb(var(--bg-color)) !important;
+  vertical-align: middle;
 }
 button.ui-dialog-titlebar-close {
   position: absolute;

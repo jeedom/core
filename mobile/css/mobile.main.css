@@ -168,7 +168,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-
+  
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -295,6 +295,9 @@ body {
   font-size: 35px !important;
   padding: 5px;
 }
+.scenario-widget  {
+  min-height: 72px !important;
+}
 .scenario-widget .state {
   padding-top: 12px;
   line-height: 40px !important;
@@ -382,6 +385,16 @@ p.state {
 .ui-page-theme-a .ui-btn.ui-btn-raised i,
 .ui-link i {
   background: transparent !important;
+}
+
+.iconCmdLine img{
+  max-width: 12px;
+  max-height: 12px;
+}
+
+.iconCmd img{
+  max-width: 31px;
+  max-height: 31px;
 }
 
 
@@ -860,7 +873,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-
+  
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);

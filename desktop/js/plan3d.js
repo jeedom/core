@@ -727,8 +727,8 @@ jeedom3d.text.generate = function(_options,_object,_text){
         CMDS[cmd_id]['conditionalColor'] = [];
       }
       CMDS[cmd_id]['conditionalColor'].push({object : _object,info:_info});
+      jeedom3d.conditionalColor.update({color : _info.additionalData.color, cmd_id : cmd_id,object : _object});
     }
-    jeedom3d.conditionalColor.update({color : _info.additionalData.color, cmd_id : cmd_id,object : _object});
   };
   
   jeedom3d.conditionalColor.update = function(_options) {
@@ -778,8 +778,8 @@ jeedom3d.text.generate = function(_options,_object,_text){
         CMDS[cmd_id]['conditionalShow'] = [];
       }
       CMDS[cmd_id]['conditionalShow'].push({object : _object,info:_info});
+      jeedom3d.conditionalShow.update({show : _info.additionalData.show, cmd_id : cmd_id,object : _object});
     }
-    jeedom3d.conditionalShow.update({show : _info.additionalData.show, cmd_id : cmd_id,object : _object});
   };
   
   jeedom3d.conditionalShow.update = function(_options) {

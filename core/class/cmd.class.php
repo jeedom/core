@@ -102,6 +102,17 @@ class cmd {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 	
+	public static function isHistorized($_state = true) {
+		$values = array(
+			'isHistorized' => ($_state) ? 1 : 0
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE isHistorized=:isHistorized
+		ORDER BY id';
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+	
 	public static function allHistoryCmd() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
@@ -1400,7 +1411,7 @@ class cmd {
 		}
 		$oldValue = $this->execCmd();
 		$repeat = ($oldValue === $value && $oldValue !== '' && $oldValue !== null);
-		$this->setCollectDate(($_datetime != null) ? $_datetime : date('Y-m-d H:i:s'));
+		$this->setCollectDate(($_datetime !== null && $_datetime !== false) ? $_datetime : date('Y-m-d H:i:s'));
 		$this->setCache('collectDate', $this->getCollectDate());
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));

@@ -3,11 +3,20 @@ Core Widgets CSS @Jeedom
 */
 
 /* __________________________________________________________________________________________________________Global */
+[data-page=plan3d] .verticalAlign{
+  z-index : auto !important;
+}
+
 .eqLogic-widget div.cmd-widget {
   position: relative;
   padding: 0;
   min-width: 70px;
 }
+
+.eqLogic-widget.hideEqLogicName .widget-name{
+  display: none !important;
+}
+
 div.cmd-widget .title {
   color: var(--txt-color);
   width: 100%;
@@ -82,7 +91,7 @@ div.cmd-widget[data-subtype="select"]::after {
   right: 5px;
 }
 div.eqLogic_layout_table table.tableCmd {
-  min-width: 100%;
+  min-width: 0%;
 }
 div.eqLogic_layout_table table.tableCmd td {
   vertical-align: top;
@@ -136,7 +145,9 @@ div.cmd > div.center-block {
   top: calc(50% - 18px);
   z-index: -1;
 }
-
+[data-page="widgets"] .verticalAlign {
+  z-index: 1;
+}
 /* __________________________________________________________________________________________________________Sliders */
 .slider.ui-slider-horizontal {
   position: relative;
