@@ -16,11 +16,13 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="badge cursor" href="https://www.jeedom.com/forum/" target="_blank">Forum</a> | 
       <a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
       <br><br>
-      Version : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
+      {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
       <br>
-      Source : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::repo::provider'); ?></span>
+      {{Source}} : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::repo::provider'); ?></span>
       <br>
-      Branche : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::branch'); ?></span>
+      {{Branche}} : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::branch'); ?></span>
+      <br>
+      {{Système}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::getHardwareName() ?></span>
       <br><br>
     </center>
 
