@@ -800,7 +800,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 <script>
 $(function() {
 	if ($('body').attr('data-page')=="widgets") {
-      console.log('widget!!')
       $('a[href="#cmd_display"]').click()
     }
 })
