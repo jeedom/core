@@ -42,93 +42,90 @@ foreach (widgets::all() as $widget) {
         </center>
         <span class="txtColor"><center>{{Code}}</center></span>
       </div>
-      <div class="cursor logoSecondary" id="bt_replaceWidget">
-        <center>
-          <i class="fab fa-replyd"></i>
-        </center>
-        <span class="txtColor"><center>{{Remplacement}}</center></span>
-      </div>
     </div>
     <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
-    <div class="input-group" style="margin-bottom:5px;">
-      <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>
-      <div class="input-group-btn">
-        <a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>
-      </div>
-      <div class="input-group-btn">
-        <a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>
-      </div>
-      <div class="input-group-btn">
-        <a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
-      </div>
-    </div>
-    
-    <div class="panel-group" id="accordionWidgets">
-      <?php
-      if(count($widgets['info']) > 0){
-        $div = '<div class="panel panel-default">';
-        $div .= '<div class="panel-heading">';
-        $div .= '<h3 class="panel-title">';
-        $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - ';
-        $c = count($widgets['info']);
-        $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
-        $div .= '</h3>';
-        $div .= '</div>';
-        $div .= '<div id="widget_info" class="panel-collapse collapse">';
-        $div .= '<div class="panel-body">';
-        $div .= '<div class="widgetsListContainer">';
-        foreach ($widgets['info'] as $widget) {
-          $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
-          if($widget->getDisplay('icon') != ''){
-            $div .= '<span>'.$widget->getDisplay('icon').'</span>';
-          }else{
-            $div .= '<span><i class="fas fa-image"></i></span>';
-          }
-          $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-          $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
-          $div .= '</div>';
+        <?php
+        if (count($widgets['info']) == 0 && count($widgets['action']) == 0) {
+            echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></center>";
+        } else {
+            $div = '<div class="input-group" style="margin-bottom:5px;">';
+            $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>';
+            $div .= '<div class="input-group-btn">';
+            $div .= '<a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
+            $div .= '</div>';
+            $div .= '<div class="input-group-btn">';
+            $div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+            $div .= '</div>';
+            $div .= '<div class="input-group-btn">';
+            $div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+            $div .= '</div>';
+            $div .= '</div>';
+            $div .= '<div class="panel-group" id="accordionWidgets">';
+            if( count($widgets['info']) > 0) {
+                $div .= '<div class="panel panel-default">';
+                $div .= '<div class="panel-heading">';
+                $div .= '<h3 class="panel-title">';
+                $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - ';
+                $c = count($widgets['info']);
+                $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
+                $div .= '</h3>';
+                $div .= '</div>';
+                $div .= '<div id="widget_info" class="panel-collapse collapse">';
+                $div .= '<div class="panel-body">';
+                $div .= '<div class="widgetsListContainer">';
+                foreach ($widgets['info'] as $widget) {
+                  $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
+                  if ($widget->getDisplay('icon') != '') {
+                    $div .= '<span>'.$widget->getDisplay('icon').'</span>';
+                  } else {
+                    $div .= '<span><i class="fas fa-image"></i></span>';
+                  }
+                  $div .= '<br/>';
+                  $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+                  $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
+                  $div .= '</div>';
+                }
+                $div .= '</div>';
+                $div .= '</div>';
+                $div .= '</div>';
+                $div .= '</div>';
+                //echo $div;
+            }
+            if(count($widgets['action']) > 0) {
+                $div .= '<div class="panel panel-default">';
+                $div .= '<div class="panel-heading">';
+                $div .= '<h3 class="panel-title">';
+                $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - ';
+                $c = count($widgets['action']);
+                $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
+                $div .= '</h3>';
+                $div .= '</div>';
+                $div .= '<div id="widget_action" class="panel-collapse collapse">';
+                $div .= '<div class="panel-body">';
+                $div .= '<div class="widgetsListContainer">';
+                foreach ($widgets['action'] as $widget) {
+                  $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
+                  if ($widget->getDisplay('icon') != '') {
+                    $div .= '<span>'.$widget->getDisplay('icon').'</span>';
+                  } else {
+                    $div .= '<span><i class="fas fa-image"></i></span>';
+                  }
+                  $div .= '<br/>';
+                  $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+                  $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
+                  $div .= '</div>';
+                }
+                $div .= '</div>';
+                $div .= '</div>';
+                $div .= '</div>';
+                $div .= '</div>';
+            }
+            echo $div;
         }
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        echo $div;
-      }
-      if(count($widgets['action']) > 0){
-        $div = '<div class="panel panel-default">';
-        $div .= '<div class="panel-heading">';
-        $div .= '<h3 class="panel-title">';
-        $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - ';
-        $c = count($widgets['action']);
-        $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
-        $div .= '</h3>';
-        $div .= '</div>';
-        $div .= '<div id="widget_action" class="panel-collapse collapse">';
-        $div .= '<div class="panel-body">';
-        $div .= '<div class="widgetsListContainer">';
-        foreach ($widgets['action'] as $widget) {
-          $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
-          if($widget->getDisplay('icon') != ''){
-            $div .= '<span>'.$widget->getDisplay('icon').'</span>';
-          }else{
-            $div .= '<span><i class="fas fa-image"></i></span>';
-          }
-          $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-          $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
-          $div .= '</div>';
-        }
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        echo $div;
-      }
-      ?>
+        ?>
     </div>
   </div>
-  
+
   <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
     <div class="input-group pull-right" style="display:inline-flex">
       <span class="input-group-btn">
@@ -149,7 +146,7 @@ foreach (widgets::all() as $widget) {
         <form class="form-horizontal">
           <fieldset>
             <div class="row">
-              <div class="col-xs-4">
+              <div class="col-sm-6">
                 <legend><i class="fas fa-wrench"></i> {{Général}}</legend>
                 <div class="form-group">
                   <label class="col-lg-4 col-xs-6 control-label">{{Nom du widget}}</label>
@@ -210,15 +207,11 @@ foreach (widgets::all() as $widget) {
                   </div>
                 </div>
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-6">
                 <legend><i class="fas fa-link"></i> {{Commandes liées}}</legend>
                 <div class="form-group">
                   <div class="col-xs-9" id="div_usedBy"></div>
                 </div>
-              </div>
-              <div class="col-xs-4">
-                <legend><i class="fas fa-search"></i> {{Prévisualisation}}</legend>
-                <div  id="div_widgetPreview"></div>
               </div>
             </div>
           </fieldset>
@@ -238,6 +231,5 @@ foreach (widgets::all() as $widget) {
       </div>
     </div>
   </div>
-  
+
   <?php include_file("desktop", "widgets", "js");?>
-  
