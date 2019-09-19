@@ -21,30 +21,31 @@ if (!isConnect()) {
 		<?php
 			$allObject = jeeObject::buildTree(null, false);
 			foreach ($allObject as $object) {
-				echo '<tr class="tr_object" data-object_id="' . $object->getId() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
-				echo '<td style="width:50px;">';
+				$echo = '';
+				$echo .= '<tr class="tr_object" data-object_id="' . $object->getId() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
+				$echo .= '<td style="width:50px;">';
 				for ($i = 0; $i < $object->getConfiguration('parentNumber'); $i++) {
-					echo '&nbsp;&nbsp;&nbsp;';
+					$echo .= '&nbsp;&nbsp;&nbsp;';
 				}
-				echo '<span>'.$object->getHumanName(true, true).'</span>';
-				echo '</td>';
+				$echo .= '<span>'.$object->getHumanName(true, true).'</span>';
+				$echo .= '</td>';
 				$father = $object->getFather();
 				if ($father) {
-					echo '<td style="width:50px;"><span>' . $father->getHumanName(true, true) . '</span></td>';
+					$echo .= '<td style="width:50px;"><span>' . $father->getHumanName(true, true) . '</span></td>';
 				} else {
-					echo '<td><span class="label label-info"></span></td>';
+					$echo .= '<td><span class="label label-info"></span></td>';
 				}
 				if ($object->getIsVisible()) {
-					echo '<td style="width:65px;"><span class="label label-success" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
+					$echo .= '<td style="width:65px;"><span class="label label-success" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
 				} else {
-					echo '<td style="width:75px;"><span class="label label-danger" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
+					$echo .= '<td style="width:75px;"><span class="label label-danger" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
 				}
 				if ($object->getConfiguration("hideOnDashboard", 0) == 1) {
-					echo '<td style="width:70px;"><span class="label label-success" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
+					$echo .= '<td style="width:70px;"><span class="label label-success" title="{{Oui}}"><i class="fas fa-check"></i></span></td>';
 				} else {
-					echo '<td style="width:70px;"><span class="label label-danger" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
+					$echo .= '<td style="width:70px;"><span class="label label-danger" title="{{Non}}"><i class="fas fa-times"></i></span></td>';
 				}
-				echo '<td>';
+				$echo .= '<td>';
 				foreach (config::byKey('object:summary') as $key => $value) {
 					$title = '';
 					if (!isset($object->getConfiguration('summary')[$key]) || !is_array($object->getConfiguration('summary')[$key]) || count($object->getConfiguration('summary')[$key]) == 0) {
@@ -59,27 +60,28 @@ if (!isConnect()) {
 					}
 					if (count($object->getConfiguration('summary')[$key]) > 0) {
 						if ($object->getConfiguration('summary::global::' . $key) == 1) {
-							echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+							$echo .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 						} else {
-							echo '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+							$echo .= '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
 						}
 					}
 				}
-				echo '</td>';
-				echo '<td>';
+				$echo .= '</td>';
+				$echo .= '<td>';
 				foreach (config::byKey('object:summary') as $key => $value) {
 					if ($object->getConfiguration('summary::hide::desktop::' . $key) == 1) {
-						echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
+						$echo .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 					}
 				}
-				echo '</td>';
-				echo '<td>';
+				$echo .= '</td>';
+				$echo .= '<td>';
 				foreach (config::byKey('object:summary') as $key => $value) {
 					if ($object->getConfiguration('summary::hide::mobile::' . $key) == 1) {
-						echo '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
+						$echo .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . '">' . $value['icon'] . '</a>  ';
 					}
 				}
-				echo '</td>';
+				$echo .= '</td>';
+				echo $echo;
 			}
 		?>
 		</tbody>
