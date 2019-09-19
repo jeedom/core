@@ -41,5 +41,14 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <br>
       </center>
     </div>
+  	<div class="form-group">
+      <center>
+        <br>
+        <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> | 
+  		<a class="badge cursor" href="https://www.jeedom.com/forum/" target="_blank">Forum</a> | 
+  		<a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
+        <br>
+      </center>
+    </div>
   </form>
 </div>
