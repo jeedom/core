@@ -46,6 +46,7 @@ class listener {
 				$events = $listener->getEvent();
 			}
 			if(count($events) == 0){
+				log::add('listener','debug','Remove listener : '.json_encode(utils::o2a($listener)));
 				$listener->remove();
 			}
 		}
