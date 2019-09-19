@@ -1889,6 +1889,10 @@ tr.tablesorter-filter-row td {
   background-color: var(--btn-default-color)!important;
 }
 
+.table-condensed tr,
+.table-condensed td {
+  height: 25px;
+}
 .table-condensed tbody tr td {
   padding-top: 1px;
   padding-bottom: 2px;
