@@ -527,20 +527,6 @@ div[class*="ListContainer"] span.objectSummaryParent i {
   font-size: 12px !important;
 }
 
-/*
-.pluginDisplayCard:hover,
-.eqLogicDisplayCard:hover,
-.interactDisplayCard:hover,
-.scenarioDisplayCard:hover,
-.objectDisplayCard:hover,
-.widgetsDisplayCard:hover {
-transform: translateY(-4px);
-transition-duration: 0.4s;
-transition-property: transform;
-transition-timing-function: ease-out;
-}
-*/
-
 .eqLogicDisplayCard,
 .eqLogicThumbnailContainer div,
 .interactDisplayCard,
