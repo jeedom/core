@@ -59,9 +59,9 @@ $('#bt_replaceWidget').off('click').on('click',function(){
   $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 500)
   $("#md_modal").dialog({
     position: {
-        my: "center center",
-        at: "center center",
-        of: window
+      my: "center center",
+      at: "center center",
+      of: window
     }
   })
 })
@@ -193,11 +193,17 @@ $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblcl
 });
 
 $('.widgetsAttr[data-l1key=type]').off('change').on('change',function(){
+  $('#div_templateReplace').empty();
+  $('#div_templateTest').empty();
+  $('#div_usedBy').empty()
   $('.selectWidgetSubType').hide().removeClass('widgetsAttr');
   $('.selectWidgetSubType[data-type='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
 
 $('.selectWidgetSubType').off('change').on('change',function(){
+  $('#div_templateReplace').empty();
+  $('#div_templateTest').empty();
+  $('#div_usedBy').empty()
   $('.selectWidgetTemplate').hide().removeClass('widgetsAttr');
   $('.selectWidgetTemplate[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
