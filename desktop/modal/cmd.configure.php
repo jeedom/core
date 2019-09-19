@@ -802,6 +802,11 @@ $(function() {
 	if ($('body').attr('data-page')=="widgets") {
       $('a[href="#cmd_display"]').click()
     }
+
+    var dashWidget = $('select[data-l2key="dashboard"]')
+    if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
+    var mobileWidget = $('select[data-l2key="mobile"]')
+    if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
 })
 
 $('#cmdConfigureTab').off('click').on('click',function(){
