@@ -40,9 +40,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <span class="label">Licence</span>
       </center>
       <center>
-        <textarea readonly class="form-control" style="resize: none!important; min-height: 15em; padding: 15px; height: 15em;">
-          <?php echo $licenceText ?>
-        </textarea>
+        <textarea readonly class="form-control" style="resize:none!important; min-height:15em; padding:5px; height:15em;"><?php echo $licenceText ?></textarea>
       </center>
     </div>
 
@@ -72,6 +70,3 @@ $(function(){
     }
 })
 </script>
-
-
-
