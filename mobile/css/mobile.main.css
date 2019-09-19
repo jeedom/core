@@ -175,6 +175,7 @@ body {
   display: inline-block;
   vertical-align: top;
   padding-bottom: 10px;
+  overflow: hidden;
 }
 .eqLogic.eqLogic-widget .ui-input-text input,
 .eqLogic.eqLogic-widget textarea {
@@ -228,6 +229,12 @@ body {
   text-decoration: none;
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
+}
+
+.widget-name {
+  padding-right: 22px;
+  padding-left: 12px;
+  word-break: break-word;
 }
 
 .eqLogic.eqLogic-widget,
@@ -771,7 +778,6 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #div_displayBattery .eqLogic-widget .widget-name span {
   border-radius: var(--border-radius) !important;
 }
-
 
 .panel,
 .panel-body,
