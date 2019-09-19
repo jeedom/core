@@ -3,6 +3,7 @@ function initEquipment(_object_id) {
   $('#searchContainer').show();
   var objectMapping = {}
   var objects_info = {}
+
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -34,6 +35,7 @@ function initEquipment(_object_id) {
       jeedom.object.summaryUpdate(summaries)
     }
   })
+
   if (isset(_object_id)) {
     jeedom.object.getImgPath({
       id : _object_id,
@@ -90,25 +92,22 @@ function initEquipment(_object_id) {
           }catch(err) {
             console.log(err)
           }
-          setTileSize('.eqLogic')
-          setTileSize('.scenario')
-          $('.div_displayEquipement .objectHtml').packery({gutter :0})
         } else{
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create')
           jeedom.object.summaryUpdate([{object_id:_object_id}])
-          setTileSize('.eqLogic')
-          setTileSize('.scenario')
-          $('#div_displayEquipement > .objectHtml').packery({gutter :0})
-          $('#div_displayEquipement > .objectHtml').packery({gutter :0})
         }
-        
+        setTileSize('.eqLogic')
+        setTileSize('.scenario')
+        $('#div_displayEquipement .objectHtml').packery({gutter :0})
+        setTimeout(function() {
+          $('#div_displayEquipement .objectHtml').packery({gutter :0})
+          }, 1000)
       }
     })
   } else {
     $('#bottompanel').panel('open')
   }
-  
-  
+
   $(window).on("resize", function (event) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
@@ -116,7 +115,7 @@ function initEquipment(_object_id) {
     $('#div_displayEquipement > .objectHtml').packery({gutter :0})
     $('.div_displayEquipement .objectHtml').packery({gutter :0})
   })
-  
+
   $('#in_searchWidget').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
@@ -170,9 +169,9 @@ function initEquipment(_object_id) {
       }
     })
   })
-  
+
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-  
+
 }
