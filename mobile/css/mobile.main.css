@@ -57,7 +57,19 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
+}
+
+html,
+body,
+textarea {
+  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
+  scrollbar-width: thin;
+}
+
+a, .ui-link {
+  font-size: 16px;
+  color: var(--logo-primary-color) !important;
+  text-decoration: none;
 }
 
 .nd2-card{
@@ -85,6 +97,13 @@ body {
 
 .cursor {
   cursor: pointer;
+}
+
+
+[data-page="about"] textarea {
+  color: var(--linkHoverLight-color);
+  background-color: var(--bg-modal-color);
+  border: none !important;
 }
 
 .ui-btn {
@@ -168,7 +187,7 @@ body {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-  
+
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -656,6 +675,11 @@ a.action.ui-btn {
   color : var(--linkHoverLight-color) !important;
 }
 
+.alert-info {
+  background-color: var(--al-info-color);
+  color: var(--linkHoverLight-color);
+}
+
 .alert-sucess {
   background-color: var(--al-success-color);
   color: var(--linkHoverLight-color);
@@ -879,7 +903,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-  
+
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);
