@@ -599,34 +599,38 @@ Installation/Mise à jour d’un plugin donné
 
 Parámetros:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::remove
 --------------
 
 Suppression d’un plugin donné
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInfo
 ----------------------
 
 Renvoi les informations sur le status des dépendances du plugins
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInstall
 -------------------------
 
 Force l’installation des dépendances du plugin
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonInfo
 ------------------
@@ -635,35 +639,38 @@ Renvoi les informations sur le status du démon du plugin
 
 Parámetros:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStart
 -------------------
 
-Forzar el inicio del deamon
+Force le démarrage du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStop
 ------------------
 
-Forzar la parada del deamon
+Force l’arret du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonChangeAutoMode
 ----------------------------
 
-Cambiar el modo de gestión del daemon
+Change le mode de gestion du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
-
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 -   int mode : 1 pour automatique, 0 pour manuel
 
 API JSON update
@@ -685,6 +692,14 @@ update::update
 
 Permet de mettre à jour Jeedom et tous les plugins
 
+update::doUpdate
+--------------
+
+Paramètres:
+
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
+
 API JSON network
 ================
 
@@ -696,14 +711,14 @@ Force le (re)démarrage du DNS Jeedom
 network::stopDns
 ----------------
 
-Forzar la parada del DNS Jeedom
+Force l’arret du DNS Jeedom
 
 network::dnsRun
 ---------------
 
-Devuelve el estado de DNS Jeedom
+Renvoi le status du DNS Jeedom
 
-API JSON Ejemplos
+API JSON Exemples
 =================
 
 Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous

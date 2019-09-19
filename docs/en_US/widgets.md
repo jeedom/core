@@ -36,6 +36,10 @@ C'est ce que l'on appelle un widget simple, ici vous avez juste à dire que le "
 >
 >Nous sommes désolés pour les noms en anglais, il s’agit d’une contrainte du système de template. Ce choix permet de garantir une certaine rapidité et efficacité, aussi bien pour vous que pour nous. Nous n'avons pas eu le choix
 
+>**TIPS**
+>
+>Pour les utilisateurs avancés il est possible dans les valeurs de remplacement de mettre des tags et de spécifier leur valeur dans la configuraiton avancé de la commande, onglet affichage et "Paramètres optionnels widget". Par exemple si dans width vous mettez comme valeur #width# (attention à bien mettre les # autour) au lieu d'un chiffre, dans "Paramètres optionnels widget" vous pouvez ajouter width (sans les #) et donner la valeur. Cela vous permet de changer la taille de l'image en fonction de la commande et donc vous evite de faire un widget different par taille d'image que vous voulez
+
 ## Test
 
 C'est ce que l'on appelle la partie multistates, vous avez souvent comme pour les widgets simples le choix de la "hauteur"/"largeur" pour les images uniquement puis en dessous la partie test.
@@ -55,3 +59,23 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 >**Note**
 >
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
+
+# Description de widgets
+
+Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
+
+## HygroThermographe
+
+Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type temperature et humidité.
+
+Pour le configurer c'est assez simple il faut affecter le widget a la commande température de votre équipement et à la commande humidité.
+
+>**IMPORTANT**
+>
+>Il faut ABSOLUMENT que vos commandes aient les génériques type temperature sur la commande de temperature et humidité sur la commande humidité (cela se configure dans la configuration avancé de la commande onglet configuration).
+
+Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille, exemple en mettant scale à 0.5 il sera 2 fois plus petit
+
+>**NOTE**
+>
+> Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
