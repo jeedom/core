@@ -64,6 +64,7 @@ body,
 textarea {
   scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
   scrollbar-width: thin;
+  box-shadow: none !important;
 }
 
 a, .ui-link {
