@@ -4,6 +4,12 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
+html,
+body,
+textarea {
+  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
+}
+
 .ui-link[data-title=Accueil] {
 	background: url(./jeedom_home.png);
 	background-repeat: no-repeat;
