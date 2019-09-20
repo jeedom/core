@@ -110,5 +110,21 @@
       .css('top',(cmd.find('.uniteHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
       .css('right',(cmd.find('.uniteHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
     }
+    
+    if ($('body').attr('data-theme').endsWith('Light')) {
+      $('.cmd[data-cmd_id=#id#]').find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100.png')
+    }
+    
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.closest('.eqLogic').find('.widget-hygrothermographe').length > 1){
+        return;
+      }
+      if (theme == 'Light') {
+        cmd.find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100.png')
+      } else {
+        cmd.find('.hygrothermographe-background').attr('src', 'core/template/dashboard/cmd.info.numeric.HygroThermographe/No.ext_100.png')
+      }
+    });
   </script>
 </div>
