@@ -652,11 +652,13 @@ $(function () {
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
     setBackgroundImg(BACKGROUND_IMG)
     currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light')) {
-      $('body').trigger('changeThemeEvent', ['Light'])
-    } else {
-      $('body').trigger('changeThemeEvent', ['Dark'])
-    }
+    if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan'].includes($('body').attr('data-page')) ) {
+    	if (currentTheme.endsWith('Light')) {
+        $('body').trigger('changeThemeEvent', ['Light'])
+      } else {
+        $('body').trigger('changeThemeEvent', ['Dark'])
+      }
+  	}
   })
   
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -729,10 +731,12 @@ function changeThemeAuto(){
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
       setBackgroundImg(BACKGROUND_IMG)
-      if (theme.endsWith('Light')) {
-        $('body').trigger('changeThemeEvent', ['Light'])
-      } else {
-        $('body').trigger('changeThemeEvent', ['Dark'])
+      if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan'].includes($('body').attr('data-page')) ) {
+    	if (currentTheme.endsWith('Light')) {
+          $('body').trigger('changeThemeEvent', ['Light'])
+        } else {
+          $('body').trigger('changeThemeEvent', ['Dark'])
+        }
       }
     }
   }, 60000);
