@@ -68,10 +68,12 @@ $(function () {
     $('#jQMnDColor').attr('data-nochange',1);
     setBackgroundImage(BACKGROUND_IMG);
     currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light')) {
-      $('body').trigger('changeThemeEvent', ['Light'])
-    } else {
-      $('body').trigger('changeThemeEvent', ['Dark'])
+    if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
+      if (currentTheme.endsWith('Light')) {
+        $('body').trigger('changeThemeEvent', ['Light'])
+      } else {
+        $('body').trigger('changeThemeEvent', ['Dark'])
+      }
     }
   });
 
@@ -210,10 +212,12 @@ function changeThemeAuto(_ambiantLight){
             $('body').attr('data-theme',theme);
             $('#jQMnDColor').attr('href', themeCss);
             setBackgroundImage(BACKGROUND_IMG);
-            if (theme.endsWith('Light')) {
-              $('body').trigger('changeThemeEvent', ['Light'])
-            } else {
-              $('body').trigger('changeThemeEvent', ['Dark'])
+            if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
+              if (currentTheme.endsWith('Light')) {
+                $('body').trigger('changeThemeEvent', ['Light'])
+              } else {
+                $('body').trigger('changeThemeEvent', ['Dark'])
+              }
             }
           }
         }, 500);
