@@ -270,8 +270,13 @@ try {
 						$dateEnd = $dateRange['end'];
 					}
 				} else {
-					$dateEnd = date('Y-m-d H:i:s');
-					$dateStart = date('Y-m-d 00:00:00', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
+					if(init('dateRange') == '1 day'){
+						$dateEnd = date('Y-m-d H:i:s');
+						$dateStart = date('Y-m-d 00:00:00', strtotime('- 2 days ' . $dateEnd));
+					}else{
+						$dateEnd = date('Y-m-d H:i:s');
+						$dateStart = date('Y-m-d 00:00:00', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
+					}
 				}
 			}
 			if (init('dateStart') != '') {
