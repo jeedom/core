@@ -978,8 +978,8 @@ function displayObject(_plan,_html, _noRender) {
   }else if (_plan.link_type == 'cmd') {
     $('.div_displayObject > .cmd-widget[data-cmd_id=' + _plan.link_id + ']').remove();
   }else if (_plan.link_type == 'graph') {
-    for (var i in jeedom.history.chart) {
-      delete jeedom.history.chart[i];
+    if(jeedom.history.chart['graph'+_plan.link_id]){
+      delete jeedom.history.chart['graph'+_plan.link_id];
     }
     $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
   }
