@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
   })
 }
 
-$(function () {
+$(function() {
   MESSAGE_NUMBER = null
   BACKGROUND_IMG = ''
   nbActiveAjaxRequest = 0
@@ -140,8 +140,14 @@ function setBackgroundImage(_path) {
 }
 
 function triggerThemechange() {
-  //trigger event for widgets:
+  //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
+  if (currentTheme.endsWith('Light')) {
+    $('#homeLogoImg').attr('src', '../../core/img/jeedom_home_Light.png')
+  } else {
+    $('#homeLogoImg').attr('src', '../../core/img/jeedom_home_Dark.png')
+  }
+  //trigger event for widgets:
   if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
@@ -213,6 +219,7 @@ function changeThemeAuto(_ambiantLight){
         $('body').attr('data-theme',theme)
         $('#jQMnDColor').attr('href', themeCss)
         setBackgroundImage(BACKGROUND_IMG)
+        triggerThemechange()
       }
     }, 60000)
   }
@@ -337,6 +344,7 @@ function initApplication(_reinit) {
             include.push('mobile/custom/custom.js')
           }
         }
+        triggerThemechange()
         for(var i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
