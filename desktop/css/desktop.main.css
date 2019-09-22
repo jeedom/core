@@ -650,6 +650,8 @@ div[class*="DisplayCard"] .name > .label {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px;
+}
+.eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
   display: none;
 }
 .scenarioDisplayCard > span > i {

@@ -188,7 +188,7 @@ a, .ui-link {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-
+  
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -238,6 +238,8 @@ a, .ui-link {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px !important;
+}
+.eqLogic.eqLogic-widget:not(.displayObjectName) .widget-name .object_name {
   display: none;
 }
 
@@ -904,7 +906,7 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-
+  
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);

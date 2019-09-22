@@ -110,9 +110,7 @@ if (view_id != '') {
           }
         });
         if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1){
-          jeedom.eqLogic.changeDisplayObjectName(true);
-        }else{
-          jeedom.eqLogic.changeDisplayObjectName(false);
+          $('.eqLogic-widget').addClass('displayObjectName');
         }
         if (getUrlVars('fullscreen') == 1) {
           fullScreen(true);

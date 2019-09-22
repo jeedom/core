@@ -191,6 +191,12 @@ sendVarToJS('id', $plan->getId());
 				<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir une icône}}</a>
 			</div>
 		</div>
+		<div class="form-group link_type link_eqLogic">
+			<label class="col-lg-4 control-label">{{Afficher le nom de l'objet}}</label>
+			<div class="col-lg-2">
+				<input type="checkbox" class="planAttr" data-l1key="display" data-l2key="showObjectName" />
+			</div>
+		</div>
 		<div class="form-group link_type link_eqLogic link_cmd">
 			<label class="col-lg-4 control-label">{{Masquer le nom}}</label>
 			<div class="col-lg-2">
