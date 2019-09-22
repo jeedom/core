@@ -556,7 +556,7 @@ class jeeObject {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$eqLogics_id = array();
 		foreach ($summaries[$_summary] as $infos) {
-			if($infos['enable'] != 1){
+			if(isset($infos['enable']) && $infos['enable'] != 1){
 				continue;
 			}
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
