@@ -176,13 +176,17 @@ try {
 	}
 	echo "OK\n";
 
-	foreach (plugin::listPlugin(true) as $plugin) {
-		$plugin_id = $plugin->getId();
-		$dependancy_info = $plugin->dependancy_info(true);
-		if (method_exists($plugin_id, 'restore')) {
-			echo 'Plugin restoration : ' . $plugin_id . '...';
-			$plugin_id::restore();
-			echo "OK\n";
+		foreach (plugin::listPlugin(true) as $plugin) {
+		try {
+			$plugin_id = $plugin->getId();
+			$dependancy_info = $plugin->dependancy_info(true);
+			if (method_exists($plugin_id, 'restore')) {
+				echo 'Plugin restauration : ' . $plugin_id . '...';
+				$plugin_id::restore();
+				echo "OK\n";
+			}
+		} catch (\Exception $e) {
+			echo '[error] Sur le plugin : '.$plugin_id. ' => '.$e->getMessage();
 		}
 	}
 	config::save('hardware_name', '');

@@ -1,6 +1,12 @@
 
 Changelog
 =========
+3.3.32
+=====
+
+- Correction de bugs
+- Support en mobile des sliders sur les designs
+- SMART : optimisation de la gestion du swap
 
 3.3.31
 =====

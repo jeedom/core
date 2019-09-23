@@ -1030,6 +1030,21 @@ try {
 		$jsonrpc->makeSuccess('ok');
 	}
 	
+	if ($jsonrpc->getMethod() == 'update::doUpdate') {
+		unautorizedInDemo();
+		if (isset($params['plugin_id'])) {
+			$update = update::byId($params['plugin_id']);
+		}
+		if (isset($params['logicalId'])) {
+			$update = update::byLogicalId($params['logicalId']);
+		}
+		if (!is_object($update)) {
+			throw new Exception(__('Impossible de trouver l\'objet', __FILE__));
+		}
+		$update->doUpdate();
+		$jsonrpc->makeSuccess('ok');
+	}
+	
 	/*             * ************************Network*************************** */
 	
 	if ($jsonrpc->getMethod() == 'network::restartDns') {

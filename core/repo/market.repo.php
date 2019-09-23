@@ -321,10 +321,12 @@ class repo_market {
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
-			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-				throw new Exception('[backup clean] ' . self::backup_errorAnalyzed($e->getMessage()));
+			if(strpos($e->getMessage(),'found incomplete backup sets') !== false){
+				if (self::backup_errorAnalyzed($e->getMessage()) != null) {
+					throw new Exception('[backup clean] ' . self::backup_errorAnalyzed($e->getMessage()));
+				}
+				throw new Exception('[backup clean] ' . $e->getMessage());
 			}
-			throw new Exception('[backup clean] ' . $e->getMessage());
 		}
 	}
 	
