@@ -54,6 +54,19 @@ $('#bt_editCode').off('click').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
 })
 
+$('#bt_replaceWidget').off('click').on('click',function(){
+  $('#md_modal').dialog({title: "{{Remplacement de widget}}"}).load('index.php?v=d&modal=widget.replace').dialog('open')
+  $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 500)
+  $("#md_modal").dialog({
+    position: {
+      my: "center center",
+      at: "center center",
+      of: window
+    }
+  })
+})
+
+
 $('#bt_applyToCmd').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Résumé widgets}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
@@ -180,11 +193,17 @@ $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblcl
 });
 
 $('.widgetsAttr[data-l1key=type]').off('change').on('change',function(){
+  $('#div_templateReplace').empty();
+  $('#div_templateTest').empty();
+  $('#div_usedBy').empty()
   $('.selectWidgetSubType').hide().removeClass('widgetsAttr');
   $('.selectWidgetSubType[data-type='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
 
 $('.selectWidgetSubType').off('change').on('change',function(){
+  $('#div_templateReplace').empty();
+  $('#div_templateTest').empty();
+  $('#div_usedBy').empty()
   $('.selectWidgetTemplate').hide().removeClass('widgetsAttr');
   $('.selectWidgetTemplate[data-type='+$('.widgetsAttr[data-l1key=type]').value()+'][data-subtype='+$(this).value()+']').show().addClass('widgetsAttr').change();
 });
@@ -239,7 +258,7 @@ function loadTemplateConfiguration(_template,_data){
         $('.type_replace').hide();
       }
       if(typeof _data != 'undefined'){
-        $('.widgets').setValues(_data, '.widgetsAttr');
+        $('.widgets').setValues({replace : _data.replace}, '.widgetsAttr');
       }
       if(data.test){
         $('.type_test').show();

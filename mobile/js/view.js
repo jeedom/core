@@ -71,10 +71,7 @@ function displayView(html) {
     console.log(err)
   }
   if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName)){
-    console.log(html.raw);
-    jeedom.eqLogic.changeDisplayObjectName(html.raw.configuration.displayObjectName);
-  }else{
-    jeedom.eqLogic.changeDisplayObjectName(false);
+    $('.eqLogic-widget').addClass('displayObjectName');
   }
   if (deviceInfo.type == 'phone') {
     $('.chartContainer').width((deviceInfo.width - 20))

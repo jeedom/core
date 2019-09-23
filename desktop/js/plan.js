@@ -885,11 +885,6 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
-          if(isset(data.configuration) && isset(data.configuration.displayObjectName) && data.configuration.displayObjectName != '0'){
-            jeedom.eqLogic.changeDisplayObjectName(data.configuration.displayObjectName);
-          }else{
-            jeedom.eqLogic.changeDisplayObjectName(false);
-          }
           initEditOption(editOption.state);
           initReportMode();
         }
@@ -983,8 +978,8 @@ function displayObject(_plan,_html, _noRender) {
   }else if (_plan.link_type == 'cmd') {
     $('.div_displayObject > .cmd-widget[data-cmd_id=' + _plan.link_id + ']').remove();
   }else if (_plan.link_type == 'graph') {
-    for (var i in jeedom.history.chart) {
-      delete jeedom.history.chart[i];
+    if(jeedom.history.chart['graph'+_plan.link_id]){
+      delete jeedom.history.chart['graph'+_plan.link_id];
     }
     $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
   }
@@ -1057,6 +1052,9 @@ function displayObject(_plan,_html, _noRender) {
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.addClass('hideEqLogicName')
+    }
+    if(isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1){
+      html.addClass('displayObjectName')
     }
     if(isset(_plan.display.cmdHide)){
       for(var i in _plan.display.cmdHide){

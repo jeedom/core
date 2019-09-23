@@ -264,9 +264,6 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				if ($market->getLanguage('ru_RU') == 1) {
 					echo '<img src="core/img/russe.png" width="30" />';
 				}
-				if ($market->getLanguage('id_ID') == 1) {
-					echo '<img src="core/img/indonesien.png" width="30" />';
-				}
 				if ($market->getLanguage('it_IT') == 1) {
 					echo '<img src="core/img/italien.png" width="30" />';
 				}

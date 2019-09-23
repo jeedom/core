@@ -76,19 +76,6 @@ $('#bt_genUserKeyAPI').on('click',function(){
   });
 });
 
-$('.userAttr[data-l1key=options][data-l2key=bootstrap_theme]').on('change', function () {
-  if($(this).value() == ''){
-    $('#div_imgThemeDesktop').html('<img src="core/img/theme_default.png" height="300" class="img-thumbnail" />');
-  } else {
-    url = 'core/themes/' + $(this).value() + '/desktop/preview.png';
-    if (UrlExists(url)) {
-      $('#div_imgThemeDesktop').html('<img src="' + url + '" height="300" class="img-thumbnail" />');
-    } else {
-      $('#div_imgThemeDesktop').html('');
-    }
-  }
-});
-
 jeedom.user.get({
   error: function (error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'});

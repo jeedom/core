@@ -80,6 +80,12 @@ try {
     ajax::success(array('html' =>$usedBy[0]->getEqLogic()->toHtml('dashboard')));
   }
   
+  if (init('action') == 'replacement') {
+    ajax::success(widgets::replacement(init('version'),init('replace'),init('by')));
+  }
+  
+  throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+  
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
   ajax::error(displayException($e), $e->getCode());

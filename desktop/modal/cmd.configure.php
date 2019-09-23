@@ -290,22 +290,24 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 									}
 								}
 								ksort($groups);
+								$optgroup = '';
 								foreach ($groups as $group) {
 									usort($group, function ($a, $b) {
 										return strcmp($a['name'], $b['name']);
 									});
 									foreach ($group as $key => $info) {
 										if ($key == 0) {
-											echo '<optgroup label="{{' . $info['family'] . '}}">';
+											$optgroup .= '<optgroup label="{{' . $info['family'] . '}}">';
 										}
 										$name = $info['name'];
 										if (isset($info['noapp']) && $info['noapp']) {
 											$name .= ' (Non géré par Application Mobile)';
 										}
-										echo '<option value="' . $info['key'] . '">' . $name . '</option>';
+										$optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
 									}
-									echo '</optgroup>';
+									$optgroup .= '</optgroup>';
 								}
+								if ($optgroup != '') echo $optgroup;
 								?>
 							</select>
 						</div>
@@ -570,9 +572,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						<tr>
 							<th style="width:200px;"></th>
 							<?php
+							$display = '';
 							foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-								echo '<th>{{' . $value['name'] . '}}</th>';
+								$display .= '<th>{{' . $value['name'] . '}}</th>';
 							}
+							echo $display;
 							?>
 						</tr>
 					</thead>
@@ -601,6 +605,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 													}
 												}
 												ksort($types);
+												$display = '';
 												foreach ($types as $type) {
 													usort($type, function ($a, $b) {
 														return strcmp($a['name'], $b['name']);
@@ -610,16 +615,17 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 															continue;
 														}
 														if ($key == 0) {
-															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+															$display .= '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
 														}
 														if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
-															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+															$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
 														}else{
-															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+															$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
 														}
 													}
-													echo '</optgroup>';
+													$display .= '</optgroup>';
 												}
+												echo $display;
 											}
 											?>
 										</select>
@@ -645,6 +651,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 													}
 												}
 												ksort($types);
+												$display = '';
 												foreach ($types as $type) {
 													usort($type, function ($a, $b) {
 														return strcmp($a['name'], $b['name']);
@@ -655,16 +662,17 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 															continue;
 														}
 														if ($key == 0) {
-															echo '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
+															$display .= '<optgroup label="{{' . ucfirst($widget['type']) . '}}">';
 														}
 														if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
-															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+															$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
 														}else{
-															echo '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+															$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
 														}
 													}
-													echo '</optgroup>';
+													$display .= '</optgroup>';
 												}
+												echo $display;
 											}
 											?>
 										</select>
@@ -679,13 +687,15 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<tr>
 								<td>{{Afficher le nom}}</td>
 								<?php
+								$display = '';
 								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-									echo '<td>';
+									$display .= '<td>';
 									if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
-										echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+										$display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
 									}
-									echo '</td>';
+									$display .= '</td>';
 								}
+								echo $display;
 								?>
 							</tr>
 						<?php }
@@ -695,13 +705,15 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<tr>
 								<td>{{Afficher le nom ET l'icône}}</td>
 								<?php
+								$display = '';
 								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-									echo '<td>';
+									$display .= '<td>';
 									if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
-										echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
+										$display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
 									}
-									echo '</td>';
+									$display .= '</td>';
 								}
+								echo $display;
 								?>
 							</tr>
 						<?php }
@@ -710,13 +722,15 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<tr>
 								<td>{{Afficher les statistiques}}</td>
 								<?php
+								$display = '';
 								foreach (jeedom::getConfiguration('eqLogic:displayType') as $key => $value) {
-									echo '<td>';
+									$display .= '<td>';
 									if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
-										echo '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
+										$display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
 									}
-									echo '</td>';
+									$display .= '</td>';
 								}
+								echo $display;
 								?>
 							</tr>
 							<?php
@@ -786,9 +800,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 <script>
 $(function() {
 	if ($('body').attr('data-page')=="widgets") {
-      console.log('widget!!')
       $('a[href="#cmd_display"]').click()
     }
+
+    var dashWidget = $('select[data-l2key="dashboard"]')
+    if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
+    var mobileWidget = $('select[data-l2key="mobile"]')
+    if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
 })
 
 $('#cmdConfigureTab').off('click').on('click',function(){

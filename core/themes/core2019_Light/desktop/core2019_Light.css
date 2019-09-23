@@ -4,17 +4,6 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
-header a.navbar-brand {
-  background-size: 60px !important;
-  background-repeat: no-repeat;
-  background-position: 10px 7px;
-  background-attachment: fixed;
-  background-origin: border-box;
-  width: 90px;
-  height: 50px;
-  background-image: var(--url-logo) !important;
-}
-
 a,
 span.cursor > i,
 i.cursor {

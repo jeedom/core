@@ -57,7 +57,20 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  scrollbar-color: var(--el-defaultColor) rgb(var(--bg-color)) !important;
+}
+
+html,
+body,
+textarea {
+  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
+  scrollbar-width: thin;
+  box-shadow: none !important;
+}
+
+a, .ui-link {
+  font-size: 16px;
+  color: var(--logo-primary-color) !important;
+  text-decoration: none;
 }
 
 .nd2-card{
@@ -85,6 +98,13 @@ body {
 
 .cursor {
   cursor: pointer;
+}
+
+
+[data-page="about"] textarea {
+  color: var(--linkHoverLight-color);
+  background-color: var(--bg-modal-color);
+  border: none !important;
 }
 
 .ui-btn {
@@ -175,6 +195,7 @@ body {
   display: inline-block;
   vertical-align: top;
   padding-bottom: 10px;
+  overflow: hidden;
 }
 .eqLogic.eqLogic-widget .ui-input-text input,
 .eqLogic.eqLogic-widget textarea {
@@ -217,6 +238,8 @@ body {
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
   font-size: 11px !important;
+}
+.eqLogic.eqLogic-widget:not(.displayObjectName) .widget-name .object_name {
   display: none;
 }
 
@@ -228,6 +251,12 @@ body {
   text-decoration: none;
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
+}
+
+.widget-name {
+  padding-right: 22px;
+  padding-left: 12px;
+  word-break: break-word;
 }
 
 .eqLogic.eqLogic-widget,
@@ -649,6 +678,11 @@ a.action.ui-btn {
   color : var(--linkHoverLight-color) !important;
 }
 
+.alert-info {
+  background-color: var(--al-info-color);
+  color: var(--linkHoverLight-color);
+}
+
 .alert-sucess {
   background-color: var(--al-success-color);
   color: var(--linkHoverLight-color);
@@ -771,7 +805,6 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #div_displayBattery .eqLogic-widget .widget-name span {
   border-radius: var(--border-radius) !important;
 }
-
 
 .panel,
 .panel-body,

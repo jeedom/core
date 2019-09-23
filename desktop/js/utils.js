@@ -102,7 +102,6 @@ function loadPage(_url,_noPushHistory){
   }
   jeedom.cmd.update = Array();
   jeedom.scenario.update = Array();
-  jeedom.eqLogic.changeDisplayObjectName(false);
   $('main').css('padding-right','').css('padding-left','').css('margin-right','').css('margin-left','');
   $('#div_pageContainer').add("#div_pageContainer *").off();
   $.hideAlert();
@@ -620,6 +619,7 @@ $(function () {
     loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));
   });
   
+  //theming:
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-sync-alt"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
@@ -651,12 +651,7 @@ $(function () {
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themShadows)
     setBackgroundImg(BACKGROUND_IMG)
-    currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light')) {
-      $('body').trigger('changeThemeEvent', ['Light'])
-    } else {
-      $('body').trigger('changeThemeEvent', ['Dark'])
-    }
+    triggerThemechange()
   })
   
   if(typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0){
@@ -693,7 +688,25 @@ setTimeout(function() {
   })
 }, 500)
 
-function changeThemeAuto(){
+function triggerThemechange() {
+  //set jeedom logo:
+  var currentTheme = $('body').attr('data-theme')
+  if (currentTheme.endsWith('Light')) {
+    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_light)
+  } else {
+    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_dark)
+  }
+  //trigger event for widgets:
+  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan'].includes($('body').attr('data-page')) ) {
+    if (currentTheme.endsWith('Light')) {
+      $('body').trigger('changeThemeEvent', ['Light'])
+    } else {
+      $('body').trigger('changeThemeEvent', ['Dark'])
+    }
+  }
+}
+
+function changeThemeAuto() {
   if (typeof jeedom.theme == 'undefined') {
     return
   }
@@ -729,11 +742,7 @@ function changeThemeAuto(){
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
       setBackgroundImg(BACKGROUND_IMG)
-      if (theme.endsWith('Light')) {
-        $('body').trigger('changeThemeEvent', ['Light'])
-      } else {
-        $('body').trigger('changeThemeEvent', ['Dark'])
-      }
+      triggerThemechange()
     }
   }, 60000);
 }

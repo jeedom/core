@@ -4,11 +4,10 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
-.ui-link[data-title=Accueil] {
-	background: url(./jeedom_home.png);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 32px 32px;
+html,
+body,
+textarea {
+  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
 }
 
 /* _____________________________DASHBOARD CATEGORIES title coloring */
