@@ -539,7 +539,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . ' id="' . $idAttr . '">';
+		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="'. $this->getId() . '">';
 		
 		$eqName = $this->getName();
 		if (strlen($eqName) > 20) $eqName = mb_substr($eqName,0,20)."...";
@@ -554,7 +554,11 @@ class eqLogic {
 		$html .= '</center>';
 		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
-		$html .= '<span class="pull-left batteryTime">';
+      	if ($_version == 'mobile') {
+			$html .= '<span class="pull-left batteryTime">';
+		} else {
+			$html .= '<span class="pull-left batteryTime cursor">';
+		}
 		if ($this->getConfiguration('battery_danger_threshold') != '' || $this->getConfiguration('battery_warning_threshold') != '') {
 			$html .= '<i class="icon techno-fingerprint41 pull-right" title="Seuil manuel défini"></i>';
 		}

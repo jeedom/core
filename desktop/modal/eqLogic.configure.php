@@ -416,8 +416,13 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 	</div>
 </div>
 </div>
-<script>
 
+<script>
+$(function() {
+	if ($('body').attr('data-page')=="eqAnalyse") {
+      $('a[href="#eqLogic_alert"]').click()
+    }
+})
 
 $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
 	connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
