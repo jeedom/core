@@ -27,25 +27,25 @@ $(function() {
   nbActiveAjaxRequest = 0
   utid = Date.now();
   $.mobile.orientationChangeEnabled = false
-
+  
   $(window).on("resize", function (event) {
     deviceInfo = getDeviceType()
   })
-
+  
   initApplication()
-
+  
   $('body').delegate('.link', 'click', function () {
     modal(false)
     panel(false)
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   });
-
+  
   $('body').on('click','.objectSummaryParent',function() {
     modal(false)
     panel(false)
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
   })
-
+  
   $('body').on('taphold','.cmd[data-type=info]',function() {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
@@ -53,11 +53,11 @@ $(function() {
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
     mainOpt.panel('open')
   });
-
+  
   $('body').on('click','#bt_warnmeCmd',function() {
     page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true)
   });
-
+  
   $('body').on('click','#bt_switchTheme',function() {
     $('body').attr('data-theme',userProfils.mobile_theme_color_night)
     var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css'
@@ -69,9 +69,9 @@ $(function() {
     setBackgroundImage(BACKGROUND_IMG)
     triggerThemechange()
   });
-
+  
   var webappCache = window.applicationCache
-
+  
   function updateCacheEvent(e) {
     if (webappCache.status == 3) {
       $('#div_updateInProgress').html('<p>Mise à jour de l\'application en cours<br/><span id="span_updateAdvancement">0</span>%</p>')
@@ -100,7 +100,7 @@ $(function() {
     try {
       webappCache.update()
     } catch(e) {
-
+      
     }
   }
 })
@@ -143,9 +143,9 @@ function triggerThemechange() {
   //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
   if (currentTheme.endsWith('Light')) {
-    $('#homeLogoImg').attr('src', '../../core/img/jeedom_home_Light.png')
+    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_light)
   } else {
-    $('#homeLogoImg').attr('src', '../../core/img/jeedom_home_Dark.png')
+    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_dark)
   }
   //trigger event for widgets:
   if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
@@ -321,7 +321,7 @@ function initApplication(_reinit) {
         if (isset(jeedom.theme.current_mobile_theme) && jeedom.theme.current_mobile_theme != '') {
           include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.js')
         }
-
+        
         var widget_shadow = true
         var useAdvance = 0
         if (typeof jeedom.theme != 'undefined') {
@@ -350,7 +350,7 @@ function initApplication(_reinit) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
         }
-
+        
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
           $.include(include, function () {
@@ -363,14 +363,14 @@ function initApplication(_reinit) {
               if (res[0] == 'core') {
                 switch (res[1]) {
                   case 'dashboard' :
-                    page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
-                    break
+                  page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
+                  break
                   case 'plan' :
-                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
-                    break
+                  window.location.href = 'index.php?v=d&p=plan&plan_id=' + userProfils.defaultMobilePlan
+                  break
                   case 'view' :
-                    page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
-                    break
+                  page('view', userProfils.defaultMobileViewName, userProfils.defaultMobileView)
+                  break
                 }
               } else {
                 page(res[1], 'Plugin', '', res[0])
@@ -395,7 +395,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) {
-
+    
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
