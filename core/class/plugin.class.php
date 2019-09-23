@@ -237,6 +237,9 @@ class plugin {
 	}
 	
 	public static function saveTranslation($_plugin, $_language, $_translation) {
+		if(trim($_plugin) == '' || trim($_plugin) == 'core'){
+			return;
+		}
 		$dir = __DIR__ . '/../../plugins/' . $_plugin . '/core/i18n';
 		if (!file_exists($dir)) {
 			mkdir($dir, 0775, true);
