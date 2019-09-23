@@ -384,11 +384,6 @@ $(".widgetsDisplayCard").on('click', function (event) {
       $('.widgetsAttr[data-l1key=type]').value('info')
       $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'));
       $('.widgets').setValues(data, '.widgetsAttr');
-      
-      
-      $('#div_usedBy').empty().append(usedBy);
-      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data)
-      $('.widgets').setValues(data, '.widgetsAttr');
       if (isset(data.test)) {
         for (var i in data.test) {
           addTest(data.test[i]);
@@ -398,6 +393,8 @@ $(".widgetsDisplayCard").on('click', function (event) {
       for(var i in data.usedBy){
         usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+i+'">'+ data.usedBy[i]+'</span> ';
       }
+      $('#div_usedBy').empty().append(usedBy);
+      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
       addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
       jeedom.widgets.getPreview({
