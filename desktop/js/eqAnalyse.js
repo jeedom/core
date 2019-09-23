@@ -73,6 +73,11 @@ $('#bt_resetSearch').on('click', function () {
   $('#in_search').keyup();
 })
 
+$('.batteryTime').off('click').on('click',function(){
+  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
+  $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
+})
+
 
 $(function() {
   //tabs icons colors:
