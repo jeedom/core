@@ -957,12 +957,7 @@ try {
 	}
 	
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
-		if (isset($params['plugin_id'])) {
-			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
-			$update = update::byLogicalId($params['logicalId']);
-		}
+		$plugin = plugin::byId($params['plugin_id']);
 		if (!is_object($plugin)) {
 			$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
 		}
@@ -971,12 +966,7 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 		unautorizedInDemo();
-		if (isset($params['plugin_id'])) {
-			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
-			$update = update::byLogicalId($params['logicalId']);
-		}
+		$plugin = plugin::byId($params['plugin_id']);
 		if (!is_object($plugin)) {
 			$jsonrpc->makeSuccess();
 		}
@@ -985,12 +975,7 @@ try {
 	}
 	
 	if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
-		if (isset($params['plugin_id'])) {
-			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
-			$update = update::byLogicalId($params['logicalId']);
-		}
+		$plugin = plugin::byId($params['plugin_id']);
 		if (!is_object($plugin)) {
 			$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
 		}
@@ -998,12 +983,7 @@ try {
 	}
 	
 	if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
-		if (isset($params['plugin_id'])) {
-			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
-			$update = update::byLogicalId($params['logicalId']);
-		}
+		$plugin = plugin::byId($params['plugin_id']);
 		if (!is_object($plugin)) {
 			$jsonrpc->makeSuccess();
 		}
@@ -1019,12 +999,7 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 		unautorizedInDemo();
-		if (isset($params['plugin_id'])) {
-			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
-			$update = update::byLogicalId($params['logicalId']);
-		}
+		$plugin = plugin::byId($params['plugin_id']);
 		if (!is_object($plugin)) {
 			$jsonrpc->makeSuccess();
 		}
