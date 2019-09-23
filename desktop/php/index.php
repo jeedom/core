@@ -89,11 +89,11 @@ if (init('rescue', 0) == 0) {
 global $homeLogoSrc;
 function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
-	$homeLogoSrc = '../../core/img/logo-jeedom_Light.png';
+	$homeLogoSrc = '../../'.config::byKey('logo_light');
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-
+	
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -112,7 +112,7 @@ function setTheme() {
 	}
 	$jeedom_theme['currentTheme'] = $themeDefinition;
 	if ( substr($themeDefinition, -5) == '_Dark' ) {
-		$homeLogoSrc = '../../core/img/logo-jeedom_Dark.png';
+		$homeLogoSrc = '../../'.config::byKey('logo_dark');
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
@@ -210,9 +210,9 @@ function setTheme() {
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-
+	
 	setTheme();
-
+	
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -508,3 +508,4 @@ function setTheme() {
 		<?php } 	?>
 	</body>
 	</html>
+	
