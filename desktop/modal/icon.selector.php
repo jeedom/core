@@ -60,7 +60,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 		</div>
 	</div>
-
+	
 	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
@@ -71,8 +71,8 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 					<?php
 					$echo = '';
 					foreach (ls(__DIR__.'/../../data/img/','*') as $file) {
-						$echo .= '<div class="col-lg-1 divImgSel">';
-						$echo .= '<span class="imgSel"><img src="data/img/'.$file.'" /></span>';
+						$echo .= '<div class="col-lg-1 divIconSel divImgSel">';
+						$echo .= '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
 						$echo .= '<center>'.substr(basename($file),0,12).'</center>';
 						$echo .= '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 						$echo .= '</div>';
@@ -94,7 +94,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1');
 				}
 			});
-
+			
 			$('.bt_removeImgIcon').on('click',function(){
 				var filename = $(this).attr('data-filename');
 				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function (result) {
@@ -114,7 +114,7 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 			</script>
 		</div>
 	<?php } ?>
-
+	
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
@@ -127,12 +127,12 @@ sendVarToJs('colorIcon', init('colorIcon', 0));
 				}
 				$fontfile = $root . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf';
 				if (!file_exists($fontfile)) continue;
-
+				
 				$css = file_get_contents($root . $dir . '/style.css');
 				$research = strtolower(str_replace('/', '', $dir));
 				preg_match_all("/\." . $research . "-(.*?):/", $css, $matches, PREG_SET_ORDER);
 				$echo .= '<div class="iconCategory"><legend>{{' . str_replace('/', '', $dir) . '}}</legend>';
-
+				
 				$number = 1;
 				foreach ($matches as $match) {
 					if (isset($match[0])) {
@@ -366,7 +366,7 @@ $('#in_searchIconSelector').on('keyup',function(){
 		$('.generalCategory').show();
 		$('.customIcon').empty().append('<span class="iconSel"><i class="' + $(this).value() + '"></i></span><br/><span class="iconDesc">' + $(this).value() + '</span>');
 	}
-
+	
 });
 $('#bt_resetSearch').on('click', function () {
 	$('#in_searchIconSelector').val('')
