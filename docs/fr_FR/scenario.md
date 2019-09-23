@@ -314,7 +314,7 @@ commandes) :
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
 jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
-[ici](https://github.com/jeedom/core/blob/master/doc/fr_FR/api_http.asciidoc).
+[ici](https://jeedom.github.io/core/fr_FR/api_http).
 
 Opérateurs de comparaison et liens entre les conditions
 -------------------------------------------------------
