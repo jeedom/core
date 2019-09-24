@@ -432,7 +432,23 @@ $(".widgetsDisplayCard").on('click', function (event) {
         usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+i+'">'+ data.usedBy[i]+'</span> ';
       }
       $('#div_usedBy').empty().append(usedBy);
-      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
+      var template = 'cmd.';
+      if(data.type && data.type !== null){
+        template += data.type+'.';
+      }else{
+        template += 'action.';
+      }
+      if(data.subtype && data.subtype !== null){
+        template += data.subtype+'.';
+      }else{
+        template += 'other.';
+      }
+      if(data.template && data.template !== null){
+        template += data.template+'.';
+      }else{
+        template += 'tmplicon';
+      }
+      loadTemplateConfiguration(template,data);
       addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
       jeedom.widgets.getPreview({
@@ -521,7 +537,6 @@ $("#bt_mainImportWidgets").change(function(event) {
           success: function (data) {
             var readFile = new FileReader()
             readFile.readAsText(uploadedFile)
-            
             readFile.onload = function(e) {
               objectData = JSON.parse(e.target.result)
               if (!isset(objectData.jeedomCoreVersion)) {
