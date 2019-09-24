@@ -307,6 +307,7 @@ legend {
   display: block;
   max-width: 70px;
   font-size: 11px !important;
+  margin-top: 4px;
 }
 
 .eqLogic-widget,
