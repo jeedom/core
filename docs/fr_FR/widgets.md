@@ -64,6 +64,18 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 
 Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
 
+## Paramètres fréquents
+
+- Time widget : affiche le temps depuis lequel le systeme est dans l'état afficher. Valeur 0,vide ou 1
+- Icon on : icone à afficher si l'équipement est on/1
+- Icon off : icone à afficher si l'équipement est off/0
+- Img light on : icone à afficher si l'équipement est on/1 et que le theme est light (si vide alors jeedom prend l'img dark on)
+- Img light off : icone à afficher si l'équipement est off/0 et que le theme est light (si vide alors jeedom prend l'img dark off)
+- Img dark on : icone à afficher si l'équipement est on/1 et que le theme est dark (si vide alors jeedom prend l'img light on)
+- Img dark off : icone à afficher si l'équipement est off/0 et que le theme est dark (si vide alors jeedom prend l'img light off)
+- Desktop width : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
+- Mobile width : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image 
+
 ## HygroThermographe
 
 Ce widget est un peu particulier car c'est un widget multi-commande, c'est a dire qu'il assemble sur son affichage la valeur de plusieurs commande. Ici il prend les commandes de type temperature et humidité.
