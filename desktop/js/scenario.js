@@ -87,7 +87,7 @@ $(function(){
         if(scenarios.length == 0){
           return;
         }
-        scenarioGroups = []
+        var scenarioGroups = []
         for(i=0; i<scenarios.length; i++){
           group = scenarios[i].group
           if (group == null) continue
@@ -97,9 +97,8 @@ $(function(){
         }
         scenarioGroups = Array.from(new Set(scenarioGroups))
         scenarioGroups.sort()
-        scenarioList = []
-        for(i=0; i<scenarioGroups.length; i++)
-        {
+        var scenarioList = []
+        for(i=0; i<scenarioGroups.length; i++){
           group = scenarioGroups[i]
           scenarioList[group] = []
           for(j=0; j<scenarios.length; j++)
@@ -112,16 +111,19 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
+
         //set context menu!
         var contextmenuitems = {}
+        var uniqId = 0
         for (var group in scenarioList) {
           groupScenarios = scenarioList[group]
           items = {}
           for (var index in groupScenarios) {
             sc = groupScenarios[index]
-            scName = sc[0]
+            scName = sc[0] + '  ('+sc[1]+')'
             scId = sc[1]
-            items[scId] = {'name': scName}
+            items[uniqId] = {'name': scName, 'id' : scId}
+            uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
@@ -134,7 +136,7 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options) {
-              url = 'index.php?v=d&p=scenario&id=' + key;
+              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id;
               if (document.location.toString().match('#')) {
                 url += '#' + document.location.toString().split('#')[1];
               }
