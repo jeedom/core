@@ -95,7 +95,7 @@ $(function(){
         if(interacts.length == 0){
           return;
         }
-        interactGroups = []
+        var interactGroups = []
         for(i=0; i<interacts.length; i++){
           group = interacts[i].group
           if (group == null) continue
@@ -105,7 +105,7 @@ $(function(){
         }
         interactGroups = Array.from(new Set(interactGroups))
         interactGroups.sort()
-        interactList = []
+        var interactList = []
         for(i=0; i<interactGroups.length; i++)
         {
           group = interactGroups[i]
@@ -123,6 +123,7 @@ $(function(){
         }
         //set context menu!
         var contextmenuitems = {}
+        var uniqId = 0
         for (var group in interactList) {
           groupinteracts = interactList[group]
           items = {}
@@ -130,7 +131,8 @@ $(function(){
             sc = groupinteracts[index]
             scName = sc[0]
             scId = sc[1]
-            items[scId] = {'name': scName}
+            items[uniqId] = {'name': scName, 'id' : scId}
+            uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
@@ -142,7 +144,7 @@ $(function(){
             zIndex: 9999,
             className: 'interact-context-menu',
             callback: function(key, options) {
-              url = 'index.php?v=d&p=interact&id=' + key;
+              url = 'index.php?v=d&p=interact&id=' + options.commands[key].id;
               if (document.location.toString().match('#')) {
                 url += '#' + document.location.toString().split('#')[1];
               }
