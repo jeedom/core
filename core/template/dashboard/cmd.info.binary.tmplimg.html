@@ -1,0 +1,34 @@
+<div class="cmd tooltips cmd-widget cursor #history#" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" style="min-width:90px;">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-sm">
+    <span class="imgCmd"></span>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] =function(_options){
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      if (_options.display_value == '1') {
+        cmd.find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#"));
+      }else {
+        cmd.find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#"));
+      }
+      var style = '';
+      if(!isNaN('#_desktop_width_#')){
+        style = 'max-width:#_desktop_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.attr('data-state') == 'on'){
+        cmd.find('.imgCmd img').attr('src',jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#"))
+      }else{
+        cmd.find('.imgCmd img').attr('src',jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#"))
+      }
+    });
+  </script>
+  <!-- Hide parameters  #_mobile_width_# -->
+</div>
