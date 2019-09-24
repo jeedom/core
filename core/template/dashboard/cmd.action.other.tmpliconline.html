@@ -29,7 +29,7 @@
       }
       cmd.find('.iconCmdLine img').attr('style',style);
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
     $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'});
     });
