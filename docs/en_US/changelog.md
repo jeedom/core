@@ -3,21 +3,43 @@ Changelog
 
 4.0.0
 =====
-- Refonte des thèmes (Core 2019 Light / Dark / Legacy).
+- Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
-- En mobile le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).
+- En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>
 - Amélioration et réorganisation du menu principal.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
-- Refonte du système de widgets (menu Outils / Widgets).
-- Ajout d'un widget horizontal (core).
-- Ajout d'un widget vertical (core).
-- Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
+- Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
+- Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
+- Les champs de recherche supportent maintenant les accents.
+- Les champs de recherche (scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
+- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
+- Lors d'une recherche, la touche *echap* annule la recherche.
+- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
+- Objets : Ajout d'une option pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+- Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
+- Interactions : Ajout d'un menu contextuel sur les onglets (changement rapide d'interaction).
+- Plugins : Ajout d'un menu contextuel sur les onglets (changement rapide d'équipement).
+- Améliorations des tables avec option de filtre et tri.
+- Possibilité d'attribuer une icône à une interaction.
+- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
+- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
+- Gestion des fonctions *Page précédente / Page suivante* du navigateur.
+- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres.<br/><br/>
+- Widgets : Refonte du système de widgets (menu Outils / Widgets).
+- Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
+- Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
+- Widgets : Ajout d'un widget horizontal (core).
+- Widgets : Ajout d'un widget vertical (core).
+- Widgets : Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
+- Configuration : Ajout de nombreux *tooltips* (aide).
+- Configuration : Ajout d'un moteur de recherche.
 - Configuration : Ajout d'un bouton pour vider le cache des widgets (onglet Cache).
 - Configuration : Ajout d'une option pour désactiver le cache des widgets (onglet Cache).
 - Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
-- Configuration : Ajout de nombreux *tooltips* (aide).
-- Configuration : Ajout d'un moteur de recherche.<br/><br/>
+- Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
+- Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
+- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étées mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
 - Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
@@ -26,47 +48,47 @@ Changelog
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
 - Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
-- Suppression du partage de scénario.
-- Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
-- Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
-- Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
-- Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
-- Ajout d'un moteur de recherche dans Analyse / Equipements, onglet Batteries (recherche sur les noms et parents).
-- Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
-- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
-- Lors d'une recherche, la touche *echap* annule la recherche.
-- Page Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
-- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
-- Améliorations des tables avec option de filtre et tri.
-- Possibilité d'attribuer une icône à une interaction.
-- Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
-- Page update : différentiation par version (stable, beta, ...).
-- Page update : ajout d'une barre de progression pendant l'update.
-- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
-- Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
+- Scénario : Suppression du partage de scénario.
+- Scénario : Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
+- Analyse / Equipements : Ajout d'un moteur de recherche (onglet Batteries, recherche sur les noms et parents).
+- Analyse / Equipements : La zone calendrier/jours de l'équipement est maintenant cliquable pour accéder directement au changement de pîle(s).
+- Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
+- Centre de mise à jour : Warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
+- Centre de mise à jour : différentiation par version (stable, beta, ...).
+- Centre de mise à jour : ajout d'une barre de progression pendant l'update.<br/><br/>
+- Résumé domotique : L'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
-- Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
-- Ajout d'un champs CSS personnalisé sur les éléments du *design*.
-- Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
-- Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.
-- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
-- Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
-- Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
+- Résumé domotique : Ajout des IDs d'équipement et de commande, à l'affichage et dans la recherche.
+- Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id,commande.
+- Résumé domotique : Possibilité de rendre visible ou non une ou des commandes.<br/><br/>
+- Design : Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
+- Design : Ajout d'un champs CSS personnalisé sur les éléments du *design*.
+- Design : Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
+- Design : Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
-- Ajout d'un parametre de configuration pour la purge globale par défaut des historiques (ex : maximum 6 mois par défaut)
-- Possibilité depuis le résumé domotique de rendre visible ou non une ou des commandes
-- Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
-- Possibilité dans les résumé d'ajouter une exclusion des commandes n'ayant pas étaient mise à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
-- Ajout dans le menu outils d'un bouton pour avoir accès au testeur d'expression
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres
 
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+3.3.31
+=====
+
+- Correction de bugs
+
+3.3.30
+=====
+
+- Correction d'un bug sur l'affichage des sessions utilisateur
+- Mise à jour de la documentation
+- Suppression de la mise à jour des graphiques en temps réel, suite aux nombreux bugs remontés
+- Correction d'un bug pouvant empêcher l'affichage de certains logs
+- Correction d'un bug sur le service de monitoring
+- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte 
+- Amélioration de l'action remove_inat dans les scénarios
 
 3.3.29
 =====

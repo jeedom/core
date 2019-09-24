@@ -329,7 +329,7 @@ commandes) :
 Vous pouvez aussi déclencher un scénario quand une variable est mise à
 jour en mettant : #variable(nom_variable)# ou en utilisant l’API HTTP
 décrite
-[ici](https://github.com/jeedom/core/blob/master/doc/fr_FR/api_http.asciidoc).
+[ici](https://jeedom.github.io/core/fr_FR/api_http).
 
 Opérateurs de comparaison et liens entre les conditions
 -------------------------------------------------------
@@ -555,7 +555,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     pour l'équipement donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
-    signifie que la commande est introuvable
+    signifie que l'équipment est introuvable
 
 -   color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur) : Renvoi une couleur calculé par rapport à valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit etre comprise entre valeur_min et valeur_max
 
