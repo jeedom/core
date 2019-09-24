@@ -243,7 +243,11 @@ function loadTemplateConfiguration(_template,_data){
           replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("_", " "))+'</label>';
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
-          replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+          if(data.replace[i] == 'time_widget'){
+            replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+          }else{
+            replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+          }
           if(data.replace[i].indexOf('icon_') != -1 || data.replace[i].indexOf('img_') != -1){
             replace += '<span class="input-group-btn">';
             replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
