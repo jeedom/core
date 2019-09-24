@@ -31,6 +31,11 @@
 			}else{
 				cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
 			}
+			var style = '';
+			if(!isNaN('#_mobile_width_#')){
+				style = 'max-width:#_mobile_width_#px !important;'
+			}
+			cmd.find('.imgCmd img').attr('style',style);
 		});
 	</script>
 </div>

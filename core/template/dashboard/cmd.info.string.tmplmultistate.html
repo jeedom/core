@@ -34,6 +34,11 @@
 			if(state != ''){
 				cmd.find('.iconCmd').empty().append(state);
 			}
+			var style = '';
+			if(!isNaN('#_desktop_width_#')){
+				style = 'width:#_desktop_width_#px !important;'
+			}
+			cmd.find('.imgCmd img').attr('style',style);
 		});
 	</script>
 	<!-- Hide parameters  #_mobile_width_# -->

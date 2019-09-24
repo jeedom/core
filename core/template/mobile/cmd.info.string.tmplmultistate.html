@@ -31,5 +31,10 @@
     if(state != ''){
       cmd.find('.iconCmd').empty().append(state);
     }
+    var style = '';
+    if(!isNaN('#_mobile_width_#')){
+      style = 'max-width:#_mobile_width_#px !important;'
+    }
+    cmd.find('.imgCmd img').attr('style',style);
   });
 </script>
