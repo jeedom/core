@@ -17,11 +17,11 @@
 var widget_parameters_opt = {
   'desktop_width' : {
     'type' : 'number',
-    'name' : '{{Largeur desktop}}'
+    'name' : '{{Largeur desktop}} <sub>px</sub>'
   },
   'mobile_width' : {
     'type' : 'number',
-    'name' : '{{Largeur mobile}}'
+    'name' : '{{Largeur mobile}} <sub>px</sub>'
   },
   'time_widget' : {
     'type' : 'checkbox',
