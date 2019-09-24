@@ -66,15 +66,15 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 
 ## Paramètres fréquents
 
-- Time widget : affiche le temps depuis lequel le systeme est dans l'état afficher. Valeur 0,vide ou 1
-- Icon on : icone à afficher si l'équipement est on/1
-- Icon off : icone à afficher si l'équipement est off/0
-- Img light on : icone à afficher si l'équipement est on/1 et que le theme est light (si vide alors jeedom prend l'img dark on)
-- Img light off : icone à afficher si l'équipement est off/0 et que le theme est light (si vide alors jeedom prend l'img dark off)
-- Img dark on : icone à afficher si l'équipement est on/1 et que le theme est dark (si vide alors jeedom prend l'img light on)
-- Img dark off : icone à afficher si l'équipement est off/0 et que le theme est dark (si vide alors jeedom prend l'img light off)
-- Desktop width : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
-- Mobile width : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image 
+- Time widget : affiche le temps depuis lequel le systeme est dans l'état afficher.
+- On : icone à afficher si l'équipement est on/1
+- Off : icone à afficher si l'équipement est off/0
+- Light on : icone à afficher si l'équipement est on/1 et que le theme est light (si vide alors jeedom prend l'img dark on)
+- Light off : icone à afficher si l'équipement est off/0 et que le theme est light (si vide alors jeedom prend l'img dark off)
+- Dark on : icone à afficher si l'équipement est on/1 et que le theme est dark (si vide alors jeedom prend l'img light on)
+- Dark off : icone à afficher si l'équipement est off/0 et que le theme est dark (si vide alors jeedom prend l'img light off)
+- Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image 
 
 ## HygroThermographe
 
