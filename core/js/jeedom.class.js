@@ -777,7 +777,7 @@ jeedom.cleanDatabase = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-jeedom.getThemeImgWidget(_light,_dark){
+jeedom.getThemeImgWidget = function(_light,_dark){
   if(_light != '' && _dark == ''){
     return _light;
   }
