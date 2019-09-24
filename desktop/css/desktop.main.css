@@ -1541,6 +1541,14 @@ input.knob {
   padding: 0;
 }
 
+.btn-group-toggle > label.active {
+  background-color: var(--al-primary-color) !important;
+}
+.btn-group-toggle > label:not(.active) {
+  font-style: italic;
+  font-weight: 400;
+}
+
 .input-xs {
   height: 22px;
   padding: 5px 5px;
