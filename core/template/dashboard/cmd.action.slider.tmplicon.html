@@ -6,15 +6,19 @@
     <span class="cursor iconCmd#uid# iconCmd"></span>
   </div>
   <div class="value">
-    <div>
-      <div class="slider" value="#state#">
-        <span class="value#uid# sliderValue"></span>
-      </div>
+    <div class="slider" value="#state#">
+      <span class="value#uid# sliderValue"></span>
     </div>
+    <span class="timeCmd#uid# timeCmd label label-default"></span>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       var cmd = $('.cmd[data-cmd_id=#id#]');
+      if('#_time_widget_#' == '1'){
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+      }else{
+        cmd.find('.timeCmd').remove();
+      }
       cmd.find('.slider').slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
