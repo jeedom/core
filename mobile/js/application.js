@@ -143,9 +143,9 @@ function triggerThemechange() {
   //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
   if (currentTheme.endsWith('Light')) {
-    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_light)
+    $('#homeLogoImg').attr('src', ('../../'+jeedom.theme.logo_mobile_light))
   } else {
-    $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_dark)
+    $('#homeLogoImg').attr('src', ('../../'+jeedom.theme.logo_mobile_dark))
   }
   //trigger event for widgets:
   if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {

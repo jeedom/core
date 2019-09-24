@@ -48,7 +48,9 @@ class jeedom {
 			'interface::advance::enable',
 			'interface::advance::coloredIcons',
 			'logo_light',
-			'logo_dark'
+			'logo_dark',
+			'logo_mobile_light',
+			'logo_mobile_dark'
 		);
 		$css_convert = array();
 		$return = config::byKeys($key);
