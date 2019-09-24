@@ -1,0 +1,49 @@
+<div class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="min-width:90px;">
+  
+  <div class="title #hide_name#">
+    <div  class="cmdName">#valueName#</div>
+  </div>
+  <div class="content-sm ">
+    <span class="imgCmd"></span>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
+          cmd.hide();
+        }else{
+          cmd.show()
+          .find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#"))
+          .attr('data-state','on');
+        }
+      } else {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+          cmd.hide();
+        }else{
+          cmd.show()
+          .find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#"))
+          .attr('data-state','on');
+        }
+      }
+      var style = '';
+      if(!isNaN('#_desktop_width_#')){
+        style = 'width:#_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    $('.cmd[data-cmd_uid=#uid#] .imgCmd').off().on('click', function () {
+      jeedom.cmd.execute({id: '#id#'});
+    });
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.attr('data-state') == 'on'){
+        cmd.find('.imgCmd img').attr('src',jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#"))
+      }else{
+        cmd.find('.imgCmd img').attr('src',jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#"))
+      }
+    });
+  </script>
+  <!-- Hide parameters  #_mobile_width_# -->
+</div>

@@ -23,14 +23,6 @@
           cmd.find('.iconCmd').empty().append("#_icon_off_#");
         }
       }
-      var style = '';
-      if(!isNaN('#_width_#')){
-        style = 'max-width:#_width_#px !important;'
-      }
-      if(!isNaN('#_height_#')){
-        style += 'max-height:#_height_#px !important;'
-      }
-      cmd.find('.iconCmd img').attr('style',style);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#'});
     $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
