@@ -697,7 +697,7 @@ function triggerThemechange() {
     $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_dark)
   }
   //trigger event for widgets:
-  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan'].includes($('body').attr('data-page')) ) {
+  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
