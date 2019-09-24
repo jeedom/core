@@ -14,6 +14,21 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var widget_parameters_opt = {
+  'desktop_width' : {
+    'type' : 'number',
+    'name' : '{{Largeur desktop}}'
+  },
+  'mobile_width' : {
+    'type' : 'number',
+    'name' : '{{Largeur mobile}}'
+  },
+  'time_widget' : {
+    'type' : 'checkbox',
+    'name' : '{{Time widget}}'
+  }
+}
+
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -240,11 +255,19 @@ function loadTemplateConfiguration(_template,_data){
         var replace = '';
         for(var i in data.replace){
           replace += '<div class="form-group">';
-          replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("_", " "))+'</label>';
+          if(widget_parameters_opt[data.replace[i]]){
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
+          }else{
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
+          }
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
-          if(data.replace[i] == 'time_widget'){
-            replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+          if(widget_parameters_opt[data.replace[i]]){
+            if(widget_parameters_opt[data.replace[i]].type == 'checkbox'){
+              replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }else if(widget_parameters_opt[data.replace[i]].type == 'number'){
+              replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }
           }else{
             replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
           }
