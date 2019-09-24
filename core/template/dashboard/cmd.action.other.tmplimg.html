@@ -21,17 +21,13 @@
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide();
         }else{
-          cmd.show()
-          .find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#"))
-          .attr('data-state','on');
+          cmd.show().find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_on_#","#_img_dark_on_#")).attr('data-state','on');
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide();
         }else{
-          cmd.show()
-          .find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#"))
-          .attr('data-state','on');
+          cmd.show().find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#")).attr('data-state','on');
         }
       }
       var style = '';
