@@ -17,6 +17,7 @@
 			}else {
 				cmd.find('.imgCmd').empty().append(jeedom.getThemeImgWidget("#_img_light_off_#","#_img_dark_off_#")).attr('data-state','off');
 			}
+			var style = '';
 			if(!isNaN('#_mobile_width_#')){
 				style = 'max-width:#_mobile_width_#px !important;'
 			}
