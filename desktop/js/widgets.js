@@ -143,7 +143,7 @@ $(function(){
         if(_widgets.length == 0){
           return;
         }
-        widgetsList = []
+        var widgetsList = []
         widgetsList['info'] = []
         widgetsList['action'] = []
         for(i=0; i<_widgets.length; i++)
@@ -155,6 +155,7 @@ $(function(){
         
         //set context menu!
         var contextmenuitems = {}
+        var uniqId = 0
         for (var group in widgetsList) {
           groupWidgets = widgetsList[group]
           items = {}
@@ -162,7 +163,8 @@ $(function(){
             wg = groupWidgets[index]
             wgName = wg[0]
             wgId = wg[1]
-            items[wgId] = {'name': wgName}
+            items[uniqId] = {'name': wgName, 'id' : wgId}
+            uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
@@ -173,7 +175,7 @@ $(function(){
           zIndex: 9999,
           className: 'widget-context-menu',
           callback: function(key, options) {
-            url = 'index.php?v=d&p=widgets&id=' + key;
+            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id;
             if (document.location.toString().match('#')) {
               url += '#' + document.location.toString().split('#')[1];
             }
