@@ -22,6 +22,7 @@ function initScenario() {
   
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     var search = $(this).value()
+    search = normTextLower(search)
     if(search == ''){
       $('.scenario-widget').show()
       $('#div_displayScenario').packery()
@@ -29,7 +30,8 @@ function initScenario() {
     }
     $('.scenario-widget').each(function(){
       var match = false
-      if(match || $(this).find('.widget-name').text().toLowerCase().indexOf(search.toLowerCase()) >= 0){
+      text = normTextLower($(this).find('.widget-name').text())
+      if(match || text.indexOf(search) >= 0){
         match = true;
       }
       if(match){
