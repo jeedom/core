@@ -235,7 +235,7 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function () {
   var bt = $(this);
   chooseIcon(function (_icon) {
-    bt.closest('.form-group').find('.testAttr[data-l1key=state]').value(_icon);
+    bt.closest('.input-group').find('.testAttr').value(_icon);
   },{img:true});
 });
 
