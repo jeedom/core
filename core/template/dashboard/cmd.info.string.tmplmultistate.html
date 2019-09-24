@@ -21,14 +21,20 @@
 			#test#
 			cmd.find('.iconCmd').empty().append(state);
 			var style = '';
-			if(!isNaN('#_width_#')){
-				style = 'max-width:#_width_#px !important;'
-			}
-			if(!isNaN('#_height_#')){
-				style += 'max-height:#_height_#px !important;'
+			if(!isNaN('#_desktop_width_#')){
+				style = 'width:#_desktop_width_#px !important;'
 			}
 			cmd.find('.iconCmd img').attr('style',style);
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+		$('body').on('changeThemeEvent', function (event, theme) {
+			var cmd = $('.cmd[data-cmd_id=#id#]');
+			var state = '';
+			#change_theme#
+			if(state != ''){
+				cmd.find('.iconCmd').empty().append(state);
+			}
+		});
 	</script>
+	<!-- Hide parameters  #_mobile_width_# -->
 </div>

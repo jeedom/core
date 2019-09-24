@@ -1181,9 +1181,13 @@ class cmd {
 			}
 			$replace['#test#'] = '';
 			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
+				$i=0
+				$replace['#change_theme#'] = '';
 				foreach ($template_conf['test'] as &$test) {
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
-					$replace['#test#'] .= 'if('. $test['operation'].'){state=\''.str_replace("'","\'",$test['state']).'\'}';
+					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.getThemeImgWidget(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
+					$replace['#change_theme#'] .= 'if(cmd.attr("data-state")) == '.$i.'){state=jeedom.getThemeImgWidget(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
+					$i++;
 				}
 			}
 		}

@@ -17,15 +17,13 @@
       if (jeedom.cmd.normalizeName('#name#') == 'on') {
         cmd.hide();
       }else{
-        cmd.show();
-        cmd.find('.iconCmd').empty().append("#_icon_on_#");
+        cmd.show().find('.iconCmd').empty().append("#_icon_on_#");
       }
     } else {
       if (jeedom.cmd.normalizeName('#name#') == 'off') {
         cmd.hide();
       }else{
-        cmd.show();
-        cmd.find('.iconCmd').empty().append("#_icon_off_#");
+        cmd.show().find('.iconCmd').empty().append("#_icon_off_#");
       }
     }
   }

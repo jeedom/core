@@ -359,14 +359,23 @@ function addTest(_test){
   div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
   div += '</div>';
   div += '</div>';
-  div += '<div class="col-sm-7">';
+  div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state" placeholder="Résultat si test ok"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
+  div += '<div class="col-sm-3">';
+  div += '<div class="input-group">';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+  div += '</span>';
+  div += '</div>';
+  div += '</div>';
+  
   div += '</div>';
   div += '</div>';
   $('#div_templateTest').append(div);
