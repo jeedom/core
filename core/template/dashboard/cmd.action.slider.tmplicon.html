@@ -42,7 +42,7 @@
       }
       cmd.find('.iconCmd img').attr('style',style);
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
     $('.iconCmd#uid#').off().on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
