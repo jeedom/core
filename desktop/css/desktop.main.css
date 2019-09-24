@@ -399,11 +399,6 @@ legend {
   max-height: 12px;
 }
 
-.iconCmd img{
-  max-width: 31px;
-  max-height: 31px;
-}
-
 .statusCmd {
   color: var(--linkHoverLight-color);
   position: absolute;
