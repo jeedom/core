@@ -554,7 +554,7 @@ class eqLogic {
 		$html .= '</center>';
 		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
-      	if ($_version == 'mobile') {
+		if ($_version == 'mobile') {
 			$html .= '<span class="pull-left batteryTime">';
 		} else {
 			$html .= '<span class="pull-left batteryTime cursor">';

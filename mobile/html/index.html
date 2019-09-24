@@ -38,6 +38,7 @@
   <script src="core/php/getJS.php?file=core/js/cron.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/plan3d.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/log.class.js"></script>
+  <script src="core/php/getJS.php?file=core/js/widgets.class.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
@@ -58,21 +59,21 @@
       </h1>
       <a class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
       <a href="#bottompanel" id="bt_bottompanel"><i class="fas fa-bars"></i></a>
-
+      
       <div id="searchContainer" style="display:none;">
         <input class="form-control roundedLeft" id="in_searchWidget" placeholder="{{Rechercher}}">
         <a id="bt_eraseSearchInput" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight">
           <i class="fas fa-times"></i>
         </a>
       </div>
-
+      
       <div id="div_loadingSpinner" style="display: none;">
         <div class="break dot1" style="position : relative;top : 0px;"></div>
         <div class="break dot2" style="position : relative;top : -3px;"></div>
         <div class="break dot3" style="position : relative;top : -6px;"></div>
       </div>
     </div>
-
+    
     <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
     <div data-role="popup" id="popupDialog" style="width : 100%">
       <div data-role="header">
