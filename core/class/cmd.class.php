@@ -1181,7 +1181,7 @@ class cmd {
 			}
 			$replace['#test#'] = '';
 			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
-				$i=0
+				$i=0;
 				$replace['#change_theme#'] = '';
 				foreach ($template_conf['test'] as &$test) {
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
