@@ -118,10 +118,11 @@ class repo_market {
 		}
 		$nbInstall = 0;
 		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall','core',0);
-		foreach ($results['plugins'] as $plugin) {
+		foreach ($results['plugins'] as &$plugin) {
 			if($plugin['datetime'] < $lastInstallDate){
 				continue;
 			}
+			$plugin['version'] = isset($plugin['version']) ? $plugin['version'] : 'stable';
 			try {
 				$repo = self::byId($plugin['id']);
 				if (!is_object($repo)) {
@@ -135,8 +136,8 @@ class repo_market {
 				$update->setSource(init('repo'));
 				$update->setLogicalId($repo->getLogicalId());
 				$update->setType($repo->getType());
-				$update->setLocalVersion($repo->getDatetime('stable'));
-				$update->setConfiguration('version', 'stable');
+				$update->setLocalVersion($repo->getDatetime($plugin['version']));
+				$update->setConfiguration('version', $plugin['version']);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;
