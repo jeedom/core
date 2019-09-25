@@ -107,6 +107,43 @@ class repo_market {
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
+	public static function installPluginFromMarket(){
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('register::pluginToInstall')) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+		$results = $market->getResult();
+		if(!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0){
+			return;
+		}
+		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall',0);
+		foreach ($results['plugins'] as $plugin) {
+			if($plugin['datetime'] < $lastInstallDate){
+				continue;
+			}
+			try {
+				$repo = self::byId($plugin['id']);
+				if (!is_object($repo)) {
+					continue;
+				}
+				$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+				if (!is_object($update)) {
+					$update = new update();
+				}
+				$update->setSource(init('repo'));
+				$update->setLogicalId($repo->getLogicalId());
+				$update->setType($repo->getType());
+				$update->setLocalVersion($repo->getDatetime('stable'));
+				$update->setConfiguration('version', 'stable');
+				$update->save();
+				$update->doUpdate();
+			} catch (\Exception $e) {
+				
+			}
+		}
+		config::save('market::lastDatetimePluginInstall',(isset($results['datetime'])) ? $results['datetime'] : strtotime('now'))
+	}
+	
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
