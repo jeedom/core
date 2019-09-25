@@ -399,6 +399,20 @@ $('.displayStore').on('click', function () {
   $('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
+$('.pullInstall').on('click', function () {
+  jeedom.repo.pullInstall({
+    repo : $(this).attr('data-repo'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Nombre de plugins installé : }}'+data.number, level: 'success'});
+    }
+  });
+});
+
+
+
 $('#div_pageContainer').delegate('.sendPluginTo', 'click', function () {
   $('#md_modal2').dialog({title: "{{Envoyer sur le}} "+$(this).attr('data-repo')});
   $('#md_modal2').load('index.php?v=d&modal=update.send&type=plugin&logicalId=' + $(this).attr('data-logicalId')+'&repo='+$(this).attr('data-repo')).dialog('open');

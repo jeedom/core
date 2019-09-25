@@ -32,8 +32,8 @@ class repo_market {
 		'proxy' => true,
 		'sendPlugin' => true,
 		'hasStore' => true,
-		'hasScenarioStore' => true,
 		'test' => true,
+		'pullInstall' => true,
 	);
 	
 	public static $_configuration = array(
@@ -106,6 +106,48 @@ class repo_market {
 	private $allowVersion = array();
 	
 	/*     * ***********************Méthodes statiques*************************** */
+	
+	public static function pullInstall(){
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('register::pluginToInstall')) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+		$results = $market->getResult();
+		if(!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0){
+			return;
+		}
+		$nbInstall = 0;
+		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall','core',0);
+		foreach ($results['plugins'] as &$plugin) {
+			if($plugin['datetime'] < $lastInstallDate){
+				continue;
+			}
+			$plugin['version'] = isset($plugin['version']) ? $plugin['version'] : 'stable';
+			try {
+				$repo = self::byId($plugin['id']);
+				if (!is_object($repo)) {
+					continue;
+				}
+				log::add('market','debug',__('Lancement de l\'installation de ',__FILE__).$repo->getLogicalId().__(' en version ',__FILE__).$plugin['version']);
+				$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+				if (!is_object($update)) {
+					$update = new update();
+				}
+				$update->setSource(init('repo'));
+				$update->setLogicalId($repo->getLogicalId());
+				$update->setType($repo->getType());
+				$update->setLocalVersion($repo->getDatetime($plugin['version']));
+				$update->setConfiguration('version', $plugin['version']);
+				$update->save();
+				$update->doUpdate();
+				$nbInstall++;
+			} catch (\Exception $e) {
+				
+			}
+		}
+		config::save('market::lastDatetimePluginInstall',$results['datetime']);
+		return array('number' => $nbInstall);
+	}
 	
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
