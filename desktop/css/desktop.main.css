@@ -412,7 +412,7 @@ legend {
 label sup,
 sup i {
   color: var(--al-info-color);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .li_log i{
@@ -953,6 +953,11 @@ pre {
 .danger i,
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
+}
+sup.danger {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .yellow,
 [data-coloredicons="1"] .icon_yellow {
