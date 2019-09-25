@@ -49,6 +49,7 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup()
 })
 
+/* contextMenu */
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -64,7 +65,7 @@ $(function(){
         for(i=0; i<_objects.length; i++)
         {
           ob = _objects[i]
-          contextmenuitems[ob.id] = {'name': ob.name}
+          contextmenuitems[i] = {'name': ob.name, 'id' : ob.id}
         }
 
         $('.nav.nav-tabs').contextMenu({
@@ -73,7 +74,7 @@ $(function(){
           zIndex: 9999,
           className: 'object-context-menu',
           callback: function(key, options) {
-            url = 'index.php?v=d&p=object&id=' + key;
+            url = 'index.php?v=d&p=object&id=' + options.commands[key].id;
             if (document.location.toString().match('#')) {
               url += '#' + document.location.toString().split('#')[1];
             }

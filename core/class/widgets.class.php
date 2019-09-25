@@ -212,6 +212,18 @@ class widgets {
   }
   
   public function remove() {
+    $usedBy = $this->getUsedBy();
+    if(is_array($usedBy) && count($usedBy) > 0){
+      foreach ($usedBy as $cmd) {
+        if($cmd->getTemplate('dashboard') == 'custom::'.$this->getName()){
+          $cmd->setTemplate('dashboard','default');
+        }
+        if($cmd->getTemplate('mobile') == 'custom::'.$this->getName()){
+          $cmd->setTemplate('mobile','default');
+        }
+        $cmd->save(true);
+      }
+    }
     DB::remove($this);
   }
   

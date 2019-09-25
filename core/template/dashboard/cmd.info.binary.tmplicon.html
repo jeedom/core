@@ -5,23 +5,23 @@
   <div class="content-sm">
     <span class="iconCmd"></span>
   </div>
+  <div class="value">
+    <span class="timeCmd#uid# timeCmd label label-default value"></span>
+  </div>
   <script>
     jeedom.cmd.update['#id#'] =function(_options){
       var cmd = $('.cmd[data-cmd_id=#id#]');
+      if('#_time_widget_#' == '1'){
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+      }else{
+        cmd.find('.timeCmd').parent().remove();
+      }
       cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       if (_options.display_value == '1') {
         cmd.find('.iconCmd').empty().append("#_icon_on_#");
       }else {
         cmd.find('.iconCmd').empty().append("#_icon_off_#");
       }
-      var style = '';
-      if(!isNaN('#_width_#')){
-        style = 'max-width:#_width_#px !important;'
-      }
-      if(!isNaN('#_height_#')){
-        style += 'max-height:#_height_#px !important;'
-      }
-      cmd.find('.iconCmd img').attr('style',style);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>

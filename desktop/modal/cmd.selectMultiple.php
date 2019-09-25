@@ -15,7 +15,7 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
 
 <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
 <div>
-  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-check-circle"></i> {{Basculer}}</a>
+  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-check-circle"></i> {{Inverser}}</a>
   <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
 </div>
 <br/>
@@ -23,12 +23,19 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
   <thead>
     <tr>
       <th data-sorter="false" data-filter="false"></th>
+      <th>{{Objet}}</th>
+      <th>{{Equipement}}</th>
       <th>{{Nom}}</th>
     </tr>
   </thead>
   <tbody>
     <?php
     foreach ($listeCmds as $listCmd) {
+      $eqLogic = $listCmd->getEqLogic();
+      $object = null;
+      if(is_object($eqLogic)){
+        $object = $eqLogic->getObject();
+      }
       echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
       echo '<td>';
       if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
@@ -38,7 +45,17 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
       }
       echo '</td>';
       echo '<td>';
-      echo $listCmd->getHumanName(true);
+      if(is_object($object)){
+        echo $object->getName();
+      }
+      echo '</td>';
+      echo '<td>';
+      if(is_object($eqLogic)){
+        echo $eqLogic->getName();
+      }
+      echo '</td>';
+      echo '<td>';
+      echo $listCmd->getName();
       echo '</td>';
       echo '</tr>';
     }

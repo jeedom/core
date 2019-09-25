@@ -14,6 +14,21 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var widget_parameters_opt = {
+  'desktop_width' : {
+    'type' : 'number',
+    'name' : '{{Largeur desktop}} <sub>px</sub>'
+  },
+  'mobile_width' : {
+    'type' : 'number',
+    'name' : '{{Largeur mobile}} <sub>px</sub>'
+  },
+  'time_widget' : {
+    'type' : 'checkbox',
+    'name' : '{{Time widget}}'
+  }
+}
+
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -68,7 +83,7 @@ $('#bt_replaceWidget').off('click').on('click',function(){
 
 
 $('#bt_applyToCmd').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé widgets}}"})
+  $('#md_modal').dialog({title: "{{Appliquer sur}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
@@ -128,7 +143,7 @@ $(function(){
         if(_widgets.length == 0){
           return;
         }
-        widgetsList = []
+        var widgetsList = []
         widgetsList['info'] = []
         widgetsList['action'] = []
         for(i=0; i<_widgets.length; i++)
@@ -140,6 +155,7 @@ $(function(){
         
         //set context menu!
         var contextmenuitems = {}
+        var uniqId = 0
         for (var group in widgetsList) {
           groupWidgets = widgetsList[group]
           items = {}
@@ -147,7 +163,8 @@ $(function(){
             wg = groupWidgets[index]
             wgName = wg[0]
             wgId = wg[1]
-            items[wgId] = {'name': wgName}
+            items[uniqId] = {'name': wgName, 'id' : wgId}
+            uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
@@ -158,7 +175,7 @@ $(function(){
           zIndex: 9999,
           className: 'widget-context-menu',
           callback: function(key, options) {
-            url = 'index.php?v=d&p=widgets&id=' + key;
+            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id;
             if (document.location.toString().match('#')) {
               url += '#' + document.location.toString().split('#')[1];
             }
@@ -218,7 +235,7 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function () {
   var bt = $(this);
   chooseIcon(function (_icon) {
-    bt.closest('.form-group').find('.testAttr[data-l1key=state]').value(_icon);
+    bt.closest('.input-group').find('.testAttr').value(_icon);
   },{img:true});
 });
 
@@ -240,11 +257,23 @@ function loadTemplateConfiguration(_template,_data){
         var replace = '';
         for(var i in data.replace){
           replace += '<div class="form-group">';
-          replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", ""))+'</label>';
+          if(widget_parameters_opt[data.replace[i]]){
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
+          }else{
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
+          }
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
-          replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
-          if(data.replace[i].indexOf('icon') != -1){
+          if(widget_parameters_opt[data.replace[i]]){
+            if(widget_parameters_opt[data.replace[i]].type == 'checkbox'){
+              replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }else if(widget_parameters_opt[data.replace[i]].type == 'number'){
+              replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }
+          }else{
+            replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+          }
+          if(data.replace[i].indexOf('icon_') != -1 || data.replace[i].indexOf('img_') != -1){
             replace += '<span class="input-group-btn">';
             replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
             replace += '</span>';
@@ -330,14 +359,23 @@ function addTest(_test){
   div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
   div += '</div>';
   div += '</div>';
-  div += '<div class="col-sm-7">';
+  div += '<div class="col-sm-3">';
   div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state" placeholder="Résultat si test ok"/>';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
   div += '<span class="input-group-btn">';
   div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
   div += '</span>';
   div += '</div>';
   div += '</div>';
+  div += '<div class="col-sm-3">';
+  div += '<div class="input-group">';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+  div += '</span>';
+  div += '</div>';
+  div += '</div>';
+  
   div += '</div>';
   div += '</div>';
   $('#div_templateTest').append(div);
@@ -394,7 +432,23 @@ $(".widgetsDisplayCard").on('click', function (event) {
         usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+i+'">'+ data.usedBy[i]+'</span> ';
       }
       $('#div_usedBy').empty().append(usedBy);
-      loadTemplateConfiguration('cmd.'+data.type+'.'+data.subtype+'.'+data.template,data);
+      var template = 'cmd.';
+      if(data.type && data.type !== null){
+        template += data.type+'.';
+      }else{
+        template += 'action.';
+      }
+      if(data.subtype && data.subtype !== null){
+        template += data.subtype+'.';
+      }else{
+        template += 'other.';
+      }
+      if(data.template && data.template !== null){
+        template += data.template;
+      }else{
+        template += 'tmplicon';
+      }
+      loadTemplateConfiguration(template,data);
       addOrUpdateUrl('id',data.id);
       modifyWithoutSave = false;
       jeedom.widgets.getPreview({
@@ -483,7 +537,6 @@ $("#bt_mainImportWidgets").change(function(event) {
           success: function (data) {
             var readFile = new FileReader()
             readFile.readAsText(uploadedFile)
-            
             readFile.onload = function(e) {
               objectData = JSON.parse(e.target.result)
               if (!isset(objectData.jeedomCoreVersion)) {

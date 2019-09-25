@@ -307,6 +307,7 @@ legend {
   display: block;
   max-width: 70px;
   font-size: 11px !important;
+  margin-top: 4px;
 }
 
 .eqLogic-widget,
@@ -399,11 +400,6 @@ legend {
   max-height: 12px;
 }
 
-.iconCmd img{
-  max-width: 31px;
-  max-height: 31px;
-}
-
 .statusCmd {
   color: var(--linkHoverLight-color);
   position: absolute;
@@ -416,7 +412,7 @@ legend {
 label sup,
 sup i {
   color: var(--al-info-color);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .li_log i{
@@ -957,6 +953,11 @@ pre {
 .danger i,
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
+}
+sup.danger {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .yellow,
 [data-coloredicons="1"] .icon_yellow {
@@ -1539,6 +1540,14 @@ input.knob {
 }
 .input-group-sm > .input-group-addon {
   padding: 0;
+}
+
+.btn-group-toggle > label.active {
+  background-color: var(--al-primary-color) !important;
+}
+.btn-group-toggle > label:not(.active) {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .input-xs {

@@ -28,7 +28,7 @@ $(function(){
         if(_eqs.length == 0){
           return;
         }
-        eqsGroups = []
+        var eqsGroups = []
         for(i=0; i<_eqs.length; i++){
           eq = _eqs[i]
           humanName = eq.humanName
@@ -39,7 +39,7 @@ $(function(){
         }
         eqsGroups = Array.from(new Set(eqsGroups))
         eqsGroups.sort()
-        eqsList = []
+        var eqsList = []
         for(i=0; i<eqsGroups.length; i++){
           group = eqsGroups[i]
           eqsList[group] = []
@@ -55,6 +55,7 @@ $(function(){
         }
         //set context menu!
         var contextmenuitems = {}
+        var uniqId = 0
         for (var group in eqsList) {
           groupEq = eqsList[group]
           items = {}
@@ -62,7 +63,8 @@ $(function(){
             eq = groupEq[index]
             eqName = eq[0]
             eqId = eq[1]
-            items[eqId] = {'name': eqName}
+            items[uniqId] = {'name': eqName, 'id' : eqId}
+            uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
@@ -82,7 +84,7 @@ $(function(){
                   tab = null
                 }
               }
-              $('.eqLogicDisplayCard[data-eqLogic_id="' + key + '"]').click()
+              $('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]').click()
               if (tab) tab.click()
             },
             items: contextmenuitems

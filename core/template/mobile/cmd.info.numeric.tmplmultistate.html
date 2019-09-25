@@ -1,17 +1,40 @@
 <div class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
-    <span class="iconCmd"></span>
+    <div class="iconCmd"></div>
+    <span class="timeCmd#uid# timeCmd"></span>
   </center>
 </div>
 <script>
   jeedom.cmd.update['#id#'] = function(_options){
-    var state = '';
     var cmd = $('.cmd[data-cmd_id=#id#]');
+    if('#_time_widget_#' == '1'){
+      jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+    }else{
+      cmd.find('.timeCmd').remove();
+    }
+    var state = '';
     cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
     #test#
     cmd.find('.iconCmd').empty().append(state);
+    var style = '';
+    if(!isNaN('#_mobile_width_#')){
+      style = 'width:#_mobile_width_#px !important;'
+    }
+    cmd.find('.iconCmd img').attr('style',style);
   }
   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-  
+  $('body').on('changeThemeEvent', function (event, theme) {
+    var cmd = $('.cmd[data-cmd_id=#id#]');
+    var state = '';
+    #change_theme#
+    if(state != ''){
+      cmd.find('.iconCmd').empty().append(state);
+    }
+    var style = '';
+    if(!isNaN('#_mobile_width_#')){
+      style = 'max-width:#_mobile_width_#px !important;'
+    }
+    cmd.find('.iconCmd img').attr('style',style);
+  });
 </script>

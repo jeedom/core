@@ -23,14 +23,36 @@
     });
     jeedom.cmd.update['#id#'] = function(_options){
       var cmd = $('.cmd[data-cmd_id=#id#]');
-      jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
-      cmd.find('.slider input").value(_options.display_value);
-      if (parseInt(_options.display_value) > 0) {
-        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
-      }else {
-        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
+      if('#_time_widget_#' == '1'){
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+      }else{
+        cmd.find('.timeCmd').remove();
       }
+      cmd.find('.slider input').value(_options.display_value);
+      if (parseInt(_options.display_value) > 0) {
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#")).attr('data-state', 'on');
+      }else {
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#")).attr('data-state', 'off');
+      }
+      var style = '';
+      if(!isNaN('#_mobile_width_#')){
+        style = 'max-width:#_mobile_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.attr('data-state') == 'on'){
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+      }else{
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
+      }
+      var style = '';
+      if(!isNaN('#_mobile_width_#')){
+        style = 'max-width:#_mobile_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
+    });
   </script>
 </div>

@@ -2,25 +2,44 @@
 	<div class="title #hide_name#">
 		<div  class="cmdName">#name_display#</div>
 	</div>
-	<div class="content-sm ">
+	<div class="content-sm">
 		<span class="iconCmd"></span>
+	</div>
+	<div class="value">
+		<span class="timeCmd#uid# timeCmd label label-default value"></span>
 	</div>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
-			var state = '';
 			var cmd = $('.cmd[data-cmd_id=#id#]');
+			if('#_time_widget_#' == '1'){
+				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+			}else{
+				cmd.find('.timeCmd').parent().remove();
+			}
+			var state = '';
 			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'#unite#');
 			#test#
 			cmd.find('.iconCmd').empty().append(state);
 			var style = '';
-			if(!isNaN('#_width_#')){
-				style = 'max-width:#_width_#px !important;'
-			}
-			if(!isNaN('#_height_#')){
-				style += 'max-height:#_height_#px !important;'
+			if(!isNaN('#_desktop_width_#')){
+				style = 'width:#_desktop_width_#px !important;'
 			}
 			cmd.find('.iconCmd img').attr('style',style);
 		}
 		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+		$('body').on('changeThemeEvent', function (event, theme) {
+			var cmd = $('.cmd[data-cmd_id=#id#]');
+			var state = '';
+			#change_theme#
+			if(state != ''){
+				cmd.find('.iconCmd').empty().append(state);
+			}
+			var style = '';
+			if(!isNaN('#_desktop_width_#')){
+				style = 'width:#_desktop_width_#px !important;'
+			}
+			cmd.find('.iconCmd img').attr('style',style);
+		});
 	</script>
+	<!-- Hide parameters  #_mobile_width_# -->
 </div>

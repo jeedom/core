@@ -3,7 +3,7 @@
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-sm ">
-    <span class="cursor iconCmd#uid# iconCmd"></span>
+    <span class="cursor imgCmd#uid# imgCmd"></span>
   </div>
   <div class="value">
     <div class="slider" value="#state#">
@@ -14,7 +14,11 @@
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       var cmd = $('.cmd[data-cmd_id=#id#]');
-      jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
+      if('#_time_widget_#' == '1'){
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+      }else{
+        cmd.find('.timeCmd').remove();
+      }
       cmd.find('.slider').slider({
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
         max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
@@ -25,21 +29,18 @@
         }
       });
       if (parseInt(_options.display_value) > 0) {
-        cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on');
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#")).attr('data-state', 'on');
       }else {
-        cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off');
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#")).attr('data-state', 'off');
       }
       var style = '';
-      if(!isNaN('#_width_#')){
-        style = 'max-width:#_width_#px !important;'
+      if(!isNaN('#_desktop_width_#')){
+        style = 'width:#_desktop_width_#px !important;'
       }
-      if(!isNaN('#_height_#')){
-        style += 'max-height:#_height_#px !important;'
-      }
-      cmd.find('.iconCmd img').attr('style',style);
+      cmd.find('.imgCmd img').attr('style',style);
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
-    $('.iconCmd#uid#').off().on('click', function() {
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    $('.imgCmd#uid#').off().on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
         jeedom.cmd.execute({id: '#id#', value: {slider: value}});
@@ -51,6 +52,19 @@
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
       $(".value#uid#").hide();
+    });
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.attr('data-state') == 'on'){
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+      }else{
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
+      }
+      var style = '';
+      if(!isNaN('#_desktop_width_#')){
+        style = 'width:#_desktop_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
     });
   </script>
 </div>

@@ -347,53 +347,53 @@ function setTheme() {
 										<?php echo $plugin_menu; ?>
 									</ul>
 								</li>
-								<li class="dropdown cursor">
-									<a class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span>
-										<span class="caret"></span>
-									</a>
-									<?php if (isConnect('admin')) { ?>
-										<ul class="dropdown-menu">
-											<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
-												<ul class="dropdown-menu">
-													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-													<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
-													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
-													<?php if(jeedom::getHardwareName() == 'smart'){
-														echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
-													} ?>
-													<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
-													<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
-													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
-													<li class="divider"></li>
-													<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
-														echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
-														echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
-													} ?>
-												</ul>
-											</li>
-										<?php } ?>
-										<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
-										<li role="separator" class="divider"></li>
-										<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
-											<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Thème alternatif}}</a></li>
-										<?php } ?>
-										<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
-										<li role="separator" class="divider"></li>
-										<?php if (isConnect('admin')) { ?>
-											<li>
-												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
-													<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle" ></i> {{Rapport de bug}}</a>
-												<?php } else {?>
-													<a class="bt_reportBug"><i class="fas fa-exclamation-circle" ></i> {{Demande de support}}</a>
-												<?php } ?>
-											</li>
-										<?php } ?>
-										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
-									</ul>
-								</li>
 							<?php } ?>
+							<li class="dropdown cursor">
+								<a class="dropdown-toggle" data-toggle="dropdown">
+									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span>
+									<span class="caret"></span>
+								</a>
+								<?php if (isConnect('admin')) { ?>
+									<ul class="dropdown-menu">
+										<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
+											<ul class="dropdown-menu">
+												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
+												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
+												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
+												<?php if(jeedom::getHardwareName() == 'smart'){
+													echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
+												} ?>
+												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
+												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
+												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
+												<li class="divider"></li>
+												<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
+													echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
+													echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+												} ?>
+											</ul>
+										</li>
+									<?php } ?>
+									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
+									<li role="separator" class="divider"></li>
+									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
+										<li><a id="bt_switchTheme"><i class="fas fa-sync-alt"></i> {{Thème alternatif}}</a></li>
+									<?php } ?>
+									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
+									<li role="separator" class="divider"></li>
+									<?php if (isConnect('admin')) { ?>
+										<li>
+											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
+												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle" ></i> {{Rapport de bug}}</a>
+											<?php } else {?>
+												<a class="bt_reportBug"><i class="fas fa-exclamation-circle" ></i> {{Demande de support}}</a>
+											<?php } ?>
+										</li>
+									<?php } ?>
+									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
+									<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
+								</ul>
+							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<?php

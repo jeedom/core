@@ -1,9 +1,10 @@
 <div class="cmd tooltips cmd-widget cursor" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="min-width:90px;">
+  
   <div class="title #hide_name#">
     <div  class="cmdName">#valueName#</div>
   </div>
   <div class="content-sm ">
-    <span class="iconCmd"></span>
+    <span class="imgCmd"></span>
   </div>
   <div class="value">
     <span class="timeCmd#uid# timeCmd label label-default value"></span>
@@ -20,21 +21,38 @@
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide();
         }else{
-          cmd.show();
-          cmd.find('.iconCmd').empty().append("#_icon_on_#");
+          cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#")).attr('data-state','on');
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide();
         }else{
-          cmd.show();
-          cmd.find('.iconCmd').empty().append("#_icon_off_#");
+          cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#")).attr('data-state','on');
         }
       }
+      var style = '';
+      if(!isNaN('#_desktop_width_#')){
+        style = 'width:#_desktop_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-    $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
+    $('.cmd[data-cmd_uid=#uid#] .imgCmd').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'});
     });
+    $('body').on('changeThemeEvent', function (event, theme) {
+      var cmd = $('.cmd[data-cmd_id=#id#]');
+      if(cmd.attr('data-state') == 'on'){
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+      }else{
+        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
+      }
+      var style = '';
+      if(!isNaN('#_desktop_width_#')){
+        style = 'width:#_desktop_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style',style);
+    });
   </script>
+  <!-- Hide parameters  #_mobile_width_# -->
 </div>

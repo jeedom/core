@@ -57,6 +57,7 @@ if (init('type') != '') {
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ', __FILE__) . getClientIp());
 		}
+		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp().' => '.json_encode($_GET));
 		if ($type == 'ask') {
 			$cmd = cmd::byId(init('cmd_id'));
 			if (!is_object($cmd)) {

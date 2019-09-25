@@ -1,17 +1,23 @@
 <div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="width:90px;height:100%;vertical-align: top;">
 	<center>
 		<div class="cmdName #hide_name#">#name_display#</div>
-		<span class="iconCmd"></span>
+		<div class="iconCmd"></div>
+		<span class="timeCmd#uid# timeCmd"></span>
 	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			var cmd = $('.cmd[data-cmd_id=#id#]');
+			if('#_time_widget_#' == '1'){
+				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+			}else{
+				cmd.find('.timeCmd').remove();
+			}
 			if (_options.display_value == '1') {
 				cmd.find('.iconCmd').empty().append("#_icon_on_#");
 			}else {
 				cmd.find('.iconCmd').empty().append("#_icon_off_#");
 			}
 		}
-		jeedom.cmd.update['#id#']({display_value:'#state#'});
+		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 	</script>
 </div>

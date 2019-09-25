@@ -169,6 +169,11 @@ $(function () {
   }
   $('body').attr('data-page',getUrlVars('p'));
   
+  //touch punch fix:
+  $('body').on('click','input', function() {
+    $(this).focus()
+  })
+  
   $('body').off('jeedom_page_load').on('jeedom_page_load',function(){
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
@@ -697,7 +702,7 @@ function triggerThemechange() {
     $('#homeLogoImg').attr('src', '../../'+jeedom.theme.logo_dark)
   }
   //trigger event for widgets:
-  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan'].includes($('body').attr('data-page')) ) {
+  if ( $('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
@@ -1504,6 +1509,7 @@ function editWidgetCmdMode(_mode) {
     }
     return this.find(selector);
   };
+  
   
   function initCheckBox(){}
   
