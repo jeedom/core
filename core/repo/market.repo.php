@@ -141,7 +141,7 @@ class repo_market {
 				
 			}
 		}
-		config::save('market::lastDatetimePluginInstall',(isset($results['datetime'])) ? $results['datetime'] : strtotime('now'))
+		config::save('market::lastDatetimePluginInstall',(isset($results['datetime'])) ? $results['datetime'] : strtotime('now'));
 	}
 	
 	public static function checkUpdate(&$_update) {
