@@ -444,7 +444,7 @@ $(".widgetsDisplayCard").on('click', function (event) {
         template += 'other.';
       }
       if(data.template && data.template !== null){
-        template += data.template+'.';
+        template += data.template;
       }else{
         template += 'tmplicon';
       }
