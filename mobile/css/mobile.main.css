@@ -281,7 +281,15 @@ a, .ui-link {
   color: var(--link-color) !important;
   margin: 7px;
   font-size: 30px !important;
+  top: 5px !important;
+  position: relative;
 }
+
+.cmd[data-type="action"] .iconCmd {
+  line-height: 16px;
+  min-height: 36px !important;
+}
+
 .timeCmd {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color)) !important;
@@ -298,6 +306,7 @@ a, .ui-link {
 }
 .cmdName {
   font-size: 14px !important;
+  font-weight: bold;
 }
 .cmdName:first-letter {
   text-transform: uppercase;
@@ -425,6 +434,7 @@ p.state {
   color: var(--link-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
   box-shadow: none;
+  line-height: 12px !important;
 }
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
