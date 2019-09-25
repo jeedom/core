@@ -83,7 +83,7 @@ $('#bt_replaceWidget').off('click').on('click',function(){
 
 
 $('#bt_applyToCmd').off('click').on('click', function () {
-  $('#md_modal').dialog({title: "{{Résumé widgets}}"})
+  $('#md_modal').dialog({title: "{{Appliquer sur}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
