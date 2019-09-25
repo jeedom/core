@@ -1184,6 +1184,15 @@ class cmd {
 				$i=0;
 				$replace['#change_theme#'] = '';
 				foreach ($template_conf['test'] as &$test) {
+					if(!isset($test['operation'])){
+						continue;
+					}
+					if(!isset($test['state_light'])){
+						$test['state_light'] = '';
+					}
+					if(!isset($test['state_dark'])){
+						$test['state_dark'] = '';
+					}
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
 					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.widgets.getThemeImg(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
 					$replace['#change_theme#'] .= 'if(cmd.attr("data-state") == '.$i.'){state=jeedom.widgets.getThemeImg(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
