@@ -60,6 +60,10 @@ Les tests sont sous la forme : #value# == 1, #value# sera automatiquement rempla
 >
 >Pour les utilisateurs avancés, il est possible ici d'utiliser aussi des fonctions javascript type #value#.match("^plop"), ici on test si le texte commence par plop
 
+>**Note**
+>
+>Il est possible d'afficher la valeur de la commande dans le widget en mettant par exemple a coté du code HTML de l'icone #value#
+
 # Description de widgets
 
 Nous allons ici décrire certain widget qui ont un fonctionnement un peu particulier.
@@ -74,7 +78,7 @@ Nous allons ici décrire certain widget qui ont un fonctionnement un peu particu
 - Dark on : icone à afficher si l'équipement est on/1 et que le theme est dark (si vide alors jeedom prend l'img light on)
 - Dark off : icone à afficher si l'équipement est off/0 et que le theme est dark (si vide alors jeedom prend l'img light off)
 - Largeur desktop : largeur de l'image sur desktop en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
-- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image 
+- Largeur mobile : largeur de l'image sur mobile en px (mettre juste le chiffre pas le px). Important seule la largeur vous est demandé, jeedom calculera la hauteur pour ne pas deformer l'image
 
 ## HygroThermographe
 
