@@ -105,7 +105,7 @@ try {
 			if(config::byKey('core::branch') == 'master'){
 				ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
 			}
-			ajax::success('https://github.com/jeedom/core/blob/'.config::byKey('core::branch').'/docs/' . config::byKey('language', 'core', 'fr_FR'). '/' . secureXSS($page));
+			ajax::success('https://github.com/jeedom/core/blob/'.config::byKey('core::branch').'/docs/' . config::byKey('language', 'core', 'fr_FR'). '/' . secureXSS($page).'.md');
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
