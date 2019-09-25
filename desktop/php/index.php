@@ -353,8 +353,8 @@ function setTheme() {
 									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span>
 									<span class="caret"></span>
 								</a>
-								<?php if (isConnect('admin')) { ?>
-									<ul class="dropdown-menu">
+								<ul class="dropdown-menu">
+									<?php if (isConnect('admin')) { ?>
 										<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
 											<ul class="dropdown-menu">
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
