@@ -238,7 +238,7 @@ function printUpdate() {
       if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -265,7 +265,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -277,12 +277,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-
+  
   _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -297,7 +297,7 @@ function addUpdate(_update) {
       tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> ';
     }
   } else {
-    tr += '<a class="btn btn-xs" href="https://jeedom.github.io/core/fr_FR/changelog" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
+    tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> ';
   }
   if (_update.type != 'core') {
     if (_update.status == 'UPDATE') {
@@ -317,6 +317,17 @@ function addUpdate(_update) {
   return html;
 }
 
+$('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
+  jeedom.getDocumentationUrl({
+    page: 'changelog',
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function(url) {
+      window.open(url,'_blank');
+    }
+  });
+});
 
 $('#bt_showHideLog').off('click').on('click',function() {
   if($('#div_log').is(':visible')) {
@@ -399,14 +410,14 @@ function createUpdateObserver() {
       }
     })
   })
-
+  
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
-
+  
   var targetNode = document.getElementById('pre_updateInfo')
   _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -417,7 +428,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
   l = lines.length
-
+  
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -428,13 +439,13 @@ function cleanUpdateLog() {
       break
     }
   }
-
+  
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-
+    
     //check ok at end of line:
     if (line.endsWith('OK')) {
       matches = line.match(/[. ]{1,}OK/g)
@@ -445,7 +456,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
-
+    
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -454,7 +465,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
-
+    
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -475,7 +486,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
-
+    
     if (line != '') {
       newLogText += line + '\n'
       $('#pre_updateInfo_clean').value(newLogText)
