@@ -127,6 +127,7 @@ class repo_market {
 				if (!is_object($repo)) {
 					continue;
 				}
+				log::add('market','debug',__('Lancement de l\'installation de : ',__FILE__).$repo->getLogicalId());
 				$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 				if (!is_object($update)) {
 					$update = new update();
