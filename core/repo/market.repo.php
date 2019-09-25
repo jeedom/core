@@ -32,8 +32,8 @@ class repo_market {
 		'proxy' => true,
 		'sendPlugin' => true,
 		'hasStore' => true,
-		'hasScenarioStore' => true,
 		'test' => true,
+		'pullInstall' => true,
 	);
 	
 	public static $_configuration = array(
@@ -107,7 +107,7 @@ class repo_market {
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
-	public static function installPluginFromMarket(){
+	public static function pullInstall(){
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('register::pluginToInstall')) {
 			throw new Exception($market->getError(), $market->getErrorCode());
@@ -116,7 +116,8 @@ class repo_market {
 		if(!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0){
 			return;
 		}
-		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall',0);
+		$nbInstall = 0;
+		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall','core',0);
 		foreach ($results['plugins'] as $plugin) {
 			if($plugin['datetime'] < $lastInstallDate){
 				continue;
@@ -137,11 +138,13 @@ class repo_market {
 				$update->setConfiguration('version', 'stable');
 				$update->save();
 				$update->doUpdate();
+				$nbInstall++;
 			} catch (\Exception $e) {
 				
 			}
 		}
-		config::save('market::lastDatetimePluginInstall',(isset($results['datetime'])) ? $results['datetime'] : strtotime('now'));
+		config::save('market::lastDatetimePluginInstall',$results['datetime']);
+		return array('number' => $nbInstall);
 	}
 	
 	public static function checkUpdate(&$_update) {

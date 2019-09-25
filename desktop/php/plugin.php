@@ -29,8 +29,15 @@ $plugins_list = plugin::listPlugin(false, true);
         $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
         $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
         $div .= '</div>';
-        echo $div;
+        if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
+          continue;
+        }
+        $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
+        $div .= '<center><i class="fas fa-sync"></i></center>';
+        $div .= '<span class="txtColor"><center>Synchroniser ' . $value['name'] . '</center></span>';
+        $div .= '</div>';
       }
+      echo $div;
       ?>
     </div>
     <legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
@@ -40,7 +47,6 @@ $plugins_list = plugin::listPlugin(false, true);
         <a id="bt_resetPluginSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
       </div>
     </div>
-    
     <div class="panel">
       <div class="panel-body">
         <div class="pluginListContainer">
