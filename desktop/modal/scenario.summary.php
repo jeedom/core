@@ -34,11 +34,11 @@ if (!isConnect()) {
 <script>
 	initTableSorter()
 	refreshScenarioSummary()
-	$tableScSummary = $('#table_scenarioSummary')
-	$tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '60px', '', '50px', '60px', '130px', '130px', '', '80px', '60px']
-	$tableScSummary.trigger('applyWidgets')
-	$tableScSummary.trigger('resizableReset')
-	$tableScSummary.trigger('sorton', [[[1,0]]])
+	var tableScSummary = $('#table_scenarioSummary')
+	tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '60px', '', '50px', '60px', '130px', '130px', '', '80px', '60px']
+	tableScSummary.trigger('applyWidgets')
+	tableScSummary.trigger('resizableReset')
+	tableScSummary.trigger('sorton', [[[1,0]]])
 
 	$('#bt_refreshSummaryScenario').off().on('click',function() {
 		refreshScenarioSummary()
