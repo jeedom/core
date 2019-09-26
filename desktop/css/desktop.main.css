@@ -223,21 +223,21 @@ legend {
   margin: 0 !important;
   border-left: none;
 }
-[data-page=display] #div_pageContainer #display ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li {
   list-style-type: none;
   margin: 2px 25px !important;
   padding: 1px 5px !important;
   border-bottom: 1px solid var(--el-defaultColor);
 }
-[data-page=display] #div_pageContainer #display ul > li input {
+[data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
   padding: 3px 5px !important;
   color: var(--linkHoverLight-color) !important;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li > i {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li > i {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -1853,6 +1853,14 @@ th {
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
   background-color: transparent!important;
+  transition-duration: 250ms;
+  transition-property: background-color;
+  transition-delay: 20ms;
+}
+.table-condensed.table-bordered tbody tr:hover td {
+  background-color: rgba(var(--contrast-color), 0.15) !important;
+  transition-duration: 250ms;
+  transition-property: background-color;
 }
 .table-striped>tbody>tr:nth-of-type(2n+1),
 .table > thead > tr {
@@ -1888,6 +1896,8 @@ tr.tablesorter-filter-row td {
 
 .tablesorter-filter-row {
   background-color: var(--btn-default-color)!important;
+  transition-duration: 500ms;
+  transition-property: background-color;
 }
 
 .table-condensed tr,
