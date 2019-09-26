@@ -114,7 +114,7 @@ class repo_market {
 		}
 		$results = $market->getResult();
 		if(!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0){
-			return;
+			return 0;
 		}
 		$nbInstall = 0;
 		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall','core',0);
@@ -343,6 +343,19 @@ class repo_market {
 		}
 		self::backup_install();
 		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
+		
+		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
+		$cmd .= ' duplicity cleanup --force ';
+		$cmd .= ' --ssl-no-check-certificate';
+		$cmd .= ' --num-retries 3';
+		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
+		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		try {
+			com_shell::execute($cmd);
+		} catch (Exception $e) {
+			
+		}
+		
 		if ($_nb == null) {
 			$_nb = 0;
 			$lists = self::backup_list();
