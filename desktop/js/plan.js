@@ -1045,9 +1045,10 @@ function displayObject(_plan,_html, _noRender) {
       continue;
     }
     if (key == 'font-size' && _plan.link_type == 'summary'){
-      html.find('*').each(function(){
+      html.find('.objectSummaryParent').each(function(){
         $(this).style(key, _plan.css[key], 'important');
       });
+      continue;
     }
     html.style(key, _plan.css[key], 'important');
   }
