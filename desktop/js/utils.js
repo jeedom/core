@@ -696,6 +696,7 @@ setTimeout(function() {
 function triggerThemechange() {
   //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
+  if (currentTheme === undefined) return
   if (currentTheme.endsWith('Light')) {
     $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
   } else {
