@@ -44,7 +44,7 @@ A continuación tiene una tabla:
 
 -   ** ** Eliminar: Eliminar usuario
 
--   **Régénérer clef API** : régénère la clef API de l’utilisateur
+-   **Regenerar llave API**: regenera la llave API del usuario
 
 -   ** ** Manejo de los derechos: a finamente gestionar los derechos
     el usuario (atención el perfil debe estar en

@@ -235,7 +235,7 @@ Changelog
 
 3.2.10
 =====
-- Correction de bugs.
+- Corrección de errores.
 - Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
@@ -364,7 +364,7 @@ Changelog
 - Possibilité d’historiser des commandes de type texte
 - Sur la page historique vous pouvez maintenant faire le graphique d’un calcul
 - Ajout d’une gestion de formule de calcul pour les historiques
-- Remise à jour de toute la documentation :
+- Actualización de toda la documentación :
     - Toute les docs ont été revues
     - Suppression des images pour faciliter la mise à jour et le
         multilingue
@@ -418,7 +418,7 @@ Changelog
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
 - Grosse amélioration des designs:
     - Toutes les actions sont maintenant accessibles à partir d’un
-        clic droit
+      clic derecho
     - Possibilité d’ajouter une commande seule
     - Possibilité d’ajouter une image ou un flux vidéo
     - Possibilité d’ajouter des zones (emplacement cliquable) :
@@ -568,7 +568,7 @@ Changelog
 - Suppression du démarrage en debug des démons, maintenant le niveau de logs du démon est le même que celui du plugin
 - Nettoyage de lib tierce
 - Suppression de responsive voice (fonction dit dans les scénarios qui marchait de moins en moins bien)
-- Correction de plusieurs faille de sécurité
+- Se corrigieron varios fallos de seguridad
 - Ajout d’un mode synchrone sur les scénarios (anciennement mode rapide)
 - Possibilité de rentrer manuellement la position des widgets en % sur les design
 - Refonte de la page de configuration des plugins

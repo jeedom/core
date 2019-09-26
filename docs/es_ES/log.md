@@ -31,7 +31,7 @@ botones:
 >! si se quita el (línea de comandos, por ejemplo) lo hace
 > Para volver a crear no solo, tiene que reiniciar el sistema.
 
-Temps réel 
+Tiempo real 
 ==============
 
 El registro "Evento" es un poco particular. En primer lugar por ella

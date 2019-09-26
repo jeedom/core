@@ -64,7 +64,7 @@ Aquí están las diferentes características para configurar un objeto:
 
 -   **Imagen**: Tienes la opción de subir una imagen o la
     supprimer. Au format jpeg cette image sera l'image de fond de l'objet
-    quand vous l'afficherez sur le dashboard.
+    cuando lo muestras en el dashboard.
 
 > **Tip**
 >
@@ -83,7 +83,7 @@ Aquí están las diferentes características para configurar un objeto:
 > Quand un équipement est créé et qu’aucun parent n’a été défini, il
 > aura comme parent : **Aucun** .
 
-Onglet Résumé 
+Pestaña Resumen 
 -------------
 
 Les résumés sont des informations globales, affectées à un objet, qui
@@ -127,9 +127,9 @@ Jeedom, ainsi que leur configuration :
 
 -   **ID** : ID del objeto.
 
--   **Objet** : Nom de l’objet.
+-   **Objeto**: Nombre del objeto.
 
--   **Père** : Nom de l’objet parent.
+-   **Padre**: Nombre del objeto padre.
 
 -   **Visible** : Visibilité de l’objet.
 
