@@ -2002,6 +2002,10 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 /* __________________________________________________________________________________________________________SCENARIO */
+.scenario_link .label {
+  display: inline-block;
+  margin: 2px;
+}
 #div_scenarioElement .element .element {
   box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
 }
