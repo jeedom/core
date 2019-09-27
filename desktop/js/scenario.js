@@ -1181,9 +1181,9 @@ function printScenario(_id) {
       if(data.scenario_link.scenario){
         for(var i in data.scenario_link.scenario){
           if(data.scenario_link.scenario[i].isActive == 1){
-            html  += '<span class="label label-success scenario_link" style="cursor:pointer" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
+            html  += '<span class="label label-success cursor scenario_link" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
           }else{
-            html  += '<span class="label label-danger scenario_link" style="cursor:pointer" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
+            html  += '<span class="label label-danger cursor scenario_link" data-scenario_id="'+i+'">'+data.scenario_link.scenario[i].name+'</span><br/>';
           }
         }
       }
