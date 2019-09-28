@@ -227,7 +227,7 @@ $('#bt_validChangeDate').on('click',function(){
 });
 
 function addChart(_cmd_id, _action,_options) {
-  
+
   if (_action == 0) {
     if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
       $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
@@ -268,7 +268,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-  
+
 }
 
 /**************TIMELINE********************/
@@ -303,13 +303,22 @@ function displayTimeline(){
     success: function (data) {
       data = data.reverse()
       var tr = ''
-      for(var i in data){
+      for (var i in data) {
         tr += '<tr>'
         tr += '<td>'
         tr += data[i].date
         tr += '</td>'
         tr += '<td>'
-        tr += data[i].type
+        if (data[i].group && data[i].plugins) {
+          if (data[i].group == 'action') {
+            tr += data[i].type + '&#160&#160' + '<i class="fas fa-terminal"></i>'
+          } else {
+            tr += data[i].type + '&#160&#160' + '<i class="fas fa-info-circle"></i>'
+          }
+          tr += '&#160&#160' + data[i].plugins
+        } else {
+          tr += data[i].type
+        }
         tr += '</td>'
         tr += '<td>'
         tr += data[i].html
@@ -330,7 +339,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-    
+
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
