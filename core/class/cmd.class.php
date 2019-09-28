@@ -804,7 +804,7 @@ class cmd {
 			$return['html'] .= '<div>' . $_event['options'] . '<div/>';
 			$return['html'] .= '</div>';
 		} else {
-			$class = '';
+			$class = 'info';
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
 				$class = ($_event['value'] == 0 ? 'success' : 'warning');
 			}
