@@ -611,8 +611,12 @@ class scenario {
 		}
 		$object = $scenario->getObject();
 		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
-		$return['html'] = '<div class="scenario" data-id="' . $_event['id'] . '">';
-		$return['html'] .= '<div>' . $_event['name'];
+
+		$name = str_replace('<br/><strong>', '',  $_event['name']);
+		$name = str_replace('</strong>', '',  $name);
+		$name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
+		$return['html'] = '<div class="tml-scenario" data-id="' . $_event['id'] . '">';
+		$return['html'] .= '<div>' . $name;
 		$return['html'] .= ' <span class="label-sm label-info" title="'.__('Scénario déclenché par',__FILE__).'">' . $_event['trigger'] . '</span>';
 		$return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog" title="'.__('Log du scénario',__FILE__).'"></i> ';
 		$return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario" title="'.__('Aller au scénario',__FILE__).'"></i> ';
@@ -620,6 +624,7 @@ class scenario {
 		$return['html'] .= '</div>';
 		return $return;
 	}
+
 
 	/*     * *********************Méthodes d'instance************************* */
 	/**
@@ -727,12 +732,12 @@ class scenario {
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName(true)));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true, true, true, true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => $cmd->getHumanName(true)));
 			}
 		} else {
 			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
+				jeedom::addTimelineEvent(array('type' => 'scenario', 'id' => $this->getId(), 'name' => $this->getHumanName(true, true, true, true), 'datetime' => date('Y-m-d H:i:s'), 'trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
 			}
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
