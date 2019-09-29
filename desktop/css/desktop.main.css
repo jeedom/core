@@ -2566,7 +2566,8 @@ textarea {
 .graph-widget {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
-[data-page="plan"] .highcharts-plot-band,
+.graph-widget .highcharts-plot-band,
+.div_viewZone .highcharts-plot-band,
 #div_graph .highcharts-plot-band,
 #div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
