@@ -1858,7 +1858,7 @@ th {
   transition-delay: 20ms;
 }
 .table-condensed.table-bordered tbody tr:hover td {
-  background-color: rgba(var(--contrast-color), 0.15) !important;
+  background-color: rgba(var(--contrast-color), 0.1) !important;
   transition-duration: 250ms;
   transition-property: background-color;
 }
@@ -1908,13 +1908,7 @@ tr.tablesorter-filter-row td {
   padding-top: 1px;
   padding-bottom: 2px;
 }
-.table-condensed tbody tr:hover td,
-.table-condensed tbody tr:hover td div.cmd div,
-.table-condensed tbody tr:hover > td input,
-.table-condensed tbody tr:hover > td not(i),
-.table-condensed tbody tr:hover > td input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox])  {
-  color: rgb(var(--contrast-color)) !important;
-}
+
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
