@@ -283,12 +283,12 @@ $('#table_timeline').on('click','.bt_scenarioLog',function(){
 });
 
 $('#table_timeline').on('click','.bt_gotoScenario',function(){
-  loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.scenario').attr('data-id'));
+  loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'));
 });
 
 $('#table_timeline').on('click','.bt_configureCmd',function(){
   $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open');
+  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open');
 });
 
 $('#bt_refreshTimeline').on('click',function(){
