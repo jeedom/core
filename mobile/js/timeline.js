@@ -30,6 +30,7 @@ function displayTimeline(){
 
       var tr = ''
       for (var i in data) {
+        if (!data[i].date) continue
         tr += '<tr>'
         tr += '<td>'
         tr += data[i].date
