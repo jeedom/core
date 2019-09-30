@@ -223,21 +223,21 @@ legend {
   margin: 0 !important;
   border-left: none;
 }
-[data-page=display] #div_pageContainer #display ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li {
   list-style-type: none;
   margin: 2px 25px !important;
   padding: 1px 5px !important;
   border-bottom: 1px solid var(--el-defaultColor);
 }
-[data-page=display] #div_pageContainer #display ul > li input {
+[data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
   padding: 3px 5px !important;
   color: var(--linkHoverLight-color) !important;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li > i {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li > i {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -1157,8 +1157,8 @@ button .fas.fa-plus-circle {
 #historytab .label.displayObject i:hover {
   color: inherit !important;
 }
-#timelinetab .cmd,
-#timelinetab .scenario {
+#timelinetab .tml-cmd,
+#timelinetab .tml-scenario {
   font-size: 14px;
   color: var(--txt-color) !important;
 }
@@ -1853,6 +1853,14 @@ th {
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
   background-color: transparent!important;
+  transition-duration: 250ms;
+  transition-property: background-color;
+  transition-delay: 20ms;
+}
+.table-condensed.table-bordered tbody tr:hover td {
+  background-color: rgba(var(--contrast-color), 0.1) !important;
+  transition-duration: 250ms;
+  transition-property: background-color;
 }
 .table-striped>tbody>tr:nth-of-type(2n+1),
 .table > thead > tr {
@@ -1888,6 +1896,8 @@ tr.tablesorter-filter-row td {
 
 .tablesorter-filter-row {
   background-color: var(--btn-default-color)!important;
+  transition-duration: 500ms;
+  transition-property: background-color;
 }
 
 .table-condensed tr,
@@ -1898,13 +1908,7 @@ tr.tablesorter-filter-row td {
   padding-top: 1px;
   padding-bottom: 2px;
 }
-.table-condensed tbody tr:hover td,
-.table-condensed tbody tr:hover td div.cmd div,
-.table-condensed tbody tr:hover > td input,
-.table-condensed tbody tr:hover > td not(i),
-.table-condensed tbody tr:hover > td input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox])  {
-  color: rgb(var(--contrast-color)) !important;
-}
+
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
@@ -1992,6 +1996,10 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 /* __________________________________________________________________________________________________________SCENARIO */
+.scenario_link .label {
+  display: inline-block;
+  margin: 2px;
+}
 #div_scenarioElement .element .element {
   box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
 }
@@ -2549,6 +2557,11 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
+.graph-widget {
+  background-color: rgb(var(--panel-bg-color)) !important;
+}
+.graph-widget .highcharts-plot-band,
+.div_viewZone .highcharts-plot-band,
 #div_graph .highcharts-plot-band,
 #div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
@@ -3077,11 +3090,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3090,7 +3103,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3099,12 +3112,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3112,11 +3125,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {

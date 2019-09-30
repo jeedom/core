@@ -54,7 +54,6 @@ path.highcharts-graph {
 .hgauge {
   position: relative;
   width: calc(100% - 16px);
-  height: 60px;
   top: 12px;
 }
 .hgauge-bckg {
@@ -62,6 +61,9 @@ path.highcharts-graph {
   height: 5px;
   top: -3px;
   background: var(--el-defaultColor);
+}
+.hgauge .cmdName {
+  padding: 8px;
 }
 .hgauge-value {
   height: 10px;
@@ -71,6 +73,7 @@ path.highcharts-graph {
 }
 .hgauge .state {
   margin-top: 10px;
+  padding-bottom: 20px !important;
 }
 
 .shuttergauge, .timeShuttergauge {

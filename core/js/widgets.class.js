@@ -159,8 +159,8 @@ jeedom.widgets.getThemeImg = function(_light,_dark){
   if(_light == '' && _dark != ''){
     return _dark;
   }
-  if ($('body').attr('data-theme') != undefined && $('body').attr('data-theme').endsWith('Light')) {
-    return _light;
+  if ($('body')[0].hasAttribute('data-theme')) {
+    if ($('body').attr('data-theme').endsWith('Light')) return _light;
   }
   return _dark;
 }

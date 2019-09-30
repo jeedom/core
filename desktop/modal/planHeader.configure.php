@@ -115,11 +115,15 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo $plan->getLink_id();
 							echo '</td>';
 							echo '<td>';
-							$link = $plan->	getLink();
-							if(is_object($link)){
-								echo $link->getHumanName();
+							if(in_array($plan->getLink_type(),array('text','summary'))){
+								echo '<span class="label label-default">N/A</span>';
 							}else{
-								echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+								$link = $plan->	getLink();
+								if(is_object($link)){
+									echo $link->getHumanName();
+								}else{
+									echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+								}
 							}
 							echo '</td>';
 							echo '<td>';

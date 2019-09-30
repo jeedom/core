@@ -9,7 +9,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
   <form class="form-horizontal col-lg-12">
     <br/>
     <center>
-      <img src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="50">
+      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="50">
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> | 
       <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> | 
@@ -58,6 +58,10 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 
 <script>
 $(function(){
+  	var currentTheme = $('body').attr('data-theme')
+  	if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+      $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
+    }
     var parentWidth = $( window ).width()
     var parentHeight = $( window ).height()
     if (parentWidth > 850 && parentHeight > 750) {

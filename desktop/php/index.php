@@ -421,7 +421,7 @@ function setTheme() {
 								<?php } ?>
 								<li class="hidden-xs"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li class="hidden-xs navTime">
-									<a href="index.php?v=d&p=log">
+									<a href="index.php?v=d&p=history#timelinetab">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
 									<a href="index.php?v=d&p=administration#generaltab">

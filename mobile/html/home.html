@@ -1,84 +1,97 @@
 <a class="ui-btn ui-btn-raised clr-warning" id='div_updateInProgress' style='display:none;margin-right : 5px;margin-left:5px;'></a>
-<div class="ui-grid-a">
-    <div class="ui-block-a">
-        <center>
-            <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_objectList">
-                {{Equipements}}<br/><i class="fas fa-tachometer-alt"></i>
-            </a>
-        </center>
-    </div>
-    <div class="ui-block-b">
-        <center>
-            <a href="#" class="link ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-page="message" data-title="{{Messages}}" data-role="button" style="margin: 5px;">
-                <span class="span_nbMessage"></span> {{Message(s)}}<br/><i class="fa fa-envelope"></i>
-            </a>
-        </center>
-    </div>
-</div>
+
 <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_objectList" data-animate="true" data-position='bottom' data-display="overlay"></div>
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_plan3dList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
-    <div class="ui-block-a">
-        <center>
-            <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_viewList">
-                {{Vues}}<br/><i class="fa fa-bars"></i>
-            </a>
-        </center>
-    </div>
-    <div class="ui-block-b">
-        <center>
-            <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_planList">
-                {{Design}}<br/><i class="far fa-image"></i>
-            </a>
-        </center>
-    </div>
+	<div class="ui-block-a">
+		<center>
+			<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_objectList">
+				{{Equipements}}<br/>
+				<i class="fas fa-tachometer-alt"></i>
+			</a>
+		</center>
+	</div>
+	<div class="ui-block-b">
+		<center>
+			<a href="#" class="link ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-page="message" data-title="{{Messages}}" data-role="button" style="margin: 5px;">
+				<span class="span_nbMessage"></span> {{Message(s)}}<br/>
+				<i class="fa fa-envelope"></i>
+			</a>
+		</center>
+	</div>
 </div>
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+
 <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_viewList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_planList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
-    <div class="ui-block-a">
-        <center>
-            <a class="link ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}" data-role="button" style="margin: 5px;">{{Scénario}}<br/><i class="fas fa-cogs"></i>
-            </a>
-
-        </center>
-    </div>
-    <div class="ui-block-b">
-        <center>
-            <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" href="#bottompanel_plan3dList" style="margin: 5px;">
-                {{3d}}<br/><i class="fa fa-cubes"></i>
-            </a>
-        </center>
-    </div>
+	<div class="ui-block-a">
+		<center>
+			<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_viewList">
+				{{Vues}}<br/>
+				<i class="far fa-image"></i>
+			</a>
+		</center>
+	</div>
+	<div class="ui-block-b">
+		<center>
+			<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;" href="#bottompanel_planList">
+				{{Designs}}<br/>
+				<i class="fas fa-paint-brush"></i>
+			</a>
+		</center>
+	</div>
 </div>
-<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_analyseActionList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+<div class="ui-grid-a">
+	<div class="ui-block-a">
+		<center>
+			<a class="link ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-page="scenario" data-title="{{Scénarios}}" data-role="button" style="margin: 5px;">
+				{{Scénario}}<br/>
+				<i class="fas fa-cogs"></i>
+			</a>
+		</center>
+	</div>
+	<div class="ui-block-b">
+		<center>
+			<a href="#bottompanel_analyseActionList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;">
+				{{Analyse}}<br/>
+				<i class="fas fa-stethoscope"></i>
+			</a>
+		</center>
+	</div>
+</div>
+
 <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_otherActionList" data-animate="true" data-position='bottom' data-display="overlay"></div>
+<div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel_pluginList" data-animate="true" data-position='bottom' data-display="overlay"></div>
 <div class="ui-grid-a">
-    <div class="ui-block-a">
-        <center id="bt_listPlugin">
-            <a href="#bottompanel_pluginList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;">
-                {{Plugins}}<br/><i class="fa fa-tasks"></i>
-            </a>
-        </center>
-    </div>
-    <div class="ui-block-b">
-        <center>
-            <a href="#bottompanel_otherActionList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;">
-                {{Autre}}<br/><i class="fa fa-crop"></i>
-            </a>
-        </center>
-    </div>
+	<div class="ui-block-a">
+		<center>
+			<a href="#bottompanel_otherActionList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" data-role="button" style="margin: 5px;">
+				{{Autre}}<br/>
+				<i class="fa fa-crop"></i>
+			</a>
+		</center>
+	</div>
+	<div class="ui-block-b">
+		<center id="bt_listPlugin">
+			<a href="#bottompanel_pluginList" class="ui-btn ui-btn-raised clr-primary waves-effect waves-button" style="margin: 5px;">
+				{{Plugins}}<br/>
+				<i class="fa fa-tasks"></i>
+			</a>
+		</center>
+	</div>
 </div>
 
+
 <div class="ui-grid-a">
-    <br>
-    <center id="jeedomName" class="label">WebApp Jeedom<br></center>
-    <center>
-        <svg height="14" width="20">
-            <g transform="scale(0.08)">
-            <path id="path2899" d="M107.587,0.504c-14.226,17.689 -27.949,35.842 -41.915,53.761c-21.889,28.406 -43.935,56.697 -65.527,85.327c16.006,0.292 32.026,0.104 48.038,0.159c19.282,-24.645 38.218,-49.565 57.785,-73.984c0.713,-0.633 1.874,-3.06 2.589,-0.995c31.675,40.65 63.345,81.305 94.959,122.003c15.513,-0.112 31.042,0.311 46.545,-0.239c1.606,-0.204 -1.209,-1.983 -1.283,-2.726c-43.587,-57.297 -87.3,-114.499 -131.205,-171.553c-3.259,-3.892 -6.034,-8.295 -9.769,-11.73c-0.07,-0.018 -0.145,-0.053 -0.217,-0.023Z" style="fill:#94ca02;fill-rule:nonzero;"></path>
-        </g></svg><span id="homeVersion" class="label" style="padding-left:0!important;"></span>
-    </center>
+	<br>
+	<center id="jeedomName" class="label">WebApp Jeedom<br></center>
+	<center>
+		<svg height="14" width="20">
+			<g transform="scale(0.08)">
+			<path id="path2899" d="M107.587,0.504c-14.226,17.689 -27.949,35.842 -41.915,53.761c-21.889,28.406 -43.935,56.697 -65.527,85.327c16.006,0.292 32.026,0.104 48.038,0.159c19.282,-24.645 38.218,-49.565 57.785,-73.984c0.713,-0.633 1.874,-3.06 2.589,-0.995c31.675,40.65 63.345,81.305 94.959,122.003c15.513,-0.112 31.042,0.311 46.545,-0.239c1.606,-0.204 -1.209,-1.983 -1.283,-2.726c-43.587,-57.297 -87.3,-114.499 -131.205,-171.553c-3.259,-3.892 -6.034,-8.295 -9.769,-11.73c-0.07,-0.018 -0.145,-0.053 -0.217,-0.023Z" style="fill:#94ca02;fill-rule:nonzero;"></path>
+		</g></svg><span id="homeVersion" class="label" style="padding-left:0!important;"></span>
+	</center>
 </div>
 
 <script src="core/php/getJS.php?file=mobile/js/home.js"></script>

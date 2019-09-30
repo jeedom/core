@@ -627,8 +627,10 @@ function date_fr($date_en) {
 		'/(^| )June($| )/', '/(^| )July($| )/', '/(^| )August($| )/', '/(^| )September($| )/',
 		'/(^| )October($| )/', '/(^| )November($| )/', '/(^| )December($| )/',
 	);
-	$texte_short_en = array(
-		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/',
+	$texte_short_day_en = array(
+		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/'
+	);
+	$texte_short_month_en = array(
 		'/(^| )Jan($| )/', '/(^| )Feb($| )/', '/(^| )Mar($| )/', '/(^| )Apr($| )/', '/(^| )May($| )/', '/(^| )Jun($| )/', '/(^| )Jul($| )/',
 		'/(^| )Aug($| )/', '/(^| )Sep($| )/', '/(^| )Oct($| )/', '/(^| )Nov($| )/', '/(^| )Dec($| )/',
 	);
@@ -642,8 +644,10 @@ function date_fr($date_en) {
 			'Juin', 'Juillet', 'Août', 'Septembre',
 			'Octobre', 'Novembre', 'Décembre',
 		);
-		$texte_short = array(
-			'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim',
+		$texte_short_day = array(
+			'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'
+		);
+		$texte_short_month = array(
 			'Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin',
 			'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.',
 		);
@@ -656,8 +660,10 @@ function date_fr($date_en) {
 			'Juni', 'July', 'August', 'September',
 			'October', 'November', 'December',
 		);
-		$texte_short = array(
-			'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son',
+		$texte_short_day = array(
+			'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son'
+		);
+		$texte_short_month = array(
 			'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
 			'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 		);
@@ -666,7 +672,7 @@ function date_fr($date_en) {
 		return $date_en;
 		break;
 	}
-	return preg_replace($texte_short_en, $texte_short, preg_replace($texte_long_en, $texte_long, $date_en));
+	return preg_replace($texte_short_day_en, $texte_short_day, preg_replace($texte_short_month_en, $texte_short_month, preg_replace($texte_long_en, $texte_long, $date_en)));
 }
 
 function convertDayEnToFr($_day) {

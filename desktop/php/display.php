@@ -41,12 +41,12 @@ if (!is_array($remove_history)) {
 	</div>
 </div>
 <ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
-	<li role="presentation" class="active"><a href="#display" aria-controls="display" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
-	<li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
+	<li role="presentation" class="active"><a href="#displaytab" aria-controls="displaytab" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
+	<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-	<div role="tabpanel" class="tab-pane active" id="display" style="display:none">
+	<div role="tabpanel" class="tab-pane active" id="displaytab">
 		<br/>
 		<div>
 			<div class="pull-left">
@@ -186,7 +186,7 @@ if (!is_array($remove_history)) {
 		</div>
 	</div>
 	
-	<div role="tabpanel" class="tab-pane" id="history">
+	<div role="tabpanel" class="tab-pane" id="historytab">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
 		<label class="label-sm"><i class="fas fa-trash"></i> {{Historique des suppressions}}</label>
@@ -206,7 +206,6 @@ if (!is_array($remove_history)) {
 				if (count($remove_history) > 0) {
 					foreach ($remove_history as $remove) {
 						$tr = '<tr>';
-						$tr .= '<tr>';
 						$tr .= '<td>';
 						$tr .= $remove['date'];
 						$tr .= '</td>';

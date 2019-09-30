@@ -3,14 +3,23 @@ $('#searchContainer').hide()
 
 function initHome() {
   refreshMessageNumber()
+
+  //set other analyse:
+  $bottomPanelAnalyseActions = $('#bottompanel_analyseActionList')
+  $bottomPanelAnalyseActions.empty()
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="timeline" data-title="{{Timeline}}"><i class="far fa-clock"></i> {{Timeline}}</a>')
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug"></i> {{Démons}}</a>')
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs"></i> {{Crons}}</a>')
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3"></i> {{Santé}}</a>')
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="eqAnalyse" data-title="{{Analyse équipement}}"><i class="fas fa-battery-full"></i> {{Analyse équipement}}</a>')
+  $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="log" data-title="{{Logs}}"><i class="far fa-file" ></i> {{Logs}}</a>')
+
+
+  //set other actions:
   $bottomPanelOtherActions = $('#bottompanel_otherActionList')
   $bottomPanelOtherActions.empty()
   $bottomPanelOtherActions.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fas fa-desktop"></i> {{Version desktop}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs" ></i> {{Crons}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="eqAnalyse" data-title="{{Analyse équipement}}"><i class="fas fa-battery-full" ></i> {{Analyse équipement}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="log" data-title="{{Logs}}"><i class="far fa-file" ></i> {{Logs}}</a>')
+
   if(jeedom.theme.mobile_theme_color != jeedom.theme.mobile_theme_color_night){
     $bottomPanelOtherActions.append('<a id="bt_switchTheme" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a>')
   }
@@ -18,6 +27,7 @@ function initHome() {
   $bottomPanelOtherActions.append('<a id="bt_forceReload" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-retweet"></i> {{Forcer mise à jour}}</a>')
   $bottomPanelOtherActions.append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>')
 
+  //fill bottom menus:
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -41,20 +51,23 @@ function initHome() {
     }
   })
 
+
   jeedom.view.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (views) {
-      var li = ''
-      for (var i in views) {
-        var icon = ''
-        if (isset(views[i].display) && isset(views[i].display.icon)) {
-          icon = views[i].display.icon
+      if (views.length) {
+        var li = ''
+        for (var i in views) {
+          var icon = ''
+          if (isset(views[i].display) && isset(views[i].display.icon)) {
+            icon = views[i].display.icon
+          }
+          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a>'
         }
-        li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a>'
+        $('#bottompanel_viewList').empty().append(li)
       }
-      $('#bottompanel_viewList').empty().append(li)
     }
   })
 
@@ -63,15 +76,18 @@ function initHome() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (planHeader) {
-      var li = ''
-      for (var i in planHeader) {
-        var icon = ''
-        if (isset(planHeader[i].configuration) && isset(planHeader[i].configuration.icon)) {
-          icon = planHeader[i].configuration.icon
+      if (planHeader.length) {
+        var li = ''
+        for (var i in planHeader) {
+          var icon = ''
+          if (isset(planHeader[i].configuration) && isset(planHeader[i].configuration.icon)) {
+            icon = planHeader[i].configuration.icon
+          }
+          li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +icon+' '+ planHeader[i].name + '</a>'
         }
-        li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan&plan_id=' + planHeader[i].id + '" data-ajax="false">' +icon+' '+ planHeader[i].name + '</a>'
+        $('#bottompanel_planList').empty().append('<span class="ui-bottom-sheet-link ui-bottom-sheet-sep">&#160&#160&#160 <i class="fas fa-paint-brush"></i> {{Designs}} <i class="fas fa-sort-down"></i></span>')
+        $('#bottompanel_planList').append(li)
       }
-      $('#bottompanel_planList').empty().append(li)
     }
   })
 
@@ -80,15 +96,18 @@ function initHome() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (plan3dHeader) {
-      var li = ''
-      for (var i in plan3dHeader) {
-        var icon = ''
-        if (isset(plan3dHeader[i].configuration) && isset(plan3dHeader[i].configuration.icon)) {
-          icon = plan3dHeader[i].configuration.icon
+      if (plan3dHeader.length) {
+        var li = ''
+        for (var i in plan3dHeader) {
+          var icon = ''
+          if (isset(plan3dHeader[i].configuration) && isset(plan3dHeader[i].configuration.icon)) {
+            icon = plan3dHeader[i].configuration.icon
+          }
+          li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '&fullscreen=1" data-ajax="false">' +icon+' '+ plan3dHeader[i].name + '</a>'
         }
-        li += '<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d&p=plan3d&plan3d_id=' + plan3dHeader[i].id + '&fullscreen=1" data-ajax="false">' +icon+' '+ plan3dHeader[i].name + '</a>'
+        $('#bottompanel_planList').append('<span class="ui-bottom-sheet-link ui-bottom-sheet-sep">&#160&#160&#160 <i class="fas fa-cubes"></i> {{Designs 3D}} <i class="fas fa-sort-down"></i></span>')
+        $('#bottompanel_planList').append(li)
       }
-      $('#bottompanel_plan3dList').empty().append(li)
     }
   })
 
@@ -116,6 +135,7 @@ function initHome() {
     $('#bt_listPlugin').hide()
   }
 
+  //buttons:
   $('#bt_logout').off('click').on('click', function () {
     $.ajax({
       type: "POST",

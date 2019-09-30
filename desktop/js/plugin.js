@@ -359,7 +359,7 @@ $("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function () {
   });
 });
 
-if (sel_plugin_id != -1) {
+if (typeof(sel_plugin_id) !== "undefined" && sel_plugin_id != -1) {
   if ($('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
     $('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').click();
   } else {

@@ -795,20 +795,23 @@ class cmd {
 		$return['plugins'] = $eqLogic->getEqType_name();
 		$return['category'] = $eqLogic->getCategory();
 		
+		$name = str_replace('<br/><strong>', '',  $_event['name']);
+		$name = str_replace('</strong>', '',  $name);
+		$name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
 		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<div>' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>';
+			$return['html'] = '<div class="tml-cmd" data-id="' . $_event['id'] . '">';
+			$return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></span>';
 			$return['html'] .= '<div>' . $_event['options'] . '<div/>';
 			$return['html'] .= '</div>';
 		} else {
-			$class = '';
+			$class = 'info';
 			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
 				$class = ($_event['value'] == 0 ? 'success' : 'warning');
 			}
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<div class="' . $class . '">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
-			$return['html'] .= ' <span class="label-sm label-info">' . $_event['value'] . '</span>';
-			$return['html'] .= '</div>';
+			$return['html'] = '<div class="tml-cmd" data-id="' . $_event['id'] . '">';
+			$return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
+			$return['html'] .= ' <span class="label-sm label-'.$class.'">' . $_event['value'] . '</span>';
+			$return['html'] .= '</span>';
 			$return['html'] .= '</div>';
 		}
 		return $return;
@@ -1084,7 +1087,7 @@ class cmd {
 			}
 			
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
+				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
@@ -1462,7 +1465,6 @@ class cmd {
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
-			$eqLogic->emptyCacheWidget();
 			$level = $this->checkAlertLevel($value);
 			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
@@ -1497,13 +1499,14 @@ class cmd {
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
+		$eqLogic->emptyCacheWidget();
 		if (!$repeat) {
 			$this->checkCmdAlert($value);
 			if (isset($level) && $level != $this->getCache('alertLevel')) {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => $this->getValueDate(), 'value' => $value . $this->getUnite()));
+				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => $this->getValueDate(), 'value' => $value . $this->getUnite()));
 			}
 			$this->pushUrl($value);
 		}
