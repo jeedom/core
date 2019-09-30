@@ -37,12 +37,12 @@ function displayTimeline(){
         tr += '<td>'
         if (data[i].group && data[i].plugins) {
           if (data[i].group == 'action') {
-            tr += '<i class="fas fa-terminal"></i>'
+            tr += '<i class="warning fas fa-terminal"></i>'
           } else {
-            tr += '<i class="fas fa-info-circle"></i>'
+            tr += '<i class="info fas fa-info-circle"></i>'
           }
         } else {
-          tr += '<i class="jeedom-clap_cinema"></i>'
+          tr += '<i class="success jeedom-clap_cinema"></i>'
         }
         tr += '</td>'
         tr += '<td>'
