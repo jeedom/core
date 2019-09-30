@@ -227,7 +227,6 @@ $('#bt_validChangeDate').on('click',function(){
 });
 
 function addChart(_cmd_id, _action,_options) {
-
   if (_action == 0) {
     if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
       $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
@@ -311,12 +310,16 @@ function displayTimeline(){
         tr += '<td>'
         if (data[i].group && data[i].plugins) {
           if (data[i].group == 'action') {
-            tr += data[i].type + '&#160&#160' + '<i class="fas fa-terminal"></i>'
+            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i>'
           } else {
-            tr += data[i].type + '&#160&#160' + '<i class="fas fa-info-circle"></i>'
+            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i>'
           }
           tr += '&#160&#160' + data[i].plugins
-        } else {
+        }
+        if (data[i].type == 'scenario') {
+          tr += data[i].type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
+        }
+        else {
           tr += data[i].type
         }
         tr += '</td>'
