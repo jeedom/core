@@ -788,6 +788,9 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #table_timeline {
   font-size: 12px;
 }
+#table_timeline tbody td > i{
+  font-size: 18px;
+}
 #table_timeline tr {
   min-height: 22px;
   padding: 0;
