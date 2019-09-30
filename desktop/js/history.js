@@ -278,7 +278,7 @@ $('#bt_tabTimeline').on('click',function(){
 
 $('#table_timeline').on('click','.bt_scenarioLog',function(){
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.scenario').attr('data-id')).dialog('open');
+  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open');
 });
 
 $('#table_timeline').on('click','.bt_gotoScenario',function(){
