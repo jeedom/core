@@ -335,20 +335,20 @@ a, .ui-link {
   padding: 5px;
 }
 .scenario-widget  {
-  min-height: 72px !important;
+  min-height: 65px !important;
 }
 .scenario-widget .state {
   padding-top: 12px;
   line-height: 40px !important;
 }
 .scenario-widget .state i {
-  font-size: 28px !important;
+  font-size: 22px !important;
   position: relative;
-  top: 7px !important;
+  top: 4px !important;
   margin-right: 22px;
 }
-.scenario-widget center:last-of-type {
-  margin-bottom: 8px;
+.scenario-widget .ui-btn.ui-mini {
+  font-size: 8px !important;
 }
 p.state {
   font-size: 12px !important;
