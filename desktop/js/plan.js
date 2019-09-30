@@ -1046,7 +1046,7 @@ function displayObject(_plan,_html, _noRender) {
     }
     html.style(key, _plan.css[key], 'important');
   }
-  if (_plan.css['opacity'] && _plan.css['opacity'] !== ''){
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && html.css('background-color')){
     html.style('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'), 'important');
   }
   if(_plan.link_type == 'eqLogic'){
