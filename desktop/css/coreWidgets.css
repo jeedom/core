@@ -158,7 +158,7 @@ div.cmd > div.center-block {
 .slider.ui-slider-vertical {
   position: absolute;
   margin: 5px;
-  height: 50px;
+  height: 48px;
   top: 16px !important;
   right: 3px;
 }
@@ -264,7 +264,7 @@ div.cmd > div.center-block {
 }
 .shuttergauge .slider {
   width: 60px;
-  top: 14px !important;
+  top: 16px !important;
 }
 .shuttergauge .timeCmd {
   position: relative;
