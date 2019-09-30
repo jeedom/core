@@ -983,6 +983,11 @@ $('#bt_graphScenario').off('click').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id='+$('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
+jwerty.key('ctrl+l', function (e) {
+  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
+  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+})
+
 $('#bt_logScenario').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
   $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
