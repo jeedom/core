@@ -2561,7 +2561,7 @@ textarea {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,
-.div_viewZone .highcharts-plot-band,
+.chartContainer .highcharts-plot-band,
 #div_graph .highcharts-plot-band,
 #div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
