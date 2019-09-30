@@ -1044,6 +1044,12 @@ function displayObject(_plan,_html, _noRender) {
     if (key == 'opacity'){
       continue;
     }
+    if (key == 'font-size' && _plan.link_type == 'summary'){
+      html.find('.objectSummaryParent').each(function(){
+        $(this).style(key, _plan.css[key], 'important');
+      });
+      continue;
+    }
     html.style(key, _plan.css[key], 'important');
   }
   if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && html.css('background-color')){
@@ -1113,6 +1119,11 @@ function displayObject(_plan,_html, _noRender) {
   }
   if(_plan.display.css && _plan.display.css != ''){
     html.attr('style',html.attr('style')+';'+_plan.display.css);
+    if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
+      html.find(_plan.display.cssApplyOn).each(function(){
+        $(this).attr('style',$(this).attr('style')+';'+_plan.display.css);
+      });
+    }
   }
   if(_plan.link_type == 'graph'){
     $('.div_displayObject').append(html);

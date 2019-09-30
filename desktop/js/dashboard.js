@@ -27,8 +27,10 @@ $(function(){
   },1);
 });
 
+var isEditing = false
 //searching
-$('#in_searchWidget').off('keyup').on('keyup',function(){
+$ ('#in_searchWidget').off('keyup').on('keyup',function() {
+  if (isEditing) return
   $('#bt_displaySummaries').attr('data-display', '0')
   var search = $(this).value()
   $('.div_object:not(.hideByObjectSel)').show()
@@ -88,21 +90,23 @@ $('#in_searchWidget').off('keyup').on('keyup',function(){
 })
 
 $('#bt_displaySummaries').on('click', function () {
+  if (isEditing) return
   $('.div_object').show()
   if ($(this).attr('data-display') == 0) {
     $('.eqLogic-widget').hide()
     $('.scenario-widget').hide()
     $('.div_displayEquipement').packery()
     $(this).attr('data-display', '1')
-} else {
-	$('.eqLogic-widget').show()
+  } else {
+    $('.eqLogic-widget').show()
     $('.scenario-widget').show()
     $('.div_displayEquipement').packery()
     $(this).attr('data-display', '0')
-}
+  }
 })
 
 $('#bt_resetDashboardSearch').on('click', function () {
+  if (isEditing) return
   $('#in_searchWidget').val('').keyup()
 })
 
@@ -111,6 +115,7 @@ $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function () {
 });
 
 $('#bt_displayObject').on('click', function () {
+  if (isEditing) return
   if ($(this).attr('data-display') == 1) {
     $('#div_displayObjectList').hide();
     $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-9 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12');
@@ -127,16 +132,16 @@ $('#bt_displayObject').on('click', function () {
 });
 
 function editWidgetMode(_mode,_save){
-  if(!isset(_mode)){
+  if (!isset(_mode)) {
     if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
       editWidgetMode(0,false);
       editWidgetMode(1,false);
     }
     return;
   }
-  if(_mode == 0){
+  if (_mode == 0) {
     jeedom.cmd.disableExecute = false;
-    if(!isset(_save) || _save){
+    if (!isset(_save) || _save) {
       saveWidgetDisplay({dashboard : 1});
     }
     if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
@@ -153,8 +158,13 @@ function editWidgetMode(_mode,_save){
     if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
+    isEditing = false
     $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
-  }else{
+    $('#dashTopBar').removeAttr('style')
+    $('#in_searchWidget').removeAttr('style')
+    $('#in_searchWidget').val('')
+    $('#in_searchWidget').prop('readonly', false)
+  } else {
     jeedom.cmd.disableExecute = true;
     $('.div_displayEquipement .eqLogic-widget').addClass('editingMode').draggable('enable');
     $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
@@ -177,7 +187,13 @@ function editWidgetMode(_mode,_save){
         positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
         ui.element.closest('.div_displayEquipement').packery();
       }
-    });
+    })
+    isEditing = true
+    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - 25px"})
+    $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
+    $('#in_searchWidget').style("color", "var(--linkHoverLight-color)", "important")
+    $('#in_searchWidget').val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
+    $('#in_searchWidget').prop('readonly', true)
   }
   editWidgetCmdMode(_mode);
 }
@@ -253,7 +269,6 @@ $('#bt_editDashboardWidgetOrder').on('click',function(){
     $('.div_displayEquipement').packery();
   }else{
     $('.tooltipstered').tooltipster('disable')
-    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}", level: 'info'});
     $(this).attr('data-mode',1);
     $('.bt_editDashboardWidgetAutoResize').show();
     $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function(){

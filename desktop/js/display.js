@@ -21,10 +21,7 @@ $('.backgroundforJeedom').css({
 })
 
 $(function(){
-  if ($('[aria-controls="display"]').parent().hasClass('active')) {
-    $('#display').show()
-    if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
-  }
+  if (getDeviceType()['type'] == 'desktop') $('#in_search').focus()
 })
 
 //searching

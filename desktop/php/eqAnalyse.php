@@ -148,7 +148,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -188,8 +188,8 @@ usort($list, function ($a, $b) {
 						$hasSomeAlerts += 1;
 					}
 					if ($hasSomeAlerts != 0) {
-						echo '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td>';
-						echo '<td>';
+						$tr =  '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td>';
+						$tr .= '<td>';
 						foreach ($listCmds as $cmdalert) {
 							foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 								if (!$value['check']) {
@@ -197,31 +197,32 @@ usort($list, function ($a, $b) {
 								}
 								if ($cmdalert->getAlert($level . 'if', '') != '') {
 									$during = $cmdalert->getAlert($level . 'during', '') == '' ? ' effet immédiat' : ' pendant plus de ' . $cmdalert->getAlert($level . 'during', '') . ' minute(s)';
-									echo ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>', $cmdalert->getAlert($level . 'if', ''))) . $during . '</br>';
+									$tr .= ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>', $cmdalert->getAlert($level . 'if', ''))) . $during . '</br>';
 								}
 							}
 						}
-						echo '</td>';
-						echo '<td>';
+						$tr .= '</td>';
+						$tr .= '<td>';
 						if ($eqLogic->getTimeout('') != '') {
-							echo $eqLogic->getTimeout('') . ' minute(s)';
+							$tr .= $eqLogic->getTimeout('') . ' minute(s)';
 						}
-						echo '</td>';
-						echo '<td>';
+						$tr .= '</td>';
+						$tr .= '<td>';
 						if ($eqLogic->getConfiguration('battery_danger_threshold', '') != '') {
-							echo '<label class="col-xs-6 label label-danger">{{Danger}} ' . $eqLogic->getConfiguration('battery_danger_threshold', '') . ' % </label>';
+							$tr .= '<label class="col-xs-6 label label-danger">{{Danger}} ' . $eqLogic->getConfiguration('battery_danger_threshold', '') . ' % </label>';
 						}
 						if ($eqLogic->getConfiguration('battery_warning_threshold', '') != '') {
-							echo '<label class="col-xs-6 label label-warning">{{Warning}} ' . $eqLogic->getConfiguration('battery_warning_threshold', '') . ' % </label>';
+							$tr .= '<label class="col-xs-6 label label-warning">{{Warning}} ' . $eqLogic->getConfiguration('battery_warning_threshold', '') . ' % </label>';
 						}
-						echo '</td></tr>';
+						$tr .= '</td></tr>';
+						echo $tr;
 					}
 				}
 				?>
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -235,68 +236,81 @@ usort($list, function ($a, $b) {
 			</thead>
 			<tbody>
 				<?php
+				$trs = '';
 				foreach (jeedom::deadCmd() as $datas) {
-					echo '<tr>';
-					echo '<td>Core</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Core</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
+				echo $trs;
+				$trs = '';
 				foreach (cmd::deadCmd() as $datas) {
-					echo '<tr>';
-					echo '<td>Commande</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Commande</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
+				echo $trs;
+				$trs = '';
 				foreach (jeeObject::deadCmd() as $datas) {
-					echo '<tr>';
-					echo '<td>Résumé</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Résumé</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
+				echo $trs;
+				$trs = '';
 				foreach (scenario::consystencyCheck(true) as $datas) {
-					echo '<tr>';
-					echo '<td>Scénario</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Scénario</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
+				echo $trs;
+				$trs = '';
 				foreach (interactDef::deadCmd() as $datas) {
-					echo '<tr>';
-					echo '<td>Interaction</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Interaction</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
+				echo $trs;
+				$trs = '';
 				foreach (user::deadCmd() as $datas) {
-					echo '<tr>';
-					echo '<td>Utilisateur</td>';
-					echo '<td>' . $datas['detail'] . '</td>';
-					echo '<td>' . $datas['who'] . '</td>';
-					echo '<td>' . $datas['help'] . '</td>';
-					echo '</tr>';
+					$trs .= '<tr>';
+					$trs .= '<td>Utilisateur</td>';
+					$trs .= '<td>' . $datas['detail'] . '</td>';
+					$trs .= '<td>' . $datas['who'] . '</td>';
+					$trs .= '<td>' . $datas['help'] . '</td>';
+					$trs .= '</tr>';
 				}
 				#vues/designs
+				$trs = '';
 				foreach (plugin::listPlugin(true) as $plugin) {
 					$plugin_id = $plugin->getId();
 					if (method_exists($plugin_id, 'deadCmd')) {
 						foreach ($plugin_id::deadCmd() as $datas) {
-							echo '<tr>';
-							echo '<td>Plugin ' . $plugin->getName() . '</td>';
-							echo '<td>' . $datas['detail'] . '</td>';
-							echo '<td>' . $datas['who'] . '</td>';
-							echo '<td>' . $datas['help'] . '</td>';
-							echo '</tr>';
+							$trs .= '<tr>';
+							$trs .= '<td>Plugin ' . $plugin->getName() . '</td>';
+							$trs .= '<td>' . $datas['detail'] . '</td>';
+							$trs .= '<td>' . $datas['who'] . '</td>';
+							$trs .= '<td>' . $datas['help'] . '</td>';
+							$trs .= '</tr>';
 						}
 					}
 				}
+				echo $trs;
 				?>
 			</tbody>
 		</table>
