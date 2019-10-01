@@ -189,7 +189,7 @@ function editWidgetMode(_mode,_save){
       }
     })
     isEditing = true
-    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":$('#dashTopBar').width()+'px'});
+    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'});
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
     .style("color", "var(--linkHoverLight-color)", "important")
     .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
