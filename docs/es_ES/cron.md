@@ -35,7 +35,7 @@ page). Dans ce tableau, on retrouve :
 -   **Acción**: un botón para iniciar o detener la tarea basada
     de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
 
--   **Actif** : indique si la tâche est active (peut être lancée
+-   **Activo** : indica si la tarea está activa (se puede iniciar
     por Jeedom) o no
 
 -   **PID** : indica el proceso ID actual

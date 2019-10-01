@@ -296,7 +296,7 @@ Parámetros:
     plusieurs commande d’un coup
 
 -   \[options\] Liste des options de la commande (dépend du type et du
-    sous-type de la commande)
+    subtipo del comando)
 
 cmd::getStatistique
 -------------------

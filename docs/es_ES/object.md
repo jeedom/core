@@ -60,7 +60,7 @@ Aquí están las diferentes características para configurar un objeto:
     de l’affichage de cet objet dans le dashboard. Par exemple : si vous
     mettez `6` à deux objets qui se suivent dans la liste, alors il
     seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
-    objets qui se suivent, ils seront également côte à côte.
+    objetos que se siguen, también estarán uno al lado del otro.
 
 -   **Imagen**: Tienes la opción de subir una imagen o la
     supprimer. Au format jpeg cette image sera l'image de fond de l'objet
@@ -94,7 +94,7 @@ s’affichent notamment sur le dashboard à côté du nom de ce dernier.
 Les colonnes représentent les résumés affectés à l’objet courant. Trois
 lignes vous sont proposées :
 
--   **Remonter dans le résumé global** : Cochez la case si vous
+-   **Mostrar en el resumen global**: Marque la casilla si
     souhaitez que le résumé soit affiché dans la barre de menu
     de Jeedom.
 
@@ -131,7 +131,7 @@ Jeedom, ainsi que leur configuration :
 
 -   **Padre**: Nombre del objeto padre.
 
--   **Visible** : Visibilité de l’objet.
+-   **Visible** : Visibilidad del objeto.
 
 -   **Masqué** : Indique si l’objet est masqué sur le dashboard.
 

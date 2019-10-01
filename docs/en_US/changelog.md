@@ -3,41 +3,41 @@ Changelog
 
 4.0.0
 =====
-- Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
-- Possibilité de changer de thème automatiquement en fonction de l'heure.
+- Complete redesign of themes (Core 2019 Light / Dark / Legacy).
+- Ability to change the theme automatically according to the time.
 - En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>
-- Amélioration et réorganisation du menu principal.
-- Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
-- Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
-- Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
-- Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche (scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
-- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
-- Lors d'une recherche, la touche *echap* annule la recherche.
-- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
-- Objets : Ajout d'une option pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
-- Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
-- Interactions : Ajout d'un menu contextuel sur les onglets (changement rapide d'interaction).
-- Plugins : Ajout d'un menu contextuel sur les onglets (changement rapide d'équipement).
-- Améliorations des tables avec option de filtre et tri.
-- Possibilité d'attribuer une icône à une interaction.
-- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
+- Improvement and reorganization of the main menu.
+- Plugins menu: The list of categories and plugins is now sorted alphabetically.
+- Tools menu: Added a button to access the expression tester.
+- Tools menu: Add a button to access the variables. <br/><br/>
+- Search fields now support accents.
+- The search fields (scenarios, objects, interactions, plugins) are now active when you open the page, allowing you to directly type a search.
+- Added an X button on the search fields to cancel the search.
+- During a search, the *escape* key cancels the search.
+- Added usage information when removing a device.
+- Objects: Added an option to use custom colors (otherwise, use the theme default colors).
+- Objects: Added a popup menu on the tabs (quick change of object).
+- Interactions: Added a popup menu on the tabs (fast interaction change).
+- Plugins: Added a popup menu on the tabs (quick change of equipment).
+- Table improvements with filter option and sorting.
+- Ability to assign an icon to an interaction.
+- Each page of Jeedom now has a title in the interface language (browser tab).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
 - Gestion des fonctions *Page précédente / Page suivante* du navigateur.
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres.<br/><br/>
-- Widgets : Refonte du système de widgets (menu Outils / Widgets).
-- Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
-- Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
-- Widgets : Ajout d'un widget horizontal (core).
-- Widgets : Ajout d'un widget vertical (core).
-- Widgets : Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
-- Configuration : Amélioration et réorganisation des onglets.
-- Configuration : Ajout de nombreux *tooltips* (aide).
-- Configuration : Ajout d'un moteur de recherche.
-- Configuration : Ajout d'un bouton pour vider le cache des widgets (onglet Cache).
-- Configuration : Ajout d'une option pour désactiver le cache des widgets (onglet Cache).
-- Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
-- Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
+- The name of the equipment is truncated on the dashboard if it exceeds 25 characters. <br/><br/>
+- Widgets: Redesign of the widget system (Tools / Widgets menu).
+- Widgets: Ability to replace one widget with another on all the commands using it.
+- Widgets: Ability to assign widgets to multiple commands.
+- Widgets: Added a horizontal widget (core).
+- Widgets: Add a vertical widget (core).
+- Widgets: Display of the shutter (core) widget proportional to the value. <br/><br/>
+- Configuration: Improvement and reorganization of the tabs.
+- Configuration: Added many *tooltips* (help).
+- Configuration: Adding a search engine.
+- Configuration: Add a button to clear the widget cache (Cache tab).
+- Configuration: Added an option to disable the widget cache (Cache tab).
+- Configuration: Ability to vertically center the contents of the tiles (Interface tab).
+- Configuration: Addition of a parameter for the global purge of histories (Commands tab).
 - Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
 - Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étées mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
 - Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).

@@ -22,14 +22,14 @@ que des fonctions pour les gérer au mieux :
     esta página.
 
 -   **Vue d’ensemble** : Permet d’avoir une vue d’ensemble de tous
-    les scénarios. Vous pouvez changer les valeurs **actif**,
+    los escenarios. Puede cambiar los valores **activo**,
     **visible**, **multi lancement**, **mode synchrone**, **Log** et
     **Timeline** (ces paramètres sont décrits dans le chapitre suivant).
     Vous pouvez également accéder aux logs de chaque scénario et les
     comenzar individualmente.
 
 -   **Testeur d’expression** : Permet d’exécuter un test sur une
-    expression de votre choix et d’en afficher le résultat.
+    expresión de su elección y mostrando el resultado.
 
 Mis escenarios
 -------------
@@ -110,7 +110,7 @@ notre scénario :
     autorizada
 
 -   **Multi lancement** : Cochez cette case si vous souhaitez que le
-    scénario puisse être lancé plusieurs fois en même temps.
+    escenario se pueda ejecutar varias veces al mismo tiempo.
 
 -   **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
 
@@ -166,7 +166,7 @@ Voici les différents types de blocs disponibles :
 
 -   **A** : Permet de dire à Jeedom de lancer les actions du bloc à une
     heure donnée (sous la forme hhmm). Ce bloc est non bloquant. Ex :
-    0030 pour 00h30, ou 0146 pour 1h46 et 1050 pour 10h50.
+    0030 para 00h30, o 0146 para 1h46 y 1050 para 10:50.
 
 -   **Code** : Permet d’écrire directement en code PHP (demande
     certaines connaissances et peut être risqué mais permet de n’avoir
@@ -177,7 +177,7 @@ Voici les différents types de blocs disponibles :
 Chacun de ces blocs a ses options pour mieux les manipuler :
 
 -   La case à cocher, à gauche, permet de désactiver complètement le
-    bloc sans pour autant le supprimer.
+    bloque sin tener que eliminarlo.
 
 -   La double-flèche verticale, à gauche, permet de déplacer tout le
     bloc par glisser/déposer.
@@ -283,7 +283,7 @@ Escenario :
 Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
 
 -   Une case **parallèle** pour que cette commande se lance en parallèle
-    des autres commandes également sélectionnées.
+    otros comandos también seleccionados.
 
 -   Une case **activée** pour que cette commande soit bien prise en
     cuenta en el escenario.
@@ -306,7 +306,7 @@ Les actions ajoutées dans les blocs ont plusieurs options. Dans l’ordre :
 Les substitutions possibles
 ===========================
 
-Les déclencheurs
+Los gatillos
 ----------------
 
 Il existe des déclencheurs spécifiques (autre que ceux fournis par les
@@ -354,7 +354,7 @@ comparaisons dans les conditions :
 -   coincidencias : contiene (ej :
     [Salle de bain][Hydrometrie][etat] matches "/humide/" ),
 
--   not ( …​ matches …​) : ne contient pas (ex :
+-   not (... matches ...) : no contiene (por ejemplo:
     not([Salle de bain][Hydrometrie][etat] matches "/humide/")),
 
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs
@@ -362,7 +362,7 @@ suivants :
 
 -   && / ET / et / AND / and : et,
 
--   \|| / OU / ou / OR / or : ou,
+-   \|| / O / o / OR / o: o,
 
 -   \|^ / XOR / xor : ou exclusif.
 
@@ -513,7 +513,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   lastBetween(commande,start,end) : Donne la dernière valeur
     enregistrée pour l’équipement entre les 2 bornes demandées (sous la
-    forme Y-m-d H:i:s ou [expression
+    forma Y-m-d H:i:s o [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   variable(mavariable,valeur par défaut) : Récupère la valeur d’une
@@ -589,17 +589,17 @@ ces différentes fonctions :
 | averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
 | min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
 | minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| max(prise,période)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
+| max(enchufe,período)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
 | maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| duration(prise,1,période)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
+| duración (enchufe,1,período)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
 | durationBetween(\#[Salon][Prise][Etat]\#,0,Last Monday,Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
 | statistics(enchufe,count,periodo)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
-| tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
+| tendencia(enchufe,período,0.1)        | Renvoie -1 : tendance à la baisse    |
 | stateDuration(enchufe)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
+| lastChangeStateDuration(enchufe,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
 | lastChangeStateDuration(enchufe,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
-| lastStateDuration(prise,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
+| lastStateDuration(enchufe,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
 | stateChanges(prise,période)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
 | stateChanges(prise,0,période)      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
 | stateChanges(prise,1,période)      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
@@ -649,7 +649,7 @@ effectuer des conversions ou des calculs :
 
 -   time_op(time,value) : Permet de faire des opérations sur le temps,
     avec time=temps (ex : 1530) et value=valeur à ajouter ou à
-    soustraire en minutes.
+    restar en minutos.
 
 -   `time_between(time,start,end)` : Permet de tester si un temps est
     entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
@@ -663,31 +663,31 @@ effectuer des conversions ou des calculs :
 
 -   floor(time/60) : Permet de convertir des secondes en minutes, ou
     des minutes en heures (floor(time/3600) pour des secondes
-    en heures)
+    en horas)
 
 - convertDuration(secondes) : Permet de convertir des secondes en j/h/mn/s.
 
 Et les exemples pratiques :
 
 
-| Exemple de fonction                  | Résultat retourné                    |
+| Ejemplo de función                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#) | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
 | randomColor(40,60)                 | Retourne une couleur aléatoire  proche du vert.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
-| odd(3)                             | Renvoie 1                            |
-| median(15,25,20)                   | Renvoie 20        
+| odd(3)                             | Devuelve 1                            |
+| mediana(15,25,20)                   | Renvoie 20        
 | avg(10,15,18)                      | Renvoie 14.3                     |
-| time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
-| formatTime(1650)                   | Renvoie 16h50                        |
+| time_op(#time#, -90)               | si son las 16h50, devuelve : 1650 - 0130 = 1520                          |
+| formatTime(1650)                   | Devuelve 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
 | convertDuration(3600)              | Renvoie 1h 0min 0s                      |
 | convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60) | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
 
 
-Les commandes spécifiques
+Los comandos específicos
 =========================
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
@@ -695,13 +695,13 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Pause** (sleep) : Pause de x seconde(s).
 
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
-    d’une variable.
+    de una variable.
 
 -   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
 
 -   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
-    ne faut utiliser que des lettre de a à z. Pas de majuscules, pas
+    solo use letras de la a a la z. No letras mayúsculas, no
     d’accents et pas de caractères spéciaux). On récupère le tag dans le
     scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
@@ -716,7 +716,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
 -   **Créer un message** (message) : Permet d’ajouter un message dans le centre
-    de messages.
+    de mensajes.
 
 -   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
@@ -738,7 +738,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
     les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
-    plus, choisir 4 niveaux d’alerte.
+    además, elegir 4 niveles de alerta.
 
 -   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
     validé sur tous les navigateurs qui ont une page jeedom ouverte.
