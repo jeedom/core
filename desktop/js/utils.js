@@ -33,6 +33,9 @@ var _observerConfig_ = {
   subtree: true
 }
 
+var userDeviceType = 'mobile'
+if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
+
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
     return;
@@ -263,6 +266,9 @@ $(function () {
     }
     $('li.dropdown.open').click();
     $('.navbar-collapse').removeClass('in');
+    if (userDeviceType == 'mobile') {
+      $('.dropdown-toggle').dropdown("close")
+    }
     loadPage($(this).attr('href'));
     e.preventDefault();
     e.stopPropagation();
@@ -292,7 +298,7 @@ $(function () {
     $('.dropdown-menu').dropdown('toggle');
   });
   
-  if (getDeviceType()['type'] == 'desktop') {
+  if (userDeviceType == 'desktop') {
     $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function (event) {
       if ($(window).width() < 768) return
       event.preventDefault();
