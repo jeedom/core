@@ -90,11 +90,6 @@ $(function () {
   }
   $('body').attr('data-page',getUrlVars('p'));
   
-  //touch punch fix:
-  $('body').on('click','input', function() {
-    $(this).focus()
-  })
-  
   window.addEventListener('popstate', function (event){
     if(event.state === null){
       return;
