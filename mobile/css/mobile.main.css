@@ -1,5 +1,6 @@
 /*
 Theme Core 2019 @Jeedom
+Mobile WebApp
 */
 
 @import url("coreWidgets.css");
@@ -800,6 +801,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #table_timeline .label-sm {
   padding: 5px;
   border-radius: var(--border-radius);
+  line-height: 27px;
 }
 #table_timeline .sepDay td {
   border-top: 2px dotted var(--txt-color);
@@ -820,6 +822,53 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 }
 .highcharts-tooltip .highcharts-shadow {
   display: none;
+}
+
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+  fill: var(--link-color) !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  fill: var(--txt-color) !important;
+}
+.highcharts-background {
+  fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
+  fill-opacity: var(--opacity);
+}
+.gauge .highcharts-background {
+  fill: transparent !important;
+}
+.highcharts-range-selector-buttons > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-container {
+  color: var(--txt-color) !important;
+}
+.chartContainer .highcharts-plot-band,
+#div_graph .highcharts-plot-band {
+  fill: rgb(var(--bg-color)) !important;
+}
+.highcharts-grid-line {
+  stroke: var(--defaultBkg-color);
+}
+.highcharts-button-box {
+  fill: var(--el-defaultColor) !important;
+}
+.highcharts-button > text,
+.highcharts-button-disabled > text{
+  fill: var(--link-color) !important;
+}
+.highcharts-axis-labels > text {
+  fill: var(--link-color) !important;
+}
+
+.highcharts-pane {
+  fill: var(--el-defaultColor);
+}
+.highcharts-data-label > span > span {
+  color: var(--txt-color) !important;
+}
+.highcharts-color-0 {
+  fill: var(--link-color);
 }
 
 
