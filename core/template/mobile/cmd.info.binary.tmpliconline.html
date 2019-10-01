@@ -4,9 +4,9 @@
 		jeedom.cmd.update['#id#'] = function(_options){
 			var cmd = $('.cmd[data-cmd_id=#id#]');
 			if (_options.display_value == '1') {
-				cmd.find('.iconCmdLine').empty().append('<i class="icon_green fas fa-check"></i>');
+				cmd.find('.iconCmdLine').empty().append('#_icon_on_#');
 			}else {
-				cmd.find('.iconCmdLine').empty().append('<i class="icon_red fas fa-times"></i>');
+				cmd.find('.iconCmdLine').empty().append('"#_icon_off_#"');
 			}
 			if(_options.alertLevel){
 				if(_options.alertLevel == 'warning'){
