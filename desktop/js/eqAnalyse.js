@@ -16,6 +16,10 @@
 */
 positionEqLogic();
 
+$("#tab_deadCmd").off("click").on("click", function () {
+  displayDeadCmd();
+});
+
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
@@ -48,16 +52,12 @@ $('#in_search').off('keyup').on('keyup',function(){
     return
   }
   search = normTextLower(search)
-  
   $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
-    
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
     text = normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
-    
     if(match) {
       $(this).show()
     } else {
@@ -98,3 +98,32 @@ $(function() {
     $('a[href="#deadCmd"] > i').addClass('warning')
   }
 })
+
+function displayDeadCmd(){
+  jeedom.cmd.getDeadCmd({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      var tr = '';
+      for(var i in data){
+        for(var j in data[i].cmd){
+          tr += '<tr>';
+          tr += '<td>';
+          tr += data[i].name;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].detail;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].who;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].help;
+          tr += '</td>';
+          tr += '</tr>';
+        }
+      }
+    }
+  })
+}

@@ -433,6 +433,25 @@ try {
 			ajax::success();
 		}
 		
+		if (init('action') == 'getDeadCmd') {
+			$return = array(
+				'core' => array('cmd' => jeedom::deadCmd(),'name' => __('Jeedom',__FILE__)),
+				'cmd' => array('cmd' => cmd::deadCmd(),'name' => __('Commande',__FILE__)),
+				'jeeObject' => array('cmd' => jeeObject::deadCmd(),'name' => __('Objet',__FILE__)),
+				'scenario' => array('cmd' => scenario::consystencyCheck(true),'name' => __('Scénario',__FILE__)),
+				'interactDef' => array('cmd' => interactDef::deadCmd(),'name' => __('Intéraction',__FILE__)),
+				'user' => array('cmd' => user::deadCmd(),'name' => __('Utilisateur',__FILE__)),
+			);
+			foreach (plugin::listPlugin(true) as $plugin) {
+				$plugin_id = $plugin->getId();
+				$return[$plugin_id] =  array('cmd' => array(),'name' => 'Plugin '.$plugin->getName());
+				if (method_exists($plugin_id, 'deadCmd')) {
+					$return[$plugin_id]['cmd'] = $plugin_id::deadCmd();
+				}
+			}
+			ajax::success($return);
+		}
+		
 		throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 		/*     * *********Catch exeption*************** */
 	} catch (Exception $e) {
