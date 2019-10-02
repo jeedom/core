@@ -78,6 +78,10 @@ function loadPage(_url,_noPushHistory){
     }
     modifyWithoutSave = false;
   }
+  if(JS_ERROR.length > 0){
+    document.location.href = _url;
+    return;
+  }
   if (typeof unload_page !== "undefined") {
     unload_page();
   }
@@ -747,15 +751,15 @@ function changeThemeAuto() {
     
     if (currentTheme != themeCss) {
       $.get(themeCss)
-        .done(function() {
-          $('#bootstrap_theme_css').attr('href', themeCss)
-          $('body').attr('data-theme',theme)
-          if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-          setBackgroundImg(BACKGROUND_IMG)
-          triggerThemechange()
+      .done(function() {
+        $('#bootstrap_theme_css').attr('href', themeCss)
+        $('body').attr('data-theme',theme)
+        if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
+        setBackgroundImg(BACKGROUND_IMG)
+        triggerThemechange()
       })
-        .fail(function() {
-          console.error("changeThemeAuto: can't find theme file " + themeCss)
+      .fail(function() {
+        console.error("changeThemeAuto: can't find theme file " + themeCss)
       })
     }
   }, 60000);
