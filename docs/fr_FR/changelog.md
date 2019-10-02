@@ -69,6 +69,7 @@ Changelog
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
+- Ajout d'un systeme de configuration en masse (utilisé sur la page Equipement pour configurer le timeout sur ceux-ci)
 
 >**IMPORTANT**
 >
@@ -87,7 +88,7 @@ Changelog
 - Suppression de la mise à jour des graphiques en temps réel, suite aux nombreux bugs remontés
 - Correction d'un bug pouvant empêcher l'affichage de certains logs
 - Correction d'un bug sur le service de monitoring
-- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte 
+- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte
 - Amélioration de l'action remove_inat dans les scénarios
 
 3.3.29
