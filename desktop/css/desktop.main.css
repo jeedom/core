@@ -2561,7 +2561,7 @@ textarea {
   background-color: rgb(var(--panel-bg-color)) !important;
 }
 .graph-widget .highcharts-plot-band,
-.div_viewZone .highcharts-plot-band,
+.chartContainer .highcharts-plot-band,
 #div_graph .highcharts-plot-band,
 #div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
@@ -3150,17 +3150,6 @@ ul.dropdown-menu {
   }
   .navbar-collapse.collapse {
     height: 50px !important;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .navbar-fixed-top .navbar-collapse {
-    position: fixed;
-    left: 15px;
-    top: 50px;
-    width: 100%;
-    max-height: calc(100% - 60px);
-    box-shadow: 0 12px 22px rgba(0,0,0,0.25);
   }
 }
 

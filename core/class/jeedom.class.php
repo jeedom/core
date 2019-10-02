@@ -92,7 +92,13 @@ class jeedom {
 	}
 	
 	public static function addTimelineEvent($_event) {
-		file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
+        $json  = json_encode($_event);
+         if (json_last_error() == JSON_ERROR_NONE) {
+          $fp = fopen(__DIR__ . '/../../data/timeline.json', 'a');
+          fwrite($fp, $json . "\n");
+          fclose($fp);
+        }
+		//file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
 	
 	public static function getTimelineEvent() {
@@ -1471,4 +1477,3 @@ class jeedom {
 		}
 		
 	}
-	

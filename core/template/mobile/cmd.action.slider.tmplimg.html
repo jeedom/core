@@ -44,9 +44,9 @@
     $('body').on('changeThemeEvent', function (event, theme) {
       var cmd = $('.cmd[data-cmd_id=#id#]');
       if(cmd.attr('data-state') == 'on'){
-        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+        cmd.find('.imgCmd').empty().append('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
       }else{
-        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
+        cmd.find('.imgCmd').empty().append('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
       }
       var style = '';
       if(!isNaN('#_mobile_width_#')){
