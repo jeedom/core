@@ -746,11 +746,17 @@ function changeThemeAuto() {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
     
     if (currentTheme != themeCss) {
-      $('#bootstrap_theme_css').attr('href', themeCss)
-      $('body').attr('data-theme',theme)
-      if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      setBackgroundImg(BACKGROUND_IMG)
-      triggerThemechange()
+      $.get(themeCss)
+        .done(function() {
+          $('#bootstrap_theme_css').attr('href', themeCss)
+          $('body').attr('data-theme',theme)
+          if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
+          setBackgroundImg(BACKGROUND_IMG)
+          triggerThemechange()
+      })
+        .fail(function() {
+          console.error("changeThemeAuto: can't find theme file " + themeCss)
+      })
     }
   }, 60000);
 }
