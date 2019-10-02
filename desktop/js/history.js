@@ -319,9 +319,6 @@ function displayTimeline(){
         if (data[i].type == 'scenario') {
           tr += data[i].type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
         }
-        else {
-          tr += data[i].type
-        }
         tr += '</td>'
         tr += '<td>'
         tr += data[i].html
@@ -336,8 +333,6 @@ function displayTimeline(){
     }
   });
 }
-
-
 
 function sepDays() {
   doIt = false
