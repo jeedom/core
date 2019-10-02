@@ -15,6 +15,7 @@ usort($list, function ($a, $b) {
 });
 ?>
 <br/>
+<a class="btn btn-success btn-sm pull-right" id="bt_massConfigureEqLogic"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 <ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
 	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
 	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
@@ -148,7 +149,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -222,7 +223,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">

@@ -20,16 +20,31 @@ foreach (explode('|',init('fields')) as &$field) {
   }
   $fields[] = $data;
 }
+sendVarToJs('edit_type',$type);
 ?>
-
-<table class="table table-condensed tablesorter">
+<div id="div_alertMassEdit"></div>
+<a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+<table class="table table-condensed tablesorter" id="table_massEdit">
   <thead>
     <tr>
       <th>#</th>
+      <?php
+      if(method_exists($type,'getEqType_name')){
+        echo '  <th>{{Type}}</th>';
+      }
+      ?>
       <th>{{Nom}}</th>
       <?php
       foreach ($fields as $field) {
-        echo '<th>'.$field['name'].'</th>';
+        switch ($field['type']) {
+          case 'checkbox':
+          $dataSorter = 'data-sorter="checkbox"';
+          break;
+          default:
+          $dataSorter = 'data-sorter="input"';
+          break;
+        }
+        echo '<th '.$dataSorter.'>'.$field['name'].'</th>';
       }
       ?>
     </tr>
@@ -38,10 +53,14 @@ foreach (explode('|',init('fields')) as &$field) {
     <?php
     foreach ($type::all() as $object) {
       $data_object = utils::o2a($object);
-      echo '<tr data-id="'.$object->getId().'">';
+      echo '<tr class="editObject" data-id="'.$object->getId().'">';
       echo '<td>';
+      echo '<input class="editObjectAttr" data-l1key="id" hidden value="'.$object->getId().'"></input>';
       echo $object->getId();
       echo '</td>';
+      if(method_exists($type,'getEqType_name')){
+        echo '  <td>'.$object->getEqType_name().'</td>';
+      }
       echo '<td>';
       echo $object->getHumanName();
       echo '</td>';
@@ -53,13 +72,13 @@ foreach (explode('|',init('fields')) as &$field) {
         }
         switch ($field['type']) {
           case 'number':
-          echo '<input type="number" class="form-control input-xs editAttr" '.$field['key'].' value="'.$value.'"></input>';
+          echo '<input type="number" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           case 'checkbox':
-          echo '<input type="checkbox" class="form-control input-xs editAttr" '.$field['key'].' value="'.$value.'"></input>';
+          echo '<input type="checkbox" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           default:
-          echo '<input class="form-control input-xs editAttr" '.$field['key'].' value="'.$value.'"></input>';
+          echo '<input class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
         }
         echo '</td>';
@@ -73,4 +92,16 @@ foreach (explode('|',init('fields')) as &$field) {
 <script>
 initTableSorter();
 
+$('#bt_saveMassEdit').off('click').on('click',function(){
+  jeedom.massEditSave({
+    type : edit_type,
+    objects : $('#table_massEdit .editObject').getValues('.editObjectAttr'),
+    error: function (error) {
+      $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(data){
+      $('#div_alertMassEdit').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
+    }
+  })
+});
 </script>

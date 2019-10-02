@@ -422,6 +422,30 @@ try {
 		ajax::success();
 	}
 	
+	if (init('action') == 'massEditSave') {
+		unautorizedInDemo();
+		$type = init('type');
+		if(!class_exists($type)){
+			throw new Exception('{{Type non trouvé : }}'.$type);
+		}
+		$datas = is_json(init('objects'),array());
+		if(count($datas) > 0){
+			foreach ($datas as $data) {
+				$object = $type::byId($data['id']);
+				if(!is_object($object)){
+					continue;
+				}
+				utils::a2o($object,$data);
+				try {
+					$object->save(true);
+				} catch (\Exception $e) {
+					var_dump($e);
+				}
+			}
+		}
+		ajax::success();
+	}
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
