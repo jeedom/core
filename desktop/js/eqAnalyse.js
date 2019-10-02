@@ -77,7 +77,7 @@ $('.batteryTime').off('click').on('click',function(){
 })
 
 $('#bt_massConfigureEqLogic').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration en masse}}"}).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout').dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration en masse}}"}).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
 });
 
 $(function() {
