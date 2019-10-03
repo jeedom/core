@@ -89,6 +89,10 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
+[data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
+  width: calc(100% - 50px);
+}
+
 /* __________________________________________________________________________________________________________LINKS */
 a,
 a i,
