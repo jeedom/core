@@ -89,7 +89,7 @@ if (init('rescue', 0) == 0) {
 global $homeLogoSrc;
 function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
-	$homeLogoSrc = '../../'.config::byKey('logo_light');
+	$homeLogoSrc = config::byKey('logo_light');
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
