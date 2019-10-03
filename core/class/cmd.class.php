@@ -1472,9 +1472,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						if (!$repeat) {
-							$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
-						}
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
