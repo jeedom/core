@@ -98,6 +98,8 @@ $(function(){
   }
 })
 
+$('body').attr('data-type', 'plugin');
+
 $('.nav-tabs a:not(.eqLogicAction)').first().click();
 
 $('.eqLogicAction[data-action=gotoPluginConf]').on('click', function () {
