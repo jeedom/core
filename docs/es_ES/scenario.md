@@ -60,7 +60,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Exécuter** : Permet de lancer le scénario manuellement (N’oubliez
     pas de sauvegarder au préalable !). Les déclencheurs ne sont donc
-    pas pris en compte.
+    no se tiene en cuenta.
 
 -   **Supprimer** : Permet de supprimer le scénario.
 
@@ -239,7 +239,7 @@ Une fois la condition renseignée, vous devez utiliser le bouton
 >
 > Attention, les tags ne sont pas disponibles dans un bloc de type code.
 
-Commandes (capteurs et actionneurs):
+Comandos (sensores y actuadores):
 -   cmd::byString($string); : Retourne l’objet commande correspondant.
   -   $string : Lien vers la commande voulue : #[objet][equipement][commande]# (ex : #[Appartement][Alarme][Actif]#)
 -   cmd::byId($id); : Retourne l’objet commande correspondant.
@@ -385,7 +385,7 @@ pouvez utiliser les tags suivants :
     ej : 8 para 08:07:06 o 17 para 17:15),
 
 -   #heure12# : Heure courante au format 12h (sans les zéros initiaux,
-    ex : 8 pour 08:07:06),
+    ej : 8 para 08:07:06),
 
 -   #minute# : Minute courante (sans les zéros initiaux, ex : 7 pour
     08:07:06),
@@ -482,7 +482,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   tendance(commande,période,seuil) : Donne la tendance de la
     commande sur la période (period=[month,day,hour,min] ou
-    [expression
+    [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   stateDuration(commande) : Donne la durée en secondes
@@ -639,13 +639,13 @@ effectuer des conversions ou des calculs :
     nombre de décimales après la virgule.
 
 -   odd(valeur) : Permet de savoir si un nombre est impair ou non.
-    Renvoie 1 si impair 0 sinon.
+    Devuelve 1 si es impar 0 de lo contrario.
 
 -   median(commande1,commande2…​.commandeN) : Renvoie la médiane
     de los valores.
 
 -   avg(commande1,commande2…​.commandeN) : Renvoie la moyenne
-        des valeurs.
+        unos valores.
 
 -   time_op(time,value) : Permet de faire des opérations sur le temps,
     avec time=temps (ex : 1530) et value=valeur à ajouter ou à
@@ -678,7 +678,7 @@ Et les exemples pratiques :
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
 | round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | odd(3)                             | Devuelve 1                            |
-| mediana(15,25,20)                   | Renvoie 20        
+| mediana(15,25,20)                   | Devuelve 20
 | avg(10,15,18)                      | Renvoie 14.3                     |
 | time_op(#time#, -90)               | si son las 16h50, devuelve : 1650 - 0130 = 1520                          |
 | formatTime(1650)                   | Devuelve 16h50                        |
@@ -720,7 +720,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
     modifier les propriétés d’un équipement
-    visible/invisible, actif/inactif.
+    visible/invisible, activo/inactivo.
 
 -   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
     une question à l’utilisateur. La réponse est stockée dans une
