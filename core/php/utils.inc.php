@@ -80,8 +80,8 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$md5 = md5_file($path);
 		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, 'min') !== false){
 			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
-		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.min.js')){
-			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.min.js"></script>';
+		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js')){
+			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js"></script>';
 		}else{
 			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
 		}
