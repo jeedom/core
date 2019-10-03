@@ -523,21 +523,45 @@ try {
 	
 	/*             * ************************Equipement*************************** */
 	if ($jsonrpc->getMethod() == 'eqLogic::all') {
-		$jsonrpc->makeSuccess(utils::o2a(eqLogic::all()));
+		$return = array();
+		foreach (eqLogic::all() as $eqLogic) {
+			if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+				continue;
+			}
+			$return[] = $eqLogic;
+		}
+		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
 	
 	if ($jsonrpc->getMethod() == 'eqLogic::byType') {
-		$jsonrpc->makeSuccess(utils::o2a(eqLogic::byType($params['type'])));
+		$return = array();
+		foreach (eqLogic::byType($params['type']) as $eqLogic) {
+			if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+				continue;
+			}
+			$return[] = $eqLogic;
+		}
+		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
 	
 	if ($jsonrpc->getMethod() == 'eqLogic::byObjectId') {
-		$jsonrpc->makeSuccess(utils::o2a(eqLogic::byObjectId($params['object_id'])));
+		$return = array();
+		foreach (eqLogic::byObjectId($params['object_id']) as $eqLogic) {
+			if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+				continue;
+			}
+			$return[] = $eqLogic;
+		}
+		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
 	
 	if ($jsonrpc->getMethod() == 'eqLogic::byId') {
 		$eqLogic = eqLogic::byId($params['id']);
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('EqLogic introuvable : ', __FILE__) . secureXSS($params['id']), -32602);
+		}
+		if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
 		$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 	}
@@ -546,6 +570,9 @@ try {
 		$eqLogic = eqLogic::byId($params['id']);
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('EqLogic introuvable : ', __FILE__) . secureXSS($params['id']), -32602);
+		}
+		if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
 		$return = utils::o2a($eqLogic);
 		$return['cmds'] = array();
@@ -609,6 +636,9 @@ try {
 		foreach ($params['eqType'] as $eqType) {
 			$info_eqLogics = array();
 			foreach (eqLogic::byType($eqType) as $eqLogic) {
+				if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+					continue;
+				}
 				$info_eqLogic = utils::o2a($eqLogic);
 				foreach ($eqLogic->getCmd() as $cmd) {
 					$info_eqLogic['cmds'][] = $cmd->exportApi();
@@ -620,6 +650,9 @@ try {
 		
 		foreach ($params['id'] as $id) {
 			$eqLogic = eqLogic::byId($id);
+			if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
+				continue;
+			}
 			$info_eqLogic = utils::o2a($eqLogic);
 			foreach ($eqLogic->getCmd() as $cmd) {
 				$info_eqLogic['cmds'][] = $cmd->exportApi();

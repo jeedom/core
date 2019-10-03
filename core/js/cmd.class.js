@@ -814,7 +814,6 @@ jeedom.cmd.normalizeName = function(_tagname) {
   return _tagname;
 }
 
-
 jeedom.cmd.setOrder = function(_params) {
   var paramsRequired = ['cmds'];
   var paramsSpecifics = {};
@@ -830,6 +829,24 @@ jeedom.cmd.setOrder = function(_params) {
   paramsAJAX.data = {
     action: 'setOrder',
     cmds: json_encode(_params.cmds)
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.getDeadCmd = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getDeadCmd'
   };
   $.ajax(paramsAJAX);
 };

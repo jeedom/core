@@ -1,5 +1,6 @@
 /*
 Core Widgets CSS @Jeedom
+Mobile WebApp
 */
 
 /* __________________________________________________________________________________________________________Global */
@@ -54,7 +55,8 @@ path.highcharts-graph {
 .hgauge {
   position: relative;
   width: calc(100% - 16px);
-  top: 12px;
+  margin-top: 6px;
+  margin-bottom: 4px;
 }
 .hgauge-bckg {
   position:relative;
@@ -63,7 +65,7 @@ path.highcharts-graph {
   background: var(--el-defaultColor);
 }
 .hgauge .cmdName {
-  padding: 8px;
+  min-height: 26px;
 }
 .hgauge-value {
   height: 10px;
@@ -73,7 +75,6 @@ path.highcharts-graph {
 }
 .hgauge .state {
   margin-top: 10px;
-  padding-bottom: 20px !important;
 }
 
 .shuttergauge, .timeShuttergauge {

@@ -30,14 +30,11 @@ $('#in_search').on('keyup',function() {
     var search = $(this).value()
     var searchID = search
     if (isNaN(search)) searchID = false
-
+    
     $('div.panel-collapse').removeClass('in')
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
     $('.cmdSortable').hide()
-    
-    console.log(search + ' - ' + searchID)
-    
     if (!search.startsWith('*') && searchID == false) {
       if( (search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4) ) {
         return
@@ -46,20 +43,18 @@ $('#in_search').on('keyup',function() {
       if(search == '*') return
       search = search.substr(1)
     }
-    
     search = normTextLower(search)
     $('.eqLogic').each(function(){
       var eqLogic = $(this)
       var eqParent = eqLogic.parents('.panel.panel-default').first()
       if (searchID) {
-        console.log('->searchID')
         var eqId = eqLogic.attr('data-id')
         if (eqId != searchID) {
-        	eqLogic.hide()
-      	} else {
-        	eqParent.find('div.panel-collapse').addClass('in')
-          	return
-      	}
+          eqLogic.hide()
+        } else {
+          eqParent.find('div.panel-collapse').addClass('in')
+          return
+        }
         $(this).find('.cmd').each(function() {
           var cmd = $(this)
           var cmdId = cmd.attr('data-id')
@@ -72,16 +67,15 @@ $('#in_search').on('keyup',function() {
           }
         })
       } else {
-        console.log('->searchName')
         var eqName = eqLogic.attr('data-name')
-      	eqName = normTextLower(eqName)
-      	var type = eqLogic.attr('data-type')
-      	type = normTextLower(type)
-      	if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0) {
-        	eqLogic.hide()
-      	} else {
+        eqName = normTextLower(eqName)
+        var type = eqLogic.attr('data-type')
+        type = normTextLower(type)
+        if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0) {
+          eqLogic.hide()
+        } else {
           eqParent.find('div.panel-collapse').addClass('in')
-      	}
+        }
         eqLogic.find('.cmd').each(function() {
           var cmd = $(this)
           var cmdName = cmd.attr('data-name')
@@ -211,7 +205,7 @@ $('.bt_exportcsv').on('click',function() {
   $('.eqLogic').each(function(){
     var eqLogic = $(this)
     var eqParent = eqLogic.parents('.panel.panel-default').first()
-	eqParent = eqParent.find('a.accordion-toggle').text()
+    eqParent = eqParent.find('a.accordion-toggle').text()
     fullFile += eqParent + ','  + eqLogic.attr('data-id') + ',' + eqLogic.attr('data-name') + ',' + eqLogic.attr('data-type') + "\n"
     eqLogic.find('.cmd').each(function() {
       var cmd = $(this)
