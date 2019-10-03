@@ -77,7 +77,11 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'js') {
-		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, 'min') !== false){
+			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
+		}else{
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		}
 		return;
 	}
 }
