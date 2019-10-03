@@ -310,9 +310,9 @@ function displayTimeline(){
         tr += '<td>'
         if (data[i].group && data[i].plugins) {
           if (data[i].group == 'action') {
-            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i>'
+            tr += data[i].type + '&#160&#160<i class="warning fas fa-terminal"></i><span class="hidden">action</span>'
           } else {
-            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i>'
+            tr += data[i].type + '&#160&#160<i class="info fas fa-info-circle"></i><span class="hidden">info</span>'
           }
           tr += '&#160&#160' + data[i].plugins
         }
