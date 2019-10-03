@@ -33,9 +33,6 @@ var _observerConfig_ = {
   subtree: true
 }
 
-var userDeviceType = 'mobile'
-if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
-
 window.addEventListener('error', function (evt) {
   if(evt.filename.indexOf('file=3rdparty/') != -1){
     return;
@@ -171,6 +168,10 @@ function removeContextualFunction(){
 }
 
 $(function () {
+  var userDeviceType = 'mobile'
+  if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
+  $('body').attr('data-device', userDeviceType)
+  
   $.alertTrigger = function(){
     initRowOverflow();
   }
@@ -1510,19 +1511,18 @@ function editWidgetCmdMode(_mode) {
       })
     }
   }
-  
-  //Extensions__
-  jQuery.fn.findAtDepth = function (selector, maxDepth) {
-    var depths = [], i;
-    if (maxDepth > 0) {
-      for (i = 1; i <= maxDepth; i++) {
-        depths.push('> ' + new Array(i).join('* > ') + selector);
-      }
-      selector = depths.join(', ');
+
+//Extensions__
+jQuery.fn.findAtDepth = function (selector, maxDepth) {
+  var depths = [], i;
+  if (maxDepth > 0) {
+    for (i = 1; i <= maxDepth; i++) {
+      depths.push('> ' + new Array(i).join('* > ') + selector);
     }
-    return this.find(selector);
-  };
-  
-  
-  function initCheckBox(){}
-  
+    selector = depths.join(', ');
+  }
+  return this.find(selector);
+};
+
+
+function initCheckBox(){}
