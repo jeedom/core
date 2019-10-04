@@ -493,16 +493,6 @@ function setTheme() {
 				<div id="md_modal"></div>
 				<div id="md_modal2"></div>
 				<div id="md_modal3"></div>
-				<div id="md_pageHelp" style="display: none;" title="Aide">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
-						<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="div_helpWebsite" ></div>
-						<div class="tab-pane" id="div_helpSpe" ></div>
-					</div>
-				</div>
 				<div id="md_reportBug" title="{{Demande de support}}"></div>
 			</main>
 		<?php } 	?>

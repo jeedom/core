@@ -396,30 +396,6 @@ $(function () {
     }
   });
   
-  //Display help
-  $("#md_pageHelp").dialog({
-    autoOpen: false,
-    modal: false,
-    closeText: '',
-    height: (jQuery(window).height() - 100),
-    width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-    position: { my: "center bottom-10", at: "center bottom", of: window },
-    open: function () {
-      $("body").css({overflow: 'hidden'});
-      $(this).closest( ".ui-dialog" ).find(":button").blur();
-      $(this).dialog({
-        height: (jQuery(window).height() - 100),
-        width: ((jQuery(window).width() - 100) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: { my: "center bottom-10", at: "center bottom", of: window },
-      });
-      setTimeout(function(){initTooltips($("#md_pageHelp"))},500);
-    },
-    beforeClose: function (event, ui) {
-      $("body").css({overflow: 'inherit'});
-      $("#md_pageHelp").empty();
-    }
-  });
-  
   $("#md_modal").dialog({
     autoOpen: false,
     modal: true,
@@ -977,7 +953,6 @@ function showHelpModal(_name, _plugin) {
     });
     $('#div_helpSpe').load('index.php?v=d&modal=help.' + init(_name));
   }
-  $('#md_pageHelp').dialog('open');
 }
 
 function refreshMessageNumber() {
