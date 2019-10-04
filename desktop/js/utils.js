@@ -507,10 +507,6 @@ $(function () {
     });
   });
   
-  $('body').on( 'click','.bt_pageHelp', function () {
-    showHelpModal($(this).attr('data-name'), $(this).attr('data-plugin'));
-  });
-  
   $('body').on( 'click','.bt_reportBug', function () {
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open');
   });
@@ -1511,18 +1507,19 @@ function editWidgetCmdMode(_mode) {
       })
     }
   }
-
-//Extensions__
-jQuery.fn.findAtDepth = function (selector, maxDepth) {
-  var depths = [], i;
-  if (maxDepth > 0) {
-    for (i = 1; i <= maxDepth; i++) {
-      depths.push('> ' + new Array(i).join('* > ') + selector);
+  
+  //Extensions__
+  jQuery.fn.findAtDepth = function (selector, maxDepth) {
+    var depths = [], i;
+    if (maxDepth > 0) {
+      for (i = 1; i <= maxDepth; i++) {
+        depths.push('> ' + new Array(i).join('* > ') + selector);
+      }
+      selector = depths.join(', ');
     }
-    selector = depths.join(', ');
-  }
-  return this.find(selector);
-};
-
-
-function initCheckBox(){}
+    return this.find(selector);
+  };
+  
+  
+  function initCheckBox(){}
+  
