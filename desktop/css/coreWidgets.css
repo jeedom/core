@@ -17,6 +17,7 @@ Core Widgets CSS @Jeedom
   display: none !important;
 }
 
+
 div.cmd-widget .message {
   margin: 5px 0 !important;
   resize: vertical;
@@ -25,10 +26,27 @@ div.cmd-widget .message {
 div.cmd-widget[data-subtype="text"] {
   width: 146px;
 }
-
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
   display: inline;
   margin-right: 2px;
+}
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
+div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] {
+  display: block;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"],
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tmplmultistate"] {
+  min-width: 90px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 0;
+}
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  display: block;
+  max-height: 50px;
+  overflow: auto;
 }
 
 div.cmd-widget .title {
