@@ -40,7 +40,7 @@ if (!isConnect('admin')) {
         <th data-filter="false" data-sorter="checkbox">{{Unique}}</th>
         <th data-filter="false" data-sorter="inputs">{{Classe}}</th>
         <th data-filter="false" data-sorter="inputs">{{Fonction}}</th>
-        <th data-filter="false" data-sorter="inputs">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
+        <th data-filter="false" data-sorter="inputs">{{Programmation}}</th>
         <th data-filter="false" data-sorter="inputs">{{Timeout (min)}}</th>
         <th data-filter="false">{{Dernier lancement}}</th>
         <th data-filter="false">{{Dernière durée}}</th>
