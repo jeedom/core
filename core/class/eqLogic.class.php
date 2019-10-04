@@ -799,7 +799,7 @@ class eqLogic {
 				}
 				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
-				if ($_version == 'dashboard' $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+				if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 					$cmd_html .= '<br/>';
 					$br_before = 1;
 				}
