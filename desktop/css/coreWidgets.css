@@ -3,7 +3,7 @@ Core Widgets CSS @Jeedom
 */
 
 /* __________________________________________________________________________________________________________Global */
-[data-page=plan3d] .verticalAlign{
+[data-page=plan3d] .verticalAlign {
   z-index : auto !important;
 }
 
@@ -13,8 +13,22 @@ Core Widgets CSS @Jeedom
   min-width: 70px;
 }
 
-.eqLogic-widget.hideEqLogicName .widget-name{
+.eqLogic-widget.hideEqLogicName .widget-name {
   display: none !important;
+}
+
+div.cmd-widget .message {
+  margin: 5px 0 !important;
+  resize: vertical;
+  height: 50px;
+}
+div.cmd-widget[data-subtype="text"] {
+  width: 146px;
+}
+
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
+  display: inline;
+  margin-right: 2px;
 }
 
 div.cmd-widget .title {
