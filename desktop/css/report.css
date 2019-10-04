@@ -1,8 +1,6 @@
-.reportModeHidden{
-  display : none;
-}
 /*
 Theme Core 2019 @Jeedom
+Report version
 */
 
 ::-webkit-scrollbar{
@@ -234,6 +232,14 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+.reportModeHidden{
+  display : none;
+}
+
+.reportModeVisible {
+  color: white;
+}
+
 .timeCmd.label {
   color: rgb(115, 115, 115);
   background: rgb(235, 235, 238);
