@@ -89,10 +89,6 @@ header a.navbar-brand {
   height: calc(100% - 5px) !important;
 }
 
-[data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
-  width: calc(100% - 50px);
-}
-
 /* __________________________________________________________________________________________________________LINKS */
 a,
 a i,
@@ -115,6 +111,16 @@ span,
   cursor: default !important;
   word-break: break-word;
 }
+
+.cmd-widget[data-type="action"] * {
+  cursor: url(../css/cursor_action.cur) 4 4, pointer !important;
+}
+/* v4.1! .cmd-widget[data-type="action"] .timeCmd,*/
+.cmd-widget.history[data-type="info"] * {
+  cursor: url(../css/cursor_info.cur) 4 4, pointer !important;
+}
+.cmd-widget[data-type="action"] .timeCmd { cursor: default!important;} /* remove in v4.1!*/
+
 
 a > img:hover {
   opacity: 0.75;
@@ -1805,6 +1811,10 @@ ul.nav.nav-tabs li,
 
 
 /* __________________________________________________________________________________________________________TABLES */
+[data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
+  width: calc(100% - 50px);
+}
+
 #table_dataStore {
   width: 100% !important;
 }
