@@ -106,7 +106,7 @@ step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 5 php${NORMAL}"
   apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl 
+  apt install -y php-curl
   apt install -y php-gd
   apt install -y php-imap
   apt install -y php-xml
@@ -335,7 +335,7 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=master
+VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
 HTML_OUTPUT=0
 MYSQL_ROOT_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
