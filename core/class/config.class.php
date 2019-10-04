@@ -311,7 +311,7 @@ class config {
 	}
 	
 	public static function preConfig_name($_value){
-		return str_replace(array('\\','/'),'',$_value);
+		return str_replace(array('\\','/',"'",'"'),'',$_value);
 	}
 	
 	/*     * *********************Methode d'instance************************* */
