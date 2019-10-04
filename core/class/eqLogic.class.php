@@ -794,13 +794,13 @@ class eqLogic {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-					$cmd_html .= '<br class="linereturn"/>';
+				if ($_version == 'dashboard' && $br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+					$cmd_html .= '<br/>';
 				}
 				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
-				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-					$cmd_html .= '<br class="linereturn"/>';
+				if ($_version == 'dashboard' $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+					$cmd_html .= '<br/>';
 					$br_before = 1;
 				}
 			}
