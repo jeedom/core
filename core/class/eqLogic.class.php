@@ -795,12 +795,12 @@ class eqLogic {
 					continue;
 				}
 				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
-					$cmd_html .= '<br/>';
+					$cmd_html .= '<br class="linereturn"/>';
 				}
 				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
 				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
-					$cmd_html .= '<br/>';
+					$cmd_html .= '<br class="linereturn"/>';
 					$br_before = 1;
 				}
 			}
