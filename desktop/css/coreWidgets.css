@@ -30,6 +30,9 @@ div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"
   display: inline;
   margin-right: 2px;
 }
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine{
+  font-size: 1.2em;
+}
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
 div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
 div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
