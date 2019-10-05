@@ -16,11 +16,11 @@
 
 var widget_parameters_opt = {
   'desktop_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur desktop}} <sub>px</sub>'
   },
   'mobile_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur mobile}} <sub>px</sub>'
   },
   'time_widget' : {
