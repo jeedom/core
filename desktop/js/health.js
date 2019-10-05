@@ -31,9 +31,6 @@ $('#bt_benchmarkJeedom').on('click',function(){
 })
 
 $(function() {
-	//	jeeTable = $('#jeedomTable')
-	//$("#health_jeedom div.panel-body").append(jeeTable)
-	
 	$('.panel-title').click(function(event) {
 		if (!$(event.target).is('a.accordion-toggle') && !$(event.target).hasClass('pull-right')) {
 			$(this).find('a.accordion-toggle').trigger('click')
