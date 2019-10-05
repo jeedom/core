@@ -78,7 +78,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	if ($type == 'js') {
 		$md5 = md5_file($path);
-		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, 'min') !== false){
+		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false){
 			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
 		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js')){
 			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js"></script>';
