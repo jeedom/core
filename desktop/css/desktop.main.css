@@ -113,16 +113,6 @@ span,
   word-break: break-word;
 }
 
-.cmd-widget[data-type="action"] * {
-  cursor: url(../css/cursor_action.cur) 4 4, pointer !important;
-}
-/* v4.1! .cmd-widget[data-type="action"] .timeCmd,*/
-.cmd-widget.history[data-type="info"] * {
-  cursor: url(../css/cursor_info.cur) 4 4, pointer !important;
-}
-.cmd-widget[data-type="action"] .timeCmd { cursor: default!important;} /* remove in v4.1!*/
-
-
 a > img:hover {
   opacity: 0.75;
 }
