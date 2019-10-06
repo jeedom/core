@@ -979,7 +979,7 @@ sup.danger {
   font-size: 12px;
   font-weight: bold;
 }
-:not(.tableCmdcss,.label) .state,
+:not(.tableCmdcss):not(.label) .state,
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
