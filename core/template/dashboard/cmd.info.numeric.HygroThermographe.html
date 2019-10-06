@@ -86,7 +86,7 @@
     },100)
     
     if('#scale#' != ''){
-      let cmd = $('.cmd[data-cmd_id=#id#]');
+      let cmd = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first');
       cmd.width(cmd.width()*'#scale#');
       cmd.height(cmd.height()*'#scale#');
       cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#');
