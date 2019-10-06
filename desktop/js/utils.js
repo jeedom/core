@@ -20,7 +20,7 @@ var PREVIOUS_PAGE = null;
 var NO_POPSTAT = false;
 var TOOLTIPSOPTIONS = {
   arrow: false,
-  delay: 500,
+  delay: 650,
   interactive: false,
   contentAsHTML: true
 }
