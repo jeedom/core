@@ -1374,6 +1374,15 @@ class jeedom {
 				$result = 'docker';
 			} else if (file_exists('/usr/bin/raspi-config')) {
 				$result = 'rpi';
+				$hardware_revision = strtolower(shell_exec('cat /proc/cpuinfo | grep Revision'));
+				global $JEEDOM_RPI_HARDWARE;
+				foreach ($JEEDOM_RPI_HARDWARE as $key => $values) {
+					foreach ($values as $value) {
+						if(strpos($hardware_revision,$value) !== false){
+							$result = $key;
+						}
+					}
+				}
 			} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'miniplus';
 			}
