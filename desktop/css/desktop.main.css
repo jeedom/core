@@ -1452,7 +1452,7 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
 }
 
 .cursorText {
-  cursor: text;
+  cursor: text !important;
 }
 
 input.inputPassword  {
