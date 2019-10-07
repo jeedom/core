@@ -14,11 +14,20 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
+var JS_ERROR = [];
 uniqId_count = 0;
 modifyWithoutSave = false;
 nbActiveAjaxRequest = 0;
 jeedomBackgroundImg = null;
 utid = Date.now();
+
+window.addEventListener('error', function (evt) {
+  if(evt.filename.indexOf('file=3rdparty/') != -1){
+    return;
+  }
+  JS_ERROR.push(evt);
+});
 
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++;
@@ -38,6 +47,10 @@ function loadPage(_url,_noPushHistory){
       return;
     }
     modifyWithoutSave = false;
+  }
+  if(JS_ERROR.length > 0){
+    document.location.href = _url;
+    return;
   }
   if (typeof unload_page !== "undefined") {
     unload_page();

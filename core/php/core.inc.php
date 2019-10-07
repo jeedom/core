@@ -66,7 +66,7 @@ function jeedomPluginAutoload($_classname) {
 	}
 	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
 	$plugin_active = config::byKey('active', $classname, null);
-	if ($plugin_active === null || $plugin_active == '') {
+	if (($plugin_active === null || $plugin_active == '' || $plugin_active == 0) && strpos($classname,'_') !== false) {
 		$classname = explode('_', $classname)[0];
 		$plugin_active = config::byKey('active', $classname, null);
 	}
