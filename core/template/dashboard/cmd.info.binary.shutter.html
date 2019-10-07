@@ -20,9 +20,10 @@
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       if (_options.display_value == '1') {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')
-      }else {
+      } else {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }
+      $('.cmd[data-cmd_id=#id#] .state strong').first().text(_options.display_value)
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>
