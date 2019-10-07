@@ -95,7 +95,7 @@ if(config::byKey('product_connection_BG')){
 		echo "body { background:".config::byKey('product_connection_color')." !important;}";
 		echo "</style>";
 	}
-	if(config::byKey('product_name') != 'Jeedom'){
+	if(stristr(config::byKey('product_name'), 'Jeedom') == false){
 		echo "<style>";
 		echo ".btn_help { display:none; }";
 		echo "</style>";

@@ -16,11 +16,11 @@
 
 var widget_parameters_opt = {
   'desktop_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur desktop}} <sub>px</sub>'
   },
   'mobile_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur mobile}} <sub>px</sub>'
   },
   'time_widget' : {
@@ -269,6 +269,8 @@ function loadTemplateConfiguration(_template,_data){
               replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
             }else if(widget_parameters_opt[data.replace[i]].type == 'number'){
               replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }else if(widget_parameters_opt[data.replace[i]].type == 'input'){
+              replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
             }
           }else{
             replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';

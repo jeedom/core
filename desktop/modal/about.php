@@ -9,11 +9,11 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
   <form class="form-horizontal col-lg-12">
     <br/>
     <center>
-      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="50">
+      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
       <br>
-      <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> | 
-      <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> | 
-      <a class="badge cursor" href="https://www.jeedom.com/forum/" target="_blank">Forum</a> | 
+      <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
+      <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> |
+      <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Forum</a> |
       <a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>

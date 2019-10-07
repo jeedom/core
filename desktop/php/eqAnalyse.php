@@ -15,12 +15,13 @@ usort($list, function ($a, $b) {
 });
 ?>
 <br/>
+<a class="btn btn-success btn-sm pull-right" id="bt_massConfigureEqLogic"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 <ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
 	<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
 	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Modules en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
 	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
-	<li role="presentation"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
+	<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 </ul>
 
 <div class="tab-content">
@@ -148,7 +149,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -222,7 +223,7 @@ usort($list, function ($a, $b) {
 			</tbody>
 		</table>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="deadCmd">
 		<br/>
 		<table class="table table-condensed tablesorter" id="table_deadCmd">
@@ -235,83 +236,6 @@ usort($list, function ($a, $b) {
 				</tr>
 			</thead>
 			<tbody>
-				<?php
-				$trs = '';
-				foreach (jeedom::deadCmd() as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Core</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				echo $trs;
-				$trs = '';
-				foreach (cmd::deadCmd() as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Commande</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				echo $trs;
-				$trs = '';
-				foreach (jeeObject::deadCmd() as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Résumé</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				echo $trs;
-				$trs = '';
-				foreach (scenario::consystencyCheck(true) as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Scénario</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				echo $trs;
-				$trs = '';
-				foreach (interactDef::deadCmd() as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Interaction</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				echo $trs;
-				$trs = '';
-				foreach (user::deadCmd() as $datas) {
-					$trs .= '<tr>';
-					$trs .= '<td>Utilisateur</td>';
-					$trs .= '<td>' . $datas['detail'] . '</td>';
-					$trs .= '<td>' . $datas['who'] . '</td>';
-					$trs .= '<td>' . $datas['help'] . '</td>';
-					$trs .= '</tr>';
-				}
-				#vues/designs
-				$trs = '';
-				foreach (plugin::listPlugin(true) as $plugin) {
-					$plugin_id = $plugin->getId();
-					if (method_exists($plugin_id, 'deadCmd')) {
-						foreach ($plugin_id::deadCmd() as $datas) {
-							$trs .= '<tr>';
-							$trs .= '<td>Plugin ' . $plugin->getName() . '</td>';
-							$trs .= '<td>' . $datas['detail'] . '</td>';
-							$trs .= '<td>' . $datas['who'] . '</td>';
-							$trs .= '<td>' . $datas['help'] . '</td>';
-							$trs .= '</tr>';
-						}
-					}
-				}
-				echo $trs;
-				?>
 			</tbody>
 		</table>
 	</div>

@@ -16,6 +16,10 @@
 */
 positionEqLogic();
 
+$("#tab_deadCmd").off("click").on("click", function () {
+  displayDeadCmd();
+});
+
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition');
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
@@ -33,8 +37,7 @@ $('.alerts, .batteries').on('click',function(){
 });
 
 $('.cmdAction[data-action=configure]').on('click', function () {
-  $('#md_modal').dialog({title: "{{Configuration commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+  $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
 });
 
 //searching
@@ -49,16 +52,12 @@ $('#in_search').off('keyup').on('keyup',function(){
     return
   }
   search = normTextLower(search)
-
   $('.batteryListContainer .eqLogic-widget').each(function() {
     var match = false
-
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-
     text = normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
-
     if(match) {
       $(this).show()
     } else {
@@ -74,10 +73,12 @@ $('#bt_resetSearch').on('click', function () {
 })
 
 $('.batteryTime').off('click').on('click',function(){
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"})
-  $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
+  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
 })
 
+$('#bt_massConfigureEqLogic').off('click').on('click',function(){
+  $('#md_modal').dialog({title: "{{Configuration en masse}}"}).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
+});
 
 $(function() {
   //tabs icons colors:
@@ -88,12 +89,42 @@ $(function() {
   } else {
     $('a[href="#battery"] > i').addClass('success')
   }
-
+  
   if ($('.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
-
+  
   if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
     $('a[href="#deadCmd"] > i').addClass('warning')
   }
 })
+
+function displayDeadCmd(){
+  jeedom.cmd.getDeadCmd({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      var tr = '';
+      for(var i in data){
+        for(var j in data[i].cmd){
+          tr += '<tr>';
+          tr += '<td>';
+          tr += data[i].name;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].detail;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].who;
+          tr += '</td>';
+          tr += '<td>';
+          tr += data[i].cmd[j].help;
+          tr += '</td>';
+          tr += '</tr>';
+        }
+      }
+      $('#table_deadCmd tbody').empty().append(tr);
+    }
+  })
+}

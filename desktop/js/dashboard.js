@@ -40,13 +40,13 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
     $('.div_displayEquipement').packery()
     return
   }
-  
+
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
+
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -63,7 +63,7 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-    
+
     if (match) {
       $(this).show()
     } else {
@@ -151,7 +151,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-    
+
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -214,14 +214,14 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-      
+
       positionEqLogic();
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       $divDisplayEq.disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-      
+
       var container = $divDisplayEq.packery();
       var packData = $divDisplayEq.data('packery');
       if (isset(packData) && packData.items.length == 1) {
@@ -325,3 +325,46 @@ function displayChildObject(_object_id,_recursion){
     displayChildObject($(this).attr('data-object_id'),true)
   });
 }
+
+//info / action:
+
+
+$(function() {
+  if ($('body').attr('data-device') == 'desktop') {
+    setTimeout(function() {
+      //info:
+      $('div.eqLogic-widget .cmd-widget.history[data-type="info"]').on({
+        mouseenter: function () {
+          $(this).parents('.eqLogic-widget').addClass('eqSignalInfo')
+        },
+        mouseleave: function () {
+          $(this).parents('.eqLogic-widget').removeClass('eqSignalInfo')
+        }
+      })
+
+      //actions:
+      $('div.eqLogic-widget .cmd-widget[data-type="action"]').on({
+        mouseenter: function () {
+          $(this).parents('.eqLogic-widget').addClass('eqSignalAction')
+        },
+        mouseleave: function () {
+          $(this).parents('.eqLogic-widget').removeClass('eqSignalAction')
+        }
+      })
+
+      /* v4.1
+      //timeCmd:
+      $('div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd').on({
+        mouseenter: function () {
+          console.log('enter time!!')
+          $(this).parents('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+        },
+        mouseleave: function () {
+          $(this).parents('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+        }
+      })
+      */
+
+    },1000)
+  }
+})

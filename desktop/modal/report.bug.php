@@ -28,8 +28,8 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
 			
 			<center>
-				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Bug%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les bugs}}</a><br/>
-				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Am%C3%A9lioration%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les propositions d'amélioration}}</a>
+				<a href="https://community.jeedom.com/tags/bug" target="_blank">{{Voir les bugs}}</a><br/>
+				<a href="https://community.jeedom.com/tags/amelioration" target="_blank">{{Voir les propositions d'amélioration}}</a>
 			</center>
 		</div>
 	</div>

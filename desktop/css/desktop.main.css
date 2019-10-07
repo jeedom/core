@@ -34,6 +34,7 @@ body {
   background-position: center center;
 }
 
+.reportModeVisible,
 .hidden  {
   display: none !important;
 }
@@ -90,6 +91,15 @@ header a.navbar-brand {
 }
 
 /* __________________________________________________________________________________________________________LINKS */
+
+.widget-name,
+.cmd-widget,
+legend,
+span,
+.label:not(.cursor) {
+  cursor: default !important;
+  word-break: break-word;
+}
 a,
 a i,
 a > span,
@@ -100,16 +110,10 @@ a.btn,
 .btn > *,
 .ui-icon-closethick,
 .cursor,
-.cursor * {
+.cursor *,
+.label.state,
+[data-type="info"] .label.timeCmd {
   cursor: pointer !important;
-}
-.widget-name,
-.cmd-widget,
-legend,
-span,
-.label:not(.cursor) {
-  cursor: default !important;
-  word-break: break-word;
 }
 
 a > img:hover {
@@ -299,6 +303,23 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+
+.eqLogic-widget.eqSignalInfo:after,
+.eqLogic-widget.eqSignalAction:after {
+  content: '\2022';
+  font-size: 26px;
+  line-height: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.eqLogic-widget.eqSignalInfo:after {
+  color: var(--al-info-color);
+}
+.eqLogic-widget.eqSignalAction:after {
+  color: var(--al-warning-color);
+}
+
 .timeCmd.label {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
@@ -473,6 +494,9 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
+[data-type="plugin"] #div_pageContainer > div.eqLogic {
+  margin-top: 5px;
+}
 select.selectCmd {
   border: 0;
   vertical-align: middle;
@@ -978,7 +1002,7 @@ sup.danger {
   font-size: 12px;
   font-weight: bold;
 }
-:not(.tableCmdcss) .state,
+:not(.tableCmdcss):not(.label) .state,
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
@@ -1419,6 +1443,15 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   padding: 0;
 }
 
+.cursorText {
+  cursor: text;
+}
+
+input.inputPassword  {
+  font-size: 1px !important;
+  letter-spacing: 5px;
+}
+
 .form-actions {
   margin-top: 5px;
 }
@@ -1801,6 +1834,10 @@ ul.nav.nav-tabs li,
 
 
 /* __________________________________________________________________________________________________________TABLES */
+[data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
+  width: calc(100% - 50px);
+}
+
 #table_dataStore {
   width: 100% !important;
 }

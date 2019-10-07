@@ -310,6 +310,10 @@ class config {
 		return self::checkValueBetween($_value,0,1);
 	}
 	
+	public static function preConfig_name($_value){
+		return str_replace(array('\\','/',"'",'"'),'',$_value);
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	/*     * **********************Getteur Setteur*************************** */

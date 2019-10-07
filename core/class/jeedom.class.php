@@ -26,6 +26,24 @@ class jeedom {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function mimify(){
+		$folders = array('/../../desktop/js','/../../core/js','/../../mobile/js');
+		foreach ($folders as $folder) {
+			foreach (ls(__DIR__.$folder,'*.jeemin.js') as $file) {
+				unlink(__DIR__.$folder.'/'.$file);
+			}
+			foreach (ls(__DIR__.$folder,'*.js') as $file) {
+				$path = __DIR__.$folder.'/'.$file;
+				$md5 = md5_file($path);
+				$path_min =	__DIR__.$folder .'/'. $md5.'.'.translate::getLanguage().'.jeemin.js';
+				$tmp = '/tmp/jeedom/'.$file;
+				file_put_contents($tmp,translate::exec(file_get_contents($path), $folder.$file, true));
+				exec('python -m jsmin '.$tmp.' > '.$path_min);
+				unlink($tmp);
+			}
+		}
+	}
+	
 	public static function getThemeConfig(){
 		$key = array(
 			'default_bootstrap_theme',
@@ -92,12 +110,12 @@ class jeedom {
 	}
 	
 	public static function addTimelineEvent($_event) {
-        $json  = json_encode($_event);
-         if (json_last_error() == JSON_ERROR_NONE) {
-          $fp = fopen(__DIR__ . '/../../data/timeline.json', 'a');
-          fwrite($fp, $json . "\n");
-          fclose($fp);
-        }
+		$json  = json_encode($_event);
+		if (json_last_error() == JSON_ERROR_NONE) {
+			$fp = fopen(__DIR__ . '/../../data/timeline.json', 'a');
+			fwrite($fp, $json . "\n");
+			fclose($fp);
+		}
 		//file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
 	}
 	
@@ -1477,3 +1495,4 @@ class jeedom {
 		}
 		
 	}
+	

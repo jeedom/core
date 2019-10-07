@@ -173,7 +173,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							<div class="iconeGeneric form-group">
 								<label class="col-xs-4 control-label">{{Icône}}</label>
 								<div class="col-xs-4">
-									<span class="cmdAttr label label-info cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
+									<span class="cmdAttr label cursor" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;" ></span>
 									<a class="btn btn-default btn-sm" id="bt_cmdConfigureChooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
 								</div>
 							</div>
@@ -800,13 +800,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 <script>
 $(function() {
 	if ($('body').attr('data-page')=="widgets") {
-      $('a[href="#cmd_display"]').click()
-    }
+		$('a[href="#cmd_display"]').click()
+	}
 
-    var dashWidget = $('select[data-l2key="dashboard"]')
-    if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
-    var mobileWidget = $('select[data-l2key="mobile"]')
-    if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
+	var dashWidget = $('select[data-l2key="dashboard"]')
+	if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
+	var mobileWidget = $('select[data-l2key="mobile"]')
+	if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
 })
 
 $('#cmdConfigureTab').off('click').on('click',function(){
@@ -982,7 +982,7 @@ if(isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configura
 	}
 }
 taAutosize();
-$('#bt_cmdConfigureSave').on('click', function () {
+$('#bt_cmdConfigureSave').on('click', function (event) {
 	var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0];
 	if (!isset(cmd.display)) {
 		cmd.display = {};
@@ -1009,8 +1009,11 @@ $('#bt_cmdConfigureSave').on('click', function () {
 		success: function () {
 			modifyWithoutSave = false;
 			$('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+			if (event.ctrlKey) {
+				setTimeout(function() { $('#md_modal').dialog('close') }, 500);
+			}
 		}
-	});
+	})
 });
 
 

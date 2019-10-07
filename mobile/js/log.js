@@ -19,6 +19,10 @@ function initLog(_log) {
 
 	if (isset(_log)) {
 		setTimeout(function(){
+			if (_log == "-1") {
+                _log = $('#bottompanel .ui-listview li.ui-first-child > a > span').text().trim()
+            }          	
+          
 			$('#pre_globallog').height($('body').height() - $('div[data-role=header]').height() - $('.log_menu').height() - 40)
 			jeedom.log.autoupdate({
 				log : _log,
@@ -26,7 +30,7 @@ function initLog(_log) {
 				search : $('#in_globalLogSearch'),
 				control : $('#bt_globalLogStopStart'),
 			})
-		}, 1)
+		}, 250)
 
 		$("#bt_clearLog").off('click').on('click', function(event) {
 			jeedom.log.clear({

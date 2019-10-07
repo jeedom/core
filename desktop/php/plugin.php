@@ -17,27 +17,27 @@ $plugins_list = plugin::listPlugin(false, true);
         <span class="txtColor"><center>{{Plugins}}</center></span>
       </div>
       <?php
-      $div = '';
-      foreach (update::listRepo() as $key => $value) {
-        if (!$value['enable']) {
-          continue;
+        $div = '';
+        foreach (update::listRepo() as $key => $value) {
+          if (!$value['enable']) {
+            continue;
+          }
+          if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
+            continue;
+          }
+          $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
+          $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
+          $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
+          $div .= '</div>';
+          if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
+            continue;
+          }
+          $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
+          $div .= '<center><i class="fas fa-sync"></i></center>';
+          $div .= '<span class="txtColor"><center>Synchroniser ' . $value['name'] . '</center></span>';
+          $div .= '</div>';
         }
-        if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
-          continue;
-        }
-        $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
-        $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
-        $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
-        $div .= '</div>';
-        if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
-          continue;
-        }
-        $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
-        $div .= '<center><i class="fas fa-sync"></i></center>';
-        $div .= '<span class="txtColor"><center>Synchroniser ' . $value['name'] . '</center></span>';
-        $div .= '</div>';
-      }
-      echo $div;
+        echo $div;
       ?>
     </div>
     <legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
@@ -53,18 +53,29 @@ $plugins_list = plugin::listPlugin(false, true);
           <?php
           foreach (plugin::listPlugin() as $plugin) {
             $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-            echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
-            echo '<center>';
-            echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
-            echo '</center>';
-            echo '<span class="name">' . $plugin->getName() . '</span>';
-            echo '</div>';
+            $div = '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
+            $div .= '<center>';
+            $div .= '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
+            $div .= '</center>';
+            $lbl_version = false;
+            $update = $plugin->getUpdate();
+            if (is_object($update)) {
+              $version = $update->getConfiguration('version');
+              if ($version && $version != 'stable') $lbl_version = true;
+            }
+            if ($lbl_version) {
+              $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+            } else {
+              $div .= '<span class="name">' . $plugin->getName() . '</span>';
+            }
+            $div .= '</div>';
+            echo $div;
           }
           ?>
         </div>
       </div>
     </div>
-    
+
   </div>
   <div class="col-xs-12" id="div_confPlugin" style="display:none;">
     <legend>
@@ -74,7 +85,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <span class="input-group-btn" id="span_right_button"></span>
       </div>
     </legend>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
@@ -122,7 +133,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-success">
@@ -141,14 +152,14 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-map"></i> {{Installation}}</h3></div>
       <div class="panel-body">
         <span id="span_plugin_installation"></span>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
@@ -160,7 +171,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="form-actions"></div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-primary" id="div_functionalityPanel">

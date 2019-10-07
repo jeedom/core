@@ -114,7 +114,7 @@ class repo_market {
 		}
 		$results = $market->getResult();
 		if(!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0){
-			return 0;
+			return array('number' => 0);
 		}
 		$nbInstall = 0;
 		$lastInstallDate = config::byKey('market::lastDatetimePluginInstall','core',0);

@@ -76,7 +76,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'action' => array(
 				'other'=>array(
 					'light' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_yellow icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
-					'circle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-circle\'></i>','#_icon_off_#' => '<i class=\'fas fa-circle-thin\'></i>')),
+					'circle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-circle\'></i>','#_icon_off_#' => '<i class=\'far fa-circle\'></i>')),
 					'fan' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-ventilo\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'garage' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-garage-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-garage-ouvert\'></i>')),
 					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_orange icon jeedom-lock-ouvert\'></i>')),

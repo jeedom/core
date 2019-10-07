@@ -89,7 +89,7 @@ if (init('rescue', 0) == 0) {
 global $homeLogoSrc;
 function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
-	$homeLogoSrc = '../../'.config::byKey('logo_light');
+	$homeLogoSrc = config::byKey('logo_light');
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
@@ -493,16 +493,6 @@ function setTheme() {
 				<div id="md_modal"></div>
 				<div id="md_modal2"></div>
 				<div id="md_modal3"></div>
-				<div id="md_pageHelp" style="display: none;" title="Aide">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#div_helpWebsite" data-toggle="tab">{{Générale}}</a></li>
-						<li><a href="#div_helpSpe" data-toggle="tab">{{Détaillée}}</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="div_helpWebsite" ></div>
-						<div class="tab-pane" id="div_helpSpe" ></div>
-					</div>
-				</div>
 				<div id="md_reportBug" title="{{Demande de support}}"></div>
 			</main>
 		<?php } 	?>

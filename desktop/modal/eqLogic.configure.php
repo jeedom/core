@@ -525,8 +525,7 @@ $('.bt_displayWidget').off('click').on('click',function(){
 	$('#md_modal2').load('index.php?v=d&modal=eqLogic.displayWidget&eqLogic_id=' + eqLogic.id+'&version='+$(this).attr('data-version')).dialog('open');
 });
 
-$('#bt_eqLogicConfigureSave').on('click', function () {
-
+$('#bt_eqLogicConfigureSave').on('click', function (event) {
 	var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0];
 	if (!isset(eqLogic.display)) {
 		eqLogic.display = {};
@@ -563,6 +562,9 @@ $('#bt_eqLogicConfigureSave').on('click', function () {
 				},
 				success : function(){
 					$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+					if (event.ctrlKey) {
+						setTimeout(function() { $('#md_modal').dialog('close') }, 500);
+					}
 				}
 			});
 		}
