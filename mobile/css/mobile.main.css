@@ -579,7 +579,9 @@ select option {
 /* buttons */
 a.action.ui-btn {
   min-width: 15px;
+  min-height: 15px;
 }
+
 .ui-slider-bg {
   height: 5px;
 }
