@@ -494,6 +494,9 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
+[data-type="plugin"] #div_pageContainer > div.eqLogic {
+  margin-top: 5px;
+}
 select.selectCmd {
   border: 0;
   vertical-align: middle;
