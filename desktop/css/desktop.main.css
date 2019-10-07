@@ -213,6 +213,14 @@ legend {
 }
 
 /* résumé domo */
+[data-page=display] .eqActions {
+  position: fixed;
+  right: 10px;
+  top: 52px;
+  border: 5px solid var(--bg-modal-color);
+  z-index: 10;
+}
+
 [data-page=display] legend a,
 [data-page=display] legend i {
   color: inherit !important;
