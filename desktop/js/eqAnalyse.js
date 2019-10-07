@@ -124,6 +124,7 @@ function displayDeadCmd(){
           tr += '</tr>';
         }
       }
+      $('#table_deadCmd tbody').empty().append(tr);
     }
   })
 }
