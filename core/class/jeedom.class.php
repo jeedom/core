@@ -1385,6 +1385,8 @@ class jeedom {
 				}
 			} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'miniplus';
+			} else if (file_exists('/usr/bin/grille-pain')) {
+				$result = 'freeboxDelta';
 			}
 			if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'smart';
