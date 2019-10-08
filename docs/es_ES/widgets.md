@@ -95,3 +95,7 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 >**NOTE**
 >
 > Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
+
+## Slider Button
+
+- step : permet de regler le pas d'une action sur un bouton (0.5 par defaut)

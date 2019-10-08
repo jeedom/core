@@ -68,6 +68,7 @@ Changelog
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
+- Ajout d'un systeme de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
 >**IMPORTANT**
 >
@@ -86,7 +87,7 @@ Changelog
 - Suppression de la mise à jour des graphiques en temps réel, suite aux nombreux bugs remontés
 - Correction d'un bug pouvant empêcher l'affichage de certains logs
 - Correction d'un bug sur le service de monitoring
-- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte 
+- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte
 - Amélioration de l'action remove_inat dans les scénarios
 
 3.3.29
@@ -235,7 +236,7 @@ Changelog
 
 3.2.10
 =====
-- Corrección de errores.
+- Correction de bugs.
 - Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
@@ -364,7 +365,7 @@ Changelog
 - Possibilité d’historiser des commandes de type texte
 - Sur la page historique vous pouvez maintenant faire le graphique d’un calcul
 - Ajout d’une gestion de formule de calcul pour les historiques
-- Actualización de toda la documentación :
+- Remise à jour de toute la documentation :
     - Toute les docs ont été revues
     - Suppression des images pour faciliter la mise à jour et le
         multilingue
@@ -418,7 +419,7 @@ Changelog
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
 - Grosse amélioration des designs:
     - Toutes les actions sont maintenant accessibles à partir d’un
-      clic derecho
+        clic droit
     - Possibilité d’ajouter une commande seule
     - Possibilité d’ajouter une image ou un flux vidéo
     - Possibilité d’ajouter des zones (emplacement cliquable) :
@@ -568,7 +569,7 @@ Changelog
 - Suppression du démarrage en debug des démons, maintenant le niveau de logs du démon est le même que celui du plugin
 - Nettoyage de lib tierce
 - Suppression de responsive voice (fonction dit dans les scénarios qui marchait de moins en moins bien)
-- Se corrigieron varios fallos de seguridad
+- Correction de plusieurs faille de sécurité
 - Ajout d’un mode synchrone sur les scénarios (anciennement mode rapide)
 - Possibilité de rentrer manuellement la position des widgets en % sur les design
 - Refonte de la page de configuration des plugins
