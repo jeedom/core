@@ -152,7 +152,7 @@ usort($list, function ($a, $b) {
 	
 	<div role="tabpanel" class="tab-pane" id="alertCmd">
 		<br/>
-		<table class="table table-condensed tablesorter" id="table_deadCmd">
+		<table class="table table-condensed tablesorter">
 			<thead>
 				<tr>
 					<th>{{Equipement}}</th>
