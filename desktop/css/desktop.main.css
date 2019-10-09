@@ -366,6 +366,19 @@ legend {
   color: var(--linkHoverLight-color) !important;
 }
 
+.eqLogic-widget .cmd.refresh.spinning i {
+  animation: spin-animation 2s infinite linear;
+}
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+
 /* dashboard equipments text color */
 .tableCmd,
 .highcharts-axis-title > tspan,
