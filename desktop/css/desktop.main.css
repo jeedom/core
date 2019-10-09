@@ -4,14 +4,14 @@ Theme Core 2019 @Jeedom
 
 @import url("coreWidgets.css");
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width:8px;
   height:8px;
 }
-::-webkit-scrollbar-track-piece{
+::-webkit-scrollbar-track-piece {
   background-color:transparent !important;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: var(--el-defaultColor) !important;
 }
 
@@ -681,11 +681,10 @@ div[class*="DisplayCard"] .name > .label {
 }
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
-  font-size: 11px;
-}
-.eqLogic.eqLogic-widget:not(.displayObjectName) .object_name {
-  display: none;
   font-size: 13px;
+}
+.eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
+  display: none;
 }
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
