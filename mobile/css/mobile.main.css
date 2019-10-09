@@ -277,9 +277,11 @@ a, .ui-link {
   color: var(--link-color) !important;
   min-height: 45px;
 }
+.iconCmd > span {
+  vertical-align: middle !important;
+}
 .iconCmd i {
   color: var(--link-color) !important;
-  margin: 7px;
   font-size: 30px !important;
   top: 5px !important;
   position: relative;
@@ -296,6 +298,9 @@ a, .ui-link {
   padding-left: 5px !important;
   padding-right: 5px !important;
   font-size: 12.5px;
+}
+.iconCmd + .timeCmd {
+  line-height: 25px;
 }
 .statusCmd {
   position: absolute;
@@ -455,7 +460,8 @@ p.state {
   color: var(--link-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
   box-shadow: none;
-  line-height: 10px !important;
+  line-height: 15px !important;
+  min-height: 17px;
 }
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
