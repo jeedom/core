@@ -1199,8 +1199,8 @@ class cmd {
 					if(!isset($test['state_dark'])){
 						$test['state_dark'] = '';
 					}
-					$test['state_light'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"\"",$test['state_light']));
-					$test['state_dark'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"\"",$test['state_dark']));
+					$test['state_light'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_light']));
+					$test['state_dark'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_dark']));
 					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
 					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
 					$replace['#change_theme#'] .= 'if(cmd.attr("data-state") == '.$i.'){state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
