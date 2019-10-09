@@ -1144,7 +1144,49 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg,$_level = null) {
+	function getDominantColor($_pathimg,$_level = null,$_ignoreDarkColor = false) {
+		$colors = array();
+		$i = imagecreatefromjpeg($_pathimg);
+		$imagesX = imagesx($i);
+		$imagesY = imagesy($i);
+		$ratio = $imagesX / $imagesY;
+		$size = 270;
+		$img = imagecreatetruecolor($size, $size / $ratio);
+		imagecopyresized($img, $i, 0, 0, 0, 0, $size, $size / $ratio, $imagesX, $imagesY);
+		$imagesX = $size;
+		$imagesY = $size / $ratio;
+		for ($x = 0; $x < $imagesX; $x++) {
+			for ($y = 0; $y < $imagesY; $y++) {
+				$rgb = imagecolorat($img, $x, $y);
+				if($_ignoreDarkColor){
+					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
+					if($sum < 10){
+						continue;
+					}
+				}
+				if(!isset($colors[$rgb])){
+					$colors[$rgb] = array('value' => $rgb,'nb' => 0);
+				}
+				$colors[$rgb]['nb']++;
+			}
+		}
+		usort($colors, function ($a, $b) {
+			return $b['nb'] - $a['nb'];
+		});
+		
+		if($_level == null){
+			if($colors[0]['value'] == 0){
+				return '#' . substr("000000".dechex($colors[1]['value']),-6);
+			}
+			return '#' . substr("000000".dechex($colors[0]['value']),-6);
+		}
+		$return = array();
+		$colors = array_slice($colors,0,$_level);
+		foreach ($colors as $color) {
+			$return[] = '#' . substr("000000".dechex($color['value']),-6);
+		}
+		return $return;
+		
 		$extractor = new ColorExtractor(Palette::fromFilename($_pathimg));
 		if($_level != null){
 			$colors = $extractor->extract($_level);
