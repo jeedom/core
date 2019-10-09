@@ -4,14 +4,14 @@ Theme Core 2019 @Jeedom
 
 @import url("coreWidgets.css");
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width:8px;
   height:8px;
 }
-::-webkit-scrollbar-track-piece{
+::-webkit-scrollbar-track-piece {
   background-color:transparent !important;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: var(--el-defaultColor) !important;
 }
 
@@ -681,7 +681,7 @@ div[class*="DisplayCard"] .name > .label {
 }
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
-  font-size: 11px;
+  font-size: 13px;
 }
 .eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
   display: none;
@@ -1702,6 +1702,7 @@ input[type=password]{
 select option {
   color: var(--txt-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
+  font-size: 13px;
 }
 select optgroup {
   color: var(--txt-color) !important;
@@ -2364,6 +2365,9 @@ textarea {
 .element .subElementTHEN,
 .element .subElementELSE {
   height: 55px;
+}
+.element .subElementELSE {
+  margin-top: 7px;
 }
 .element > .subElementIN > .expressions {
   margin-top: -26px;

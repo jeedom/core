@@ -5,17 +5,17 @@ if (!isConnect()) {
 ?>
 <?php
 /* LANCEMENT DE JEEASY */
-$jeeasy = plugin::byId('jeeasy');
-if(is_object($jeeasy)){
-		?>
-		<script>
+try {
+	$plugin = plugin::byId('jeeasy');
+?>
+	<script>
 		$( document ).ready(function() {
 			$('#md_modal').dialog({title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>"});
 			$('#md_modal').load('index.php?v=d&plugin=jeeasy&modal=wizard').dialog('open');
 		});
-		</script>
-		<?php
-	}else{
+	</script>
+<?php
+} catch (Exception $e) {
 ?>
 <legend>
     {{Mes premiers pas dans}} <?php echo config::byKey('product_name'); ?>

@@ -1,0 +1,68 @@
+{
+"trame": {
+  "welcome" :
+    {
+      "title": "Bienvenue",
+      "wizard": "welcome",
+      "order": 0,
+      "custom": "",
+      "visible": 1
+    }
+  ,
+  "objects" : {
+
+      "title": "Pièces",
+      "wizard": "objects",
+      "order": 1,
+      "custom": "",
+      "visible": 1
+
+  },
+  "pack" :
+    {
+      "title": "Service pack",
+      "wizard": "pack",
+      "order": 2,
+      "custom": "",
+      "visible": 1
+    }
+  ,
+  "services" :
+    {
+      "title": "Services",
+      "wizard": "services",
+      "order": 3,
+      "custom": "",
+      "visible": 1
+    }
+  ,
+  "assistants" :
+    {
+      "title": "Assistants Vocaux",
+      "wizard": "assistants",
+      "order": 4,
+      "custom": "",
+      "visible": 1
+    }
+  ,
+   "freebox_os" :
+   	{
+	  "title": "Appairage Freebox",
+      "wizard": "freebox_os",
+      "order": 5,
+      "custom": "",
+      "visible": 1
+   	}
+  ,
+  "ready" :
+    {
+      "title": "Ready to start",
+      "wizard": "ready",
+      "order": 6,
+      "custom": "",
+      "visible": 1
+    }
+
+  },
+  "update": 1
+}
