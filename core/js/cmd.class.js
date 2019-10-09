@@ -25,6 +25,28 @@ if (!isset(jeedom.cmd.cache.byHumanName)) {
 if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
+
+jeedom.cmd.notifyEq = function(_eqlogic=false, _stopAfter=true) {
+  if (!_eqlogic) return
+
+  if (_eqlogic.find('.cmd.refresh').length) {
+    _eqlogic.find('.cmd.refresh').addClass('spinning')
+  } else {
+    let refreshSpan = '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>'
+    _eqlogic.prepend(refreshSpan)
+  }
+
+  if (_stopAfter) {
+    setTimeout(function() {
+      if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
+        _eqlogic.find('.cmd.refresh').remove()
+      } else {
+        _eqlogic.find('.cmd.refresh').removeClass('spinning')
+      }
+    }, 3000);
+  }
+}
+
 jeedom.cmd.execute = function(_params) {
   if(jeedom.cmd.disableExecute){
     return;
@@ -32,7 +54,7 @@ jeedom.cmd.execute = function(_params) {
   var notify = _params.notify || true;
   if (notify) {
     var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
-    eqLogic.find('.statusCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = json_encode(_params.value);
@@ -57,10 +79,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
@@ -78,14 +97,11 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
@@ -103,10 +119,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
@@ -124,14 +137,11 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -142,19 +152,13 @@ jeedom.cmd.execute = function(_params) {
             });
           }
           if (notify) {
-            eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-            setTimeout(function() {
-              eqLogic.find('.statusCmd').empty();
-            }, 3000);
+            jeedom.cmd.notifyEq(eqLogic, true)
           }
           return data;
         }
       }
       if (notify) {
-        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
-        setTimeout(function() {
-          eqLogic.find('.statusCmd').empty();
-        }, 3000);
+        jeedom.cmd.notifyEq(eqLogic, true)
       }
       return data;
     }
@@ -614,7 +618,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -652,7 +656,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
