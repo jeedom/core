@@ -6,7 +6,7 @@ if (!isConnect()) {
 <?php
 /* LANCEMENT DE JEEASY */
 try {
-	$plugin = plugin::byId('openvpn');
+	$plugin = plugin::byId('jeeasy');
 ?>
 	<script>
 		$( document ).ready(function() {
