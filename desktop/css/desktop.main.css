@@ -355,6 +355,7 @@ legend {
 .eqLogic-widget .cmd.refresh {
   margin-top: 5px !important;
   margin-right: 5px !important;
+  padding-top: 1px !important;
 }
 .eqLogic-widget .cmd.refresh i {
   color: var(--eqTitle-color) !important;
@@ -365,15 +366,11 @@ legend {
 }
 
 .eqLogic-widget .cmd.refresh.spinning i {
-  animation: spin-animation 2s infinite linear;
+  animation: spin-animation 3s infinite linear;
 }
 @keyframes spin-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(1turn);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
 }
 
 
