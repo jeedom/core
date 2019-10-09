@@ -57,7 +57,6 @@
     
     $('.cmd[data-cmd_uid=#uid#] .slider').on('slidestop', function (event,ui) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
-      cmd.find('.valueshutter').show()
       cmd.find('.dynamicshutter').hide()
       if('#invert#' == '1'){
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
@@ -66,6 +65,8 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       }
       $(".value#uid#").hide()
+      cmd.find('.valueshutter').show()
+      cmd.find('.timeCmd').show()
     })
     
     $('.cmd[data-cmd_uid=#uid#] .slider').slider({
@@ -76,6 +77,7 @@
       slide: function(event, ui) {
         var cmd = $('.cmd[data-cmd_uid=#uid#]')
         cmd.find('.valueshutter').hide()
+        cmd.find('.timeCmd').hide()
         cmd.find('.dynamicshutter').show()
         if ('#invert#' == '1') {
           var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
