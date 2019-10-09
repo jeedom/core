@@ -60,6 +60,12 @@ textarea {
 }
 
 /* ___________________________________________________________EQs */
+.timeCmd {
+	background-color: var(--el-defaultColor) !important;
+	color: var(--linkHoverLight-color);
+	opacity: 0.5;
+}
+
 .iconCmd > i {
 	color: var(--link-color) !important;
 }
