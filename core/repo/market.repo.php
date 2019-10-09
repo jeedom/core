@@ -135,7 +135,7 @@ class repo_market {
 				}
 				$update->setSource('market');
 				$update->setLogicalId($repo->getLogicalId());
-				$update->setType(($repo->getType());
+				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
 				$update->save();
