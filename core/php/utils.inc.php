@@ -1186,22 +1186,6 @@ function sanitizeAccent($_message) {
 			$return[] = '#' . substr("000000".dechex($color['value']),-6);
 		}
 		return $return;
-		
-		$extractor = new ColorExtractor(Palette::fromFilename($_pathimg));
-		if($_level != null){
-			$colors = $extractor->extract($_level);
-			$return = array();
-			foreach ($colors as $color) {
-				$return[] =  Color::fromIntToHex($color);
-			}
-			return $return;
-		}
-		$colors = $extractor->extract(2);
-		$return = Color::fromIntToHex($colors[0]);
-		if($return == '#000000'){
-			return Color::fromIntToHex($colors[1]);
-		}
-		return $return;
 	}
 	
 	function sha512($_string) {
