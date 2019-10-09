@@ -690,7 +690,7 @@ class cmd {
 						if(!isset($return[$type][$subtype])){
 							$return[$type][$subtype] = array();
 						}
-						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId() , 'type' => 'plugin');
+						$return[$type][$subtype][$plugin->getId().'::'.$name] = array('name' => $name, 'location' => $plugin->getId() , 'type' => 'plugin');
 					}
 				}
 			}
