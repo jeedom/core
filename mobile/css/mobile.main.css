@@ -369,6 +369,18 @@ p.state {
 .cmd.refresh i:hover {
   color: var(--linkHoverLight-color) !important;
 }
+.cmd.refresh.spinning i {
+  animation: spin-animation 2s infinite linear;
+}
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 .label {
   font-size: 12px !important;
   font-weight: normal;
