@@ -1702,6 +1702,7 @@ input[type=password]{
 select option {
   color: var(--txt-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
+  font-size: 13px;
 }
 select optgroup {
   color: var(--txt-color) !important;
