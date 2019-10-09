@@ -17,6 +17,9 @@
 */
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use League\ColorExtractor\Color;
+use League\ColorExtractor\ColorExtractor;
+use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	$_rescue = false;
@@ -1141,27 +1144,22 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg) {
-		$rTotal = 0;
-		$gTotal = 0;
-		$bTotal = 0;
-		$total = 0;
-		$i = imagecreatefromjpeg($_pathimg);
-		$imagesX = imagesx($i);
-		for ($x = 0; $x < $imagesX; $x++) {
-			$imagesY = imagesy($i);
-			for ($y = 0; $y < $imagesY; $y++) {
-				$rgb = imagecolorat($i, $x, $y);
-				$r = ($rgb >> 16) & 0xFF;
-				$g = ($rgb >> 8) & 0xFF;
-				$b = $rgb & 0xFF;
-				$rTotal += $r;
-				$gTotal += $g;
-				$bTotal += $b;
-				$total++;
+	function getDominantColor($_pathimg,$_level = null) {
+		$extractor = new ColorExtractor(Palette::fromFilename($_pathimg));
+		if($_level != null){
+			$colors = $extractor->extract($_level);
+			$return = array();
+			foreach ($colors as $color) {
+				$return[] =  Color::fromIntToHex($color);
 			}
+			return $return;
 		}
-		return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+		$colors = $extractor->extract(2);
+		$return = Color::fromIntToHex($colors[0]);
+		if($return == '#000000'){
+			return Color::fromIntToHex($colors[1]);
+		}
+		return $return;
 	}
 	
 	function sha512($_string) {

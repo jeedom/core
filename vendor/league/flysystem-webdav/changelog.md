@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.8 - 2019-07-08
+
+* Made some properties private to allow them to be overwritten so other types of WebDAV servers can be supported (#51).
+
+## 1.0.7 - 2019-06-23
+
+* Fixed prefix handling from listContent
+
 ## 1.0.6 - 2018-12-14
 
 ### Fixed

@@ -35,4 +35,5 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Base32\\' => array($vendorDir . '/christian-riesen/base32/src'),
+    '' => array($vendorDir . '/league/color-extractor/src'),
 );
