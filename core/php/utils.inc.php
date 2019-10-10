@@ -1144,7 +1144,7 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg,$_level = null,$_ignoreDarkColor = false) {
+	function getDominantColor($_pathimg,$_level = null,$_smartMode = false) {
 		$colors = array();
 		$i = imagecreatefromjpeg($_pathimg);
 		$imagesX = imagesx($i);
@@ -1158,9 +1158,12 @@ function sanitizeAccent($_message) {
 		for ($x = 0; $x < $imagesX; $x++) {
 			for ($y = 0; $y < $imagesY; $y++) {
 				$rgb = imagecolorat($img, $x, $y);
-				if($_ignoreDarkColor){
+				if($_smartMode){
 					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
-					if($sum < 10){
+					if($sum < 150){
+						continue;
+					}
+					if($sum > 700){
 						continue;
 					}
 				}
@@ -1181,11 +1184,28 @@ function sanitizeAccent($_message) {
 			return '#' . substr("000000".dechex($colors[0]['value']),-6);
 		}
 		$return = array();
-		$colors = array_slice($colors,0,$_level);
+		$colors = array_slice($colors,0,$_level*50);
+		$previous_color = -1;
 		foreach ($colors as $color) {
+			if($_smartMode && $previous_color > 0 && colorsAreClose($previous_color,$color['value'],50)){
+				continue;
+			}
 			$return[] = '#' . substr("000000".dechex($color['value']),-6);
+			$previous_color = $color['value'];
+		}
+		if(count($return) < $_level){
+			for($i=0;$i<($_level - count($return));$i++){
+				$return[] = $return[$i];
+			}
 		}
 		return $return;
+	}
+	
+	function colorsAreClose($_c1,$_c2,$_threshold){
+		$rDist = abs((($_c1 >> 16) & 0xFF) - (($_c2 >> 16) & 0xFF));
+		$gDist = abs((($_c1 >> 8) & 0xFF) - (($_c2 >> 8) & 0xFF));
+		$bDist = abs(($_c1 & 0xFF) - ($_c2 & 0xFF));
+		return (($rDist + $gDist + $bDist) < $_threshold);
 	}
 	
 	function sha512($_string) {
