@@ -112,6 +112,10 @@ a:focus {
   color: var(--linkHoverLight-color) !important;
 }
 
+.timeCmd.label {
+  background: rgba(var(--bg-color),0.7);
+}
+
 /* CodeMirror */
 .expressions .CodeMirror-wrap,
 body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.8 !important; }
