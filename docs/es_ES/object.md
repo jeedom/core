@@ -142,6 +142,6 @@ Jeedom, ainsi que leur configuration :
     el dashboard.
 
 -   **Résumé Mobile Masqué** : Indique les résumés masqués sur
-    le mobile.
+    el móvil.
 
 

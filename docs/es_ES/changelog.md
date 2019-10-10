@@ -67,7 +67,7 @@ Changelog
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
-- Nombreuses corrections de bugs.
+- Numerosas correcciones de errores.
 - Ajout d'un systeme de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
 >**IMPORTANT**
@@ -202,7 +202,7 @@ Changelog
 - Ajout d'une action tag dans les scénarios (voir documentation)
 - Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
 - Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
-- Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
+- Actualización de gráficos en tiempo real (simple, no los calculados o los timelines)
 - Possibilité de supprimer un élément à partir de la configuration du design
 - Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
 - Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
@@ -228,7 +228,7 @@ Changelog
 3.2.12
 =====
 - Correction de bugs
-- Optimisations
+- Optimizaciones
 
 3.2.11
 =====
@@ -268,7 +268,7 @@ Changelog
 
 3.2.6
 =====
-- Correction de bugs
+- Corrección de errores
 - Mise à jour de la docs
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
@@ -300,10 +300,10 @@ Changelog
 - JEED-365 : Suppression de "Commande d’information utilisateur" pour être remplacé par des actions sur message. Permet de lancer plusieurs commande différentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
 - Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
 - Correction d'un bug de droits suite à une restauration d'un backup
-- Mise à jour des traductions
+- Traducciones actualizadas
 - Mise à jour des librairies (jquery et highcharts)
 - Possibilité d’interdire une commande dans les interactions automatique
-- Amélioration des interactions automatique
+- Interacciones automáticas mejoradas
 - Correction de bug sur la gestion des synonyme des interactions
 - Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD (permet de rendre Jeedom compatible AD)
 - Corrections d’orthographe (merci à dab0u pour son énorme travail)
@@ -326,7 +326,7 @@ Changelog
 - JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
 - JEED-124 : Corriger la gestion des timeouts des scénarios
 - Correction de bugs
-- Possibilité de désactiver une interaction
+- Capacidad para deshabilitar una interacción
 - Ajout d’un éditeur de fichiers (réservé aux utilisateurs expérimentés)
 - Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
 - Possibilité de rendre des mots obligatoires dans une interaction
@@ -359,16 +359,16 @@ Changelog
 - Refonte de la page des interactions
 - Refonte de la page profils
 - Refonte de la page d’administration
-- Ajout d’une "santé" sur les objets
+- Agregando una "salud" en los objetos
 - Correction de bug sur le niveau de batterie des équipements
 - Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implémentée dans le plugin)
 - Possibilité d’historiser des commandes de type texte
 - Sur la page historique vous pouvez maintenant faire le graphique d’un calcul
 - Ajout d’une gestion de formule de calcul pour les historiques
 - Remise à jour de toute la documentation :
-    - Toute les docs ont été revues
+    - Todos los documentos han sido revisados
     - Suppression des images pour faciliter la mise à jour et le
-        multilingue
+        multilingüe
 - Plus de choix possibles sur les réglage des tailles de zone dans les vues
 - Possibilité de choisir la couleur du texte du résumé d’objet
 - Ajout d’une action remove\_inat dans les scénarios permettant d’annuler toutes les programmations des bloc DANS/A
@@ -413,7 +413,7 @@ Changelog
 - Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 - Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
 - Sauvegarde automatique des vues lors du clic sur le bouton "voir le résultat"
-- Possibilité d’avoir les docs en local
+- Posibilidad de tener los documentos localmente
 - Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 - Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
@@ -491,11 +491,11 @@ Changelog
 2.4.5
 =====
 - Correction de bugs
-- Optimisation de la vérification des mises à jour
+- Optimizando la comprobación de las actualizaciones
 
 2.4
 ---
-- Optimisation générale
+- Optimización general
     - Regroupement de requêtes SQL
     - Suppression de requêtes inutiles
     - Passage en cache du pid, état et dernier lancement des scénarios

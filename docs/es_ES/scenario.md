@@ -132,7 +132,7 @@ notre scénario :
 > Attention : vous pouvez avoir au maximum 28
 > déclencheurs/programmations pour un scénario.
 
-Onglet Scénario
+Pestaña Escenario 
 ---------------
 
 C’est ici que vous allez construire votre scénario. Il faut commencer
