@@ -1144,7 +1144,7 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg,$_level = null,$_ignoreDarkColor = false) {
+	function getDominantColor($_pathimg,$_level = null,$_smartMode = false) {
 		$colors = array();
 		$i = imagecreatefromjpeg($_pathimg);
 		$imagesX = imagesx($i);
@@ -1158,9 +1158,12 @@ function sanitizeAccent($_message) {
 		for ($x = 0; $x < $imagesX; $x++) {
 			for ($y = 0; $y < $imagesY; $y++) {
 				$rgb = imagecolorat($img, $x, $y);
-				if($_ignoreDarkColor){
+				if($_smartMode){
 					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
 					if($sum < 10){
+						continue;
+					}
+					if($sum > 750){
 						continue;
 					}
 				}
