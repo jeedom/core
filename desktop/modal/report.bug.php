@@ -15,7 +15,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
 		<div class="panel-body">
 			{{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-			{{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
+			{{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br/>
 			{{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
 			{{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
 		</div>
@@ -24,7 +24,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
 		<div class="panel-body">
 			<strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
-			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
+			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
 			
 			<center>
@@ -139,6 +139,11 @@ $('#bt_sendBugReport').on('click', function () {
 });
 
 $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
+	if($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration'){
+		$('#div_alertReportBug').showAlert({message: '{{ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\'informationd personnelles (mail, compte market, clef api...)}}', level: 'warning'});
+	}else{
+		$.hideAlert();
+	}
 	$('#div_reportModalPrivateIssue').hide();
 	if($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == ''){
 		$('#div_reportModalSendAction').hide();
