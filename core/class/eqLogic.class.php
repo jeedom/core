@@ -1162,7 +1162,7 @@ class eqLogic {
 			foreach ($this->getCmd() as $eqLogic_cmd) {
 				$exists = 0;
 				foreach ($_configuration['commands'] as $command) {
-					if ($command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
 						$exists++;
 					}
 				}
