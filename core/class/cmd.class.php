@@ -1180,7 +1180,7 @@ class cmd {
 			if(isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0){
 				$replace = $template_conf['replace'];
 				foreach ($replace as &$value) {
-					$value = str_replace('#value#','"+_options.display_value+"',str_replace("'","\'",$value));
+					$value = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$value));
 				}
 			}else{
 				$replace = array();
