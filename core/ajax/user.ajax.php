@@ -34,7 +34,11 @@ try {
 	
 	if (init('action') == 'login') {
 		if(!file_exists(session_save_path())){
-			mkdir(session_save_path());
+			try {
+				com_shell::execute(system::getCmdSudo() . ' mkdir ' .session_save_path().';'.system::getCmdSudo() . ' chmod 777 -R ' .session_save_path());
+			} catch (\Exception $e) {
+				
+			}
 		}
 		try {
 			if(com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path().' | wc -l') > 500){

@@ -5,7 +5,6 @@ namespace League\Flysystem\Adapter;
 use DirectoryIterator;
 use FilesystemIterator;
 use finfo as Finfo;
-use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;
 use League\Flysystem\Exception;
 use League\Flysystem\NotSupportedException;
@@ -33,11 +32,11 @@ class Local extends AbstractAdapter
      */
     protected static $permissions = [
         'file' => [
-            'public'  => 0644,
+            'public' => 0644,
             'private' => 0600,
         ],
-        'dir'  => [
-            'public'  => 0755,
+        'dir' => [
+            'public' => 0755,
             'private' => 0700,
         ],
     ];
@@ -207,7 +206,7 @@ class Local extends AbstractAdapter
 
         $result = compact('type', 'path', 'size', 'contents');
 
-        if ($mimetype = Util::guessMimeType($path, $contents)) {
+        if ($mimetype = $config->get('mimetype') ?: Util::guessMimeType($path, $contents)) {
             $result['mimetype'] = $mimetype;
         }
 
@@ -220,7 +219,7 @@ class Local extends AbstractAdapter
     public function read($path)
     {
         $location = $this->applyPathPrefix($path);
-        $contents = file_get_contents($location);
+        $contents = @file_get_contents($location);
 
         if ($contents === false) {
             return false;
@@ -297,6 +296,7 @@ class Local extends AbstractAdapter
     public function getMetadata($path)
     {
         $location = $this->applyPathPrefix($path);
+        clearstatcache(false, $location);
         $info = new SplFileInfo($location);
 
         return $this->normalizeFileInfo($info);
@@ -342,7 +342,15 @@ class Local extends AbstractAdapter
         $location = $this->applyPathPrefix($path);
         clearstatcache(false, $location);
         $permissions = octdec(substr(sprintf('%o', fileperms($location)), -4));
-        $visibility = $permissions & 0044 ? AdapterInterface::VISIBILITY_PUBLIC : AdapterInterface::VISIBILITY_PRIVATE;
+        $type = is_dir($location) ? 'dir' : 'file';
+
+        foreach ($this->permissionMap[$type] as $visibility => $visibilityPermissions) {
+            if ($visibilityPermissions == $permissions) {
+                return compact('path', 'visibility');
+            }
+        }
+
+        $visibility = substr(sprintf('%o', fileperms($location)), -4);
 
         return compact('path', 'visibility');
     }
@@ -371,11 +379,13 @@ class Local extends AbstractAdapter
         $location = $this->applyPathPrefix($dirname);
         $umask = umask(0);
         $visibility = $config->get('visibility', 'public');
+        $return = ['path' => $dirname, 'type' => 'dir'];
 
-        if ( ! is_dir($location) && ! mkdir($location, $this->permissionMap['dir'][$visibility], true)) {
-            $return = false;
-        } else {
-            $return = ['path' => $dirname, 'type' => 'dir'];
+        if ( ! is_dir($location)) {
+            if (false === @mkdir($location, $this->permissionMap['dir'][$visibility], true)
+                || false === is_dir($location)) {
+                $return = false;
+            }
         }
 
         umask($umask);

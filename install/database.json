@@ -265,7 +265,7 @@
         },
         {
           "name": "key",
-          "type": "varchar(255)",
+          "type": "varchar(127)",
           "null": "NO",
           "key": "PRI",
           "default": null,

@@ -190,7 +190,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
 });
 
 /**************************EqLogic*********************************************/
-$('.eqLogicAction[data-action=copy]').on('click', function () {
+$('.eqLogicAction[data-action=copy]').off('click').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined && $('.eqLogicAttr[data-l1key=id]').value() != '') {
     bootbox.prompt({
       size: 'small',
@@ -225,7 +225,7 @@ $('.eqLogicAction[data-action=copy]').on('click', function () {
   }
 });
 
-$('.eqLogicAction[data-action=export]').on('click', function () {
+$('.eqLogicAction[data-action=export]').off('click').on('click', function () {
   window.open('core/php/export.php?type=eqLogic&id=' + $('.eqLogicAttr[data-l1key=id]').value(), "_blank", null);
 });
 
@@ -234,7 +234,7 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   $('.eqLogicAction[data-action=save]').click();
 });
 
-$('.eqLogicAction[data-action=save]').on('click', function () {
+$('.eqLogicAction[data-action=save]').off('click').on('click', function () {
   var eqLogics = [];
   $('.eqLogic').each(function () {
     if ($(this).is(':visible')) {
@@ -274,7 +274,7 @@ $('.eqLogicAction[data-action=save]').on('click', function () {
   return false;
 });
 
-$('.eqLogicAction[data-action=remove]').on('click', function () {
+$('.eqLogicAction[data-action=remove]').off('click').on('click', function () {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined) {
     jeedom.eqLogic.getUseBeforeRemove({
       id: $('.eqLogicAttr[data-l1key=id]').value(),
@@ -324,7 +324,7 @@ $('.eqLogicAction[data-action=remove]').on('click', function () {
   }
 });
 
-$('.eqLogicAction[data-action=add]').on('click', function () {
+$('.eqLogicAction[data-action=add]').off('click').on('click', function () {
   bootbox.prompt("{{Nom de l'équipement ?}}", function (result) {
     if (result !== null) {
       jeedom.eqLogic.save({
@@ -350,7 +350,7 @@ $('.eqLogicAction[data-action=add]').on('click', function () {
   });
 });
 
-$('.eqLogic .eqLogicAction[data-action=configure]').on('click', function () {
+$('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function () {
   $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"});
   $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
 });

@@ -3,8 +3,6 @@ Theme Core 2019 @Jeedom
 Mobile WebApp
 */
 
-@import url("coreWidgets.css");
-
 /* _____________________________GLOBAL */
 ::-webkit-scrollbar{
   width:8px;
@@ -279,9 +277,11 @@ a, .ui-link {
   color: var(--link-color) !important;
   min-height: 45px;
 }
+.iconCmd > span {
+  vertical-align: middle !important;
+}
 .iconCmd i {
   color: var(--link-color) !important;
-  margin: 7px;
   font-size: 30px !important;
   top: 5px !important;
   position: relative;
@@ -298,6 +298,9 @@ a, .ui-link {
   padding-left: 5px !important;
   padding-right: 5px !important;
   font-size: 12.5px;
+}
+.iconCmd + .timeCmd {
+  line-height: 25px;
 }
 .statusCmd {
   position: absolute;
@@ -360,15 +363,24 @@ p.state {
   margin-top: 2px;
 }
 .cmd.refresh {
-  margin-top: 2px;
+  padding-top: 1px !important;
 }
 .cmd.refresh i {
   font-size: 12px;
   color: var(--sc-lightTxt-color) !important;
+  margin-top: 5px !important;
 }
 .cmd.refresh i:hover {
   color: var(--linkHoverLight-color) !important;
 }
+.cmd.refresh.spinning i {
+  animation: spin-animation 3s infinite linear;
+}
+@keyframes spin-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
+
 .label {
   font-size: 12px !important;
   font-weight: normal;
@@ -445,7 +457,8 @@ p.state {
   color: var(--link-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
   box-shadow: none;
-  line-height: 10px !important;
+  line-height: 15px !important;
+  min-height: 17px;
 }
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
@@ -579,7 +592,9 @@ select option {
 /* buttons */
 a.action.ui-btn {
   min-width: 15px;
+  min-height: 15px;
 }
+
 .ui-slider-bg {
   height: 5px;
 }

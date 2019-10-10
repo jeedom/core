@@ -46,6 +46,7 @@ if (file_exists(__DIR__ . '/mobile/custom/custom.js')) {
 
 $other_file = array(
 	'core/php/icon.inc.php',
+	'mobile/css/coreWidgets.css',
 	'mobile/css/mobile.main.css',
 	'3rdparty/jquery.mobile/jquery.mobile.min.css',
 	'3rdparty/jquery.mobile/css/nativedroid2.css',

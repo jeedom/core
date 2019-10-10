@@ -135,8 +135,10 @@ class jeedom {
 	
 	public static function removeTimelineEvent() {
 		$path = __DIR__ . '/../../data/timeline.json';
-		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
-		unlink($path);
+		if (file_exists($path)) {
+		  com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
+		  unlink($path);
+		}
 	}
 	
 	public static function addRemoveHistory($_data) {
@@ -1385,6 +1387,8 @@ class jeedom {
 				}
 			} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'miniplus';
+			} else if (file_exists('/usr/bin/grille-pain')) {
+				$result = 'freeboxDelta';
 			}
 			if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'smart';

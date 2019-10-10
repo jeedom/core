@@ -343,7 +343,7 @@ $(function() {
       })
 
       //actions:
-      $('div.eqLogic-widget .cmd-widget[data-type="action"]').on({
+      $('div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]').on({
         mouseenter: function () {
           $(this).parents('.eqLogic-widget').addClass('eqSignalAction')
         },

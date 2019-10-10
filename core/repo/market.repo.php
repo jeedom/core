@@ -133,7 +133,7 @@ class repo_market {
 				if (!is_object($update)) {
 					$update = new update();
 				}
-				$update->setSource(init('repo'));
+				$update->setSource('market');
 				$update->setLogicalId($repo->getLogicalId());
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
