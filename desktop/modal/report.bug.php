@@ -138,6 +138,11 @@ $('#bt_sendBugReport').on('click', function () {
 });
 
 $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
+	if($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration'){
+		$('#div_alertReportBug').showAlert({message: '{{ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\'informationd personnelles (mail, compte market, clef api...)}}', level: 'warning'});
+	}else{
+		$.hideAlert();
+	}
 	$('#div_reportModalPrivateIssue').hide();
 	if($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == ''){
 		$('#div_reportModalSendAction').hide();
