@@ -1160,10 +1160,10 @@ function sanitizeAccent($_message) {
 				$rgb = imagecolorat($img, $x, $y);
 				if($_smartMode){
 					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
-					if($sum < 10){
+					if($sum < 150){
 						continue;
 					}
-					if($sum > 750){
+					if($sum > 700){
 						continue;
 					}
 				}
@@ -1184,11 +1184,28 @@ function sanitizeAccent($_message) {
 			return '#' . substr("000000".dechex($colors[0]['value']),-6);
 		}
 		$return = array();
-		$colors = array_slice($colors,0,$_level);
+		$colors = array_slice($colors,0,$_level*50);
+		$previous_color = -1;
 		foreach ($colors as $color) {
+			if($_smartMode && $previous_color > 0 && colorsAreClose($previous_color,$color['value'],50)){
+				continue;
+			}
 			$return[] = '#' . substr("000000".dechex($color['value']),-6);
+			$previous_color = $color['value'];
+		}
+		if(count($return) < $_level){
+			for($i=0;$i<($_level - count($return));$i++){
+				$return[] = $return[$i];
+			}
 		}
 		return $return;
+	}
+	
+	function colorsAreClose($_c1,$_c2,$_threshold){
+		$rDist = abs((($_c1 >> 16) & 0xFF) - (($_c2 >> 16) & 0xFF));
+		$gDist = abs((($_c1 >> 8) & 0xFF) - (($_c2 >> 8) & 0xFF));
+		$bDist = abs(($_c1 & 0xFF) - ($_c2 & 0xFF));
+		return (($rDist + $gDist + $bDist) < $_threshold);
 	}
 	
 	function sha512($_string) {
