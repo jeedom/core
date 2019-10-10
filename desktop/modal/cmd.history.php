@@ -64,12 +64,12 @@ $date = array(
 		</div>
 	</div>
 	<center><div id="div_historyChart"></div></center>
-	
-	
+
+
 	<script>
 	$(".in_datepicker").datepicker();
 	$('#ui-datepicker-div').hide();
-	
+
 	$('#div_historyChart').css('position', 'relative').css('width', '100%');
 	delete jeedom.history.chart['div_historyChart'];
 	jeedom.history.drawChart({
@@ -96,7 +96,7 @@ $date = array(
 					$('.cb_derive').off().value(init(data.cmd.display.graphDerive));
 				}
 			}
-			
+
 			$('.sel_chartType').off('change').on('change', function () {
 				jeedom.cmd.save({
 					cmd: {id: <?php echo init('id'); ?>, display: {graphType: $(this).value()}},
@@ -189,8 +189,7 @@ $date = array(
 					modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
 				}
 			});
-			
-			
+
 			if ($(window).width() > 768) {
 				width = 780
 				height = 500
@@ -202,14 +201,13 @@ $date = array(
 					of: window
 				})
 			}
-			
+
 			$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
-			$('.ui-dialog[aria-labelledby="ui-id-4"]').resize(function() {
-				$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
+			$('.md_history').parents('.ui-dialog.ui-resizable').resize(function() {
+				var histModal = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
+				$('#div_historyChart').highcharts().setSize( histModal.width(), histModal.height() - histModal.find('.md_history .row').height()-20)
 			})
 		}
 	});
-	
-	
-</script>
+	</script>
 </div>
