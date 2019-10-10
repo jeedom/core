@@ -159,7 +159,8 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
     isEditing = false
-    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
+    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','')
+    $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
     $('#in_searchWidget').removeAttr('style')
     $('#in_searchWidget').val('')
@@ -189,6 +190,7 @@ function editWidgetMode(_mode,_save){
       }
     })
     isEditing = true
+    $('#div_displayObject .row').css('margin-top', '27px')
     $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'});
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
     .style("color", "var(--linkHoverLight-color)", "important")
@@ -257,42 +259,35 @@ function getObjectHtml(_object_id) {
   });
 }
 
-$('#bt_editDashboardWidgetOrder').on('click',function(){
-  if($(this).attr('data-mode') == 1){
+$('#bt_editDashboardWidgetOrder').on('click',function() {
+  if ($(this).attr('data-mode') == 1) {
     $('.tooltipstered').tooltipster('enable')
-    $.hideAlert();
-    $(this).attr('data-mode',0);
-    editWidgetMode(0);
-    $(this).css('color','black');
-    $('.bt_editDashboardWidgetAutoResize').hide();
-    $('.counterReorderJeedom').remove();
-    $('.div_displayEquipement').packery();
-  }else{
+    $.hideAlert()
+    $(this).attr('data-mode',0)
+    editWidgetMode(0)
+    $(this).css('color','black')
+    $('.bt_editDashboardWidgetAutoResize').hide()
+    $('.counterReorderJeedom').remove()
+    $('.div_displayEquipement').packery()
+  } else {
     $('.tooltipstered').tooltipster('disable')
-    $(this).attr('data-mode',1);
-    $('.bt_editDashboardWidgetAutoResize').show();
-    $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function(){
-      var id_object = $(this).attr('id');
-      id_object = id_object.replace('edit_object_','');
-      var heightObjectex = 0;
-      $('#div_ob'+id_object+'.div_displayEquipement .eqLogic-widget,.scenario-widget').each(function(index, element){
-        var heightObject = this.style.height;
-        heightObject = eval(heightObject.replace('px',''));
-        var valueAdd = eval(heightObject * 0.20);
-        var valueRemove = eval(heightObject * 0.05);
-        var heightObjectadd = eval(heightObject + valueAdd);
-        var heightObjectremove = eval(heightObject - valueRemove);
-        if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
-          if($(element).hasClass('allowResize')){
-            $( element ).height(heightObjectex);
-            heightObject = heightObjectex;
-          }
-        }
-        heightObjectex = heightObject;
-      });
+    $(this).attr('data-mode',1)
+    $('.bt_editDashboardWidgetAutoResize').show()
+    $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {
+      var id_object = $(this).attr('id').replace('edit_object_','')
+      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
+      var arHeights = new Array()
+      objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
+        var h = $(this).height()
+        arHeights.push(h)
+      })
+      var maxHeight = Math.max(...arHeights)
+      objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
+        $(this).height(maxHeight)
+      })
+      objectContainer.packery()
     });
-    editWidgetMode(1);
-    $(this).css('color','rgb(46, 176, 75)');
+    editWidgetMode(1)
   }
 });
 
@@ -327,8 +322,6 @@ function displayChildObject(_object_id,_recursion){
 }
 
 //info / action:
-
-
 $(function() {
   if ($('body').attr('data-device') == 'desktop') {
     setTimeout(function() {
