@@ -500,8 +500,10 @@ sup i {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
 }
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-  border: 2px solid var(--logo-primary-color) !important;
+  border: 2px dotted var(--logo-primary-color) !important;
 }
+.ui-resizable-handle.ui-resizable-e { width: 15px; }
+.ui-resizable-handle.ui-resizable-s { height: 15px; }
 
 /* summary */
 .objectSummaryParent {
