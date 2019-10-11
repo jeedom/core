@@ -26,24 +26,23 @@ if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
 
-jeedom.cmd.notifyEq = function(_eqlogic=false, _stopAfter=true) {
-  if (!_eqlogic) return
-
+jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
+  if (!_eqlogic){
+    return;
+  }
   if (_eqlogic.find('.cmd.refresh').length) {
     _eqlogic.find('.cmd.refresh').addClass('spinning')
   } else {
-    let refreshSpan = '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>'
-    _eqlogic.prepend(refreshSpan)
+    _eqlogic.prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
-
-  if (_stopAfter) {
+  if (_hide) {
     setTimeout(function() {
       if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
         _eqlogic.find('.cmd.refresh').remove()
       } else {
         _eqlogic.find('.cmd.refresh').removeClass('spinning')
       }
-    }, 3000);
+    }, 500);
   }
 }
 
@@ -101,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else if(data.code == -32006){
@@ -141,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else{
@@ -618,7 +617,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-
+            
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -656,7 +655,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-
+      
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
