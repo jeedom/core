@@ -719,7 +719,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
     de mensajes.
 
 -   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
-    modifier les propriétés d’un équipement
+    modificar las propiedades de un dispositivo
     visible/invisible, activo/inactivo.
 
 -   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser

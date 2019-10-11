@@ -245,7 +245,7 @@ Changelog
 
 3.2.9
 =====
-- Correction de bugs
+- Correcciones de errores
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -417,7 +417,7 @@ Changelog
 - Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 - Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
-- Grosse amélioration des designs:
+- Gran mejora de los diseños :
     - Toutes les actions sont maintenant accessibles à partir d’un
         clic droit
     - Possibilité d’ajouter une commande seule
@@ -519,7 +519,7 @@ Changelog
 - Correction des checkbox historiser, visible et inverser dans le tableau des commandes
 - Correction d’un soucis sur la traduction des javascripts
 - Ajout d’une catégorie de plugin : objet communiquant
-- Ajout de GENERIC\_TYPE
+- Agregación de GENERIC\_TYPE
 - Suppression des filtres nouveau et top sur le parcours des plugins du market
 - Renommage de la catégorie par défaut sur le parcours des plugins du market en "Top et nouveauté"
 - Correction des filtres gratuit et payant sur le parcours des plugins du market

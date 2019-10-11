@@ -112,7 +112,7 @@ disponibles :
 
 -   **Informations** : affiche les propriétés brutes de l’équipement.
 
--   **Enregistrer** : Enregistre les modifications faites
+-   **Guardar** : Guarda los cambios realizados
     en el equipo.
 
 -   **Supprimer** : Supprime l’équipement.
@@ -207,7 +207,7 @@ question.
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
-Onglet Disposition 
+Pestaña Disposición
 ------------------
 
 Cette partie vous permet de choisir entre la disposition standard des
