@@ -102,6 +102,14 @@ $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',functi
   $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
+if (is_numeric(getUrlVars('cmd_id'))) {
+  let li = $('.li_history[data-cmd_id='+getUrlVars('cmd_id')+']');
+  if(li){
+    li.find('.history').click();
+    $('.displayObject[data-object_id='+li.closest('.cmdList').attr('data-object_id')+']').click();
+  }
+}
+
 function emptyHistory(_cmd_id,_date) {
   $.ajax({
     type: "POST",
@@ -267,7 +275,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-
+  
 }
 
 /**************TIMELINE********************/
@@ -328,7 +336,7 @@ function displayTimeline(){
       $('#table_timeline tbody').empty().append(tr).trigger('update')
       $('#table_timeline').on('sortEnd', function(){
         sepDays()
-	  })
+      })
       $('#timelinetab #table_timeline').find('th[data-column="0"]').trigger('sort').trigger('sort')
     }
   });
@@ -337,7 +345,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
+  
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
