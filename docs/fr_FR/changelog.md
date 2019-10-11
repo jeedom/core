@@ -30,8 +30,7 @@ Changelog
 - Possibilité d'attribuer une icône à une interaction.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
-- Gestion des fonctions *Page précédente / Page suivante* du navigateur.
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caractères.<br/><br/>
+- Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
 - Widgets : Refonte du système de widgets (menu Outils / Widgets).
 - Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
