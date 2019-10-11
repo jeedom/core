@@ -274,6 +274,8 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
     $(this).attr('data-mode',1)
     $('.bt_editDashboardWidgetAutoResize').show()
     $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {
+      var doesMin = false
+      if (event.ctrlKey) doesMin = true
       var id_object = $(this).attr('id').replace('edit_object_','')
       var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
       var arHeights = new Array()
@@ -281,7 +283,11 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
         var h = $(this).height()
         arHeights.push(h)
       })
-      var maxHeight = Math.max(...arHeights)
+      if (doesMin) {
+        var maxHeight = Math.min(...arHeights)
+      } else {
+        var maxHeight = Math.max(...arHeights)
+      }
       objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
         $(this).height(maxHeight)
       })
