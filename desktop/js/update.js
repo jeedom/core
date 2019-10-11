@@ -186,7 +186,7 @@ function getJeedomLog(_autoUpdate, _log) {
             if(alertTimeout != null){
               clearTimeout(alertTimeout);
             }
-            $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés}}', level: 'success'});
+            $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés}}', level: 'success'});
             _autoUpdate = 0;
           }
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
