@@ -674,7 +674,7 @@ div[class*="DisplayCard"] .name > .label {
 }
 
 .eqLogic-widget .cmd.refresh.spinning i {
-  animation: spin-animation 3s infinite linear;
+  animation: spin-animation 1s infinite linear;
 }
 @keyframes spin-animation {
   0% { transform: rotate(0deg); }
