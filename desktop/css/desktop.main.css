@@ -355,7 +355,6 @@ legend {
 .eqLogic-widget .cmd.refresh {
   margin-top: 5px !important;
   margin-right: 5px !important;
-  padding-top: 1px !important;
 }
 .eqLogic-widget .cmd.refresh i {
   color: var(--eqTitle-color) !important;
