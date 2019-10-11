@@ -674,7 +674,7 @@ div[class*="DisplayCard"] .name > .label {
 }
 
 .eqLogic-widget .cmd.refresh.spinning i {
-  animation: spin-animation 3s infinite linear;
+  animation: spin-animation 1s infinite linear;
 }
 @keyframes spin-animation {
   0% { transform: rotate(0deg); }
@@ -1206,6 +1206,13 @@ button .fas.fa-plus-circle {
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
+}
+.md_history .highcharts-area,
+.md_history .highcharts-point {
+  fill: rgb(100,160,235);
+}
+.md_history .highcharts-graph {
+  stroke: rgb(100,160,235);
 }
 
 
