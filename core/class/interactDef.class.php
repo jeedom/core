@@ -124,6 +124,7 @@ class interactDef {
 		preg_match_all("/#(.*?)#/", $_def, $tags);
 		if (count($tags[1]) > 0) {
 			foreach ($tags[1] as $match) {
+				$match=preg_quote('#' . $match . '#','/');
 				$regexp = str_replace(preg_quote('#' . $match . '#'), '(.*?)', $regexp);
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
