@@ -992,6 +992,11 @@ pre,
 a.ui-table-columntoggle-btn {
   display: none;
 }
+[data-page="message"] .removeMessage {
+  font-size: 20px;
+  padding: 5px;
+}
+
 @media only screen and (max-width:30em) {
   #table_message th.ui-table-priority-1 {
     display: none;
@@ -1003,7 +1008,7 @@ a.ui-table-columntoggle-btn {
     display: table-cell;
   }
   #table_message td:not(.datetime) {
-    margin-left: -30px;
+    margin-left: -40px;
   }
   #table_message td.plugin:before {
     content: 'Source: ';
