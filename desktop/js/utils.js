@@ -502,24 +502,6 @@ $(function () {
     $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
   }
   
-  $('#bt_haltSystem').on('click', function () {
-    $.hideAlert();
-    bootbox.confirm('{{Êtes-vous sûr de vouloir arrêter le système ?}}', function (result) {
-      if (result) {
-        window.location.href = 'index.php?v=d&p=shutdown';
-      }
-    });
-  });
-  
-  $('#bt_rebootSystem').on('click', function () {
-    $.hideAlert();
-    bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
-      if (result) {
-        window.location.href = 'index.php?v=d&p=reboot';
-      }
-    });
-  });
-  
   $('#bt_showEventInRealTime').on('click',function(){
     $('#md_modal').dialog({title: "{{Evénements en temps réel}}"}).load('index.php?v=d&modal=log.display&log=event').dialog('open');
   });

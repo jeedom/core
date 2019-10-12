@@ -370,8 +370,8 @@ function setTheme() {
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 												<li class="divider"></li>
 												<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
-													echo '<li class="cursor"><a id="bt_rebootSystem" state="0"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
-													echo '<li class="cursor"><a id="bt_haltSystem" state="0"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+													echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
+													echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
 												} ?>
 											</ul>
 										</li>
