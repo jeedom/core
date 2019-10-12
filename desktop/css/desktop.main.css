@@ -1105,7 +1105,6 @@ li.alert-info.eqLogic {
 .action_colorpicker_off {
   width: 35px !important;
   height: 25px !important;
-  padding: 3px !important;
 }
 
 h4.modal-title {
@@ -1591,7 +1590,6 @@ input.knob {
   width: 32px !important;
   padding-left: 14px;
 }
-
 .input-group-sm .btn {
   height: 28px !important;
   padding: 5px 10px;
