@@ -157,7 +157,7 @@ Voici les différents types de blocs disponibles :
 
 -   **Boucle** : Permet de réaliser des actions de manière répétitive de
     1 jusqu’à un nombre défini (ou même la valeur d’un capteur, ou un
-    nombre aléatoire…​).
+    número aleatorio...).
 
 -   **Dans** : Permet de lancer une action dans X minute(s) (0 est une
     valeur possible). La particularité est que les actions sont lancées
@@ -180,7 +180,7 @@ Chacun de ces blocs a ses options pour mieux les manipuler :
     bloque sin tener que eliminarlo.
 
 -   La double-flèche verticale, à gauche, permet de déplacer tout le
-    bloc par glisser/déposer.
+    bloque por arrastrar/poner.
 
 -   Le bouton, tout à droite, permet de supprimer le bloc entier.
 
@@ -505,7 +505,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
     nombre de changements d’état (vers une certaine valeur si indiquée,
     ou au total sinon) sur la période (period=[month,day,hour,min] ou
-    [expression
+    [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
@@ -551,7 +551,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
     de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
-    object.
+    objeto.
 
 -   lastCommunication(equipment,[format]) : Renvoie la date de la dernière communication
     pour l'équipement donnée en paramètre, le 2ème paramètre optionnel
@@ -607,8 +607,8 @@ ces différentes fonctions :
 | variable(plop,10)                  | Renvoie la valeur de la variable plop ou 10 si elle est vide ou n’existe pas                         |
 | scenario(\#[Salle de bain][Lumière][Auto]\#) | Renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n’existe pas et -3 si l’état n’est pas cohérent                         |
 | lastScenarioExecution(\#[Salle de bain][Lumière][Auto]\#)   | Renvoie 300 si le scénario s’est lancé pour la dernière fois il y a 5 min                                  |
-| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie 2015-01-01 17:45:12          |
-| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Renvoie 2015-01-01 17:50:12          |
+| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devuelve 2015-01-01 17:45:12          |
+| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devuelve 2015-01-01 17:50:12          |
 | eqEnable(\#[Aucun][Basilique]\#)       | Renvoie -2 si l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il est inactif          |
 | tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
 | name(eqLogic,\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devuelve Hidrometría                  |
@@ -623,7 +623,7 @@ effectuer des conversions ou des calculs :
 
 -   randText(texte1;texte2;texte…​..) : Permet de retourner un des
     textes aléatoirement (séparer les texte par un ; ). Il n’y a pas
-    de limite dans le nombre de texte.
+    del límite en la cantidad de texto.
 
 -   randomColor(min,max) : Donne une couleur aléatoire compris entre 2
     bornes ( 0 => rouge, 50 => vert, 100 => bleu).
