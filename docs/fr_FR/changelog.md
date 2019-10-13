@@ -14,14 +14,16 @@ Changelog
 - Les champs de recherche (dashboard, scénarios, objets, widgets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Lors d'une recherche, la touche *echap* annule la recherche.
-- Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe (toujours en haut).
+- Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
 - Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
-- Dashboard : Les tuiles indiquent si on survol une commande info (historisée, qui ouvrira la fenêtre Historique) ou action.
 - Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaitra le temps de l’exécution.
+- Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
+- Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
+- Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
 - Fenêtre Configuration de commande: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
 - Fenêtre Configuration de l'équipement: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
 - Ajout d'informations d'utilisation lors de la suppression d'un équipement.
-- Objets : Ajout d'une option pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+- Objets : Ajout d'une option pour utiliser des couleurs personnalisées.
 - Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
 - Interactions : Ajout d'un menu contextuel sur les onglets (changement rapide d'interaction).
 - Plugins : Ajout d'un menu contextuel sur les onglets (changement rapide d'équipement).
