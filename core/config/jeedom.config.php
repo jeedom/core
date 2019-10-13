@@ -67,7 +67,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'alerts' => array(
-		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o', 'level' => 1, 'check' => false, 'color' => '#FF0000'),
+		'timeout' => array('name' => 'Timeout', 'icon' => 'fa fa-clock-o', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
 		'batterywarning' => array('name' => 'Batterie en Warning', 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
 		'batterydanger' => array('name' => 'Batterie en Danger', 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
 		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
