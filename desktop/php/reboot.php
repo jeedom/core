@@ -40,6 +40,8 @@ bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', func
 		jeedom.rebootSystem();
 		setTimeout('reboot_jeedom(rebooti)', 10000);
 		$('#progressbar_reboot').width('5%');
+	}else{
+		loadPage('index.php?v=d&p=dashboard');
 	}
 });
 
