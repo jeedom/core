@@ -472,7 +472,8 @@ sup i {
   transition: transform 0.2s !important;
 }
 .counterReorderJeedom {
-  color: white;
+  position: absolute;
+  color: var(--eqTitle-color);
 }
 .editingMode {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
