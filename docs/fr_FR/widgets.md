@@ -99,3 +99,7 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 ## Slider Button
 
 - step : permet de regler le pas d'une action sur un bouton (0.5 par defaut)
+
+## Compass
+
+- needle : mettre à 1 pour un affichage en mode boussole
