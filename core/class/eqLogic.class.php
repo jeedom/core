@@ -1086,7 +1086,7 @@ class eqLogic {
 		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
 			return;
 		}
-		if ($_pourcent == '') {
+		if ($_pourcent === '') {
 			$_pourcent = $this->getStatus('battery');
 			$_datetime = $this->getStatus('batteryDatetime');
 		}
