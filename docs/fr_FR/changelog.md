@@ -36,9 +36,10 @@ Changelog
 - Widgets : Refonte du système de widgets (menu Outils / Widgets).
 - Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
-- Widgets : Ajout d'un widget horizontal (core).
-- Widgets : Ajout d'un widget vertical (core).
-- Widgets : Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
+- Widgets : Ajout d'un widget info numeric horizontal.
+- Widgets : Ajout d'un widget info numeric vertical.
+- Widgets : Ajout d'un widget info numeric compass (Direction 0-360°, affichage boussole : param optionnel needle 1). 
+- Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
 - Configuration : Ajout de nombreux *tooltips* (aide).
 - Configuration : Ajout d'un moteur de recherche.
