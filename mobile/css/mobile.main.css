@@ -391,6 +391,7 @@ p.state {
   background-color:var(--al-warning-color) !important;
   color : var(--linkHoverLight-color) !important;
 }
+.state.label-info,
 .label-info {
   color: var(--linkHoverLight-color) !important;
   background-color: var(--al-info-color) !important;
