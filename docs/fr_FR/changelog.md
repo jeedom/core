@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.34
+=====
+
+- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+
 3.3.33
 =====
 
