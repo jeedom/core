@@ -33,7 +33,7 @@ jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
   if (_eqlogic.find('.cmd.refresh').length) {
     _eqlogic.find('.cmd.refresh').addClass('spinning')
   } else {
-    _eqlogic.prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+    _eqlogic.find('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
   if (_hide) {
     setTimeout(function() {
