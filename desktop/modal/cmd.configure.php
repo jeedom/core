@@ -36,7 +36,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</ul>
-
+	
 	<div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
 		<div role="tabpanel" class="tab-pane active" id="cmd_information">
 			<br/>
@@ -189,7 +189,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</form>
 				</div>
 			</div>
-
+			
 			<form class="form-horizontal">
 				<fieldset id="fd_cmdUsedBy">
 					<legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
@@ -315,7 +315,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 				</fieldset>
 			</form>
 			<?php if ($cmd->getType() == 'action') {?>
-
+				
 				<form class="form-horizontal">
 					<fieldset>
 						<legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
@@ -359,7 +359,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 								<input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -367,10 +367,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionCheckCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
+						
 						$('#bt_addActionCheckCmd').off('click').on('click',function(){
 							addActionCmd({}, 'actionCheckCmd','{{Action}}');
 						});
@@ -409,7 +409,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 							</div>
 						</div>
 						<div id="div_actionPostExecCmd"></div>
-
+						
 						<script type="text/javascript">
 						$("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 						$('#bt_addActionPostExecCmd').off('click').on('click',function(){
@@ -419,7 +419,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 					</fieldset>
 				</form>
 			<?php }?>
-
+			
 			<?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
 				?>
 				<form class="form-horizontal">
@@ -561,7 +561,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 			</div>
 		<?php }
 		?>
-
+		
 		<?php if ($cmd->widgetPossibility('custom')) {
 			?>
 			<div role="tabpanel" class="tab-pane" id="cmd_display">
@@ -591,7 +591,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 										<select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
 											<option value="default">Défaut</option>
 											<?php
-
+											
 											if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
 												$types = array();
 												foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
@@ -656,7 +656,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 													usort($type, function ($a, $b) {
 														return strcmp($a['name'], $b['name']);
 													});
-
+													
 													foreach ($type as $key => $widget) {
 														if ($widget['name'] == 'default') {
 															continue;
@@ -738,7 +738,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						?>
 					</tbody>
 				</table>
-
+				
 				<div class="form-group">
 					<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
 					<div class="col-xs-1">
@@ -749,7 +749,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 						<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
 					</div>
 				</div>
-
+				
 				<br/><br/>
 				<?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 					?>
@@ -793,7 +793,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 		<?php }
 		?>
 	</div>
-
+	
 	<div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 </div>
 
@@ -802,7 +802,7 @@ $(function() {
 	if ($('body').attr('data-page')=="widgets") {
 		$('a[href="#cmd_display"]').click()
 	}
-
+	
 	var dashWidget = $('select[data-l2key="dashboard"]')
 	if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
 	var mobileWidget = $('select[data-l2key="mobile"]')
@@ -1034,7 +1034,7 @@ $("body").undelegate(".listCmd", 'click').delegate(".listCmd", 'click', function
 	});
 });
 
-$("body").undelegate(".listAction", 'click').delegate(".listAction", 'click', function () {
+$("body").off('click',".listAction").on('click',".listAction",  function () {
 	var type = $(this).attr('data-type');
 	var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]');
 	jeedom.getSelectActionModal({}, function (result) {
@@ -1116,7 +1116,7 @@ $('#bt_cmdConfigureSaveOn').on('click',function(){
 				$('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
 			}
 		});
-
+		
 		$('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
 			$('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
 				if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
