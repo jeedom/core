@@ -113,3 +113,90 @@ path.highcharts-graph {
 .shuttergauge .slider {
   margin-top: 55px;
 }
+
+
+.widget-compass-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.widget-compass-container * {
+  position: absolute;
+}
+.widget-compass-outline {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2.5px solid var(--link-color);
+  border-radius: 50%;
+}
+.widget-compass-needle {
+  left: 38px;
+  width: 4px;
+  height: 80px;
+  top: 0px;
+}
+.widget-compass-needle.type0:after {
+  position: absolute;
+  content: '';
+  top: 12px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 35px solid var(--lb-info-color);
+}
+.widget-compass-needle.type1:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-bottom: 40px solid #FF3600;
+}
+.widget-compass-needle.type1:before {
+  position: absolute;
+  content: '';
+  top: 40px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-top: 40px solid #666;
+}
+.widget-compass-N {
+  top: -3px;
+  left: 32px;
+}
+.widget-compass-E {
+  right: -1px;
+  top: 27px;
+}
+.widget-compass-S {
+  bottom: -3px;
+  left: 33px;
+}
+.widget-compass-W {
+  left: -1px;
+  top: 27px;
+}
+.widget-compass-dir {
+  color: var(--link-color);
+  font-size: 11px;
+  padding: 5px;
+}
+.widget-compass-quad {
+  display: block;
+  width: 1px;
+  background: var(--placeholder-color);
+  height: 50px;
+  top: 14px;
+  left: 40px;
+}
+.widget-compass-NWSE {transform: rotate(45deg);}
+.widget-compass-NESW {transform: rotate(-45deg);}
+.widget-compass-WE {transform: rotate(90deg);}
+.widget-compass-NS {transform: rotate(0deg);}

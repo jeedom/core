@@ -26,24 +26,23 @@ if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
 
-jeedom.cmd.notifyEq = function(_eqlogic=false, _stopAfter=true) {
-  if (!_eqlogic) return
-
+jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
+  if (!_eqlogic){
+    return;
+  }
   if (_eqlogic.find('.cmd.refresh').length) {
     _eqlogic.find('.cmd.refresh').addClass('spinning')
   } else {
-    let refreshSpan = '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>'
-    _eqlogic.prepend(refreshSpan)
+    _eqlogic.find('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
-
-  if (_stopAfter) {
+  if (_hide) {
     setTimeout(function() {
       if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
         _eqlogic.find('.cmd.refresh').remove()
       } else {
         _eqlogic.find('.cmd.refresh').removeClass('spinning')
       }
-    }, 3000);
+    }, 1000);
   }
 }
 

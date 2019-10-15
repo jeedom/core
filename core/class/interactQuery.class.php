@@ -151,6 +151,7 @@ class interactQuery {
 		foreach ($queries as $query) {
 			$input = interactDef::sanitizeQuery($query->getQuery());
 			$tags = interactDef::getTagFromQuery($query->getQuery(), $_query);
+			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input.' et tags : '.json_encode($tags));
 			if (count($tags) > 0) {
 				foreach ($tags as $value) {
 					if ($value == "") {

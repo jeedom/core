@@ -352,28 +352,6 @@ legend {
   max-height: 30px;
 }
 
-.eqLogic-widget .cmd.refresh {
-  margin-top: 5px !important;
-  margin-right: 5px !important;
-  padding-top: 1px !important;
-}
-.eqLogic-widget .cmd.refresh i {
-  color: var(--eqTitle-color) !important;
-  font-size: 12px !important;
-}
-.eqLogic-widget .cmd.refresh i:hover {
-  color: var(--linkHoverLight-color) !important;
-}
-
-.eqLogic-widget .cmd.refresh.spinning i {
-  animation: spin-animation 3s infinite linear;
-}
-@keyframes spin-animation {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(1turn); }
-}
-
-
 /* dashboard equipments text color */
 .tableCmd,
 .highcharts-axis-title > tspan,
@@ -494,14 +472,17 @@ sup i {
   transition: transform 0.2s !important;
 }
 .counterReorderJeedom {
-  color: white;
+  position: absolute;
+  color: var(--eqTitle-color);
 }
 .editingMode {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
 }
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-  border: 2px solid var(--logo-primary-color) !important;
+  border: 2px dotted var(--logo-primary-color) !important;
 }
+.ui-resizable-handle.ui-resizable-e { width: 15px; }
+.ui-resizable-handle.ui-resizable-s { height: 15px; }
 
 /* summary */
 .objectSummaryParent {
@@ -674,11 +655,33 @@ div[class*="DisplayCard"] .name > .label {
   vertical-align: baseline;
 }
 
-
 .eqLogic.eqLogic-widget .widget-name {
   padding-right: 22px;
   padding-left: 12px;
+  max-height: 45px;
+  overflow: hidden;
 }
+.eqLogic-widget .cmd.refresh {
+  margin-top: 5px !important;
+  position: absolute;
+  right : 0;
+}
+.eqLogic-widget .cmd.refresh i {
+  color: var(--eqTitle-color) !important;
+  font-size: 12px !important;
+}
+.eqLogic-widget .cmd.refresh i:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+
+.eqLogic-widget .cmd.refresh.spinning i {
+  animation: spin-animation 1s infinite linear;
+}
+@keyframes spin-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
+
 .eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
   display: none;
 }
@@ -1103,7 +1106,6 @@ li.alert-info.eqLogic {
 .action_colorpicker_off {
   width: 35px !important;
   height: 25px !important;
-  padding: 3px !important;
 }
 
 h4.modal-title {
@@ -1204,6 +1206,13 @@ button .fas.fa-plus-circle {
 }
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
+}
+.md_history .highcharts-area,
+.md_history .highcharts-point {
+  fill: rgb(100,160,235);
+}
+.md_history .highcharts-graph {
+  stroke: rgb(100,160,235);
 }
 
 
@@ -1582,7 +1591,6 @@ input.knob {
   width: 32px !important;
   padding-left: 14px;
 }
-
 .input-group-sm .btn {
   height: 28px !important;
   padding: 5px 10px;
@@ -3147,11 +3155,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3160,7 +3168,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3169,12 +3177,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3182,11 +3190,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {

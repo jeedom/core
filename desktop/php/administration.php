@@ -430,7 +430,9 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}</label>
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification}}
+                        	<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_checkDatabase"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>

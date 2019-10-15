@@ -14,6 +14,19 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+$('body').on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+});
+$('body').on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+});
+$('body').on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function () {
+  $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+});
+$('body').on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function () {
+  $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+});
+
 $(function(){
   setTimeout(function(){
     if(typeof rootObjectId != 'undefined'){
@@ -40,13 +53,13 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
     $('.div_displayEquipement').packery()
     return
   }
-
+  
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-
+    
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -63,7 +76,7 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-
+    
     if (match) {
       $(this).show()
     } else {
@@ -151,7 +164,7 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .eqLogic-widget').draggable('disable');
     }
     $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-
+    
     if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
       $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
     }
@@ -159,7 +172,8 @@ function editWidgetMode(_mode,_save){
       $('.div_displayEquipement .scenario-widget').draggable('disable');
     }
     isEditing = false
-    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','');
+    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','')
+    $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
     $('#in_searchWidget').removeAttr('style')
     $('#in_searchWidget').val('')
@@ -189,6 +203,7 @@ function editWidgetMode(_mode,_save){
       }
     })
     isEditing = true
+    $('#div_displayObject .row').css('margin-top', '27px')
     $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'});
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
     .style("color", "var(--linkHoverLight-color)", "important")
@@ -214,14 +229,14 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-
+      
       positionEqLogic();
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       $divDisplayEq.disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-
+      
       var container = $divDisplayEq.packery();
       var packData = $divDisplayEq.data('packery');
       if (isset(packData) && packData.items.length == 1) {
@@ -257,42 +272,41 @@ function getObjectHtml(_object_id) {
   });
 }
 
-$('#bt_editDashboardWidgetOrder').on('click',function(){
-  if($(this).attr('data-mode') == 1){
+$('#bt_editDashboardWidgetOrder').on('click',function() {
+  if ($(this).attr('data-mode') == 1) {
     $('.tooltipstered').tooltipster('enable')
-    $.hideAlert();
-    $(this).attr('data-mode',0);
-    editWidgetMode(0);
-    $(this).css('color','black');
-    $('.bt_editDashboardWidgetAutoResize').hide();
-    $('.counterReorderJeedom').remove();
-    $('.div_displayEquipement').packery();
-  }else{
+    $.hideAlert()
+    $(this).attr('data-mode',0)
+    editWidgetMode(0)
+    $(this).css('color','black')
+    $('.bt_editDashboardWidgetAutoResize').hide()
+    $('.counterReorderJeedom').remove()
+    $('.div_displayEquipement').packery()
+  } else {
     $('.tooltipstered').tooltipster('disable')
-    $(this).attr('data-mode',1);
-    $('.bt_editDashboardWidgetAutoResize').show();
-    $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function(){
-      var id_object = $(this).attr('id');
-      id_object = id_object.replace('edit_object_','');
-      var heightObjectex = 0;
-      $('#div_ob'+id_object+'.div_displayEquipement .eqLogic-widget,.scenario-widget').each(function(index, element){
-        var heightObject = this.style.height;
-        heightObject = eval(heightObject.replace('px',''));
-        var valueAdd = eval(heightObject * 0.20);
-        var valueRemove = eval(heightObject * 0.05);
-        var heightObjectadd = eval(heightObject + valueAdd);
-        var heightObjectremove = eval(heightObject - valueRemove);
-        if(heightObjectadd >= heightObjectex && (heightObjectex > heightObject || heightObjectremove < heightObjectex)){
-          if($(element).hasClass('allowResize')){
-            $( element ).height(heightObjectex);
-            heightObject = heightObjectex;
-          }
-        }
-        heightObjectex = heightObject;
-      });
+    $(this).attr('data-mode',1)
+    $('.bt_editDashboardWidgetAutoResize').show()
+    $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {
+      var doesMin = false
+      if (event.ctrlKey) doesMin = true
+      var id_object = $(this).attr('id').replace('edit_object_','')
+      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
+      var arHeights = new Array()
+      objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
+        var h = $(this).height()
+        arHeights.push(h)
+      })
+      if (doesMin) {
+        var maxHeight = Math.min(...arHeights)
+      } else {
+        var maxHeight = Math.max(...arHeights)
+      }
+      objectContainer.find('.eqLogic-widget,.scenario-widget').each(function(index, element) {
+        $(this).height(maxHeight)
+      })
+      objectContainer.packery()
     });
-    editWidgetMode(1);
-    $(this).css('color','rgb(46, 176, 75)');
+    editWidgetMode(1)
   }
 });
 
@@ -326,45 +340,15 @@ function displayChildObject(_object_id,_recursion){
   });
 }
 
-//info / action:
-
-
-$(function() {
-  if ($('body').attr('data-device') == 'desktop') {
-    setTimeout(function() {
-      //info:
-      $('div.eqLogic-widget .cmd-widget.history[data-type="info"]').on({
-        mouseenter: function () {
-          $(this).parents('.eqLogic-widget').addClass('eqSignalInfo')
-        },
-        mouseleave: function () {
-          $(this).parents('.eqLogic-widget').removeClass('eqSignalInfo')
-        }
-      })
-
-      //actions:
-      $('div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]').on({
-        mouseenter: function () {
-          $(this).parents('.eqLogic-widget').addClass('eqSignalAction')
-        },
-        mouseleave: function () {
-          $(this).parents('.eqLogic-widget').removeClass('eqSignalAction')
-        }
-      })
-
-      /* v4.1
-      //timeCmd:
-      $('div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd').on({
-        mouseenter: function () {
-          console.log('enter time!!')
-          $(this).parents('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-        },
-        mouseleave: function () {
-          $(this).parents('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-        }
-      })
-      */
-
-    },1000)
-  }
+/* v4.1
+//timeCmd:
+$('div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd').on({
+mouseenter: function () {
+console.log('enter time!!')
+$(this).parents('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+},
+mouseleave: function () {
+$(this).parents('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+}
 })
+*/

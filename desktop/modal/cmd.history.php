@@ -60,20 +60,22 @@ $date = array(
 					<option value="areaspline">{{Aire}}</option>
 					<option value="column">{{Barre}}</option>
 				</select>
+				<a class="btn btn-success btn-sm" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
 			</div>
 		</div>
 	</div>
 	<center><div id="div_historyChart"></div></center>
+</div>
 
-
-	<script>
+<script>
+	var cmd_id = "<?php echo init('id'); ?>"
 	$(".in_datepicker").datepicker();
 	$('#ui-datepicker-div').hide();
 
 	$('#div_historyChart').css('position', 'relative').css('width', '100%');
 	delete jeedom.history.chart['div_historyChart'];
 	jeedom.history.drawChart({
-		cmd_id: "<?php echo init('id'); ?>",
+		cmd_id: cmd_id,
 		el: 'div_historyChart',
 		dateRange : 'all',
 		dateStart : $('#in_startDate').value(),
@@ -189,25 +191,45 @@ $date = array(
 					modal.load('index.php?v=d&modal=cmd.history&id=<?php echo init('id'); ?>&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open');
 				}
 			});
+			$('#bt_openInHistory').on('click',function(){
+      			loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id);
+			});
 
-			if ($(window).width() > 768) {
+			var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
+			var modal = modalContent.parents('.ui-dialog.ui-resizable')
+			var divHighChart = $('#div_historyChart')
+
+			//check previous size/pos:
+			var datas = modal.data()
+			if (datas.width && datas.height && datas.top && datas.left) {
+				modal.width(datas.width).height(datas.height).css('top',datas.top).css('left',datas.left)
+				modalContent.width(datas.width-26).height(datas.height-40)
+				resizeHighChartModal()
+			} else if ($(window).width() > 768) {
 				width = 780
 				height = 500
-				$('.ui-dialog[aria-describedby="md_modal2"]').width(width).height(height)
-				$('#md_modal2').width(width-26).height(height-40)
-				$('.ui-dialog[aria-describedby="md_modal2"]').position({
+				modal.width(width).height(height)
+				modal.position({
 					my: "center",
 					at: "center",
 					of: window
 				})
+				modalContent.width(width-26).height(height-40)
 			}
 
-			$('#div_historyChart').highcharts().setSize( $('#md_modal2').width(), $('#md_modal2').height() - $('#md_modal2 .md_history .row').height()-20)
-			$('.md_history').parents('.ui-dialog.ui-resizable').resize(function() {
-				var histModal = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
-				$('#div_historyChart').highcharts().setSize( histModal.width(), histModal.height() - histModal.find('.md_history .row').height()-20)
+			resizeHighChartModal()
+			modal.resize(function() {
+				modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
+				resizeHighChartModal()
 			})
+
+			modal.find('.ui-draggable-handle').on('mouseup', function(event) {
+			    modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
+			})
+
+            function resizeHighChartModal() {
+            	divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-20)
+            }
 		}
 	});
-	</script>
-</div>
+</script>

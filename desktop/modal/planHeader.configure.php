@@ -206,6 +206,7 @@ $('#bt_saveConfigurePlanHeader').on('click', function () {
 		},
 		success: function () {
 			$('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'});
+			$('#div_pageContainer').data('editOption.state', false);
 			loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id);
 		},
 	});
