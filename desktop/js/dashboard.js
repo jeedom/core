@@ -14,18 +14,31 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('body').on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-});
-$('body').on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-});
-$('body').on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function () {
-  $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-});
-$('body').on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function () {
+//infos/actions tile signals:
+$('body')
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
   $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-});
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+  })
+
+/* v4.1
+$('body')
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+  })
+*/
+
 
 $(function(){
   setTimeout(function(){
@@ -339,16 +352,3 @@ function displayChildObject(_object_id,_recursion){
     displayChildObject($(this).attr('data-object_id'),true)
   });
 }
-
-/* v4.1
-//timeCmd:
-$('div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd').on({
-mouseenter: function () {
-console.log('enter time!!')
-$(this).parents('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-},
-mouseleave: function () {
-$(this).parents('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-}
-})
-*/
