@@ -147,7 +147,7 @@ créé, vous pourrez y ajouter un autre **bloc**ou une**action**.
 
 ### Los bloques
 
-Voici les différents types de blocs disponibles :
+Aquí están los diferentes tipos de bloques disponibles :
 
 -   **Si/Alors/Sinon** : Permet de réaliser des actions
     bajo condicion(es).
@@ -341,7 +341,7 @@ comparaisons dans les conditions :
 
 -   == : igual a,
 
--   \> : strictement supérieur à,
+-   \> : estrictamente mayor a,
 
 -   \>= : mayor o igual a,
 
@@ -349,7 +349,7 @@ comparaisons dans les conditions :
 
 -   <= : menor o igual a, 
 
--   != : différent de, n’est pas égal à,
+-   != : diferente de, no es igual a,
 
 -   coincidencias : contiene (ej :
     [Salle de bain][Hydrometrie][etat] matches "/humide/" ),
@@ -360,7 +360,7 @@ comparaisons dans les conditions :
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs
 suivants :
 
--   && / ET / et / AND / and : et,
+-   && / Y / y / AND / and : y,
 
 -   \|| / O / o / OR / o: o,
 
@@ -405,7 +405,7 @@ pouvez utiliser les tags suivants :
 -   #date# : Jour et mois. Attention, le premier nombre est le mois.
     (ej : 1215 para el 15 de diciembre),
 
--   #semaine# : Numéro de la semaine (ex : 51),
+-   #semana# : Número de la semana (ej .: 51),
 
 -   #sjour# : Nom du jour de la semaine (ex : Samedi),
 
@@ -470,7 +470,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   statistics(commande,calcul,période) et
+-   statistics(comando, cálculo, período) y
     statisticsBetween(commande,calcul,start,end) : Donnent le résultat
     de différents calculs statistiques (sum, count, std,
     variance, avg, min, max) sur la période
@@ -538,7 +538,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     permite especificar el formato de retorno (detalles
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
-    pas de type info
+    sin tipo info
 
 -   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
@@ -557,7 +557,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     pour l'équipement donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
-    signifie que l'équipment est introuvable
+    significa que no se puede encontrar el equipo
 
 -   color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur) : Renvoi une couleur calculé par rapport à valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit etre comprise entre valeur_min et valeur_max
 
@@ -594,7 +594,7 @@ ces différentes fonctions :
 | duración (enchufe,1,período)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
 | durationBetween(\#[Salon][Prise][Etat]\#,0,Last Monday,Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
 | statistics(enchufe,count,periodo)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
-| tendencia(enchufe,período,0.1)        | Renvoie -1 : tendance à la baisse    |
+| tendencia(enchufe,período,0.1)        | Devuelve -1 : tendencia bajista    |
 | stateDuration(enchufe)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
 | lastChangeStateDuration(enchufe,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
 | lastChangeStateDuration(enchufe,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
@@ -683,7 +683,7 @@ Et les exemples pratiques :
 | time_op(#time#, -90)               | si son las 16h50, devuelve : 1650 - 0130 = 1520                          |
 | formatTime(1650)                   | Devuelve 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
-| convertDuration(3600)              | Renvoie 1h 0min 0s                      |
+| convertDuration(3600)              | Devuelve 1h 0min 0s                      |
 | convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60) | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
 
 
@@ -732,7 +732,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
-    pour une interaction par exemple.
+    para una interacción por ejemplo.
 
 -   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 

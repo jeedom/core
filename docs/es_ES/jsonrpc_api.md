@@ -191,7 +191,7 @@ Parámetros:
 eqLogic::byId
 -------------
 
-Retourne l’équipement spécifié
+Devuelve el equipo especificado
 
 Parámetros: 
 
@@ -349,7 +349,7 @@ Parámetros:
 
 -   int id (vide si c’est une création)
 
--   string name
+-   string name
 
 -   string logicalId
 
@@ -516,7 +516,7 @@ Parámetros:
     es escenario)
 
 -   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
-    ou l’id du scénario)
+    o el id del escenario)
 
 -   string key : nom de la valeur
 
@@ -605,7 +605,7 @@ Parámetros:
 plugin::remove
 --------------
 
-Suppression d’un plugin donné
+Eliminando de un plugin dado
 
 Paramètres:
 
@@ -670,7 +670,7 @@ Change le mode de gestion du démon
 Paramètres:
 
 -   int plugin\_id (optionnel) : id du plugin
--   string logicalId (optionnel) : nom du plugin (nom logique)
+-   string logicalId (opcional) : nombre del plugin (nombre lógico)
 -   int mode : 1 pour automatique, 0 pour manuel
 
 API JSON update
