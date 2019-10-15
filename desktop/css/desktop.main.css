@@ -319,7 +319,8 @@ legend {
   bottom: 0;
   left: 0;
 }
-.eqLogic-widget.eqSignalInfo:after {
+.eqLogic-widget.eqSignalInfo:after,
+.eqLogic-widget.eqSignalAction.eqSignalInfo:after{
   color: var(--al-info-color);
 }
 .eqLogic-widget.eqSignalAction:after {
