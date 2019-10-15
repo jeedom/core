@@ -7,6 +7,7 @@
       <div class="widget-compass-outline"></div>
       <div class="widget-compass-needle"></div>
       <div class="state"></div>
+      <div class="winDir"></div>
 	</div>
   </div>
   <div class="cmdStats #hide_history#">
@@ -16,9 +17,13 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'°')
-      $('.cmd[data-cmd_id=#id#] .widget-compass-needle').css('transform', 'rotate(' + _options.display_value +'deg)');
-      $('.cmd[data-cmd_id=#id#] .state').text(_options.display_value.toString()+'°')
+      let angle = _options.display_value
+      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+angle+'°')
+      let directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+      let windDir = directions[Math.round(((angle %= 360) < 0 ? angle + 360 : angle) / 45) % 8];
+      $('.cmd[data-cmd_id=#id#] .widget-compass-needle').css('transform', 'rotate(' + angle +'deg)');
+      $('.cmd[data-cmd_id=#id#] .state').text(angle.toString()+'°')
+      $('.cmd[data-cmd_id=#id#] .winDir').html(windDir)
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
