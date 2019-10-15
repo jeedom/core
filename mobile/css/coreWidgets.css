@@ -131,7 +131,12 @@ path.highcharts-graph {
   font-size: 16px !important;
   font-weight: bold;
   position: relative;
-  top: 28px;
+  top: 24px;
+}
+.widget-compass .winDir {
+  font-size: 11px !important;
+  position: relative;
+  top: 21px;
 }
 .widget-compass-outline {
   top: 0;
