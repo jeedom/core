@@ -1,21 +1,12 @@
-<div class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd widget-compass" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div  class="cmdName #hide_name#">#name_display#</div>
   </div>
-  <div class="content-lg">
     <div class="widget-compass-container">
       <div class="widget-compass-outline"></div>
-      <div class="widget-compass-NWSE widget-compass-quad"></div>
-      <div class="widget-compass-NESW widget-compass-quad"></div>
-      <div class="widget-compass-NS widget-compass-quad"></div>
-      <div class="widget-compass-WE widget-compass-quad"></div>
-      <span class="widget-compass-N widget-compass-dir">N</span>
-      <span class="widget-compass-E widget-compass-dir">E</span>
-      <span class="widget-compass-S widget-compass-dir">S</span>
-      <span class="widget-compass-W widget-compass-dir">W</span>
-      <div class="widget-compass-needle type0" style=""></div>
+      <div class="widget-compass-needle"></div>
+      <div class="state"></div>
     </div>
-  </div>
   <div class="cmdStats #hide_history#">
     <div class="col-xs-12 center-block">
       <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
@@ -25,12 +16,8 @@
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'°')
       $('.cmd[data-cmd_id=#id#] .widget-compass-needle').css('transform', 'rotate(' + _options.display_value +'deg)');
+      $('.cmd[data-cmd_id=#id#] .state').text(_options.display_value.toString()+'°')
     }
-    
-    if('#needle#' != '' && '#needle#' == '1') {
-      $('.cmd[data-cmd_id=#id#] .widget-compass-needle').removeClass('type0').addClass('type1')
-    }
-      
       
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>
