@@ -373,6 +373,14 @@ legend {
   color: unset !important;
 }
 
+.eqLogic.eqLogic-widget .tableCmd td{
+  min-width: 20px;
+}
+
+.eqLogic.eqLogic-widget .tableCmd tr{
+  min-height: 20px;
+}
+
 
 .pull-right {
   float: right;
@@ -3156,11 +3164,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3169,7 +3177,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3178,12 +3186,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3191,11 +3199,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
