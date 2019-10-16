@@ -71,7 +71,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 
 -   **Exporter** : Permet d’obtenir une version texte du scénario.
 
--   **Log** : Permet d’afficher les logs du scénario.
+-   **Registro** : Permite mostrar los registros del escenario.
 
 -   **Dupliquer** : Permet de copier le scénario pour en créer un
     nuevo con otro nombre.
@@ -93,7 +93,7 @@ Pestaña general
 Dans l’onglet **Général**, on retrouve les paramètres principaux de
 notre scénario :
 
--   **Nom du scénario** : Le nom de votre scénario.
+-   **Nombre del escenario** : El nombre de su escenario.
 
 -   **Nom à afficher** : Le nom utilisé pour son affichage.
 
@@ -455,7 +455,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   max(commande,période) et maxBetween(commande,start,end) :
     Donnent le maximum de la commande sur la période
-    (period=[month,day,hour,min] ou [expression
+    (period=[month,day,hour,min] o [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
@@ -547,7 +547,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par Jeedom (cas lors du stockage du nom de la commande dans une variable)    
 
 -   tag(montag,[defaut]) : Permet de récupérer la valeur d’un tag ou
-    la valeur par défaut si il n’existe pas :
+    el valor por defecto si no existe :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
     de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
@@ -571,11 +571,11 @@ exemple :
 -   Today : 00:00 aujourd’hui (permet par exemple d’obtenir des
     resultados del día si entre 'Today' y 'Now')
 
--   Last Monday : lundi dernier à 00:00
+-   Last Monday : último lunes a las 00:00
 
 -   5 days ago : hace 5 días
 
--   Yesterday noon : hier midi
+-   Yesterday noon : ayer mediodía
 
 -   Etc.
 
@@ -584,7 +584,7 @@ ces différentes fonctions :
 
 | Enchufe teniendo como valores :            | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
 |--------------------------------------|--------------------------------------|
-| average(prise,période)             | Renvoie la moyenne des 0 et 1 (peut  |
+| average(enchufe,periodo)             | Devuelve el promedio de 0 y 1 (puede  |
 |                                      | être influencée par le polling)      |
 | averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
 | min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
@@ -676,10 +676,10 @@ Et les exemples pratiques :
 | randomColor(40,60)                 | Retourne une couleur aléatoire  proche du vert.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
-| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
+| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Devuelve 9 si el porcentaje de humedad es 85                     |
 | odd(3)                             | Devuelve 1                            |
 | mediana(15,25,20)                   | Devuelve 20
-| avg(10,15,18)                      | Renvoie 14.3                     |
+| avg(10,15,18)                      | Devuelve 14.3                     |
 | time_op(#time#, -90)               | si son las 16h50, devuelve : 1650 - 0130 = 1520                          |
 | formatTime(1650)                   | Devuelve 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
@@ -757,7 +757,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 - **Coloration des icones du dashboard** (setColoredIcon) : permet d'activer ou non la coloration des icones sur le dashboard
 
-Template de scénario
+Plantilla de escenario
 ====================
 
 Cette fonctionalité permet de transformer un scénario en template pour
@@ -767,19 +767,19 @@ du Market.
 
 ![scenario15](../images/scenario15.JPG)
 
-Vous verrez alors cette fenêtre :
+Entonces verá esta ventana :
 
 ![scenario16](../images/scenario16.JPG)
 
-A partir de celle-ci, vous avez la possibilité :
+Gracias a esta, tienes la posibilidad :
 
 -   D’envoyer un template à Jeedom (fichier JSON préalablement
-    récupéré),
+    recuperado),
 
 -   De consulter la liste des scénarios disponibles sur le Market,
 
 -   De créer un template à partir du scénario courant (n’oubliez pas de
-    donner un nom),
+    dar un nombre),
 
 -   De consulter les templates actuellement présents sur votre Jeedom.
 
@@ -787,7 +787,7 @@ Par un clic sur un template, vous obtenez :
 
 ![scenario17](../images/scenario17.JPG)
 
-En haut, vous pouvez :
+Arriba, puede :
 
 -   **Partager** : partager le template sur le Market,
 
@@ -812,7 +812,7 @@ Ajout de fonction php
 >
 > L'ajout de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
 
-## Mise en place
+## Establecimiento
 
 Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
 

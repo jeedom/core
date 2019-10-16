@@ -10,26 +10,35 @@ Changelog
 - Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
 - Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
 - Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche (scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
+- Les champs de recherche (dashboard, scénarios, objets, widgets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
 - Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
 - Lors d'une recherche, la touche *echap* annule la recherche.
+- Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
+- Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
+- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaitra le temps de l’exécution.
+- Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
+- Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
+- Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
+- Fenêtre Configuration de commande: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
+- Fenêtre Configuration de l'équipement: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
 - Ajout d'informations d'utilisation lors de la suppression d'un équipement.
-- Objets : Ajout d'une option pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
+- Objets : Ajout d'une option pour utiliser des couleurs personnalisées.
 - Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
 - Interactions : Ajout d'un menu contextuel sur les onglets (changement rapide d'interaction).
 - Plugins : Ajout d'un menu contextuel sur les onglets (changement rapide d'équipement).
+- Plugins : Sur la page Gestion des plugins, un point orange signale les plugins en version non Stable.
 - Améliorations des tables avec option de filtre et tri.
 - Possibilité d'attribuer une icône à une interaction.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
 - Prévention de l'auto remplissage sur les champs 'Code d'accès'.
-- Gestion des fonctions *Page précédente / Page suivante* du navigateur.
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres.<br/><br/>
+- Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
 - Widgets : Refonte du système de widgets (menu Outils / Widgets).
 - Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
-- Widgets : Ajout d'un widget horizontal (core).
-- Widgets : Ajout d'un widget vertical (core).
-- Widgets : Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
+- Widgets : Ajout d'un widget info numeric horizontal.
+- Widgets : Ajout d'un widget info numeric vertical.
+- Widgets : Ajout d'un widget info numeric compass (Direction 0-360°). 
+- Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
 - Configuration : Ajout de nombreux *tooltips* (aide).
 - Configuration : Ajout d'un moteur de recherche.
@@ -38,19 +47,19 @@ Changelog
 - Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
 - Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
 - Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
-- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étées mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
-- Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
+- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étés mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
+- Scénario : Possibilité en faisant un Ctrl + clic sur le bouton *exécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
-- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
+- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
 - Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
 - Scénario : Suppression du partage de scénario.
 - Scénario : Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Analyse / Equipements : Ajout d'un moteur de recherche (onglet Batteries, recherche sur les noms et parents).
-- Analyse / Equipements : La zone calendrier/jours de l'équipement est maintenant cliquable pour accéder directement au changement de pîle(s).
+- Analyse / Equipements : La zone calendrier/jours de l'équipement est maintenant cliquable pour accéder directement au changement de pile(s).
 - Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
 - Centre de mise à jour : Warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
 - Centre de mise à jour : différentiation par version (stable, beta, ...).
@@ -63,16 +72,28 @@ Changelog
 - Design : Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
 - Design : Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 - Design : Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
-- Design : Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
+- Design : Le déplacement et le redimensionnement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
-- Numerosas correcciones de errores.
-- Ajout d'un systeme de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
+- Nombreuses corrections de bugs.
+- Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+3.3.33
+=====
+
+- Correction de bugs
+
+3.3.32
+=====
+
+- Correction de bugs
+- Support en mobile des sliders sur les designs
+- SMART : optimisation de la gestion du swap
 
 3.3.31
 =====
@@ -202,7 +223,7 @@ Changelog
 - Ajout d'une action tag dans les scénarios (voir documentation)
 - Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
 - Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
-- Actualización de gráficos en tiempo real (simple, no los calculados o los timelines)
+- Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 - Possibilité de supprimer un élément à partir de la configuration du design
 - Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
 - Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
@@ -228,7 +249,7 @@ Changelog
 3.2.12
 =====
 - Correction de bugs
-- Optimizaciones
+- Optimisations
 
 3.2.11
 =====
@@ -245,7 +266,7 @@ Changelog
 
 3.2.9
 =====
-- Correcciones de errores
+- Correction de bugs
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -268,7 +289,7 @@ Changelog
 
 3.2.6
 =====
-- Corrección de errores
+- Correction de bugs
 - Mise à jour de la docs
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
@@ -300,10 +321,10 @@ Changelog
 - JEED-365 : Suppression de "Commande d’information utilisateur" pour être remplacé par des actions sur message. Permet de lancer plusieurs commande différentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
 - Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
 - Correction d'un bug de droits suite à une restauration d'un backup
-- Traducciones actualizadas
+- Mise à jour des traductions
 - Mise à jour des librairies (jquery et highcharts)
 - Possibilité d’interdire une commande dans les interactions automatique
-- Interacciones automáticas mejoradas
+- Amélioration des interactions automatique
 - Correction de bug sur la gestion des synonyme des interactions
 - Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD (permet de rendre Jeedom compatible AD)
 - Corrections d’orthographe (merci à dab0u pour son énorme travail)
@@ -326,7 +347,7 @@ Changelog
 - JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
 - JEED-124 : Corriger la gestion des timeouts des scénarios
 - Correction de bugs
-- Capacidad para deshabilitar una interacción
+- Possibilité de désactiver une interaction
 - Ajout d’un éditeur de fichiers (réservé aux utilisateurs expérimentés)
 - Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
 - Possibilité de rendre des mots obligatoires dans une interaction
@@ -359,16 +380,16 @@ Changelog
 - Refonte de la page des interactions
 - Refonte de la page profils
 - Refonte de la page d’administration
-- Agregando una "salud" en los objetos
+- Ajout d’une "santé" sur les objets
 - Correction de bug sur le niveau de batterie des équipements
 - Ajout de méthode dans le core pour la gestion des commandes mortes (doit être ensuite implémentée dans le plugin)
 - Possibilité d’historiser des commandes de type texte
 - Sur la page historique vous pouvez maintenant faire le graphique d’un calcul
 - Ajout d’une gestion de formule de calcul pour les historiques
 - Remise à jour de toute la documentation :
-    - Todos los documentos han sido revisados
+    - Toute les docs ont été revues
     - Suppression des images pour faciliter la mise à jour et le
-        multilingüe
+        multilingue
 - Plus de choix possibles sur les réglage des tailles de zone dans les vues
 - Possibilité de choisir la couleur du texte du résumé d’objet
 - Ajout d’une action remove\_inat dans les scénarios permettant d’annuler toutes les programmations des bloc DANS/A
@@ -413,11 +434,11 @@ Changelog
 - Vous pouvez maintenant mettre dans les résumés des commandes de type texte
 - Changement des bootstraps slider en slider (correction du bug du double événement des sliders)
 - Sauvegarde automatique des vues lors du clic sur le bouton "voir le résultat"
-- Posibilidad de tener los documentos localmente
+- Possibilité d’avoir les docs en local
 - Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 - Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
-- Gran mejora de los diseños :
+- Grosse amélioration des designs:
     - Toutes les actions sont maintenant accessibles à partir d’un
         clic droit
     - Possibilité d’ajouter une commande seule
@@ -491,11 +512,11 @@ Changelog
 2.4.5
 =====
 - Correction de bugs
-- Optimizando la comprobación de las actualizaciones
+- Optimisation de la vérification des mises à jour
 
 2.4
 ---
-- Optimización general
+- Optimisation générale
     - Regroupement de requêtes SQL
     - Suppression de requêtes inutiles
     - Passage en cache du pid, état et dernier lancement des scénarios
@@ -519,7 +540,7 @@ Changelog
 - Correction des checkbox historiser, visible et inverser dans le tableau des commandes
 - Correction d’un soucis sur la traduction des javascripts
 - Ajout d’une catégorie de plugin : objet communiquant
-- Agregación de GENERIC\_TYPE
+- Ajout de GENERIC\_TYPE
 - Suppression des filtres nouveau et top sur le parcours des plugins du market
 - Renommage de la catégorie par défaut sur le parcours des plugins du market en "Top et nouveauté"
 - Correction des filtres gratuit et payant sur le parcours des plugins du market
