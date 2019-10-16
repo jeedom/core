@@ -1285,7 +1285,7 @@ function saveWidgetDisplay(_params) {
         eqLogic.display.width =  Math.floor($(this).outerWidth() / 2) * 2 + 'px';
         eqLogic.display.height = Math.floor($(this).outerHeight() / 2) * 2+ 'px';
         eqLogic.viewZone_id = $(this).closest('.eqLogicZone').attr('data-viewZone-id');
-        eqLogic.order = order;
+        eqLogic.order = ($(this).attr('data-order') != undefined) ? $(this).attr('data-order') : order;
         eqLogics.push(eqLogic);
         order++;
       });
