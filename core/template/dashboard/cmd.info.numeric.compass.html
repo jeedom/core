@@ -8,7 +8,7 @@
       <div class="widget-compass-needle"></div>
       <div class="state"></div>
       <div class="winDir"></div>
-	</div>
+    </div>
   </div>
   <div class="cmdStats #hide_history#">
     <div class="col-xs-12 center-block">
@@ -25,7 +25,7 @@
       $('.cmd[data-cmd_id=#id#] .state').text(angle.toString()+'°')
       $('.cmd[data-cmd_id=#id#] .winDir').html(windDir)
     }
-
+    
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>
 </div>
