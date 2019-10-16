@@ -5,15 +5,15 @@ if (!isConnect('admin')) {
 ?>
 
 <style>
-	#div_reboot_jeedom_texte{
-		width: 400px;
-		margin: auto;
-		text-align: center;
-	}
-	#contenu{
-		width: 400px;
-		margin: auto;
-	}
+#div_reboot_jeedom_texte{
+	width: 400px;
+	margin: auto;
+	text-align: center;
+}
+#contenu{
+	width: 400px;
+	margin: auto;
+}
 </style>
 
 <div id="contenu">
@@ -32,42 +32,50 @@ if (!isConnect('admin')) {
 </div>
 
 <script type="text/javascript">
-	var rebooti = '0';
-	var testjeedom = '0';
-	jeedom.rebootSystem();
+var rebooti = '0';
+var testjeedom = '0';
 
-	function refresh() {
-		$.ajax({
-			url: "desktop/js/rebootjs.js?t="+Date.now(),
-			success:function(retour){
-				$('reboot_jeedom').html(retour);
-			}
-		});
+bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
+	if (result) {
+		jeedom.rebootSystem();
+		setTimeout('reboot_jeedom(rebooti)', 10000);
+		$('#progressbar_reboot').width('5%');
+	}else{
+		loadPage('index.php?v=d&p=dashboard');
 	}
+});
 
-	function page_rebootjs(rebooti){
-		refresh();
-		if(rebooti=='1'){
-			$('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.}}</h6>');
-			$('#progressbar_reboot').addClass('progress-bar-success').removeClass('progress-bar-danger');
-			$('#progressbar_reboot').width('75%');
-			setTimeout("$('#progressbar_reboot').width('100%');", 3500);
-			setTimeout('window.location.replace("index.php?v=d&p=dashboard")', 4000);
-		}else{
-			testjeedom++;
-			if(testjeedom > '15'){
-				$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success');
-				$('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{n\'a pas encore redémarré, nous continuons cependant de tester son retour.}}<br />{{N\'hésitez pas à la débrancher/rebrancher électriquement.}}</h6>');
-			}
+function refresh() {
+	$.ajax({
+		url: "desktop/js/rebootjs.js?t="+Date.now(),
+		success:function(retour){
+			$('reboot_jeedom').html(retour);
+		}
+	});
+}
+
+function page_rebootjs(rebooti){
+	refresh();
+	if(rebooti=='1'){
+		$('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard.}}</h6>');
+		$('#progressbar_reboot').addClass('progress-bar-success').removeClass('progress-bar-danger');
+		$('#progressbar_reboot').width('75%');
+		setTimeout("$('#progressbar_reboot').width('100%');", 3500);
+		setTimeout('window.location.replace("index.php?v=d&p=dashboard")', 4000);
+	}else{
+		testjeedom++;
+		if(testjeedom > '15'){
+			$('#progressbar_reboot').addClass('progress-bar-danger').removeClass('progress-bar-success');
+			$('#div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{n\'a pas encore redémarré, nous continuons cependant de tester son retour.}}<br />{{N\'hésitez pas à la débrancher/rebrancher électriquement.}}</h6>');
 		}
 	}
+}
 
-	function reboot_jeedom(rebooti){
-		$('#div_reboot_jeedom_texte').empty().html('<h6>{{Merci de patienter...}}<br /><?php echo config::byKey("product_name"); ?> {{est en cours de redémarrage.}}</h6>');
-		$('#progressbar_reboot').width('25%');
-		setInterval('page_rebootjs(rebooti)', 15000);
-	}
+function reboot_jeedom(rebooti){
+	$('#div_reboot_jeedom_texte').empty().html('<h6>{{Merci de patienter...}}<br /><?php echo config::byKey("product_name"); ?> {{est en cours de redémarrage.}}</h6>');
+	$('#progressbar_reboot').width('25%');
+	setInterval('page_rebootjs(rebooti)', 15000);
+}
 
-	setTimeout('reboot_jeedom(rebooti)', 10000);
-	$('#progressbar_reboot').width('5%');
+
 </script>

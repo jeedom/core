@@ -394,8 +394,14 @@ jeedom.eqLogic.refreshValue = function (_params) {
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }
-        eqLogic.empty().html(html.children())
-        .trigger('change');
+        eqLogic.addClass(html.attr('class'));
+        if(!html.hasClass('eqLogic_layout_table')){
+          eqLogic.removeClass('eqLogic_layout_table');
+        }
+        if(!html.hasClass('eqLogic_default_table')){
+          eqLogic.removeClass('eqLogic_default_table');
+        }
+        eqLogic.empty().html(html.children()).trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
           setTileSize('.eqLogic');
