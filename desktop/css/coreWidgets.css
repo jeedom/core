@@ -326,7 +326,7 @@ div.cmd > div.center-block {
   position: relative;
   width: 80px;
   height: 80px;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
 }
 .widget-compass-container * {
   position: absolute;
