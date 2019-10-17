@@ -705,31 +705,31 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
     d’accents et pas de caractères spéciaux). On récupère le tag dans le
     scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
--   **Stop** (stop) : Arrête le scénario.
+-   **Parar** (stop) : Para el escenario.
 
 -   **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide
-    (maximum 2h), le timeout est en seconde(s).
+    (máximo 2 h), el tiempo de espera es en segundo(s).
 
 -   **Aller au design** (gotodesign) : Change le design affiché sur tous les
     navigateurs par le design demandé.
 
 -   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
--   **Créer un message** (message) : Permet d’ajouter un message dans le centre
+-   **Crear un mensaje** (mensaje) : Permite de agregar un mensaje en el centro
     de mensajes.
 
--   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
+-   **Activar/ Desactivar Ocultar/Mostrar un equipo** (equipo): Permite
     modificar las propiedades de un dispositivo
     visible/invisible, activo/inactivo.
 
--   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
-    une question à l’utilisateur. La réponse est stockée dans une
-    variable, il suffit ensuite de tester sa valeur. Pour le moment,
-    seuls les plugins sms et slack sont compatibles. Attention, cette
+-   **Hacer una solicitud** (ask) : Permite indicarle a Jeedom que hay que hacer
+    una pregunta al usuario. La respuesta se almacena en una
+    variable, luego simplemente pruebe su valor. Por el momento,
+    solos los plugins sms y slack son compatibles. Atención, esta
     fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le
-    timeout n’est pas atteint, le scénario attend.
+    timeout no esta alcanzando, el escenario espera.
 
--   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
+-   **Parar Jeedom** (jeedom_poweroff) : Solicitud a Jeedom que se apague.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
     para una interacción por ejemplo.
@@ -737,7 +737,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 -   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 
 -   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
-    les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
+    los navegadores que tienen una página abierta de Jeedom. Puede, en
     además, elegir 4 niveles de alerta.
 
 -   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
@@ -745,7 +745,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
 -   **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG
     ou SVG) et de l’envoyer par le biais d’une commande de type message.
-    Attention, si votre accès Internet est en HTTPS non-signé, cette
+    Atención, si su acceso a Internet está en HTTPS sin firmar, esta
     fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
 -   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
@@ -783,21 +783,21 @@ Gracias a esta, tienes la posibilidad :
 
 -   De consulter les templates actuellement présents sur votre Jeedom.
 
-Par un clic sur un template, vous obtenez :
+Al hacer clic en una plantilla, obtiene :
 
 ![scenario17](../images/scenario17.JPG)
 
 Arriba, puede :
 
--   **Partager** : partager le template sur le Market,
+-   **Compartir**: compartir la plantilla en el Market,
 
--   **Supprimer** : supprimer le template,
+-   **Eliminar**: eliminar la plantilla,
 
--   **Télécharger** : récupérer le template sous forme de fichier JSON
-    pour le renvoyer sur un autre Jeedom par exemple.
+-   **Descargar**: obtenga la plantilla como un archivo JSON
+    para enviarlo a otro Jeedom por ejemplo.
 
-En-dessous, vous avez la partie pour appliquer votre template au
-scénario courant.
+Por debajo, tiene la parte para aplicar su plantilla al
+escenario actual.
 
 Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre,
 les commandes peuvent être différentes, Jeedom vous demande la
@@ -805,7 +805,7 @@ correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
 correspondance des commandes puis de faire appliquer.
 
-Ajout de fonction php
+Adición de función php
 ====================
 
 > **IMPORTANT**
@@ -814,12 +814,12 @@ Ajout de fonction php
 
 ## Establecimiento
 
-Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
+Vaya en la configuración de Jeedom, luego OS/DB e inicie el editor de archivos.
 
-Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
+Vaya en la carpeta data luego php y haga clic en el archivo user.function.class.php.
 
-C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique.
+Es en esta class que debe agregar sus funciones, encontrará un ejemplo de una función básica.
 
-> **IMPORTANT**
+> **IMPORTANTE**
 >
-> Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php
+> Si tiene un problema, siempre puede volver al archivo original copiando el contenido de user.function.class.sample.php en user.function.class.php
