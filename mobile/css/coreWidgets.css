@@ -114,11 +114,12 @@ path.highcharts-graph {
   margin-top: 55px;
 }
 
-
+/* __________________________________________________________________________________________________________Compass */
 .widget-compass-container {
   position: relative;
   width: 80px;
   height: 80px;
+  margin-bottom: 18px;
 }
 .widget-compass-container * {
   position: absolute;
@@ -138,6 +139,11 @@ path.highcharts-graph {
   position: relative;
   top: 21px;
 }
+.widget-compass .strength {
+  position: relative;
+  font-size: 11px !important;
+  top: 46px;
+}
 .widget-compass-outline {
   top: 0;
   right: 0;
@@ -148,7 +154,8 @@ path.highcharts-graph {
   border-bottom: 7px solid var(--al-info-color);
   border-radius: 50%;
 }
-.widget-compass-needle {
+.widget-compass-needle,
+.widget-compass-needle2 {
   left: 38px;
   width: 4px;
   height: 80px;
@@ -164,9 +171,19 @@ path.highcharts-graph {
   border: 8px solid transparent;
   border-top: 22px solid var(--al-warning-color);
 }
+.widget-compass-needle2:after {
+  position: absolute;
+  content: '' !important;
+  top: -3px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-top: 22px solid var(--al-danger-color);
+  z-index:5;
+}
 
 /* __________________________________________________________________________________________________________Rain */
-
 @keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
 
 .widget-rain-water{
