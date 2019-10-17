@@ -664,7 +664,8 @@ div[class*="DisplayCard"] .name > .label {
   vertical-align: baseline;
 }
 
-.eqLogic.eqLogic-widget .widget-name {
+.eqLogic.eqLogic-widget .widget-name,
+.scenario-widget .widget-name {
   padding-right: 22px;
   padding-left: 12px;
   max-height: 45px;
@@ -1223,7 +1224,6 @@ button .fas.fa-plus-circle {
 .md_history .highcharts-graph {
   stroke: rgb(100,160,235);
 }
-
 .highcharts-button-disabled{
   display: none !important;
 }
