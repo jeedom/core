@@ -6,8 +6,10 @@
     <div class="widget-compass-container">
       <div class="widget-compass-outline"></div>
       <div class="widget-compass-needle"></div>
+      <div class="widget-compass-needle2" style="display:none"></div>
       <div class="state"></div>
       <div class="winDir"></div>
+      <div class="strength" style="display:none"></div>
     </div>
   </div>
   <div class="cmdStats #hide_history#">
@@ -25,7 +27,7 @@
       cmd.find('.state').text(_options.display_value.toString()+'°')
       cmd.find('.winDir').html(windDir)
     }
-    
+
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>
 </div>
