@@ -1224,6 +1224,9 @@ button .fas.fa-plus-circle {
   stroke: rgb(100,160,235);
 }
 
+.highcharts-button-disabled{
+  display: none !important;
+}
 
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
