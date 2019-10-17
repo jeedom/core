@@ -1,12 +1,12 @@
-<div class="cmd cmd-widget #history#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
+<div class="cmd cmd-widget #history#" data-version="#version#" data-type="info" data-subtype="binary" data-template="tmpliconline" data-cmd_id="#id#" data-cmd_uid="#uid#" data-eqLogic_id="#eqLogic_id#">
 	<center><span class="cmdName #hide_name#">#name_display#</span> <span class="iconCmdLine"></span></center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			var cmd = $('.cmd[data-cmd_id=#id#]');
 			if (_options.display_value == '1') {
-				cmd.find('.iconCmdLine').empty().append('#_icon_on_#');
-			}else {
-				cmd.find('.iconCmdLine').empty().append('#_icon_off_#');
+				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
+			} else {
+				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_off_#")
 			}
 			if(_options.alertLevel){
 				if(_options.alertLevel == 'warning'){
