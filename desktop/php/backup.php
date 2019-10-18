@@ -14,7 +14,22 @@ echo '</script>';
 	</div>
 	<br/><br/>
 	<div class="row row-overflow">
-		<div class="col-sm-6">
+		<div class="col-sm-12 hidden panel-backupinfo" style="max-height:240px">
+			<div class="panel panel-warning">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations}}
+						<span href="#" class="btn_closeInfo pull-right cursor" style="position: relative;top: 0 !important;right: -10px;">
+							<i class="far fa-times-circle" style="color: var(--linkHoverLight-color) !important;"></i>
+						</span>
+					</h3>
+				</div>
+            	<div class="panel-body" style="height:180px">
+					<pre id="pre_backupInfo" style="max-height: 165px;overflow: scroll;"></pre>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12" style="max-height: calc(100vh - 120px)";>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
             		<h3 class="panel-title"><i class="fas fa-folder-open"></i> {{Sauvegardes locales}}
@@ -128,16 +143,6 @@ echo '</script>';
 				echo $div;
 			}
 			?>
-		</div>
-		<div class="col-sm-6">
-			<div class="panel panel-warning">
-				<div class="panel-heading">
-					<h3 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations}}
-				</div>
-            	<div class="panel-body">
-					<pre id="pre_backupInfo" style="overflow: scroll;"></pre>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
