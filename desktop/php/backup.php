@@ -48,7 +48,7 @@ echo '</script>';
 												<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
 											</div>
 										</div>
-										
+
 										<div class="form-group">
 											<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
 											<div class="col-xs-12">
@@ -77,7 +77,7 @@ echo '</script>';
 								</form>
 							</div>
 						</div>
-						
+
 						<?php
 						foreach (update::listRepo() as $rkey => $value) {
 							if ($value['scope']['backup'] == false) {
@@ -87,16 +87,16 @@ echo '</script>';
 								continue;
 							}
 							$class = 'repo_' . $rkey;
-							
+
 							$icon = '<i class="fas fa-network-wired"></i>';
 							if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
-							
+
 							$div = '<div class="panel panel-primary">';
 							$div .= '<div class="panel-heading">';
 							$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
 							$div .= '</div>';
 							$div .= '<div class="panel-body">';
-							
+
 							//$div .= '<legend>'.$icon.' {{Sauvegardes}} ' . $value['name'] . '</legend>';
 							$div .= '<form class="form-horizontal repo">';
 							$div .= '<fieldset>';
@@ -141,7 +141,7 @@ echo '</script>';
 								<h3 class="panel-title"><i class="fas fa-info-circle"></i> {{Informations}}</h3>
 							</div>
 							<div class="panel-body">
-								<pre id="pre_backupInfo" style="overflow: scroll;max-height : calc( 100% - 200px)"></pre>
+								<pre id="pre_backupInfo"></pre>
 							</div>
 						</div>
 					</div>
@@ -149,6 +149,5 @@ echo '</script>';
 			</div>
 		</div>
 	</div>
-	
+
 	<?php include_file("desktop", "backup", "js");?>
-	
