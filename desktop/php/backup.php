@@ -91,7 +91,7 @@ echo '</script>';
 
 				$div = '<div class="panel panel-primary">';
 				$div .= '<div class="panel-heading">';
-				$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}}' . $value['name'];
+				$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
 				$div .= '</div>';
 				$div .= '<div class="panel-body">';
 
