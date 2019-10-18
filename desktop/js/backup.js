@@ -19,8 +19,6 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   $("#bt_saveBackup").click();
 });
 
-$('#pre_backupInfo').height($(window).height() - $('header').height() - $('footer').height() - 150);
-
 $("#bt_saveBackup").on('click', function (event) {
   $.hideAlert();
   jeedom.config.save({
@@ -172,6 +170,14 @@ $('#div_pageContainer').off('change','.configKey').on('change','.configKey:visib
   modifyWithoutSave = true;
 });
 
+$(".btn_closeInfo").on('click', function () {
+  $('.panel-backupinfo').addClass('hidden')
+  $('#pre_backupInfo').text('');
+});
+
+
+
+
 /********************Log************************/
 
 function getJeedomLog(_autoUpdate, _log) {
@@ -218,6 +224,7 @@ function getJeedomLog(_autoUpdate, _log) {
           }
         }
       }
+      $('.panel-backupinfo').removeClass('hidden')
       $('#pre_backupInfo').text(log);
       if (init(_autoUpdate, 0) == 1) {
         setTimeout(function () {

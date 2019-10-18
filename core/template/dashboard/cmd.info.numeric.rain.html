@@ -19,7 +19,7 @@
       let cmd = $('.cmd[data-cmd_id=#id#]');
       cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
       cmd.find('.value').empty().append(_options.display_value);
-      cmd.find('.widget-rain-water').delay(0).animate({height:_options.display_value+"pt"},1000)
+      cmd.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
     }
     if('#scale#' != '') {
       let el = $('.cmd[data-cmd_id=#id#] .widget-rain-main');
