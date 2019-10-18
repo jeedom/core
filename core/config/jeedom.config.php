@@ -96,6 +96,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				)
 			),
 			'info' => array(
+				'string'=>array(
+						'line' => array('template' => 'tmplmultistateline')
+				),
 				'binary'=>array(
 					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
 					'line' => array('template' => 'tmpliconline','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
