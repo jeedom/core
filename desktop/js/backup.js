@@ -224,7 +224,6 @@ function getJeedomLog(_autoUpdate, _log) {
           }
         }
       }
-      $('.panel-backupinfo').removeClass('hidden')
       $('#pre_backupInfo').text(log);
       if (init(_autoUpdate, 0) == 1) {
         setTimeout(function () {
