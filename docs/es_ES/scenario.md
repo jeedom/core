@@ -59,7 +59,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 -   **Expression** : Permet d’afficher le testeur d’expression.
 
 -   **Ejecutar**: Permite de lanzar el escenario manualmente (Recuerde
-    pas de sauvegarder au préalable !). Les déclencheurs ne sont donc
+    no guardar de antemano !). Los desencadenantes por lo tanto no son
     no se tiene en cuenta.
 
 -   **Eliminar**: Permite eliminar el escenario.
@@ -69,7 +69,7 @@ En haut, on retrouve quelques fonctions utiles pour gérer notre scénario
 -   **Plantilla** : Permite acceder a las plantillas y de aplicar un
     al escenario desde el market. (explicado abajo de la página).
 
--   **Exporter** : Permet d’obtenir une version texte du scénario.
+-   **Exportar **: Permite obtener una versión de texto del escenario.
 
 -   **Registro** : Permite mostrar los registros del escenario.
 
@@ -114,7 +114,7 @@ notre scénario :
 
 -   **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Ca permet d'augmenter la vitesse de lancement du scénario mais cela peut rendre le système instable.
 
--   **Log** : Le type de log souhaité pour le scénario.
+-   **Registro**: El tipo de registro que desea para el escenario.
 
 -   **Timeline** : Permet de garder un suivi du scénario dans la timeline.
 

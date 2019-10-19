@@ -59,7 +59,7 @@ Aquí están las diferentes características para configurar un objeto:
 -   **Taille sur le dashboard (1 à 12)** : Permet de définir la largeur
     de l’affichage de cet objet dans le dashboard. Par exemple : si vous
     mettez `6` à deux objets qui se suivent dans la liste, alors il
-    seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
+    estará lado a lado en el dashboard. Si pones `3` a cuatro
     objetos que se siguen, también estarán uno al lado del otro.
 
 -   **Imagen**: Tienes la opción de subir una imagen o la
@@ -98,10 +98,10 @@ Se le proponen tres líneas :
     souhaitez que le résumé soit affiché dans la barre de menu
     de Jeedom.
 
--   **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que
-    le résumé s’affiche à côté du nom de l’objet sur le dashboard.
+-   **Ocultar en el escritorio**: Marque la casilla si no desea que
+    el resumen se muestra al lado del nombre del objeto en el dashboard.
 
--   **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que
+-   **Ocultar en el móvil**: Marque la casilla si no desea que
     le résumé s’affiche quand vous l’affichez depuis un mobile.
 
 ### Comandos
@@ -133,7 +133,7 @@ Jeedom, ainsi que leur configuration :
 
 -   **Visible** : Visibilidad del objeto.
 
--   **Masqué** : Indique si l’objet est masqué sur le dashboard.
+-   **Oculto**: Indica si el objeto está oculto en el dashboard.
 
 -   **Résumé Défini** : Indique le nombre de commandes par résumé. Ce
     qui est en bleu est pris en compte dans le résumé global.

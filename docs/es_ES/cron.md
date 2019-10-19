@@ -7,7 +7,7 @@ demande du support technique.
 > En caso de mal manejo de esta página, cualquier solicitud
 > Soporte puede ser negado.
 
-Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâches**
+Para acceder, vaya a **Ajustes → Sistema → Motor de tareas**
 :
 
 # Cron
@@ -15,14 +15,14 @@ Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâch
 En la parte superior, a la derecha, tienes:
 
 -   **Deshabilitar el sistema cron** : un botón para deshabilitar o
-    réactiver toutes les tâches (si vous les désactivez toutes, plus
+    reactivar todas las tareas (si las deshabilita todas, no más
     nada será funcional con su Jeedom)
 
--   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
+-   **Actualizar** : un botón para actualizar el tablero de las tareas
 
 -   **Agregar** : un botón para agregar una tarea cron
 
--   **Enregistrer** : un bouton pour enregistrer vos modifications.
+-   **Guardar**: un botón para guardar sus cambios.
 
 En-dessous, vous avez le tableau de toutes les tâches existantes
 (attention, certaines tâches peuvent lancer des sous-tâches, il est donc
@@ -48,10 +48,10 @@ page). Dans ce tableau, on retrouve :
 -   **Único** : si es "sí" la tarea se ejecutará una vez
     y se eliminará
 
--   **Classe** : classe PHP appelée pour exécuter la tâche (peut
+-   **Clase**: clase PHP llamada para ejecutar la tarea (puede
     estar vacío)
 
--   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
+-   **Función** : función PHP en la clase llamada (o no
     si la clase esta vacia)
 
 -   **Programación**: la programación de la tarea en formato CRON
@@ -63,7 +63,7 @@ page). Dans ce tableau, on retrouve :
 -   **Último lanzamiento** : fecha de lanzamiento de la última tarea
 
 -   **Dernière durée** : dernière durée pour accomplir la tâche (un
-    démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
+    demonio siempre estará a 0s, no se preocupe otras tareas
     puede estar en 0s)
 
 -   **Estado** : estado actual de la tarea (a modo de recordatorio, una tarea deamon
