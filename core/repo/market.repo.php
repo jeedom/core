@@ -225,7 +225,7 @@ class repo_market {
 			}
 		}
 		if (!$found) {
-			$filesystem->createDir('/remote.php/webdav/' . config::byKey('market::cloud::backup::name'));
+			$filesystem->createDir('/remote.php/webdav/' . rawurldecode(config::byKey('market::cloud::backup::name')));
 		}
 	}
 	
