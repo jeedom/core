@@ -46,7 +46,7 @@ $('#bt_clearGraph').on('click',function(){
     jeedom.history.chart['div_graph'].chart.series[0].remove(true);
   }
   delete jeedom.history.chart['div_graph'];
-  $(this).closest('.li_history').removeClass('active');
+  $('#ul_history').find('.li_history.active').removeClass('active');
 });
 
 
@@ -275,7 +275,7 @@ function addChart(_cmd_id, _action,_options) {
       initHistoryTrigger();
     }
   });
-  
+
 }
 
 /**************TIMELINE********************/
@@ -345,7 +345,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-  
+
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
