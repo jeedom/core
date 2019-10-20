@@ -369,7 +369,7 @@ class repo_market {
 		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 1';
+		$cmd .= ' --num-retries 3';
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
 		try {
@@ -397,7 +397,7 @@ class repo_market {
 		$cmd = system::getCmdSudo();
 		$cmd .= ' duplicity collection-status';
 		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 1';
+		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
@@ -441,7 +441,7 @@ class repo_market {
 		$cmd .= ' duplicity --file-to-restore /';
 		$cmd .= ' --time ' . $timestamp;
 		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 1';
+		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
 		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
 		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
