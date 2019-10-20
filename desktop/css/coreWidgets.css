@@ -45,6 +45,12 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tmplmult
   margin-left: 5px;
   padding: 0;
 }
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .content-sm {
+  font-weight: bold;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  font-size: 2em;
+}
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
   display: block;
   max-height: 50px;
