@@ -4,6 +4,12 @@ Mobile WebApp
 */
 
 /* __________________________________________________________________________________________________________Global */
+
+.eqLogic-widget div.cmd[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  font-size: 1.4em !important;
+}
+
+
 /* arc gauges and sliders */
 .highcharts-pane {
   stroke-width: 0;
