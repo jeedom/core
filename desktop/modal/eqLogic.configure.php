@@ -562,6 +562,11 @@ $('#bt_eqLogicConfigureSave').on('click', function (event) {
 					$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
 					if (event.ctrlKey) {
 						setTimeout(function() { $('#md_modal').dialog('close') }, 500);
+					}else{
+						var tab = $('#md_modal > ul.nav li.active a').attr('href')
+						$('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + eqLogic.id,function(){
+							$('#md_modal > ul.nav a[href="' + tab + '"]').click();
+						});
 					}
 				}
 			});

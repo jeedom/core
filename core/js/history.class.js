@@ -363,7 +363,11 @@ jeedom.history.drawChart = function (_params) {
               enabled: _params.enableExport || ($.mobile) ? false : true
             },
             rangeSelector: {
-              buttons: [{
+              buttons: [ {
+                type: 'all',
+                count: 1,
+                text: 'Tous'
+              },{
                 type: 'minute',
                 count: 30,
                 text: '30m'
@@ -387,10 +391,6 @@ jeedom.history.drawChart = function (_params) {
                 type: 'year',
                 count: 1,
                 text: 'A'
-              }, {
-                type: 'all',
-                count: 1,
-                text: 'Tous'
               }],
               selected: dateRange,
               inputEnabled: false,

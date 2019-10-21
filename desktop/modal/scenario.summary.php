@@ -93,7 +93,7 @@ if (!isConnect()) {
 					tr += '<center><input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode"></center>'
 					tr += '</td>'
 					tr += '<td style="min-width:60px">'
-					tr += '<select class="scenarioAttr form-control" data-l1key="configuration" data-l2key="logmode">'
+					tr += '<select class="scenarioAttr form-control input-sm" data-l1key="configuration" data-l2key="logmode">'
 					tr += '<option value="default">{{Défaut}}</option>'
 					tr += '<option value="none">{{Aucun}}</option>'
 					tr += '<option value="realtime">{{Temps réel}}</option>'

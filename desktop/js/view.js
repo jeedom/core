@@ -83,9 +83,12 @@ if (view_id != '') {
           itemElems.draggable();
           container.packery( 'bindUIDraggableEvents', itemElems );
           container.packery( 'on', 'dragItemPositioned',function(){
-            $('.div_displayEquipement').packery();
+            $('.eqLogicZone').packery();
           });
           function orderItems() {
+            setTimeout(function(){
+              $('.eqLogicZone').packery();
+            },1);
             var itemElems = container.packery('getItemElements');
             $( itemElems ).each( function( i, itemElem ) {
               $( itemElem ).attr('data-order', i + 1 );

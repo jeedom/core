@@ -4,6 +4,12 @@ Mobile WebApp
 */
 
 /* __________________________________________________________________________________________________________Global */
+
+.eqLogic-widget div.cmd {
+  vertical-align: top;
+}
+
+
 /* arc gauges and sliders */
 .highcharts-pane {
   stroke-width: 0;
@@ -47,6 +53,31 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________Specific */
+.cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  font-size: 1.4em !important;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+  font-size: 1.2em !important;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
+  width: 55px;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
+  margin-top: 5px;
+  height: 50px;
+}
+.cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
+  height: 100px;
+}
+.cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  height: 100px;
+}
+.cmd.cmd-widget .selectCmd {
+  max-height: 50px;
+  overflow: auto;
+}
+
+
 .hgauge-value,
 .shuttergauge-value {
   background: var(--link-color);
@@ -95,6 +126,7 @@ path.highcharts-graph {
 .shuttergauge-chart {
   display: inline-block;
   text-align: center !important;
+  min-height: 85px;
 }
 .shuttergauge-state {
   font-size: 16px;
@@ -113,12 +145,16 @@ path.highcharts-graph {
 .shuttergauge .slider {
   margin-top: 55px;
 }
+.timeShuttergauge .slider {
+  margin-top: 70px;
+}
 
-
+/* __________________________________________________________________________________________________________Compass */
 .widget-compass-container {
   position: relative;
   width: 80px;
   height: 80px;
+  margin-bottom: 18px;
 }
 .widget-compass-container * {
   position: absolute;
@@ -163,4 +199,43 @@ path.highcharts-graph {
   height: 0;
   border: 8px solid transparent;
   border-top: 22px solid var(--al-warning-color);
+}
+
+/* __________________________________________________________________________________________________________Rain */
+@keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+
+.widget-rain-water{
+  height: 0pt;
+  background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0 0 1px 1px;
+  bottom: 0;
+  width : 100%;
+  max-height: 80px;
+  transition: water 3s ease-out;
+  z-index: 0;
+  animation: homeweatherstationraingauge 3000s linear infinite;
+  bottom : 0px;
+  position: absolute;
+}
+
+.widget-rain-title{
+  padding-top: 10%;
+}
+
+.widget-rain-container{
+  background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
+  background-size: cover;
+  height: 100%;
+  z-index: 20;
+}
+
+.widget-rain-main{
+  height: 80px;
+  overflow: hidden;
+  width: 80px;
+  z-index: 0;
+  position : relative;
 }

@@ -1,4 +1,4 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
@@ -7,7 +7,7 @@
       <span class="value#uid# sliderValue"></span>
     </div>
   </div>
-  
+
   <script>
     $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
     jeedom.cmd.update['#id#'] = function(_options){
@@ -22,7 +22,7 @@
       })
     }
     jeedom.cmd.update['#id#']({display_value:'#state#'});
-    
+
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
       $(".value#uid#").hide();
