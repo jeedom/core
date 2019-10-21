@@ -376,6 +376,13 @@ $('#bt_messageModal').on('click',function(){
   $('#md_modal').dialog({title: "{{Message Jeedom}}"});
   $('#md_modal').load('index.php?v=d&p=message&ajax=1').dialog('open');
 });
+  
+$('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function(){
+    var el = $(this).closest('div').find('input');
+    jeedom.getCronSelectModal({},function (result) {
+      el.value(result.value);
+    });
+  });
 
 $('body').on('click','.objectSummaryParent',function(){
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'));

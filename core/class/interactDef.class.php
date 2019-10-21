@@ -123,7 +123,7 @@ class interactDef {
 		preg_match_all("/#(.*?)#/", $_def, $tags);
 		if (count($tags[1]) > 0) {
 			foreach ($tags[1] as $match) {
-				$regexp = str_replace('#' . $match . '#', '(.*?)', $regexp);
+				$regexp = str_replace(preg_quote('#' . $match . '#'), '(.*?)', $regexp);
 			}
 			preg_match_all("/" . $regexp . "$/", strtolower($_query), $matches, PREG_SET_ORDER);
 			if (isset($matches[0])) {
