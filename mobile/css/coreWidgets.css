@@ -5,8 +5,8 @@ Mobile WebApp
 
 /* __________________________________________________________________________________________________________Global */
 
-.eqLogic-widget div.cmd[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
-  font-size: 1.4em !important;
+.eqLogic-widget div.cmd {
+  vertical-align: top;
 }
 
 
@@ -53,6 +53,31 @@ path.highcharts-graph {
 
 
 /* __________________________________________________________________________________________________________Specific */
+.cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  font-size: 1.4em !important;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+  font-size: 1.2em !important;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
+  width: 55px;
+}
+.cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
+  margin-top: 5px;
+  height: 50px;
+}
+.cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
+  height: 100px;
+}
+.cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  height: 100px;
+}
+.cmd.cmd-widget .selectCmd {
+  max-height: 50px;
+  overflow: auto;
+}
+
+
 .hgauge-value,
 .shuttergauge-value {
   background: var(--link-color);
@@ -101,6 +126,7 @@ path.highcharts-graph {
 .shuttergauge-chart {
   display: inline-block;
   text-align: center !important;
+  min-height: 85px;
 }
 .shuttergauge-state {
   font-size: 16px;
@@ -118,6 +144,9 @@ path.highcharts-graph {
 }
 .shuttergauge .slider {
   margin-top: 55px;
+}
+.timeShuttergauge .slider {
+  margin-top: 70px;
 }
 
 /* __________________________________________________________________________________________________________Compass */
