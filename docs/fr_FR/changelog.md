@@ -8,6 +8,7 @@ Changelog
 - Correction d'un bug pouvant empecher la remonter de l'état des batteries
 - Correction d'un bug sur les tags dans les interactions
 - Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Correction de bug sur les backups cloud
 
 3.3.33
 =====
