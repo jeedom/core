@@ -52,7 +52,7 @@ jeedom.cmd.execute = function(_params) {
   }
   var notify = _params.notify || true;
   if (notify) {
-    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
+    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic-widget');
     jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else{
@@ -617,7 +617,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-
+            
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -655,7 +655,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-
+      
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
