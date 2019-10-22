@@ -29,7 +29,7 @@ En-dessous, vous avez le tableau de toutes les tâches existantes
 vivement recommandé de ne jamais modifier d’informations sur cette
 page). Dans ce tableau, on retrouve :
 
--   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
+-   **\#** : ID de la tarea, puede ser útil para hacer el enlace entre un
     proceso que gira y lo que realmente hace
 
 -   **Acción**: un botón para iniciar o detener la tarea basada
@@ -62,7 +62,7 @@ page). Dans ce tableau, on retrouve :
 
 -   **Último lanzamiento** : fecha de lanzamiento de la última tarea
 
--   **Dernière durée** : dernière durée pour accomplir la tâche (un
+-   **Última duración**: última duración para completar la tarea (un
     demonio siempre estará a 0s, no se preocupe otras tareas
     puede estar en 0s)
 

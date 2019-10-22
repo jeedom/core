@@ -38,7 +38,8 @@
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
 - Widgets : Ajout d'un widget info numeric horizontal.
 - Widgets : Ajout d'un widget info numeric vertical.
-- Widgets : Ajout d'un widget info numeric compass (Direction 0-360°). 
+- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus). 
+- Widgets : Ajout d'un widget info numeric rain (merci @thanaus)
 - Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
 - Configuration : Ajout de nombreux *tooltips* (aide).
@@ -56,7 +57,7 @@
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic sur *coller* remplace le bloc par le bloc copié.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
+- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
 - Scénario : Suppression du partage de scénario.
 - Scénario : Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
 - Analyse / Equipements : Ajout d'un moteur de recherche (onglet Batteries, recherche sur les noms et parents).

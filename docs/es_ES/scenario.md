@@ -269,7 +269,7 @@ Escenario :
   -   $key : clé de la valeur (int ou string).
   -   $value : valeur à stocker (int, string, array ou object).
 -   $scenario->getData($key); : Récupère une donnée (variable).
-  -   $key => clé de la valeur (int ou string).
+  -   $key => clave del valor (int o cadena).
 -   $scenario->removeData($key); : Supprime une donnée.
 -   $scenario->setLog($message); : Ecrit un message dans le log du scénario.
 -   $scenario->persistLog(); : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
@@ -432,7 +432,7 @@ déclenché par une interaction :
 > Lorsqu’un scénario est déclenché par une interaction, celui-ci est
 > forcément exécuté en mode rapide.
 
-Les fonctions de calcul
+Las funciones de cálculo
 -----------------------
 
 Plusieurs fonctions sont disponibles pour les équipements :
@@ -440,7 +440,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   average(commande,période) et averageBetween(commande,start,end)
     : Donnent la moyenne de la commande sur la période
     (period=[month,day,hour,min] ou [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
@@ -474,7 +474,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     statisticsBetween(commande,calcul,start,end) : Donnent le résultat
     de différents calculs statistiques (sum, count, std,
     variance, avg, min, max) sur la période
-    (period=[month,day,hour,min] ou [expression
+    (period=[month,day,hour,min] o [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
@@ -499,7 +499,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   lastStateDuration(commande,valeur) : Donne la durée en secondes
     pendant laquelle l’équipement a dernièrement eu la valeur choisie.
     Retourne -1 si aucun historique n’existe ou si la valeur n’existe pas dans l’historique.
-    Retourne -2 si la commande n’est pas historisée
+    Devuelve -2 si el comando no está historizado
 
 -   stateChanges(commande,[valeur], période) et
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
@@ -527,7 +527,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     desde el último lanzamiento del escenario :
 
 -   collectDate(cmd,[format]) : Renvoie la date de la dernière donnée
-    pour la commande donnée en paramètre, le 2ème paramètre optionnel
+    para el comando dado en el parámetro, el segundo parámetro opcional
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
@@ -582,7 +582,7 @@ exemple :
 Voici des exemples pratiques pour comprendre les valeurs retournées par
 ces différentes fonctions :
 
-| Enchufe teniendo como valores :            | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
+| Enchufe teniendo como valores :            | 000 (durante 10 minutos) 11 (durante 1 hora) 000 (durante 10 minutos)    |
 |--------------------------------------|--------------------------------------|
 | average(enchufe,periodo)             | Devuelve el promedio de 0 y 1 (puede  |
 |                                      | être influencée par le polling)      |
@@ -600,7 +600,7 @@ ces différentes fonctions :
 | lastChangeStateDuration(enchufe,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
 | lastStateDuration(enchufe,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
-| stateChanges(prise,période)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
+| stateChanges(enchufe,periodo)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
 | stateChanges(prise,0,période)      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
 | stateChanges(prise,1,période)      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
 | lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Yesterday,Today) | Devuelve la última temperatura registrada ayer.                    |
@@ -626,7 +626,7 @@ effectuer des conversions ou des calculs :
     del límite en la cantidad de texto.
 
 -   randomColor(min,max) : Donne une couleur aléatoire compris entre 2
-    bornes ( 0 => rouge, 50 => vert, 100 => bleu).
+    terminales ( 0 => rojo, 50 => verde, 100 => azul).
 
 -   trigger(commande) : Permet de connaître le déclencheur du scénario
     ou de savoir si c’est bien la commande passée en paramètre qui a
@@ -692,7 +692,7 @@ Los comandos específicos
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
--   **Pause** (sleep) : Pause de x seconde(s).
+-   **Pausa** (sleep) : Pausa de x segundo(s).
 
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
     de una variable.
