@@ -1086,7 +1086,7 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHide[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id='+i+']{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}';
       }
     }
     if(isset(_plan.display.cmdHideName)){
@@ -1094,8 +1094,8 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHideName[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id='+i+'] .cmdName{display : none !important;}';
-        another_css += css_selector+' .cmd[data-cmd_id='+i+'] .title{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}';
       }
     }
     if(isset(_plan.display.cmdTransparentBackground)){
@@ -1103,7 +1103,7 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdTransparentBackground[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id='+i+']{';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{';
         another_css += 'background-color: transparent !important';
         another_css += 'border-radius: 0px !important';
         another_css += 'box-shadow: none !important';
