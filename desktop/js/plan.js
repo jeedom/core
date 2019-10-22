@@ -962,9 +962,6 @@ function savePlan(_refreshDisplay,_async) {
     }
     plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100;
     plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100;
-    if(plan.id==93){
-      console.log(plan);
-    }
     plans.push(plan);
   });
   jeedom.plan.save({
@@ -983,9 +980,6 @@ function savePlan(_refreshDisplay,_async) {
 }
 
 function displayObject(_plan,_html, _noRender) {
-  if(_plan.id==93){
-    console.log(_plan);
-  }
   _plan = init(_plan, {});
   _plan.position = init(_plan.position, {});
   _plan.css = init(_plan.css, {});
@@ -1149,9 +1143,6 @@ function displayObject(_plan,_html, _noRender) {
     if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
       another_css += css_selector+' '+_plan.display.cssApplyOn+'{\n'+_plan.display.css+';\n}';
     }
-  }
-  if(_plan.id==93){
-    console.log(style);
   }
   $('#style'+_plan.link_type+'_'+_plan.link_id).remove();
   style_css += '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
