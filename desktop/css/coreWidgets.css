@@ -197,6 +197,8 @@ div.cmd-widget[data-subtype="text"] .text {
   resize: vertical;
   height: 50px;
 }
+
+
 div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
   display: inline;
   margin-right: 2px;
@@ -210,6 +212,9 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .content-sm {
   vertical-align: top !important;
   padding-top: 2px;
+}
+div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
+  overflow: scroll;
 }
 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
