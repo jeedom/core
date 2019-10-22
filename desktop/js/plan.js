@@ -18,8 +18,6 @@ var deviceInfo = getDeviceType();
 var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
 var clickedOpen = false;
 var $pageContainer = $('#div_pageContainer')
-var transparentEqlogics = new Array()
-var noShowCmds = new Array()
 var style_css = '';
 
 function unload_page(){
