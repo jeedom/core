@@ -1143,20 +1143,21 @@ function displayObject(_plan,_html, _noRender) {
     }
   }
   $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
-  style_css += '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
-  style_css += css_selector+'{'
+  style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
+  style_el += css_selector+'{'
   for(var i in style){
     if(['left','top','bottom','right','height','width'].indexOf(i) !== -1){
-      style_css += i+':'+style[i]+';';
+      style_el += i+':'+style[i]+';';
     }else{
-      style_css += i+':'+style[i]+' !important;';
+      style_el += i+':'+style[i]+' !important;';
     }
   }
-  style_css += '}';
-  style_css += another_css;
-  style_css +='</style>';
+  style_el += '}';
+  style_el += another_css;
+  style_el +='</style>';
   
   if(_plan.link_type == 'graph'){
+    $('#div_pageContainer').append(style_el);
     $('.div_displayObject').append(html);
     if(isset(_plan.display) && isset(_plan.display.graph)){
       for (var i in _plan.display.graph) {
@@ -1187,9 +1188,10 @@ function displayObject(_plan,_html, _noRender) {
   }
   
   if (init(_noRender, false)) {
+    style_css += style_el;
     return html;
   }
-  $('#div_pageContainer').append(style_css);
+  $('#div_pageContainer').append(style_el);
   $('.div_displayObject').append(html);
   initEditOption(editOption.state);
 }
