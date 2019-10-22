@@ -1027,7 +1027,7 @@ function displayObject(_plan,_html, _noRender) {
     }
     if (isset(_plan.display) && isset(_plan.display.height)) {
       style['height'] = init(_plan.display.height, 50)+'px';
-      html.height(init(_plan.display.width, 50));
+      html.height(init(_plan.display.height, 50));
     }
   }
   
