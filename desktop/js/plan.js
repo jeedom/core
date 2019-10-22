@@ -1142,7 +1142,7 @@ function displayObject(_plan,_html, _noRender) {
       another_css += css_selector+' '+_plan.display.cssApplyOn+'{\n'+_plan.display.css+';\n}';
     }
   }
-  $('#style'+_plan.link_type+'_'+_plan.link_id).remove();
+  $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
   style_css += '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   style_css += css_selector+'{'
   for(var i in style){
