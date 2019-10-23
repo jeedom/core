@@ -1161,7 +1161,7 @@ function displayObject(_plan,_html, _noRender) {
   }
   style_el += css_selector+'{'
   for(var i in style){
-    if(['left','top','bottom','right','height','width'].indexOf(i) !== -1){
+    if(['left','top','bottom','right','height','width','box-shadow'].indexOf(i) !== -1){
       style_el += i+':'+style[i]+';';
     }else{
       style_el += i+':'+style[i]+' !important;';
