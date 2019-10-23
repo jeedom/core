@@ -214,7 +214,7 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
   padding-top: 2px;
 }
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
-  overflow: scroll;
+  overflow: hidden;
 }
 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
