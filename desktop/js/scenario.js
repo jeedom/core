@@ -500,6 +500,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     $('#md_addElement').modal('hide')
     modifyWithoutSave = true
     updateTooltips()
+    setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
 })
