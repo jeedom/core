@@ -17,46 +17,6 @@ Core Widgets CSS @Jeedom
   display: none !important;
 }
 
-div.cmd-widget .message {
-  margin: 5px 0 !important;
-  resize: vertical;
-  height: 50px;
-}
-div.cmd-widget[data-subtype="text"] {
-  width: 146px;
-}
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
-  display: inline;
-  margin-right: 2px;
-}
-div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine{
-  font-size: 1.2em;
-}
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
-div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] {
-  display: block;
-}
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"],
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tmplmultistate"] {
-  min-width: 90px;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding: 0;
-}
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .content-sm {
-  font-weight: bold;
-}
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
-  font-size: 2em;
-}
-div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
-  display: block;
-  max-height: 50px;
-  overflow: auto;
-}
-
 div.cmd-widget .title {
   color: var(--txt-color);
   width: 100%;
@@ -130,6 +90,9 @@ div.cmd-widget[data-subtype="select"]::after {
   top: 5px!important;
   right: 5px;
 }
+div.cmd-widget .input-group {
+  margin-bottom: 0;
+}
 div.eqLogic_layout_table table.tableCmd {
   min-width: 0%;
 }
@@ -188,6 +151,7 @@ div.cmd > div.center-block {
 [data-page="widgets"] .verticalAlign {
   z-index: 1;
 }
+
 /* __________________________________________________________________________________________________________Sliders */
 .slider.ui-slider-horizontal {
   position: relative;
@@ -220,6 +184,69 @@ div.cmd > div.center-block {
 }
 
 /* __________________________________________________________________________________________________________Specifics */
+div.cmd-widget .message {
+  margin: 5px 0 !important;
+  resize: vertical;
+  height: 50px;
+}
+div.cmd-widget[data-subtype="text"] {
+  width: 146px;
+}
+div.cmd-widget[data-subtype="text"] .text {
+  margin-top: 5px;
+  resize: vertical;
+  height: 50px;
+}
+
+
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="default"] {
+  display: inline;
+  margin-right: 2px;
+}
+div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+  font-size: 1.2em;
+}
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .buttons {
+  width: 120px;
+}
+div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .content-sm {
+  vertical-align: top !important;
+  padding-top: 2px;
+}
+div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
+  overflow: scroll;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
+div.cmd-widget[data-type="info"][data-subtype="binary"][data-template="tmpliconline"],
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="line"],
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="default"] {
+  display: block;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"],
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tmplmultistate"] {
+  min-width: 90px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 0;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .content-sm {
+  font-weight: bold;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  font-size: 2em;
+}
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  display: block;
+  max-height: 50px;
+  overflow: auto;
+}
+
+.cmd-widget.widget-hygrothermographe {
+  width: 220px;
+  height: 220px;
+}
+
 .gauge {
   position: relative;
   width: 100px;
