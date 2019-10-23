@@ -1069,8 +1069,8 @@ function displayObject(_plan,_html, _noRender) {
     }
     style[key] = _plan.css[key];
   }
-  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && html.css('background-color')){
-    style['background-color'] = html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && _plan.css['background-color']){
+    style['background-color'] = _plan.css['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
   }
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
