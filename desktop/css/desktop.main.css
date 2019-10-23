@@ -490,9 +490,10 @@ sup i {
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
   border: 2px dotted var(--logo-primary-color) !important;
 }
-.ui-resizable-handle.ui-resizable-e { width: 15px; }
-.ui-resizable-handle.ui-resizable-s { height: 15px; }
-
+.ui-resizable-handle.ui-resizable-e { width: 4px; right: 0;}
+.ui-resizable-handle.ui-resizable-s { height: 4px; bottom: 0;}
+.allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
+.allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
