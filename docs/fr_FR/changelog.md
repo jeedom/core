@@ -38,7 +38,7 @@ Changelog
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
 - Widgets : Ajout d'un widget info numeric horizontal.
 - Widgets : Ajout d'un widget info numeric vertical.
-- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus). 
+- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus).
 - Widgets : Ajout d'un widget info numeric rain (merci @thanaus)
 - Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
@@ -84,6 +84,10 @@ Changelog
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+>**IMPORTANT**
+>
+>Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). 
 
 3.3.33
 =====
