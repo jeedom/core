@@ -1069,8 +1069,13 @@ function displayObject(_plan,_html, _noRender) {
     }
     style[key] = _plan.css[key];
   }
-  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && _plan.css['background-color']){
-    style['background-color'] = _plan.css['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && style['background-color'] && style['background-color'] != 'transparent'){
+    if(style['background-color'].indexOf('#') != -1){
+      let rgb = hexToRgb(style['background-color']);
+      style['background-color'] = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+_plan.css['opacity']+')';
+    }else{
+      style['background-color'] = style['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
+    }
   }
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
@@ -1143,7 +1148,7 @@ function displayObject(_plan,_html, _noRender) {
     }
   }
   $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
-  style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
+  var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   style_el += css_selector+'{'
   for(var i in style){
     if(['left','top','bottom','right','height','width'].indexOf(i) !== -1){
