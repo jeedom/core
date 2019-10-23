@@ -1154,9 +1154,9 @@ function displayObject(_plan,_html, _noRender) {
   var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   if(_plan.display.css && _plan.display.css != ''){
     if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
-      style_el += css_selector+' '+_plan.display.cssApplyOn+'{\n'+_plan.display.css+'\n}';
+      style_el += css_selector+' '+_plan.display.cssApplyOn+'{'+_plan.display.css+'}';
     } else {
-      style_el += css_selector+' '+'{\n'+_plan.display.css+'\n}';
+      style_el += css_selector+' '+'{'+_plan.display.css+'}';
     }
   }
   style_el += css_selector+'{'
