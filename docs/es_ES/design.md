@@ -164,7 +164,7 @@ redimensionnable.
 Gráfico
 =========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Período**: Le permite elegir el período de muestra
@@ -228,15 +228,15 @@ Texto / html
 Escenario
 ========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+Ningún parámetro específico de pantalla 
 
 Link 
 ====
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Nombre** : Nombre del enlace (texto mostrado)
@@ -280,7 +280,7 @@ documentation Résumé domotique ("display"))
 Commando 
 ========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 Aucun paramètre spécifique d’affichage
@@ -294,7 +294,7 @@ documentation Résumé domotique ("display"))
 Imagen/Cámara 
 ============
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Afficher** : définit ce que vous voulez afficher, image fixe ou
@@ -308,7 +308,7 @@ Paramètres d’affichage
 Zona 
 ====
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Type de zone** : C’est ici que vous choisissez le type de la zone :
