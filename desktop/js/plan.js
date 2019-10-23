@@ -1001,21 +1001,25 @@ function displayObject(_plan,_html, _noRender) {
     $(css_selector).remove();
   }
   
+  css_selector = '\n'+css_selector
   var html = $(_html);
   
   html.attr('data-plan_id',_plan.id)
-  .addClass('jeedomAlreadyPosition')
-  .attr('data-zoom', init(_plan.css.zoom, 1))
-  .addClass('noResize');
+    .addClass('jeedomAlreadyPosition')
+    .attr('data-zoom', init(_plan.css.zoom, 1))
+    .addClass('noResize');
   style['z-index'] = '1000';
   style['position'] = 'absolute';
   style['top'] = (init(_plan.position.top, '10') * $('.div_displayObject').height() / 100)+'px';
   style['left'] = (init(_plan.position.left, '10') * $('.div_displayObject').width() / 100)+'px';
-  style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
-  style['-webkit-transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
-  style['-moz-transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
-  style['-webkit-transform-origin'] = '0 0';
-  style['-moz-transform-origin'] = '0 0';
+  if (init(_plan.css.zoom, 1) != 1) {
+    style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
+    //style['-webkit-transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
+    //style['-moz-transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
+    //style['-webkit-transform-origin'] = '0 0';
+    //style['-moz-transform-origin'] = '0 0';
+    
+  }
   style['transform-origin'] = '0 0';
   
   if(_plan.link_type != 'cmd'){
@@ -1028,7 +1032,7 @@ function displayObject(_plan,_html, _noRender) {
       html.height(init(_plan.display.height, 50));
     }
   }
-  
+
   for (var key in _plan.css) {
     if (_plan.css[key] === '' || key == 'zoom' || key == 'rotate'){
       continue;
@@ -1043,8 +1047,8 @@ function displayObject(_plan,_html, _noRender) {
           style['border-radius'] = '0px';
           style['box-shadow'] = 'none';
           if(_plan.link_type == 'eqLogic'){
-            another_css += css_selector+' .widget-name{background-color : transparent !important;}'
-            another_css += css_selector+' .widget-name a{color : rgb(90, 90, 90) !important;}'
+            another_css += css_selector+' .widget-name{background-color : transparent !important;\n}'
+            another_css += css_selector+' .widget-name a{color : rgb(90, 90, 90) !important;\n}'
           }
         }else{
           style[key] = _plan.css[key];
@@ -1089,7 +1093,7 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHide[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;\n}';
       }
     }
     if(isset(_plan.display.cmdHideName)){
@@ -1097,8 +1101,8 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHideName[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}';
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;\n}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;\n}';
       }
     }
     if(isset(_plan.display.cmdTransparentBackground)){
@@ -1110,7 +1114,7 @@ function displayObject(_plan,_html, _noRender) {
         another_css += 'background-color: transparent !important';
         another_css += 'border-radius: 0px !important';
         another_css += 'box-shadow: none !important';
-        another_css += '}'
+        another_css += '\n}'
       }
     }
     style['min-width'] = '0px'
@@ -1118,7 +1122,7 @@ function displayObject(_plan,_html, _noRender) {
     another_css += css_selector+' * {';
     another_css += 'min-width:0px !important;'
     another_css += 'min-height:0px !important;'
-    another_css += '}'
+    another_css += '\n}'
   }
   if(_plan.link_type == 'cmd'){
     var insideHtml = html.html();
@@ -1141,14 +1145,16 @@ function displayObject(_plan,_html, _noRender) {
       html.find('.directDisplay').addClass('zoom cursor');
     }
   }
-  if(_plan.display.css && _plan.display.css != ''){
-    style_css += _plan.display.css;
-    if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
-      another_css += css_selector+' '+_plan.display.cssApplyOn+'{\n'+_plan.display.css+';\n}';
-    }
-  }
+  
   $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
   var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
+  if(_plan.display.css && _plan.display.css != ''){
+    if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
+      style_el += css_selector+' '+_plan.display.cssApplyOn+'{\n'+_plan.display.css+'\n}';
+    } else {
+      style_el += css_selector+' '+'{\n'+_plan.display.css+'\n}';
+    }
+  }
   style_el += css_selector+'{'
   for(var i in style){
     if(['left','top','bottom','right','height','width'].indexOf(i) !== -1){
@@ -1157,7 +1163,7 @@ function displayObject(_plan,_html, _noRender) {
       style_el += i+':'+style[i]+' !important;';
     }
   }
-  style_el += '}';
+  style_el += '}\n';
   style_el += another_css;
   style_el +='</style>';
   
