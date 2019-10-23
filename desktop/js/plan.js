@@ -292,7 +292,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
                 },
                 success: function () {
                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                  loadPage('index.php?v=d&p=plan');
+                  window.location.reload();
                 },
               });
             }
