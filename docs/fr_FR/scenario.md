@@ -511,22 +511,22 @@ Plusieurs fonctions sont disponibles pour les équipements :
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php))
 
 -   lastBetween(commande,start,end) : Donne la dernière valeur
     enregistrée pour l’équipement entre les 2 bornes demandées (sous la
     forme Y-m-d H:i:s ou [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php))
 
 -   variable(mavariable,valeur par défaut) : Récupère la valeur d’une
-    variable ou de la valeur souhaitée par défaut :
+    variable ou de la valeur souhaitée par défaut
 
 -   scenario(scenario) : Renvoie le statut du scénario. 1 en cours, 0
     si arrêté et -1 si désactivé, -2 si le scénario n’existe pas et -3
     si l’état n’est pas cohérent. Pour avoir le nom "humain" du scénario, vous pouvez utiliser le bouton dédié à droite de la recherche de scénario.
 
 -   lastScenarioExecution(scenario) : Donne la durée en secondes
-    depuis le dernier lancement du scénario :
+    depuis le dernier lancement du scénario, renvoi 0 si le scénario n'existe pas
 
 -   collectDate(cmd,[format]) : Renvoie la date de la dernière donnée
     pour la commande donnée en paramètre, le 2ème paramètre optionnel
