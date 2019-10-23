@@ -1097,7 +1097,7 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHide[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;\n}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}';
       }
     }
     if(isset(_plan.display.cmdHideName)){
@@ -1105,8 +1105,9 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHideName[i] == 0){
           continue;
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;\n}';
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;\n}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}';
+        another_css += css_selector+' .verticalAlign {top: 50%!important;}';
       }
     }
     if(isset(_plan.display.cmdTransparentBackground)){
