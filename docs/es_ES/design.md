@@ -329,7 +329,7 @@ vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
 la ou les actions Off
 
 -   **Information binaire** : Commande donnant l’état à vérifier pour
-    décider de l’action à faire (On ou Off)
+    decidir de la acción por hacer (On o Off)
 
 Il vous suffit en dessous de mettre les actions à faire pour le On et
 pour le Off
@@ -352,7 +352,7 @@ afficherez le widget en question
 Resumén 
 ======
 
--   **Lien** : Permet d’indiquer le résumé à afficher (Général pour le
+-   **Enlace**: Le permite indicar el resumen que se mostrará (General para
     global de lo contrario indicar el objeto)
 
 -   **Color de fondo** : Permite cambiar el color de fondo o el color de la

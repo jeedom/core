@@ -284,7 +284,7 @@ Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à dis
 
 J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent être manquant ou j'ai une page blanche
 =========================================
-C'est une erreur assez grave le plus simple est de faire 
+Es un error bastante serio, lo más simple es de hacer
 
 ``` 
 mkdir -p /root/tmp/

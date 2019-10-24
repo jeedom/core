@@ -510,7 +510,7 @@ il faut donc regarder sa fiche sur le Market pour les connaître.
 Onglet Code 
 -----------
 
-Permet de modifier le code du widget juste pour la commande courante.
+Permite cambiar el código del widget solo para el comando actual.
 
 > **Note**
 >
