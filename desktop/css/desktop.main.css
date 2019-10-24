@@ -494,6 +494,7 @@ sup i {
 .ui-resizable-handle.ui-resizable-s { height: 4px; bottom: 0;}
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;
@@ -2200,6 +2201,9 @@ div[id^=__lpform_] { /*lastpass*/
 .element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
 }
+.element .expressionAttr.insideSearch {
+  color: red !important;
+}
 .subElementCOMMENT textarea {
   font-weight: normal !important;
   min-height: 62px;
@@ -2846,12 +2850,21 @@ path.highcharts-graph {
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
   background-color: rgb(var(--contrast-color)) !important;
+  padding: 0 5px;
 }
 .ui-dialog .ui-dialog-title {
   color: rgb(var(--bg-color)) !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+  font-size: 16px;
+  font-weight: normal;
 }
+.ui-dialog .ui-dialog-title:before {
+  content: '\f105\00a0\00a0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+}
+
 .ui-dialog, .ui-dialog-content {
   box-sizing: content-box !important;
 }
@@ -2929,11 +2942,13 @@ div.vis-item-content {
 
 button.ui-dialog-titlebar-close::before {
   font-family: "Font Awesome 5 Free";
-  font-size: 18px !important;
-  font-weight: 900;
+  font-size: 16px !important;
+  font-weight: 700;
   content: "\f00d";
   color: rgb(var(--bg-color)) !important;
-  vertical-align: middle;
+  padding-right: 12px;
+  line-height: 10px;
+  vertical-align: top;
 }
 button.ui-dialog-titlebar-close {
   position: absolute;
