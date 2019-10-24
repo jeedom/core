@@ -89,6 +89,14 @@ Changelog
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
 
+3.3.34
+=====
+    Correction d'un bug pouvant empecher la remonter de l'état des batteries
+    Correction d'un bug sur les tags dans les interactions
+    Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+    Correction de bug sur les backups cloud
+
+
 3.3.33
 =====
 
