@@ -1804,10 +1804,10 @@ input[type=radio] {
   margin-top: 3px !important;
 }
 input[type=checkbox]:checked:after {
-  content: '\2714' !important;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+  content: '\f00c' !important;
   position: absolute;
-  left: 2px;
-  top: -3px;
 }
 input[type=checkbox]::-ms-check {
   background-color: var(--form-bg-color) !important;
