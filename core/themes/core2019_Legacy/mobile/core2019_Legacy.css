@@ -97,16 +97,20 @@ Mobile Legacy
   color: var(--eqTitle-color);
 }
 
-
+.ui-grid-a {
+  color: var(--link-color);
+}
 /* ___________________________________________________________EQs */
-.eqLogic.eqLogic-widget,
+
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
-.cmdName {
-  color: var(--linkHoverLight-color) !important;
+{
+  color: var(--link-color) !important;
 }
 
+.eqLogic.eqLogic-widget,
+.cmdName,
 .state,
 .state i,
 p.state,
