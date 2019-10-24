@@ -106,7 +106,7 @@ try {
 		$list = array();
 		foreach (eqLogic::all() as $eqLogic) {
 			$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
-			if ($eqLogic->getStatus('battery', -2) != -2) {
+			if ($eqLogic->getIsEnable() && $eqLogic->getStatus('battery', -2) != -2) {
 				$list[] = $eqLogic;
 			}
 		}
