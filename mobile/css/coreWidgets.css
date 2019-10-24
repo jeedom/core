@@ -146,7 +146,7 @@ path.highcharts-graph {
   margin-top: 55px;
 }
 .timeShuttergauge .slider {
-  margin-top: 70px;
+  margin-top: 0px !important;
 }
 
 /* __________________________________________________________________________________________________________Compass */
