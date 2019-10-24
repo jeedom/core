@@ -213,7 +213,6 @@ div.cmd-widget[data-type="action"][data-subtype="message"][data-template="defaul
 }
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .message {
   margin: 5px 0 !important;
-  height: 50px;
   resize: none !important;
 }
 
