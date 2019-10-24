@@ -184,11 +184,6 @@ div.cmd > div.center-block {
 }
 
 /* __________________________________________________________________________________________________________Specifics */
-div.cmd-widget .message {
-  margin: 5px 0 !important;
-  resize: vertical;
-  height: 50px;
-}
 div.cmd-widget[data-subtype="text"] {
   width: 146px;
 }
@@ -215,6 +210,11 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
 }
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
   overflow: hidden;
+}
+div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .message {
+  margin: 5px 0 !important;
+  height: 50px;
+  resize: none !important;
 }
 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
