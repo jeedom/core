@@ -18,6 +18,7 @@ var deviceInfo = getDeviceType();
 var editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
 var clickedOpen = false;
 var $pageContainer = $('#div_pageContainer')
+var style_css = '';
 
 function unload_page(){
   if(getUrlVars('p') != 'plan'){
@@ -292,7 +293,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
                 },
                 success: function () {
                   $('#div_alert').showAlert({message: 'Design supprimé', level: 'success'});
-                  loadPage('index.php?v=d&p=plan');
+                  window.location.reload();
                 },
               });
             }
@@ -355,7 +356,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-  
+
   $.contextMenu({
     selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
     zIndex: 9999,
@@ -466,7 +467,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
               displayObject(data.plan,data.html);
             }
           });
-          
+
         }
       },
       lock: {
@@ -485,7 +486,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
       },
     }
   });
-  
+
 }
 /**************************************init*********************************************/
 displayPlan();
@@ -669,24 +670,24 @@ function draggableStartFix(event, ui) {
   } else {
     dragStep = false
   }
-  
+
   dragClick.x = event.clientX
   dragClick.y = event.clientY
   dragStartPos = ui.originalPosition
-  
+
   $container = $('.div_displayObject')
   containerWidth = $container.width()
   containerHeight = $container.height()
-  
+
   clientWidth = $(ui.helper[0]).width()
   clientHeight = $(ui.helper[0]).height()
-  
+
   marginLeft = $(ui.helper[0]).css('margin-left')
   marginLeft = parseFloat(marginLeft.replace('px', ''))
-  
+
   minLeft = 0 - marginLeft
   minTop = 0
-  
+
   maxLeft = containerWidth + minLeft - (clientWidth * zoomScale)
   maxTop = containerHeight + minTop - (clientHeight * zoomScale)
 }
@@ -694,18 +695,18 @@ function draggableDragFix(event, ui) {
   if (isDragLocked == true) return false
   newLeft = event.clientX - dragClick.x + dragStartPos.left
   newTop = event.clientY - dragClick.y + dragStartPos.top
-  
+
   if (newLeft < minLeft) newLeft = minLeft
   if (newLeft > maxLeft) newLeft = maxLeft
-  
+
   if (newTop < minTop) newTop = minTop
   if (newTop > maxTop) newTop = maxTop
-  
+
   if (dragStep) {
     newLeft = (Math.round(newLeft / dragStep) * dragStep)
     newTop = (Math.round(newTop / dragStep) * dragStep)
   }
-  
+
   ui.position = {left: newLeft, top: newTop}
 }
 
@@ -768,7 +769,7 @@ function initEditOption(_state) {
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true);
     }catch (e) {
-      
+
     }
   }else{
     jeedom.cmd.disableExecute = false;
@@ -782,13 +783,13 @@ function initEditOption(_state) {
         $(this).attr('href', $(this).attr('data-href'));
       });
     }catch (e) {
-      
+
     }
     $('.div_grid').hide();
     try{
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false);
     }catch (e) {
-      
+
     }
   }
 }
@@ -870,6 +871,8 @@ function displayPlan(_code) {
         });
       }
       $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove();
+
+
       jeedom.plan.byPlanHeader({
         id: planHeader_id,
         error: function (error) {
@@ -883,8 +886,15 @@ function displayPlan(_code) {
           try {
             $('.div_displayObject').append(objects);
           }catch(e) {
-            
+
           }
+          try {
+            $('#div_pageContainer').append(style_css);
+            style_css  ='';
+          }catch(e) {
+
+          }
+
           initEditOption(editOption.state);
           initReportMode();
         }
@@ -971,43 +981,53 @@ function displayObject(_plan,_html, _noRender) {
   _plan = init(_plan, {});
   _plan.position = init(_plan.position, {});
   _plan.css = init(_plan.css, {});
+  var css_selector = '';
+  var another_css = '';
+  var style = {}
   if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'zone' || _plan.link_type == 'summary') {
-    $('.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id=' + _plan.link_id + ']').remove();
+    css_selector = '.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id="' + _plan.link_id + '"]';
+    $(css_selector).remove();
   }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
-    $('.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id=' + _plan.link_id + ']').remove();
+    css_selector = '.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id="' + _plan.link_id + '"]';
+    $(css_selector).remove();
   }else if (_plan.link_type == 'cmd') {
-    $('.div_displayObject > .cmd-widget[data-cmd_id=' + _plan.link_id + ']').remove();
+    css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]';
+    $(css_selector).remove();
   }else if (_plan.link_type == 'graph') {
     if(jeedom.history.chart['graph'+_plan.link_id]){
       delete jeedom.history.chart['graph'+_plan.link_id];
     }
-    $('.div_displayObject .graph-widget[data-graph_id=' + _plan.link_id + ']').remove();
+    css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
+    $(css_selector).remove();
   }
+
+  css_selector = '\n'+css_selector
   var html = $(_html);
+
   html.attr('data-plan_id',_plan.id)
-  .addClass('jeedomAlreadyPosition')
-  .css({
-    'z-index': 1000,
-    'position': 'absolute',
-    'top':  init(_plan.position.top, '10') * $('.div_displayObject').height() / 100,
-    'left': init(_plan.position.left, '10') * $('.div_displayObject').width() / 100,
-    'transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
-    '-webkit-transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
-    '-moz-transform': 'scale(' + init(_plan.css.zoom, 1) + ')',
-    '-webkit-transform-origin': '0 0',
-    '-moz-transform-origin': '0 0'
-  })
-  .style('transform-origin', '0 0','important')
-  .attr('data-zoom', init(_plan.css.zoom, 1))
-  .addClass('noResize');
+      .addClass('jeedomAlreadyPosition')
+      .attr('data-zoom', init(_plan.css.zoom, 1))
+      .addClass('noResize');
+  style['z-index'] = '1000';
+  style['position'] = 'absolute';
+  style['top'] = (init(_plan.position.top, '10') * $('.div_displayObject').height() / 100)+'px';
+  style['left'] = (init(_plan.position.left, '10') * $('.div_displayObject').width() / 100)+'px';
+  if (init(_plan.css.zoom, 1) != 1) {
+    style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')';
+  }
+  style['transform-origin'] = '0 0';
+
   if(_plan.link_type != 'cmd'){
     if (isset(_plan.display) && isset(_plan.display.width)) {
-      html.css('width', init(_plan.display.width, 50));
+      style['width'] = init(_plan.display.width, 50)+'px';
+      html.width(init(_plan.display.width, 50));
     }
     if (isset(_plan.display) && isset(_plan.display.height)) {
-      html.css('height', init(_plan.display.height, 50));
+      style['height'] = init(_plan.display.height, 50)+'px';
+      html.height(init(_plan.display.height, 50));
     }
   }
+
   for (var key in _plan.css) {
     if (_plan.css[key] === '' || key == 'zoom' || key == 'rotate'){
       continue;
@@ -1018,25 +1038,28 @@ function displayObject(_plan,_html, _noRender) {
     if (key == 'background-color') {
       if(isset(_plan.display) && (!isset(_plan.display['background-defaut']) || _plan.display['background-defaut'] != 1)){
         if (isset(_plan.display['background-transparent']) && _plan.display['background-transparent'] == 1) {
-          html.style('background-color', 'transparent', 'important');
-          html.style('border-radius', '0px', 'important');
-          html.style('box-shadow', 'none');
+          style['background-color'] = 'transparent';
+          style['border-radius'] = '0px';
+          style['box-shadow'] = 'none';
           if(_plan.link_type == 'eqLogic'){
-            html.find('.widget-name').style('background-color', 'transparent', 'important');
-            html.find('.widget-name a').style('color','rgb(90, 90, 90)','important');
+            another_css += css_selector+' .widget-name{background-color : transparent !important;\n}'
+            another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
+            if(isset(_plan.css.color) || _plan.display['color-defaut'] == 1){
+              another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
+            }else if(_plan.display['color-defaut'] == 1){
+              another_css += css_selector+' .widget-name a{color : '+_plan.display['color-defaut']+' !important;\n}'
+            }
           }
         }else{
-          html.style(key, _plan.css[key], 'important');
+          style[key] = _plan.css[key];
         }
       }
       continue;
     }else if (key == 'color') {
       if(!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1){
-        html.style(key, _plan.css[key], 'important');
+        style[key] = _plan.css[key];
         if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd' || _plan.link_type == 'summary'){
-          html.find('*').each(function(){
-            $(this).style(key, _plan.css[key], 'important')
-          });
+          another_css += css_selector+' * {\n'+key+' : '+_plan.css[key]+' !important;\n}';
         }
       }
       continue;
@@ -1045,19 +1068,24 @@ function displayObject(_plan,_html, _noRender) {
       continue;
     }
     if (key == 'font-size' && _plan.link_type == 'summary'){
-      html.find('.objectSummaryParent').each(function(){
-        $(this).style(key, _plan.css[key], 'important');
-      });
+      another_css += css_selector+' .objectSummaryParent{\n'+key+' : '+_plan.css[key]+' !important;\n}';
       continue;
     }
-    html.style(key, _plan.css[key], 'important');
+    style[key] = _plan.css[key];
   }
-  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && html.css('background-color')){
-    html.style('background-color',html.css('background-color').replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba'), 'important');
+  if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && style['background-color'] && style['background-color'] != 'transparent'){
+    if(style['background-color'].indexOf('#') != -1){
+      let rgb = hexToRgb(style['background-color']);
+      style['background-color'] = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+_plan.css['opacity']+')';
+    }else{
+      style['background-color'] = style['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
+    }
   }
+
   if(_plan.link_type == 'eqLogic'){
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
       html.addClass('hideEqLogicName')
+      another_css += css_selector+' .verticalAlign{top: 50% !important;\n}'
     }
     if(isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1){
       html.addClass('displayObjectName')
@@ -1067,7 +1095,7 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHide[i] == 0){
           continue;
         }
-        html.find('.cmd[data-cmd_id='+i+']').remove();
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}';
       }
     }
     if(isset(_plan.display.cmdHideName)){
@@ -1075,8 +1103,8 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdHideName[i] == 0){
           continue;
         }
-        html.find('.cmd[data-cmd_id='+i+'] .cmdName').remove();
-        html.find('.cmd[data-cmd_id='+i+'] .title').remove();
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}';
       }
     }
     if(isset(_plan.display.cmdTransparentBackground)){
@@ -1084,32 +1112,34 @@ function displayObject(_plan,_html, _noRender) {
         if(_plan.display.cmdTransparentBackground[i] == 0){
           continue;
         }
-        html.find('.cmd[data-cmd_id='+i+']').style('background-color', 'transparent', 'important')
-        .style('border-radius', '0px', 'important')
-        .style('box-shadow', 'none');
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{';
+        another_css += 'background-color: transparent !important';
+        another_css += 'border-radius: 0px !important';
+        another_css += 'box-shadow: none !important';
+        another_css += '\n}'
       }
     }
-    html.css({
-      'min-width':'0px',
-      'min-height':'0px'
-    })
-    html.find('*').css({
-      'min-width':'0px',
-      'min-height':'0px'
-    })
+    style['min-width'] = '0px'
+    style['min-height'] = '0px'
+    another_css += css_selector+' * {';
+    another_css += 'min-width:0px !important;'
+    another_css += 'min-height:0px !important;'
+    another_css += '\n}'
   }
   if(_plan.link_type == 'cmd'){
     var insideHtml = html.html();
     html = html.empty().append('<center>'+insideHtml+'</center>');
+    delete style['height']
+    style['min-height'] = '0px';
+    delete style['width']
+    style['min-width'] = '0px';
     html.css({
       'width':'',
-      'min-width':'0px',
       'height':'',
-      'min-height':'0px'
     });
     if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
-      html.find('.cmdName').remove();
-      html.find('.title').remove();
+      another_css += css_selector+' .cmdName{\ndisplay : none !important;\n}';
+      another_css += css_selector+' .title{\ndisplay : none !important;\n}';
     }
   }
   if(_plan.link_type == 'image'){
@@ -1117,15 +1147,30 @@ function displayObject(_plan,_html, _noRender) {
       html.find('.directDisplay').addClass('zoom cursor');
     }
   }
+
+  $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
+  var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   if(_plan.display.css && _plan.display.css != ''){
-    html.attr('style',html.attr('style')+';'+_plan.display.css);
     if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
-      html.find(_plan.display.cssApplyOn).each(function(){
-        $(this).attr('style',$(this).attr('style')+';'+_plan.display.css);
-      });
+      style_el += css_selector+' '+_plan.display.cssApplyOn+'{'+_plan.display.css+'}';
+    } else {
+      style_el += css_selector+' '+'{'+_plan.display.css+'}';
     }
   }
+  style_el += css_selector+'{'
+  for(var i in style){
+    if(['left','top','bottom','right','height','width','box-shadow'].indexOf(i) !== -1){
+      style_el += i+':'+style[i]+';';
+    }else{
+      style_el += i+':'+style[i]+' !important;';
+    }
+  }
+  style_el += '}\n';
+  style_el += another_css;
+  style_el +='</style>';
+
   if(_plan.link_type == 'graph'){
+    $('#div_pageContainer').append(style_el);
     $('.div_displayObject').append(html);
     if(isset(_plan.display) && isset(_plan.display.graph)){
       for (var i in _plan.display.graph) {
@@ -1154,9 +1199,12 @@ function displayObject(_plan,_html, _noRender) {
     initEditOption(editOption.state);
     return;
   }
+
   if (init(_noRender, false)) {
+    style_css += style_el;
     return html;
   }
+  $('#div_pageContainer').append(style_el);
   $('.div_displayObject').append(html);
   initEditOption(editOption.state);
 }

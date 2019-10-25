@@ -161,7 +161,8 @@ div.cmd-widget div[class^="content"] {
 .eqLogic-widget .iconCmd,
 .eqLogic-widget .cmdName,
 .eqLogic-widget .cmdStats,
-.eqLogic-widget .state {
+.eqLogic-widget :not(.tableCmdcss) .cmd:not(.label) .state,
+.eqLogic-widget .cmd {
   color: var(--sc-lightTxt-color) !important;
 }
 

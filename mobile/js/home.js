@@ -42,7 +42,11 @@ function initHome() {
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
             icon = objects[i].display.icon
           }
-          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + '<span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>'
+          var decay = 0
+          if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
+            decay = objects[i].configuration.parentNumber
+          }
+          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name + '<span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>'
           summaries.push({object_id : objects[i].id})
         }
       }

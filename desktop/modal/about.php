@@ -13,7 +13,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
       <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> |
-      <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Forum</a> |
+      <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
       <a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
@@ -58,8 +58,8 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 
 <script>
 $(function(){
-  	var currentTheme = $('body').attr('data-theme')
-  	if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+    var currentTheme = $('body').attr('data-theme')
+    if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
       $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
     }
     var parentWidth = $( window ).width()
