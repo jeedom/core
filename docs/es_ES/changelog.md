@@ -613,7 +613,7 @@ Changelog
 - Possibilité d’autoriser un utilisateur à se connecter uniquement à partir d’un poste sur le réseau local
 - Refonte de la configuration des widgets (attention il faudra sûrement reprendre la configuration de certains widgets)
 - Renforcement de la gestion des erreurs sur les widgets
-- Possibilité de réordonner les vues
+- Posibilidad de reordenar las vistas
 - Refonte de la gestion des thèmes
 
 2.1
@@ -624,7 +624,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Optimisation du chargement du dashboard
 - Correction de nombreux warning
 - Possibilité lors d’un appel api à un scénario de passer des tags dans l’url
-- Support d’apache
+- Soporte de Apache
 - Optimisation pour docker avec support officiel de docker
 - Optimisation pour les synology
 - Support + optimisation pour php7
@@ -633,7 +633,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Suppression de l’indication de batterie sur les widgets
 - Ajout d’une page qui résume le statut de tous les équipements sur batterie
 - Refonte du DNS Jeedom, utilisation d’openvpn (et donc du plugin openvpn)
-- Mise à jour de toutes les libs
+- Actualizando todas las librerías
 - Interaction : ajout d’un système d’analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
 - Suppression de la mise à jour de l’interface par nodejs (passage en pulling toutes les secondes sur la liste des événements)
 - Possibilité pour les applications tierces de demander par l’api les événements
