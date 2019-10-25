@@ -1163,7 +1163,7 @@ function sanitizeAccent($_message) {
 					if($sum < 150){
 						continue;
 					}
-					if($sum > 700){
+					if($sum > 650){
 						continue;
 					}
 				}
