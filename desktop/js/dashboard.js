@@ -16,27 +16,27 @@
 
 //infos/actions tile signals:
 $('body')
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+  $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+})
+.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
   $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-  })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-  })
+})
+.on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+})
+.on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+})
 
 /* v4.1
 $('body')
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-  })
+.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+$(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+})
+.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+$(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+})
 */
 
 
