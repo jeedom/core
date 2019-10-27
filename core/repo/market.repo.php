@@ -34,6 +34,7 @@ class repo_market {
 		'hasStore' => true,
 		'hasScenarioStore' => true,
 		'test' => true,
+		'pullInstall' => true,
 	);
 	
 	public static $_configuration = array(
