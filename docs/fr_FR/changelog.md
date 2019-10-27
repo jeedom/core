@@ -50,12 +50,13 @@ Changelog
 - Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
 - Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
 - Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étés mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
+- Scénario : La colorisation des blocs n'est plus aléatoire, mais par type de bloc.
 - Scénario : Possibilité en faisant un Ctrl + clic sur le bouton *exécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
-- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic sur *coller* remplace le bloc par le bloc copié.
+- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic pour couper/remplacer.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
 - Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
 - Scénario : Suppression du partage de scénario.
@@ -91,10 +92,10 @@ Changelog
 
 3.3.34
 =====
-    Correction d'un bug pouvant empecher la remonter de l'état des batteries
-    Correction d'un bug sur les tags dans les interactions
-    Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
-    Correction de bug sur les backups cloud
+- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+- Correction d'un bug sur les tags dans les interactions
+- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Correction de bug sur les backups cloud
 
 
 3.3.33
