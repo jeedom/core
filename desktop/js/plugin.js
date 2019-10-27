@@ -85,6 +85,18 @@ if(!$('#md_modal').is(':visible')){
   }
 }
 
+$('.pullInstall').on('click', function () {
+  jeedom.repo.pullInstall({
+    repo : $(this).attr('data-repo'),
+    error: function (error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Nombre de plugins installé : }}'+data.number, level: 'success'});
+    }
+  });
+});
+
 $('body').off('click','.bt_refreshPluginInfo').on('click','.bt_refreshPluginInfo',function(){
   $('.pluginDisplayCard[data-plugin_id='+$('#span_plugin_id').text()+']').click();
 });
