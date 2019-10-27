@@ -20,7 +20,7 @@ foreach (cmd::all() as $cmd) {
       }
     }
   }
-  $cmd->save();
+  $cmd->save(true);
 }
 
 ?>
