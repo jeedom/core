@@ -663,10 +663,10 @@ function triggerThemechange() {
   //set jeedom logo:
   if ($('body')[0].hasAttribute('data-theme')) {
     var currentTheme = $('body').attr('data-theme')
-    if (currentTheme.endsWith('Light')) {
-      $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
-    } else {
+    if (currentTheme.endsWith('Dark')) {
       $('#homeLogoImg').attr('src', jeedom.theme.logo_dark)
+    } else {
+      $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
     }
   }
 

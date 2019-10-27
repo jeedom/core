@@ -753,7 +753,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 				<br/><br/>
 				<?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
 					?>
-					<legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels widget}}
+					<legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
 						<a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a>
 					</legend>
 					<table class="table table-bordered table-condensed" id="table_widgetParametersCmd">

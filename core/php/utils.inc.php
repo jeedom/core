@@ -1153,8 +1153,8 @@ function sanitizeAccent($_message) {
 		$size = 270;
 		$img = imagecreatetruecolor($size, $size / $ratio);
 		imagecopyresized($img, $i, 0, 0, 0, 0, $size, $size / $ratio, $imagesX, $imagesY);
-		$imagesX = $size;
-		$imagesY = $size / $ratio;
+		$imagesX = imagesx($img);
+		$imagesY = imagesy($img);
 		for ($x = 0; $x < $imagesX; $x++) {
 			for ($y = 0; $y < $imagesY; $y++) {
 				$rgb = imagecolorat($img, $x, $y);
@@ -1163,7 +1163,7 @@ function sanitizeAccent($_message) {
 					if($sum < 150){
 						continue;
 					}
-					if($sum > 700){
+					if($sum > 650){
 						continue;
 					}
 				}
