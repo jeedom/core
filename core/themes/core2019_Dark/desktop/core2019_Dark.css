@@ -7,7 +7,7 @@ Theme Core 2019 @Jeedom
 html,
 body,
 textarea {
-  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
+  scrollbar-color: var(--btn-default-color) rgb(var(--defaultBkg-color)) !important;
 }
 
 a,
