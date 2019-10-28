@@ -43,6 +43,19 @@ try {
 		$cron->save();
 		$cron->start();
 	}
+	
+	if (init('action') == 'pullInstall') {
+		if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
+			die(__('Tous les crons sont actuellement désactivés', __FILE__));
+		}
+		$cron = new cron();
+		$cron->setClass('repo_market');
+		$cron->setFunction('pullInstall');
+		$cron->setOnce(1);
+		$cron->setSchedule(cron::convertDateToCron(strtotime('now')));
+		$cron->save();
+		$cron->start();
+	}
 } catch (Exception $e) {
 	echo $e->getMessage();
 	log::add('jeeEvent', 'error', $e->getMessage());

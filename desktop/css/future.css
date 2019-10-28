@@ -159,6 +159,10 @@ div.cmdListContainer .tablesorter i {
   font-size: 14px !important;
 }
 
+.reportModeVisible,
+.hidden  {
+  display: none !important;
+}
 
 
 

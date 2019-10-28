@@ -44,6 +44,12 @@ try {
 		$class = 'repo_' . init('repo');
 		ajax::success($class::saveTicket(json_decode(init('ticket'), true)));
 	}
+	
+	if (init('action') == 'pullInstall') {
+		unautorizedInDemo();
+		$class = 'repo_' . init('repo');
+		ajax::success($class::pullInstall());
+	}
 
 	if (init('action') == 'install') {
 		unautorizedInDemo();

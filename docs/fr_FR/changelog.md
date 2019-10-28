@@ -2,6 +2,12 @@
 Changelog
 =========
 
+3.3.35
+=====
+
+- Correction de bugs
+- Possibilité d'installer les plugins directement depuis le market
+
 3.3.34
 =====
 
