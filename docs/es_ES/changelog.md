@@ -37,7 +37,7 @@ Changelog
 - Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
 - Widgets : Ajout d'un widget info numeric horizontal.
 - Widgets : Ajout d'un widget info numeric vertical.
-- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus). 
+- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus).
 - Widgets : Ajout d'un widget info numeric rain (merci @thanaus)
 - Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
@@ -49,12 +49,13 @@ Changelog
 - Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
 - Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
 - Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étés mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
+- Scénario : La colorisation des blocs n'est plus aléatoire, mais par type de bloc.
 - Scénario : Possibilité en faisant un Ctrl + clic sur le bouton *exécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
-- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic sur *coller* remplace le bloc par le bloc copié.
+- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic pour couper/remplacer.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
 - Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
 - Scénario : Suppression du partage de scénario.
@@ -83,6 +84,18 @@ Changelog
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+>**IMPORTANT**
+>
+>Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
+
+3.3.34
+=====
+- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+- Correction d'un bug sur les tags dans les interactions
+- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Correction de bug sur les backups cloud
+
 
 3.3.33
 =====
@@ -613,7 +626,7 @@ Changelog
 - Possibilité d’autoriser un utilisateur à se connecter uniquement à partir d’un poste sur le réseau local
 - Refonte de la configuration des widgets (attention il faudra sûrement reprendre la configuration de certains widgets)
 - Renforcement de la gestion des erreurs sur les widgets
-- Posibilidad de reordenar las vistas
+- Possibilité de réordonner les vues
 - Refonte de la gestion des thèmes
 
 2.1
@@ -624,7 +637,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Optimisation du chargement du dashboard
 - Correction de nombreux warning
 - Possibilité lors d’un appel api à un scénario de passer des tags dans l’url
-- Soporte de Apache
+- Support d’apache
 - Optimisation pour docker avec support officiel de docker
 - Optimisation pour les synology
 - Support + optimisation pour php7
@@ -633,7 +646,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Suppression de l’indication de batterie sur les widgets
 - Ajout d’une page qui résume le statut de tous les équipements sur batterie
 - Refonte du DNS Jeedom, utilisation d’openvpn (et donc du plugin openvpn)
-- Actualizando todas las librerías
+- Mise à jour de toutes les libs
 - Interaction : ajout d’un système d’analyse syntaxique (permet de supprimer les interactions avec de grosses erreurs de syntaxe type « le chambre »)
 - Suppression de la mise à jour de l’interface par nodejs (passage en pulling toutes les secondes sur la liste des événements)
 - Possibilité pour les applications tierces de demander par l’api les événements
