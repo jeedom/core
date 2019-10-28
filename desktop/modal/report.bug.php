@@ -26,7 +26,6 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			<strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
 			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
-			
 			<center>
 				<a href="https://community.jeedom.com/tags/bug" target="_blank">{{Voir les bugs}}</a><br/>
 				<a href="https://community.jeedom.com/tags/amelioration" target="_blank">{{Voir les propositions d'amélioration}}</a>
@@ -66,6 +65,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 	<div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
+			<div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://jeedom.github.io/documentation/howto/fr_FR/remonter_un_bug">documentation}}</a></div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Titre}}</label>
 				<div class="col-sm-7">
