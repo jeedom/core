@@ -471,7 +471,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
       Waves.init()
       $('#pagecontainer').css('padding-top','64px')
       $('#page').fadeIn(400)
-      setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100)
+      setTimeout(function(){$('#pagecontainer').css('padding-top','64px'); }, 100)
     })
   }
 }

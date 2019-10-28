@@ -112,7 +112,7 @@ jeedom.view.handleViewAjax = function (_params) {
       result.html += '</script>';
       result.html += '</div>';
     }else if (viewZone.type == 'table') {
-      result.html += viewZone.html;;
+      result.html += viewZone.html;
     }
     result.html += '</div>';
 

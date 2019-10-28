@@ -1107,7 +1107,7 @@ function uniqId(_prefix){
   if(typeof _prefix == 'undefined'){
     _prefix = 'jee-uniq';
   }
-  var result = _prefix +'-'+ uniqId_count + '-'+Math.random().toString(36).substring(8);;
+  var result = _prefix +'-'+ uniqId_count + '-' + Math.random().toString(36).substring(8);
   uniqId_count++;
   if($('#'+result).length){
     return uniqId(_prefix);

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+4.1.0
+=====
+- Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
+- La fenêtre d'historique montre toutes les commandes info historisées de l'équipement (Si plus d'une commande, ctrl+Clic sur une légende pour afficher seulement celle-ci, Alt+Clic pour les afficher toutes).
+
+
 4.0.0
 =====
 - Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
@@ -90,8 +96,15 @@ Changelog
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
 
+3.3.35
+=====
+
+- Correction de bugs
+- Possibilité d'installer les plugins directement depuis le market
+
 3.3.34
 =====
+
 - Correction d'un bug pouvant empecher la remonter de l'état des batteries
 - Correction d'un bug sur les tags dans les interactions
 - Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger

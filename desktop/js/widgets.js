@@ -100,7 +100,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
         $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
       }
     });
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
       var widgets = $('.widgets').getValues('.widgetsAttr')[0];
       widgets.test = $('#div_templateTest .test').getValues('.testAttr');
@@ -128,7 +128,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
         }
       });
     });
-  }).dialog('open');;
+  }).dialog('open');
 });
 
 //context menu
@@ -152,7 +152,7 @@ $(function(){
           if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
           if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
         }
-        
+
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
@@ -168,7 +168,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -377,7 +377,7 @@ function addTest(_test){
   div += '</span>';
   div += '</div>';
   div += '</div>';
-  
+
   div += '</div>';
   div += '</div>';
   $('#div_templateTest').append(div);
@@ -527,7 +527,7 @@ $("#bt_mainImportWidgets").change(function(event) {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-  
+
   if (uploadedFile) {
     bootbox.prompt("Nom du widget ?", function (result) {
       if (result !== null) {
@@ -582,7 +582,7 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-    
+
     readFile.onload = function(e) {
       objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {

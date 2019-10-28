@@ -102,11 +102,17 @@ $('#bt_openCmdHistoryConfigure, #bt_openCmdHistoryConfigure2').on('click',functi
   $("#md_modal").load('index.php?v=d&modal=cmd.configureHistory').dialog('open');
 });
 
-if (is_numeric(getUrlVars('cmd_id'))) {
-  let li = $('.li_history[data-cmd_id='+getUrlVars('cmd_id')+']');
-  if(li){
-    li.find('.history').click();
-    $('.displayObject[data-object_id='+li.closest('.cmdList').attr('data-object_id')+']').click();
+var cmdIds = getUrlVars('cmd_id')
+if (typeof cmdIds == 'string') {
+  cmdIds = cmdIds.split('-')
+  if (is_numeric(cmdIds[0])) {
+    cmdIds.forEach(function(cmd_id) {
+      let li = $('.li_history[data-cmd_id='+cmd_id+']');
+      if(li){
+        li.find('.history').click();
+        $('.displayObject[data-object_id='+li.closest('.cmdList').attr('data-object_id')+']').click();
+      }
+    })
   }
 }
 
