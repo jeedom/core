@@ -781,6 +781,11 @@ div[data-market_type=script]:hover {
 #battery .eqLogic-widget .widget-name {
   text-align: center;
 }
+#battery .eqLogic-widget .widget-name > a {
+  display:block;
+  max-height: 24px !important;
+  overflow: hidden !important;
+}
 #battery .eqLogic-widget .widget-name span {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color)) !important;

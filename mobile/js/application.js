@@ -26,10 +26,12 @@ $(function() {
   BACKGROUND_IMG = ''
   nbActiveAjaxRequest = 0
   utid = Date.now();
-  $.mobile.orientationChangeEnabled = false
 
-  $(window).on("resize", function (event) {
-    deviceInfo = getDeviceType()
+  $(window).on('orientationchange', function(event) {
+  	//wait to get new width:
+    window.setTimeout(function() {
+      $('body').trigger('orientationChanged', [event.orientation])
+    }, 200)
   })
 
   initApplication()
@@ -522,12 +524,13 @@ function setTileSize(_filter) {
   if (typeof jeedom.theme['widget::margin'] == 'undefined') {
     jeedom.theme['widget::margin'] = 4
   }
+  var bsize = deviceInfo.bSize
   $(_filter).each(function () {
     $(this).css({'margin':'0px', 'padding':'0px'})
     if ($(this).hasClass('col2')) {
-      $(this).width(deviceInfo.bSize * 2)
+      $(this).width(bsize * 2)
     } else {
-      $(this).width(deviceInfo.bSize-jeedom.theme['widget::margin'])
+      $(this).width(bsize - jeedom.theme['widget::margin'])
     }
     $(this).css('margin',jeedom.theme['widget::margin']+'px')
   });
