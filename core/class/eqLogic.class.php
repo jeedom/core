@@ -541,11 +541,10 @@ class eqLogic {
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="'. $this->getId() . '">';
 		
 		$eqName = $this->getName();
-		if (strlen($eqName) > 20) $eqName = mb_substr($eqName,0,20)."...";
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name">' . $eqName . '<br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
 		}
 		$html .= '<center class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';

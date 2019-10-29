@@ -620,7 +620,12 @@ a.action.ui-btn {
   text-align: center;
   font-size: 16px !important;
 }
-#div_displayBattery .eqLogic-widget .widget-name span {
+#div_displayBattery .eqLogic-widget .widget-name > .name {
+  display:block;
+  max-height: 21px;
+  overflow: hidden;
+}
+#div_displayBattery .eqLogic-widget .widget-name > .object {
   color: var(--txt-color) !important;
   background-color: rgb(var(--bg-color)) !important;
   font-size: 12.5px !important;

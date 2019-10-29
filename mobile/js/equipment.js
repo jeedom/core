@@ -108,7 +108,7 @@ function initEquipment(_object_id) {
     $('#bottompanel').panel('open')
   }
 
-  $(window).on("resize", function (event) {
+  $('body').on('orientationChanged', function (event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
     setTileSize('.scenario')
