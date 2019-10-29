@@ -221,7 +221,7 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($this->getLink_type() == 'plan') {
-			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$html = '<span class="cursor plan-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
 			$html .= '<a style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
@@ -232,7 +232,7 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
-			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
+			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" >';
 			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
