@@ -208,7 +208,8 @@ try {
 				echo "[PROGRESS][45]\n";
 				echo "Moving files...";
 				$update_begin = true;
-				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1));
+				$file_copy = array();
+				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1),$file_copy);
 				echo "OK\n";
 				echo "[PROGRESS][50]\n";
 				echo "Remove temporary files...";
@@ -221,6 +222,30 @@ try {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
 				echo "OK\n";
+				echo "[PROGRESS][52]\n";
+				echo "Clean useless files...";
+				foreach (array('3rdparty') as $folder) {
+					$tmp_file = array();
+					foreach ($file_copy as $key => $files) {
+						if(strpos($key,$folder) === false){
+							continue;
+						}
+						$tmp_file = $files;
+						break;
+					}
+					foreach (ls(__DIR__ . '/../'.$folder,'*') as $file) {
+						$found = false;
+						foreach ($tmp_file as $cfile) {
+							if($cfile == $file){
+								$found = true;
+								break;
+							}
+						}
+						if(!$found){
+							echo "Need to delete : ".__DIR__ . '/../'.$folder.'/'.$found."\n";
+						}
+					}
+				}
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 			} catch (Exception $e) {
 				if (init('force') != 1) {

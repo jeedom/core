@@ -531,7 +531,7 @@ function rcopy($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 	return true;
 }
 
-function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array()) {
+function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = false, $_params = array(),&$_files = null) {
 	if (!file_exists($src)) {
 		return true;
 	}
@@ -547,6 +547,12 @@ function rmove($src, $dst, $_emptyDest = true, $_exclude = array(), $_noError = 
 			if ($file != "." && $file != ".." && !in_array($file, $_exclude) && !in_array(realpath($src . '/' . $file), $_exclude)) {
 				if (!rmove($src . '/' . $file, $dst . '/' . $file, $_emptyDest, $_exclude, $_noError, $_params) && !$_noError) {
 					return false;
+				}
+				if($_files != null){
+					if(!isset($_files[$dst])){
+						$_files[$dst] = array();
+					}
+					$_files[$dst][] = $file;
 				}
 			}
 		}
