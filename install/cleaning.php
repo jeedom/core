@@ -90,6 +90,7 @@ try {
     __DIR__ . '/../desktop/modal/eqLogic.displayWidget.php',
     __DIR__ . '/../desktop/modal/remove.history.php',
     __DIR__ . '/../mobile/css/commun.css',
+    __DIR__ . '/../core/class/object.class.php',
   );
   
   $nb_cleaning = 0;
