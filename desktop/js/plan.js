@@ -1044,10 +1044,7 @@ function displayObject(_plan,_html, _noRender) {
           style['box-shadow'] = 'none';
           if(_plan.link_type == 'eqLogic'){
             another_css += css_selector+' .widget-name{background-color : transparent !important;\n}'
-            if(_plan.display['color-defaut'] == 1){
-              another_css += css_selector+' .widget-name a{color : '+_plan.display['color-defaut']+' !important;\n}'
-              another_css += css_selector+' .state{color : '+_plan.display['color-defaut']+' !important;\n}'
-            }else if(isset(_plan.css.color)){
+            if(_plan.display['color-defaut'] == 0 && isset(_plan.css.color)){
               another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
               another_css += css_selector+' .state{color : '+_plan.css.color+' !important;\n}'
             }
