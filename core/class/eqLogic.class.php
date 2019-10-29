@@ -517,8 +517,7 @@ class eqLogic {
 		$batteryTime = $this->getConfiguration('batterytime', 'NA');
 		$batterySince = 'NA';
 		if ($batteryTime != 'NA') {
-			$batterySince = ((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400);
-			$batterySince = round($batterySince, 1);
+			$batterySince = round((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400,1);
 		}
 		if (strpos($battery, ' ') !== false) {
 			$battery = mb_substr(strrchr($battery, " "), 1);
