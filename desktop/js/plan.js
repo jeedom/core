@@ -1048,6 +1048,11 @@ function displayObject(_plan,_html, _noRender) {
               another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
               another_css += css_selector+' .state{color : '+_plan.css.color+' !important;\n}'
             }
+          }else if(_plan.link_type == 'cmd'){
+            if(_plan.display['color-defaut'] == 0 && isset(_plan.css.color)){
+              another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
+              another_css += css_selector+' .state{color : '+_plan.css.color+' !important;\n}'
+            }
           }
         }else{
           style[key] = _plan.css[key];
@@ -1151,7 +1156,10 @@ function displayObject(_plan,_html, _noRender) {
   var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   if(_plan.display.css && _plan.display.css != ''){
     if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
-      style_el += css_selector+' '+_plan.display.cssApplyOn+'{'+_plan.display.css+'}';
+      var cssApplyOn = _plan.display.cssApplyOn.split(',');
+      for(var i in cssApplyOn){
+        style_el += css_selector+' '+cssApplyOn[i]+'{'+_plan.display.css+'}';
+      }
     } else {
       style_el += css_selector+' '+'{'+_plan.display.css+'}';
     }
