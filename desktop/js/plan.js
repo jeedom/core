@@ -989,7 +989,7 @@ function displayObject(_plan,_html, _noRender) {
     css_selector = '.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
   }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
-    css_selector = '.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id="' + _plan.link_id + '"]';
+    css_selector = '.div_displayObject .'+_plan.link_type+'-link-widget[data-id="' + _plan.id + '"]';
     $(css_selector).remove();
   }else if (_plan.link_type == 'cmd') {
     css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]';
