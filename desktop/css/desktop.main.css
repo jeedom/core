@@ -1802,7 +1802,7 @@ input[type=radio] {
   height: 15px;
   border-radius: 0 !important;
   background: var(--form-bg-color);
-  color: var(--linkHover-color);
+  color: var(--txt-color);
   font-weight: normal !important;
 }
 input[type=radio] {
