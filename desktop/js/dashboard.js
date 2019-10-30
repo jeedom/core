@@ -17,25 +17,25 @@
 //infos/actions tile signals:
 $('body')
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-  $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
   })
   .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
   })
 
 /* v4.1
 $('body')
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-  $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
   })
 */
 
@@ -137,6 +137,7 @@ $('#bt_resetDashboardSearch').on('click', function () {
 })
 
 $('#div_pageContainer').on( 'click','.eqLogic-widget .history', function (event) {
+  if(isEditing) return false
   event.stopPropagation()
   let cmdIds = new Array()
   $(this).closest('.eqLogic.eqLogic-widget').find('.cmd.history').each(function () {
@@ -164,6 +165,8 @@ $('#bt_displayObject').on('click', function () {
   }
 });
 
+var _draggingId = false
+var _orders = {}
 function editWidgetMode(_mode,_save){
   if (!isset(_mode)) {
     if($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1){
@@ -172,36 +175,53 @@ function editWidgetMode(_mode,_save){
     }
     return;
   }
+  var divEquipements = $('.div_displayEquipement')
   if (_mode == 0) {
-    jeedom.cmd.disableExecute = false;
-    if (!isset(_save) || _save) {
-      saveWidgetDisplay({dashboard : 1});
-    }
-    if( $('.div_displayEquipement .eqLogic-widget.ui-resizable').length > 0){
-      $('.div_displayEquipement .eqLogic-widget.allowResize').resizable('destroy');
-    }
-    if( $('.div_displayEquipement .eqLogic-widget.ui-draggable').length > 0){
-      $('.div_displayEquipement .eqLogic-widget').draggable('disable');
-    }
-    $('.div_displayEquipement .eqLogic-widget').removeClass('editingMode','');
-
-    if( $('.div_displayEquipement .scenario-widget.ui-resizable').length > 0){
-      $('.div_displayEquipement .scenario-widget.allowResize').resizable('destroy');
-    }
-    if( $('.div_displayEquipement .scenario-widget.ui-draggable').length > 0){
-      $('.div_displayEquipement .scenario-widget').draggable('disable');
-    }
+    jeedom.cmd.disableExecute = false
     isEditing = false
-    $('.div_displayEquipement .scenario-widget').removeClass('editingMode','')
+    if (!isset(_save) || _save) {
+      saveWidgetDisplay({dashboard : 1})
+    }
+
+    divEquipements.find('.editingMode.allowResize').resizable('destroy')
+    divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
+
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
-    $('#in_searchWidget').removeAttr('style')
-    $('#in_searchWidget').val('')
-    $('#in_searchWidget').prop('readonly', false)
+    $('#in_searchWidget').removeAttr('style').val('').prop('readonly', false)
   } else {
-    jeedom.cmd.disableExecute = true;
-    $('.div_displayEquipement .eqLogic-widget').addClass('editingMode').draggable('enable');
-    $('.div_displayEquipement .eqLogic-widget.allowResize').resizable({
+    jeedom.cmd.disableExecute = true
+    isEditing = true
+
+    //show orders:
+    $('.ui-draggable').each( function() {
+      var value = $(this).attr('data-order')
+      if ($(this).find(".counterReorderJeedom").length) {
+        $(this).find(".counterReorderJeedom").text(value)
+      } else {
+        $(this).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+      }
+    })
+
+    //set unique id whatever we have:
+    divEquipements.find('.eqLogic-widget,.scenario-widget').each(function(index) {
+      $(this).addClass('editingMode')
+      $(this).attr('data-editId', index)
+  })
+
+    //set draggables:
+    divEquipements.find('.editingMode').draggable({
+      disabled: false,
+      start: function(event, ui) {
+        _draggingId = $(this).attr('data-editId')
+        _orders = {}
+        $(this).parent().find('.ui-draggable').each( function( i, itemElem ) {
+          _orders[_draggingId] = parseInt($(this).attr('data-order'))
+        })
+      }
+    })
+    //set resizables:
+    divEquipements.find('.eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
         ui.element.closest('.div_displayEquipement').packery();
@@ -210,9 +230,8 @@ function editWidgetMode(_mode,_save){
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
         ui.element.closest('.div_displayEquipement').packery();
       }
-    });
-    $('.div_displayEquipement .scenario-widget').addClass('editingMode').draggable('enable');
-    $('.div_displayEquipement .scenario-widget.allowResize').resizable({
+    })
+    divEquipements.find('.scenario-widget.allowResize').resizable({
       resize: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
         ui.element.closest('.div_displayEquipement').packery();
@@ -222,7 +241,7 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     })
-    isEditing = true
+
     $('#div_displayObject .row').css('margin-top', '27px')
     $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'});
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
@@ -266,26 +285,62 @@ function getObjectHtml(_object_id) {
       container.packery('bindUIDraggableEvents',itemElems);
       var itemElems =  container.find('.scenario-widget').draggable();
       container.packery('bindUIDraggableEvents',itemElems);
+
       function orderItems() {
-        setTimeout(function(){
-          $('.div_displayEquipement').packery();
-        },1);
         var itemElems = container.packery('getItemElements');
-        var isEditing = false;
-        if($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) isEditing = true;
+        var isEditing = ($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) ? true : false
+
+        var _draggingOrder = _orders[_draggingId]
+        var _newOrders = {}
         $(itemElems).each( function( i, itemElem ) {
-          $(itemElem).attr('data-order', i + 1 );
-          value = i + 1;
+          _newOrders[$(this).attr('data-editId')] = i + 1
+        })
+        var _draggingNewOrder = _newOrders[_draggingId]
+        //----->moved _draggingId from _draggingOrder to _draggingNewOrder
+
+        //rearrange that better:
+        var _finalOrder = {}
+        for ([id, order] of Object.entries(_newOrders)) {
+          if (order <= _draggingNewOrder) _finalOrder[id] = order
+          if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
+        }
+
+        //set dom positions:
+        var arrKeys = Object.keys(_finalOrder)
+        var arrLength = arrKeys.length
+        var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
+        $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
+
+        for (var i = 2; i < arrLength + 1; i++) {
+          var thisId = arrKeys.find(key => _finalOrder[key] === i)
+          var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
+          $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
+        }
+
+        //reload from dom positions:
+        $('.div_displayEquipement').packery('reloadItems')
+        $('.div_displayEquipement').packery()
+
+        itemElems = container.packery('getItemElements');
+        $(itemElems).each( function( i, itemElem ) {
+          $(itemElem).attr('data-order', i + 1 )
+          value = i + 1
           if (isEditing) {
             if ($(itemElem).find(".counterReorderJeedom").length) {
-              $(itemElem).find(".counterReorderJeedom").text(value);
+              $(itemElem).find(".counterReorderJeedom").text(value)
             } else {
-              $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>');
+              $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
             }
           }
-        });
+        })
       }
+
+      var itemElems = container.packery('getItemElements')
+      $(itemElems).each( function( i, itemElem ) {
+        $(itemElem).attr('data-order', i + 1 )
+      })
       container.on('dragItemPositioned',orderItems);
+
       $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
       $('#div_ob'+_object_id+'.div_displayEquipement .scenario-widget').draggable('disable');
     }
