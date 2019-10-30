@@ -272,7 +272,7 @@ class plugin {
 				}
 				$ok = false;
 				foreach ($eqLogics as $eqLogic) {
-					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $heartbeat . ' minutes' . date('Y-m-d H:i:s')))) {
+					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $heartbeat . ' minutes ' . date('Y-m-d H:i:s')))) {
 						$ok = true;
 						break;
 					}
