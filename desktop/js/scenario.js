@@ -115,18 +115,18 @@ $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
   var searchField = $('#in_searchInsideScenario')
   if (btn.data('state') == '0') {
-  	searchField.show()
-	btn.find('i').removeClass('fa-arrow-circle-left').addClass('fa-times')
-  	btn.data('state', '1')
+    searchField.show()
+  btn.find('i').removeClass('fa-search').addClass('fa-times')
+    btn.data('state', '1')
     searchField.focus()
   } else {
-    
+
     if (searchField.val() == '') {
-      btn.find('i').removeClass('fa-times').addClass('fa-arrow-circle-left')
+      btn.find('i').removeClass('fa-times').addClass('fa-search')
       searchField.hide()
       btn.data('state', '0')
     } else {
-	  searchField.val('').keyup()
+    searchField.val('').keyup()
     }
   }
 })
