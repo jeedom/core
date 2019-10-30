@@ -502,6 +502,16 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
+.progress {
+  background-color: var(--sc-form-color);
+}
+.progress-bar {
+  background-color: var(--al-info-color);
+}
+.progress-bar-success {
+  background-color: var(--al-success-color);
+}
+
 [data-type="plugin"] #div_pageContainer > div.eqLogic {
   margin-top: 5px;
 }
