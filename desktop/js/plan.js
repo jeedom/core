@@ -594,13 +594,13 @@ $('.view-link-widget').off('click').on('click', function () {
   }
 });
 
-$('.div_displayObject').delegate('.graph-widget', 'resize', function () {
+$('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widget', function () {
   if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
     jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow();
   }
 });
 
-$pageContainer.delegate('.div_displayObject .cmd-widget.history', 'click', function () {
+$pageContainer.off('click','.div_displayObject .cmd-widget.history').on('click','.div_displayObject .cmd-widget.history',  function () {
   if (!editOption.state) {
     event.stopPropagation()
     let cmdIds = new Array()
