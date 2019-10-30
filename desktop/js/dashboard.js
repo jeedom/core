@@ -189,33 +189,9 @@ function editWidgetMode(_mode,_save){
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
     $('#in_searchWidget').removeAttr('style').val('').prop('readonly', false)
-    $.contextMenu('destroy');
   } else {
     jeedom.cmd.disableExecute = true
     isEditing = true
-    
-    $.contextMenu({
-      selector: '.div_displayEquipement',
-      zIndex: 9999,
-      events: {
-        show: function(opt) {
-          $.contextMenu.setInputValues(opt, this.data());
-        },
-        hide: function(opt) {
-          $.contextMenu.getInputValues(opt, this.data());
-        }
-      },
-      items: {
-        configuration: {
-          name: "{{Ajout un bloc invisible}}",
-          icon : 'fas fa-plus',
-          callback: function(key, opt){
-            var id = $(this).closest('.div_object').attr('data-object_id');
-            
-          }
-        },
-      }
-    })
     
     //show orders:
     $('.ui-draggable').each( function() {
@@ -283,7 +259,6 @@ function getObjectHtml(_object_id) {
     category : SEL_CATEGORY,
     summary : SEL_SUMMARY,
     tag : SEL_TAG,
-    dummy : 1,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },

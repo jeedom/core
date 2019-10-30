@@ -455,21 +455,6 @@ class jeeObject {
 	
 	/*     * *********************Méthodes d'instance************************* */
 	
-	public function getDummyEqLogic(){
-		$return = array();
-		foreach ($this->getConfiguration('dummy') as &$dummy) {
-			if($dummy['order'] == ''){
-				$dummy['order'] = 9999;
-			}
-			$return[] = array(
-				'id' => $this->getId().'-'.$dummy['order'],
-				'order' => $dummy['order'],
-				'html' => '<div class="eqLogic-widget dummy" data-order="'.$dummy['order'].'" data-id="'.$this->getId().'-'.$dummy['order'].'" style="width:'.$dummy['width'].';height:'.$dummy['height'].'"></div>'
-			);
-		}
-		return $return;
-	}
-	
 	public function getTableName() {
 		return 'object';
 	}
