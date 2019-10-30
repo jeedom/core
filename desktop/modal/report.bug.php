@@ -27,8 +27,8 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
 			<center>
-				<a href="https://community.jeedom.com/tags/bug" target="_blank">{{Voir les bugs}}</a><br/>
-				<a href="https://community.jeedom.com/tags/amelioration" target="_blank">{{Voir les propositions d'amélioration}}</a>
+				<a href="https://community.jeedom.com/tags/bug" target="_blank" style="font-weight:bold;">{{Voir les bugs}}</a><br/>
+				<a href="https://community.jeedom.com/tags/amelioration" target="_blank" style="font-weight:bold;">{{Voir les propositions d'amélioration}}</a>
 			</center>
 		</div>
 	</div>
