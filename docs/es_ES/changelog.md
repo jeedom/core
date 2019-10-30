@@ -78,7 +78,7 @@ Changelog
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
-- Nombreuses corrections de bugs.
+- Muchas correcciones de errores.
 - Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
 >**IMPORTANT**
@@ -136,26 +136,26 @@ Changelog
 =====
 
 - Correction d'un bug de roue infini sur la page des mises à jour
-- Corrections et optimisations diverse
+- Varias correcciones y optimizaciones
 
 3.3.27
 =====
 
 - Correction d'un bug sur la traduction des jours en français
 - Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
-- Correction de bugs
+- Corrección de errores
 - Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
 
 3.3.26
 =====
 
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
 3.3.25
 =====
-- Correction de bug
+- Corrección de errores
 - Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
@@ -163,7 +163,7 @@ Changelog
 =====
 -   Correction d'un bug sur l'affichage du nombre de mise à jour
 -   Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
--   Corrections de bugs
+-   Correcciones de errores
 -   Amélioration de la fenêtre de choix des icônes
 -   Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
 -   Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
@@ -171,7 +171,7 @@ Changelog
 
 3.3.22
 =====
-- Corrections de bugs
+- Correcciones de errores
 - Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
 - Correction d'un bug pouvant empêcher d'ouvrir certains équipements de plugins (type alarme ou virtuel)
 
@@ -185,7 +185,7 @@ Changelog
 - Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
 - Correction de bug lors de la mise à jour de variable (qui ne lançait pas toujours les scénarios ou ne déclenchait pas une mise à jour des commandes dans tous les cas)
 - Correction d'un bug sur les backups Cloud, ou duplicity ne s'installait pas correctement
-- Amélioration du TTS interne à Jeedom
+- Mejora del TTS interno en Jeedom
 - Amélioration du système de vérification de syntaxe cron
 
 
@@ -232,7 +232,7 @@ Changelog
 - Possibilitée d'ajouter des options dans les rapports
 - Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 - Ajout des listeners sur la page de moteur de tâche
-- Optimisations
+- Optimizaciones
 - Possibilité de consulter les logs en version mobile (wepapp)
 - Ajout d'une action tag dans les scénarios (voir documentation)
 - Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
@@ -280,9 +280,9 @@ Changelog
 
 3.2.9
 =====
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
-- Correction de bugs sur les listenners
+- Corrección de errores en los listenners
 - Ajout d'une alerte si un plugin bloque les crons
 - Correction d'un bug dans le système de monitoring cloud si la version de l'agent est inférieure à 3.X.X
 
@@ -297,14 +297,14 @@ Changelog
 3.2.7
 =====
 - Correction de bugs
-- Mise à jour de la docs
+- Actualización de la documentación
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
 - Correction de bugs
-- Mise à jour de la docs
+- Actualización de la documentación
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
@@ -315,7 +315,7 @@ Changelog
 
 3.2.4
 =====
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
@@ -370,14 +370,14 @@ Changelog
 =====
 - Correction de bugs (en particulier sur les historiques et fonctions statistiques)
 - Amélioration du système de mises à jour avec une page de notes de version (que vous devez vérifier vous même avant chaque mise à
-    jour !!!!)
+    día !!!!)
 - Correction d’un bug qui récupérait les logs lors des restaurations
 
 3.1
 ===
 - Correction de bugs
 - Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
-- Support de Debian 9
+- Soporte de Debian 9
 - Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
 - Ajout d’une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 - Un double-clic sur un nœud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
@@ -411,7 +411,7 @@ Changelog
 - Ajout d’un paramètre reply\_cmd sur les interactions pour spécifier l’id de la commande à utiliser pour répondre
 - Ajout d’une timeline sur la page historique (attention doit être activée sur chaque commande et/ou scénario que vous voulez voir apparaitre)
 - Possibilité de vider les évènements de la timeline
-- Possibilité de vider les IPs bannies
+- Capacidad para vaciar IP prohibidas
 - Correction/amélioration de la gestion des comptes utilisateurs
     - Possibilité de supprimer le compte admin de base
     - Prévention du passage en normal du dernier administrateur
@@ -434,7 +434,7 @@ Changelog
 
 3.0
 ===
-- Suppression du mode esclave
+- Eliminando el modo esclavo
 - Possibilité de déclencher un scénario sur un changement d’une variable
 - Les mises à jour de variables déclenchent maintenant la mise à jour des commandes d’un équipement virtuel (il faut la dernière version du plugin)
 - Possibilité d’avoir une icône sur les commandes de type info
@@ -454,9 +454,9 @@ Changelog
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
 - Grosse amélioration des designs:
     - Toutes les actions sont maintenant accessibles à partir d’un
-        clic droit
+        clic derecho
     - Possibilité d’ajouter une commande seule
-    - Possibilité d’ajouter une image ou un flux vidéo
+    - Posibilidad de agregar una imagen o una transmisión de video
     - Possibilité d’ajouter des zones (emplacement cliquable) :
         - Zone de type macro : lance une série d’actions lors d’un clic dessus
         - Zone de type binaire : lance une série d’actions lors d’un clic dessus en fonction de l’état d’une commande
@@ -499,7 +499,7 @@ Changelog
 - Les plugins peuvent maintenant ajouter des interactions
 - Les interactions peuvent maintenant renvoyer des fichiers en plus de la réponse
 - Possibilité de voir sur la page de configuration des plugins les fonctionnalités de ceux-ci (interact, cron…​) et de les désactiver unitairement
-- Les interactions automatiques peuvent renvoyer les valeurs des résumés
+- Las interacciones automáticas pueden devolver los valores de los resúmenes
 - Possibilité de définir des synonymes pour les objets, équipements, commandes et résumés qui seront utilisés dans les réponses contextuelles et résumés
 - Jeedom sait gérer plusieurs interactions liées (contextuellement) en une. Elles doivent être séparées par un mot clef (par défaut et). Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou "Allume la lumière de la cuisine et de la chambre."
 - Le statut des scénarios sur la page d’édition est maintenant mis à jour dynamiquement
@@ -510,9 +510,9 @@ Changelog
 - Correction d’un bug sur la date de dernière remontée d’un événement pour certains plugins (alarme)
 - Correction d’un bug d’affichage avec Chrome 55
 - Optimisation du backup (sur un RPi2 le temps est divisé par 2)
-- Optimisation de la restauration
+- Optimización de la restauración
 - Optimisation du processus de mise à jour
-- Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
+- Uniformización del tmp jeedom, ahora todo está en /tmp/jeedom
 - Possibilité d’avoir un graph des différentes liaisons d’un scénario, équipement, objet, commande ou variable
 - Possibilité de régler la profondeur des graphiques de lien en fonction de l’objet d’origine
 - Possibilité d’avoir les logs des scénarios en temps réel (ralentit l’exécution des scénarios)
@@ -531,7 +531,7 @@ Changelog
 2.4
 ---
 - Optimisation générale
-    - Regroupement de requêtes SQL
+    - Agrupando consultas SQL
     - Suppression de requêtes inutiles
     - Passage en cache du pid, état et dernier lancement des scénarios
     - Passage en cache du pid, état et dernier lancement des crons
@@ -583,7 +583,7 @@ Changelog
 - Ajout d’un thème darksobre pour mobile
 - Possibilité pour les développeurs d’ajouter des options de configuration des widget sur les widgets spécifique (type sonos, koubachi et autre)
 - Optimisation des logs (merci @kwizer15)
-- Possibilité de choisir le format des logs
+- Posibilidad de elegir el formato de los registros
 - Optimisation diverse du code (merci @kwizer15)
 - Passage en module de la connexion avec le market (permettra d’avoir un jeedom sans aucun lien au market)
 - Ajout d’un "repo" (module de connexion type la connexion avec le market) fichier (permet d’envoi un zip contenant le plugin)
@@ -602,9 +602,9 @@ Changelog
 - Possibilité de configurer le niveau de log d’un plugin directement sur la page de configuration de celui-ci
 - Possibilité de consulter les logs d’un plugin directement sur la page de configuration de celui-ci
 - Suppression du démarrage en debug des démons, maintenant le niveau de logs du démon est le même que celui du plugin
-- Nettoyage de lib tierce
+- Limpieza de la librería de terceros
 - Suppression de responsive voice (fonction dit dans les scénarios qui marchait de moins en moins bien)
-- Correction de plusieurs faille de sécurité
+- Se corrigieron varias vulnerabilidades de seguridad
 - Ajout d’un mode synchrone sur les scénarios (anciennement mode rapide)
 - Possibilité de rentrer manuellement la position des widgets en % sur les design
 - Refonte de la page de configuration des plugins
@@ -618,7 +618,7 @@ Changelog
 
 2.2
 ---
-- Correction de bugs
+- Corrección de errores
 - Simplification de l’accès aux configurations des plugins à partir de la page santé
 - Ajout d’une icône indiquant si le démon est démarré en debug ou non
 - Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)

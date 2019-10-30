@@ -56,7 +56,7 @@ page). Dans ce tableau, on retrouve :
 
 -   **Programación**: la programación de la tarea en formato CRON
 
--   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
+-   **Tiempo de espera**: duración máxima de operación de la tarea. Si la
     tarea es un deamon por lo que se detendrá automáticamente y
     reiniciado al final del timeout
 
