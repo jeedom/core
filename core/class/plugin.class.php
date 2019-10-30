@@ -266,16 +266,20 @@ class plugin {
 				if ($heartbeat == 0 || is_nan($heartbeat)) {
 					continue;
 				}
-				$eqLogics = eqLogic::byType($plugin->getId(), true);
-				if (count($eqLogics) == 0) {
-					continue;
-				}
+				$eqLogics = eqLogic::byType($plugin->getId());
 				$ok = false;
+				$enable = 0;
 				foreach ($eqLogics as $eqLogic) {
 					if (strtotime($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s'))) > strtotime('-' . $heartbeat . ' minutes ' . date('Y-m-d H:i:s'))) {
 						$ok = true;
 						break;
 					}
+					if($eqLogic->getIsEnable() == 1){
+						$enable++;
+					}
+				}
+				if($enable == 0){
+					return;
 				}
 				if (!$ok) {
 					$message = __('Attention le plugin ', __FILE__) . ' ' . $plugin->getName();
