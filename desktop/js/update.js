@@ -15,7 +15,6 @@
 */
 
 var hasUpdate = false;
-var hasUpdateOther = false;
 var progress = -2;
 var alertTimeout = null
 
@@ -61,8 +60,6 @@ $("#md_specifyUpdate").dialog({
   }
 });
 
-$('#pre_updateInfo').parent().height($(window).outerHeight() - $('header').outerHeight() - 160);
-
 $('#bt_updateJeedom').off('click').on('click', function () {
   $('#md_specifyUpdate').dialog({title: "{{Options}}"});
   $("#md_specifyUpdate").dialog('open');
@@ -82,7 +79,7 @@ $('#bt_doUpdate').off('click').on('click', function () {
   var options = $('#md_specifyUpdate').getValues('.updateOption')[0];
   $.hideAlert();
   progress = 0;
-  if ($('#div_log').is(':visible')) $('.progressbarContainer').appendTo('#div_log')
+  $('.progressbarContainer').removeClass('hidden')
   updateProgressBar();
   jeedom.update.doAll({
     options: options,
@@ -90,7 +87,6 @@ $('#bt_doUpdate').off('click').on('click', function () {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('a[data-toggle=tab][href="#log"]').click();
       getJeedomLog(1, 'update');
     }
   });
@@ -106,6 +102,7 @@ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
   bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function (result) {
     if (result) {
       progress = -1;
+      $('.progressbarContainer').removeClass('hidden')
       updateProgressBar();
       $.hideAlert();
       jeedom.update.do({
@@ -114,7 +111,6 @@ $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function () {
-          $('a[data-toggle=tab][href="#log"]').click();
           getJeedomLog(1, 'update');
         }
       });
@@ -253,20 +249,14 @@ function printUpdate() {
     },
     success: function (data) {
       var tr_update = []
-      var tr_update_other = [];
       for (var i in data) {
         if (!isset(data[i].status)) continue
         if (data[i].type == 'core' || data[i].type == 'plugin') {
           tr_update.push(addUpdate(data[i]));
-        } else {
-          tr_update_other.push(addUpdate(data[i]));
         }
       }
       $('#table_update tbody').empty().append(tr_update).trigger('update');
-      $('#table_updateOther tbody').empty().append(tr_update_other).trigger('update');
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
-      if (hasUpdateOther) $('li a[href="#other"] i').style('color', 'var(--al-warning-color)');
-      if (!hasUpdate && hasUpdateOther) $('li a[href="#other"]').trigger('click');
     }
   });
 
@@ -292,8 +282,6 @@ function addUpdate(_update) {
     labelClass = 'label-warning';
     if (_update.type == 'core' || _update.type == 'plugin') {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true;
-    } else {
-      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdateOther = true;
     }
   }
 
@@ -360,21 +348,6 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
   });
 });
 
-$('#bt_showHideLog').off('click').on('click',function() {
-  if($('#div_log').is(':visible')) {
-    $('#div_log').hide()
-    $(this).attr('title', '{{Afficher le log d\'update}}')
-    if (progress != 100) $('.progressbarContainer').appendTo('#log.tab-pane > .row')
-  } else {
-    $('#div_log').show()
-    $(this).attr('title', '{{Masquer le log d\'update}}')
-    if(progress == 100){
-      getJeedomLog(0, 'update');
-    }
-    if (progress != 100) $('.progressbarContainer').appendTo('#div_log')
-  }
-});
-
 function updateProgressBar(){
   if(progress == -4){
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger');
@@ -418,7 +391,7 @@ function updateProgressBar(){
 
 //___log interceptor beautifier___
 //create a second <pre> for cleaned text to avoid change event infinite loop:
-newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"></pre>'
+newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>No update started</i></pre>'
 $('#pre_updateInfo').after($(newLogClean))
 $('#pre_updateInfo').hide()
 $('#pre_updateInfo_clean').show()
@@ -525,15 +498,12 @@ function cleanUpdateLog() {
       prevUpdateText = currentUpdateText
       if (progress == 100) {
         if (_UpdateObserver_) _UpdateObserver_.disconnect()
-        $('.progressbarContainer').appendTo('#log.tab-pane > .row')
-        window.scrollTo(0, 0)
       }
     }
   }
   clearTimeout(alertTimeout);
   alertTimeout = setTimeout(alertTimeout,60000*10);
 }
-
 
 function alertTimeout(){
   progress = -4;
