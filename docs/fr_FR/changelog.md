@@ -7,6 +7,7 @@ Changelog
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement (Si plus d'une commande, ctrl+Clic sur une légende pour afficher seulement celle-ci, Alt+Clic pour les afficher toutes).
 - Dashboard : Mode Edition maintenant en insertion de la tuile déplacée.
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 30mins.
+- Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par default sur l'onglet *Informations*
 
 
 4.0.0

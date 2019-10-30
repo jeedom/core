@@ -229,7 +229,9 @@ function getJeedomLog(_autoUpdate, _log) {
         }
       }
       $('#pre_' + _log + 'Info').text(log);
-      $('#pre_updateInfo').parent().scrollTop($('#pre_updateInfo').parent().height() + 200000);
+      if ($('[href="#log"]').parent().hasClass('active')) {
+        $('#pre_updateInfo').parent().scrollTop($('#pre_updateInfo').parent().height() + 200000)
+      }
       if (init(_autoUpdate, 0) == 1) {
         setTimeout(function () {
           getJeedomLog(_autoUpdate, _log)
@@ -494,7 +496,9 @@ function cleanUpdateLog() {
     if (line != '') {
       newLogText += line + '\n'
       $('#pre_updateInfo_clean').value(newLogText)
-      $(document).scrollTop($(document).height())
+      if ($('[href="#log"]').parent().hasClass('active')) {
+        $(document).scrollTop($(document).height())
+      }
       prevUpdateText = currentUpdateText
       if (progress == 100) {
         if (_UpdateObserver_) _UpdateObserver_.disconnect()

@@ -107,10 +107,6 @@ $('#in_searchInsideScenario').focus(function (event) {
   }
 })
 
-jwerty.key('ctrl+f/⌘+f', function (e) {
-  e.preventDefault()
-  $('#bt_resetInsideScenarioSearch').click()
-});
 $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
   var searchField = $('#in_searchInsideScenario')
