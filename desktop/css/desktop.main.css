@@ -2206,8 +2206,10 @@ div[id^=__lpform_] { /*lastpass*/
 .element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
 }
-.element .expressionAttr.insideSearch {
-  color: red !important;
+#div_editScenario .element .expressionAttr.insideSearch {
+  background-color: var(--al-warning-color) !important;
+  color: var(--linkHoverLight-color) !important;
+  font-weight: normal;
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
