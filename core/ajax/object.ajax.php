@@ -143,6 +143,14 @@ try {
 						}
 					}
 				}
+				if(init('dummy') == 1){
+					$dummies = $object->getDummyEqLogic();
+					if(count($dummies) > 0){
+						foreach ($dummies as $dummy) {
+							$html[$dummy['order']] = $dummy['html'];
+						}
+					}
+				}
 				ksort($html);
 				$return[$i . '::' . $id] = implode($html);
 				$i++;
@@ -180,6 +188,14 @@ try {
 							$order++;
 						}
 						$html[$order] = $scenario->toHtml(init('version'));
+					}
+				}
+			}
+			if(init('dummy') == 1 && is_object($object)){
+				$dummies = $object->getDummyEqLogic();
+				if(count($dummies) > 0){
+					foreach ($dummies as $dummy) {
+						$html[$dummy['order']] = $dummy['html'];
 					}
 				}
 			}
