@@ -5,10 +5,14 @@ Mobile Dark
 
 @import url("colors.css");
 
+::-webkit-scrollbar-thumb {
+  background: var(--btn-default-color) !important;
+}
+
 html,
 body,
 textarea {
-  scrollbar-color: var(--btn-default-color) rgb(var(--defaultBkg-color)) !important;
+  scrollbar-color: var(--btn-default-color) transparent !important;
 }
 
 /* _____________________________DASHBOARD CATEGORIES title coloring */
