@@ -600,18 +600,17 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
   }
 });
 
-$pageContainer.delegate('.div_displayObject .cmd-widget.history', 'click', function () {
-  if (!editOption.state) {
-    event.stopPropagation()
-    let cmdIds = new Array()
-    $(this).closest('.eqLogic.eqLogic-widget').find('.cmd.history').each(function () {
-      cmdIds.push($(this).data('cmd_id'))
-    })
-    cmdIds = cmdIds.join('-')
-    let cmdShow = $(this).closest('.cmd-widget').data('cmd_id')
-    $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
-  }
-})
+$('#div_pageContainer').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
+});
+
+$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
+});
 /***********************************************************************************/
 
 function createNewDesign(){
