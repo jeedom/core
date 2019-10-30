@@ -109,6 +109,7 @@ jeedom.object.toHtml = function(_params) {
     category :  _params.category || 'all',
     summary :  _params.summary || '',
     tag :  _params.tag || 'all',
+    dummy :  _params.dummy || 0,
   };
   $.ajax(paramsAJAX);
 };
