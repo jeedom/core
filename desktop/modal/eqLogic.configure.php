@@ -13,7 +13,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
+		<a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}</a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}</a><a class="btn btn-success btn-sm" id="bt_eqLogicConfigureSave"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
 	</span>
 </div>
 
@@ -266,7 +266,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 			<?php }
 			?>
 		</div>
-		
+
 	<?php }
 	?>
 	<div role="tabpanel" class="tab-pane" id="eqLogic_alert">
@@ -403,7 +403,7 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 						echo $string_cmd . '</center>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
 						echo '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-						
+
 						echo '</td>';
 					}
 					echo '</tr>';
@@ -559,7 +559,7 @@ $('#bt_eqLogicConfigureSave').on('click', function (event) {
 					$('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'});
 				},
 				success : function(){
-					$('#md_displayEqLogicConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+					$('#md_displayEqLogicConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
 					if (event.ctrlKey) {
 						setTimeout(function() { $('#md_modal').dialog('close') }, 500);
 					}else{
