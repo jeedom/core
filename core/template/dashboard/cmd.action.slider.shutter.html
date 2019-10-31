@@ -8,6 +8,7 @@
         <div class="shuttergauge-value"></div>
       </div>
       <div class="slider" value="#state#">
+        <span class="value#uid# sliderValue"></span>
       </div>
     </div>
   </div>
@@ -72,6 +73,8 @@
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
       slide: function(event, ui) {
+        $(".value#uid#").show()
+        $(".value#uid#").html(ui.value);
         var cmd = $('.cmd[data-cmd_uid=#uid#]')
         cmd.find('.valueshutter').hide()
         cmd.find('.dynamicshutter').show()
