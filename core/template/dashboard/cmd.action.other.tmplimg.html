@@ -1,5 +1,4 @@
 <div class="cmd cmd-widget cursor" data-type="action" data-subtype="other" data-template="tmplimg" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-
   <div class="title #hide_name#">
     <div  class="cmdName">#valueName#</div>
   </div>
@@ -7,7 +6,7 @@
     <span class="imgCmd"></span>
   </div>
   <div class="value">
-    <span class="timeCmd#uid# timeCmd label label-default value"></span>
+    <span class="timeCmd label label-default value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){

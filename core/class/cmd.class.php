@@ -1360,11 +1360,13 @@ class cmd {
 		} else {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
+				$replace['#value_id#'] = $cmdValue->getId();
 				$replace['#state#'] = $cmdValue->execCmd();
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
 				$replace['#collectDate#'] = $cmdValue->getCollectDate();
 				$replace['#valueDate#'] = $cmdValue->getValueDate();
+				$replace['#value_history#'] = ($cmdValue->getIsHistorized() == 1) ? 'history cursor' : '';
 				$replace['#alertLevel#'] = $cmdValue->getCache('alertLevel', 'none');
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
 					$replace['#state#'] = 0;
