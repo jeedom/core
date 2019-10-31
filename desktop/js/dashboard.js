@@ -29,7 +29,6 @@ $('body')
   if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
 })
 
-/* v4.1
 $('body')
 .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
 if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
@@ -37,7 +36,7 @@ if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').
 .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
 if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
 })
-*/
+
 
 
 $(function(){
@@ -66,13 +65,13 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
     $('.div_displayEquipement').packery()
     return
   }
-  
+
   search = normTextLower(search)
   $('.eqLogic-widget').each(function() {
     var match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    
+
     if ($(this).attr('data-tags') != undefined) {
       text = normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
@@ -89,7 +88,7 @@ $ ('#in_searchWidget').off('keyup').on('keyup',function() {
       text = normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
-    
+
     if (match) {
       $(this).show()
     } else {
@@ -138,6 +137,7 @@ $('#bt_resetDashboardSearch').on('click', function () {
 
 $('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if(isEditing) return false
+  event.stopImmediatePropagation()
   event.stopPropagation()
   var cmdIds = new Array()
   $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
@@ -182,17 +182,17 @@ function editWidgetMode(_mode,_save){
     if (!isset(_save) || _save) {
       saveWidgetDisplay({dashboard : 1})
     }
-    
+
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
-    
+
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
     $('#in_searchWidget').removeAttr('style').val('').prop('readonly', false)
   } else {
     jeedom.cmd.disableExecute = true
     isEditing = true
-    
+
     //show orders:
     $('.ui-draggable').each( function() {
       var value = $(this).attr('data-order')
@@ -202,13 +202,13 @@ function editWidgetMode(_mode,_save){
         $(this).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
       }
     })
-    
+
     //set unique id whatever we have:
     divEquipements.find('.eqLogic-widget,.scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
       $(this).attr('data-editId', index)
     })
-    
+
     //set draggables:
     divEquipements.find('.editingMode').draggable({
       disabled: false,
@@ -241,7 +241,7 @@ function editWidgetMode(_mode,_save){
         ui.element.closest('.div_displayEquipement').packery();
       }
     })
-    
+
     $('#div_displayObject .row').css('margin-top', '27px')
     $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"5000","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'});
     $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
@@ -268,14 +268,14 @@ function getObjectHtml(_object_id) {
       } catch(err) {
         console.log(err);
       }
-      
+
       positionEqLogic();
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
       $divDisplayEq.disableSelection();
       $("input").click(function() { $(this).focus(); });
       $("textarea").click(function() { $(this).focus(); });
       $("select").click(function() { $(this).focus(); });
-      
+
       var container = $divDisplayEq.packery();
       var packData = $divDisplayEq.data('packery');
       if (isset(packData) && packData.items.length == 1) {
@@ -285,11 +285,11 @@ function getObjectHtml(_object_id) {
       container.packery('bindUIDraggableEvents',itemElems);
       var itemElems =  container.find('.scenario-widget').draggable();
       container.packery('bindUIDraggableEvents',itemElems);
-      
+
       function orderItems() {
         var itemElems = container.packery('getItemElements');
         var isEditing = ($('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) ? true : false
-        
+
         var _draggingOrder = _orders[_draggingId]
         var _newOrders = {}
         $(itemElems).each( function( i, itemElem ) {
@@ -297,30 +297,30 @@ function getObjectHtml(_object_id) {
         })
         var _draggingNewOrder = _newOrders[_draggingId]
         //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-        
+
         //rearrange that better:
         var _finalOrder = {}
         for ([id, order] of Object.entries(_newOrders)) {
           if (order <= _draggingNewOrder) _finalOrder[id] = order
           if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
         }
-        
+
         //set dom positions:
         var arrKeys = Object.keys(_finalOrder)
         var arrLength = arrKeys.length
         var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
         $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-        
+
         for (var i = 2; i < arrLength + 1; i++) {
           var thisId = arrKeys.find(key => _finalOrder[key] === i)
           var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
           $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
         }
-        
+
         //reload from dom positions:
         $('.div_displayEquipement').packery('reloadItems')
         $('.div_displayEquipement').packery()
-        
+
         itemElems = container.packery('getItemElements');
         $(itemElems).each( function( i, itemElem ) {
           $(itemElem).attr('data-order', i + 1 )
@@ -334,13 +334,13 @@ function getObjectHtml(_object_id) {
           }
         })
       }
-      
+
       var itemElems = container.packery('getItemElements')
       $(itemElems).each( function( i, itemElem ) {
         $(itemElem).attr('data-order', i + 1 )
       })
       container.on('dragItemPositioned',orderItems);
-      
+
       $('#div_ob'+_object_id+'.div_displayEquipement .eqLogic-widget').draggable('disable');
       $('#div_ob'+_object_id+'.div_displayEquipement .scenario-widget').draggable('disable');
     }
