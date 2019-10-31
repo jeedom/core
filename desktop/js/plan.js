@@ -327,6 +327,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
+                  planHeader_id = data.id;
                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 },
               });
