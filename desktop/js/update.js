@@ -18,33 +18,7 @@ var hasUpdate = false;
 var progress = -2;
 var alertTimeout = null
 
-$(function() {
-  jeedom.config.load({
-    configuration: {"update::lastCheck":0},
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function (data) {
-      var dbDate = data['update::lastCheck']
-      if (dbDate != 0) {
-        var dbDay = dbDate.split(' ')[0].split('-')
-        var dbTime = dbDate.split(' ')[1].split(':')
-        var dateChecked = new Date(dbDay[0],dbDay[1]-1,dbDay[2],dbTime[0],dbTime[1])
-        var dateNow = new Date()
-        var diffMs = dateNow - dateChecked
-        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000)
-        if (diffMins > 30) {
-          checkAllUpdate()
-        } else {
-          printUpdate()
-        }
-      } else {
-        printUpdate()
-      }
-    }
-  })
-})
-
+printUpdate();
 
 $("#md_specifyUpdate").dialog({
   closeText: '',
@@ -261,7 +235,7 @@ function printUpdate() {
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
     }
   });
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function (error) {
@@ -286,7 +260,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true;
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">';
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span>';
   tr += '</td>';
@@ -298,12 +272,12 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger';
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>';
   }
-
+  
   _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
   _remoteVersion = _update.remoteVersion
   if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
   tr += '</td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>';
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>';
@@ -416,14 +390,14 @@ function createUpdateObserver() {
       }
     })
   })
-
+  
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
-
+  
   var targetNode = document.getElementById('pre_updateInfo')
   _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -434,7 +408,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   lines = currentUpdateText.split("\n")
   l = lines.length
-
+  
   //update progress bar and clean text!
   linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -445,13 +419,13 @@ function cleanUpdateLog() {
       break
     }
   }
-
+  
   newLogText = ''
   for(var i=0; i < l; i++) {
     line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-
+    
     //check ok at end of line:
     if (line.endsWith('OK')) {
       matches = line.match(/[. ]{1,}OK/g)
@@ -462,7 +436,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
-
+    
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -471,7 +445,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
-
+    
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -492,7 +466,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
-
+    
     if (line != '') {
       newLogText += line + '\n'
       $('#pre_updateInfo_clean').value(newLogText)

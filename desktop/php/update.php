@@ -2,6 +2,13 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -30min'))){
+	try {
+		update::checkAllUpdate();
+	} catch (\Exception $e) {
+		echo '<div class="alert alert-danger">{{Erreur sur la verification des mies à jour : }}'.$e->getMessage().'</div>';
+	}
+}
 ?>
 <br/>
 <i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
@@ -20,14 +27,14 @@ if (!isConnect('admin')) {
 
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane active" id="coreplugin">
-  		<div class="col-sm-12 progressbarContainer hidden" style="display: inline-flex;">
+		<div class="col-sm-12 progressbarContainer hidden" style="display: inline-flex;">
 			<div class="progress" style="width:100%;height:22px;margin-top: 12px;">
 				<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
-						N/A
+					N/A
 				</div>
 			</div>
 		</div>
-
+		
 		<table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
 			<thead>
 				<tr>
@@ -45,7 +52,7 @@ if (!isConnect('admin')) {
 	</div>
 	<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
 		<legend><i class="fas fa-info-circle"></i>  {{Log :}}</legend>
-  		<div id="div_log">
+		<div id="div_log">
 			<pre id="pre_updateInfo"></pre>
 		</div>
 	</div>
