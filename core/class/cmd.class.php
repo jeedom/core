@@ -2202,7 +2202,7 @@ class cmd {
 	public function setAlert($_key, $_value) {
 		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->alert,$alert );
-		$this->alert = $alert ;
+		$this->alert = $alert;
 		$this->_needRefreshAlert = true;
 		return $this;
 	}
