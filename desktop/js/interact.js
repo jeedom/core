@@ -21,10 +21,11 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
-  $("#bt_saveInteract").click();
+  if ($('#bt_saveInteract').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveInteract").click();
+  }
 });
 
 //searching

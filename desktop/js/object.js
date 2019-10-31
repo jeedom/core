@@ -21,7 +21,9 @@ $('.backgroundforJeedom').css({
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
-  $("#bt_saveObject").click();
+  if ($('#bt_saveObject').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveObject").click();
+  }
 });
 
 //searching
