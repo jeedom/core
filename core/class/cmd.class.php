@@ -1256,6 +1256,7 @@ class cmd {
 			'#eqLogic_id#' => $this->getEqLogic_id(),
 			'#generic_type#' => $this->getGeneric_type(),
 			'#hide_name#' => '',
+			'#value_history#' => ''
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
 			$listOption = '';
