@@ -179,8 +179,9 @@ div.cmd > div.center-block {
   right: -22px;
 }
 .ui-slider-vertical > .sliderValue {
-  bottom: -1px;
-  right: 10px;
+  bottom: -14px;
+  right: -15px;
+  width: 25px;
 }
 
 /* __________________________________________________________________________________________________________Specifics */
@@ -332,6 +333,13 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
   width: 60px;
   top: 16px !important;
 }
+
+.shuttergauge .ui-slider-vertical > .sliderValue {
+  bottom: 12px;
+  right: 26px;
+  width: 25px;
+}
+
 .shuttergauge .timeCmd {
   position: relative;
   margin-left: -15px !important;
