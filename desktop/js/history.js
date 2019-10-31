@@ -228,6 +228,22 @@ function initHistoryTrigger() {
       }
     });
   });
+  $('.highcharts-legend-item').on('click',function(event) {
+    if (!event.ctrlKey && !event.altKey) return
+    event.stopImmediatePropagation()
+    var chart = $('#div_graph').highcharts()
+    if (event.altKey) {
+      $(chart.series).each(function(idx, item) {
+        item.show()
+      })
+    } else {
+      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
+      $(chart.series).each(function(idx, item) {
+        item.hide()
+      })
+      chart.series[serieId].show()
+    }
+  })
 }
 
 $('#bt_validChangeDate').on('click',function(){
@@ -278,10 +294,9 @@ function addChart(_cmd_id, _action,_options) {
           $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
         }
       }
-      initHistoryTrigger();
+      initHistoryTrigger()
     }
   });
-
 }
 
 /**************TIMELINE********************/

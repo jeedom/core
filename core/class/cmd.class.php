@@ -1087,7 +1087,13 @@ class cmd {
 			}
 			
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('action');
+				$timeline->setLink_id($this->getId());
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setOptions($str_option);
+				$timeline->save();
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
@@ -1256,6 +1262,7 @@ class cmd {
 			'#eqLogic_id#' => $this->getEqLogic_id(),
 			'#generic_type#' => $this->getGeneric_type(),
 			'#hide_name#' => '',
+			'#value_history#' => ''
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
 			$listOption = '';
@@ -1360,11 +1367,13 @@ class cmd {
 		} else {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
+				$replace['#value_id#'] = $cmdValue->getId();
 				$replace['#state#'] = $cmdValue->execCmd();
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
 				$replace['#collectDate#'] = $cmdValue->getCollectDate();
 				$replace['#valueDate#'] = $cmdValue->getValueDate();
+				$replace['#value_history#'] = ($cmdValue->getIsHistorized() == 1) ? 'history cursor' : '';
 				$replace['#alertLevel#'] = $cmdValue->getCache('alertLevel', 'none');
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
 					$replace['#state#'] = 0;
@@ -1504,7 +1513,14 @@ class cmd {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => $this->getValueDate(), 'value' => $value . $this->getUnite()));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('info');
+				$timeline->setLink_id($this->getId());
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setDatetime($this->getValueDate());
+				$timeline->setOptions(array('value' => $value . $this->getUnite(),'cmdType' => $this->getSubType()));
+				$timeline->save();
 			}
 			$this->pushUrl($value);
 		}
@@ -2199,7 +2215,7 @@ class cmd {
 	public function setAlert($_key, $_value) {
 		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->alert,$alert );
-		$this->alert = $alert ;
+		$this->alert = $alert;
 		$this->_needRefreshAlert = true;
 		return $this;
 	}

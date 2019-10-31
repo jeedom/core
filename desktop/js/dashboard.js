@@ -136,15 +136,15 @@ $('#bt_resetDashboardSearch').on('click', function () {
   $('#in_searchWidget').val('').keyup()
 })
 
-$('#div_pageContainer').on( 'click','.eqLogic-widget .history', function (event) {
+$('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
   if(isEditing) return false
   event.stopPropagation()
-  let cmdIds = new Array()
-  $(this).closest('.eqLogic.eqLogic-widget').find('.cmd.history').each(function () {
+  var cmdIds = new Array()
+  $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
     cmdIds.push($(this).data('cmd_id'))
   })
   cmdIds = cmdIds.join('-')
-  let cmdShow = $(this).closest('.cmd-widget').data('cmd_id')
+  var cmdShow = $(this).closest('.history[data-cmd_id]').data('cmd_id')
   $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
 })
 
@@ -358,7 +358,7 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
     $('.counterReorderJeedom').remove()
     $('.div_displayEquipement').packery()
   } else {
-    $('.tooltipstered').tooltipster('disable')
+    $('.eqLogic-widget .tooltipstered,.scenario-widget .tooltipstered').tooltipster('disable')
     $(this).attr('data-mode',1)
     $('.bt_editDashboardWidgetAutoResize').show()
     $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {

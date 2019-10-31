@@ -601,17 +601,16 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
   }
 });
 
-$pageContainer.off('click','.div_displayObject .cmd-widget.history').on('click','.div_displayObject .cmd-widget.history',  function () {
-  if (!editOption.state) {
-    event.stopPropagation()
-    let cmdIds = new Array()
-    $(this).closest('.eqLogic.eqLogic-widget').find('.cmd.history').each(function () {
-      cmdIds.push($(this).data('cmd_id'))
-    })
-    cmdIds = cmdIds.join('-')
-    let cmdShow = $(this).closest('.cmd-widget').data('cmd_id')
-    $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
-  }
+$('#div_pageContainer').off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function (event) {
+  if(isEditing) return false
+  event.stopPropagation()
+  var cmdIds = new Array()
+  $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+    cmdIds.push($(this).data('cmd_id'))
+  })
+  cmdIds = cmdIds.join('-')
+  var cmdShow = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+  $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds + '&showId=' + cmdShow).dialog('open')
 })
 /***********************************************************************************/
 
@@ -1002,8 +1001,6 @@ function displayObject(_plan,_html, _noRender) {
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
   }
-  
-  css_selector = '\n'+css_selector
   var html = $(_html);
   
   html.attr('data-plan_id',_plan.id)

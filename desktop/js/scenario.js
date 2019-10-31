@@ -18,9 +18,12 @@ SC_CLIPBOARD = null
 PREV_FOCUS = null
 tab = null
 var $pageContainer = $('#div_pageContainer')
+
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
-  saveScenario();
+  if ($('#bt_saveScenario2').is(':visible')) {
+    if (!getOpenedModal()) saveScenario();
+  }
 });
 
 $('#div_scenarioElement').on('focus', ':input', function() {
@@ -107,10 +110,6 @@ $('#in_searchInsideScenario').focus(function (event) {
   }
 })
 
-jwerty.key('ctrl+f/⌘+f', function (e) {
-  e.preventDefault()
-  $('#bt_resetInsideScenarioSearch').click()
-});
 $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
   var searchField = $('#in_searchInsideScenario')
@@ -1036,8 +1035,10 @@ $('#bt_graphScenario').off('click').on('click', function () {
 });
 
 jwerty.key('ctrl+l', function (e) {
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
-  $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  if (!getOpenedModal()) {
+    $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"});
+    $("#md_modal").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
+  }
 })
 
 $('#bt_logScenario').off('click').on('click', function () {
@@ -1994,13 +1995,17 @@ var _redo_ = 0
 
 jwerty.key('ctrl+shift+z/⌘+shift+z', function (e) {
   e.preventDefault()
-  undo()
-  PREV_FOCUS = null
+  if (!getOpenedModal()) {
+    undo()
+    PREV_FOCUS = null
+  }
 })
 jwerty.key('ctrl+shift+y/⌘+shift+y', function (e) {
   e.preventDefault()
-  redo()
-  PREV_FOCUS = null
+  if (!getOpenedModal()) {
+    redo()
+    PREV_FOCUS = null
+  }
 })
 
 function setUndoStack(state=0) {

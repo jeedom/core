@@ -109,10 +109,17 @@ a.btn,
 .ui-icon-closethick,
 .cursor,
 .cursor *,
-.label.state,
-[data-type="info"] .label.timeCmd {
+.label.state {
   cursor: pointer !important;
 }
+.ui-resizable-n { cursor: n-resize !important; }
+.ui-resizable-s { cursor: s-resize !important; }
+.ui-resizable-e { cursor: e-resize !important; }
+.ui-resizable-w { cursor: w-resize !important; }
+.ui-resizable-se { cursor: se-resize !important; }
+.ui-resizable-sw { cursor: sw-resize !important; }
+.ui-resizable-nw { cursor: nw-resize !important; }
+.ui-resizable-ne { cursor: ne-resize !important; }
 
 a > img:hover {
   opacity: 0.75;
@@ -502,6 +509,16 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
+.progress {
+  background-color: var(--sc-form-color);
+}
+.progress-bar {
+  background-color: var(--al-info-color);
+}
+.progress-bar-success {
+  background-color: var(--al-success-color);
+}
+
 [data-type="plugin"] #div_pageContainer > div.eqLogic {
   margin-top: 5px;
 }
@@ -1121,7 +1138,7 @@ li.alert-info.eqLogic {
 
 .action_colorpicker_change,
 .action_colorpicker_off {
-  width: 35px !important;
+  width: 75px !important;
   height: 25px !important;
 }
 
@@ -1802,7 +1819,7 @@ input[type=radio] {
   height: 15px;
   border-radius: 0 !important;
   background: var(--form-bg-color);
-  color: var(--linkHover-color);
+  color: var(--txt-color);
   font-weight: normal !important;
 }
 input[type=radio] {
@@ -2206,8 +2223,10 @@ div[id^=__lpform_] { /*lastpass*/
 .element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
 }
-.element .expressionAttr.insideSearch {
-  color: red !important;
+#div_editScenario .element .expressionAttr.insideSearch {
+  background-color: var(--al-warning-color) !important;
+  color: var(--linkHoverLight-color) !important;
+  font-weight: normal;
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
@@ -3189,11 +3208,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3202,7 +3221,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3211,12 +3230,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3224,11 +3243,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {

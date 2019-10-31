@@ -14,6 +14,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  if ($('.eqLogicAction[data-action=save]').is(':visible')) {
+    if (!getOpenedModal()) $(".eqLogicAction[data-action=save]").click();
+  }
+});
+
 //contextMenu
 $(function(){
   try{
@@ -90,7 +97,7 @@ $(function(){
             items: contextmenuitems
           })
         }
-        
+
       }
     })
   }catch(err) {
@@ -174,7 +181,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
       $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
         jeedom.cmd.changeType($(this).closest('.cmd'));
       });
-      
+
       $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
         jeedom.cmd.changeSubType($(this).closest('.cmd'));
       });
@@ -227,11 +234,6 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function () {
 
 $('.eqLogicAction[data-action=export]').off('click').on('click', function () {
   window.open('core/php/export.php?type=eqLogic&id=' + $('.eqLogicAttr[data-l1key=id]').value(), "_blank", null);
-});
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $('.eqLogicAction[data-action=save]').click();
 });
 
 $('.eqLogicAction[data-action=save]').off('click').on('click', function () {
@@ -414,7 +416,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-  
+
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {

@@ -300,14 +300,14 @@ class widgets {
   public function setReplace($_key, $_value) {
     $replace = utils::setJsonAttr($this->replace, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->replace,$replace);
-    $this->replace = utils::setJsonAttr($this->replace, $_key, $_value);
+    $this->replace = $replace;
     return $this;
   }
   
   public function setTest($_key, $_value) {
     $test = utils::setJsonAttr($this->test, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->test,$test);
-    $this->test = utils::setJsonAttr($this->test, $_key, $_value);
+    $this->test = $test;
     return $this;
   }
   

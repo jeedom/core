@@ -300,27 +300,6 @@ if (is_array($scenarioListGroup)) {
 	</div>
 </div>
 
-<div class="modal fade" id="md_copyScenario">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Dupliquer le scénario}}</h3>
-			</div>
-			<div class="modal-body">
-				<div style="display: none;" id="div_copyScenarioAlert"></div>
-				<center>
-					<input class="form-control" type="text"  id="in_copyScenarioName" size="16" placeholder="{{Nom du scénario}}"/><br/><br/>
-				</center>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_copyScenarioSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="modal fade" id="md_addElement">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -372,7 +351,7 @@ if (is_array($scenarioListGroup)) {
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

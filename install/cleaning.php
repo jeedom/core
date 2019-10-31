@@ -60,39 +60,6 @@ try {
     )
   );
   
-  $removeFolders = array(
-    __DIR__ . '/../3rdparty/font-awesome',
-    __DIR__ . '/../manifest.json',
-    __DIR__ . '/../manifest.webmanifest',
-    __DIR__ . '/../core/css/core.css',
-    __DIR__ . '/../js/plugin.ajax.js',
-    __DIR__ . '/../core/themes/amber',
-    __DIR__ . '/../core/themes/blue',
-    __DIR__ . '/../core/themes/brown',
-    __DIR__ . '/../core/themes/cyan',
-    __DIR__ . '/../core/themes/darksobre',
-    __DIR__ . '/../core/themes/deep_orange',
-    __DIR__ . '/../core/themes/deep_purple',
-    __DIR__ . '/../core/themes/green',
-    __DIR__ . '/../core/themes/grey',
-    __DIR__ . '/../core/themes/light_blue',
-    __DIR__ . '/../core/themes/light_green',
-    __DIR__ . '/../core/themes/lime',
-    __DIR__ . '/../core/themes/orange',
-    __DIR__ . '/../core/themes/pink',
-    __DIR__ . '/../core/themes/purple',
-    __DIR__ . '/../core/themes/red',
-    __DIR__ . '/../core/themes/teal',
-    __DIR__ . '/../core/themes/yellow',
-    __DIR__ . '/../desktop/css/commun.css',
-    __DIR__ . '/../desktop/css/dashboard.css',
-    __DIR__ . '/../desktop/css/futur.css',
-    __DIR__ . '/../desktop/modal/eqLogic.displayWidget.php',
-    __DIR__ . '/../desktop/modal/remove.history.php',
-    __DIR__ . '/../mobile/css/commun.css',
-    __DIR__ . '/../core/class/object.class.php',
-  );
-  
   $nb_cleaning = 0;
   foreach (cmd::all() as $cmd) {
     if(!is_object($cmd->getEqLogic())){
@@ -181,13 +148,6 @@ try {
     }
     $eqLogic->save(true);
   }
-  
-  foreach ($removeFolders as $folder) {
-    if(file_exists($folder)){
-      rrmdir($folder);
-    }
-  }
-  
   
 }catch (Exception $e) {
   echo "\nError : ";

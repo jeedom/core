@@ -25,7 +25,7 @@ if (!isConnect('admin')) {
         ?>
       </a><a class="btn btn-sm" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}
       </a><a class="btn btn-sm" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}
-      </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+      </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
     </span>
   </div>
   

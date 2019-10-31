@@ -1184,6 +1184,17 @@ function addOrUpdateUrl(_param,_value,_title){
   }
 }
 
+function getOpenedModal() {
+    var _return = false
+    var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
+    modals.forEach(function(_modal) {
+        if ($('.ui-dialog[aria-describedby="'+_modal+'"]').is(':visible') == true) {
+                _return = _modal
+            }
+    })
+    return _return
+}
+
 //Extensions
 jQuery.fn.findAtDepth = function (selector, maxDepth) {
   var depths = [], i

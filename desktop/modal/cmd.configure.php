@@ -19,7 +19,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}
         </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
         </a><a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-plus-circle"></i> {{Appliquer à}}
-        </a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+        </a><a class="btn btn-success btn-sm roundedRight" id="bt_cmdConfigureSave"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
     </span>
 </div>
 <div role="tabpanel">
@@ -1024,7 +1024,7 @@ $('#bt_cmdConfigureSave').on('click', function (event) {
         },
         success: function () {
             modifyWithoutSave = false;
-            $('#md_displayCmdConfigure').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+            $('#md_displayCmdConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
             if (event.ctrlKey) {
                 setTimeout(function() { $('#md_modal').dialog('close') }, 500);
             }

@@ -29,6 +29,13 @@ var widget_parameters_opt = {
   }
 }
 
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  if ($('#bt_saveWidgets').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveWidgets").click();
+  }
+});
+
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -188,11 +195,6 @@ $(function(){
   }
   catch(err) {}
 })
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveWidgets").click();
-});
 
 $('#bt_chooseIcon').on('click', function () {
   var _icon = false
