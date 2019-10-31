@@ -226,7 +226,7 @@ try {
 				echo "Remove useless files...\n";
 				foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
 					echo 'Cleaning '.$folder."\n";
-					shell_exec('find /var/www/html/'.$folder.'/* -mtime +7 -type f -delete');
+					shell_exec('find /var/www/html/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" -delete');
 				}
 				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
 			} catch (Exception $e) {
