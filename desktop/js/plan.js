@@ -1001,8 +1001,6 @@ function displayObject(_plan,_html, _noRender) {
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
   }
-  
-  css_selector = '\n'+css_selector
   var html = $(_html);
   
   html.attr('data-plan_id',_plan.id)
