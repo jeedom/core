@@ -127,7 +127,7 @@ class timeline {
     return $this;
   }
   
-  public function setOptions($_key, $_value) {
+  public function setOptions($_key, $_value = null) {
     $options = utils::setJsonAttr($this->options, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
     $this->options = $options;

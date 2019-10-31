@@ -1087,7 +1087,13 @@ class cmd {
 			}
 			
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('action');
+				$timeline->setLink_id($this->getId());
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setOptions($str_option);
+				$timeline->save();
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
@@ -1507,7 +1513,14 @@ class cmd {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true, true), 'datetime' => $this->getValueDate(), 'value' => $value . $this->getUnite()));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('info');
+				$timeline->setLink_id($this->getId());
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setDatetime($this->getValueDate());
+				$timeline->setOptions(array('value' => $value . $this->getUnite(),'cmdType' => $this->getSubType()));
+				$timeline->save();
 			}
 			$this->pushUrl($value);
 		}
