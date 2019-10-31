@@ -295,7 +295,7 @@ class plan {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}
 			return array(
-				'plan' => utils::o2a($this),
+				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'summary') {
