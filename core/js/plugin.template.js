@@ -104,7 +104,7 @@ $(function(){
             items: contextmenuitems
           })
         }
-
+        
       }
     })
   }catch(err) {
@@ -139,13 +139,13 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   addOrUpdateUrl('id',null,);
 });
 
-$(".li_eqLogic,.eqLogicDisplayCard").on('click', function (event) {
+$(".eqLogicDisplayCard").on('click', function (event) {
   if (event.ctrlKey) {
     var type = $('body').attr('data-page')
     var url = '/index.php?v=d&m='+type+'&p='+type+'&id='+$(this).attr('data-eqlogic_id')
     window.open(url).focus()
   } else {
-      jeedom.eqLogic.cache.getCmd = Array();
+    jeedom.eqLogic.cache.getCmd = Array();
     if ($('.eqLogicThumbnailDisplay').html() != undefined) {
       $('.eqLogicThumbnailDisplay').hide();
     }
@@ -158,14 +158,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function (event) {
     } else {
       $('.eqLogic').show();
     }
-    if($('.li_eqLogic').length != 0){
-      $('.li_eqLogic').removeClass('active');
-    }
     $(this).addClass('active');
-    if($('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').html() != undefined){
-      $('.li_eqLogic[data-eqLogic_id='+$(this).attr('data-eqLogic_id')+']').addClass('active');
-    }
-
     $('.nav-tabs a:not(.eqLogicAction)').first().click()
     $.showLoading()
     jeedom.eqLogic.print({
@@ -194,7 +187,7 @@ $(".li_eqLogic,.eqLogicDisplayCard").on('click', function (event) {
         $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
           jeedom.cmd.changeType($(this).closest('.cmd'));
         });
-
+        
         $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
           jeedom.cmd.changeSubType($(this).closest('.cmd'));
         });
@@ -438,7 +431,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-
+  
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
