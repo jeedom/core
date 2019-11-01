@@ -34,17 +34,22 @@ class timeline {
   
   /*     * ***********************Méthodes statiques*************************** */
   
-  public static function all($_folder = 'main') {
+  public static function all() {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
   
   public static function byFolder($_folder = 'main') {
+    self::cleaning();
+    if($_folder = 'main'){
+      $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+      FROM timeline';
+      return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+    }
     $values = array(
       'folder' => '(^|,)'.$_folder.'($|,)',
     );
-    self::cleaning();
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
     WHERE folder REGEXP :folder';
