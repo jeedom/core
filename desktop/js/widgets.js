@@ -473,6 +473,7 @@ $(".widgetsDisplayCard").off('click').on('click', function (event) {
         },
         success: function (data) {
           $('#div_widgetPreview').empty().html(data.html);
+          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
         }
       })
     }
