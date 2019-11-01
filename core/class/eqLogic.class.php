@@ -1717,7 +1717,7 @@ class eqLogic {
 			}
 		}else{
 			if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$_key])){
-				$changed = ($this->getStatus($_key) !== $_value);
+				$changed = ($this->getStatus($_key) != $_value);
 			}
 		}
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));
