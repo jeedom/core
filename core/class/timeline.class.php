@@ -34,6 +34,7 @@ class timeline {
   /*     * ***********************Méthodes statiques*************************** */
   
   public static function all() {
+    self::cleaning();
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
@@ -47,6 +48,26 @@ class timeline {
     FROM timeline
     WHERE id=:id';
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+  }
+  
+  
+  public static function cleaning($_all = false){
+    if($_all){
+      $sql = 'DELETE FROM timeline';
+      DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+      return;
+    }
+    $sql = 'SELECT count(id) as number FROM timeline';
+    $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+    $delete_number = $result['number'] - config::byKey('timeline::maxevent');
+    if($delete_number <= 0){
+      return;
+    }
+    $values = array(
+      'number' => $delete_number,
+    );
+    $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT :number';
+    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
   
   

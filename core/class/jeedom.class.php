@@ -109,14 +109,6 @@ class jeedom {
 		return $return;
 	}
 	
-	public static function removeTimelineEvent() {
-		$path = __DIR__ . '/../../data/timeline.json';
-		if (file_exists($path)) {
-			com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
-			unlink($path);
-		}
-	}
-	
 	public static function addRemoveHistory($_data) {
 		try {
 			$remove_history = array();

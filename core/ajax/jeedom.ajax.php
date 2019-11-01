@@ -303,11 +303,6 @@ try {
 		ajax::success($object->getLinkData());
 	}
 	
-	if (init('action') == 'removeTimelineEvents') {
-		unautorizedInDemo();
-		ajax::success(jeedom::removeTimelineEvent());
-	}
-	
 	if (init('action') == 'getFileFolder') {
 		unautorizedInDemo();
 		ajax::success(ls(init('path'), '*', false, array(init('type'))));

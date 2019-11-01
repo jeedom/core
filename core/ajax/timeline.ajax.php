@@ -38,6 +38,11 @@ try {
     ajax::success($return);
   }
   
+  if (init('action') == 'deleteAll') {
+    unautorizedInDemo();
+    ajax::success(timeline::cleaning(true));
+  }
+  
   
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */
