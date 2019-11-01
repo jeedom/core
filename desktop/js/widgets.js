@@ -181,12 +181,16 @@ $(function(){
           autoHide: true,
           zIndex: 9999,
           className: 'widget-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id;
+          callback: function(key, options, event) {
+            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
             if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
+              url += '#' + document.location.toString().split('#')[1]
             }
-            loadPage(url);
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              window.open(url).focus()
+            } else {
+              loadPage(url)
+            }
           },
           items: contextmenuitems
         })
@@ -409,10 +413,16 @@ $('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConf
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
 });
 
-$(".widgetsDisplayCard").on('click', function (event) {
-  $('#div_conf').show();
-  $('#div_widgetsList').hide();
-  $('#div_templateTest').empty();
+$(".widgetsDisplayCard").off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=widgets&id='+$(this).attr('data-widgets_id')
+    window.open(url).focus()
+  } else {
+    $('#div_conf').show()
+    $('#div_widgetsList').hide()
+    $('#div_templateTest').empty()
+  }
+
   jeedom.widgets.byId({
     id: $(this).attr('data-widgets_id'),
     cache: false,
@@ -468,6 +478,13 @@ $(".widgetsDisplayCard").on('click', function (event) {
     }
   });
 });
+$('.widgetsDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-widgets_id')
+    $('.widgetsDisplayCard[data-widgets_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 if (is_numeric(getUrlVars('id'))) {
   if ($('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').length != 0) {

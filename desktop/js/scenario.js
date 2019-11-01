@@ -191,12 +191,16 @@ $(function(){
             autoHide: true,
             zIndex: 9999,
             className: 'scenario-context-menu',
-            callback: function(key, options) {
-              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id;
+            callback: function(key, options, event) {
+              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
               if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1];
+                url += '#' + document.location.toString().split('#')[1]
               }
-              loadPage(url);
+              if (event.ctrlKey || event.originalEvent.which == 2) {
+                window.open(url).focus()
+              } else {
+                loadPage(url)
+              }
             },
             items: contextmenuitems
           })
@@ -271,10 +275,22 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
 });
 
-$('.scenarioDisplayCard').off('click').on('click', function () {
-  $('#scenarioThumbnailDisplay').hide();
-  printScenario($(this).attr('data-scenario_id'));
-});
+$('.scenarioDisplayCard').off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
+    window.open(url).focus()
+  } else {
+    $('#scenarioThumbnailDisplay').hide()
+    printScenario($(this).attr('data-scenario_id'))
+  }
+})
+$('.scenarioDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-scenario_id')
+    $('.scenarioDisplayCard[data-scenario_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('.accordion-toggle').off('click').on('click', function () {
   setTimeout(function(){

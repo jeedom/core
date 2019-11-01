@@ -144,12 +144,16 @@ $(function(){
             autoHide: true,
             zIndex: 9999,
             className: 'interact-context-menu',
-            callback: function(key, options) {
-              url = 'index.php?v=d&p=interact&id=' + options.commands[key].id;
+            callback: function(key, options, event) {
+              url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
               if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1];
+                url += '#' + document.location.toString().split('#')[1]
               }
-              loadPage(url);
+              if (event.ctrlKey || event.originalEvent.which == 2) {
+                window.open(url).focus()
+              } else {
+                loadPage(url)
+              }
             },
             items: contextmenuitems
           })
@@ -189,10 +193,22 @@ $('#bt_interactThumbnailDisplay').on('click', function () {
   addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME);
 });
 
-$('.interactDisplayCard').on('click', function () {
-  $('#div_tree').jstree('deselect_all');
-  $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'));
-});
+$('.interactDisplayCard').off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=interact&id='+$(this).attr('data-interact_id')
+    window.open(url).focus()
+  } else {
+    $('#div_tree').jstree('deselect_all')
+    $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'))
+  }
+})
+$('.interactDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-interact_id')
+    $('.interactDisplayCard[data-interact_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $("#div_tree").jstree({
   "plugins": ["search"]
