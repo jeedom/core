@@ -15,7 +15,7 @@ Changelog
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.<br/><br/>
-- Intégration de la Timeline en DB pour des raisons de fiabilité. (...en cours...)
+- Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Corrections de bugs et optimisations.
 
 
