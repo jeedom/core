@@ -4,17 +4,17 @@ Changelog
 4.1.0
 =====
 - Dashboard : Mode Edition maintenant en insertion de la tuile déplacée.
-- Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.<br/><br/>
+- Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120mins.
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - Mises à jour du Core : Mise en place d'un système de nettoyage des anciens fichiers non utilisés du Core.
 - Pages Widgets / Objets / Scenarios / Interactions / Plugins :
 	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouveau onglet.
 	- Ctrl Clic / Clic Centre également disponible dans leurs menus contextuels (sur les onglets).
-- Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).<br/><br/>
+- Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
-- Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.<br/><br/>
+- Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Corrections de bugs et optimisations.
 
