@@ -1,3 +1,4 @@
+
 Changelog
 =========
 
@@ -9,7 +10,7 @@ Changelog
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - Mises à jour du Core : Mise en place d'un système de nettoyage des anciens fichiers non utilisés du Core.
 - Pages Widgets / Objets / Scenarios / Interactions / Plugins :
-	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouveau onglet.
+	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouvel onglet.
 	- Ctrl Clic / Clic Centre également disponible dans leurs menus contextuels (sur les onglets).
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
@@ -98,7 +99,7 @@ Changelog
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
 - Nombreuses corrections de bugs.
-- Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
+- Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l’Alerte Communication sur ceux-ci)
 
 >**IMPORTANT**
 >
@@ -117,7 +118,7 @@ Changelog
 3.3.34
 =====
 
-- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+- Correction d'un bug pouvant empêcher la remonter de l'état des batteries
 - Correction d'un bug sur les tags dans les interactions
 - Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
 - Correction de bug sur les backups cloud
@@ -154,7 +155,7 @@ Changelog
 3.3.29
 =====
 
-- Correction de la disparition de la date de derniere verification des mises à jour
+- Correction de la disparition de la date de dernière vérification des mises à jour
 - Correction d'un bug pouvant bloquer les backups cloud
 - Correction d'un bugs sur le calcul d'utilisation des variable si c'est de la forme variable(toto,mavaleur)
 
@@ -182,7 +183,7 @@ Changelog
 3.3.25
 =====
 - Correction de bug
-- Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
+- Passage de la timeline en mode tableau (du à des erreurs dans la lib indépendante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
 3.3.24
@@ -193,7 +194,7 @@ Changelog
 -	Amélioration de la fenêtre de choix des icônes
 -	Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
 -	Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
--	Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
+-	Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l’équipement sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====
@@ -255,20 +256,20 @@ Changelog
 - Amélioration du support des () dans le calcul d'expressions
 - Possibilité d'éditer les scénarios en mode text/json
 - Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
-- Possibilitée d'ajouter des options dans les rapports
-- Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
+- Possibilité d'ajouter des options dans les rapports
+- Ajout d'un heartbeat par plugin et de redémarrage automatique de démon en cas de soucis
 - Ajout des listeners sur la page de moteur de tâche
 - Optimisations
 - Possibilité de consulter les logs en version mobile (wepapp)
 - Ajout d'une action tag dans les scénarios (voir documentation)
 - Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
-- Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+- Ajout de lastCommunication dans les scénarios (pour avoir la date de dernière communication d'un équipement)
 - Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 - Possibilité de supprimer un élément à partir de la configuration du design
 - Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
 - Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
 - Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget)
-- Possibilité de mettre une icone sur les sénarios
+- Possibilité de mettre une icône sur les scénarios
 - Affichage des widgets mobile en une seule colonne
 - Ajout de la gestion des démons sur le moteur de tache
 - Ajout de la fonction color_gradient dans les scénarios
@@ -555,7 +556,7 @@ Changelog
 - Optimisation de la vérification des mises à jour
 
 2.4
----
+=====
 - Optimisation générale
     - Regroupement de requêtes SQL
     - Suppression de requêtes inutiles
@@ -574,7 +575,7 @@ Changelog
 - Possibilité de remplacer une commande par une autre dans tout Jeedom (même si la commande à remplacer n’existe plus)
 
 2.3
----
+=====
 - Correction des filtres sur le market
 - Correction des checkbox sur la page d’édition des vues (sur une zone graphique)
 - Correction des checkbox historiser, visible et inverser dans le tableau des commandes
@@ -643,7 +644,7 @@ Changelog
 - Ajout d’un tag *begin\_backup*, *end\_backup*, *begin\_update*, *end\_update*, *begin\_restore*, *end\_restore* dans les scénarios
 
 2.2
----
+=====
 - Correction de bugs
 - Simplification de l’accès aux configurations des plugins à partir de la page santé
 - Ajout d’une icône indiquant si le démon est démarré en debug ou non
@@ -656,7 +657,7 @@ Changelog
 - Refonte de la gestion des thèmes
 
 2.1
----
+=====
 - Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
 - Refonte du système de log (utilisation de monolog) qui permet une
 intégration à des systèmes de logs (type syslog(d))
@@ -692,7 +693,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Revue du système de partage de scénario
 
 2.0
----
+=====
 - Refonte du système de cache de Jeedom (utilisation de doctrine cache). Cela permet par exemple de connecter Jeedom à un serveur redis ou memcached. Par défaut Jeedom utilise un système de fichiers (et non plus la BDD MySQL ce qui permet de la décharger un peu), celui-ci se trouve dans /tmp il est donc conseillé si vous avez plus de 512 Mo de RAM de monter le /tmp en tmpfs (en RAM pour plus de rapidité et une diminution de l’usure de la carte SD, je recommande une taille de 64mo). Attention lors du redémarrage de Jeedom le cache est vidé il faut donc attendre pour avoir la remontée de toutes les infos
 - Refonte du système de log (utilisation de monolog) qui permet une
 intégration à des systèmes de logs (type syslog(d))
