@@ -301,6 +301,10 @@ function addChart(_cmd_id, _action,_options) {
 
 /**************TIMELINE********************/
 
+$('#sel_timelineFolder').off('change').on('change',function(){
+  displayTimeline();
+});
+
 $('#bt_tabTimeline').on('click',function(){
   displayTimeline();
 });
@@ -325,6 +329,7 @@ $('#bt_refreshTimeline').on('click',function(){
 
 function displayTimeline(){
   jeedom.timeline.all({
+    folder : $('#sel_timelineFolder').value(),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },

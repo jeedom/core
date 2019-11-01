@@ -25,6 +25,7 @@ class timeline {
   private $id;
   private $name;
   private $type;
+  private $folder = 'main';
   private $subtype;
   private $link_id;
   private $datetime;
@@ -33,11 +34,21 @@ class timeline {
   
   /*     * ***********************Méthodes statiques*************************** */
   
-  public static function all() {
-    self::cleaning();
+  public static function all($_folder = 'main') {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+  }
+  
+  public static function byFolder($_folder = 'main') {
+    $values = array(
+      'folder' => '(^|,)'.$_folder.'($|,)',
+    );
+    self::cleaning();
+    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+    FROM timeline
+    WHERE folder REGEXP :folder';
+    return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
   
   public static function byId($_id) {
@@ -70,12 +81,34 @@ class timeline {
     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
   
+  public static function listFolder(){
+    $sql = 'SELECT DISTINCT(folder) as folder
+    FROM timeline';
+    $results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+    $return = array('main');
+    foreach ($results as $result) {
+      $infos = explode(',',$result['folder']);
+      foreach ($infos as $info) {
+        if($info == ''){
+          continue;
+        }
+        if(!in_array($info,$return)){
+          $return[] = $info;
+        }
+      }
+    }
+    return $return;
+  }
+  
   
   /*     * *********************Méthodes d'instance************************* */
   
   public function preSave(){
     if($this->getDatetime() == ''){
       $this->setDatetime(date('Y-m-d H:i:s'));
+    }
+    if(trim($this->getFolder()) == ''){
+      $this->setFolder('main');
     }
   }
   
@@ -167,6 +200,10 @@ class timeline {
     return $this->type;
   }
   
+  public function getFolder() {
+    return $this->folder;
+  }
+  
   public function getSubtype() {
     return $this->subtype;
   }
@@ -194,6 +231,12 @@ class timeline {
   public function setType($_type) {
     $this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
     $this->type = $_type;
+    return $this;
+  }
+  
+  public function setFolder($_folder) {
+    $this->_changed = utils::attrChanged($this->_changed,$this->folder,$_folder);
+    $this->folder = $_folder;
     return $this;
   }
   

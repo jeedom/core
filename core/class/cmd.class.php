@@ -1053,6 +1053,7 @@ class cmd {
 				$timeline->setType('cmd');
 				$timeline->setSubtype('action');
 				$timeline->setLink_id($this->getId());
+				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setName($this->getHumanName(true, true));
 				$timeline->save();
 			}
@@ -1479,6 +1480,7 @@ class cmd {
 				$timeline->setSubtype('info');
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setDatetime($this->getValueDate());
 				$timeline->setOptions(array('value' => $value . $this->getUnite(),'cmdType' => $this->getSubType()));
 				$timeline->save();

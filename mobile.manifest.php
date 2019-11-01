@@ -20,6 +20,7 @@ $js_file = array(
 	'3rdparty/waves/waves.min.js',
 	'3rdparty/jquery.utils/jquery.utils.js',
 	'3rdparty/jquery.ui/jquery-ui.min.js',
+	'3rdparty/moment/lib.moment.js',
 	'core/js/cmd.class.js',
 	'core/js/private.class.js',
 	'core/js/core.js',

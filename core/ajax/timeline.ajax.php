@@ -28,7 +28,7 @@ try {
   
   if (init('action') == 'all') {
     $return = array();
-    $events = timeline::all();
+    $events = timeline::byFolder(init('folder','main'));
     foreach ($events as $event) {
       $info = $event->getDisplay();
       if ($info != null) {
@@ -43,6 +43,10 @@ try {
     ajax::success(timeline::cleaning(true));
   }
   
+  if (init('action') == 'listFolder') {
+    unautorizedInDemo();
+    ajax::success(timeline::listFolder());
+  }
   
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   /*     * *********Catch exeption*************** */

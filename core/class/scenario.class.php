@@ -709,6 +709,7 @@ class scenario {
 						if ($this->getConfiguration('timeline::enable')) {
 							$timeline = new timeline();
 							$timeline->setType('scenario');
+							$timeline->setFolder($this->getConfiguration('timeline::folder'));
 							$timeline->setLink_id($this->getId());
 							$timeline->setName($this->getHumanName(true, true, true, true));
 							$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
@@ -719,6 +720,7 @@ class scenario {
 						if ($this->getConfiguration('timeline::enable')) {
 							$timeline = new timeline();
 							$timeline->setType('scenario');
+							$timeline->setFolder($this->getConfiguration('timeline::folder'));
 							$timeline->setLink_id($this->getId());
 							$timeline->setName($this->getHumanName(true, true, true, true));
 							$timeline->setOptions(array('trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
