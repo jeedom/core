@@ -303,26 +303,6 @@ try {
 		ajax::success($object->getLinkData());
 	}
 	
-	if (init('action') == 'getTimelineEvents') {
-		$return = array();
-		$events = jeedom::getTimelineEvent();
-		foreach ($events as $event) {
-			$info = null;
-			switch ($event['type']) {
-				case 'cmd':
-				$info = cmd::timelineDisplay($event);
-				break;
-				case 'scenario':
-				$info = scenario::timelineDisplay($event);
-				break;
-			}
-			if ($info != null) {
-				$return[] = $info;
-			}
-		}
-		ajax::success($return);
-	}
-	
 	if (init('action') == 'removeTimelineEvents') {
 		unautorizedInDemo();
 		ajax::success(jeedom::removeTimelineEvent());

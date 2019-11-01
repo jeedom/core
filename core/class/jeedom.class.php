@@ -109,35 +109,11 @@ class jeedom {
 		return $return;
 	}
 	
-	public static function addTimelineEvent($_event) {
-		$json  = json_encode($_event);
-		if (json_last_error() == JSON_ERROR_NONE) {
-			$fp = fopen(__DIR__ . '/../../data/timeline.json', 'a');
-			fwrite($fp, $json . "\n");
-			fclose($fp);
-		}
-		//file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
-	}
-	
-	public static function getTimelineEvent() {
-		$path = __DIR__ . '/../../data/timeline.json';
-		if (!file_exists($path)) {
-			return array();
-		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
-		$lines = explode("\n", trim(file_get_contents($path)));
-		$result = array();
-		foreach ($lines as $line) {
-			$result[] = json_decode($line, true);
-		}
-		return $result;
-	}
-	
 	public static function removeTimelineEvent() {
 		$path = __DIR__ . '/../../data/timeline.json';
 		if (file_exists($path)) {
-		  com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
-		  unlink($path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
+			unlink($path);
 		}
 	}
 	

@@ -780,43 +780,6 @@ class cmd {
 		}
 	}
 	
-	public static function timelineDisplay($_event) {
-		$return = array();
-		$return['date'] = $_event['datetime'];
-		$return['type'] = $_event['type'];
-		$return['group'] = $_event['subtype'];
-		$cmd = cmd::byId($_event['id']);
-		if (!is_object($cmd)) {
-			return null;
-		}
-		$eqLogic = $cmd->getEqLogic();
-		$object = $eqLogic->getObject();
-		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
-		$return['plugins'] = $eqLogic->getEqType_name();
-		$return['category'] = $eqLogic->getCategory();
-		
-		$name = str_replace('<br/><strong>', '',  $_event['name']);
-		$name = str_replace('</strong>', '',  $name);
-		$name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
-		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div class="tml-cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></span>';
-			$return['html'] .= '<div>' . $_event['options'] . '<div/>';
-			$return['html'] .= '</div>';
-		} else {
-			$class = 'info';
-			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
-				$class = ($_event['value'] == 0 ? 'success' : 'warning');
-			}
-			$return['html'] = '<div class="tml-cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
-			$return['html'] .= ' <span class="label-sm label-'.$class.'">' . $_event['value'] . '</span>';
-			$return['html'] .= '</span>';
-			$return['html'] .= '</div>';
-		}
-		return $return;
-	}
-	
 	/*     * *********************Méthodes d'instance************************* */
 	
 	public function formatValue($_value, $_quote = false) {
@@ -1079,7 +1042,6 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
-			$str_option = '';
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
 				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {
@@ -1092,7 +1054,6 @@ class cmd {
 				$timeline->setSubtype('action');
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true));
-				$timeline->setOptions($str_option);
 				$timeline->save();
 			}
 			$this->preExecCmd($options);

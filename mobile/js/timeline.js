@@ -5,7 +5,7 @@ function initTimeline() {
   rightPanel += '<li><a id="bt_refreshTimeline" href="#"><i class="fas fa-sync"></i> {{Rafraîchir}}</a></li>'
   rightPanel += '</ul>'
   panel(rightPanel)
-
+  
   $('#bt_refreshTimeline').on('click',function(){
     displayTimeline()
   })
@@ -14,7 +14,7 @@ function initTimeline() {
 //"datetime":"2019-08-27 21:03:02"
 
 function displayTimeline(){
-  jeedom.getTimelineEvents({
+  jeedom.timeline.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -24,10 +24,10 @@ function displayTimeline(){
         data.key = key
         key ++
       })
-
+      
       data.sort(sortByDateConsistentASC)
       data.reverse()
-
+      
       var tr = ''
       for (var i in data) {
         if (!data[i].date) continue
@@ -61,20 +61,20 @@ function displayTimeline(){
 function sortByDateConsistentASC(itemA, itemB) {
   var valueA = itemA.date
   var valueB = itemB.date
-
+  
   var a = moment(valueA)
   var b = moment(valueB)
   var r = 0
-
+  
   if (a.isValid() && b.isValid()) {
     r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
   }
-
+  
   if(r === 0){
     r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
-      itemA.key - itemB.key : 0
+    itemA.key - itemB.key : 0
   }
-    return r
+  return r
 }
 
 function sepDays() {

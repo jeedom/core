@@ -324,7 +324,7 @@ $('#bt_refreshTimeline').on('click',function(){
 });
 
 function displayTimeline(){
-  jeedom.getTimelineEvents({
+  jeedom.timeline.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -366,7 +366,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
+  
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)

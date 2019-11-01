@@ -67,6 +67,67 @@ class timeline {
     DB::remove($this);
   }
   
+  
+  public function getDisplay() {
+    switch ($this->getType()) {
+      case 'cmd':
+      $return = array();
+      $return['date'] = $this->getDatetime();
+      $return['type'] = $this->getType();
+      $return['group'] = $this->getSubtype();
+      $cmd = cmd::byId($this->getLink_id());
+      if (!is_object($cmd)) {
+        return null;
+      }
+      $eqLogic = $cmd->getEqLogic();
+      $object = $eqLogic->getObject();
+      $return['object'] = is_object($object) ? $object->getId() : 'aucun';
+      $return['plugins'] = $eqLogic->getEqType_name();
+      $return['category'] = $eqLogic->getCategory();
+      
+      $name = str_replace(array('<br/><strong>','</strong>'), '',  $this->getName());
+      $name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
+      if ($_event['subtype'] == 'action') {
+        $return['html'] = '<div class="tml-cmd" data-id="' . $this->getId() . '">';
+        $return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></span>';
+        $return['html'] .= '</div>';
+      } else {
+        $class = 'info';
+        if ($this->getOptions('cmdType') == 'binary') {
+          $class = ($_event['value'] == 0 ? 'success' : 'warning');
+        }
+        $return['html'] = '<div class="tml-cmd" data-id="' .$this->getId() . '">';
+        $return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
+        $return['html'] .= ' <span class="label-sm label-'.$class.'">' .$this->getOptions('value') . '</span>';
+        $return['html'] .= '</span>';
+        $return['html'] .= '</div>';
+      }
+      break;
+      case 'scenario':
+      $return = array();
+      $return['date'] = $this->getDatetime();
+      $return['group'] = 'scenario';
+      $return['type'] = $this->getType();
+      $scenario = scenario::byId($this->getLink_id());
+      if (!is_object($scenario)) {
+        return null;
+      }
+      $object = $scenario->getObject();
+      $return['object'] = is_object($object) ? $object->getId() : 'aucun';
+      $name = str_replace(array('<br/><strong>','</strong>'), '',  $this->getName());
+      $name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
+      $return['html'] = '<div class="tml-scenario" data-id="' . $this->getId() . '">';
+      $return['html'] .= '<div>' . $name;
+      $return['html'] .= ' <span class="label-sm label-info" title="'.__('Scénario déclenché par',__FILE__).'">' . $this->getOptions('trigger'). '</span>';
+      $return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog" title="'.__('Log du scénario',__FILE__).'"></i> ';
+      $return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario" title="'.__('Aller au scénario',__FILE__).'"></i> ';
+      $return['html'] .= '</div>';
+      $return['html'] .= '</div>';
+      break;
+    }
+    return $return;
+  }
+  
   /*     * **********************Getteur Setteur*************************** */
   
   public function getId() {
