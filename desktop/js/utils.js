@@ -502,21 +502,69 @@ $(function () {
     $("#md_modal").load('index.php?v=d&modal=first.use').dialog('open');
   }
 
-  $('#bt_showEventInRealTime').on('click',function(){
-    $('#md_modal').dialog({title: "{{Evénements en temps réel}}"}).load('index.php?v=d&modal=log.display&log=event').dialog('open');
-  });
+  $('#bt_showEventInRealTime').on('click',function(event) {
+    if (event.ctrlKey || event.originalEvent.which == 2) {
+      var title = encodeURI("{{Evénements en temps réel}}")
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=log.display&log=event&title=' + title
+      window.open(url).focus()
+    } else {
+      $('#md_modal').dialog({title: "{{Evénements en temps réel}}"}).load('index.php?v=d&modal=log.display&log=event').dialog('open')
+    }
+  })
+  $('#bt_showEventInRealTime').on('mouseup', function (event) {
+    if( event.which == 2 ) {
+      event.preventDefault()
+      $('#bt_showEventInRealTime').trigger(jQuery.Event('click', { ctrlKey: true }))
+    }
+  })
 
-  $('#bt_showNoteManager').on('click',function(){
-    $('#md_modal').dialog({title: "{{Notes}}"}).load('index.php?v=d&modal=note.manager').dialog('open');
-  });
+  $('#bt_showNoteManager').on('click',function(event) {
+    if (event.ctrlKey || event.originalEvent.which == 2) {
+      var title = encodeURI("{{Notes}}")
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=' + title
+      window.open(url).focus()
+    } else {
+      $('#md_modal').dialog({title: "{{Notes}}"}).load('index.php?v=d&modal=note.manager').dialog('open')
+    }
+  })
+  $('#bt_showNoteManager').on('mouseup', function (event) {
+    if( event.which == 2 ) {
+      event.preventDefault()
+      $('#bt_showNoteManager').trigger(jQuery.Event('click', { ctrlKey: true }))
+    }
+  })
 
-  $('#bt_showExpressionTesting').on('click',function(){
-    $('#md_modal').dialog({title: "{{Testeur d'expression}}"}).load('index.php?v=d&modal=expression.test').dialog('open');
-  });
+  $('#bt_showExpressionTesting').on('click',function(event) {
+    if (event.ctrlKey || event.originalEvent.which == 2) {
+      var title = encodeURI("{{Testeur d'expression}}")
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=expression.test&title=' + title
+      window.open(url).focus()
+    } else {
+      $('#md_modal').dialog({title: "{{Testeur d'expression}}"}).load('index.php?v=d&modal=expression.test').dialog('open')
+    }
+  })
+  $('#bt_showExpressionTesting').on('mouseup', function (event) {
+    if( event.which == 2 ) {
+      event.preventDefault()
+      $('#bt_showExpressionTesting').trigger(jQuery.Event('click', { ctrlKey: true }))
+    }
+  })
 
-  $('#bt_showDatastoreVariable').off('click').on('click', function () {
-    $('#md_modal').dialog({title: "{{Variables des scénarios}}"}).load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open');
-  });
+  $('#bt_showDatastoreVariable').on('click', function (event) {
+    if (event.ctrlKey || event.originalEvent.which == 2) {
+      var title = encodeURI("{{Variables des scénarios}}")
+      var url = '/index.php?v=d&p=modaldisplay&loadmodal=dataStore.management&type=scenario&title=' + title
+      window.open(url).focus()
+    } else {
+      $('#md_modal').dialog({title: "{{Variables des scénarios}}"}).load('index.php?v=d&modal=dataStore.management&type=scenario').dialog('open')
+    }
+  })
+  $('#bt_showDatastoreVariable').on('mouseup', function (event) {
+    if( event.which == 2 ) {
+      event.preventDefault()
+      $('#bt_showDatastoreVariable').trigger(jQuery.Event('click', { ctrlKey: true }))
+    }
+  })
 
   $('#bt_gotoDashboard').on('click',function(event){
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
