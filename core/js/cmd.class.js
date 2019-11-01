@@ -318,7 +318,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
   }
   $(cmds).each(function(){
     var cmd = $(this);
-    if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+    if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
       return true;
     }
     jeedom.cmd.toHtml({
