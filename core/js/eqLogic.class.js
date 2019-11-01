@@ -387,7 +387,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
     global: false,
     success: function (result) {
       for(var i in result){
-        var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
         var uid = html.attr('data-eqLogic_uid');
