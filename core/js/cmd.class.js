@@ -335,7 +335,6 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
       }
     })
   });
-  
 }
 
 jeedom.cmd.refreshValue = function(_params) {
