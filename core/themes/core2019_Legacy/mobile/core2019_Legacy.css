@@ -213,3 +213,9 @@ p.state,
   border-left: 4px solid var(--el-defaultColor) !important;
   border-right: 4px solid var(--el-defaultColor) !important;
 }
+
+
+/* widgets specific */
+.widget-compass-needle:after {
+  border-top: 22px solid var(--linkHoverLight-color);
+}
