@@ -393,7 +393,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_consitency"><i class="fas fa-check"></i> {{Lancer}}</a>
+							<a class="btn btn-warning" id="bt_consitency" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fas fa-terminal"></i> {{Système}}</legend>
@@ -402,7 +402,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=system"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -410,14 +410,14 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de réappliquer les bons droits sur les fichiers.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanFileSystemRight"><i class="fas fa-check"></i> {{Lancer}}</a>
+							<a class="btn btn-warning" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fas fa-indent"></i> {{Editeur de fichiers}}</legend>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Editeur}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=editor"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<legend><i class="fas fa-database"></i> {{Base de données}}</legend>
@@ -426,7 +426,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" href="index.php?v=d&p=database"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
+							<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-exclamation-triangle"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -434,13 +434,13 @@ user::isBan();
                         	<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_checkDatabase"><i class="fas fa-check"></i> {{Lancer}}</a>
+							<a class="btn btn-warning" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-check"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Nettoyage}}</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-warning" id="bt_cleanDatabase"><i class="fas fa-broom"></i> {{Lancer}}</a>
+							<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-broom"></i> {{Lancer}}</a>
 						</div>
 					</div>
 					<div class="form-group">

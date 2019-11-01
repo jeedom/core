@@ -152,7 +152,7 @@ foreach (widgets::all() as $widget) {
       <form class="form-horizontal">
         <fieldset>
           <div class="row">
-            <div class="col-xs-5">
+            <div class="col-md-6 col-sm-12">
               <legend><i class="fas fa-wrench"></i> {{Général}}</legend>
               <div class="form-group">
                 <label class="col-lg-4 col-xs-6 control-label">{{Nom du widget}}</label>
@@ -213,19 +213,14 @@ foreach (widgets::all() as $widget) {
                 </div>
               </div>
             </div>
-            <div class="col-xs-4">
-              <legend><i class="fas fa-link"></i> {{Commandes liées}}</legend>
-              <div class="form-group">
-                <div class="col-xs-9" id="div_usedBy"></div>
-              </div>
-            </div>
-            <div class="col-xs-3">
+            <div class="col-md-6 col-sm-12">
               <legend><i class="fas fa-search"></i> {{Prévisualisation}}</legend>
-              <div  id="div_widgetPreview"></div>
+              <div id="div_widgetPreview"></div>
             </div>
           </div>
         </fieldset>
       </form>
+
       <form class="form-horizontal">
         <fieldset>
           <div class="col-sm-12">
@@ -238,6 +233,21 @@ foreach (widgets::all() as $widget) {
           </div>
         </fieldset>
       </form>
+
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="row">
+            <div class="col-sm-12">
+              <legend><i class="fas fa-link"></i> {{Commandes liées}}</legend>
+              <div class="form-group">
+                <div class="col-xs-9" id="div_usedBy"></div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+
     </div>
   </div>
 </div>
