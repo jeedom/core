@@ -372,7 +372,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var eqLogics = {};
   var sends = {};
   for(var i in _params){
-    jeedom.cmd.refreshByEqLogic({eqLogic_id : _params[i].eqLogic_id});
     var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;

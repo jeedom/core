@@ -136,7 +136,6 @@ jeedom.init = function () {
       _options.container = 'body';
     }
     $(_options.container).setValues(_options.data, _options.type);
-    console.log(_options);
   });
   
   $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
