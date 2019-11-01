@@ -33,7 +33,7 @@ function initTimeline() {
 
 
 function displayTimeline(_folder){
-  jeedom.timeline.all({
+  jeedom.timeline.byFolder({
     folder : $('.changeTimelineFolder.active').attr('data-value'),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})

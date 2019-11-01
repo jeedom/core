@@ -17,7 +17,7 @@
 jeedom.timeline = function() {
 };
 
-jeedom.timeline.all = function(_params) {
+jeedom.timeline.byFolder = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -30,7 +30,7 @@ jeedom.timeline.all = function(_params) {
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
-    action: 'all',
+    action: 'byFolder',
     folder : _params.folder || 'main'
   };
   $.ajax(paramsAJAX);

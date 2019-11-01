@@ -26,7 +26,7 @@ try {
   
   ajax::init();
   
-  if (init('action') == 'all') {
+  if (init('action') == 'byFolder') {
     $return = array();
     $events = timeline::byFolder(init('folder','main'));
     foreach ($events as $event) {

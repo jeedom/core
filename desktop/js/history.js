@@ -328,7 +328,7 @@ $('#bt_refreshTimeline').on('click',function(){
 });
 
 function displayTimeline(){
-  jeedom.timeline.all({
+  jeedom.timeline.byFolder({
     folder : $('#sel_timelineFolder').value(),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})

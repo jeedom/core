@@ -42,7 +42,7 @@ class timeline {
   
   public static function byFolder($_folder = 'main') {
     self::cleaning();
-    if($_folder = 'main'){
+    if($_folder == 'main'){
       $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
       FROM timeline';
       return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
