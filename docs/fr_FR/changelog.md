@@ -17,13 +17,14 @@ Changelog
 	- Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
+- Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande)
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Corrections de bugs et optimisations.
-- Scénario : ajout de la fonction age (donne l'age de la valeur de la commande)
+
 
 
 4.0.0
