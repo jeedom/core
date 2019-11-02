@@ -40,7 +40,7 @@ if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').ad
 
 
 $(function(){
-  setTimeout(function(){
+  setTimeout(function() {
     if(typeof rootObjectId != 'undefined'){
       jeedom.object.getImgPath({
         id : rootObjectId,
@@ -50,6 +50,17 @@ $(function(){
       });
     }
   },1);
+
+  setTimeout(function() {
+    var shouldSave = false
+    $('.eqLogic-widget > div.autoResize').each(function( index ) {
+      shouldSave = true
+      var h = $(this).outerHeight(true)
+      var w = $(this).outerWidth(true)
+      $(this).closest('.eqLogic-widget').height(h + 50 + 'px').width(w + 'px')
+    })
+    if (shouldSave) saveWidgetDisplay({dashboard : 1})
+  },250)
 });
 
 var isEditing = false
