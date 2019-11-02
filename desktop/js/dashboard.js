@@ -52,14 +52,13 @@ $(function(){
   },1);
 
   setTimeout(function() {
-    var shouldSave = false
     $('.eqLogic-widget > div.autoResize').each(function( index ) {
-      shouldSave = true
-      var h = $(this).outerHeight(true)
-      var w = $(this).outerWidth(true)
-      $(this).closest('.eqLogic-widget').height(h + 50 + 'px').width(w + 'px')
+      $(this).closest('.eqLogic-widget')
+        .height($(this).outerHeight(true) + $(this).parent().find('.widget-name').outerHeight(true) + 40 + 'px')
+        .width($(this).outerWidth(true) + 'px')
+      $(this).closest('.div_displayEquipement').packery()
     })
-    if (shouldSave) saveWidgetDisplay({dashboard : 1})
+    if ($('.eqLogic-widget > div.autoResize').length) saveWidgetDisplay({dashboard : 1})
   },250)
 });
 
