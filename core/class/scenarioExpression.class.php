@@ -538,6 +538,15 @@ class scenarioExpression {
 		return history::lastStateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
 	
+	public static function age($_cmd_id = '') {
+		$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
+		if (!is_object($cmd) || $cmd->getType() != 'info') {
+			return -1;
+		}
+		$cmd->execCmd();
+		return strtotime() - strtotime($cmd->getCollectDate());
+	}
+	
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
@@ -1640,14 +1649,14 @@ class scenarioExpression {
 	
 	public function getAllId() {
 		$return = array(
-		'element' => array(),
-		'subelement' => array(),
-		'expression' => array($this->getId()),
+			'element' => array(),
+			'subelement' => array(),
+			'expression' => array($this->getId()),
 		);
 		$result = array(
-		'element' => array(),
-		'subelement' => array(),
-		'expression' => array(),
+			'element' => array(),
+			'subelement' => array(),
+			'expression' => array(),
 		);
 		if ($this->getType() == 'element') {
 			$element = scenarioElement::byId($this->getExpression());

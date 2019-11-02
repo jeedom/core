@@ -23,6 +23,7 @@ Changelog
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Corrections de bugs et optimisations.
+- Scénario : ajout de la fonction age (donne l'age de la valeur de la commande)
 
 
 4.0.0

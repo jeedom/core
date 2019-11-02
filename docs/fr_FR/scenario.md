@@ -503,6 +503,9 @@ Plusieurs fonctions sont disponibles pour les équipements :
     Retourne -1 si aucun historique n’existe ou si la valeur n’existe pas dans l’historique.
     Retourne -2 si la commande n’est pas historisée
 
+-   age(commande) : Donne l'age en secondes de la valeur de la commande (collecDate)
+        Retourne -1 si la commande n’existe pas ou si elle n'est pas de type info
+
 -   stateChanges(commande,[valeur], période) et
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
     nombre de changements d’état (vers une certaine valeur si indiquée,
