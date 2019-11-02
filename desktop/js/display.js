@@ -30,7 +30,7 @@ $('#in_search').on('keyup',function() {
     var search = $(this).value()
     var searchID = search
     if (isNaN(search)) searchID = false
-    
+
     $('div.panel-collapse').removeClass('in')
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
@@ -224,7 +224,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
     $(event.target).find('.configureCmd').click()
     return false
   }
-  
+
   if (!$(event.target).hasClass('eqLogic')) {
     event.stopPropagation()
     return false
@@ -245,12 +245,12 @@ $('#cb_actifDisplay').on('change',function() {
   }
 })
 
-$('[aria-controls="history"]').on('click',function() {
+$('[aria-controls="historytab"]').on('click',function() {
   $('.eqActions').hide()
 })
-$('[aria-controls="display"]').on('click',function() {
+$('[aria-controls="displaytab"]').on('click',function() {
   $('#display').show()
-  $('.eqActions').show()
+  if(GLOBAL_ACTION_MODE) $('.eqActions').show()
 })
 
 $('.cb_selEqLogic').on('change',function(){
@@ -263,12 +263,14 @@ $('.cb_selEqLogic').on('change',function(){
   })
   if (found) {
     GLOBAL_ACTION_MODE = 'eqLogic';
+    $('.eqActions').show()
     $('.cb_selCmd').hide();
     $('#bt_removeEqlogic').show();
     $('.bt_setIsVisible').show();
     $('.bt_setIsEnable').show();
   } else {
     GLOBAL_ACTION_MODE = null;
+    $('.eqActions').hide()
     $('.cb_selCmd').show();
     $('#bt_removeEqlogic').hide()
     $('.bt_setIsVisible').hide()
@@ -286,11 +288,13 @@ $('.cb_selCmd').on('change',function(){
   })
   if (found) {
     GLOBAL_ACTION_MODE = 'cmd';
+    $('.eqActions').show()
     $('.cb_selEqLogic').hide();
     $('.bt_setIsVisible').show();
   } else {
     GLOBAL_ACTION_MODE = null;
     $('.cb_selEqLogic').show();
+    $('.eqActions').hide()
     $('.bt_setIsVisible').hide();
   }
 })
@@ -354,8 +358,8 @@ $('.bt_setIsVisible').on('click',function(){
       }
     });
   }
-  
-  
+
+
 })
 
 $('.bt_setIsEnable').on('click',function(){

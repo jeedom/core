@@ -30,7 +30,7 @@ for ([key, value] of Object.entries(params)) {
 }
 
 $(function () {
-  $('#modalTitle').html(decodeURI(title))
+  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(title))
   $('#modalDisplay').empty().load(url, function(data) {
     $('body').attr('data-page',getUrlVars('p'))
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))

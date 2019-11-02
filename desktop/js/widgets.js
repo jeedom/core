@@ -264,9 +264,9 @@ function loadTemplateConfiguration(_template,_data){
         for(var i in data.replace){
           replace += '<div class="form-group">';
           if(widget_parameters_opt[data.replace[i]]){
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
           }else{
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
           }
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
