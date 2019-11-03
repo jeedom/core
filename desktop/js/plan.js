@@ -713,6 +713,9 @@ function draggableDragFix(event, ui) {
 function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
   if (_state) {
+    if(!$('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',true)
+    }
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
@@ -772,6 +775,9 @@ function initEditOption(_state) {
       
     }
   }else{
+    if($('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',false)
+    }
     jeedom.cmd.disableExecute = false;
     $('.div_displayObject').removeClass('editingMode')
     try{
@@ -895,7 +901,7 @@ function displayPlan(_code) {
             
           }
           
-          initEditOption(editOption.state);
+          initEditOption(0);
           initReportMode();
         }
       });
