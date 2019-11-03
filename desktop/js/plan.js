@@ -902,7 +902,7 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
-          
+          addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
           initEditOption(0);
           initReportMode();
         }
