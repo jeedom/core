@@ -10,7 +10,7 @@ Changelog
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120mins.
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - Mises à jour du Core : Mise en place d'un système de nettoyage des anciens fichiers non utilisés du Core.
-- Pages Widgets / Objets / Scenarios / Interactions / Plugins :
+- Pages Widgets / Objets / Scénarios / Interactions / Plugins :
 	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouvel onglet.
 	- Ctrl Clic / Clic Centre également disponible dans leurs menus contextuels (sur les onglets).
 - Nouvelle page ModalDisplay:
@@ -42,7 +42,7 @@ Changelog
 - Lors d'une recherche, la touche *echap* annule la recherche.
 - Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
 - Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
-- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaitra le temps de l’exécution.
+- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaîtra le temps de l’exécution.
 - Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
 - Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
 - Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
@@ -110,7 +110,7 @@ Changelog
 
 >**IMPORTANT**
 >
->Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+>Si après la mise à jour vous avez une erreur sur le dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
 
 >**IMPORTANT**
 >
@@ -127,7 +127,7 @@ Changelog
 
 - Correction d'un bug pouvant empêcher la remonter de l'état des batteries
 - Correction d'un bug sur les tags dans les interactions
-- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le statut en warning ou danger
 - Correction de bug sur les backups cloud
 
 
