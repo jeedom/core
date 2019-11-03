@@ -717,6 +717,7 @@ function initEditOption(_state) {
     if(!$('#div_pageContainer').data('editOption.state')){
       $('#div_pageContainer').data('editOption.state',true)
     }
+    editOption.state = true;
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
@@ -777,8 +778,9 @@ function initEditOption(_state) {
     }
   }else{
     if($('#div_pageContainer').data('editOption.state')){
-      $('#div_pageContainer').data('editOption.state',false)
+      $('#div_pageContainer').data('editOption.state',false);
     }
+    editOption.state = false;
     jeedom.cmd.disableExecute = false;
     $('.div_displayObject').removeClass('editingMode')
     try{
