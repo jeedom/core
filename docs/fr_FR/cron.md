@@ -1,13 +1,13 @@
+# Moteur de tâches
+**Réglages → Système → Moteur de tâches**
+
 Cette page informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur.
 Cette page est à utiliser en connaissance de cause ou à la demande du support technique.
 
 > **Important**
 > En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
 
-Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâches**
-
-
-# Cron
+## Onglet Cron
 
 En haut, à droite, vous avez :
 
@@ -39,10 +39,10 @@ Dans ce tableau, on retrouve :
     - **Suppression** : Permet de supprimer la tâche.
 
 
-# Listener
+## Onglet Listener
 
 Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évènement (mise à jour d'une commande...).
 
-# Démons
+## Onglet Démon
 
 Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de les arrêter ou les redémarrer.

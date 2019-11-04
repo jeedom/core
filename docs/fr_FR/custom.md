@@ -1,3 +1,5 @@
+# Personnalisation Avancée
+**Réglages → Système → Personnalisation avancée**
 
 Réservée aux experts, cette page permet d’ajouter des script CSS ou JS en plus dans Jeedom, qui seront exécutés sur chaque page.
 
