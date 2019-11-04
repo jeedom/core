@@ -1,3 +1,4 @@
+
 # Dashboard
 **Accueil → Dashboard**
 
@@ -19,7 +20,8 @@ Une des pages principales de Jeedom affiche un compte-rendu de toute votre domot
 > Il est possible, à partir de votre profil, de configurer Jeedom pour que l’arbre des objets et/ou les scénarios soient visibles par défaut lorsque vous arrivez sur le Dashboard.
 
 > **Tip**
-> En mobile un appui long sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
+> En mobile, un appui long sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
+
 
 ## Mode édition
 
@@ -41,3 +43,11 @@ A droite de chaque objet, une icône permet de :
 
 - Clic : Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la plus haute.
 - Ctrl Clic : Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la moins haute.
+
+## Barre de menu de Jeedom
+
+> **Tip**
+> - Clic sur l’horloge (barre de menu) : Ouvre la Timeline.
+> - Clic sur le nom du Jeedom (barre de menu) : Ouvre Réglages → Système → Configuration.
+> - Clic sur le ? (barre de menu) : Ouvre l’aide sur le page en cours.
+> - Echap sur un champ de recherche : Vide le champ de recherche et annule celle-ci.
