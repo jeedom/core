@@ -301,6 +301,10 @@ function addChart(_cmd_id, _action,_options) {
 
 /**************TIMELINE********************/
 
+$('#sel_timelineFolder').off('change').on('change',function(){
+  displayTimeline();
+});
+
 $('#bt_tabTimeline').on('click',function(){
   displayTimeline();
 });
@@ -324,7 +328,8 @@ $('#bt_refreshTimeline').on('click',function(){
 });
 
 function displayTimeline(){
-  jeedom.getTimelineEvents({
+  jeedom.timeline.byFolder({
+    folder : $('#sel_timelineFolder').value(),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -366,7 +371,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-
+  
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)

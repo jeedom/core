@@ -447,6 +447,8 @@ try {
 				$return[$plugin_id] =  array('cmd' => array(),'name' => 'Plugin '.$plugin->getName());
 				if (method_exists($plugin_id, 'deadCmd')) {
 					$return[$plugin_id]['cmd'] = $plugin_id::deadCmd();
+				}else{
+					$return[$plugin_id]['cmd'] = $plugin_id::deadCmdGeneric($plugin_id);
 				}
 			}
 			ajax::success($return);

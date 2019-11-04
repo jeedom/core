@@ -672,8 +672,8 @@ class eqLogic {
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun',__FILE__),
-			'#height#' => $this->getDisplay('height', '110px'),
-			'#width#' => $this->getDisplay('width', '230px'),
+			'#height#' => $this->getDisplay('height', 'auto'),
+			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
@@ -685,10 +685,11 @@ class eqLogic {
 			'#generic_type#' => $this->getGenericType(),
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':''
 		);
-		if($replace['#height#'] == 'auto'){
+		if ($this->getDisplay('height', 'auto') == 'auto') {
 			$replace['#height#'] = '110px';
+			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'].' autoResize';
 		}
-		if($replace['#width#'] == 'auto'){
+		if ($replace['#width#'] == 'auto') {
 			$replace['#width#'] = '230px';
 		}
 		if ($this->getAlert() != '') {
@@ -881,12 +882,6 @@ class eqLogic {
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
-			}
-			if ($this->getDisplay('height', 'auto') == 'auto') {
-				$this->setDisplay('height', '110px');
-			}
-			if ($this->getDisplay('width', 'auto') == 'auto') {
-				$this->setDisplay('width', '230px');
 			}
 			if($this->getDisplay('layout::dashboard') != 'table'){
 				$displays = $this->getDisplay();
@@ -1400,6 +1395,23 @@ class eqLogic {
 		return $return;
 	}
 	
+	
+	public static function deadCmdGeneric($_plugin_id) {
+		$return = array();
+		foreach (eqLogic::byType($_plugin_id) as $eqLogic) {
+			$eqLogic_json = json_encode(utils::o2a($eqLogic));
+			preg_match_all("/#([0-9]*)#/", $eqLogic_json, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => ucfirst($_plugin_id).' ' . $eqLogic->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+					}
+				}
+			}
+		}
+		return $return;
+	}
+	
 	/*     * **********************Getteur Setteur*************************** */
 	
 	public function getId() {
@@ -1717,7 +1729,7 @@ class eqLogic {
 			}
 		}else{
 			if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$_key])){
-				$changed = ($this->getStatus($_key) !== $_value);
+				$changed = ($this->getStatus($_key) != $_value);
 			}
 		}
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));

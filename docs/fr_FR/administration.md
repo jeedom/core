@@ -35,7 +35,7 @@ Dans cet onglet on retrouve des informations générales sur Jeedom :
     pas Jeedom à Internet et qu’il n’a pas de pile RTC sur le
     matériel utilisé.
 
--   **Système** : Indique le type de matériel sur lequel Jeedom est installé.   
+-   **Système** : Indique le type de matériel sur lequel Jeedom est installé.
 
 -   **Clef d’installation** : Clef matérielle de votre Jeedom sur
     le Market. Si votre Jeedom n’apparaît pas dans la liste de vos
@@ -56,10 +56,10 @@ Thèmes
 -   **Desktop clair et sombre** : Vous permet de choisir un thème clair
     et un sombre pour le Desktop.
 
--   **Mobile clair et sombre** : idem que précédement pour la version Mobile.
+-   **Mobile clair et sombre** : idem que précédemment pour la version Mobile.
 
 -   **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle
-    le thème clair choisit précédement sera utilisé. Il faut cependant cocher l'option
+    le thème clair choisit précédemment sera utilisé. Il faut cependant cocher l'option
     **Bascule du thème en fonction de l'heure**.
 
 -   **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer
@@ -158,7 +158,7 @@ externe** (depuis un autre réseau notamment depuis Internet).
 > votre navigateur Internet, si vous devez ajouter /jeedom (ou autre
 > chose) après l’IP.
 
--   **Gestion avancée** : Cette partie peut ne pas apparaitre, en
+-   **Gestion avancée** : Cette partie peut ne pas apparaître, en
     fonction de la compatibilité avec votre matériel. Vous y trouverez
     la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
     de ne pas monitorer le réseau en cliquant sur **désactiver la
@@ -477,7 +477,7 @@ Interaction automatique, contextuelle & avertissement
     de définie. Il va alors chercher un nom d’objet et/ou d’équipement
     et/ou de commande pour essayer de répondre au mieux.
 
--   Les **interactions contextuelles** vous permettent d’enchainer
+-   Les **interactions contextuelles** vous permettent d’enchaîner
     plusieurs demandes sans tout répéter, par exemple :
 
     -   *Jeedom gardant le contexte :*
@@ -522,7 +522,7 @@ Voici donc les différentes options disponibles :
 
 -   **Réponse contextuelle prioritaire si la phrase commence par** : Si
     la phrase commence par le mot que vous renseignez ici, Jeedom va
-    alors prioritiser une réponse contextuelle (vous pouvez mettre
+    alors prioriser une réponse contextuelle (vous pouvez mettre
     plusieurs mots en les séparant par des **;** ).
 
 -   **Découper une interaction en 2 si elle contient** : Même chose pour
@@ -665,7 +665,7 @@ refusée si vous utilisez un autre dépôt que celui-ci.
 
 -   **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit etre unique pour chaque Jeedom sous risque qu'il s'écrase entre eux)
 
--   **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le récuperer. Sans celui-ci vous ne pourrez plus restaurer votre Jeedom.
+-   **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le récupérer. Sans celui-ci vous ne pourrez plus restaurer votre Jeedom.
 
 -   **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémental (qui n'envoie que les différences). Il est recommandé d'en faire 1 par mois
 
@@ -698,8 +698,8 @@ un partage Samba (ex : NAS Synology).
 > **Note**
 >
 > Lors de la validation du partage Samba, tel que décrit précédemment,
-> une nouvelle forme de sauvegarde apparait dans la partie
-> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procèdera
+> une nouvelle forme de sauvegarde apparaît dans la partie
+> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procédera
 > à son envoi automatique lors de la prochaine sauvegarde. Un test est
 > possible en effectuant une sauvegarde manuelle.
 

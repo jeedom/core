@@ -553,7 +553,7 @@ $('#bt_resetHardwareType').on('click',function(){
 });
 
 $('#bt_removeTimelineEvent').on('click',function(){
-  jeedom.removeTimelineEvents({
+  jeedom.timeline.deleteAll({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },

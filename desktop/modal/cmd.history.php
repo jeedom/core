@@ -32,6 +32,7 @@ sendVarToJs('cmd_show',$showId);
 
 <script>
 var cmdIds = cmd_id.split('-')
+cmdIds = $.unique(cmdIds)
 var cmd_showName = ''
 
 $(".in_datepicker").datepicker()
@@ -78,7 +79,7 @@ function setModal() {
         if ($(this).find('tspan').html() != cmd_showName) $(this).click()
       })
     }
-    
+
     $('#bt_validChangeDate').on('click', function() {
       var modal = false;
       if ($('#md_modal').is(':visible')) {
@@ -94,7 +95,7 @@ function setModal() {
     $('#bt_openInHistory').on('click', function() {
       loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
-    
+
     $('.highcharts-legend-item').on('click',function(event) {
       if (!event.ctrlKey && !event.altKey) return
       event.stopImmediatePropagation()
@@ -111,11 +112,11 @@ function setModal() {
         chart.series[serieId].show()
       }
     })
-    
+
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
     var divHighChart = $('#div_historyChart')
-    
+
     //check previous size/pos:
     var datas = modal.data()
     if (datas.width && datas.height && datas.top && datas.left) {
@@ -133,7 +134,7 @@ function setModal() {
       })
       modalContent.width(width-26).height(height-40)
     }
-    
+
     resizeHighChartModal()
     modal.resize(function() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
@@ -142,7 +143,7 @@ function setModal() {
     modal.find('.ui-draggable-handle').on('mouseup', function(event) {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
-    
+
     function resizeHighChartModal() {
       divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
     }

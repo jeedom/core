@@ -115,7 +115,7 @@ jeedom.view.handleViewAjax = function (_params) {
       result.html += viewZone.html;
     }
     result.html += '</div>';
-
+    
     colIdx += parseInt(init(viewZone.configuration.zoneCol,12))
     if (colIdx > 11) colIdx = 0
     if (colIdx == 0 ) result.html += '</div>';
@@ -156,13 +156,11 @@ jeedom.view.save = function (_params) {
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
-  console.log(_params);
   paramsAJAX.data = {
     action: 'save',
     view_id: _params.id,
     view: json_encode(_params.view),
   };
-  console.log(paramsAJAX);
   $.ajax(paramsAJAX);
 }
 

@@ -79,12 +79,16 @@ $(function(){
           autoHide: true,
           zIndex: 9999,
           className: 'object-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=object&id=' + options.commands[key].id;
+          callback: function(key, options, event) {
+            url = 'index.php?v=d&p=object&id=' + options.commands[key].id
             if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
+              url += '#' + document.location.toString().split('#')[1]
             }
-            loadPage(url);
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              window.open(url).focus()
+            } else {
+              loadPage(url)
+            }
           },
           items: contextmenuitems
         })
@@ -123,14 +127,26 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME);
 });
 
-$(".objectDisplayCard").on('click', function (event) {
-  loadObjectConfiguration($(this).attr('data-object_id'));
-  $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
-  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
-    $('.nav-tabs a[href="#objecttab"]').click();
+$(".objectDisplayCard").off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=object&id='+$(this).attr('data-object_id')
+    window.open(url).focus()
+  } else {
+    loadObjectConfiguration($(this).attr('data-object_id'));
+    $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'))
+    if (document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined) {
+      $('.nav-tabs a[href="#objecttab"]').click()
+    }
   }
-  return false;
-});
+  return false
+})
+$('.objectDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-object_id')
+    $('.objectDisplayCard[data-object_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('#bt_removeBackgroundImage').off('click').on('click', function () {
   jeedom.object.removeImage({

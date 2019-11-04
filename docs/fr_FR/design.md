@@ -2,7 +2,7 @@ Cette page permet de configurer l’affichage de toute votre domotique de
 manière très fine. Celle-ci demande du temps mais sa seule limite est
 votre imagination.
 
-Elle est accessible par Acceuil → Design
+Elle est accessible par Accueil → Design
 
 > **Tip**
 >
@@ -88,7 +88,7 @@ actions suivantes :
 > La configuration des éléments du design se fait par un clic sur
 > ceux-ci.
 
-Configuration du design 
+Configuration du design
 =======================
 
 On retrouve ici :
@@ -120,7 +120,7 @@ On retrouve ici :
     -   **Taille (LxH)** : Permet de fixer la taille de votre design
         (cadre gris en mode édition)
 
-Configuration générale des éléments 
+Configuration générale des éléments
 ===================================
 
 > **Note**
@@ -132,7 +132,7 @@ Configuration générale des éléments
 > L’élément sélectionné apparaît en surbrillance rouge (au lieu de vert
 > pour tous les autres).
 
-Paramètre d’affichage 
+Paramètre d’affichage
 ---------------------
 
 -   **Profondeur** : permet de choisir le niveau de la profondeur
@@ -145,26 +145,26 @@ Paramètre d’affichage
 
 -   **Hauteur (px)** :
 
-Supprimer 
+Supprimer
 ---------
 
 Permet de supprimer l’élément
 
-Dupliquer 
+Dupliquer
 ---------
 
 Permet de dupliquer l’élément
 
-Verrouiller 
+Verrouiller
 -----------
 
 Permet de verrouiller l’élément pour qu’il ne soit plus déplaçable ou
 redimensionnable.
 
-Graphique 
+Graphique
 =========
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 -   **Période** : permet de choisir la période d’affichage
@@ -185,15 +185,15 @@ Paramètres d’affichage
     HTML (attention, il faut utiliser une syntaxe CSS, par exemple :
     solid 1px black)
 
-Configuration avancée 
+Configuration avancée
 ---------------------
 
 Permet de choisir les commandes à grapher
 
-Text/html 
+Text/html
 =========
 
--   **Icone** : Icone à afficher devant
+-   **Icone** : Icône à afficher devant
 
 -   **Couleur de fond** : permet de changer la couleur de fond ou de le
     mettre transparent, ne pas oublier de passer "Défaut" sur NON
@@ -225,18 +225,18 @@ Text/html
 > ou si il écrase un composant Jeedom planter complètement le design et
 > il ne restera plus qu’à le supprimer directement en base de données
 
-Scénario 
+Scénario
 ========
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Lien 
+Lien
 ====
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 -   **Nom** : Nom du lien (texte affiché)
@@ -263,38 +263,38 @@ Paramètres d’affichage
 
 -   **Gras** : met le texte en gras
 
-Equipement 
+Equipement
 ==========
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Configuration avancée 
+Configuration avancée
 ---------------------
 
 Affiche la fenêtre de configuration avancée de l’équipement (voir
 documentation Résumé domotique ("display"))
 
-Commande 
+Commande
 ========
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 Aucun paramètre spécifique d’affichage
 
-Configuration avancée 
+Configuration avancée
 ---------------------
 
 Affiche la fenêtre de configuration avancée de la commande (voir
 documentation Résumé domotique ("display"))
 
-Image/Caméra 
+Image/Caméra
 ============
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 -   **Afficher** : définit ce que vous voulez afficher, image fixe ou
@@ -305,23 +305,23 @@ Paramètres d’affichage
 
 -   **Caméra** : caméra à afficher (si vous avez choisi caméra)
 
-Zone 
+Zone
 ====
 
-Paramètres d’affichage 
+Paramètres d’affichage
 ---------------------
 
 -   **Type de zone** : C’est ici que vous choisissez le type de la zone :
     Macro simple, Macro Binaire ou Widget au survol
 
-### Macro simple 
+### Macro simple
 
 Dans ce mode là, un clic sur la zone exécute une ou plusieurs actions.
 
 Il vous suffit ici d’indiquer la liste des actions à faire lors du clic
 sur la zone
 
-### Macro binaire 
+### Macro binaire
 
 Dans ce mode, Jeedom va exécuter la ou les actions On ou Off en
 fonction de l’état de la commande que vous donnez. Ex : si la commande
@@ -334,7 +334,7 @@ la ou les actions Off
 Il vous suffit en dessous de mettre les actions à faire pour le On et
 pour le Off
 
-### Widget au survol 
+### Widget au survol
 
 Dans ce mode, lors du survol ou du clic dans la zone Jeedom, vous
 afficherez le widget en question
@@ -349,7 +349,7 @@ afficherez le widget en question
 -   **Position** : permet de choisir l’emplacement d’apparition du
     widget (par défaut bas droite)
 
-Résumé 
+Résumé
 ======
 
 -   **Lien** : Permet d’indiquer le résumé à afficher (Général pour le
@@ -373,7 +373,7 @@ Résumé
 -   **Gras** : met le texte en gras
 
 
-FAQ 
+FAQ
 ======
 
 >**Je n'arrive plus à éditer mon design**
@@ -382,4 +382,4 @@ FAQ
 
 >**Supprimer un design qui ne marche plus**
 >
->Dans la partie administration puis OS/DB, faire "select * from planHeader", récuperer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précedemment.
+>Dans la partie administration puis OS/DB, faire "select * from planHeader", récupérer l'id du design en question et faire un "delete from planHeader where id=#TODO#" et "delete from plan where planHeader_id=#todo#" en remplaçant bien #TODO# par l'id du design trouvé précédemment.

@@ -2582,6 +2582,14 @@
           "extra": "auto_increment"
         },
         {
+          "name": "folder",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "type",
           "type": "varchar(27)",
           "null": "YES",

@@ -181,12 +181,16 @@ $(function(){
           autoHide: true,
           zIndex: 9999,
           className: 'widget-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id;
+          callback: function(key, options, event) {
+            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
             if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
+              url += '#' + document.location.toString().split('#')[1]
             }
-            loadPage(url);
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              window.open(url).focus()
+            } else {
+              loadPage(url)
+            }
           },
           items: contextmenuitems
         })
@@ -260,9 +264,9 @@ function loadTemplateConfiguration(_template,_data){
         for(var i in data.replace){
           replace += '<div class="form-group">';
           if(widget_parameters_opt[data.replace[i]]){
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
           }else{
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
           }
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
@@ -409,10 +413,16 @@ $('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConf
   $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
 });
 
-$(".widgetsDisplayCard").on('click', function (event) {
-  $('#div_conf').show();
-  $('#div_widgetsList').hide();
-  $('#div_templateTest').empty();
+$(".widgetsDisplayCard").off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=widgets&id='+$(this).attr('data-widgets_id')
+    window.open(url).focus()
+  } else {
+    $('#div_conf').show()
+    $('#div_widgetsList').hide()
+    $('#div_templateTest').empty()
+  }
+
   jeedom.widgets.byId({
     id: $(this).attr('data-widgets_id'),
     cache: false,
@@ -463,11 +473,19 @@ $(".widgetsDisplayCard").on('click', function (event) {
         },
         success: function (data) {
           $('#div_widgetPreview').empty().html(data.html);
+          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
         }
       })
     }
   });
 });
+$('.widgetsDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-widgets_id')
+    $('.widgetsDisplayCard[data-widgets_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 if (is_numeric(getUrlVars('id'))) {
   if ($('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').length != 0) {

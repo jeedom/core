@@ -6,7 +6,7 @@
 		<span class="iconCmd"></span>
 	</div>
 	<div class="value">
-		<span class="timeCmd label label-default value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+		<span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
 	</div>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
@@ -26,7 +26,6 @@
 			}
 			cmd.find('.iconCmd img').attr('style',style);
 			cmd.off('changeThemeEventCmd').on('changeThemeEventCmd',function (event, theme) {
-				console.log(theme);
 				var state = '';
 				#change_theme#
 				if(state != ''){

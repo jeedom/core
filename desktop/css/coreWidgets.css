@@ -335,7 +335,7 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
 }
 
 .shuttergauge .ui-slider-vertical > .sliderValue {
-  bottom: 12px;
+  bottom: -5px;
   right: 26px;
   width: 25px;
 }

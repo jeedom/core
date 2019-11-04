@@ -135,35 +135,37 @@ foreach (widgets::all() as $widget) {
 <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
-      <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-check-double"></i> {{Appliquer sur}}
-      </a><span class="btn btn-info btn-sm btn-file "><i class="fas fa-file-import"></i> {{Importer}}<input  id="bt_importWidgets" type="file" name="file" title="" style="display: inline-block;">
-      </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> {{Exporter}}
+      <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-check-double"></i> <span class="hidden-xs">{{Appliquer sur}}</span>
+      </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
+      </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-xs">{{Exporter}}</span>
       </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="far fa-check-circle"></i> {{Sauvegarder}}
       </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
     </span>
   </div>
+
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
     <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
   </ul>
+
   <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
     <div role="tabpanel" class="tab-pane active" id="widgetstab">
       <br/>
       <form class="form-horizontal">
         <fieldset>
           <div class="row">
-            <div class="col-xs-5">
+            <div class="col-md-6 col-sm-12">
               <legend><i class="fas fa-wrench"></i> {{Général}}</legend>
               <div class="form-group">
-                <label class="col-lg-4 col-xs-6 control-label">{{Nom du widget}}</label>
-                <div class="col-lg-6 col-xs-6">
+                <label class="col-lg-4 col-xs-4 control-label">{{Nom du widget}}</label>
+                <div class="col-lg-4 col-xs-5">
                   <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
                   <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-4 col-xs-6 control-label">{{Type}}</label>
-                <div class="col-lg-6 col-xs-6">
+                <label class="col-lg-4 col-xs-4 control-label">{{Type}}</label>
+                <div class="col-lg-4 col-xs-5">
                   <select class="form-control widgetsAttr" data-l1key="type">
                     <?php
                     foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
@@ -174,8 +176,8 @@ foreach (widgets::all() as $widget) {
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-4 col-xs-6 control-label">{{Sous-Type}}</label>
-                <div class="col-lg-6 col-xs-6">
+                <label class="col-lg-4 col-xs-4 control-label">{{Sous-Type}}</label>
+                <div class="col-lg-4 col-xs-5">
                   <?php
                   foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
                     echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="'.$key.'">';
@@ -188,8 +190,8 @@ foreach (widgets::all() as $widget) {
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-4 col-xs-6 control-label">{{Template}}</label>
-                <div class="col-lg-6 col-xs-6">
+                <label class="col-lg-4 col-xs-4 control-label">{{Template}}</label>
+                <div class="col-lg-4 col-xs-5">
                   <?php
                   foreach (widgets::listTemplate() as $type => $values) {
                     foreach ($values as $subtype => $namelist) {
@@ -204,7 +206,7 @@ foreach (widgets::all() as $widget) {
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-lg-4 col-xs-6 control-label">{{Icône}}</label>
+                <label class="col-lg-4 col-xs-4 control-label">{{Icône}}</label>
                 <div class="col-lg-2 col-xs-3">
                   <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
                 </div>
@@ -213,19 +215,16 @@ foreach (widgets::all() as $widget) {
                 </div>
               </div>
             </div>
-            <div class="col-xs-4">
-              <legend><i class="fas fa-link"></i> {{Commandes liées}}</legend>
-              <div class="form-group">
-                <div class="col-xs-9" id="div_usedBy"></div>
-              </div>
-            </div>
-            <div class="col-xs-3">
+            <div class="col-md-6 col-sm-12">
               <legend><i class="fas fa-search"></i> {{Prévisualisation}}</legend>
-              <div  id="div_widgetPreview"></div>
+              <center>
+                <div id="div_widgetPreview"></div>
+              </center>
             </div>
           </div>
         </fieldset>
       </form>
+
       <form class="form-horizontal">
         <fieldset>
           <div class="col-sm-12">
@@ -238,6 +237,21 @@ foreach (widgets::all() as $widget) {
           </div>
         </fieldset>
       </form>
+
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="row">
+            <div class="col-sm-12">
+              <legend><i class="fas fa-link"></i> {{Commandes liées}}</legend>
+              <div class="form-group">
+                <div class="col-xs-9" id="div_usedBy"></div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+
     </div>
   </div>
 </div>

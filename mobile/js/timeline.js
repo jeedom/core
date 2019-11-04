@@ -1,20 +1,40 @@
 $('body').attr('data-page', 'timeline')
 function initTimeline() {
-  displayTimeline()
-  var rightPanel = '<ul data-role="listview" class="ui-icon-alt">'
-  rightPanel += '<li><a id="bt_refreshTimeline" href="#"><i class="fas fa-sync"></i> {{Rafraîchir}}</a></li>'
-  rightPanel += '</ul>'
-  panel(rightPanel)
-
+  
+  jeedom.timeline.listFolder({
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function (data) {
+      var rightPanel = '<ul data-role="listview" class="ui-icon-alt">'
+      rightPanel += '<li><a id="bt_refreshTimeline" href="#"><i class="fas fa-sync"></i> {{Rafraîchir}}</a></li>'
+      for(var i in data){
+        if(data[i] == 'main'){
+          rightPanel += '<li><a class="changeTimelineFolder active" href="#" data-value="'+data[i]+'">{{Principal}}</a></li>'
+        }else{
+          rightPanel += '<li><a class="changeTimelineFolder" href="#" data-value="'+data[i]+'">'+data[i]+'</a></li>'
+        }
+      }
+      rightPanel += '</ul>'
+      panel(rightPanel)
+      $('.changeTimelineFolder').off('click').on('click',function(){
+        $('.changeTimelineFolder').removeClass('active')
+        $(this).addClass('active')
+        displayTimeline()
+      })
+      displayTimeline()
+    }
+  })
+  
   $('#bt_refreshTimeline').on('click',function(){
     displayTimeline()
   })
 }
 
-//"datetime":"2019-08-27 21:03:02"
 
-function displayTimeline(){
-  jeedom.getTimelineEvents({
+function displayTimeline(_folder){
+  jeedom.timeline.byFolder({
+    folder : $('.changeTimelineFolder.active').attr('data-value'),
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -24,10 +44,8 @@ function displayTimeline(){
         data.key = key
         key ++
       })
-
       data.sort(sortByDateConsistentASC)
       data.reverse()
-
       var tr = ''
       for (var i in data) {
         if (!data[i].date) continue
@@ -61,20 +79,17 @@ function displayTimeline(){
 function sortByDateConsistentASC(itemA, itemB) {
   var valueA = itemA.date
   var valueB = itemB.date
-
   var a = moment(valueA)
   var b = moment(valueB)
   var r = 0
-
   if (a.isValid() && b.isValid()) {
     r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
   }
-
   if(r === 0){
     r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
-      itemA.key - itemB.key : 0
+    itemA.key - itemB.key : 0
   }
-    return r
+  return r
 }
 
 function sepDays() {

@@ -421,8 +421,8 @@ function setTheme() {
 										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 									</li>
 								<?php } ?>
-								<li class="hidden-xs"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
-								<li class="hidden-xs navTime">
+								<li class="hidden-sm"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
+								<li class="hidden-sm navTime">
 									<a href="index.php?v=d&p=history#timelinetab">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
@@ -430,7 +430,7 @@ function setTheme() {
 										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 									</a>
 								</li>
-								<li class="hidden-xs">
+								<li class="hidden-sm">
 									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
 								</li>
 							</ul>

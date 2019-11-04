@@ -372,7 +372,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var eqLogics = {};
   var sends = {};
   for(var i in _params){
-    jeedom.cmd.refreshByEqLogic({eqLogic_id : _params[i].eqLogic_id});
     var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;
@@ -387,7 +386,6 @@ jeedom.eqLogic.refreshValue = function (_params) {
     global: false,
     success: function (result) {
       for(var i in result){
-        var gridstack = false;
         var html = $(result[i].html);
         var eqLogic = eqLogics[i].eqLogic;
         var uid = html.attr('data-eqLogic_uid');

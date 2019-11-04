@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -30min'))){
+if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 	try {
 		update::checkAllUpdate();
 	} catch (\Exception $e) {

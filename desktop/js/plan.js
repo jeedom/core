@@ -40,7 +40,7 @@ for(var i in planHeader){
   }
 }
 if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
-  $.contextMenu({
+  var contextMenu = $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,
     events: {
@@ -327,6 +327,7 @@ if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function (data) {
+                  planHeader_id = data.id;
                   loadPage('index.php?v=d&p=plan&plan_id=' + data.id);
                 },
               });
@@ -713,6 +714,10 @@ function draggableDragFix(event, ui) {
 function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
   if (_state) {
+    if(!$('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',true)
+    }
+    editOption.state = true;
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
@@ -772,6 +777,10 @@ function initEditOption(_state) {
       
     }
   }else{
+    if($('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',false);
+    }
+    editOption.state = false;
     jeedom.cmd.disableExecute = false;
     $('.div_displayObject').removeClass('editingMode')
     try{
@@ -871,8 +880,6 @@ function displayPlan(_code) {
         });
       }
       $('.div_displayObject').find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove();
-      
-      
       jeedom.plan.byPlanHeader({
         id: planHeader_id,
         error: function (error) {
@@ -894,8 +901,9 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
-          
-          initEditOption(editOption.state);
+          addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
+          initEditOption(0);
+          editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
           initReportMode();
         }
       });
