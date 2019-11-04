@@ -23,6 +23,9 @@ Changelog
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
+- Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
+- Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
+- Corrections de docs en adéquation avec la v4 et v4.1.
 - Corrections de bugs et optimisations.
 
 

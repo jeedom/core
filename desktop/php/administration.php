@@ -389,7 +389,7 @@ user::isBan();
 				<fieldset>
 					<legend><i class="fas fa-brain"></i> {{Général}}</legend>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification général}}
+						<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">{{Vérification générale}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">

@@ -1,13 +1,9 @@
-
-Description
-===========
+# Résumé Domotique
+**Analyse → Résumé domotique**
 
 Cette page permet de rassembler sur une seule page les différents éléments configurés sur son Jeedom. Elle donne également l’accès à des fonctions d’organisation des équipements et des commandes, à leur configuration avancée ainsi qu’à des possibilités de configuration d’affichage.
 
-Cette page est accessible par **Analyse → Résumé domotique**.
-
-Le haut de la page
-------------------
+## Informations
 
 Sur le haut de la page, on retrouve :
 - **Nombre d’objets** : Nombre total d’objets configurés dans notre Jeedom, en comptant les éléments inactifs.
@@ -19,13 +15,12 @@ Sur le haut de la page, on retrouve :
 
 Vous avez aussi un onglet **Historique**, affichant l'historique des commandes, équipements, objets, vues, design, design 3d, scénarios et utilisateurs supprimés.
 
-Les cadres objet
-----------------
+## Les cadres objet
 
 En dessous on retrouve un cadre par objet. Dans chaque cadre, on trouve la liste des équipements  qui ont pour parent cet objet.
 Le premier cadre **Aucun** représente les équipements qui n’ont pas de parent affecté.
-Pour chaque objet, à côté de son libellé, trois boutons sont disponibles. De gauche à droite :
 
+Pour chaque objet, à côté de son libellé, deux boutons sont disponibles.
 - Le premier sert à ouvrir la page de configuration de l’objet dans un nouvel onglet.
 - Le deuxième apporte quelques informations sur l’objet,
 
@@ -33,10 +28,9 @@ Pour chaque objet, à côté de son libellé, trois boutons sont disponibles. De
 > La couleur de fond des cadres objets dépend de la couleur choisie dans la configuration de l’objet.
 
 > **Tip**
-> Avec un cliqué-déposé sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du dashboard est calculé.
+> Avec un cliqué-déposé sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du Dashboard est calculé.
 
-Les équipements
----------------
+## Les équipements
 
 Sur chaque équipement on retrouve :
 
@@ -46,12 +40,14 @@ Sur chaque équipement on retrouve :
 - Le **nom** de l’équipement.
 - **Inactif** (petite croix) : Signifie que l’équipement est inactif (si elle n’y est pas, l’équipement est actif).
 - **Invisible** (œil barré) : Signifie que l’équipement est invisible (s’il n’y est pas, l’équipement est visible).
+
+Si le plugin de l'équipement est désactivé, les deux icône à droite n'apparaissent pas:
 - **Lien externe** (carré avec une flèche) : Permet d’ouvrir dans un nouvel onglet la page de configuration de l’équipement.
 - **Configuration avancée** (roue crantée) : permet d’ouvrir la fenêtre de configuration avancée de l’équipement.
+
 > En cliquant sur la ligne contenant le nom de l'équipement, vous afficherez toutes les commandes de cet équipement. En cliquant alors sur une commande, vous accéderez à la fenêtre de configuration de la commande.
 
-Configuration avancée d’un équipement
-=====================================
+## Configuration avancée d’un équipement
 
 > **Tip**
 > Il est possible d’accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l’équipement en cliquant sur le bouton configuration avancée
@@ -64,8 +60,7 @@ La fenêtre de **configuration avancée d’un équipement** permet de la modifi
 - **Sauvegarder** : Sauvegarde les modifications faites sur l’équipement.
 - **Supprimer** : Supprime l’équipement.
 
-Onglet Informations
--------------------
+### Onglet Informations
 
 L’onglet **Informations** contient les informations générales de l’équipement ainsi que ses commandes :
 
@@ -80,16 +75,15 @@ L’onglet **Informations** contient les informations générales de l’équipe
 - **Tentative échouée** : Nombre de tentatives de communications consécutives avec l’équipement qui ont échoué.
 - **Date de dernière communication** : Date de la dernière communication de l’équipement.
 - **Dernière mise à jour** : Date de dernière communication avec l’équipement.
-- **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le dashboard de faire des filtres personnalisés
+- **Tags** : tags de l'équipement, à séparer par des ','. Il permet sur le Dashboard de faire des filtres personnalisés
 
 En dessous vous retrouvez un tableau avec la liste des commandes de l’équipement avec, pour chacune, un lien vers leur configuration.
 
-Onglet Affichage
-----------------
+### Onglet Affichage
 
-Dans l’onglet **Affichage**, vous allez pouvoir configurer certains comportements d’affichage de la tuile sur le dashboard ou en mobile.
+Dans l’onglet **Affichage**, vous allez pouvoir configurer certains comportements d’affichage de la tuile sur le Dashboard ou en mobile.
 
-### Widget
+#### Widget
 
 -  **Visible** : Cochez la case pour rendre visible l’équipement.
 - **Afficher le nom** : Cochez la case pour afficher le nom de l’équipement sur la tuile.
@@ -103,8 +97,7 @@ nouveau. Pour les équipements, seule la valeur **style** est pour le moment uti
 > **Tip**
 > N’oubliez pas de sauvegarder après toute modification.
 
-Onglet Disposition
-------------------
+### Onglet Disposition
 
 Cette partie vous permet de choisir entre la disposition standard des commandes (côte à côte dans le widget), ou en mode tableau. Il n’y a rien à régler en mode par défaut. Voici les options disponibles en mode
 **Tableau** :
@@ -122,8 +115,7 @@ ceci :
 > **Tip**
 > Dans une case du tableau, si vous voulez mettre 2 commandes l’une en dessous de l’autre, il ne faut pas oublier de rajouter un retour à la ligne après la première dans la **configuration avancée** de celle-ci.
 
-Onglet Alertes
---------------
+### Onglet Alertes
 
 Cet onglet permet d’avoir les informations sur la batterie de l’équipement et de définir des alertes par rapport à celle-ci. Voici les types d’informations que l’on peut trouver :
 
@@ -138,13 +130,11 @@ On peut également gérer le timeout, en minutes, de l’équipement. Par exempl
 > **Tip**
 > Les paramètres globaux sont dans **Réglages→Système→Configuration : Logs** ou **Equipements**
 
-Onglet Commentaire
-------------------
+### Onglet Commentaire
 
 Permet d’écrire un commentaire à propos de l’équipement.
 
-Configuration avancée d’une commande
-====================================
+## Configuration avancée d’une commande
 
 En premier lieu, en haut à droite, quelques boutons disponibles :
 
@@ -161,8 +151,7 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 > **Note**
 > En fonction du type de commande, les informations/actions affichées peuvent changer.
 
-Onglet Informations
--------------------
+### Onglet Informations
 
 L’onglet **Informations** contient les informations générales sur la commande :
 
@@ -190,10 +179,9 @@ Vous avez aussi trois autres boutons oranges en dessous :
 
 En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d’aller directement sur leur configuration respective.
 
-Onglet Configuration
---------------------
+### Onglet Configuration
 
-### Pour une commande de type info :
+#### Pour une commande de type info :
 
 - **Calcul et arrondi**
     - **Formule de calcul (\#value\# pour la valeur)** : Permet de faire une opération sur la valeur de la commande avant le traitement par Jeedom, exemple : `#value# - 0.2` pour retrancher 0.2 (offset sur un capteur de température).
@@ -215,7 +203,7 @@ Onglet Configuration
     - **Gestion de la répétition des valeurs** : En automatique si la commande remonte 2 fois la même valeur d’affilée, alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario, sauf si la commande est de type binaire). Vous pouvez forcer la répétition de la valeur ou l’interdire complètement.
     - **Push URL** : Permet de rajouter une URL à appeler en cas de mise à jour de la commande. Vous pouvez utiliser les tags suivant : `#value#` pour la valeur de la commande, `#cmd_name#` pour le nom de la commande, `#cmd_id#` pour l’identifiant unique de la commande, `#humanname#` pour le nom complet de la commande       (ex : `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` pour le nom de l'équipement.
 
-### Pour une commande action :
+#### Pour une commande action :
 
 -  **Type générique** : Permet de configurer le type générique de la commande (Jeedom essaie de le trouver par lui-même en mode auto). Cette information est utilisée par l’application mobile.
 - **Confirmer l’action** : Cochez cette case pour que Jeedom demande une confirmation quand l’action est lancée à partir de l’interface de cette commande.
@@ -223,18 +211,16 @@ Onglet Configuration
 - **Action avant exécution de la commande** : Permet d’ajouter des commandes **avant** chaque exécution de la commande.
 - **Action après exécution de la commande** : Permet d’ajouter des commandes **après** chaque exécution de la commande.
 
-Onglet Alertes
---------------
+### Onglet Alertes
 
 Permet de définir un niveau d’alerte (**warning** ou **danger**) en fonction de certaines conditions. Par exemple, si `value > 8` pendant 30 minutes alors l’équipement peut passer en alerte **warning**.
 
 > **Note**
 > Sur la page **Réglages→Système→Configuration : Logs**, vous pouvez configurer une commande de type message qui permettra à Jeedom de vous prévenir si on atteint le seuil warning ou danger.
 
-Onglet Affichage
-----------------
+### Onglet Affichage
 
-Dans cette partie, vous allez pouvoir configurer certains comportements d’affichage du widget sur le dashboard, les vues, le design et en mobile.
+Dans cette partie, vous allez pouvoir configurer certains comportements d’affichage du widget sur le Dashboard, les vues, le design et en mobile.
 
 - **Widget** : Permet de choisir le widget sur dekstop ou mobile (à noter qu’il faut le plugin widget et que vous pouvez le faire aussi à partir de celui-ci).
 - **Visible** : Cochez pour rendre visible la commande.

@@ -194,8 +194,9 @@ $('.configureCmd').off('click').on('click',function() {
 })
 
 $('.cmd').off('dblclick').on('dblclick',function() {
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"})
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+  if ($(this).find('.configureCmd').length) {
+    $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+  }
 })
 
 
