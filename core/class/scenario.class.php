@@ -276,7 +276,7 @@ class scenario {
 			$runtime = strtotime('now') - strtotime($scenario->getLastLaunch());
 			if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0 && $runtime > $scenario->getTimeout()) {
 				$scenario->stop();
-				$scenario->setLog(__('Arret du scénario car il a dépassé son temps de timeout : ', __FILE__) . $scenario->getTimeout() . 's');
+				$scenario->setLog(__('Arrêt du scénario car il a dépassé son temps de timeout : ', __FILE__) . $scenario->getTimeout() . 's');
 				$scenario->persistLog();
 			}
 		}
