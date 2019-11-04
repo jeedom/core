@@ -87,7 +87,7 @@ try {
 		if (!isConnect()) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		ajax::success(utils::o2a(plugin::listPlugin()));
+		ajax::success(utils::o2a(plugin::listPlugin(init('activateOnly',false))));
 	}
 
 	if (init('action') == 'getDependancyInfo') {

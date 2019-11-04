@@ -191,7 +191,7 @@ Parámetros:
 eqLogic::byId
 -------------
 
-Retourne l’équipement spécifié
+Devuelve el equipo especificado
 
 Parámetros: 
 
@@ -296,7 +296,7 @@ Parámetros:
     plusieurs commande d’un coup
 
 -   \[options\] Liste des options de la commande (dépend du type et du
-    sous-type de la commande)
+    subtipo del comando)
 
 cmd::getStatistique
 -------------------
@@ -349,7 +349,7 @@ Parámetros:
 
 -   int id (vide si c’est une création)
 
--   string name
+-   string name
 
 -   string logicalId
 
@@ -516,7 +516,7 @@ Parámetros:
     es escenario)
 
 -   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
-    ou l’id du scénario)
+    o el id del escenario)
 
 -   string key : nom de la valeur
 
@@ -599,34 +599,38 @@ Installation/Mise à jour d’un plugin donné
 
 Parámetros:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::remove
 --------------
 
-Suppression d’un plugin donné
+Eliminando de un plugin dado
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInfo
 ----------------------
 
 Renvoi les informations sur le status des dépendances du plugins
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::dependancyInstall
 -------------------------
 
 Force l’installation des dépendances du plugin
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonInfo
 ------------------
@@ -635,35 +639,38 @@ Renvoi les informations sur le status du démon du plugin
 
 Parámetros:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStart
 -------------------
 
-Forzar el inicio del deamon
+Force le démarrage du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonStop
 ------------------
 
-Forzar la parada del deamon
+Force l’arret du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 
 plugin::deamonChangeAutoMode
 ----------------------------
 
-Cambiar el modo de gestión del daemon
+Change le mode de gestion du démon
 
-Parámetros:
+Paramètres:
 
--   string plugin\_id : nom du plugin (nom logique)
-
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (opcional) : nombre del plugin (nombre lógico)
 -   int mode : 1 pour automatique, 0 pour manuel
 
 API JSON update
@@ -685,6 +692,14 @@ update::update
 
 Permet de mettre à jour Jeedom et tous les plugins
 
+update::doUpdate
+--------------
+
+Paramètres:
+
+-   int plugin\_id (optionnel) : id du plugin
+-   string logicalId (optionnel) : nom du plugin (nom logique)
+
 API JSON network
 ================
 
@@ -696,14 +711,14 @@ Force le (re)démarrage du DNS Jeedom
 network::stopDns
 ----------------
 
-Forzar la parada del DNS Jeedom
+Force l’arret du DNS Jeedom
 
 network::dnsRun
 ---------------
 
-Devuelve el estado de DNS Jeedom
+Renvoi le status du DNS Jeedom
 
-API JSON Ejemplos
+API JSON Exemples
 =================
 
 Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous

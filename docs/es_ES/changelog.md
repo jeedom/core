@@ -2,70 +2,128 @@ Changelog
 
 4.0.0
 =====
-- Refonte des thèmes (Core 2019 Light / Dark / Legacy).
+- Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
-- En mobile le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).
+- En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>
 - Amélioration et réorganisation du menu principal.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
-- Refonte du système de widgets (menu Outils / Widgets).
-- Ajout d'un widget horizontal (core).
-- Ajout d'un widget vertical (core).
-- Affichage du widget shutter (core) proportionnel à la valeur.<br/><br/>
+- Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
+- Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
+- Les champs de recherche supportent maintenant les accents.
+- Les champs de recherche (dashboard, scénarios, objets, widgets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de taper directement une recherche.
+- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
+- Lors d'une recherche, la touche *echap* annule la recherche.
+- Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
+- Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
+- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaitra le temps de l’exécution.
+- Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
+- Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
+- Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
+- Fenêtre Configuration de commande: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
+- Fenêtre Configuration de l'équipement: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
+- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
+- Objets : Ajout d'une option pour utiliser des couleurs personnalisées.
+- Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
+- Interactions : Ajout d'un menu contextuel sur les onglets (changement rapide d'interaction).
+- Plugins : Ajout d'un menu contextuel sur les onglets (changement rapide d'équipement).
+- Plugins : Sur la page Gestion des plugins, un point orange signale les plugins en version non Stable.
+- Améliorations des tables avec option de filtre et tri.
+- Possibilité d'attribuer une icône à une interaction.
+- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
+- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
+- Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
+- Widgets : Refonte du système de widgets (menu Outils / Widgets).
+- Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
+- Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
+- Widgets : Ajout d'un widget info numeric horizontal.
+- Widgets : Ajout d'un widget info numeric vertical.
+- Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus).
+- Widgets : Ajout d'un widget info numeric rain (merci @thanaus)
+- Widgets : Affichage du widget info/action shutter proportionnel à la valeur.<br/><br/>
 - Configuration : Amélioration et réorganisation des onglets.
+- Configuration : Ajout de nombreux *tooltips* (aide).
+- Configuration : Ajout d'un moteur de recherche.
 - Configuration : Ajout d'un bouton pour vider le cache des widgets (onglet Cache).
 - Configuration : Ajout d'une option pour désactiver le cache des widgets (onglet Cache).
 - Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
-- Configuration : Ajout de nombreux *tooltips* (aide).
-- Configuration : Ajout d'un moteur de recherche.<br/><br/>
-- Scénario : Possibilité en faisant un ctrl + clic sur le bouton *éxécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
+- Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
+- Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
+- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étés mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
+- Scénario : La colorisation des blocs n'est plus aléatoire, mais par type de bloc.
+- Scénario : Possibilité en faisant un Ctrl + clic sur le bouton *exécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
 - Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
-- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+Click sur *coller* remplace le bloc par le bloc copié.
+- Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic pour couper/remplacer.
 - Scénario : Un nouveau bloc n'est plus ajouté à la fin du scénario, mais après le bloc où vous étiez avant de cliquer, déterminé par le dernier champ dans lequel vous avez cliqué.
-- Scénario : Mise en place d'un système d'Undo/Redo (Shift+Z / Shift+Y).
-- Suppression du partage de scénario.
-- Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
-- Ajout d'un menu contextuel sur les onglets dans les objets (changement rapide d'objet).
-- Ajout d'un menu contextuel sur les onglets dans les interactions (changement rapide d'interaction).
-- Ajout d'un menu contextuel sur les onglets dans les plugins (changement rapide d'équipement).
-- Ajout d'un moteur de recherche dans Analyse / Equipements, onglet Batteries (recherche sur les noms et parents).
-- Les champs de recherche supportent maintenant les accents.
-- Les champs de recherche (pages scénarios, objets, interactions, plugins) sont maintenant actifs à l'ouverture de la page, permettant de commencer directement une recherche.
-- Ajout d'un bouton X sur les champs de recherche pour annuler la recherche.
-- Lors d'une recherche, la touche *echap* annule la recherche.
-- Page Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
-- Ajout d'informations d'utilisation lors de la suppression d'un équipement.
-- Améliorations des tables avec option de filtre et tri.
-- Possibilité d'attribuer une icône à une interaction.
-- Page update : warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
-- Page update : différentiation par version (stable, beta, ...).
-- Page update : ajout d'une barre de progression pendant l'update.
-- Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
-- Résumé domotique : l'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
+- Scénario : Mise en place d'un système d'Undo/Redo (Ctrl+Shift+Z / Ctrl+Shift+Y).
+- Scénario : Suppression du partage de scénario.
+- Scénario : Amélioration de la fenêtre de gestion des templates de scénario.<br/><br/>
+- Analyse / Equipements : Ajout d'un moteur de recherche (onglet Batteries, recherche sur les noms et parents).
+- Analyse / Equipements : La zone calendrier/jours de l'équipement est maintenant cliquable pour accéder directement au changement de pile(s).
+- Analyse / Equipements : Ajout d'un champ de recherche.<br/><br/>
+- Centre de mise à jour : Warning sur l'onglet 'Core et plugins' et/ou 'Autres' si une update est disponible. Bascule sur 'Autres' si nécessaire.
+- Centre de mise à jour : différentiation par version (stable, beta, ...).
+- Centre de mise à jour : ajout d'une barre de progression pendant l'update.<br/><br/>
+- Résumé domotique : L'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
-- Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
-- Ajout d'un champs CSS personnalisé sur les éléments du *design*.
-- Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
-- Le déplacement et le redimenssionement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.
-- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
-- Ajout d'une option sur les objets pour utiliser des couleurs personnalisées (sinon, utilise les couleurs par défaut du thème).
-- Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
+- Résumé domotique : Ajout des IDs d'équipement et de commande, à l'affichage et dans la recherche.
+- Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id,commande.
+- Résumé domotique : Possibilité de rendre visible ou non une ou des commandes.<br/><br/>
+- Design : Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
+- Design : Ajout d'un champs CSS personnalisé sur les éléments du *design*.
+- Design : Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
+- Design : Le déplacement et le redimensionnement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
 - Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
-- Nombreuses corrections de bugs.
-- Ajout d'un parametre de configuration pour la purge globale par défaut des historiques (ex : maximum 6 mois par défaut)
-- Possibilité depuis le résumé domotique de rendre visible ou non une ou des commandes
-- Changement de #message# à #subject# dans Configuration/Logs/Messages pour eviter la duplication du message
-- Possibilité dans les résumé d'ajouter une exclusion des commandes n'ayant pas étaient mise à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)
-- Ajout dans le menu outils d'un bouton pour avoir accès au testeur d'expression
-- Le nom des équipements est tronqué sur le dashboard si il dépasse les 25 caracteres
+- Muchas correcciones de errores.
+- Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
 >**IMPORTANT**
 >
 >Si après la mise à jour vous avez une erreur sur le dashboard essayez de redemarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte
+
+>**IMPORTANT**
+>
+>Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
+
+3.3.34
+=====
+- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+- Correction d'un bug sur les tags dans les interactions
+- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Correction de bug sur les backups cloud
+
+
+3.3.33
+=====
+
+- Correction de bugs
+
+3.3.32
+=====
+
+- Correction de bugs
+- Support en mobile des sliders sur les designs
+- SMART : optimisation de la gestion du swap
+
+3.3.31
+=====
+
+- Correction de bugs
+
+3.3.30
+=====
+
+- Correction d'un bug sur l'affichage des sessions utilisateur
+- Mise à jour de la documentation
+- Suppression de la mise à jour des graphiques en temps réel, suite aux nombreux bugs remontés
+- Correction d'un bug pouvant empêcher l'affichage de certains logs
+- Correction d'un bug sur le service de monitoring
+- Correction d'un bug sur la page "Analyse équipement", la date de mise à jour de la batterie est maintenant correcte
+- Amélioration de l'action remove_inat dans les scénarios
 
 3.3.29
 =====
@@ -78,26 +136,26 @@ Changelog
 =====
 
 - Correction d'un bug de roue infini sur la page des mises à jour
-- Corrections et optimisations diverse
+- Varias correcciones y optimizaciones
 
 3.3.27
 =====
 
 - Correction d'un bug sur la traduction des jours en français
 - Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
-- Correction de bugs
+- Corrección de errores
 - Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
 
 3.3.26
 =====
 
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
 3.3.25
 =====
-- Correction de bug
+- Corrección de errores
 - Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
@@ -105,7 +163,7 @@ Changelog
 =====
 -   Correction d'un bug sur l'affichage du nombre de mise à jour
 -   Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
--   Corrections de bugs
+-   Correcciones de errores
 -   Amélioration de la fenêtre de choix des icônes
 -   Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
 -   Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
@@ -113,7 +171,7 @@ Changelog
 
 3.3.22
 =====
-- Corrections de bugs
+- Correcciones de errores
 - Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
 - Correction d'un bug pouvant empêcher d'ouvrir certains équipements de plugins (type alarme ou virtuel)
 
@@ -124,10 +182,10 @@ Changelog
 - Correction d'un bug sur la gestion des niveaux d'alertes sur certains widgets lors de la mise à jour de la valeur
 - Correction de l'affichage des équipements désactivés sur certains plugins
 - Correction d'un bug lors de l'indication de changement de pile à Jeedom
-- Amélioration de l'affichage des logs lors de la mise à jour de Jeedom
+- Visualización mejorada de los registros al actualizar Jeedom
 - Correction de bug lors de la mise à jour de variable (qui ne lançait pas toujours les scénarios ou ne déclenchait pas une mise à jour des commandes dans tous les cas)
 - Correction d'un bug sur les backups Cloud, ou duplicity ne s'installait pas correctement
-- Amélioration du TTS interne à Jeedom
+- Mejora del TTS interno en Jeedom
 - Amélioration du système de vérification de syntaxe cron
 
 
@@ -166,7 +224,7 @@ Changelog
 - Ajout dans la configuration d'action sur valeur d'une commande un bouton pour chercher une action interne (scénario, pause...).
 - Ajout d'un action "Remise à zero des SI" sur les scénarios
 - Possibilité d'ajouter des images en fond sur les vues
-- Possibilité d'ajouter des images en fond sur les objets
+- Posibilidad de agregar imágenes de fondo en los objetos
 - L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 - Amélioration du support des () dans le calcul d'expressions
 - Possibilité d'éditer les scénarios en mode text/json
@@ -174,7 +232,7 @@ Changelog
 - Possibilitée d'ajouter des options dans les rapports
 - Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
 - Ajout des listeners sur la page de moteur de tâche
-- Optimisations
+- Optimizaciones
 - Possibilité de consulter les logs en version mobile (wepapp)
 - Ajout d'une action tag dans les scénarios (voir documentation)
 - Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
@@ -222,9 +280,9 @@ Changelog
 
 3.2.9
 =====
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
-- Correction de bugs sur les listenners
+- Corrección de errores en los listenners
 - Ajout d'une alerte si un plugin bloque les crons
 - Correction d'un bug dans le système de monitoring cloud si la version de l'agent est inférieure à 3.X.X
 
@@ -232,21 +290,21 @@ Changelog
 =====
 - Correction de bugs
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
-- Correction d'un bug sur le calcul d'utilisation des variables
+- Se corrigió un error en el cálculo de uso de las variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
 - Amélioration de l'éditeur de fichier
 
 3.2.7
 =====
-- Correction de bugs
-- Mise à jour de la docs
+- Corrección de errores
+- Actualización de la documentación
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
 - Correction de bugs
-- Mise à jour de la docs
+- Actualización de la documentación
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
@@ -257,10 +315,10 @@ Changelog
 
 3.2.4
 =====
-- Correction de bugs
+- Corrección de errores
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
-- Préparation pour le futur système d'alerting
+- Preparación para el futuro sistema de alerta
 
 3.2.3
 =====
@@ -302,7 +360,7 @@ Changelog
 - JEED-77 : Ajout de la gestion des variables dans l’API http
 - JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
 - JEED-124 : Corriger la gestion des timeouts des scénarios
-- Correction de bugs
+- Corrección de errores
 - Possibilité de désactiver une interaction
 - Ajout d’un éditeur de fichiers (réservé aux utilisateurs expérimentés)
 - Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
@@ -312,14 +370,14 @@ Changelog
 =====
 - Correction de bugs (en particulier sur les historiques et fonctions statistiques)
 - Amélioration du système de mises à jour avec une page de notes de version (que vous devez vérifier vous même avant chaque mise à
-    jour !!!!)
+    día !!!!)
 - Correction d’un bug qui récupérait les logs lors des restaurations
 
 3.1
 ===
-- Correction de bugs
+- Corrección de errores
 - Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
-- Support de Debian 9
+- Soporte de Debian 9
 - Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
 - Ajout d’une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
 - Un double-clic sur un nœud sur le graphique de lien (sauf pour les variables) amène sur sa page de configuration
@@ -342,8 +400,8 @@ Changelog
 - Possibilité d’historiser des commandes de type texte
 - Sur la page historique vous pouvez maintenant faire le graphique d’un calcul
 - Ajout d’une gestion de formule de calcul pour les historiques
-- Remise à jour de toute la documentation :
-    - Toute les docs ont été revues
+- Reactualización de toda la documentación :
+    - Todas los documentaciones han sido revisados
     - Suppression des images pour faciliter la mise à jour et le
         multilingue
 - Plus de choix possibles sur les réglage des tailles de zone dans les vues
@@ -353,7 +411,7 @@ Changelog
 - Ajout d’un paramètre reply\_cmd sur les interactions pour spécifier l’id de la commande à utiliser pour répondre
 - Ajout d’une timeline sur la page historique (attention doit être activée sur chaque commande et/ou scénario que vous voulez voir apparaitre)
 - Possibilité de vider les évènements de la timeline
-- Possibilité de vider les IPs bannies
+- Capacidad para vaciar IP prohibidas
 - Correction/amélioration de la gestion des comptes utilisateurs
     - Possibilité de supprimer le compte admin de base
     - Prévention du passage en normal du dernier administrateur
@@ -376,10 +434,10 @@ Changelog
 
 3.0
 ===
-- Suppression du mode esclave
+- Eliminando el modo esclavo
 - Possibilité de déclencher un scénario sur un changement d’une variable
 - Les mises à jour de variables déclenchent maintenant la mise à jour des commandes d’un équipement virtuel (il faut la dernière version du plugin)
-- Possibilité d’avoir une icône sur les commandes de type info
+- Posibilidad de tener un icono en los comandos de tipo información
 - Possibilité sur les commandes d’afficher le nom et l’icône
 - Ajout d’une action "alert" sur les scénarios : message en haut dans jeedom
 - Ajout d’une action "popup" sur les scénarios : message à valider
@@ -394,17 +452,17 @@ Changelog
 - Les développeurs tiers peuvent ajouter leur propre système de gestion de tickets
 - Refonte de la configuration des droits utilisateurs (tout est sur la page de gestion des utilisateurs)
 - Mise à jour des libs : jquery (en 3.0) , jquery mobile, hightstock et table sorter, font-awesome
-- Grosse amélioration des designs:
+- Gran mejora de los diseños :
     - Toutes les actions sont maintenant accessibles à partir d’un
-        clic droit
+        clic derecho
     - Possibilité d’ajouter une commande seule
-    - Possibilité d’ajouter une image ou un flux vidéo
+    - Posibilidad de agregar una imagen o una transmisión de video
     - Possibilité d’ajouter des zones (emplacement cliquable) :
         - Zone de type macro : lance une série d’actions lors d’un clic dessus
         - Zone de type binaire : lance une série d’actions lors d’un clic dessus en fonction de l’état d’une commande
         - Zone de type widget : affiche un widget au clic ou au survol de la zone
     - Optimisation générale du code
-    - Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
+    - Posibilidad de mostrar una cuadrícula y de elegir su tamaño (10x10,15x15 o 30x30)
     - Possibilité d’activer une aimantation des widgets sur la grille
     - Possibilité d’activer une aimantation des widgets entre eux
     - Certains types de widgets peuvent maintenant être dupliqués
@@ -441,7 +499,7 @@ Changelog
 - Les plugins peuvent maintenant ajouter des interactions
 - Les interactions peuvent maintenant renvoyer des fichiers en plus de la réponse
 - Possibilité de voir sur la page de configuration des plugins les fonctionnalités de ceux-ci (interact, cron…​) et de les désactiver unitairement
-- Les interactions automatiques peuvent renvoyer les valeurs des résumés
+- Las interacciones automáticas pueden devolver los valores de los resúmenes
 - Possibilité de définir des synonymes pour les objets, équipements, commandes et résumés qui seront utilisés dans les réponses contextuelles et résumés
 - Jeedom sait gérer plusieurs interactions liées (contextuellement) en une. Elles doivent être séparées par un mot clef (par défaut et). Exemple : "Combien fait-il dans la chambre et dans le salon ?" ou "Allume la lumière de la cuisine et de la chambre."
 - Le statut des scénarios sur la page d’édition est maintenant mis à jour dynamiquement
@@ -452,12 +510,12 @@ Changelog
 - Correction d’un bug sur la date de dernière remontée d’un événement pour certains plugins (alarme)
 - Correction d’un bug d’affichage avec Chrome 55
 - Optimisation du backup (sur un RPi2 le temps est divisé par 2)
-- Optimisation de la restauration
-- Optimisation du processus de mise à jour
-- Uniformisation du tmp jeedom, maintenant tout est dans /tmp/jeedom
+- Optimización de la restauración
+- Optimización el proceso de actualización
+- Uniformización del tmp jeedom, ahora todo está en /tmp/jeedom
 - Possibilité d’avoir un graph des différentes liaisons d’un scénario, équipement, objet, commande ou variable
 - Possibilité de régler la profondeur des graphiques de lien en fonction de l’objet d’origine
-- Possibilité d’avoir les logs des scénarios en temps réel (ralentit l’exécution des scénarios)
+- Posibilidad de tener los registros de los escenarios en tiempo real (ralentiza la ejecución de los escenarios)
 - Possibilité de passer des tags lors du lancement d’un scénario
 - Optimisation du chargement des scénarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)
 
@@ -472,8 +530,8 @@ Changelog
 
 2.4
 ---
-- Optimisation générale
-    - Regroupement de requêtes SQL
+- Optimización general
+    - Agrupando consultas SQL
     - Suppression de requêtes inutiles
     - Passage en cache du pid, état et dernier lancement des scénarios
     - Passage en cache du pid, état et dernier lancement des crons
@@ -521,11 +579,11 @@ Changelog
 - Correction de bugs
 - Déplacement de tous les fichiers temporaire dans /tmp
 - Amélioration de l’envoi des plugins (dos2unix automatique sur les fichiers \*.sh)
-- Refonte de la page de log
+- Rediseño de la página de registro
 - Ajout d’un thème darksobre pour mobile
 - Possibilité pour les développeurs d’ajouter des options de configuration des widget sur les widgets spécifique (type sonos, koubachi et autre)
 - Optimisation des logs (merci @kwizer15)
-- Possibilité de choisir le format des logs
+- Posibilidad de elegir el formato de los registros
 - Optimisation diverse du code (merci @kwizer15)
 - Passage en module de la connexion avec le market (permettra d’avoir un jeedom sans aucun lien au market)
 - Ajout d’un "repo" (module de connexion type la connexion avec le market) fichier (permet d’envoi un zip contenant le plugin)
@@ -544,9 +602,9 @@ Changelog
 - Possibilité de configurer le niveau de log d’un plugin directement sur la page de configuration de celui-ci
 - Possibilité de consulter les logs d’un plugin directement sur la page de configuration de celui-ci
 - Suppression du démarrage en debug des démons, maintenant le niveau de logs du démon est le même que celui du plugin
-- Nettoyage de lib tierce
+- Limpieza de la librería de terceros
 - Suppression de responsive voice (fonction dit dans les scénarios qui marchait de moins en moins bien)
-- Correction de plusieurs faille de sécurité
+- Se corrigieron varias vulnerabilidades de seguridad
 - Ajout d’un mode synchrone sur les scénarios (anciennement mode rapide)
 - Possibilité de rentrer manuellement la position des widgets en % sur les design
 - Refonte de la page de configuration des plugins
@@ -560,7 +618,7 @@ Changelog
 
 2.2
 ---
-- Correction de bugs
+- Corrección de errores
 - Simplification de l’accès aux configurations des plugins à partir de la page santé
 - Ajout d’une icône indiquant si le démon est démarré en debug ou non
 - Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)

@@ -1,6 +1,6 @@
-Il informe de toutes les tâches applicatives Jeedom qui tournent sur le
-serveur. Ce menu est à utiliser en connaissance de cause ou à la
-demande du support technique.
+It informs about all Jeedom application tasks that run on the
+server. This menu is to be used knowingly, or at the
+request technical support.
 
 > **Important**
 >
@@ -12,52 +12,52 @@ Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâch
 
 # Cron
 
-En haut, à droite, vous avez :
+On top right you can :
 
 -   **Désactiver le système cron** : un bouton pour désactiver ou
-    réactiver toutes les tâches (si vous les désactivez toutes, plus
-    rien ne sera fonctionnel sur votre Jeedom)
+    reactivate all tasks (if you disable them all, more
+    nothing will be functional on your Jeedom)
 
 -   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
 
--   **Ajouter** : un bouton pour ajouter une tâche cron
+-   **Add**: a button to add a cron job
 
--   **Enregistrer** : un bouton pour enregistrer vos modifications.
+-   **Save**: a button to save your changes.
 
-En-dessous, vous avez le tableau de toutes les tâches existantes
-(attention, certaines tâches peuvent lancer des sous-tâches, il est donc
-vivement recommandé de ne jamais modifier d’informations sur cette
-page). Dans ce tableau, on retrouve :
+Below you have the table of all the existing tasks
+(be careful some tasks can launch subtasks, so it is 
+strongly recommended never to change information about this
+ page). In this table we find:
 
--   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
-    processus qui tourne et ce qu’il fait vraiment
+-   **\ #**: ID of the task, can be useful to make the link between a
+    process that turns and what it really does
 
--   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
+-   **Action**: a button to start or stop the task based
     de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
 
--   **Actif** : indique si la tâche est active (peut être lancée
-    par Jeedom) ou non
+-   **Active**: indicates if the task is active (can be started
+    by Jeedom) or not
 
--   **PID** : indique le process ID actuel
+-   **PID**: indicates the current process ID
 
--   **Démon** : si cette case est à "oui" alors la tâche doit toujours
-    être en cours. A côté, vous retrouvez la fréquence du démon, il est
-    conseillé de ne jamais toucher cette valeur et surtout de ne jamais
-    la diminuer
+-   **Demon**: if this box is "yes" then the task must always
+    to be in progress. Beside you find the frequency of the demon, it is
+    advised to never touch this value and especially never
+    decrease it
 
--   **Unique** : si c’est à "oui" alors la tâche se lancera une fois
-    puis se supprimera
+-   **Unique**: if it's "yes" then the task will run once
+    then will be deleted
 
--   **Classe** : classe PHP appelée pour exécuter la tâche (peut
-    être vide)
+-   **Class**: PHP class called to execute the task (can
+    be empty)
 
--   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
-    si la classe est vide)
+-   **Function**: PHP function called in the called class (or not
+    if the class is empty)
 
--   **Programmation** : la programmation de la tâche au format CRON
+-   **Programming**: programming the task in CRON format
 
--   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
-    tâche est un démon alors elle sera automatiquement arrêtée et
+-   **Timeout**: maximum duration of operation of the task. If the
+    task is a daemon so it will automatically be stopped and
     redémarrée à la fin du timeout
 
 -   **Dernier lancement** : date de dernier lancement de la tâche

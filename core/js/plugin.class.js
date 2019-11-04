@@ -44,6 +44,7 @@ jeedom.plugin.all = function(_params) {
     paramsAJAX.url = 'core/ajax/plugin.ajax.php';
     paramsAJAX.data = {
         action: 'all',
+        activateOnly : _params.activateOnly || false
     };
     $.ajax(paramsAJAX);
 }

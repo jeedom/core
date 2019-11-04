@@ -164,7 +164,7 @@ redimensionnable.
 Gráfico
 =========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Período**: Le permite elegir el período de muestra
@@ -228,15 +228,15 @@ Texto / html
 Escenario
 ========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
-Aucun paramètre spécifique d’affichage
+Ningún parámetro específico de pantalla 
 
 Link 
 ====
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Nombre** : Nombre del enlace (texto mostrado)
@@ -280,7 +280,7 @@ documentation Résumé domotique ("display"))
 Commando 
 ========
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 Aucun paramètre spécifique d’affichage
@@ -294,7 +294,7 @@ documentation Résumé domotique ("display"))
 Imagen/Cámara 
 ============
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Afficher** : définit ce que vous voulez afficher, image fixe ou
@@ -308,7 +308,7 @@ Paramètres d’affichage
 Zona 
 ====
 
-Paramètres d’affichage 
+Configuraciones de pantalla
 ---------------------
 
 -   **Type de zone** : C’est ici que vous choisissez le type de la zone :
@@ -329,7 +329,7 @@ vaut 0 alors Jeedom exécutera la ou les actions On sinon il exécutera
 la ou les actions Off
 
 -   **Information binaire** : Commande donnant l’état à vérifier pour
-    décider de l’action à faire (On ou Off)
+    decidir de la acción por hacer (On o Off)
 
 Il vous suffit en dessous de mettre les actions à faire pour le On et
 pour le Off
@@ -352,7 +352,7 @@ afficherez le widget en question
 Resumén 
 ======
 
--   **Lien** : Permet d’indiquer le résumé à afficher (Général pour le
+-   **Enlace**: Le permite indicar el resumen que se mostrará (General para
     global de lo contrario indicar el objeto)
 
 -   **Color de fondo** : Permite cambiar el color de fondo o el color de la

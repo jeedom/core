@@ -600,16 +600,16 @@ $('.div_displayObject').delegate('.graph-widget', 'resize', function () {
   }
 });
 
-$pageContainer.delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
-  if (!editOption.state) {
-    $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
-  }
+$('#div_pageContainer').delegate('.div_displayObject > .eqLogic-widget .history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
 });
 
-$pageContainer.delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
-  if (!editOption.state) {
-    $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
-  }
+$('#div_pageContainer').delegate('.div_displayObject > .cmd-widget.history', 'click', function () {
+    if (!editOption.state) {
+        $('#md_modal').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).data('cmd_id')).dialog('open');
+    }
 });
 /***********************************************************************************/
 
@@ -713,6 +713,10 @@ function draggableDragFix(event, ui) {
 function initEditOption(_state) {
   var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH;
   if (_state) {
+    if(!$('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',true)
+    }
+    editOption.state = true;
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
@@ -772,6 +776,10 @@ function initEditOption(_state) {
       
     }
   }else{
+    if($('#div_pageContainer').data('editOption.state')){
+      $('#div_pageContainer').data('editOption.state',false)
+    }
+    editOption.state = false;
     jeedom.cmd.disableExecute = false;
     $('.div_displayObject').removeClass('editingMode')
     try{
@@ -894,8 +902,9 @@ function displayPlan(_code) {
           }catch(e) {
             
           }
-          
-          initEditOption(editOption.state);
+          addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
+          initEditOption(0);
+          editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
           initReportMode();
         }
       });
@@ -988,7 +997,7 @@ function displayObject(_plan,_html, _noRender) {
     css_selector = '.div_displayObject .'+_plan.link_type+'-widget[data-'+_plan.link_type+'_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
   }else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
-    css_selector = '.div_displayObject .'+_plan.link_type+'-link-widget[data-link_id="' + _plan.link_id + '"]';
+    css_selector = '.div_displayObject .'+_plan.link_type+'-link-widget[data-id="' + _plan.id + '"]';
     $(css_selector).remove();
   }else if (_plan.link_type == 'cmd') {
     css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]';
@@ -1000,8 +1009,6 @@ function displayObject(_plan,_html, _noRender) {
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]';
     $(css_selector).remove();
   }
-  
-  css_selector = '\n'+css_selector
   var html = $(_html);
   
   html.attr('data-plan_id',_plan.id)
@@ -1043,11 +1050,14 @@ function displayObject(_plan,_html, _noRender) {
           style['box-shadow'] = 'none';
           if(_plan.link_type == 'eqLogic'){
             another_css += css_selector+' .widget-name{background-color : transparent !important;\n}'
-            another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
-            if(isset(_plan.css.color) || _plan.display['color-defaut'] == 1){
+            if(_plan.display['color-defaut'] == 0 && isset(_plan.css.color)){
               another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
-            }else if(_plan.display['color-defaut'] == 1){
-              another_css += css_selector+' .widget-name a{color : '+_plan.display['color-defaut']+' !important;\n}'
+              another_css += css_selector+' .state{color : '+_plan.css.color+' !important;\n}'
+            }
+          }else if(_plan.link_type == 'cmd'){
+            if(_plan.display['color-defaut'] == 0 && isset(_plan.css.color)){
+              another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;\n}'
+              another_css += css_selector+' .state{color : '+_plan.css.color+' !important;\n}'
             }
           }
         }else{
@@ -1152,7 +1162,10 @@ function displayObject(_plan,_html, _noRender) {
   var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
   if(_plan.display.css && _plan.display.css != ''){
     if(_plan.display.cssApplyOn && _plan.display.cssApplyOn != ''){
-      style_el += css_selector+' '+_plan.display.cssApplyOn+'{'+_plan.display.css+'}';
+      var cssApplyOn = _plan.display.cssApplyOn.split(',');
+      for(var i in cssApplyOn){
+        style_el += css_selector+' '+cssApplyOn[i]+'{'+_plan.display.css+'}';
+      }
     } else {
       style_el += css_selector+' '+'{'+_plan.display.css+'}';
     }

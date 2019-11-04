@@ -1,8 +1,8 @@
-Doc un peu particulière car elle va traiter uniquement de votre page
-profil du Market.
+Documentation a bit special because it will only deal with your Market
+profile page
 
-Disponible en allant sur votre nom d’utilisateur puis profil à partir du
-Market (un peu comme sur Jeedom).
+Available by going to your username then profile link from the
+Market (a bit like Jeedom).
 
 It is broken down into several parts:
 
@@ -14,17 +14,17 @@ profile:
 
 -   **Profile**
 
-    -   **Login** : Votre login sur le Market, il ne peut être changé
+    -   **Login** : Your login on the Market, it can not be changed
 
     -   **Name**: Your name (this information is only useful for
-        rendre les emails plus sympa)
+        make emails more fun)
 
     -   **First name**: Your first name (this information is only useful
-        pour rendre les emails plus sympa)
+        to make emails more fun)
 
     -   **Username on the forum**: Your nickname on the forum
 
-    -   **Email** : Votre email
+    -   **Email** : Your email address
 
     -   **Language**: Your language
 
@@ -38,15 +38,15 @@ For developers:
 -   **Email public** : Votre email pour recevoir des éventuelles
     communications from us
 
--   **Compte paypal** : Votre email de compte Paypal (uniquement utilisé
-    pour payer les développeurs)
+-   **Paypal account**: Your PayPal account email (only used
+    to pay the developers)
 
 For the pros:
 
 -   **Compte email installateur** : Votre email de contact pro
 
 -   **Recipient of support requests**: who will receive the
-    emails de support (client final, installateur ou les deux)
+    technical support emails (end customer, installer or both)
 
     -   ** ** Terms
 
@@ -122,11 +122,11 @@ My Jeedoms
     -   **DNS status**: allows to see the status of the DNS
 
     -   **Creation date**: date of creation of this Jeedom on your
-        compte Market (pour rappel cela se fait automatiquement lorsque
-        vous le liez au Market)
+        market account (as a reminder this is done automatically when
+        you link it to the market)
 
     -   **Last update**: last Jeedom communication with
-        le Market
+        the Market
 
     -   **Hardware**: Hardware name of the Jeedom
 

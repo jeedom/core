@@ -103,7 +103,7 @@ derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
 peripherique. Attention cela ne le deconnecte pas mais empechera juste
 sa reconnection automatique.
 
-Notifications
+Notificaciones
 -------------
 
 -   **Commande de notification utilisateur** : Commande par défaut pour

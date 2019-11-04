@@ -143,7 +143,7 @@ path.highcharts-graph {
   right: 0;
 }
 .shuttergauge .slider {
-  margin-top: 55px;
+  margin-top: -20px;
 }
 .timeShuttergauge .slider {
   margin-top: 0px !important;

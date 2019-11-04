@@ -112,7 +112,7 @@ disponibles :
 
 -   **Informations** : affiche les propriétés brutes de l’équipement.
 
--   **Enregistrer** : Enregistre les modifications faites
+-   **Guardar** : Guarda los cambios realizados
     en el equipo.
 
 -   **Supprimer** : Supprime l’équipement.
@@ -207,7 +207,7 @@ question.
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
-Onglet Disposition 
+Pestaña Disposición
 ------------------
 
 Cette partie vous permet de choisir entre la disposition standard des
@@ -244,7 +244,7 @@ ceci :
 > dessous de l’autre, il ne faut pas oublier de rajouter un retour à la
 > ligne après la première dans la **configuration avancée** de celle-ci.
 
-Onglet Alertes 
+Pestaña Alertas 
 --------------
 
 Cet onglet permet d’avoir les informations sur la batterie de
@@ -286,7 +286,7 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 
 -   **Liens** : Permet d’afficher les liens de l’équipement avec les
     objets, commandes, scénarios, variables, interactions…​. sous
-    forme graphique.
+    forma gráfica.
 
 -   **Log** : Affiche les évènements de l’équipement en question.
 
@@ -353,7 +353,7 @@ Vous avez aussi trois autres boutons oranges en dessous :
     los comandos de éste.
 
 -   **Cette commande remplace la commande** : Remplace une commande par
-    la commande courante.
+    el comando corriente.
 
 -   **Remplacer cette commande par la commande** : L’inverse, remplace
     el comando por otro comando.
@@ -421,7 +421,7 @@ Onglet Configuration
         Jeedom lo ignora antes de aplicarlo.
 
     -   **Valeur retour d’état** : Permet de faire revenir la commande à
-        cette valeur après un certain temps.
+        este valor después de un tiempo.
 
     -   **Durée avant retour d’état (min)** : Temps avant le retour à la
         valor más arriba.
@@ -510,7 +510,7 @@ il faut donc regarder sa fiche sur le Market pour les connaître.
 Onglet Code 
 -----------
 
-Permet de modifier le code du widget juste pour la commande courante.
+Permite cambiar el código del widget solo para el comando actual.
 
 > **Note**
 >

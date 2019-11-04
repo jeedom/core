@@ -28,7 +28,7 @@ Aquí está la URL =
 [Http: // \ # ip \ _JEEDOM \ # / core / api / jeeApi.php apikey = \ #APIKEY \ # & type = escenario & id = \ #ID \ # & action = \ #ACTION \ #?] (Http: // # # IP_JEEDOM / core / api / jeeApi.php? apikey apikey = # # & type = & id = escenario # ID # & action = aCCIÓN # #)
 
 -   ** ** Identificación: es el ID de su escenario. ID está en la
-    page du scénario concerné, dans "Outils" → "Scénarios", une fois le
+    página del escenario relevante, en "Herramientas" → "Escenarios", una vez que
     escenario seleccionado, junto al nombre de la pestaña "General". otro
     forma de recuperarla: "Herramientas" → "escenarios", haga clic
     "Información general".

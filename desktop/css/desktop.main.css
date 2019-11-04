@@ -114,6 +114,15 @@ a.btn,
   cursor: pointer !important;
 }
 
+.ui-resizable-n { cursor: n-resize !important; }
+.ui-resizable-s { cursor: s-resize !important; }
+.ui-resizable-e { cursor: e-resize !important; }
+.ui-resizable-w { cursor: w-resize !important; }
+.ui-resizable-se { cursor: se-resize !important; }
+.ui-resizable-sw { cursor: sw-resize !important; }
+.ui-resizable-nw { cursor: nw-resize !important; }
+.ui-resizable-ne { cursor: ne-resize !important; }
+
 a > img:hover {
   opacity: 0.75;
 }

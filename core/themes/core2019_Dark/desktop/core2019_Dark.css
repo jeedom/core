@@ -4,10 +4,14 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
+::-webkit-scrollbar-thumb {
+  background: var(--btn-default-color) !important;
+}
+
 html,
 body,
 textarea {
-  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
+  scrollbar-color: var(--btn-default-color) transparent !important;
 }
 
 a,

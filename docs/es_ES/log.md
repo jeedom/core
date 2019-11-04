@@ -5,7 +5,7 @@ El menú Registros de seguir lo que está pasando en su automatización del hoga
 la mayoría de los casos el registro se utiliza para realizar la depuración y
 resolver los problemas por el equipo de apoyo.
 
-Pour y accéder il faut aller dans Analyse → Logs :
+Para acceder tiene que acceder a Análisis → Registros :
 
 La página Registros es bastante simple, arriba a la izquierda un combo
 permitiendo la elección del registro que debe buscar en la parte superior derecha tienes 5
@@ -31,7 +31,7 @@ botones:
 >! si se quita el (línea de comandos, por ejemplo) lo hace
 > Para volver a crear no solo, tiene que reiniciar el sistema.
 
-Temps réel 
+Tiempo real 
 ==============
 
 El registro "Evento" es un poco particular. En primer lugar por ella

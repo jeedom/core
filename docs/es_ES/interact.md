@@ -465,7 +465,7 @@ la réponse de l’exemple par "non il n’y a personne dans la chambre de
     alguien en la habitación"
 
 -   Il n’y a pas de commande qui réponde à ça dans la partie Action vu
-    que c’est une interaction Multiple commandes
+    que es una interacción Múltiple comandos
 
 -   En ajoutant une expression régulière, on peut nettoyer les commandes
     que l’on ne veut pas voir pour n’avoir que les phrases sur les

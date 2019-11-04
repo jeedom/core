@@ -2,51 +2,51 @@ Es aquí donde vamos a ser capaces de definir la lista de usuarios
 permitido para conectarse a Jeedom sino también sus derechos
 director
 
-Accesible por Ajustes → Sistema → Usuarios.
+Accesible en Ajustes → Sistema → Usuarios.
 
 En la parte superior derecha tienes un botón para añadir un usuario, otro
 para guardar y un botón para abrir el acceso a soporte.
 
 A continuación tiene una tabla:
 
--   ** ** Nombre de usuario: el identificador de usuario
+-   **Nombre de usuario**: el identificador de usuario
 
--   ** ** activo: inhabilitará la cuenta
+-   **Activo**: permite desactivar la cuenta
 
--   ** ** Sólo local: Permite la conexión del usuario
+-   **Sólo local**: Permite la conexión del usuario
     sólo si la red local Jeedom
 
--   ** ** Perfiles: Seleccione el perfil de usuario:
+-   **Perfiles**: permite elegir el perfil del usuario:
 
-    -   Administrador ** ** recibe toda Jeedom derechos
+    -   **Administrador**: recibe toda Jeedom derechos
 
-    -   ** ** Usuario: puede ver el tablero de instrumentos, de las vistas,
+    -   **Usuario**: puede ver el dashboard, las vistas, las
         diseño, etc. y que actúa sobre los controles del equipo /. En cambio,
         no tendrá acceso a los comandos de configuración / instalaciones
-        o la Jeedom configuración.
+        ni a la configuración de Jeedom.
 
     -   **Usuario limitado**: el usuario sólo ve las
         equipo autorizado (configurable con el "Administrar
         los derechos")
 
--   ** ** clave de la API: API personal clave de usuario
+-   **Clave API**: clave API personal del usuario
 
 -   **Doble autenticación**: indica si la doble autenticación 
     está activo (OK) o no (NOK)
 
--   ** ** Fecha de la última conexión: Fecha de la última conexión
+-   **Fecha de la última conexión**: fecha de la última conexión de
     el usuario Jeedom. Atención aquí es la fecha de conexión
     real, así que si se registra su ordenador, la fecha de
     la conexión no se actualiza cada vez que regrese.
 
--   ** ** Cambiar la contraseña: Cambiar la contraseña
+-   **Cambiar la contraseña**: permite cambiar la contraseña de
     usuario
 
--   ** ** Eliminar: Eliminar usuario
+-   **Eliminar**: permite eliminar al usuario
 
--   **Régénérer clef API** : régénère la clef API de l’utilisateur
+-   **Regenerar llave API**: regenera la llave API del usuario
 
--   ** ** Manejo de los derechos: a finamente gestionar los derechos
+-   **Gestionar derechos**: permite gestionar finamente los derechos de
     el usuario (atención el perfil debe estar en
     "Usuario limitado")
 
@@ -65,12 +65,12 @@ los diferentes equipos. La segunda presenta los escenarios.
 Se obtiene una tabla que, para cada dispositivo y cada
 escenario, definir derechos de usuario:
 
--   **No**: el usuario no ve el equipo / escenario
+-   **Ninguno**: el usuario no ve el equipo/escenario
 
--   ** ** Visualización: el usuario ve el equipo / escenario, pero
+-   **Visualización**: el usuario ve el equipo / escenario, pero
     no puede actuar sobre ella
 
--   ** ** Visualización y ejecución: El usuario ve
+-   **Visualización y ejecución**: El usuario ve
     Equipo / escenario y puede actuar sobre ella (encender una lámpara, lanzamiento
     la secuencia de comandos, etc.)
 
