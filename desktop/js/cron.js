@@ -232,7 +232,6 @@ function printListener() {
   });
 }
 
-
 function addListener(_listener) {
   $.hideAlert();
   var disabled ='';
@@ -293,12 +292,12 @@ function getDeamonState(){
             html += deamonInfo.last_launch;
             html += '</td>';
             html += '<td>';
-            html += '<a class="bt_deamonAction btn btn-xs  btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
+            html += '<a class="bt_deamonAction btn btn-xs btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
             if(deamonInfo.auto == 0){
-              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
-              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
             }else{
-              html += '<a class="bt_deamonAction btn btn-xs  btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
             }
             html += '</td>';
             html += '</tr>';
