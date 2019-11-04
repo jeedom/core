@@ -824,6 +824,17 @@ try {
 			$market->remove();
 			$jsonrpc->makeSuccess('ok');
 		}
+		
+		if ($jsonrpc->getMethod() == 'plugin::specificInfos') {
+		    $infos = array();
+		    foreach (plugin::listPlugin() as $plugin) {
+			$pluginId = $plugin->getId();
+			if(method_exists($pluginId, 'proApi')){
+			    $infos[] = $pluginId::proApi();
+			}
+		    }
+		    $jsonrpc->makeSuccess($infos);
+		}
 
 		/*             * ************************Update*************************** */
 		if ($jsonrpc->getMethod() == 'update::all') {
