@@ -2,7 +2,11 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+try {
+	log::chunk();
+} catch (\Exception $e) {
+	
+}
 $page = init('page', 1);
 $logfile = init('logfile');
 $list_logfile = array();
@@ -25,8 +29,8 @@ natcasesort($list_logfile);
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 				foreach ($list_logfile as $file) {
-					$fsize = filesize('log/' . $file);
 					
+					$fsize = filesize('log/' . $file);
 					if ($fsize < 2){
 						$fsizelog = '';
 					}else if ($fsize < 1024){
