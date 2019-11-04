@@ -462,7 +462,7 @@ Changelog
         - Zone de type binaire : lance une série d’actions lors d’un clic dessus en fonction de l’état d’une commande
         - Zone de type widget : affiche un widget au clic ou au survol de la zone
     - Optimisation générale du code
-    - Possibilité de faire apparaître une grille et de choisir sa taille (10x10,15x15 ou 30x30)
+    - Posibilidad de mostrar una cuadrícula y de elegir su tamaño (10x10,15x15 o 30x30)
     - Possibilité d’activer une aimantation des widgets sur la grille
     - Possibilité d’activer une aimantation des widgets entre eux
     - Certains types de widgets peuvent maintenant être dupliqués
@@ -515,7 +515,7 @@ Changelog
 - Uniformización del tmp jeedom, ahora todo está en /tmp/jeedom
 - Possibilité d’avoir un graph des différentes liaisons d’un scénario, équipement, objet, commande ou variable
 - Possibilité de régler la profondeur des graphiques de lien en fonction de l’objet d’origine
-- Possibilité d’avoir les logs des scénarios en temps réel (ralentit l’exécution des scénarios)
+- Posibilidad de tener los registros de los escenarios en tiempo real (ralentiza la ejecución de los escenarios)
 - Possibilité de passer des tags lors du lancement d’un scénario
 - Optimisation du chargement des scénarios et pages utilisant des actions avec option (type configuration du plugin alarme ou mode)
 
