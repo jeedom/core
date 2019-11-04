@@ -53,14 +53,14 @@ Cet onglet permet de voir l’ensemble des alertes définies, vous y retrouverez
 
 ## Onglet Commandes orphelines
 
-Cet onglet vous permet de voir en un coup d’oeil si vous avez des commandes orphelines utilisées au travers de Jeedom. Une commande orpheline est une commande utilisée quelque part mais qui n’existe plus. On retrouvera ici l’ensemble de ces commandes, comme par exemple :
+Cet onglet vous permet de voir en un coup d’œil si vous avez des commandes orphelines utilisées au travers de Jeedom. Une commande orpheline est une commande utilisée quelque part mais qui n’existe plus. On retrouvera ici l’ensemble de ces commandes, comme par exemple :
 
 - Les commandes orphelines utilisée dans le corps d’un scenario.
 - celles utilisées en déclencheur d’un scénario.
 
 Et utilisées à plein d’autres endroits comme (non exhaustif) :
 - Les interactions.
-- Les configurations de jeedom.
+- Les configurations de Jeedom.
 - En pre ou post action d’une commande.
 - En action sur état d’une commande.
 - Dans certains plugins.
