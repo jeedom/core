@@ -33,6 +33,7 @@ sendVarToJs('cmd_show',$showId);
 <script>
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
+cmdIds = cmdIds.filter(Boolean)
 var cmd_showName = ''
 
 $(".in_datepicker").datepicker()
