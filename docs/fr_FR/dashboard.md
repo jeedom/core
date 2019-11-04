@@ -1,5 +1,3 @@
-
-
 # Dashboard
 **Accueil → Dashboard**
 
