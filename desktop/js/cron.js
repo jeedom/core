@@ -262,6 +262,7 @@ $('#bt_refreshDeamon').on('click',function(){
 function getDeamonState(){
   $('#table_deamon tbody').empty();
   jeedom.plugin.all({
+    activateOnly : true,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
