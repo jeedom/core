@@ -29,6 +29,7 @@ if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
 if (!is_array($remove_history)) {
 	$remove_history = array();
 }
+$plugin_enable = config::getPluginEnable();
 ?>
 <br/>
 <div class="eqActions pull-right" style="display:none;">
@@ -55,7 +56,7 @@ if (!is_array($remove_history)) {
 				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
 			</div>
-          	<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
+			<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
 		</div>
 		<br/><br/>
 		<div>
@@ -68,7 +69,7 @@ if (!is_array($remove_history)) {
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="panel-group" id="accordionObject">
 			<?php
 			//No parent objects:
@@ -82,9 +83,10 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				$div .= '<div id="config_none" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
+					
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
@@ -94,8 +96,10 @@ if (!is_array($remove_history)) {
 					if ($eqLogic->getIsVisible() != 1) {
 						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
@@ -104,7 +108,9 @@ if (!is_array($remove_history)) {
 						if ($cmd->getIsVisible() != 1) {
 							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
-						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						}
 						$div .= '</li>';
 					}
 					$div .= '</ul>';
@@ -116,7 +122,7 @@ if (!is_array($remove_history)) {
 				$div .= '</div>';
 				echo $div;
 			}
-
+			
 			//one panel per parent:
 			$i = 0;
 			$div = '';
@@ -142,10 +148,10 @@ if (!is_array($remove_history)) {
 				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
 				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a></h3>';
 				$div .= '</div>';
-
+				
 				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
 				$div .= '<div class="panel-body">';
-
+				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[$object->getId()] as $eqLogic) {
 					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
@@ -157,10 +163,12 @@ if (!is_array($remove_history)) {
 					if ($eqLogic->getIsVisible() != 1) {
 						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
-
+					
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
 						$div .= '<input type="checkbox" class="cb_selCmd"> ';
@@ -168,7 +176,9 @@ if (!is_array($remove_history)) {
 						if ($cmd->getIsVisible() != 1) {
 							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
-						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						}
 						$div .= '</li>';
 					}
 					$div .= '</ul>';
@@ -185,7 +195,7 @@ if (!is_array($remove_history)) {
 			?>
 		</div>
 	</div>
-
+	
 	<div role="tabpanel" class="tab-pane" id="historytab">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
@@ -226,7 +236,7 @@ if (!is_array($remove_history)) {
 			</tbody>
 		</table>
 	</div>
-
+	
 </div>
 
 <?php include_file('desktop', 'display', 'js');?>
