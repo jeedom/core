@@ -6,6 +6,7 @@ Changelog
 =====
 
 - Ajout d'un arrondit sur le nombre de jour depuis le dernier changement de pile
+- Correction de bugs
 
 3.3.35
 =====
