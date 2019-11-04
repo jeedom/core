@@ -2,7 +2,7 @@
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <div class="iconCmd"></div>
-    <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+    <span class="timeCmd value #history#" data-type="info"></span>
   </center>
 </div>
 <script>
@@ -17,7 +17,7 @@
     cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
     #test#
     cmd.find('.iconCmd').empty().append(state);
-    
+
   }
   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   $('body').on('changeThemeEvent', function (event,theme) {
