@@ -35,6 +35,7 @@ for(var i in planHeader){
     name:planHeader[i].name,
     callback: function(key, opt){
       planHeader_id = key;
+      editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
       displayPlan();
     }
   }
@@ -499,6 +500,7 @@ $('#bt_createNewDesign').on('click',function(){
 $pageContainer.delegate('.plan-link-widget', 'click', function () {
   if (!editOption.state) {
     planHeader_id = $(this).attr('data-link_id');
+    editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
     displayPlan();
   }
 });
@@ -902,8 +904,7 @@ function displayPlan(_code) {
 
           }
           addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom');
-          initEditOption(0);
-          editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
+          initEditOption(editOption.state);
           initReportMode();
         }
       });
