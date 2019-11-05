@@ -137,11 +137,11 @@ En mode code vous avez accès a différent tag pour les commandes, en voici une 
 - #hide_name# : vide ou hidden si l'utilisateur a demandé a masquer le nom du widget, a mettre directement dans une balise class
 - #id# : id de la commande
 - #state# : valeur de la commande, vide pour une commande de type action si elle n'est pas a liée a une commande d'état
-- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la meme commande, cas des designs seule cette identifiant est réelement unique)
+- #uid# : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs seule cette identifiant est réellement unique)
 - #valueDate# : date de la valeur de la commande
 - #collectDate# : date de collecte de la commande
 - #alertLevel# : niveau d'alert (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
-- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit etre masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc etre utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
+- #hide_history# : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacé par Jeedom.
 - #minHistoryValue# : valeur minimal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #averageHistoryValue# : valeur moyenne sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
 - #maxHistoryValue# : valeur maximal sur la période (période défini dans la configuration de Jeedom par l'utilisateur)
