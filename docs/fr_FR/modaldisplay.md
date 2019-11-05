@@ -1,4 +1,6 @@
-La page ModalDisplay est un container permettant de charger le contenu d'une fenêtre (*modal* ou *dialog*) en pleine page.
+# ModalDisplay
+
+La page **ModalDisplay** est un simple container permettant de charger le contenu d'une fenêtre (*modal* ou *dialog*) en pleine page.
 
 Elle est notamment utilisée dans les cas suivants:
 - Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel*

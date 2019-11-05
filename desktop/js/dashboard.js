@@ -71,7 +71,7 @@ $(function(){
 
 var isEditing = false
 //searching
-$ ('#in_searchWidget').off('keyup').on('keyup',function() {
+$('#in_searchWidget').off('keyup').on('keyup',function() {
   if (isEditing) return
   $('#bt_displaySummaries').attr('data-display', '0')
   var search = $(this).value()
