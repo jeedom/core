@@ -2,14 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-<<<<<<< HEAD
-=======
-try {
-	log::chunk();
-} catch (\Exception $e) {
-
-}
->>>>>>> a5e60ffb3360bdd8e40cff7b8a7c774a56ba062e
 $page = init('page', 1);
 $logfile = init('logfile');
 $list_logfile = array();
@@ -32,7 +24,7 @@ natcasesort($list_logfile);
 				<li class="filter" style="margin-bottom: 5px;"><input id="in_searchLogFilter" class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 				foreach ($list_logfile as $file) {
-
+					
 					$fsize = filesize('log/' . $file);
 					if ($fsize < 2){
 						$fsizelog = '';
@@ -59,7 +51,7 @@ natcasesort($list_logfile);
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8">
-
+		
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<input style="width: 150px;" class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" />
