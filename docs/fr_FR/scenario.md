@@ -3,25 +3,6 @@
 
 Véritable cerveau de la domotique, les scénarios permettent d’interagir avec le monde réel de manière *intelligente*.
 
-[Gestion](#gestion)<br />
-[Mes scénarios](#mes-scénarios)<br />
-[Création | Édition d’un scénario](#création--édition-d’un-scénario)<br />
-[Onglet Général](#onglet-général)<br />
-[Onglet Scénario](#onglet-scénario)<br />
-[Les blocs](#les-blocs)<br />
-[Blocs Si/Alors/Sinon | Boucle | Dans | A](#blocs-sialorssinon--boucle--dans--a)<br />
-[Bloc Code](#bloc-code)<br />
-[Les Actions](#les-actions)<br />
-[Les substitutions possibles](#les-substitutions-possibles)<br />
-[Opérateurs de comparaison et liens entre les conditions](#opérateurs-de-comparaison-et-liens-entre-les-conditions)<br />
-[Les tags](#les-tags)<br />
-[Les fonctions de calcul](#les-fonctions-de-calcul)<br />
-[Les fonctions mathématiques](#les-fonctions-mathématiques)<br />
-[Les commandes spécifiques](#les-commandes-spécifiques)<br />
-[Template de scénario](#template-de-scénario)<br />
-[Ajout de fonction php](#ajout-de-fonction-php)<br />
-
-
 ## Gestion
 
 Vous y trouverez la liste des scénarios de votre Jeedom, ainsi que des fonctions pour les gérer au mieux :
@@ -503,5 +484,3 @@ C'est dans cette class que vous pouvez ajouter vos fonctions, vous y trouverez u
 
 > **IMPORTANT**
 > Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copiant le contenu de user.function.class.sample.php dans user.function.class.php
-
-
