@@ -14,6 +14,7 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 positionEqLogic();
 
 $("#tab_deadCmd").off("click").on("click", function () {
@@ -89,11 +90,11 @@ $(function() {
   } else {
     $('a[href="#battery"] > i').addClass('success')
   }
-  
+
   if ($('.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
-  
+
   if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
     $('a[href="#deadCmd"] > i').addClass('warning')
   }
