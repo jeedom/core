@@ -2,11 +2,6 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-try {
-	log::chunk();
-} catch (\Exception $e) {
-	
-}
 $page = init('page', 1);
 $logfile = init('logfile');
 $list_logfile = array();
