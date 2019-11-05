@@ -405,7 +405,7 @@ Changelog
     - Suppression des images pour faciliter la mise à jour et le
         multilingue
 - Plus de choix possibles sur les réglage des tailles de zone dans les vues
-- Possibilité de choisir la couleur du texte du résumé d’objet
+- Posibilidad de elegir el color del texto del resumen del objeto
 - Ajout d’une action remove\_inat dans les scénarios permettant d’annuler toutes les programmations des bloc DANS/A
 - Possibilité dans les designs pour les widgets au survol de choisir la position du widget
 - Ajout d’un paramètre reply\_cmd sur les interactions pour spécifier l’id de la commande à utiliser pour répondre
