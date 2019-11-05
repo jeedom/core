@@ -25,6 +25,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       {{Système}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::getHardwareName() ?></span>
       <br><br>
       <a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a>
+      <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
       <br><br>
     </center>
 
@@ -81,6 +82,17 @@ $(function(){
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(url) {
+      window.open(url,'_blank')
+    }
+  })
+})
+$('body').off('click','#bt_faq').on('click','#bt_faq',function() {
+  jeedom.getDocumentationUrl({
+    page: 'faq',
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
