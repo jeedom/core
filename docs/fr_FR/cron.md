@@ -45,4 +45,10 @@ Les listeners sont juste visibles en lecture et permettent de voir les fonctions
 
 ## Onglet Démon
 
-Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de les arrêter ou les redémarrer.
+Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de
+- Démarrer / Redémarrer un démon.
+- Arrêter un démon si la gestion automatique est désactiver.
+- Activer / désactiver la gestion automatique d'un démon.
+
+> Tip
+> Les démons des plugins désactivés n’apparaissent pas sur cette page.

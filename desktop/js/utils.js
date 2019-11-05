@@ -128,6 +128,9 @@ function loadPage(_url,_noPushHistory){
 
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
 
+  //disable Tiles visual feedback:
+  $('body').off('mouseenter').off('mouseleave')
+
   $('#div_pageContainer').empty().load(url,function(){
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click');
