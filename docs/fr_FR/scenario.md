@@ -3,23 +3,23 @@
 
 Véritable cerveau de la domotique, les scénarios permettent d’interagir avec le monde réel de manière *intelligente*.
 
-[Gestion](#gestion)
-[Mes scénarios](#mes-scénarios)
-[Création | Édition d’un scénario](#création--édition-d’un-scénario)
-[Onglet Général](#onglet-général)
-[Onglet Scénario](#onglet-scénario)
-[Les blocs](#les-blocs)
-[Blocs Si/Alors/Sinon | Boucle | Dans | A](#blocs-sialorssinon--boucle--dans--a)
-[Bloc Code](#bloc-code)
-[Les Actions](#les-actions)
-[Les substitutions possibles](#les-substitutions-possibles)
-[Opérateurs de comparaison et liens entre les conditions](#opérateurs-de-comparaison-et-liens-entre-les-conditions)
-[Les tags](#les-tags)
-[Les fonctions de calcul](#les-fonctions-de-calcul)
-[Les fonctions mathématiques](#les-fonctions-mathématiques)
-[Les commandes spécifiques](#les-commandes-spécifiques)
-[Template de scénario](#template-de-scénario)
-[Ajout de fonction php](#ajout-de-fonction-php)
+[Gestion](#gestion)<br />
+[Mes scénarios](#mes-scénarios)<br />
+[Création | Édition d’un scénario](#création--édition-d’un-scénario)<br />
+[Onglet Général](#onglet-général)<br />
+[Onglet Scénario](#onglet-scénario)<br />
+[Les blocs](#les-blocs)<br />
+[Blocs Si/Alors/Sinon | Boucle | Dans | A](#blocs-sialorssinon--boucle--dans--a)<br />
+[Bloc Code](#bloc-code)<br />
+[Les Actions](#les-actions)<br />
+[Les substitutions possibles](#les-substitutions-possibles)<br />
+[Opérateurs de comparaison et liens entre les conditions](#opérateurs-de-comparaison-et-liens-entre-les-conditions)<br />
+[Les tags](#les-tags)<br />
+[Les fonctions de calcul](#les-fonctions-de-calcul)<br />
+[Les fonctions mathématiques](#les-fonctions-mathématiques)<br />
+[Les commandes spécifiques](#les-commandes-spécifiques)<br />
+[Template de scénario](#template-de-scénario)<br />
+[Ajout de fonction php](#ajout-de-fonction-php)<br />
 
 
 ## Gestion
