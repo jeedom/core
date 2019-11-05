@@ -27,7 +27,7 @@ $(".li_log").on('click', function() {
   jeedom.log.autoupdate({
     log : $(this).attr('data-log'),
     display : $('#pre_globallog'),
-    search : $('#in_globalLogSearch'),
+    search : $('#in_searchGlobalLog'),
     control : $('#bt_globalLogStopStart'),
   });
 });

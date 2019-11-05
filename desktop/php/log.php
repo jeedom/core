@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 try {
 	log::chunk();
 } catch (\Exception $e) {
-	
+
 }
 $page = init('page', 1);
 $logfile = init('logfile');
@@ -26,10 +26,10 @@ natcasesort($list_logfile);
 	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
 		<div class="bs-sidebar">
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+				<li class="filter" style="margin-bottom: 5px;"><input id="in_searchLogFilter" class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 				foreach ($list_logfile as $file) {
-					
+
 					$fsize = filesize('log/' . $file);
 					if ($fsize < 2){
 						$fsizelog = '';
@@ -56,10 +56,10 @@ natcasesort($list_logfile);
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8">
-		
+
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<input style="width: 150px;" class="form-control roundedLeft" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
+				<input style="width: 150px;" class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" />
 				<a class="btn btn-warning" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
 				</a><a class="btn btn-success" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
 				</a><a class="btn btn-warning" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}
