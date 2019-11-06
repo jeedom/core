@@ -29,6 +29,7 @@ Changelog
 - Corrections de docs en adéquation avec la v4 et v4.1.
 - Corrections de bugs et optimisations.
 - Possibilité de désactiver le systeme de quote automatique (configuration -> commande)
+- Vue : possibilité de mettre des scénarios
 
 
 
