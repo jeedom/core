@@ -253,7 +253,7 @@ function addEditviewZone(_viewZone) {
     var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone'+id+'">';
     div += '<legend><span class="viewZoneAttr" data-l1key="name"></span>';
     div += '<div class="input-group pull-right" style="display:inline-flex">';
-    div += '<span class="input-group-btn">';
+    div += '<span class="input-group-btn" style="width: 100%;">';
     div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">';
     div += '<option value="12">{{Largeur}} 12</option>';
     div += '<option value="11">{{Largeur}} 11</option>';
