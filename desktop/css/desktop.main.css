@@ -2338,7 +2338,7 @@ textarea {
 }
 .element .subElementAttr[data-l1key=options][data-l2key=enable] {
   margin: 5px 3px 0 3px !important;
-  top: 0;
+  top: 1px;
   left: 33px;
 }
 .element .bt_repeat {
@@ -2504,7 +2504,6 @@ textarea {
 .elementCollapse .legendHidden {
   position: absolute;
   display: inline !important;
-  left: 25px;
   padding-left: 0 !important;
 }
 .elementCollapse .bt_collapse {
@@ -2513,19 +2512,22 @@ textarea {
 
 .elementIF.elementCollapse .expressions,
 .elementIN.elementCollapse .expressions,
-.elementAT.elementCollapse .expressions {
+.elementAT.elementCollapse .expressions,
+.elementFOR.elementCollapse .expressions {
   display: block !important;
 }
 .elementIF.elementCollapse .expressionAttr,
 .elementIN.elementCollapse .expressionAttr,
-.elementAT.elementCollapse .expressionAttr {
+.elementAT.elementCollapse .expressionAttr,
+.elementFOR.elementCollapse .expressionAttr {
   opacity: 0.75;
   height: 24px !important;
   border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius) !important;
 }
 .elementIF.elementCollapse .input-group-btn,
 .elementIN.elementCollapse .input-group-btn,
-.elementAT.elementCollapse .input-group-btn {
+.elementAT.elementCollapse .input-group-btn,
+.elementFOR.elementCollapse .input-group-btn {
   z-index: -1;
 }
 
