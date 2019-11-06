@@ -7,10 +7,10 @@ Theme Core 2019 @Jeedom
   height:8px;
 }
 ::-webkit-scrollbar-track-piece {
-  background-color:transparent !important;
+  background-color: transparent !important;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--el-defaultColor) !important;
+  background: var(--linkHover-color) !important;
 }
 
 html {
@@ -40,7 +40,7 @@ body {
 html,
 body,
 textarea {
-  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
+  scrollbar-color: var(--linkHover-color) transparent !important;
   scrollbar-width: thin;
 }
 
