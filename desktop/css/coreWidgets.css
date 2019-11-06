@@ -207,7 +207,7 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
 }
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .content-sm {
   vertical-align: top !important;
-  padding-top: 2px;
+  padding-top: 6px;
 }
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
   overflow: hidden;
@@ -235,6 +235,9 @@ div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .
 }
 div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
   font-size: 2em;
+}
+div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] .state {
+  padding: 6px;
 }
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
   display: block;
