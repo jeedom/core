@@ -128,7 +128,7 @@ $('#bt_resetInsideScenarioSearch').on('click', function () {
     btn.data('state', '1')
     searchField.focus()
   } else {
-    
+
     if (searchField.val() == '') {
       btn.find('i').removeClass('fa-times').addClass('fa-search')
       searchField.hide()
@@ -176,7 +176,7 @@ $(function(){
             scenarioList[group].push([sc.name, sc.id])
           }
         }
-        
+
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
@@ -192,7 +192,7 @@ $(function(){
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
           $('.nav.nav-tabs').contextMenu({
@@ -277,7 +277,7 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
     }
     modifyWithoutSave = false
   }
-  
+
   $('#div_editScenario').hide();
   $('#scenarioThumbnailDisplay').show();
   $('.scenarioListContainer').packery();
@@ -532,7 +532,7 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
 
 $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
-  
+
   //is scenario empty:
   var elementDiv = $(this).closest('.element')
   if ($('#div_scenarioElement').children('.element').length == 0) {
@@ -541,7 +541,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
   } else {
     var expression = false
     var insertAfter = false
-    
+
     //Is triggerred from element button:
     if ($(this).hasClass('fromSubElement')) {
       elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
@@ -560,7 +560,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
       }
     }
   }
-  
+
   $('#md_addElement').modal('show')
   $("#bt_addElementSave").off('click').on('click', function (event) {
     setUndoStack()
@@ -574,7 +574,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     } else {
       elementDiv.append(newEL.addClass('disableElement'))
     }
-    
+
     setEditor()
     updateSortable()
     updateElseToggle()
@@ -633,7 +633,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-  
+
   clickedBloc = $(this).closest('.element')
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
@@ -655,7 +655,7 @@ $pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  f
       $('#insertHere').removeAttr('id')
     }
   }
-  
+
   if(event.ctrlKey) {
     clickedBloc.remove()
   }
@@ -689,24 +689,27 @@ $pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function 
 $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
   var changeThis = $(this)
   if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
-  
+
   if ($(this).children('i').hasClass('fa-eye')) {
     changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
     changeThis.closest('.element').addClass('elementCollapse')
     changeThis.attr('value',1)
     changeThis.attr('title',"{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
-    //update comment and code blocPreview:
+    //update action, comment and code blocPreview:
     changeThis.closest('.element').find('.blocPreview').each(function() {
-      var txt = 'Unfound'
-      if ($(this).closest('.element').find('.expressionAttr[data-l1key=type][value=code]').length) {
-        var id = $(this).closest('.element').find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (isset(editor[id])) {
-          txt = editor[id].getValue()
-        }
+      var txt = '<i>Unfound</i>'
+      var _el = $(this).closest('.element')
+      if (_el.hasClass('elementACTION')) {
+        txt = _el.find('.expressions .expression').first().find('input.form-control').first().attr('value')
+        if (!txt) txt = _el.find('.expression textarea').val()
+      } else if (_el.hasClass('elementCODE')) {
+        var id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
+        if (isset(editor[id])) txt = editor[id].getValue()
       } else {
-        txt = $(this).closest('.element').find('.expression textarea').val()
+        txt = _el.find('.expression textarea').val()
+        if (!txt) txt = _el.find('.expression input.form-control').val()
       }
-      $(this).html(txt.substring(0,200))
+      if (txt) $(this).html(txt.substring(0,200))
     })
   } else {
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
@@ -834,7 +837,7 @@ $pageContainer.off('click','.bt_selectCmdExpression').on('click','.bt_selectCmdE
         '</div> </div>' +
         '</form> </div>  </div>';
       }
-      
+
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
@@ -999,7 +1002,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       } else {
         ui.placeholder.removeClass('sortable-placeholderLast')
       }
-      
+
       getClass = true
       if (ui.placeholder.parent().hasClass('subElement')) {
         getClass = false
@@ -1007,12 +1010,12 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
         getClass = false
       }
-      
+
       thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
         getClass = false
       }
-      
+
       if (getClass) {
         ui.placeholder.addClass('sortable-placeholder')
       } else {
@@ -1026,7 +1029,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2));
       }
-      
+
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
         ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
           var value = $(this).value();
@@ -1044,14 +1047,14 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
         })
         ui.item.parent().replaceWith(el);
       }
-      
+
       if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
         $("#div_scenarioElement").sortable("cancel");
       }
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-      
+
       updateTooltips()
       updateSortable()
     }
@@ -1231,13 +1234,13 @@ function printScenario(_id) {
     },
     success: function (data) {
       $('.scenarioAttr').value('');
-      
+
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected',true);
       $('.scenarioAttr[data-l1key=object_id]').val('');
       $pageContainer.setValues(data, '.scenarioAttr');
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch;
       $('#span_lastLaunch').text(data.lastLaunch);
-      
+
       $('#div_scenarioElement').empty();
       $('.provokeMode').empty();
       $('.scheduleMode').empty();
@@ -1415,7 +1418,7 @@ function addExpression(_expression) {
   if (_expression.type == 'condition') {
     sortable = 'noSortable';
   }
-  
+
   if (_expression.type == 'action') {
     var retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
   } else {
@@ -1437,7 +1440,7 @@ function addExpression(_expression) {
     retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
-    
+
     break;
     case 'element' :
     retour += '<div class="col-xs-12" >';
@@ -1523,7 +1526,7 @@ function addSubElement(_subElement) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable';
   }
-  
+
   blocClass = '';
   switch (_subElement.type) {
     case 'if':
@@ -1561,7 +1564,7 @@ function addSubElement(_subElement) {
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>';
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>';
-  
+
   switch (_subElement.type) {
     case 'if' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
@@ -1582,7 +1585,7 @@ function addSubElement(_subElement) {
     retour += '<legend >{{SI}}';
     retour += '</legend>';
     retour += '</div>';
-    
+
     retour += '<div >';
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>';
@@ -1590,7 +1593,7 @@ function addSubElement(_subElement) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>';
     }
     retour += '</div>';
-    
+
     retour += '<div class="expressions" >';
     var expression = {type: 'condition'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1600,7 +1603,7 @@ function addSubElement(_subElement) {
     retour += '  </div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'then' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1632,7 +1635,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'else' :
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1657,7 +1660,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'for' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1685,7 +1688,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'in' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1713,7 +1716,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'at' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>';
     retour += '<div>';
@@ -1741,7 +1744,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'do' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
@@ -1766,7 +1769,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     break;
-    
+
     case 'code' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1798,7 +1801,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'comment' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>';
     retour += '<div>';
@@ -1825,7 +1828,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour = addElButtons(retour)
     break;
-    
+
     case 'action' :
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div>';
@@ -1841,6 +1844,16 @@ function addSubElement(_subElement) {
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />';
     }
     retour += '<legend class="legendHidden">ACTION</legend>';
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+      expression = _subElement.expressions[0]
+      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements)) {
+        retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200)+'</div>'
+      } else {
+        retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200)+'</div>'
+      }
+    } else {
+      retour += '<div class="blocPreview"></div>'
+    }
     retour += '</div>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ACTION}}</legend><br/>';
@@ -1884,7 +1897,7 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return '';
   }
-  
+
   elementClass = ''
   switch (_element.type) {
     case 'if' :
@@ -1908,9 +1921,9 @@ function addElement(_element) {
     case 'action' :
     elementClass = 'elementACTION'
   }
-  
+
   var div = '<div class="element ' + elementClass + '">';
-  
+
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>';
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>';
   switch (_element.type) {
@@ -1994,7 +2007,7 @@ function getElement(_element) {
   }
   element = element[0];
   element.subElements = [];
-  
+
   _element.findAtDepth('.subElement', 2).each(function () {
     var subElement = $(this).getValues('.subElementAttr', 2);
     subElement = subElement[0];
@@ -2016,7 +2029,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression);
-      
+
     });
     element.subElements.push(subElement);
   });
@@ -2057,7 +2070,7 @@ function setUndoStack(state=0) {
   syncEditors()
   newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
-  
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -2117,16 +2130,16 @@ function syncEditors() {
 }
 function resetEditors() {
   editor = []
-  
+
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     var expression = $(this).closest('.expression')
     var code = expression.find('.expressionAttr[data-l1key=expression]')
     var element = expression.parents('elementCODE').first()
-    
+
     code.show()
     code.removeAttr('id')
     expression.find('.CodeMirror-wrap').remove()
   })
-  
+
   setEditor()
 }

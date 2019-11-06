@@ -19,18 +19,18 @@ Changelog
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande).
 - Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code.
+- Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
+- Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
+- Vue : possibilité de mettre des scénarios.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Corrections de docs en adéquation avec la v4 et v4.1.
 - Corrections de bugs et optimisations.
-- Possibilité de désactiver le systeme de quote automatique (configuration -> commande)
-- Vue : possibilité de mettre des scénarios
-
 
 
 4.0.0
