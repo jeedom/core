@@ -1,5 +1,5 @@
-
 # FAQ
+**Réglages → Version : FAQ**
 
 ### Jeedom nécessite-t-il un abonnement ?
 Non, Jeedom est pleinement utilisable sans aucune nécessité de quelque abonnement que ce soit. Cependant, il existe des services proposés pour les sauvegardes ou les appel/SMS, mais qui restent réellement optionnels.

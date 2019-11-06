@@ -29,6 +29,7 @@ Changelog
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
+- Fenêtre A propos : Ajout de racourcis vers le Changelog et la FAQ.
 - Corrections de docs en adéquation avec la v4 et v4.1.
 - Corrections de bugs et optimisations.
 
