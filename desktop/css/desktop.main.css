@@ -2531,12 +2531,10 @@ textarea {
   z-index: -1;
 }
 
-.element .subElementCOMMENT .blocPreview,
-.element .subElementCODE .blocPreview {
+.element .blocPreview {
   display: none;
 }
-.element.elementCollapse .subElementCOMMENT .blocPreview,
-.element.elementCollapse .subElementCODE .blocPreview {
+.element.elementCollapse .blocPreview {
   display: block;
   position: absolute;
   background-color: var(--sc-form-color);
