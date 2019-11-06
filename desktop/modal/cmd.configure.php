@@ -806,6 +806,8 @@ $(function() {
     $('a[href="#cmd_display"]').click()
   }
   
+  jeedom.timeline.autocompleteFolder();
+  
   //widgets default if empty:
   var dashWidget = $('select[data-l2key="dashboard"]')
   if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())

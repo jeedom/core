@@ -1062,6 +1062,9 @@ class scenarioExpression {
 	}
 	
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
+		if(config::byKey('expression::autoQuote','core',1) == 0){
+			$_quote = false;
+		}
 		if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
 			require_once __DIR__ . '/../../data/php/user.function.class.php';
 		}
