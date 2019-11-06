@@ -280,15 +280,16 @@ function addEditviewZone(_viewZone) {
       div += '</select>';
     }
     if (init(_viewZone.type, 'widget') == 'graph') {
-      div += '<a class="btn btn-primary btn-sm bt_addViewGraph"><i class="fas fa-plus-circle"></i> Ajouter courbe</a>';
+      div += '<a class="btn btn-primary btn-sm bt_addViewGraph"><i class="fas fa-plus-circle"></i> {{Ajouter courbe}}</a>';
     }else  if (init(_viewZone.type, 'widget') == 'table') {
-      div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> Ajouter colonne</a>';
-      div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="line"><i class="fas fa-plus-circle"></i> Ajouter ligne</a>';
+      div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> {{Ajouter colonne}}</a>';
+      div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="line"><i class="fas fa-plus-circle"></i> {{Ajouter ligne}}</a>';
     }else{
-      div += '<a class="btn btn-primary btn-sm bt_addViewWidget"><i class="fas fa-plus-circle"></i> Ajouter Widget</a>';
+      div += '<a class="btn btn-primary btn-sm bt_addViewWidget"><i class="fas fa-plus-circle"></i> {{Ajouter Widget}}</a>';
+      div += '<a class="btn btn-primary btn-sm bt_addViewScenario"><i class="fas fa-plus-circle"></i> {{Ajouter Scénario}}</a>';
     }
-    div += '<a class="btn btn-warning btn-sm bt_editviewZone"><i class="fas fa-pencil-alt"></i> Editer</a>';
-    div += '<a class="btn btn-danger btn-sm bt_removeviewZone"><i class="far fa-trash-alt"></i> Supprimer</a>';
+    div += '<a class="btn btn-warning btn-sm bt_editviewZone"><i class="fas fa-pencil-alt"></i> {{Editer}}</a>';
+    div += '<a class="btn btn-danger btn-sm bt_removeviewZone"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
     div += '</span>';
     div += '</div>';
     div += '</legend>';
@@ -503,6 +504,14 @@ $('#div_viewZones').delegate('.bt_addViewWidget','click',function(){
     el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}));
   });
 });
+
+$('#div_viewZones').delegate('.bt_addViewScenario','click',function(){
+  var el = $(this);
+  jeedom.scenario.getSelectModal({}, function (result) {
+    el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'scenario'}));
+  });
+});
+
 
 
 function addWidgetService(_viewData){

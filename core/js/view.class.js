@@ -183,8 +183,8 @@ jeedom.view.get = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.view.setEqLogicOrder = function (_params) {
-  var paramsRequired = ['eqLogics'];
+jeedom.view.setComponentOrder = function (_params) {
+  var paramsRequired = ['components'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -196,8 +196,8 @@ jeedom.view.setEqLogicOrder = function (_params) {
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
-    action: 'setEqLogicOrder',
-    eqLogics: json_encode(_params.eqLogics),
+    action: 'setComponentOrder',
+    components: json_encode(_params.components),
   };
   $.ajax(paramsAJAX);
 }

@@ -118,24 +118,33 @@ try {
 		ajax::success($return);
 	}
 	
-	if (init('action') == 'setEqLogicOrder') {
+	if (init('action') == 'setComponentOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$eqLogics = json_decode(init('eqLogics'), true);
+		$components = json_decode(init('components'), true);
 		$sql = '';
-		foreach ($eqLogics as $eqLogic_json) {
-			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+		foreach ($components as $component) {
+			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['order']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
 				continue;
 			}
-			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';
-			$eqLogic = eqLogic::byId($eqLogic_json['id']);
-			if (!is_object($eqLogic)) {
-				continue;
+			$sql .= 'UPDATE viewData SET `order`= ' . $component['order'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
+			if($component['type'] == 'eqLogic'){
+				$eqLogic = eqLogic::byId($component['id']);
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				utils::a2o($eqLogic, $component);
+				$eqLogic->save(true);
+			}elseif($component['type'] == 'scenario'){
+				$scenario = scenario::byId($component['id']);
+				if (!is_object($scenario)) {
+					continue;
+				}
+				utils::a2o($scenario, $component);
+				$scenario->save(true);
 			}
-			utils::a2o($eqLogic, $eqLogic_json);
-			$eqLogic->save(true);
 		}
 		if ($sql != '') {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);

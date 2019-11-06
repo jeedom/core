@@ -79,7 +79,7 @@ if (view_id != '') {
         $( "textarea").click(function() { $(this).focus(); });
         $('.eqLogicZone').each(function () {
           var container = $(this).packery();
-          var itemElems =  container.find('.eqLogic-widget');
+          var itemElems =  container.find('.eqLogic-widget,.scenario-widget');
           itemElems.draggable();
           container.packery( 'bindUIDraggableEvents', itemElems );
           container.packery( 'on', 'dragItemPositioned',function(){
@@ -99,6 +99,7 @@ if (view_id != '') {
         });
         
         $('.eqLogicZone .eqLogic-widget').draggable('disable');
+        $('.eqLogicZone .scenario-widget').draggable('disable');
         $('#bt_editViewWidgetOrder').off('click').on('click',function(){
           if($(this).attr('data-mode') == 1){
             $.hideAlert();
@@ -114,6 +115,7 @@ if (view_id != '') {
         });
         if(isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1){
           $('.eqLogic-widget').addClass('displayObjectName');
+          $('.scenario-widget').addClass('displayObjectName');
         }
         if (getUrlVars('fullscreen') == 1) {
           fullScreen(true);
@@ -169,11 +171,16 @@ function editWidgetMode(_mode,_save){
       $('.eqLogicZone .eqLogic-widget').draggable('disable');
       $('.eqLogicZone .eqLogic-widget.allowResize').resizable('destroy');
     }
+    if( $('.eqLogicZone .scenario-widget.ui-draggable').length > 0){
+      $('.eqLogicZone .scenario-widget').draggable('disable');
+      $('.eqLogicZone .scenario-widget.allowResize').resizable('destroy');
+    }
   }else{
     $('.eqLogic-widget').addClass('editingMode')
     $('.scenario-widget').addClass('editingMode')
     jeedom.cmd.disableExecute = true;
     $('.eqLogicZone .eqLogic-widget').draggable('enable');
+    $('.eqLogicZone .scenario-widget').draggable('enable');
     $( ".eqLogicZone .eqLogic-widget.allowResize").resizable({
       grid: [ 2, 2 ],
       resize: function( event, ui ) {
@@ -182,6 +189,17 @@ function editWidgetMode(_mode,_save){
       },
       stop: function( event, ui ) {
         positionEqLogic(ui.element.attr('data-eqlogic_id'),false);
+        ui.element.closest('.eqLogicZone').packery();
+      }
+    });
+    $( ".eqLogicZone .scenario-widget.allowResize").resizable({
+      grid: [ 2, 2 ],
+      resize: function( event, ui ) {
+        positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
+        ui.element.closest('.eqLogicZone').packery();
+      },
+      stop: function( event, ui ) {
+        positionEqLogic(ui.element.attr('data-scenario_id'),false,true);
         ui.element.closest('.eqLogicZone').packery();
       }
     });
