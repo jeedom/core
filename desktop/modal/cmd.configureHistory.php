@@ -153,4 +153,6 @@ $('#bt_applytimeline').on('click',function(){
     $(this).closest('tr').attr('data-change','1');
   });
 });
+
+jeedom.timeline.autocompleteFolder();
 </script>

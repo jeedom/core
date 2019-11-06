@@ -32,6 +32,7 @@ if (!isConnect()) {
 </table>
 
 <script>
+jeedom.timeline.autocompleteFolder();
 initTableSorter()
 refreshScenarioSummary()
 var tableScSummary = $('#table_scenarioSummary')
