@@ -705,7 +705,7 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function 
       } else {
         txt = $(this).closest('.element').find('.expression textarea').val()
       }
-      $(this).html(txt)
+      $(this).html(txt.substring(0,200))
     })
   } else {
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
@@ -1786,7 +1786,7 @@ function addSubElement(_subElement) {
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
-      retour += '<div class="blocPreview">'+expression.expression+'</div>';
+      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>';
     } else {
       retour += '<div class="blocPreview"></div>';
     }
@@ -1813,7 +1813,7 @@ function addSubElement(_subElement) {
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
-      retour += '<div class="blocPreview">'+expression.expression+'</div>';
+      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>';
     } else {
       retour += '<div class="blocPreview"></div>';
     }
