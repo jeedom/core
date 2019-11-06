@@ -547,6 +547,9 @@ class cmd {
 	}
 	
 	public static function cmdToValue($_input, $_quote = false) {
+		if(config::byKey('expression::autoQuote','core',1) == 0){
+			$_quote = false;
+		}
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);

@@ -27,6 +27,7 @@ Changelog
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Corrections de docs en adéquation avec la v4 et v4.1.
 - Corrections de bugs et optimisations.
+- Possibilité de désactiver le systeme de quote automatique (configuration -> commande)
 
 
 
