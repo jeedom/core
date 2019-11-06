@@ -953,7 +953,7 @@ class eqLogic {
 						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
 					}
 					if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+						$this->setDisplay('layout::' . $key . '::table::nbColumn', 1);
 					}
 				}
 				foreach ($this->getCmd() as $cmd) {
