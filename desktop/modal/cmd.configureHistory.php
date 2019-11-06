@@ -154,5 +154,7 @@ $('#bt_applytimeline').on('click',function(){
   });
 });
 
-jeedom.timeline.autocompleteFolder();
+$(function() {
+  jeedom.timeline.autocompleteFolder()
+})
 </script>

@@ -81,7 +81,7 @@ jeedom.timeline.autocompleteFolder = function(){
       for(var i in data){
         values.push({val : data[i]});
       }
-      $('[data-l2key="timeline::folder"]').sew({values: values,token:'[ |,]'});
+      $('[data-l2key="timeline::folder"]').sew({values: values,token:'[#| |,]'});
     }
   })
 }

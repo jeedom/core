@@ -27,12 +27,11 @@ if (!isConnect()) {
 		</tr>
 	</thead>
 	<tbody>
-		
+
 	</tbody>
 </table>
 
 <script>
-jeedom.timeline.autocompleteFolder();
 initTableSorter()
 refreshScenarioSummary()
 var tableScSummary = $('#table_scenarioSummary')
@@ -40,6 +39,10 @@ tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '60px', '
 tableScSummary.trigger('applyWidgets')
 tableScSummary.trigger('resizableReset')
 tableScSummary.trigger('sorton', [[[1,0]]])
+
+$(function() {
+  jeedom.timeline.autocompleteFolder()
+})
 
 $('#bt_refreshSummaryScenario').off().on('click',function() {
 	refreshScenarioSummary()
@@ -119,13 +122,13 @@ function refreshScenarioSummary() {
 			}
 			$('#table_scenarioSummary tbody').append(table)
 			$("#table_scenarioSummary").trigger("update")
-			
+
 			$('.bt_summarayViewLog').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				$('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"})
 				$("#md_modal2").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
 			})
-			
+
 			$('.bt_sumarrayStopScenario').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				jeedom.scenario.changeState({
@@ -139,7 +142,7 @@ function refreshScenarioSummary() {
 					}
 				})
 			})
-			
+
 			$('.bt_summarayLaunchScenario').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				jeedom.scenario.changeState({
@@ -153,7 +156,7 @@ function refreshScenarioSummary() {
 					}
 				})
 			})
-			
+
 			$('.bt_summaryGotoScenario').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				window.location.href = 'index.php?v=d&p=scenario&id='+tr.attr('data-id')

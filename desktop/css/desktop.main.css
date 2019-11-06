@@ -2815,7 +2815,7 @@ path.highcharts-graph {
   color: var(--txt-color);
   background-color: var(--form-bg-color);
   border: none;
-  z-index: 3;
+  z-index: 5000;
 }
 .-sew-list-container ul li {
   border: none;
