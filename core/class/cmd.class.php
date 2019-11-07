@@ -1705,7 +1705,7 @@ class cmd {
 			'#eq_name#' => urlencode($this->getEqLogic()->getName()),
 			'"' => ''
 		);
-		$url = str_replace(array_keys($replace), $replace, $url);
+		$url = str_replace(array_keys($replace), $replace, jeedom::scenarioExpression::setTags($url));
 		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
 		$http = new com_http($url);
 		$http->setLogError(false);
