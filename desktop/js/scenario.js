@@ -1188,9 +1188,7 @@ function setAutocomplete() {
           var term = values[values.length-1]
           if (term == '') return false //only space entered
           response(
-            $.ui.autocomplete.filter(
-              autoCompleteCondition, extractLast(term)
-              )
+            $.ui.autocomplete.filter(autoCompleteCondition,term)
             )
         },
         response: function(event, ui) {
