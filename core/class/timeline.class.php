@@ -240,6 +240,7 @@ class timeline {
   }
   
   public function setFolder($_folder) {
+    $_folder = trim(trim(trim($_folder),','));
     $this->_changed = utils::attrChanged($this->_changed,$this->folder,$_folder);
     $this->folder = $_folder;
     return $this;
