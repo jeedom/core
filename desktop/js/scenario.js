@@ -36,7 +36,9 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-jeedom.timeline.autocompleteFolder();
+$( function() {
+  jeedom.timeline.autocompleteFolder()
+})
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
   if($(this).value() == 1){
@@ -223,42 +225,43 @@ $(function(){
 var editor = [];
 
 autoCompleteCondition = [
-  {val: 'rand(MIN,MAX)'},
-  {val: '#minute#'},
-  {val: '#heure#'},
-  {val: '#jour#'},
-  {val: '#semaine#'},
-  {val: '#mois#'},
-  {val: '#annee#'},
-  {val: '#sjour#'},
-  {val: '#date#'},
-  {val: '#time#'},
-  {val: '#timestamp#'},
-  {val: '#IP#'},
-  {val: '#hostname#'},
-  {val: 'tag(montag,defaut)'},
-  {val: 'variable(mavariable,defaut)'},
-  {val: 'delete_variable(mavariable)'},
-  {val: 'tendance(commande,periode)'},
-  {val: 'average(commande,periode)'},
-  {val: 'max(commande,periode)'},
-  {val: 'min(commande,periode)'},
-  {val: 'round(valeur)'},
-  {val: 'trigger(commande)'},
-  {val: 'randomColor(debut,fin)'},
-  {val: 'lastScenarioExecution(scenario)'},
-  {val: 'stateDuration(commande)'},
-  {val: 'lastChangeStateDuration(commande,value)'},
-  {val: 'median(commande1,commande2)'},
-  {val: 'avg(commande1,commande2)'},
-  {val: 'time(value)'},
-  {val: 'collectDate(cmd)'},
-  {val: 'valueDate(cmd)'},
-  {val: 'eqEnable(equipement)'},
-  {val: 'name(type,commande)'},
-  {val: 'value(commande)'},
-  {val: 'lastCommunication(equipement)'},
-  {val: 'color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'}
+  '#rand(MIN,MAX)',
+  '##minute#',
+  '##heure#',
+  '##jour#',
+  '##semaine#',
+  '##mois#',
+  '##annee#',
+  '##sjour#',
+  '##date#',
+  '##time#',
+  '##timestamp#',
+  '##IP#',
+  '##hostname#',
+  '#tag(montag,defaut)',
+  '#variable(mavariable,defaut)',
+  '#delete_variable(mavariable)',
+  '#tendance(commande,periode)',
+  '#average(commande,periode)',
+  '#max(commande,periode)',
+  '#min(commande,periode)',
+  '#round(valeur)',
+  '#trigger(commande)',
+  '#randomColor(debut,fin)',
+  '#lastScenarioExecution(scenario)',
+  '#stateDuration(commande)',
+  '#lastChangeStateDuration(commande,value)',
+  '#age(commande)',
+  '#median(commande1,commande2)',
+  '#avg(commande1,commande2)',
+  '#time(value)',
+  '#collectDate(cmd)',
+  '#valueDate(cmd)',
+  '#eqEnable(equipement)',
+  '#name(type,commande)',
+  '#value(commande)',
+  '#lastCommunication(equipement)',
+  '#color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'
 ];
 autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
@@ -1177,17 +1180,30 @@ function setEditor() {
 function setAutocomplete() {
   $('.expression').each(function () {
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      $(this).find('.expressionAttr[data-l1key=expression]').sew({values: autoCompleteCondition, token: '[ |#]'});
+      $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
+        minLength: 1,
+        source: autoCompleteCondition,
+        response: function(event, ui) {
+          $.each(ui.content, function(index, _obj) {
+            _obj.label = _obj.label.substr(1)
+            _obj.value = _obj.label
+          })
+        },
+        focus: function() {
+          return false
+        }
+      })
     }
+
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
       $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
         source: autoCompleteAction,
         close: function (event, ui) {
-          $(this).trigger('focusout');
+          $(this).trigger('focusout')
         }
-      });
+      })
     }
-  });
+  })
 }
 
 $('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){

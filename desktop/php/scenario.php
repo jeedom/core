@@ -361,8 +361,6 @@ if (is_array($scenarioListGroup)) {
 </div>
 
 <?php
-include_file('3rdparty', 'jquery.sew/jquery.caretposition', 'js');
-include_file('3rdparty', 'jquery.sew/jquery.sew.min', 'js');
 include_file('desktop', 'scenario', 'js');
 
 //Core CodeMirror addons:

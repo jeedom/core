@@ -179,7 +179,6 @@ function setTheme() {
 	include_file('3rdparty', 'jwerty/jwerty', 'js');
 	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
 	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.sew/jquery.sew', 'css');
 	include_file('3rdparty', 'jquery.tooltipster/js/tooltipster.bundle.min', 'js');
 	include_file('3rdparty', 'jquery.tooltipster/css/tooltipster.bundle.min', 'css');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');

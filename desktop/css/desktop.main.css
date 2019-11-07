@@ -2809,21 +2809,8 @@ path.highcharts-graph {
   background-color: var(--sc-formTxt-color);
   border: none;
 }
-
-.-sew-list-container {
-  cursor: pointer;
-  color: var(--txt-color);
-  background-color: var(--form-bg-color);
-  border: none;
+.ui-autocomplete.ui-front {
   z-index: 5000;
-}
-.-sew-list-container ul li {
-  border: none;
-  background-color: var(--form-bg-color);
-}
-.-sew-list-container ul li:hover {
-  color: var(--linkHoverLight-color);
-  background-color: var(--sc-formTxt-color);
 }
 
 #md_modal {
