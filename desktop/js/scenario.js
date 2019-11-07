@@ -1182,14 +1182,37 @@ function setAutocomplete() {
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
       $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
         minLength: 1,
-        source: autoCompleteCondition,
+        source: function(request, response) {
+          //return last term after last space:
+          var values = request.term.split(' ')
+          var term = values[values.length-1]
+          if (term == '') return false //only space entered
+          response(
+            $.ui.autocomplete.filter(
+              autoCompleteCondition, extractLast(term)
+              )
+            )
+        },
         response: function(event, ui) {
+          //remove leading # from all values:
           $.each(ui.content, function(index, _obj) {
             _obj.label = _obj.label.substr(1)
             _obj.value = _obj.label
           })
         },
         focus: function() {
+          event.preventDefault()
+          return false
+        },
+        select: function(event, ui) {
+          //update input value:
+          if (this.value.substr(-1) == '#') {
+            this.value = this.value.slice(0, -1) + ui.item.value
+          } else {
+            var values = this.value.split(' ')
+            var term = values[values.length-1]
+            this.value = this.value.slice(0, -term.length) + ui.item.value
+          }
           return false
         }
       })

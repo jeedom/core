@@ -85,19 +85,23 @@ jeedom.timeline.autocompleteFolder = function(){
 
       $('[data-l2key="timeline::folder"]').autocomplete({
         minLength: 0,
-        source: function( request, response ) {
-          response( $.ui.autocomplete.filter(
-            availableTags, extractLast( request.term ) ) )
+        source: function(request, response) {
+          //return last term:
+          var values = request.term.split(',')
+          var term = values[values.length-1]
+           response(
+            $.ui.autocomplete.filter(availableTags, term)
+            )
         },
         focus: function() {
           return false
         },
-        select: function( event, ui ) {
-          var terms = split( this.value )
-          terms.pop()
-          terms.push( ui.item.value )
-          terms.push( "" )
-          this.value = terms.join( ", " )
+        select: function(event, ui) {
+          var values = this.value.split(',')
+          values.pop()
+          var newValue = values.join(',') + ',' + ui.item.value
+          if (newValue.substring(0, 1) == ',') newValue = newValue.substr(1)
+          this.value = newValue
           return false
         }
       })

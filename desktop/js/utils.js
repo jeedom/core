@@ -1278,13 +1278,6 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
   }
   return this
 }
-//jQuery autocomplete multiple:
-function split( val ) {
-  return val.split( /,\s*/ )
-}
-function extractLast( term ) {
-  return split( term ).pop()
-}
 
 //deprecated
 function initCheckBox(){}

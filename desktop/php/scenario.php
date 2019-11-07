@@ -237,8 +237,8 @@ if (is_array($scenarioListGroup)) {
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
-									<div class="col-xs-3">
-										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}">
+									<div class="col-xs-5">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%">
 									</div>
 								</div>
 								<div class="form-group">
