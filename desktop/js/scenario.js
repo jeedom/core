@@ -535,32 +535,25 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
 
 $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
+  var expression = false
+  var insertAfter = false
+  var elementDiv = $(this).closest('.element')
 
   //is scenario empty:
-  var elementDiv = $(this).closest('.element')
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
-    var expression = false
-    var insertAfter = false
-
-    //Is triggerred from element button:
-    if ($(this).hasClass('fromSubElement')) {
-      elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-      expression = true
-    } else {
-      //had focus ?
-      if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
-        insertAfter = true
-        elementDiv = $(PREV_FOCUS).closest('div.element')
-        if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
-          elementDiv = elementDiv.parents('.expression').eq(0)
-          expression = true
-        }
-      } else {
-        elementDiv = $('#div_scenarioElement')
+    //had focus ?
+    if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
+      insertAfter = true
+      elementDiv = $(PREV_FOCUS).closest('div.element')
+      if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
+        elementDiv = elementDiv.parents('.expression').eq(0)
+        expression = true
       }
+    } else {
+      elementDiv = $('#div_scenarioElement')
     }
   }
 
@@ -587,6 +580,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
+
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
@@ -2060,7 +2054,13 @@ function getAddButton(_caret) {
   retour += '<ul class="dropdown-menu">'
 
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
-  retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
 
   retour += '</ul>'
   retour += '</div>'
@@ -2070,6 +2070,23 @@ function getAddButton(_caret) {
   }
   return retour
 }
+$pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function (event) {
+  var elementType = $(this).attr('data-type')
+  setUndoStack()
+
+  var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
+  var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
+  elementDiv.append(newEL.addClass('disableElement'))
+
+  setEditor()
+  updateSortable()
+  updateElseToggle()
+  modifyWithoutSave = true
+  updateTooltips()
+  setAutocomplete()
+  setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
+})
+
 
 //UNDO Management
 var _undoStack_ = new Array()
