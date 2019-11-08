@@ -39,7 +39,8 @@ body {
 
 html,
 body,
-textarea {
+textarea,
+.scrollable-menu {
   scrollbar-color: var(--linkHover-color) transparent !important;
   scrollbar-width: thin;
 }
