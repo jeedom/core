@@ -1645,23 +1645,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ALORS}}</legend>';
-    retour += '<div class="input-group">';
-    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-chevron-down"></i>';
-    retour += '</button>';
-    retour += '<span class="input-group-btn">';
-    retour += '<div class="dropdown" >';
-    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</span>';
-    retour += '</div>';
+    retour += getAddButton(true);
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1677,16 +1661,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{SINON}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1786,16 +1761,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{FAIRE}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1894,16 +1860,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ACTION}}</legend><br/>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += ' <i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -2079,6 +2036,39 @@ function updateTooltips() {
     $(this).attr('title', $(this).attr('tooltip'))
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
+}
+
+function getAddButton(_caret) {
+  if (!isset(_caret)) _caret = false
+  retour = ''
+  if (_caret) {
+    retour += '<div class="input-group">'
+    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+    retour += '<i class="fas fa-chevron-down"></i>'
+    retour += '</button>'
+    retour += '<span class="input-group-btn">'
+  }
+  retour += '<div class="dropdown">'
+  if (_caret) {
+    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  } else {
+    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  }
+  retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
+  retour += '<span class="caret"></span>'
+  retour += '</button>'
+  retour += '<ul class="dropdown-menu">'
+
+  retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
+  retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>'
+
+  retour += '</ul>'
+  retour += '</div>'
+  if (_caret) {
+    retour += '</span>'
+    retour += '</div>'
+  }
+  return retour
 }
 
 //UNDO Management
