@@ -1132,7 +1132,7 @@ function displayObject(_plan,_html, _noRender) {
     }
     style['min-width'] = '0px'
     style['min-height'] = '0px'
-    another_css += css_selector+' * {';
+    another_css += css_selector+' *:not([class^="content"]:not(.cmd-widget) {';
     another_css += 'min-width:0px !important;'
     another_css += 'min-height:0px !important;'
     another_css += '\n}'
