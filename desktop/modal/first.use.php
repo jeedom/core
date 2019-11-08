@@ -31,7 +31,7 @@ try {
 	    <div class="col-xs-4">
 	       <center>
 	        <a href="https://jeedom.com/start" target="_blank">
-	            <i class="fas fa-picture-o" style="font-size:12em;"></i><br/>
+	            <i class="fas fa-image" style="font-size:12em;"></i><br/>
 	            {{Guide de démarrage}}
 	        </a>
 	    </center>
