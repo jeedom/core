@@ -487,6 +487,9 @@ class jeeObject {
 		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
 			$this->setConfiguration('mobile::summaryTextColor', '');
 		}
+		if ($this->getDisplay('icon') == '') {
+			$this->setConfiguration('icon', '<i class="far fa-lemon"></i>');
+		}
 	}
 	
 	public function save() {
