@@ -2307,6 +2307,9 @@ textarea {
   margin: 0 5px 0 5px;
 }
 
+.element .subElementAttr {
+  z-index: 2 !important;
+}
 .element .bt_sortable,
 .element .bt_hideElement,
 .element .bt_removeElement,

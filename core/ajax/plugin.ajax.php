@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'getConf') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -63,13 +63,13 @@ try {
 				}
 			}
 		}
-		
+
 		$return['update'] = utils::o2a($update);
 		$return['logs'] = array();
 		$return['logs'][-1] = array('id' => -1, 'name' => 'local', 'log' => $plugin->getLogList());
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'toggle') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -82,19 +82,19 @@ try {
 		$plugin->setIsEnable(init('state'));
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'all') {
 		if (!isConnect()) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		ajax::success(utils::o2a(plugin::listPlugin(init('activateOnly',false))));
 	}
-	
+
 	if (init('action') == 'getDependancyInfo') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		
+
 		$return = array('state' => 'nok', 'log' => 'nok');
 		$plugin = plugin::byId(init('id'));
 		if (is_object($plugin)) {
@@ -102,7 +102,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'dependancyInstall') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -114,7 +114,7 @@ try {
 		}
 		ajax::success($plugin->dependancy_install());
 	}
-	
+
 	if (init('action') == 'getDeamonInfo') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -128,7 +128,7 @@ try {
 		$return['plugin'] = utils::o2a($plugin);
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'deamonStart') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -141,7 +141,7 @@ try {
 		}
 		ajax::success($plugin->deamon_start(init('forceRestart', 0)));
 	}
-	
+
 	if (init('action') == 'deamonStop') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -153,7 +153,7 @@ try {
 		}
 		ajax::success($plugin->deamon_stop());
 	}
-	
+
 	if (init('action') == 'deamonChangeAutoMode') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -165,10 +165,9 @@ try {
 		}
 		ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
 }
-?>
