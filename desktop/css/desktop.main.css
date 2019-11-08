@@ -2103,6 +2103,7 @@ div[id^=__lpform_] { /*lastpass*/
   box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
 }
 .elementIF { background-color: var(--scBlocIF) !important; }
+.subElementELSE { background-color: var(--scBlocElse) !important; }
 .elementFOR { background-color: var(--scBlocFOR) !important; }
 .elementIN { background-color: var(--scBlocIN) !important; }
 .elementAT { background-color: var(--scBlocAT) !important; }
