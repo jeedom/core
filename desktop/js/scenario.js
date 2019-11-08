@@ -203,14 +203,15 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-              if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1]
-              }
+              $.hideAlert()
               if (event.ctrlKey || event.originalEvent.which == 2) {
+                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
                 window.open(url).focus()
               } else {
-                loadPage(url)
+                printScenario(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -287,7 +288,26 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
 });
 
+$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(event) {
+  $.hideAlert()
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
+    window.open(url).focus()
+  } else {
+    $('#scenarioThumbnailDisplay').hide()
+    printScenario($(this).attr('data-scenario_id'))
+  }
+})
+$('.scenario_link').off('mouseup','.scenario_link').on('mouseup','.scenario_link', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-scenario_id')
+    $('.scenario_link[data-scenario_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
+
 $('.scenarioDisplayCard').off('click').on('click', function (event) {
+  $.hideAlert()
   if (event.ctrlKey) {
     var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
     window.open(url).focus()
@@ -1221,10 +1241,6 @@ function setAutocomplete() {
   })
 }
 
-$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){
-  printScenario($(this).attr('data-scenario_id'));
-});
-
 function printScenario(_id) {
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
@@ -1355,9 +1371,12 @@ function printScenario(_id) {
       if(data.name){
         title = data.name +' - Jeedom';
       }
-      addOrUpdateUrl('id',data.id,title);
-      if(window.location.hash == ''){
-        $('.nav-tabs a[href="#generaltab"]').click();
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id,title)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
       }
       setTimeout(function () {
         setEditor();
