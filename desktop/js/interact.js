@@ -209,13 +209,6 @@ $('.interactDisplayCard').off('mouseup').on('mouseup', function (event) {
   }
 })
 
-$("#div_tree").jstree({
-  "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-  $('#div_tree').jstree(true).search($('#in_treeSearcxh').val());
-});
-
 $('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr:visible', function () {
   modifyWithoutSave = true;
 });
@@ -312,7 +305,7 @@ $("#bt_saveInteract").on('click', function () {
 });
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function (result) {
     if (result) {
       jeedom.interact.regenerateInteract({
         interact: {query: result},
@@ -320,7 +313,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+          $('#div_alert').showAlert({message: '{{Toutes les interactions ont été régénérées}}', level: 'success'});
         }
       });
     }
@@ -419,9 +412,6 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
 
 function printInteract(_id) {
   $.hideAlert()
-  $('#div_tree').jstree('deselect_all')
-  $('#div_tree').jstree('select_node', 'interact' + _id)
-
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.interactDisplayCard').removeClass('active');
