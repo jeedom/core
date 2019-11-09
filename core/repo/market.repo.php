@@ -513,6 +513,9 @@ class repo_market {
 	}
 	
 	public static function monitoring_status() {
+		if (config::byKey('market::username') == '' && config::byKey('market::password') == '') {
+			return false;
+		}
 		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
 			return false;
 		}
