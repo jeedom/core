@@ -192,7 +192,6 @@ function setTheme() {
 	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
 	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');

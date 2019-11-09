@@ -16,27 +16,24 @@
 
 //infos/actions tile signals:
 $('body')
-.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-})
-.on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-})
-
-$('body')
-.on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-})
-.on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-})
-
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+  })
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+  })
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+  if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+  })
 
 
 $(function(){
@@ -51,6 +48,7 @@ $(function(){
     }
   },1);
 
+  //autoResize new created tiles:
   setTimeout(function() {
     $('.eqLogic-widget > div.autoResize').each(function( index ) {
       var h = $(this).outerHeight(true) + $(this).parent().find('.widget-name').outerHeight(true) + 20

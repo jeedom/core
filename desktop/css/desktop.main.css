@@ -2083,9 +2083,13 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 
+.jstree-anchor:hover {
+  box-shadow: none;
+}
 .jstree-default .jstree-clicked {
   background-color: transparent;
-  border-left: 2.5px solid var(--logo-primary-color);
+  border-right: 2.5px solid var(--logo-primary-color);
+  box-shadow: none;
 }
 .jstree li a {
   width: 90% !important;
@@ -2093,6 +2097,7 @@ div[id^=__lpform_] { /*lastpass*/
 .jstree li a:hover {
   background-color: var(--form-bg-color);
 }
+
 
 /* __________________________________________________________________________________________________________SCENARIO */
 .scenario_link .label {
