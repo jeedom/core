@@ -72,18 +72,39 @@ jeedom.timeline.listFolder = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.timeline.autocompleteFolder = function(){
   jeedom.timeline.listFolder({
     global : false,
     success : function(data){
-      var values = [];
-      for(var i in data){
-        if(data[i] != 'main'){
-          values.push({val : data[i]});
+      var availableTags = []
+      for (var i in data) {
+        if (data[i] != 'main') {
+          availableTags.push(data[i])
         }
       }
-      $('[data-l2key="timeline::folder"]').sew({values: values,token:'[ |,]'});
+
+      $('[data-l2key="timeline::folder"]').autocomplete({
+        minLength: 0,
+        source: function(request, response) {
+          //return last term:
+          var values = request.term.split(',')
+          var term = values[values.length-1]
+           response(
+            $.ui.autocomplete.filter(availableTags, term)
+            )
+        },
+        focus: function() {
+          return false
+        },
+        select: function(event, ui) {
+          var values = this.value.split(',')
+          values.pop()
+          var newValue = values.join(',') + ',' + ui.item.value
+          if (newValue.substring(0, 1) == ',') newValue = newValue.substr(1)
+          this.value = newValue
+          return false
+        }
+      })
     }
   })
 }

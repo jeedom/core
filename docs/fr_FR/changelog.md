@@ -20,6 +20,7 @@ Changelog
 - Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande).
 - Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code.
 - Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
+- Scénario : Les boutons *Ajouter* dans les blocs permettent d'ajouter directement un bloc sans passer par la fenêtre de sélection.
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.

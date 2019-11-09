@@ -36,7 +36,9 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-jeedom.timeline.autocompleteFolder();
+$( function() {
+  jeedom.timeline.autocompleteFolder()
+})
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
   if($(this).value() == 1){
@@ -201,14 +203,14 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-              if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1]
-              }
               if (event.ctrlKey || event.originalEvent.which == 2) {
+                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
                 window.open(url).focus()
               } else {
-                loadPage(url)
+                printScenario(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -223,42 +225,43 @@ $(function(){
 var editor = [];
 
 autoCompleteCondition = [
-  {val: 'rand(MIN,MAX)'},
-  {val: '#minute#'},
-  {val: '#heure#'},
-  {val: '#jour#'},
-  {val: '#semaine#'},
-  {val: '#mois#'},
-  {val: '#annee#'},
-  {val: '#sjour#'},
-  {val: '#date#'},
-  {val: '#time#'},
-  {val: '#timestamp#'},
-  {val: '#IP#'},
-  {val: '#hostname#'},
-  {val: 'tag(montag,defaut)'},
-  {val: 'variable(mavariable,defaut)'},
-  {val: 'delete_variable(mavariable)'},
-  {val: 'tendance(commande,periode)'},
-  {val: 'average(commande,periode)'},
-  {val: 'max(commande,periode)'},
-  {val: 'min(commande,periode)'},
-  {val: 'round(valeur)'},
-  {val: 'trigger(commande)'},
-  {val: 'randomColor(debut,fin)'},
-  {val: 'lastScenarioExecution(scenario)'},
-  {val: 'stateDuration(commande)'},
-  {val: 'lastChangeStateDuration(commande,value)'},
-  {val: 'median(commande1,commande2)'},
-  {val: 'avg(commande1,commande2)'},
-  {val: 'time(value)'},
-  {val: 'collectDate(cmd)'},
-  {val: 'valueDate(cmd)'},
-  {val: 'eqEnable(equipement)'},
-  {val: 'name(type,commande)'},
-  {val: 'value(commande)'},
-  {val: 'lastCommunication(equipement)'},
-  {val: 'color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'}
+  '#rand(MIN,MAX)',
+  '##minute#',
+  '##heure#',
+  '##jour#',
+  '##semaine#',
+  '##mois#',
+  '##annee#',
+  '##sjour#',
+  '##date#',
+  '##time#',
+  '##timestamp#',
+  '##IP#',
+  '##hostname#',
+  '#tag(montag,defaut)',
+  '#variable(mavariable,defaut)',
+  '#delete_variable(mavariable)',
+  '#tendance(commande,periode)',
+  '#average(commande,periode)',
+  '#max(commande,periode)',
+  '#min(commande,periode)',
+  '#round(valeur)',
+  '#trigger(commande)',
+  '#randomColor(debut,fin)',
+  '#lastScenarioExecution(scenario)',
+  '#stateDuration(commande)',
+  '#lastChangeStateDuration(commande,value)',
+  '#age(commande)',
+  '#median(commande1,commande2)',
+  '#avg(commande1,commande2)',
+  '#time(value)',
+  '#collectDate(cmd)',
+  '#valueDate(cmd)',
+  '#eqEnable(equipement)',
+  '#name(type,commande)',
+  '#value(commande)',
+  '#lastCommunication(equipement)',
+  '#color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'
 ];
 autoCompleteAction = ['setColoredIcon','tag','report','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat'];
 
@@ -283,6 +286,24 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('.scenarioListContainer').packery();
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
 });
+
+$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(event) {
+  $.hideAlert()
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
+    window.open(url).focus()
+  } else {
+    $('#scenarioThumbnailDisplay').hide()
+    printScenario($(this).attr('data-scenario_id'))
+  }
+})
+$('.scenario_link').off('mouseup','.scenario_link').on('mouseup','.scenario_link', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-scenario_id')
+    $('.scenario_link[data-scenario_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('.scenarioDisplayCard').off('click').on('click', function (event) {
   if (event.ctrlKey) {
@@ -532,32 +553,25 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
 
 $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
+  var expression = false
+  var insertAfter = false
+  var elementDiv = $(this).closest('.element')
 
   //is scenario empty:
-  var elementDiv = $(this).closest('.element')
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
-    var expression = false
-    var insertAfter = false
-
-    //Is triggerred from element button:
-    if ($(this).hasClass('fromSubElement')) {
-      elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-      expression = true
-    } else {
-      //had focus ?
-      if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
-        insertAfter = true
-        elementDiv = $(PREV_FOCUS).closest('div.element')
-        if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
-          elementDiv = elementDiv.parents('.expression').eq(0)
-          expression = true
-        }
-      } else {
-        elementDiv = $('#div_scenarioElement')
+    //had focus ?
+    if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
+      insertAfter = true
+      elementDiv = $(PREV_FOCUS).closest('div.element')
+      if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
+        elementDiv = elementDiv.parents('.expression').eq(0)
+        expression = true
       }
+    } else {
+      elementDiv = $('#div_scenarioElement')
     }
   }
 
@@ -584,6 +598,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
+
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
@@ -1177,24 +1192,55 @@ function setEditor() {
 function setAutocomplete() {
   $('.expression').each(function () {
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      $(this).find('.expressionAttr[data-l1key=expression]').sew({values: autoCompleteCondition, token: '[ |#]'});
+      $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
+        minLength: 1,
+        source: function(request, response) {
+          //return last term after last space:
+          var values = request.term.split(' ')
+          var term = values[values.length-1]
+          if (term == '') return false //only space entered
+          response(
+            $.ui.autocomplete.filter(autoCompleteCondition,term)
+            )
+        },
+        response: function(event, ui) {
+          //remove leading # from all values:
+          $.each(ui.content, function(index, _obj) {
+            _obj.label = _obj.label.substr(1)
+            _obj.value = _obj.label
+          })
+        },
+        focus: function() {
+          event.preventDefault()
+          return false
+        },
+        select: function(event, ui) {
+          //update input value:
+          if (this.value.substr(-1) == '#') {
+            this.value = this.value.slice(0, -1) + ui.item.value
+          } else {
+            var values = this.value.split(' ')
+            var term = values[values.length-1]
+            this.value = this.value.slice(0, -term.length) + ui.item.value
+          }
+          return false
+        }
+      })
     }
+
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
       $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
         source: autoCompleteAction,
         close: function (event, ui) {
-          $(this).trigger('focusout');
+          $(this).trigger('focusout')
         }
-      });
+      })
     }
-  });
+  })
 }
 
-$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){
-  printScenario($(this).attr('data-scenario_id'));
-});
-
 function printScenario(_id) {
+  $.hideAlert()
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
     if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
@@ -1324,9 +1370,12 @@ function printScenario(_id) {
       if(data.name){
         title = data.name +' - Jeedom';
       }
-      addOrUpdateUrl('id',data.id,title);
-      if(window.location.hash == ''){
-        $('.nav-tabs a[href="#generaltab"]').click();
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id,title)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
       }
       setTimeout(function () {
         setEditor();
@@ -1608,23 +1657,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ALORS}}</legend>';
-    retour += '<div class="input-group">';
-    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-chevron-down"></i>';
-    retour += '</button>';
-    retour += '<span class="input-group-btn">';
-    retour += '<div class="dropdown" >';
-    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</span>';
-    retour += '</div>';
+    retour += getAddButton(true);
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1640,16 +1673,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{SINON}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1749,16 +1773,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{FAIRE}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1857,16 +1872,7 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ACTION}}</legend><br/>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += ' <i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -2043,6 +2049,62 @@ function updateTooltips() {
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
 }
+
+function getAddButton(_caret) {
+  if (!isset(_caret)) _caret = false
+  retour = ''
+  if (_caret) {
+    retour += '<div class="input-group">'
+    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+    retour += '<i class="fas fa-chevron-down"></i>'
+    retour += '</button>'
+    retour += '<span class="input-group-btn">'
+  }
+  retour += '<div class="dropdown">'
+  if (_caret) {
+    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  } else {
+    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  }
+  retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
+  retour += '<span class="caret"></span>'
+  retour += '</button>'
+  retour += '<ul class="dropdown-menu">'
+
+  retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
+
+  retour += '</ul>'
+  retour += '</div>'
+  if (_caret) {
+    retour += '</span>'
+    retour += '</div>'
+  }
+  return retour
+}
+$pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function (event) {
+  var elementType = $(this).attr('data-type')
+  setUndoStack()
+
+  var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
+  var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
+  elementDiv.append(newEL.addClass('disableElement'))
+
+  setEditor()
+  updateSortable()
+  updateElseToggle()
+  modifyWithoutSave = true
+  updateTooltips()
+  setAutocomplete()
+  setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
+})
+
 
 //UNDO Management
 var _undoStack_ = new Array()

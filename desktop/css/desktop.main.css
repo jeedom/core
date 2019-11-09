@@ -39,7 +39,8 @@ body {
 
 html,
 body,
-textarea {
+textarea,
+.scrollable-menu {
   scrollbar-color: var(--linkHover-color) transparent !important;
   scrollbar-width: thin;
 }
@@ -2082,9 +2083,13 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 
+.jstree-anchor:hover {
+  box-shadow: none;
+}
 .jstree-default .jstree-clicked {
   background-color: transparent;
-  border-left: 2.5px solid var(--logo-primary-color);
+  border-right: 2.5px solid var(--logo-primary-color);
+  box-shadow: none;
 }
 .jstree li a {
   width: 90% !important;
@@ -2092,6 +2097,7 @@ div[id^=__lpform_] { /*lastpass*/
 .jstree li a:hover {
   background-color: var(--form-bg-color);
 }
+
 
 /* __________________________________________________________________________________________________________SCENARIO */
 .scenario_link .label {
@@ -2102,6 +2108,7 @@ div[id^=__lpform_] { /*lastpass*/
   box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
 }
 .elementIF { background-color: var(--scBlocIF) !important; }
+.subElementELSE { background-color: var(--scBlocElse) !important; }
 .elementFOR { background-color: var(--scBlocFOR) !important; }
 .elementIN { background-color: var(--scBlocIN) !important; }
 .elementAT { background-color: var(--scBlocAT) !important; }
@@ -2307,6 +2314,9 @@ textarea {
   margin: 0 5px 0 5px;
 }
 
+.element .subElementAttr {
+  z-index: 2 !important;
+}
 .element .bt_sortable,
 .element .bt_hideElement,
 .element .bt_removeElement,
@@ -2809,21 +2819,8 @@ path.highcharts-graph {
   background-color: var(--sc-formTxt-color);
   border: none;
 }
-
-.-sew-list-container {
-  cursor: pointer;
-  color: var(--txt-color);
-  background-color: var(--form-bg-color);
-  border: none;
+.ui-autocomplete.ui-front {
   z-index: 5000;
-}
-.-sew-list-container ul li {
-  border: none;
-  background-color: var(--form-bg-color);
-}
-.-sew-list-container ul li:hover {
-  color: var(--linkHoverLight-color);
-  background-color: var(--sc-formTxt-color);
 }
 
 #md_modal {
