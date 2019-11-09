@@ -145,14 +145,14 @@ $(function(){
             zIndex: 9999,
             className: 'interact-context-menu',
             callback: function(key, options, event) {
-              url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
-              if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1]
-              }
               if (event.ctrlKey || event.originalEvent.which == 2) {
+                url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
                 window.open(url).focus()
               } else {
-                loadPage(url)
+                printInteract(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -198,8 +198,7 @@ $('.interactDisplayCard').off('click').on('click', function (event) {
     var url = '/index.php?v=d&p=interact&id='+$(this).attr('data-interact_id')
     window.open(url).focus()
   } else {
-    $('#div_tree').jstree('deselect_all')
-    $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'))
+    printInteract($(this).attr('data-interact_id'))
   }
 })
 $('.interactDisplayCard').off('mouseup').on('mouseup', function (event) {
@@ -215,13 +214,6 @@ $("#div_tree").jstree({
 });
 $('#in_treeSearch').keyup(function () {
   $('#div_tree').jstree(true).search($('#in_treeSearcxh').val());
-});
-
-$('.interactDisplayCard').on('click',function(){
-  displayInteract($(this).attr('data-interact_id'));
-  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
-    $('.nav-tabs a[href="#generaltab"]').click();
-  }
 });
 
 $('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr:visible', function () {
@@ -425,7 +417,11 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
   $(this).closest('.' + type).remove();
 });
 
-function displayInteract(_id){
+function printInteract(_id) {
+  $.hideAlert()
+  $('#div_tree').jstree('deselect_all')
+  $('#div_tree').jstree('select_node', 'interact' + _id)
+
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.interactDisplayCard').removeClass('active');
@@ -479,7 +475,15 @@ function displayInteract(_id){
         }
       }
       taAutosize();
-      addOrUpdateUrl('id',data.id);
+
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
+      }
+
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,

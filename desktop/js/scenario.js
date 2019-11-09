@@ -203,7 +203,6 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              $.hideAlert()
               if (event.ctrlKey || event.originalEvent.which == 2) {
                 var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
                 if (window.location.hash != '') {
@@ -307,7 +306,6 @@ $('.scenario_link').off('mouseup','.scenario_link').on('mouseup','.scenario_link
 })
 
 $('.scenarioDisplayCard').off('click').on('click', function (event) {
-  $.hideAlert()
   if (event.ctrlKey) {
     var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
     window.open(url).focus()
@@ -1242,6 +1240,7 @@ function setAutocomplete() {
 }
 
 function printScenario(_id) {
+  $.hideAlert()
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
     if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
