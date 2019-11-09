@@ -120,6 +120,11 @@ a:focus {
   background: rgba(var(--bg-color),0.7);
 }
 
+.element .disableElement,
+.element .disableSubElement {
+  opacity: 0.3 !important;
+}
+
 /* CodeMirror */
 .expressions .CodeMirror-wrap,
 body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.8 !important; }
