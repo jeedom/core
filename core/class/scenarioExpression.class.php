@@ -550,7 +550,9 @@ class scenarioExpression {
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
-		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		} else {
+			$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
