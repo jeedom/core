@@ -571,7 +571,7 @@ class scenarioExpression {
 		$_startTime = date('Y-m-d H:i:s', strtotime('-' . $_period));
 		$_endTime = date('Y-m-d H:i:s');
 
-		if (trim(strtolower($_period), ' ') == 'today') {
+		if ($_period == 'today') {
 			$_startTime = date('Y/m/d') . ' 00:00:00';
 		} elseif ($_period == 'yesterday') {
 			$_startTime = date('Y/m/d', strtotime('-1 day')) . ' 00:00:00';
