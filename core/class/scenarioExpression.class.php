@@ -557,7 +557,7 @@ class scenarioExpression {
 			return '';
 		}
 		$cmd_id = $cmd->getId();
-
+		$_period = trim(strtolower($_period), ' ');
 		$args = func_num_args();
 		if ($args == 2) {
 			if (is_numeric(func_get_arg(1))) {
@@ -573,10 +573,10 @@ class scenarioExpression {
 
 		if (trim(strtolower($_period), ' ') == 'today') {
 			$_startTime = date('Y/m/d') . ' 00:00:00';
-		} elseif (trim(strtolower($_period), ' ') == 'yesterday') {
+		} elseif ($_period == 'yesterday') {
 			$_startTime = date('Y/m/d', strtotime('-1 day')) . ' 00:00:00';
 			$_endTime = date('Y/m/d', strtotime('-1 day')) . ' 23:59:59';
-		} elseif (trim(strtolower($_period), ' ') == 'day') {
+		} elseif ($_period == 'day') {
 			$_period = '1 day';
 			$_startTime = date('Y-m-d H:i:s', strtotime('-' . $_period));
 		}
