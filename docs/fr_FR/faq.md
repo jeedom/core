@@ -7,8 +7,20 @@ Non, Jeedom est pleinement utilisable sans aucune nécessité de quelque abonnem
 ### Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?
 Non, Jeedom n’utilise pas d’infrastructure type "Cloud". Tout se fait en local et vous n’avez pas besoin de nos serveurs pour que votre installation fonctionne. Seuls les services comme le Market, la sauvegarde en ligne ou le DNS Jeedom nécessitent l’utilisation de nos serveurs.
 
+### Y a-t-il une application mobile dédiée ?
+Jeedom possède une version mobile adaptée à l’utilisation sur mobile et tablette. Il existe aussi une application native pour Android et iOS.
+
 ### Quels sont les identifiants pour me connecter la première fois ?
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut sont admin/admin. A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
+
+### Je n'arrive plus à me connecter à mon Jeedom
+Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les IP sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto/how to)
+
+### Je ne vois pas tous mes équipements sur le Dashboard
+Souvent cela est dû au fait que les équipements sont affectés à un objet qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
+
+### L'interface de Jeedom a-t-elle des raccourcis ?
+Oui, la liste des raccourcis clavier / souris est [ici](shortcuts.md).
 
 ### Peut-on réordonner les commandes d’un équipement ?
 Oui c’est possible, il suffit de glisser/déposer les commandes de votre objet sur sa configuration.
@@ -25,8 +37,8 @@ Il suffit, sur une courbe historique de la commande, de cliquer sur le point en 
 ### Combien de temps dure une sauvegarde ?
 Il n’y a pas de durée standard, cela dépend du système et du volume de données à sauvegarder, mais il peut prendre plus de 5 minutes, c’est normal.
 
-### Y a-t-il une application mobile dédiée ?
-Jeedom possède une version mobile adaptée à l’utilisation sur mobile et tablette. Il existe aussi une application native pour Android et iOS.
+### Où se trouvent les sauvegardes de Jeedom ?
+Elles sont dans le dossier /var/www/html/backup
 
 ### Peut-on mettre Jeedom en https ?
 Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
@@ -49,9 +61,6 @@ sudo su -
 chmod -R 775 /var/www/html
 chown -R www-data:www-data /var/www/html
 ```
-
-### Où se trouvent les sauvegardes de Jeedom ?
-Elles sont dans le dossier /var/www/html/backup
 
 ### Comment mettre à jour Jeedom en SSH ?
 En SSH faites :
@@ -116,17 +125,12 @@ Il est conseillé de regarder les commandes exécutées par le scénario, souven
 ### J’ai des instabilités ou des erreurs 504
 Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la commande est : ```sudo dmesg | grep error```.
 
-### Je ne vois pas tous mes équipements sur le dashboard
-Souvent cela est dû au fait que les équipements sont affectés à un objet qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
-
 ### J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'
 Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas courants sont :
 
 - Manque de place sur le système de fichiers (peut être vérifié en faisant la commande "df -h", en SSH)
-
 - Problème de corruption de fichier(s), ce qui arrive souvent suite à un arrêt non propre de Jeedom (coupure de courant)
-
-- Soucis mémoire, le système manque de mémoire et tue le process le plus consommateur (souvent la base de données). Cela peut se voir dans l'administration de l'OS puis dmesg, vous devez voir un kill par "oom". Si c'est le cas il faut réduire la consommation de jeedom en désactivant des plugins.
+- Soucis mémoire, le système manque de mémoire et tue le process le plus consommateur (souvent la base de données). Cela peut se voir dans l'administration de l'OS puis dmesg, vous devez voir un kill par "oom". Si c'est le cas il faut réduire la consommation de Jeedom en désactivant des plugins.
 
 Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième cas, le mieux étant de récupérer une sauvegarde (disponible dans /var/www/html/backup par défaut), de réinstaller Jeedom et de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne veut pas démarrer depuis une console SSH :
 ``` {.bash}
@@ -136,7 +140,7 @@ mysqld --verbose
 ```
 Ou consulter le log : /var/log/mysql/error.log
 
-### Les boutons Eteindre/Redémarrer ne fonctionnent pas
+### Les boutons Éteindre/Redémarrer ne fonctionnent pas
 Sur une installation DIY c’est normal. En SSH, il faut faire la commande visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
 NOPASSWD: ALL.
 
@@ -145,7 +149,7 @@ sudo service apache2 restart
 ```
 
 ### Je ne vois pas certains plugins du Market
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le plugin. En général, une mise à jour de jeedom corrige le souci.
+Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le plugin. En général, une mise à jour de Jeedom corrige le souci.
 
 ### J'ai un équipement en timeout mais je ne le vois pas sur le Dashboard
 Les alertes sont classées par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
@@ -162,16 +166,13 @@ echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 Essayez de vider le cache de chrome, l'affichage des historiques est calculé par rapport à l'heure du navigateur.
 
 ### J'ai l'erreur "Soucis réseaux détecté, redémarrage du réseaux"
-Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeeodm n'a pas redémarré ou a redémarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connexion réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
+Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeedom n'a pas redémarré ou a redémarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connexion réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
 
 ### J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
 Ça veut dire que Jeedom n'arrive pas a backuper la base de données ce qui peut laisser penser à un soucis de corruption de base de données et de filesystem. Il n'y a malheureusement pas de commande miracle pour corriger. Le mieux est de lancer un backup et d'analyser le log de celui-ci. Dans les cas connus de soucis nous avons:
 
 - une table de la base corrompue => là c'est mal parti il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous êtes sur carte SD c'est le bon moment pour la changer)
 - pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
-
-### Je n'arrive plus à me connecter à mon Jeedom
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les IP sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto/how to)
 
 ### J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent être manquant ou j'ai une page blanche
 C'est une erreur assez grave le plus simple est de faire
@@ -184,7 +185,7 @@ cp -R /root/tmp/core-master/* /var/www/html
 rm -rf /root/tmp/core-master
 ```
 
-### J'ai l'erreurs dans scenario_execution MYSQL_ATTR_INIT_COMMAND
+### J'ai l’erreur dans scenario_execution MYSQL_ATTR_INIT_COMMAND
 Dans l'administration de Jeedom partie OS/DB puis dans la console système il faut faire :
 ```
 yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap

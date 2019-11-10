@@ -1,5 +1,6 @@
 # Dashboard
 **Accueil → Dashboard**
+<small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
 Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom.
 
