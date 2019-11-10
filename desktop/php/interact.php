@@ -37,7 +37,7 @@ $optionMaxSize = 15;
 			</div>
 		</div>
 
-		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
+		<legend><i class="far fa-comments"></i> {{Mes interactions}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";

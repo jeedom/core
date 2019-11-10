@@ -26,6 +26,10 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   }
 });
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.objectDisplayCard').length+')')
+})
+
 //searching
 $('#in_searchObject').keyup(function () {
   var search = $(this).value()
@@ -51,7 +55,7 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup()
 })
 
-/* contextMenu */
+//context menu
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -97,6 +101,7 @@ $(function(){
   }
   catch(err) {}
 })
+
 
 $('#bt_graphObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');

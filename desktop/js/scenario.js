@@ -38,6 +38,8 @@ $('.backgroundforJeedom').css({
 
 $( function() {
   jeedom.timeline.autocompleteFolder()
+
+  $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
 })
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
@@ -72,7 +74,6 @@ $('#in_searchScenario').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.scenarioListContainer').packery()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
     $(this).click()
@@ -83,7 +84,6 @@ $('#bt_closeAll').off('click').on('click', function () {
     $(this).click()
   })
 })
-
 $('#bt_resetScenarioSearch').on('click', function () {
   $('#in_searchScenario').val('')
   $('#in_searchScenario').keyup()
@@ -113,14 +113,12 @@ $('#in_searchInsideScenario').keyup(function () {
     }
   })
 })
-
 $('#in_searchInsideScenario').focus(function (event) {
   if (!window.location.href.includes('#scenariotab')) {
     $('#bt_scenarioTab').trigger('click')
     setTimeout(function() { $('#in_searchInsideScenario').focus() }, 250)
   }
 })
-
 $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
   var searchField = $('#in_searchInsideScenario')
@@ -140,7 +138,6 @@ $('#bt_resetInsideScenarioSearch').on('click', function () {
     }
   }
 })
-
 
 /* contextMenu */
 $(function(){
@@ -222,8 +219,8 @@ $(function(){
   catch(err) {}
 })
 
-var editor = [];
 
+var editor = [];
 autoCompleteCondition = [
   '#rand(MIN,MAX)',
   '##minute#',

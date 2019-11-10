@@ -37,7 +37,7 @@ if (is_array($scenarioListGroup)) {
 			</div>
 		</div>
 
-		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
+		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";

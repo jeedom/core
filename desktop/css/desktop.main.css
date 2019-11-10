@@ -202,6 +202,10 @@ legend {
   margin-top: 20px;
   margin-bottom: 0;
 }
+legend > sub {
+  font-size: 12px;
+  font-style: italic
+}
 
 :not([data-page=display])legend {
   color: var(--link-color) !important;

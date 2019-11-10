@@ -49,7 +49,7 @@ foreach (widgets::all() as $widget) {
         <span class="txtColor"><center>{{Remplacement}}</center></span>
       </div>
     </div>
-    <legend><i class="fas fa-image"></i> {{Mes widgets}}</legend>
+    <legend><i class="fas fa-image"></i> {{Mes widgets}} <sub class="itemsNumber"></sub></legend>
     <?php
     if (count($widgets['info']) == 0 && count($widgets['action']) == 0) {
       echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></center>";
