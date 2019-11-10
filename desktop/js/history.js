@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -371,7 +370,7 @@ function displayTimeline(){
 function sepDays() {
   doIt = false
   if ($('#table_timeline [data-column="0"]').is('[data-sortedby]')) doIt = true
-  
+
   prevDate = ''
   $('#table_timeline tbody tr').each(function() {
     thisDate = $(this).text().substring(0,10)
