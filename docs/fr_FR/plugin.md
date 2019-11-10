@@ -11,9 +11,11 @@ On y trouve donc la liste des plugins dans l’ordre alphabétique et un lien ve
 En cliquant sur un plugin, vous accédez à sa configuration. En haut, vous retrouvez le nom du plugin, puis entre parenthèses, son nom dans Jeedom (ID) et enfin, le type de version installée (stable, beta).
 
 > **Important**
+>
 > Lors du téléchargement d’un plugin, celui-ci est désactivé par défaut. Il faut donc que vous l’activiez par vous-même.
 
 > **Tip**
+>
 > Vous pouvez faire un Ctrl Clic ou Clic Centre pour ouvrir sa configuration dans un nouvel onglet du navigateur.
 
 ## Configuration de plugin
@@ -61,6 +63,7 @@ Si le plugin possède des dépendances et/ou un démon, ces zones supplémentair
 - **Dernier lancement** : Date du dernier lancement du démon.
 
 > **Tip**
+>
 > Certains plugins ont une partie configuration. Si tel est le cas, elle apparaîtra sous les zones dépendances et démon décrites ci-dessus.
 > Dans ce cas, il faut se référer à la documentation du plugin en question pour savoir comment le configurer.
 
@@ -78,6 +81,7 @@ Si le plugin possède des dépendances et/ou un démon, ces zones supplémentair
 - **health** : Un cron health.
 
 > **Tip**
+>
 > Si le plugin utilise une de ces fonctions, vous pourrez spécifiquement lui interdire de le faire en décochant la case "activer" qui sera présente à côté.
 
 ### Panel
@@ -89,6 +93,7 @@ On peut retrouver une section Panel qui permettra d’activer ou désactiver l�
 Pour installer un nouveau plugin, il suffit de cliquer sur le bouton "Market" (et que Jeedom soit relié à Internet). Après un petit temps de chargement, vous obtiendrez la page.
 
 > **Tip**
+>
 > Vous devez avoir saisi les informations de votre compte du Market dans l’administration (Configuration→Mises à jour→Onglet market) afin de retrouver les plugins que vous avez déjà achetés par exemple.
 
 En haut de la fenêtre, vous avez des filtres :
@@ -99,6 +104,7 @@ En haut de la fenêtre, vous avez des filtres :
 - **Nom d’utilisateur** : affiche le nom d’utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion.
 
 > **Tip**
+>
 > La petite croix permet de réinitialiser le filtre concerné
 
 Une fois que vous avez trouvé le plugin voulu, il suffit de cliquer sur celui-ci pour faire apparaître sa fiche. Cette fiche vous donne beaucoup d’informations sur le plugin, notamment :
@@ -113,10 +119,13 @@ Une fois que vous avez trouvé le plugin voulu, il suffit de cliquer sur celui-c
 En dessous, vous retrouvez la description du plugin, la compatibilité (si Jeedom détecte une incompatibilité, il vous le signalera), les avis sur le plugin (vous pouvez ici le noter) et des informations complémentaires (l’auteur, la personne ayant fait la dernière mise à jour, un lien vers la doc, le nombre de téléchargements). Sur la droite vous retrouvez un bouton "Changelog" qui vous permet d’avoir tout l’historique des modifications, un bouton "Documentation" qui renvoie vers la documentation du plugin. Ensuite vous avez la langue disponible et les diverses informations sur la date de la dernière version stable.
 
 > **Important**
+>
 > Il n’est vraiment pas recommandé de mettre un plugin beta sur un Jeedom non beta, beaucoup de soucis de fonctionnement peuvent en résulter.
 
 > **Important**
+>
 > Certains plugins sont payants, dans ce cas la fiche du plugin vous proposera de l’acheter. Une fois cela fait, il faut attendre une dizaine de minutes (temps de validation du paiement), puis retourner sur la fiche du plugin pour l’installer normalement.
 
 > **Tip**
+>
 > Vous pouvez aussi ajouter un plugin à Jeedom à partir d’un fichier ou depuis un dépôt Github. Pour cela, il faut, dans la configuration de Jeedom, activer la fonction adéquate dans la partie "Mises à jour et fichiers". Il sera ensuite possible, en mettant la souris tout à gauche, et en faisant apparaître le menu de la page plugin, de cliquer sur "Ajout depuis une autre source". Vous pourrez ensuite choisir la source "Fichier". Attention, dans le cas de l’ajout par un fichier zip, le nom du zip doit être le même que l’ID du plugin et dès l’ouverture du ZIP un dossier plugin\_info doit être présent.

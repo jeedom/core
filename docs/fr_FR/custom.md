@@ -11,4 +11,5 @@ Pour les personnes non averties qui veulent découvrir les CSS :
 <http://css.mammouthland.net/premiers-pas-en-css.php>
 
 > **Important**
+>
 > Toute erreur dans un des ces scripts peut rendre Jeedom totalement indisponible et il faudra se connecter en SSH et supprimer les fichiers de customisation pour pouvoir le récupérer

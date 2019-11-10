@@ -13,6 +13,7 @@ Ces commandes peuvent être obtenues par :
 L’intérêt des interactions réside dans l’intégration simplifiée dans d’autres systèmes comme smartphone, tablette, autre box domotique, etc.
 
 > **Tip**
+>
 > Vous pouvez ouvrir une interaction en faisant :
 > - Clic sur l'une d'entre elle.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
@@ -34,6 +35,7 @@ En haut de page, on trouve 3 boutons :
 - **Tester** : Permet d’ouvrir une boîte de dialogue pour écrire et tester une phrase.
 
 > **Tip**
+>
 > Si vous avez une interaction qui génère les phrases pour les lumières par exemple et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l’interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
 ## Principe
@@ -82,6 +84,7 @@ A utiliser si vous voulez cibler une ou plusieurs commandes spécifiques ou pass
 #### Exemples
 
 > **Note**
+>
 > Les captures d’écran peuvent être différentes au vue des évolutions.
 
 #### Interaction simple
@@ -101,6 +104,7 @@ On peut très bien imaginer faire de même avec plusieurs actions pour allumer p
 Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les actions qui en découlent changent en fonction de ce qui est configuré dans la partie "Action", on peut donc déjà avec une interaction simple à phrase unique imaginer des actions combinées entre diverses commandes et divers scénarios (on peut aussi déclencher des scénarios dans la partie action des interactions).
 
 > **Tip**
+>
 > Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent, appuyer sur la touche tabulation de votre clavier pour faire apparaître le sélecteur de scénario.
 
 #### Interaction multiple commandes
@@ -160,6 +164,7 @@ Comme on peut le voir ici, j’ai conservé quasiment la même structure pour la
 Le champ **conversion binaire** doit contenir 2 réponses : en premier la réponse si la valeur de la commande vaut 0, puis une barre verticale "|" de séparation et enfin la réponse si la commande vaut 1. Ici les réponses sont simplement non et oui mais on pourrait y mettre une phrase un peu plus longue.
 
 > **Warning**
+>
 > Les tags ne fonctionnent pas dans les conversions binaires.
 
 ### Utilisateurs autorisés
@@ -281,6 +286,7 @@ On peut donc voir un regexp :
 Celui-ci permet de supprimer toutes les commandes qui ont l’un de ces mots dans leur phrase
 
 > **Note**
+>
 > Le regexp ici est une version simplifiée pour une utilisation simple. On peut donc soit utiliser les expressions traditionnelles, soit utiliser les expressions simplifiées comme dans cet exemple.
 
 ### Piloter un dimmer ou un thermostat (slider)
@@ -294,6 +300,7 @@ Il est possible de piloter une lampe en pourcentage (variateur) ou un thermostat
 Comme on le voit, il y a ici dans la demande le tag **\#consigne\#** (on peut mettre ce que l’on veut) qui est repris dans la commande du variateur pour appliquer la valeur voulue. Pour ce faire, on a 3 parties : \* Demande : dans laquelle on crée un tag qui va représenter la valeur qui sera envoyée à l’interaction. \* Réponse : on réutilise le tag pour la réponse afin d’être sûr que Jeedom a correctement compris la demande. \* Action : on met une action sur la lampe que l’on veut piloter et dans la valeur on lui passe notre tag *consigne*.
 
 > **Note**
+>
 > On peut utiliser n’importe quel tag excepté ceux déjà utilisés par Jeedom, il peut y en avoir plusieurs pour piloter par exemple plusieurs commandes. A noter aussi que tous les tags sont passés aux scénarios lancés par l’interaction (il faut toutefois que le scénario soit en "Exécuter en avant plan").
 
 #### Evolution
@@ -344,4 +351,5 @@ Les interactions permettent de faire beaucoup de choses en particulier. Vous pou
 ![interact23](../images/interact23.JPG)
 
 > **Note**
+>
 > Vous remarquerez dans la réponse le tag \#value\# celui-ci contient dans le cas d’une interaction programmée l’heure de programmation effective

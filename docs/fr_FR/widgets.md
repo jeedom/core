@@ -9,6 +9,7 @@ Il y a deux types de widgets personnalisés :
 - Les widgets basés sur du code utilisateur.
 
 > **Note**
+>
 > Si les widgets basés sur des templates sont intégrés au Core et donc suivis par l'équipe de développement, cette dernière n'a aucun moyen d'assurer la compatibilité des widgets basés sur du code utilisateur en fonction des évolutions de Jeedom.
 
 ## Gestion
@@ -24,6 +25,7 @@ Quatre options s’offrent à vous :
 Une fois que vous avez créé un widget, il apparaîtra dans cette partie.
 
 > **Tip**
+>
 > Vous pouvez ouvrir un widget en faisant :
 > - Clic sur l'un d'entre eux.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.

@@ -7,9 +7,11 @@ Deux API sont disponibles : une orientée développeur qui se pilote en JSON RPC
 Cette API s’utilise très facilement par de simples requêtes HTTP via URL.
 
 > **Note**
+>
 > Pour toute cette documentation, \#IP\_JEEDOM\# correspond à votre url d’accès à Jeedom. Il s’agit (sauf si vous êtes connecté à votre réseau local) de l’adresse internet que vous utilisez pour accéder à Jeedom depuis l’extérieur.
 
 > **Note**
+>
 > Pour toute cette documentation, \#API\_KEY\# correspond à votre clé API, propre à votre installation. Pour la trouver, il faut aller dans le menu "Général" → "Configuration" → onglet "Général".
 
 ## Scénario
@@ -29,9 +31,11 @@ Voici l’URL = [http://\#IP\_JEEDOM\#/jeedom/core/api/jeeApi.php?apikey=\#APIKE
 Le plus simple pour avoir cette URL est d’aller sur la page **Analyse → Résumé domotique**, de chercher la commande puis d’ouvrir sa configuration avancée (l’icône "engrenage") et là, vous allez voir une URL qui contient déjà tout ce qu’il faut en fonction du type et du sous-type de la commande.
 
 > **Note**
+>
 > Il est possible pour le champs \#ID\# de passer plusieurs commandes d’un coup. Pour cela, il faut passer un tableau en json (ex %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B et %5D). Le retour de Jeedom sera un json.
 
 > **Note**
+>
 > Les paramètres doivent être encodés pour les url, Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction

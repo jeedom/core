@@ -5,6 +5,7 @@ Les vues permettent de créer un affichage personnalisé.
 Ce n’est pas aussi puissant que les designs mais cela permet en quelques minutes d’avoir un affichage plus personnalisé.
 
 > **Tip**
+>
 > Vous pouvez dans votre profil choisir la vue par défaut lors du clic sur le menu des vues.
 
 ## Principe
@@ -14,6 +15,7 @@ On peut mettre aussi bien des widgets, des graphiques (qui peuvent être compos�
 Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou masquer la liste des vues ainsi que le bouton pour en ajouter une (Jeedom vous demandera son nom et vous enverra sur la page d’édition) :
 
 > **Tip**
+>
 > Vous pouvez dans votre profil modifier cette option pour que la liste des vues soit visible par défaut.
 
 ## Ajout/Edition d’une vue
@@ -21,6 +23,7 @@ Sur cette page, on retrouve un bouton en haut à gauche pour montrer ou masquer 
 Le principe est assez simple : une vue est composée de zones (on peut en mettre autant que l’on veut). Chaque zone est de type graphique, widget ou tableau, en fonction du type vous pourrez mettre des widgets d’équipement, de commande ou des graphiques dans celle-ci.
 
 > **Tip**
+>
 > Il est possible de déplacer l’ordre des zones par glisser/déposer.
 
 - Sur la gauche de la page on retrouve la liste des vues ainsi qu’un bouton d’ajout.
@@ -41,9 +44,11 @@ Une zone de type widget permet d’ajouter des widgets :
 - **Ajouter widget** : Permet d’ajouter/modifier des widgets à afficher dans la zone.
 
 > **Tip**
+>
 > Vous pouvez supprimer un widget directement en cliquant sur la poubelle devant celui-ci.
 
 > **Tip**
+>
 > Il est possible de modifier l’ordre des widgets dans la zone par glisser/déposer.
 
 Une fois le bouton d’ajout de widget pressé, vous obtenez une fenêtre qui vous demandera le widget à ajouter
@@ -68,6 +73,7 @@ Quand vous pressez le bouton "Ajouter courbe" Jeedom affiche la liste des comman
 - **Variation** : Dessine seulement les variations avec la valeur précédente.
 
 > **Tip**
+>
 > Il est possible de modifier l’ordre des graphiques dans la zone par glisser/déposer.
 
 ### Zone de type tableau
@@ -78,6 +84,7 @@ Vous avez ici les boutons :
 - **Ajouter ligne** : Permet d’ajouter une ligne au tableau.
 
 > **Note**
+>
 > Il est possible de réorganiser les lignes par glisser/déposer mais pas les colonnes.
 
 Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases :

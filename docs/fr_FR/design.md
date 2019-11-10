@@ -5,9 +5,11 @@ Cette page permet de configurer l’affichage de toute votre domotique de maniè
 Celle-ci demande du temps mais sa seule limite est votre imagination.
 
 > **Tip**
+>
 > Il est possible d’aller directement sur un design grâce au sous-menu.
 
 > **Important**
+>
 > Toutes les actions se font par un clic droit sur cette page, attention à bien le faire dans le design. Lors de la création, il faut donc le faire au milieu de la page (pour être sûr d’être sur le design).
 
 Dans le menu (clic droit), nous retrouvons les actions suivantes :
@@ -41,6 +43,7 @@ Dans le menu (clic droit), nous retrouvons les actions suivantes :
 - **Sauvegarder** : Permet de sauvegarder le design (attention, il y a aussi des sauvegardes automatiques lors de certaines actions).
 
 > **Important**
+>
 > La configuration des éléments du design se fait par un clic sur ceux-ci.
 
 ## Configuration du design
@@ -63,6 +66,7 @@ On retrouve ici :
 ## Configuration générale des éléments
 
 > **Note**
+>
 > En fonction du type de l’élément, les options peuvent changer.
 
 ### Paramètres d’affichage communs
@@ -116,6 +120,7 @@ Permet de choisir les commandes à grapher.
 - **Texte** : Texte au code HTML qui sera dans l’élément.
 
 > **Important**
+>
 > Si vous mettez du code HTML (en particulier du Javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter complètement le design et il ne restera plus qu’à le supprimer directement en base de données.
 
 ## Scénario

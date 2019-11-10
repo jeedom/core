@@ -17,6 +17,7 @@ Deux options s’offrent à vous :
 Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
 > **Tip**
+>
 > Vous pouvez ouvrir un objet en faisant :
 > - Clic sur l'un d'entre eux.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
@@ -47,12 +48,15 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard.
 
 > **Tip**
+>
 > Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet à la souris et en glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
+>
 > Vous pouvez voir un graphique représentant tous les éléments de Jeedom rattachés à cet objet en cliquant sur le bouton **Liens**, en haut à droite.
 
 > **Tip**
+>
 > Quand un équipement est créé et qu’aucun parent n’a été défini, il aura comme parent : **Aucun**.
 
 ## Onglet Résumé
@@ -72,6 +76,7 @@ Les colonnes représentent les résumés affectés à l’objet courant. Trois l
 Chaque onglet représente un type de résumé défini dans la configuration de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit prise en compte dans le résumé. Vous avez le choix de sélectionner la commande de n’importe quel équipement de Jeedom, même s’il n’a pas pour parent cet objet.
 
 > **Tip**
+>
 > Si vous souhaitez ajouter un type de résumé ou pour configurer la méthode de calcul du résultat, l’unité, l’icône et le nom d’un résumé, vous devez aller dans la configuration générale de Jeedom : **Réglages → Système → Configuration : Onglet Résumés**.
 
 ## Vue d’ensemble

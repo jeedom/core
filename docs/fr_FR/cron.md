@@ -5,6 +5,7 @@ Cette page informe de toutes les tâches applicatives Jeedom qui tournent sur le
 Cette page est à utiliser en connaissance de cause ou à la demande du support technique.
 
 > **Important**
+>
 > En cas de mauvaise manipulation sur cette page, toute demande de support peut vous être refusée.
 
 ## Onglet Cron

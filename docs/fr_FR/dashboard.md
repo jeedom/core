@@ -1,11 +1,13 @@
 # Dashboard
 **Accueil → Dashboard**
+
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
 Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom.
 
 
 > **Tip**
+>
 > Il est possible d’aller directement sur un objet de votre domotique.
 > Cela permet de n’avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
 
@@ -17,9 +19,11 @@ Une des pages principales de Jeedom affiche un compte-rendu de toute votre domot
 - Un clic sur une commande de type information permet d’afficher l’historique de la commande (si elle est historisée).
 
 > **Tip**
+>
 > Il est possible, à partir de votre profil, de configurer Jeedom pour que l’arbre des objets et/ou les scénarios soient visibles par défaut lorsque vous arrivez sur le Dashboard.
 
 > **Tip**
+>
 > En mobile, un appui long sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
 
 
@@ -47,6 +51,7 @@ A droite de chaque objet, une icône permet de :
 ## Barre de menu de Jeedom
 
 > **Tip**
+>
 > - Clic sur l’horloge (barre de menu) : Ouvre la Timeline.
 > - Clic sur le nom du Jeedom (barre de menu) : Ouvre Réglages → Système → Configuration.
 > - Clic sur le ? (barre de menu) : Ouvre l’aide sur le page en cours.

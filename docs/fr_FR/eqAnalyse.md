@@ -15,6 +15,7 @@ La page Analyse d’équipements vous permet de voir de nombreuses infos relativ
 Vous pouvez voir sur cet onglet la liste de vos modules sur batterie, leur niveau restant (la couleur de la tuile dépend de ce niveau), le type et le nombre de piles qu’il faut mettre dans le module, le type du module ainsi que la date à laquelle l’information du niveau de batterie a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été établi pour le module en particulier (représenté par une main)
 
 > **Tip**
+>
 > Les seuils d’alerte/warning sur les niveaux des batteries sont configurables de manière globale dans la configuration de Jeedom (Réglages→Systèmes→Configuration : Equipements), ou par équipement sur la page de configuration avancée de ceux-ci dans l’onglet alertes.
 
 ## Onglet Modules en alerte
@@ -29,6 +30,7 @@ D’autres types d’alertes pourront éventuellement se retrouver ici.
 Chaque alerte sera représentée par la couleur de la tuile (le niveau d’alerte) et un logo en haut à gauche (le type d’alerte).
 
 > **Tip**
+>
 > Ici seront affichés tous les modules en alerte même ceux configurés en "non visible". Il est toutefois intéressant de noter que si le module est en "visible" l’alerte sera aussi visible sur le dashboard (dans l’objet concerné).
 
 ## Onglet Actions définies
@@ -41,6 +43,7 @@ Cet onglet permet de visualiser les actions définies directement sur une comman
 - Les actions pre et post (configurables toujours au même endroit sur une commande action et permettant d’exécuter une ou plusieurs autres actions avant ou après l’action en question).
 
 > **Tip**
+>
 > Le tableau permet de voir de manière très textuelle les actions définies. D’autres types d’actions définies pourront être rajoutées.
 
 ## Onglet Alertes définies
@@ -66,4 +69,5 @@ Et utilisées à plein d’autres endroits comme (non exhaustif) :
 - Dans certains plugins.
 
 > **Tip**
+>
 > Le tableau permet de voir de manière très textuelle les commandes orphelines. Son but est de pouvoir identifier rapidement toutes les commandes "orphelines" au travers de tout Jeedom et des plugins. Il se peut que certaines zones ne soient pas analysées, le tableau se verra être de plus en plus exhaustif avec le temps.

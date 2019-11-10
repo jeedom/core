@@ -48,17 +48,21 @@ Vous y trouvez, à gauche, les paramètres et les boutons d’action. Sur la dro
 - **Restaurer la sauvegarde** : Lance la restauration de la sauvegarde samba sélectionnée au-dessus.
 
 > **Tip**
+>
 > Selon ce qui sera activé, dans la page Réglages → Système→Configuration : Mises à jour, vous pouvez voir plus ou moins de sections.
 
 > **Tip**
+>
 > Lors d’une réinstallation de Jeedom et en ayant pris l’abonnement de sauvegarde vers le cloud du Market, vous devez renseigner votre compte Market sur votre nouveau Jeedom (Réglages → Système→Configuration : Mises à jour) puis venir ici pour lancer la restauration.
 
 > **Tip**
+>
 > Il est possible, en cas de soucis, de faire une sauvegarde en ligne de commande :
 >  `sudo php /usr/share/nginx/www/jeedom/install/backup.php`
 > ou `sudo php /var/www/html/install/backup.php` selon votre système.
 
 > **Tip**
+>
 > Il est possible aussi de restaurer une sauvegarde en ligne de commandes (par défaut, Jeedom restaure la sauvegarde la plus récente présente dans le répertoire de sauvegarde) :
 > `sudo php /usr/share/nginx/www/jeedom/install/restore.php` ou
 > `sudo php /var/www/html/install/restore.php`.
@@ -70,6 +74,7 @@ Lors d’une sauvegarde, Jeedom va sauvegarder tous ses fichiers et la base de d
 Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car il n’est pas possible de sauvegarder les inclusions. Celles-ci sont directement incluses dans le contrôleur, il faut donc garder le même contrôleur pour retrouver ses modules Zwave.
 
 > **Note**
+>
 > Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si vous avez modifié des paramètres de ce système (notamment via SSH), c’est à vous de trouver un moyen de les récupérer en cas de soucis.
 
 # Sauvegarde cloud
@@ -77,6 +82,7 @@ Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car i
 La sauvegarde dans le cloud permet à Jeedom d’envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d’être sûr de ne pas les perdre. Le Market conserve les 6 dernières sauvegardes. Pour vous abonner il suffit d’aller sur votre page **profil** sur le Market, puis, dans l’onglet **mes backups**. Vous pouvez, à partir de cette page, récupérer une sauvegarde ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).
 
 > **Tip**
+>
 > Vous pouvez personnaliser le nom des fichiers de sauvegarde à partir de l’onglet **Mes Jeedoms**, en évitant toutefois les caractères exotiques.
 
 # Fréquence des sauvegardes automatiques
