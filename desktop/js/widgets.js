@@ -36,6 +36,11 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   }
 });
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.widgetsDisplayCard').length+')')
+})
+
+//searching
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -59,18 +64,87 @@ $('#in_searchWidgets').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.widgetsListContainer').packery()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").click()
 });
 $('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").click()
 })
-
 $('#bt_resetWidgetsSearch').off('click').on('click', function () {
   $('#in_searchWidgets').val('')
   $('#in_searchWidgets').keyup();
 })
+
+//context menu
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.widgets.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (_widgets) {
+        if(_widgets.length == 0){
+          return;
+        }
+        var widgetsList = []
+        widgetsList['info'] = []
+        widgetsList['action'] = []
+        for(i=0; i<_widgets.length; i++)
+        {
+          wg = _widgets[i]
+          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
+          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
+        }
+
+        //set context menu!
+        var contextmenuitems = {}
+        var uniqId = 0
+        for (var group in widgetsList) {
+          groupWidgets = widgetsList[group]
+          items = {}
+          for (var index in groupWidgets) {
+            wg = groupWidgets[index]
+            wgName = wg[0]
+            wgId = wg[1]
+            items[uniqId] = {'name': wgName, 'id' : wgId}
+            uniqId ++
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'widget-context-menu',
+          callback: function(key, options, event) {
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
+              window.open(url).focus()
+            } else {
+              printWidget(options.commands[key].id)
+            }
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
+
+
+$('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
+  chooseIcon(function (_icon) {
+    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  },{icon:_icon});
+});
 
 $('#bt_editCode').off('click').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
@@ -136,76 +210,6 @@ $('#bt_applyToCmd').off('click').on('click', function () {
       });
     });
   }).dialog('open');
-});
-
-//context menu
-$(function(){
-  try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
-    jeedom.widgets.all({
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (_widgets) {
-        if(_widgets.length == 0){
-          return;
-        }
-        var widgetsList = []
-        widgetsList['info'] = []
-        widgetsList['action'] = []
-        for(i=0; i<_widgets.length; i++)
-        {
-          wg = _widgets[i]
-          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
-        }
-
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
-          for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
-            items[uniqId] = {'name': wgName, 'id' : wgId}
-            uniqId ++
-          }
-          contextmenuitems[group] = {'name':group, 'items':items}
-        }
-
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'widget-context-menu',
-          callback: function(key, options, event) {
-            if (event.ctrlKey || event.originalEvent.which == 2) {
-              url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
-              window.open(url).focus()
-            } else {
-              printWidget(options.commands[key].id)
-            }
-          },
-          items: contextmenuitems
-        })
-      }
-    })
-  }
-  catch(err) {}
-})
-
-$('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
-  }
-  chooseIcon(function (_icon) {
-    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
 });
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick',function(){

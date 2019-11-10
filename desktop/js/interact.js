@@ -28,6 +28,10 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   }
 });
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.interactDisplayCard').length+')')
+})
+
 //searching
 $('#in_searchInteract').keyup(function () {
   var search = $(this).value()
@@ -57,7 +61,6 @@ $('#in_searchInteract').keyup(function () {
 $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').val('').keyup()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
@@ -68,21 +71,6 @@ $('#bt_closeAll').off('click').on('click', function () {
     $(this).click()
   })
 })
-
-$('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
-  }
-  chooseIcon(function (_icon) {
-    $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
-});
-
-$('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
-  $(this).value('');
-});
 
 //contextMenu:
 $(function(){
@@ -163,6 +151,22 @@ $(function(){
   }
   catch(err) {}
 })
+
+
+$('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
+  chooseIcon(function (_icon) {
+    $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  },{icon:_icon});
+});
+
+$('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+  $(this).value('');
+});
 
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 

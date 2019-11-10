@@ -23,7 +23,7 @@ $allObject = jeeObject::all();
 			</div>
 		</div>
 
-		<legend><i class="fas fa-image"></i>  {{Mes objets}}</legend>
+		<legend><i class="fas fa-image"></i>  {{Mes objets}} <sub class="itemsNumber"></sub></legend>
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
 			<div class="input-group-btn">

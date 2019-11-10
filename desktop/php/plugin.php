@@ -40,7 +40,7 @@ $plugins_list = plugin::listPlugin(false, true);
       echo $div;
       ?>
     </div>
-    <legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
+    <legend><i class="fas fa-list-alt"></i> {{Mes plugins}} <sub class="itemsNumber"></sub></legend>
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchPlugin"/>
       <div class="input-group-btn">
@@ -75,7 +75,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
   </div>
   <div class="col-xs-12" id="div_confPlugin" style="display:none;">
     <legend>
@@ -85,7 +85,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <span class="input-group-btn" id="span_right_button"></span>
       </div>
     </legend>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
@@ -133,7 +133,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-success">
@@ -152,14 +152,14 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-map"></i> {{Installation}}</h3></div>
       <div class="panel-body">
         <span id="span_plugin_installation"></span>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
@@ -171,7 +171,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="form-actions"></div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-primary" id="div_functionalityPanel">

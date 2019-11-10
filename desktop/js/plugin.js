@@ -14,6 +14,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.pluginDisplayCard').length+')')
+})
+
+
 //searching
 $('#in_searchPlugin').off('keyup').keyup(function () {
   var search = $(this).value()
