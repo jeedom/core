@@ -519,7 +519,7 @@ class repo_market {
 		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') == 0){
 			return false;
 		}
-		if(exec('grep "zabbix.jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') == 1){
+		if(exec('grep "zabbix.jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') > 0){
 			return false;
 		}
 		return (count(system::ps('zabbix')) > 0);
