@@ -431,10 +431,12 @@ $("body").delegate('.bt_removeAction', 'click', function () {
 $('body').delegate('.cmdAction.expressionAttr[data-l1key=cmd]', 'focusout', function (event) {
   var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr');
   var el = $(this);
-  jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
-    el.closest('.actionOnMessage').find('.actionOptions').html(html);
-    taAutosize();
-  })
+  if (expression[0] && expression[0].options) {
+    jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function (html) {
+      el.closest('.actionOnMessage').find('.actionOptions').html(html);
+      taAutosize();
+    })
+  }
 });
 
 $("body").delegate(".listCmdAction", 'click', function () {
