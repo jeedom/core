@@ -746,6 +746,12 @@ user::isBan();
 													$div .= '</div>';
 													$div .= '</div>';
 													$div .= '<div class="form-group col-xs-12">';
+													$div .= '<label class="col-xs-4 control-label">{{Ma connexion internet pour jeedom est 4g}}</label>';
+													$div .= '<div class="col-xs-8">';
+													$div .= '<input type="checkbox" class="configKey" data-l1key="dns::4g" />';
+													$div .= '</div>';
+													$div .= '</div>';
+													$div .= '<div class="form-group col-xs-12">';
 													$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 													$div .= '<div class="col-xs-8">';
 													if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
