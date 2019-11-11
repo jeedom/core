@@ -306,7 +306,7 @@ class network {
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
-		if(config::byKey('dns::4g') == 1){
+		if(config::byKey('connection::4g') == 1){
 			$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu 1300');
 		}else{
 			$openvpn->setConfiguration('optionsAfterStart', '');
