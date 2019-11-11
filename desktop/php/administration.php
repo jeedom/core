@@ -720,6 +720,12 @@ user::isBan();
 														<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 													</div>
 												</div>
+												<div class="form-group col-xs-12">
+													<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
+													<div class="col-xs-6">
+														<input type="checkbox" class="configKey" data-l1key="connection::4g" />
+													</div>
+												</div>
 											</fieldset>
 										</form>
 									</div>
@@ -743,12 +749,6 @@ user::isBan();
 													$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
 													$div .= '<div class="col-xs-8">';
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-													$div .= '</div>';
-													$div .= '</div>';
-													$div .= '<div class="form-group col-xs-12">';
-													$div .= '<label class="col-xs-4 control-label">{{Ma connexion internet pour jeedom est 4g}}</label>';
-													$div .= '<div class="col-xs-8">';
-													$div .= '<input type="checkbox" class="configKey" data-l1key="dns::4g" />';
 													$div .= '</div>';
 													$div .= '</div>';
 													$div .= '<div class="form-group col-xs-12">';
