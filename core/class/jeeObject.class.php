@@ -36,7 +36,7 @@ class jeeObject {
 	/*     * ***********************Méthodes statiques*************************** */
 	
 	public static function byId($_id) {
-		if ($_id == '') {
+		if ($_id == '' || $_id == -1) {
 			return;
 		}
 		$values = array(

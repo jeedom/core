@@ -1559,6 +1559,7 @@ class cmd {
 			'#cmd_id#' => $this->getId(),
 			'#humanname#' => urlencode($this->getHumanName()),
 			'#eq_name#' => urlencode($this->getEqLogic()->getName()),
+			'"' => ''
 		);
 		$url = str_replace(array_keys($replace), $replace, $url);
 		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);

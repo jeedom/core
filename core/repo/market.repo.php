@@ -506,7 +506,7 @@ public static function backup_restore($_backup) {
 		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
 			return false;
 		}
-		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | wc -l') == 0){
+		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | grep -v "zabbix.jeedom.com" | wc -l') == 0){
 			return false;
 		}
 		return (count(system::ps('zabbix')) > 0);

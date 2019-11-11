@@ -920,10 +920,14 @@ function editWidgetCmdMode(_mode){
             },
             callback: function(key, opt){
               saveWidgetDisplay()
+                var column = 0;
+            if($(this).find('table.tableCmd').attr('data-column') != undefined){
+              column = parseInt($(this).find('table.tableCmd').attr('data-column'));
+            }
               jeedom.eqLogic.simpleSave({
                 eqLogic : {
                   id : $(this).attr('data-eqLogic_id'),
-                  display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) + 1},
+                  display : {'layout::dashboard::table::nbColumn' : column + 1},
                 },
                 error: function (error) {
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -939,10 +943,14 @@ function editWidgetCmdMode(_mode){
             },
             callback: function(key, opt){
               saveWidgetDisplay()
+                var line = 0;
+            if($(this).find('table.tableCmd').attr('data-line') != undefined){
+              line = parseInt($(this).find('table.tableCmd').attr('data-line'));
+            }
               jeedom.eqLogic.simpleSave({
                 eqLogic : {
                   id : $(this).attr('data-eqLogic_id'),
-                  display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) + 1},
+                  display : {'layout::dashboard::table::nbLine' : line + 1},
                 },
                 error: function (error) {
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -958,10 +966,15 @@ function editWidgetCmdMode(_mode){
             },
             callback: function(key, opt){
               saveWidgetDisplay()
+                var column = 0;
+            if($(this).find('table.tableCmd').attr('data-column') != undefined){
+              column = parseInt($(this).find('table.tableCmd').attr('data-column')) - 1;
+              column = (column < 0) ? 0 : column;
+            }
               jeedom.eqLogic.simpleSave({
                 eqLogic : {
                   id : $(this).attr('data-eqLogic_id'),
-                  display : {'layout::dashboard::table::nbColumn' : parseInt($(this).find('table.tableCmd').attr('data-column')) - 1},
+                  display : {'layout::dashboard::table::nbColumn' : column},
                 },
                 error: function (error) {
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -977,10 +990,15 @@ function editWidgetCmdMode(_mode){
             },
             callback: function(key, opt){
               saveWidgetDisplay()
+                var line = 0;
+                if($(this).find('table.tableCmd').attr('data-line') != undefined){
+                  line = parseInt($(this).find('table.tableCmd').attr('data-line')) - 1;
+                  line = (line < 0) ? 0 : line;
+                }
               jeedom.eqLogic.simpleSave({
                 eqLogic : {
                   id : $(this).attr('data-eqLogic_id'),
-                  display : {'layout::dashboard::table::nbLine' : parseInt($(this).find('table.tableCmd').attr('data-line')) - 1},
+                  display : {'layout::dashboard::table::nbLine' : line},
                 },
                 error: function (error) {
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});

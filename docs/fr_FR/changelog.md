@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.37
+=====
+
+- Correction de bugs
+
 3.3.36
 =====
 
@@ -17,9 +22,9 @@ Changelog
 3.3.34
 =====
 
-- Correction d'un bug pouvant empecher la remonter de l'état des batteries
+- Correction d'un bug pouvant empêcher la remontée de l'état des batteries
 - Correction d'un bug sur les tags dans les interactions
-- Le status "timeout" (non communication) des équipements est maintenant prioritaire sur le status en warning ou danger
+- Le statut "timeout" (non communication) des équipements est maintenant prioritaire sur le statut "warning" ou "danger"
 - Correction de bug sur les backups cloud
 
 3.3.33
@@ -53,16 +58,16 @@ Changelog
 3.3.29
 =====
 
-- Correction de la disparition de la date de la dernière verification des mises à jour
+- Correction de la disparition de la date de la dernière vérification des mises à jour
 - Correction d'un bug pouvant bloquer les backups cloud
-- Correction d'un bug sur le calcul d'utilisation des variables si elle sont sous la forme : variable(toto,mavaleur)
+- Correction d'un bug sur le calcul d'utilisation des variables si elles sont sous la forme : variable(toto,mavaleur)
 
 
 3.3.28
 =====
 
-- Correction d'un bug de roue infini sur la page des mises à jour
-- Corrections et optimisations diverse
+- Correction d'un bug de roue infinie sur la page des mises à jour
+- Corrections et optimisations diverses
 
 3.3.27
 =====
@@ -90,13 +95,13 @@ Changelog
 3.3.24
 =====
 
--   Correction d'un bug sur l'affichage du nombre de mise à jour
--	Suppression de l'édition du code html depuis la configuration avancée des commandes dû à de trop nombreux bugs
+-   Correction d'un bug sur l'affichage du nombre de mises à jour
+-	Suppression de l'édition du code HTML depuis la configuration avancée des commandes due à de trop nombreux bugs
 -	Corrections de bugs
 -	Amélioration de la fenêtre de choix des icônes
 -	Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
 -	Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
--	Suppression des choix de visibilité avancé des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipements sur dashboard/mobile il suffit de cocher ou pas la case de visibilité général. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
+-	Suppression des choix de visibilité avancée des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipement sur dashboard/mobile il suffit de cocher ou pas la case de visibilité générale. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====

@@ -119,7 +119,7 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
 		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL';
+			$sql .= ' WHERE object_id IS NULL OR object_id = -1';
 		} else {
 			$values['object_id'] = $_object_id;
 			$sql .= ' WHERE object_id=:object_id';
@@ -953,7 +953,7 @@ class eqLogic {
 						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
 					}
 					if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-						$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+						$this->setDisplay('layout::' . $key . '::table::nbColumn', 1);
 					}
 				}
 				foreach ($this->getCmd() as $cmd) {

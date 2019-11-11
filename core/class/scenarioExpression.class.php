@@ -639,6 +639,9 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
+		if(!$historyStatistique['last']){
+			return '';
+		}
 		return round($historyStatistique['last'], 1);
 	}
 	
