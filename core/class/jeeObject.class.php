@@ -37,7 +37,7 @@ class jeeObject {
 	/*     * ***********************Méthodes statiques*************************** */
 	
 	public static function byId($_id) {
-		if ($_id == '') {
+		if ($_id == '' || $_id == -1) {
 			return;
 		}
 		$values = array(
@@ -486,6 +486,9 @@ class jeeObject {
 		}
 		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
 			$this->setConfiguration('mobile::summaryTextColor', '');
+		}
+		if ($this->getDisplay('icon') == '') {
+			$this->setConfiguration('icon', '<i class="far fa-lemon"></i>');
 		}
 	}
 	

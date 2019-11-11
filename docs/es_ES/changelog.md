@@ -5,7 +5,7 @@ Changelog
 - Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>
-- Amélioration et réorganisation du menu principal.
+- Mejora y reorganización del menú principal.
 - Menu Plugins : La liste des catégories et des plugins est maintenant triée alphabétiquement.
 - Menu Outils : Ajout d'un bouton pour avoir accès au testeur d'expression.
 - Menu Outils : Ajout d'un bouton pour avoir accès aux variables.<br/><br/>
@@ -211,7 +211,7 @@ Changelog
 3.3.16
 =====
 - Possibilité de supprimer une variable.
-- Ajout d'un affichage 3D (beta)
+- Agregando una vista 3D (beta)
 - Refonte du système de backup cloud (backup incrémental et chiffré).
 - Ajout d'un système de prise de note intégré (dans Analyse -> Note).
 - Ajout de la notion de tag sur les équipements (se trouve dans la configuration avancée de l'équipement).
@@ -227,7 +227,7 @@ Changelog
 - Posibilidad de agregar imágenes de fondo en los objetos
 - L'information de mise à jour disponible est maintenant masquée aux utilisateurs non admin
 - Amélioration du support des () dans le calcul d'expressions
-- Possibilité d'éditer les scénarios en mode text/json
+- Posibilidad de editar los escenarios en modo texto/json
 - Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
 - Possibilitée d'ajouter des options dans les rapports
 - Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
@@ -376,7 +376,7 @@ Changelog
 3.1
 ===
 - Corrección de errores
-- Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
+- Optimización global de Jeedom (al cargar clases de plugins, tiempo casi dividido por 3)
 - Soporte de Debian 9
 - Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
 - Ajout d’une option pour masquer les objets sur le dashboard mais qui permet de toujours les avoir dans la liste
@@ -405,7 +405,7 @@ Changelog
     - Suppression des images pour faciliter la mise à jour et le
         multilingue
 - Plus de choix possibles sur les réglage des tailles de zone dans les vues
-- Possibilité de choisir la couleur du texte du résumé d’objet
+- Posibilidad de elegir el color del texto del resumen del objeto
 - Ajout d’une action remove\_inat dans les scénarios permettant d’annuler toutes les programmations des bloc DANS/A
 - Possibilité dans les designs pour les widgets au survol de choisir la position du widget
 - Ajout d’un paramètre reply\_cmd sur les interactions pour spécifier l’id de la commande à utiliser pour répondre
@@ -508,7 +508,7 @@ Changelog
 - Possibilité d’exporter un panel d’un plugin en PDF, PNG, SVG ou JPEG avec la commande "report" dans un scénario
 - Ajout d’une page de gestion de rapport (pour les re-télécharger ou les supprimer)
 - Correction d’un bug sur la date de dernière remontée d’un événement pour certains plugins (alarme)
-- Correction d’un bug d’affichage avec Chrome 55
+- Se corrigió un error de visualización con Chrome 55
 - Optimisation du backup (sur un RPi2 le temps est divisé par 2)
 - Optimización de la restauración
 - Optimización el proceso de actualización
@@ -532,7 +532,7 @@ Changelog
 ---
 - Optimización general
     - Agrupando consultas SQL
-    - Suppression de requêtes inutiles
+    - Eliminar consultas innecesarias
     - Passage en cache du pid, état et dernier lancement des scénarios
     - Passage en cache du pid, état et dernier lancement des crons
     - Dans 99% des cas plus de requête d’écriture sur la base en fonctionnement nominal (donc hors configuration de Jeedom, modifications, installation, mise à jour…​)
@@ -571,7 +571,7 @@ Changelog
 - Correction d’un bug sur le type de widget demandé pour les designs (dashboard au lieu de dplan)
 - correction de bug sur le gestionnaire d’événements
 - passage en aléatoire du backup la nuit (entre 2h10 et 3h59) pour éviter les soucis de surcharge du market
-- Correction du market de widget
+- Corrección del market de widget
 - Correction d’un bug sur l’accès au market (timeout)
 - Correction d’un bug sur l’ouverture des tickets
 - Correction d’un bug de page blanche lors de la mise à jour si le /tmp est trop petit (attention la correction prend effet à l’update n+1)
