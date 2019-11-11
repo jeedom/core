@@ -306,10 +306,10 @@ class network {
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
-		if(config::byKey('dns::vpnurl') != ''){
-			$openvpn->setConfiguration('remote_host', config::byKey('dns::vpnurl'));
+		if(config::byKey('dns::4g') == 1){
+			$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu 1300');
 		}else{
-			$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
+			$openvpn->setConfiguration('optionsAfterStart', '');
 		}
 		$openvpn->save($direct);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
