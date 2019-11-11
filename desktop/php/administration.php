@@ -723,7 +723,7 @@ user::isBan();
 												<div class="form-group col-xs-12">
 													<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
 													<div class="col-xs-6">
-														<input type="checkbox" class="configKey" data-l1key="dns::4g" />
+														<input type="checkbox" class="configKey" data-l1key="connection::4g" />
 													</div>
 												</div>
 											</fieldset>
