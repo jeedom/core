@@ -21,7 +21,8 @@ Changelog
 - Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code.
 - Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
 - Scénario : Les boutons *Ajouter* dans les blocs permettent d'ajouter directement un bloc sans passer par la fenêtre de sélection.
-- Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant) et *yesterday*.
+- Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
+- Scénario : Fonctions statistics(), average(), max(), min(), tendance(), duration() : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
