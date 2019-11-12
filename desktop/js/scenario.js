@@ -712,7 +712,7 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function 
       var txt = '<i>Unfound</i>'
       var _el = $(this).closest('.element')
       if (_el.hasClass('elementACTION')) {
-        txt = _el.find('.expressions .expression').first().find('input.form-control').first().attr('value')
+        txt = _el.find('.expressions .expression').first().find('input.form-control').first().val()
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
         var id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
