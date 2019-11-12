@@ -231,11 +231,6 @@ span[style*="transform: translate(-50%, 150%)"] {
   color: var(--linkHoverLight-color);
 }
 
-/* CodeMirror */
-.expressions .CodeMirror-wrap,
-body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.88 !important; }
-body:not([data-page="editor"]) .CodeMirror-focused,
-body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(185,185,185) !important; }
 
 /* widgets specific */
 .widget-compass-needle:after {

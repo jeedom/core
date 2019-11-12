@@ -2053,12 +2053,12 @@ div.CodeMirror {
   height: auto;
   background: var(--form-bg-color) !important;
 }
-.CodeMirror-sizer {
-  background: var(--form-bg-color) !important;
-}
 
-.CodeMirror-code { background: rgb(250,250,250) !important; }
-.CodeMirror-selected { background: rgba(5,5,5,1) !important; }
+[data-page=custom] .CodeMirror,
+[data-page=custom] .CodeMirror textarea,
+[data-page=custom] .CodeMirror-gutters {
+  height: 100% !important;
+}
 
 .CodeMirror:not(class*=cm-s-),
 .CodeMirror-code,
@@ -2070,16 +2070,27 @@ div.CodeMirror {
   border-right: 0;
   border: none !important;
 }
-
-.CodeMirror-line {
+.CodeMirror-linenumber {
+  color: var(--txt-color);
+}
+.CodeMirror-lines {
+  border-top: 4px solid var(--form-bg-color) !important;
+  padding: 0;
   background: var(--sc-form-color) !important;
 }
 
-[data-page=custom] .CodeMirror,
-[data-page=custom] .CodeMirror textarea,
-[data-page=custom] .CodeMirror-gutters {
-  height: 100% !important;
+.CodeMirror-focused,
+.CodeMirror-sizer,
+.CodeMirror pre,
+.CodeMirror-code {
+  background: var(--sc-form-color) !important;
 }
+
+.CodeMirror-focused,
+.CodeMirror-selected {
+  background-color: rgba(0,0,0,1) !important;
+}
+
 
 /* hihgly special */
 div[id^=__lpform_] { /*lastpass*/
