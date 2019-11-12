@@ -17,6 +17,7 @@ while ($file = readdir($dir)) {
 }
 natcasesort($list_logfile);
 ?>
+
 <div class="row row-overflow">
 	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
 		<div class="bs-sidebar">
@@ -24,7 +25,7 @@ natcasesort($list_logfile);
 				<li class="filter" style="margin-bottom: 5px;"><input id="in_searchLogFilter" class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<?php
 				foreach ($list_logfile as $file) {
-					
+
 					$fsize = filesize('log/' . $file);
 					if ($fsize < 2){
 						$fsizelog = '';
@@ -51,7 +52,7 @@ natcasesort($list_logfile);
 		</div>
 	</div>
 	<div class="col-lg-10 col-md-9 col-sm-8">
-		
+
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<input style="width: 150px;" class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" />
@@ -65,4 +66,5 @@ natcasesort($list_logfile);
 		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 50px);width:100%;margin-top: 5px;'></pre>
 	</div>
 </div>
+
 <?php include_file('desktop', 'log', 'js');?>

@@ -34,7 +34,6 @@ if (!isConnect('admin')) {
 
 		<div id="div_viewZones" style="margin-top: 10px;"></div>
 	</div>
-
 </div>
 
 <div class="modal fade" id="md_addEditviewZone">

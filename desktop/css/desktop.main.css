@@ -2754,7 +2754,18 @@ path.highcharts-graph {
   display: block !important;
   clear: both !important;
 }
+
 /* design */
+.div_backgroundPlan > .div_displayObject {
+  z-index: 50 !important;
+  position: relative;
+  padding:0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .div_grid {
   z-index : 998;
   background-size: 15px 15px;
@@ -2762,9 +2773,15 @@ path.highcharts-graph {
   repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
   repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
 }
-
-.div_backgroundPlan > .div_displayObject {
-  z-index: 50 !important;
+.div_backgroundPlan .div_grid {
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* view data table */

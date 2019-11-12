@@ -18,6 +18,7 @@ foreach (widgets::all() as $widget) {
   $widgets[$widget->getType()][] = $widget;
 }
 ?>
+
 <div class="row row-overflow">
   <div id="div_widgetsList" class="col-xs-12">
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>

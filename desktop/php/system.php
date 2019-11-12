@@ -3,6 +3,7 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
+
 <div id="div_rowSystemCommand" class="row row-overflow">
   <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
     <a class="btn btn-warning" style="width:100%;margin-bottom:4px" id="bt_consitency"><i class="fas fa-check"></i> {{Consistance}}</a>
@@ -47,4 +48,5 @@ if (!isConnect('admin')) {
     <pre id="pre_commandResult" style="height : calc(100% - 110px);width:100%;margin-top:5px;"></pre>
   </div>
 </div>
+
 <?php include_file("desktop", "system", "js");?>

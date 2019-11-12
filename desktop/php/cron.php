@@ -11,7 +11,6 @@ if (!isConnect('admin')) {
   <li role="presentation"><a href="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug" ></i> {{Démon}}</a></li>
 </ul>
 
-
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="cron">
     <div class="input-group pull-right" style="display:inline-flex">
@@ -28,7 +27,7 @@ if (!isConnect('admin')) {
       </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
     </span>
   </div>
-  
+
   <br/><br/><br/>
   <table id="table_cron" class="table table-bordered table-condensed tablesorter">
     <thead>

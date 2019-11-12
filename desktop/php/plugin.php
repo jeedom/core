@@ -6,6 +6,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 sendVarToJS('sel_plugin_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
+
 <div id='div_alertPluginConfiguration'></div>
 
 <div class="row row-overflow">

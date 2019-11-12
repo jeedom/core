@@ -12,6 +12,7 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
+
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
@@ -286,7 +287,6 @@ if (is_array($scenarioListGroup)) {
 								<div class="scheduleMode"></div>
 							</div>
 							<div class="provokeMode provokeDisplay" style="display: none;">
-
 							</div>
 							<br>
 							<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
@@ -362,8 +362,6 @@ if (is_array($scenarioListGroup)) {
 
 <?php
 include_file('desktop', 'scenario', 'js');
-
-//Core CodeMirror addons:
 include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
 include_file('3rdparty', 'codemirror/addon/search/search', 'js');
 include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');

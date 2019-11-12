@@ -4,10 +4,8 @@ if (!isConnect('admin')) {
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 ?>
+
 <div id="div_administration">
-
-
-	<!--********************Onglet utilisateur********************************-->
 	<div class="tab-pane" id="user">
 		<br/>
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}

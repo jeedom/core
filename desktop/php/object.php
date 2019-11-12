@@ -5,6 +5,7 @@ if (!isConnect('admin')) {
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
 ?>
+
 <div class="row row-overflow">
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>

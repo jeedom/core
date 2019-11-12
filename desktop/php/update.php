@@ -10,6 +10,7 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 	}
 }
 ?>
+
 <br/>
 <i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
@@ -34,7 +35,7 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 				</div>
 			</div>
 		</div>
-		
+
 		<table class="table table-condensed table-bordered tablesorter" id="table_update" style="margin-top: 5px;">
 			<thead>
 				<tr>

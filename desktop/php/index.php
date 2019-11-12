@@ -427,29 +427,29 @@ function setTheme() {
 								</a>
 							</li>
 							<?php if (isConnect('admin')) {
-								$nbUpdate = update::nbNeedUpdate();
-								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
-								<li>
-									<a href="index.php?v=d&p=update" id="bt_nbUpdateNavbar">
-										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
-									</li>
-								<?php } ?>
-								<li class="hidden-sm"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
-								<li class="hidden-sm navTime">
-									<a href="index.php?v=d&p=history#timelinetab">
-										<span id="horloge"><?php echo date('H:i:s'); ?></span>
-									</a>
-									<a href="index.php?v=d&p=administration#generaltab">
-										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
-									</a>
+							$nbUpdate = update::nbNeedUpdate();
+							$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
+							<li>
+								<a href="index.php?v=d&p=update" id="bt_nbUpdateNavbar">
+									<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 								</li>
-								<li class="hidden-sm">
-									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</header>
+							<?php } ?>
+							<li class="hidden-sm"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
+							<li class="hidden-sm navTime">
+								<a href="index.php?v=d&p=history#timelinetab">
+									<span id="horloge"><?php echo date('H:i:s'); ?></span>
+								</a>
+								<a href="index.php?v=d&p=administration#generaltab">
+									<span class="cmdName"><?php echo config::byKey('name'); ?></span>
+								</a>
+							</li>
+							<li class="hidden-sm">
+								<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
 			<?php } ?>
 			<?php if (init('rescue', 0) == 1) {?>
 				<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
@@ -510,6 +510,8 @@ function setTheme() {
 				<div id="md_modal3"></div>
 				<div id="md_reportBug" title="{{Demande de support}}"></div>
 			</main>
-		<?php } 	?>
-	</body>
-	</html>
+		<?php
+	}
+	?>
+</body>
+</html>
