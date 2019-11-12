@@ -62,7 +62,8 @@ $report_path = __DIR__ . '/../../data/report/';
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Autre}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-				<li class="cursor li_reportType" data-type="other" data-id="eqAnalyse"><a>Analyse</a></li>
+				<li class="cursor li_reportType" data-type="other" data-id="eqAnalyse"><a>{{Analyse}}</a></li>
+				<li class="cursor li_reportType" data-type="other" data-id="url"><a>{{URL}}</a></li>
 			</ul>
 		</div>
 	</div>

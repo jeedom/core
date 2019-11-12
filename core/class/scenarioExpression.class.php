@@ -1567,6 +1567,13 @@ class scenarioExpression {
 						$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport équipement du ', __FILE__) . date('Y-m-d H:i:s');
 						$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport équipement généré le ', __FILE__) . date('Y-m-d H:i:s');
 						break;
+						case 'url':
+						$url = $options['url'];
+						$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $url);
+						$cmd_parameters['files'] = array(report::generate($url,'other','url',$options['export_type'], $options));
+						$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport url du ', __FILE__) . date('Y-m-d H:i:s');
+						$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport url généré le ', __FILE__) . date('Y-m-d H:i:s');
+						break;
 					}
 					if ($cmd_parameters['files'] === null) {
 						throw new Exception(__('Erreur : Aucun rapport généré', __FILE__));
