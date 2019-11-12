@@ -136,95 +136,93 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
-	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
-	var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
-	var serverDatetime = <?php echo getmicrotime(); ?>;
+		var clientDatetime = new Date();
+		var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
+		var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
+		var serverDatetime = <?php echo getmicrotime(); ?>;
 	</script>
 	<?php
-	include_file('core', 'icon.inc', 'php');
-	include_file('3rdparty', 'roboto/roboto', 'css');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
-	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
-	include_file('3rdparty', 'jquery/jquery.min', 'js');
+		include_file('core', 'icon.inc', 'php');
+		include_file('3rdparty', 'roboto/roboto', 'css');
+		include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
+		include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
+		include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
+		include_file('3rdparty', 'jquery/jquery.min', 'js');
 	?>
 	<script>
-	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
-	$.ajaxSetup({
-		type: "POST",
-		data: {
-			jeedom_token: '<?php echo ajax::getToken() ?>'
-		}
-	})
+		JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
+		JEEDOM_AJAX_TOKEN='<?php echo ajax::getToken() ?>';
+		$.ajaxSetup({
+			type: "POST",
+			data: {
+				jeedom_token: '<?php echo ajax::getToken() ?>'
+			}
+		})
 	</script>
 	<?php
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
-	include_file('core', 'core', 'js');
-	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
-	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('core', 'js.inc', 'php');
-	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
-	include_file('3rdparty', 'highstock/highstock', 'js');
-	include_file('3rdparty', 'highstock/highcharts-more', 'js');
-	include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
-	include_file('3rdparty', 'highstock/modules/exporting', 'js');
-	include_file('3rdparty', 'highstock/modules/export-data', 'js');
-	include_file('desktop', 'utils', 'js');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
-	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-	include_file('3rdparty', 'jwerty/jwerty', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
-	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/js/tooltipster.bundle.min', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/css/tooltipster.bundle.min', 'css');
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
-	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
-	include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
-	include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
-	include_file('3rdparty', 'codemirror/mode/php/php', 'js');
-	include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
-	include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
-	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
-	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
-	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
-	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
-	include_file('3rdparty', 'autosize/autosize.min', 'js');
-	include_file('desktop', 'bootstrap', 'css');
-	include_file('desktop', 'coreWidgets', 'css');
-	include_file('desktop', 'desktop.main', 'css');
+		include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+		include_file('core', 'core', 'js');
+		include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
+		include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+		include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
+		include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
+		include_file('core', 'js.inc', 'php');
+		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+		include_file('3rdparty', 'highstock/highstock', 'js');
+		include_file('3rdparty', 'highstock/highcharts-more', 'js');
+		include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
+		include_file('3rdparty', 'highstock/modules/exporting', 'js');
+		include_file('3rdparty', 'highstock/modules/export-data', 'js');
+		include_file('desktop', 'utils', 'js');
+		include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
+		include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
+		include_file('3rdparty', 'jwerty/jwerty', 'js');
+		include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
+		include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+		include_file('3rdparty', 'jquery.tooltipster/js/tooltipster.bundle.min', 'js');
+		include_file('3rdparty', 'jquery.tooltipster/css/tooltipster.bundle.min', 'css');
+		include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+		include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+		include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
+		include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
+		include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
+		include_file('3rdparty', 'codemirror/mode/php/php', 'js');
+		include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
+		include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
+		include_file('3rdparty', 'codemirror/mode/css/css', 'js');
+		include_file('3rdparty', 'codemirror/mode/python/python', 'js');
+		include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
+		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+		include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
+		include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
+		include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+		include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		include_file('3rdparty', 'autosize/autosize.min', 'js');
+		include_file('desktop', 'bootstrap', 'css');
+		include_file('desktop', 'coreWidgets', 'css');
+		include_file('desktop', 'desktop.main', 'css');
 
+		setTheme();
 
-	setTheme();
-
-	if(init('report') == 1){
-		include_file('desktop', 'report', 'css');
-	}
-	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
-		if (file_exists(__DIR__ . '/../custom/custom.css')) {
-			include_file('desktop', '', 'custom.css');
+		if(init('report') == 1){
+			include_file('desktop', 'report', 'css');
 		}
-		if (file_exists(__DIR__ . '/../custom/custom.js')) {
-			include_file('desktop', '', 'custom.js');
+		if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
+			if (file_exists(__DIR__ . '/../custom/custom.css')) {
+				include_file('desktop', '', 'custom.css');
+			}
+			if (file_exists(__DIR__ . '/../custom/custom.js')) {
+				include_file('desktop', '', 'custom.js');
+			}
 		}
-	}
 	?>
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
@@ -272,33 +270,49 @@ function setTheme() {
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
-											<?php foreach (jeeObject::buildTree(null, false) as $object_li) {
-												echo '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">'.str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')).$object_li->getHumanName(true) . '</a></li>';
-											} ?>
+											<?php
+												$echo = '';
+												foreach (jeeObject::buildTree(null, false) as $object_li) {
+													$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">'.str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')).$object_li->getHumanName(true) . '</a></li>';
+												}
+												echo $echo;
+											?>
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
-											<?php	foreach (view::all() as $view_menu) {
-												echo '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon','<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
-											} ?>
+											<?php
+												$echo = '';
+												foreach (view::all() as $view_menu) {
+													$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon','<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
+												}
+												echo $echo;
+											?>
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
-											<?php foreach (planHeader::all() as $plan_menu) {
-												echo '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon','<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
-											} ?>
+											<?php
+												$echo = '';
+												foreach (planHeader::all() as $plan_menu) {
+													$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon','<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
+												}
+												echo $echo;
+											?>
 										</ul>
 									</li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
-											<?php foreach (plan3dHeader::all() as $plan3d_menu) {
-												echo '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
-											} 	?>
+											<?php
+												$echo = '';
+												foreach (plan3dHeader::all() as $plan3d_menu) {
+													$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
+												}
+												echo $echo;
+											?>
 										</ul>
 									</li>
 									<?php echo $panel_menu; ?>

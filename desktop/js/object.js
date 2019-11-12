@@ -26,6 +26,10 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   }
 });
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.objectDisplayCard').length+')')
+})
+
 //searching
 $('#in_searchObject').keyup(function () {
   var search = $(this).value()
@@ -51,7 +55,7 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup()
 })
 
-/* contextMenu */
+//context menu
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
@@ -80,14 +84,14 @@ $(function(){
           zIndex: 9999,
           className: 'object-context-menu',
           callback: function(key, options, event) {
-            url = 'index.php?v=d&p=object&id=' + options.commands[key].id
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1]
-            }
             if (event.ctrlKey || event.originalEvent.which == 2) {
+              url = 'index.php?v=d&p=object&id=' + options.commands[key].id
+              if (window.location.hash != '') {
+                  url += window.location.hash
+                }
               window.open(url).focus()
             } else {
-              loadPage(url)
+              printObject(options.commands[key].id)
             }
           },
           items: contextmenuitems
@@ -97,6 +101,7 @@ $(function(){
   }
   catch(err) {}
 })
+
 
 $('#bt_graphObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
@@ -132,11 +137,7 @@ $(".objectDisplayCard").off('click').on('click', function (event) {
     var url = '/index.php?v=d&p=object&id='+$(this).attr('data-object_id')
     window.open(url).focus()
   } else {
-    loadObjectConfiguration($(this).attr('data-object_id'));
-    $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'))
-    if (document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined) {
-      $('.nav-tabs a[href="#objecttab"]').click()
-    }
+    printObject($(this).attr('data-object_id'))
   }
   return false
 })
@@ -160,6 +161,14 @@ $('#bt_removeBackgroundImage').off('click').on('click', function () {
     },
   });
 });
+
+function printObject(_id) {
+  $.hideAlert()
+  var objName = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_name')
+  var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_icon')
+  loadObjectConfiguration(_id)
+  $('.objectname_resume').empty().append(objIcon+'  '+objName)
+}
 
 function loadObjectConfiguration(_id){
   try {
@@ -256,7 +265,14 @@ function loadObjectConfiguration(_id){
 
         }
       }
+
+      var hash = window.location.hash
       addOrUpdateUrl('id',data.id);
+      if (hash == '') {
+        $('.nav-tabs a[href="#objecttab"]').click()
+      } else {
+        window.location.hash = hash
+      }
       modifyWithoutSave = false;
       setTimeout(function(){
         modifyWithoutSave = false;

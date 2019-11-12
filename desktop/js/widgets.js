@@ -36,6 +36,11 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   }
 });
 
+$( function() {
+  $('sub.itemsNumber').html('('+$('.widgetsDisplayCard').length+')')
+})
+
+//searching
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -59,18 +64,87 @@ $('#in_searchWidgets').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.widgetsListContainer').packery()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").click()
 });
 $('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").click()
 })
-
 $('#bt_resetWidgetsSearch').off('click').on('click', function () {
   $('#in_searchWidgets').val('')
   $('#in_searchWidgets').keyup();
 })
+
+//context menu
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.widgets.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (_widgets) {
+        if(_widgets.length == 0){
+          return;
+        }
+        var widgetsList = []
+        widgetsList['info'] = []
+        widgetsList['action'] = []
+        for(i=0; i<_widgets.length; i++)
+        {
+          wg = _widgets[i]
+          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
+          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
+        }
+
+        //set context menu!
+        var contextmenuitems = {}
+        var uniqId = 0
+        for (var group in widgetsList) {
+          groupWidgets = widgetsList[group]
+          items = {}
+          for (var index in groupWidgets) {
+            wg = groupWidgets[index]
+            wgName = wg[0]
+            wgId = wg[1]
+            items[uniqId] = {'name': wgName, 'id' : wgId}
+            uniqId ++
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'widget-context-menu',
+          callback: function(key, options, event) {
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
+              window.open(url).focus()
+            } else {
+              printWidget(options.commands[key].id)
+            }
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
+
+
+$('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
+  chooseIcon(function (_icon) {
+    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  },{icon:_icon});
+});
 
 $('#bt_editCode').off('click').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
@@ -136,79 +210,6 @@ $('#bt_applyToCmd').off('click').on('click', function () {
       });
     });
   }).dialog('open');
-});
-
-//context menu
-$(function(){
-  try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
-    jeedom.widgets.all({
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (_widgets) {
-        if(_widgets.length == 0){
-          return;
-        }
-        var widgetsList = []
-        widgetsList['info'] = []
-        widgetsList['action'] = []
-        for(i=0; i<_widgets.length; i++)
-        {
-          wg = _widgets[i]
-          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
-        }
-
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
-          for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
-            items[uniqId] = {'name': wgName, 'id' : wgId}
-            uniqId ++
-          }
-          contextmenuitems[group] = {'name':group, 'items':items}
-        }
-
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'widget-context-menu',
-          callback: function(key, options, event) {
-            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1]
-            }
-            if (event.ctrlKey || event.originalEvent.which == 2) {
-              window.open(url).focus()
-            } else {
-              loadPage(url)
-            }
-          },
-          items: contextmenuitems
-        })
-      }
-    })
-  }
-  catch(err) {}
-})
-
-$('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
-  }
-  chooseIcon(function (_icon) {
-    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
 });
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick',function(){
@@ -352,6 +353,69 @@ $('#div_templateTest').off('click','.bt_removeTest').on('click','.bt_removeTest'
   $(this).closest('.test').remove();
 });
 
+function printWidget(_id) {
+  $.hideAlert()
+  $('#div_conf').show()
+  $('#div_widgetsList').hide()
+  $('#div_templateTest').empty()
+
+  jeedom.widgets.byId({
+    id: _id,
+    cache: false,
+    error: function (error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (data) {
+      $('a[href="#widgetstab"]').click();
+      $('.selectWidgetTemplate').off('change')
+      $('.widgetsAttr').value('');
+      $('.widgetsAttr[data-l1key=type]').value('info')
+      $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'));
+      $('.widgets').setValues(data, '.widgetsAttr');
+      if (isset(data.test)) {
+        for (var i in data.test) {
+          addTest(data.test[i]);
+        }
+      }
+      var usedBy = '';
+      for(var i in data.usedBy){
+        usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+i+'">'+ data.usedBy[i]+'</span> ';
+      }
+      $('#div_usedBy').empty().append(usedBy);
+      var template = 'cmd.';
+      if(data.type && data.type !== null){
+        template += data.type+'.';
+      }else{
+        template += 'action.';
+      }
+      if(data.subtype && data.subtype !== null){
+        template += data.subtype+'.';
+      }else{
+        template += 'other.';
+      }
+      if(data.template && data.template !== null){
+        template += data.template;
+      }else{
+        template += 'tmplicon';
+      }
+      loadTemplateConfiguration(template,data);
+      addOrUpdateUrl('id',data.id);
+      modifyWithoutSave = false;
+      jeedom.widgets.getPreview({
+        id: data.id,
+        cache: false,
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          $('#div_widgetPreview').empty().html(data.html);
+          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
+        }
+      })
+    }
+  });
+}
+
 function addTest(_test){
   if (!isset(_test)) {
     _trigger = {};
@@ -418,67 +482,9 @@ $(".widgetsDisplayCard").off('click').on('click', function (event) {
     var url = '/index.php?v=d&p=widgets&id='+$(this).attr('data-widgets_id')
     window.open(url).focus()
   } else {
-    $('#div_conf').show()
-    $('#div_widgetsList').hide()
-    $('#div_templateTest').empty()
+    printWidget($(this).attr('data-widgets_id'))
   }
-
-  jeedom.widgets.byId({
-    id: $(this).attr('data-widgets_id'),
-    cache: false,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function (data) {
-      $('a[href="#widgetstab"]').click();
-      $('.selectWidgetTemplate').off('change')
-      $('.widgetsAttr').value('');
-      $('.widgetsAttr[data-l1key=type]').value('info')
-      $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'));
-      $('.widgets').setValues(data, '.widgetsAttr');
-      if (isset(data.test)) {
-        for (var i in data.test) {
-          addTest(data.test[i]);
-        }
-      }
-      var usedBy = '';
-      for(var i in data.usedBy){
-        usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+i+'">'+ data.usedBy[i]+'</span> ';
-      }
-      $('#div_usedBy').empty().append(usedBy);
-      var template = 'cmd.';
-      if(data.type && data.type !== null){
-        template += data.type+'.';
-      }else{
-        template += 'action.';
-      }
-      if(data.subtype && data.subtype !== null){
-        template += data.subtype+'.';
-      }else{
-        template += 'other.';
-      }
-      if(data.template && data.template !== null){
-        template += data.template;
-      }else{
-        template += 'tmplicon';
-      }
-      loadTemplateConfiguration(template,data);
-      addOrUpdateUrl('id',data.id);
-      modifyWithoutSave = false;
-      jeedom.widgets.getPreview({
-        id: data.id,
-        cache: false,
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-          $('#div_widgetPreview').empty().html(data.html);
-          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
-        }
-      })
-    }
-  });
-});
+})
 $('.widgetsDisplayCard').off('mouseup').on('mouseup', function (event) {
   if( event.which == 2 ) {
     event.preventDefault()

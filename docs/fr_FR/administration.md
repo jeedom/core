@@ -52,6 +52,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 Il faut absolument configurer correctement cette partie importante de Jeedom sinon beaucoup de plugins risquent de ne pas fonctionner. Il est possible d’accéder à Jeedom de deux manières différentes : L'**accès interne** (depuis le même réseau local que Jeedom) et l'**accès externe** (depuis un autre réseau notamment depuis Internet).
 
 > **Important**
+>
 > Cette partie est juste là pour expliquer à Jeedom son environnement :
 > une modification du port ou de l’IP dans cet onglet ne changera pas le port ou l’IP de Jeedom réellement. Pour cela il faut se connecter en SSH et éditer le fichier /etc/network/interfaces pour l’IP et les fichiers etc/apache2/sites-available/default et etc/apache2/sites-available/default\_ssl (pour le HTTPS).
 > Cependant, en cas de mauvaise manipulation de votre Jeedom, l’équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
@@ -78,9 +79,11 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
     - **Mot de passe** : Renseigner le mot de passe.
 
 > **Tip**
+>
 > Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur, un plugin letsencrypt est maintenant disponible sur le market.
 
 > **Tip**
+>
 > Pour savoir si vous avez besoin de définir une valeur dans le champs **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
 - **Gestion avancée** : Cette partie peut ne pas apparaître, en fonction de la compatibilité avec votre matériel.
@@ -91,6 +94,7 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
     - **Gestion** : permet d’arrêter et relancer le service DNS Jeedom.
 
 > **Important**
+>
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et du filtre parental de votre box Internet (sur livebox il faut par exemple le pare-feu en niveau moyen).
 - **Durée de vie des sessions (heure)** : durée de vie des sessions PHP, il est déconseillé de toucher à ce paramètre.
 
@@ -146,6 +150,7 @@ De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Histor
 - **Période d’affichage des graphiques par défaut** : Période qui est utilisée par défaut lorsque vous voulez afficher l’historique d’une commande. Plus la période est courte, plus Jeedom sera rapide pour afficher le graphique demandé.
 
 > **Note**
+>
 > Le premier paramètre **Afficher les statistiques sur les widgets** est possible mais désactivé par défaut car il rallonge sensiblement le temps d’affichage du dashboard. Si vous activez cette option, par défaut, Jeedom se fonde sur les données des dernières 24h pour calculer ces statistiques.
 > La méthode de calcul de tendance est fondée sur le calcul des moindres carrés (voir [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) pour le détail).
 
@@ -203,6 +208,7 @@ Permet de configurer les graphiques de liens. Ces liens permettent de voir, sous
 Cet onglet permet de fixer des paramètres globaux concernant les interactions que vous trouverez dans Outils→Interactions.
 
 > **Tip**
+>
 > Pour activer le log des interactions, il faut aller dans l’onglet Réglages → Système → Configuration : Logs, puis cocher **Debug** dans la liste du bas. Attention : les logs seront alors très verbeux !
 
 ### Général
@@ -235,6 +241,7 @@ Vous avez ici trois paramètres :
     - *Jeedom* : OK (*Dès que la température du salon dépassera 25°C, Jeedom vous le dira, une seule fois*)
 
 > **Note**
+>
 > Par défaut Jeedom vous répondra par le même canal que celui que vous avez utilisé pour lui demander de vous prévenir. Si il n’en trouve pas, il utilisera alors la commande par défaut spécifiée dans cet onglet : **Commande de retour par défaut**.
 
 Voici donc les différentes options disponibles :
@@ -324,22 +331,27 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 - **\[Backup\] Chemin** : Chemin dans le partage (à mettre en relatif), celui-ci doit exister.
 
 > **Note**
+>
 > Si le chemin d’accès à votre dossier de sauvegarde samba est :
 > \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1, Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
 
 > **Note**
+>
 > Lors de la validation du partage Samba, tel que décrit précédemment, une nouvelle forme de sauvegarde apparaît dans la partie Réglages→Système→Sauvegardes de Jeedom. En l’activant, Jeedom procédera à son envoi automatique lors de la prochaine sauvegarde. Un test est possible en effectuant une sauvegarde manuelle.
 
 > **Important**
+>
 > Il vous faudra peut-être installer le package smbclient pour que le dépôt fonctionne.
 
 > **Important**
+>
 > Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2 ou la v3 pour se connecter. Donc si vous avez une erreur *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* il y a de forte chance que coté NAS la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
 
 > **Important**
+>
 > Jeedom doit être le seul à écrire dans ce dossier et il doit être vide par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la première sauvegarde, le dossier ne doit contenir aucun fichier ou dossier).
 
 #### URL
@@ -377,6 +389,7 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 ## Onglet &gt;\_OS/DB
 
 > **Important**
+>
 > Cet onglet est réservée aux experts.
 > Si vous modifiez Jeedom avec l’une de ces deux solutions, le support peut refuser de vous aider.
 

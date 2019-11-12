@@ -31,9 +31,11 @@ Une fois que vous avez cliqué dessus, on obtient ces différentes options :
 - **Mise à jour à réappliquer** : Permet de ré-appliquer une mise à jour. (NB : Toutes les mises à jour ne peuvent pas être ré-appliquées.)
 
 > **Important**
+>
 > Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En cas de souci lors de l’application d’une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n’est valable que pour les mises à jour de Jeedom et non des plugins.
 
 > **Tip**
+>
 > Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous en propose pas.
 
 ## Onglets Core et Plugins
@@ -56,10 +58,12 @@ Sur chaque ligne, vous pouvez utiliser les fonctions suivantes:
 - **Changelog** : Permet d’accéder à la liste des changements de la mise à jour.
 
 > **Important**
+>
 > Si le changelog est vide mais que vous avez tout de même une mise à jour, cela signifie que c’est la documentation qui a été mise à jour. Il n’est donc pas nécessaire de demander au développeur les changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise à jour de la traduction, de la documentation).
 > Le développeur du plugin peux aussi dans certains cas faire des bugfix simple ne nécessitant pas forcément de mettre à jour le changelog.
 
 > **Tip**
+>
 > Quand vous lancez une mise à jour, une barre de progression apparaît au dessus du tableau. Évitez d'autres manipulation pendant la mise à jour.
 
 ## Onglet Informations
@@ -67,6 +71,7 @@ Sur chaque ligne, vous pouvez utiliser les fonctions suivantes:
 En cours de mise à jour ou après celle-ci, cet onglet permet de lire en temps réel le log de cette mise à jour.
 
 > **Note**
+>
 > Ce log finit normalement par *[END UPDATE SUCCESS]*. Il peux y avoir certaines lignes d'erreur dans ce type de log, toutefois, sauf problème réel après mise à jour, il n'est pas toujours nécessaire de contacter le support pour çà.
 
 ## Mise à jour en ligne de commande

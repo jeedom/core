@@ -5,6 +5,7 @@ La page Santé de Jeedom vous permet d’avoir un aperçu rapide de l’état de
 Elle indique aussi (si les plugins l’utilisent) l’état de santé par plugin.
 
 > **Note**
+>
 > Un clic sur l’icône en haut à droite permet d’accéder au benchmark de votre Jeedom.
 
 La page santé de Jeedom se présente sous la forme d’un double tableau.
@@ -22,7 +23,9 @@ A droite vous retrouvez les icônes :
 -   Etat global du plugin.
 
 > **Note**
+>
 > Les icônes peuvent varier en fonction du plugin.
 
 > **Note**
+>
 > De manière générale quand la ligne est verte c’est que tout va bien et quand c’est rouge, c’est qu’il y a un souci.

@@ -689,7 +689,11 @@ class history {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 		}
+		if ($_value === null) {
+			$_value = $cmd->execCmd();
+		}
 		$_dateTime = '';
+
 		if ($_startTime !== null) {
 			$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 		}
@@ -700,9 +704,6 @@ class history {
 			$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 		}
 
-		if ($_value === null) {
-			$_value = $cmd->execCmd();
-		}
 		if ($cmd->getSubType() != 'string') {
 			$_value = str_replace(',', '.', $_value);
 			$_decimal = strlen(substr(strrchr($_value, "."), 1));
@@ -711,9 +712,7 @@ class history {
 			$_condition = ' value = ' . $_value;
 		}
 
-		$values = array(
-			'cmd_id' => $_cmd_id,
-		);
+		$values = array('cmd_id' => $_cmd_id,);
 		$sql = 'SELECT count(*) as changes
 		FROM (SELECT t1.*
 			FROM (
@@ -728,6 +727,7 @@ class history {
 			WHERE cmd_id=:cmd_id' . $_dateTime . '
 		) as t1
 		where ' . $_condition . '';
+
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		return $result['changes'];
 	}

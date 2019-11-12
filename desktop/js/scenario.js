@@ -38,6 +38,8 @@ $('.backgroundforJeedom').css({
 
 $( function() {
   jeedom.timeline.autocompleteFolder()
+
+  $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
 })
 
 $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',function(){
@@ -72,7 +74,6 @@ $('#in_searchScenario').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.scenarioListContainer').packery()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
     $(this).click()
@@ -83,7 +84,6 @@ $('#bt_closeAll').off('click').on('click', function () {
     $(this).click()
   })
 })
-
 $('#bt_resetScenarioSearch').on('click', function () {
   $('#in_searchScenario').val('')
   $('#in_searchScenario').keyup()
@@ -113,14 +113,12 @@ $('#in_searchInsideScenario').keyup(function () {
     }
   })
 })
-
 $('#in_searchInsideScenario').focus(function (event) {
   if (!window.location.href.includes('#scenariotab')) {
     $('#bt_scenarioTab').trigger('click')
     setTimeout(function() { $('#in_searchInsideScenario').focus() }, 250)
   }
 })
-
 $('#bt_resetInsideScenarioSearch').on('click', function () {
   var btn = $(this)
   var searchField = $('#in_searchInsideScenario')
@@ -140,7 +138,6 @@ $('#bt_resetInsideScenarioSearch').on('click', function () {
     }
   }
 })
-
 
 /* contextMenu */
 $(function(){
@@ -203,14 +200,14 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-              if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1]
-              }
               if (event.ctrlKey || event.originalEvent.which == 2) {
+                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
                 window.open(url).focus()
               } else {
-                loadPage(url)
+                printScenario(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -222,8 +219,8 @@ $(function(){
   catch(err) {}
 })
 
-var editor = [];
 
+var editor = [];
 autoCompleteCondition = [
   '#rand(MIN,MAX)',
   '##minute#',
@@ -286,6 +283,24 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function () {
   $('.scenarioListContainer').packery();
   addOrUpdateUrl('id',null,'{{Scénario}} - '+JEEDOM_PRODUCT_NAME);
 });
+
+$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(event) {
+  $.hideAlert()
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
+    window.open(url).focus()
+  } else {
+    $('#scenarioThumbnailDisplay').hide()
+    printScenario($(this).attr('data-scenario_id'))
+  }
+})
+$('.scenario_link').off('mouseup','.scenario_link').on('mouseup','.scenario_link', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-scenario_id')
+    $('.scenario_link[data-scenario_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('.scenarioDisplayCard').off('click').on('click', function (event) {
   if (event.ctrlKey) {
@@ -697,13 +712,15 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function 
       var txt = '<i>Unfound</i>'
       var _el = $(this).closest('.element')
       if (_el.hasClass('elementACTION')) {
-        txt = _el.find('.expressions .expression').first().find('input.form-control').first().attr('value')
+        txt = _el.find('.expressions .expression').first().find('input.form-control').first().val()
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
         var id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
         if (isset(editor[id])) txt = editor[id].getValue()
       } else {
+        //comment
         txt = _el.find('.expression textarea').val()
+        txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
       if (txt) $(this).html(txt.substring(0,200))
@@ -1221,11 +1238,8 @@ function setAutocomplete() {
   })
 }
 
-$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){
-  printScenario($(this).attr('data-scenario_id'));
-});
-
 function printScenario(_id) {
+  $.hideAlert()
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
     if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
@@ -1355,9 +1369,12 @@ function printScenario(_id) {
       if(data.name){
         title = data.name +' - Jeedom';
       }
-      addOrUpdateUrl('id',data.id,title);
-      if(window.location.hash == ''){
-        $('.nav-tabs a[href="#generaltab"]').click();
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id,title)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
       }
       setTimeout(function () {
         setEditor();
@@ -1814,7 +1831,9 @@ function addSubElement(_subElement) {
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
-      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>';
+      var txt = expression.expression.substring(0,200)
+      txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+      retour += '<div class="blocPreview">'+txt+'</div>';
     } else {
       retour += '<div class="blocPreview"></div>';
     }
@@ -1843,7 +1862,7 @@ function addSubElement(_subElement) {
     retour += '<legend class="legendHidden">ACTION</legend>';
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0]
-      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements)) {
+      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0].expressions[0])) {
         retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200)+'</div>'
       } else {
         retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200)+'</div>'

@@ -37,11 +37,13 @@ function buildJsTree($_object){
       </div>
     </div>
   </div>
-  
+
   <div class="col-lg-10 col-md-9 col-sm-8">
     <div class="div_displayEquipement"></div>
   </div>
 </div>
 
-
-<?php include_file('desktop', 'dashboardit', 'js'); ?>
+<?php
+  include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+  include_file('desktop', 'dashboardit', 'js');
+?>

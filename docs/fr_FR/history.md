@@ -14,9 +14,11 @@ L’archivage de données permet à Jeedom de réduire la quantité de données 
 L’archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici deux paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d’ancienneté).
 
 > **Tip**
+>
 > Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j’ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l’archivage ne se déroule qu’une fois par jour, le soir.
 
 > **Important**
+>
 > Bien sûr, ce principe d’archivage ne s’applique qu’aux commandes de type numérique ; sur les commandes de type binaire, Jeedom ne conserve que les dates de changement d’état.
 
 ### Affichage d’un graphique
@@ -41,6 +43,7 @@ On retrouve en haut à droite la période d’affichage (ici sur la dernière se
 - **Colonne**\* : Affiche le graphique sous forme de barres.
 
 > **Tip**
+>
 > Si vous affichez plusieurs courbes en même temps:
 > - Un clic sur une légende sous le graphique permet d'afficher / masquer cette courbe.
 > - Ctrl Clic sur une légende vous permet de n'afficher que celle-ci.
@@ -72,6 +75,7 @@ abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de vie\]\[Hygrométr
 Vous avez aussi accès à un gestion de formules de calcul qui vous permet de les sauvegarder pour les ré-afficher plus facilement.
 
 > **Tip**
+>
 > Il suffit de cliquer sur le nom de l’objet pour le déplier, et faire apparaître les commandes historisées qui peuvent être affichées.
 
 #### Historique de commande
@@ -98,14 +102,17 @@ La timeline *Principal* contient toujours l'ensemble des évènements. Toutefois
 Vous pourrez alors filtrer la timeline par ce dossier en le sélectionnant à gauche du bouton *Rafraichir*.
 
 > **Note**
+>
 > Si vous n'utilisez plus un dossier, il apparaitra dans la liste tant que des évènements liés a ce dossier existent. Il disparaitra tout seul de la liste ensuite.
 
 > **Tip**
+>
 > Vous avez accès aux fenêtres de résumé des scénarios ou de la configuration de l’historique directement à partir de la page de timeline.
 
 Une fois que vous avez activé le suivi dans la timeline des commandes et scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
 > **Important**
+>
 > Il faut attendre de nouveaux événements après avoir activé le suivi sur la timeline avant de les voir apparaître.
 
 ### Affichage

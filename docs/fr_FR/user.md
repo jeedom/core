@@ -32,6 +32,7 @@ Sur la page vous avez trois boutons :
 Lors du clic sur "Droits" une fenêtre apparaît et vous permet de gérer finement les droits de l’utilisateur. Le premier onglet affiche les différents équipements. Le deuxième présente les scénarios.
 
 > **Important**
+>
 > Le profil doit être en limité sinon aucune restriction mise ici ne sera prise en compte.
 
 Vous obtenez un tableau qui permet, pour chaque équipement et chaque scénario, de définir les droits de l’utilisateur :
@@ -49,6 +50,7 @@ Liste les périphériques (ordinateurs, mobiles etc) qui on enregistré leur aut
 Vous pouvez voir quel utilisateur, son IP, à quelle date, et supprimer l'enregistrement de ce périphérique.
 
 > **Note**
+>
 > Un même utilisateur peux avoir enregistré différents périphériques. Par exemple, son ordinateur de bureau, son ordinateur portable, son mobile, etc.
 
 

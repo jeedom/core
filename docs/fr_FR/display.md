@@ -25,9 +25,11 @@ Pour chaque objet, à côté de son libellé, deux boutons sont disponibles.
 - Le deuxième apporte quelques informations sur l’objet,
 
 > **Tip**
+>
 > La couleur de fond des cadres objets dépend de la couleur choisie dans la configuration de l’objet.
 
 > **Tip**
+>
 > Avec un cliqué-déposé sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du Dashboard est calculé.
 
 ## Les équipements
@@ -50,6 +52,7 @@ Si le plugin de l'équipement est désactivé, les deux icône à droite n'appar
 ## Configuration avancée d’un équipement
 
 > **Tip**
+>
 > Il est possible d’accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l’équipement en cliquant sur le bouton configuration avancée
 
 La fenêtre de **configuration avancée d’un équipement** permet de la modifier. En premier lieu, en haut à droite, quelques boutons disponibles :
@@ -95,6 +98,7 @@ En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut
 nouveau. Pour les équipements, seule la valeur **style** est pour le moment utilisée, elle permet d’insérer du code CSS sur l’équipement en question.
 
 > **Tip**
+>
 > N’oubliez pas de sauvegarder après toute modification.
 
 ### Onglet Disposition
@@ -113,6 +117,7 @@ ceci :
 - **Style de la case (CSS)** : Modifier le style CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases).
 
 > **Tip**
+>
 > Dans une case du tableau, si vous voulez mettre 2 commandes l’une en dessous de l’autre, il ne faut pas oublier de rajouter un retour à la ligne après la première dans la **configuration avancée** de celle-ci.
 
 ### Onglet Alertes
@@ -128,6 +133,7 @@ Dessous, vous pourrez aussi définir les seuils spécifiques d’alerte de batte
 On peut également gérer le timeout, en minutes, de l’équipement. Par exemple, 30 indique à jeedom que si l’équipement n’a pas communiqué depuis 30 minutes, alors il faut le mettre en alerte.
 
 > **Tip**
+>
 > Les paramètres globaux sont dans **Réglages→Système→Configuration : Logs** ou **Equipements**
 
 ### Onglet Commentaire
@@ -146,9 +152,11 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 - **Sauvegarder** : Sauvegarde les modifications faites sur l’équipement.
 
 > **Tip**
+>
 > Dans un graphique, un double clic sur un élément vous amène à sa configuration.
 
 > **Note**
+>
 > En fonction du type de commande, les informations/actions affichées peuvent changer.
 
 ### Onglet Informations
@@ -175,6 +183,7 @@ Vous avez aussi trois autres boutons oranges en dessous :
 - **Remplacer cette commande par la commande** : L’inverse, remplace la commande par une autre commande.
 
 > **Note**
+>
 > Ce genre d’action remplace les commandes partout dans Jeedom (scénario, interaction, commande, équipement…​.).
 
 En-dessous, vous retrouvez la liste des différents équipements, commandes, scénarios ou interactions qui utilisent cette commande. Un clic dessus permet d’aller directement sur leur configuration respective.
@@ -216,6 +225,7 @@ En-dessous, vous retrouvez la liste des différents équipements, commandes, sc�
 Permet de définir un niveau d’alerte (**warning** ou **danger**) en fonction de certaines conditions. Par exemple, si `value > 8` pendant 30 minutes alors l’équipement peut passer en alerte **warning**.
 
 > **Note**
+>
 > Sur la page **Réglages→Système→Configuration : Logs**, vous pouvez configurer une commande de type message qui permettra à Jeedom de vous prévenir si on atteint le seuil warning ou danger.
 
 ### Onglet Affichage
@@ -231,4 +241,5 @@ Dans cette partie, vous allez pouvoir configurer certains comportements d’affi
 En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut passer au widget. Ces paramètres dépendent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaître.
 
 > **Tip**
+>
 > N’oubliez pas de sauvegarder après toute modification.

@@ -1,6 +1,8 @@
 # Scénarios
 **Outils → Scénarios**
 
+<small>[Raccourcis clavier/souris](shortcuts.md)</small>
+
 Véritable cerveau de la domotique, les scénarios permettent d’interagir avec le monde réel de manière *intelligente*.
 
 ## Gestion
@@ -16,6 +18,7 @@ Vous y trouverez la liste des scénarios de votre Jeedom, ainsi que des fonction
 Vous trouverez dans cette partie la **liste des scénarios** que vous avez créés. Ils sont classés suivant leur **groupe**, éventuellement définis pour chacun d’eux. Chaque scénario est affiché avec son **nom** et son **objet parent**. Les **scénarios grisés** sont ceux qui sont désactivés.
 
 > **Tip**
+>
 > Vous pouvez ouvrir un scénario en faisant :
 > - Clic sur l'un d'entre eux.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
@@ -48,6 +51,7 @@ Avant cela, en haut de page, on retrouve certaines fonctions utiles pour gérer 
 - **Sauvegarder** : Sauvegarder les changements effectués.
 
 > **Tips**
+>
 > Deux outils vous seront également précieux dans la mise en place de scénarios :
     > - Les variables, visibles dans **Outils → Variables**
     > - Le testeur d'expressions, accessible par **Outils → Testeur expression**
@@ -74,10 +78,12 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 - **Mode du scénario** : Le scénario peut être programmé, déclenché ou les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s) déclencheur(s) (15 déclencheurs maximum) et la/les programmation(s).
 
 > **Tip**
+>
 > En mode déclenché, des conditions peuvent à présent être saisies. Par ex : `#[Garage][Open Garage][Ouverture]# == 1`
 > Attention : vous pouvez avoir au maximum 28 déclencheurs/programmations pour un scénario.
 
 > **Tip Mode programmé**
+>
 > Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuté un scénario toutes les 20 minutes avec  `*/20 * * * * `, ou à 5h du matin pour régler une multitude de chose pour la journée avec `0 5 * * *`. Le ? à droite d'une programmation vous permet de réglé celle-ci sans être un spécialiste de la syntaxe Cron.
 
 ### Onglet Scénario
@@ -88,9 +94,11 @@ Pour plus de praticité et ne pas avoir à constamment réordonner les blocs dan
 *Par exemple, si vous avez une dizaine de bloc, et que vous cliquez dans la condition SI du premier bloc, le bloc ajouté le sera après se bloc, au même niveau. Si aucun champ n'est actif, il sera ajouté à la fin du scénario.*
 
 > **Tip**
+>
 > Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (").
 
 > **Tip**
+>
 > Un Ctrl Shift Z ou Ctrl Shift Y vous permet d'**annuler** ou de refaire une modification (ajout d'action, de bloc...).
 
 ### Les blocs
@@ -120,6 +128,7 @@ Chaque bloc a ses options pour mieux les manipuler :
 #### Blocs Si/Alors/Sinon | Boucle | Dans | A
 
 > **Note**
+>
 > Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d’activer ou non la répétition des actions si l’évaluation de la condition donne le même résultat que la précédente évaluation.
 
 Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionner un élément à tester :
@@ -129,11 +138,13 @@ Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire 
 - **Rechercher un équipement** : Idem pour un équipement.
 
 > **Tip**
+>
 > Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, ou bien à l’heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags.
 
 Une fois la condition renseignée, vous devez utiliser le bouton "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une **action** dans le bloc actuel.
 
 > **Tip**
+>
 > Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles.
 
 #### Bloc Code
@@ -176,6 +187,7 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
 - `$scenario->persistLog();` : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
 
 > **Tip**
+>
 > Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 
 ### Les Actions
@@ -190,6 +202,7 @@ Les actions ajoutées dans les blocs ont plusieurs options :
 - Un bouton pour rechercher une commande d’action.
 
 > **Tip**
+>
 > Suivant la commande sélectionnée, on peut voir apparaître différents champs supplémentaires s’afficher.
 
 ## Les substitutions possibles
@@ -233,6 +246,7 @@ Vous pouvez combiner n’importe quelle comparaison avec les opérateurs suivant
 Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pouvez utiliser les tags suivants :
 
 > **Tip**
+>
 > Pour avoir les zéros initiaux à l’affichage, il faut utiliser la fonction Date(). Voir [ici](http://php.net/manual/fr/function.date.php).
 
 - #seconde# : Seconde courante (sans les zéros initiaux, ex : 6 pour 08:07:06).
@@ -262,6 +276,7 @@ Vous avez aussi les tags suivants en plus si votre scénario a été déclenché
 - #profil# : Profil de l’utilisateur ayant déclenché le scénario (peut être vide).
 
 > **Important**
+>
 > Lorsqu’un scénario est déclenché par une interaction, celui-ci est forcément exécuté en mode rapide. Donc dans le thread de l'interaction et non dans un thread séparé.
 
 ### Les fonctions de calcul
@@ -472,6 +487,7 @@ Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre
 ### Ajout de fonction php
 
 > **IMPORTANT**
+>
 > L'ajout de fonction PHP est réservé aux utilisateurs avancés. La moindre erreur peut être fatal pour votre Jeedom.
 
 #### Mise en place
@@ -483,4 +499,5 @@ Allez dans le dossier data puis php et cliquez sur le fichier user.function.clas
 C'est dans cette class que vous pouvez ajouter vos fonctions, vous y trouverez un exemple de fonction basique.
 
 > **IMPORTANT**
+>
 > Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copiant le contenu de user.function.class.sample.php dans user.function.class.php
