@@ -22,18 +22,19 @@ Changelog
 - Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
 - Scénario : Les boutons *Ajouter* dans les blocs permettent d'ajouter directement un bloc sans passer par la fenêtre de sélection.
 - Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
-- Scénario : Fonctions statistics(), average(), max(), min(), tendance(), duration() : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
+- Scénario : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
+- Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - La fenêtre d'historique montre toutes les commandes info historisées de l'équipement visible sur la tuile.
 	- Si plusieurs historiques affichés, Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
-- Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Vue : possibilité de mettre des scénarios.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - Moteur de tâches : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
 - Fenêtre A propos : Ajout de raccourcis vers le Changelog et la FAQ.
-- Corrections de docs en adéquation avec la v4 et v4.1.
+- Documentation : Adaptations en adéquation avec la v4 et v4.1.
+- Documentation : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - Corrections de bugs et optimisations.
 
 
