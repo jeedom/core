@@ -164,6 +164,7 @@ class scenarioExpression {
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 	public static function getDatesFromPeriod($_period = '1 hour') {
 		$_period = trim(strtolower($_period));
+		if ($_period == 'day') $_period = '1 day';
 		$_startTime = date('Y-m-d H:i:s', strtotime('-' . $_period));
 		$_endTime = date('Y-m-d H:i:s');
 
@@ -172,9 +173,6 @@ class scenarioExpression {
 		} elseif ($_period == 'yesterday') {
 			$_startTime = date('Y-m-d', strtotime('-1 day')) . ' 00:00:00';
 			$_endTime = date('Y-m-d', strtotime('-1 day')) . ' 23:59:59';
-		} elseif ($_period == 'day') {
-			$_period = '1 day';
-			$_startTime = date('Y-m-d H:i:s', strtotime('-' . $_period));
 		}
 		return array($_startTime, $_endTime);
 	}
