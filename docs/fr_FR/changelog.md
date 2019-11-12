@@ -4,7 +4,7 @@ Changelog
 
 4.1.0
 =====
-- Dashboard : Mode Edition maintenant en insertion de la tuile déplacée.
+- Dashboard : Mode Édition maintenant en insertion de la tuile déplacée.
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120mins.
@@ -18,7 +18,7 @@ Changelog
 	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande).
-- Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code.
+- Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code. Sur les blocs *commentaire*, la première ligne est affichée en caractère gras.
 - Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
 - Scénario : Les boutons *Ajouter* dans les blocs permettent d'ajouter directement un bloc sans passer par la fenêtre de sélection.
 - Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).

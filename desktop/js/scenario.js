@@ -718,7 +718,9 @@ $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function 
         var id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
         if (isset(editor[id])) txt = editor[id].getValue()
       } else {
+        //comment
         txt = _el.find('.expression textarea').val()
+        txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
       if (txt) $(this).html(txt.substring(0,200))
@@ -1829,7 +1831,9 @@ function addSubElement(_subElement) {
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
-      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>';
+      var txt = expression.expression.substring(0,200)
+      txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+      retour += '<div class="blocPreview">'+txt+'</div>';
     } else {
       retour += '<div class="blocPreview"></div>';
     }
