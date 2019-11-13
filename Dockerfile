@@ -7,7 +7,7 @@ ENV APACHE_PORT 80
 ENV SSH_PORT 22
 ENV MODE_HOST 0
 
-RUN apt-get update && apt-get install -y wget openssh-server supervisor mysql-client
+RUN apt-get update && apt-get install -y wget openssh-server supervisor
 
 RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
   sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
