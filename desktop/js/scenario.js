@@ -957,9 +957,11 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-
       updateTooltips()
       updateSortable()
+    },
+    stop: function(event, ui) {
+      $("#div_scenarioElement").sortable("disable");
     }
   });
   $("#div_scenarioElement").sortable("enable");
@@ -1315,7 +1317,7 @@ function addExpression(_expression) {
     return '';
   }
   var sortable = 'sortable';
-  if (_expression.type == 'condition') {
+  if (_expression.type == 'condition' || _expression.type == 'code') {
     sortable = 'noSortable';
   }
 
@@ -1689,7 +1691,6 @@ function addSubElement(_subElement) {
     retour += '<legend >{{CODE}}</legend>';
     retour += '</div>';
     retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
@@ -1713,7 +1714,6 @@ function addSubElement(_subElement) {
     retour += '<legend >{{COMMENTAIRE}}</legend>';
     retour += '</div>';
     retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
