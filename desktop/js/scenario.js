@@ -1840,7 +1840,6 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     retour += addExpression(expression);
     retour += '</div>';
     retour = addElButtons(retour)
