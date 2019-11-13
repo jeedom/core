@@ -1071,6 +1071,7 @@ function displayObject(_plan,_html, _noRender) {
         style[key] = _plan.css[key];
         if(_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd' || _plan.link_type == 'summary'){
           another_css += css_selector+' * {\n'+key+' : '+_plan.css[key]+' !important;\n}';
+          another_css += css_selector+' .state {\n'+key+' : '+_plan.css[key]+' !important;}';
         }
       }
       continue;
