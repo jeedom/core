@@ -37,6 +37,10 @@ $(function() {
   setChartOptions()
 })
 
+$(window).resize(function() {
+  $('#div_graph').highcharts().setSize( $('#div_graph').width(), $('#div_graph').height())
+})
+
 function setChartOptions() {
   var _prop = 'disabled'
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
