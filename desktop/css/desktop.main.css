@@ -2119,6 +2119,10 @@ div[id^=__lpform_] { /*lastpass*/
   display: inline-block;
   margin: 2px;
 }
+#div_scenarioElement  {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
 #div_scenarioElement .element .element {
   box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
 }
