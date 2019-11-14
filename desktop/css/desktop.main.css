@@ -1700,6 +1700,11 @@ input[type=radio][disabled] {
   cursor: not-allowed
 }
 
+select:disabled,
+input:disabled {
+  opacity: 0.5 !important;
+}
+
 /* custom universal select */
 select,
 input[type=color] {
