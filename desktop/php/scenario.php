@@ -296,7 +296,7 @@ if (is_array($scenarioListGroup)) {
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
-				<div id="div_scenarioElement" class="element" style="padding-bottom: 20px;"></div>
+				<div id="div_scenarioElement" class="element"></div>
 			</div>
 		</div>
 

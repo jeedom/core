@@ -530,7 +530,7 @@ $pageContainer.off('change','.subElementAttr[data-l1key=options][data-l2key=enab
   }else{
     element.addClass('disableElement');
   }
-  var subElement =checkbox.closest('.element').find('.subElement:not(.noSortable)');
+  var subElement = checkbox.closest('.element').find('.subElement:not(.noSortable)');
   if(checkbox.value() == 1){
     subElement.find('.expressions').removeClass('disableSubElement');
   }else{
@@ -1024,7 +1024,6 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
         getClass = false
       }
-
       thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
         getClass = false
@@ -1071,6 +1070,9 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
 
       updateTooltips()
       updateSortable()
+    },
+    stop: function(event, ui) {
+      $("#div_scenarioElement").sortable("disable");
     }
   });
   $("#div_scenarioElement").sortable("enable");
@@ -1111,6 +1113,15 @@ $('#bt_templateScenario').off('click').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
+$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
+  if($(this).attr('value') == 0){
+    $(this).attr('value',1);
+    $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
+  }else{
+    $(this).attr('value',0);
+    $(this).html('<span><i class="fas fa-sync"></span>');
+  }
+});
 
 /**************** Initialisation **********************/
 $pageContainer.off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
@@ -1463,15 +1474,16 @@ function addExpression(_expression) {
     return '';
   }
   var sortable = 'sortable';
-  if (_expression.type == 'condition') {
+  if (_expression.type == 'condition' || _expression.type == 'code') {
     sortable = 'noSortable';
   }
 
+  var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
+
   if (_expression.type == 'action') {
-    var retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
-  } else {
-    var retour = '<div class="expression ' + sortable + ' col-xs-12" >';
+    retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
   }
+
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
@@ -1552,16 +1564,6 @@ function addExpression(_expression) {
   retour += '</div>';
   return retour;
 }
-
-$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
-  if($(this).attr('value') == 0){
-    $(this).attr('value',1);
-    $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
-  }else{
-    $(this).attr('value',0);
-    $(this).html('<span><i class="fas fa-sync"></span>');
-  }
-});
 
 function addSubElement(_subElement) {
   if (!isset(_subElement.type) || _subElement.type == '') {
@@ -1810,7 +1812,6 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     retour += addExpression(expression);
     retour += '</div>';
     retour = addElButtons(retour)
@@ -1839,7 +1840,6 @@ function addSubElement(_subElement) {
     }
     retour += '</div>';
     retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     retour += addExpression(expression);
     retour += '</div>';
     retour = addElButtons(retour)
