@@ -215,7 +215,7 @@ path.highcharts-graph {
   width : 100%;
   max-height: 80px;
   transition: water 3s ease-out;
-  z-index: 0;
+  z-index: -1;
   animation: homeweatherstationraingauge 3000s linear infinite;
   bottom : 0px;
   position: absolute;
