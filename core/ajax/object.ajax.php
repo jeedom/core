@@ -99,7 +99,7 @@ try {
 				$objects = json_decode(init('id'), true);
 			} else {
 				$objects = array();
-				foreach (jeeObject::all() as $object) {
+				foreach (jeeObject::buildTree(null, true) as $object) {
 					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
 						continue;
 					}
