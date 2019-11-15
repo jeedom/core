@@ -211,7 +211,7 @@ jeedom.history.drawChart = function (_params) {
             },
             series: [series]
           });
-        }else {
+        } else {
           jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite, color: _params.option.graphColor});
         }
       }else{
@@ -278,6 +278,10 @@ jeedom.history.drawChart = function (_params) {
             });
           }
         }else{
+          if (_params.option.graphType == 'areaspline' && _params.option.graphStep == true) {
+            _params.option.graphType = 'area'
+          }
+
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,

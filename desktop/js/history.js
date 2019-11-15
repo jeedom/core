@@ -56,7 +56,9 @@ function setChartOptions() {
         } else {
           $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
         }
-        $('#sel_chartType').off().value(serie.userOptions.type)
+        var type = serie.userOptions.type
+        if (type == 'area') type = 'areaspline'
+        $('#sel_chartType').off().value(type)
         $('#cb_derive').prop('checked', serie.userOptions.derive)
         $('#cb_step').prop('checked', serie.userOptions.step)
         initHistoryTrigger()
@@ -313,27 +315,6 @@ function addChart(_cmd_id, _action, _options) {
     success: function (data) {
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
-      if (isset(data.cmd) && isset(data.cmd.display)) {
-        if (!$('#cb_step').is(':disabled')) {
-          if (init(data.cmd.display.groupingType) != '') {
-            $('#sel_groupingType').off().value(init(data.cmd.display.groupingType));
-          }
-          if (init(data.cmd.display.graphType) != '') {
-            $('#sel_chartType').off().value(init(data.cmd.display.graphType));
-          }
-          if (init(data.cmd.display.graphDerive) != '') {
-            $('#cb_derive').off().value(init(data.cmd.display.graphDerive));
-          }
-          if (init(data.cmd.display.graphStep) != '') {
-            $('#cb_step').off().value(init(data.cmd.display.graphStep));
-          }
-        } else {
-          $("#sel_groupingType").val($("#sel_groupingType option:first").val())
-          $("#sel_chartType").val($("#sel_chartType option:first").val())
-          $('#cb_derive').prop('checked', false)
-          $('#cb_step').prop('checked', false)
-        }
-      }
       initHistoryTrigger()
     }
   });
