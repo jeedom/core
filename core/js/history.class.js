@@ -122,7 +122,8 @@ jeedom.history.drawChart = function (_params) {
         seriesNumber = jeedom.history.chart[_params.el].chart.series.length
       }
       if (seriesNumber > colors.length) seriesNumber = 1
-      _params.option.graphColor = colors[seriesNumber -1]
+      seriesNumber --
+      _params.option.graphColor = colors[seriesNumber]
 
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
@@ -185,7 +186,6 @@ jeedom.history.drawChart = function (_params) {
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
-          jeedom.history.chart[_params.el].color = 0;
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.Chart({
             chart: charts,
@@ -289,7 +289,6 @@ jeedom.history.drawChart = function (_params) {
           if (_params.option.graphType == 'areaspline' && _params.option.graphStep == true) {
             _params.option.graphType = 'area'
           }
-
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
@@ -339,7 +338,7 @@ jeedom.history.drawChart = function (_params) {
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
-          //jeedom.history.chart[_params.el].color = 0;
+          jeedom.history.chart[_params.el].color = seriesNumber - 1;
           jeedom.history.chart[_params.el].nbTimeline = 1;
 
           if(_params.dateRange == '30 min'){

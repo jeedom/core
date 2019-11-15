@@ -26,10 +26,10 @@ $(function() {
     cmdIds = cmdIds.split('-')
     if (is_numeric(cmdIds[0])) {
       cmdIds.forEach(function(cmd_id) {
-        let li = $('.li_history[data-cmd_id='+cmd_id+']');
+        var li = $('.li_history[data-cmd_id='+cmd_id+']');
         if(li){
           li.find('.history').click();
-          $('.displayObject[data-object_id='+li.closest('.cmdList').attr('data-object_id')+']').click();
+          li.closest('.cmdList').show();
         }
       })
     }
@@ -51,10 +51,12 @@ function setChartOptions() {
     var chart = $('#div_graph').highcharts()
     $(chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
-        var grouping = serie.userOptions.dataGrouping.enabled
-        if (grouping) {
-          var groupingType = serie.userOptions.dataGrouping.approximation + '::' + serie.userOptions.dataGrouping.units[0][0]
-          $('#sel_groupingType').off().value(groupingType)
+        if (isset(serie.userOptions.dataGrouping)) {
+          var grouping = serie.userOptions.dataGrouping.enabled
+          if (grouping) {
+            var groupingType = serie.userOptions.dataGrouping.approximation + '::' + serie.userOptions.dataGrouping.units[0][0]
+            $('#sel_groupingType').off().value(groupingType)
+          }
         } else {
           $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
         }
