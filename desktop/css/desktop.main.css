@@ -2670,8 +2670,6 @@ textarea {
 
 
 /* __________________________________________________________________________________________________________HIGHCHARTS */
-.highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
-.highcharts-color-0 { fill: var(--link-color); }
 .highcharts-legend-item tspan {
   cursor: pointer;
 }
