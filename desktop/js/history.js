@@ -292,17 +292,17 @@ function emptyHistory(_cmd_id,_date) {
 function addChart(_cmd_id, _action, _options) {
   if (_action == 0) {
     if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
-      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
+      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
         try {
           if (serie.options.id == _cmd_id) {
-            serie.remove();
+            serie.remove()
             setChartOptions()
           }
-        }catch(error) {
+        } catch(error) {
         }
-      });
+      })
     }
-    return;
+    return
   }
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
@@ -317,7 +317,7 @@ function addChart(_cmd_id, _action, _options) {
       setChartOptions()
       initHistoryTrigger()
     }
-  });
+  })
 }
 
 /**************TIMELINE********************/

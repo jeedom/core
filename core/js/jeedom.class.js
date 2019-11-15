@@ -107,12 +107,24 @@ jeedom.init = function () {
       shortMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
       'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
       weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
-    }
+    },
+    colors :['rgb(73, 111, 153)',
+              'rgb(153, 122, 73)',
+              'rgb(73, 153, 77)',
+              'rgb(172, 54, 87)',
+              'rgb(42, 184, 181)',
+              'rgb(167, 48, 161)',
+              'rgb(89, 54, 171)',
+              'rgb(152, 179, 47)',
+              'rgb(99, 99, 99)',
+              'rgb(70, 156, 32)'
+              ]
   });
+
   $('body').on('cmd::update', function (_event,_options) {
     jeedom.cmd.refreshValue(_options);
   });
-  
+
   $('body').on('scenario::update', function (_event,_options) {
     jeedom.scenario.refreshValue(_options);
   });
@@ -122,7 +134,7 @@ jeedom.init = function () {
   $('body').on('jeeObject::summary::update', function (_event,_options) {
     jeedom.object.summaryUpdate(_options);
   });
-  
+
   $('body').on('ui::update', function (_event,_options) {
     if(isset(_options.page) && _options.page != ''){
       if(!$.mobile && getUrlVars('p') != _options.page){
@@ -137,7 +149,7 @@ jeedom.init = function () {
     }
     $(_options.container).setValues(_options.data, _options.type);
   });
-  
+
   $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
     if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
@@ -146,7 +158,7 @@ jeedom.init = function () {
       }
     }
   });
-  
+
   $('body').on('jeedom::alert', function (_event,_options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
       if(isset(_options.page) && _options.page != ''){
