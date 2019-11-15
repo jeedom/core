@@ -169,10 +169,11 @@ function initHistoryTrigger() {
       return;
     }
     var currentId = lastId
+    var groupingType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
     addChart(currentId,0);
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {groupingType: $(this).value()}},
+      cmd: {id: currentId, display: {groupingType: groupingType}},
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -187,10 +188,11 @@ function initHistoryTrigger() {
       return;
     }
     var currentId = lastId
+    var graphType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
     addChart(currentId,0);
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphType: $(this).value()}},
+      cmd: {id: currentId, display: {graphType: graphType}},
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -205,10 +207,11 @@ function initHistoryTrigger() {
       return;
     }
     var currentId = lastId
+    var graphDerive = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
     addChart(currentId,0);
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphDerive: $(this).value()}},
+      cmd: {id: currentId, display: {graphDerive: graphDerive}},
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -223,10 +226,11 @@ function initHistoryTrigger() {
       return;
     }
     var currentId = lastId
+    var graphStep = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active');
     addChart(currentId,0);
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphStep: $(this).value()}},
+      cmd: {id: currentId, display: {graphStep: graphStep}},
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
