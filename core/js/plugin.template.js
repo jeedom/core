@@ -83,12 +83,11 @@ $(function(){
             className: 'eq-context-menu',
             callback: function(key, options, event) {
               tab = null
+              tabObj = null
               if (document.location.toString().match('#')) {
                 tab = '#' + document.location.toString().split('#')[1]
                 if (tab != '#') {
                   tabObj = $('a[href="' + tab + '"]')
-                } else {
-                  tabObj = null
                 }
               }
               if (event.ctrlKey || event.originalEvent.which == 2) {
@@ -104,7 +103,7 @@ $(function(){
             items: contextmenuitems
           })
         }
-        
+
       }
     })
   }catch(err) {
@@ -187,7 +186,7 @@ $(".eqLogicDisplayCard").on('click', function (event) {
         $('body').delegate('.cmd .cmdAttr[data-l1key=type]', 'change', function () {
           jeedom.cmd.changeType($(this).closest('.cmd'));
         });
-        
+
         $('body').delegate('.cmd .cmdAttr[data-l1key=subType]', 'change', function () {
           jeedom.cmd.changeSubType($(this).closest('.cmd'));
         });
@@ -431,7 +430,7 @@ $('#div_pageContainer').on( 'click','.cmd .cmdAction[data-action=test]',function
   } else {
     $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'});
   }
-  
+
 });
 
 $('#div_pageContainer').on( 'dblclick','.cmd input,select,span,a', function (event) {
