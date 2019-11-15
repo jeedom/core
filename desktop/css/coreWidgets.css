@@ -261,7 +261,7 @@ div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline
 }
 
 .arcgauge .highcharts-color-0 { fill: var(--link-color); }
-.arcgauge  .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
+.arcgauge .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
 .arcgauge .cmdStats {
   position: relative;
   top: 3px;
