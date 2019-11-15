@@ -1250,9 +1250,6 @@ button .fas.fa-plus-circle {
 .md_history .highcharts-point {
   fill: rgb(100,160,235);
 }
-.md_history .highcharts-graph {
-  stroke: rgb(100,160,235);
-}
 .highcharts-button-disabled{
   display: none !important;
 }
