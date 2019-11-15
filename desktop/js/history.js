@@ -38,7 +38,9 @@ $(function() {
 })
 
 $(window).resize(function() {
-  $('#div_graph').highcharts().setSize( $('#div_graph').width(), $('#div_graph').height())
+  if ($('#div_graph').attr('data-highcharts-chart')) {
+    $('#div_graph').highcharts().setSize( $('#div_graph').width(), $('#div_graph').height())
+  }
 })
 
 function setChartOptions() {
