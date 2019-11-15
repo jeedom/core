@@ -1246,10 +1246,6 @@ button .fas.fa-plus-circle {
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
 }
-.md_history .highcharts-area,
-.md_history .highcharts-point {
-  fill: rgb(100,160,235);
-}
 .highcharts-button-disabled{
   display: none !important;
 }
