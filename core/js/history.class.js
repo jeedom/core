@@ -74,6 +74,7 @@ jeedom.history.drawChart = function (_params) {
     _params.dateRange = json_encode(_params.dateRange);
   }
   _params.option = init(_params.option, {derive: ''});
+  var _visible = (isset(_params.visible)) ? _params.visible : true
   $.ajax({
     type: "POST",
     url: "core/ajax/cmd.ajax.php",
@@ -115,7 +116,6 @@ jeedom.history.drawChart = function (_params) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
       }
       _params.option.graphDerive = (data.result.derive == "1") ? true : false;
-
       var colors = Highcharts.getOptions().colors
       var seriesNumber = 1
       if (isset(jeedom.history.chart[_params.el])) {
@@ -181,7 +181,7 @@ jeedom.history.drawChart = function (_params) {
           id: _params.cmd_id,
           cursor: 'pointer',
           data: [{y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite}],
-          color: _params.option.graphColor,
+          color: _params.option.graphColor
         };
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
@@ -247,6 +247,7 @@ jeedom.history.drawChart = function (_params) {
           }
           var series = {
             type: 'flags',
+            visible: _visible,
             name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
             data: [],
             id: _params.cmd_id,
@@ -292,6 +293,7 @@ jeedom.history.drawChart = function (_params) {
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
+            visible: _visible,
             id: _params.cmd_id,
             cursor: 'pointer',
             name: (isset(_params.mobile))? data.result.unite : ((isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite),

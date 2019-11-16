@@ -51,6 +51,7 @@ if (jeedom.history.chart['div_historyChart'] != undefined) {
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length
 cmdIds.forEach(function(cmd_id) {
+  var _visible = (cmd_id == cmd_show) ? true : false
   jeedom.history.drawChart({
     cmd_id: cmd_id,
     el: 'div_historyChart',
@@ -59,6 +60,7 @@ cmdIds.forEach(function(cmd_id) {
     dateEnd :  $('#in_endDate').value(),
     newGraph : false,
     showLegend : _showLegend,
+    visible : _visible,
     height : jQuery(window).height() - 270,
     success: function (data) {
       if (cmd_id == cmd_show) {
@@ -75,11 +77,6 @@ var modalSetter = setInterval(setModal, 100)
 function setModal() {
   if (done == 0) {
     clearInterval(modalSetter)
-    if (cmdIds.length > 1) {
-      $('.highcharts-legend-item').each(function() {
-        if ($(this).find('tspan').html() != cmd_showName) $(this).click()
-      })
-    }
 
     $('#bt_validChangeDate').on('click', function() {
       var modal = false;
