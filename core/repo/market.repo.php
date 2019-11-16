@@ -552,6 +552,13 @@ class repo_market {
 		}
 	}
 	
+	public static function sendHealth(){
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('register::health',array('health' => jeedom::health()))) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+	
 	public static function cron5() {
 		try {
 			$monitoring_state = self::monitoring_status();
@@ -561,6 +568,8 @@ class repo_market {
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
+			sleep(rand(0,120));
+			self::sendHealth();
 		} catch (Exception $e) {
 			
 		}
