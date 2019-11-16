@@ -568,7 +568,7 @@ class repo_market {
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
-			if (self::monitoring_allow(){
+			if (self::monitoring_allow()){
 				sleep(rand(0,120));
 				self::sendHealth();
 			}
