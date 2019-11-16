@@ -865,7 +865,7 @@ class jeedom {
 		}
 	}
 	
-	public static function cron5() {
+	public static function cron10() {
 		try {
 			foreach (update::listRepo() as $name => $repo) {
 				$class = 'repo_' . $name;
