@@ -364,7 +364,7 @@ class jeedom {
 			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
 			$state = network::test('external');
 		}
-		$cache_health['key'] = 'cache::persit'
+		$cache_health['key'] = 'cache::persit';
 		$return[] = $cache_health;
 		
 		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
