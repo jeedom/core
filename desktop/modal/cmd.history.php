@@ -7,7 +7,7 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
-$showId = init('showId');
+$showId = init('showId', false);
 if($id == '' && $showId != ''){
   $id = $showId;
 }
