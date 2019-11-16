@@ -865,6 +865,21 @@ class jeedom {
 		}
 	}
 	
+	public static function cron5() {
+		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
+					$class::cron10();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
+	}
+	
 	public static function cron() {
 		if (!self::isStarted()) {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
