@@ -558,8 +558,10 @@ public static function backup_restore($_backup) {
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
-			sleep(rand(0,120));
-			self::sendHealth();
+			if (self::monitoring_allow(){
+				sleep(rand(0,120));
+				self::sendHealth();
+			}
 		} catch (Exception $e) {
 			
 		}
