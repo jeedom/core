@@ -558,6 +558,13 @@ public static function backup_restore($_backup) {
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
+		} catch (Exception $e) {
+			
+		}
+	}
+	
+	public static function cron10() {
+		try {
 			if (self::monitoring_allow()){
 				sleep(rand(0,120));
 				self::sendHealth();
