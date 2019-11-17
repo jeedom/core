@@ -7,12 +7,7 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
-$showId = init('showId', false);
-if($id == '' && $showId != ''){
-  $id = $showId;
-}
 sendVarToJs('cmd_id',$id);
-sendVarToJs('cmd_show',$showId);
 ?>
 <div class="md_history">
   <div class="row">
@@ -34,8 +29,6 @@ sendVarToJs('cmd_show',$showId);
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
-var cmd_showName = ''
-
 $(".in_datepicker").datepicker()
 $('#ui-datepicker-div').hide()
 
@@ -51,7 +44,6 @@ if (jeedom.history.chart['div_historyChart'] != undefined) {
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length
 cmdIds.forEach(function(cmd_id) {
-  var _visible = (cmd_id == cmd_show) ? true : false
   jeedom.history.drawChart({
     cmd_id: cmd_id,
     el: 'div_historyChart',
@@ -60,13 +52,8 @@ cmdIds.forEach(function(cmd_id) {
     dateEnd :  $('#in_endDate').value(),
     newGraph : false,
     showLegend : _showLegend,
-    visible : _visible,
     height : jQuery(window).height() - 270,
     success: function (data) {
-      if (cmd_id == cmd_show) {
-        cmd_showName = data.history_name
-        if (data.unite != '') cmd_showName += ' ' + data.unite
-      }
       done -= 1
     }
   })
@@ -87,7 +74,7 @@ function setModal() {
       }
       if (modal !== false) {
         modal.dialog({title: "{{Historique}}"})
-        modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&showId='+cmd_show+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+        modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
       }
     })
     $('#bt_openInHistory').on('click', function() {
