@@ -234,6 +234,13 @@ a, .ui-link {
   box-shadow: none !important;
 }
 
+.ui-btn.ui-checkbox-off:after,
+.ui-btn.ui-checkbox-on:after {
+  border: 2px solid var(--el-defaultColor) !important;
+  background-color: var(--el-defaultColor) !important;
+  opacity: 1
+}
+
 [data-category] .widget-name {
   display:block;
   min-height: 1.5em !important;

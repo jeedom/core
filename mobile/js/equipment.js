@@ -41,6 +41,9 @@ function initEquipment(_object_id) {
   })
 
   if (isset(_object_id)) {
+    if (_object_id == '') _object_id == 'all'
+    $('body').attr('data-object', _object_id).attr('data-objectName', $('#pageTitle').html())
+
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path){
@@ -62,7 +65,7 @@ function initEquipment(_object_id) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function (html) {
-        if((_object_id == 'all' || _object_id == '')){
+        if (_object_id == 'all') {
           var div = ''
           summaries = []
           for(var i in html) {
@@ -93,10 +96,10 @@ function initEquipment(_object_id) {
           try {
             $('#div_displayEquipement').empty().html(div).trigger('create')
             jeedom.object.summaryUpdate(summaries)
-          }catch(err) {
+          } catch(err) {
             console.log(err)
           }
-        } else{
+        } else {
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create')
           jeedom.object.summaryUpdate([{object_id:_object_id}])
         }

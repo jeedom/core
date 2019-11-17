@@ -1,4 +1,9 @@
 $('body').attr('data-page', 'history')
+var page_title = $('body').attr('data-objectName')
+var object_id = $('body').attr('data-object')
+if (typeof object_id === typeof undefined || object_id === false) {
+	$('#bt_goBack').remove()
+}
 
 function initHistory(_cmd_id) {
 	addChart(_cmd_id,1)
@@ -112,4 +117,8 @@ $('#bt_validChangeDate').on('click',function(){
 			addChart(cmd_id, 1)
 		}
 	})
+})
+
+$('#bt_goBack').off('click').on('click',function() {
+	page('equipment', page_title, object_id)
 })
