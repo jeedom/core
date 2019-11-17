@@ -288,7 +288,7 @@ jeedom.history.drawChart = function (_params) {
             });
           }
         }else{
-          if (_params.option.graphType == 'areaspline' && _params.option.graphStep == true) {
+          if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
 

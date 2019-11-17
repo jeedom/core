@@ -114,7 +114,7 @@ $date = array(
 							</select>
 							<select class="form-control roundedRight" id="sel_chartType" style="width: 100px;">
 								<option value="line">{{Ligne}}</option>
-								<option value="areaspline">{{Aire}}</option>
+								<option value="area">{{Aire}}</option>
 								<option value="column">{{Barre}}</option>
 							</select>
 						</div>
