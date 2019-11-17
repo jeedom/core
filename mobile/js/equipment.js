@@ -26,7 +26,11 @@ function initEquipment(_object_id) {
               objectMapping[objects[i].father_id] = [parseInt(objects[i].id)]
             }
           }
-          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
+          var decay = 0
+          if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
+            decay = objects[i].configuration.parentNumber
+          }
+          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
       }
