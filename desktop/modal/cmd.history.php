@@ -7,12 +7,7 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
-$showId = init('showId');
-if($id == '' && $showId != ''){
-  $id = $showId;
-}
 sendVarToJs('cmd_id',$id);
-sendVarToJs('cmd_show',$showId);
 ?>
 <div class="md_history">
   <div class="row">
@@ -34,8 +29,6 @@ sendVarToJs('cmd_show',$showId);
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
-var cmd_showName = ''
-
 $(".in_datepicker").datepicker()
 $('#ui-datepicker-div').hide()
 
@@ -61,10 +54,6 @@ cmdIds.forEach(function(cmd_id) {
     showLegend : _showLegend,
     height : jQuery(window).height() - 270,
     success: function (data) {
-      if (cmd_id == cmd_show) {
-        cmd_showName = data.history_name
-        if (data.unite != '') cmd_showName += ' ' + data.unite
-      }
       done -= 1
     }
   })
@@ -75,11 +64,6 @@ var modalSetter = setInterval(setModal, 100)
 function setModal() {
   if (done == 0) {
     clearInterval(modalSetter)
-    if (cmdIds.length > 1) {
-      $('.highcharts-legend-item').each(function() {
-        if ($(this).find('tspan').html() != cmd_showName) $(this).click()
-      })
-    }
 
     $('#bt_validChangeDate').on('click', function() {
       var modal = false;
