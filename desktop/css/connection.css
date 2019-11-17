@@ -75,7 +75,7 @@ body {
 	background: #fff;
 	transition: all .5s;
 	color: #303030;
-	overflow: hidden;
+	/* overflow: hidden; */
 	box-shadow: 0 8px 22px 2px rgba(0,0,0,0.2);
 }
 .veen .wrapper > .form-group{
@@ -95,12 +95,12 @@ body {
 	padding-top: 10%;
 }
 .veen .wrapper #register{
-	transform: translateY(-80%) translateX(100%);
+	transform: translateY(-0%) translateX(100%);
 	visibility: hidden;
 
 }
 .veen .wrapper.move #register{
-	transform: translateY(-80%) translateX(0%);
+	transform: translateY(-118%) translateX(0%);
 	visibility: visible;
 }
 .veen .wrapper.move #login{
