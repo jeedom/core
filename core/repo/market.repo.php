@@ -563,17 +563,6 @@ public static function backup_restore($_backup) {
 		}
 	}
 	
-	public static function cron10() {
-		try {
-			if (self::monitoring_allow()){
-				sleep(rand(0,120));
-				self::sendHealth();
-			}
-		} catch (Exception $e) {
-			
-		}
-	}
-	
 	public static function cronDaily(){
 		try {
 			$monitoring_state = self::monitoring_status();
