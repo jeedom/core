@@ -411,7 +411,7 @@ $(window).on('navigate', function (event, data) {
       setTimeout(function() {
         $(document).scrollTop(_scroll)
         _scroll = null
-      }, 750)
+      }, 1000)
     }
     page(history_page.page,history_page.title,history_page.option);
     return
