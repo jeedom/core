@@ -42,7 +42,6 @@ function initEquipment(_object_id) {
 
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    $('body').attr('data-object', _object_id).attr('data-objectName', $('#pageTitle').html())
 
     jeedom.object.getImgPath({
       id : _object_id,

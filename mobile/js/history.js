@@ -1,12 +1,6 @@
 $('body').attr('data-page', 'history')
-var page_title = $('body').attr('data-objectName')
-var object_id = $('body').attr('data-object')
-if (typeof object_id === typeof undefined || object_id === false) {
-	$('#bt_goBack').remove()
-}
-var cmd_id = null
+
 function initHistory(_cmd_id) {
-  	cmd_id = _cmd_id
 	addChart(_cmd_id,1)
 	delete jeedom.history.chart['div_graph']
 }
@@ -118,12 +112,4 @@ $('#bt_validChangeDate').on('click',function(){
 			addChart(cmd_id, 1)
 		}
 	})
-})
-
-$('#bt_goBack').off('click').on('click',function() {
-    setTimeout(function() {
-      $(document).scrollTop(_scroll)
-    }, 750)
-
-	page('equipment', page_title, object_id)
 })
