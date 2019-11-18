@@ -113,3 +113,6 @@ $('#bt_validChangeDate').on('click',function(){
 		}
 	})
 })
+$('#bt_goBack').off('click').on('click',function() {
+    history.back()
+})
