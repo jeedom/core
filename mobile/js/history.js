@@ -4,8 +4,9 @@ var object_id = $('body').attr('data-object')
 if (typeof object_id === typeof undefined || object_id === false) {
 	$('#bt_goBack').remove()
 }
-
+var cmd_id = null
 function initHistory(_cmd_id) {
+  	cmd_id = _cmd_id
 	addChart(_cmd_id,1)
 	delete jeedom.history.chart['div_graph']
 }
@@ -120,5 +121,11 @@ $('#bt_validChangeDate').on('click',function(){
 })
 
 $('#bt_goBack').off('click').on('click',function() {
+    setTimeout(function() {
+      $('html, body').animate({
+          scrollTop: ($('.cmd[data-cmd_id="'+cmd_id+'"]').offset().top - 120)
+      }, 0)
+    }, 750)
+
 	page('equipment', page_title, object_id)
 })
