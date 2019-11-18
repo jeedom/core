@@ -400,7 +400,6 @@ $(window).on("navigate", function (event, data) {
   var direction = data.state.direction;
   PAGE_HISTORY.pop()
   var history_page = PAGE_HISTORY.pop();
-  console.log(history_page);
   if(!history_page.page){
     return;
   }
