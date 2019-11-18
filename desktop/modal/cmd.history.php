@@ -77,6 +77,7 @@ function setModal() {
         modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
       }
     })
+
     $('#bt_openInHistory').on('click', function() {
       loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
@@ -101,6 +102,12 @@ function setModal() {
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
     var divHighChart = $('#div_historyChart')
+
+    //only one history loaded:
+    if (cmdIds.length == 1) {
+      var chart = $('#div_historyChart').highcharts()
+      modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
+    }
 
     //check previous size/pos:
     var datas = modal.data()

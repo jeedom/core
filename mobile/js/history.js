@@ -29,7 +29,8 @@ function addChart(_cmd_id, _action) {
 			showLegend : false,
 			mobile : true,
 			success: function (data) {
-				if(isset(data.cmd.display)){
+				if (isset(data.cmd.display)) {
+					$('#historyName').html(data.history_name)
 					if (init(data.cmd.display.graphStep) != '') {
 						$('#cb_step').off().value(init(data.cmd.display.graphStep))
 						$('#cb_step').checkboxradio('refresh')
