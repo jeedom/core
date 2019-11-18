@@ -8,10 +8,12 @@
 
 ## Dashboard
 En mode édition:
-- Drag n Drop sur les tuiles pour les réarranger.
-- Resize sur les bordures de tuile pour les redimensionner.
-- Menu contextuel (Clic droit) sur les tuiles.
-- Ctrl Clic sur une icône *expand* : Ajuste la hauteur des tuiles de l'objet non pas par rapport à la plus haute, mais par rapport à la moins haute.
+	- Drag n Drop sur les tuiles pour les réarranger.
+	- Resize sur les bordures de tuile pour les redimensionner.
+	- Menu contextuel (Clic droit) sur les tuiles.
+	- Ctrl Clic sur une icône *expand* : Ajuste la hauteur des tuiles de l'objet non pas par rapport à la plus haute, mais par rapport à la moins haute.
+
+- Ctrl Clic sur une commande info : Ouvre toutes les infos historisées de la tuile dans la fenêtre d'historique.
 
 ## Réglages / Système / Configuration
 - Ctrl S : Sauvegarder.
