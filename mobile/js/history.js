@@ -122,9 +122,7 @@ $('#bt_validChangeDate').on('click',function(){
 
 $('#bt_goBack').off('click').on('click',function() {
     setTimeout(function() {
-      $('html, body').animate({
-          scrollTop: ($('.cmd[data-cmd_id="'+cmd_id+'"]').offset().top - 120)
-      }, 0)
+      $(document).scrollTop(_scroll)
     }, 750)
 
 	page('equipment', page_title, object_id)
