@@ -115,7 +115,7 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo $plan->getLink_id();
 							echo '</td>';
 							echo '<td>';
-							if(in_array($plan->getLink_type(),array('text','summary','graph','plan','view'))){
+							if(in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))){
 								echo '<span class="label label-default">N/A</span>';
 							}else{
 								$link = $plan->	getLink();
