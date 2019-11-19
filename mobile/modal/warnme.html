@@ -2,10 +2,10 @@
 	<div class="col-xs-5">
 		<div class="box">
 			<select id="sel_mdwarnme_operator">
-				<option value=">">></option>
-				<option value="<"><</option>
-				<option value="=">=</option>
-				<option value="!=">!=</option>
+				<option value=">"> > </option>
+				<option value="<"> < </option>
+				<option value="="> = </option>
+				<option value="!="> != </option>
 			</select>
 		</div>
 	</div>
@@ -32,9 +32,8 @@
 		$('#in_mdwarnme_cmd_id').value(_params.cmd_id)
 	}
 
-
 	$('#bt_mdwarnme_cancel').on('click',function(){
-		$('#popupDialog').popup('close');   
+		$('#popupDialog').popup('close');
 	});
 
 	$('#bt_mdwarnme_ok').on('click',function(){
@@ -46,9 +45,13 @@
 				$('#div_alert').showAlert({message: error.message, level: 'danger'});
 			},
 			success: function (messages) {
-				$('#popupDialog').popup('close'); 
+				$('#popupDialog').popup('close');
 			}
 		});
 	});
+
+	$('.ui-icon-delete[data-rel="back"]').on('click',function(){
+		$('#popupDialog').popup('close');
+	})
 </script>
 
