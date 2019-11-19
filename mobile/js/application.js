@@ -477,14 +477,19 @@ function page(_page, _title, _option, _plugin,_dialog) {
       }
       Waves.init()
       $("#popupDialog").popup({
-        beforeposition: function () {
+        beforeposition: function() {
           $(this).css({
             width: window.innerWidth - 40,
           })
         },
+        popupafterclose: function() {
+            $(this).attr( "width", 0 ).attr( "height", 0 )
+        },
+        history: false,
         x: 5,
         y: 70
       })
+      $('#popupDialog').attr( "width", 0 ).attr( "height", 0 )
       $('#popupDialog').trigger('create').popup('open')
     })
   } else {

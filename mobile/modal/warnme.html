@@ -30,6 +30,8 @@
 	function initWarnme(_params){
 		$('#in_mdwarnme_cmd_id').value(_params.cmd_id)
 	}
+	$("#popupDialog").popup({ history: false })
+
   	$('.ui-icon-delete[data-rel="back"]').remove()
 	$('#bt_mdwarnme_cancel').on('click',function(){
 		$('#popupDialog').popup('close')

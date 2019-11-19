@@ -904,6 +904,15 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   fill: var(--link-color);
 }
 
+/* ___________________________________________________________POPUP */
+.ui-popup-screen.in {
+  background-image: none;
+  opacity: 1;
+}
+#popupDialog-popup {
+  background-color: var(--bg-modal-color);
+}
+
 
 /* ___________________________________________________________ROUNDING */
 ::-moz-color-swatch {
