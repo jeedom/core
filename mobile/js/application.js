@@ -405,16 +405,20 @@ $(window).on("navigate", function (event, data) {
   }
   if(!history_page.option){
     page(history_page.page,history_page.title);
-    return
-  }
-  if(!history_page.plugin){
+  }else if(!history_page.plugin){
     page(history_page.page,history_page.title,history_page.option);
-    return
+  }else {
+    page(history_page.page,history_page.title,history_page.option,history_page.plugin);
   }
-  page(history_page.page,history_page.title,history_page.option,history_page.plugin);
+  if(history_page.scroll){
+    $(document).scrollTop(history_page.scroll);
+  }
 });
 
 function page(_page, _title, _option, _plugin,_dialog) {
+  if(PAGE_HISTORY[PAGE_HISTORY.length - 1]){
+    PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop();
+  }
   if (!isset(_dialog) || !_dialog) {
     PAGE_HISTORY.push({page : _page,title : _title,option : _option, plugin : _plugin});
   }
