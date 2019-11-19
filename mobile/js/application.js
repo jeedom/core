@@ -1,6 +1,6 @@
 /***************Fonction d'initialisation*********************/
-var _scroll = 0
 var PAGE_HISTORY = [];
+var PANEL_SCROLL= 0
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++
   $.showLoading()
@@ -56,10 +56,8 @@ $(function() {
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
-    
-    _scroll = $(document).scrollTop()
     mainOpt.panel('open')
-    $(document).scrollTop(_scroll)
+    
   });
   
   $('body').on('click','#bt_warnmeCmd',function() {
@@ -411,7 +409,7 @@ $(window).on("navigate", function (event, data) {
     page(history_page.page,history_page.title,history_page.option,history_page.plugin);
   }
   if(history_page.scroll){
-    $(document).scrollTop(history_page.scroll);
+    setTimeout(function(){$(document).scrollTop(history_page.scroll)}, 1000);
   }
 });
 
@@ -538,7 +536,20 @@ function panel(_content) {
 }
 
 $(document).on('panelbeforeopen', function(event) {
+  PANEL_SCROLL = $(document).scrollTop()
   event.stopImmediatePropagation()
+})
+
+$(document).on('panelopen', function(event) {
+  $(document).scrollTop(PANEL_SCROLL);
+})
+
+$(document).on('panelbeforeclose', function(event) {
+  PANEL_SCROLL = $(document).scrollTop()
+})
+
+$(document).on('panelclose', function(event) {
+  $(document).scrollTop(PANEL_SCROLL);
 })
 
 function refreshMessageNumber() {
