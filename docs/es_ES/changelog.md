@@ -696,7 +696,7 @@ intégration à des systèmes de logs (type syslog(d))
 - Ajout de la connexion en double authentification
 - Suppression de la connexion par hash (pour des raisons de sécurité)
 - Ajout d’un système d’administration OS
-- Ajout de widgets standards Jeedom
+- Agregar widgets estándar de Jeedom
 - Ajout d’un système en beta pour trouver l’IP de Jeedom sur le réseau (il faut connecter Jeedom sur le réseau, puis aller sur le market et cliquer sur « Mes Jeedoms » dans votre profil)
 - Ajout sur la page des scénarios d’un testeur d’expression
-- Revue du système de partage de scénario
+- Revisión del sistema para compartir escenarios

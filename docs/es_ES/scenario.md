@@ -244,7 +244,7 @@ Comandos (sensores y actuadores):
   -   $string : Lien vers la commande voulue : #[objet][equipement][commande]# (ex : #[Appartement][Alarme][Actif]#)
 -   cmd::byId($id); : Retourne l’objet commande correspondant.
   -   $id : ID del comando deseado
--   $cmd->execCmd($options = null); : Exécute la commande et retourne le résultat.
+-   $cmd->execCmd($options = null); : Ejecuta el comando y devuelve el resultado.
   -   $options : Options pour l’exécution de la commande (peut être spécifique au plugin), option de base (sous-type de la commande) :
     -   message : $option = array('title' => 'titre du message , 'message' => 'Mon message');
     -   color : $option = array('color' => 'couleur en hexadécimal');
@@ -447,7 +447,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   min(commande,période) et minBetween(commande,start,end) :
     Donnent le minimum de la commande sur la période
-    (period=[month,day,hour,min] ou [expression
+    (period=[month,day,hour,min] o [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
@@ -475,7 +475,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     de différents calculs statistiques (sum, count, std,
     variance, avg, min, max) sur la période
     (period=[month,day,hour,min] o [expresión
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
     [expresión
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
@@ -585,7 +585,7 @@ ces différentes fonctions :
 | Enchufe teniendo como valores :            | 000 (durante 10 minutos) 11 (durante 1 hora) 000 (durante 10 minutos)    |
 |--------------------------------------|--------------------------------------|
 | average(enchufe,periodo)             | Devuelve el promedio de 0 y 1 (puede  |
-|                                      | être influencée par le polling)      |
+|                                      | ser influenciado por el polling)      |
 | averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
 | min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
 | minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
@@ -613,7 +613,7 @@ ces différentes fonctions :
 | tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
 | name(eqLogic,\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devuelve Hidrometría                  |
 
-Les fonctions mathématiques
+Las funciones matemáticas
 ---------------------------
 
 Une boîte à outils de fonctions génériques peut également servir à
