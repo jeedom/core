@@ -192,7 +192,7 @@ function addCron(_cron) {
   }
   tr += '<span class="' + label + '">' + state + '</span>';
   tr += '</td>';
-
+  
   tr += '<td style="width:85px;">';
   if(init(_cron.id) != ''){
     tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> ';
@@ -245,11 +245,22 @@ function addListener(_listener) {
   tr += '<td><textarea class="form-control listenerAttr input-sm" data-l1key="event_str" disabled ></textarea></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="class" disabled /></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="function" disabled /></td>';
+  tr += '<td><a class="btn btn-danger btn-xs removeListener pull-right" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a></td>';
   tr += '</tr>';
   var result = $(tr);
   result.setValues(_listener, '.listenerAttr');
   return result;
 }
+
+$('#table_listener').off('click','.removeListener').on('click','.removeListener',function(){
+  var tr = $(this).closest('tr');
+  jeedom.listener.remove({
+    id : tr.attr('id'),
+    success: function () {
+      tr.remove();
+    }
+  })
+});
 
 /***********************DEAMON*****************************/
 
