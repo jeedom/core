@@ -60,19 +60,16 @@ colors Dark
   --al-danger-color: rgb(185, 58, 62);
   --bt-success-color: rgb(150, 201, 39);
   
-  --scBlocIF: rgb(88,89,90);
-  --scBlocACTION: rgb(154,152,152);
+  --scBlocIF: rgb(65,90,110);
+  --scBlocElse: rgb(50,75,95);
+  --scBlocACTION: rgb(132,120,112);
   --scBlocIN: rgb(75,128,62);
-  --scBlocAT: rgb(58,86,128);
-  --scBlocFOR: rgb(152,126,22);
-  --scBlocCODE: rgb(50,62,85);
-  --scBlocCOM: rgb(65,95,115);
+  --scBlocAT: rgb(92,122,132);
+  --scBlocFOR: rgb(152,116,22);
+  --scBlocCODE: rgb(160,60,25);
+  --scBlocCOM: rgb(60,60,60);
   
-  --scBlocIF-sep:rgb(56, 56, 56);
-  --scBlocACTION-sep: rgb(96,93,90);
-  --scBlocIN-sep: rgb(45, 77, 37);
-  --scBlocAT-sep: rgb(35, 52, 83);
-  --scBlocFOR-sep: rgb(91, 76, 13);
+  --scBlocSep: rgb(35,35,35);
   
   --shd-color: rgba(15, 15, 15, 0.55);
 }

@@ -2079,16 +2079,22 @@ div[id^=__lpform_] { /*lastpass*/
 .jstree li a:hover {
   background-color: var(--form-bg-color);
 }
-
 /* __________________________________________________________________________________________________________SCENARIO */
 .scenario_link .label {
   display: inline-block;
   margin: 2px;
 }
-#div_scenarioElement .element .element {
-  box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
+#div_scenarioElement  {
+  padding-top: 5px;
+  padding-bottom: 20px;
 }
+#div_scenarioElement > .element {
+  margin-bottom: 3px;
+}
+
+/* by type colors */
 .elementIF { background-color: var(--scBlocIF) !important; }
+.subElementELSE { background-color: var(--scBlocElse) !important; }
 .elementFOR { background-color: var(--scBlocFOR) !important; }
 .elementIN { background-color: var(--scBlocIN) !important; }
 .elementAT { background-color: var(--scBlocAT) !important; }
@@ -2099,33 +2105,68 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--scBlocACTION) !important;
 }
 
-.subElement .element{
+.subElement .element.elementCollapse .btn {
+  opacity: 0;
+}
+
+/* bloc sep, IF different */
+.subElement .element.elementCollapse {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElement .elementIF.elementCollapse:hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+
+.subElement .element:not(.elementIF) {
   width : calc(100% - 5px);
+  margin-top: 4px;
+}
+.subElement .element:not(.elementIF):not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: 4px solid var(--scBlocSep);
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .element:not(.elementIF):hover {
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIN > div > div > div > div > .elementIN{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIN-sep);
+/* IF */
+.subElement .elementIF:not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: none;
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .elementIF:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) > .subElementTHEN,
+.subElement .elementIF:not(.elementCollapse) > .subElementELSE {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElementACTION > .expressions > .expressionACTION {
+  border-left: 3px solid var(--scBlocSep);
+  border-radius: 0 !important;
+}
+.subElement > .elementIF {
+  border-left: 3px solid transparent;
+}
+.subElement .elementIF:hover:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) .subElementTHEN:hover,
+.subElement .elementIF:not(.elementCollapse) .subElementELSE:hover{
+  border-left: 4px solid var(--scBlocSep);
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIF > div > div > div > div > .elementIF{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIF-sep);
-}
 
-.elementFOR > div > div > div > div > .elementFOR{
-  width : 100%;
-  border-left: 3px solid var(--scBlocFOR-sep);
+/* collapses comment bloc: */
+.elementCOM.elementCollapse:not(:hover) .subElement legend {
+  display: none
 }
-
-.elementAT > div > div > div > div > .elementAT{
-  width : 100%;
-  border-left: 3px solid var(--scBlocAT-sep);
-}
-
-.elementACTION > div > div > div > div > .elementACTION{
-  width : 100%;
-  border-left: 3px solid var(--scBlocACTION-sep);
+.elementCOM.elementCollapse:not(:hover) .bt_sortable,
+.elementCOM.elementCollapse:not(:hover) .bt_collapse {
+  opacity: 0;
 }
 
 .expressionACTION .col-xs-1 input[type="checkbox"] {
@@ -2177,8 +2218,9 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--sc-formTxt-color) !important;
 }
 .subElementFields button.dropdown-toggle .caret {
-  right: 0px;
-  top: 8px !important;
+  position: relative;
+  right: -3px !important;
+  top: -1px !important;
   border-top-color: var(--linkHoverLight-color) !important;
 }
 .subElementFields ul.dropdown-menu {
@@ -2210,8 +2252,10 @@ div[id^=__lpform_] { /*lastpass*/
 .element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
 }
-.element .expressionAttr.insideSearch {
-  color: red !important;
+#div_editScenario .element .expressionAttr.insideSearch {
+  background-color: var(--al-warning-color) !important;
+  color: var(--linkHoverLight-color) !important;
+  font-weight: normal;
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
@@ -2249,11 +2293,6 @@ textarea {
   background-color: var(--logo-primary-color) !important;
 }
 
-/*    __DESIGN__    */
-.div_backgroundPlan > .div_displayObject {
-  z-index: 50 !important;
-}
-
 .element legend {
   border-left: none!important;
 }
@@ -2262,11 +2301,11 @@ textarea {
   width: 100%;
 }
 
-#div_scenarioElement > .element {
-  border-bottom: 1px solid var(--shd-color);
-}
 #div_scenarioElement .expressions > .expression.noSortable.col-xs-12 {
   width: calc(100% - 30px) !important;
+}
+#div_scenarioElement .subElementCODE .expressions > .expression.noSortable.col-xs-12 {
+  width: 100% !important;
 }
 
 .expressions,
@@ -2297,6 +2336,9 @@ textarea {
   margin: 0 5px 0 5px;
 }
 
+.element .subElementAttr {
+  z-index: 2 !important;
+}
 .element .bt_sortable,
 .element .bt_hideElement,
 .element .bt_removeElement,
@@ -2320,6 +2362,9 @@ textarea {
   top: 1px;
   left: 3px;
 }
+.subElement .subElementIF .bt_sortable {
+  left: 6px;
+}
 .element .bt_collapse {
   position: absolute;
   top: 3px;
@@ -2328,7 +2373,7 @@ textarea {
 }
 .element .subElementAttr[data-l1key=options][data-l2key=enable] {
   margin: 5px 3px 0 3px !important;
-  top: 0;
+  top: 1px;
   left: 33px;
 }
 .element .bt_repeat {
@@ -2409,7 +2454,7 @@ textarea {
   height: 55px;
 }
 .element .subElementELSE {
-  margin-top: 7px;
+  padding-top: 3px;
 }
 .element > .subElementIN > .expressions {
   margin-top: -26px;
@@ -2494,31 +2539,49 @@ textarea {
 .elementCollapse .legendHidden {
   position: absolute;
   display: inline !important;
-  left: 25px;
   padding-left: 0 !important;
 }
 .elementCollapse .bt_collapse {
-  color: rgb(var(--bg-color)) !important;
+  color: var(--scBlocSep) !important;
 }
 
 .elementIF.elementCollapse .expressions,
 .elementIN.elementCollapse .expressions,
-.elementAT.elementCollapse .expressions {
+.elementAT.elementCollapse .expressions,
+.elementFOR.elementCollapse .expressions {
   display: block !important;
 }
 .elementIF.elementCollapse .expressionAttr,
 .elementIN.elementCollapse .expressionAttr,
-.elementAT.elementCollapse .expressionAttr {
+.elementAT.elementCollapse .expressionAttr,
+.elementFOR.elementCollapse .expressionAttr {
   opacity: 0.75;
   height: 24px !important;
   border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius) !important;
 }
 .elementIF.elementCollapse .input-group-btn,
 .elementIN.elementCollapse .input-group-btn,
-.elementAT.elementCollapse .input-group-btn {
+.elementAT.elementCollapse .input-group-btn,
+.elementFOR.elementCollapse .input-group-btn {
   z-index: -1;
 }
 
+.element .blocPreview {
+  display: none;
+}
+.element.elementCollapse .blocPreview {
+  display: block;
+  position: absolute;
+  background-color: var(--sc-form-color);
+  color : var(--sc-formTxt-color);
+  top: 2px;
+  left: 189px;
+  padding: 5px;
+  font-size: 12px !important;
+  width : calc(100% - 340px);
+  height: 24px;
+  opacity: 0.8;
+}
 
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
@@ -2701,7 +2764,18 @@ path.highcharts-graph {
   display: block !important;
   clear: both !important;
 }
+
 /* design */
+.div_backgroundPlan > .div_displayObject {
+  z-index: 50 !important;
+  position: relative;
+  padding:0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .div_grid {
   z-index : 998;
   background-size: 15px 15px;
@@ -2709,8 +2783,18 @@ path.highcharts-graph {
   repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
   repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
 }
+.div_backgroundPlan .div_grid {
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-/* /// view data table */
+/* view data table */
 .highcharts-data-table {
   width: 100%;
   max-width: 100%;
@@ -2783,7 +2867,7 @@ path.highcharts-graph {
   color: var(--txt-color);
   background-color: var(--form-bg-color);
   border: none;
-  z-index: 3;
+  z-index: 10;
 }
 .-sew-list-container ul li {
   border: none;
