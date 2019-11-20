@@ -18,9 +18,6 @@ Changelog
 	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 - Scénario : Ajout d'un moteur de recherche (à gauche du bouton Exécuter).
 - Scénario : Ajout de la fonction age (donne l'âge de la valeur de la commande).
-- Scénario : Les blocs *Commentaire* et *Code* collapsés affichent le début du texte/code. Sur les blocs *commentaire*, la première ligne est affichée en caractère gras.
-- Scénario : Les blocs *Action* collapsés affichent la première action/premier bloc.
-- Scénario : Les boutons *Ajouter* dans les blocs permettent d'ajouter directement un bloc sans passer par la fenêtre de sélection.
 - Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
 - Scénario : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).

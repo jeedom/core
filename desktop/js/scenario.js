@@ -1553,7 +1553,7 @@ function addExpression(_expression) {
     });
     break;
     case 'code' :
-    retour += '<div class="col-xs-12">';
+    retour += '<div>';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
     break;
