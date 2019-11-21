@@ -451,32 +451,25 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
 
 $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
+  var expression = false
+  var insertAfter = false
+  var elementDiv = $(this).closest('.element')
 
   //is scenario empty:
-  var elementDiv = $(this).closest('.element')
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
-    var expression = false
-    var insertAfter = false
-
-    //Is triggerred from element button:
-    if ($(this).hasClass('fromSubElement')) {
-      elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-      expression = true
-    } else {
-      //had focus ?
-      if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
-        insertAfter = true
-        elementDiv = $(PREV_FOCUS).closest('div.element')
-        if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
-          elementDiv = elementDiv.parents('.expression').eq(0)
-          expression = true
-        }
-      } else {
-        elementDiv = $('#div_scenarioElement')
+    //had focus ?
+    if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
+      insertAfter = true
+      elementDiv = $(PREV_FOCUS).closest('div.element')
+      if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
+        elementDiv = elementDiv.parents('.expression').eq(0)
+        expression = true
       }
+    } else {
+      elementDiv = $('#div_scenarioElement')
     }
   }
 
@@ -493,7 +486,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     } else {
       elementDiv.append(newEL.addClass('disableElement'))
     }
-
+    
     setEditor()
     updateSortable()
     updateElseToggle()
@@ -503,30 +496,35 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
+
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
-  setUndoStack()
   var button = $(this);
   if(event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
-      button.closest('.expression').remove();
+      setUndoStack()
+      button.closest('.expression').remove()
     } else {
-      button.closest('.element').remove();
+      setUndoStack()
+      button.closest('.element').remove()
     }
   }else{
     bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function (result) {
       if (result) {
         if (button.closest('.expression').length != 0) {
-          button.closest('.expression').remove();
+          setUndoStack()
+          button.closest('.expression').remove()
         } else {
-          button.closest('.element').remove();
+          setUndoStack()
+          button.closest('.element').remove()
         }
       }
-    });
+    })
   }
-  modifyWithoutSave = true;
-});
+  modifyWithoutSave = true
+  PREV_FOCUS = null
+})
 
 $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   clickedBloc = $(this).closest('.element')
