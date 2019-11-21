@@ -42,6 +42,9 @@ try {
 		if (isset($_GET['modal'])) {
 			try {
 				include_file('core', 'authentification', 'php');
+				if (!isConnect()) {
+					throw new Exception('{{401 - Accès non autorisé}}');
+				}
 				include_file('desktop', init('modal'), 'modal', init('plugin'));
 			} catch (Exception $e) {
 				ob_end_clean();
