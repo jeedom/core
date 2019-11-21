@@ -1005,11 +1005,13 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
   $("#div_scenarioElement").sortable({
     cursor: "move",
     items: ".sortable",
+    zIndex: 0,
     opacity: 0.5,
     forcePlaceholderSize: true,
     forceHelperSize: true,
     placeholder: "sortable-placeholder",
     start: function (event, ui) {
+      $('.dropdown.open').removeClass('open')
       if (expressions.find('.sortable').length < 3) {
         expressions.find('.sortable.empty').show();
       }
@@ -1077,6 +1079,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
     },
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable");
+      modifyWithoutSave = true;
     }
   });
   $("#div_scenarioElement").sortable("enable");
