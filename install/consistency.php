@@ -213,6 +213,19 @@ if(method_exists('utils','attrChanged')){
 	$cron->setTimeout(5);
 	$cron->save();
 	
+	$cron = cron::byClassAndFunction('jeedom', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
+	$cron->save();
+	
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
 	if (!is_object($cron)) {
 		echo "Create jeedom::cron\n";

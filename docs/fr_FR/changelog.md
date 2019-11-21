@@ -2,6 +2,13 @@
 Changelog
 =========
 
+3.3.38
+=====
+
+- Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G. (Important si vous utilisez les DNS jeedom est que vous avez une connexion 4g il faut bien cocher dans la configure des dns jeedom la case correspondante).
+- Corrections orthographiques.
+- Correction de sécurité
+
 3.3.37
 =====
 

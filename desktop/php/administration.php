@@ -647,6 +647,12 @@ user::isBan();
 									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 								</div>
 							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
+								<div class="col-xs-6">
+									<input type="checkbox" class="configKey" data-l1key="connection::4g" />
+								</div>
+							</div>
 						</div>
 						<div class="col-sm-6">
 							<?php

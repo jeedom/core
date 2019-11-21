@@ -542,6 +542,13 @@ public static function backup_restore($_backup) {
 		}
 	}
 	
+	public static function sendHealth(){
+		$market = self::getJsonRpc();
+		if (!$market->sendRequest('register::health',array('health' => jeedom::health()))) {
+			throw new Exception($market->getError(), $market->getErrorCode());
+		}
+	}
+	
 	public static function cron5() {
 		try {
 			$monitoring_state = self::monitoring_status();
