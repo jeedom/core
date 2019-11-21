@@ -117,7 +117,7 @@ Chaque bloc a ses options pour mieux les manipuler :
 
 - Sur la gauche :
     - La flèche bidirectionnelle permet de déplacer un bloc ou une action pour les réordonner dans le scénario.
-    - L’œil permet réduire un bloc pour réduire son impact visuel. Ctrl Clic sur l’œil les réduis ou affichage tous.
+    - L’œil permet de réduire un bloc (*collapse*) pour réduire son impact visuel. Ctrl Clic sur l’œil les réduis ou affiche tous.
     - La case à cocher permet de désactiver complètement le bloc sans pour autant le supprimer. Il ne sera donc pas exécuté.
 
 - Sur la droite :
@@ -127,15 +127,18 @@ Chaque bloc a ses options pour mieux les manipuler :
 
 #### Blocs Si/Alors/Sinon | Boucle | Dans | A
 
-> **Note**
->
-> Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d’activer ou non la répétition des actions si l’évaluation de la condition donne le même résultat que la précédente évaluation.
+Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple.
+> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles.
 
-Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire le plus possible en langage naturel tout en restant souple. Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionner un élément à tester :
+Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionner un élément à tester :
 
 - **Rechercher une commande** : Permet de chercher une commande dans toutes celles disponibles dans Jeedom. Une fois la commande trouvée, Jeedom ouvre une fenêtre pour vous demander quel test vous souhaitez effectuer sur celle-ci. Si vous choisissez de **Ne rien mettre**, Jeedom ajoutera la commande sans comparaison. Vous pouvez également choisir **et** ou **ou** devant **Ensuite** pour enchaîner des tests sur différents équipements.
 - **Rechercher un scénario** : Permet de chercher un scénario à tester.
 - **Rechercher un équipement** : Idem pour un équipement.
+
+> **Note**
+>
+> Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d’activer ou non la répétition des actions si l’évaluation de la condition donne le même résultat que lors de la précédente évaluation.
 
 > **Tip**
 >
@@ -143,9 +146,6 @@ Pour les conditions, Jeedom essaye de faire en sorte qu’on puisse les écrire 
 
 Une fois la condition renseignée, vous devez utiliser le bouton "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une **action** dans le bloc actuel.
 
-> **Tip**
->
-> Il ne faut SURTOUT PAS utiliser des [ ] dans les tests de condition, seules les parenthèses () sont possibles.
 
 #### Bloc Code
 
@@ -189,6 +189,12 @@ Le bloc Code permet d’exécuter du code php. Il est donc très puissant mais n
 > **Tip**
 >
 > Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
+
+#### Bloc Commentaire
+
+Le Bloc commentaire agît différemment quand il est masqué. Ses boutons sur la gauche disparaissent ainsi que le titre du bloc, et réapparaissent au survol. De même, la première ligne du commentaire est affichée en caractères gras.
+
+Ceci permet d'utiliser ce bloc comme séparation purement visuel au sein du scénario.
 
 ### Les Actions
 
