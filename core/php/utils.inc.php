@@ -19,6 +19,9 @@
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+	if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
+		return;
+	}
 	$_rescue = false;
 	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
 		$_rescue = true;
@@ -56,7 +59,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('Fichier introuvable : ' . $path, 35486);
+		throw new Exception('Fichier introuvable : ' . secureXSS($path), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
