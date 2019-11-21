@@ -111,6 +111,13 @@ $(function(){
   }
 })
 
+$(function() {
+  if ($("#table_cmd").sortable("instance")) {
+    $("#table_cmd").sortable("option", "delay", 500).sortable("option", "distance", 30)
+  }
+})
+
+
 $('body').attr('data-type', 'plugin');
 
 $('.nav-tabs a:not(.eqLogicAction)').first().click();
