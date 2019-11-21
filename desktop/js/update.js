@@ -399,7 +399,6 @@ function createUpdateObserver() {
 }
 
 function cleanUpdateLog() {
-  console.log('cleanUpdateLog')
   currentUpdateText = $('#pre_updateInfo').text()
   if (currentUpdateText == '') return false
   if (prevUpdateText == currentUpdateText) return false
