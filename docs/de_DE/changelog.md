@@ -101,22 +101,20 @@
 3.3.33
 =====
 
-- Correction de bugs
+- Fehlerbehebungen
 
 3.3.32
 =====
 
-- Correction de bugs
+- Fehlerbehebungen
 - Support en mobile des sliders sur les designs
 - SMART : optimisation de la gestion du swap
 
-3.3.31
-=====
+3.3.31 =====
 
 - Correction de bugs
 
-3.3.30
-=====
+3.3.30 =====
 
 - Correction d'un bug sur l'affichage des sessions utilisateur
 - Mise à jour de la documentation
@@ -144,19 +142,19 @@
 
 - Correction d'un bug sur la traduction des jours en français
 - Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
-- Correction de bugs
+- Fehlerbehebungen
 - Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
 
 3.3.26
 =====
 
-- Correction de bugs
+- Fehlerbehebungen
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
 3.3.25
 =====
-- Correction de bug
+- Fehlerbehebungen
 - Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
@@ -203,7 +201,7 @@
 
 3.3.18
 =====
-- Correction de bugs
+- Fehlerbehebungen
 
 3.3.17
 =====
@@ -263,16 +261,16 @@
 
 3.2.12
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Optimisations
 
 3.2.11
 =====
-- Correction de bugs.
+- Fehlerbehebungen
 
 3.2.10
 =====
-- Correction de bugs.
+- Fehlerbehebungen
 - Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
@@ -281,7 +279,7 @@
 
 3.2.9
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Correction d'un bug sur les icônes de l'éditeur de fichier et sur le testeur d'expression
 - Correction de bugs sur les listenners
 - Ajout d'une alerte si un plugin bloque les crons
@@ -289,7 +287,7 @@
 
 3.2.8
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
@@ -297,26 +295,26 @@
 
 3.2.7
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Mise à jour de la docs
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Mise à jour de la docs
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
 3.2.5
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Réactivation des interactions (inactive a cause de la mise à jour)
 
 3.2.4
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
@@ -361,7 +359,7 @@
 - JEED-77 : Ajout de la gestion des variables dans l’API http
 - JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
 - JEED-124 : Corriger la gestion des timeouts des scénarios
-- Correction de bugs
+- Fehlerbehebungen
 - Possibilité de désactiver une interaction
 - Ajout d’un éditeur de fichiers (réservé aux utilisateurs expérimentés)
 - Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
@@ -376,7 +374,7 @@
 
 3.1
 ===
-- Correction de bugs
+- Fehlerbehebungen
 - Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
 - Support de Debian 9
 - Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
@@ -526,7 +524,7 @@
 
 2.4.5
 =====
-- Correction de bugs
+- Fehlerbehebungen
 - Optimisation de la vérification des mises à jour
 
 2.4
@@ -577,7 +575,7 @@
 - Correction d’un bug sur l’ouverture des tickets
 - Correction d’un bug de page blanche lors de la mise à jour si le /tmp est trop petit (attention la correction prend effet à l’update n+1)
 - Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom du jeedom)
-- Correction de bugs
+- Fehlerbehebungen
 - Déplacement de tous les fichiers temporaire dans /tmp
 - Amélioration de l’envoi des plugins (dos2unix automatique sur les fichiers \*.sh)
 - Refonte de la page de log
@@ -619,7 +617,7 @@
 
 2.2
 ---
-- Correction de bugs
+- Fehlerbehebungen
 - Simplification de l’accès aux configurations des plugins à partir de la page santé
 - Ajout d’une icône indiquant si le démon est démarré en debug ou non
 - Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)
