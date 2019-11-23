@@ -307,7 +307,7 @@ class jeedom {
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
 				'state' => ($value > 15),
-				'result' => $value . ' %',
+				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
 				'comment' => '',
 				'key' => 'swap'
 			);
