@@ -242,7 +242,8 @@ step_8_jeedom_customization() {
       exit 1
     fi
   fi
-  
+  echo "vm.swappiness = 10" >>  /etc/sysctl.conf
+  sysctl vm.swappiness=10
   echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
 }
 
