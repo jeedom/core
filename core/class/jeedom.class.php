@@ -273,7 +273,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Mémoire disponible', __FILE__),
 			'state' => ($value > 15),
-			'result' => $value . ' %',
+			'result' => $value . ' % ('.__('Total ',__FILE__).round($values['MemTotal']/1024).' Mo)',
 			'comment' => '',
 		);
 		
@@ -304,11 +304,15 @@ class jeedom {
 		
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
+			$ok = ($value > 15);
+			if($ok && $values['MemTotal'] < (2048*1024) && $values['SwapTotal'] < (1024*1024)){
+				$ok = false;
+			}
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
-				'state' => ($value > 15),
+				'state' => $ok,
 				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
-				'comment' => '',
+				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go',__FILE__),
 				'key' => 'swap'
 			);
 		} else {
@@ -320,6 +324,15 @@ class jeedom {
 				'key' => 'swap'
 			);
 		}
+		
+		$value = shell_exec('sudo cat /proc/sys/vm/swappiness');
+		$return[] = array(
+			'name' => __('Swapiness', __FILE__),
+			'state' => $value < 20,
+			'result' => $value.'%',
+			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20%',__FILE__),
+			'key' => 'swapiness'
+		);
 		
 		$values = sys_getloadavg();
 		$return[] = array(
