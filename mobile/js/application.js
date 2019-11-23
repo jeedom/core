@@ -395,7 +395,6 @@ function initApplication(_reinit) {
 }
 
 $(window).on("navigate", function (event, data) {
-  console.log('call navigate')
   if($('.ui-popup-container:not(.ui-popup-hidden)').length > 0){
     return;
   }
