@@ -295,6 +295,15 @@ class jeedom {
 			);
 		}
 		
+		$value = shell_exec('sudo cat /proc/sys/vm/swappiness');
+		$return[] = array(
+			'name' => __('Swapiness', __FILE__),
+			'state' => $value < 20,
+			'result' => $value.'%',
+			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20%',__FILE__),
+			'key' => 'swapiness'
+		);
+		
 		$values = sys_getloadavg();
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
