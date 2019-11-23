@@ -3,16 +3,34 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique. Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom.
-
+Une des pages principales de Jeedom affiche un compte-rendu de toute votre domotique.
+Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom, et comprend l'ensemble des objets visibles et leurs équipements.
 
 > **Tip**
 >
-> Il est possible d’aller directement sur un objet de votre domotique.
+> L'ordre d'affichage des objets sur le Dashboard est celui visible dans **Analyse → Résumé domotique**. Vous pouvez sur cette page modifier cet ordre par glissé - déposé.
+
+Pour qu'un équipement apparaisse sur le Dashboard, il doit :
+- Être actif.
+- Être visible.
+- Avoir comme objet parent un objet visible sur le Dashboard.
+
+A la première apparition de l'équipement sur le Dashboard, Jeedom essaye de dimensionner correctement sa tuile pour afficher l'ensemble des commandes et leurs widgets.
+Afin de conserver un Dashboard équilibré, vous pouvez passer en mode Édition avec le crayon en haut à droite de la barre de recherche, afin de redimensionner et/ou réordonner les tuiles des équipements.
+
+En passant la souris sur une commande, un repère de couleur appairait en bas à gauche de la tuile:
+- Bleu pour une commande info. Si elle est historisée, un clic dessus ouvre la fenêtre d'historique.
+- Orange pour une commande action. Un clic déclenchera donc l'action.
+
+De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) pour ouvrir directement la page de configuration de cet équipement.
+
+> **Tip**
+>
+> Il est possible d’aller directement sur un seul objet de votre domotique, par le menu **Accueil → Dashboard → Nom de l'objet**.
 > Cela permet de n’avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
 
 - Vous avez en haut à gauche une petite icône pour faire afficher/masquer l’arbre des objets.
-- La deuxième icône à gauche permet d'afficher seulement les informations des résumés d’objet.
+- La deuxième icône à gauche permet d'afficher seulement les informations des résumés des objets.
 - Au milieu, un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
 - A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliqué - déposé sur le widget), ou les redimensionner. Vous pouvez également dans une tuile, réorganiser l’ordre des commandes.
 - En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que les équipements ayant pour parent cet objet et qui concernent ce résumé d’objet.
@@ -24,7 +42,7 @@ Une des pages principales de Jeedom affiche un compte-rendu de toute votre domot
 
 > **Tip**
 >
-> En mobile, un appui long sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
+> En mobile, un appui sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que Jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
 
 
 ## Mode édition

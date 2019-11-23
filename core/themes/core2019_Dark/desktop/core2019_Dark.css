@@ -124,6 +124,6 @@ ul[role="tablist"] li:not(.active) a {
 
 .element .disableElement,
 .element .disableSubElement {
-  opacity: 0.3 !important;
+  opacity: 0.45 !important;
 }
 

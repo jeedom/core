@@ -1,6 +1,9 @@
 $('body').attr('data-page', 'history')
-
+var page_title = $('body').attr('data-objectName')
+var object_id = $('body').attr('data-object')
+var cmd_id = null
 function initHistory(_cmd_id) {
+	cmd_id = _cmd_id
 	addChart(_cmd_id,1)
 	delete jeedom.history.chart['div_graph']
 }
@@ -26,6 +29,7 @@ function addChart(_cmd_id, _action) {
 			dateStart : $('#in_startDate').value(),
 			dateEnd :  $('#in_endDate').value(),
 			height : $('#div_graph').height(),
+			showLegend : false,
 			mobile : true,
 			success: function (data) {
 				if(isset(data.cmd.display)){
@@ -105,7 +109,7 @@ function initHistoryTrigger() {
 
 $('#bt_validChangeDate').on('click',function(){
 	$(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie){
-		if(!isNaN(serie.options.id)){
+		if(isset(serie.options) && !isNaN(serie.options.id)){
 			var cmd_id = serie.options.id
 			addChart(cmd_id, 0)
 			addChart(cmd_id, 1)

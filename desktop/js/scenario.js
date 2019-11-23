@@ -599,27 +599,31 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
-  setUndoStack()
   var button = $(this);
   if(event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
-      button.closest('.expression').remove();
+      setUndoStack()
+      button.closest('.expression').remove()
     } else {
-      button.closest('.element').remove();
+      setUndoStack()
+      button.closest('.element').remove()
     }
   }else{
     bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function (result) {
       if (result) {
         if (button.closest('.expression').length != 0) {
-          button.closest('.expression').remove();
+          setUndoStack()
+          button.closest('.expression').remove()
         } else {
-          button.closest('.element').remove();
+          setUndoStack()
+          button.closest('.element').remove()
         }
       }
-    });
+    })
   }
-  modifyWithoutSave = true;
-});
+  modifyWithoutSave = true
+  PREV_FOCUS = null
+})
 
 $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   clickedBloc = $(this).closest('.element')
@@ -1001,11 +1005,13 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
   $("#div_scenarioElement").sortable({
     cursor: "move",
     items: ".sortable",
+    zIndex: 0,
     opacity: 0.5,
     forcePlaceholderSize: true,
     forceHelperSize: true,
     placeholder: "sortable-placeholder",
     start: function (event, ui) {
+      $('.dropdown.open').removeClass('open')
       if (expressions.find('.sortable').length < 3) {
         expressions.find('.sortable.empty').show();
       }
@@ -1073,6 +1079,7 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
     },
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable");
+      modifyWithoutSave = true;
     }
   });
   $("#div_scenarioElement").sortable("enable");
@@ -1553,7 +1560,7 @@ function addExpression(_expression) {
     });
     break;
     case 'code' :
-    retour += '<div class="col-xs-12">';
+    retour += '<div>';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
     break;

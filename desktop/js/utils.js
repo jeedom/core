@@ -418,7 +418,7 @@ $(function () {
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
-      $("#md_modal").empty();
+      $("#md_modal").children().detach().remove()
     }
   });
 
@@ -441,7 +441,7 @@ $(function () {
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
-      $("#md_modal2").empty();
+      $("#md_modal2").children().detach().remove()
     }
   });
 
@@ -464,7 +464,7 @@ $(function () {
     },
     beforeClose: function (event, ui) {
       $("body").css({overflow: 'inherit'});
-      $("#md_modal3").empty();
+      $("#md_modal3").children().detach().remove()
     }
   });
 

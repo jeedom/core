@@ -27,7 +27,7 @@ if (!isConnect('admin')) {
       </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
     </span>
   </div>
-
+  
   <br/><br/><br/>
   <table id="table_cron" class="table table-bordered table-condensed tablesorter">
     <thead>
@@ -60,6 +60,7 @@ if (!isConnect('admin')) {
         <th>{{Event}}</th>
         <th style="width: 120px;">{{Classe}}</th>
         <th style="width: 120px;">{{Fonction}}</th>
+        <th data-filter="false" data-sorter="false" style="width: 50px;">{{Actions}}</th>
       </tr>
     </thead>
     <tbody></tbody>

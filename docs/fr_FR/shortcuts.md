@@ -1,17 +1,22 @@
 # Jeedom V4 - Raccourcis clavier / souris
 
 ## Général
+
+A l'ouverture d'une page (Dashboard, Scénarios, etc) le focus est sur le champ de recherche. Vous pouvez donc directement taper une recherche sans autre action.
+
 - Clic sur l'horloge (barre de menu) : Ouvre la Timeline.
-- Clic sur le nom du Jeedom (barre de menu)  : Ouvre Réglages / Système / Configuration.
+- Clic sur le nom du Jeedom (barre de menu)  : Ouvre **Réglages → Système → Configuration**.
 - Clic sur le ?  (barre de menu)  : Ouvre l'aide sur le page en cours.
 - Echap sur un champ de recherche : Vide le champ de recherche et annule celle-ci.
 
 ## Dashboard
 En mode édition:
-- Drag n Drop sur les tuiles pour les réarranger.
-- Resize sur les bordures de tuile pour les redimensionner.
-- Menu contextuel (Clic droit) sur les tuiles.
-- Ctrl Clic sur une icône *expand* : Ajuste la hauteur des tuiles de l'objet non pas par rapport à la plus haute, mais par rapport à la moins haute.
+	- Drag n Drop sur les tuiles pour les réarranger.
+	- Resize sur les bordures de tuile pour les redimensionner.
+	- Menu contextuel (Clic droit) sur les tuiles.
+	- Ctrl Clic sur une icône *expand* : Ajuste la hauteur des tuiles de l'objet non pas par rapport à la plus haute, mais par rapport à la moins haute.
+
+- Ctrl Clic sur une commande info : Ouvre toutes les infos historisées de la tuile dans la fenêtre d'historique.
 
 ## Réglages / Système / Configuration
 - Ctrl S : Sauvegarder.
@@ -83,10 +88,12 @@ Dans un bloc Code :
 - Ctrl Clic sur icône *Fermer* (recherche) : Ferme tous les objets et tous les équipements.
 
 ## Analyse / Historique
+Si plusieurs courbes sont affichées :
 - Ctrl Clic sur une légende : Afficher seulement cet historique.
 - Alt Clic sur une légende : Afficher tous les historiques.
 
 ## Fenêtre Historique
+Si plusieurs courbes sont affichées :
 - Ctrl Clic sur une légende : Afficher seulement cet historique.
 - Alt Clic sur une légende : Afficher tous les historiques.
 

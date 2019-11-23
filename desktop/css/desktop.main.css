@@ -876,6 +876,10 @@ pre {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   border: none;
 }
+#pre_updateInfo_clean {
+  overflow: visible !important;
+  height: calc(100vh - 260px);
+}
 
 .row-same-height {
   padding: 1em;
@@ -934,12 +938,13 @@ pre {
 .context-menu-item span {
   font-weight: normal !important;
 }
-.context-menu-item:not(.context-menu-disabled) span {
-  cursor: pointer !important;
-}
 .context-menu-disabled {
   color: var(--placeholder-color) !important;
   cursor: default !important;
+}
+.context-menu-item:not(.context-menu-disabled) span,
+.context-menu-disabled.cursor {
+  cursor: pointer !important;
 }
 .context-menu-item:not(.context-menu-disabled)::before {
   color: var(--txt-color) !important;
@@ -1246,6 +1251,7 @@ button .fas.fa-plus-circle {
 #ul_expressionHistory li a {
   color: var(--sc-lightTxt-color) !important;
 }
+
 .highcharts-button-disabled{
   display: none !important;
 }
@@ -2121,9 +2127,11 @@ div[id^=__lpform_] { /*lastpass*/
   padding-top: 5px;
   padding-bottom: 20px;
 }
-#div_scenarioElement .element .element {
-  box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
+#div_scenarioElement > .element {
+  margin-bottom: 3px;
 }
+
+/* by type colors */
 .elementIF { background-color: var(--scBlocIF) !important; }
 .subElementELSE { background-color: var(--scBlocElse) !important; }
 .elementFOR { background-color: var(--scBlocFOR) !important; }
@@ -2136,33 +2144,68 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--scBlocACTION) !important;
 }
 
-.subElement .element{
+.subElement .element.elementCollapse .btn {
+  opacity: 0;
+}
+
+/* bloc sep, IF different */
+.subElement .element.elementCollapse {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElement .elementIF.elementCollapse:hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+
+.subElement .element:not(.elementIF) {
   width : calc(100% - 5px);
+  margin-top: 4px;
+}
+.subElement .element:not(.elementIF):not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: 4px solid var(--scBlocSep);
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .element:not(.elementIF):hover {
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIN > div > div > div > div > .elementIN{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIN-sep);
+/* IF */
+.subElement .elementIF:not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: none;
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .elementIF:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) > .subElementTHEN,
+.subElement .elementIF:not(.elementCollapse) > .subElementELSE {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElementACTION > .expressions > .expressionACTION {
+  border-left: 3px solid var(--scBlocSep);
+  border-radius: 0 !important;
+}
+.subElement > .elementIF {
+  border-left: 3px solid transparent;
+}
+.subElement .elementIF:hover:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) .subElementTHEN:hover,
+.subElement .elementIF:not(.elementCollapse) .subElementELSE:hover{
+  border-left: 4px solid var(--scBlocSep);
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIF > div > div > div > div > .elementIF{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIF-sep);
-}
 
-.elementFOR > div > div > div > div > .elementFOR{
-  width : 100%;
-  border-left: 3px solid var(--scBlocFOR-sep);
+/* collapses comment bloc: */
+.elementCOM.elementCollapse:not(:hover) .subElement legend {
+  display: none
 }
-
-.elementAT > div > div > div > div > .elementAT{
-  width : 100%;
-  border-left: 3px solid var(--scBlocAT-sep);
-}
-
-.elementACTION > div > div > div > div > .elementACTION{
-  width : 100%;
-  border-left: 3px solid var(--scBlocACTION-sep);
+.elementCOM.elementCollapse:not(:hover) .bt_sortable,
+.elementCOM.elementCollapse:not(:hover) .bt_collapse {
+  opacity: 0;
 }
 
 .expressionACTION .col-xs-1 input[type="checkbox"] {
@@ -2214,8 +2257,9 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--sc-formTxt-color) !important;
 }
 .subElementFields button.dropdown-toggle .caret {
-  right: 0px;
-  top: 8px !important;
+  position: relative;
+  right: -3px !important;
+  top: -1px !important;
   border-top-color: var(--linkHoverLight-color) !important;
 }
 .subElementFields ul.dropdown-menu {
@@ -2296,11 +2340,11 @@ textarea {
   width: 100%;
 }
 
-#div_scenarioElement > .element {
-  border-bottom: 1px solid var(--shd-color);
-}
 #div_scenarioElement .expressions > .expression.noSortable.col-xs-12 {
   width: calc(100% - 30px) !important;
+}
+#div_scenarioElement .subElementCODE .expressions > .expression.noSortable.col-xs-12 {
+  width: 100% !important;
 }
 
 .expressions,
@@ -2356,6 +2400,9 @@ textarea {
   position: absolute;
   top: 1px;
   left: 3px;
+}
+.subElement .subElementIF .bt_sortable {
+  left: 6px;
 }
 .element .bt_collapse {
   position: absolute;
@@ -2446,7 +2493,7 @@ textarea {
   height: 55px;
 }
 .element .subElementELSE {
-  margin-top: 7px;
+  padding-top: 3px;
 }
 .element > .subElementIN > .expressions {
   margin-top: -26px;
@@ -2534,7 +2581,7 @@ textarea {
   padding-left: 0 !important;
 }
 .elementCollapse .bt_collapse {
-  color: rgb(var(--bg-color)) !important;
+  color: var(--scBlocSep) !important;
 }
 
 .elementIF.elementCollapse .expressions,
@@ -2566,7 +2613,7 @@ textarea {
   position: absolute;
   background-color: var(--sc-form-color);
   color : var(--sc-formTxt-color);
-  top: 1px;
+  top: 2px;
   left: 189px;
   padding: 5px;
   font-size: 12px !important;

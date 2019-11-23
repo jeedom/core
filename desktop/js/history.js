@@ -61,7 +61,7 @@ function setChartOptions() {
           $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
         }
         var type = serie.userOptions.type
-        if (type == 'area') type = 'areaspline'
+        if (type == 'areaspline') type = 'area'
         $('#sel_chartType').off().value(type)
         $('#cb_derive').prop('checked', serie.userOptions.derive)
         $('#cb_step').prop('checked', serie.userOptions.step)

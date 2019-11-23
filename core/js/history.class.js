@@ -245,6 +245,7 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].nbTimeline++;
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
           }
+
           var series = {
             type: 'flags',
             visible: _visible,
@@ -287,9 +288,10 @@ jeedom.history.drawChart = function (_params) {
             });
           }
         }else{
-          if (_params.option.graphType == 'areaspline' && _params.option.graphStep == true) {
+          if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
+
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,

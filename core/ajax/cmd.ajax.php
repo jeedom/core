@@ -279,6 +279,7 @@ try {
 				}
 			}
 		}
+
 		if (init('dateStart') != '') {
 			$dateStart = init('dateStart');
 		}
@@ -291,6 +292,11 @@ try {
 		if (strtotime($dateEnd) > strtotime('now')) {
 			$dateEnd = date('Y-m-d H:i:s');
 		}
+
+		if ($dateStart == '') {
+			$dateStart =  init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))));
+		}
+
 		$return['maxValue'] = '';
 		$return['minValue'] = '';
 		if ($dateStart === null) {
@@ -313,6 +319,7 @@ try {
 			if (!$eqLogic->hasRight('r')) {
 				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 			}
+
 			$histories = $cmd->getHistory($dateStart, $dateEnd);
 			$return['cmd_name'] = $cmd->getName();
 			$return['history_name'] = $cmd->getHumanName();
