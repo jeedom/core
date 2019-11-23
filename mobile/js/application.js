@@ -491,7 +491,6 @@ function page(_page, _title, _option, _plugin,_dialog) {
   } else {
     $('#page').hide().load(page, function () {
       $('body').attr('data-page', _page)
-      window.history.pushState('','','index.php?v=m&p=' +_page)
       $('#page').trigger('create')
       var functionName = ''
       if (init(_plugin) != '') {
