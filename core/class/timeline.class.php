@@ -82,7 +82,7 @@ class timeline {
     $values = array(
       'number' => $delete_number,
     );
-    $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT :number';
+    $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
 
