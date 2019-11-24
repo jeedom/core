@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,18 +19,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'nbUpdate') {
-		ajax::success(update::nbNeedUpdate());
+		return update::nbNeedUpdate();
 	}
 
 	if (!isConnect('admin')) {
@@ -48,13 +46,13 @@ try {
 			}
 			$return[] = $infos;
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'checkAllUpdate') {
 		unautorizedInDemo();
 		update::checkAllUpdate();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'update') {
@@ -87,7 +85,7 @@ try {
 				log::add('update', 'alert', __("[END UPDATE ERROR]", __FILE__));
 			}
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'remove') {
@@ -101,7 +99,7 @@ try {
 			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
 		}
 		$update->deleteObjet();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'checkUpdate') {
@@ -114,13 +112,13 @@ try {
 			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
 		}
 		$update->checkUpdate();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'updateAll') {
 		unautorizedInDemo();
 		jeedom::update(json_decode(init('options', '{}'), true));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'save') {
@@ -150,13 +148,13 @@ try {
 				$update->save();
 			}
 		}
-		ajax::success(utils::o2a($update));
+		return utils::o2a($update);
 	}
 
 	if (init('action') == 'saves') {
 		unautorizedInDemo();
 		utils::processJsonObject('update', init('updates'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'preUploadFile') {
@@ -178,11 +176,9 @@ try {
 		if (!file_exists($uploaddir . '/' . $filename)) {
 			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
-		ajax::success($uploaddir . '/' . $filename);
+		return $uploaddir . '/' . $filename;
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

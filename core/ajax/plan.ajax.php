@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,20 +19,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-	
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-	
-	ajax::init();
-	
+require_once __DIR__ . '/ajax.handler.inc.php';
+
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'save') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plans = json_decode(init('plans'), true);
 		foreach ($plans as $plan_ajax) {
@@ -40,7 +36,7 @@ try {
 			utils::a2o($plan, jeedom::fromHumanReadable($plan_ajax));
 			$plan->save();
 		}
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'execute') {
@@ -48,7 +44,7 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->execute());
+		return $plan->execute();
 	}
 	
 	if (init('action') == 'planHeader') {
@@ -59,30 +55,26 @@ try {
 				$return[] = $result;
 			}
 		}
-		ajax::success($return);
+		return $return;
 	}
 	
 	if (init('action') == 'create') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plan = new plan();
 		utils::a2o($plan, json_decode(init('plan'), true));
 		$plan->save();
-		ajax::success($plan->getHtml(init('version')));
+		return $plan->getHtml(init('version'));
 	}
 	
 	if (init('action') == 'copy') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->copy()->getHtml(init('version', 'dashboard')));
+		return $plan->copy()->getHtml(init('version', 'dashboard'));
 	}
 	
 	if (init('action') == 'get') {
@@ -90,32 +82,28 @@ try {
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->getHtml('dashboard'));
+		return $plan->getHtml('dashboard');
 	}
 	
 	if (init('action') == 'remove') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
 			throw new Exception(__('Aucun plan correspondant', __FILE__));
 		}
-		ajax::success($plan->remove());
+		return $plan->remove();
 	}
 	
 	if (init('action') == 'removePlanHeader') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$planHeader->remove();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'allHeader') {
@@ -126,7 +114,7 @@ try {
 			unset($info_planHeader['image']);
 			$return[] = $info_planHeader;
 		}
-		ajax::success($return);
+		return $return;
 	}
 	
 	if (init('action') == 'getPlanHeader') {
@@ -139,13 +127,11 @@ try {
 		}
 		$return = utils::o2a($planHeader);
 		$return['image'] = $planHeader->displayImage();
-		ajax::success($return);
+		return $return;
 	}
 	
 	if (init('action') == 'savePlanHeader') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$planHeader_ajax = json_decode(init('planHeader'), true);
 		$planHeader = null;
@@ -157,25 +143,21 @@ try {
 		}
 		utils::a2o($planHeader, $planHeader_ajax);
 		$planHeader->save();
-		ajax::success(utils::o2a($planHeader));
+		return utils::o2a($planHeader);
 	}
 	
 	if (init('action') == 'copyPlanHeader') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
 			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		ajax::success(utils::o2a($planHeader->copy(init('name'))));
+		return utils::o2a($planHeader->copy(init('name')));
 	}
 	
 	if (init('action') == 'removeImageHeader') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
@@ -185,13 +167,11 @@ try {
 		$planHeader->setImage('sha512', '');
 		$planHeader->save();
 		@unlink( __DIR__ . '/../../data/plan/' . $filename);
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'uploadImage') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
@@ -226,13 +206,11 @@ try {
 		$planHeader->setConfiguration('desktopSizeX', $img_size[0]);
 		$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
 		$planHeader->save();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'uploadImagePlan') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plan = plan::byId(init('id'));
 		if (!is_object($plan)) {
@@ -262,11 +240,9 @@ try {
 		$plan->setDisplay('height', $img_size[1]);
 		$plan->setDisplay('path', 'data/plan/plan_' . $plan->getId() . '/' . $name);
 		$plan->save();
-		ajax::success();
+		return '';
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

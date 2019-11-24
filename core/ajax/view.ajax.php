@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,31 +19,24 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'remove') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
 			throw new Exception(__('Vue non trouvée. Vérifiez l\'iD', __FILE__));
 		}
 		$view->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
-		ajax::success(utils::o2a(view::all()));
+		return utils::o2a(view::all());
 	}
 
 	if (init('action') == 'get') {
@@ -58,20 +54,18 @@ try {
 			foreach (view::all() as $view) {
 				$return[$view->getId()] = $view->toAjax(init('version', 'dashboard'), init('html'));
 			}
-			ajax::success($return);
+			return $return;
 		} else {
 			$view = view::byId(init('id'));
 			if (!is_object($view)) {
 				throw new Exception(__('Vue non trouvée. Vérifiez l\'ID', __FILE__));
 			}
-			ajax::success($view->toAjax(init('version', 'dashboard'), init('html')));
+			return $view->toAjax(init('version', 'dashboard'), init('html'));
 		}
 	}
 
 	if (init('action') == 'save') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$view = view::byId(init('view_id'));
 		if (!is_object($view)) {
@@ -100,7 +94,7 @@ try {
 				}
 			}
 		}
-		ajax::success(utils::o2a($view));
+		return utils::o2a($view);
 	}
 
 	if (init('action') == 'getEqLogicviewZone') {
@@ -115,13 +109,11 @@ try {
 			$infoViewDatat['html'] = $viewData->getLinkObject()->toHtml(init('version'));
 			$return['viewData'][] = $infoViewDatat;
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'setComponentOrder') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$components = json_decode(init('components'), true);
 		$sql = '';
@@ -149,13 +141,11 @@ try {
 		if ($sql != '') {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'setOrder') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$order = 1;
 		foreach (json_decode(init('views'), true) as $id) {
@@ -166,13 +156,11 @@ try {
 				$order++;
 			}
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'removeImage') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
@@ -181,13 +169,11 @@ try {
 		$view->setImage('sha512', '');
 		$view->save();
 		@rrmdir(__DIR__ . '/../../core/img/view');
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'uploadImage') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
@@ -218,11 +204,9 @@ try {
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
 		$view->save();
-		ajax::success();
+		return '';
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

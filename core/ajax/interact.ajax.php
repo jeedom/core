@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,16 +19,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-	
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-	
-	ajax::init();
-	
+require_once __DIR__ . '/ajax.handler.inc.php';
+
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'all') {
 		$results = utils::o2a(interactDef::all());
 		foreach ($results as &$result) {
@@ -43,14 +41,14 @@ try {
 				$result['link_id'] = trim(trim($link_id), '&&');
 			}
 		}
-		ajax::success($results);
+		return $results;
 	}
 	
 	if (init('action') == 'byId') {
 		$result = utils::o2a(interactDef::byId(init('id')));
 		$result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
 		$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
-		ajax::success(jeedom::toHumanReadable($result));
+		return jeedom::toHumanReadable($result);
 	}
 	
 	if (init('action') == 'save') {
@@ -64,12 +62,12 @@ try {
 		}
 		utils::a2o($interact, $interact_json);
 		$interact->save();
-		ajax::success(utils::o2a($interact));
+		return utils::o2a($interact);
 	}
 	
 	if (init('action') == 'regenerateInteract') {
 		interactDef::regenerateInteract();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'remove') {
@@ -79,7 +77,7 @@ try {
 			throw new Exception(__('Interaction inconnue. Vérifiez l\'ID', __FILE__));
 		}
 		$interact->remove();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'changeState') {
@@ -90,7 +88,7 @@ try {
 		}
 		$interactQuery->setEnable(init('enable'));
 		$interactQuery->save();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'changeAllState') {
@@ -102,15 +100,13 @@ try {
 				$interactQuery->save();
 			}
 		}
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'execute') {
-		ajax::success(interactQuery::tryToReply(init('query')));
+		return interactQuery::tryToReply(init('query'));
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

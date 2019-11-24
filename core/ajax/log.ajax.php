@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,44 +19,37 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'clear') {
 		unautorizedInDemo();
 		log::clear(init('log'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		log::remove(init('log'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'list') {
-		ajax::success(log::liste());
+		return log::liste();
 	}
 
 	if (init('action') == 'removeAll') {
 		unautorizedInDemo();
 		log::removeAll();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'get') {
-		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
+		return log::get(init('log'), init('start', 0), init('nbLine', 99999));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

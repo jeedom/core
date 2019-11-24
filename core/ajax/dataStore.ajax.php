@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,23 +19,18 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'remove') {
 		$dataStore = dataStore::byId(init('id'));
 		if (!is_object($dataStore)) {
 			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
 		}
 		$dataStore->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'save') {
@@ -49,7 +47,7 @@ try {
 		}
 		$dataStore->setValue(init('value'));
 		$dataStore->save();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
@@ -82,11 +80,9 @@ try {
 		} else {
 			$return = utils::o2a($dataStore);
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

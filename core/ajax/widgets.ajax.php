@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,19 +19,14 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-  
-  require_once __DIR__ . '/../../core/php/core.inc.php';
-  include_file('core', 'authentification', 'php');
-  
-  if (!isConnect('admin')) {
-    throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-  }
-  
-  ajax::init(true);
-  
+require_once __DIR__ . '/ajax.handler.inc.php';
+
+ajaxHandle(function ()
+{
+  ajax::checkAccess('admin');
+
   if (init('action') == 'all') {
-    ajax::success(utils::o2a(widgets::all()));
+    return utils::o2a(widgets::all());
   }
   
   if (init('action') == 'byId') {
@@ -41,7 +39,7 @@ try {
         $result['usedBy'][$cmd->getId()] = $cmd->getHumanName();
       }
     }
-    ajax::success($result);
+    return $result;
   }
   
   if (init('action') == 'remove') {
@@ -50,7 +48,7 @@ try {
       throw new Exception(__('Widgets inconnue - Vérifiez l\'id', __FILE__).init('id'));
     }
     $widgets->remove();
-    ajax::success();
+    return '';
   }
   
   if (init('action') == 'save') {
@@ -64,29 +62,27 @@ try {
     }
     utils::a2o($widgets, $widgets_json);
     $widgets->save();
-    ajax::success(utils::o2a($widgets));
+    return utils::o2a($widgets);
   }
   
   if (init('action') == 'getTemplateConfiguration') {
-    ajax::success(widgets::getTemplateConfiguration(init('template')));
+    return widgets::getTemplateConfiguration(init('template'));
   }
   
   if (init('action') == 'getPreview') {
     $widget = widgets::byId(init('id'));
     $usedBy = $widget->getUsedBy();
     if(!is_array($usedBy) || count($usedBy) == 0){
-      ajax::success(array('html' => '<div class="alert alert-warning">'.__('Aucune commande affectée au widget, prévisualisation impossible',__FILE__).'</div>'));
+      return array('html' => '<div class="alert alert-warning">'.__('Aucune commande affectée au widget, prévisualisation impossible',__FILE__).'</div>');
     }
-    ajax::success(array('html' =>$usedBy[0]->getEqLogic()->toHtml('dashboard')));
+    return array('html' =>$usedBy[0]->getEqLogic()->toHtml('dashboard'));
   }
   
   if (init('action') == 'replacement') {
-    ajax::success(widgets::replacement(init('version'),init('replace'),init('by')));
+    return widgets::replacement(init('version'),init('replace'),init('by'));
   }
   
   throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
   
   /*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-  ajax::error(displayException($e), $e->getCode());
-}
+});

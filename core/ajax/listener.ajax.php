@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,20 +19,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		utils::processJsonObject('listener', init('listeners'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'remove') {
@@ -39,7 +37,7 @@ try {
 			throw new Exception(__('Listerner id inconnu', __FILE__));
 		}
 		$listener->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
@@ -51,12 +49,10 @@ try {
 			}
 			$listener['event_str'] = jeedom::toHumanReadable(trim($listener['event_str'], ','));
 		}
-		ajax::success($listeners);
+		return $listeners;
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

@@ -24,16 +24,30 @@ class ajax {
 
 	/*     * *********************Methode static ************************* */
 
+    /**
+     * @deprecated
+     */
 	public static function init($_checkToken = true) {
 		if (!headers_sent()) {
 			header('Content-Type: application/json');
 		}
-		if ($_checkToken && init('jeedom_token') != self::getToken()) {
-			self::error(__('Token d\'accès invalide', __FILE__));
-		}
+		if ($_checkToken) {
+		    self::checkToken();
+        }
 	}
 
-	public static function getToken() {
+	public static function checkToken() {
+        if (init('jeedom_token') != self::getToken()) {
+            throw new Exception(__('Token d\'accès invalide', __FILE__));
+        }
+    }
+
+    public static function checkAccess($right) {
+        self::checkToken();
+        checkAccess(__FILE__, $right);
+    }
+
+    public static function getToken() {
 		if (session_status() == PHP_SESSION_NONE) {
 			@session_start();
 			@session_write_close();
@@ -46,11 +60,13 @@ class ajax {
 		return $_SESSION['jeedom_token'];
 	}
 
+    /** @deprecated Use ajax::getResponse instead */
 	public static function success($_data = '') {
 		echo self::getResponse($_data);
 		die();
 	}
 
+    /** @deprecated Use ajax::getResponse instead */
 	public static function error($_data = '', $_errorCode = 0) {
 		echo self::getResponse($_data, $_errorCode);
 		die();

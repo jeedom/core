@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,20 +19,19 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-	ajax::init(false);
+require_once __DIR__ . '/ajax.handler.inc.php';
 
+ajaxHandle(function ()
+{
 	if (init('action') == 'useTwoFactorAuthentification') {
 		$user = user::byLogin(init('login'));
 		if (!is_object($user)) {
-			ajax::success(0);
+			return 0;
 		}
 		if (network::getUserLocation() == 'internal') {
-			ajax::success(0);
+			return 0;
 		}
-		ajax::success($user->getOptions('twoFactorAuthentification', 0));
+		return $user->getOptions('twoFactorAuthentification', 0);
 	}
 
 	if (init('action') == 'login') {
@@ -82,21 +84,21 @@ try {
 				setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
 			}
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'getApikey') {
 		if (!login(init('username'), init('password'), init('twoFactorCode'))) {
 			throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
 		}
-		ajax::success($_SESSION['user']->getHash());
+		return $_SESSION['user']->getHash();
 	}
 
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
-	ajax::init();
+	ajax::checkToken();
 
 	if (init('action') == 'validateTwoFactorCode') {
 		unautorizedInDemo();
@@ -108,13 +110,11 @@ try {
 			$_SESSION['user']->save();
 		}
 		@session_write_close();
-		ajax::success($result);
+		return $result;
 	}
 
 	if (init('action') == 'removeTwoFactorCode') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$user = user::byId(init('id'));
 		if (!is_object($user)) {
@@ -122,42 +122,38 @@ try {
 		}
 		$user->setOptions('twoFactorAuthentification', 0);
 		$user->save();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'isConnect') {
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'refresh') {
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'logout') {
 		logout();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$users = array();
 		foreach (user::all() as $user) {
 			$user_info = utils::o2a($user);
 			$users[] = $user_info;
 		}
-		ajax::success($users);
+		return $users;
 	}
 
 	if (init('action') == 'save') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$users = json_decode(init('users'), true);
 		$user = null;
@@ -177,13 +173,11 @@ try {
 		@session_start();
 		$_SESSION['user']->refresh();
 		@session_write_close();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'remove') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		if (config::byKey('ldap::enable') == '1') {
 			throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir supprimer un utilisateur', __FILE__));
@@ -196,7 +190,7 @@ try {
 			throw new Exception('User ID inconnu');
 		}
 		$user->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'saveProfils') {
@@ -217,11 +211,11 @@ try {
 		$_SESSION['user']->save();
 		@session_write_close();
 		eqLogic::clearCacheWidget();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'get') {
-		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
+		return jeedom::toHumanReadable(utils::o2a($_SESSION['user']));
 	}
 
 	if (init('action') == 'removeRegisterDevice') {
@@ -239,7 +233,7 @@ try {
 					$user->save();
 				}
 			}
-			ajax::success();
+			return '';
 		}
 		if (init('user_id') != '') {
 			if (!isConnect('admin')) {
@@ -268,7 +262,7 @@ try {
 			$_SESSION['user']->save();
 			@session_write_close();
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'deleteSession') {
@@ -288,7 +282,7 @@ try {
 			}
 		}
 		deleteSession(init('id'));
-		ajax::success();
+		return '';
 	}
 
 	if (!isConnect('admin')) {
@@ -296,29 +290,25 @@ try {
 	}
 
 	if (init('action') == 'testLdapConnection') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$connection = user::connectToLDAP();
 		if ($connection === false) {
 			throw new Exception();
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'removeBanIp') {
 		unautorizedInDemo();
-		ajax::success(user::removeBanIp());
+		return user::removeBanIp();
 	}
 
 	if (init('action') == 'supportAccess') {
 		unautorizedInDemo();
-		ajax::success(user::supportAccess(init('enable')));
+		return user::supportAccess(init('enable'));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

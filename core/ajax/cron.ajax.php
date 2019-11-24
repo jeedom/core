@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,20 +19,15 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		utils::processJsonObject('cron', init('crons'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'remove') {
@@ -39,7 +37,7 @@ try {
 			throw new Exception(__('Cron id inconnu', __FILE__));
 		}
 		$cron->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
@@ -47,7 +45,7 @@ try {
 		foreach ($crons as $cron) {
 			$cron->refresh();
 		}
-		ajax::success(utils::o2a($crons));
+		return utils::o2a($crons);
 	}
 
 	if (init('action') == 'start') {
@@ -57,7 +55,7 @@ try {
 		}
 		$cron->run();
 		sleep(1);
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'stop') {
@@ -67,12 +65,10 @@ try {
 		}
 		$cron->halt();
 		sleep(1);
-		ajax::success();
+		return '';
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

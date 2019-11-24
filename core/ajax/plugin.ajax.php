@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,20 +19,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'getConf') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$plugin = plugin::byId(init('id'));
 		$update = update::byLogicalId(init('id'));
 		$return = utils::o2a($plugin);
@@ -67,58 +63,48 @@ try {
 		$return['update'] = utils::o2a($update);
 		$return['logs'] = array();
 		$return['logs'][-1] = array('id' => -1, 'name' => 'local', 'log' => $plugin->getLogList());
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'toggle') {
 		unautorizedInDemo();
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
 			throw new Exception(__('Plugin introuvable : ', __FILE__) . init('id'));
 		}
 		$plugin->setIsEnable(init('state'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'all') {
-		if (!isConnect()) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		ajax::success(utils::o2a(plugin::listPlugin(init('activateOnly',false))));
+        ajax::checkAccess(''); // Double appel
+		return utils::o2a(plugin::listPlugin(init('activateOnly',false)));
 	}
 
 	if (init('action') == 'getDependancyInfo') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 
 		$return = array('state' => 'nok', 'log' => 'nok');
 		$plugin = plugin::byId(init('id'));
 		if (is_object($plugin)) {
 			$return = $plugin->dependancy_info();
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'dependancyInstall') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
-			ajax::success();
+			return '';
 		}
-		ajax::success($plugin->dependancy_install());
+		return $plugin->dependancy_install();
 	}
 
 	if (init('action') == 'getDeamonInfo') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		$plugin_id = init('id');
 		$return = array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
 		$plugin = plugin::byId(init('id'));
@@ -126,48 +112,40 @@ try {
 			$return = $plugin->deamon_info();
 		}
 		$return['plugin'] = utils::o2a($plugin);
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'deamonStart') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plugin_id = init('id');
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
-			ajax::success();
+			return '';
 		}
-		ajax::success($plugin->deamon_start(init('forceRestart', 0)));
+		return $plugin->deamon_start(init('forceRestart', 0));
 	}
 
 	if (init('action') == 'deamonStop') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
-			ajax::success();
+			return '';
 		}
-		ajax::success($plugin->deamon_stop());
+		return $plugin->deamon_stop();
 	}
 
 	if (init('action') == 'deamonChangeAutoMode') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
-			ajax::success();
+			return '';
 		}
-		ajax::success($plugin->deamon_changeAutoMode(init('mode')));
+		return $plugin->deamon_changeAutoMode(init('mode'));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

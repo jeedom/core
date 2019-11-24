@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,18 +19,16 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	ajax::init(false);
-
+ajaxHandle(function ()
+{
 	if (init('action') == 'getInfoApplication') {
 		$return = jeedom::getThemeConfig();
 		$return['serverDatetime'] = getmicrotime();
 		if (!isConnect()) {
 			$return['connected'] = false;
-			ajax::success($return);
+			return $return;
 		}
 
 		$return['user_id'] = $_SESSION['user']->getId();
@@ -65,17 +66,17 @@ try {
 			$return['custom']['js'] = file_exists(__DIR__ . '/../../mobile/custom/custom.js');
 			$return['custom']['css'] = file_exists(__DIR__ . '/../../mobile/custom/custom.css');
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
-	ajax::init(true);
+	ajax::checkToken();
 
 	if (init('action') == 'version') {
-		ajax::success(jeedom::version());
+		return jeedom::version();
 	}
 
 	if (init('action') == 'getDocumentationUrl') {
@@ -89,7 +90,7 @@ try {
 		}
 		if (isset($plugin) && is_object($plugin)) {
 			if ($plugin->getDocumentation() != '') {
-				ajax::success($plugin->getDocumentation());
+				return $plugin->getDocumentation();
 			}
 		} else {
 			$page = init('page');
@@ -103,9 +104,9 @@ try {
 				$page = 'design3d';
 			}
 			if(config::byKey('core::branch') == 'master'){
-				ajax::success('https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page));
+				return 'https://jeedom.github.io/core/' . config::byKey('language', 'core', 'fr_FR') . '/' . secureXSS($page);
 			}
-			ajax::success('https://github.com/jeedom/core/blob/'.config::byKey('core::branch').'/docs/' . config::byKey('language', 'core', 'fr_FR'). '/' . secureXSS($page).'.md');
+			return 'https://github.com/jeedom/core/blob/'.config::byKey('core::branch').'/docs/' . config::byKey('language', 'core', 'fr_FR'). '/' . secureXSS($page).'.md';
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
@@ -130,7 +131,7 @@ try {
 			$listener->addEvent($cmd->getId());
 			$listener->setOption($options);
 			$listener->save(true);
-			ajax::success();
+			return '';
 		} else {
           	throw new Exception(__('Aucune Commande de Notification : ', __FILE__) . init('cmd_id'));
 			ajax::error();
@@ -149,71 +150,71 @@ try {
 		}
 		$output = array();
 		exec($command, $output);
-		ajax::success(implode("\n", $output));
+		return implode("\n", $output);
 	}
 
 	if (init('action') == 'db') {
 		unautorizedInDemo();
-		ajax::success(DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL));
+		return DB::prepare(init('command'), array(), DB::FETCH_TYPE_ALL);
 	}
 
 	if (init('action') == 'dbcorrectTable') {
 		unautorizedInDemo();
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true),init('table'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'health') {
-		ajax::success(jeedom::health());
+		return jeedom::health();
 	}
 
 	if (init('action') == 'update') {
 		unautorizedInDemo();
 		jeedom::update();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'clearDate') {
 		$cache = cache::byKey('jeedom::lastDate');
 		$cache->remove();
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'backup') {
 		unautorizedInDemo();
 		jeedom::backup(true);
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'restore') {
 		unautorizedInDemo();
 		jeedom::restore(init('backup'), true);
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'removeBackup') {
 		unautorizedInDemo();
 		jeedom::removeBackup(init('backup'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'listBackup') {
-		ajax::success(jeedom::listBackup());
+		return jeedom::listBackup();
 	}
 
 	if (init('action') == 'getConfiguration') {
-		ajax::success(jeedom::getConfiguration(init('key'), init('default')));
+		return jeedom::getConfiguration(init('key'), init('default'));
 	}
 
 	if (init('action') == 'resetHwKey') {
 		unautorizedInDemo();
 		config::save('jeedom::installKey', '');
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'resetHour') {
 		$cache = cache::delete('hour');
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'backupupload') {
@@ -241,37 +242,37 @@ try {
 		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
 			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'haltSystem') {
 		unautorizedInDemo();
-		ajax::success(jeedom::haltSystem());
+		return jeedom::haltSystem();
 	}
 
 	if (init('action') == 'rebootSystem') {
 		unautorizedInDemo();
-		ajax::success(jeedom::rebootSystem());
+		return jeedom::rebootSystem();
 	}
 
 	if (init('action') == 'cleanDatabase') {
 		unautorizedInDemo();
-		ajax::success(jeedom::cleanDatabase());
+		return jeedom::cleanDatabase();
 	}
 
 	if (init('action') == 'cleanFileSystemRight') {
 		unautorizedInDemo();
-		ajax::success(jeedom::cleanFileSytemRight());
+		return jeedom::cleanFileSytemRight();
 	}
 
 	if (init('action') == 'consistency') {
 		unautorizedInDemo();
-		ajax::success(jeedom::consistency());
+		return jeedom::consistency();
 	}
 
 	if (init('action') == 'forceSyncHour') {
 		unautorizedInDemo();
-		ajax::success(jeedom::forceSyncHour());
+		return jeedom::forceSyncHour();
 	}
 
 	if (init('action') == 'saveCustom') {
@@ -292,7 +293,7 @@ try {
 			unlink($path);
 		}
 		file_put_contents($path, init('content'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'getGraphData') {
@@ -306,12 +307,12 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));
 		}
-		ajax::success($object->getLinkData());
+		return $object->getLinkData();
 	}
 
 	if (init('action') == 'getFileFolder') {
 		unautorizedInDemo();
-		ajax::success(ls(init('path'), '*', false, array(init('type'))));
+		return ls(init('path'), '*', false, array(init('type')));
 	}
 
 	if (init('action') == 'getFileContent') {
@@ -320,7 +321,7 @@ try {
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
-		ajax::success(file_get_contents(init('path')));
+		return file_get_contents(init('path'));
 	}
 
 	if (init('action') == 'setFileContent') {
@@ -329,7 +330,7 @@ try {
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','html','py','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
-		ajax::success(file_put_contents(init('path'), init('content')));
+		return file_put_contents(init('path'), init('content'));
 	}
 
 	if (init('action') == 'deleteFile') {
@@ -338,7 +339,7 @@ try {
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini','css','html'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ' . $pathinfo['extension'], __FILE__));
 		}
-		ajax::success(unlink(init('path')));
+		return unlink(init('path'));
 	}
 
 	if (init('action') == 'createFile') {
@@ -351,19 +352,17 @@ try {
 		if (!file_exists(init('path') . init('name'))) {
 			throw new Exception(__('Impossible de créer le fichier, vérifiez les droits', __FILE__));
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'emptyRemoveHistory') {
 		unautorizedInDemo();
 		unlink(__DIR__ . '/../../data/remove_history.json');
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'uploadImageIcon') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
@@ -384,13 +383,11 @@ try {
 		if(!file_exists($filepath)){
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
-		ajax::success(array('filepath' => $filepath));
+		return array('filepath' => $filepath);
 	}
 
 	if (init('action') == 'removeImageIcon') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$filepath = __DIR__ . '/../../data/img/' . init('filename');
 		if(!file_exists($filepath)){
@@ -400,7 +397,7 @@ try {
 		if(file_exists($filepath)){
 			throw new Exception(__('Impossible de supprimer le fichier', __FILE__));
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'massEditSave') {
@@ -424,11 +421,9 @@ try {
 				}
 			}
 		}
-		ajax::success();
+		return '';
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

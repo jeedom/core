@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,27 +19,20 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-	
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-	
-	ajax::init();
-	
+require_once __DIR__ . '/ajax.handler.inc.php';
+
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$object->remove();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'byId') {
@@ -44,12 +40,12 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
 		}
-		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
+		return jeedom::toHumanReadable(utils::o2a($object));
 	}
 	
 	if (init('action') == 'createSummaryVirtual') {
 		jeeObject::createSummaryToVirtual(init('key'));
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'all') {
@@ -64,14 +60,12 @@ try {
 			}
 			$objects = $return;
 		}
-		ajax::success(utils::o2a($objects));
+		return utils::o2a($objects);
 	}
 	
 	if (init('action') == 'save') {
 		unautorizedInDemo();
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$object_json = json_decode(init('object'), true);
 		if (isset($object_json['id'])) {
 			$object = jeeObject::byId($object_json['id']);
@@ -81,7 +75,7 @@ try {
 		}
 		utils::a2o($object, jeedom::fromHumanReadable($object_json));
 		$object->save();
-		ajax::success(utils::o2a($object));
+		return utils::o2a($object);
 	}
 	
 	if (init('action') == 'getChild') {
@@ -90,7 +84,7 @@ try {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$return = utils::o2a($object->getChild());
-		ajax::success($return);
+		return $return;
 	}
 	
 	if (init('action') == 'toHtml') {
@@ -147,7 +141,7 @@ try {
 				$return[$i . '::' . $id] = implode($html);
 				$i++;
 			}
-			ajax::success($return);
+			return $return;
 		} else {
 			$html = array();
 			if (init('summary') == '') {
@@ -184,14 +178,12 @@ try {
 				}
 			}
 			ksort($html);
-			ajax::success(implode($html));
+			return implode($html);
 		}
 	}
 	
 	if (init('action') == 'setOrder') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$position = 1;
 		foreach (json_decode(init('objects'), true) as $id) {
 			$object = jeeObject::byId($id);
@@ -201,7 +193,7 @@ try {
 				$position++;
 			}
 		}
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'getSummaryHtml') {
@@ -224,7 +216,7 @@ try {
 					'id' => $object->getId(),
 				);
 			}
-			ajax::success($return);
+			return $return;
 		} else {
 			$object = jeeObject::byId(init('id'));
 			if (!is_object($object)) {
@@ -233,14 +225,12 @@ try {
 			$info_object = array();
 			$info_object['id'] = $object->getId();
 			$info_object['html'] = $object->getHtmlSummary(init('version'));
-			ajax::success($info_object);
+			return $info_object;
 		}
 	}
 	
 	if (init('action') == 'removeImage') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -250,13 +240,11 @@ try {
 		$object->setImage('sha512', '');
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'uploadImage') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -293,11 +281,9 @@ try {
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
 		$object->save();
-		ajax::success(array('filepath' => $filepath));
+		return array('filepath' => $filepath);
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

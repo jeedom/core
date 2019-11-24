@@ -1029,6 +1029,12 @@ function sanitizeAccent($_message) {
 		}
 		return $GLOBALS['isConnect::' . $_right];
 	}
+
+	function checkAccess($file, $right = '') {
+        if (!isConnect($right)) {
+            throw new Exception(__('401 - Accès non autorisé', $file));
+        }
+    }
 	
 	function ZipErrorMessage($code) {
 		switch ($code) {

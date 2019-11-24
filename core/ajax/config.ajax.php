@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,30 +19,23 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-	}
-
-	ajax::init();
-
-	if (init('action') == 'genApiKey') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
+    if (init('action') == 'genApiKey') {
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		if (init('plugin') == 'core') {
 			config::save('api', config::genKey());
-			ajax::success(config::byKey('api'));
+			return config::byKey('api');
 		} else if (init('plugin') == 'pro') {
 			config::save('apipro', config::genKey());
-			ajax::success(config::byKey('apipro'));
+			return config::byKey('apipro');
 		} else {
 			config::save('api', config::genKey(), init('plugin'));
-			ajax::success(config::byKey('api', init('plugin')));
+			return config::byKey('api', init('plugin'));
 		}
 	}
 
@@ -54,26 +50,24 @@ try {
 			if (init('convertToHumanReadable', 0)) {
 				$return = jeedom::toHumanReadable($return);
 			}
-			ajax::success($return);
+			return $return;
 		} else {
 			$return = config::byKey($keys, init('plugin', 'core'));
 			if (init('convertToHumanReadable', 0)) {
 				$return = jeedom::toHumanReadable($return);
 			}
-			ajax::success($return);
+			return $return;
 		}
 	}
 
 	if (init('action') == 'addKey') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		unautorizedInDemo();
 		$values = json_decode(init('value'), true);
 		foreach ($values as $key => $value) {
 			config::save($key, jeedom::fromHumanReadable($value), init('plugin', 'core'));
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'removeKey') {
@@ -91,11 +85,9 @@ try {
 		} else {
 			config::remove(init('key'), init('plugin', 'core'));
 		}
-		ajax::success();
+		return '';
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 /*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,23 +19,18 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('');
 	if (init('action') == 'clearMessage') {
 		message::removeAll(init('plugin'));
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'nbMessage') {
-		ajax::success(message::nbMessage());
+		return message::nbMessage();
 	}
 
 	if (init('action') == 'all') {
@@ -44,7 +42,7 @@ try {
 		foreach ($messages as &$message) {
 			$message['message'] = htmlentities($message['message']);
 		}
-		ajax::success($messages);
+		return $messages;
 	}
 
 	if (init('action') == 'removeMessage') {
@@ -53,11 +51,9 @@ try {
 			throw new Exception(__('Message inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$message->remove();
-		ajax::success();
+		return '';
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,39 +19,34 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-try {
-	require_once __DIR__ . '/../php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-	
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-	
-	ajax::init();
-	
+require_once __DIR__ . '/ajax.handler.inc.php';
+
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'uploadCloud') {
 		unautorizedInDemo();
 		repo_market::backup_send(init('backup'));
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'restoreCloud') {
 		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$class::backup_restore(init('backup'));
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'pullInstall') {
 		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
-		ajax::success($class::pullInstall());
+		return $class::pullInstall();
 	}
 	
 	if (init('action') == 'sendReportBug') {
 		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
-		ajax::success($class::saveTicket(json_decode(init('ticket'), true)));
+		return $class::saveTicket(json_decode(init('ticket'), true));
 	}
 	
 	if (init('action') == 'install') {
@@ -69,13 +67,13 @@ try {
 		$update->setConfiguration('version', init('version', 'stable'));
 		$update->save();
 		$update->doUpdate();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'test') {
 		$class = 'repo_' . init('repo');
 		$class::test();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'remove') {
@@ -97,7 +95,7 @@ try {
 				$update->deleteObjet();
 			}
 		}
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'save') {
@@ -111,24 +109,24 @@ try {
 		}
 		utils::a2o($repo, $repo_ajax);
 		$repo->save();
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'getInfo') {
 		$class = 'repo_' . init('repo');
-		ajax::success($class::getInfo(init('logicalId')));
+		return $class::getInfo(init('logicalId'));
 	}
 	
 	if (init('action') == 'byLogicalId') {
 		$class = 'repo_' . init('repo');
 		if (init('noExecption', 0) == 1) {
 			try {
-				ajax::success(utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type'))));
+				return utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type')));
 			} catch (Exception $e) {
-				ajax::success();
+				return '';
 			}
 		} else {
-			ajax::success(utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type'))));
+			return utils::o2a($class::byLogicalIdAndType(init('logicalId'), init('type')));
 		}
 	}
 	
@@ -140,17 +138,15 @@ try {
 			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
 		}
 		$repo->setRating(init('rating'));
-		ajax::success();
+		return '';
 	}
 	
 	if (init('action') == 'backupList') {
 		$class = 'repo_' . init('repo');
-		ajax::success($class::backup_list());
+		return $class::backup_list();
 	}
 	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

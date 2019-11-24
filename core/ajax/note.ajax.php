@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,33 +19,22 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	require_once __DIR__ . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-
-	if (!isConnect()) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
+ajaxHandle(function ()
+{
 	if (init('action') == 'all') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		ajax::success(utils::o2a(note::all()));
+        ajax::checkAccess('admin');
+		return utils::o2a(note::all());
 	}
 
 	if (init('action') == 'byId') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		ajax::success(utils::o2a(note::byId(init('id'))));
+        ajax::checkAccess('admin');
+		return utils::o2a(note::byId(init('id')));
 	}
 
 	if (init('action') == 'save') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$note_json = json_decode(init('note'), true);
 		if (isset($note_json['id'])) {
 			$note = note::byId($note_json['id']);
@@ -52,25 +44,21 @@ try {
 		}
 		utils::a2o($note, $note_json);
 		$note->save();
-		ajax::success(utils::o2a($note));
+		return utils::o2a($note);
 	}
 
 	if (init('action') == 'remove') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+        ajax::checkAccess('admin');
 		$note = note::byId(init('id'));
 		if (!is_object($note)) {
 			throw new Exception(__('Note inconnue. Vérifiez l\'ID', __FILE__));
 		}
 		$note->remove();
-		ajax::success();
+		return '';
 	}
 
-	ajax::init();
+    ajax::checkAccess('');
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

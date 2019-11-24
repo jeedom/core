@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,62 +19,55 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
-	require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
-	include_file('core', 'authentification', 'php');
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
-	ajax::init();
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'usbTry') {
 		$usbTry = migrate::usbTry();
-		ajax::success($usbTry);
+		return $usbTry;
 	}
 	
 	if (init('action') == 'backupToUsb') {
 		$backupToUsb = migrate::backupToUsb();
-		ajax::success($backupToUsb);
+		return $backupToUsb;
 	}
 	
 	if (init('action') == 'imageToUsb') {
 		$imageToUsb = migrate::imageToUsb();
-		ajax::success($imageToUsb);
+		return $imageToUsb;
 	}
 	
 	if (init('action') == 'freeSpaceUsb') {
 		$freeSpaceUsb = migrate::freeSpaceUsb();
-		ajax::success($freeSpaceUsb);
+		return $freeSpaceUsb;
 	}
 	
 	if (init('action') == 'getStep') {
 		$valueMigrate = config::byKey('stepMigrate');
-		ajax::success($valueMigrate);
+		return $valueMigrate;
 	}
 	
 	if (init('action') == 'setStep') {
 		if(init('stepValues')){
 			config::save('stepMigrate', init('stepValues'));
-			ajax::success(init('stepValues'));
+			return init('stepValues');
 		}
 	}
 	if (init('action') == 'renameImage'){
 		$renameImage = migrate::renameImage();
-		ajax::success($renameImage);
+		return $renameImage;
 	}
 	if (init('action') == 'GoBackupInstall'){
 		$GoBackupInstall = migrate::GoBackupInstall();
-		ajax::success($GoBackupInstall);
+		return $GoBackupInstall;
 	}
 	if (init('action') == 'finalisation'){
 		$finalisation = migrate::finalisation();
-		ajax::success($finalisation);
+		return $finalisation;
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});

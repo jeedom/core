@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @ajax */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,24 +19,18 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-try {
+require_once __DIR__ . '/ajax.handler.inc.php';
 
-	require_once __DIR__ . '/../php/core.inc.php';
-	include_file('core', 'authentification', 'php');
-
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-	}
-
-	ajax::init(true);
-
+ajaxHandle(function ()
+{
+    ajax::checkAccess('admin');
 	if (init('action') == 'list') {
 		$return = array();
 		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/';
 		foreach (ls($path, '*') as $value) {
 			$return[$value] = array('name' => $value);
 		}
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'get') {
@@ -42,7 +39,7 @@ try {
 		$return['path'] = $path;
 		$return['type'] = init('type');
 		$return['id'] = init('id');
-		ajax::success($return);
+		return $return;
 	}
 
 	if (init('action') == 'remove') {
@@ -53,7 +50,7 @@ try {
 		if (file_exists($path)) {
 			throw new Exception(__('Impossible de supprimer : ', __FILE__) . $path);
 		}
-		ajax::success();
+		return '';
 	}
 
 	if (init('action') == 'removeAll') {
@@ -61,11 +58,9 @@ try {
 		foreach (ls($path, '*') as $value) {
 			unlink($path . $value);
 		}
-		ajax::success($return);
+		return $return; // FIXME: variable inconnue
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
-} catch (Exception $e) {
-	ajax::error(displayException($e), $e->getCode());
-}
+});
