@@ -88,7 +88,7 @@ foreach (widgets::all() as $widget) {
             $div .= '<span><i class="fas fa-image"></i></span>';
           }
           $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+          $div .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
           $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
           $div .= '</div>';
         }
@@ -118,7 +118,7 @@ foreach (widgets::all() as $widget) {
             $div .= '<span><i class="fas fa-image"></i></span>';
           }
           $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+          $div .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
           $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
           $div .= '</div>';
         }
