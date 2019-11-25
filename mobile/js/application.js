@@ -492,6 +492,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#page').hide().load(page, function () {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')
+      window.history.pushState('','','index.php?v=m&p=home')
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
