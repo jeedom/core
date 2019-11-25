@@ -451,32 +451,25 @@ $pageContainer.off('change','.expressionAttr[data-l1key=options][data-l2key=enab
 
 $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenarioElement', function (event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
+  var expression = false
+  var insertAfter = false
+  var elementDiv = $(this).closest('.element')
 
   //is scenario empty:
-  var elementDiv = $(this).closest('.element')
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
-    var expression = false
-    var insertAfter = false
-
-    //Is triggerred from element button:
-    if ($(this).hasClass('fromSubElement')) {
-      elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-      expression = true
-    } else {
-      //had focus ?
-      if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
-        insertAfter = true
-        elementDiv = $(PREV_FOCUS).closest('div.element')
-        if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
-          elementDiv = elementDiv.parents('.expression').eq(0)
-          expression = true
-        }
-      } else {
-        elementDiv = $('#div_scenarioElement')
+    //had focus ?
+    if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
+      insertAfter = true
+      elementDiv = $(PREV_FOCUS).closest('div.element')
+      if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
+        elementDiv = elementDiv.parents('.expression').eq(0)
+        expression = true
       }
+    } else {
+      elementDiv = $('#div_scenarioElement')
     }
   }
 
@@ -493,7 +486,7 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     } else {
       elementDiv.append(newEL.addClass('disableElement'))
     }
-
+    
     setEditor()
     updateSortable()
     updateElseToggle()
@@ -503,30 +496,35 @@ $pageContainer.off('click','.bt_addScenarioElement').on( 'click','.bt_addScenari
     setAutocomplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
+
 })
 
 $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement',  function (event) {
-  setUndoStack()
   var button = $(this);
   if(event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
-      button.closest('.expression').remove();
+      setUndoStack()
+      button.closest('.expression').remove()
     } else {
-      button.closest('.element').remove();
+      setUndoStack()
+      button.closest('.element').remove()
     }
   }else{
     bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function (result) {
       if (result) {
         if (button.closest('.expression').length != 0) {
-          button.closest('.expression').remove();
+          setUndoStack()
+          button.closest('.expression').remove()
         } else {
-          button.closest('.element').remove();
+          setUndoStack()
+          button.closest('.element').remove()
         }
       }
-    });
+    })
   }
-  modifyWithoutSave = true;
-});
+  modifyWithoutSave = true
+  PREV_FOCUS = null
+})
 
 $pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
   clickedBloc = $(this).closest('.element')
@@ -606,20 +604,38 @@ $pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function 
 });
 
 $pageContainer.off('click','.bt_collapse').on( 'click','.bt_collapse', function (event) {
-  changeThis = $(this)
-  if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse');
+  var changeThis = $(this)
+  if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
 
-  if($(this).children('i').hasClass('fa-eye')){
-    changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash');
-    changeThis.closest('.element').addClass('elementCollapse');
-    changeThis.attr('value',1);
-    changeThis.attr('title',"{{Afficher ce bloc.<br>Ctrl+click: tous.}}");
-  }else{
-    changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash');
-    changeThis.closest('.element').removeClass('elementCollapse');
-    changeThis.attr('value',0);
-    changeThis.attr('title',"{{Masquer ce bloc.<br>Ctrl+click: tous.}}");
-    setEditor();
+  if ($(this).children('i').hasClass('fa-eye')) {
+    changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
+    changeThis.closest('.element').addClass('elementCollapse')
+    changeThis.attr('value',1)
+    changeThis.attr('title',"{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
+    //update action, comment and code blocPreview:
+    changeThis.closest('.element').find('.blocPreview').each(function() {
+      var txt = '<i>Unfound</i>'
+      var _el = $(this).closest('.element')
+      if (_el.hasClass('elementACTION')) {
+        txt = _el.find('.expressions .expression').first().find('input.form-control').first().val()
+        if (!txt) txt = _el.find('.expression textarea').val()
+      } else if (_el.hasClass('elementCODE')) {
+        var id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
+        if (isset(editor[id])) txt = editor[id].getValue()
+      } else {
+        //comment
+        txt = _el.find('.expression textarea').val()
+        txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+        if (!txt) txt = _el.find('.expression input.form-control').val()
+      }
+      if (txt) $(this).html(txt.substring(0,200))
+    })
+  } else {
+    changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
+    changeThis.closest('.element').removeClass('elementCollapse')
+    changeThis.attr('value',0)
+    changeThis.attr('title',"{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
+    setEditor()
   }
 });
 
@@ -957,9 +973,11 @@ $pageContainer.off('mouseenter','.bt_sortable').on('mouseenter','.bt_sortable', 
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel");
       }
-
       updateTooltips()
       updateSortable()
+    },
+    stop: function(event, ui) {
+      $("#div_scenarioElement").sortable("disable");
     }
   });
   $("#div_scenarioElement").sortable("enable");
@@ -998,6 +1016,15 @@ $('#bt_templateScenario').off('click').on('click', function () {
   $("#md_modal").load('index.php?v=d&modal=scenario.template&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open');
 });
 
+$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
+  if($(this).attr('value') == 0){
+    $(this).attr('value',1);
+    $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
+  }else{
+    $(this).attr('value',0);
+    $(this).html('<span><i class="fas fa-sync"></span>');
+  }
+});
 
 /**************** Initialisation **********************/
 $pageContainer.off('change','.scenarioAttr').on('change','.scenarioAttr:visible',  function () {
@@ -1056,11 +1083,12 @@ function updateElementCollpase() {
 
 function setEditor() {
   $('.expressionAttr[data-l1key=type][value=code]').each(function () {
-    var expression = $(this).closest('.expression');
-    var code = expression.find('.expressionAttr[data-l1key=expression]');
+    var expression = $(this).closest('.expression')
+    var code = expression.find('.expressionAttr[data-l1key=expression]')
+    $(this).find('.blocPreview').html(code.val())
     if (code.attr('id') == undefined && code.is(':visible')) {
-      code.uniqueId();
-      var id = code.attr('id');
+      code.uniqueId()
+      var id = code.attr('id')
       setTimeout(function () {
         editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
           lineNumbers: true,
@@ -1068,10 +1096,10 @@ function setEditor() {
           mode: 'text/x-php',
           matchBrackets: true,
           viewportMargin : Infinity
-        });
-      }, 1);
+        })
+      }, 1)
     }
-  });
+  })
 }
 
 function setAutocomplete() {
@@ -1089,12 +1117,8 @@ function setAutocomplete() {
     }
   });
 }
-
-$('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(){
-  printScenario($(this).attr('data-scenario_id'));
-});
-
 function printScenario(_id) {
+  $.hideAlert()
   $.showLoading();
   jeedom.scenario.update[_id] =function(_options){
     if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
@@ -1224,9 +1248,12 @@ function printScenario(_id) {
       if(data.name){
         title = data.name +' - Jeedom';
       }
-      addOrUpdateUrl('id',data.id,title);
-      if(window.location.hash == ''){
-        $('.nav-tabs a[href="#generaltab"]').click();
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id,title)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
       }
       setTimeout(function () {
         setEditor();
@@ -1315,15 +1342,16 @@ function addExpression(_expression) {
     return '';
   }
   var sortable = 'sortable';
-  if (_expression.type == 'condition') {
+  if (_expression.type == 'condition' || _expression.type == 'code') {
     sortable = 'noSortable';
   }
 
+  var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
+
   if (_expression.type == 'action') {
-    var retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
-  } else {
-    var retour = '<div class="expression ' + sortable + ' col-xs-12" >';
+    retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >';
   }
+
   retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>';
   retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>';
@@ -1393,7 +1421,7 @@ function addExpression(_expression) {
     });
     break;
     case 'code' :
-    retour += '<div class="col-xs-12">';
+    retour += '<div>';
     retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>';
     retour += '</div>';
     break;
@@ -1404,16 +1432,6 @@ function addExpression(_expression) {
   retour += '</div>';
   return retour;
 }
-
-$pageContainer.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]',function(){
-  if($(this).attr('value') == 0){
-    $(this).attr('value',1);
-    $(this).html('<span><i class="fas fa-ban text-danger"></i></span>');
-  }else{
-    $(this).attr('value',0);
-    $(this).html('<span><i class="fas fa-sync"></span>');
-  }
-});
 
 function addSubElement(_subElement) {
   if (!isset(_subElement.type) || _subElement.type == '') {
@@ -1508,23 +1526,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ALORS}}</legend>';
-    retour += '<div class="input-group">';
-    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-chevron-down"></i>';
-    retour += '</button>';
-    retour += '<span class="input-group-btn">';
-    retour += '<div class="dropdown" >';
-    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
-    retour += '</span>';
-    retour += '</div>';
+    retour += getAddButton(true);
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1540,16 +1542,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{SINON}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1649,16 +1642,7 @@ function addSubElement(_subElement) {
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{FAIRE}}</legend>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += '<i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (ex. : SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1687,13 +1671,15 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour += '<div>';
     retour += '<legend >{{CODE}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'code'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
+      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>';
+    } else {
+      retour += '<div class="blocPreview"></div>';
     }
+    retour += '</div>';
+    retour += '<div class="expressions">';
     retour += addExpression(expression);
     retour += '</div>';
     retour = addElButtons(retour)
@@ -1711,13 +1697,17 @@ function addSubElement(_subElement) {
     retour += '</div>';
     retour += '<div>';
     retour += '<legend >{{COMMENTAIRE}}</legend>';
-    retour += '</div>';
-    retour += '<div class="expressions">';
-    retour += '<div class="sortable empty" ></div>';
     var expression = {type: 'comment'};
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0];
+      var txt = expression.expression.substring(0,200)
+      txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+      retour += '<div class="blocPreview">'+txt+'</div>';
+    } else {
+      retour += '<div class="blocPreview"></div>';
     }
+    retour += '</div>';
+    retour += '<div class="expressions">';
     retour += addExpression(expression);
     retour += '</div>';
     retour = addElButtons(retour)
@@ -1738,19 +1728,20 @@ function addSubElement(_subElement) {
       retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />';
     }
     retour += '<legend class="legendHidden">ACTION</legend>';
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+      expression = _subElement.expressions[0]
+      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0].expressions[0])) {
+        retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200)+'</div>'
+      } else {
+        retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200)+'</div>'
+      }
+    } else {
+      retour += '<div class="blocPreview"></div>'
+    }
     retour += '</div>';
     retour += '<div class="subElementFields">';
     retour += '<legend >{{ACTION}}</legend><br/>';
-    retour += '<div class="dropdown">';
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-    retour += ' <i class="fas fa-plus-circle"></i> Ajouter';
-    retour += '<span class="caret"></span>';
-    retour += '</button>';
-    retour += '<ul class="dropdown-menu">';
-    retour += '<li><a class="bt_addScenarioElement fromSubElement tootlips" tooltip="{{Permet d\'ajouter des éléments fonctionnels essentiels pour créer vos scénarios (Ex: SI/ALORS….)}}">{{Bloc}}</a></li>';
-    retour += '<li><a class="bt_addAction">{{Action}}</a></li>';
-    retour += '</ul>';
-    retour += '</div>';
+    retour += getAddButton();
     retour += '</div>';
     retour += '<div class="expressions">';
     retour += '<div class="sortable empty" ></div>';
@@ -1927,6 +1918,62 @@ function updateTooltips() {
   })
   $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
 }
+
+function getAddButton(_caret) {
+  if (!isset(_caret)) _caret = false
+  retour = ''
+  if (_caret) {
+    retour += '<div class="input-group">'
+    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+    retour += '<i class="fas fa-chevron-down"></i>'
+    retour += '</button>'
+    retour += '<span class="input-group-btn">'
+  }
+  retour += '<div class="dropdown">'
+  if (_caret) {
+    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  } else {
+    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+  }
+  retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
+  retour += '<span class="caret"></span>'
+  retour += '</button>'
+  retour += '<ul class="dropdown-menu">'
+
+  retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
+  retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
+
+  retour += '</ul>'
+  retour += '</div>'
+  if (_caret) {
+    retour += '</span>'
+    retour += '</div>'
+  }
+  return retour
+}
+$pageContainer.off('click','.fromSubElement').on( 'click','.fromSubElement ', function (event) {
+  var elementType = $(this).attr('data-type')
+  setUndoStack()
+
+  var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
+  var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
+  elementDiv.append(newEL.addClass('disableElement'))
+
+  setEditor()
+  updateSortable()
+  updateElseToggle()
+  modifyWithoutSave = true
+  updateTooltips()
+  setAutocomplete()
+  setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
+})
+
 
 //UNDO Management
 var _undoStack_ = new Array()

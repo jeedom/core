@@ -61,19 +61,16 @@ colors Light
   --al-danger-color: rgb(190, 0, 0);
   --bt-success-color: rgb(150, 201, 39);
   
-  --scBlocIF: rgb(123,123,129);
-  --scBlocACTION: rgb(180,175,170);
-  --scBlocIN: rgb(95,148,82);
-  --scBlocAT: rgb(78,106,158);
-  --scBlocFOR: rgb(172,146,42);
-  --scBlocCODE: rgb(70,82,95);
-  --scBlocCOM: rgb(100,110,108);
+  --scBlocIF: rgb(85,110,130);
+  --scBlocElse: rgb(70,95,115);
+  --scBlocACTION: rgb(155,146,138);
+  --scBlocIN: rgb(85,138,72);
+  --scBlocAT: rgb(107,137,147);
+  --scBlocFOR: rgb(172,136,42);
+  --scBlocCODE: rgb(180,80,45);
+  --scBlocCOM: rgb(70,70,70);
   
-  --scBlocIF-sep: rgb(75, 75, 75);
-  --scBlocACTION-sep: rgb(108,105,102);
-  --scBlocIN-sep: rgb(57, 89, 50);
-  --scBlocAT-sep: rgb(47, 64, 95);
-  --scBlocFOR-sep: rgb(103, 88, 25);
+  --scBlocSep: rgb(35,35,35);
   
   --shd-color: rgba(0, 0, 0, 0.55);
 }

@@ -76,16 +76,15 @@ $(function(){
             className: 'eq-context-menu',
             callback: function(key, options) {
               tab = null
+              tabObj = null
               if (document.location.toString().match('#')) {
-                tab = '#' + document.location.toString().split('#')[1];
+                tab = '#' + document.location.toString().split('#')[1]
                 if (tab != '#') {
-                  tab = $('a[href="' + tab + '"]')
-                } else {
-                  tab = null
+                  tabObj = $('a[href="' + tab + '"]')
                 }
               }
               $('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]').click()
-              if (tab) tab.click()
+              if (tabObj) tabObj.click()
             },
             items: contextmenuitems
           })

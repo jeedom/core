@@ -709,7 +709,9 @@ function changeThemeAuto() {
     }
 
     currentTheme = $('#bootstrap_theme_css').attr('href')
-    currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
+    if(currentTheme.indexOf('?md5') != -1){
+      currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
+    }
 
     if (currentTheme != themeCss) {
       $.get(themeCss)

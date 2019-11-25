@@ -68,8 +68,11 @@
     jeedom.cmd.update['#id#'] = function(_options){
       var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first');
       if('#generic_type#' == 'TEMPERATURE'){
-        widget.find('.intNumTemp').text(Math.floor(_options.display_value)+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
-        widget.find('.decNumTemp').text(Math.round((_options.display_value - Math.floor(_options.display_value)) * 10));
+        var n = parseFloat(_options.display_value).toFixed(1)
+        var _int = n.split('.')[0]
+        var _dec = n.split('.')[1]
+        widget.find('.intNumTemp').text(_int+".").attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+        widget.find('.decNumTemp').text(_dec);
       }
       if('#generic_type#' == 'HUMIDITY'){
         widget.find('.uniteHumidity').show();
