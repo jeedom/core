@@ -33,7 +33,7 @@ if (init('p') == '' && isConnect()) {
 }
 $page = '';
 if (isConnect() && init('p') != '') {
-	$page = init('p');
+	$page = secureXSS(init('p'));
 	$title = ucfirst($page) . ' - ' . $title;
 }
 $plugin_menu = '';
@@ -444,7 +444,7 @@ function setTheme() {
 									</a>
 								</li>
 								<li class="hidden-sm">
-									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
+									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo secureXSS(init('p')); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
 								</li>
 							</ul>
 						</nav>
