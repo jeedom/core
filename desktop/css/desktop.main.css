@@ -3197,6 +3197,9 @@ td.alert {
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
+.bottomCorner {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
 
 #battery .eqLogic-widget .widget-name span {
   border-radius: var(--border-radius) !important;
@@ -3205,7 +3208,6 @@ td.alert {
 .panel {
   border-radius: var(--border-radius) !important;
 }
-.bottomCorner,
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   min-height: 50px;
