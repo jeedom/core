@@ -3,7 +3,7 @@ function initEquipment(_object_id) {
   $('#searchContainer').show();
   var objectMapping = {}
   var objects_info = {}
-
+  
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -39,10 +39,10 @@ function initEquipment(_object_id) {
       jeedom.object.summaryUpdate(summaries)
     }
   })
-
+  
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-
+    
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path){
@@ -64,7 +64,7 @@ function initEquipment(_object_id) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function (html) {
-        if (_object_id == 'all') {
+        if (_object_id == 'all' || _object_id == '') {
           var div = ''
           summaries = []
           for(var i in html) {
@@ -107,13 +107,13 @@ function initEquipment(_object_id) {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})
         setTimeout(function() {
           $('#div_displayEquipement .objectHtml').packery({gutter :0})
-          }, 1000)
+        }, 1000)
       }
     })
   } else {
     $('#bottompanel').panel('open')
   }
-
+  
   $('body').on('orientationChanged', function (event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
@@ -121,7 +121,7 @@ function initEquipment(_object_id) {
     $('#div_displayEquipement > .objectHtml').packery({gutter :0})
     $('.div_displayEquipement .objectHtml').packery({gutter :0})
   })
-
+  
   $('#in_searchWidget').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
@@ -175,9 +175,9 @@ function initEquipment(_object_id) {
       }
     })
   })
-
+  
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-
+  
 }
