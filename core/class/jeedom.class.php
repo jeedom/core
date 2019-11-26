@@ -359,7 +359,7 @@ class jeedom {
 			
 		$value = shell_exec('sudo cat /proc/sys/vm/swappiness');
 		$ok = ($value <= 20);
-		if($values['MemTotal'] >= 2048*1024){
+		if($values['MemTotal'] >= (1024*1024)){
 			$ok = true;
 		}
 		$return[] = array(
