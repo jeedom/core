@@ -60,6 +60,7 @@ $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
     jeedom.object.all({
+      onlyVisible: 0,
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -101,7 +102,6 @@ $(function(){
   }
   catch(err) {}
 })
-
 
 $('#bt_graphObject').on('click', function () {
   $('#md_modal').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open');
