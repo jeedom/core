@@ -3174,6 +3174,7 @@ input:invalid {
   border-radius: var(--border-radius) !important;
 }
 
+.fullCorner,
 .eqLogic-widget,
 .scenario-widget,
 #div_alert,
@@ -3189,6 +3190,7 @@ td.alert {
   border-radius: 0 !important;
 }
 
+.topCorner,
 .eqLogic-widget .widget-name,
 .scenario-widget .widget-name,
 .panel,
@@ -3203,6 +3205,7 @@ td.alert {
 .panel {
   border-radius: var(--border-radius) !important;
 }
+.bottomCorner,
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   min-height: 50px;
