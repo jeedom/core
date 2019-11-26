@@ -337,7 +337,7 @@ class jeedom {
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
 			$ok = ($value > 15);
-			if($ok && $values['MemTotal'] < (2048*1024) && $values['SwapTotal'] < (1024*1024)){
+			if($ok && ($values['MemTotal']  + $values['SwapTotal']) < (2048*1024)){
 				$ok = false;
 			}
 			$return[] = array(
