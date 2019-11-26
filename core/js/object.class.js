@@ -85,7 +85,8 @@ jeedom.object.all = function(_params) {
   paramsAJAX.data = {
     action: 'all',
     onlyHasEqLogic : _params.onlyHasEqLogic || '',
-    searchOnchild : _params.searchOnchild || '1'
+    searchOnchild : _params.searchOnchild || '1',
+    visible : visible || 1
   };
   $.ajax(paramsAJAX);
 };
