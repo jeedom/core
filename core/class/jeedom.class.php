@@ -304,7 +304,7 @@ class jeedom {
 			'name' => __('Swapiness', __FILE__),
 			'state' => $ok,
 			'result' => $value.'%',
-			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20%',__FILE__),
+			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
 			'key' => 'swapiness'
 		);
 		
