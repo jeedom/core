@@ -108,7 +108,7 @@ function template_replace($_array, $_subject) {
 
 function init($_name, $_default = '') {
 	if (isset($_GET[$_name])) {
-		return $_GET[$_name];
+		return secureXSS($_GET[$_name]);
 	}
 	if (isset($_POST[$_name])) {
 		return $_POST[$_name];
