@@ -53,7 +53,7 @@ try {
 	}
 	
 	if (init('action') == 'all') {
-		$objects = jeeObject::buildTree(null,init('visible',true));
+		$objects = jeeObject::buildTree(null,init('onlyVisible',true));
 		if (init('onlyHasEqLogic') != '') {
 			$return = array();
 			foreach ($objects as $object) {

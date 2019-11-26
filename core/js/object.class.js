@@ -86,7 +86,7 @@ jeedom.object.all = function(_params) {
     action: 'all',
     onlyHasEqLogic : _params.onlyHasEqLogic || '',
     searchOnchild : _params.searchOnchild || '1',
-    visible : visible || 1
+    onlyVisible : _params.onlyVisible || 1
   };
   $.ajax(paramsAJAX);
 };
