@@ -80,13 +80,16 @@ jeedom.object.all = function(_params) {
     params.success(jeedom.object.cache.all);
     return;
   }
+  if(_params.onlyVisible == undefined){
+    _params.onlyVisible = true
+  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'all',
     onlyHasEqLogic : _params.onlyHasEqLogic || '',
     searchOnchild : _params.searchOnchild || '1',
-    onlyVisible : _params.onlyVisible || 1
+    onlyVisible : _params.onlyVisible
   };
   $.ajax(paramsAJAX);
 };
