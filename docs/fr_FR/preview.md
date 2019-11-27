@@ -3,11 +3,13 @@
 
 La page *Aperçu* vous propose un aperçu visuel de vos objets et de leurs résumés.
 
+Vous pouvez la configurer comme page par default dans **Réglages → Préférences**.
+
 La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 - Son nom.
 - Si il est visible.
 - Son image de fond.
-- Les éléments de donc résumé.
+- Les éléments de son résumé.
 
 Pour chaque objet, vous pouvez cliquer :
 - Sur l'image, pour ouvrir la page des équipements de cet objet (également accessible par le menu *Accueil → Dashboard → Objet*).
