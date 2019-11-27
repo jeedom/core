@@ -518,8 +518,8 @@ sup i {
   margin: 15px
 }
 .objectPreview {
-  width:350px;
-  height:250px;
+  width: 320px;
+  height: 250px;
   background-color: var(--bg-modal-color) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -545,20 +545,23 @@ sup i {
 }
 .objectPreview > .topPreview > .name {
   font-size: 20px;
-  max-width: 150px;
-  overflow: hidden;
   font-weight: 200;
-  line-height: 12px;
+  max-width: 240px;
+  max-height: 30px !important;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.6;
+  margin-top: -7px;
 }
 .objectPreview > .bottomPreview {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 36px;
+  height: 54px;
 }
 .objectPreview > .bottomPreview > .settings {
   position: absolute;
-  top: 8px;
+  bottom: 8px;
   color: var(--txt-color);
 }
 .objectPreview > .bottomPreview > .settings:hover {
@@ -567,14 +570,14 @@ sup i {
 .objectPreview > .bottomPreview > .resume {
   position: absolute;
   right: 5px;
-  bottom: 0;
+  bottom: 3px;
   text-align: right;
-  max-width: 310px;
+  max-width: 295px;
   overflow: hidden;
 }
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
-  font-size: 22px !important;
+  font-size: 20px !important;
   color: rgb(var(--contrast-color)) !important;
 }
 
