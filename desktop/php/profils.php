@@ -6,6 +6,7 @@ if (!isConnect()) {
 $_SESSION['user']->refresh();
 @session_write_close();
 $homePageDesktop = array(
+	'core::preview' => '{{Aperçu}}',
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
 	'core::plan' => '{{Design}}',

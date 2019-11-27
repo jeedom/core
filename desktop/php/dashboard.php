@@ -17,12 +17,16 @@ if (!is_object($object)) {
 if (!is_object($object)) {
 	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
 }
-$allObject = jeeObject::buildTree(null, true);
-foreach ($allObject as $value) {
-	if ($value->getId() == $object->getId()) {
-		$child_object = $value->getChilds();
-	}
+if (init('childs', 1) == 1) {
+	$allObject = jeeObject::buildTree(null, true);
 }
+
+foreach ($allObject as $value) {
+  if ($value->getId() == $object->getId()) {
+    $child_object = $value->getChilds();
+  }
+}
+
 sendVarToJs('rootObjectId', $object->getId());
 ?>
 <div class="row row-overflow">
