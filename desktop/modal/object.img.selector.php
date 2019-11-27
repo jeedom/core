@@ -4,7 +4,9 @@ if (!isConnect()) {
 }
 sendVarToJs('img_object_id',init('object_id'));
 ?>
+
 <div style="display: none;" id="div_imgObjSelectorAlert"></div>
+
 <style>
 .divIconSel{
 	height: 80px;
@@ -58,7 +60,9 @@ sendVarToJs('img_object_id',init('object_id'));
 		}
 		?>
 	</div>
-	<script>
+</div>
+
+<script>
 	$('.btSelectImgObj').on('click',function(){
 		var filename = $(this).attr('data-filename');
 		jeedom.object.uploadImage({
@@ -81,27 +85,33 @@ sendVarToJs('img_object_id',init('object_id'));
 			}
 		});
 	});
+
 	setTimeout(function() {
 		if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").focus()
 	}, 500);
+
+	//searching
 	$('#in_searchImgSelector').on('keyup',function(){
-		$('.divImgSel').show();
-		$('.imgCategory').show();
-		var search = $(this).value();
-		if(search != ''){
-			$('.imgDesc').each(function(){
-				if($(this).text().indexOf(search) == -1){
-					$(this).closest('.divImgSel').hide();
+		$('.divImgSel').show()
+		$('.imgCategory').show()
+		var search = $(this).value()
+		var text = null
+		if (search != '') {
+			search = normTextLower(search)
+			$('.imgDesc').each(function() {
+				text = normTextLower($(this).text())
+				if (text.indexOf(search) == -1) {
+					$(this).closest('.divImgSel').hide()
 				}
 			})
 		}
-		$('.imgCategory').each(function(){
-			var hide = true;
-			if($(this).find('.divImgSel:visible').length == 0){
-				$(this).hide();
+		$('.imgCategory').each(function() {
+			var hide = true
+			if ($(this).find('.divImgSel:visible').length == 0) {
+				$(this).hide()
 			}
-		});
-	});
+		})
+	})
 	$('#bt_resetSearch').on('click', function () {
 		$('#in_searchImgSelector').val('')
 		$('#in_searchImgSelector').keyup();
