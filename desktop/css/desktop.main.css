@@ -578,7 +578,7 @@ sup i {
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 20px !important;
-  color: rgb(var(--contrast-color)) !important;
+  color: var(--link-color) !important;
 }
 
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
