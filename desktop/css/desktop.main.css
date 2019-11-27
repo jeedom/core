@@ -3174,6 +3174,7 @@ input:invalid {
   border-radius: var(--border-radius) !important;
 }
 
+.fullCorner,
 .eqLogic-widget,
 .scenario-widget,
 #div_alert,
@@ -3189,11 +3190,15 @@ td.alert {
   border-radius: 0 !important;
 }
 
+.topCorner,
 .eqLogic-widget .widget-name,
 .scenario-widget .widget-name,
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+.bottomCorner {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
 #battery .eqLogic-widget .widget-name span {
