@@ -296,7 +296,7 @@ legend > sub {
 }
 .div_object legend .objectDashLegend {
   padding: 3px 20px;
-  background-color: rgb(var(--bg-color)) !important;
+  background-color: rgba(var(--bg-color), 0.65) !important;
 }
 .div_object legend > span {
   margin-left:10px;
