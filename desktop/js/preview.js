@@ -24,11 +24,6 @@ $(function(){
     $(this).appendTo($(this).closest('.objectPreview').find('.topPreview'))
   })
 
-  //resume on two lines:
-  $('.objectPreview').each(function() {
-    $(this).find('.objectSummaryParent').eq(-7).append('<br>')
-  })
-
   _refWidth = $('.objectPreview').eq(0).outerWidth(true)
   _blocsContainer.packery({gutter: _gutter})
   $(window).resize(function() {

@@ -580,7 +580,10 @@ sup i {
   font-size: 20px !important;
   color: var(--link-color) !important;
 }
-
+.objectPreview .objectSummaryParent:nth-last-child(5):before {
+  content: ' ';
+  display: block;
+}
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
   font-size: 22px !important;
   position: absolute;
