@@ -294,9 +294,14 @@ legend > sub {
   background-color: transparent !important;
   margin-top: 12px;
 }
+.div_object legend .objectDashLegend {
+  padding: 3px 20px;
+  background-color: rgb(var(--bg-color)) !important;
+}
 .div_object legend > span {
   margin-left:10px;
 }
+
 /* legend on equipements pages */
 :not(.div_object) > legend:not(.no-bordered) {
   text-align: left !important;

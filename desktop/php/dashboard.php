@@ -81,7 +81,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	<?php
 	$div =  '<div class="col-md-12">';
 	$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
-	$div .= '<legend><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i> </legend>';
+	$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 	$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
 	$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
 	$div .= '</div>';
@@ -98,7 +98,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			}
 			$div = '<div class="col-md-12">';
 			$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
-			$div .= '<legend><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></legend>';
+			$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 			$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
 			$div .= '<script>getObjectHtml(' . $child->getId() . ')</script>';
 			$div .= '</div>';
