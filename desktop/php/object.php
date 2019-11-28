@@ -5,6 +5,7 @@ if (!isConnect('admin')) {
 sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
 ?>
+
 <div class="row row-overflow">
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
@@ -23,7 +24,7 @@ $allObject = jeeObject::all();
 			</div>
 		</div>
 
-		<legend><i class="fas fa-image"></i>  {{Mes objets}}</legend>
+		<legend><i class="fas fa-image"></i>  {{Mes objets}} <sub class="itemsNumber"></sub></legend>
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
 			<div class="input-group-btn">
@@ -71,15 +72,15 @@ $allObject = jeeObject::all();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Nom de l'objet}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-2 col-xs-4 control-label">{{Nom de l'objet}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7">
 								<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
 								<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Père}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-2 col-xs-4 control-label">{{Père}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7">
 								<select class="form-control objectAttr" data-l1key="father_id">
 									<option value="">{{Aucun}}</option>
 									<?php
@@ -91,18 +92,18 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Visible}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Visible}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup>
 							</label>
-							<div class="col-sm-1">
+							<div class="col-lg-2 col-xs-2">
 								<input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Masquer sur le dashboard}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Masquer sur le dashboard}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.}}"></i></sup>
 							</label>
-							<div class="col-sm-1">
+							<div class="col-lg-2 col-xs-2">
 								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
 							</div>
 						</div>
@@ -113,10 +114,10 @@ $allObject = jeeObject::all();
 									<br><a href="/index.php?v=d&p=administration#interfacetab">Configuration / Interface</a>
 								</span>
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Icône}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Icône}}
 								<sup><i class="fas fa-question-circle tooltips" data-tooltip-content="#objectIconTip"></i></sup>
 							</label>
-							<div class="col-xs-1">
+							<div class="col-lg-1 col-md-1 col-xs-3">
 								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
 							</div>
 							<div class="col-xs-2">
@@ -125,29 +126,29 @@ $allObject = jeeObject::all();
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleurs personnalisées}}</label>
-							<div class="col-sm-1">
+							<label class="col-lg-2 col-xs-4 control-label">{{Couleurs personnalisées}}</label>
+							<div class="col-lg-2 col-xs-2">
 								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du tag}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Couleur du tag}}
 								<sup><i class="fas fa-question-circle tooltips" title="{{Couleur de l’objet et des équipements qui lui sont rattachés.}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<div class="col-lg-2 col-xs-2">
 								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Couleur du texte du tag}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<label class="col-lg-2 col-xs-4 control-label">{{Couleur du texte du tag}}</label>
+							<div class="col-lg-2 col-xs-2">
 								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
 							</div>
 						</div>
 						<br>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Image}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-2 col-xs-4 control-label">{{Image}}</label>
+							<div class="col-lg-6 col-xs-6">
 								<span class="btn btn-default btn-file">
 									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
 								</span>
@@ -156,9 +157,9 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 objectImg">
-								<img src="" width="200px" height="auto" />
+							<div class="col-lg-2 col-xs-4"></div>
+							<div class="col-lg-6 col-xs-8 objectImg">
+								<img src="" width="240px" height="auto" />
 							</div>
 						</div>
 					</fieldset>

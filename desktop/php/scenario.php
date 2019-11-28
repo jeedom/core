@@ -12,6 +12,7 @@ if (is_array($scenarioListGroup)) {
 	}
 }
 ?>
+
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
@@ -37,7 +38,7 @@ if (is_array($scenarioListGroup)) {
 			</div>
 		</div>
 
-		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}}</legend>
+		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalScenario) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
@@ -128,17 +129,21 @@ if (is_array($scenarioListGroup)) {
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> {{Ajouter bloc}}
-				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log}}"><i class="far fa-file-alt"></i>
+				<a class="btn btn-sm bt_addScenarioElement roundedLeft"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
+				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
 				</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
 				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fas fa-share"></i>
-				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i>
-				</a><a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> {{Exécuter}}
+				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+
+				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
+				<a id="bt_resetInsideScenarioSearch" class="btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+
+				<a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="far fa-check-circle"></i> {{Sauvegarder}}
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="far fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
@@ -233,6 +238,9 @@ if (is_array($scenarioListGroup)) {
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable">
 									</div>
+									<div class="col-xs-5">
+										<input class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="width:100%">
+									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Icône}}</label>
@@ -279,7 +287,6 @@ if (is_array($scenarioListGroup)) {
 								<div class="scheduleMode"></div>
 							</div>
 							<div class="provokeMode provokeDisplay" style="display: none;">
-
 							</div>
 							<br>
 							<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
@@ -289,31 +296,10 @@ if (is_array($scenarioListGroup)) {
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
-				<div id="div_scenarioElement" class="element" style="padding-bottom: 20px;"></div>
+				<div id="div_scenarioElement" class="element"></div>
 			</div>
 		</div>
 
-	</div>
-</div>
-
-<div class="modal fade" id="md_copyScenario">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Dupliquer le scénario}}</h3>
-			</div>
-			<div class="modal-body">
-				<div style="display: none;" id="div_copyScenarioAlert"></div>
-				<center>
-					<input class="form-control" type="text"  id="in_copyScenarioName" size="16" placeholder="{{Nom du scénario}}"/><br/><br/>
-				</center>
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_copyScenarioSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -368,18 +354,14 @@ if (is_array($scenarioListGroup)) {
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>
 </div>
 
 <?php
-include_file('3rdparty', 'jquery.sew/jquery.caretposition', 'js');
-include_file('3rdparty', 'jquery.sew/jquery.sew.min', 'js');
 include_file('desktop', 'scenario', 'js');
-
-//Core CodeMirror addons:
 include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
 include_file('3rdparty', 'codemirror/addon/search/search', 'js');
 include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');

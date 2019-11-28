@@ -17,8 +17,14 @@
 */
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use League\ColorExtractor\Color;
+use League\ColorExtractor\ColorExtractor;
+use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+	if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
+		return;
+	}
 	$_rescue = false;
 	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
 		$_rescue = true;
@@ -56,7 +62,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception('Fichier introuvable : ' . $path, 35486);
+		throw new Exception('Fichier introuvable : ' . secureXSS($path), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -77,7 +83,14 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'js') {
-		echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		$md5 = md5_file($path);
+		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false){
+			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
+		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js')){
+			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js"></script>';
+		}else{
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+		}
 		return;
 	}
 }
@@ -627,8 +640,10 @@ function date_fr($date_en) {
 		'/(^| )June($| )/', '/(^| )July($| )/', '/(^| )August($| )/', '/(^| )September($| )/',
 		'/(^| )October($| )/', '/(^| )November($| )/', '/(^| )December($| )/',
 	);
-	$texte_short_en = array(
-		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/',
+	$texte_short_day_en = array(
+		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/'
+	);
+	$texte_short_month_en = array(
 		'/(^| )Jan($| )/', '/(^| )Feb($| )/', '/(^| )Mar($| )/', '/(^| )Apr($| )/', '/(^| )May($| )/', '/(^| )Jun($| )/', '/(^| )Jul($| )/',
 		'/(^| )Aug($| )/', '/(^| )Sep($| )/', '/(^| )Oct($| )/', '/(^| )Nov($| )/', '/(^| )Dec($| )/',
 	);
@@ -642,8 +657,10 @@ function date_fr($date_en) {
 			'Juin', 'Juillet', 'Août', 'Septembre',
 			'Octobre', 'Novembre', 'Décembre',
 		);
-		$texte_short = array(
-			'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim',
+		$texte_short_day = array(
+			'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'
+		);
+		$texte_short_month = array(
 			'Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin',
 			'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.',
 		);
@@ -656,8 +673,10 @@ function date_fr($date_en) {
 			'Juni', 'July', 'August', 'September',
 			'October', 'November', 'December',
 		);
-		$texte_short = array(
-			'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son',
+		$texte_short_day = array(
+			'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son'
+		);
+		$texte_short_month = array(
 			'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
 			'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 		);
@@ -666,7 +685,7 @@ function date_fr($date_en) {
 		return $date_en;
 		break;
 	}
-	return preg_replace($texte_short_en, $texte_short, preg_replace($texte_long_en, $texte_long, $date_en));
+	return preg_replace($texte_short_day_en, $texte_short_day, preg_replace($texte_short_month_en, $texte_short_month, preg_replace($texte_long_en, $texte_long, $date_en)));
 }
 
 function convertDayEnToFr($_day) {
@@ -1128,27 +1147,68 @@ function sanitizeAccent($_message) {
 		return array($r, $g, $b);
 	}
 	
-	function getDominantColor($_pathimg) {
-		$rTotal = 0;
-		$gTotal = 0;
-		$bTotal = 0;
-		$total = 0;
+	function getDominantColor($_pathimg,$_level = null,$_smartMode = false) {
+		$colors = array();
 		$i = imagecreatefromjpeg($_pathimg);
 		$imagesX = imagesx($i);
+		$imagesY = imagesy($i);
+		$ratio = $imagesX / $imagesY;
+		$size = 270;
+		$img = imagecreatetruecolor($size, $size / $ratio);
+		imagecopyresized($img, $i, 0, 0, 0, 0, $size, $size / $ratio, $imagesX, $imagesY);
+		$imagesX = imagesx($img);
+		$imagesY = imagesy($img);
 		for ($x = 0; $x < $imagesX; $x++) {
-			$imagesY = imagesy($i);
 			for ($y = 0; $y < $imagesY; $y++) {
-				$rgb = imagecolorat($i, $x, $y);
-				$r = ($rgb >> 16) & 0xFF;
-				$g = ($rgb >> 8) & 0xFF;
-				$b = $rgb & 0xFF;
-				$rTotal += $r;
-				$gTotal += $g;
-				$bTotal += $b;
-				$total++;
+				$rgb = imagecolorat($img, $x, $y);
+				if($_smartMode){
+					$sum = (($rgb >> 16) & 0xFF) + (($rgb >> 8) & 0xFF) + ($rgb & 0xFF);
+					if($sum < 150){
+						continue;
+					}
+					if($sum > 650){
+						continue;
+					}
+				}
+				if(!isset($colors[$rgb])){
+					$colors[$rgb] = array('value' => $rgb,'nb' => 0);
+				}
+				$colors[$rgb]['nb']++;
 			}
 		}
-		return '#' . sprintf('%02x', round($rTotal / $total)) . sprintf('%02x', round($gTotal / $total)) . sprintf('%02x', round($bTotal / $total));
+		usort($colors, function ($a, $b) {
+			return $b['nb'] - $a['nb'];
+		});
+		
+		if($_level == null){
+			if($colors[0]['value'] == 0){
+				return '#' . substr("000000".dechex($colors[1]['value']),-6);
+			}
+			return '#' . substr("000000".dechex($colors[0]['value']),-6);
+		}
+		$return = array();
+		$colors = array_slice($colors,0,$_level*50);
+		$previous_color = -1;
+		foreach ($colors as $color) {
+			if($_smartMode && $previous_color > 0 && colorsAreClose($previous_color,$color['value'],50)){
+				continue;
+			}
+			$return[] = '#' . substr("000000".dechex($color['value']),-6);
+			$previous_color = $color['value'];
+		}
+		if(count($return) < $_level){
+			for($i=0;$i<($_level - count($return));$i++){
+				$return[] = $return[$i];
+			}
+		}
+		return $return;
+	}
+	
+	function colorsAreClose($_c1,$_c2,$_threshold){
+		$rDist = abs((($_c1 >> 16) & 0xFF) - (($_c2 >> 16) & 0xFF));
+		$gDist = abs((($_c1 >> 8) & 0xFF) - (($_c2 >> 8) & 0xFF));
+		$bDist = abs(($_c1 & 0xFF) - ($_c2 & 0xFF));
+		return (($rDist + $gDist + $bDist) < $_threshold);
 	}
 	
 	function sha512($_string) {
@@ -1269,7 +1329,7 @@ function sanitizeAccent($_message) {
 		$return = array();
 		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
 		if(count($sessions) > 100){
-			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : ',__FILE__).'"sudo rm -rf '.session_save_path().';mkdir '.session_save_path().';chmod 777 '.session_save_path().'"');
+			throw new Exception(__('Trop de session, je ne peux pas lister : ',__FILE__).count($sessions).__('. Faire, pour les nettoyer : ',__FILE__).'"sudo rm -rf '.session_save_path().';sudo mkdir '.session_save_path().';sudo chmod 777 '.session_save_path().'"');
 		}
 		foreach ($sessions as $session) {
 			try {

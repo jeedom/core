@@ -1,8 +1,7 @@
 /*
 Theme Core 2019 @Jeedom
+Mobile WebApp
 */
-
-@import url("coreWidgets.css");
 
 /* _____________________________GLOBAL */
 ::-webkit-scrollbar{
@@ -188,7 +187,7 @@ a, .ui-link {
   padding: 0 !important;
   background-color: transparent;
   box-shadow: none !important;
-  
+
 }
 .eqLogic-widget,
 .scenario-widget {
@@ -207,9 +206,13 @@ a, .ui-link {
   text-shadow: none !important;
   min-height: 20px;
 }
+.cmd.refresh {
+  position: absolute;
+  right: 0;
+}
 .eqLogic.eqLogic-widget .ui-input-text input[type=color],
 .action_colorpicker_change {
-  width: 34px;
+  width: 100%;
   padding: 0 !important;
   border: none !important;
   min-height: 32px
@@ -229,6 +232,13 @@ a, .ui-link {
 }
 .ui-controlgroup-controls .ui-btn {
   box-shadow: none !important;
+}
+
+.ui-btn.ui-checkbox-off:after,
+.ui-btn.ui-checkbox-on:after {
+  border: 2px solid var(--el-defaultColor) !important;
+  background-color: var(--el-defaultColor) !important;
+  opacity: 1
 }
 
 [data-category] .widget-name {
@@ -252,13 +262,13 @@ a, .ui-link {
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
 }
-
 .widget-name {
   padding-right: 22px;
   padding-left: 12px;
   word-break: break-word;
+  max-height: 41px;
+  overflow: hidden;
 }
-
 .eqLogic.eqLogic-widget,
 .scenario.scenario-widget  {
   margin-top: 5px !important;
@@ -266,6 +276,9 @@ a, .ui-link {
   font-size: 14px !important;
 }
 
+.scenario-widget.disabled .widget-name {
+  background-color: var(--al-warning-color) !important;;
+}
 
 .ui-shadow,
 .nd2-card {
@@ -276,10 +289,13 @@ a, .ui-link {
   font-size: 26px;
   font-weight: bold;
   color: var(--link-color) !important;
+  min-height: 45px;
+}
+.iconCmd > span {
+  vertical-align: middle !important;
 }
 .iconCmd i {
   color: var(--link-color) !important;
-  margin: 7px;
   font-size: 30px !important;
   top: 5px !important;
   position: relative;
@@ -296,6 +312,9 @@ a, .ui-link {
   padding-left: 5px !important;
   padding-right: 5px !important;
   font-size: 12.5px;
+}
+.iconCmd + .timeCmd {
+  line-height: 25px;
 }
 .statusCmd {
   position: absolute;
@@ -334,20 +353,20 @@ a, .ui-link {
   padding: 5px;
 }
 .scenario-widget  {
-  min-height: 72px !important;
+  min-height: 65px !important;
 }
 .scenario-widget .state {
   padding-top: 12px;
   line-height: 40px !important;
 }
 .scenario-widget .state i {
-  font-size: 28px !important;
+  font-size: 22px !important;
   position: relative;
-  top: 7px !important;
+  top: 4px !important;
   margin-right: 22px;
 }
-.scenario-widget center:last-of-type {
-  margin-bottom: 8px;
+.scenario-widget .ui-btn.ui-mini {
+  font-size: 8px !important;
 }
 p.state {
   font-size: 12px !important;
@@ -357,16 +376,23 @@ p.state {
 .btn.action {
   margin-top: 2px;
 }
-.cmd.refresh {
-  margin-top: 2px;
-}
+
 .cmd.refresh i {
   font-size: 12px;
   color: var(--sc-lightTxt-color) !important;
+  margin-top: 6px !important;
 }
 .cmd.refresh i:hover {
   color: var(--linkHoverLight-color) !important;
 }
+.cmd.refresh.spinning i {
+  animation: spin-animation 1s infinite linear;
+}
+@keyframes spin-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
+
 .label {
   font-size: 12px !important;
   font-weight: normal;
@@ -379,6 +405,16 @@ p.state {
   background-color:var(--al-warning-color) !important;
   color : var(--linkHoverLight-color) !important;
 }
+.state.label-info,
+.label-info {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--al-info-color) !important;
+}
+.label-success {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--al-success-color) !important;
+}
+
 .full-width-slider {
   width: 100% !important;
 }
@@ -434,7 +470,8 @@ p.state {
   color: var(--link-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
   box-shadow: none;
-  line-height: 12px !important;
+  line-height: 15px !important;
+  min-height: 17px;
 }
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
@@ -442,6 +479,7 @@ p.state {
 :not(.cmd) a.ui-btn-raised:not(.ui-mini) > i {
   margin-top: 5px;
   font-size: 2em !important;
+  padding: 6px;
 }
 .ui-mini {
   font-size: 12px;
@@ -477,6 +515,10 @@ p.state {
 .ui-panel-position-bottom.ui-panel-display-overlay > a > i{
   display: inline-flex;
   width: 28px;
+}
+.ui-bottom-sheet-list .ui-bottom-sheet-sep {
+  background-color: var(--btnEq-default-color);
+  padding: 3px;
 }
 .ui-bottom-sheet-list .ui-bottom-sheet-link:hover,
 .ui-listview > li > a:hover {
@@ -563,7 +605,9 @@ select option {
 /* buttons */
 a.action.ui-btn {
   min-width: 15px;
+  min-height: 15px;
 }
+
 .ui-slider-bg {
   height: 5px;
 }
@@ -586,7 +630,12 @@ a.action.ui-btn {
   text-align: center;
   font-size: 16px !important;
 }
-#div_displayBattery .eqLogic-widget .widget-name span {
+#div_displayBattery .eqLogic-widget .widget-name > .name {
+  display:block;
+  max-height: 21px;
+  overflow: hidden;
+}
+#div_displayBattery .eqLogic-widget .widget-name > .object {
   color: var(--txt-color) !important;
   background-color: rgb(var(--bg-color)) !important;
   font-size: 12.5px !important;
@@ -687,7 +736,7 @@ a.action.ui-btn {
   color: var(--linkHoverLight-color);
 }
 
-.alert-sucess {
+.alert-success {
   background-color: var(--al-success-color);
   color: var(--linkHoverLight-color);
 }
@@ -769,6 +818,28 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #in_globalLogSearch {
   margin-top: 5px;
 }
+
+#table_timeline {
+  font-size: 12px;
+}
+#table_timeline tbody td > i{
+  font-size: 18px;
+}
+#table_timeline tr {
+  min-height: 22px;
+  padding: 0;
+  margin: 0;
+  border: 1px solide red !important;
+}
+#table_timeline .label-sm {
+  padding: 5px;
+  border-radius: var(--border-radius);
+  line-height: 27px;
+}
+#table_timeline .sepDay td {
+  border-top: 2px dotted var(--txt-color);
+}
+
 /* ________________HIGHCHARTS */
 .highcharts-tooltip .highcharts-tooltip-box,
 .highcharts-tooltip .highcharts-label-box {
@@ -784,6 +855,62 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 }
 .highcharts-tooltip .highcharts-shadow {
   display: none;
+}
+
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+  fill: var(--link-color) !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  fill: var(--txt-color) !important;
+}
+.highcharts-background {
+  fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
+  fill-opacity: var(--opacity);
+}
+.gauge .highcharts-background {
+  fill: transparent !important;
+}
+.highcharts-range-selector-buttons > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-container {
+  color: var(--txt-color) !important;
+}
+.chartContainer .highcharts-plot-band,
+#div_graph .highcharts-plot-band {
+  fill: rgb(var(--bg-color)) !important;
+}
+.highcharts-grid-line {
+  stroke: var(--defaultBkg-color);
+}
+.highcharts-button-box {
+  fill: var(--el-defaultColor) !important;
+}
+.highcharts-button > text,
+.highcharts-button-disabled > text{
+  fill: var(--link-color) !important;
+}
+.highcharts-axis-labels > text {
+  fill: var(--link-color) !important;
+}
+
+.highcharts-pane {
+  fill: var(--el-defaultColor);
+}
+.highcharts-data-label > span > span {
+  color: var(--txt-color) !important;
+}
+.highcharts-color-0 {
+  fill: var(--link-color);
+}
+
+/* ___________________________________________________________POPUP */
+.ui-popup-screen.in {
+  background-image: none;
+  opacity: 1;
+}
+#popupDialog-popup {
+  background-color: var(--bg-modal-color);
 }
 
 
@@ -894,6 +1021,11 @@ pre,
 a.ui-table-columntoggle-btn {
   display: none;
 }
+[data-page="message"] .removeMessage {
+  font-size: 20px;
+  padding: 5px;
+}
+
 @media only screen and (max-width:30em) {
   #table_message th.ui-table-priority-1 {
     display: none;
@@ -905,12 +1037,12 @@ a.ui-table-columntoggle-btn {
     display: table-cell;
   }
   #table_message td:not(.datetime) {
-    margin-left: -30px;
+    margin-left: -40px;
   }
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-  
+
   #table_message td.message {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);

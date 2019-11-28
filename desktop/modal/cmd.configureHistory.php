@@ -38,8 +38,8 @@ foreach ($cmds as $cmd) {
   </thead>
   <tbody>
     <?php
+    $tr = '';
     foreach ($cmds as $cmd) {
-      $tr = '';
       $tr .= '<tr data-cmd_id="'.$cmd->getId(). '">';
       $tr .= '<td style="width:95px;">';
       if ($cmd->getType() == 'info') {
@@ -47,7 +47,8 @@ foreach ($cmds as $cmd) {
       }
       $tr .= '</td>';
       $tr .= '<td style="width:155px;">';
-      $tr .= '<center><input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' /></center>';
+      $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
+      $tr .= ' <input class="cmdAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
       $tr .= '</td>';
       $tr .= '<td style="width:130px;">';
       $tr .= '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
@@ -94,8 +95,8 @@ foreach ($cmds as $cmd) {
       $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       $tr .= '</td>';
       $tr .= '</tr>';
-      echo $tr;
     }
+    echo $tr;
     ?>
   </tbody>
 </table>
@@ -152,4 +153,8 @@ $('#bt_applytimeline').on('click',function(){
     $(this).closest('tr').attr('data-change','1');
   });
 });
+
+$(function() {
+  jeedom.timeline.autocompleteFolder()
+})
 </script>

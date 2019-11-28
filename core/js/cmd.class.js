@@ -25,14 +25,35 @@ if (!isset(jeedom.cmd.cache.byHumanName)) {
 if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
+
+jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
+  if (!_eqlogic){
+    return;
+  }
+  if (_eqlogic.find('.cmd.refresh').length) {
+    _eqlogic.find('.cmd.refresh').addClass('spinning')
+  } else {
+    _eqlogic.find('.widget-name').prepend('<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+  }
+  if (_hide) {
+    setTimeout(function() {
+      if (_eqlogic.find('.cmd.refresh').hasClass('remove')) {
+        _eqlogic.find('.cmd.refresh').remove()
+      } else {
+        _eqlogic.find('.cmd.refresh').removeClass('spinning')
+      }
+    }, 1000);
+  }
+}
+
 jeedom.cmd.execute = function(_params) {
   if(jeedom.cmd.disableExecute){
     return;
   }
   var notify = _params.notify || true;
   if (notify) {
-    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic');
-    eqLogic.find('.statusCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic-widget');
+    jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = json_encode(_params.value);
@@ -57,10 +78,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
@@ -78,10 +96,7 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
@@ -103,10 +118,7 @@ jeedom.cmd.execute = function(_params) {
                 });
               }
               if (notify) {
-                eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                setTimeout(function() {
-                  eqLogic.find('.statusCmd').empty();
-                }, 3000);
+                jeedom.cmd.notifyEq(eqLogic, true)
               }
               return data;
             }
@@ -124,10 +136,7 @@ jeedom.cmd.execute = function(_params) {
                   });
                 }
                 if (notify) {
-                  eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-                  setTimeout(function() {
-                    eqLogic.find('.statusCmd').empty();
-                  }, 3000);
+                  jeedom.cmd.notifyEq(eqLogic, true)
                 }
                 return data;
               }
@@ -142,19 +151,13 @@ jeedom.cmd.execute = function(_params) {
             });
           }
           if (notify) {
-            eqLogic.find('.statusCmd').empty().append('<i class="fas fa-times"></i>');
-            setTimeout(function() {
-              eqLogic.find('.statusCmd').empty();
-            }, 3000);
+            jeedom.cmd.notifyEq(eqLogic, true)
           }
           return data;
         }
       }
       if (notify) {
-        eqLogic.find('.statusCmd').empty().append('<i class="fa fa-rss"></i>');
-        setTimeout(function() {
-          eqLogic.find('.statusCmd').empty();
-        }, 3000);
+        jeedom.cmd.notifyEq(eqLogic, true)
       }
       return data;
     }
@@ -310,28 +313,28 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
-  if(cmds.length > 0){
-    $(cmds).each(function(){
-      var cmd = $(this);
-      if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
-        return true;
-      }
-      jeedom.cmd.toHtml({
-        global : false,
-        id : $(this).attr('data-cmd_id'),
-        version : $(this).attr('data-version'),
-        success : function(data){
-          var html = $(data.html);
-          var uid = html.attr('data-cmd_uid');
-          if(uid != 'undefined'){
-            cmd.attr('data-cmd_uid',uid);
-          }
-          cmd.empty().html(html.children());
-          cmd.attr("class", html.attr("class"));
-        }
-      })
-    });
+  if(cmds.length == 0){
+    return;
   }
+  $(cmds).each(function(){
+    var cmd = $(this);
+    if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+      return true;
+    }
+    jeedom.cmd.toHtml({
+      global : false,
+      id : $(this).attr('data-cmd_id'),
+      version : $(this).attr('data-version'),
+      success : function(data){
+        var html = $(data.html);
+        var uid = html.attr('data-cmd_uid');
+        if(uid != 'undefined'){
+          cmd.attr('data-cmd_uid',uid);
+        }
+        cmd.empty().html(html.children()).attr("class", html.attr("class"));
+      }
+    })
+  });
 }
 
 jeedom.cmd.refreshValue = function(_params) {
@@ -814,7 +817,6 @@ jeedom.cmd.normalizeName = function(_tagname) {
   return _tagname;
 }
 
-
 jeedom.cmd.setOrder = function(_params) {
   var paramsRequired = ['cmds'];
   var paramsSpecifics = {};
@@ -830,6 +832,24 @@ jeedom.cmd.setOrder = function(_params) {
   paramsAJAX.data = {
     action: 'setOrder',
     cmds: json_encode(_params.cmds)
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.getDeadCmd = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getDeadCmd'
   };
   $.ajax(paramsAJAX);
 };

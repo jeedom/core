@@ -17,7 +17,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 		</tr>
 	</thead>
 	<tbody>
-
+		
 	</tbody>
 </table>
 
@@ -27,10 +27,10 @@ $(function() {
 	refreshDataStoreMangementTable();
 	$('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
-      	if (tr.attr('data-datastore_id') == '') {
-          tr.remove()
-          return
-        }
+		if (tr.attr('data-datastore_id') == '') {
+			tr.remove()
+			return
+		}
 		bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
 			if (result) {
 				jeedom.dataStore.remove({
@@ -46,7 +46,7 @@ $(function() {
 			}
 		});
 	});
-
+	
 	$('#table_dataStore').delegate('.bt_saveDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		jeedom.dataStore.save({
@@ -64,13 +64,13 @@ $(function() {
 			}
 		});
 	});
-
+	
 	$('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		$('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"});
 		$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
 	});
-
+	
 	$('#bt_dataStoreManagementAdd').on('click', function() {
 		var tr = '<tr data-dataStore_id="">';
 		tr += '<td>';
@@ -90,7 +90,7 @@ $(function() {
 		$('#table_dataStore tbody').prepend(tr);
 		$("#table_dataStore").trigger("update");
 	});
-
+	
 	function refreshDataStoreMangementTable() {
 		jeedom.dataStore.all({
 			type: dataStore_type,
@@ -104,7 +104,7 @@ $(function() {
 				for (var i in data) {
 					tr += '<tr data-dataStore_id="' + data[i].id + '">';
 					tr += '<td style="min-width:55px;">';
-					tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" disabled />';
+					tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" readonly />';
 					tr += '</td>';
 					tr += '<td style="min-width:90px;">';
 					tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />';

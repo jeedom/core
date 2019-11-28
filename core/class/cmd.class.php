@@ -547,6 +547,9 @@ class cmd {
 	}
 	
 	public static function cmdToValue($_input, $_quote = false) {
+		if(config::byKey('expression::autoQuote','core',1) == 0){
+			$_quote = false;
+		}
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -677,6 +680,28 @@ class cmd {
 			}
 		}
 		foreach (plugin::listPlugin(true,false,false) as $plugin) {
+			$path = __DIR__ . '/../../plugins/'.$plugin->getId().'/core/template/' . $_version;
+			if (file_exists($path)) {
+				$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
+				foreach ($files as $file) {
+					$informations = explode('.', $file);
+					if(count($informations) < 4){
+						continue;
+					}
+					if(stripos($informations[3],'tmpl') !== false){
+						continue;
+					}
+					if (!isset($return[$informations[1]])) {
+						$return[$informations[1]] = array();
+					}
+					if (!isset($return[$informations[1]][$informations[2]])) {
+						$return[$informations[1]][$informations[2]] = array();
+					}
+					if (isset($informations[3])) {
+						$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => $plugin->getId(), 'type' => $plugin->getId());
+					}
+				}
+			}
 			if (!method_exists($plugin->getId(), 'templateWidget')) {
 				continue;
 			}
@@ -690,7 +715,7 @@ class cmd {
 						if(!isset($return[$type][$subtype])){
 							$return[$type][$subtype] = array();
 						}
-						$return[$type][$subtype][$name] = array('name' => $name, 'location' => $plugin->getId() , 'type' => 'plugin');
+						$return[$type][$subtype][$plugin->getId().'::'.$name] = array('name' => $name, 'location' => $plugin->getId() , 'type' => 'plugin');
 					}
 				}
 			}
@@ -778,40 +803,6 @@ class cmd {
 		if ($check == 1 || $check || $check == '1') {
 			$cmd->executeAlertCmdAction();
 		}
-	}
-	
-	public static function timelineDisplay($_event) {
-		$return = array();
-		$return['date'] = $_event['datetime'];
-		$return['type'] = $_event['type'];
-		$return['group'] = $_event['subtype'];
-		$cmd = cmd::byId($_event['id']);
-		if (!is_object($cmd)) {
-			return null;
-		}
-		$eqLogic = $cmd->getEqLogic();
-		$object = $eqLogic->getObject();
-		$return['object'] = is_object($object) ? $object->getId() : 'aucun';
-		$return['plugins'] = $eqLogic->getEqType_name();
-		$return['category'] = $eqLogic->getCategory();
-		
-		if ($_event['subtype'] == 'action') {
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<div>' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i></div>';
-			$return['html'] .= '<div>' . $_event['options'] . '<div/>';
-			$return['html'] .= '</div>';
-		} else {
-			$class = '';
-			if (isset($_event['cmdType']) && $_event['cmdType'] == 'binary') {
-				$class = ($_event['value'] == 0 ? 'success' : 'warning');
-			}
-			$return['html'] = '<div class="cmd" data-id="' . $_event['id'] . '">';
-			$return['html'] .= '<div class="' . $class . '">' . $_event['name'] . '<i class="fas fa-cogs pull-right cursor bt_configureCmd"></i>';
-			$return['html'] .= ' <span class="label-sm label-info">' . $_event['value'] . '</span>';
-			$return['html'] .= '</div>';
-			$return['html'] .= '</div>';
-		}
-		return $return;
 	}
 	
 	/*     * *********************Méthodes d'instance************************* */
@@ -1076,7 +1067,6 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
-			$str_option = '';
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
 				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {
@@ -1084,7 +1074,13 @@ class cmd {
 			}
 			
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'action', 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => date('Y-m-d H:i:s'), 'options' => $str_option));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('action');
+				$timeline->setLink_id($this->getId());
+				$timeline->setFolder($this->getConfiguration('timeline::folder'));
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->save();
 			}
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
@@ -1174,8 +1170,11 @@ class cmd {
 		if(isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])){
 			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
-			if(isset($template_conf['replace'])){
+			if(isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0){
 				$replace = $template_conf['replace'];
+				foreach ($replace as &$value) {
+					$value = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$value));
+				}
 			}else{
 				$replace = array();
 			}
@@ -1193,9 +1192,11 @@ class cmd {
 					if(!isset($test['state_dark'])){
 						$test['state_dark'] = '';
 					}
-					$test['operation'] = str_replace('#value#','_options.display_value',$test['operation']);
-					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.widgets.getThemeImg(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
-					$replace['#change_theme#'] .= 'if(cmd.attr("data-state") == '.$i.'){state=jeedom.widgets.getThemeImg(\''.str_replace("'","\'",$test['state_light']).'\',\''.str_replace("'","\'",$test['state_dark']).'\')}';
+					$test['state_light'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_light']));
+					$test['state_dark'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_dark']));
+					$test['operation'] = str_replace('"',"'",str_replace('#value#','_options.display_value',$test['operation']));
+					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
+					$replace['#change_theme#'] .= 'if(cmd.attr("data-state") == '.$i.'){state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
 					$i++;
 				}
 			}
@@ -1248,6 +1249,7 @@ class cmd {
 			'#eqLogic_id#' => $this->getEqLogic_id(),
 			'#generic_type#' => $this->getGeneric_type(),
 			'#hide_name#' => '',
+			'#value_history#' => ''
 		);
 		if ($this->getConfiguration('listValue', '') != '') {
 			$listOption = '';
@@ -1352,11 +1354,13 @@ class cmd {
 		} else {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
+				$replace['#value_id#'] = $cmdValue->getId();
 				$replace['#state#'] = $cmdValue->execCmd();
 				$replace['#valueName#'] = $cmdValue->getName();
 				$replace['#unite#'] = $cmdValue->getUnite();
 				$replace['#collectDate#'] = $cmdValue->getCollectDate();
 				$replace['#valueDate#'] = $cmdValue->getValueDate();
+				$replace['#value_history#'] = ($cmdValue->getIsHistorized() == 1) ? 'history cursor' : '';
 				$replace['#alertLevel#'] = $cmdValue->getCache('alertLevel', 'none');
 				if (trim($replace['#state#']) === '' && ($cmdValue->getSubtype() == 'binary' || $cmdValue->getSubtype() == 'numeric')) {
 					$replace['#state#'] = 0;
@@ -1457,7 +1461,6 @@ class cmd {
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this);
-			$eqLogic->emptyCacheWidget();
 			$level = $this->checkAlertLevel($value);
 			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
@@ -1465,9 +1468,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						if (!$repeat) {
-							$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
-						}
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
@@ -1492,13 +1493,22 @@ class cmd {
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
+		$eqLogic->emptyCacheWidget();
 		if (!$repeat) {
 			$this->checkCmdAlert($value);
 			if (isset($level) && $level != $this->getCache('alertLevel')) {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
-				jeedom::addTimelineEvent(array('type' => 'cmd', 'subtype' => 'info', 'cmdType' => $this->getSubType(), 'id' => $this->getId(), 'name' => $this->getHumanName(true), 'datetime' => $this->getValueDate(), 'value' => $value . $this->getUnite()));
+				$timeline = new timeline();
+				$timeline->setType('cmd');
+				$timeline->setSubtype('info');
+				$timeline->setLink_id($this->getId());
+				$timeline->setName($this->getHumanName(true, true));
+				$timeline->setFolder($this->getConfiguration('timeline::folder'));
+				$timeline->setDatetime($this->getValueDate());
+				$timeline->setOptions(array('value' => $value . $this->getUnite(),'cmdType' => $this->getSubType()));
+				$timeline->save();
 			}
 			$this->pushUrl($value);
 		}
@@ -1715,8 +1725,9 @@ class cmd {
 			'#cmd_id#' => $this->getId(),
 			'#humanname#' => urlencode($this->getHumanName()),
 			'#eq_name#' => urlencode($this->getEqLogic()->getName()),
+			'"' => ''
 		);
-		$url = str_replace(array_keys($replace), $replace, $url);
+		$url = str_replace(array_keys($replace), $replace, scenarioExpression::setTags($url));
 		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
 		$http = new com_http($url);
 		$http->setLogError(false);
@@ -2193,7 +2204,7 @@ class cmd {
 	public function setAlert($_key, $_value) {
 		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->alert,$alert );
-		$this->alert = $alert ;
+		$this->alert = $alert;
 		$this->_needRefreshAlert = true;
 		return $this;
 	}

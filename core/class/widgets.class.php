@@ -212,6 +212,18 @@ class widgets {
   }
   
   public function remove() {
+    $usedBy = $this->getUsedBy();
+    if(is_array($usedBy) && count($usedBy) > 0){
+      foreach ($usedBy as $cmd) {
+        if($cmd->getTemplate('dashboard') == 'custom::'.$this->getName()){
+          $cmd->setTemplate('dashboard','default');
+        }
+        if($cmd->getTemplate('mobile') == 'custom::'.$this->getName()){
+          $cmd->setTemplate('mobile','default');
+        }
+        $cmd->save(true);
+      }
+    }
     DB::remove($this);
   }
   
@@ -288,14 +300,14 @@ class widgets {
   public function setReplace($_key, $_value) {
     $replace = utils::setJsonAttr($this->replace, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->replace,$replace);
-    $this->replace = utils::setJsonAttr($this->replace, $_key, $_value);
+    $this->replace = $replace;
     return $this;
   }
   
   public function setTest($_key, $_value) {
     $test = utils::setJsonAttr($this->test, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->test,$test);
-    $this->test = utils::setJsonAttr($this->test, $_key, $_value);
+    $this->test = $test;
     return $this;
   }
   

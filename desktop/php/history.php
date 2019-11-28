@@ -18,7 +18,7 @@ $date = array(
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 	<div role="tabpanel" class="tab-pane active" id="historytab">
 		<br/>
-		
+
 		<div class="row row-overflow" data-offset="70">
 			<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
 				<ul class="nav nav-list bs-sidenav">
@@ -72,10 +72,10 @@ $date = array(
 					?>
 				</ul>
 			</div>
-			
+
 			<div class="col-lg-9 col-md-8 col-sm-7">
 				<div class="row">
-					<div class="col-lg-4 col-sm-12 center">
+					<div class="col-lg-3 col-sm-12 center">
 						<div class="input-group input-group-sm">
 							<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
 							<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
@@ -84,9 +84,10 @@ $date = array(
 							</a>
 						</div>
 					</div>
-					<div class="col-lg-8 col-sm-12">
-						<div class="input-group input-group-sm pull-right">
-							<span> {{Variation}} <input type="checkbox" id="cb_derive" /></span>
+					<div class="col-lg-7 col-sm-12">
+						<center>
+						<div class="input-group input-group-sm">
+							<span>&nbsp;&nbsp;{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 							<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 							<select class="form-control roundedLeft" id="sel_groupingType" style="width: 180px;">
 								<option value="">{{Aucun groupement}}</option>
@@ -111,26 +112,40 @@ $date = array(
 								<option value="low::year">{{Minimum par année}}</option>
 								<option value="high::year">{{Maximum par année}}</option>
 							</select>
-							<select class="form-control" id="sel_chartType" style="width: 100px;">
+							<select class="form-control roundedRight" id="sel_chartType" style="width: 100px;">
 								<option value="line">{{Ligne}}</option>
-								<option value="areaspline">{{Aire}}</option>
+								<option value="area">{{Aire}}</option>
 								<option value="column">{{Barre}}</option>
 							</select>
-							<a class="btn btn-warning roundedRight" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
-								<i class="fas fa-times"></i> {{Affichage}}
-							</a>
 						</div>
+					</center>
+					</div>
+					<div class="col-lg-2 col-sm-12">
+                      	<a class="btn btn-warning pull-right" id='bt_clearGraph' title="Vide l'affichage des courbes sur la zone." >
+							<i class="fas fa-times"></i> {{Affichage}}
+						</a>
 					</div>
 				</div>
-				<div id="div_graph" style="margin-top: 50px;height:calc(100% - 130px)"></div>
+				<div id="div_graph" style="margin-top: 10px;height:calc(100% - 40px)"></div>
 			</div>
 		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="timelinetab">
-		<div class="input-group input-group-sm">
+		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-sm btn-success pull-right roundedRight" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
-				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm pull-right roundedLeft"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
+					<?php
+					foreach (timeline::listFolder() as $folder) {
+						if($folder == 'main'){
+							echo '<option value="'.$folder.'">{{Principal}}</option>';
+						}else{
+							echo '<option value="'.$folder.'">'.$folder.'</option>';
+						}
+					}
+					?>
+				</select>
+				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
+				</a><a id="bt_openCmdHistoryConfigure2" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</span>
 		</div>
 		<table id="table_timeline" class="table table-condensed table-bordered tablesorter">
@@ -144,7 +159,7 @@ $date = array(
 			<tbody>
 			</tbody>
 		</table>
-		
+
 	</div>
 </div>
 

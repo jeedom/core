@@ -15,7 +15,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
 		<div class="panel-body">
 			{{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-			{{- que la question n'a pas déjà été posée sur le <a href='https://jeedom.com/forum'>forum</a>}}<br/>
+			{{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br/>
 			{{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
 			{{- que la réponse n'est pas déjà dans la <a href='https://jeedom.github.io/documentation'>documentation</a>}}
 		</div>
@@ -24,12 +24,11 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
 		<div class="panel-body">
 			<strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
-			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (<strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration)}}<br/><br/>
+			<strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
 			<strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
-			
 			<center>
-				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Bug%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les bugs}}</a><br/>
-				<a href="https://jeedom.atlassian.net/issues/?filter=-5&jql=issuetype%20%3D%20Am%C3%A9lioration%20AND%20status%20in%20(%22A%20valider%22%2C%20%22In%20Progress%22%2C%20Planifi%C3%A9%2C%20Reopened%2C%20%22To%20Do%22)%20AND%20resolution%20%3D%20Unresolved%20order%20by%20priority%20DESC%2Cupdated%20DESC" target="_blank">{{Voir les propositions d'amélioration}}</a>
+				<a href="https://community.jeedom.com/tags/bug" target="_blank" style="font-weight:bold;">{{Voir les bugs}}</a><br/>
+				<a href="https://community.jeedom.com/tags/amelioration" target="_blank" style="font-weight:bold;">{{Voir les propositions d'amélioration}}</a>
 			</center>
 		</div>
 	</div>
@@ -66,6 +65,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 	<div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">
+			<div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://jeedom.github.io/documentation/howto/fr_FR/remonter_un_bug">documentation}}</a></div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Titre}}</label>
 				<div class="col-sm-7">
@@ -139,6 +139,11 @@ $('#bt_sendBugReport').on('click', function () {
 });
 
 $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
+	if($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration'){
+		$('#div_alertReportBug').showAlert({message: '{{ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\'informationd personnelles (mail, compte market, clef api...)}}', level: 'warning'});
+	}else{
+		$.hideAlert();
+	}
 	$('#div_reportModalPrivateIssue').hide();
 	if($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == ''){
 		$('#div_reportModalSendAction').hide();

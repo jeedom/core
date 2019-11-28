@@ -21,11 +21,16 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 });
 
-
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
-  $("#bt_saveInteract").click();
+  if ($('#bt_saveInteract').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveInteract").click();
+  }
 });
+
+$( function() {
+  $('sub.itemsNumber').html('('+$('.interactDisplayCard').length+')')
+})
 
 //searching
 $('#in_searchInteract').keyup(function () {
@@ -56,7 +61,6 @@ $('#in_searchInteract').keyup(function () {
 $('#bt_resetInteractSearch').on('click', function () {
   $('#in_searchInteract').val('').keyup()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
@@ -67,21 +71,6 @@ $('#bt_closeAll').off('click').on('click', function () {
     $(this).click()
   })
 })
-
-$('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
-  }
-  chooseIcon(function (_icon) {
-    $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
-});
-
-$('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
-  $(this).value('');
-});
 
 //contextMenu:
 $(function(){
@@ -143,12 +132,16 @@ $(function(){
             autoHide: true,
             zIndex: 9999,
             className: 'interact-context-menu',
-            callback: function(key, options) {
-              url = 'index.php?v=d&p=interact&id=' + options.commands[key].id;
-              if (document.location.toString().match('#')) {
-                url += '#' + document.location.toString().split('#')[1];
+            callback: function(key, options, event) {
+              if (event.ctrlKey || event.originalEvent.which == 2) {
+                url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
+                window.open(url).focus()
+              } else {
+                printInteract(options.commands[key].id)
               }
-              loadPage(url);
             },
             items: contextmenuitems
           })
@@ -158,6 +151,22 @@ $(function(){
   }
   catch(err) {}
 })
+
+
+$('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
+  chooseIcon(function (_icon) {
+    $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  },{icon:_icon});
+});
+
+$('.interactAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function(){
+  $(this).value('');
+});
 
 $("#div_action").sortable({axis: "y", cursor: "move", items: ".action", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
@@ -188,24 +197,21 @@ $('#bt_interactThumbnailDisplay').on('click', function () {
   addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME);
 });
 
-$('.interactDisplayCard').on('click', function () {
-  $('#div_tree').jstree('deselect_all');
-  $('#div_tree').jstree('select_node', 'interact' + $(this).attr('data-interact_id'));
-});
-
-$("#div_tree").jstree({
-  "plugins": ["search"]
-});
-$('#in_treeSearch').keyup(function () {
-  $('#div_tree').jstree(true).search($('#in_treeSearcxh').val());
-});
-
-$('.interactDisplayCard').on('click',function(){
-  displayInteract($(this).attr('data-interact_id'));
-  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
-    $('.nav-tabs a[href="#generaltab"]').click();
+$('.interactDisplayCard').off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=interact&id='+$(this).attr('data-interact_id')
+    window.open(url).focus()
+  } else {
+    printInteract($(this).attr('data-interact_id'))
   }
-});
+})
+$('.interactDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-interact_id')
+    $('.interactDisplayCard[data-interact_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr:visible', function () {
   modifyWithoutSave = true;
@@ -303,7 +309,7 @@ $("#bt_saveInteract").on('click', function () {
 });
 
 $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir regénérer toutes les interations (cela peut être très long) ?}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?}}', function (result) {
     if (result) {
       jeedom.interact.regenerateInteract({
         interact: {query: result},
@@ -311,7 +317,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function () {
           $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
         success: function (data) {
-          $('#div_alert').showAlert({message: '{{Toutes les interations ont été regénérées}}', level: 'success'});
+          $('#div_alert').showAlert({message: '{{Toutes les interactions ont été régénérées}}', level: 'success'});
         }
       });
     }
@@ -408,7 +414,8 @@ $("body").undelegate('.bt_removeAction', 'click').delegate('.bt_removeAction', '
   $(this).closest('.' + type).remove();
 });
 
-function displayInteract(_id){
+function printInteract(_id) {
+  $.hideAlert()
   $('#div_conf').show();
   $('#interactThumbnailDisplay').hide();
   $('.interactDisplayCard').removeClass('active');
@@ -462,7 +469,15 @@ function displayInteract(_id){
         }
       }
       taAutosize();
-      addOrUpdateUrl('id',data.id);
+
+      var hash = window.location.hash
+      addOrUpdateUrl('id',data.id)
+      if (hash == '') {
+        $('.nav-tabs a[href="#generaltab"]').click()
+      } else {
+        window.location.hash = hash
+      }
+
       jeedom.cmd.displayActionsOption({
         params : actionOptions,
         async : false,

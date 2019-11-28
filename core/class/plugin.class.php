@@ -266,16 +266,20 @@ class plugin {
 				if ($heartbeat == 0 || is_nan($heartbeat)) {
 					continue;
 				}
-				$eqLogics = eqLogic::byType($plugin->getId(), true);
-				if (count($eqLogics) == 0) {
-					continue;
-				}
+				$eqLogics = eqLogic::byType($plugin->getId());
 				$ok = false;
+				$enable = 0;
 				foreach ($eqLogics as $eqLogic) {
-					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) > date('Y-m-d H:i:s', strtotime('-' . $heartbeat . ' minutes' . date('Y-m-d H:i:s')))) {
+					if (strtotime($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s'))) > strtotime('-' . $heartbeat . ' minutes ' . date('Y-m-d H:i:s'))) {
 						$ok = true;
 						break;
 					}
+					if($eqLogic->getIsEnable() == 1){
+						$enable++;
+					}
+				}
+				if($enable == 0){
+					return;
 				}
 				if (!$ok) {
 					$message = __('Attention le plugin ', __FILE__) . ' ' . $plugin->getName();
@@ -779,10 +783,13 @@ class plugin {
 					$info = $inprogress->getValue(array('datetime' => strtotime('now') - 60));
 					$info['datetime'] = (isset($info['datetime'])) ? $info['datetime'] : strtotime('now') - 60;
 					if (abs(strtotime('now') - $info['datetime']) < 45) {
+						if($_auto){
+							return;
+						}
 						throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement : ', __FILE__) . date("Y-m-d H:i:s", $info['datetime']));
 					}
 					if (config::byKey('deamonRestartNumber', $plugin_id, 0) > 3) {
-						log::add($plugin_id, 'error', __('Attention je pense qu\'il y a un soucis avec le démon que j\'ai relancé plus de 3 fois consecutivement', __FILE__));
+						log::add($plugin_id, 'error', __('Attention je pense qu\'il y a un soucis avec le démon que j\'ai relancé plus de 3 fois consécutivement', __FILE__));
 					}
 					if (!$_forceRestart) {
 						config::save('deamonRestartNumber', config::byKey('deamonRestartNumber', $plugin_id, 0) + 1, $plugin_id);

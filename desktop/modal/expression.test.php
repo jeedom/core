@@ -5,14 +5,12 @@ if (!isConnect('admin')) {
 ?>
 <div id="div_alertExpressionTest"></div>
 
-
-
 <form class="form-horizontal" onsubmit="return false;">
 	<div class="input-group input-group-sm" style="width: 100%">
 		<span class="input-group-addon roundedLeft" style="width: 100px"><i class="fas fa-random"></i>  {{Test}}</span>
 		<input class="form-control input-sm" id="in_testExpression">
 		<span class="input-group-btn">
-			<a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></a><a class="btn btn-sm btn-default roundedRight" id="bt_executeExpressionOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
+			<a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scenario}}"><i class="fas fa-history"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></a><a class="btn btn-sm btn-default btn-success roundedRight" id="bt_executeExpressionOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
 		</span>
 	</div>
 </form>
@@ -22,7 +20,6 @@ if (!isConnect('admin')) {
 <legend><i class="fas fa-history"></i> {{Historique}}</legend>
 <ul id="ul_expressionHistory"></ul>
 <script>
-
 if ($('body').attr('data-page') == 'scenario' && $('#div_editScenario').is(':visible')) {
 	$('.subElementIF .expressions input[data-l1key="expression"]').each(function() {
 		expression = $(this).val().replace(/"/g, '\'')

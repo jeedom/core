@@ -1,0 +1,23 @@
+<div class="cmd cmd-widget widget-compass" data-type="info" data-subtype="numeric" data-template="compass" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <center>
+    <div class="cmdName #hide_name#">#name_display#</div>
+      <div class="widget-compass-container">
+      <div class="widget-compass-outline"></div>
+      <div class="widget-compass-needle"></div>
+      <div class="state"></div>
+      <div class="winDir"></div>
+    </div>
+  </center>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      let cmd = $('.cmd[data-cmd_id=#id#]');
+      let directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+      let windDir = directions[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8];
+      cmd.find('.widget-compass-needle').css('transform', 'rotate(' + _options.display_value +'deg)');
+      cmd.find('.state').text(_options.display_value.toString()+'°')
+      cmd.find('.winDir').html(windDir)
+    }
+
+    jeedom.cmd.update['#id#']({display_value:'#state#'});
+  </script>
+</div>

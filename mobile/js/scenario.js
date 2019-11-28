@@ -10,16 +10,20 @@ function initScenario() {
     },
     success: function (htmls) {
       $('#div_displayScenario').empty().html(htmls).trigger('create')
-      setTileSize('.scenario')
-      $('#div_displayScenario').packery({gutter : 0})
+      setTimeout(function () {
+        deviceInfo = getDeviceType()
+        setTileSize('.scenario')
+        $('#div_displayScenario').packery({gutter : 0})
+      }, 100)
     }
   })
-  
-  $(window).on("resize", function (event) {
+
+  $('body').on('orientationChanged', function (event, _orientation) {
+    deviceInfo = getDeviceType()
     setTileSize('.scenario')
     $('#div_displayScenario').packery({gutter : 0})
   })
-  
+
   $('#in_searchWidget').off('keyup').on('keyup',function(){
     var search = $(this).value()
     search = normTextLower(search)
@@ -42,9 +46,9 @@ function initScenario() {
     })
     $('#div_displayScenario').packery()
   })
-  
+
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-  
+
 }

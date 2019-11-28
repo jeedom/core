@@ -62,6 +62,7 @@ step_2_mainpackage() {
   apt-get -y install mbrola
   apt-get -y remove brltty
   apt-get -y remove net-tools
+  apt-get -y install nmap
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
@@ -151,9 +152,54 @@ step_6_jeedom_download() {
   echo "${VERT}étape 6 téléchargement de jeedom réussie${NORMAL}"
 }
 
-step_7_jeedom_customization() {
+step_7_jeedom_customization_mysql() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom${NORMAL}"
+  echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom mysql${NORMAL}"
+  
+  systemctl stop mysql > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    service mysql stop
+    if [ $? -ne 0 ]; then
+      echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
+      exit 1
+    fi
+  fi
+  
+  rm /var/lib/mysql/ib_logfile*
+  
+  if [ -d /etc/mysql/conf.d ]; then
+    touch /etc/mysql/conf.d/jeedom_my.cnf
+    echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
+  fi
+  
+  systemctl start mysql > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    service mysql start
+    if [ $? -ne 0 ]; then
+      echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
+      exit 1
+    fi
+  fi
+  
+  echo "${VERT}étape 7 personnalisation de jeedom mysql réussie${NORMAL}"
+}
+
+step_8_jeedom_customization() {
+  echo "---------------------------------------------------------------------"
+  echo "${JAUNE}Commence l'étape 8 personnalisation de jeedom${NORMAL}"
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
   
@@ -196,51 +242,14 @@ step_7_jeedom_customization() {
       exit 1
     fi
   fi
-  
-  systemctl stop mysql > /dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    service mysql stop
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut arrêter mysql - Annulation${NORMAL}"
-      exit 1
-    fi
-  fi
-  
-  rm /var/lib/mysql/ib_logfile*
-  
-  if [ -d /etc/mysql/conf.d ]; then
-    touch /etc/mysql/conf.d/jeedom_my.cnf
-    echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
-  fi
-  
-  systemctl start mysql > /dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    service mysql start
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
-      exit 1
-    fi
-  fi
-  
-  echo "${VERT}étape 7 personnalisation de jeedom réussie${NORMAL}"
+  echo "vm.swappiness = 10" >>  /etc/sysctl.conf
+  sysctl vm.swappiness=10
+  echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
 }
 
-step_8_jeedom_configuration() {
+step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}commence l'étape 8 configuration de jeedom${NORMAL}"
+  echo "${JAUNE}commence l'étape 9 configuration de jeedom${NORMAL}"
   echo "DROP USER 'jeedom'@'localhost';" | mysql -uroot -p${MYSQL_ROOT_PASSWD} > /dev/null 2>&1
   mysql_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
   mysql_sql "DROP DATABASE IF EXISTS jeedom;"
@@ -254,12 +263,12 @@ step_8_jeedom_configuration() {
   sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
   chmod 775 -R ${WEBSERVER_HOME}
   chown -R www-data:www-data ${WEBSERVER_HOME}
-  echo "${VERT}étape 8 configuration de jeedom réussie${NORMAL}"
+  echo "${VERT}étape 9 configuration de jeedom réussie${NORMAL}"
 }
 
-step_9_jeedom_installation() {
+step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Commence l'étape 9 installation de jeedom${NORMAL}"
+  echo "${JAUNE}Commence l'étape 10 installation de jeedom${NORMAL}"
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
@@ -268,12 +277,12 @@ step_9_jeedom_installation() {
     echo "${ROUGE}Ne peut installer jeedom - Annulation${NORMAL}"
     exit 1
   fi
-  echo "${VERT}étape 9 installation de jeedom réussie${NORMAL}"
+  echo "${VERT}étape 10 installation de jeedom réussie${NORMAL}"
 }
 
-step_10_jeedom_post() {
+step_11_jeedom_post() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Commence l'étape 10 post jeedom${NORMAL}"
+  echo "${JAUNE}Commence l'étape 11 post jeedom${NORMAL}"
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
     
@@ -305,16 +314,16 @@ step_10_jeedom_post() {
       echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=128M                                       0 0' >>  /etc/fstab
     fi
   fi
-  echo "${VERT}étape 10 post jeedom réussie${NORMAL}"
+  echo "${VERT}étape 11 post jeedom réussie${NORMAL}"
 }
 
-step_11_jeedom_check() {
+step_12_jeedom_check() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Commence l'étape 11 vérification de jeedom${NORMAL}"
+  echo "${JAUNE}Commence l'étape 12 vérification de jeedom${NORMAL}"
   php ${WEBSERVER_HOME}/sick.php
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
-  echo "${VERT}étape 11 vérification de jeedom réussie${NORMAL}"
+  echo "${VERT}étape 12 vérification de jeedom réussie${NORMAL}"
 }
 
 distrib_1_spe(){
@@ -389,11 +398,12 @@ case ${STEP} in
   step_4_apache
   step_5_php
   step_6_jeedom_download
-  step_7_jeedom_customization
-  step_8_jeedom_configuration
-  step_9_jeedom_installation
-  step_10_jeedom_post
-  step_11_jeedom_check
+  step_7_jeedom_customization_mysql
+  step_8_jeedom_customization
+  step_9_jeedom_configuration
+  step_10_jeedom_installation
+  step_11_jeedom_post
+  step_12_jeedom_check
   distrib_1_spe
   echo "/!\ IMPORTANT /!\ Le mot de passe root MySQL est ${MYSQL_ROOT_PASSWD}"
   echo "Installation finie. Un redémarrage devrait être effectué"

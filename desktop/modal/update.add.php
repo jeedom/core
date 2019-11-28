@@ -85,11 +85,11 @@ $repos = update::listRepo();
         echo '</div>';
         echo '</div>';
       }
-      
+
       echo '</div>';
     }
     ?>
-    <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+    <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
   </fieldset>
 </form>
 
@@ -122,7 +122,7 @@ $('#bt_repoAddSaveUpdate').on('click',function(){
       $('#div_repoAddAlert').showAlert({message: error.message, level: 'danger'});
     },
     success: function () {
-      $('#div_repoAddAlert').showAlert({message: '{{Enregistrement réussi}}', level: 'success'});
+      $('#div_repoAddAlert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
     }
   });
 });

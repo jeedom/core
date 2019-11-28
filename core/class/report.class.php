@@ -44,7 +44,9 @@ class report {
 		$min_width = (isset($_parameter['width']) && $_parameter['width'] > 800) ? $_parameter['width'] : 1280;
 		$min_height = (isset($_parameter['height']) && $_parameter['height'] > 600) ? $_parameter['height'] : 1280;
 		$delay = (isset($_parameter['delay']) && $_parameter['delay'] > 1000) ? $_parameter['delay'] : config::byKey('report::delay');
-		$_url .= '&auth=' . user::getAccessKeyForReport();
+		if($_name != 'url'){
+			$_url .= '&auth=' . user::getAccessKeyForReport();
+		}
 		$cmd = 'xvfb-run --server-args="-screen 0, 1920x1280x24" cutycapt --min-width=' . $min_width . ' --min-height=' . $min_height . ' --url="' . $_url . '" --out="' . $out . '"';
 		$cmd .= ' --delay=' . $delay;
 		$cmd .= ' --print-backgrounds=on';

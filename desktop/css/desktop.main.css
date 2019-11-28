@@ -2,17 +2,15 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("coreWidgets.css");
-
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width:8px;
   height:8px;
 }
-::-webkit-scrollbar-track-piece{
-  background-color:transparent !important;
+::-webkit-scrollbar-track-piece {
+  background-color: transparent !important;
 }
-::-webkit-scrollbar-thumb{
-  background: var(--el-defaultColor) !important;
+::-webkit-scrollbar-thumb {
+  background: var(--linkHover-color) !important;
 }
 
 html {
@@ -34,14 +32,16 @@ body {
   background-position: center center;
 }
 
+.reportModeVisible,
 .hidden  {
   display: none !important;
 }
 
 html,
 body,
-textarea {
-  scrollbar-color: var(--txt-color) var(--sc-form-color) !important;
+textarea,
+.scrollable-menu {
+  scrollbar-color: var(--linkHover-color) transparent !important;
   scrollbar-width: thin;
 }
 
@@ -90,6 +90,15 @@ header a.navbar-brand {
 }
 
 /* __________________________________________________________________________________________________________LINKS */
+
+.widget-name,
+.cmd-widget,
+legend,
+span,
+.label:not(.cursor) {
+  cursor: default !important;
+  word-break: break-word;
+}
 a,
 a i,
 a > span,
@@ -100,17 +109,18 @@ a.btn,
 .btn > *,
 .ui-icon-closethick,
 .cursor,
-.cursor * {
+.cursor *,
+.label.state {
   cursor: pointer !important;
 }
-.widget-name,
-.cmd-widget,
-legend,
-span,
-.label:not(.cursor) {
-  cursor: default !important;
-  word-break: break-word;
-}
+.ui-resizable-n { cursor: n-resize !important; }
+.ui-resizable-s { cursor: s-resize !important; }
+.ui-resizable-e { cursor: e-resize !important; }
+.ui-resizable-w { cursor: w-resize !important; }
+.ui-resizable-se { cursor: se-resize !important; }
+.ui-resizable-sw { cursor: sw-resize !important; }
+.ui-resizable-nw { cursor: nw-resize !important; }
+.ui-resizable-ne { cursor: ne-resize !important; }
 
 a > img:hover {
   opacity: 0.75;
@@ -192,6 +202,10 @@ legend {
   margin-top: 20px;
   margin-bottom: 0;
 }
+legend > sub {
+  font-size: 12px;
+  font-style: italic
+}
 
 :not([data-page=display])legend {
   color: var(--link-color) !important;
@@ -209,6 +223,14 @@ legend {
 }
 
 /* résumé domo */
+[data-page=display] .eqActions {
+  position: fixed;
+  right: 10px;
+  top: 52px;
+  border: 5px solid var(--bg-modal-color);
+  z-index: 10;
+}
+
 [data-page=display] legend a,
 [data-page=display] legend i {
   color: inherit !important;
@@ -223,21 +245,21 @@ legend {
   margin: 0 !important;
   border-left: none;
 }
-[data-page=display] #div_pageContainer #display ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li {
   list-style-type: none;
   margin: 2px 25px !important;
   padding: 1px 5px !important;
   border-bottom: 1px solid var(--el-defaultColor);
 }
-[data-page=display] #div_pageContainer #display ul > li input {
+[data-page=display] #div_pageContainer #displaytab ul > li input {
   top: 2px;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
   margin: 0 !important;
   padding: 3px 5px !important;
   color: var(--linkHoverLight-color) !important;
 }
-[data-page=display] #div_pageContainer #display ul > li > ul > li > i {
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li > i {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -299,6 +321,24 @@ legend {
 
 
 /* __________________________________________________________________________________________________________DASHBOARD */
+
+.eqLogic-widget.eqSignalInfo:after,
+.eqLogic-widget.eqSignalAction:after {
+  content: '\2022';
+  font-size: 26px;
+  line-height: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.eqLogic-widget.eqSignalInfo:after,
+.eqLogic-widget.eqSignalAction.eqSignalInfo:after{
+  color: var(--al-info-color);
+}
+.eqLogic-widget.eqSignalAction:after {
+  color: var(--al-warning-color);
+}
+
 .timeCmd.label {
   color: var(--txt-color);
   background: rgb(var(--bg-color));
@@ -325,18 +365,6 @@ legend {
   max-height: 30px;
 }
 
-.eqLogic-widget .cmd.refresh {
-  margin-top: 5px !important;
-  margin-right: 5px !important;
-}
-.eqLogic-widget .cmd.refresh i {
-  color: var(--eqTitle-color) !important;
-  font-size: 12px !important;
-}
-.eqLogic-widget .cmd.refresh i:hover {
-  color: var(--linkHoverLight-color) !important;
-}
-
 /* dashboard equipments text color */
 .tableCmd,
 .highcharts-axis-title > tspan,
@@ -355,6 +383,14 @@ legend {
 .eqLogic.eqLogic-widget .tableCmd .tableCmdcss strong.state {
   font-size: unset !important;
   color: unset !important;
+}
+
+.eqLogic.eqLogic-widget .tableCmd td{
+  min-width: 20px;
+}
+
+.eqLogic.eqLogic-widget .tableCmd tr{
+  min-height: 20px;
 }
 
 
@@ -412,7 +448,7 @@ legend {
 label sup,
 sup i {
   color: var(--al-info-color);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .li_log i{
@@ -457,14 +493,19 @@ sup i {
   transition: transform 0.2s !important;
 }
 .counterReorderJeedom {
-  color: white;
+  position: absolute;
+  color: var(--eqTitle-color);
 }
 .editingMode {
   box-shadow: 0px 0px 2px var(--logo-primary-color) !important;
 }
 .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-  border: 2px solid var(--logo-primary-color) !important;
+  border: 2px dotted var(--logo-primary-color) !important;
 }
+.ui-resizable-handle.ui-resizable-e { width: 4px; right: 0;}
+.ui-resizable-handle.ui-resizable-s { height: 4px; bottom: 0;}
+.allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
+.allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 
 /* summary */
 .objectSummaryParent {
@@ -472,7 +513,94 @@ sup i {
   font-size: 12px;
 }
 
+/* __________________________________________________________________________________________________________PREVIEW */
+.objectPreviewContainer {
+  margin: 15px
+}
+.objectPreview {
+  width: 320px;
+  height: 250px;
+  background-color: var(--bg-modal-color) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  color: rgb(var(--contrast-color)) !important;
+  margin-bottom: 0 !important;
+}
+.objectPreview:hover .topPreview {
+  box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
+}
+.objectPreview:hover .bottomPreview {
+  box-shadow: 0 -10px 15px 0 rgba(0,0,0,0.2);
+}
+
+.objectPreview > .topPreview,
+.objectPreview > .bottomPreview {
+  background-color: rgb(var(--bg-color));
+  opacity: 0.9;
+  padding: 5px 5px;
+  transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.objectPreview > .topPreview {
+  height: 28px;
+}
+.objectPreview > .topPreview > .name {
+  font-size: 20px;
+  font-weight: 200;
+  max-width: 240px;
+  max-height: 30px !important;
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.6;
+  margin-top: -7px;
+}
+.objectPreview > .bottomPreview {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 54px;
+}
+.objectPreview > .bottomPreview > .settings {
+  position: absolute;
+  bottom: 8px;
+  color: var(--txt-color);
+}
+.objectPreview > .bottomPreview > .settings:hover {
+  opacity: 0.5;
+}
+.objectPreview > .bottomPreview > .resume {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  text-align: right;
+  max-width: 295px;
+  overflow: hidden;
+}
+.objectPreview .objectSummaryParent,
+.objectPreview .objectSummaryParent i {
+  font-size: 20px !important;
+  color: var(--link-color) !important;
+}
+
+.objectPreview .objectSummaryParent[data-summary="temperature"] {
+  font-size: 22px !important;
+  position: absolute;
+  right: 5px;
+}
+
 /* __________________________________________________________________________________________________________DIVERS */
+.progress {
+  background-color: var(--sc-form-color);
+}
+.progress-bar {
+  background-color: var(--al-info-color);
+}
+.progress-bar-success {
+  background-color: var(--al-success-color);
+}
+
+[data-type="plugin"] #div_pageContainer > div.eqLogic {
+  margin-top: 5px;
+}
 select.selectCmd {
   border: 0;
   vertical-align: middle;
@@ -634,11 +762,34 @@ div[class*="DisplayCard"] .name > .label {
   vertical-align: baseline;
 }
 
-
-.eqLogic.eqLogic-widget .widget-name {
+.eqLogic.eqLogic-widget .widget-name,
+.scenario-widget .widget-name {
   padding-right: 22px;
   padding-left: 12px;
+  max-height: 45px;
+  overflow: hidden;
 }
+.eqLogic-widget .cmd.refresh {
+  margin-top: 5px !important;
+  position: absolute;
+  right : 0;
+}
+.eqLogic-widget .cmd.refresh i {
+  color: var(--eqTitle-color) !important;
+  font-size: 12px !important;
+}
+.eqLogic-widget .cmd.refresh i:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+
+.eqLogic-widget .cmd.refresh.spinning i {
+  animation: spin-animation 1s infinite linear;
+}
+@keyframes spin-animation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
+
 .eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
   display: none;
 }
@@ -649,7 +800,7 @@ div[class*="DisplayCard"] .name > .label {
 }
 .eqLogic.eqLogic-widget .widget-name .object_name {
   vertical-align: super;
-  font-size: 11px;
+  font-size: 13px;
 }
 .eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
   display: none;
@@ -726,6 +877,11 @@ div[data-market_type=script]:hover {
 #battery .eqLogic-widget .widget-name {
   text-align: center;
 }
+#battery .eqLogic-widget .widget-name > a {
+  display:block;
+  max-height: 24px !important;
+  overflow: hidden !important;
+}
 #battery .eqLogic-widget .widget-name span {
   color: var(--txt-color);
   background-color: rgb(var(--bg-color)) !important;
@@ -794,6 +950,10 @@ pre {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   border: none;
 }
+#pre_updateInfo_clean {
+  overflow: visible !important;
+  height: calc(100vh - 260px);
+}
 
 .row-same-height {
   padding: 1em;
@@ -852,12 +1012,13 @@ pre {
 .context-menu-item span {
   font-weight: normal !important;
 }
-.context-menu-item:not(.context-menu-disabled) span {
-  cursor: pointer !important;
-}
 .context-menu-disabled {
   color: var(--placeholder-color) !important;
   cursor: default !important;
+}
+.context-menu-item:not(.context-menu-disabled) span,
+.context-menu-disabled.cursor {
+  cursor: pointer !important;
 }
 .context-menu-item:not(.context-menu-disabled)::before {
   color: var(--txt-color) !important;
@@ -954,6 +1115,11 @@ pre {
 [data-coloredicons="1"] .icon_red {
   color: var(--al-danger-color) !important;
 }
+sup.danger {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .yellow,
 [data-coloredicons="1"] .icon_yellow {
   color: var(--lb-yellow-color) !important;
@@ -973,7 +1139,7 @@ pre {
   font-size: 12px;
   font-weight: bold;
 }
-:not(.tableCmdcss) .state,
+:not(.tableCmdcss) .cmd:not(.label) .state,
 .cmd {
   color: var(--link-color) !important;
   font-size: 12px;
@@ -1056,9 +1222,8 @@ li.alert-info.eqLogic {
 
 .action_colorpicker_change,
 .action_colorpicker_off {
-  width: 35px !important;
+  width: 75px !important;
   height: 25px !important;
-  padding: 3px !important;
 }
 
 h4.modal-title {
@@ -1152,8 +1317,8 @@ button .fas.fa-plus-circle {
 #historytab .label.displayObject i:hover {
   color: inherit !important;
 }
-#timelinetab .cmd,
-#timelinetab .scenario {
+#timelinetab .tml-cmd,
+#timelinetab .tml-scenario {
   font-size: 14px;
   color: var(--txt-color) !important;
 }
@@ -1161,6 +1326,9 @@ button .fas.fa-plus-circle {
   color: var(--sc-lightTxt-color) !important;
 }
 
+.highcharts-button-disabled{
+  display: none !important;
+}
 
 /* __________________________________________________________________________________________________________NAVBAR */
 .navbar-fixed-top .visible-xs-inline-block {
@@ -1414,6 +1582,15 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
   padding: 0;
 }
 
+.cursorText {
+  cursor: text !important;
+}
+
+input.inputPassword  {
+  font-size: 1px !important;
+  letter-spacing: 5px;
+}
+
 .form-actions {
   margin-top: 5px;
 }
@@ -1528,7 +1705,6 @@ input.knob {
   width: 32px !important;
   padding-left: 14px;
 }
-
 .input-group-sm .btn {
   height: 28px !important;
   padding: 5px 10px;
@@ -1597,6 +1773,11 @@ input[type=radio][disabled] {
   cursor: not-allowed
 }
 
+select:disabled,
+input:disabled {
+  opacity: 0.5 !important;
+}
+
 /* custom universal select */
 select,
 input[type=color] {
@@ -1656,6 +1837,7 @@ input[type=password]{
 select option {
   color: var(--txt-color) !important;
   background-color: rgb(var(--defaultBkg-color)) !important;
+  font-size: 13px;
 }
 select optgroup {
   color: var(--txt-color) !important;
@@ -1720,7 +1902,7 @@ input[type=radio] {
   height: 15px;
   border-radius: 0 !important;
   background: var(--form-bg-color);
-  color: var(--linkHover-color);
+  color: var(--txt-color);
   font-weight: normal !important;
 }
 input[type=radio] {
@@ -1728,10 +1910,10 @@ input[type=radio] {
   margin-top: 3px !important;
 }
 input[type=checkbox]:checked:after {
-  content: '\2714' !important;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+  content: '\f00c' !important;
   position: absolute;
-  left: 2px;
-  top: -3px;
 }
 input[type=checkbox]::-ms-check {
   background-color: var(--form-bg-color) !important;
@@ -1796,6 +1978,10 @@ ul.nav.nav-tabs li,
 
 
 /* __________________________________________________________________________________________________________TABLES */
+[data-device="mobile"][data-type="plugin"] .table.table-bordered.table-condensed {
+  width: calc(100% - 50px);
+}
+
 #table_dataStore {
   width: 100% !important;
 }
@@ -1848,6 +2034,14 @@ th {
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
 .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
   background-color: transparent!important;
+  transition-duration: 250ms;
+  transition-property: background-color;
+  transition-delay: 20ms;
+}
+.table-condensed.table-bordered tbody tr:hover td {
+  background-color: rgba(var(--contrast-color), 0.1) !important;
+  transition-duration: 250ms;
+  transition-property: background-color;
 }
 .table-striped>tbody>tr:nth-of-type(2n+1),
 .table > thead > tr {
@@ -1883,6 +2077,8 @@ tr.tablesorter-filter-row td {
 
 .tablesorter-filter-row {
   background-color: var(--btn-default-color)!important;
+  transition-duration: 500ms;
+  transition-property: background-color;
 }
 
 .table-condensed tr,
@@ -1893,13 +2089,7 @@ tr.tablesorter-filter-row td {
   padding-top: 1px;
   padding-bottom: 2px;
 }
-.table-condensed tbody tr:hover td,
-.table-condensed tbody tr:hover td div.cmd div,
-.table-condensed tbody tr:hover > td input,
-.table-condensed tbody tr:hover > td not(i),
-.table-condensed tbody tr:hover > td input:not(.btn):not(.dial):not([type=radio]):not([type=image]):not(.expressionAttr):not(.knob):not([type=checkbox])  {
-  color: rgb(var(--contrast-color)) !important;
-}
+
 
 :not(.eqLogic-widget) + table.tableCmd td {
   vertical-align: top !important;
@@ -1941,12 +2131,12 @@ div.CodeMirror {
   height: auto;
   background: var(--form-bg-color) !important;
 }
-.CodeMirror-sizer {
-  background: var(--form-bg-color) !important;
-}
 
-.CodeMirror-code { background: rgb(250,250,250) !important; }
-.CodeMirror-selected { background: rgba(5,5,5,1) !important; }
+[data-page=custom] .CodeMirror,
+[data-page=custom] .CodeMirror textarea,
+[data-page=custom] .CodeMirror-gutters {
+  height: 100% !important;
+}
 
 .CodeMirror:not(class*=cm-s-),
 .CodeMirror-code,
@@ -1958,16 +2148,27 @@ div.CodeMirror {
   border-right: 0;
   border: none !important;
 }
-
-.CodeMirror-line {
+.CodeMirror-linenumber {
+  color: var(--txt-color);
+}
+.CodeMirror-lines {
+  border-top: 4px solid var(--form-bg-color) !important;
+  padding: 0;
   background: var(--sc-form-color) !important;
 }
 
-[data-page=custom] .CodeMirror,
-[data-page=custom] .CodeMirror textarea,
-[data-page=custom] .CodeMirror-gutters {
-  height: 100% !important;
+.CodeMirror-focused,
+.CodeMirror-sizer,
+.CodeMirror pre,
+.CodeMirror-code {
+  background: var(--sc-form-color) !important;
 }
+
+.CodeMirror-focused,
+.CodeMirror-selected {
+  background-color: rgba(0,0,0,1) !important;
+}
+
 
 /* hihgly special */
 div[id^=__lpform_] { /*lastpass*/
@@ -1975,9 +2176,13 @@ div[id^=__lpform_] { /*lastpass*/
 }
 
 
+.jstree-anchor:hover {
+  box-shadow: none;
+}
 .jstree-default .jstree-clicked {
   background-color: transparent;
-  border-left: 2.5px solid var(--logo-primary-color);
+  border-right: 2.5px solid var(--logo-primary-color);
+  box-shadow: none;
 }
 .jstree li a {
   width: 90% !important;
@@ -1986,11 +2191,23 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--form-bg-color);
 }
 
+
 /* __________________________________________________________________________________________________________SCENARIO */
-#div_scenarioElement .element .element {
-  box-shadow: inset 2px 2px 5px -4px var(--sc-formTxt-color);
+.scenario_link .label {
+  display: inline-block;
+  margin: 2px;
 }
+#div_scenarioElement  {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+#div_scenarioElement > .element {
+  margin-bottom: 3px;
+}
+
+/* by type colors */
 .elementIF { background-color: var(--scBlocIF) !important; }
+.subElementELSE { background-color: var(--scBlocElse) !important; }
 .elementFOR { background-color: var(--scBlocFOR) !important; }
 .elementIN { background-color: var(--scBlocIN) !important; }
 .elementAT { background-color: var(--scBlocAT) !important; }
@@ -2001,33 +2218,68 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--scBlocACTION) !important;
 }
 
-.subElement .element{
+.subElement .element.elementCollapse .btn {
+  opacity: 0;
+}
+
+/* bloc sep, IF different */
+.subElement .element.elementCollapse {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElement .elementIF.elementCollapse:hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+
+.subElement .element:not(.elementIF) {
   width : calc(100% - 5px);
+  margin-top: 4px;
+}
+.subElement .element:not(.elementIF):not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: 4px solid var(--scBlocSep);
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .element:not(.elementIF):hover {
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIN > div > div > div > div > .elementIN{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIN-sep);
+/* IF */
+.subElement .elementIF:not(.elementCollapse) {
+  border: 2.5px dotted var(--scBlocSep);
+  border-left: none;
+  border-right: none;
+  transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
+}
+.subElement .elementIF:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) > .subElementTHEN,
+.subElement .elementIF:not(.elementCollapse) > .subElementELSE {
+  border-left: 4px solid var(--scBlocSep);
+}
+.subElementACTION > .expressions > .expressionACTION {
+  border-left: 3px solid var(--scBlocSep);
+  border-radius: 0 !important;
+}
+.subElement > .elementIF {
+  border-left: 3px solid transparent;
+}
+.subElement .elementIF:hover:not(.elementCollapse) > .subElementIF,
+.subElement .elementIF:not(.elementCollapse) .subElementTHEN:hover,
+.subElement .elementIF:not(.elementCollapse) .subElementELSE:hover{
+  border-left: 4px solid var(--scBlocSep);
+  border-left-color: var(--sc-form-color) !important;
+  transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
 }
 
-.elementIF > div > div > div > div > .elementIF{
-  width : 100%;
-  border-left: 3px solid var(--scBlocIF-sep);
-}
 
-.elementFOR > div > div > div > div > .elementFOR{
-  width : 100%;
-  border-left: 3px solid var(--scBlocFOR-sep);
+/* collapses comment bloc: */
+.elementCOM.elementCollapse:not(:hover) .subElement legend {
+  display: none
 }
-
-.elementAT > div > div > div > div > .elementAT{
-  width : 100%;
-  border-left: 3px solid var(--scBlocAT-sep);
-}
-
-.elementACTION > div > div > div > div > .elementACTION{
-  width : 100%;
-  border-left: 3px solid var(--scBlocACTION-sep);
+.elementCOM.elementCollapse:not(:hover) .bt_sortable,
+.elementCOM.elementCollapse:not(:hover) .bt_collapse {
+  opacity: 0;
 }
 
 .expressionACTION .col-xs-1 input[type="checkbox"] {
@@ -2079,8 +2331,9 @@ div[id^=__lpform_] { /*lastpass*/
   background-color: var(--sc-formTxt-color) !important;
 }
 .subElementFields button.dropdown-toggle .caret {
-  right: 0px;
-  top: 8px !important;
+  position: relative;
+  right: -3px !important;
+  top: -1px !important;
   border-top-color: var(--linkHoverLight-color) !important;
 }
 .subElementFields ul.dropdown-menu {
@@ -2111,6 +2364,11 @@ div[id^=__lpform_] { /*lastpass*/
 }
 .element .expressionAttr:not([data-l2key=graphColor]) {
   font-weight: bold;
+}
+#div_editScenario .element .expressionAttr.insideSearch {
+  background-color: var(--al-warning-color) !important;
+  color: var(--linkHoverLight-color) !important;
+  font-weight: normal;
 }
 .subElementCOMMENT textarea {
   font-weight: normal !important;
@@ -2148,11 +2406,6 @@ textarea {
   background-color: var(--logo-primary-color) !important;
 }
 
-/*    __DESIGN__    */
-.div_backgroundPlan > .div_displayObject {
-  z-index: 50 !important;
-}
-
 .element legend {
   border-left: none!important;
 }
@@ -2161,11 +2414,11 @@ textarea {
   width: 100%;
 }
 
-#div_scenarioElement > .element {
-  border-bottom: 1px solid var(--shd-color);
-}
 #div_scenarioElement .expressions > .expression.noSortable.col-xs-12 {
   width: calc(100% - 30px) !important;
+}
+#div_scenarioElement .subElementCODE .expressions > .expression.noSortable.col-xs-12 {
+  width: 100% !important;
 }
 
 .expressions,
@@ -2196,6 +2449,9 @@ textarea {
   margin: 0 5px 0 5px;
 }
 
+.element .subElementAttr {
+  z-index: 2 !important;
+}
 .element .bt_sortable,
 .element .bt_hideElement,
 .element .bt_removeElement,
@@ -2219,6 +2475,9 @@ textarea {
   top: 1px;
   left: 3px;
 }
+.subElement .subElementIF .bt_sortable {
+  left: 6px;
+}
 .element .bt_collapse {
   position: absolute;
   top: 3px;
@@ -2227,7 +2486,7 @@ textarea {
 }
 .element .subElementAttr[data-l1key=options][data-l2key=enable] {
   margin: 5px 3px 0 3px !important;
-  top: 0;
+  top: 1px;
   left: 33px;
 }
 .element .bt_repeat {
@@ -2306,6 +2565,9 @@ textarea {
 .element .subElementTHEN,
 .element .subElementELSE {
   height: 55px;
+}
+.element .subElementELSE {
+  padding-top: 3px;
 }
 .element > .subElementIN > .expressions {
   margin-top: -26px;
@@ -2390,31 +2652,49 @@ textarea {
 .elementCollapse .legendHidden {
   position: absolute;
   display: inline !important;
-  left: 25px;
   padding-left: 0 !important;
 }
 .elementCollapse .bt_collapse {
-  color: rgb(var(--bg-color)) !important;
+  color: var(--scBlocSep) !important;
 }
 
 .elementIF.elementCollapse .expressions,
 .elementIN.elementCollapse .expressions,
-.elementAT.elementCollapse .expressions {
+.elementAT.elementCollapse .expressions,
+.elementFOR.elementCollapse .expressions {
   display: block !important;
 }
 .elementIF.elementCollapse .expressionAttr,
 .elementIN.elementCollapse .expressionAttr,
-.elementAT.elementCollapse .expressionAttr {
+.elementAT.elementCollapse .expressionAttr,
+.elementFOR.elementCollapse .expressionAttr {
   opacity: 0.75;
   height: 24px !important;
   border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius) !important;
 }
 .elementIF.elementCollapse .input-group-btn,
 .elementIN.elementCollapse .input-group-btn,
-.elementAT.elementCollapse .input-group-btn {
+.elementAT.elementCollapse .input-group-btn,
+.elementFOR.elementCollapse .input-group-btn {
   z-index: -1;
 }
 
+.element .blocPreview {
+  display: none;
+}
+.element.elementCollapse .blocPreview {
+  display: block;
+  position: absolute;
+  background-color: var(--sc-form-color);
+  color : var(--sc-formTxt-color);
+  top: 2px;
+  left: 189px;
+  padding: 5px;
+  font-size: 12px !important;
+  width : calc(100% - 340px);
+  height: 24px;
+  opacity: 0.8;
+}
 
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
@@ -2511,8 +2791,6 @@ textarea {
 
 
 /* __________________________________________________________________________________________________________HIGHCHARTS */
-.highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
-.highcharts-color-0 { fill: var(--link-color); }
 .highcharts-legend-item tspan {
   cursor: pointer;
 }
@@ -2544,6 +2822,11 @@ textarea {
 .highcharts-container {
   color: var(--txt-color) !important;
 }
+.graph-widget {
+  background-color: rgb(var(--panel-bg-color)) !important;
+}
+.graph-widget .highcharts-plot-band,
+.chartContainer .highcharts-plot-band,
 #div_graph .highcharts-plot-band,
 #div_historyChart .highcharts-plot-band {
   fill: rgb(var(--bg-color)) !important;
@@ -2592,7 +2875,18 @@ path.highcharts-graph {
   display: block !important;
   clear: both !important;
 }
+
 /* design */
+.div_backgroundPlan > .div_displayObject {
+  z-index: 50 !important;
+  position: relative;
+  padding:0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .div_grid {
   z-index : 998;
   background-size: 15px 15px;
@@ -2600,8 +2894,18 @@ path.highcharts-graph {
   repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
   repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
 }
+.div_backgroundPlan .div_grid {
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-/* /// view data table */
+/* view data table */
 .highcharts-data-table {
   width: 100%;
   max-width: 100%;
@@ -2668,21 +2972,8 @@ path.highcharts-graph {
   background-color: var(--sc-formTxt-color);
   border: none;
 }
-
-.-sew-list-container {
-  cursor: pointer;
-  color: var(--txt-color);
-  background-color: var(--form-bg-color);
-  border: none;
-  z-index: 3;
-}
-.-sew-list-container ul li {
-  border: none;
-  background-color: var(--form-bg-color);
-}
-.-sew-list-container ul li:hover {
-  color: var(--linkHoverLight-color);
-  background-color: var(--sc-formTxt-color);
+.ui-autocomplete.ui-front {
+  z-index: 5000;
 }
 
 #md_modal {
@@ -2750,12 +3041,21 @@ path.highcharts-graph {
 .ui-dialog .ui-dialog-titlebar {
   border-bottom: none !important;
   background-color: rgb(var(--contrast-color)) !important;
+  padding: 0 5px;
 }
 .ui-dialog .ui-dialog-title {
   color: rgb(var(--bg-color)) !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+  font-size: 16px;
+  font-weight: normal;
 }
+.ui-dialog .ui-dialog-title:before {
+  content: '\f105\00a0\00a0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+}
+
 .ui-dialog, .ui-dialog-content {
   box-sizing: content-box !important;
 }
@@ -2833,11 +3133,13 @@ div.vis-item-content {
 
 button.ui-dialog-titlebar-close::before {
   font-family: "Font Awesome 5 Free";
-  font-size: 18px !important;
-  font-weight: 900;
+  font-size: 16px !important;
+  font-weight: 700;
   content: "\f00d";
   color: rgb(var(--bg-color)) !important;
-  vertical-align: middle;
+  padding-right: 12px;
+  line-height: 10px;
+  vertical-align: top;
 }
 button.ui-dialog-titlebar-close {
   position: absolute;
@@ -2946,13 +3248,15 @@ input:invalid {
   border-radius: var(--border-radius) !important;
 }
 
+.fullCorner,
 .eqLogic-widget,
 .scenario-widget,
 #div_alert,
 .alert,
 .jqAlert,
 .expressionACTION,
-.progressbarContainer .progress {
+.progressbarContainer .progress,
+.element .blocPreview {
   border-radius: var(--border-radius) !important;
 }
 
@@ -2960,11 +3264,15 @@ td.alert {
   border-radius: 0 !important;
 }
 
+.topCorner,
 .eqLogic-widget .widget-name,
 .scenario-widget .widget-name,
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+}
+.bottomCorner {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
 
 #battery .eqLogic-widget .widget-name span {
@@ -2977,6 +3285,7 @@ td.alert {
 .panel-body {
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   min-height: 50px;
+  margin-right: 15px;
 }
 
 .btn,
@@ -3072,11 +3381,11 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3085,7 +3394,7 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3094,12 +3403,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3107,11 +3416,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -3135,17 +3444,6 @@ ul.dropdown-menu {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .navbar-fixed-top .navbar-collapse {
-    position: fixed;
-    left: 15px;
-    top: 50px;
-    width: 100%;
-    max-height: calc(100% - 60px);
-    box-shadow: 0 12px 22px rgba(0,0,0,0.25);
-  }
-}
-
 @media screen and (max-width: 992px) {
   .objectListContainer div.cursor > center > i,
   .interactListContainer div.cursor > center > i,
@@ -3154,8 +3452,5 @@ ul.dropdown-menu {
   .eqLogicThumbnailContainer div.cursor > center > i,
   .eqLogicThumbnailContainer div.cursor > i {
     font-size: 2.5em !important;
-  }
-  .hidden-xs {
-    display: none !important;
   }
 }

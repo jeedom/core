@@ -21,8 +21,14 @@ $('.backgroundforJeedom').css({
 
 jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
-  $("#bt_saveObject").click();
+  if ($('#bt_saveObject').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveObject").click();
+  }
 });
+
+$( function() {
+  $('sub.itemsNumber').html('('+$('.objectDisplayCard').length+')')
+})
 
 //searching
 $('#in_searchObject').keyup(function () {
@@ -49,11 +55,12 @@ $('#bt_resetObjectSearch').on('click', function () {
   $('#in_searchObject').keyup()
 })
 
-/* contextMenu */
+//context menu
 $(function(){
   try{
     $.contextMenu('destroy', $('.nav.nav-tabs'));
     jeedom.object.all({
+      onlyVisible: 0,
       error: function (error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
@@ -65,7 +72,11 @@ $(function(){
         for(i=0; i<_objects.length; i++)
         {
           ob = _objects[i]
-          contextmenuitems[i] = {'name': ob.name, 'id' : ob.id}
+          var decay = 0
+          if (isset(ob.configuration) && isset(ob.configuration.parentNumber)) {
+            decay = ob.configuration.parentNumber
+          }
+          contextmenuitems[i] = {'name': '\u00A0\u00A0\u00A0'.repeat(decay) + ob.name, 'id' : ob.id}
         }
 
         $('.nav.nav-tabs').contextMenu({
@@ -73,12 +84,16 @@ $(function(){
           autoHide: true,
           zIndex: 9999,
           className: 'object-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=object&id=' + options.commands[key].id;
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
+          callback: function(key, options, event) {
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              url = 'index.php?v=d&p=object&id=' + options.commands[key].id
+              if (window.location.hash != '') {
+                  url += window.location.hash
+                }
+              window.open(url).focus()
+            } else {
+              printObject(options.commands[key].id)
             }
-            loadPage(url);
           },
           items: contextmenuitems
         })
@@ -117,14 +132,22 @@ $('#bt_returnToThumbnailDisplay').on('click',function(){
   addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME);
 });
 
-$(".objectDisplayCard").on('click', function (event) {
-  loadObjectConfiguration($(this).attr('data-object_id'));
-  $('.objectname_resume').empty().append($(this).attr('data-object_icon')+'  '+$(this).attr('data-object_name'));
-  if(document.location.toString().split('#')[1] == '' || document.location.toString().split('#')[1] == undefined){
-    $('.nav-tabs a[href="#objecttab"]').click();
+$(".objectDisplayCard").off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=object&id='+$(this).attr('data-object_id')
+    window.open(url).focus()
+  } else {
+    printObject($(this).attr('data-object_id'))
   }
-  return false;
-});
+  return false
+})
+$('.objectDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-object_id')
+    $('.objectDisplayCard[data-object_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 $('#bt_removeBackgroundImage').off('click').on('click', function () {
   jeedom.object.removeImage({
@@ -138,6 +161,14 @@ $('#bt_removeBackgroundImage').off('click').on('click', function () {
     },
   });
 });
+
+function printObject(_id) {
+  $.hideAlert()
+  var objName = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_name')
+  var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_icon')
+  loadObjectConfiguration(_id)
+  $('.objectname_resume').empty().append(objIcon+'  '+objName)
+}
 
 function loadObjectConfiguration(_id){
   try {
@@ -234,7 +265,14 @@ function loadObjectConfiguration(_id){
 
         }
       }
+
+      var hash = window.location.hash
       addOrUpdateUrl('id',data.id);
+      if (hash == '') {
+        $('.nav-tabs a[href="#objecttab"]').click()
+      } else {
+        window.location.hash = hash
+      }
       modifyWithoutSave = false;
       setTimeout(function(){
         modifyWithoutSave = false;
@@ -352,14 +390,14 @@ $('.addSummary').on('click',function(){
 
 $('.bt_checkAll').on('click',function(){
   $(this).closest('tr').find('input[type="checkbox"]').each(function () {
-      $(this).prop( "checked", true )
-    })
+    $(this).prop( "checked", true )
+  })
 })
 
 $('.bt_checkNone').on('click',function(){
   $(this).closest('tr').find('input[type="checkbox"]').each(function () {
-      $(this).prop( "checked", false )
-    })
+    $(this).prop( "checked", false )
+  })
 });
 
 $('#div_pageContainer').delegate(".listCmdInfo", 'click', function () {

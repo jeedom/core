@@ -29,9 +29,10 @@ if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
 if (!is_array($remove_history)) {
 	$remove_history = array();
 }
+$plugin_enable = config::getPluginEnable();
 ?>
 <br/>
-<div class="eqActions pull-right">
+<div class="eqActions pull-right" style="display:none;">
 	<div class="input-group">
 		<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
 		</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
@@ -41,12 +42,12 @@ if (!is_array($remove_history)) {
 	</div>
 </div>
 <ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
-	<li role="presentation" class="active"><a href="#display" aria-controls="display" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
-	<li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
+	<li role="presentation" class="active"><a href="#displaytab" aria-controls="displaytab" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
+	<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
 </ul>
 
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-	<div role="tabpanel" class="tab-pane active" id="display" style="display:none">
+	<div role="tabpanel" class="tab-pane active" id="displaytab">
 		<br/>
 		<div>
 			<div class="pull-left">
@@ -55,7 +56,7 @@ if (!is_array($remove_history)) {
 				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
 			</div>
-          	<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
+			<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
 		</div>
 		<br/><br/>
 		<div>
@@ -85,6 +86,7 @@ if (!is_array($remove_history)) {
 				
 				$div .= '<ul class="eqLogicSortable">';
 				foreach ($eqLogics[-1] as $eqLogic) {
+					
 					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
 					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
 					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
@@ -94,8 +96,10 @@ if (!is_array($remove_history)) {
 					if ($eqLogic->getIsVisible() != 1) {
 						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
 						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
@@ -104,7 +108,9 @@ if (!is_array($remove_history)) {
 						if ($cmd->getIsVisible() != 1) {
 							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
-						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						}
 						$div .= '</li>';
 					}
 					$div .= '</ul>';
@@ -157,8 +163,10 @@ if (!is_array($remove_history)) {
 					if ($eqLogic->getIsVisible() != 1) {
 						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 					}
-					$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-					$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+					}
 					$div .= '<ul class="cmdSortable" style="display:none;" >';
 					
 					foreach ($cmds[$eqLogic->getId()] as $cmd) {
@@ -168,7 +176,9 @@ if (!is_array($remove_history)) {
 						if ($cmd->getIsVisible() != 1) {
 							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 						}
-						$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+						}
 						$div .= '</li>';
 					}
 					$div .= '</ul>';
@@ -186,7 +196,7 @@ if (!is_array($remove_history)) {
 		</div>
 	</div>
 	
-	<div role="tabpanel" class="tab-pane" id="history">
+	<div role="tabpanel" class="tab-pane" id="historytab">
 		<br/>
 		<div id="div_alertRemoveHistory"></div>
 		<label class="label-sm"><i class="fas fa-trash"></i> {{Historique des suppressions}}</label>
@@ -206,7 +216,6 @@ if (!is_array($remove_history)) {
 				if (count($remove_history) > 0) {
 					foreach ($remove_history as $remove) {
 						$tr = '<tr>';
-						$tr .= '<tr>';
 						$tr .= '<td>';
 						$tr .= $remove['date'];
 						$tr .= '</td>';

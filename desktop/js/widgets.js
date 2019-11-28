@@ -16,11 +16,11 @@
 
 var widget_parameters_opt = {
   'desktop_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur desktop}} <sub>px</sub>'
   },
   'mobile_width' : {
-    'type' : 'number',
+    'type' : 'input',
     'name' : '{{Largeur mobile}} <sub>px</sub>'
   },
   'time_widget' : {
@@ -29,6 +29,18 @@ var widget_parameters_opt = {
   }
 }
 
+jwerty.key('ctrl+s/⌘+s', function (e) {
+  e.preventDefault();
+  if ($('#bt_saveWidgets').is(':visible')) {
+    if (!getOpenedModal()) $("#bt_saveWidgets").click();
+  }
+});
+
+$( function() {
+  $('sub.itemsNumber').html('('+$('.widgetsDisplayCard').length+')')
+})
+
+//searching
 $('#in_searchWidgets').keyup(function () {
   var search = $(this).value()
   if (search == '') {
@@ -52,18 +64,87 @@ $('#in_searchWidgets').keyup(function () {
   $('.panel-collapse[data-show=0]').collapse('hide')
   $('.widgetsListContainer').packery()
 })
-
 $('#bt_openAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='false']").click()
 });
 $('#bt_closeAll').off('click').on('click', function () {
   $(".accordion-toggle[aria-expanded='true']").click()
 })
-
 $('#bt_resetWidgetsSearch').off('click').on('click', function () {
   $('#in_searchWidgets').val('')
   $('#in_searchWidgets').keyup();
 })
+
+//context menu
+$(function(){
+  try{
+    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    jeedom.widgets.all({
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      },
+      success: function (_widgets) {
+        if(_widgets.length == 0){
+          return;
+        }
+        var widgetsList = []
+        widgetsList['info'] = []
+        widgetsList['action'] = []
+        for(i=0; i<_widgets.length; i++)
+        {
+          wg = _widgets[i]
+          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
+          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
+        }
+
+        //set context menu!
+        var contextmenuitems = {}
+        var uniqId = 0
+        for (var group in widgetsList) {
+          groupWidgets = widgetsList[group]
+          items = {}
+          for (var index in groupWidgets) {
+            wg = groupWidgets[index]
+            wgName = wg[0]
+            wgId = wg[1]
+            items[uniqId] = {'name': wgName, 'id' : wgId}
+            uniqId ++
+          }
+          contextmenuitems[group] = {'name':group, 'items':items}
+        }
+
+        $('.nav.nav-tabs').contextMenu({
+          selector: 'li',
+          autoHide: true,
+          zIndex: 9999,
+          className: 'widget-context-menu',
+          callback: function(key, options, event) {
+            if (event.ctrlKey || event.originalEvent.which == 2) {
+              url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
+              window.open(url).focus()
+            } else {
+              printWidget(options.commands[key].id)
+            }
+          },
+          items: contextmenuitems
+        })
+      }
+    })
+  }
+  catch(err) {}
+})
+
+
+$('#bt_chooseIcon').on('click', function () {
+  var _icon = false
+  if ( $('div[data-l2key="icon"] > i').length ) {
+    _icon = $('div[data-l2key="icon"] > i').attr('class')
+    _icon = '.' + _icon.replace(' ', '.')
+  }
+  chooseIcon(function (_icon) {
+    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
+  },{icon:_icon});
+});
 
 $('#bt_editCode').off('click').on('click', function () {
   loadPage('index.php?v=d&p=editor&type=widget');
@@ -100,7 +181,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
         $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0);
       }
     });
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
       var widgets = $('.widgets').getValues('.widgetsAttr')[0];
       widgets.test = $('#div_templateTest .test').getValues('.testAttr');
@@ -128,81 +209,7 @@ $('#bt_applyToCmd').off('click').on('click', function () {
         }
       });
     });
-  }).dialog('open');;
-});
-
-//context menu
-$(function(){
-  try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
-    jeedom.widgets.all({
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
-      },
-      success: function (_widgets) {
-        if(_widgets.length == 0){
-          return;
-        }
-        var widgetsList = []
-        widgetsList['info'] = []
-        widgetsList['action'] = []
-        for(i=0; i<_widgets.length; i++)
-        {
-          wg = _widgets[i]
-          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
-        }
-        
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
-          for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
-            items[uniqId] = {'name': wgName, 'id' : wgId}
-            uniqId ++
-          }
-          contextmenuitems[group] = {'name':group, 'items':items}
-        }
-        
-        $('.nav.nav-tabs').contextMenu({
-          selector: 'li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'widget-context-menu',
-          callback: function(key, options) {
-            url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id;
-            if (document.location.toString().match('#')) {
-              url += '#' + document.location.toString().split('#')[1];
-            }
-            loadPage(url);
-          },
-          items: contextmenuitems
-        })
-      }
-    })
-  }
-  catch(err) {}
-})
-
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveWidgets").click();
-});
-
-$('#bt_chooseIcon').on('click', function () {
-  var _icon = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
-    _icon = $('div[data-l2key="icon"] > i').attr('class')
-    _icon = '.' + _icon.replace(' ', '.')
-  }
-  chooseIcon(function (_icon) {
-    $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon);
-  },{icon:_icon});
+  }).dialog('open');
 });
 
 $('.widgetsAttr[data-l1key=display][data-l2key=icon]').off('dblclick').on('dblclick',function(){
@@ -258,9 +265,9 @@ function loadTemplateConfiguration(_template,_data){
         for(var i in data.replace){
           replace += '<div class="form-group">';
           if(widget_parameters_opt[data.replace[i]]){
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+widget_parameters_opt[data.replace[i]].name+'</label>';
           }else{
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
+            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">'+capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " "))+'</label>';
           }
           replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">';
           replace += '<div class="input-group">';
@@ -269,6 +276,8 @@ function loadTemplateConfiguration(_template,_data){
               replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
             }else if(widget_parameters_opt[data.replace[i]].type == 'number'){
               replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
+            }else if(widget_parameters_opt[data.replace[i]].type == 'input'){
+              replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
             }
           }else{
             replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>';
@@ -344,73 +353,14 @@ $('#div_templateTest').off('click','.bt_removeTest').on('click','.bt_removeTest'
   $(this).closest('.test').remove();
 });
 
-function addTest(_test){
-  if (!isset(_test)) {
-    _trigger = {};
-  }
-  var div = '<div class="test">';
-  div += '<div class="form-group">';
-  div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>';
-  div += '<div class="col-sm-3">';
-  div += '<div class="input-group">';
-  div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>';
-  div += '</span>';
-  div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
-  div += '</div>';
-  div += '</div>';
-  div += '<div class="col-sm-3">';
-  div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
-  div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
-  div += '</span>';
-  div += '</div>';
-  div += '</div>';
-  div += '<div class="col-sm-3">';
-  div += '<div class="input-group">';
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
-  div += '<span class="input-group-btn">';
-  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
-  div += '</span>';
-  div += '</div>';
-  div += '</div>';
-  
-  div += '</div>';
-  div += '</div>';
-  $('#div_templateTest').append(div);
-  $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr');
-}
+function printWidget(_id) {
+  $.hideAlert()
+  $('#div_conf').show()
+  $('#div_widgetsList').hide()
+  $('#div_templateTest').empty()
 
-$("#bt_addWidgets").off('click').on('click', function (event) {
-  bootbox.prompt("Nom du widget ?", function (result) {
-    if (result !== null) {
-      jeedom.widgets.save({
-        widgets: {name: result},
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (data) {
-          modifyWithoutSave = false;
-          loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1');
-          $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
-        }
-      });
-    }
-  });
-});
-
-$('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConfigure',function(){
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
-  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
-});
-
-$(".widgetsDisplayCard").on('click', function (event) {
-  $('#div_conf').show();
-  $('#div_widgetsList').hide();
-  $('#div_templateTest').empty();
   jeedom.widgets.byId({
-    id: $(this).attr('data-widgets_id'),
+    id: _id,
     cache: false,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -459,11 +409,89 @@ $(".widgetsDisplayCard").on('click', function (event) {
         },
         success: function (data) {
           $('#div_widgetPreview').empty().html(data.html);
+          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
         }
       })
     }
   });
+}
+
+function addTest(_test){
+  if (!isset(_test)) {
+    _trigger = {};
+  }
+  var div = '<div class="test">';
+  div += '<div class="form-group">';
+  div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>';
+  div += '<div class="col-sm-3">';
+  div += '<div class="input-group">';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+  div += '</span>';
+  div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>';
+  div += '</div>';
+  div += '</div>';
+  div += '<div class="col-sm-3">';
+  div += '<div class="input-group">';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="Résultat si test ok (light)"/>';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+  div += '</span>';
+  div += '</div>';
+  div += '</div>';
+  div += '<div class="col-sm-3">';
+  div += '<div class="input-group">';
+  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="Résultat si test ok (dark)"/>';
+  div += '<span class="input-group-btn">';
+  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>';
+  div += '</span>';
+  div += '</div>';
+  div += '</div>';
+
+  div += '</div>';
+  div += '</div>';
+  $('#div_templateTest').append(div);
+  $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr');
+}
+
+$("#bt_addWidgets").off('click').on('click', function (event) {
+  bootbox.prompt("Nom du widget ?", function (result) {
+    if (result !== null) {
+      jeedom.widgets.save({
+        widgets: {name: result},
+        error: function (error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        },
+        success: function (data) {
+          modifyWithoutSave = false;
+          loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1');
+          $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'});
+        }
+      });
+    }
+  });
 });
+
+$('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConfigure',function(){
+  $('#md_modal').dialog({title: "{{Configuration de la commande}}"});
+  $('#md_modal').load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open');
+});
+
+$(".widgetsDisplayCard").off('click').on('click', function (event) {
+  if (event.ctrlKey) {
+    var url = '/index.php?v=d&p=widgets&id='+$(this).attr('data-widgets_id')
+    window.open(url).focus()
+  } else {
+    printWidget($(this).attr('data-widgets_id'))
+  }
+})
+$('.widgetsDisplayCard').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).attr('data-widgets_id')
+    $('.widgetsDisplayCard[data-widgets_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+  }
+})
 
 if (is_numeric(getUrlVars('id'))) {
   if ($('.widgetsDisplayCard[data-widgets_id=' + getUrlVars('id') + ']').length != 0) {
@@ -525,7 +553,7 @@ $("#bt_mainImportWidgets").change(function(event) {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-  
+
   if (uploadedFile) {
     bootbox.prompt("Nom du widget ?", function (result) {
       if (result !== null) {
@@ -580,7 +608,7 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-    
+
     readFile.onload = function(e) {
       objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {

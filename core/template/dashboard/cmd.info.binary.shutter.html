@@ -1,20 +1,29 @@
-<div style="width:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div style="width:55px; height:80px;" class="shuttergauge cursor #history#" data-cmd_id="#id#" >
-    <div  class="cmdName #hide_name#">#name_display#</div>
+<div class="cmd cmd-widget shuttergauge cursor #history#" data-type="info" data-subtype="binary" data-template="shutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-sm " data-cmd_id="#id#">
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg">
         <div class="shuttergauge-value"></div>
       </div>
     </div>
   </div>
+  <div class="value" data-cmd_id="#id#">
+    <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+  </div>
+  <div class="cmdStats #hide_history#">
+    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
       if (_options.display_value == '1') {
-        $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
-      }else {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')
+      } else {
+        $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }
+      $('.cmd[data-cmd_id=#id#] .state strong').first().text(_options.display_value)
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   </script>

@@ -232,7 +232,6 @@ function printListener() {
   });
 }
 
-
 function addListener(_listener) {
   $.hideAlert();
   var disabled ='';
@@ -246,11 +245,22 @@ function addListener(_listener) {
   tr += '<td><textarea class="form-control listenerAttr input-sm" data-l1key="event_str" disabled ></textarea></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="class" disabled /></td>';
   tr += '<td><input class="form-control listenerAttr input-sm" data-l1key="function" disabled /></td>';
+  tr += '<td><a class="btn btn-danger btn-xs removeListener pull-right" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a></td>';
   tr += '</tr>';
   var result = $(tr);
   result.setValues(_listener, '.listenerAttr');
   return result;
 }
+
+$('#table_listener').off('click','.removeListener').on('click','.removeListener',function(){
+  var tr = $(this).closest('tr');
+  jeedom.listener.remove({
+    id : tr.attr('id'),
+    success: function () {
+      tr.remove();
+    }
+  })
+});
 
 /***********************DEAMON*****************************/
 
@@ -263,6 +273,7 @@ $('#bt_refreshDeamon').on('click',function(){
 function getDeamonState(){
   $('#table_deamon tbody').empty();
   jeedom.plugin.all({
+    activateOnly : true,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -293,12 +304,12 @@ function getDeamonState(){
             html += deamonInfo.last_launch;
             html += '</td>';
             html += '<td>';
-            html += '<a class="bt_deamonAction btn btn-xs  btn-success" data-action="start" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
+            html += '<a class="bt_deamonAction btn btn-xs btn-success" data-action="start" title="{{Démarrer ou re-démarrer}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-play"></i></a> ';
             if(deamonInfo.auto == 0){
-              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="stop" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
-              html += '<a class="bt_deamonAction btn btn-xs  btn-danger" data-action="enableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-danger" data-action="stop" title="{{Arrêter}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-stop"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="enableAuto" title="{{Activer la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-magic"></i></a> ';
             }else{
-              html += '<a class="bt_deamonAction btn btn-xs  btn-success" data-action="disableAuto" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
+              html += '<a class="bt_deamonAction btn btn-xs btn-warning" data-action="disableAuto" title="{{Désactiver la gestion automatique du démon}}" data-plugin="'+deamonInfo.plugin.id+'"><i class="fas fa-times"></i></a> ';
             }
             html += '</td>';
             html += '</tr>';

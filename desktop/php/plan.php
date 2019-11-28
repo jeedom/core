@@ -34,7 +34,9 @@ if (!is_object($planHeader)) {
 	sendVarToJS('planHeader_id', $planHeader->getId());
 }
 ?>
+
 <div class="div_backgroundPlan">
-	<div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
+	<div class="container-fluid div_displayObject"></div>
 </div>
+
 <?php include_file('desktop', 'plan', 'js');?>

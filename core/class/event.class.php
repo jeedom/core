@@ -72,7 +72,12 @@ class event {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
 		$events = array_values($_events);
+		$now = strtotime('now') + 300;
 		foreach ($events as $key => $event) {
+			if($event['datetime'] > $now){
+				unset($events[$key]);
+				continue;
+			}
 			if ($event['name'] == 'eqLogic::update') {
 				$id = 'eqLogic::update::' . $event['option']['eqLogic_id'];
 			} elseif ($event['name'] == 'cmd::update') {

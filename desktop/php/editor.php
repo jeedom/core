@@ -31,12 +31,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="col-lg-2">
 		<legend><i class="far fa-file"></i> {{Fichiers}}</legend>
 		<div id="div_fileList" style="list-style-type: none;"></div>
 	</div>
-	
+
 	<div class="col-lg-8">
 		<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
 			<div class="input-group pull-right" style="display:inline-flex">
@@ -48,7 +48,6 @@ global $JEEDOM_INTERNAL_CONFIG;
 		<textarea class="form-control" id="ta_fileContent"></textarea>
 	</div>
 </div>
-
 
 <div id="md_widgetCreate" style="overflow-x: hidden;">
 	<form class="form-horizontal">
@@ -101,9 +100,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
 					</div>
 				</div>
-			</fieldset>
-		</form>
-		
-	</div>
-	<?php include_file("desktop", "editor", "js");?>
-	
+			</div>
+		</fieldset>
+	</form>
+</div>
+<?php
+  include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+  include_file("desktop", "editor", "js");
+?>
+

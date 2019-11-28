@@ -26,6 +26,24 @@ class jeedom {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function mimify(){
+		$folders = array('/../../desktop/js','/../../core/js','/../../mobile/js');
+		foreach ($folders as $folder) {
+			foreach (ls(__DIR__.$folder,'*.jeemin.js') as $file) {
+				unlink(__DIR__.$folder.'/'.$file);
+			}
+			foreach (ls(__DIR__.$folder,'*.js') as $file) {
+				$path = __DIR__.$folder.'/'.$file;
+				$md5 = md5_file($path);
+				$path_min =	__DIR__.$folder .'/'. $md5.'.'.translate::getLanguage().'.jeemin.js';
+				$tmp = '/tmp/jeedom/'.$file;
+				file_put_contents($tmp,translate::exec(file_get_contents($path), $folder.$file, true));
+				exec('python -m jsmin '.$tmp.' > '.$path_min);
+				unlink($tmp);
+			}
+		}
+	}
+	
 	public static function getThemeConfig(){
 		$key = array(
 			'default_bootstrap_theme',
@@ -91,30 +109,6 @@ class jeedom {
 		return $return;
 	}
 	
-	public static function addTimelineEvent($_event) {
-		file_put_contents(__DIR__ . '/../../data/timeline.json', json_encode($_event) . "\n", FILE_APPEND);
-	}
-	
-	public static function getTimelineEvent() {
-		$path = __DIR__ . '/../../data/timeline.json';
-		if (!file_exists($path)) {
-			return array();
-		}
-		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;echo "$(tail -n ' . config::byKey('timeline::maxevent') . ' ' . $path . ')" > ' . $path);
-		$lines = explode("\n", trim(file_get_contents($path)));
-		$result = array();
-		foreach ($lines as $line) {
-			$result[] = json_decode($line, true);
-		}
-		return $result;
-	}
-	
-	public static function removeTimelineEvent() {
-		$path = __DIR__ . '/../../data/timeline.json';
-		com_shell::execute(system::getCmdSudo() . 'chmod 666 ' . $path . ' > /dev/null 2>&1;');
-		unlink($path);
-	}
-	
 	public static function addRemoveHistory($_data) {
 		try {
 			$remove_history = array();
@@ -159,6 +153,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : $nbNeedUpdate,
 			'comment' => '',
+			'key' => 'uptodate'
 		);
 		
 		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
@@ -167,6 +162,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver', __FILE__),
+			'key' => 'cron::enable'
 		);
 		
 		$state = (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) ? false : true;
@@ -175,6 +171,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__),
+			'key' => 'scenario::enable'
 		);
 		
 		$state = self::isStarted();
@@ -183,6 +180,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) . ' ' . file_get_contents(self::getTmpFolder() . '/started') : __('NOK', __FILE__),
 			'comment' => '',
+			'key' => 'isStarted'
 		);
 		
 		$state = self::isDateOk();
@@ -193,6 +191,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')' : date('Y-m-d H:i:s'),
 			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href="index.php?v=d&p=administration">ici</a>', __FILE__),
+			'key' => 'hour'
 		);
 		
 		$state = self::isCapable('sudo', true);
@@ -201,6 +200,7 @@ class jeedom {
 			'state' => ($state) ? 1 : 2,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Appliquez les droits root à Jeedom', __FILE__),
+			'key' => 'sudo::right'
 		);
 		
 		$return[] = array(
@@ -208,6 +208,7 @@ class jeedom {
 			'state' => true,
 			'result' => self::version(),
 			'comment' => '',
+			'key' => 'jeedom::version'
 		);
 		
 		$state = version_compare(phpversion(), '5.5', '>=');
@@ -216,6 +217,7 @@ class jeedom {
 			'state' => $state,
 			'result' => phpversion(),
 			'comment' => ($state) ? '' : __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__),
+			'key' => 'php::version'
 		);
 		
 		$state = true;
@@ -236,6 +238,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
 			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supporté sont Debian Jessie et Debian Strech (voir <a href="https://jeedom.github.io/documentation/compatibility/fr_FR/index" target="_blank">ici</a>)', __FILE__),
+			'key' => 'os::version'
 		);
 		
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -244,6 +247,7 @@ class jeedom {
 			'state' => true,
 			'result' => $version['version()'],
 			'comment' => '',
+			'key' => 'database::version'
 		);
 		
 		$value = self::checkSpaceLeft();
@@ -252,6 +256,7 @@ class jeedom {
 			'state' => ($value > 10),
 			'result' => $value . ' %',
 			'comment' => '',
+			'key' => 'space::root'
 		);
 		
 		$value = self::checkSpaceLeft(self::getTmpFolder());
@@ -260,6 +265,7 @@ class jeedom {
 			'state' => ($value > 10),
 			'result' => $value . ' %',
 			'comment' => __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
+			'key' => 'space::tmp'
 		);
 		
 		$values = getSystemMemInfo();
@@ -267,7 +273,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Mémoire disponible', __FILE__),
 			'state' => ($value > 15),
-			'result' => $value . ' %',
+			'result' => $value . ' % ('.__('Total ',__FILE__).round($values['MemTotal']/1024).' Mo)',
 			'comment' => '',
 		);
 		
@@ -277,6 +283,7 @@ class jeedom {
 			'state' => ($value == 0),
 			'result' => $value,
 			'comment' => ($value == 0) ? '' : __('Nombre de processus tué par le noyaux pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou les scénarios', __FILE__),
+			'key' => 'oom'
 		);
 		
 		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
@@ -292,15 +299,21 @@ class jeedom {
 			'state' => ($value == 0),
 			'result' => $value,
 			'comment' => ($value == 0) ? '' : __('Il y a des erreurs disque, cela peut indiquer un soucis avec le disque ou un problème d\'alimentation', __FILE__),
+			'key' => 'io_error'
 		);
 		
 		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
 			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
+			$ok = ($value > 15);
+			if($ok && ($values['MemTotal']  + $values['SwapTotal']) < (1900*1024)){
+				$ok = false;
+			}
 			$return[] = array(
 				'name' => __('Swap disponible', __FILE__),
-				'state' => ($value > 15),
-				'result' => $value . ' %',
-				'comment' => '',
+				'state' => $ok,
+				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
+				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go',__FILE__),
+				'key' => 'swap'
 			);
 		} else {
 			$return[] = array(
@@ -308,8 +321,22 @@ class jeedom {
 				'state' => 2,
 				'result' => __('Inconnue', __FILE__),
 				'comment' => '',
+				'key' => 'swap'
 			);
 		}
+		
+		$value = shell_exec('sudo cat /proc/sys/vm/swappiness');
+		$ok = ($value <= 20);
+		if($values['MemTotal'] >= (1024*1024)){
+			$ok = true;
+		}
+		$return[] = array(
+			'name' => __('Swapiness', __FILE__),
+			'state' => $ok,
+			'result' => $value.'%',
+			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
+			'key' => 'swapiness'
+		);
 		
 		$values = sys_getloadavg();
 		$return[] = array(
@@ -317,6 +344,7 @@ class jeedom {
 			'state' => ($values[2] < 20),
 			'result' => $values[0] . ' - ' . $values[1] . ' - ' . $values[2],
 			'comment' => '',
+			'key' => 'load'
 		);
 		
 		$state = network::test('internal');
@@ -325,6 +353,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'key' => 'network::internal'
 		);
 		
 		$state = network::test('external');
@@ -333,6 +362,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'key' => 'network::external'
 		);
 		
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__));
@@ -351,6 +381,7 @@ class jeedom {
 			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
 			$state = network::test('external');
 		}
+		$cache_health['key'] = 'cache::persit';
 		$return[] = $cache_health;
 		
 		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
@@ -359,6 +390,7 @@ class jeedom {
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
 			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec). Voir ', __FILE__) . '<a href="https://jeedom.github.io/core/fr_FR/faq#tocAnchor-1-29" target="_blank">' . __('ici', __FILE__) . '</a>',
+			'key' => 'apache2::privateTmp'
 		);
 		
 		foreach (update::listRepo() as $repo) {
@@ -847,6 +879,21 @@ class jeedom {
 			
 		} catch (Error $e) {
 			
+		}
+	}
+	
+	public static function cron10() {
+		try {
+			foreach (update::listRepo() as $name => $repo) {
+				$class = 'repo_' . $name;
+				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
+					$class::cron10();
+				}
+			}
+		} catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
 		}
 	}
 	
@@ -1350,8 +1397,19 @@ class jeedom {
 				$result = 'docker';
 			} else if (file_exists('/usr/bin/raspi-config')) {
 				$result = 'rpi';
+				$hardware_revision = strtolower(shell_exec('cat /proc/cpuinfo | grep Revision'));
+				global $JEEDOM_RPI_HARDWARE;
+				foreach ($JEEDOM_RPI_HARDWARE as $key => $values) {
+					foreach ($values as $value) {
+						if(strpos($hardware_revision,$value) !== false){
+							$result = $key;
+						}
+					}
+				}
 			} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'miniplus';
+			} else if (file_exists('/usr/bin/grille-pain')) {
+				$result = 'freeboxDelta';
 			}
 			if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 				$result = 'smart';
@@ -1469,6 +1527,5 @@ class jeedom {
 			$return['total'] = $total;
 			return $return;
 		}
-		
 	}
 	

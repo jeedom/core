@@ -105,7 +105,7 @@ class migrate {
 		}
 		$urlArray = $jsonrpc->getResult();
 		$url = $urlArray['url'];
-		$size = $urlArray['size'];
+		$size = $urlArray['SHA256'];
 		exec('sudo pkill -9 wget');
 		$fileExiste = 0;
 		if(file_exists($mediaLink.'/backupJeedom.tar.gz.installed')){
@@ -116,7 +116,7 @@ class migrate {
 			$fileExiste = $mediaLink.'/backupJeedomDownload.tar.gz';
 		}
 		if($fileExiste !== 0){
-			$sizeFileExiste = filesize($fileExiste);
+			$sizeFileExiste = hash_file('sha256',$fileExiste);
 			if($sizeFileExiste == $size){
 				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/backupJeedom.tar.gz');
 				return 'fileExist';

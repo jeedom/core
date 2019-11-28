@@ -1,4 +1,4 @@
-<div style="width:90px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget #history#" data-type="action" data-subtype="numeric" data-template="tmplicon" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
@@ -9,7 +9,7 @@
     <div class="slider" value="#state#">
       <span class="value#uid# sliderValue"></span>
     </div>
-    <span class="timeCmd#uid# timeCmd label label-default"></span>
+    <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){

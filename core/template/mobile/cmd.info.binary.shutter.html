@@ -1,16 +1,14 @@
-<div class="cmd" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <div style="width:50px; height:100px;" class="shuttergauge cursor #history#" data-cmd_id="#id#" >
+<div class="cmd cmd-widget shuttergauge cursor #history#" data-type="info" data-subtype="binary" data-template="shutter" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
     <div  class="cmdName #hide_name#">#name_display#</div>
     <div class="shuttergauge-chart">
       <div class="shuttergauge-bckg">
         <div class="shuttergauge-value"></div>
       </div>
     </div>
-  </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
-      if (_options.display_value == '1') {
+      if (_options.display_value == '0') {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }else {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')

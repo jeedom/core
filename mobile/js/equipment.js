@@ -3,7 +3,7 @@ function initEquipment(_object_id) {
   $('#searchContainer').show();
   var objectMapping = {}
   var objects_info = {}
-
+  
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
@@ -26,7 +26,11 @@ function initEquipment(_object_id) {
               objectMapping[objects[i].father_id] = [parseInt(objects[i].id)]
             }
           }
-          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
+          var decay = 0
+          if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
+            decay = objects[i].configuration.parentNumber
+          }
+          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
       }
@@ -35,8 +39,10 @@ function initEquipment(_object_id) {
       jeedom.object.summaryUpdate(summaries)
     }
   })
-
+  
   if (isset(_object_id)) {
+    if (_object_id == '') _object_id == 'all'
+    
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path){
@@ -58,7 +64,7 @@ function initEquipment(_object_id) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function (html) {
-        if((_object_id == 'all' || _object_id == '')){
+        if (_object_id == 'all' || _object_id == '') {
           var div = ''
           summaries = []
           for(var i in html) {
@@ -89,10 +95,10 @@ function initEquipment(_object_id) {
           try {
             $('#div_displayEquipement').empty().html(div).trigger('create')
             jeedom.object.summaryUpdate(summaries)
-          }catch(err) {
+          } catch(err) {
             console.log(err)
           }
-        } else{
+        } else {
           $('#div_displayEquipement').empty().html('<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummary'+_object_id+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'+html+'</div></div>').trigger('create')
           jeedom.object.summaryUpdate([{object_id:_object_id}])
         }
@@ -101,21 +107,21 @@ function initEquipment(_object_id) {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})
         setTimeout(function() {
           $('#div_displayEquipement .objectHtml').packery({gutter :0})
-          }, 1000)
+        }, 1000)
       }
     })
   } else {
     $('#bottompanel').panel('open')
   }
-
-  $(window).on("resize", function (event) {
+  
+  $('body').on('orientationChanged', function (event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
     setTileSize('.scenario')
     $('#div_displayEquipement > .objectHtml').packery({gutter :0})
     $('.div_displayEquipement .objectHtml').packery({gutter :0})
   })
-
+  
   $('#in_searchWidget').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
@@ -169,9 +175,9 @@ function initEquipment(_object_id) {
       }
     })
   })
-
+  
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-
+  
 }

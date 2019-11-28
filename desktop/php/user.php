@@ -4,10 +4,8 @@ if (!isConnect('admin')) {
 }
 sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 ?>
+
 <div id="div_administration">
-	
-	
-	<!--********************Onglet utilisateur********************************-->
 	<div class="tab-pane" id="user">
 		<br/>
 		<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
@@ -142,7 +140,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+				<a class="btn btn-primary" id="bt_newUserSave"><i class="far fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

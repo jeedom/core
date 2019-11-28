@@ -1,22 +1,24 @@
-<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="button" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <div class="cmdName #hide_name#">#name_display#</div>
   <div data-role="controlgroup" data-type="horizontal">
     <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_minus roundedLeft"><i class="fas fa-minus"></i></a>
-    <input type="text" class="value" data-mini="true" value="#state# #unite#" data-wrapper-class="controlgroup-textinput ui-btn" style="width: 55px;"/>
+    <input type="text" class="value" data-mini="true" value="#state# #unite#" data-wrapper-class="controlgroup-textinput ui-btn"/>
     <a class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight"><i class="fa fa-plus"></i></a>
   </div>
   <script>
     $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function() {
       var max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) <= max - 0.5 ){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + 0.5});
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) <= max - step ){
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) + step});
         $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
       }
     });
     $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function() {
       var min= ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) >= min + 0.5 ){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - 0.5});
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) >= min + step ){
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .value').val()) - step});
         $('.cmd[data-cmd_uid=#uid#] .value').trigger('change');
       }
     });

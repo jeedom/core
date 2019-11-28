@@ -1,30 +1,32 @@
-<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" style="">
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="button" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content-sm ">
-    <div class="input-group" style="width: 150px;">
+    <div class="input-group buttons">
       <span class="input-group-btn" style="position: relative;">
-        <a class="btn btn-default bt_minus roundedLeft"><i class="fas fa-minus"></i></a>
+        <a class="btn btn-default btn-sm bt_minus roundedLeft"><i class="fas fa-minus"></i></a>
       </span>
-      <input type="text" class="in_value form-control" value="#state# #unite#" disabled style=""/>
+      <input type="text" class="input-sm in_value form-control" value="#state# #unite#" disabled/>
       <span class="input-group-btn" style="position: relative;">
-        <a class="btn btn-default bt_plus roundedRight"><i class="fa fa-plus"></i></a>
+        <a class="btn btn-default btn-sm bt_plus roundedRight"><i class="fa fa-plus"></i></a>
       </span>
     </div>
   </div>
   <script>
     $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
       var max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) <= max - 0.5 ){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + 0.5});
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) <= max - step ){
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + step});
         $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change');
       }
     });
     $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
       var min = ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) >= min + 0.5 ){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - 0.5});
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) >= min + step){
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - step});
         $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change');
       }
     });

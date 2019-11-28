@@ -36,8 +36,8 @@ $optionMaxSize = 15;
 				<span class="txtColor"><center>{{Tester}}</center></span>
 			</div>
 		</div>
-		
-		<legend><i class="far fa-comments"></i> {{Mes interactions}}</legend>
+
+		<legend><i class="far fa-comments"></i> {{Mes interactions}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalInteract) == 0) {
 			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
@@ -54,7 +54,7 @@ $optionMaxSize = 15;
 			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
-			
+
 			$div .= '<div class="panel-group" id="accordionInteract">';
 			if (count($interacts[-1]) > 0) {
 				$div .= '<div class="panel panel-default">';
@@ -123,7 +123,7 @@ $optionMaxSize = 15;
 		}
 		?>
 	</div>
-	
+
 	<div class="interact col-xs-12" style="display: none;" id="div_conf">
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -133,15 +133,13 @@ $optionMaxSize = 15;
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}}</a></li>
 			<li role="presentation"><a href="#filtertab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-filter"></i> {{Filtres}}</a></li>
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
-	</ul>
-	
+
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
@@ -235,7 +233,7 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="filtertab">
 			<br/>
 			<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
@@ -340,7 +338,7 @@ $optionMaxSize = 15;
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="col-sm-12">
 							<div class="col-sm-2">
@@ -374,18 +372,18 @@ $optionMaxSize = 15;
 				</fieldset>
 			</form>
 		</div>
-		
+
 		<div role="tabpanel" class="tab-pane" id="actiontab">
 			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 			<br/><br/>
 			<form class="form-horizontal">
 				<fieldset>
-					
+
 					<div id="div_action"></div>
 				</fieldset>
 			</form>
 		</div>
 	</div>
-	
-	<?php include_file('desktop', 'interact', 'js');?>
-	
+</div>
+
+<?php include_file('desktop', 'interact', 'js');?>

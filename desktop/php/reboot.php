@@ -5,12 +5,12 @@ if (!isConnect('admin')) {
 ?>
 
 <style>
-	#div_reboot_jeedom_texte{
+	#div_reboot_jeedom_texte {
 		width: 400px;
 		margin: auto;
 		text-align: center;
 	}
-	#contenu{
+	#contenu {
 		width: 400px;
 		margin: auto;
 	}
@@ -25,6 +25,7 @@ if (!isConnect('admin')) {
 	</div>
 	<div id="div_reboot_jeedom_texte"><h6>{{Merci de patienter...}}</h6></div>
 </div>
+
 <iframe src="" id="iframe_reboot" style="display:none"></iframe>
 
 <div id="div_reboot_jeedom" style="display:none;">
@@ -34,7 +35,16 @@ if (!isConnect('admin')) {
 <script type="text/javascript">
 	var rebooti = '0';
 	var testjeedom = '0';
-	jeedom.rebootSystem();
+
+	bootbox.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', function (result) {
+		if (result) {
+			jeedom.rebootSystem();
+			setTimeout('reboot_jeedom(rebooti)', 10000);
+			$('#progressbar_reboot').width('5%');
+		}else{
+			loadPage('index.php?v=d&p=dashboard');
+		}
+	});
 
 	function refresh() {
 		$.ajax({
@@ -67,7 +77,4 @@ if (!isConnect('admin')) {
 		$('#progressbar_reboot').width('25%');
 		setInterval('page_rebootjs(rebooti)', 15000);
 	}
-
-	setTimeout('reboot_jeedom(rebooti)', 10000);
-	$('#progressbar_reboot').width('5%');
 </script>

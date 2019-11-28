@@ -1,6 +1,6 @@
 /*
 Theme Core 2019 @Jeedom
-colors Dark
+colors Dark Mobile
 */
 :root {
   --lineheight : 1.42em;
@@ -57,20 +57,6 @@ colors Dark
   --al-warning-color: rgb(195, 125, 40);
   --al-danger-color: rgb(185, 58, 62);
   --bt-success-color: rgb(150, 201, 39);
-
-  --scBlocIF: rgb(88,89,90);
-  --scBlocACTION: rgb(154,152,152);
-  --scBlocIN: rgb(75,128,62);
-  --scBlocAT: rgb(58,86,128);
-  --scBlocFOR: rgb(152,126,22);
-  --scBlocCODE: rgb(50,62,85);
-  --scBlocCOM: rgb(65,95,115);
-
-  --scBlocIF-sep:rgb(56, 56, 56);
-  --scBlocACTION-sep: rgb(96,93,90);
-  --scBlocIN-sep: rgb(45, 77, 37);
-  --scBlocAT-sep: rgb(35, 52, 83);
-  --scBlocFOR-sep: rgb(91, 76, 13);
 
   --shd-color: rgba(15, 15, 15, 0.55);
 }

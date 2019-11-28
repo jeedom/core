@@ -221,8 +221,8 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($this->getLink_type() == 'plan') {
-			$html = '<span class="cursor plan-link-widget" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
-			$html .= '<a style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
+			$html = '<span class="cursor plan-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$html .= '<a style="color:' . $this->getCss('color', 'black') . ' !important;text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
@@ -232,8 +232,8 @@ class plan {
 			);
 		} else if ($this->getLink_type() == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
-			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-link_id="' . $this->getLink_id() . '" >';
-			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', 'black') . ';text-decoration:none;font-size : 1.5em;">';
+			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" >';
+			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', 'black') . ' !important;text-decoration:none;font-size : 1.5em;">';
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
@@ -255,7 +255,7 @@ class plan {
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'text') {
-			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ';">';
+			$html = '<div class="text-widget" data-text_id="' . $this->getLink_id() . '" style="color:' . $this->getCss('color', 'black') . ' !important;">';
 			if ($this->getDisplay('name') != '' || $this->getDisplay('icon') != '') {
 				$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('text');
 			} else {
@@ -295,7 +295,7 @@ class plan {
 				$html = '<div class="zone-widget cursor" data-zone_id="' . $this->getLink_id() . '" style="min-width:20px;min-height:20px;"></div>';
 			}
 			return array(
-				'plan' => utils::o2a($this),
+				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
 				'html' => $html,
 			);
 		} else if ($this->getLink_type() == 'summary') {

@@ -65,7 +65,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'alerts' => array(
-		'timeout' => array('name' => 'Timeout', 'icon' => 'far fa-clock', 'level' => 1, 'check' => false, 'color' => '#FF0000'),
+		'timeout' => array('name' => 'Timeout', 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => '#FF0000'),
 		'batterywarning' => array('name' => 'Batterie en Warning', 'icon' => 'fa fa-battery-quarter', 'level' => 2, 'check' => false, 'color' => '#FFAB00'),
 		'batterydanger' => array('name' => 'Batterie en Danger', 'icon' => 'fa fa-battery-empty', 'level' => 3, 'check' => false, 'color' => '#FF0000'),
 		'warning' => array('name' => 'Warning', 'icon' => 'fa fa-bell', 'level' => 4, 'check' => true, 'color' => '#FFAB00'),
@@ -76,7 +76,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'action' => array(
 				'other'=>array(
 					'light' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_yellow icon jeedom-lumiere-on\'></i>','#_icon_off_#' => '<i class=\'icon jeedom-lumiere-off\'></i>')),
-					'circle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-circle\'></i>','#_icon_off_#' => '<i class=\'fas fa-circle-thin\'></i>')),
+					'circle' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'fas fa-circle\'></i>','#_icon_off_#' => '<i class=\'far fa-circle\'></i>')),
 					'fan' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon jeedom-ventilo\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
 					'garage' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-garage-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-garage-ouvert\'></i>')),
 					'lock' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-lock-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_orange icon jeedom-lock-ouvert\'></i>')),
@@ -98,6 +98,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'info' => array(
 				'binary'=>array(
 					'default' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
+					'line' => array('template' => 'tmpliconline','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
 					'alert' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-alerte2\'></i>')),
 					'door' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-porte-ouverte\'></i>')),
 					'heat' => array('template' => 'tmplicon','replace' => array('#_icon_on_#' => '<i class=\'icon_red icon jeedom-feu\'></i>','#_icon_off_#' => '<i class=\'fas fa-times\'></i>')),
@@ -119,7 +120,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						array('operation' => '#value# == 1','state_light' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
 						array('operation' => '#value# == 0','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>')
 					)),
-					'timeHeatPiloteWire' => array('template' => 'tmplMultistate',
+					'timeHeatPiloteWire' => array('template' => 'tmplmultistate',
 					'replace' => array('#_time_widget_#' => '1'),
 					'test' => array(
 						array('operation' => '#value# == 3','state_light' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
@@ -136,7 +137,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 						array('operation' => '#value# >= 11 && #value# <= 20','state_light' => '<i class=\'icon jeedom-pilote-hg\'></i>'),
 						array('operation' => '#value# >= 0 && #value# <= 10','state_light' => '<i class=\'icon jeedom-pilote-off\'></i>'),
 					)),
-					'timeHeatPiloteWireQubino' => array('template' => 'tmplMultistate',
+					'timeHeatPiloteWireQubino' => array('template' => 'tmplmultistate',
 					'replace' => array('#_time_widget_#' => '1'),
 					'test' => array(
 						array('operation' => '#value# >= 51 && #value# <= 99','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>'),

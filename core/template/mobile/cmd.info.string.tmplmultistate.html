@@ -1,8 +1,8 @@
-<div class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="tmplmultistate" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <div class="iconCmd"></div>
-    <span class="timeCmd#uid# timeCmd"></span>
+    <span class="timeCmd value #history#" data-type="info"></span>
   </center>
 </div>
 <script>
@@ -22,19 +22,21 @@
       style = 'width:#_mobile_width_#px !important;'
     }
     cmd.find('.iconCmd img').attr('style',style);
+    cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
+      var state = '';
+      #change_theme#
+      if(state != ''){
+        cmd.find('.iconCmd').empty().append(state);
+      }
+      var style = '';
+      if(!isNaN('#_mobile_width_#')){
+        style = 'max-width:#_mobile_width_#px !important;'
+      }
+      cmd.find('.iconCmd img').attr('style',style);
+    });
   }
   jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-  $('body').on('changeThemeEvent', function (event, theme) {
-    var cmd = $('.cmd[data-cmd_id=#id#]');
-    var state = '';
-    #change_theme#
-    if(state != ''){
-      cmd.find('.iconCmd').empty().append(state);
-    }
-    var style = '';
-    if(!isNaN('#_mobile_width_#')){
-      style = 'max-width:#_mobile_width_#px !important;'
-    }
-    cmd.find('.iconCmd img').attr('style',style);
+  $('body').on('changeThemeEvent', function (event,theme) {
+    $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
   });
 </script>

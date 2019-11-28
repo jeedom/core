@@ -1,11 +1,11 @@
-<div style="width:96%;min-height:90px;" data-version="#version#" data-eqLogic_id="#eqLogic_id#" class="cmd #history# cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+<div class="cmd cmd-widget #history#" data-type="action" data-subtype="slider" data-template="tmplimg" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <span class="cursor iconCmd"></span>
     <div class="slider full-width-slider ui-slider">
       <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
     </div>
-    <span class="timeCmd#uid# timeCmd"></span>
+    <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
@@ -30,29 +30,34 @@
       }
       cmd.find('.slider input').value(_options.display_value);
       if (parseInt(_options.display_value) > 0) {
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#")).attr('data-state', 'on');
+        cmd.attr('data-state','on')
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"));
       }else {
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#")).attr('data-state', 'off');
+        cmd.attr('data-state','off')
+        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"));
       }
       var style = '';
       if(!isNaN('#_mobile_width_#')){
         style = 'max-width:#_mobile_width_#px !important;'
       }
       cmd.find('.imgCmd img').attr('style',style);
+      cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
+        var cmd = $('.cmd[data-cmd_id=#id#]');
+        if(cmd.attr('data-state') == 'on'){
+          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
+        }else{
+          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
+        }
+        var style = '';
+        if(!isNaN('#_mobile_width_#')){
+          style = 'max-width:#_mobile_width_#px !important;'
+        }
+        cmd.find('.imgCmd img').attr('style',style);
+      });
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-    $('body').on('changeThemeEvent', function (event, theme) {
-      var cmd = $('.cmd[data-cmd_id=#id#]');
-      if(cmd.attr('data-state') == 'on'){
-        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"))
-      }else{
-        cmd.find('.imgCmd img').attr('src',jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"))
-      }
-      var style = '';
-      if(!isNaN('#_mobile_width_#')){
-        style = 'max-width:#_mobile_width_#px !important;'
-      }
-      cmd.find('.imgCmd img').attr('style',style);
+    $('body').on('changeThemeEvent', function (event,theme) {
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
     });
   </script>
 </div>

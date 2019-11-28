@@ -1,4 +1,4 @@
-<div class="tooltips arcgauge cmd cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Date de valeur : #valueDate#<br/>Date de collecte : #collectDate#" >
+<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Date de valeur : #valueDate#<br/>Date de collecte : #collectDate#" >
 <div class="title #hide_name#">
   <span class="cmdName">#name_display#</span>
 </div>
@@ -13,17 +13,10 @@
     $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
     $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
   }
-  
+
   if (is_numeric('#state#')) {
     $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
       chart: {
-        events: {
-          click: function (event) {
-            if (!$.mobile && '#history#' == 'history cursor') {
-              $('#md_modal2').dialog({title: "Historique"}).load('index.php?v=d&modal=cmd.history&id=#id#').dialog('open')
-            }
-          }
-        },
         style: {
           fontFamily: 'Roboto'
         },

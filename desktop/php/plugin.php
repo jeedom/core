@@ -6,6 +6,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 sendVarToJS('sel_plugin_id', init('id', '-1'));
 $plugins_list = plugin::listPlugin(false, true);
 ?>
+
 <div id='div_alertPluginConfiguration'></div>
 
 <div class="row row-overflow">
@@ -29,36 +30,53 @@ $plugins_list = plugin::listPlugin(false, true);
         $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
         $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
         $div .= '</div>';
-        echo $div;
+        if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
+          continue;
+        }
+        $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
+        $div .= '<center><i class="fas fa-sync"></i></center>';
+        $div .= '<span class="txtColor"><center>{{Synchroniser}} ' . $value['name'] . '</center></span>';
+        $div .= '</div>';
       }
+      echo $div;
       ?>
     </div>
-    <legend><i class="fas fa-list-alt"></i> {{Mes plugins}}</legend>
+    <legend><i class="fas fa-list-alt"></i> {{Mes plugins}} <sub class="itemsNumber"></sub></legend>
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchPlugin"/>
       <div class="input-group-btn">
         <a id="bt_resetPluginSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
       </div>
     </div>
-    
     <div class="panel">
       <div class="panel-body">
         <div class="pluginListContainer">
           <?php
           foreach (plugin::listPlugin() as $plugin) {
             $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-            echo '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
-            echo '<center>';
-            echo '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
-            echo '</center>';
-            echo '<span class="name">' . $plugin->getName() . '</span>';
-            echo '</div>';
+            $div = '<div class="pluginDisplayCard cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'">';
+            $div .= '<center>';
+            $div .= '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
+            $div .= '</center>';
+            $lbl_version = false;
+            $update = $plugin->getUpdate();
+            if (is_object($update)) {
+              $version = $update->getConfiguration('version');
+              if ($version && $version != 'stable') $lbl_version = true;
+            }
+            if ($lbl_version) {
+              $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+            } else {
+              $div .= '<span class="name">' . $plugin->getName() . '</span>';
+            }
+            $div .= '</div>';
+            echo $div;
           }
           ?>
         </div>
       </div>
     </div>
-    
+
   </div>
   <div class="col-xs-12" id="div_confPlugin" style="display:none;">
     <legend>
@@ -68,7 +86,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <span class="input-group-btn" id="span_right_button"></span>
       </div>
     </legend>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
@@ -116,7 +134,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-success">
@@ -135,14 +153,14 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-map"></i> {{Installation}}</h3></div>
       <div class="panel-body">
         <span id="span_plugin_installation"></span>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
@@ -154,7 +172,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="form-actions"></div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-primary" id="div_functionalityPanel">

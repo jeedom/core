@@ -119,7 +119,7 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
 		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL';
+			$sql .= ' WHERE object_id IS NULL OR object_id = -1';
 		} else {
 			$values['object_id'] = $_object_id;
 			$sql .= ' WHERE object_id=:object_id';
@@ -517,8 +517,7 @@ class eqLogic {
 		$batteryTime = $this->getConfiguration('batterytime', 'NA');
 		$batterySince = 'NA';
 		if ($batteryTime != 'NA') {
-			$batterySince = ((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400);
-			$batterySince = round($batterySince, 1);
+			$batterySince = round((strtotime(date("Y-m-d")) - strtotime(date("Y-m-d", strtotime($batteryTime)))) / 86400,1);
 		}
 		if (strpos($battery, ' ') !== false) {
 			$battery = mb_substr(strrchr($battery, " "), 1);
@@ -542,11 +541,10 @@ class eqLogic {
 		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="'. $this->getId() . '">';
 		
 		$eqName = $this->getName();
-		if (strlen($eqName) > 20) $eqName = mb_substr($eqName,0,20)."...";
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name">' . $eqName . '<br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><br/><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
 		}
 		$html .= '<center class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
@@ -664,9 +662,6 @@ class eqLogic {
 		}
 		$translate_category = trim($translate_category,',');
 		$name_display = $this->getName();
-		if (mb_strlen($name_display) > 25) {
-			$name_display = mb_substr($name_display,0,25)."...";
-		}
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -677,8 +672,8 @@ class eqLogic {
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
 			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun',__FILE__),
-			'#height#' => $this->getDisplay('height', '110px'),
-			'#width#' => $this->getDisplay('width', '230px'),
+			'#height#' => $this->getDisplay('height', 'auto'),
+			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
@@ -690,10 +685,11 @@ class eqLogic {
 			'#generic_type#' => $this->getGenericType(),
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':''
 		);
-		if($replace['#height#'] == 'auto'){
+		if ($this->getDisplay('height', 'auto') == 'auto') {
 			$replace['#height#'] = '110px';
+			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'].' autoResize';
 		}
-		if($replace['#width#'] == 'auto'){
+		if ($replace['#width#'] == 'auto') {
 			$replace['#width#'] = '230px';
 		}
 		if ($this->getAlert() != '') {
@@ -794,12 +790,12 @@ class eqLogic {
 				if (isset($replace['#refresh_id#']) && $cmd->getId() == $replace['#refresh_id#']) {
 					continue;
 				}
-				if ($br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
+				if ($_version == 'dashboard' && $br_before == 0 && $cmd->getDisplay('forceReturnLineBefore', 0) == 1) {
 					$cmd_html .= '<br/>';
 				}
 				$cmd_html .= $cmd->toHtml($_version, '');
 				$br_before = 0;
-				if ($cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
+				if ($_version == 'dashboard' && $cmd->getDisplay('forceReturnLineAfter', 0) == 1) {
 					$cmd_html .= '<br/>';
 					$br_before = 1;
 				}
@@ -887,12 +883,6 @@ class eqLogic {
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 			}
-			if ($this->getDisplay('height', 'auto') == 'auto') {
-				$this->setDisplay('height', '110px');
-			}
-			if ($this->getDisplay('width', 'auto') == 'auto') {
-				$this->setDisplay('width', '230px');
-			}
 			if($this->getDisplay('layout::dashboard') != 'table'){
 				$displays = $this->getDisplay();
 				foreach ($displays as $key => $value) {
@@ -912,7 +902,7 @@ class eqLogic {
 							$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
 						}
 						if ($this->getDisplay('layout::' . $key . '::table::nbColumn') == '') {
-							$this->setDisplay('layout::' . $key . '::table::nbLine', 1);
+							$this->setDisplay('layout::' . $key . '::table::nbColumn', 1);
 						}
 					}
 					foreach ($this->getCmd() as $cmd) {
@@ -1162,7 +1152,7 @@ class eqLogic {
 			foreach ($this->getCmd() as $eqLogic_cmd) {
 				$exists = 0;
 				foreach ($_configuration['commands'] as $command) {
-					if ($command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
 						$exists++;
 					}
 				}
@@ -1400,6 +1390,23 @@ class eqLogic {
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
+			}
+		}
+		return $return;
+	}
+	
+	
+	public static function deadCmdGeneric($_plugin_id) {
+		$return = array();
+		foreach (eqLogic::byType($_plugin_id) as $eqLogic) {
+			$eqLogic_json = json_encode(utils::o2a($eqLogic));
+			preg_match_all("/#([0-9]*)#/", $eqLogic_json, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => ucfirst($_plugin_id).' ' . $eqLogic->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+					}
+				}
 			}
 		}
 		return $return;
@@ -1722,7 +1729,7 @@ class eqLogic {
 			}
 		}else{
 			if(isset($JEEDOM_INTERNAL_CONFIG['alerts'][$_key])){
-				$changed = ($this->getStatus($_key) !== $_value);
+				$changed = ($this->getStatus($_key) != $_value);
 			}
 		}
 		cache::set('eqLogicStatusAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue(), $_key, $_value));

@@ -1,5 +1,5 @@
-<span class="cmd" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<span class='ui-bar ui-bar-a state'>#state# #unite#</span>
+<span class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="badge" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<span class='ui-bar ui-bar-a state label-info'>#state# #unite#</span>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');

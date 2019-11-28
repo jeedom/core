@@ -51,13 +51,11 @@ sendVarToJS('id', $plan->getId());
 		</div>
 		<div class="form-group link_type link_eqLogic link_cmd link_scenario">
 			<label class="col-lg-4 control-label">{{Taille du widget}}
-				<sup><i class="fas fa-question-circle tooltips" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
+				<sup><i class="fas fa-question-circle" title="{{Facteur de zoom. Ex : Réduire de moitié : 0.5, Doubler : 2}}"></i></sup>
 			</label>
 			<div class="col-lg-2">
 				<input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2"/>
-			</div>
-			<div class="alert alert-danger col-lg-5">
-				{{Attention : cette option crée des problèmes de placement sur les bords du design.}}
+				<sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : cette option crée des problèmes de placement sur les bords du design.}}"></i></sup>
 			</div>
 		</div>
 		<legend>{{Spécifique}}</legend>
@@ -251,11 +249,15 @@ sendVarToJS('id', $plan->getId());
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
 			<label class="col-lg-4 control-label">{{CSS personnalisé}} <sub>css</sub></label>
-			<div class="col-lg-5">
+			<div class="col-lg-8">
 				<input class="planAttr form-control" data-l1key="display" data-l2key="css" placeholder="font-weight: bold;"/>
+				<sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : peut être source de problèmes.}}"></i></sup>
 			</div>
-			<div class="alert alert-danger col-lg-3">
-				{{Attention, peut être source de problèmes.}}
+		</div>
+		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
+			<label class="col-lg-4 control-label">{{Appliqué le css personnalisé sur}} <sub>selecteur css</sub></label>
+			<div class="col-lg-2">
+				<input class="planAttr form-control" data-l1key="display" data-l2key="cssApplyOn" placeholder="*"/>
 			</div>
 		</div>
 		<div class="link_eqLogic">

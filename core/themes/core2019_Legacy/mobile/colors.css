@@ -1,41 +1,41 @@
 /*
 Theme Core 2019 @Jeedom
-colors Legacy
+colors Legacy Mobile
 */
 :root {
   --lineheight : 1.42em;
   /* keet it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
-  
+
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
   --logo-secondary-color: rgb(69, 68, 73);
   --bg-color: 238, 239, 241;
   --bg-modal-color: rgb(237, 238, 238);
   --contrast-color: 30, 30, 30;
-  
+
   --txt-color: rgb(115, 115, 115);
   --link-color: rgb(90, 90, 90);
   --linkHover-color: rgb(140, 140, 148);
   --linkHoverLight-color: rgb(254, 254, 254);
   --placeholder-color: rgb(160, 160, 160);
-  
+
   --sc-form-color: rgba(245, 245, 245, 0.85);
   --sc-formTxt-color: rgb(75, 75, 75);
   --sc-lightTxt-color: rgb(240, 240, 240);
-  
+
   --el-defaultColor: rgb(200, 200, 200);
   --defaultBkg-color: 255, 255, 255;
   --form-bg-color: rgb(220, 220, 220);
   --btnEq-default-color: rgb(220, 220, 220);
   --btn-default-color: rgb(100, 100, 100);
   --panel-bg-color: 248, 249, 250;
-  
+
   --eqTitle-color: rgb(240, 240, 240);
   --objectBkgd-color: rgb(105, 105, 105);
   --objectTxt-color: rgb(235, 235, 235);
-  
+
   --eq-bg-color: 255, 255, 255;
   --cat-security-color: 116, 92, 176;
   --cat-heating-color: 41, 128, 185;
@@ -45,7 +45,7 @@ colors Legacy
   --cat-energy-color: 46, 176, 75;
   --cat-other-color: 25, 188, 156;
   --cat-scenario-color: 127, 140, 141;
-  
+
   --cat-security-BtnColor: rgb(156, 132, 216);
   --cat-heating-BtnColor: rgb(81, 168, 225);
   --cat-automatism-BtnColor: rgb(168, 168, 168);
@@ -54,10 +54,10 @@ colors Legacy
   --cat-energy-BtnColor: rgb(86, 216, 115);
   --cat-other-BtnColor: rgb(65, 228, 196);
   --cat-scenario-BtnColor: rgb(230, 230, 235);
-  
+
   --url-iconsDark: url(../img/ui-icons-white.png);
   --url-iconsLight: url(../img/ui-icons-black.png);
-  
+
   --lb-info-color: rgb(110, 180, 240);
   --lb-yellow-color: rgb(250, 225, 0);
   --al-info-color: rgb(100, 175, 250);
@@ -66,20 +66,6 @@ colors Legacy
   --al-warning-color: rgb(240, 160, 40);
   --al-danger-color: rgb(210, 0, 0);
   --bt-success-color: rgb(150, 215, 39);
-  
-  --scBlocIF: rgb(123,123,129);
-  --scBlocACTION: rgb(180,175,170);
-  --scBlocIN: rgb(95,148,82);
-  --scBlocAT: rgb(78,106,158);
-  --scBlocFOR: rgb(172,146,42);
-  --scBlocCODE: rgb(70,82,95);
-  --scBlocCOM: rgb(100,110,108);
-  
-  --scBlocIF-sep: rgb(75, 75, 75);
-  --scBlocACTION-sep: rgb(108,105,102);
-  --scBlocIN-sep: rgb(57, 89, 50);
-  --scBlocAT-sep: rgb(47, 64, 95);
-  --scBlocFOR-sep: rgb(103, 88, 25);
-  
+
   --shd-color: rgba(0, 0, 0, 0.55);
 }

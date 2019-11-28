@@ -115,11 +115,15 @@ sendVarToJS('planHeader', utils::o2a($planHeader));
 							echo $plan->getLink_id();
 							echo '</td>';
 							echo '<td>';
-							$link = $plan->	getLink();
-							if(is_object($link)){
-								echo $link->getHumanName();
+							if(in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))){
+								echo '<span class="label label-default">N/A</span>';
 							}else{
-								echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+								$link = $plan->	getLink();
+								if(is_object($link)){
+									echo $link->getHumanName();
+								}else{
+									echo '<span class="label label-danger">{{Lien mort ou absent}}</span>';
+								}
 							}
 							echo '</td>';
 							echo '<td>';
@@ -202,6 +206,7 @@ $('#bt_saveConfigurePlanHeader').on('click', function () {
 		},
 		success: function () {
 			$('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'});
+			$('#div_pageContainer').data('editOption.state', false);
 			loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id);
 		},
 	});

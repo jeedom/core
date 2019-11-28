@@ -9,11 +9,11 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
   <form class="form-horizontal col-lg-12">
     <br/>
     <center>
-      <img src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="50">
+      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
       <br>
-      <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> | 
-      <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> | 
-      <a class="badge cursor" href="https://www.jeedom.com/forum/" target="_blank">Forum</a> | 
+      <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
+      <a class="badge cursor" href="https://www.jeedom.com/blog/" target="_blank">Blog</a> |
+      <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
       <a class="badge cursor" href="https://jeedom.github.io/documentation/" target="_blank">Doc</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
@@ -23,6 +23,9 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       {{Branche}} : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::branch'); ?></span>
       <br>
       {{Système}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::getHardwareName() ?></span>
+      <br><br>
+      <a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a>
+      <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
       <br><br>
     </center>
 
@@ -58,6 +61,10 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 
 <script>
 $(function(){
+    var currentTheme = $('body').attr('data-theme')
+    if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+      $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
+    }
     var parentWidth = $( window ).width()
     var parentHeight = $( window ).height()
     if (parentWidth > 850 && parentHeight > 750) {
@@ -70,5 +77,28 @@ $(function(){
         }
       })
     }
+})
+
+$('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
+  jeedom.getDocumentationUrl({
+    page: 'changelog',
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(url) {
+      window.open(url,'_blank')
+    }
+  })
+})
+$('body').off('click','#bt_faq').on('click','#bt_faq',function() {
+  jeedom.getDocumentationUrl({
+    page: 'faq',
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(url) {
+      window.open(url,'_blank')
+    }
+  })
 })
 </script>

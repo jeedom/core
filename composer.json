@@ -3,7 +3,7 @@
   "description": "Software for home automation",
   "require": {
     "mtdowling/cron-expression": "~1.0",
-    "symfony/expression-language": "~2.6",
+    "symfony/expression-language": "^3.3",
     "doctrine/cache": "^1.6",
     "monolog/monolog": "~1.17",
     "knplabs/github-api": "~1.7",

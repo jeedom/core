@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -18,8 +17,6 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
   e.preventDefault();
   $("#bt_saveBackup").click();
 });
-
-$('#pre_backupInfo').height($(window).height() - $('header').height() - $('footer').height() - 150);
 
 $("#bt_saveBackup").on('click', function (event) {
   $.hideAlert();
@@ -171,6 +168,14 @@ updateListBackup();
 $('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function () {
   modifyWithoutSave = true;
 });
+
+$(".btn_closeInfo").on('click', function () {
+  $('.panel-backupinfo').addClass('hidden')
+  $('#pre_backupInfo').text('');
+});
+
+
+
 
 /********************Log************************/
 

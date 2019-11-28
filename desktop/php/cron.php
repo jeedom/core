@@ -11,7 +11,6 @@ if (!isConnect('admin')) {
   <li role="presentation"><a href="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug" ></i> {{Démon}}</a></li>
 </ul>
 
-
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="cron">
     <div class="input-group pull-right" style="display:inline-flex">
@@ -25,7 +24,7 @@ if (!isConnect('admin')) {
         ?>
       </a><a class="btn btn-sm" id="bt_refreshCron" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}
       </a><a class="btn btn-sm" id="bt_addCron" style="margin-top: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}
-      </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Enregistrer}}</a>
+      </a><a class="btn btn-success roundedRight btn-sm" id="bt_save" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
     </span>
   </div>
   
@@ -40,7 +39,7 @@ if (!isConnect('admin')) {
         <th data-filter="false" data-sorter="checkbox">{{Unique}}</th>
         <th data-filter="false" data-sorter="inputs">{{Classe}}</th>
         <th data-filter="false" data-sorter="inputs">{{Fonction}}</th>
-        <th data-filter="false" data-sorter="inputs">{{Programmation}} <i class="fas fa-question-circle cursor bt_pageHelp" data-name='cronSyntaxe' style="position: relative; width: 10px;"></i></th>
+        <th data-filter="false" data-sorter="inputs">{{Programmation}}</th>
         <th data-filter="false" data-sorter="inputs">{{Timeout (min)}}</th>
         <th data-filter="false">{{Dernier lancement}}</th>
         <th data-filter="false">{{Dernière durée}}</th>
@@ -61,6 +60,7 @@ if (!isConnect('admin')) {
         <th>{{Event}}</th>
         <th style="width: 120px;">{{Classe}}</th>
         <th style="width: 120px;">{{Fonction}}</th>
+        <th data-filter="false" data-sorter="false" style="width: 50px;">{{Actions}}</th>
       </tr>
     </thead>
     <tbody></tbody>

@@ -79,10 +79,11 @@ function displayView(html) {
     $('.chartContainer').width(((deviceInfo.width / 2) - 20))
   }
   setTileSize('.eqLogic')
+  setTileSize('.scenario')
   $('.eqLogicZone').packery({gutter : 0})
   setTimeout(function(){
     $('.eqLogicZone').packery({gutter : 0})
-  }, 50)
+  }, 750)
   $('#div_displayView .ui-table-columntoggle-btn').remove()
   var screenWidth = $(window).width() - 5
   $('.div_viewZone .table-responsive').each(function(){

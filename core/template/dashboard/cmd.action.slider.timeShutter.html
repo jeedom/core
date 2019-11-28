@@ -1,4 +1,4 @@
-<div class="tooltips shuttergauge cmd cmd-widget" data-type="action" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget shuttergauge" data-type="action" data-subtype="numeric" data-template="timeShutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
@@ -8,15 +8,16 @@
         <div class="shuttergauge-value"></div>
       </div>
       <div class="slider" value="#state#">
+        <span class="value#uid# sliderValue"></span>
       </div>
     </div>
   </div>
   <div class="value" data-cmd_id="#id#">
     <div class="state valueshutter"><strong>#state#</strong> <strong>#unite#</strong></div>
-    <div class="state dynamicshutter" style="display:none;"></div>
-    <span class="timeCmd#uid# timeCmd label label-default"></span>
+    <div class="state dynamicshutter hidden"></div>
+    <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </div>
-  
+
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
@@ -33,17 +34,17 @@
       if (height_#uid# > 65) {
         cmd.find('.state strong').css('color','var(--bg-modal-color)')
         cmd.find('.value').css({'margin-top':'-35px', 'min-height':'51px'})
-        cmd.find('.value .timeCmd').css('top','28px')
+        cmd.find('.value .timeCmd').css('top','23px')
       } else {
         cmd.find('.state strong').css('color','var(--txt-color)')
         cmd.find('.value').css({'margin-top':'-12px', 'min-height':'28px'})
-        cmd.find('.value .timeCmd').css('top','5px')
+        cmd.find('.value .timeCmd').css('top','0')
       }
       cmd.find('.shuttergauge-value').height(height_#uid#+'%')
       cmd.find('.state strong').first().text(_options.display_value)
       cmd.find('.slider').slider( "option", "value",position);
     }
-    
+
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
@@ -54,10 +55,9 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: maxValue}})
       }
     })
-    
+
     $('.cmd[data-cmd_uid=#uid#] .slider').on('slidestop', function (event,ui) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
-      cmd.find('.valueshutter').show()
       cmd.find('.dynamicshutter').hide()
       if('#invert#' == '1'){
         var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
@@ -66,16 +66,21 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       }
       $(".value#uid#").hide()
+      cmd.find('.valueshutter').show()
+      cmd.find('.timeCmd').show()
     })
-    
+
     $('.cmd[data-cmd_uid=#uid#] .slider').slider({
       orientation: "vertical",
       min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
       slide: function(event, ui) {
+        $(".value#uid#").show()
+        $(".value#uid#").html(ui.value);
         var cmd = $('.cmd[data-cmd_uid=#uid#]')
         cmd.find('.valueshutter').hide()
+        cmd.find('.timeCmd').hide()
         cmd.find('.dynamicshutter').show()
         if ('#invert#' == '1') {
           var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
@@ -90,7 +95,7 @@
         }
       }
     })
-    
+
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
   </script>
 </div>

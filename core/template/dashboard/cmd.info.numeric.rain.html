@@ -1,0 +1,34 @@
+<div class="cmd cmd-widget widget-rain #history#" data-type="info" data-subtype="numeric" data-template="rain" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="widget-rain-main">
+    <div class="widget-rain-container">
+      <div class="widget-rain-title">
+        <span class="#hide_name#">#name_display#</span><br/>
+        <span class="value"></span>
+        <span class="unite">#unite#</span>
+      </div>
+    </div>
+    <div class="widget-rain-water" style=""></div>
+  </div>
+  <div class="cmdStats #hide_history#">
+    <div class="col-xs-12 center-block">
+      <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
+  </div>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      let cmd = $('.cmd[data-cmd_id=#id#]');
+      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
+      cmd.find('.value').empty().append(_options.display_value);
+      cmd.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
+    }
+    if('#scale#' != '') {
+      let el = $('.cmd[data-cmd_id=#id#] .widget-rain-main');
+      el.width(el.width() * '#scale#');
+      el.height(el.height() * '#scale#')
+    }
+    if('#animate#' == '0') {
+      $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('animation','none')
+    }
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+  </script>
+</div>

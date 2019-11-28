@@ -1,8 +1,11 @@
 /***************Fonction d'initialisation*********************/
+var PAGE_HISTORY = [];
+var PANEL_SCROLL= 0
 $(document).ajaxStart(function () {
   nbActiveAjaxRequest++
   $.showLoading()
 });
+
 $(document).ajaxStop(function () {
   nbActiveAjaxRequest--
   if (nbActiveAjaxRequest <= 0) {
@@ -26,10 +29,12 @@ $(function() {
   BACKGROUND_IMG = ''
   nbActiveAjaxRequest = 0
   utid = Date.now();
-  $.mobile.orientationChangeEnabled = false
   
-  $(window).on("resize", function (event) {
-    deviceInfo = getDeviceType()
+  $(window).on('orientationchange', function(event) {
+    //wait to get new width:
+    window.setTimeout(function() {
+      $('body').trigger('orientationChanged', [event.orientation])
+    }, 200)
   })
   
   initApplication()
@@ -46,12 +51,15 @@ $(function() {
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
   })
   
-  $('body').on('taphold','.cmd[data-type=info]',function() {
+  $('body').on('click','.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
+    
     mainOpt.panel('open')
+    $(document).scrollTop(PANEL_SCROLL)
+    
   });
   
   $('body').on('click','#bt_warnmeCmd',function() {
@@ -142,10 +150,10 @@ function setBackgroundImage(_path) {
 function triggerThemechange() {
   //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
-  if (currentTheme.endsWith('Light')) {
-    $('#homeLogoImg').attr('src', ('../../'+jeedom.theme.logo_mobile_light))
+  if (currentTheme.endsWith('Dark')) {
+    $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_dark)
   } else {
-    $('#homeLogoImg').attr('src', ('../../'+jeedom.theme.logo_mobile_dark))
+    $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_light)
   }
   //trigger event for widgets:
   if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
@@ -386,7 +394,37 @@ function initApplication(_reinit) {
   })
 }
 
+$(window).on("navigate", function (event, data) {
+  if($('.ui-popup-container:not(.ui-popup-hidden)').length > 0){
+    return;
+  }
+  event.preventDefault();
+  event.stopPropagation();
+  var direction = data.state.direction;
+  PAGE_HISTORY.pop()
+  var history_page = PAGE_HISTORY.pop();
+  if(!history_page || !history_page.page){
+    return;
+  }
+  if(!history_page.option){
+    page(history_page.page,history_page.title);
+  }else if(!history_page.plugin){
+    page(history_page.page,history_page.title,history_page.option);
+  }else {
+    page(history_page.page,history_page.title,history_page.option,history_page.plugin);
+  }
+  if(history_page.scroll){
+    setTimeout(function(){$(document).scrollTop(history_page.scroll)}, 1000);
+  }
+});
+
 function page(_page, _title, _option, _plugin,_dialog) {
+  if(PAGE_HISTORY[PAGE_HISTORY.length - 1]){
+    PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop();
+  }
+  if (!isset(_dialog) || !_dialog) {
+    PAGE_HISTORY.push({page : _page,title : _title,option : _option, plugin : _plugin});
+  }
   $('#searchContainer').hide()
   setBackgroundImage('')
   $.showLoading()
@@ -453,8 +491,8 @@ function page(_page, _title, _option, _plugin,_dialog) {
   } else {
     $('#page').hide().load(page, function () {
       $('body').attr('data-page', _page)
-      window.history.pushState('','','index.php?v=m&p=' +_page)
       $('#page').trigger('create')
+      window.history.pushState('','','index.php?v=m&p=home')
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
@@ -471,7 +509,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
       Waves.init()
       $('#pagecontainer').css('padding-top','64px')
       $('#page').fadeIn(400)
-      setTimeout(function(){$('#pagecontainer').css('padding-top','64px');; }, 100)
+      setTimeout(function(){$('#pagecontainer').css('padding-top','64px'); }, 100)
     })
   }
 }
@@ -502,6 +540,23 @@ function panel(_content) {
   } catch(e) {}
 }
 
+$(document).on('panelbeforeopen', function(event) {
+  PANEL_SCROLL = $(document).scrollTop()
+  event.stopImmediatePropagation()
+})
+
+$(document).on('panelopen', function(event) {
+  $(document).scrollTop(PANEL_SCROLL);
+})
+
+$(document).on('panelbeforeclose', function(event) {
+  PANEL_SCROLL = $(document).scrollTop()
+})
+
+$(document).on('panelclose', function(event) {
+  $(document).scrollTop(PANEL_SCROLL);
+})
+
 function refreshMessageNumber() {
   jeedom.message.number({
     success: function (_number) {
@@ -522,12 +577,13 @@ function setTileSize(_filter) {
   if (typeof jeedom.theme['widget::margin'] == 'undefined') {
     jeedom.theme['widget::margin'] = 4
   }
+  var bsize = deviceInfo.bSize
   $(_filter).each(function () {
     $(this).css({'margin':'0px', 'padding':'0px'})
     if ($(this).hasClass('col2')) {
-      $(this).width(deviceInfo.bSize * 2)
+      $(this).width(bsize * 2)
     } else {
-      $(this).width(deviceInfo.bSize-jeedom.theme['widget::margin'])
+      $(this).width(bsize - jeedom.theme['widget::margin'])
     }
     $(this).css('margin',jeedom.theme['widget::margin']+'px')
   });

@@ -1,5 +1,7 @@
-<div class="tooltips cmd cmd-widget #history#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" style="display: block;">
-	<center><span class="cmdName #hide_name#">#name_display#</span> <strong class="state"></strong>#unite#</center>
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-template="line" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+	<center>
+		<span class="cmdName #hide_name#">#name_display#</span> <strong class="state"></strong>#unite#
+	</center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);

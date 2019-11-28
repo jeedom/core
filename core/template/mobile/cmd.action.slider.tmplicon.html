@@ -1,11 +1,11 @@
-<div style="width:96%;min-height:90px;" data-version="#version#" data-eqLogic_id="#eqLogic_id#" class="cmd #history# cmd-widget" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#">
+<div class="cmd cmd-widget #history#" data-type="action" data-subtype="slider" data-template="tmplicon" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <span class="cursor iconCmd"></span>
     <div class="slider full-width-slider ui-slider">
       <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
     </div>
-    <span class="timeCmd#uid# timeCmd"></span>
+    <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
