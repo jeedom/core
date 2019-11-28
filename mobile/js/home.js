@@ -15,16 +15,16 @@ function initHome() {
   $bottomPanelAnalyseActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3"></i> {{Santé}}</a>')
   $bottomPanelAnalyseActions.append('<br>')
 
-
    //set other actions:
   $bottomPanelOtherActions = $('#bottompanel_otherActionList')
   $bottomPanelOtherActions.empty()
+  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="preview" data-title="<i class=\'fab fa-hubspot\'></i> {{Aperçu}}"><i class="fab fa-hubspot"></i> {{Aperçu}}</a>')
   if(jeedom.theme.mobile_theme_color != jeedom.theme.mobile_theme_color_night){
     $bottomPanelOtherActions.append('<a id="bt_switchTheme" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a>')
   }
   $bottomPanelOtherActions.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" href="index.php?v=d"><i class="fas fa-desktop"></i> {{Version desktop}}</a>')
   $bottomPanelOtherActions.append('<a id="bt_forceReload" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-retweet"></i> {{Forcer mise à jour}}</a>')
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="about" data-title="{{A propos}}"><i class="fas fa-info-circle"></i> {{A propos}}</a>')
+  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="about" data-title="<i class=\'fas fa-info-circle\'></i> {{A propos}}"><i class="fas fa-info-circle"></i> {{A propos}}</a>')
   $bottomPanelOtherActions.append('<a href="#" id="bt_logout" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sign-out-alt"></i> {{Déconnexion}}</a>')
   $bottomPanelOtherActions.append('<br>')
 
@@ -36,8 +36,9 @@ function initHome() {
     success: function (objects) {
       var li = ''
       var summaries = []
-      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><span><i class="fas fa-globe"></i> {{Tout}}</a>'
-      for (var i in objects) {
+      li += '<a href="#" class="summaryMenu link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="preview" data-title="<i class=\'fab fa-hubspot\'></i> {{Aperçu}}"><i class="fab fa-hubspot"></i> {{Aperçu}}</a>'
+      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"></i> {{Tout}}</a>'
+       for (var i in objects) {
         if (objects[i].isVisible == 1) {
           var icon = ''
           if (isset(objects[i].display) && isset(objects[i].display.icon)) {
@@ -47,7 +48,9 @@ function initHome() {
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
-          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '"><span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name + '<span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>'
+          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '">'
+          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
+          li += '<span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>'
           summaries.push({object_id : objects[i].id})
         }
       }
@@ -55,7 +58,6 @@ function initHome() {
       jeedom.object.summaryUpdate(summaries)
     }
   })
-
 
   jeedom.view.all({
     error: function (error) {

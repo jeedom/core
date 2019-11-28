@@ -3,15 +3,20 @@ function initEquipment(_object_id) {
   $('#searchContainer').show();
   var objectMapping = {}
   var objects_info = {}
-  
+
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (objects) {
       var summaries = []
-      var li = ' <ul data-role="listview" data-inset="false">'
-      li += '<li><a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><span><i class=\'fas fa-globe\'></i> {{Tout}}</a></li>'
+      var li = '<ul data-role="listview" data-inset="false">'
+      li += '<li class="li-splitter">'
+      li += '<div>'
+      li += '<a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"> </i> {{Tout}}</a>'
+      li += '<a href="#" class="link" data-page="preview" data-title="<i class=\'fab fa-hubspot\'></i> {{Aperçu}}" style="float: right;margin: 0;padding: 0 !important;"><i class="fab fa-hubspot"> </i> {{Aperçu}}</a>'
+      li += '</div>'
+      li += '</li>'
       for (var i in objects) {
         if (objects[i].isVisible == 1) {
           var icon = ''
@@ -30,7 +35,9 @@ function initEquipment(_object_id) {
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
-          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '"><span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name + ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
+          li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '">'
+          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
+          li += ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
       }
@@ -39,10 +46,10 @@ function initEquipment(_object_id) {
       jeedom.object.summaryUpdate(summaries)
     }
   })
-  
+
   if (isset(_object_id)) {
     if (_object_id == '') _object_id == 'all'
-    
+
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path){
@@ -113,7 +120,7 @@ function initEquipment(_object_id) {
   } else {
     $('#bottompanel').panel('open')
   }
-  
+
   $('body').on('orientationChanged', function (event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
@@ -121,7 +128,7 @@ function initEquipment(_object_id) {
     $('#div_displayEquipement > .objectHtml').packery({gutter :0})
     $('.div_displayEquipement .objectHtml').packery({gutter :0})
   })
-  
+
   $('#in_searchWidget').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
@@ -175,9 +182,9 @@ function initEquipment(_object_id) {
       }
     })
   })
-  
+
   $('#bt_eraseSearchInput').off('click').on('click',function(){
     $('#in_searchWidget').val('').keyup()
   })
-  
+
 }
