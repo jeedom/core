@@ -19,6 +19,8 @@ if (!is_object($object)) {
 }
 if (init('childs', 1) == 1) {
 	$allObject = jeeObject::buildTree(null, true);
+} else {
+	$allObject = array();
 }
 
 foreach ($allObject as $value) {
