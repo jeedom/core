@@ -252,6 +252,8 @@ a, .ui-link {
   text-decoration: none;
   color: var(--sc-lightTxt-color) !important;
   font-size: 16px !important;
+  font-weight: 300;
+
 }
 .widget-name {
   padding-right: 22px;
@@ -316,7 +318,7 @@ a, .ui-link {
 }
 .cmdName {
   font-size: 14px !important;
-  font-weight: bold;
+  font-weight: 500;
 }
 .cmdName:first-letter {
   text-transform: uppercase;
@@ -478,6 +480,10 @@ p.state {
   box-shadow: none !important;
   height: 64px;
 }
+.ui-header .ui-title {
+  font-weight: 300 !important;
+  font-family: "Roboto" !important;
+}
 
 #homeLogoLink {
   padding: 4px 5px;
@@ -500,6 +506,7 @@ p.state {
 
 .objectSummaryglobal .objectSummaryParent {
   font-size: 12px;
+  font-weight: 400;
 }
 
 
@@ -520,6 +527,7 @@ p.state {
   box-shadow: none;
   line-height: 15px !important;
   min-height: 17px;
+  font-weight: 300;
 }
 .ui-link i:hover {
   color: var(--linkHover-color) !important;
@@ -553,7 +561,7 @@ p.state {
 .ui-panel-position-bottom.ui-panel-display-overlay a,
 .ui-listview > li > a {
   font-size: 16px;
-  font-weight: normal;
+  font-weight: 300;
   text-transform: none !important;
   padding: 6px 10px !important;
   color: var(--link-color) !important;
