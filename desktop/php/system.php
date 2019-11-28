@@ -18,8 +18,8 @@ if (!isConnect('admin')) {
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
         <?php if (jeedom::isCapable('sudo')) {?>
           <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo rm -f /var/lib/dpkg/updates/*">Fix dpkg</a></li>
-                    <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "yes | sudo apt -f install" | sudo at now'>Fix install</a></li>
-          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "yes | sudo dpkg --configure -a" | sudo at now'>Dpkg configure</a></li>  
+          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "yes | sudo apt -f install" | sudo at now'>Fix install</a></li>
+          <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command='echo "sudo dpkg --configure -a --force-confdef" | sudo at now'>Dpkg configure</a></li> 
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="sudo ../../health.sh">health.sh</a></li>
         <?php }?>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="ps -eo size,pid,user,command --sort -size">Memory Usage</a></li>
