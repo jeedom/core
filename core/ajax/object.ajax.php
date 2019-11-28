@@ -278,7 +278,7 @@ try {
 			$extension = strtolower(strrchr(init('file'), '.'));
 			$upfilepath = init('file');
 		}
-		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'*');
+		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
 		if(count($files)  > 0){
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
