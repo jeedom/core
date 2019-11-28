@@ -123,133 +123,169 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   addOrUpdateUrl('id',null,);
 });
 $('.eqLogicAction[data-action=Thumbnail]').off().on('click', function () {
-  	$('.eqLogicThumbnailContainer').show();
-    $('.eqLogicThumbnailContainer').packery();
-  	$('.eqLogicListContainer').hide();  	
+	$('.eqLogicThumbnailContainer').show();
+	$('.eqLogicThumbnailContainer').packery();
+	$('.eqLogicListContainer').hide();  	
 });
 $('.eqLogicAction[data-action=List]').off().on('click', function () {
-  	$('.eqLogicThumbnailContainer').hide();
-  	$('.eqLogicListContainer').show();
+	$('.eqLogicThumbnailContainer').hide();
+	$('.eqLogicListContainer').show();
 });
 $('.eqLogicDisplayAttr[data-l1key=name]').off().on('click', function () {
-  var _el = $(this);
+	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    bootbox.prompt({
-      size: 'small',
-      value : $('.eqLogicDisplayAttr[data-l1key=name]').value(),
-      title:'{{Nom de l\'équipement ?}}',
-      callback : function (result) {
-        if (result !== null) {
-          eqLogic.name = result;
-          jeedom.eqLogic.save({
-            type: eqType,
-            eqLogics: [eqLogic],
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (_data) {
-             _el.text(_data.name)
-            }
-          });
-        }
-      }
-    });
-  }});
+		bootbox.prompt({
+			size: 'small',
+			value : $('.eqLogicDisplayAttr[data-l1key=name]').value(),
+			title:'{{Nom de l\'équipement ?}}',
+			callback : function (result) {
+				if (result !== null) {
+					eqLogic.name = result;
+					jeedom.eqLogic.save({
+						type: eqType,
+						eqLogics: [eqLogic],
+						error: function (error) {
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function (_data) {
+							_el.text(_data.name)
+						}
+					});
+				}
+			}
+		});
+	}});
 });
-
 $('.eqLogicDisplayAttr[data-l1key=logicalId]').off().on('click', function () {
- 	var _el = $(this);
+	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    bootbox.prompt({
-      size: 'small',
-      value : $('.eqLogicDisplayAttr[data-l1key=logicalId]').value(),
-      title:'{{Identifiant de l\'équipement ?}}',
-      callback : function (result) {
-        if (result !== null) {
-          eqLogic.logicalId = result;
-          jeedom.eqLogic.save({
-            type: eqType,
-            eqLogics: [eqLogic],
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (_data) {
-             _el.text(_data.logicalId)
-            }
-          });
-        }
-      }
-    });
-  }});
+		bootbox.prompt({
+			size: 'small',
+			value : $('.eqLogicDisplayAttr[data-l1key=logicalId]').value(),
+			title:'{{Identifiant de l\'équipement ?}}',
+			callback : function (result) {
+				if (result !== null) {
+					eqLogic.logicalId = result;
+					jeedom.eqLogic.save({
+						type: eqType,
+						eqLogics: [eqLogic],
+						error: function (error) {
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function (_data) {
+							_el.text(_data.logicalId)
+						}
+					});
+				}
+			}
+		});
+	}});
 });
 $('.eqLogicDisplayAttr[data-l1key=object]').off().on('click', function () {
-  var _el = $(this);
+	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    bootbox.prompt({
-      size: 'small',
-      value : $('.eqLogicDisplayAttr[data-l1key=object]').value(),
-      title:'{{Objet de l\'équipement ?}}',
-      callback : function (result) {
-        if (result !== null) {
-          eqLogic.object = result;
-          jeedom.eqLogic.save({
-            type: eqType,
-            eqLogics: [eqLogic],
-            error: function (error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'});
-            },
-            success: function (_data) {
-             _el.text(_data.object)
-            }
-          });
-        }
-      }
-    });
-  }});
+		jeedom.object.all({success:function(objects){ 
+			var html = $('<select>');
+			$.each(objects, function(key, object){
+				html.append($('<option value="' + object.id + '">' + object.name + '</option>'));
+			});
+			bootbox.dialog({
+				title: "{{Nom de la nouvelle commande}}",
+				message: html,
+				buttons: {
+					"Annuler": {
+						className: "btn-default",
+						callback: function () {
+						}
+					},
+					success: {
+						label: "Valider",
+						className: "btn-primary",
+						callback: function () {
+							eqLogic.object_id = $(this).find('select').val();
+							var name = $(this).find('select option[value='+eqLogic.object_id+']').text();
+							jeedom.eqLogic.save({
+								type: eqType,
+								eqLogics: [eqLogic],
+								error: function (error) {
+								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								},
+								success: function (_data) {
+									_el.text(name);
+								}
+							});
+						}
+					},
+				}
+			});
+		}});
+  	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=category]').off().on('click', function () {
+	var _el = $(this);
+	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
+		if(_el.hasClass('label-success'))
+			eqLogic.category[_el.attr('data-l2key')] = false;
+		else
+			eqLogic.category[_el.attr('data-l2key')] = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+				success: function (_data) {
+				if(_data.category[_el.attr('data-l2key')])
+					_el.removeClass('label-danger').addClass('label-success');
+				else
+					_el.removeClass('label-success').addClass('label-danger');
+			}
+		});
+	}});
 });
 $('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
-  var _el = $(this);
+	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    if(_el.text() == "OK")
-      eqLogic.isEnable = true;
-    else
-      eqLogic.isEnable = false;
-      jeedom.eqLogic.save({
-        type: eqType,
-        eqLogics: [eqLogic],
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (_data) {
-           if(_data.isEnable)
-              _el.removeClass('label-danger').addClass('label-success').text("{{OK}}");
-            else
-              _el.removeClass('label-success').addClass('label-danger').text("{{NOK}}");
-        }
-      });
-  }});
+		if(_el.text() == "OK")
+			eqLogic.isEnable = false;
+		else
+			eqLogic.isEnable = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (_data) {
+				if(_data.isEnable)
+					_el.removeClass('label-danger').addClass('label-success').text("{{OK}}");
+				else
+					_el.removeClass('label-success').addClass('label-danger').text("{{NOK}}");
+			}
+		});
+	}});
 });
 $('.eqLogicDisplayAttr[data-l1key=isVisible]').off().on('click', function () {
-  var _el = $(this);
+	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    if(_el.text() == "OK")
-      eqLogic.isVisible = true;
-    else
-      eqLogic.isVisible = false;
-      jeedom.eqLogic.save({
-        type: eqType,
-        eqLogics: [eqLogic],
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-        },
-        success: function (_data) {
-           if(_data.isVisible)
-              _el.removeClass('label-danger').addClass('label-success').text("{{OK}}");
-            else
-              _el.removeClass('label-success').addClass('label-danger').text("{{NOK}}");
-        }
-      });
-  }});
+		if(_el.text() == "OK")
+			eqLogic.isVisible = false;
+		else
+			eqLogic.isVisible = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (_data) {
+				if(_data.isVisible)
+					_el.removeClass('label-danger').addClass('label-success').text("{{OK}}");
+				else
+					_el.removeClass('label-success').addClass('label-danger').text("{{NOK}}");
+			}
+		});
+	}});
 });
 $(".li_eqLogic,.eqLogicDisplayCard").on('click', function () {
   jeedom.eqLogic.cache.getCmd = Array();
