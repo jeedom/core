@@ -272,7 +272,7 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'*');
+		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
 		if(count($files)  > 0){
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
