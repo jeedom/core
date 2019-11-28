@@ -158,7 +158,7 @@ $('.eqLogicDisplayAttr[data-l1key=name]').off().on('click', function () {
 });
 
 $('.eqLogicDisplayAttr[data-l1key=logicalId]').off().on('click', function () {
-  var _el = $(this);
+ 	var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
     bootbox.prompt({
       size: 'small',
@@ -210,7 +210,7 @@ $('.eqLogicDisplayAttr[data-l1key=object]').off().on('click', function () {
 $('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
   var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    if($(this).text() == "OK")
+    if(_el.text() == "OK")
       eqLogic.isEnable = true;
     else
       eqLogic.isEnable = false;
@@ -232,7 +232,7 @@ $('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
 $('.eqLogicDisplayAttr[data-l1key=isVisible]').off().on('click', function () {
   var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
-    if($(this).text() == "OK")
+    if(_el.text() == "OK")
       eqLogic.isVisible = true;
     else
       eqLogic.isVisible = false;
