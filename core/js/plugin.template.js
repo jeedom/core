@@ -211,9 +211,9 @@ $('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
   var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
     if($(this).text() == "OK")
-      eqLogic.isEnable = "NOK"
+      eqLogic.isEnable = true;
     else
-      eqLogic.isEnable = "OK"
+      eqLogic.isEnable = false;
       jeedom.eqLogic.save({
         type: eqType,
         eqLogics: [eqLogic],
@@ -234,9 +234,9 @@ $('.eqLogicDisplayAttr[data-l1key=isVisible]').off().on('click', function () {
   var _el = $(this);
 	jeedom.eqLogic.byId({id:$(this).closest('.eqLogicDisplay').attr('data-eqLogic_id'),success:function(eqLogic){
     if($(this).text() == "OK")
-      eqLogic.isVisible = "NOK"
+      eqLogic.isVisible = true;
     else
-      eqLogic.isVisible = "OK"
+      eqLogic.isVisible = false;
       jeedom.eqLogic.save({
         type: eqType,
         eqLogics: [eqLogic],
