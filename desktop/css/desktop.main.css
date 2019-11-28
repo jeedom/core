@@ -514,17 +514,19 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________PREVIEW */
-.objectPreviewContainer {
-  margin: 15px
+#objectPreviewContainer {
+  text-align: center !important;
 }
 .objectPreview {
+  position: relative;
+  display: inline-block;
   width: 320px;
   height: 250px;
   background-color: var(--bg-modal-color) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   color: rgb(var(--contrast-color)) !important;
-  margin-bottom: 0 !important;
+  margin: 8px !important;
 }
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
@@ -535,6 +537,7 @@ sup i {
 
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
+  text-align: left;
   background-color: rgb(var(--bg-color));
   opacity: 0.9;
   padding: 5px 5px;

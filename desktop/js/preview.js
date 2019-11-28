@@ -14,31 +14,12 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var _refWidth = null
-var _gutter = 15
-var _blocsContainer = $('.objectPreviewContainer')
-
 $(function(){
   $('.objectPreview .objectSummaryParent[data-summary="temperature"]').each(function() {
     $(this).find('i').remove()
     $(this).appendTo($(this).closest('.objectPreview').find('.topPreview'))
   })
-
-  _refWidth = $('.objectPreview').eq(0).outerWidth(true)
-  _blocsContainer.packery({gutter: _gutter})
-  $(window).resize(function() {
-    centerPack()
-  })
-  centerPack()
 })
-
-function centerPack() {
-  var _fullWidth = _blocsContainer.outerWidth(true)
-  var num = Math.floor(_fullWidth / (_refWidth + _gutter))
-  var margin = (_fullWidth - (num * (_refWidth + _gutter))) / 2
-  margin = Math.round(margin + 5) + 'px'
-  _blocsContainer.css('margin-left', margin)
-}
 
 $('.settings').off('click').on('click', function (event) {
   var url = '/index.php?v=d&p=object&id='+$(this).closest('.objectPreview').attr('data-object_id')
