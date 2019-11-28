@@ -222,9 +222,9 @@ $('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
         },
         success: function (_data) {
            if(_data.isEnable)
-              _el.removeClass('.label-danger').addClass('.label-success');
+              _el.removeClass('.label-danger').addClass('.label-success').text("{{OK}}");
             else
-              _el.removeClass('.label-success').addClass('.label-danger');
+              _el.removeClass('.label-success').addClass('.label-danger').text("{{NOK}}");
          _el.text(_data.isEnable)
         }
       });
@@ -245,10 +245,9 @@ $('.eqLogicDisplayAttr[data-l1key=isVisible]').off().on('click', function () {
         },
         success: function (_data) {
            if(_data.isVisible)
-              _el.removeClass('.label-danger').addClass('.label-success');
+              _el.removeClass('.label-danger').addClass('.label-success').text("{{OK}}");
             else
-              _el.removeClass('.label-success').addClass('.label-danger');
-         _el.text(_data.isVisible)
+              _el.removeClass('.label-success').addClass('.label-danger').text("{{NOK}}");
         }
       });
   }});
