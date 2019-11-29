@@ -553,7 +553,7 @@ sup i {
 .objectPreview > .topPreview > .name {
   font-size: 20px;
   font-weight: 200;
-  max-width: 100%;
+  max-width: 163px;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
@@ -594,12 +594,12 @@ sup i {
   font-weight: 200;
 }
 .objectPreview .objectSummaryParent[data-summary="security"] {
-  right: 115px;
+  right: 105px;
   bottom: 204px;
   font-weight: 700;
 }
 .objectPreview .objectSummaryParent[data-summary="motion"] {
-  right: 70px;
+  right: 68px;
   bottom: 204px;
   font-weight: 700;
 }
