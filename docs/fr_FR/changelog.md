@@ -126,6 +126,13 @@ Changelog
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
+3.3.38
+=====
+
+- Ajout de la compatibilité globale du DNS Jeedom avec une connexion Internet 4G. (Important : si vous utilisez les DNS Jeedom est que vous avez une connexion 4G, il faut bien cocher dans la configuration des DNS Jeedom la case correspondante).
+- Corrections orthographiques.
+- Correction de sécurité
+
 3.3.37
 =====
 
