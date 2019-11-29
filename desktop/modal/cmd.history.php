@@ -7,6 +7,9 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 $id = init('id');
+if(trim($id) == ''){
+  $id = init('showId');
+}
 sendVarToJs('cmd_id',$id);
 ?>
 <div class="md_history">
@@ -64,7 +67,7 @@ var modalSetter = setInterval(setModal, 100)
 function setModal() {
   if (done == 0) {
     clearInterval(modalSetter)
-
+    
     $('#bt_validChangeDate').on('click', function() {
       var modal = false;
       if ($('#md_modal').is(':visible')) {
@@ -77,11 +80,11 @@ function setModal() {
         modal.load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
       }
     })
-
+    
     $('#bt_openInHistory').on('click', function() {
       loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
-
+    
     $('.highcharts-legend-item').on('click',function(event) {
       if (!event.ctrlKey && !event.altKey) return
       event.stopImmediatePropagation()
@@ -98,17 +101,17 @@ function setModal() {
         chart.series[serieId].show()
       }
     })
-
+    
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
     var divHighChart = $('#div_historyChart')
-
+    
     //only one history loaded:
     if (cmdIds.length == 1) {
       var chart = $('#div_historyChart').highcharts()
       modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
     }
-
+    
     //check previous size/pos:
     var datas = modal.data()
     if (datas.width && datas.height && datas.top && datas.left) {
@@ -126,7 +129,7 @@ function setModal() {
       })
       modalContent.width(width-26).height(height-40)
     }
-
+    
     resizeHighChartModal()
     modal.resize(function() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
@@ -135,8 +138,11 @@ function setModal() {
     modal.find('.ui-draggable-handle').on('mouseup', function(event) {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
-
+    
     function resizeHighChartModal() {
+      if(!divHighChart || !divHighChart.highcharts()){
+        return;
+      }
       divHighChart.highcharts().setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
     }
   }
