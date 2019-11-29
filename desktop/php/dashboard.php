@@ -7,7 +7,7 @@ sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
 if (init('object_id') == '') {
-	if(init('category', 'all') != 'all'){
+	if(init('summary') != ''){
 		$object = jeeObject::rootObject();
 	}else{
 		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
