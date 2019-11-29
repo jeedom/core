@@ -35,6 +35,17 @@ function initPreview() {
       }
       jeedom.object.summaryUpdate(summaries)
 
+      setTimeout(function() {
+        $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
+          var value = $(this).html()
+          if (value == 0) {
+            $(this).closest('.objectSummaryParent').addClass('success')
+          } else {
+            $(this).closest('.objectSummaryParent').addClass('danger')
+          }
+        })
+      }, 500)
+
       $('.objectPreview').off('click').on('click', function (event) {
         if (event.target !== this) return
         modal(false)
@@ -44,3 +55,13 @@ function initPreview() {
     }
   })
 }
+
+$('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion', function () {
+  var value = $(this).html()
+  if (value == '') return
+  if (value == 0) {
+    $(this).closest('.objectSummaryParent').removeClass('danger').addClass('success')
+  } else {
+    $(this).closest('.objectSummaryParent').removeClass('success').addClass('danger')
+  }
+})

@@ -528,8 +528,8 @@ sup i {
 .objectPreview {
   position: relative;
   display: inline-block;
-  width: 320px;
-  height: 250px;
+  width: 310px;
+  height: 230px;
   background-color: var(--bg-modal-color) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
@@ -539,25 +539,21 @@ sup i {
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
 }
-.objectPreview:hover .bottomPreview {
-  box-shadow: 0 -10px 15px 0 rgba(0,0,0,0.2);
-}
-
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
   text-align: left;
-  background-color: rgb(var(--bg-color));
   opacity: 0.9;
   padding: 5px 5px;
   transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
 }
 .objectPreview > .topPreview {
+  background-color: rgb(var(--bg-color));
   height: 28px;
 }
 .objectPreview > .topPreview > .name {
   font-size: 20px;
   font-weight: 200;
-  max-width: 240px;
+  max-width: 100%;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
@@ -565,40 +561,64 @@ sup i {
   margin-top: -7px;
 }
 .objectPreview > .bottomPreview {
+  background-color: transparent;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 54px;
 }
-.objectPreview > .bottomPreview > .settings {
-  position: absolute;
-  bottom: 8px;
-  color: var(--txt-color);
-}
-.objectPreview > .bottomPreview > .settings:hover {
-  opacity: 0.5;
-}
 .objectPreview > .bottomPreview > .resume {
+  background-color: rgb(var(--bg-color));
   position: absolute;
-  right: 5px;
-  bottom: 3px;
+  right: 0;
+  bottom: 0;
   text-align: right;
-  max-width: 295px;
-  overflow: hidden;
+  max-width: 100%;
+  padding: 5px;
+  margin: 0 !important;
 }
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 20px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-last-child(5):before {
+.objectPreview .objectSummaryParent:nth-last-child(7n):after {
   content: ' ';
   display: block;
 }
+.objectPreview .objectSummaryParent[data-summary="security"],
+.objectPreview .objectSummaryParent[data-summary="motion"],
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  font-size: 22px !important;
   position: absolute;
-  right: 5px;
+  min-width: 80px !important;
+  font-weight: 200;
+}
+.objectPreview .objectSummaryParent[data-summary="security"] {
+  right: 115px;
+  bottom: 204px;
+  font-weight: 700;
+}
+.objectPreview .objectSummaryParent[data-summary="motion"] {
+  right: 70px;
+  bottom: 204px;
+  font-weight: 700;
+}
+.objectPreview .objectSummaryParent[data-summary="temperature"] {
+  right: 2px;
+  bottom: 194px;
+  font-size: 22px !important;
+}
+.objectPreview .objectSummaryParent[data-summary="temperature"] i {
+  display: none;
+}
+
+.objectPreview .success,
+.objectPreview .success > i {
+  color: var(--bt-success-color) !important;
+}
+.objectPreview .danger,
+.objectPreview .danger > i {
+  color: var(--al-danger-color) !important;
 }
 
 /* __________________________________________________________________________________________________________DIVERS */

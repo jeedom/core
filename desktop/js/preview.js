@@ -14,12 +14,28 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$(function(){
-  $('.objectPreview .objectSummaryParent[data-summary="temperature"]').each(function() {
-    $(this).find('i').remove()
-    $(this).appendTo($(this).closest('.objectPreview').find('.topPreview'))
+$(function() {
+  $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
+    var value = $(this).html()
+    if (value == 0) {
+      $(this).closest('.objectSummaryParent').addClass('success')
+    } else {
+      $(this).closest('.objectSummaryParent').addClass('danger')
+    }
   })
 })
+
+
+$('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion', function () {
+  var value = $(this).html()
+  if (value == '') return
+  if (value == 0) {
+    $(this).closest('.objectSummaryParent').removeClass('danger').addClass('success')
+  } else {
+    $(this).closest('.objectSummaryParent').removeClass('success').addClass('danger')
+  }
+})
+
 
 $('.settings').off('click').on('click', function (event) {
   var url = '/index.php?v=d&p=object&id='+$(this).closest('.objectPreview').attr('data-object_id')
@@ -45,14 +61,9 @@ $('.objectPreview').off('mouseup').on('mouseup', function (event) {
   if( event.which == 2 ) {
     var target = event.target
     if (target !== this) {
-      if ($(event.target).hasClass('fa-cog')) {
-        var url = '/index.php?v=d&p=object&id='+$(this).closest('.objectPreview').attr('data-object_id')
-        window.open(url).focus()
-      } else {
-        target = $(event.target).closest('.objectSummaryParent')
-        var url = 'index.php?v=d&p=dashboard&summary='+target.data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0'
-        window.open(url).focus()
-      }
+      target = $(event.target).closest('.objectSummaryParent')
+      var url = 'index.php?v=d&p=dashboard&summary='+target.data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0'
+      window.open(url).focus()
     } else {
       event.preventDefault()
       var id = $(this).attr('data-object_id')

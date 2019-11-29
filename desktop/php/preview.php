@@ -19,7 +19,6 @@ $allObject = jeeObject::all(true);
           $div .= '<span class="name">' . $_object->getName() . '</span>';
           $div .= '</div>';
           $div .= '<div class="bottomPreview bottomCorner">';
-            $div .= '<span class="settings"><i class="fas fa-cog"></i></span>';
             $div .= '<div class="resume">' . $_object->getHtmlSummary() . '</div>';
           $div .= '</div>';
         $div .= '</div>';

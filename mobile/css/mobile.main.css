@@ -1132,12 +1132,12 @@ a.ui-table-columntoggle-btn {
 
 .objectPreview > .topPreview,
 .objectPreview > .bottomPreview {
-  background-color: rgb(var(--bg-color));
   opacity: 0.9;
   text-align: left;
   transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
 }
 .objectPreview > .topPreview {
+  background-color: rgb(var(--bg-color));
   height: 20px;
   padding: 5px 5px;
 }
@@ -1152,36 +1152,65 @@ a.ui-table-columntoggle-btn {
   margin-top: -7px;
 }
 .objectPreview > .bottomPreview {
+  background-color: transparent;
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 46px;
 }
 .objectPreview > .bottomPreview > .resume {
+  background-color: rgb(var(--bg-color));
   position: absolute;
-  right: 5px;
-  top: 4px;
+  right: 0;
+  bottom: 0;
   text-align: right;
+  max-width: 100%;
+  padding: 3px 5px;
+  margin: 0 !important;
 }
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 14px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-last-child(7):before {
+.objectPreview .objectSummaryParent:nth-last-child(7n):after {
   content: ' ';
   display: block;
 }
+
+.objectPreview .objectSummaryParent[data-summary="security"],
+.objectPreview .objectSummaryParent[data-summary="motion"],
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  font-size: 22px !important;
   position: absolute;
-  top: -156px;
-  right: 5px;
   min-width: 80px !important;
   font-weight: 200;
 }
+.objectPreview .objectSummaryParent[data-summary="security"] {
+  right: 105px;
+  bottom: 176px;
+  font-weight: 700;
+}
+.objectPreview .objectSummaryParent[data-summary="motion"] {
+  right: 70px;
+  bottom: 176px;
+  font-weight: 700;
+}
+.objectPreview .objectSummaryParent[data-summary="temperature"] {
+  right: 3px;
+  bottom: 166px;
+  font-size: 22px !important;
+}
 .objectPreview .objectSummaryParent[data-summary="temperature"] i {
   display: none;
+}
+
+.objectPreview .success,
+.objectPreview .success > i {
+  color: var(--bt-success-color) !important;
+}
+.objectPreview .danger,
+.objectPreview .danger > i {
+  color: var(--al-danger-color) !important;
 }
 
 /* ___________________________________________________________VIEW */
