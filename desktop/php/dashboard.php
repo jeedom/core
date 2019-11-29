@@ -7,7 +7,11 @@ sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
 if (init('object_id') == '') {
-	$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	if(init('summary') != ''){
+		$object = jeeObject::rootObject();
+	}else{
+		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	}
 } else {
 	$object = jeeObject::byId(init('object_id'));
 }
