@@ -7,7 +7,11 @@ sendVarToJs('SEL_CATEGORY', init('category', 'all'));
 sendVarToJs('SEL_TAG', init('tag', 'all'));
 sendVarToJs('SEL_SUMMARY', init('summary'));
 if (init('object_id') == '') {
-	$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	if(init('category', 'all') != 'all'){
+		$object = jeeObject::rootObject();
+	}else{
+		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
+	}
 } else {
 	$object = jeeObject::byId(init('object_id'));
 }
@@ -24,9 +28,9 @@ if (init('childs', 1) == 1) {
 }
 
 foreach ($allObject as $value) {
-  if ($value->getId() == $object->getId()) {
-    $child_object = $value->getChilds();
-  }
+	if ($value->getId() == $object->getId()) {
+		$child_object = $value->getChilds();
+	}
 }
 
 sendVarToJs('rootObjectId', $object->getId());

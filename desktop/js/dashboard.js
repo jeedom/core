@@ -287,7 +287,7 @@ function getObjectHtml(_object_id) {
         console.log(err);
       }
       var $divDisplayEq = $('#div_ob'+_object_id+'.div_displayEquipement')
-      if(SEL_SUMMARY != ''){
+      if(SEL_SUMMARY != 'all'){
         var count = $divDisplayEq.find('.scenario-widget:visible').length + $divDisplayEq.find('.eqLogic-widget:visible').length
         if (count == 0) {
           $('#div_ob'+_object_id).closest('.div_object').remove();
