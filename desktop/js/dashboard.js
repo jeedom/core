@@ -65,7 +65,7 @@ $(function(){
     })
     if ($('.eqLogic-widget > div.autoResize').length) saveWidgetDisplay({dashboard : 1})
   },250)
-});
+})
 
 var isEditing = false
 //searching
