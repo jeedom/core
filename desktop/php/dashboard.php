@@ -67,7 +67,12 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 
 <div id="dashTopBar" class="input-group">
 	<div class="input-group-btn">
+	<?php
+	if (init('childs', 1) == 1) {?>
 		<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i></a><a id="bt_displaySummaries" class="btn" data-display="0" title="{{Afficher/Masquer les résumés}}"><i class="fas fa-poll-h"></i></a>
+	<?php } else { ?>
+		<a href="index.php?v=d&p=preview" class="btn roundedLeft" title="{{Retour Aperçu}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i></a>
+	<?php } ?>
 	</div>
 	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
 	<div class="input-group-btn">
