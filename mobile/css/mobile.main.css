@@ -1143,7 +1143,7 @@ a.ui-table-columntoggle-btn {
 }
 .objectPreview > .topPreview > .name {
   font-size: 16px;
-  font-weight: 200;
+  font-weight: 300;
   max-width: 240px;
   max-height: 30px !important;
   overflow: hidden;
@@ -1183,7 +1183,7 @@ a.ui-table-columntoggle-btn {
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
   position: absolute;
   min-width: 80px !important;
-  font-weight: 200;
+  font-weight: 300;
 }
 .objectPreview .objectSummaryParent[data-summary="security"] {
   right: 105px;
