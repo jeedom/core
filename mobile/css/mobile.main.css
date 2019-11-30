@@ -500,8 +500,12 @@ p.state {
 .ui-header.ui-bar-inherit #summaryglobalContainer {
   position: relative;
   right: 2px !important;
-  width: 100%;
   text-align: right !important;
+  max-height: 24px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 0 8px;
 }
 
 .objectSummaryglobal .objectSummaryParent {
@@ -1173,7 +1177,7 @@ a.ui-table-columntoggle-btn {
   font-size: 14px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-last-child(7n):after {
+.objectPreview .objectSummaryParent:nth-child(7n+2):after {
   content: ' ';
   display: block;
 }
