@@ -2,6 +2,12 @@
 Changelog
 =========
 
+
+3.3.39
+=====
+
+- Changement du nom de la variable $key en $key2 dans la class event
+
 3.3.38
 =====
 
