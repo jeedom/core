@@ -551,14 +551,14 @@ sup i {
   height: 28px;
 }
 .objectPreview > .topPreview > .name {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 200;
   max-width: 163px;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
   line-height: 1.6;
-  margin-top: -7px;
+  margin-top: -4px;
 }
 .objectPreview > .bottomPreview {
   background-color: transparent;
@@ -579,7 +579,7 @@ sup i {
 }
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
-  font-size: 20px !important;
+  font-size: 18px !important;
   color: var(--link-color) !important;
 }
 .objectPreview .objectSummaryParent:nth-last-child(7n):after {
