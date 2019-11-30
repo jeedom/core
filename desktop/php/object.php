@@ -101,10 +101,18 @@ $allObject = jeeObject::all();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-xs-4 control-label">{{Masquer sur le dashboard}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le dashboard. Il restera visible, notemment dans la liste des objets.}}"></i></sup>
+								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le dashboard. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-xs-2">
 								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Masquer sur l'aperçu}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur l'aperçu. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-xs-2">
+								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnPreview"/>
 							</div>
 						</div>
 						<div class="form-group">
