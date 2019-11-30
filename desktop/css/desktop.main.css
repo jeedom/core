@@ -47,7 +47,8 @@ textarea,
 
 div,
 pre,
-p.state {
+p.state,
+.objectSummaryglobal {
   scrollbar-width: thin;
 }
 
@@ -1522,6 +1523,15 @@ ul.dropdown-menu {
 }
 .navbar-nav.navbar-right > li a:hover {
   background-color: transparent !important;
+}
+
+.navbar-nav.navbar-right .objectSummaryglobal {
+  position: relative;
+  display: inline-block;
+  max-width: 340px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 div.panel {
@@ -3416,6 +3426,10 @@ ul.dropdown-menu {
     --lineheight: 1.4em;
   }
 
+  .navbar-nav.navbar-right .objectSummaryglobal {
+    max-width: 340px;
+  }
+
   body {
     font-size: 14px !important;
   }
@@ -3428,7 +3442,6 @@ ul.dropdown-menu {
     left:-4px;
     right:-4px;
   }
-
   [data-page="administration"] ul.nav-tabs.nav-primary li a > span {
     display: none;
   }
@@ -3471,13 +3484,22 @@ ul.dropdown-menu {
 
 @media screen and (min-width: 768px) {
   .nav.navbar-nav {
-    height: 50px
+    height: 50px;
   }
   .navbar-collapse.collapse {
     height: 50px !important;
   }
 }
-
+@media screen and (min-width: 1280px) {
+  .navbar-nav.navbar-right .objectSummaryglobal {
+    max-width: 420px;
+  }
+}
+@media screen and (min-width: 1680px) {
+  .navbar-nav.navbar-right .objectSummaryglobal {
+    max-width: 820px;
+  }
+}
 @media screen and (max-width: 992px) {
   .objectListContainer div.cursor > center > i,
   .interactListContainer div.cursor > center > i,
