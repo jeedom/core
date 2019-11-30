@@ -525,6 +525,7 @@ sup i {
 /* __________________________________________________________________________________________________________PREVIEW */
 #objectPreviewContainer {
   text-align: center !important;
+  margin:15px;
 }
 .objectPreview {
   position: relative;
@@ -535,7 +536,7 @@ sup i {
   background-size: cover !important;
   background-repeat: no-repeat !important;
   color: rgb(var(--contrast-color)) !important;
-  margin: 8px !important;
+  margin: 1vh 0.6vw;
 }
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
@@ -1813,13 +1814,15 @@ fieldset[disabled] input[type=radio],
 input[type=checkbox].disabled,
 input[type=checkbox][disabled],
 input[type=radio].disabled,
-input[type=radio][disabled] {
-  cursor: not-allowed
+input[type=radio][disabled],
+select.disabled,
+select[disabled] {
+  cursor: not-allowed !important;
 }
 
 select:disabled,
 input:disabled {
-  opacity: 0.5 !important;
+  opacity: 0.35 !important;
 }
 
 /* custom universal select */

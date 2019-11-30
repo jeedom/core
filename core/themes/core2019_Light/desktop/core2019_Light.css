@@ -90,7 +90,8 @@ a:focus {
 #bt_resetDashboardSearch,
 #bt_editDashboardWidgetOrder,
 #bt_displayObject,
-#bt_displaySummaries {
+#bt_displaySummaries,
+#bt_backPreview {
   background-color: var(--btnEq-default-color) !important;
 }
 

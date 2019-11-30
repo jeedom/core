@@ -48,7 +48,7 @@ $('.settings').off('click').on('click', function (event) {
 })
 
 $('.objectPreview').off('click').on('click', function (event) {
-  if (event.target !== this) return
+  if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
   var url = '/index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'
   if (event.ctrlKey) {
     window.open(url).focus()
@@ -60,8 +60,9 @@ $('.objectPreview').off('click').on('click', function (event) {
 $('.objectPreview').off('mouseup').on('mouseup', function (event) {
   if( event.which == 2 ) {
     var target = event.target
-    if (target !== this) {
-      target = $(event.target).closest('.objectSummaryParent')
+    if ($(target).hasClass('topPreview')) return
+    if (target !== this && !$(target).hasClass('bottomPreview')) {
+      target = $(target).closest('.objectSummaryParent')
       var url = 'index.php?v=d&p=dashboard&summary='+target.data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0'
       window.open(url).focus()
     } else {
