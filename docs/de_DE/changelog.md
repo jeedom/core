@@ -90,6 +90,30 @@
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
 
+3.3.38
+=====
+
+- Ajout de la compatibilité globale du DNS Jeedom avec une connexion Internet 4G. (Important : si vous utilisez les DNS Jeedom est que vous avez une connexion 4G, il faut bien cocher dans la configuration des DNS Jeedom la case correspondante).
+- Corrections orthographiques.
+- Correction de sécurité
+
+3.3.37
+=====
+
+- Correction de bugs.
+
+3.3.36
+=====
+
+- Ajout d'un arrondi sur le nombre de jours depuis le dernier changement de pile.
+- Fehlerbehebungen
+
+3.3.35
+=====
+
+- Correction de bugs.
+- Possibilité d'installer les plugins directement depuis le market en ligne.
+
 3.3.34
 =====
 - Correction d'un bug pouvant empecher la remonter de l'état des batteries
@@ -101,20 +125,22 @@
 3.3.33
 =====
 
-- Fehlerbehebungen
+- Correction de bugs
 
 3.3.32
 =====
 
-- Fehlerbehebungen
+- Correction de bugs
 - Support en mobile des sliders sur les designs
 - SMART : optimisation de la gestion du swap
 
-3.3.31 =====
+3.3.31
+=====
 
 - Correction de bugs
 
-3.3.30 =====
+3.3.30
+=====
 
 - Correction d'un bug sur l'affichage des sessions utilisateur
 - Mise à jour de la documentation
@@ -142,19 +168,19 @@
 
 - Correction d'un bug sur la traduction des jours en français
 - Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
-- Fehlerbehebungen
+- Correction de bugs
 - Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
 
 3.3.26
 =====
 
-- Fehlerbehebungen
+- Correction de bugs
 - Correction d'un bug sur le multi-lancement de scénario
 - Correction d'un bug sur les alertes sur la valeur des commandes
 
 3.3.25
 =====
-- Fehlerbehebungen
+- Correction de bug
 - Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
@@ -201,7 +227,7 @@
 
 3.3.18
 =====
-- Fehlerbehebungen
+- Correction de bugs
 
 3.3.17
 =====
@@ -266,11 +292,11 @@
 
 3.2.11
 =====
-- Fehlerbehebungen
+- Correction de bugs.
 
 3.2.10
 =====
-- Fehlerbehebungen
+- Correction de bugs.
 - Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
@@ -287,7 +313,7 @@
 
 3.2.8
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Ajout d'une option dans l'administration de Jeedom pour préciser la plage d'ip local (utile dans les installations type docker)
 - Correction d'un bug sur le calcul d'utilisation des variables
 - Ajout d'un indicateur sur la page santé donnant le nombre de processus tué par manque de mémoire (indique globalement que le jeedom est trop chargé)
@@ -295,26 +321,26 @@
 
 3.2.7
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Mise à jour de la docs
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
 - Correction du bugs des catégories market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Mise à jour de la docs
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
 3.2.5
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Réactivation des interactions (inactive a cause de la mise à jour)
 
 3.2.4
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Correction d'un bugs sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
@@ -359,7 +385,7 @@
 - JEED-77 : Ajout de la gestion des variables dans l’API http
 - JEED-78 : ajout de la fonction tag pour les scénarios. Attention il faut dans les scénarios utilisant les tags passer de \#montag\# à tag(montag)
 - JEED-124 : Corriger la gestion des timeouts des scénarios
-- Fehlerbehebungen
+- Correction de bugs
 - Possibilité de désactiver une interaction
 - Ajout d’un éditeur de fichiers (réservé aux utilisateurs expérimentés)
 - Ajout des génériques Types "Lumière Etat" (Binaire), "Lumière Température Couleur" (Info), "Lumière Température Couleur" (Action)
@@ -374,7 +400,7 @@
 
 3.1
 ===
-- Fehlerbehebungen
+- Correction de bugs
 - Optimisation globale de Jeedom (sur le chargement des classes de plugins, temps presque divisé par 3)
 - Support de Debian 9
 - Mode onepage (changement de page sans recharger toute la page, juste la partie qui change)
@@ -524,7 +550,7 @@
 
 2.4.5
 =====
-- Fehlerbehebungen
+- Correction de bugs
 - Optimisation de la vérification des mises à jour
 
 2.4
@@ -575,7 +601,7 @@
 - Correction d’un bug sur l’ouverture des tickets
 - Correction d’un bug de page blanche lors de la mise à jour si le /tmp est trop petit (attention la correction prend effet à l’update n+1)
 - Ajout d’un tag *jeedom\_name* dans les scénarios (donne le nom du jeedom)
-- Fehlerbehebungen
+- Correction de bugs
 - Déplacement de tous les fichiers temporaire dans /tmp
 - Amélioration de l’envoi des plugins (dos2unix automatique sur les fichiers \*.sh)
 - Refonte de la page de log
@@ -617,7 +643,7 @@
 
 2.2
 ---
-- Fehlerbehebungen
+- Correction de bugs
 - Simplification de l’accès aux configurations des plugins à partir de la page santé
 - Ajout d’une icône indiquant si le démon est démarré en debug ou non
 - Ajout d’une page de configuration globale des historiques (accessible à partir de la page historique)
