@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Jeedom Installation</title>
+    <script src="/3rdparty/jquery/jquery.min.js"></script>
+    <script src="/3rdparty/bootstrap/bootstrap.min.js"></script>
+    <link href="/3rdparty/font-awesome5/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/3rdparty/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div style="text-align: center;">
+    <img src="/core/img/logo-jeedom-grand-nom-couleur-460x320.png" class="img-responsive"  alt="Jeedom"/>
+</div>
+
+<?php foreach ($errors as $error): ?>
+    <div class="alert alert-<?= $error[0] ?>" style="margin:15px;">
+        <div style="font-size:1.2em; text-align: center;"><?= $error[1] ?></div>
+        <?php if (isset($error[2])): ?>
+            <pre><?= $error[2] ?></pre>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>

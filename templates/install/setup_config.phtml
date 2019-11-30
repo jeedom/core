@@ -1,0 +1,46 @@
+<?php include 'header.phtml'; ?>
+<form class="form-horizontal" action="setup.php" method="POST">
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Database hostname</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="hostname" name="hostname" value="<?php echo init('hostname', 'localhost') ?>" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Database port</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="port" name="port" value="<?php echo init('port', '3306') ?>"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Database username</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="username" name="username" value="<?php echo init('username', 'root') ?>" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Database password</label>
+        <div class="col-sm-2">
+            <input type="password" class="form-control" id="password" name="password" value="<?php echo init('password') ?>" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Database name</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="database" name="database" value="<?php echo init('database', 'jeedom') ?>" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-5 control-label">Erase database</label>
+        <div class="col-sm-2">
+            <input type="checkbox" id="eraseDatabase" name="eraseDatabase" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-10">
+            <input type="submit" class="btn btn-primary btn-lg" value="Proceed">
+        </div>
+    </div>
+</form>
+<?php include 'footer.phtml'; ?>
+
