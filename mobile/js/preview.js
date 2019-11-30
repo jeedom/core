@@ -7,8 +7,8 @@ function initPreview() {
     success: function (objects) {
       $('#objectPreviewContainer').empty()
       var summaries = []
-       for (var i in objects) {
-        if (objects[i].isVisible == 1) {
+      for (var i in objects) {
+        if (objects[i].isVisible == 1 && objects[i].configuration.hideOnPreview != 1) {
           var _this = objects[i]
           var icon = ''
           if (isset(_this.display) && isset(_this.display.icon)) {
