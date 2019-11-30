@@ -7,7 +7,7 @@ Vous pouvez la configurer comme page par default dans **Réglages → Préféren
 
 La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 - Son nom.
-- Si il est visible.
+- Si il est visible. Vous pouvez toutefois conserver un Objet visible y compris sur le Dashboard, mais cocher *Masquer sur l'Aperçu*.
 - Son image de fond.
 - Les éléments de son résumé.
 

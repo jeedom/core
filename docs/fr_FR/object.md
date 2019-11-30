@@ -41,6 +41,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Père** : Indique le parent de l’objet courant, cela permet de définir une hiérarchie entre les objets. Par exemple : Le salon a pour parent l’appartement. Un objet ne peut avoir qu’un seul parent mais plusieurs objets peuvent avoir le même parent.
 - **Visible** : Cochez cette case pour rendre visible cet objet.
 - **Masquer sur le Dashboard** : Cochez cette case pour masquer l’objet sur le Dashboard. Il est tout de même conservé dans la liste, ce qui permet de l’afficher, mais uniquement de manière explicite.
+- **Masquer sur l'Aperçu'** : Cochez cette case pour masquer l’objet sur l'Aperçu'. Il est tout de même conservé dans la liste, ce qui permet de l’afficher, mais uniquement de manière explicite.
 - **Icône** : Permet de choisir une icône pour votre objet.
 - **Couleurs personnalisées** : Active la prise en compte des deux paramètres de couleurs optionnels.
 - **Couleur du tag** : Permet de choisir la couleur de l’objet et des équipements qui lui sont rattachés.
