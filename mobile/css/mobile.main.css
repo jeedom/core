@@ -1189,17 +1189,14 @@ a.ui-table-columntoggle-btn {
 }
 .objectPreview .objectSummaryParent[data-summary="security"] {
   right: 105px;
-  bottom: 176px;
   font-weight: 700;
 }
 .objectPreview .objectSummaryParent[data-summary="motion"] {
   right: 70px;
-  bottom: 176px;
   font-weight: 700;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
   right: 3px;
-  bottom: 167px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] i {

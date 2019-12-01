@@ -598,17 +598,14 @@ sup i {
 }
 .objectPreview .objectSummaryParent[data-summary="security"] {
   right: 105px;
-  bottom: 204px;
   font-weight: 700;
 }
 .objectPreview .objectSummaryParent[data-summary="motion"] {
   right: 68px;
-  bottom: 204px;
   font-weight: 700;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
   right: 2px;
-  bottom: 194px;
   font-size: 22px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] i {
