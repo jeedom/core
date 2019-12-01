@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Jeedom;
 
+use Jeedom\Middleware\ErrorHandlerMiddleware;
+use Jeedom\Middleware\InstallationMiddleware;
 use Jeedom\Middleware\LegacyMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -21,6 +23,8 @@ class App implements RequestHandlerInterface
     public function __construct()
     {
         $this->middlewares = [
+            new ErrorHandlerMiddleware(),
+            new InstallationMiddleware(),
             new LegacyMiddleware(),
         ];
     }

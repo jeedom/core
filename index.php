@@ -17,6 +17,7 @@
 */
 
 use GuzzleHttp\Psr7\ServerRequest;
+use function Http\Response\send;
 use Jeedom\App;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -24,3 +25,4 @@ require_once __DIR__ . '/vendor/autoload.php';
 $request = ServerRequest::fromGlobals();
 $app = new App();
 $response = $app->handle($request);
+send($response);
