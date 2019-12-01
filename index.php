@@ -15,116 +15,12 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-try {
-	//no config, install Jeedom!
-	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
-		header("location: install/setup.php");
-	}
-	
-	//dunno desktop or mobile:
-	if (!isset($_GET['v'])) {
-		$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
-		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet"))
-		? 'm' : 'd';
-		foreach ($_GET AS $var => $value) {
-			if(is_array($value)){
-				continue;
-			}
-			$getParams .= '&' . $var . '=' . $value;
-		}
-		$url = 'index.php?v=' . trim($getParams, '&');
-		if (headers_sent()) {
-			echo '<script type="text/javascript">';
-			echo "window.location.href='$url';";
-			echo '</script>';
-		} else {
-			exit(header('Location: ' . $url));
-		}
-		die();
-	}
-	
-	require_once __DIR__ . "/core/php/core.inc.php";
-	if (isset($_GET['v']) && $_GET['v'] == 'd') {
-		if (isset($_GET['modal'])) {
-			try {
-				include_file('core', 'authentification', 'php');
-				if (!isConnect()) {
-					throw new Exception('{{401 - Accès non autorisé}}');
-				}
-				include_file('desktop', init('modal'), 'modal', init('plugin'));
-			} catch (Exception $e) {
-				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
-			} catch (Error $e) {
-				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
-			}
-		} elseif (isset($_GET['configure'])) {
-			include_file('core', 'authentification', 'php');
-			include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
-		} elseif (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-			try {
-				$title = config::byKey('product_name');
-				if (init('m') != '') {
-					try {
-						$plugin = plugin::byId(init('m'));
-						if (is_object($plugin)) {
-							$title = $plugin->getName() . ' - '.config::byKey('product_name');
-						}
-					} catch (Exception $e) {
-						
-					} catch (Error $e) {
-						
-					}
-				}
-				include_file('core', 'authentification', 'php');
-				include_file('desktop', init('p'), 'php', init('m'));
-			} catch (Exception $e) {
-				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
-			} catch (Error $e) {
-				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
-			}
-		} else {
-			include_file('desktop', 'index', 'php');
-		}
-		
-		//page title:
-		try {
-			if ( init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal']) ) {
-				$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
-				echo '<script>';
-				echo 'document.title = "' . $title . '"';
-				echo '</script>';
-			}
-		} catch (Exception $e) {
-		}
-		
-	} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
-		$_fn = 'index';
-		$_type = 'html';
-		$_plugin = '';
-		if (isset($_GET['modal'])) {
-			$_fn = init('modal');
-			$_type = 'modalhtml';
-			$_plugin = init('plugin');
-		} elseif (isset($_GET['p']) && isset($_GET['ajax'])) {
-			$_fn = $_GET['p'];
-			$_plugin = isset($_GET['m']) ? $_GET['m'] : $_plugin;
-		}
-		include_file('mobile', $_fn, $_type, $_plugin);
-	} else {
-		echo "Erreur : veuillez contacter l'administrateur";
-	}
-} catch (Exception $e) {
-	echo $e->getMessage();
-}
+
+use GuzzleHttp\Psr7\ServerRequest;
+use Jeedom\App;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$request = ServerRequest::fromGlobals();
+$app = new App();
+$response = $app->handle($request);
