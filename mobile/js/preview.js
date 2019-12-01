@@ -36,6 +36,15 @@ function initPreview() {
       jeedom.object.summaryUpdate(summaries)
 
       setTimeout(function() {
+        //move to top summary:
+        $('.objectPreview').each(function() {
+          var parent = $(this).find('.topPreview')
+          $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"]').each(function() {
+            $(this).detach().appendTo(parent)
+          })
+        })
+
+        //colorize top summary:
         $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
           var value = $(this).html()
           if (value == 0) {

@@ -445,8 +445,8 @@ p.state {
 #bottompanel .ui-listview li span.summaryMenu {
   text-align: right;
 }
-#bottompanel_objectList > .ui-bottom-sheet-link > .summaryMenu .objectSummaryParent:nth-last-child(5):before,
-#bottompanel .ui-listview li span.summaryMenu .objectSummaryParent:nth-last-child(5):before {
+#bottompanel_objectList > .ui-bottom-sheet-link > .summaryMenu .objectSummaryParent:nth-last-child(7n):before,
+#bottompanel .ui-listview li span.summaryMenu .objectSummaryParent:nth-last-child(7n):before {
   content: ' ';
   display: block;
 }
@@ -1118,7 +1118,6 @@ a.ui-table-columntoggle-btn {
 }
 
 /* __________________________________________________________________________________________________________PREVIEW */
-
 #objectPreviewContainer {
   text-align: center !important;
 }
@@ -1177,17 +1176,16 @@ a.ui-table-columntoggle-btn {
   font-size: 14px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-last-child(6n):before {
+.objectPreview .resume .objectSummaryParent:nth-last-child(6n):before {
   content: ' ';
   display: block;
 }
 
-.objectPreview .objectSummaryParent[data-summary="security"],
-.objectPreview .objectSummaryParent[data-summary="motion"],
-.objectPreview .objectSummaryParent[data-summary="temperature"] {
+.objectPreview .topPreview .objectSummaryParent {
   position: absolute;
   min-width: 80px !important;
   font-weight: 300;
+  text-align: right;
 }
 .objectPreview .objectSummaryParent[data-summary="security"] {
   right: 105px;
