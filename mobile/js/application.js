@@ -371,7 +371,7 @@ function initApplication(_reinit) {
               if (res[0] == 'core') {
                 switch (res[1]) {
                   case 'preview' :
-                  page('preview', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)
+                  page('preview', "<i class=\'fab fa-hubspot\'></i> {{Aperçu}}")
                   break
                   case 'dashboard' :
                   page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)

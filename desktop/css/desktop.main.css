@@ -584,7 +584,7 @@ sup i {
   font-size: 18px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-last-child(7n):after {
+.objectPreview .objectSummaryParent:nth-last-child(6n):before {
   content: ' ';
   display: block;
 }

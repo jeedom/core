@@ -1177,7 +1177,7 @@ a.ui-table-columntoggle-btn {
   font-size: 14px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .objectSummaryParent:nth-child(7n+2):after {
+.objectPreview .objectSummaryParent:nth-last-child(6n):before {
   content: ' ';
   display: block;
 }
