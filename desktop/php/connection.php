@@ -90,6 +90,10 @@ if(config::byKey('product_connection_BG')){
 	echo "<style>";
 	echo "body { background:".config::byKey('product_connection_color')." !important;}";
 	echo "</style>";
+}elseif(config::byKey('product_btn_login_color')){
+echo "<style>";
+echo "#bt_login_validate { background:".config::byKey('product_connection_color')." !important; border-color:".config::byKey('product_connection_color')." !important; }";
+echo "</style>";
 }
 if(config::byKey('product_name') != 'Jeedom'){
 	echo "<style>";
