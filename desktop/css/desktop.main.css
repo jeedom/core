@@ -578,16 +578,12 @@ sup i {
   max-width: 100%;
   margin-right: 8px !important;
 }
+
+
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 16px !important;
   color: var(--link-color) !important;
-}
-.objectPreview .resume .objectSummaryParent {
-  background-color: rgb(var(--bg-color));
-  padding: 6px 8px;
-  margin: 0 -4px !important;
-  display: inline-block;
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
@@ -596,6 +592,13 @@ sup i {
   font-weight: 200;
   text-align: right;
 }
+.objectPreview .resume .objectSummaryParent {
+  background-color: rgb(var(--bg-color));
+  padding: 6px 8px;
+  margin: 0 -4px !important;
+  display: inline-block;
+}
+
 .objectPreview .objectSummaryParent[data-summary="security"],
 .objectPreview .objectSummaryParent[data-summary="motion"] {
   background-color: rgb(var(--bg-color));
