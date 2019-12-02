@@ -45,6 +45,7 @@ function initPreview() {
           $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
             $(this).detach().appendTo(parent)
           })
+          $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
         })
 
         colorizeSummary()
@@ -98,5 +99,6 @@ function updateSummary(_className) {
   parent.find('.resume').find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
       $(this).detach().appendTo(parent.find('.topPreview'))
     })
+  parent.find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
   colorizeSummary()
 }

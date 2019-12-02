@@ -1159,33 +1159,33 @@ a.ui-table-columntoggle-btn {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 46px;
+  height: 54px;
+  text-align: right;
 }
 .objectPreview > .bottomPreview > .resume {
-  background-color: rgb(var(--bg-color));
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: -8px;
+  bottom: -2px;
   text-align: right;
   max-width: 100%;
-  padding: 3px 5px;
-  margin: 0 !important;
+  margin-right: 8px !important;
 }
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 14px !important;
   color: var(--link-color) !important;
 }
-.objectPreview .resume .objectSummaryParent:nth-last-child(6n):before {
-  content: ' ';
-  display: block;
+.objectPreview .resume .objectSummaryParent {
+  background-color: rgb(var(--bg-color));
+  padding: 6px 8px;
+  margin: 0 -4px !important;
+  display: inline-block;
 }
-
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  top: 4px;
+  top: 5px;
   min-width: 80px !important;
-  font-weight: 300;
+  font-weight: 200;
   text-align: right;
 }
 .objectPreview .objectSummaryParent[data-summary="security"],
