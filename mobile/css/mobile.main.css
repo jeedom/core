@@ -1183,9 +1183,9 @@ a.ui-table-columntoggle-btn {
 
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  top: 5px;
+  top: 4px;
   min-width: 80px !important;
-  font-weight: 200;
+  font-weight: 300;
   text-align: right;
 }
 .objectPreview .objectSummaryParent[data-summary="security"],
@@ -1200,7 +1200,7 @@ a.ui-table-columntoggle-btn {
   position: relative;
   display: table-cell;
   left: -5px;
-  top: -5px;
+  top: -3px;
 }
 
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
