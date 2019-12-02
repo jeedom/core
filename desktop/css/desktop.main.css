@@ -555,7 +555,7 @@ sup i {
 .objectPreview > .topPreview > .name {
   font-size: 16px;
   font-weight: 200;
-  max-width: 163px;
+  max-width: 195px;
   max-height: 30px !important;
   overflow: hidden;
   display: inline-block;
@@ -592,23 +592,35 @@ sup i {
 
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
+  top: 5px;
   min-width: 80px !important;
   font-weight: 200;
   text-align: right;
 }
-.objectPreview .objectSummaryParent[data-summary="security"] {
-  right: 105px;
-  font-weight: 700;
-}
+.objectPreview .objectSummaryParent[data-summary="security"],
 .objectPreview .objectSummaryParent[data-summary="motion"] {
-  right: 68px;
+  background-color: rgb(var(--bg-color));
+  padding: 5px;
+  width: 45px;
+  height: 28px;
+  min-width: 0 !important;
   font-weight: 700;
+  text-align: left;
+  position: relative;
+  display: table-cell;
+  left: -5px;
+  top: -5px;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  right: 2px;
-  font-size: 22px !important;
+  right: 55px;
+  font-size: 20px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i {
+.objectPreview .objectSummaryParent[data-summary="humidity"] {
+  right: 2px;
+  font-size: 20px !important;
+}
+.objectPreview .objectSummaryParent[data-summary="temperature"] i,
+.objectPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 

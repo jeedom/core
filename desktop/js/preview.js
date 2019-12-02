@@ -18,7 +18,7 @@ $(function() {
   //move to top summary:
   $('.objectPreview').each(function() {
     var parent = $(this).find('.topPreview')
-    $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"]').each(function() {
+    $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
       $(this).detach().appendTo(parent)
     })
   })

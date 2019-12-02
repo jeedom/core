@@ -1183,23 +1183,36 @@ a.ui-table-columntoggle-btn {
 
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
+  top: 5px;
   min-width: 80px !important;
-  font-weight: 300;
+  font-weight: 200;
   text-align: right;
 }
-.objectPreview .objectSummaryParent[data-summary="security"] {
-  right: 105px;
-  font-weight: 700;
-}
+.objectPreview .objectSummaryParent[data-summary="security"],
 .objectPreview .objectSummaryParent[data-summary="motion"] {
-  right: 70px;
+  background-color: rgb(var(--bg-color));
+  padding: 5px;
+  width: 32px;
+  height: 20px;
+  min-width: 0 !important;
   font-weight: 700;
+  text-align: left;
+  position: relative;
+  display: table-cell;
+  left: -5px;
+  top: -5px;
 }
+
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  right: 3px;
-  font-size: 20px !important;
+  right: 55px;
+  font-size: 18px !important;
 }
-.objectPreview .objectSummaryParent[data-summary="temperature"] i {
+.objectPreview .objectSummaryParent[data-summary="humidity"] {
+  right: 2px;
+  font-size: 18px !important;
+}
+.objectPreview .objectSummaryParent[data-summary="temperature"] i,
+.objectPreview .objectSummaryParent[data-summary="humidity"] i {
   display: none;
 }
 
