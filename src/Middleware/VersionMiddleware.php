@@ -37,7 +37,7 @@ class VersionMiddleware implements MiddlewareInterface
         $query = rtrim(sprintf('%s=%s&%s', self::VERSION_PARAMETER, $version, $uri->getQuery()), '&');
 
         return new Response(302, [
-            'Location' => (string) $uri->withQuery($query),
+            'Location' => (string) $uri->withPath('index.php')->withQuery($query),
         ]);
     }
 }

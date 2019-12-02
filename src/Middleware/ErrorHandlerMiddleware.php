@@ -18,6 +18,8 @@ class ErrorHandlerMiddleware implements MiddlewareInterface
         try {
             return $handler->handle($request);
         } catch (Exception $exception) {
+            // TODO: changer pour un status 400 ou 500 (selon les cas)
+            // FIXME: requètes en boucle à cause du manifest si status != 2xx
             return new Response(200, [], $exception->getMessage());
         }
     }

@@ -12,9 +12,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use RuntimeException;
 use translate;
 
-class LegacyMiddleware implements MiddlewareInterface
+class RouterMiddleware implements MiddlewareInterface
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
@@ -22,7 +23,7 @@ class LegacyMiddleware implements MiddlewareInterface
 
         $params = $request->getQueryParams();
         if (!isset($params['v']) || !in_array($params['v'], ['d', 'm'], true)) {
-            throw new \RuntimeException('Erreur : veuillez contacter l\'administrateur');
+            throw new RuntimeException('Erreur : veuillez contacter l\'administrateur');
         }
 
         if ($params['v'] === 'd') {
@@ -42,7 +43,7 @@ class LegacyMiddleware implements MiddlewareInterface
             } elseif (isset($params['configure'])) {
                 include_file('core', 'authentification', 'php');
                 include_file('plugin_info', 'configuration', 'configuration', init('plugin'));
-            } elseif (isset($params['ajax']) && $params['ajax'] == 1) {
+            } elseif (isset($params['ajax']) && $params['ajax'] === '1') {
                 try {
                     include_file('core', 'authentification', 'php');
                     include_file('desktop', init('p'), 'php', init('m'));
@@ -58,7 +59,7 @@ class LegacyMiddleware implements MiddlewareInterface
 
             //page title:
             try {
-                if ( init('p') != 'message' && !isset($params['configure']) && !isset($params['modal']) ) {
+                if ( !isset($params['modal']) && !isset($params['configure']) && init('p') !== 'message') {
                     $title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
                     echo '<script>';
                     echo 'document.title = "' . $title . '"';
@@ -75,7 +76,7 @@ class LegacyMiddleware implements MiddlewareInterface
                 $_fn = init('modal');
                 $_type = 'modalhtml';
                 $_plugin = init('plugin');
-            } elseif (isset($params['p']) && isset($params['ajax'])) {
+            } elseif (isset($params['p'], $params['ajax'])) {
                 $_fn = $params['p'];
                 $_plugin = $params['m'] ?? $_plugin;
             }
