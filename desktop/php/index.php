@@ -267,7 +267,7 @@ function setTheme() {
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-                          			<li><a href="index.php?v=d&p=preview"><i class="fab fa-hubspot"></i> {{Aperçu}}</a></li>
+                          			<li><a id="bt_gotoPreview" href="index.php?v=d&p=preview"><i class="fab fa-hubspot"></i> {{Aperçu}}</a></li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
