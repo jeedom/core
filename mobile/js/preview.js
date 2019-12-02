@@ -1,4 +1,7 @@
+var _SummaryObserver_ = null
+
 $('body').attr('data-page', 'preview')
+
 function initPreview() {
   jeedom.object.all({
     error: function (error) {
@@ -44,15 +47,8 @@ function initPreview() {
           })
         })
 
-        //colorize top summary:
-        $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
-          var value = $(this).html()
-          if (value == 0) {
-            $(this).closest('.objectSummaryParent').addClass('success')
-          } else {
-            $(this).closest('.objectSummaryParent').addClass('danger')
-          }
-        })
+        colorizeSummary()
+        createSummaryObserver()
       }, 500)
 
       $('.objectPreview').off('click').on('click', function (event) {
@@ -65,12 +61,42 @@ function initPreview() {
   })
 }
 
-$('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion', function () {
-  var value = $(this).html()
-  if (value == '') return
-  if (value == 0) {
-    $(this).closest('.objectSummaryParent').removeClass('danger').addClass('success')
-  } else {
-    $(this).closest('.objectSummaryParent').removeClass('success').addClass('danger')
+function colorizeSummary() {
+  $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
+    var value = $(this).html()
+    if (value == 0) {
+      $(this).closest('.objectSummaryParent').addClass('success')
+    } else {
+      $(this).closest('.objectSummaryParent').addClass('danger')
+    }
+  })
+}
+
+function createSummaryObserver() {
+  var _SummaryObserver_ = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if ( mutation.type == 'childList' && mutation.target.className == 'resume') {
+        updateSummary(mutation.addedNodes[0].className)
+      }
+    })
+  })
+
+  var observerConfig = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
   }
-})
+
+  var targetNode = document.getElementById('objectPreviewContainer')
+  _SummaryObserver_.observe(targetNode, observerConfig)
+}
+
+function updateSummary(_className) {
+  var parent = $('.'+_className).closest('.objectPreview')
+  parent.find('.topPreview').find('.objectSummaryParent').remove()
+  parent.find('.resume').find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
+      $(this).detach().appendTo(parent.find('.topPreview'))
+    })
+  colorizeSummary()
+}

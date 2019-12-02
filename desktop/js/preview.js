@@ -14,6 +14,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var _SummaryObserver_ = null
+
 $(function() {
   //move to top summary:
   $('.objectPreview').each(function() {
@@ -23,7 +25,11 @@ $(function() {
     })
   })
 
-  //colorize top summary:
+  colorizeSummary()
+  createSummaryObserver()
+})
+
+function colorizeSummary() {
   $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
     var value = $(this).html()
     if (value == 0) {
@@ -32,18 +38,37 @@ $(function() {
       $(this).closest('.objectSummaryParent').addClass('danger')
     }
   })
-})
+}
 
-//summary updated:
-$('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion', function () {
-  var value = $(this).html()
-  if (value == '') return
-  if (value == 0) {
-    $(this).closest('.objectSummaryParent').removeClass('danger').addClass('success')
-  } else {
-    $(this).closest('.objectSummaryParent').removeClass('success').addClass('danger')
+function createSummaryObserver() {
+  var _SummaryObserver_ = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if ( mutation.type == 'childList' && mutation.target.className == 'resume') {
+        updateSummary(mutation.addedNodes[0].className)
+      }
+    })
+  })
+
+  var observerConfig = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
   }
-})
+
+  var targetNode = document.getElementById('objectPreviewContainer')
+  _SummaryObserver_.observe(targetNode, observerConfig)
+}
+
+function updateSummary(_className) {
+  var parent = $('.'+_className).closest('.objectPreview')
+  parent.find('.topPreview').find('.objectSummaryParent').remove()
+  parent.find('.resume').find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
+      $(this).detach().appendTo(parent.find('.topPreview'))
+    })
+  colorizeSummary()
+}
+
 
 //buttons:
 $('.objectSummaryParent').off('click').on('click', function (event) {
