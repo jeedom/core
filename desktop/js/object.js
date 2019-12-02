@@ -400,12 +400,20 @@ $('.bt_checkNone').on('click',function(){
   })
 });
 
+//cmd info modal autoselect object:
 $('#div_pageContainer').delegate(".listCmdInfo", 'click', function () {
   var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]');
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function (result) {
     el.value(result.human);
   });
+  $('body').trigger('mod_insertCmdValue_Visible')
 });
+
+$('body').on('mod_insertCmdValue_Visible', function (event) {
+  var obj_id = $('input[data-l1key="id"]').val()
+  $('.mod_insertCmdValue_object select').val(obj_id).trigger('change')
+})
+
 
 $('#div_pageContainer').delegate('.bt_removeSummary', 'click', function () {
   $(this).closest('.summary').remove();

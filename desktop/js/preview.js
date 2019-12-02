@@ -34,7 +34,7 @@ $(function() {
   })
 })
 
-
+//summary updated:
 $('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion', function () {
   var value = $(this).html()
   if (value == '') return
@@ -45,15 +45,11 @@ $('body').on('DOMSubtreeModified', '.objectPreview .objectSummarysecurity, .obje
   }
 })
 
-
-$('.settings').off('click').on('click', function (event) {
-  var url = '/index.php?v=d&p=object&id='+$(this).closest('.objectPreview').attr('data-object_id')
-  if (event.ctrlKey) {
-    window.open(url).focus()
-  } else {
-    loadPage(url)
-  }
-  return false
+//buttons:
+$('.objectSummaryParent').off('click').on('click', function (event) {
+  event.stopPropagation()
+  event.preventDefault()
+  loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0')
 })
 
 $('.objectPreview').off('click').on('click', function (event) {
