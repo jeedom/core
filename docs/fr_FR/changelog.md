@@ -92,6 +92,30 @@ Changelog
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.jeedom.com/blog/4368-les-widgets-en-v4)
 
+3.3.38
+=====
+
+- Ajout de la compatibilité globale du DNS Jeedom avec une connexion Internet 4G. (Important : si vous utilisez les DNS Jeedom est que vous avez une connexion 4G, il faut bien cocher dans la configuration des DNS Jeedom la case correspondante).
+- Corrections orthographiques.
+- Correction de sécurité
+
+3.3.37
+=====
+
+- Correction de bugs.
+
+3.3.36
+=====
+
+- Ajout d'un arrondi sur le nombre de jours depuis le dernier changement de pile.
+- Correction de bugs
+
+3.3.35
+=====
+
+- Correction de bugs.
+- Possibilité d'installer les plugins directement depuis le market en ligne.
+
 3.3.34
 =====
 - Correction d'un bug pouvant empecher la remonter de l'état des batteries
