@@ -528,15 +528,11 @@ sup i {
   margin:15px;
 }
 .objectPreview {
-  position: relative;
-  display: inline-block;
-  width: 310px;
   height: 230px;
   background-color: var(--bg-modal-color) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   color: rgb(var(--contrast-color)) !important;
-  margin: 1vh 0.6vw;
 }
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
@@ -564,7 +560,7 @@ sup i {
 }
 .objectPreview > .topPreview > .bt_config {
   position: absolute;
-  right: 10px;
+  right: 20px;
   opacity: 0.8;
 }
 .objectPreview > .topPreview > .bt_config:hover {
@@ -580,8 +576,8 @@ sup i {
 }
 .objectPreview > .bottomPreview > .resume {
   position: absolute;
-  right: -8px;
-  bottom: -2px;
+  right: 0px;
+  bottom: 0px;
   text-align: right;
   max-width: 100%;
   margin-right: 8px !important;
@@ -595,7 +591,6 @@ sup i {
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
-  top: 5px;
   min-width: 80px !important;
   font-weight: 200;
   text-align: right;
@@ -622,11 +617,11 @@ sup i {
   top: -5px;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  right: 55px;
+  right: 65px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="humidity"] {
-  right: 2px;
+  right: 10px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] i,
@@ -3448,15 +3443,15 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-
+  
   .navbar-nav.navbar-right .objectSummaryglobal {
     max-width: 340px;
   }
-
+  
   body {
     font-size: 14px !important;
   }
-
+  
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3473,12 +3468,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-
+  
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-
+  
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3486,11 +3481,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-
+  
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-
+  
   .form-control,
   .btn,
   .label {
