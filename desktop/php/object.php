@@ -182,6 +182,7 @@ $allObject = jeeObject::all();
 					?>
 					<form class="form-horizontal">
 						<fieldset>
+							<legend style="cursor:default;"><i class="fas fa-cog"></i>  {{Configuration des résumés}}</legend>
 							<table class="table">
 								<thead>
 									<tr>
@@ -199,7 +200,7 @@ $allObject = jeeObject::all();
 								$echo = '';
 								$echo .= '<tr>';
 								$echo .= '<td style="cursor:default;">';
-								$echo .= '{{Remonter dans le résumé global}}';
+								$echo .= '{{Remonter dans le résumé global}} <sup><i class="fas fa-question-circle" title="{{Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.}}"></i></sup>';
 								$echo .= '</td>';
 								foreach (config::byKey('object:summary') as $key => $value) {
 									$echo .= '<td>';
@@ -240,7 +241,9 @@ $allObject = jeeObject::all();
 					</form>
 					<form class="form-horizontal">
 						<fieldset>
-							<legend style="cursor:default;"><i class="fas fa-tachometer-alt"></i>  {{Commandes}}</legend>
+							<legend style="cursor:default;"><i class="fas fa-tachometer-alt"></i>  {{Commandes des résumés}}
+								<sup><i class="fas fa-question-circle" title="{{Pour chaque type de résumé, ajoutez les commandes infos souhaitées.}}"></i></sup>
+							</legend>
 							<ul class="nav nav-tabs" role="tablist">
 								<?php
 								$active = 'active';
