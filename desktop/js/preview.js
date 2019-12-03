@@ -27,8 +27,19 @@ $(function() {
   })
 
   colorizeSummary()
+  checkResumeEmpty()
   createSummaryObserver()
 })
+
+function checkResumeEmpty() {
+  $('.objectPreview ').each(function() {
+    if (!$(this).find('.objectSummaryParent').length) {
+     var button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
+     $(this).find('.bt_config').remove()
+     $(this).find('.topPreview').append(button)
+    }
+  })
+}
 
 function colorizeSummary() {
   $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
@@ -69,10 +80,17 @@ function updateSummary(_className) {
     })
   parent.find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
   colorizeSummary()
+  checkResumeEmpty()
 }
 
 
 //buttons:
+$('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function () {
+  var objectId = $(this).closest('.objectPreview').data('object_id')
+  var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
+  loadPage(url)
+})
+
 $('.objectSummaryParent').off('click').on('click', function (event) {
   event.stopPropagation()
   event.preventDefault()

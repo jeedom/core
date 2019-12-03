@@ -562,6 +562,14 @@ sup i {
   line-height: 1.6;
   margin-top: -4px;
 }
+.objectPreview > .topPreview > .bt_config {
+  position: absolute;
+  right: 10px;
+  opacity: 0.8;
+}
+.objectPreview > .topPreview > .bt_config:hover {
+  opacity: 0.5;
+}
 .objectPreview > .bottomPreview {
   background-color: transparent;
   position: absolute;

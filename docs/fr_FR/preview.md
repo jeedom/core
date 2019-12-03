@@ -5,17 +5,29 @@ La page *Aperçu* vous propose un aperçu visuel et rapide de vos objets et de l
 
 Vous pouvez la configurer comme page par default dans **Réglages → Préférences**, en desktop et/ou mobile.
 
-Sur chaque objet, son image de fond et ses résumés sont utilisés :
-- Le nom de l'objet est affiché en haut à gauche.
-- La température (*temperature*) et l'humidité (*humidity*) sont affichées en haut à droite.
-- Alerte (*security*) et Mouvement (*motion*) sont affichés sous le titre, colorés en vert ou en rouge suivant si il y a une ou des alertes / mouvement en cours.
-- Tous les autres résumés sont affichés en bas.
+## Affichage
+
+Sur chaque objet, son image de fond et ses résumés sont affichés (en fonction de la clé du résumé, visible dans **Réglages → Système → Configuration / Résumés**):
+- En haut à gauche : Le nom de l'objet.
+- En haut à droite : La température (*temperature*) et l'humidité (*humidity*).
+- Sous le titre : Alerte (*security*) et Mouvement (*motion*), colorés en vert ou en rouge suivant si il y a une ou des alertes / mouvement en cours.
+- En bas : Tous les autres résumés de l'objet.
 
 La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 - Son nom.
 - Si il est visible. Vous pouvez toutefois conserver un Objet visible y compris sur le Dashboard, mais cocher *Masquer sur l'Aperçu*.
 - Son image de fond.
 - Les éléments de ses résumés.
+
+> **Tip**
+>
+> L'ordre d'affichage des objets est celui du *résumé domotique*, que vous pouvez réordonner (Analyse → Résumé domotique).
+
+> **Note**
+>
+> Si un objet n'a pas résumé défini, un bouton s'affiche en haut à droite pour accéder à la configuration / résumés de l'objet.
+
+## Fonctions
 
 Pour chaque objet, vous pouvez cliquer :
 - Sur l'image, pour ouvrir la page des équipements de cet objet (également accessible par le menu *Accueil → Dashboard → Objet*).
@@ -25,10 +37,6 @@ Pour chaque objet, vous pouvez cliquer :
 > **Tip**
 >
 > Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
-
-> **Tip**
->
-> L'ordre d'affichage des objets est celui du *résumé domotique*, que vous pouvez réordonner (Analyse → Résumé domotique).
 
 Quand vous cliquez sur un objet à partir de l'Aperçu, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à l'Aperçu.
 
