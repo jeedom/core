@@ -1239,3 +1239,30 @@ a.ui-table-columntoggle-btn {
 .div_viewZoneTable table{
   background-color: transparent !important;
 }
+
+/* __________________________________________________________________________________________________________MEDIA QUERIES */
+@media screen and (min-width: 1600px) and (max-width: 2000px) {
+  .objectPreview {
+    width: 15.3%;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+  .objectPreview {
+    width: 23%;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .objectPreview {
+    width: 31%;
+  }
+}
+@media screen and (min-width: 560px) and (max-width: 900px) {
+  .objectPreview {
+    width: 46%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .objectPreview {
+    width: 95%;
+  }
+}
