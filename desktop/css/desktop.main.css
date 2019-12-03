@@ -527,6 +527,9 @@ sup i {
   text-align: center !important;
   margin:15px;
 }
+#objectPreviewContainer > div {
+  padding: 0 !important;
+}
 .objectPreview {
   height: 230px;
   background-color: var(--bg-modal-color) !important;
@@ -577,8 +580,8 @@ sup i {
 }
 .objectPreview > .bottomPreview > .resume {
   position: absolute;
-  right: 0px;
-  bottom: 0px;
+  right: 6px;
+  bottom: 5px;
   text-align: right;
   max-width: 100%;
   margin-right: 8px !important;
@@ -618,13 +621,13 @@ sup i {
   top: -5px;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
-  top: 5px;
-  right: 65px;
+  top: 10px;
+  right: 58px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="humidity"] {
-  top: 5px;
-  right: 10px;
+  top: 10px;
+  right: 6px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] i,
