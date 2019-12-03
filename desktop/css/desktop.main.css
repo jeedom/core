@@ -3534,3 +3534,13 @@ ul.dropdown-menu {
     font-size: 2.5em !important;
   }
 }
+@media (min-width:1600px) {
+  #objectPreviewContainer > div.col-lg-3 {
+    width: 20%;
+  }
+}
+@media (min-width:1920px) {
+  #objectPreviewContainer > div.col-lg-3 {
+    width: 14.2%;
+  }
+}
