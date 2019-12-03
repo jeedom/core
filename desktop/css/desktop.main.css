@@ -1556,9 +1556,10 @@ ul.dropdown-menu {
   position: relative;
   display: inline-block;
   max-width: 340px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+  top: -5px;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 16px;
 }
 
 div.panel {
