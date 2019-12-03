@@ -533,6 +533,7 @@ sup i {
   background-size: cover !important;
   background-repeat: no-repeat !important;
   color: rgb(var(--contrast-color)) !important;
+  margin: 5px;
 }
 .objectPreview:hover .topPreview {
   box-shadow: 0 10px 15px 0 rgba(0,0,0,0.2);
@@ -617,10 +618,12 @@ sup i {
   top: -5px;
 }
 .objectPreview .objectSummaryParent[data-summary="temperature"] {
+  top: 5px;
   right: 65px;
   font-size: 20px !important;
 }
 .objectPreview .objectSummaryParent[data-summary="humidity"] {
+  top: 5px;
   right: 10px;
   font-size: 20px !important;
 }
@@ -3443,15 +3446,15 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   .navbar-nav.navbar-right .objectSummaryglobal {
     max-width: 340px;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -3468,12 +3471,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -3481,11 +3484,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
