@@ -978,16 +978,20 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 ::-moz-color-swatch {
   border-radius: var(--border-radius) !important;
 }
+
+.fullCorner,
 .eqLogic-widget,
 .scenario-widget {
   border-radius: var(--border-radius) !important;
 }
+.topCorner,
 .eqLogic-widget .widget-name,
 .scenario-widget .widget-name,
 .panel,
 .panel-heading {
   border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
 }
+
 .eqLogic-widget :after,
 .scenario-widget :after {
   content: none;
@@ -997,6 +1001,7 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   border-radius: var(--border-radius) !important;
 }
 
+.bottomCorner,
 .panel,
 .panel-body,
 .panel-heading {

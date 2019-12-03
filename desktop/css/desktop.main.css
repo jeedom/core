@@ -644,6 +644,10 @@ sup i {
   color: var(--al-danger-color) !important;
 }
 
+.objectPreview .resume .objectSummaryParent:last-child {
+  border-radius: 0 0 var(--border-radius) 0 !important;
+}
+
 /* __________________________________________________________________________________________________________DIVERS */
 .progress {
   background-color: var(--sc-form-color);
