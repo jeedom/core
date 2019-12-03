@@ -99,7 +99,7 @@ $('.objectSummaryParent').off('click').on('click', function (event) {
 
 $('.objectPreview').off('click').on('click', function (event) {
   if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
-  var url = '/index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'
+  var url = 'index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'
   if (event.ctrlKey) {
     window.open(url).focus()
   } else {
