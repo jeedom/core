@@ -244,6 +244,10 @@ step_8_jeedom_customization() {
   fi
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
+  
+  cp ${WEBSERVER_HOME}/install/fail2ban.jeedom.conf /etc/fail2ban/jail.d/jeedom.conf
+  systemctl restart fail2ban > /dev/null 2>&1
+  
   echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
 }
 
