@@ -3,6 +3,7 @@ Theme Core 2019 @Jeedom
 shadows Light Mobile
 */
 
+.shadowed,
 .eqLogic-widget,
 .scenario-widget,
 div[class^="ui-block-"] .ui-btn.ui-btn-raised {
@@ -11,6 +12,7 @@ div[class^="ui-block-"] .ui-btn.ui-btn-raised {
   transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
 }
 
+.shadowed:hover,
 .eqLogic-widget:hover,
 .scenario-widget:hover,
 div[class^="ui-block-"] .ui-btn.ui-btn-raised:hover {

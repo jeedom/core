@@ -644,6 +644,10 @@ sup i {
   color: var(--al-danger-color) !important;
 }
 
+.objectPreview .resume .objectSummaryParent:last-child {
+  border-radius: 0 0 var(--border-radius) 0 !important;
+}
+
 /* __________________________________________________________________________________________________________DIVERS */
 .progress {
   background-color: var(--sc-form-color);
@@ -1432,6 +1436,7 @@ header.navbar {
   padding: 5px 0 0 0 !important;
   margin: 0 !important;
   text-align: center !important;
+  width: 90px;
 }
 .navbar-nav > li.navTime > a  {
   padding: 0 !important;
@@ -1551,9 +1556,10 @@ ul.dropdown-menu {
   position: relative;
   display: inline-block;
   max-width: 340px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+  top: -5px;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 16px;
 }
 
 div.panel {
@@ -3514,11 +3520,17 @@ ul.dropdown-menu {
     height: 50px !important;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (max-width: 1200px) {
   .navbar-nav.navbar-right .objectSummaryglobal {
-    max-width: 420px;
+    max-width: calc(100vw - 630px);
   }
 }
+@media screen and (min-width: 1199px) {
+  .navbar-nav.navbar-right .objectSummaryglobal {
+    max-width: calc(100vw - 880px);
+  }
+}
+
 @media screen and (min-width: 1680px) {
   .navbar-nav.navbar-right .objectSummaryglobal {
     max-width: 820px;
@@ -3532,5 +3544,15 @@ ul.dropdown-menu {
   .eqLogicThumbnailContainer div.cursor > center > i,
   .eqLogicThumbnailContainer div.cursor > i {
     font-size: 2.5em !important;
+  }
+}
+@media (min-width:1600px) {
+  #objectPreviewContainer > div.col-lg-3 {
+    width: 20%;
+  }
+}
+@media (min-width:1920px) {
+  #objectPreviewContainer > div.col-lg-3 {
+    width: 14.2%;
   }
 }
