@@ -483,6 +483,7 @@ p.state {
 .ui-header .ui-title {
   font-weight: 300 !important;
   font-family: "Roboto" !important;
+  font-size: 18px;
 }
 
 #homeLogoLink {
