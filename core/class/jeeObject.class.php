@@ -590,6 +590,13 @@ class jeeObject {
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$sql = 'UPDATE scenario set object_id= NULL where object_id=:object_id';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$childs = $this->getChild(false);
+		if(is_array($childs) && count($childs) > 0){
+			foreach ($childs as $child) {
+				$child->setFather_id($this->getFather_id());
+				$child->save();
+			}
+		}
 	}
 	
 	public function remove() {
