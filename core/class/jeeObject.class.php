@@ -593,8 +593,12 @@ class jeeObject {
 		$childs = $this->getChild(false);
 		if(is_array($childs) && count($childs) > 0){
 			foreach ($childs as $child) {
-				$child->setFather_id($this->getFather_id());
-				$child->save();
+				try {
+					$child->setFather_id($this->getFather_id());
+					$child->save();
+				} catch (\Exception $e) {
+					
+				}
 			}
 		}
 	}
