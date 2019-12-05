@@ -370,8 +370,8 @@ function initApplication(_reinit) {
               var res = userProfils.homePageMobile.split("::")
               if (res[0] == 'core') {
                 switch (res[1]) {
-                  case 'preview' :
-                  page('preview', "<i class=\'fab fa-hubspot\'></i> {{Aperçu}}")
+                  case 'overview' :
+                  page('overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}")
                   break
                   case 'dashboard' :
                   page('equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject)

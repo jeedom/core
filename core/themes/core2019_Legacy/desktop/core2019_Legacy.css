@@ -159,7 +159,7 @@ div.cmd-widget div[class^="content"] {
 #bt_editDashboardWidgetOrder,
 #bt_displayObject,
 #bt_displaySummaries,
-#bt_backPreview {
+#bt_backOverview {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }

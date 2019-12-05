@@ -523,11 +523,11 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________PREVIEW */
-#objectPreviewContainer {
+#objectOverviewContainer {
   text-align: center !important;
   margin:15px;
 }
-#objectPreviewContainer > div {
+#objectOverviewContainer > div {
   padding: 0 !important;
 }
 .objectPreview {
@@ -3547,12 +3547,12 @@ ul.dropdown-menu {
   }
 }
 @media (min-width:1600px) {
-  #objectPreviewContainer > div.col-lg-3 {
+  #objectOverviewContainer > div.col-lg-3 {
     width: 20%;
   }
 }
 @media (min-width:1920px) {
-  #objectPreviewContainer > div.col-lg-3 {
+  #objectOverviewContainer > div.col-lg-3 {
     width: 14.2%;
   }
 }

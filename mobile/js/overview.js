@@ -1,14 +1,14 @@
 var _SummaryObserver_ = null
 
-$('body').attr('data-page', 'preview')
+$('body').attr('data-page', 'overview')
 
-function initPreview() {
+function initOverview() {
   jeedom.object.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (objects) {
-      $('#objectPreviewContainer').empty()
+      $('#objectOverviewContainer').empty()
       var summaries = []
       for (var i in objects) {
         if (objects[i].isVisible == 1 && objects[i].configuration.hideOnPreview != 1) {
@@ -32,7 +32,7 @@ function initPreview() {
             div += '</div>'
           div += '</div>'
 
-          $('#objectPreviewContainer').append(div)
+          $('#objectOverviewContainer').append(div)
           summaries.push({object_id : _this.id})
         }
       }

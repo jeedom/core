@@ -6,14 +6,14 @@ if (!isConnect()) {
 $_SESSION['user']->refresh();
 @session_write_close();
 $homePageDesktop = array(
-	'core::preview' => '{{Aperçu}}',
+	'core::overview' => '{{Synthèse}}',
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
 	'core::plan' => '{{Design}}',
 	'core::plan3d' => '{{Design 3D}}',
 );
 $homePageMobile = array(
-	'core::preview' => '{{Aperçu}}',
+	'core::overview' => '{{Synthèse}}',
 	'core::dashboard' => '{{Dashboard}}',
 	'core::view' => '{{Vue}}',
 	'core::plan' => '{{Design}}',

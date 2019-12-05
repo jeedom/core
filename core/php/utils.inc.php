@@ -1409,8 +1409,8 @@ function sanitizeAccent($_message) {
 
 	function pageTitle($_page){
 		switch ($_page) {
-			case 'preview':
-			$return = __('Aperçu',__FILE__);
+			case 'overview':
+			$return = __('Synthèse',__FILE__);
 			break;
 			case 'view':
 			$return = __('Vues',__FILE__);
