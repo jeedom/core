@@ -1,7 +1,7 @@
-# Aperçu
-**Accueil → Aperçu**
+# Synthèse
+**Accueil → Synthèse**
 
-La page *Aperçu* vous propose un aperçu visuel et rapide de vos objets et de leurs résumés.
+La page *Synthèse* vous propose une synthèse visuelle et rapide de vos objets et de leurs résumés.
 
 Vous pouvez la configurer comme page par default dans **Réglages → Préférences**, en desktop et/ou mobile.
 
@@ -15,7 +15,7 @@ Sur chaque objet, son image de fond et ses résumés sont affichés (en fonction
 
 La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 - Son nom.
-- Si il est visible. Vous pouvez toutefois conserver un Objet visible y compris sur le Dashboard, mais cocher *Masquer sur l'Aperçu*.
+- Si il est visible. Vous pouvez toutefois conserver un Objet visible y compris sur le Dashboard, mais cocher *Masquer sur la synthèse*.
 - Son image de fond.
 - Les éléments de ses résumés.
 
@@ -38,6 +38,6 @@ Pour chaque objet, vous pouvez cliquer :
 >
 > Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
 
-Quand vous cliquez sur un objet à partir de l'Aperçu, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à l'Aperçu.
+Quand vous cliquez sur un objet à partir de la synthèse, les deux boutons à gauche de la barre de recherche sont remplacés par un bouton permettant de revenir à la synthèse.
 
 De plus, les objets enfants ne sont pas affichés.

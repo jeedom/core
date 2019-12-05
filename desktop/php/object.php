@@ -108,11 +108,11 @@ $allObject = jeeObject::all();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Masquer sur l'Aperçu}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur l'Aperçu. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
+							<label class="col-lg-2 col-xs-4 control-label">{{Masquer sur la synthèse}}
+								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur la synthèse. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-xs-2">
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnPreview"/>
+								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnOverview"/>
 							</div>
 						</div>
 						<div class="form-group">

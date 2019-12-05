@@ -103,7 +103,7 @@ ul[role="tablist"] li:not(.active) a {
 #bt_editDashboardWidgetOrder,
 #bt_displayObject,
 #bt_displaySummaries,
-#bt_backPreview {
+#bt_backOverview {
   background-color: var(--btnEq-default-color) !important;
 }
 

@@ -18,7 +18,7 @@ function initHome() {
    //set other actions:
   $bottomPanelOtherActions = $('#bottompanel_otherActionList')
   $bottomPanelOtherActions.empty()
-  $bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="preview" data-title="<i class=\'fab fa-hubspot\'></i> {{Aperçu}}"><i class="fab fa-hubspot"></i> {{Aperçu}}</a>')
+  //$bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"><i class="fab fa-hubspot"></i> {{Synthèse}}</a>')
   if(jeedom.theme.mobile_theme_color != jeedom.theme.mobile_theme_color_night){
     $bottomPanelOtherActions.append('<a id="bt_switchTheme" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a>')
   }
@@ -36,7 +36,7 @@ function initHome() {
     success: function (objects) {
       var li = ''
       var summaries = []
-      li += '<a href="#" class="summaryMenu link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="preview" data-title="<i class=\'fab fa-hubspot\'></i> {{Aperçu}}"><i class="fab fa-hubspot"></i> {{Aperçu}}</a>'
+      li += '<a href="#" class="summaryMenu link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"><i class="fab fa-hubspot"></i> {{Synthèse}}</a>'
       li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"></i> {{Tout}}</a>'
        for (var i in objects) {
         if (objects[i].isVisible == 1) {

@@ -108,11 +108,11 @@ function refreshScenarioSummary() {
 				tr += ' <input class="scenarioAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
 				tr += '</td>'
 				tr += '<td>'
-				tr += '<a class="btn btn-default tooltips btn-xs bt_summarayViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
+				tr += '<a class="btn btn-default tooltips btn-xs bt_summaryViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
 				if(data[i].state == 'in_progress'){
-					tr += '<a class="btn btn-danger tooltips btn-xs bt_sumarrayStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>'
+					tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>'
 				}else{
-					tr += '<a class="btn btn-success tooltips btn-xs bt_summarayLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a>'
+					tr += '<a class="btn btn-success tooltips btn-xs bt_summaryLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a>'
 				}
 				tr += '</td>'
 				tr += '</tr>'
@@ -123,13 +123,13 @@ function refreshScenarioSummary() {
 			$('#table_scenarioSummary tbody').append(table)
 			$("#table_scenarioSummary").trigger("update")
 
-			$('.bt_summarayViewLog').off().on('click',function() {
+			$('.bt_summaryViewLog').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				$('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"})
 				$("#md_modal2").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
 			})
 
-			$('.bt_sumarrayStopScenario').off().on('click',function() {
+			$('.bt_summaryStopScenario').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				jeedom.scenario.changeState({
 					id: tr.attr('data-id'),
@@ -143,7 +143,7 @@ function refreshScenarioSummary() {
 				})
 			})
 
-			$('.bt_summarayLaunchScenario').off().on('click',function() {
+			$('.bt_summaryLaunchScenario').off().on('click',function() {
 				var tr = $(this).closest('tr')
 				jeedom.scenario.changeState({
 					id: tr.attr('data-id'),

@@ -7,11 +7,11 @@ $allObject = jeeObject::all(true);
 ?>
 
 <div class="row" >
-  <div id="objectPreviewContainer">
+  <div id="objectOverviewContainer">
     <?php
     $div = '';
     foreach ($allObject as $_object) {
-      if ($_object->getConfiguration('hideOnPreview') == 1) continue;
+      if ($_object->getConfiguration('hideOnOverview') == 1) continue;
       $backUrl = $_object->getImgLink();
       if ($backUrl == '') {
         $backUrl = 'core/img/background/jeedom_abstract_04_light.jpg';
@@ -34,4 +34,4 @@ $allObject = jeeObject::all(true);
 </div>
 </div>
 
-<?php include_file('desktop', 'preview', 'js'); ?>
+<?php include_file('desktop', 'overview', 'js'); ?>
