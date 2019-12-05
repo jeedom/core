@@ -213,6 +213,10 @@ function loadObjectConfiguration(_id){
       $('#summarytab input[type=checkbox]').value(0);
       $('.object').setValues(data, '.objectAttr');
 
+      if (!isset(data.configuration.hideOnOverview)) {
+          $('input[data-l2key="hideOnOverview"]').prop('checked', false)
+      }
+
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
         bodyStyles = window.getComputedStyle(document.body);
         objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
