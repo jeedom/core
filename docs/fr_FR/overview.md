@@ -1,4 +1,4 @@
-# Aperçu
+# Synthèse
 **Accueil → Synthèse**
 
 La page *Synthèse* vous propose une synthèse visuelle et rapide de vos objets et de leurs résumés.
