@@ -30,7 +30,7 @@ class repo_market {
 		'backup' => true,
 		'hasConfiguration' => true,
 		'proxy' => true,
-		'sendPlugin' => true,
+		'sendPlugin' => false,
 		'hasStore' => true,
 		'test' => true,
 		'pullInstall' => true,
