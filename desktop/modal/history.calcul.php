@@ -150,7 +150,7 @@ function addCalculHistory(_calculHistory){
 	html += '</td>';
 	html += '<td>';
 	html += '<a class="btn btn-danger btn-sm pull-right bt_removeCalculHistory"><i class="fas fa-trash"></i></a>';
-	html += '<a class="btn btn-default btn-sm pull-right bt_displayGraphCalculHistory" title="{{Afficher le graphique}}"><i class="fas fa-bar-chart"></i></a>';
+	html += '<a class="btn btn-default btn-sm pull-right bt_displayGraphCalculHistory" title="{{Afficher le graphique}}"><i class="fas fa-chart-area"></i></a>';
 	html += '</td>';
 	html += '</tr>';
 	$('#table_calculHisotry tbody').append(html);
