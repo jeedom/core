@@ -12,7 +12,8 @@ if (!isConnect()) {
 			<th>{{Objet}}</th>
 			<th>{{Père}}</th>
 			<th data-sorter="false" data-filter="false">{{Visible}}</th>
-			<th data-sorter="false" data-filter="false">{{Masqué sur le dashboard}}</th>
+			<th data-sorter="false" data-filter="false">{{Masquer sur le Dashboard}}</th>
+			<th data-sorter="false" data-filter="false">{{Masquer sur la Synthèse}}</th>
 			<th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="Si grisé, alors il n'est pas remonté en résumé global"></i></sup></th>
 			<th data-sorter="false" data-filter="false">{{Résumé Dashboard Masqué}}</th>
 			<th data-sorter="false" data-filter="false">{{Résumé Mobile Masqué}}</th>
@@ -37,16 +38,21 @@ if (!isConnect()) {
 			} else {
 				$html .= '<td><span class="label label-info"></span></td>';
 			}
-			
+
 			if ($object->getIsVisible()) {
 				$html .= '<td style="width:65px;"><input type="checkbox" class="objectAttr" checked data-l1key="isVisible" /></td>';
 			} else {
 				$html .= '<td style="width:75px;"><input type="checkbox" class="objectAttr" data-l1key="isVisible" /></td>';
 			}
 			if ($object->getConfiguration("hideOnDashboard", 0) == 1) {
-				$html .= '<td style="width:220px;"><input type="checkbox" class="objectAttr" checked data-l1key="configuration" data-l2key="hideOnDashboard" /></td>';
+				$html .= '<td style="width:200px;"><input type="checkbox" class="objectAttr" checked data-l1key="configuration" data-l2key="hideOnDashboard" /></td>';
 			} else {
-				$html .= '<td style="width:220px;"><input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="hideOnDashboard" /></td>';
+				$html .= '<td style="width:200px;"><input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="hideOnDashboard" /></td>';
+			}
+			if ($object->getConfiguration("hideOnOverview", 0) == 1) {
+				$html .= '<td style="width:200px;"><input type="checkbox" class="objectAttr" checked data-l1key="configuration" data-l2key="hideOnOverview" /></td>';
+			} else {
+				$html .= '<td style="width:200px;"><input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="hideOnOverview" /></td>';
 			}
 			$html .= '<td>';
 			foreach (config::byKey('object:summary') as $key => $value) {
