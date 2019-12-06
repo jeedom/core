@@ -22,77 +22,116 @@ use League\ColorExtractor\ColorExtractor;
 use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
-	if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
-		return;
+    if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
+        return;
+    }
+
+    if ($_folder === '3rdparty') {
+        $_fn .= '.' . $_type;
+        $type = $_type;
+    } else {
+        $config = [
+            'class' => ['/class', '.class.php', 'php'],
+            'com' => ['/com', '.com.php', 'php'],
+            'repo' => ['/repo', '.repo.php', 'php'],
+            'config' => ['/config', '.config.php', 'php'],
+            'modal' => ['/modal', '.php', 'php'],
+            'modalhtml' => ['/modal', '.html', 'php'],
+            'php' => ['/php', '.php', 'php'],
+            'css' => ['/css', '.css', 'css'],
+            'js' => ['/js', '.js', 'js'],
+            'class.js' => ['/js', '.class.js', 'js'],
+            'custom.js' => ['/custom', 'custom.js', 'js'],
+            'custom.css' => ['/custom', 'custom.css', 'css'],
+            'themes.js' => ['/themes', '.js', 'js'],
+            'themes.css' => ['/themes', '.css', 'css'],
+            'api' => ['/api', '.api.php', 'php'],
+            'html' => ['/html', '.html', 'php'],
+            'configuration' => ['', '.php', 'php'],
+        ];
+        $_folder .= $config[$_type][0];
+        $_fn .= $config[$_type][1];
+        $type = $config[$_type][2];
+    }
+    if ($_plugin != '') {
+        $_folder = 'plugins/' . $_plugin . '/' . $_folder;
+    }
+    $resource = $_folder . '/' . $_fn;
+    $path = dirname(__DIR__, 2) . '/' . $resource;
+    if (!file_exists($path)) {
+        throw new Exception('Fichier introuvable : ' . secureXSS($path), 35486);
+    }
+    if ($type === 'php') {
+        if ($_type !== 'class') {
+            $_rescue = (isset($_GET['rescue']) && $_GET['rescue'] == 1);
+            echo render($resource, $_rescue);
+            return;
+        }
+        require_once $path;
+        return;
+    }
+    if ($type === 'css') {
+        echo addCss($resource);
+        return;
+    }
+	if ($type === 'js') {
+		echo addScript($_folder, $_fn);
 	}
-	$_rescue = false;
-	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
-		$_rescue = true;
-	}
-	if ($_folder == '3rdparty') {
-		$_fn .= '.' . $_type;
-		$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
-		$type = $_type;
-	} else {
-		$config = array(
-			'class' => array('/class', '.class.php', 'php'),
-			'com' => array('/com', '.com.php', 'php'),
-			'repo' => array('/repo', '.repo.php', 'php'),
-			'config' => array('/config', '.config.php', 'php'),
-			'modal' => array('/modal', '.php', 'php'),
-			'modalhtml' => array('/modal', '.html', 'php'),
-			'php' => array('/php', '.php', 'php'),
-			'css' => array('/css', '.css', 'css'),
-			'js' => array('/js', '.js', 'js'),
-			'class.js' => array('/js', '.class.js', 'js'),
-			'custom.js' => array('/custom', 'custom.js', 'js'),
-			'custom.css' => array('/custom', 'custom.css', 'css'),
-			'themes.js' => array('/themes', '.js', 'js'),
-			'themes.css' => array('/themes', '.css', 'css'),
-			'api' => array('/api', '.api.php', 'php'),
-			'html' => array('/html', '.html', 'php'),
-			'configuration' => array('', '.php', 'php'),
-		);
-		$_folder .= $config[$_type][0];
-		$_fn .= $config[$_type][1];
-		$type = $config[$_type][2];
-	}
-	if ($_plugin != '') {
-		$_folder = 'plugins/' . $_plugin . '/' . $_folder;
-	}
-	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
-	if (!file_exists($path)) {
-		throw new Exception('Fichier introuvable : ' . secureXSS($path), 35486);
-	}
-	if ($type == 'php') {
-		if ($_type != 'class') {
-			ob_start();
-			require_once $path;
-			if ($_rescue) {
-				echo str_replace(array('{{', '}}'), '', ob_get_clean());
-			} else {
-				echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
-			}
-			return;
-		}
-		require_once $path;
-		return;
-	}
-	if ($type == 'css') {
-		echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
-		return;
-	}
-	if ($type == 'js') {
-		$md5 = md5_file($path);
-		if(strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false){
-			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path).'"></script>';
-		}elseif(file_exists($_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js')){
-			echo '<script type="text/javascript" src="' .$_folder . '/' . $md5.'.'.translate::getLanguage().'.jeemin.js"></script>';
-		}else{
-			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
-		}
-		return;
-	}
+}
+
+/**
+ * @param $_folder
+ * @param $_fn
+ *
+ * @return string
+ */
+function addScript($_folder, $_fn): string
+{
+    $resource = $_folder . '/' . $_fn;
+    $path = dirname(__DIR__, 2) . '/' . $resource;
+    $md5 = md5_file($path);
+    if (strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false) {
+        return '<script type="text/javascript" src="' . $resource . '?md5=' . $md5.'"></script>';
+    }
+
+    $lang = translate::getLanguage();
+    $file = $_folder . '/' . $md5.'.'.$lang.'.jeemin.js';
+    if(file_exists($file)) {
+        return '<script type="text/javascript" src="' . $file . '"></script>';
+    }
+
+    return '<script type="text/javascript" src="core/php/getResource.php?file=' . $resource . '&md5=' . $md5 . '&lang=' . $lang . '"></script>';
+}
+
+/**
+ * @param string $path
+ *
+ * @return string
+ */
+function addCss(string $path): string
+{
+    $filePath = dirname(__DIR__, 2) . '/' . $path;
+
+    return '<link href="/' . $path . '?md5=' . md5_file($filePath) . '" rel="stylesheet" />';
+}
+
+/**
+ * @param string $path
+ * @param bool $rescue
+ *
+ * @return string
+ */
+function render(string $path, bool $rescue): string
+{
+    ob_start();
+    require_once dirname(__DIR__, 2) . '/' . $path;
+    $content = ob_get_clean();
+
+    if ($rescue) {
+        return str_replace(['{{', '}}'], '', $content);
+    }
+
+    return translate::exec($content, $path);
 }
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
