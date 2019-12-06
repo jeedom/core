@@ -28,7 +28,7 @@ $('#in_searchPlugin').off('keyup').keyup(function () {
     return;
   }
   search = normTextLower(search)
-
+  
   $('.pluginDisplayCard').hide()
   $('.pluginDisplayCard .name').each(function(){
     var text = $(this).text()
@@ -94,13 +94,13 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           $('#span_plugin_installation').closest('.panel').show();
           $('#span_plugin_installation').html(data.installation);
         }
-
+        
         if(isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)){
           $('#span_plugin_install_version').html(data.update.configuration.version);
         }else{
           $('#span_plugin_install_version').html('');
         }
-
+        
         $('#div_plugin_dependancy').closest('.panel').parent().addClass('col-md-6')
         $('#div_plugin_deamon').closest('.panel').parent().addClass('col-md-6')
         if(data.hasDependency == 0 || data.activate != 1){
@@ -111,7 +111,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           $('#div_plugin_dependancy').closest('.panel')
           $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id);
         }
-
+        
         if(data.hasOwnDeamon == 0 || data.activate != 1){
           $('#div_plugin_deamon').closest('.panel').hide();
           $('#div_plugin_dependancy').closest('.panel').parent().removeClass('col-md-6')
@@ -136,7 +136,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         } else {
           $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>');
         }
-
+        
         $('#div_configPanel').hide();
         $('#div_plugin_panel').empty();
         if(isset(data.display) && data.display != ''){
@@ -149,7 +149,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           config_panel_html += '</div>';
           $('#div_plugin_panel').append(config_panel_html);
         }
-
+        
         if(isset(data.mobile) && data.mobile != ''){
           $('#div_configPanel').show();
           var config_panel_html = '<div class="form-group">';
@@ -160,7 +160,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           config_panel_html += '</div>';
           $('#div_plugin_panel').append(config_panel_html);
         }
-
+        
         $('#div_plugin_functionality').empty();
         count = 0;
         var config_panel_html = '<div class="row">';
@@ -192,7 +192,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         config_panel_html += '</div>';
         config_panel_html += '</div>';
         $('#div_plugin_functionality').append(config_panel_html);
-
+        
         $('#div_plugin_toggleState').empty();
         if (data.checkVersion != -1) {
           var html = '<form class="form-horizontal"><fieldset>';
@@ -246,7 +246,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
           log_conf += '</div>';
           log_conf += '</form>';
         }
-
+        
         log_conf += '<form class="form-horizontal">';
         log_conf += '<div class="form-group">';
         log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>';
@@ -261,7 +261,7 @@ $(".pluginDisplayCard").off('click').on('click', function (event) {
         }
         log_conf += '</div>';
         log_conf += '</form>';
-
+        
         $('#div_plugin_log').empty().append(log_conf);
         $('#div_plugin_configuration').empty();
         if (data.checkVersion != -1) {
@@ -427,13 +427,6 @@ $('.pullInstall').on('click', function () {
       alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Nombre de plugins installé : }}'+data.number, level: 'success'});
     }
   });
-});
-
-
-
-$('#div_pageContainer').delegate('.sendPluginTo', 'click', function () {
-  $('#md_modal2').dialog({title: "{{Envoyer sur le}} "+$(this).attr('data-repo')});
-  $('#md_modal2').load('index.php?v=d&modal=update.send&type=plugin&logicalId=' + $(this).attr('data-logicalId')+'&repo='+$(this).attr('data-repo')).dialog('open');
 });
 
 $('#div_pageContainer').off( 'change', '.configKey').on( 'change','.configKey:visible',function () {
