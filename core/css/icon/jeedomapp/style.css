@@ -1,14 +1,13 @@
 @font-face {
   font-family: 'jeedomapp';
-  src:  url('fonts/jeedomapp.eot');
-  src:  url('fonts/jeedomapp.eot') format('embedded-opentype'),
-    url('fonts/jeedomapp.ttf') format('truetype'),
-    url('fonts/jeedomapp.woff') format('woff'),
-    url('fonts/jeedomapp.svg') format('svg');
+  src: url('fonts/jeedomapp.woff2') format('woff2'),
+       url('fonts/jeedomapp.woff') format('woff'),
+       url('fonts/jeedomapp.ttf') format('ttf'),
+       url('fonts/jeedomapp.eot') format('eot'),
+       url('fonts/jeedomapp.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-
 [class^="jeedomapp-"], [class*=" jeedomapp-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'jeedomapp';
