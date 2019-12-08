@@ -17,6 +17,10 @@
 */
 date_default_timezone_set('Europe/Brussels');
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../class/redis_session.class.php';
+$sessionHandler = new \Predis\Session\Handler(new \Predis\Client());
+$sessionHandler->register();
+
 require_once __DIR__ . '/../config/common.config.php';
 require_once __DIR__ . '/../class/DB.class.php';
 require_once __DIR__ . '/../class/config.class.php';

@@ -63,6 +63,7 @@ step_2_mainpackage() {
   apt-get -y remove brltty
   apt-get -y remove net-tools
   apt-get -y install nmap
+  apt-get -y install redis-server
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
@@ -247,6 +248,8 @@ step_8_jeedom_customization() {
   
   cp ${WEBSERVER_HOME}/install/fail2ban.jeedom.conf /etc/fail2ban/jail.d/jeedom.conf
   systemctl restart fail2ban > /dev/null 2>&1
+
+  systemctl restart redis-server > /dev/null 2>&1
   
   echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
 }
