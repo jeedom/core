@@ -26,6 +26,7 @@ if (!is_numeric($session_lifetime)) {
 ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
 ini_set('session.use_cookies', 1);
 ini_set('session.cookie_httponly', 1);
+ini_set('session.save_path', dirname(__DIR__, 2) . '/var/session');
 
 if (isset($_COOKIE['sess_id'])) {
 	session_id($_COOKIE['sess_id']);

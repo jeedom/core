@@ -34,3 +34,6 @@ tmp/*
 !tmp/.htaccess
 
 !.htaccess
+
+var/session/*
+!var/session/.gitkeep
