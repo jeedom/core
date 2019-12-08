@@ -82,6 +82,7 @@ Dans un bloc Code :
 
 ## Accueil / Design
 - Ctrl S sur un design : Sauvegarder.
+- Ctrl Shift E sur un design : passage en mode edition ou sortie du mode edition
 
 ## Analyse / Résumé domotique
 - Ctrl Clic sur icône *Ouvrir* (recherche) : Ouvre tous les objets et tous les équipements.
