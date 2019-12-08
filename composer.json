@@ -1,7 +1,13 @@
 {
   "name": "jeedom/core",
   "description": "Software for home automation",
+  "autoload": {
+    "classmap": ["core/class/", "core/repo/", "core/com"]
+  },
   "require": {
+    "ext-gd": "*",
+    "ext-json": "*",
+    "ext-zip": "*",
     "mtdowling/cron-expression": "~1.0",
     "symfony/expression-language": "^3.3",
     "doctrine/cache": "^1.6",

@@ -234,12 +234,67 @@ class ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9
         ),
     );
 
+    public static $classMap = array (
+        'DB' => __DIR__ . '/../..' . '/core/class/DB.class.php',
+        'ajax' => __DIR__ . '/../..' . '/core/class/ajax.class.php',
+        'cache' => __DIR__ . '/../..' . '/core/class/cache.class.php',
+        'cmd' => __DIR__ . '/../..' . '/core/class/cmd.class.php',
+        'com_http' => __DIR__ . '/../..' . '/core/com/http.com.php',
+        'com_shell' => __DIR__ . '/../..' . '/core/com/shell.com.php',
+        'config' => __DIR__ . '/../..' . '/core/class/config.class.php',
+        'cron' => __DIR__ . '/../..' . '/core/class/cron.class.php',
+        'dataStore' => __DIR__ . '/../..' . '/core/class/dataStore.class.php',
+        'eqLogic' => __DIR__ . '/../..' . '/core/class/eqLogic.class.php',
+        'eqReal' => __DIR__ . '/../..' . '/core/class/eqReal.class.php',
+        'event' => __DIR__ . '/../..' . '/core/class/event.class.php',
+        'history' => __DIR__ . '/../..' . '/core/class/history.class.php',
+        'historyArch' => __DIR__ . '/../..' . '/core/class/historyArch.class.php',
+        'interactDef' => __DIR__ . '/../..' . '/core/class/interactDef.class.php',
+        'interactQuery' => __DIR__ . '/../..' . '/core/class/interactQuery.class.php',
+        'jeeObject' => __DIR__ . '/../..' . '/core/class/jeeObject.class.php',
+        'jeedom' => __DIR__ . '/../..' . '/core/class/jeedom.class.php',
+        'jsonrpc' => __DIR__ . '/../..' . '/core/class/jsonrpc.class.php',
+        'jsonrpcClient' => __DIR__ . '/../..' . '/core/class/jsonrpcClient.class.php',
+        'listener' => __DIR__ . '/../..' . '/core/class/listener.class.php',
+        'log' => __DIR__ . '/../..' . '/core/class/log.class.php',
+        'message' => __DIR__ . '/../..' . '/core/class/message.class.php',
+        'migrate' => __DIR__ . '/../..' . '/core/class/migrate.class.php',
+        'network' => __DIR__ . '/../..' . '/core/class/network.class.php',
+        'note' => __DIR__ . '/../..' . '/core/class/note.class.php',
+        'plan' => __DIR__ . '/../..' . '/core/class/plan.class.php',
+        'plan3d' => __DIR__ . '/../..' . '/core/class/plan3d.class.php',
+        'plan3dHeader' => __DIR__ . '/../..' . '/core/class/plan3dHeader.class.php',
+        'planHeader' => __DIR__ . '/../..' . '/core/class/planHeader.class.php',
+        'plugin' => __DIR__ . '/../..' . '/core/class/plugin.class.php',
+        'repo_file' => __DIR__ . '/../..' . '/core/repo/file.repo.php',
+        'repo_github' => __DIR__ . '/../..' . '/core/repo/github.repo.php',
+        'repo_market' => __DIR__ . '/../..' . '/core/repo/market.repo.php',
+        'repo_samba' => __DIR__ . '/../..' . '/core/repo/samba.repo.php',
+        'repo_url' => __DIR__ . '/../..' . '/core/repo/url.repo.php',
+        'report' => __DIR__ . '/../..' . '/core/class/report.class.php',
+        'scenario' => __DIR__ . '/../..' . '/core/class/scenario.class.php',
+        'scenarioElement' => __DIR__ . '/../..' . '/core/class/scenarioElement.class.php',
+        'scenarioExpression' => __DIR__ . '/../..' . '/core/class/scenarioExpression.class.php',
+        'scenarioSubElement' => __DIR__ . '/../..' . '/core/class/scenarioSubElement.class.php',
+        'system' => __DIR__ . '/../..' . '/core/class/system.class.php',
+        'timeline' => __DIR__ . '/../..' . '/core/class/timeline.class.php',
+        'translate' => __DIR__ . '/../..' . '/core/class/translate.class.php',
+        'update' => __DIR__ . '/../..' . '/core/class/update.class.php',
+        'user' => __DIR__ . '/../..' . '/core/class/user.class.php',
+        'utils' => __DIR__ . '/../..' . '/core/class/utils.class.php',
+        'view' => __DIR__ . '/../..' . '/core/class/view.class.php',
+        'viewData' => __DIR__ . '/../..' . '/core/class/viewData.class.php',
+        'viewZone' => __DIR__ . '/../..' . '/core/class/viewZone.class.php',
+        'widgets' => __DIR__ . '/../..' . '/core/class/widgets.class.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5a0c414efab2298f121e5cbed8bbcba9::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -22,14 +22,19 @@ use League\ColorExtractor\ColorExtractor;
 use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
+
 	if(strpos($_folder,'..') !== false || strpos($_fn,'..') !== false){
 		return;
 	}
+	if ($_plugin === '' && in_array($_type, ['class', 'com', 'repo'])) {
+	    trigger_error(sprintf('"%s" file type is already autoloaded. Please remove include_file(\'%s\', \'%s\', \'%s\')', $_type, $_folder, $_fn, $_type), E_USER_DEPRECATED);
+	    return;
+    }
 	$_rescue = false;
 	if (isset($_GET['rescue']) && $_GET['rescue'] == 1) {
 		$_rescue = true;
 	}
-	if ($_folder == '3rdparty') {
+	if ($_folder === '3rdparty') {
 		$_fn .= '.' . $_type;
 		$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 		$type = $_type;
