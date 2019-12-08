@@ -41,6 +41,13 @@ for(var i in planHeader){
   }
 }
 if(deviceInfo.type == 'desktop' && user_isAdmin == 1){
+   jwerty.key('ctrl+shift+e/⌘+shift+e', function (e) {
+    e.preventDefault()
+    editOption.state = !editOption.state;
+    $('#div_pageContainer').data('editOption.state', editOption.state);
+    initEditOption(editOption.state);
+  })
+  
   $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,
