@@ -598,9 +598,23 @@ class cmd {
 	}
 	
 	public static function availableWidget($_version) {
+		$return = array();
+		foreach (plugin::listPlugin(true,false,false) as $plugin) {
+			$path = __DIR__ . '/../../plugins/'.$plugin->getId().'/core/template/' . $_version;
+			$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
+			$informations = explode('.', $file);
+			if (!isset($return[$informations[1]])) {
+				$return[$informations[1]] = array();
+			}
+			if (!isset($return[$informations[1]][$informations[2]])) {
+				$return[$informations[1]][$informations[2]] = array();
+			}
+			if (isset($informations[3])) {
+				$return[$informations[1]][$informations[2]][$informations[3]] = array('name' => $informations[3], 'location' => $plugin->getId());
+			}
+		}
 		$path = __DIR__ . '/../template/' . $_version;
 		$files = ls($path, 'cmd.*', false, array('files', 'quiet'));
-		$return = array();
 		foreach ($files as $file) {
 			$informations = explode('.', $file);
 			if (!isset($return[$informations[1]])) {

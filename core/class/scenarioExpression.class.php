@@ -639,7 +639,7 @@ class scenarioExpression {
 		$_startDate = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endDate = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startDate, $_endDate);
-		if(!$historyStatistique['last']){
+		if(!isset($historyStatistique['last']) || $historyStatistique['last'] === ''){
 			return '';
 		}
 		return round($historyStatistique['last'], 1);
@@ -660,7 +660,7 @@ class scenarioExpression {
 		}
 		$_calc = str_replace(' ', '', $_calc);
 		$historyStatistique = $cmd->getStatistique($startHist, date('Y-m-d H:i:s'));
-		if ($historyStatistique['min'] == '') {
+		if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 			return $cmd->execCmd();
 		}
 		return $historyStatistique[$_calc];
