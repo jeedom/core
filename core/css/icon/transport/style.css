@@ -1,12 +1,12 @@
 @font-face {
-	font-family: 'transport';
-	src:url('fonts/transport.eot');
-	src:url('fonts/transport.eot') format('embedded-opentype'),
-		url('fonts/transport.woff') format('woff'),
-		url('fonts/transport.ttf') format('truetype'),
-		url('fonts/transport.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'transport';
+  src: url('fonts/transport.woff2') format('woff2'),
+       url('fonts/transport.woff') format('woff'),
+       url('fonts/transport.ttf') format('ttf'),
+       url('fonts/transport.eot') format('eot'),
+       url('fonts/transport.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="transport-"], [class*=" transport-"] {
