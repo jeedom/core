@@ -30,14 +30,14 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
 //searching
 $('#in_searchConfig').keyup(function () {
   var search = $(this).value()
-
+  
   //replace found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
   $('span[searchId]').each(function() {
     el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
     el.removeAttr('searchId')
     $(this).replaceWith(el)
   })
-
+  
   $('#searchResult').empty()
   if (search == '') {
     $('.nav-tabs.nav-primary').show()
@@ -48,10 +48,10 @@ $('#in_searchConfig').keyup(function () {
   }
   if (search.length < 3) return
   search = normTextLower(search)
-
+  
   $('.nav-tabs.nav-primary').hide()
   $('.tab-content').hide()
-
+  
   var prevTab = ''
   $('.form-group > .control-label').each(function() {
     var text = normTextLower($(this).text())
@@ -65,7 +65,7 @@ $('#in_searchConfig').keyup(function () {
         $('#searchResult').append('<a role="searchTabLink" href="#'+tabId+'">'+tabName+'</a>')
       }
       prevTab = tabId
-
+      
       el = $(this).closest('.form-group')
       searchId = Math.random()
       el.attr('searchId', searchId)
@@ -113,7 +113,7 @@ $(function () {
 function initPickers() {
   $('input[data-l1key="theme_start_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
   $('input[data-l1key="theme_end_day_hour"]').datetimepicker({datepicker:false, format:'H:i', step:10})
-
+  
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   });
@@ -259,7 +259,11 @@ $("#bt_cleanCache").on('click', function (event) {
 
 $("#bt_flushCache").on('click', function (event) {
   $.hideAlert();
-  flushCache();
+  bootbox.confirm('{{Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?}}', function (result) {
+    if (result) {
+      flushCache();
+    }
+  });
 });
 
 $("#bt_flushWidgetCache").on('click', function (event) {
@@ -340,7 +344,7 @@ $("#bt_testLdapConnection").on('click', function (event) {
       });
     }
   });
-
+  
   return false;
 });
 
@@ -663,7 +667,7 @@ function printConvertColor() {
         $('#div_alert').showAlert({message: data.result, level: 'danger'});
         return;
       }
-
+      
       $('#table_convertColor tbody').empty();
       for (var color in data.result) {
         addConvertColor(color, data.result[color]);

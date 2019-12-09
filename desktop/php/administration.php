@@ -30,7 +30,7 @@ user::isBan();
 			<div id="searchResult"></div>
 		</form>
 	</div>
-
+	
 	<ul class="nav nav-tabs nav-primary" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
@@ -48,7 +48,7 @@ user::isBan();
 		<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
 		<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
 	</ul>
-
+	
 	<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<br/>
@@ -254,7 +254,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interfacetab">
 			<br/>
 			<form class="form-horizontal">
@@ -381,7 +381,7 @@ user::isBan();
 							<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
 						</div>
 					</div>
-
+					
 					<legend>{{Personnalisation}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
@@ -420,7 +420,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="networktab">
 			<br/>
 			<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?>
@@ -471,145 +471,145 @@ user::isBan();
 					</div>
 				</fieldset>
 			</form>
-
+			
 			<div class="row">
 				<div class="col-sm-6">
-							<legend>{{Gestion avancée}}</legend>
-							<table class="table table-condensed table-bordered">
-								<thead>
-									<tr>
-										<th>{{Interface}}</th>
-										<th>{{IP}}</th>
-										<th>{{Mac}}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$div = '';
-									foreach (network::getInterfaces() as $interface) {
-										$mac = network::getInterfaceMac($interface);
-										$div .= '<tr>';
-										$div .= '<td>';
-										$div .= $interface;
-										$div .= '</td>';
-										$div .= '<td>';
-										$div .= network::getInterfaceIp($interface);
-										$div .= '</td>';
-										$div .= '<td>';
-										$div .= network::getInterfaceMac($interface);
-										$div .= '</td>';
-										$div .= '</tr>';
-									}
-									echo $div;
-									?>
-								</tbody>
-							</table>
-							<form class="form-horizontal">
-								<fieldset>
-									<div class="form-group has-error">
-										<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
-										<div class="col-xs-4">
-											<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
-										</div>
-									</div>
-									<div class="form-group col-xs-12">
-										<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
-										<div class="col-xs-6">
-											<input type="text"  class="configKey form-control" data-l1key="network::localip" />
-										</div>
-									</div>
-									<div class="form-group col-xs-12">
-										<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
-										<div class="col-xs-6">
-											<input type="checkbox" class="configKey" data-l1key="connection::4g" />
-										</div>
-									</div>
-								</fieldset>
-							</form>
+					<legend>{{Gestion avancée}}</legend>
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th>{{Interface}}</th>
+								<th>{{IP}}</th>
+								<th>{{Mac}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							$div = '';
+							foreach (network::getInterfaces() as $interface) {
+								$mac = network::getInterfaceMac($interface);
+								$div .= '<tr>';
+								$div .= '<td>';
+								$div .= $interface;
+								$div .= '</td>';
+								$div .= '<td>';
+								$div .= network::getInterfaceIp($interface);
+								$div .= '</td>';
+								$div .= '<td>';
+								$div .= network::getInterfaceMac($interface);
+								$div .= '</td>';
+								$div .= '</tr>';
+							}
+							echo $div;
+							?>
+						</tbody>
+					</table>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group has-error">
+								<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
+								<div class="col-xs-4">
+									<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
+								<div class="col-xs-6">
+									<input type="text"  class="configKey form-control" data-l1key="network::localip" />
+								</div>
+							</div>
+							<div class="form-group col-xs-12">
+								<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
+								<div class="col-xs-6">
+									<input type="checkbox" class="configKey" data-l1key="connection::4g" />
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 				<div class="col-sm-6">
-							<form class="form-horizontal">
-								<fieldset>
-									<?php
-									foreach ($repos as $key => $value) {
-										if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
-											continue;
-										}
-										if ($configs[$key . '::enable'] == 0) {
-											continue;
-										}
-										echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
-										if ($configs['dns::token'] == '') {
-											echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
-											continue;
-										}
-										$div = '<div class="form-group col-xs-12">';
-										$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
-										$div .= '<div class="col-xs-8">';
-										$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-										$div .= '</div>';
-										$div .= '</div>';
-										$div .= '<div class="form-group col-xs-12">';
-										$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
-										$div .= '<div class="col-xs-8">';
-										if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-											$div .= '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
-										} else {
-											$div .= '<span class="label label-warning" tooltip="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
-										}
-										$div .= '</div>';
-										$div .= '</div>';
-										$div .= '<div class="form-group col-xs-12">';
-										$div .= '<label class="col-xs-4 control-label">{{Gestion}}</label>';
-										$div .= '<div class="col-xs-8">';
-										$div .= '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-										$div .= '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
-										$div .= '</div>';
-										$div .= '</div>';
-										echo $div;
-									}
-									?>
-								</fieldset>
-							</form>
-							<form class="form-horizontal">
-								<fieldset>
-									<legend>{{Utiliser un proxy pour le market}}</legend>
-									<div class="form-group">
-										<label class="col-xs-4 control-label">{{Activer le proxy}}</label>
-										<div class="col-xs-1">
-											<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-xs-4 control-label">{{Addresse proxy}}</label>
-										<div class="col-xs-4">
-											<input class="configKey form-control" type="text" data-l1key="proxyAddress">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-xs-4 control-label">{{Port du proxy}}</label>
-										<div class="col-xs-4">
-											<input class="configKey form-control" data-l1key="proxyPort" type="text">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
-										<div class="col-xs-4">
-											<input class="configKey form-control" type="text" data-l1key="proxyLogins" >
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-xs-4 control-label">{{Mot de passe}}</label>
-										<div class="col-xs-4">
-											<input class="inputPassword configKey form-control" type="text" data-l1key="proxyPassword" >
-										</div>
-									</div>
-								</fieldset>
-							</form>
+					<form class="form-horizontal">
+						<fieldset>
+							<?php
+							foreach ($repos as $key => $value) {
+								if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
+									continue;
+								}
+								if ($configs[$key . '::enable'] == 0) {
+									continue;
+								}
+								echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
+								if ($configs['dns::token'] == '') {
+									echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
+									continue;
+								}
+								$div = '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
+								$div .= '<div class="col-xs-8">';
+								$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
+								$div .= '<div class="col-xs-8">';
+								if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
+									$div .= '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+								} else {
+									$div .= '<span class="label label-warning" tooltip="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
+								}
+								$div .= '</div>';
+								$div .= '</div>';
+								$div .= '<div class="form-group col-xs-12">';
+								$div .= '<label class="col-xs-4 control-label">{{Gestion}}</label>';
+								$div .= '<div class="col-xs-8">';
+								$div .= '<a class="btn btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
+								$div .= '<a class="btn btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
+								$div .= '</div>';
+								$div .= '</div>';
+								echo $div;
+							}
+							?>
+						</fieldset>
+					</form>
+					<form class="form-horizontal">
+						<fieldset>
+							<legend>{{Utiliser un proxy pour le market}}</legend>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Activer le proxy}}</label>
+								<div class="col-xs-1">
+									<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Addresse proxy}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" type="text" data-l1key="proxyAddress">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Port du proxy}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" data-l1key="proxyPort" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
+								<div class="col-xs-4">
+									<input class="configKey form-control" type="text" data-l1key="proxyLogins" >
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-4 control-label">{{Mot de passe}}</label>
+								<div class="col-xs-4">
+									<input class="inputPassword configKey form-control" type="text" data-l1key="proxyPassword" >
+								</div>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="logtab">
 			<br/>
 			<form class="form-horizontal">
@@ -643,7 +643,7 @@ user::isBan();
 					<div class="form-group">
 						<div class="col-sm-2 hidden-xs"></div>
 						<div class="col-sm-10 col-xs-12">
-
+							
 						</div>
 					</div>
 				</fieldset>
@@ -655,7 +655,7 @@ user::isBan();
 				<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 				<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
 			</ul>
-
+			
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="log_alertes">
 					<form class="form-horizontal">
@@ -688,7 +688,7 @@ user::isBan();
 						</fieldset>
 					</form>
 				</div>
-
+				
 				<div role="tabpanel" class="tab-pane" id="log_log">
 					<form class="form-horizontal">
 						<fieldset>
@@ -782,7 +782,7 @@ user::isBan();
 				</div>
 			</div>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="commandtab">
 			<br/>
 			<legend>{{Historique}}</legend>
@@ -893,7 +893,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="summarytab">
 			<br/>
 			<form class="form-horizontal">
@@ -919,7 +919,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="eqlogictab">
 			<br/>
 			<form class="form-horizontal">
@@ -957,7 +957,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="repporttab">
 			<br/>
 			<form class="form-horizontal">
@@ -981,7 +981,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="graphlinktab">
 			<br/>
 			<form class="form-horizontal">
@@ -1045,7 +1045,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="interacttab">
 			<br/>
 			<form class="form-horizontal">
@@ -1099,8 +1099,8 @@ user::isBan();
 							<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 						</div>
 					</div>
-
-
+					
+					
 					<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
@@ -1138,7 +1138,7 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::warnme::start" />
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
@@ -1150,7 +1150,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
@@ -1187,9 +1187,9 @@ user::isBan();
 							<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 						</div>
 					</div>
-
+					
 					<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
-
+					
 					<table class="table table-condensed table-bordered" id="table_convertColor" >
 						<thead>
 							<tr>
@@ -1206,7 +1206,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="securitytab">
 			<br/>
 			<form class="form-horizontal">
@@ -1307,7 +1307,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
 							<sub>s</sub>
 						</label>
-
+						
 						<div class="col-md-3 col-sm-4 col-xs-12">
 							<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 						</div>
@@ -1329,7 +1329,7 @@ user::isBan();
 							<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 						</div>
 					</div>
-
+					
 				</fieldset>
 			</form>
 			<form class="form-horizontal">
@@ -1366,11 +1366,11 @@ user::isBan();
 							?>
 						</tbody>
 					</table>
-
+					
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="updatetab">
 			<br/>
 			<div class="row">
@@ -1499,7 +1499,7 @@ user::isBan();
 				</div>
 			</div>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="cachetab">
 			<br/>
 			<form class="form-horizontal">
@@ -1561,19 +1561,20 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle Jeedom vérifie si il y a des événements en attente.}}"></i></sup>
+							<sub>s</sub>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input class="configKey form-control" data-l1key="event::waitPollingTime"/>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 							<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider toutes les données en cache}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Vide complètement le cache.<br>Attention cela peut faire perdre des données.}}"></i></sup>
-						</label>
-						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<a class="btn btn-danger" id="bt_flushCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -1588,19 +1589,19 @@ user::isBan();
 							<input type="checkbox"  class="configKey form-control" data-l1key="widget::disableCache" />
 						</div>
 					</div>
+					<hr/>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle Jeedom vérifie si il y a des événements en attente.}}"></i></sup>
-							<sub>s</sub>
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider toutes les données en cache}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Vide complètement le cache.<br>Attention cela peut faire perdre des données.}}"></i></sup>
 						</label>
 						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-							<input class="configKey form-control" data-l1key="event::waitPollingTime"/>
+							<a class="btn btn-danger" id="bt_flushCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
 						</div>
 					</div>
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="apitab">
 			<br/>
 			<form class="form-horizontal">
@@ -1651,7 +1652,7 @@ user::isBan();
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
 							<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -1729,7 +1730,7 @@ user::isBan();
 				</fieldset>
 			</form>
 		</div>
-
+		
 		<div role="tabpanel" class="tab-pane" id="ostab">
 			<br/>
 			<div class="alert alert-danger">{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>{{. L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}</div>
