@@ -8,6 +8,10 @@ Changelog
 
 - Changement du nom de la variable $key en $key2 dans la class event
 
+>**IMPORTANT**
+>
+>Cette mise à jour corrige un soucis qui pourra e:pecher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée
+
 3.3.38
 =====
 
