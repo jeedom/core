@@ -144,7 +144,211 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   $('.eqLogicThumbnailContainer').packery();
   addOrUpdateUrl('id',null,);
 });
-
+$('.eqLogicAction[data-action=Thumbnail]').off().on('click', function () {
+	$('.eqLogicThumbnail').show();	
+	$('.eqLogicThumbnailContainer').packery();
+	$('.eqLogicList').hide();  	
+});
+$('.eqLogicAction[data-action=List]').off().on('click', function () {
+	$('.eqLogicThumbnail').hide();
+	$('.eqLogicList').show();
+});
+$('.eqLogicDisplayAttr[data-l1key=name]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		bootbox.prompt({
+			size: 'small',
+			value : _el.closest('.eqLogicDisplay').find('.eqLogicDisplayAttr[data-l1key=name]').value(),
+			title:'{{Nom de l\'équipement ?}}',
+			callback : function (result) {
+				if (result !== null) {
+					eqLogic.name = result;
+					jeedom.eqLogic.save({
+						type: eqType,
+						eqLogics: [eqLogic],
+						error: function (error) {
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function (_data) {
+							_el.text(_data.name)
+							$('.eqLogicDisplayCard[data-eqLogic_id='+id+'] .name strong').text(_data.name);
+							$('#table_eqLogicList').trigger('update');
+						}
+					});
+				}
+			}
+		});
+	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=logicalId]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		bootbox.prompt({
+			size: 'small',
+			value : _el.closest('.eqLogicDisplay').find('.eqLogicDisplayAttr[data-l1key=logicalId]').value(),
+			title:'{{Identifiant de l\'équipement ?}}',
+			callback : function (result) {
+				if (result !== null) {
+					eqLogic.logicalId = result;
+					jeedom.eqLogic.save({
+						type: eqType,
+						eqLogics: [eqLogic],
+						error: function (error) {
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function (_data) {
+							_el.text(_data.logicalId)
+							$('#table_eqLogicList').trigger('update');
+						}
+					});
+				}
+			}
+		});
+	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=object]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		jeedom.object.all({success:function(objects){ 
+			var SelectHtml = $('<select>');
+			$.each(objects, function(key, object){
+				var option = $('<option>').attr('value',object.id);
+				if($.trim(_el.text()) == $.trim(object.name))
+					option.attr('selected',true);
+				SelectHtml.append(option.append(object.name));
+			});
+			bootbox.dialog({
+				title: "{{Nom de la nouvelle commande}}",
+				message: SelectHtml,
+				buttons: {
+					"Annuler": {
+						className: "btn-default",
+						callback: function () {
+						}
+					},
+					success: {
+						label: "Valider",
+						className: "btn-primary",
+						callback: function () {
+							eqLogic.object_id = $(this).find('select').val();
+							var name = $(this).find('select option[value='+eqLogic.object_id+']').text();
+							jeedom.eqLogic.save({
+								type: eqType,
+								eqLogics: [eqLogic],
+								error: function (error) {
+								$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								},
+								success: function (_data) {
+									var object= objects[_data.object_id];
+									$.each(objects, function(key, object){
+										if (object.id == _data.object_id) {
+											var ObjectHtml=$('<span class="label">');
+											if (object.configuration.useCustomColor) {
+												ObjectHtml.css('background-color',object.display.tagColor);
+												ObjectHtml.css('color',object.display.tagTextColor);
+												ObjectHtml.append(object.display.icon);
+												ObjectHtml.append(' '+object.name);
+											}else{
+												ObjectHtml.addClass('labelObjectHuman');
+												ObjectHtml.append(object.display.icon);
+												ObjectHtml.append(' '+object.name);		
+											}
+											_el.html(ObjectHtml.prop('outerHTML'));
+											$('.eqLogicDisplayCard[data-eqLogic_id='+id+'] .name span').remove();
+											ObjectHtml.insertBefore($('.eqLogicDisplayCard[data-eqLogic_id='+id+'] .name br'));
+											$('#table_eqLogicList').trigger('update');
+										}
+									});
+								}
+							});
+						}
+					},
+				}
+			});
+		}});
+  	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=category]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		if(_el.attr('data-enable') == "1")
+			eqLogic.category[_el.attr('data-l2key')] = false;
+		else
+			eqLogic.category[_el.attr('data-l2key')] = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (_data) {
+				if(_data.category[_el.attr('data-l2key')])
+					_el.removeClass('label-danger').addClass('label-success');
+				else
+					_el.removeClass('label-success').addClass('label-default');
+				_el.attr('data-enable',_data.category[_el.attr('data-l2key')]);
+				$('#table_eqLogicList').trigger('update');
+			}
+		});
+	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=isEnable]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		if(_el.attr('data-enable') == "1")
+			eqLogic.isEnable = false;
+		else
+			eqLogic.isEnable = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (_data) {
+				if(_data.isEnable){
+					_el.removeClass('label-danger').addClass('label-success').text("{{Oui}}");
+					$('.eqLogicDisplayCard[data-eqLogic_id='+id+']').removeClass('disableCard');
+				}else{
+					_el.removeClass('label-success').addClass('label-danger').text("{{Non}}");
+					$('.eqLogicDisplayCard[data-eqLogic_id='+id+']').addClass('disableCard');
+				}
+				_el.attr('data-enable',_data.isEnable);
+				$('#table_eqLogicList').trigger('update');
+			}
+		});
+	}});
+});
+$('.eqLogicDisplayAttr[data-l1key=isVisible]').off().on('click', function () {
+	var _el = $(this);
+	var id = $(this).closest('.eqLogicDisplay').attr('data-eqLogic_id');
+	jeedom.eqLogic.byId({id:id,success:function(eqLogic){
+		if(_el.attr('data-enable') == "1")
+			eqLogic.isVisible = false;
+		else
+			eqLogic.isVisible = true;
+		jeedom.eqLogic.save({
+			type: eqType,
+			eqLogics: [eqLogic],
+			error: function (error) {
+				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			},
+			success: function (_data) {
+				if(_data.isVisible)
+					_el.removeClass('label-danger').addClass('label-success').text("{{Oui}}");
+				else
+					_el.removeClass('label-success').addClass('label-danger').text("{{Non}}");
+				_el.attr('data-enable',_data.isVisible);
+				$('#table_eqLogicList').trigger('update');
+			}
+		});
+	}});
+});
 $(".eqLogicDisplayCard").on('click', function (event) {
   if (event.ctrlKey) {
     var type = $('body').attr('data-page')
