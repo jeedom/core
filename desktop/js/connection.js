@@ -50,6 +50,7 @@ $('#in_login_username').on('focusout change keypress',function(){
 	    		success: function (data){
 		    		var user = data;
 		    		user.password = $('#in_change_password').val();
+				user.hash = '';
 					jeedom.user.saveProfils({
 						profils: user,
 						error: function (error) {
