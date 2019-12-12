@@ -689,15 +689,15 @@ $pageContainer.off('click','.bt_addAction').on( 'click','.bt_addAction', functio
 });
 
 $pageContainer.off('click','.bt_showElse').on( 'click','.bt_showElse', function (event) {
-  if($(this).children('i').hasClass('fa-chevron-right')){
-    $(this).children('i').removeClass('fa-chevron-right').addClass('fa-chevron-down');
+  if($(this).children('i').hasClass('fa-sort-down')){
+    $(this).children('i').removeClass('fa-sort-down').addClass('fa-sort-up');
     $(this).closest('.element').children('.subElementELSE').show();
   }else{
     if($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length>0){
       $('#div_alert').showAlert({message:"{{Le bloc Sinon ne peut être supprimé s'il contient des éléments.}}", level: 'danger'})
       return;
     }
-    $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-right');
+    $(this).children('i').removeClass('fa-sort-up').addClass('fa-sort-down');
     $(this).closest('.element').children('.subElementELSE').hide();
   }
 });
@@ -1167,7 +1167,7 @@ function updateSortable() {
 
 function updateElseToggle() {
   $('.subElementELSE').each(function () {
-    if(!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-chevron-right')){
+    if(!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-sort-down')){
       if($(this).children('.expressions').children('.expression').length == 0){
         $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').first().trigger('click');
       }
@@ -2064,7 +2064,7 @@ function getAddButton(_caret) {
   if (_caret) {
     retour += '<div class="input-group">'
     retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
-    retour += '<i class="fas fa-chevron-down"></i>'
+    retour += '<i class="fas fa-sort-up"></i>'
     retour += '</button>'
     retour += '<span class="input-group-btn">'
   }

@@ -2596,11 +2596,27 @@ textarea {
   width: 90px !important;
   font-size: 0 !important;
 }
+
 .element .bt_showElse {
   height: 22px !important;
   margin-left: 5px;
   margin-right: -5px;
 }
+.element .bt_showElse {
+  font-size: 21px;
+  border-right: 3px solid var(--scBlocIF);
+}
+.element .bt_showElse > i.fa-sort-down {
+  position: relative;
+  display: inline-block !important;
+  top: -12px !important;
+}
+.element .bt_showElse > i.fa-sort-up {
+  position: relative;
+  display: inline-block !important;
+  top: -3px !important;
+}
+
 .element .subElementAttr {
   position: absolute !important;
 }
@@ -2769,7 +2785,6 @@ textarea {
   height: 24px;
   opacity: 0.8;
 }
-
 
 /* __________________________________________________________________________________________________________FLOATING BARS */
 
