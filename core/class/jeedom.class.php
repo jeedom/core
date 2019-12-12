@@ -998,6 +998,7 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			cache::clean();
+			user::regenerateHash();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
