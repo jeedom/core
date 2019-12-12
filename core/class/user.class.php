@@ -354,6 +354,20 @@ class user {
 		}
 	}
 	
+	public static function regenerateHash(){
+		foreach (user::all() as $user) {
+			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1){
+				continue;
+			}
+			if(strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')){
+				continue;
+			}
+			$user->setHash('');
+			$user->getHash();
+			$user->save();
+		}
+	}
+	
 	/*     * *********************Méthodes d'instance************************* */
 	
 	public function preInsert() {
@@ -479,6 +493,7 @@ class user {
 				$hash = config::genKey();
 			}
 			$this->setHash($hash);
+			$this->setOptions('hashGenerated',date('Y-m-d H:i:s'));
 			$this->save();
 		}
 		return $this->hash;
