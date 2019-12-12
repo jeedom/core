@@ -649,6 +649,11 @@ sup i {
 }
 
 /* __________________________________________________________________________________________________________DIVERS */
+
+#div_widgetPreview {
+  text-align: left;
+}
+
 .progress {
   background-color: var(--sc-form-color);
 }
