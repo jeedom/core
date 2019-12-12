@@ -295,3 +295,15 @@ unzip master.zip
 cp -R /root/tmp/core-master/* /var/www/html
 rm -rf /root/tmp/core-master
 ```
+
+# Je n'arrive pas a installer les dépendances d'un plugin j'ai une erreur du type : "E: dpkg a été interrompu. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock /var/lib/dpkg/lock"
+
+Il faut :
+
+- redemarrer Jeedom
+- aller dans l'administration de celui-ci (bouton roue cranté en haut a droite puis configuration en v3 ou Réglage -> Système -> Configuration en v4)
+- aller dans l'onglet OS/DB
+- lancer l'administration Système
+- cliquer sur Dpkg configure
+- attendre 10min
+- relancer les dépendances du plugins qui bloque
