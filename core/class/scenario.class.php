@@ -597,7 +597,7 @@ class scenario {
 				* @return type
 				*/
 				public static function getTemplate() {
-					$path = __DIR__ . '/../config/scenario';
+					$path = __DIR__ . '/../../data/scenario';
 					return ls($path, '*.json', false, array('files', 'quiet'));
 				}
 				
