@@ -156,6 +156,12 @@ step_7_jeedom_customization_mysql() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 7 personnalisation de jeedom mysql${NORMAL}"
   
+  mkdir -p /lib/systemd/system/mariadb.service.d
+  echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
+  echo 'Restart=always' >> /lib/systemd/system/mariadb.service.d/override.conf
+  echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
+  systemctl daemon-reload
+  
   systemctl stop mysql > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     service mysql stop
@@ -215,8 +221,10 @@ step_8_jeedom_customization() {
   rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
   
   mkdir /etc/systemd/system/apache2.service.d
-  echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
-  echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
+  echo "[Service]" > /etc/systemd/system/apache2.service.d/override.conf
+  echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "Restart=always" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "RestartSec=10" >> /etc/systemd/system/apache2.service.d/override.conf
   
   systemctl daemon-reload
   
@@ -246,6 +254,12 @@ step_8_jeedom_customization() {
   sysctl vm.swappiness=10
   
   cp ${WEBSERVER_HOME}/install/fail2ban.jeedom.conf /etc/fail2ban/jail.d/jeedom.conf
+  
+  mkdir -p /lib/systemd/system/fail2ban.service.d
+  echo '[Service]' > /lib/systemd/system/fail2ban.service.d/override.conf
+  echo 'Restart=always' >> /lib/systemd/system/fail2ban.service.d/override.conf
+  echo 'RestartSec=10' >> /lib/systemd/system/fail2ban.service.d/override.conf
+  systemctl daemon-reload
   systemctl restart fail2ban > /dev/null 2>&1
   
   echo "${VERT}étape 8 personnalisation de jeedom réussie${NORMAL}"
