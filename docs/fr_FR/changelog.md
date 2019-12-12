@@ -2,6 +2,10 @@
 Changelog
 =========
 
+3.3.40
+=====
+
+- Rotation automatique de la clef api des utilisateurs admin tous les 3 mois. il est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs. Attention cette mise à jour lance une rotation des clef api des utilisateurs admins
 
 3.3.39
 =====
