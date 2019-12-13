@@ -817,7 +817,7 @@ public static function backup_restore($_backup) {
 				'hwkey' => jeedom::getHardwareKey(),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
