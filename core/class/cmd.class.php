@@ -922,7 +922,7 @@ class cmd {
 				if (isset($action['options'])) {
 					$options = $action['options'];
 				}
-				if (count($_values) > 0) {
+				if ($_values && count($_values) > 0) {
 					foreach ($_values as $key => $value) {
 						foreach ($options as &$option) {
 							if (!is_array($option)) {
