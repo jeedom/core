@@ -25,11 +25,11 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	die();
 }
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-if (class_exists('gcp')) {
-	$engine = 'gcp';
+if (class_exists('dataservice')) {
+	$engine = 'dataservice';
 } else {
 	$engine = init('engine', 'pico');
-	if ($engine == 'gcp') {
+	if ($engine == 'dataservice') {
 		$engine = 'pico';
 	}
 }
@@ -71,8 +71,8 @@ if (file_exists($filename)) {
 log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') with engine '.$engine);
 try {
 	switch ($engine) {
-		case 'gcp':
-		gcp::tts($text);
+		case 'dataservice':
+		dataservice::tts($text);
 		break;
 		case 'espeak':
 		$voice = init('voice', 'fr+f4');
