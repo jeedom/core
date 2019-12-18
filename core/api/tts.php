@@ -46,8 +46,10 @@ if(substr(init('text'), -1) == '#' && substr(init('text'), 0,1) == '#' && class_
 		if (init('path') == 1) {
 			echo $song->getPath();
 		} else {
-			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename=' . $song->getName() . '.mp3');
+			header('Content-Type: audio/mpeg');
+			header("Content-Transfer-Encoding: binary");
+			header("Pragma: no-cache");
+			header('Content-length: '.filesize($song->getPath()));
 			readfile($song->getPath());
 		}
 		die();
@@ -63,8 +65,10 @@ if (file_exists($filename)) {
 		echo $filename;
 		die();
 	}
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	header('Content-Type: audio/mpeg');
+	header("Content-Transfer-Encoding: binary");
+	header("Pragma: no-cache");
+	header('Content-length: '.filesize($filename));
 	readfile($filename);
 	die();
 }
@@ -110,8 +114,10 @@ try {
 if (init('path') == 1) {
 	echo $filename;
 } else {
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename=' . $md5 . '.mp3');
+	header('Content-Type: audio/mpeg');
+	header("Content-Transfer-Encoding: binary");
+	header("Pragma: no-cache");
+	header('Content-length: '.filesize($filename));
 	readfile($filename);
 }
 try {
