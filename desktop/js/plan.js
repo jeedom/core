@@ -847,6 +847,7 @@ function displayPlan(_code) {
         }
         displayPlan(result);
       }else{
+        planHeader_id = -1
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       }
     },
@@ -954,6 +955,9 @@ function getObjectInfo(_object){
 }
 
 function savePlan(_refreshDisplay,_async) {
+  if(planHeader_id == -1){
+    return;
+  }
   var plans = [];
   $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function () {
     var info = getObjectInfo($(this));
