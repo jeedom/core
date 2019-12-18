@@ -412,13 +412,6 @@ $('.pullInstall').on('click', function () {
   });
 });
 
-
-
-$('#div_pageContainer').delegate('.sendPluginTo', 'click', function () {
-  $('#md_modal2').dialog({title: "{{Envoyer sur le}} "+$(this).attr('data-repo')});
-  $('#md_modal2').load('index.php?v=d&modal=update.send&type=plugin&logicalId=' + $(this).attr('data-logicalId')+'&repo='+$(this).attr('data-repo')).dialog('open');
-});
-
 $('#div_pageContainer').off( 'change', '.configKey').on( 'change','.configKey:visible',function () {
   modifyWithoutSave = true;
 });

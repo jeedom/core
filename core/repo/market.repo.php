@@ -30,7 +30,6 @@ class repo_market {
 		'backup' => true,
 		'hasConfiguration' => true,
 		'proxy' => true,
-		'sendPlugin' => true,
 		'hasStore' => true,
 		'test' => true,
 		'pullInstall' => true,
@@ -815,7 +814,7 @@ class repo_market {
 				'market_api_key' => jeedom::getApiKey('apimarket'),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
 			);
 			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
 				$params['url'] = network::getNetworkAccess('external');
