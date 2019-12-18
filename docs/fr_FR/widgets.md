@@ -124,6 +124,10 @@ Le widget a un paramètre optionnel : scale qui vous permet de changer sa taille
 >**NOTE**
 > Attention sur un design il ne faut surtout pas mettre une commande seul avec ce widget cela ne marchera pas vu que c'est un widget utilisant la valeur de plusieurs commande il faut absolument mettre le widget complet
 
+### Multiline
+
+- Parametre maxHeight pour definir sa hauteur maximal (scrollbar sur le coté si le text dépasse cette valeur)
+
 ### Slider Button
 
 - step : permet de régler le pas d'une action sur un bouton (0.5 par défaut)
