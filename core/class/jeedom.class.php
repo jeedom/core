@@ -589,6 +589,9 @@ class jeedom {
 				if (file_exists('/dev/ttyS1')) {
 					$usbMapping['Odroid C2'] = '/dev/ttyS1';
 				}
+				if (file_exists('/dev/ttyAML1')) {
+ 					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
+ 				}
 				foreach (ls('/dev/', 'ttyACM*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
@@ -1061,6 +1064,7 @@ class jeedom {
 			DB::optimize();
 			cache::clean();
 			listener::clean();
+			user::regenerateHash();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {

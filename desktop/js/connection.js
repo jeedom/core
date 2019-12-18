@@ -25,7 +25,7 @@ $('#in_login_username').on('focusout change keypress',function(){
             },
             success: function (data) {
             	if($('#in_login_username').val() == $('#in_login_password').val()){
-            		$('#phrase_login_btn').html('{{Votre mot de passe doit être changé.<br/>Pour plus de sécurité.}}');
+            		$('#phrase_login_btn').html('{{Alerte de sécurité :<br/>Votre mot de passe doit être changé.}}');
             		$('#titre_login_btn').html('{{Information importante :}}');
 	            	$('.veen .wrapper').addClass('move');
 					$('.body').css('background','linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))');
@@ -50,6 +50,7 @@ $('#in_login_username').on('focusout change keypress',function(){
 	    		success: function (data){
 		    		var user = data;
 		    		user.password = $('#in_change_password').val();
+				user.hash = '';
 					jeedom.user.saveProfils({
 						profils: user,
 						error: function (error) {

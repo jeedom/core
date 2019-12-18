@@ -31,7 +31,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		<table class="table table-condensed table-bordered" id="table_user">
 			<thead>
 				<th>{{Utilisateur}}</th>
-				<th style="width: 100px;">{{Actif}}</th>
+				<th style="width: 250px;">{{Actif}}</th>
 				<th>{{Profil}}</th>
 				<th>{{Clef API}}</th>
 				<th>{{Double authentification}}</th>

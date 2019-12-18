@@ -100,7 +100,7 @@ body {
 
 }
 .veen .wrapper.move #register{
-	transform: translateY(-80%) translateX(0%);
+	transform: translateY(-100%) translateX(0%);
 	visibility: visible;
 }
 .veen .wrapper.move #login{
