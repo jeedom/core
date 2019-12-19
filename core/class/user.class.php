@@ -377,7 +377,6 @@ class user {
 			}
 			$user->setHash('');
 			$user->getHash();
-			$user->save();
 		}
 	}
 	
