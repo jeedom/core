@@ -74,6 +74,7 @@ try {
 			$registerDevice[sha512($rdk)]['session_id'] = session_id();
 			setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/", '', false, true);
 			@session_start();
+			$_SESSION['user']->refresh();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
 			$_SESSION['user']->save();
 			@session_write_close();
@@ -231,8 +232,11 @@ try {
 			}
 			foreach (user::all() as $user) {
 				if ($user->getId() == $_SESSION['user']->getId()) {
+					@session_start();
+					$_SESSION['user']->refresh();
 					$_SESSION['user']->setOptions('registerDevice', array());
 					$_SESSION['user']->save();
+					@session_write_close();
 				} else {
 					$user->setOptions('registerDevice', array());
 					$user->save();
@@ -263,6 +267,7 @@ try {
 			$user->save();
 		} else {
 			@session_start();
+			$_SESSION['user']->refresh();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
 			$_SESSION['user']->save();
 			@session_write_close();
