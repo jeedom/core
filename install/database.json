@@ -235,20 +235,6 @@
               "Sub_part": null
             }
           }
-        },
-        "logicalId_eqLogicID": {
-          "Key_name": "logicalId_eqLogicID",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "eqLogic_id",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "logicalId",
-              "Sub_part": null
-            }
-          }
         }
       }
     },
@@ -367,8 +353,8 @@
         }
       ],
       "indexes": {
-        "type": {
-          "Key_name": "type",
+        "logicalId_Type": {
+          "Key_name": "class",
           "Non_unique": "1",
           "columns": {
             "1": {
@@ -378,11 +364,11 @@
           }
         },
         "logicalId_Type": {
-          "Key_name": "logicalId_Type",
+          "Key_name": "function",
           "Non_unique": "1",
           "columns": {
             "1": {
-              "column": "class",
+              "column": "function",
               "Sub_part": null
             }
           }
@@ -649,20 +635,6 @@
             }
           }
         },
-        "logica_id_eqTypeName": {
-          "Key_name": "logica_id_eqTypeName",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "eqType_name",
-              "Sub_part": null
-            }
-          }
-        },
         "object_id": {
           "Key_name": "object_id",
           "Non_unique": "1",
@@ -679,26 +651,6 @@
           "columns": {
             "1": {
               "column": "timeout",
-              "Sub_part": null
-            }
-          }
-        },
-        "eqReal_id": {
-          "Key_name": "eqReal_id",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "eqReal_id",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId": {
-          "Key_name": "logicalId",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
               "Sub_part": null
             }
           }
@@ -803,20 +755,6 @@
           "Non_unique": "1",
           "columns": {
             "1": {
-              "column": "type",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId_Type": {
-          "Key_name": "logicalId_Type",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            },
-            "2": {
               "column": "type",
               "Sub_part": null
             }
@@ -928,16 +866,6 @@
             },
             "2": {
               "column": "datetime",
-              "Sub_part": null
-            }
-          }
-        },
-        "cmd_id_index": {
-          "Key_name": "cmd_id_index",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "cmd_id",
               "Sub_part": null
             }
           }
@@ -1809,16 +1737,6 @@
             }
           }
         },
-        "group": {
-          "Key_name": "group",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "group",
-              "Sub_part": null
-            }
-          }
-        },
         "fk_scenario_object1_idx": {
           "Key_name": "fk_scenario_object1_idx",
           "Non_unique": "1",
@@ -2386,16 +2304,6 @@
             },
             "3": {
               "column": "type",
-              "Sub_part": null
-            }
-          }
-        },
-        "fk_data_zone1_idx": {
-          "Key_name": "fk_data_zone1_idx",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "viewZone_id",
               "Sub_part": null
             }
           }
