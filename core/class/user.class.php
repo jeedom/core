@@ -356,7 +356,7 @@ class user {
 	
 	public static function regenerateHash(){
 		foreach (user::all() as $user) {
-			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1){
+			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1 || $user->getEnable() == 0){
 				continue;
 			}
 			if(strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')){
