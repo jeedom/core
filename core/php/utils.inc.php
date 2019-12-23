@@ -136,11 +136,11 @@ function resizeImage($contents, $width, $height) {
 	$test = $width / $height > $ratio_orig;
 	$dest_width = $test ? ceil($height * $ratio_orig) : $width;
 	$dest_height = $test ? $height : ceil($width / $ratio_orig);
-
+	
 	$dest_image = imagecreatetruecolor($width, $height);
 	$wh = imagecolorallocate($dest_image, 0xFF, 0xFF, 0xFF);
 	imagefill($dest_image, 0, 0, $wh);
-
+	
 	$offcet_x = ($width - $dest_width) / 2;
 	$offcet_y = ($height - $dest_height) / 2;
 	if ($dest_image && $contents) {
@@ -182,7 +182,7 @@ function convertDuration($time) {
 			$time %= $value;
 		}
 	}
-
+	
 	$result .= $time . 's';
 	return $result;
 }
@@ -255,13 +255,13 @@ function cleanPath($path) {
 		if ($fold == '' || $fold == '.') {
 			continue;
 		}
-
+		
 		if ($fold == '..' && $i > 0 && end($out) != '..') {
 			array_pop($out);
 		} else {
 			$out[] = $fold;
 		}
-
+		
 	}
 	return ($path{0} == '/' ? '/' : '') . join('/', $out);
 }
@@ -301,7 +301,7 @@ function polyfill_glob_brace($pattern, $flags) {
 		$next_brace_sub = function ($pattern, $current) {
 			$length = strlen($pattern);
 			$depth = 0;
-
+			
 			while ($current < $length) {
 				if ('\\' === $pattern[$current]) {
 					if (++$current === $length) {
@@ -316,13 +316,13 @@ function polyfill_glob_brace($pattern, $flags) {
 					}
 				}
 			}
-
+			
 			return $current < $length ? $current : null;
 		};
 	}
-
+	
 	$length = strlen($pattern);
-
+	
 	// Find first opening brace.
 	for ($begin = 0; $begin < $length; $begin++) {
 		if ('\\' === $pattern[$begin]) {
@@ -331,42 +331,42 @@ function polyfill_glob_brace($pattern, $flags) {
 			break;
 		}
 	}
-
+	
 	// Find comma or matching closing brace.
 	if (null === ($next = $next_brace_sub($pattern, $begin + 1))) {
 		return glob($pattern, $flags);
 	}
-
+	
 	$rest = $next;
-
+	
 	// Point `$rest` to matching closing brace.
 	while ('}' !== $pattern[$rest]) {
 		if (null === ($rest = $next_brace_sub($pattern, $rest + 1))) {
 			return glob($pattern, $flags);
 		}
 	}
-
+	
 	$paths = array();
 	$p = $begin + 1;
-
+	
 	// For each comma-separated subpattern.
 	do {
 		$subpattern = substr($pattern, 0, $begin)
 		. substr($pattern, $p, $next - $p)
 		. substr($pattern, $rest + 1);
-
+		
 		if (($result = polyfill_glob_brace($subpattern, $flags))) {
 			$paths = array_merge($paths, $result);
 		}
-
+		
 		if ('}' === $pattern[$next]) {
 			break;
 		}
-
+		
 		$p = $next + 1;
 		$next = $next_brace_sub($pattern, $p);
 	} while (null !== $next);
-
+	
 	return array_values(array_unique($paths));
 }
 
@@ -386,12 +386,12 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			if (!file_exists($folder)) {
 				return array();
 			}
-
+			
 		}
 		if (!is_dir($folder) || !chdir($folder)) {
 			return array();
 		}
-
+		
 	}
 	$get_files = in_array('files', $options);
 	$get_folders = in_array('folders', $options);
@@ -409,13 +409,13 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 	if ($recursivly || $get_folders) {
 		$folders = glob("*", GLOB_ONLYDIR + GLOB_MARK);
 	}
-
+	
 	//If a pattern is specified, make sure even the folders match that pattern.
 	$matching_folders = array();
 	if ($pattern !== '*') {
 		$matching_folders = glob($pattern, GLOB_ONLYDIR + GLOB_MARK);
 	}
-
+	
 	//Get just the files by removing the folders from the list of all files.
 	$all = array_values(array_diff($both, $folders));
 	if ($recursivly || $get_folders) {
@@ -426,13 +426,13 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 					if (in_array($this_folder, $matching_folders)) {
 						array_push($all, $this_folder);
 					}
-
+					
 				} else {
 					array_push($all, $this_folder);
 				}
-
+				
 			}
-
+			
 			if ($recursivly) {
 				// Continue calling this function for all the folders
 				$deep_items = ls($pattern, $this_folder, $recursivly, $options); # :RECURSION:
@@ -442,11 +442,11 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			}
 		}
 	}
-
+	
 	if ($folder && is_dir($current_folder)) {
 		chdir($current_folder);
 	}
-
+	
 	if (in_array('datetime_asc', $options)) {
 		global $current_dir;
 		$current_dir = $folder;
@@ -461,7 +461,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			return filemtime($GLOBALS['current_dir'] . '/' . $a) > filemtime($GLOBALS['current_dir'] . '/' . $b);
 		});
 	}
-
+	
 	return $all;
 }
 
@@ -647,7 +647,7 @@ function date_fr($date_en) {
 		'/(^| )Jan($| )/', '/(^| )Feb($| )/', '/(^| )Mar($| )/', '/(^| )Apr($| )/', '/(^| )May($| )/', '/(^| )Jun($| )/', '/(^| )Jul($| )/',
 		'/(^| )Aug($| )/', '/(^| )Sep($| )/', '/(^| )Oct($| )/', '/(^| )Nov($| )/', '/(^| )Dec($| )/',
 	);
-
+	
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 		$texte_long = array(
@@ -828,7 +828,7 @@ function sizeFormat($size) {
 * @return boolean
 */
 function netMatch($network, $ip) {
-
+	
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
@@ -855,7 +855,7 @@ function netMatch($network, $ip) {
 			return true; // if *.*.*.*, then all, so matched
 		}
 	}
-
+	
 	$d = strpos($network, '-');
 	if ($d === false) {
 		if (strpos($network, '/') === false) {
@@ -874,7 +874,7 @@ function netMatch($network, $ip) {
 		$ip_long = ip2long($ip);
 		return ($ip_long & $mask) == ($network_long & $mask);
 	} else {
-
+		
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
 		$ip = ip2long($ip);
@@ -1012,8 +1012,14 @@ function sanitizeAccent($_message) {
 		'$' => 's');
 		return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
 	}
-
+	
 	function isConnect($_right = '') {
+		if(isset($_SESSION['user'])){
+			$user = user::byId($_SESSION['user']->getId());
+			if(!is_object($user)){
+				return false;
+			}
+		}
 		if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
 			return $GLOBALS['isConnect::' . $_right];
 		}
@@ -1029,86 +1035,86 @@ function sanitizeAccent($_message) {
 		}
 		return $GLOBALS['isConnect::' . $_right];
 	}
-
+	
 	function ZipErrorMessage($code) {
 		switch ($code) {
 			case 0:
 			return 'No error';
-
+			
 			case 1:
 			return 'Multi-disk zip archives not supported';
-
+			
 			case 2:
 			return 'Renaming temporary file failed';
-
+			
 			case 3:
 			return 'Closing zip archive failed';
-
+			
 			case 4:
 			return 'Seek error';
-
+			
 			case 5:
 			return 'Read error';
-
+			
 			case 6:
 			return 'Write error';
-
+			
 			case 7:
 			return 'CRC error';
-
+			
 			case 8:
 			return 'Containing zip archive was closed';
-
+			
 			case 9:
 			return 'No such file';
-
+			
 			case 10:
 			return 'File already exists';
-
+			
 			case 11:
 			return 'Can\'t open file';
-
+			
 			case 12:
 			return 'Failure to create temporary file';
-
+			
 			case 13:
 			return 'Zlib error';
-
+			
 			case 14:
 			return 'Malloc failure';
-
+			
 			case 15:
 			return 'Entry has been changed';
-
+			
 			case 16:
 			return 'Compression method not supported';
-
+			
 			case 17:
 			return 'Premature EOF';
-
+			
 			case 18:
 			return 'Invalid argument';
-
+			
 			case 19:
 			return 'Not a zip archive';
-
+			
 			case 20:
 			return 'Internal error';
-
+			
 			case 21:
 			return 'Zip archive inconsistent';
-
+			
 			case 22:
 			return 'Can\'t remove file';
-
+			
 			case 23:
 			return 'Entry has been deleted';
-
+			
 			default:
 			return 'An unknown error has occurred(' . intval($code) . ')';
 		}
 	}
-
+	
 	function arg2array($_string) {
 		$return = array();
 		$re = '/[\/-]?(([a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ_#]+)(?:[=:]("[^"]+"|[^\s"]+))?)(?:\s+|$)/';
@@ -1121,7 +1127,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
-
+	
 	function strToHex($string) {
 		$hex = '';
 		$calculateStrLen = strlen($string);
@@ -1132,7 +1138,7 @@ function sanitizeAccent($_message) {
 		}
 		return strToUpper($hex);
 	}
-
+	
 	function hex2rgb($hex) {
 		$hex = str_replace("#", "", $hex);
 		if (strlen($hex) == 3) {
@@ -1146,7 +1152,7 @@ function sanitizeAccent($_message) {
 		}
 		return array($r, $g, $b);
 	}
-
+	
 	function getDominantColor($_pathimg,$_level = null,$_smartMode = false) {
 		$colors = array();
 		$i = imagecreatefromjpeg($_pathimg);
@@ -1179,7 +1185,7 @@ function sanitizeAccent($_message) {
 		usort($colors, function ($a, $b) {
 			return $b['nb'] - $a['nb'];
 		});
-
+		
 		if($_level == null){
 			if($colors[0]['value'] == 0){
 				return '#' . substr("000000".dechex($colors[1]['value']),-6);
@@ -1203,29 +1209,29 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
-
+	
 	function colorsAreClose($_c1,$_c2,$_threshold){
 		$rDist = abs((($_c1 >> 16) & 0xFF) - (($_c2 >> 16) & 0xFF));
 		$gDist = abs((($_c1 >> 8) & 0xFF) - (($_c2 >> 8) & 0xFF));
 		$bDist = abs(($_c1 & 0xFF) - ($_c2 & 0xFF));
 		return (($rDist + $gDist + $bDist) < $_threshold);
 	}
-
+	
 	function sha512($_string) {
 		return hash('sha512', $_string);
 	}
-
+	
 	function findCodeIcon($_icon) {
 		$icon = trim(str_replace(array('fa ','fas ','fab ','far ', 'icon ', '></i>', '<i', 'class="', '"','icon_green','icon_blue','icon_yellow','icon_orange','icon_red'), '', trim($_icon)));
-
+		
 		$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
-
+		
 		$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
 		preg_match($re, $css, $matches);
 		if (isset($matches[1])) {
 			return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
 		}
-
+		
 		foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
 			if (is_dir(__DIR__ . '/../css/icon/' . $dir) && file_exists(__DIR__ . '/../css/icon/' . $dir . '/style.css')) {
 				$css = file_get_contents(__DIR__ . '/../css/icon/' . $dir . '/style.css');
@@ -1237,7 +1243,7 @@ function sanitizeAccent($_message) {
 		}
 		return array('icon' => '', 'fontfamily' => '');
 	}
-
+	
 	function addGraphLink($_from, $_from_type, $_to, $_to_type, &$_data, $_level, $_drill, $_display = array('dashvalue' => '5,3', 'lengthfactor' => 0.6)) {
 		//var_dump($_to_type);
 		//var_dump($_to);
@@ -1266,7 +1272,7 @@ function sanitizeAccent($_message) {
 		}
 		return $_data;
 	}
-
+	
 	function getSystemMemInfo() {
 		$data = explode("\n", file_get_contents("/proc/meminfo"));
 		$meminfo = array();
@@ -1280,7 +1286,7 @@ function sanitizeAccent($_message) {
 		}
 		return $meminfo;
 	}
-
+	
 	function strContain($_string, $_words) {
 		foreach ($_words as $word) {
 			if (strpos($_string, $word) !== false) {
@@ -1289,7 +1295,7 @@ function sanitizeAccent($_message) {
 		}
 		return false;
 	}
-
+	
 	function makeZipSupport() {
 		$jeedom_folder = __DIR__ . '/../..';
 		$folder = '/tmp/jeedom_support';
@@ -1306,7 +1312,7 @@ function sanitizeAccent($_message) {
 		rrmdir($folder);
 		return realpath($outputfile);
 	}
-
+	
 	function decodeSessionData($_data) {
 		$return_data = array();
 		$offset = 0;
@@ -1324,7 +1330,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return_data;
 	}
-
+	
 	function listSession() {
 		$return = array();
 		$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path()));
@@ -1353,13 +1359,13 @@ function sanitizeAccent($_message) {
 				$return[$session_id]['user_id'] = $data_session['user']->getId();
 				$return[$session_id]['ip'] = (isset($data_session['ip'])) ? $data_session['ip'] : '';
 			} catch (Exception $e) {
-
+				
 			}
 		}
 		return $return;
 	}
-
-
+	
+	
 	function deleteSession($_id) {
 		$cSsid = session_id();
 		@session_start();
@@ -1369,7 +1375,7 @@ function sanitizeAccent($_message) {
 		session_id($cSsid);
 		@session_write_close();
 	}
-
+	
 	function unautorizedInDemo($_user = null) {
 		if ($_user === null) {
 			if (!isset($_SESSION) || !isset($_SESSION['user'])) {
@@ -1384,7 +1390,7 @@ function sanitizeAccent($_message) {
 			throw new Exception(__('Cette action n\'est pas autorisée en mode démo', __FILE__));
 		}
 	}
-
+	
 	function checkAndFixCron($_cron){
 		$return = $_cron;
 		$return = str_replace('*/ ','* ',$return);
@@ -1398,7 +1404,7 @@ function sanitizeAccent($_message) {
 		}
 		return $return;
 	}
-
+	
 	function getTZoffsetMin() {
 		$tz = date_default_timezone_get();
 		date_default_timezone_set( "UTC" );
@@ -1406,7 +1412,7 @@ function sanitizeAccent($_message) {
 		date_default_timezone_set($tz);
 		return($seconds/60);
 	}
-
+	
 	function pageTitle($_page){
 		switch ($_page) {
 			case 'overview':
@@ -1496,7 +1502,8 @@ function sanitizeAccent($_message) {
 		}
 		return ucfirst($return);
 	}
-
+	
 	function cleanComponanteName($_name){
 		return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"'), '', $_name));
 	}
+	
