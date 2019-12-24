@@ -98,8 +98,8 @@ try {
 			if (is_json(init('id'))) {
 				$objects = json_decode(init('id'), true);
 			} else {
+				$objects = array();
 				if(init('summary') == ''){
-					$objects = array();
 					foreach (jeeObject::buildTree(null, true) as $object) {
 						if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
 							continue;
