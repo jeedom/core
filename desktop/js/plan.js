@@ -504,8 +504,11 @@ $('#bt_createNewDesign').on('click',function(){
   createNewDesign();
 });
 
-$pageContainer.delegate('.plan-link-widget', 'click', function () {
+$pageContainer.off('click','.plan-link-widget').on('click','.plan-link-widget', function () {
   if (!editOption.state) {
+    if($(this).attr('data-link_id') == undefined){
+      return;
+    }
     planHeader_id = $(this).attr('data-link_id');
     editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true};
     displayPlan();
@@ -848,6 +851,7 @@ function displayPlan(_code) {
         }
         displayPlan(result);
       }else{
+        planHeader_id = -1;
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       }
     },
@@ -953,6 +957,9 @@ function getObjectInfo(_object){
 }
 
 function savePlan(_refreshDisplay,_async) {
+  if(planHeader_id == -1){
+    return;
+  }
   var plans = [];
   $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function () {
     var info = getObjectInfo($(this));

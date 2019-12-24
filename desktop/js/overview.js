@@ -91,7 +91,7 @@ $('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function 
   loadPage(url)
 })
 
-$('.objectSummaryParent').off('click').on('click', function (event) {
+$('#objectOverviewContainer .objectSummaryParent').off('click').on('click', function (event) {
   event.stopPropagation()
   event.preventDefault()
   loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id')+'&childs=0')
