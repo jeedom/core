@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
+	
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
+	
 	ajax::init();
-
+	
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -38,7 +38,7 @@ try {
 		$object->remove();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'byId') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -46,12 +46,12 @@ try {
 		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
-
+	
 	if (init('action') == 'createSummaryVirtual') {
 		jeeObject::createSummaryToVirtual(init('key'));
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'all') {
 		$objects = jeeObject::buildTree(null,init('onlyVisible',true));
 		if (init('onlyHasEqLogic') != '') {
@@ -66,7 +66,7 @@ try {
 		}
 		ajax::success(utils::o2a($objects));
 	}
-
+	
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -83,7 +83,7 @@ try {
 		$object->save();
 		ajax::success(utils::o2a($object));
 	}
-
+	
 	if (init('action') == 'getChild') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -92,18 +92,24 @@ try {
 		$return = utils::o2a($object->getChild());
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'toHtml') {
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
 				$objects = json_decode(init('id'), true);
 			} else {
-				$objects = array();
-				foreach (jeeObject::buildTree(null, true) as $object) {
-					if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
-						continue;
+				if(init('summary') == ''){
+					$objects = array();
+					foreach (jeeObject::buildTree(null, true) as $object) {
+						if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
+							continue;
+						}
+						$objects[] = $object->getId();
 					}
-					$objects[] = $object->getId();
+				}else{
+					foreach (jeeObject::all() as $object) {
+						$objects[] = $object->getId();
+					}
 				}
 			}
 			$return = array();
@@ -148,46 +154,45 @@ try {
 				$i++;
 			}
 			ajax::success($return);
+		}
+		$html = array();
+		if (init('summary') == '') {
+			$eqLogics = eqLogic::byObjectId(init('id'), true, true);
 		} else {
-			$html = array();
-			if (init('summary') == '') {
-				$eqLogics = eqLogic::byObjectId(init('id'), true, true);
-			} else {
-				$object = jeeObject::byId(init('id'));
-				$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+			$object = jeeObject::byId(init('id'));
+			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+		}
+		if(count($eqLogics) > 0){
+			foreach ($eqLogics as $eqLogic) {
+				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+					continue;
+				}
+				if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+					continue;
+				}
+				$order = $eqLogic->getOrder();
+				while(isset($html[$order])){
+					$order++;
+				}
+				$html[$order] = $eqLogic->toHtml(init('version'));
 			}
-			if(count($eqLogics) > 0){
-				foreach ($eqLogics as $eqLogic) {
-					if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
-						continue;
-					}
-					if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
-						continue;
-					}
-					$order = $eqLogic->getOrder();
+		}
+		if (init('summary') == '') {
+			$scenarios = scenario::byObjectId(init('id'),false,true);
+			if(count($scenarios) > 0){
+				foreach ($scenarios as $scenario) {
+					$order = $scenario->getOrder();
 					while(isset($html[$order])){
 						$order++;
 					}
-					$html[$order] = $eqLogic->toHtml(init('version'));
+					$html[$order] = $scenario->toHtml(init('version'));
 				}
 			}
-			if (init('summary') == '') {
-				$scenarios = scenario::byObjectId(init('id'),false,true);
-				if(count($scenarios) > 0){
-					foreach ($scenarios as $scenario) {
-						$order = $scenario->getOrder();
-						while(isset($html[$order])){
-							$order++;
-						}
-						$html[$order] = $scenario->toHtml(init('version'));
-					}
-				}
-			}
-			ksort($html);
-			ajax::success(implode($html));
 		}
+		ksort($html);
+		ajax::success(implode($html));
 	}
-
+	
 	if (init('action') == 'setOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -203,7 +208,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'getSummaryHtml') {
 		if (init('ids') != '') {
 			$return = array();
@@ -236,7 +241,7 @@ try {
 			ajax::success($info_object);
 		}
 	}
-
+	
 	if (init('action') == 'removeImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -252,7 +257,7 @@ try {
 		@rrmdir(__DIR__ . '/../../core/img/object');
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'uploadImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -279,7 +284,7 @@ try {
 			$upfilepath = init('file');
 		}
 		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
-
+		
 		if(count($files)  > 0){
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
@@ -296,7 +301,7 @@ try {
 		$object->save();
 		ajax::success(array('filepath' => $filepath));
 	}
-
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
