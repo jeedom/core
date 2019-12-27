@@ -476,6 +476,9 @@ class jeedom {
 		}
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
+			if($user->getEnable() == 0){
+				return false;
+			}
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
 				return false;
 			}
