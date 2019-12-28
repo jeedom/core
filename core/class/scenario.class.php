@@ -1126,7 +1126,7 @@ class scenario {
 									$cron->halt();
 									$cron->remove();
 								} catch (Exception $e) {
-									log::add('scenario', 'info', __('Can not stop subtask : ') . print_r($cron->getOption(), true));
+									log::add('scenario', 'info', __('Can not stop subtask : ', __FILE__) . print_r($cron->getOption(), true));
 								}
 							}
 						}
