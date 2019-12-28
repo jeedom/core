@@ -151,6 +151,10 @@ class event {
 	}
 
 	private static function changesSince($_datetime) {
+		$now = getmicrotime();
+		if($_datetime > $now){
+			$_datetime = $now;
+		}
 		$return = array('datetime' => $_datetime, 'result' => array());
 		$cache = cache::byKey('event');
 		$events = json_decode($cache->getValue('[]'), true);
