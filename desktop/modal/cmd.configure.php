@@ -366,7 +366,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <a class="btn btn-success" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                <a class="btn btn-xs" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
             <div id="div_actionCheckCmd"></div>
@@ -390,7 +390,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <a class="btn btn-success" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                <a class="btn btn-xs" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
             <div id="div_actionPreExecCmd"></div>
@@ -408,7 +408,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <a class="btn btn-success" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                <a class="btn btn-xs" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
             <div id="div_actionPostExecCmd"></div>
@@ -757,7 +757,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
           ?>
           <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
-            <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a>
+            <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a>
           </legend>
           <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
             <thead class="table table-bordered">
