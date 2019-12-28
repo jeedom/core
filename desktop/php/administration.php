@@ -254,7 +254,7 @@ user::isBan();
 			</form>
 		</div>
 		
-				<div role="tabpanel" class="tab-pane" id="infotab">
+		<div role="tabpanel" class="tab-pane" id="infotab">
 			<br/>
 			<form class="form-horizontal">
 				<fieldset>
@@ -265,7 +265,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="info::lat" />
+							<input type="text" class="configKey form-control" data-l1key="info::latitude" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -273,7 +273,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="info::long" />
+							<input type="text" class="configKey form-control" data-l1key="info::longitude" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -281,7 +281,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="info::alt" />
+							<input type="text" class="configKey form-control" data-l1key="info::altitude" />
 						</div>
 					</div>
 					<legend>{{Adresse}}</legend>
@@ -290,7 +290,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="info::postal" />
+							<input type="text" class="configKey form-control" data-l1key="info::postalCode" />
 						</div>
 					</div>
 					<div class="form-group">
