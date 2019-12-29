@@ -139,7 +139,7 @@ foreach (widgets::all() as $widget) {
       <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-check-double"></i> <span class="hidden-xs">{{Appliquer sur}}</span>
       </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
       </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-xs">{{Exporter}}</span>
-      </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="far fa-check-circle"></i> {{Sauvegarder}}
+      </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
       </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
     </span>
   </div>

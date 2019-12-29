@@ -129,7 +129,7 @@ $optionMaxSize = 15;
 			<span class="input-group-btn">
 				<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
 				</a><a class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="far fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>

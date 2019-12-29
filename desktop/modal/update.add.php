@@ -89,7 +89,7 @@ $repos = update::listRepo();
       echo '</div>';
     }
     ?>
-    <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+    <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
   </fieldset>
 </form>
 

@@ -142,7 +142,7 @@ if (is_array($scenarioListGroup)) {
 
 				<a class="btn btn-warning btn-sm" id="bt_testScenario2" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="far fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
+				</a><a class="btn btn-success btn-sm" id="bt_saveScenario2"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario2"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
 			</span>
 		</div>
@@ -354,7 +354,7 @@ if (is_array($scenarioListGroup)) {
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-				<a class="btn btn-success" id="bt_addElementSave"><i class="far fa-check-circle"></i> {{Ajouter}}</a>
+				<a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>

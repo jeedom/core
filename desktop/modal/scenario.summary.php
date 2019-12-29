@@ -6,7 +6,8 @@ if (!isConnect()) {
 <div id="div_alertScenarioSummary"></div>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a class="btn btn-sm roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveSummaryScenario"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+		<a class="btn btn-sm roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}
+		</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	</span>
 </div>
 <br/><br/>

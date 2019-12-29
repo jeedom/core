@@ -19,7 +19,7 @@ if (!isConnect('admin')) {
 			<div class="row">
 				<div class="col-xs-6">
 					<legend>Javascript
-						<a class="btn btn-success pull-right btn-xs saveCustom" data-version="desktop" data-type="js" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+						<a class="btn btn-success pull-right btn-xs saveCustom" data-version="desktop" data-type="js" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 					</legend>
 					<textarea id='ta_jsDesktopContent'><?php
 					if (file_exists(__DIR__ . '/../custom/custom.js')) {
@@ -30,7 +30,7 @@ if (!isConnect('admin')) {
 			</div>
 			<div class="col-xs-6">
 				<legend>CSS
-					<a class="btn btn-success pull-right btn-xs saveCustom" data-version="desktop" data-type="css" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+					<a class="btn btn-success pull-right btn-xs saveCustom" data-version="desktop" data-type="css" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 				</legend>
 				<textarea id='ta_cssDesktopContent' style='height:auto;'><?php
 				if (file_exists(__DIR__ . '/../custom/custom.css')) {
@@ -45,7 +45,7 @@ if (!isConnect('admin')) {
 	<div class="row">
 		<div class="col-xs-6">
 			<legend>Javascript
-				<a class="btn btn-success pull-right btn-xs saveCustom" data-version="mobile" data-type="js" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+				<a class="btn btn-success pull-right btn-xs saveCustom" data-version="mobile" data-type="js" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 			</legend>
 			<textarea id='ta_jsMobileContent' style='height:auto;'><?php
 			if (file_exists(__DIR__ . '/../../mobile/custom/custom.js')) {
@@ -56,7 +56,7 @@ if (!isConnect('admin')) {
 	</div>
 	<div class="col-xs-6">
 		<legend>CSS
-			<a class="btn btn-success pull-right btn-xs saveCustom" data-version="mobile" data-type="css" style="margin-top: 5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+			<a class="btn btn-success pull-right btn-xs saveCustom" data-version="mobile" data-type="css" style="margin-top: 5px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 		</legend>
 		<textarea id='ta_cssMobileContent' style='height:auto;'><?php
 		if (file_exists(__DIR__ . '/../../mobile/custom/custom.css')) {

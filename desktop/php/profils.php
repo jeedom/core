@@ -30,7 +30,7 @@ foreach (plugin::listPlugin() as $pluginList) {
 ?>
 
 <div style="margin-top: 5px;">
-	<a class="btn btn-success pull-right btn-sm" id="bt_saveProfils"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+	<a class="btn btn-success pull-right btn-sm" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	<ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 		<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>

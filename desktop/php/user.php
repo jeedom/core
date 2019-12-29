@@ -20,7 +20,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 								echo '</a><a class="btn btn-danger btn-sm " id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}';
 							}
 							?>
-						</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+						</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 					<?php }
 					?>
 				</span>
@@ -140,7 +140,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary" id="bt_newUserSave"><i class="far fa-check-circle"></i> {{Ajouter}}</a>
+				<a class="btn btn-primary" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
 			</div>
 		</div>
 	</div>
