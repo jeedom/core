@@ -331,7 +331,7 @@ user::isBan();
 							<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'occupant, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-							<input type="text" class="configKey form-control" data-l1key="info::bnOccupants" />
+							<input type="text" class="configKey form-control" data-l1key="info::nbOccupant" />
 						</div>
 					</div>
 				</fieldset>
