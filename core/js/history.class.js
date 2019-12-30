@@ -123,7 +123,7 @@ jeedom.history.drawChart = function (_params) {
       }
       if (seriesNumber > colors.length) seriesNumber = 1
       seriesNumber --
-      _params.option.graphColor = colors[seriesNumber]
+      if(! _params.option.graphColor) _params.option.graphColor = colors[seriesNumber];
 
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
