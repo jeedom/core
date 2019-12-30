@@ -16,7 +16,9 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+		</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+		</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	</span>
 </div>
 <br/><br/>

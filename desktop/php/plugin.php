@@ -120,7 +120,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_configLog">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="far fa-file"></i> {{Logs et surveillance}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
             </h3>
           </div>
           <div class="panel-body">
@@ -164,7 +164,7 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
-          <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+          <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
         </h3>
       </div>
       <div class="panel-body">
@@ -178,7 +178,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_functionalityPanel">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fas fa-satellite"></i> {{Fonctionnalités}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
             </h3>
           </div>
           <div class="panel-body">
@@ -194,7 +194,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_configPanel">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fas fa-chalkboard"></i> {{Panel}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="far fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
             </h3>
           </div>
           <div class="panel-body">

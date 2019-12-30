@@ -8,7 +8,7 @@ echo '<script>REPO_LIST = []</script>';
 <div id="backup">
 	<br/>
 	<div class="pull-right" style="display:inline-flex;">
-		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="far fa-check-circle"></i> Sauvegarder</a>
+		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> Sauvegarder</a>
 	</div>
 	<br/><br/>
 	<div class="row">

@@ -32,7 +32,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			</center>
 		</div>
 	</div>
-	
+
 	<div class="panel panel-primary">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
 		<div class="panel-body">
@@ -72,7 +72,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 					<input class="form-control ticketAttr" data-l1key="title"/>
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="col-sm-2 control-label">{{Message}}</label>
 				<div class="col-sm-9">
@@ -86,7 +86,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
 		<div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
 		<div class="panel-body">

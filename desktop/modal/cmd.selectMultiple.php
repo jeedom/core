@@ -15,7 +15,7 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
 
 <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
 <div>
-  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-check-circle"></i> {{Inverser}}</a>
+  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fas fa-check-circle"></i> {{Inverser}}</a>
   <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
 </div>
 <br/>

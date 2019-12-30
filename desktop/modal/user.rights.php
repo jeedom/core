@@ -13,7 +13,7 @@ if ($user->getProfils() != 'restrict') {
 }
 ?>
 <div style="display: none;" id="div_userRightAlert"></div>
-<a class="btn btn-success pull-right" id="bt_usersRightsSave"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+<a class="btn btn-success pull-right" id="bt_usersRightsSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#tab_eqLogic" aria-controls="tab_eqLogic" role="tab" data-toggle="tab">{{Equipements}}</a></li>
 	<li role="presentation"><a href="#tab_scenario" aria-controls="tab_scenario" role="tab" data-toggle="tab">{{Scénarios}}</a></li>

@@ -55,7 +55,7 @@ $allObject = jeeObject::all();
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="far fa-check-circle"></i> {{Sauvegarder}}
+				</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
