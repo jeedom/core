@@ -6,7 +6,7 @@ Changelog
 =====
 
 - Rotation automatique de la clef api des utilisateurs admin tous les 3 mois. il est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs. Attention cette mise à jour lance une rotation des clef api des utilisateurs admins
-- Possibilité de renseigner des informations globale a votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir a les resaisir dans les plugins
+- Possibilité de renseigner des informations globale a votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir a les resaisir dans les plugins lors d ela création d'équipement
 
 3.3.39
 =====
