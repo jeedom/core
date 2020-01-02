@@ -81,7 +81,7 @@ jeedom.history.drawChart = function (_params) {
     data: {
       action: "getHistory",
       id: _params.cmd_id,
-      dateRange: _params.dateRange || '',
+      dateRange:  ($.type(_params.dateRange) == 'object') ? json_encode(_params.dateRange)  || '' : _params.dateRange || '',
       dateStart: _params.dateStart || '',
       dateEnd: _params.dateEnd || '',
       derive: _params.option.derive || '',
@@ -349,23 +349,22 @@ jeedom.history.drawChart = function (_params) {
           jeedom.history.chart[_params.el].nbTimeline = 1;
           
           if(_params.dateRange == '30 min'){
-            var dateRange = 0
-          }else  if(_params.dateRange == '1 hour'){
             var dateRange = 1
-          }else  if(_params.dateRange == '1 day'){
+          }else  if(_params.dateRange == '1 hour'){
             var dateRange = 2
-          }else  if(_params.dateRange == '7 days'){
+          }else  if(_params.dateRange == '1 day'){
             var dateRange = 3
-          }else  if(_params.dateRange == '1 month'){
+          }else  if(_params.dateRange == '7 days'){
             var dateRange = 4
-          }else  if(_params.dateRange == '1 year'){
+          }else  if(_params.dateRange == '1 month'){
             var dateRange = 5
-          }else  if(_params.dateRange == 'all'){
+          }else  if(_params.dateRange == '1 year'){
             var dateRange = 6
+          }else  if(_params.dateRange == 'all'){
+            var dateRange = 0
           }else{
-            var dateRange = 3;
+            var dateRange = 4;
           }
-          
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
