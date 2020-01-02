@@ -85,7 +85,8 @@ jeedom.history.drawChart = function (_params) {
       dateStart: _params.dateStart || '',
       dateEnd: _params.dateEnd || '',
       derive: _params.option.derive || '',
-      allowZero: init(_params.option.allowZero, 0)
+      allowZero: init(_params.option.allowZero, 0),
+      groupingType : _params.option.groupingType || '',
     },
     dataType: 'json',
     global: _params.global || true,
@@ -126,7 +127,7 @@ jeedom.history.drawChart = function (_params) {
       }
       if(! _params.option.graphColor){
         _params.option.graphColor = colors[seriesNumber-1];
-      } 
+      }
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
         if (init(_params.option.graphStep) == '') {
