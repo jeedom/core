@@ -18,6 +18,12 @@
 
 /* * ***************************Includes********************************* */
 
+/**
+ * Various operating system interfaces
+ *
+ * This class provides portable ways to call system dependent
+ * functionalities.
+ */
 class system {
 
 	private static $_distrib = null;
@@ -31,6 +37,19 @@ class system {
 
 	/*     * ***********************Methode static*************************** */
 
+	/**
+	 * Load predefined distribution-specific data from configuration file
+	 *
+	 * This method updates internal data from settings in the
+	 * `core/config/system_cmd.json` file. This file does not currently
+	 * exist in the core Jeedom distribution. It can be used as a
+	 * customization layer by a specific installation.
+	 *
+	 * The `system` class already contains sensible default values for
+	 * common distributions.
+	 *
+	 * @return array Loaded settings
+	 */
 	public static function loadCommand() {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');
@@ -42,8 +61,16 @@ class system {
 	}
 
 	/**
+	 * Find the host distribution name
 	 *
-	 * @return string/object self::
+	 * This methods tries to guess the Linux distribution name which
+	 * runs the current instance of Jeedom. If no reliable guess is
+	 * possible, the distribution name defaults to `'debian`'.
+	 *
+	 * Current registered distribution names include `'suse'`, `'sles'`,
+	 * `'redhat'`, `'fedora'`, `'debian'`.
+	 *
+	 * @return string name of the distribution
 	 */
 	public static function getDistrib() {
 		self::loadCommand();
@@ -62,6 +89,19 @@ class system {
 		return self::$_distrib;
 	}
 
+	/**
+	 * Fetch a distribution-specific setting from a given key
+	 *
+	 * Already registered keys include:
+	 * + `'cmd_check'`: shell command to find if a given package is installed,
+	 * + `'cmd_install'`: shell command to install a package using the distribution package manager,
+	 * + '`www-uid'`: username running the web server,
+	 * + '`www-gid'`: group name running the web server,
+	 * + '`type'`: generic type of the package manager (e.g. `'apt'`, `'yum'`, * `'dnf'`, `'zypper'`).
+	 *
+	 * @param $_key string Name of the requested setting
+	 * @return mixed Value of the requested setting
+	 */
 	public static function get($_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
@@ -80,6 +120,17 @@ class system {
 		return $return;
 	}
 
+	/**
+	 * Return a suitable command to gain superuser access
+	 *
+	 * This method returns a command which can be prefixed to a regular
+	 * shell call in order to run this call with superuser (root)
+	 * rights. It is typically `'sudo'` if such a call is allowed by the
+	 * system configuration. This method may return the empty string if
+	 * we are not allowed to call sudo.
+	 *
+	 * @return string
+	 */
 	public static function getCmdSudo() {
 		if (!jeedom::isCapable('sudo')) {
 			return '';
@@ -87,6 +138,15 @@ class system {
 		return 'sudo ';
 	}
 
+	/**
+	 * Kill a process accessing a given file or network port.
+	 *
+	 * This methods runs the Unix command '`fuser -k'` in order to kill
+	 * a process listening locally on a given file or network port.
+	 *
+	 * @param $_port mixed Filename or network port
+	 * @param $_protocol string Network protocol (tcp or udp)
+	 */
 	public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
@@ -95,6 +155,13 @@ class system {
 		}
 	}
 
+	/**
+	 * Find a running process, given part of its command-line
+	 *
+	 * @param $_find string String to be searched in the process list
+	 * @param $_without string|null Items matching this string will be excluded from the result
+	 * @return array
+	 */
 	public static function ps($_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
@@ -135,6 +202,17 @@ class system {
 		return $return;
 	}
 
+	/**
+	 * Kill a process from its PID or a part of its command-line
+	 *
+	 * This method sends a SIGTERM to a process in order to terminate
+	 * it. If this call fails, it may try to send a SIGKILL signal to
+	 * the process, using if necessary superuser rights.
+	 *
+	 * @param integer|string $_find PID or name of the process which should be killed
+	 * @param boolean $_kill9 Use a SIGKILL if a regular SIGTERM fails
+	 * @return boolean Boolean indicating whether process was successfully terminated
+	 */
 	public static function kill($_find = '', $_kill9 = true) {
 		if (trim($_find) == '') {
 			return;
@@ -165,6 +243,13 @@ class system {
 		exec($cmd);
 	}
 
+	/**
+	 * Command-line call to run the PHP interpretor
+	 *
+	 * @param $arguments string Arguments passed to the PHP interpretor
+	 * @param $_sudo boolean Whether to run with superuser rights or not
+	 * @return string Last output line of the command
+	 */
 	public static function php($arguments, $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
