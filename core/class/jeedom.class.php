@@ -659,7 +659,12 @@ class jeedom {
 	}
 	
 	/********************************************BACKUP*****************************************************************/
-	
+
+	/**
+	 * Request creation of a new backup
+	 *
+	 * @param $_background boolean Ask backup to be generated * asynchronously in background
+	 */
 	public static function backup($_background = false) {
 		if ($_background) {
 			log::clear('backup');
@@ -670,7 +675,16 @@ class jeedom {
 			require_once __DIR__ . '/../../install/backup.php';
 		}
 	}
-	
+
+	/**
+	 * List all backups
+	 *
+	 * This method returns an array of all existing backups. Array keys
+	 * contain full absolute paths to backup files. Array values contain
+	 * only the filename of the backup.
+	 *
+	 * @return array An array listing all backups
+	 */
 	public static function listBackup() {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
@@ -684,7 +698,15 @@ class jeedom {
 		}
 		return $return;
 	}
-	
+
+	/**
+	 * Delete a given backup
+	 *
+	 * This method raises an exception if the given backup does not
+	 * exist.
+	 *
+	 * @param $_backup string Filename of the backup
+	 */
 	public static function removeBackup($_backup) {
 		if (file_exists($_backup)) {
 			unlink($_backup);
@@ -692,7 +714,13 @@ class jeedom {
 			throw new Exception('Impossible de trouver le fichier : ' . $_backup);
 		}
 	}
-	
+
+	/**
+	 * Restore a backup given by its filename
+	 *
+	 * @param $_backup string Name of the backup file to restore
+	 * @param $_background boolean Request restoration to be launched asynchronously as a background task
+	 */
 	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
@@ -707,7 +735,7 @@ class jeedom {
 	}
 	
 	/****************************UPDATE*****************************************************************/
-	
+
 	public static function update($_options = array()) {
 		log::clear('update');
 		$params = '';
@@ -1568,4 +1596,3 @@ class jeedom {
 			return $return;
 		}
 	}
-	
