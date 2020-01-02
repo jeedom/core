@@ -412,7 +412,26 @@ class jeedom {
 		$cmd .= ' >> ' . log::getPathToLog('sick') . ' 2>&1';
 		system::php($cmd);
 	}
-	
+
+	/**
+	 * Return an API key for allowing remote access
+	 *
+	 * Each plugin may have its own API key, different from other
+	 * plugins. This can be used for example to handle neatly incoming
+	 * data from a daemon run by the plugin: the API key is sent to the
+	 * daemon upon startup, then the daemon later uses the key to report
+	 * back any notification.
+	 *
+	 * The default plugin name `'core'` is actually reserved for the
+	 * main Jeedom API key.
+	 *
+	 * A fresh API key is generated and saved in database when the
+	 * plugin does not already have one.
+	 *
+	 * @param $_plugin string Name of the plugin requesting the API key
+	 * @return string API key associated to the plugin.
+	 * @see jeedom::apiAccess
+	 */
 	public static function getApiKey($_plugin = 'core') {
 		if ($_plugin == 'apipro') {
 			if (config::byKey('apipro') == '') {
@@ -459,7 +478,21 @@ class jeedom {
 		}
 		return true;
 	}
-	
+
+	/**
+	 * Test whether an API key is valid or not
+	 *
+	 * This method is used to tell if access should be granted to a
+	 * request, using a given API key. If the given key is specific to a
+	 * plugin, the plugin name must be given as second parameter. The
+	 * `'$_plugin'` parameter must have the same value as the one used
+	 * when generating the API key.
+	 *
+	 * @param $_apikey string API key to be tested
+	 * @param $_plugin Plugin name associated to the key
+	 * @return boolean
+	 * @see jeedom::getApiKey
+	 */
 	public static function apiAccess($_apikey = '', $_plugin = 'core') {
 		if (trim($_apikey) == '') {
 			return false;
