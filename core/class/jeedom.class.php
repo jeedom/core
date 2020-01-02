@@ -522,7 +522,12 @@ class jeedom {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Tell if every part of Jeedom runs healthily
+	 *
+	 * @return boolean
+	 */
 	public static function isOk() {
 		if (!self::isStarted()) {
 			return false;
