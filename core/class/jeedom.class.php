@@ -1375,6 +1375,9 @@ class jeedom {
 	}
 	
 	public static function forceSyncHour() {
+		if(config::byKey('disallow_ntp') == 1){
+			return;
+		}
 		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
 	}
 	
