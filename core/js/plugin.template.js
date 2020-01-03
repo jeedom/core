@@ -24,12 +24,15 @@ jwerty.key('ctrl+s/⌘+s', function (e) {
 //contextMenu
 $(function(){
   try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
+    if ('undefined' !== typeof Core_noEqContextMenu) {
+      if (Core_noEqContextMenu == 1) return false
+    }
+    $.contextMenu('destroy', $('.nav.nav-tabs'))
     pluginId =  $('body').attr('data-page')
     jeedom.eqLogic.byType({
       type: pluginId,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function (_eqs) {
         if(_eqs.length == 0){
@@ -103,7 +106,6 @@ $(function(){
             items: contextmenuitems
           })
         }
-
       }
     })
   }catch(err) {
