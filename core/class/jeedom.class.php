@@ -838,7 +838,7 @@ class jeedom {
 				return false;
 			}
 		}
-		$minDateValue = new \DateTime('2017-01-01');
+		$minDateValue = new \DateTime('2020-01-01');
 		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
 		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
 		$maxdate = strtotime($maxDateValue);
