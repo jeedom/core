@@ -6,7 +6,7 @@ sendVarToJS('dataStore_type', init('type'));
 sendVarToJS('dataStore_link_id', init('link_id', -1));
 ?>
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-sm" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+<a class="btn btn-sm pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus"></i> {{Ajouter}}</a>
 <table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
 	<thead>
 		<tr>
@@ -17,7 +17,7 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 		</tr>
 	</thead>
 	<tbody>
-		
+
 	</tbody>
 </table>
 
@@ -46,7 +46,7 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$('#table_dataStore').delegate('.bt_saveDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		jeedom.dataStore.save({
@@ -64,13 +64,13 @@ $(function() {
 			}
 		});
 	});
-	
+
 	$('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		$('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"});
 		$("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open');
 	});
-	
+
 	$('#bt_dataStoreManagementAdd').on('click', function() {
 		var tr = '<tr data-dataStore_id="">';
 		tr += '<td>';
@@ -90,7 +90,7 @@ $(function() {
 		$('#table_dataStore tbody').prepend(tr);
 		$("#table_dataStore").trigger("update");
 	});
-	
+
 	function refreshDataStoreMangementTable() {
 		jeedom.dataStore.all({
 			type: dataStore_type,

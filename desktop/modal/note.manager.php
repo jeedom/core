@@ -16,7 +16,7 @@ if (!isConnect('admin')) {
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-sm roundedLeft" id="bt_noteManagerAdd"><i class="fas fa-plus"></i> {{Ajouter}}
-				</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-save"></i> {{Sauvegarder}}
+				</a><a class="btn btn-success btn-sm" id="bt_noteManagerSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_noteManagerRemove"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 			</span>
 		</div>
