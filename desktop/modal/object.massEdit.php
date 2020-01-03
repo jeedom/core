@@ -23,7 +23,7 @@ foreach (explode('|',init('fields')) as &$field) {
 sendVarToJs('edit_type',$type);
 ?>
 <div id="div_alertMassEdit"></div>
-<a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+<a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <table class="table table-condensed tablesorter" id="table_massEdit">
   <thead>
     <tr>
