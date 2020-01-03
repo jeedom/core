@@ -93,6 +93,7 @@ $(function(){
                   tabObj = $('a[href="' + tab + '"]')
                 }
               }
+              $.hideAlert()
               if (event.ctrlKey || event.originalEvent.which == 2) {
                 var type = $('body').attr('data-page')
                 var url = 'index.php?v=d&m='+type+'&p='+type+'&id='+options.commands[key].id
@@ -148,6 +149,7 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
 });
 
 $(".eqLogicDisplayCard").on('click', function (event) {
+  $.hideAlert()
   if (event.ctrlKey) {
     var type = $('body').attr('data-page')
     var url = 'index.php?v=d&m='+type+'&p='+type+'&id='+$(this).attr('data-eqlogic_id')
