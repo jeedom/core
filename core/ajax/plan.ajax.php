@@ -207,7 +207,7 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		$files = ls(__DIR__ . '/../../data/plan/','plan'.$planHeader->getId().'*');
+		$files = ls(__DIR__ . '/../../data/plan/','planHeader'.$planHeader->getId().'*');
 		if(count($files)  > 0){
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/plan/'.$file);
@@ -216,7 +216,7 @@ try {
 		$img_size = getimagesize($_FILES['file']['tmp_name']);
 		$planHeader->setImage('type', str_replace('.', '', $extension));
 		$planHeader->setImage('size', $img_size);
-		$planHeader->setImage('sha512', sha512($planHeader->getImage('data')));
+		$planHeader->setImage('sha512', sha512($_FILES['file']['tmp_name']));
 		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
 		$filepath = __DIR__ . '/../../data/plan/' . $filename;
 		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
