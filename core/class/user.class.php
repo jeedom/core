@@ -393,7 +393,7 @@ class user {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
 		$admins = user::byProfils('admin', true);
-		if (count($admins) == 1 && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
+		if (count($admins) == 1 && $admins[0]->getId() == $this->getId() && $this->getProfils() == 'admin' && $this->getEnable() == 0) {
 			throw new Exception(__('Vous ne pouvez désactiver le dernier utilisateur', __FILE__));
 		}
 		if (count($admins) == 1 && $admins[0]->getId() == $this->getid() && $this->getProfils() != 'admin') {
