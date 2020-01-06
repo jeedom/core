@@ -262,7 +262,7 @@ class history {
 	* @param int $_equipement_id id de l'équipement dont on veut l'historique des valeurs
 	* @return array des valeurs de l'équipement
 	*/
-	public static function all($_cmd_id, $_startTime = null, $_endTime = null) {
+	public static function all($_cmd_id, $_startTime = null, $_endTime = null,$_groupingType = null) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -272,9 +272,21 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM history
+		if($_groupingType == null){
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+		}else{
+			$goupingType = explode('::',$_groupingType);
+			$function = 'AVG';
+			if($goupingType[0] == 'high'){
+				$function = 'MAX';
+			}else	if($goupingType[0] == 'low'){
+				$function = 'MIN';
+			}else	if($goupingType[0] == 'sum'){
+				$function = 'SUM';
+			}
+			$sql = 'SELECT `cmd_id`,`datetime`,'.$function.'(value) as value';
+		}
+		$sql .= ' FROM history
 		WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
@@ -282,17 +294,51 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
+		if($_groupingType != null){
+			$time='DATE';
+			if($goupingType[1] == 'hour'){
+				$time='HOUR';
+			}else if($goupingType[1] == 'month'){
+				$time='MONTH';
+			}else if($goupingType[1] == 'year'){
+				$time='YEAR';
+			}
+			$sql .= ' GROUP BY '.$time.'(`datetime`)';
+		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM historyArch
+		if($_groupingType == null){
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+		}else{
+			$goupingType = explode('::',$_groupingType);
+			$function = 'AVG';
+			if($goupingType[0] == 'high'){
+				$function = 'MAX';
+			}else	if($goupingType[0] == 'low'){
+				$function = 'MIN';
+			}else	if($goupingType[0] == 'sum'){
+				$function = 'SUM';
+			}
+			$sql = 'SELECT `cmd_id`,`datetime`,'.$function.'(value) as value';
+		}
+		$sql .= ' FROM historyArch
 		WHERE cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
 		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
+		}
+		if($_groupingType != null){
+			$time='DATE';
+			if($goupingType[1] == 'hour'){
+				$time='HOUR';
+			}else if($goupingType[1] == 'month'){
+				$time='MONTH';
+			}else if($goupingType[1] == 'year'){
+				$time='YEAR';
+			}
+			$sql .= ' GROUP BY '.$time.'(`datetime`)';
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
@@ -457,6 +503,7 @@ class history {
 				AND `datetime`>=:startTime
 				AND `datetime`<=:endTime
 				) as dt';
+				
 				$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 				if (!is_array($result)) {
 					$result = array();
@@ -482,6 +529,7 @@ class history {
 					) as dt
 					ORDER BY `datetime` DESC
 					LIMIT 1';
+					
 					$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					if (!is_array($result2)) {
 						$result2 = array();
@@ -687,7 +735,11 @@ class history {
 						if (!is_object($cmd)) {
 							throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
 						}
+						if ($_value === null) {
+							$_value = $cmd->execCmd();
+						}
 						$_dateTime = '';
+						
 						if ($_startTime !== null) {
 							$_dateTime = ' AND `datetime`>="' . $_startTime . '"';
 						}
@@ -698,9 +750,6 @@ class history {
 							$_dateTime .= ' AND `datetime`<="' . $_endTime . '"';
 						}
 						
-						if ($_value === null) {
-							$_value = $cmd->execCmd();
-						}
 						if ($cmd->getSubType() != 'string') {
 							$_value = str_replace(',', '.', $_value);
 							$_decimal = strlen(substr(strrchr($_value, "."), 1));
@@ -709,9 +758,7 @@ class history {
 							$_condition = ' value = ' . $_value;
 						}
 						
-						$values = array(
-							'cmd_id' => $_cmd_id,
-						);
+						$values = array('cmd_id' => $_cmd_id,);
 						$sql = 'SELECT count(*) as changes
 						FROM (SELECT t1.*
 							FROM (
@@ -726,6 +773,7 @@ class history {
 							WHERE cmd_id=:cmd_id' . $_dateTime . '
 						) as t1
 						where ' . $_condition . '';
+						
 						$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 						return $result['changes'];
 					}
@@ -749,7 +797,7 @@ class history {
 						return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 					}
 					
-					public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false) {
+					public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false,$_groupingType = null) {
 						$now = strtotime('now');
 						$value = array();
 						$cmd_histories = array();
@@ -761,7 +809,7 @@ class history {
 									if (is_object($cmd) && $cmd->getIsHistorized() == 1) {
 										$prevDatetime = null;
 										$prevValue = 0;
-										$histories_cmd = $cmd->getHistory($_dateStart, $_dateEnd);
+										$histories_cmd = $cmd->getHistory($_dateStart, $_dateEnd,$_groupingType);
 										$histories_cmd_count = count($histories_cmd);
 										for ($i = 0; $i < $histories_cmd_count; $i++) {
 											if (!isset($cmd_histories[$histories_cmd[$i]->getDatetime()])) {

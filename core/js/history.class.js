@@ -74,17 +74,19 @@ jeedom.history.drawChart = function (_params) {
     _params.dateRange = json_encode(_params.dateRange);
   }
   _params.option = init(_params.option, {derive: ''});
+  var _visible = (isset(_params.visible)) ? _params.visible : true
   $.ajax({
     type: "POST",
     url: "core/ajax/cmd.ajax.php",
     data: {
       action: "getHistory",
       id: _params.cmd_id,
-      dateRange: _params.dateRange || '',
+      dateRange:  ($.type(_params.dateRange) == 'object') ? json_encode(_params.dateRange)  || '' : _params.dateRange || '',
       dateStart: _params.dateStart || '',
       dateEnd: _params.dateEnd || '',
       derive: _params.option.derive || '',
-      allowZero: init(_params.option.allowZero, 0)
+      allowZero: init(_params.option.allowZero, 0),
+      groupingType : _params.option.groupingType || '',
     },
     dataType: 'json',
     global: _params.global || true,
@@ -114,7 +116,18 @@ jeedom.history.drawChart = function (_params) {
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
       }
-      _params.option.graphColor = (isset(jeedom.history.chart[_params.el])) ? init(_params.option.graphColor, Highcharts.getOptions().colors[init(jeedom.history.chart[_params.el].color, 0)]) : init(_params.option.graphColor, Highcharts.getOptions().colors[0]);
+      _params.option.graphDerive = (data.result.derive == "1") ? true : false;
+      var colors = Highcharts.getOptions().colors
+      var seriesNumber = 1
+      if (isset(jeedom.history.chart[_params.el])) {
+        seriesNumber = jeedom.history.chart[_params.el].chart.series.length
+      }
+      if (seriesNumber > colors.length){
+        seriesNumber = 1
+      }
+      if(! _params.option.graphColor){
+        _params.option.graphColor = colors[seriesNumber-1];
+      }
       _params.option.graphStep = (_params.option.graphStep == "1") ? true : false;
       if(isset(data.result.cmd)){
         if (init(_params.option.graphStep) == '') {
@@ -171,12 +184,11 @@ jeedom.history.drawChart = function (_params) {
           id: _params.cmd_id,
           cursor: 'pointer',
           data: [{y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite}],
-          color: _params.option.graphColor,
+          color: _params.option.graphColor
         };
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
-          jeedom.history.chart[_params.el].color = 0;
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.Chart({
             chart: charts,
@@ -210,7 +222,7 @@ jeedom.history.drawChart = function (_params) {
             },
             series: [series]
           });
-        }else {
+        } else {
           jeedom.history.chart[_params.el].chart.series[0].addPoint({y:data.result.data[data.result.data.length - 1][1], name : (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name + ' '+ data.result.unite, color: _params.option.graphColor});
         }
       }else{
@@ -236,8 +248,10 @@ jeedom.history.drawChart = function (_params) {
             jeedom.history.chart[_params.el].nbTimeline++;
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline;
           }
+          
           var series = {
             type: 'flags',
+            visible: _visible,
             name: (isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite,
             data: [],
             id: _params.cmd_id,
@@ -277,15 +291,21 @@ jeedom.history.drawChart = function (_params) {
             });
           }
         }else{
+          if (_params.option.graphType == 'areaspline') {
+            _params.option.graphType = 'area'
+          }
+          
           var series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
+            visible: _visible,
             id: _params.cmd_id,
             cursor: 'pointer',
             name: (isset(_params.mobile))? data.result.unite : ((isset(_params.option.name)) ? _params.option.name + ' '+ data.result.unite : data.result.history_name+ ' '+ data.result.unite),
             data: data.result.data,
             color: _params.option.graphColor,
             stack: _params.option.graphStack,
+            derive: _params.option.graphDerive,
             step: _params.option.graphStep,
             yAxis: _params.option.graphScale,
             stacking : stacking,
@@ -325,27 +345,26 @@ jeedom.history.drawChart = function (_params) {
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {};
           jeedom.history.chart[_params.el].cmd = new Array();
-          jeedom.history.chart[_params.el].color = 0;
+          jeedom.history.chart[_params.el].color = seriesNumber - 1;
           jeedom.history.chart[_params.el].nbTimeline = 1;
           
           if(_params.dateRange == '30 min'){
-            var dateRange = 0
-          }else  if(_params.dateRange == '1 hour'){
             var dateRange = 1
-          }else  if(_params.dateRange == '1 day'){
+          }else  if(_params.dateRange == '1 hour'){
             var dateRange = 2
-          }else  if(_params.dateRange == '7 days'){
+          }else  if(_params.dateRange == '1 day'){
             var dateRange = 3
-          }else  if(_params.dateRange == '1 month'){
+          }else  if(_params.dateRange == '7 days'){
             var dateRange = 4
-          }else  if(_params.dateRange == '1 year'){
+          }else  if(_params.dateRange == '1 month'){
             var dateRange = 5
-          }else  if(_params.dateRange == 'all'){
+          }else  if(_params.dateRange == '1 year'){
             var dateRange = 6
+          }else  if(_params.dateRange == 'all'){
+            var dateRange = 0
           }else{
-            var dateRange = 3;
+            var dateRange = 4;
           }
-          
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
@@ -444,11 +463,6 @@ jeedom.history.drawChart = function (_params) {
           jeedom.history.chart[_params.el].chart.addSeries(series);
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange};
-      }
-      
-      jeedom.history.chart[_params.el].color++;
-      if (jeedom.history.chart[_params.el].color > 9) {
-        jeedom.history.chart[_params.el].color = 0;
       }
       
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();

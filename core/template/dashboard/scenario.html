@@ -40,7 +40,7 @@
           $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
-        }else if (_options.state == 'error' || _options.state == 'stop') {
+        }else{
           $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#');
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
           $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
