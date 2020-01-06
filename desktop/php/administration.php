@@ -32,6 +32,7 @@ user::isBan();
 
 	<ul class="nav nav-tabs nav-primary" role="tablist">
 		<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
+		<li role="presentation"><a href="#infotab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info" title="{{Informations}}"></i><span> {{Informations}}</span></a></li>
 		<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
 		<li role="presentation"><a href="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
 		<li role="presentation"><a href="#logtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-file" title="{{Logs}}"></i><span> {{Logs}}</span></a></li>
@@ -247,6 +248,90 @@ user::isBan();
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div role="tabpanel" class="tab-pane" id="infotab">
+			<br/>
+			<form class="form-horizontal">
+				<fieldset>
+					<legend>{{Coordonées}}</legend>
+					<div class="alert alert-info">{{Pour avoir les coordonnées de chez vous vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site</a>}}</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Latitude}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::latitude" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Longitude}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::longitude" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Altitude}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::altitude" />
+						</div>
+					</div>
+					<legend>{{Adresse}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Code pays (FR,US...)}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::stateCode" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Code postal}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::postalCode" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ville}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::city" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Adresse}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Adresse de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::address" />
+						</div>
+					</div>
+					<legend>{{Divers}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Surface habitable}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Surface habitable votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::livingSpace" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nombre d'occupant}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'occupant, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+						</label>
+						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<input type="text" class="configKey form-control" data-l1key="info::nbOccupant" />
 						</div>
 					</div>
 				</fieldset>

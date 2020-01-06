@@ -1843,8 +1843,8 @@ class cmd {
 		return $name;
 	}
 	
-	public function getHistory($_dateStart = null, $_dateEnd = null) {
-		return history::all($this->id, $_dateStart, $_dateEnd);
+	public function getHistory($_dateStart = null, $_dateEnd = null,$_groupingType = null) {
+		return history::all($this->id, $_dateStart, $_dateEnd,$_groupingType);
 	}
 	
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {

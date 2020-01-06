@@ -279,6 +279,7 @@ try {
 					}
 				}
 			}
+			
 			if (init('dateStart') != '') {
 				$dateStart = init('dateStart');
 			}
@@ -291,6 +292,11 @@ try {
 			if (strtotime($dateEnd) > strtotime('now')) {
 				$dateEnd = date('Y-m-d H:i:s');
 			}
+			
+			if ($dateStart == '') {
+				$dateStart =  init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))));
+			}
+			
 			$return['maxValue'] = '';
 			$return['minValue'] = '';
 			if ($dateStart === null) {
@@ -313,18 +319,20 @@ try {
 				if (!$eqLogic->hasRight('r')) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
-				$histories = $cmd->getHistory($dateStart, $dateEnd);
+				
+				$histories = $cmd->getHistory($dateStart, $dateEnd,init('groupingType',$cmd->getDisplay('groupingType')));
 				$return['cmd_name'] = $cmd->getName();
 				$return['history_name'] = $cmd->getHumanName();
 				$return['unite'] = $cmd->getUnite();
 				$return['cmd'] = utils::o2a($cmd);
 				$return['eqLogic'] = utils::o2a($cmd->getEqLogic());
 				$return['timelineOnly'] = $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly'];
-				$previsousValue = null;
+				$previousValue = null;
 				$derive = init('derive', $cmd->getDisplay('graphDerive'));
 				if (trim($derive) == '') {
 					$derive = $cmd->getDisplay('graphDerive');
 				}
+				$return['derive'] = $derive;
 				foreach ($histories as $history) {
 					$info_history = array();
 					if($cmd->getDisplay('groupingType') != ''){
@@ -337,12 +345,12 @@ try {
 					} else {
 						$value = ($history->getValue() === null) ? null : floatval($history->getValue());
 						if ($derive == 1 || $derive == '1') {
-							if ($value !== null && $previsousValue !== null) {
-								$value = $value - $previsousValue;
+							if ($value !== null && $previousValue !== null) {
+								$value = $value - $previousValue;
 							} else {
 								$value = null;
 							}
-							$previsousValue = ($history->getValue() === null) ? null : floatval($history->getValue());
+							$previousValue = ($history->getValue() === null) ? null : floatval($history->getValue());
 						}
 					}
 					$info_history[] = $value;
@@ -357,7 +365,7 @@ try {
 					$data[] = $info_history;
 				}
 			} else {
-				$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false));
+				$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false),init('groupingType'));
 				if (is_array($histories)) {
 					foreach ($histories as $datetime => $value) {
 						$info_history = array();
@@ -447,6 +455,8 @@ try {
 				$return[$plugin_id] =  array('cmd' => array(),'name' => 'Plugin '.$plugin->getName());
 				if (method_exists($plugin_id, 'deadCmd')) {
 					$return[$plugin_id]['cmd'] = $plugin_id::deadCmd();
+				}else{
+					$return[$plugin_id]['cmd'] = eqLogic::deadCmdGeneric($plugin_id);
 				}
 			}
 			ajax::success($return);
