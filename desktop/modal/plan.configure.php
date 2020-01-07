@@ -255,7 +255,7 @@ sendVarToJS('id', $plan->getId());
 			</div>
 		</div>
 		<div class="form-group link_type link_plan link_view link_text link_summary link_eqLogic link_cmd">
-			<label class="col-lg-4 control-label">{{Appliqué le css personnalisé sur}} <sub>selecteur css</sub></label>
+			<label class="col-lg-4 control-label">{{Appliquer le css personnalisé sur}} <sub>selecteur css</sub></label>
 			<div class="col-lg-2">
 				<input class="planAttr form-control" data-l1key="display" data-l2key="cssApplyOn" placeholder="*"/>
 			</div>
