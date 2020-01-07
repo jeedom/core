@@ -312,7 +312,7 @@ class jeedom {
 				'name' => __('Swap disponible', __FILE__),
 				'state' => $ok,
 				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
-				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go',__FILE__),
+				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go',__FILE__),
 				'key' => 'swap'
 			);
 		} else {
@@ -334,7 +334,7 @@ class jeedom {
 			'name' => __('Swapiness', __FILE__),
 			'state' => $ok,
 			'result' => $value.'%',
-			'comment' => __('Pour des performances optimal le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
+			'comment' => __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
 			'key' => 'swapiness'
 		);
 		
@@ -352,7 +352,7 @@ class jeedom {
 			'name' => __('Configuration réseau interne', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
 			'key' => 'network::internal'
 		);
 		
@@ -361,7 +361,7 @@ class jeedom {
 			'name' => __('Configuration réseau externe', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> Onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
 			'key' => 'network::external'
 		);
 		
