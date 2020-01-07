@@ -1400,6 +1400,22 @@ class eqLogic {
 		}
 		return $return;
 	}
+	
+	public static function deadCmdGeneric($_plugin_id) {
+		$return = array();
+		foreach (eqLogic::byType($_plugin_id) as $eqLogic) {
+			$eqLogic_json = json_encode(utils::o2a($eqLogic));
+			preg_match_all("/#([0-9]*)#/", $eqLogic_json, $matches);
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
+						$return[] = array('detail' => ucfirst($_plugin_id).' ' . $eqLogic->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+					}
+				}
+			}
+		}
+		return $return;
+	}
 
 	/*     * **********************Getteur Setteur*************************** */
 
