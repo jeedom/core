@@ -30,6 +30,7 @@ class repo_samba {
 		'backup' => true,
 		'hasConfiguration' => true,
 		'core' => true,
+		'hasRetentionDay' => true
 	);
 	
 	public static $_configuration = array(
@@ -160,7 +161,7 @@ class repo_samba {
 	}
 	
 	public static function cleanBackupFolder() {
-		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
+		$timelimit = strtotime('-' . config::byKey('samba::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			if($file['filename'] == '..' || $file['filename'] == '.'){
 				continue;

@@ -46,7 +46,7 @@ echo '<script>REPO_LIST = []</script>';
 											<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
 										</div>
 									</div>
-
+									
 									<div class="form-group">
 										<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>
 										<div class="col-xs-12">
@@ -75,7 +75,7 @@ echo '<script>REPO_LIST = []</script>';
 							</form>
 						</div>
 					</div>
-
+					
 					<?php
 					foreach (update::listRepo() as $rkey => $value) {
 						if ($value['scope']['backup'] == false) {
@@ -85,16 +85,16 @@ echo '<script>REPO_LIST = []</script>';
 							continue;
 						}
 						$class = 'repo_' . $rkey;
-
+						
 						$icon = '<i class="fas fa-network-wired"></i>';
 						if (strtolower($value['name']) == 'market') $icon = '<i class="fas fa-cloud"></i>';
-
+						
 						$div = '<div class="panel panel-primary">';
 						$div .= '<div class="panel-heading">';
 						$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
 						$div .= '</div>';
 						$div .= '<div class="panel-body">';
-
+						
 						$div .= '<form class="form-horizontal repo">';
 						$div .= '<fieldset>';
 						$div .= '<div class="form-group">';
@@ -103,6 +103,14 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '<input type="checkbox" class="configKey" data-l1key="' . $rkey . '::cloudUpload" />';
 						$div .= '</div>';
 						$div .= '</div>';
+						if (isset($value['scope']['hasRetentionDay']) && $value['scope']['hasRetentionDay']) {
+							$div .= '<div class="form-group">';
+							$div .= '<label class="col-sm-6 col-xs-6 control-label">{{Rétention temporelle (jours)}}</label>';
+							$div .= '<div class="col-sm-6 col-xs-6">';
+							$div .= '<input type="text" class="configKey form-control" data-l1key="'.$rkey.'::keepDays" />';
+							$div .= '</div>';
+							$div .= '</div>';
+						}
 						$div .= '<div class="form-group">';
 						$div .= '<label class="col-xs-12"><i class="fas fa-tape"></i> {{Sauvegardes disponibles}}</label>';
 						$div .= '<div class="col-xs-12">';
