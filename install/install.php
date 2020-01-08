@@ -54,7 +54,7 @@ try {
 	try {
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
 	} catch (\Exception $e) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		echo "***ERREUR*** " . $e->getMessage() . "\n";
 	}
 	echo "OK\n";
 	echo "Post installation...\n";

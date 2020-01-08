@@ -126,7 +126,7 @@ step_5_php() {
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 6 téléchargement de jeedom${NORMAL}"
-  wget https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
+  wget --no-check-certificate https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
   if [ $? -ne 0 ]; then
     echo "${JAUNE}Ne peut télécharger Jeedom depuis github. Utilisez la version de déploiement si elle existe${NORMAL}"
     if [ -f /root/jeedom.zip ]; then
