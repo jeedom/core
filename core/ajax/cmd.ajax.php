@@ -319,8 +319,11 @@ try {
 				if (!$eqLogic->hasRight('r')) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
-				
-				$histories = $cmd->getHistory($dateStart, $dateEnd,init('groupingType',$cmd->getDisplay('groupingType')));
+				$groupingType=init('groupingType');
+				if($groupingType == ''){
+					$groupingType = $cmd->getDisplay('groupingType');
+				}
+				$histories = $cmd->getHistory($dateStart, $dateEnd,$groupingType);
 				$return['cmd_name'] = $cmd->getName();
 				$return['history_name'] = $cmd->getHumanName();
 				$return['unite'] = $cmd->getUnite();
@@ -335,7 +338,7 @@ try {
 				$return['derive'] = $derive;
 				foreach ($histories as $history) {
 					$info_history = array();
-					if($cmd->getDisplay('groupingType') != ''){
+					if($groupingType != ''){
 						$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000 - 1;
 					}else{
 						$info_history[] = floatval(strtotime($history->getDatetime() . " UTC")) * 1000;
