@@ -262,7 +262,7 @@ user::isBan();
 					<div class="alert alert-info">{{Pour avoir les coordonnées de chez vous vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site</a>}}</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Latitude}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Coordonnées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="info::latitude" />
@@ -270,7 +270,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Longitude}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Coordonnées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="info::longitude" />
@@ -278,7 +278,7 @@ user::isBan();
 					</div>
 					<div class="form-group">
 						<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Altitude}}
-							<sup><i class="fas fa-question-circle" tooltip="{{Coordonées géographique de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
+							<sup><i class="fas fa-question-circle" tooltip="{{Altitude de votre maison, permet de ne pas avoir à la remplir dans les plugins}}"></i></sup>
 						</label>
 						<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 							<input type="text" class="configKey form-control" data-l1key="info::altitude" />
