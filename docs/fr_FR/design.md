@@ -72,8 +72,8 @@ On retrouve ici :
 ### Paramètres d’affichage communs
 
 - **Profondeur** : Permet de choisir le niveau de la profondeur
-- **Position X (%)** : Coordonnées horizontale de l'élément.
-- **Position Y (%)** : Coordonnées verticale de l'élément.
+- **Position X (%)** : Coordonnée horizontale de l'élément.
+- **Position Y (%)** : Coordonnée verticale de l'élément.
 - **Largeur (px)** : Largeur de l'élément en pixels.
 - **Hauteur (px)** : Hauteur de l'élément en pixels.
 
