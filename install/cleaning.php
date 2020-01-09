@@ -138,6 +138,26 @@ try {
     $eqLogic->save(true);
   }
   
+  
+  $sql = 'select cmd_id from history group by cmd_id';
+  $results1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+  $sql = 'select cmd_id from historyArch group by cmd_id';
+  $results2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+  $cmd_histories = array_flip(array_column($results1,'cmd_id')) + array_flip(array_column($results2,'cmd_id'));
+  foreach ($cmd_histories as $id => $value) {
+    $cmd = cmd::byId($id);
+    if(is_object($cmd) && $cmd->getIsHistorized() == 1){
+      continue;
+    }
+    $values = array('cmd_id' => $id);
+    echo 'Remove history for cmd : '.$id."\n";
+    $sql = 'delete from history where cmd_id=:cmd_id';
+    DB::Prepare($sql,$values, DB::FETCH_TYPE_ROW);
+    $sql = 'delete from historyArch where cmd_id=:cmd_id';
+    DB::Prepare($sql,$values, DB::FETCH_TYPE_ROW);
+  }
+  
+  
 }catch (Exception $e) {
   echo "\nError : ";
   echo $e->getMessage();
