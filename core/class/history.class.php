@@ -250,15 +250,19 @@ class history {
 			$sql .= ' AND datetime<=:endTime';
 		}
 		if($_groupingType != null){
-			$time='DATE';
-			if($goupingType[1] == 'hour'){
-				$time='HOUR';
-			}else if($goupingType[1] == 'month'){
-				$time='MONTH';
-			}else if($goupingType[1] == 'year'){
-				$time='YEAR';
+			if($goupingType[1] == 'week'){
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else{
+				$time='DATE';
+				if($goupingType[1] == 'hour'){
+					$time='HOUR';
+				}else if($goupingType[1] == 'month'){
+					$time='MONTH';
+				}else if($goupingType[1] == 'year'){
+					$time='YEAR';
+				}
+				$sql .= ' GROUP BY '.$time.'(`datetime`)';
 			}
-			$sql .= ' GROUP BY '.$time.'(`datetime`)';
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
@@ -285,15 +289,19 @@ class history {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
 		if($_groupingType != null){
-			$time='DATE';
-			if($goupingType[1] == 'hour'){
-				$time='HOUR';
-			}else if($goupingType[1] == 'month'){
-				$time='MONTH';
-			}else if($goupingType[1] == 'year'){
-				$time='YEAR';
+			if($goupingType[1] == 'week'){
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+			}else{
+				$time='DATE';
+				if($goupingType[1] == 'hour'){
+					$time='HOUR';
+				}else if($goupingType[1] == 'month'){
+					$time='MONTH';
+				}else if($goupingType[1] == 'year'){
+					$time='YEAR';
+				}
+				$sql .= ' GROUP BY '.$time.'(`datetime`)';
 			}
-			$sql .= ' GROUP BY '.$time.'(`datetime`)';
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
