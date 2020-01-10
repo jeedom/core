@@ -1420,7 +1420,6 @@ class scenarioExpression {
 					}
 					return;
 				} elseif ($this->getExpression() == 'variable') {
-					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
