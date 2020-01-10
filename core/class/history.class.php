@@ -173,14 +173,18 @@ class history {
 				ORDER BY `datetime` ASC';
 				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 				$countHistory = count($history);
-				for ($i = 1; $i < $countHistory; $i++) {
-					if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
-						$history[$i]->setTableName('historyArch');
-						$history[$i]->save();
+				if($countHistory > 0){
+					if($countHistory > 1){
+						for ($i = 1; $i < $countHistory; $i++) {
+							if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
+								$history[$i]->setTableName('historyArch');
+								$history[$i]->save();
+							}
+						}
 					}
+					$history[0]->setTableName('historyArch');
+					$history[0]->save();
 				}
-				$history[0]->setTableName('historyArch');
-				$history[0]->save();
 				$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
 				$sql = 'DELETE FROM history
 				WHERE `datetime` <= :archiveTime
