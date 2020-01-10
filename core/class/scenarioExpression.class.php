@@ -1216,7 +1216,7 @@ class scenarioExpression {
 						continue;
 					}
 					if (is_string($value)) {
-						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+						$options[$key] = self::setTags($value, $scenario,true);
 					}
 				}
 			}
@@ -1408,7 +1408,6 @@ class scenarioExpression {
 					}
 					return;
 				} elseif ($this->getExpression() == 'variable') {
-					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
