@@ -1228,7 +1228,7 @@ class scenarioExpression {
 						continue;
 					}
 					if (is_string($value)) {
-						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+						$options[$key] = self::setTags($value, $scenario,true);
 					}
 				}
 			}
