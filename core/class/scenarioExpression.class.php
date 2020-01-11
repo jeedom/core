@@ -1216,7 +1216,7 @@ class scenarioExpression {
 						continue;
 					}
 					if (is_string($value)) {
-						$options[$key] = self::setTags($value, $scenario,true);
+						$options[$key] = self::setTags($value, $scenario);
 					}
 				}
 			}
