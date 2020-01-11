@@ -264,7 +264,7 @@ class jeedom {
 			'name' => __('Espace disque libre tmp', __FILE__),
 			'state' => ($value > 10),
 			'result' => $value . ' %',
-			'comment' => __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
+			'comment' => ($value > 10) ? '' : __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
 			'key' => 'space::tmp'
 		);
 		
@@ -312,7 +312,7 @@ class jeedom {
 				'name' => __('Swap disponible', __FILE__),
 				'state' => $ok,
 				'result' => $value . ' % ('.__('Total ',__FILE__).round($values['SwapTotal']/1024).' Mo)',
-				'comment' => __('Le swap libre n\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go',__FILE__),
+				'comment' => ($ok) ? '' : __('Le swap libre n\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go',__FILE__),
 				'key' => 'swap'
 			);
 		} else {
@@ -334,7 +334,7 @@ class jeedom {
 			'name' => __('Swapiness', __FILE__),
 			'state' => $ok,
 			'result' => $value.'%',
-			'comment' => __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
+			'comment' => ($ok) ? '' : __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire',__FILE__),
 			'key' => 'swapiness'
 		);
 		
