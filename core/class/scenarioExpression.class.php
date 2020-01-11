@@ -1025,22 +1025,22 @@ class scenarioExpression {
 				$return['#semaine#'] = date('W');
 				break;
 				case '#sjour#':
-				$return['#sjour#'] = '"' . date_fr(date('l')) . '"';
+				$return['#sjour#'] = date_fr(date('l'));
 				break;
 				case '#smois#':
-				$return['#smois#'] = '"' . date_fr(date('F')) . '"';
+				$return['#smois#'] = date_fr(date('F'));
 				break;
 				case '#njour#':
 				$return['#njour#'] = (int) date('w');
 				break;
 				case '#name#':
-				$return['#jeedom_name#'] = '"' . config::byKey('name') . '"';
+				$return['#jeedom_name#'] = config::byKey('name');
 				break;
 				case '#hostname#':
-				$return['#hostname#'] = '"' . gethostname() . '"';
+				$return['#hostname#'] = gethostname();
 				break;
 				case '#IP#':
-				$return['#IP#'] = '"' . network::getNetworkAccess('internal', 'ip', '', false) . '"';
+				$return['#IP#'] = network::getNetworkAccess('internal', 'ip', '', false);
 				break;
 				case '#trigger#':
 				$return['#trigger#'] = '';
