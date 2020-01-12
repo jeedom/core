@@ -31,6 +31,10 @@ RUN /root/install_docker.sh -s 11;exit 0
 RUN systemctl disable apache2;exit 0
 RUN systemctl disable sshd;exit 0
 
+VOLUME /var/www/html/plugins
+VOLUME /var/www/html/core/config
+EXPOSE 80
+
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
 CMD ["/root/init.sh"]
