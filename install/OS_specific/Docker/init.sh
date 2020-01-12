@@ -37,14 +37,43 @@ if [ ! -z ${MODE_HOST} ] && [ ${MODE_HOST} -eq 1 ]; then
 fi
 
 if [ -f /var/www/html/core/config/common.config.php ]; then
-	echo 'Jeedom is already install'
+        echo 'Jeedom is already install'
 else
-	echo 'Start jeedom installation'
-	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/master/install/install.sh -O /root/install.sh
-	chmod +x /root/install.sh
-	/root/install.sh -s 6
+        echo 'Start jeedom installation'
+        rm -rf /root/install.sh
+        wget https://raw.githubusercontent.com/jeedom/core/master/install/install.sh -O /root/install.sh
+        chmod +x /root/install.sh
+        /root/install.sh -s 6
+        # if we have DB configuration un env, then create the mysql configuration
+        if [ ! -z ${MYSQL_HOST} ]; then
+                cp /var/www/html/core/config/common.config.sample.php /var/www/html/core/config/common.config.php
+                if [ ! -z ${MYSQL_HOST} ]; then
+                        sed -i "s/#HOST#/$MYSQL_HOST/" /var/www/html/core/config/common.config.php
+                fi
+                if [ ! -z ${MYSQL_PORT} ]; then
+                        sed -i "s/#PORT#/$MYSQL_PORT/" /var/www/html/core/config/common.config.php
+		else
+		        sed -i "s/#PORT#/3306/" /var/www/html/core/config/common.config.php
+                fi
+                if [ ! -z ${MYSQL_DBNAME} ]; then
+                        sed -i "s/#DBNAME#/$MYSQL_DBNAME/" /var/www/html/core/config/common.config.php
+                fi
+                if [ ! -z ${MYSQL_USERNAME} ]; then
+                        sed -i "s/#USERNAME#/$MYSQL_USERNAME/" /var/www/html/core/config/common.config.php
+                fi
+                if [ ! -z ${MYSQL_PASSWORD} ]; then
+                        sed -i "s/#PASSWORD#/$MYSQL_PASSWORD/" /var/www/html/core/config/common.config.php
+                fi
+        fi
 fi
+
+# set php prerequisite for jeedom and init the cron
+echo "* * * * * www-data /usr/bin/php /var/www/html/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
+sed -i 's/\(max_execution_time *= *\).*/\1600/' /etc/php/7.3/apache2/php.ini
+sed -i 's/\(upload_max_filesize *= *\).*/\11G/' /etc/php/7.3/apache2/php.ini
+sed -i 's/\(post_max_size *= *\).*/\11G/' /etc/php/7.3/apache2/php.ini
+
+
 
 echo 'All init complete'
 chmod 777 /dev/tty*
