@@ -55,7 +55,7 @@ natcasesort($list_logfile);
 
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<input style="width: 150px;" class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" />
+				<input style="width: 250px;" class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" />
 				<a class="btn btn-warning" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
 				</a><a class="btn btn-success" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
 				</a><a class="btn btn-warning" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}
