@@ -460,30 +460,46 @@ Parámetros:
 
 -   string nbLine : nombre de ligne à recuperer
 
+log::add
+--------
+
+Permet d'écrire dans un log
+
+Parámetros:
+
+-   string log : nom du log à recuperer
+
+-   string type : type de log (debug, info, warning, error)
+
+-   string message : message text à écrire
+
+-   string logicalId : logicalId du message généré
+
+
 log::list
 ---------
 
 Permet de récuperer la list des logs de Jeedom
 
-Parámetros:
+Paramètres:
 
 -   string filtre : (optionnel) filtre sur le nom des logs à recuperer
 
 log::empty
 ----------
 
-Permite vaciar un registro
+Permet de vider un log
 
-Parámetros:
+Paramètres:
 
 -   string log : nom du log à vider
 
 log::remove
 -----------
 
-Permite eliminar un registro
+Permet de supprimer un log
 
-Parámetros:
+Paramètres:
 
 -   string log : nom du log a supprimer
 
@@ -495,10 +511,10 @@ datastore::byTypeLinkIdKey
 
 Récupère la valeur d’une variable stockée dans le datastore
 
-Parámetros:
+Paramètres:
 
 -   string type : type de la valeur stockée (pour les scénarios
-    es escenario)
+    c’est scenario)
 
 -   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
     ou l’id du scénario)
@@ -510,13 +526,13 @@ datastore::save
 
 Enregistre la valeur d’une variable dans le datastore
 
-Parámetros:
+Paramètres:
 
 -   string type : type de la valeur stockée (pour les scénarios
-    es escenario)
+    c’est scenario)
 
 -   id linkId : -1 pour le global (valeur pour les scénarios par défaut,
-    o el id del escenario)
+    ou l’id du scénario)
 
 -   string key : nom de la valeur
 
@@ -530,10 +546,25 @@ message::all
 
 Retourne la liste de tous les messages
 
+message::add
+--------
+
+Permet d'écrire dans un log
+
+Paramètres:
+
+-   string type : type de log (debug, info, warning, error)
+
+-   string message : message
+
+-   string action : action
+
+-   string logicalId : logicalId
+
 message::removeAll
 ------------------
 
-Borra todos los mensajes
+Supprime tous les messages
 
 API JSON Interaction
 ====================
@@ -544,7 +575,7 @@ interact::tryToReply
 Essaie de faire correspondre une demande avec une interaction, exécute
 l’action et répond en conséquence
 
-Parámetros:
+Paramètres:
 
 -   query (phrase de la demande)
 
@@ -562,14 +593,14 @@ API JSON System
 jeedom::halt
 ------------
 
-Permite detener a Jeedom
+Permet d’arrêter Jeedom
 
 jeedom::reboot
 --------------
 
-Permite reiniciar a Jeedom
+Permet de redémarrer Jeedom
 
-jeedom::isok
+jeedom::isOk
 ------------
 
 Permet de savoir si l’état global de Jeedom est OK
@@ -579,7 +610,7 @@ jeedom::update
 
 Permet de lancer un update de Jeedom
 
-jeedom::copia de seguridad
+jeedom::backup
 --------------
 
 Permet de lancer un backup de Jeedom
@@ -597,7 +628,7 @@ plugin::install
 
 Installation/Mise à jour d’un plugin donné
 
-Parámetros:
+Paramètres:
 
 -   int plugin\_id (optionnel) : id du plugin
 -   string logicalId (optionnel) : nom du plugin (nom logique)
@@ -605,7 +636,7 @@ Parámetros:
 plugin::remove
 --------------
 
-Eliminando de un plugin dado
+Suppression d’un plugin donné
 
 Paramètres:
 
@@ -637,7 +668,7 @@ plugin::deamonInfo
 
 Renvoi les informations sur le status du démon du plugin
 
-Parámetros:
+Paramètres:
 
 -   int plugin\_id (optionnel) : id du plugin
 -   string logicalId (optionnel) : nom du plugin (nom logique)
@@ -670,7 +701,7 @@ Change le mode de gestion du démon
 Paramètres:
 
 -   int plugin\_id (optionnel) : id du plugin
--   string logicalId (opcional) : nombre del plugin (nombre lógico)
+-   string logicalId (optionnel) : nom du plugin (nom logique)
 -   int mode : 1 pour automatique, 0 pour manuel
 
 API JSON update
