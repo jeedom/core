@@ -460,6 +460,12 @@ sup i {
   font-size: 12px;
 }
 
+#div_displayLogList {
+  padding-top: 37px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  font-size: 13px;
+}
 .li_log i{
   position: relative;
   left: -2px;
@@ -3554,6 +3560,12 @@ ul.dropdown-menu {
 @media screen and (min-width: 1680px) {
   .navbar-nav.navbar-right .objectSummaryglobal {
     max-width: 820px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #div_displayLogList {
+    padding-top: 0 !important;
+    max-height: 11.5em;
   }
 }
 @media screen and (max-width: 992px) {
