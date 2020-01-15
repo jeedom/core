@@ -352,7 +352,9 @@ legend {
   overflow: hidden;
   z-index: 0;
 }
-
+.scenario-widget {
+  max-width: 75%;
+}
 .eqLogic-widget .btn,
 .eqLogic-widget .btn-default,
 .eqLogic-widget input[type=text],
