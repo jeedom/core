@@ -54,7 +54,7 @@ else
 		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
 		echo  "CREATE DATABASE jeedom;" | mysql
 		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
-		cp ${WEBSERVER_HOME}/core/config/common.config.sample.php /var/www/html/core/config/common.config.php
+		cp /var/www/html/core/config/common.config.sample.php /var/www/html/core/config/common.config.php
 		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#DBNAME#/jeedom/g" /var/www/html/core/config/common.config.php
 		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
