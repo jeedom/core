@@ -53,15 +53,16 @@ chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
 echo 'Start apache2'
-systemctl restart apache2
 service apache2 restart
 
 echo 'Start sshd'
-systemctl restart sshd
 service ssh restart
 
 echo 'Start atd'
-systemctl restart atd
 service atd restart
+
+if [ $(which mysqld | wc -l) -ne 0 ]; then
+	service mysql restart
+fi
 
 /usr/bin/supervisord
