@@ -48,8 +48,18 @@ else
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
 		service mysql restart
-		sleep 30
-		/root/install.sh -s 9
+		MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
+		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
+		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
+		echo  "CREATE DATABASE jeedom;" | mysql
+		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+		cp ${WEBSERVER_HOME}/core/config/common.config.sample.php /var/www/html/core/config/common.config.php
+		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#DBNAME#/jeedom/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#USERNAME#/jeedom/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#PORT#/3306/g" /var/www/html/core/config/common.config.php
+		sed -i "s/#HOST#/localhost/g" /var/www/html/core/config/common.config.php
 		/root/install.sh -s 10
 		/root/install.sh -s 11
 	fi
