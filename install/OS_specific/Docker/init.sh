@@ -88,7 +88,7 @@ fi
 if [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
 	echo 'Need restore backup '${RESTOREBACKUP}
 	wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
-	/var/www/html/restore.php backup=/tmp/backup.tar.gz
+	/var/www/html/install/restore.php backup=/tmp/backup.tar.gz
 	rm /tmp/backup.tar.gz
 fi
 
