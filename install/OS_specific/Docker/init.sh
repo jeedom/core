@@ -1,9 +1,10 @@
 #!/bin/bash
 echo 'Start init'
-new_install=0
-if ! [ -f /.jeedom_install ]; then
-	touch /.jeedom_install
-	new_install=1
+first_run=0
+if ! [ -f /.jeedom_first_run ]; then
+	echo 'Its my first run'
+	touch /.jeedom_first_run
+	first_run=1
 fi
 
 if ! [ -f /.dockerinit ]; then
@@ -90,7 +91,7 @@ if [ $(which mysqld | wc -l) -ne 0 ]; then
 	service mysql restart
 fi
 
-if [ ${new_install} -eq 1 ]; then
+if [ ${first_run} -eq 1 ]; then
 	echo "New install check if backup restore needed"
 	if [ ! -z ${RESTOREBACKUP} ] && [ ${RESTOREBACKUP} != 'NO' ]; then
 		echo 'Need restore backup '${RESTOREBACKUP}
