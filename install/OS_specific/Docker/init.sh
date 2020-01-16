@@ -44,6 +44,11 @@ else
 	wget https://raw.githubusercontent.com/jeedom/core/master/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
 	/root/install.sh -s 6
+	if [ $(which mysqld | wc -l) -ne 0 ]; then
+		/root/install.sh -s 9
+		/root/install.sh -s 10
+		/root/install.sh -s 11
+	fi
 fi
 
 echo 'All init complete'
@@ -62,6 +67,7 @@ echo 'Start atd'
 service atd restart
 
 if [ $(which mysqld | wc -l) -ne 0 ]; then
+	echo 'Starting mysql'
 	service mysql restart
 fi
 
