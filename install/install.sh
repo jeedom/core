@@ -438,13 +438,13 @@ case ${STEP} in
   ;;
   6) step_6_jeedom_download
   ;;
-  7) step_7_jeedom_customization
+  7) step_7_jeedom_customization_mysql
   ;;
-  8) step_8_jeedom_configuration
+  8) step_8_jeedom_customization
   ;;
-  9) step_9_jeedom_installation
+  9) step_9_jeedom_configuration
   ;;
-  10) step_10_jeedom_post
+  10) step_10_jeedom_installation
   ;;
   11) step_11_jeedom_check
   ;;

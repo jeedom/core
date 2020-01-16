@@ -45,6 +45,8 @@ else
 	chmod +x /root/install.sh
 	/root/install.sh -s 6
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
+		chown -R mysql:mysql /var/lib/mysql
+		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
 		/root/install.sh -s 9
 		/root/install.sh -s 10
 		/root/install.sh -s 11
