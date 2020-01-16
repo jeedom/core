@@ -1,6 +1,6 @@
 #!/bin/bash
 echo 'Start init'
-
+new_install=0
 if ! [ -f /.dockerinit ]; then
 	touch /.dockerinit
 	chmod 755 /.dockerinit
@@ -39,6 +39,7 @@ fi
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
+	new_install=1
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/alpha/install/install.sh -O /root/install.sh
@@ -83,6 +84,14 @@ service atd restart
 if [ $(which mysqld | wc -l) -ne 0 ]; then
 	echo 'Starting mysql'
 	service mysql restart
+fi
+
+if [ ${new_install} -eq 1 ]; then
+	if [ ! -z ${RESTORE_BACKUP} ] && [ ${RESTORE_BACKUP} != 'NO' ]; then
+		wget ${RESTORE_BACKUP} -O /tmp/backup.tar.gz
+		/var/www/html/restore.php backup=/tmp/backup.tar.gz
+		rm /tmp/backup.tar.gz
+	fi
 fi
 
 /usr/bin/supervisord
