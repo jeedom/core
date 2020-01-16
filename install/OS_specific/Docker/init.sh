@@ -1,11 +1,5 @@
 #!/bin/bash
 echo 'Start init'
-first_run=0
-if ! [ -f /.jeedom_first_run ]; then
-	echo 'Its my first run'
-	touch /.jeedom_first_run
-	first_run=1
-fi
 
 if ! [ -f /.dockerinit ]; then
 	touch /.dockerinit
@@ -91,14 +85,11 @@ if [ $(which mysqld | wc -l) -ne 0 ]; then
 	service mysql restart
 fi
 
-if [ ${first_run} -eq 1 ]; then
-	echo "New install check if backup restore needed"
-	if [ ! -z ${RESTOREBACKUP} ] && [ ${RESTOREBACKUP} != 'NO' ]; then
-		echo 'Need restore backup '${RESTOREBACKUP}
-		wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
-		/var/www/html/restore.php backup=/tmp/backup.tar.gz
-		rm /tmp/backup.tar.gz
-	fi
+if [ ! -z ${RESTOREBACKUP} ] && [ ${RESTOREBACKUP} != 'NO' ]; then
+	echo 'Need restore backup '${RESTOREBACKUP}
+	wget ${RESTOREBACKUP} -O /tmp/backup.tar.gz
+	/var/www/html/restore.php backup=/tmp/backup.tar.gz
+	rm /tmp/backup.tar.gz
 fi
 
 /usr/bin/supervisord
