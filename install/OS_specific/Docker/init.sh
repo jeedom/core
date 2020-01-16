@@ -1,6 +1,11 @@
 #!/bin/bash
 echo 'Start init'
 new_install=0
+if ! [ -f /.jeedom_install ]; then
+	touch /.jeedom_install
+	new_install=1
+fi
+
 if ! [ -f /.dockerinit ]; then
 	touch /.dockerinit
 	chmod 755 /.dockerinit
@@ -24,10 +29,10 @@ fi
 
 if [ ! -z ${SSH_PORT} ]; then
 	echo 'Change SSH listen port to : '${SSH_PORT}
-	sed '/Port /d' /etc/ssh/sshd_config
+	sed -i '/Port /d' /etc/ssh/sshd_config
 	echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
 else
-	sed '/Port /d' /etc/ssh/sshd_config
+	sed  -i '/Port /d' /etc/ssh/sshd_config
 	echo "Port 22" >> /etc/ssh/sshd_config
 fi
 
@@ -39,7 +44,6 @@ fi
 if [ -f /var/www/html/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 else
-	new_install=1
 	echo 'Start jeedom installation'
 	rm -rf /root/install.sh
 	wget https://raw.githubusercontent.com/jeedom/core/alpha/install/install.sh -O /root/install.sh
