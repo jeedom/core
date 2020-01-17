@@ -319,8 +319,11 @@ try {
 				if (!$eqLogic->hasRight('r')) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
-				
-				$histories = $cmd->getHistory($dateStart, $dateEnd,init('groupingType',$cmd->getDisplay('groupingType')));
+				$groupingType=init('groupingType');
+				if($groupingType == ''){
+					$groupingType = $cmd->getDisplay('groupingType');
+				}
+				$histories = $cmd->getHistory($dateStart, $dateEnd,$groupingType);
 				$return['cmd_name'] = $cmd->getName();
 				$return['history_name'] = $cmd->getHumanName();
 				$return['unite'] = $cmd->getUnite();
