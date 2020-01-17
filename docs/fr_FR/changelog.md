@@ -8,7 +8,7 @@ Changelog
 - Dashboard : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - Dashboard : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
-- Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120mins.
+- Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120 mins.
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - Mises à jour du Core : Mise en place d'un système de nettoyage des anciens fichiers non utilisés du Core.
 - Pages Widgets / Objets / Scénarios / Interactions / Plugins :
@@ -27,6 +27,7 @@ Changelog
 - Analyse / Historique : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
 - Dashboard : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - Vue : possibilité de mettre des scénarios.
+- Outils / Widgets : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - Intégration de la Timeline en DB pour des raisons de fiabilité.
 - Gestion de Timelines multiples.
 - Résumé domotique : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
