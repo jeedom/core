@@ -164,9 +164,22 @@ $('#bt_replaceWidget').off('click').on('click',function(){
 
 
 $('#bt_applyToCmd').off('click').on('click', function () {
+  //store usedBy:
+  var checkedId = []
+  $('#div_usedBy .cmdAdvanceConfigure').each(function() {
+    checkedId.push($(this).data('cmd_id'))
+  })
+
   $('#md_modal').dialog({title: "{{Appliquer sur}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter();
+
+    $('#table_cmdConfigureSelectMultiple tbody tr').each(function( index ) {
+      if (checkedId.includes($(this).data('cmd_id'))) {
+        $(this).find('.selectMultipleApplyCmd').prop('checked', true)
+      }
+    })
+
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function () {
       var state = false;
       if ($(this).attr('data-state') == 0) {
@@ -183,29 +196,55 @@ $('#bt_applyToCmd').off('click').on('click', function () {
     });
 
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function () {
-      var widgets = $('.widgets').getValues('.widgetsAttr')[0];
-      widgets.test = $('#div_templateTest .test').getValues('.testAttr');
+      var widgets = $('.widgets').getValues('.widgetsAttr')[0]
+      widgets.test = $('#div_templateTest .test').getValues('.testAttr')
       jeedom.widgets.save({
         widgets: widgets,
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
         success: function (data) {
-          modifyWithoutSave = false;
-          cmd = {template : {dashboard : 'custom::'+$('.widgetsAttr[data-l1key=name]').value(),mobile : 'custom::'+$('.widgetsAttr[data-l1key=name]').value()}};
+          modifyWithoutSave = false
+          cmd = {template : {dashboard : 'custom::'+$('.widgetsAttr[data-l1key=name]').value(),mobile : 'custom::'+$('.widgetsAttr[data-l1key=name]').value()}}
+          cmdDefault = {template : {dashboard : 'default', mobile : 'default'}}
+
           $('#table_cmdConfigureSelectMultiple tbody tr').each(function () {
+            var thisId = $(this).data('cmd_id')
             if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
-              cmd.id = $(this).attr('data-cmd_id');
+              if (!checkedId.includes(thisId)) {
+                //show in usedBy
+                var thisObject = $(this).find('td').eq(1).html()
+                var thisEq = $(this).find('td').eq(2).html()
+                var thisName = $(this).find('td').eq(3).html()
+                var cmdHumanName = '['+thisObject+']['+thisEq+']['+thisName+']'
+                var newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="'+thisId+'">'+cmdHumanName+'</span>'
+                $('#div_usedBy').append(newSpan)
+              }
+              cmd.id = thisId
               jeedom.cmd.save({
                 cmd: cmd,
                 error: function (error) {
-                  $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'});
+                  $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'})
                 },
                 success: function () {}
               });
-              $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'});
+
+            } else {
+              if (checkedId.includes(thisId)) {
+                cmdDefault.id = thisId
+                jeedom.cmd.save({
+                  cmd: cmdDefault,
+                  error: function (error) {
+                    $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: error.message, level: 'danger'})
+                  },
+                  success: function (data) {
+                    $('#div_usedBy .cmdAdvanceConfigure[data-cmd_id="'+ data.id +'"]').remove()
+                  }
+                });
+              }
             }
-          });
+          })
+          $('#md_cmdConfigureSelectMultipleAlert').showAlert({message: "{{Modification(s) appliquée(s) avec succès}}", level: 'success'})
         }
       });
     });
