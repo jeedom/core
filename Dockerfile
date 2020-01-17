@@ -10,8 +10,8 @@ ENV MODE_HOST 0
 RUN apt-get update && apt-get install -y wget openssh-server supervisor
 
 RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
-  sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-  sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN rm /etc/motd
@@ -30,6 +30,9 @@ RUN /root/install_docker.sh -s 8;exit 0
 RUN /root/install_docker.sh -s 11;exit 0
 RUN systemctl disable apache2;exit 0
 RUN systemctl disable sshd;exit 0
+
+VOLUME /var/www/html
+EXPOSE 80
 
 ADD install/OS_specific/Docker/init.sh /root/init.sh
 RUN chmod +x /root/init.sh
