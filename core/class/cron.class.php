@@ -79,7 +79,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 			$value['option'] = $_option;
@@ -102,7 +102,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$value['option'] = '%' . $_option . '%';
 			$sql .= ' AND `option` LIKE :option';
