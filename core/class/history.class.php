@@ -239,7 +239,7 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,`datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
 		}
 		$sql .= ' FROM history
 		WHERE cmd_id=:cmd_id ';
@@ -278,7 +278,7 @@ class history {
 			}else	if($goupingType[0] == 'sum'){
 				$function = 'SUM';
 			}
-			$sql = 'SELECT `cmd_id`,`datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
+			$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,'.$function.'(CAST(value AS DECIMAL(12,2))) as value';
 		}
 		$sql .= ' FROM historyArch
 		WHERE cmd_id=:cmd_id ';
