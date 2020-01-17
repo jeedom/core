@@ -1703,7 +1703,7 @@ user::isBan();
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC}}</label>
+						<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC (App Mobile)}}</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
 							<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
 								<option value="enable">{{Activé}}</option>

@@ -141,6 +141,11 @@ if (init('type') != '') {
 		}
 		if ($type == 'scenario') {
 			log::add('api', 'debug', __('Demande API pour les scénarios', __FILE__));
+			if (!init('id')) {
+				header('Content-Type: application/json');
+				echo json_encode(utils::o2a(scenario::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+				die();
+			}
 			$scenario = scenario::byId(init('id'));
 			if (!is_object($scenario)) {
 				throw new Exception(__('Aucun scénario correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
