@@ -105,7 +105,7 @@ class interactQuery {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public static function recognize($_query) {
+		public static function recognize($_query) {
 		$_query = interactDef::sanitizeQuery($_query);
 		if (trim($_query) == '') {
 			return null;
