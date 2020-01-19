@@ -105,7 +105,7 @@ class interactQuery {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public static function recognize($_query) {
+		public static function recognize($_query) {
 		$_query = interactDef::sanitizeQuery($_query);
 		if (trim($_query) == '') {
 			return null;
@@ -161,6 +161,11 @@ class interactQuery {
 				$input = str_replace(array_keys($tags), $tags, $input);
 			}
 			$lev = levenshtein($input, $_query);
+			$interactDef = $query->getInteractDef();
+			if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
+				log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $query->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+				continue;
+			}
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
 			if (trim($_query) == trim($input)) {
 				$shortest = 0;
@@ -202,11 +207,6 @@ class interactQuery {
 		}
 		if (!is_object($closest)) {
 			log::add('interact', 'debug', __('Aucune phrase trouvée', __FILE__));
-			return null;
-		}
-		$interactDef = $closest->getInteractDef();
-		if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
-			log::add('interact', 'debug', __('Correspondance trouvée : ', __FILE__) . $closest->getQuery() . __(' mais ne contient pas : ', __FILE__) . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 			return null;
 		}
 		log::add('interact', 'debug', __('J\'ai une correspondance  : ', __FILE__) . $closest->getQuery() . __(' avec ', __FILE__) . $shortest);
