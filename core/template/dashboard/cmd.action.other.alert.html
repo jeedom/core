@@ -14,7 +14,7 @@
           $('.cmd[data-cmd_id=#id#]').show();
           $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell"></i>');
         }
-      } else {
+      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           $('.cmd[data-cmd_id=#id#]').hide();
         }else{

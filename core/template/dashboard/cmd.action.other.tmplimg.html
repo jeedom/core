@@ -23,7 +23,7 @@
         }else{
           cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"));
         }
-      } else {
+      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
         cmd.attr('data-state','off');
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide();

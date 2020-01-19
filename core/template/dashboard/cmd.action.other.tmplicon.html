@@ -23,7 +23,7 @@
           cmd.show();
           cmd.find('.iconCmd').empty().append("#_icon_on_#");
         }
-      } else {
+      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide();
         }else{
