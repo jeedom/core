@@ -401,7 +401,7 @@ class network {
 			if (trim($value) == '') {
 				continue;
 			}
-			$return[] = $value;
+			$return[] = explode('@',$value)[0];
 		}
 		return $return;
 	}
