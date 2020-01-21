@@ -165,6 +165,7 @@ class history {
 			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
 					'cmd_id' => $cmd->getId(),
+					'archiveTime' => $archiveDatetime
 				);
 				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 				FROM history
