@@ -404,6 +404,7 @@ class repo_market {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
 			$results = explode("\n", com_shell::execute($cmd));
 		}
 		foreach ($results as $line) {
