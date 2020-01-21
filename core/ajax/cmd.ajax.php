@@ -323,6 +323,13 @@ try {
 				if($groupingType == ''){
 					$groupingType = $cmd->getDisplay('groupingType');
 				}
+				$derive = init('derive', $cmd->getDisplay('graphDerive'));
+				if (trim($derive) == '') {
+					$derive = $cmd->getDisplay('graphDerive');
+				}
+				if($derive){
+					$groupingType = '';
+				}
 				$histories = $cmd->getHistory($dateStart, $dateEnd,$groupingType);
 				$return['cmd_name'] = $cmd->getName();
 				$return['history_name'] = $cmd->getHumanName();
@@ -331,10 +338,6 @@ try {
 				$return['eqLogic'] = utils::o2a($cmd->getEqLogic());
 				$return['timelineOnly'] = $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly'];
 				$previousValue = null;
-				$derive = init('derive', $cmd->getDisplay('graphDerive'));
-				if (trim($derive) == '') {
-					$derive = $cmd->getDisplay('graphDerive');
-				}
 				$return['derive'] = $derive;
 				foreach ($histories as $history) {
 					$info_history = array();
