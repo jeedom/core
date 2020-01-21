@@ -1202,7 +1202,7 @@ function sanitizeAccent($_message) {
 			$return[] = '#' . substr("000000".dechex($color['value']),-6);
 			$previous_color = $color['value'];
 		}
-		if(count($return) < $_level){
+		if(count($return) < $_level && count($return) > 0){
 			for($i=0;$i<($_level - count($return));$i++){
 				$return[] = $return[$i];
 			}
