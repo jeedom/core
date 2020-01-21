@@ -322,6 +322,7 @@ class repo_market {
 			system::kill('duplicity');
 			shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir . '/tmp/duplicity*');
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
 			com_shell::execute($cmd);
 		}
 	}
