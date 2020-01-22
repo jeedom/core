@@ -574,7 +574,7 @@ class repo_market {
 			}
 			if(self::monitoring_allow()){
 				$data = array(
-					'health' => /*jeedom::health()*/array(array('key' => 'plop','state' => 0,'comment' => 'plop','name' => 'toto','result' => 'NOK')),
+					'health' => jeedom::health(),
 					'name' => config::byKey('name'),
 					'hwkey' => jeedom::getHardwareKey()
 				);
