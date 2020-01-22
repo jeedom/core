@@ -319,9 +319,17 @@ try {
 				if (!$eqLogic->hasRight('r')) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 				}
+				$derive = init('derive', $cmd->getDisplay('graphDerive'));
+				if (trim($derive) == '') {
+					$derive = $cmd->getDisplay('graphDerive');
+				}
+				$return['derive'] = $derive;
 				$groupingType=init('groupingType');
 				if($groupingType == ''){
 					$groupingType = $cmd->getDisplay('groupingType');
+				}
+				if($derive){
+					$groupingType = '';
 				}
 				$histories = $cmd->getHistory($dateStart, $dateEnd,$groupingType);
 				$return['cmd_name'] = $cmd->getName();
@@ -331,11 +339,7 @@ try {
 				$return['eqLogic'] = utils::o2a($cmd->getEqLogic());
 				$return['timelineOnly'] = $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['timelineOnly'];
 				$previousValue = null;
-				$derive = init('derive', $cmd->getDisplay('graphDerive'));
-				if (trim($derive) == '') {
-					$derive = $cmd->getDisplay('graphDerive');
-				}
-				$return['derive'] = $derive;
+				
 				foreach ($histories as $history) {
 					$info_history = array();
 					if($groupingType != ''){
