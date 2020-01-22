@@ -157,6 +157,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'LIGHT_ON' => array('name' => 'Lumière Bouton On', 'family' => 'Lumière', 'type' => 'Action'),
 		'LIGHT_OFF' => array('name' => 'Lumière Bouton Off', 'family' => 'Lumière', 'type' => 'Action'),
 		'LIGHT_SLIDER' => array('name' => 'Lumière Slider', 'family' => 'Lumière', 'type' => 'Action'),
+		'LIGHT_SET_BRIGHTNESS' => array('name' => 'Lumière Luminosité', 'family' => 'Lumière', 'type' => 'Action'),
+		'LIGHT_BRIGHTNESS' => array('name' => 'Lumière Luminosité', 'family' => 'Lumière', 'type' => 'Info'),
 		'LIGHT_COLOR' => array('name' => 'Lumière Couleur', 'family' => 'Lumière', 'type' => 'Info'),
 		'LIGHT_SET_COLOR' => array('name' => 'Lumière Couleur', 'family' => 'Lumière', 'type' => 'Action'),
 		'LIGHT_MODE' => array('name' => 'Lumière Mode', 'family' => 'Lumière', 'type' => 'Action'),
