@@ -1672,8 +1672,8 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
 }
 
 input.inputPassword  {
-  font-size: 1px !important;
-  letter-spacing: 5px;
+  font-family: "text-security-disc" !important;
+  letter-spacing: 2px;
 }
 
 .form-actions {
