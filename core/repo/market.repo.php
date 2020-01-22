@@ -572,6 +572,26 @@ class repo_market {
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
 			}
+			if(self::monitoring_allow()){
+				$data = array(
+					'health' => /*jeedom::health()*/array(array('key' => 'plop','state' => 0,'comment' => 'plop','name' => 'toto','result' => 'NOK')),
+					'name' => config::byKey('name'),
+					'hwkey' => jeedom::getHardwareKey()
+				);
+				var_dump($data);
+				$url = 'https://dataservice.jeedom.com/service/monitoring';
+				$request_http = new com_http($url);
+				$request_http->setHeader(array(
+					'Content-Type: application/json',
+					'Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+				));
+				$request_http->setPost(json_encode($data));
+				try {
+					$request_http->exec(10,1);
+				} catch (\Exception $e) {
+					var_dump($e);
+				}
+			}
 		} catch (Exception $e) {
 			
 		}
