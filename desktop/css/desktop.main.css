@@ -467,6 +467,7 @@ sup i {
   padding-left: 0 !important;
   padding-right: 0 !important;
   font-size: 13px;
+  max-height: calc(100vh - 60px);
 }
 .li_log i{
   position: relative;
