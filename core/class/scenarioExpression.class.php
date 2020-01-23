@@ -904,19 +904,29 @@ class scenarioExpression {
 	}
 
 	public static function time_diff($_date1, $_date2, $_format = 'd') {
-		$date1 = new DateTime($_date1);
+ 		$date1 = new DateTime($_date1);
 		$date2 = new DateTime($_date2);
-		$interval = $date1->diff($date2);
-		if ($_format == 's') {
-			return $interval->format('%s') + 60 * $interval->format('%i') + 3600 * $interval->format('%h') + 86400 * $interval->format('%a');
-		}
-		if ($_format == 'm') {
-			return $interval->format('%i') + 60 * $interval->format('%h') + 1440 * $interval->format('%a');
-		}
-		if ($_format == 'h') {
-			return $interval->format('%h') + 24 * $interval->format('%a');
-		}
-		return $interval->format('%a');
+		$duree = abs($date2->getTimestamp() - $date1->getTimestamp());
+		switch( trim($_format )) {
+			case 's': return $duree; // en secondes
+			case 'm': return floor($duree/60); // en minutes
+			case 'mf': return round($duree/60,2); // en minutes décimales
+			case 'h': return floor($duree/3600); // en heures
+			case 'hf': return round($duree/3600,2); // en heures décimales 
+			case 'dhms':
+				$j = floor($duree/86400); $duree %= 86400;
+				$h = floor($duree/3600); $duree %= 3600;
+				$m = floor($duree/60); $duree %= 60;
+				$s = $duree;
+				$ret = '';
+				if ($j > 0) $ret .= "${j}j ";
+				if ($h > 0) $ret .= "${h}h ";
+				if ($m > 0) $ret .= "${m}min ";
+				if ($s > 0) $ret .= "${s}s";
+				return(trim($ret));
+			case 'df': return round($duree/86400,2); // en jours decimaux
+			default: return floor($duree/86400); // en jours
+		}	
 	}
 
 	public static function time($_value) {
