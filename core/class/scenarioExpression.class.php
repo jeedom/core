@@ -1589,6 +1589,20 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $result);
 					$scenario->setTags($tags);
 				} else {
+					//check user function:
+					if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
+						require_once __DIR__ . '/../../data/php/user.function.class.php';
+						$stringFunction = strval($this->getExpression());
+						$functionName = explode('(', $stringFunction)[0];
+						if (class_exists('userFunction') && method_exists('userFunction', $functionName)) {
+							$arguments = str_replace([$functionName, '(', ')'], '', $stringFunction);
+							$arguments = explode(',', $arguments);
+							$result = call_user_func_array('userFunction' . "::" . $functionName, $arguments);
+							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
+							return;
+						}
+					}
+					
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
 						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
