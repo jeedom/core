@@ -144,6 +144,7 @@ function setTheme() {
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
+	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
