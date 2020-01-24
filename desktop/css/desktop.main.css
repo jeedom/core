@@ -2053,7 +2053,7 @@ ul.nav.nav-tabs li,
   z-index: 4;
 }
 .nav-tabs,
-.nav-tabs  {
+.nav-tabs * {
   border-image-width: 0 !important;
   border-image-width: 0 !important;
 }
