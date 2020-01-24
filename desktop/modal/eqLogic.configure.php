@@ -436,15 +436,11 @@ $(function() {
 	initPickers()
 })
 
-//DateTimePickers and Spinners
 function initPickers() {
   $('input[type="number"]').spinner({
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
   })
 }
-$(function(){
-  initPickers()
-})
 
 function setTableLayoutSortable() {
 	$('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
