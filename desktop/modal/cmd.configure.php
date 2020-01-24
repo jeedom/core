@@ -1168,12 +1168,12 @@ $('#bt_cmdConfigureLogRealTime').off('click').on('click', function () {
     $('#md_modal3').load('index.php?v=d&modal=log.display&log=event&search=' + cmdInfoSearchString).dialog('open');
 });
 
-$('#bt_cmdConfigureShowHistory').on( 'click',function () {
+$('#bt_cmdConfigureShowHistory').off('click').on( 'click',function () {
     $('#md_modal3').dialog({title: "Historique"});
     $("#md_modal3").load('index.php?v=d&modal=cmd.history&id=' + cmdInfo.id).dialog('open');
 });
 
-$('#bt_cmdConfigureTest').on('click',function(){
+$('#bt_cmdConfigureTest').off('click').on('click',function(){
     jeedom.cmd.test({id: cmdInfo.id, alert : '#md_displayCmdConfigure'});
 });
 </script>
