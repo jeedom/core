@@ -2041,6 +2041,7 @@ ul.nav.nav-tabs li,
 .nav-tabs > li > a {
   padding: 10px 6px;
   z-index: 3;
+  border: 1px solid transparent !important;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -2049,10 +2050,10 @@ ul.nav.nav-tabs li,
   background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;
   color: var(--link-color) !important;
   border-bottom : 1px var(--logo-primary-color) solid !important;
+  z-index: 4;
 }
 .nav-tabs,
-.nav-tabs * {
-  border: none !important;
+.nav-tabs  {
   border-image-width: 0 !important;
   border-image-width: 0 !important;
 }
