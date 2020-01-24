@@ -170,6 +170,7 @@ class history {
 				FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id
+				AND `value` IS NOT NULL
 				ORDER BY `datetime` ASC';
 				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 				if($countHistory > 0){
@@ -201,6 +202,7 @@ class history {
 			FROM history
 			WHERE `datetime` <= :archiveTime
 			AND cmd_id=:cmd_id
+			AND `value` IS NOT NULL
 			GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
