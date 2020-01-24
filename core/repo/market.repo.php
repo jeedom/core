@@ -556,13 +556,6 @@ class repo_market {
 		}
 	}
 	
-	public static function sendHealth(){
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('register::health',array('health' => jeedom::health()))) {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-	
 	public static function cron5() {
 		try {
 			$monitoring_state = self::monitoring_status();
@@ -578,7 +571,6 @@ class repo_market {
 					'name' => config::byKey('name'),
 					'hwkey' => jeedom::getHardwareKey()
 				);
-				var_dump($data);
 				$url = 'https://dataservice.jeedom.com/service/monitoring';
 				$request_http = new com_http($url);
 				$request_http->setHeader(array(
@@ -589,7 +581,7 @@ class repo_market {
 				try {
 					$request_http->exec(10,1);
 				} catch (\Exception $e) {
-					var_dump($e);
+					
 				}
 			}
 		} catch (Exception $e) {
