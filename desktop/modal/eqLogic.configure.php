@@ -345,14 +345,13 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 				<div class="form-group">
 					<label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
 					<div class="col-sm-2">
-						<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+						<input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
 					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
 					<div class="col-sm-2">
-						<input type="number" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+						<input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
 					</div>
+					<a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">{{Centrer dans les cases}}</label>
@@ -420,22 +419,113 @@ sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->
 </div>
 
 <script>
+
 $(function() {
+	//check if coming from clicking on battery in eqanalyse:
 	if ($('body').attr('data-page')=="eqAnalyse") {
 		$('a[href="#eqLogic_alert"]').click()
 	}
+
+	//check some values:
+	var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
+	if (nbColumn == '') $('input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
+	var nbLine = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
+	if (nbLine == '') $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
+
+	setTableLayoutSortable()
+	initPickers()
 })
 
-$('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
-	connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-	items: ".cmdLayout"
-});
+function initPickers() {
+  $('input[type="number"]').spinner({
+    icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
+  })
+}
+
+function setTableLayoutSortable() {
+	$('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
+		connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
+		items: ".cmdLayout"
+	})
+}
+
+function getNewLayoutTd(row, col) {
+	var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
+	newTd += '<center class="cmdLayoutContainer" style="min-height:30px;"></center>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>'
+	newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>'
+	newTd += '</td>'
+	return newTd
+}
+
+$('#bt_eqLogicLayoutApply').off().on('click', function () {
+	var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
+	var nbRow = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
+
+	var tableLayout = $('#tableCmdLayoutConfiguration')
+	var tableRowCount = tableLayout.find('tr').length
+	var tableColumnCount = tableLayout.find('tr').eq(0).find('td').length
+
+	if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
+		//build new table:
+		var newTableLayout = '<table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">'
+		newTableLayout += '<tbody>'
+
+		for (i = 1; i <= nbRow; i++) {
+			var newTr = '<tr>'
+			for (j = 1; j <= nbColumn; j++) {
+				newTd = getNewLayoutTd(i, j)
+				newTr += newTd
+			}
+			newTr += '</tr>'
+			newTableLayout += newTr
+		}
+		newTableLayout += '</tbody>'
+		newTableLayout += '</table>'
+
+		newTableLayout = $.parseHTML(newTableLayout)
+
+		//distribute back cmds into new table
+		var firstTdLayout = $(newTableLayout).find('tr').eq(0).find('td').eq(0).find('.cmdLayoutContainer')
+		tableLayout.find('.cmdLayout').each(function() {
+			var row = $(this).closest('td').data('line')
+			var col = $(this).closest('td').data('column')
+			var newTd = $(newTableLayout).find('td[data-line="'+row+'"][data-column="'+col+'"]')
+			if (newTd.length) {
+				$(this).appendTo(newTd.find('.cmdLayoutContainer'))
+			} else {
+				$(this).appendTo(firstTdLayout)
+			}
+		})
+
+		//get back tds texts and styles
+		tableLayout.find('td').each(function() {
+			var row = $(this).data('line')
+			var col = $(this).data('column')
+			var text = $(this).find('input[data-l3key="text::td::'+row+'::'+col+'"]').val()
+			var style = $(this).find('input[data-l3key="style::td::'+row+'::'+col+'"]').val()
+			var newTd = $(newTableLayout).find('td[data-line="'+row+'"][data-column="'+col+'"]')
+			if (newTd.length) {
+				$(newTableLayout).find('input[data-l3key="text::td::'+row+'::'+col+'"]').val(text)
+				$(newTableLayout).find('input[data-l3key="style::td::'+row+'::'+col+'"]').val(style)
+			}
+		})
+
+		//replace by new table:
+		tableLayout.replaceWith(newTableLayout)
+		setTableLayoutSortable()
+	}
+})
 
 $('.sel_layout').on('change',function(){
 	var type = $(this).attr('data-type');
 	$('.widget_layout').hide();
 	$('.widget_layout.'+$(this).value()).show();
 });
+
+
+
+
 $('.background-color-default').off('change').on('change',function(){
 	if($(this).value() == 1){
 		$(this).closest('td').find('.span_configureBackgroundColor').hide();
@@ -475,6 +565,9 @@ $('.border-radius-default').off('change').on('change',function(){
 		td.find('.border-radius').show();
 	}
 });
+
+
+
 $('.advanceWidgetParameterDefault').off('change').on('change',function(){
 	if($(this).value() == 1){
 		$(this).closest('td').find('.advanceWidgetParameter').hide();
@@ -502,10 +595,12 @@ $('#table_widgetParameters').on( 'click', '.removeWidgetParameter',function () {
 $('#bt_EqLogicConfigurationTabComment').on('click', function () {
 	setTimeout(function(){ $('.eqLogicAttr[data-l1key=comment]').trigger('change'); }, 10);
 });
+
 $('#bt_eqLogicConfigureRawObject').off('click').on('click',function(){
 	$('#md_modal2').dialog({title: "{{Informations brutes}}"});
 	$("#md_modal2").load('index.php?v=d&modal=object.display&class=eqLogic&id='+eqLogicInfo.id).dialog('open');
 })
+
 $('#bt_addWidgetParameters').off().on('click', function () {
 	var tr = '<tr>';
 	tr += '<td>';
@@ -625,7 +720,6 @@ $('#bt_resetbattery').on('click',function(){
 			var ss = today.getSeconds();
 			var yyyy = today.getFullYear();
 			eqLogic['configuration']['batterytime'] = yyyy+'-'+mm+'-'+dd+' '+hh+':'+MM+':'+ss;
-			console.log(eqLogic);
 			jeedom.eqLogic.simpleSave({
 				eqLogic : eqLogic,
 				error: function (error) {
