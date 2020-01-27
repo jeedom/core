@@ -71,9 +71,6 @@ chmod 777 -R /tmp
 chmod 755 -R /var/www/html
 chown -R www-data:www-data /var/www/html
 
-echo 'Start apache2'
-service apache2 restart
-
 echo 'Start sshd'
 service ssh restart
 
@@ -94,5 +91,13 @@ if ! [ -f /.jeedom_backup_restore ]; then
 		touch /.jeedom_backup_restore
 	fi
 fi
+
+if [ ! -z "${UPDATE_JEEDOM}" ] && [ "${UPDATE_JEEDOM}" != 'NO' ]; then
+	echo 'Need update jeedom'
+	php /var/www/html/install/update.php
+fi
+
+echo 'Start apache2'
+service apache2 restart
 
 /usr/bin/supervisord
