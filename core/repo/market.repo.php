@@ -237,6 +237,10 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
+	public static function beckup_serverPath(){
+		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword').'@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+	}
+	
 	public static function backup_install(){
 		if (exec('which duplicity | wc -l') == 0) {
 			try {
@@ -308,8 +312,8 @@ class repo_market {
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --tempdir '.$base_dir . '/tmp';
-		$cmd .= ' ' . $base_dir . '  "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= ' ' . $base_dir;
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -348,8 +352,7 @@ class repo_market {
 		$cmd .= ' duplicity cleanup --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -370,8 +373,7 @@ class repo_market {
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -399,8 +401,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
@@ -444,8 +445,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		$cmd .= ' ' . $restore_dir;
 		try {
 			com_shell::execute($cmd);
@@ -556,13 +556,6 @@ class repo_market {
 		}
 	}
 	
-	public static function sendHealth(){
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('register::health',array('health' => jeedom::health()))) {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-	
 	public static function cron5() {
 		try {
 			$monitoring_state = self::monitoring_status();
@@ -571,6 +564,25 @@ class repo_market {
 			}
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
+			}
+			if(self::monitoring_allow()){
+				$data = array(
+					'health' => jeedom::health(),
+					'name' => config::byKey('name'),
+					'hwkey' => jeedom::getHardwareKey()
+				);
+				$url = 'https://dataservice.jeedom.com/service/monitoring';
+				$request_http = new com_http($url);
+				$request_http->setHeader(array(
+					'Content-Type: application/json',
+					'Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+				));
+				$request_http->setPost(json_encode($data));
+				try {
+					$request_http->exec(10,1);
+				} catch (\Exception $e) {
+					
+				}
 			}
 		} catch (Exception $e) {
 			
@@ -816,7 +828,7 @@ class repo_market {
 				'market_api_key' => jeedom::getApiKey('apimarket'),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
 			);
 			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
 				$params['url'] = network::getNetworkAccess('external');
