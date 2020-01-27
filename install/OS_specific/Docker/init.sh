@@ -89,13 +89,14 @@ if ! [ -f /.jeedom_backup_restore ]; then
 		php /var/www/html/install/restore.php backup=/tmp/backup.tar.gz
 		rm /tmp/backup.tar.gz
 		touch /.jeedom_backup_restore
+		if [ ! -z "${UPDATE_JEEDOM}" ] && [ "${UPDATE_JEEDOM}" != 'NO' ]; then
+			echo 'Need update jeedom'
+			php /var/www/html/install/update.php
+		fi
 	fi
 fi
 
-if [ ! -z "${UPDATE_JEEDOM}" ] && [ "${UPDATE_JEEDOM}" != 'NO' ]; then
-	echo 'Need update jeedom'
-	php /var/www/html/install/update.php
-fi
+
 
 echo 'Start apache2'
 service apache2 restart
