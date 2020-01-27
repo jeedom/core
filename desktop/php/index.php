@@ -448,7 +448,7 @@ if (init('rescue', 0) == 0) {
 					<?php
 					try {
 						if (!jeedom::isStarted()) {
-							echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
+							echo '<div class="alert alert-danger">'.config::byKey('product_name').'{{ est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 						}
 						if (isset($plugin) && is_object($plugin)) {
 							include_file('desktop', $page, 'php', $plugin->getId());
