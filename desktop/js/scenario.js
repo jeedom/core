@@ -1730,7 +1730,7 @@ function addSubElement(_subElement) {
     retour += '<legend class="legendHidden">ACTION</legend>';
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0]
-      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0].expressions[0])) {
+      if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions[0])) {
         retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200)+'</div>'
       } else {
         retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200)+'</div>'
