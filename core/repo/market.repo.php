@@ -571,7 +571,7 @@ class repo_market {
 					'name' => config::byKey('name'),
 					'hwkey' => jeedom::getHardwareKey()
 				);
-				$url = 'https://dataservice.jeedom.com/service/monitoring';
+				$url = config::byKey('service_monitoring_url').'/service/monitoring';
 				$request_http = new com_http($url);
 				$request_http->setHeader(array(
 					'Content-Type: application/json',
