@@ -512,34 +512,6 @@ class repo_market {
 		}
 	}
 	
-	public static function cronDaily(){
-		try {
-			$monitoring_state = self::monitoring_status();
-			if (self::monitoring_allow() && $monitoring_state){
-				self::monitoring_stop();
-				self::monitoring_start();
-			}
-		} catch (\Exception $e) {
-			
-		}
-	}
-	
-	/*******************************health********************************/
-	
-	public static function health() {
-		$return = array();
-		if (config::byKey('market::monitoringServer') != '') {
-			$monitoring_state = self::monitoring_status();
-			$return[] = array(
-				'name' => __('Cloud monitoring actif', __FILE__),
-				'state' => $monitoring_state,
-				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'comment' => ($monitoring_state) ? '' : __('Attendez 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
-			);
-		}
-		return $return;
-	}
-	
 	/*     * ***********************INFO*************************** */
 	
 	public static function getInfo($_logicalId, $_version = 'stable') {
