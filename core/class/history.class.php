@@ -195,31 +195,18 @@ class history {
 				continue;
 			}
 			$mode = $cmd->getConfiguration('historizeMode', 'avg');
-			if($mode == 'none'){
-				$values = array(
-					'cmd_id' => $sensors['cmd_id'],
-					'archiveTime' => $archiveDatetime
-				);
-				$sql = 'INSERT INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,value
-				FROM history
-				WHERE `datetime` <= :archiveTime
-				AND cmd_id=:cmd_id
-				AND `value` IS NOT NULL';
-				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			}else{
-				$values = array(
-					'cmd_id' => $sensors['cmd_id'],
-					'archivePackage' => config::byKey('historyArchivePackage')*3600,
-					'archiveTime' => $archiveDatetime
-				);
-				$sql = 'INSERT INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
-				FROM history
-				WHERE `datetime` <= :archiveTime
-				AND cmd_id=:cmd_id
-				AND `value` IS NOT NULL
-				GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
-				DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			}
+			$values = array(
+				'cmd_id' => $sensors['cmd_id'],
+				'archivePackage' => config::byKey('historyArchivePackage')*3600,
+				'archiveTime' => $archiveDatetime
+			);
+			$sql = 'INSERT INTO historyArch(cmd_id,`datetime`,value) SELECT cmd_id,`datetime`,' . $mode . '(CAST(value AS DECIMAL(12,2))) as value
+			FROM history
+			WHERE `datetime` <= :archiveTime
+			AND cmd_id=:cmd_id
+			AND `value` IS NOT NULL
+			GROUP BY UNIX_TIMESTAMP(`datetime`) DIV :archivePackage';
+			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 			$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
 			$sql = 'DELETE FROM history
 			WHERE `datetime` <= :archiveTime
