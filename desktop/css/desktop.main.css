@@ -525,6 +525,14 @@ sup i {
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-e { width: 12px; }
 .allowResize.editingMode .ui-resizable-handle.ui-resizable-s { height: 12px; }
 
+
+#tableCmdLayoutConfiguration .cmdLayout {
+  display: inline-block
+}
+#tableCmdLayoutConfiguration td {
+  vertical-align: bottom;
+}
+
 /* summary */
 .objectSummaryParent {
   color: var(--txt-color) !important;

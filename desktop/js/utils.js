@@ -1431,6 +1431,7 @@ function editWidgetCmdMode(_mode) {
       $('.eqLogic-widget.allowReorderCmd').off('mouseleave','.cmd');
     }
     $('.cmd-widget .ui-slider').slider("option", "disabled", false)
+    $('.inputEditmodeHandle').remove()
   } else {
     $( ".eqLogic-widget.allowReorderCmd.eqLogic_layout_default").sortable({items: ".cmd"});
     $(".eqLogic-widget.eqLogic_layout_table table.tableCmd").addClass('table-bordered');
@@ -1445,6 +1446,8 @@ function editWidgetCmdMode(_mode) {
       $('.eqLogic-widget').draggable('enable');
     });
     $('.cmd-widget .ui-slider').slider("option", "disabled", true)
+    $('input[type="color"]').after('<i class="inputEditmodeHandle fas fa-arrows-alt" style="position: absolute;left: 5px;font-size: 14px;top: 8px;"></i>')
+
     $.contextMenu({
       selector: '.eqLogic-widget',
       zIndex: 9999,

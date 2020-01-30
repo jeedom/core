@@ -238,7 +238,7 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 	
 	public static function beckup_serverPath(){
-		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword').'@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service_backup_url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
 	}
 	
 	public static function backup_install(){
@@ -253,13 +253,13 @@ class repo_market {
 	
 	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
-			'baseUri' => 'https://' . config::byKey('market::backupServer'),
+			'baseUri' => config::byKey('service_backup_url'),
 			'userName' => config::byKey('market::username'),
-			'password' => config::byKey('market::backupPassword'),
+			'password' => config::byKey('market::password'),
 		));
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
 		$filesystem = new League\Flysystem\Filesystem($adapter);
-		$folders = $filesystem->listContents('/remote.php/webdav/');
+		$folders = $filesystem->listContents('/webdav/'.config::byKey('market::username'));
 		$found = false;
 		if (count($folders) > 0) {
 			foreach ($folders as $folder) {
@@ -270,7 +270,7 @@ class repo_market {
 			}
 		}
 		if (!$found) {
-			$filesystem->createDir('/remote.php/webdav/' . rawurldecode(config::byKey('market::cloud::backup::name')));
+			$filesystem->createDir('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
 		}
 	}
 	
@@ -465,78 +465,8 @@ class repo_market {
 	
 	/******************************MONITORING********************************/
 	
-	public static function monitoring_install() {
-		if (file_exists('/etc/zabbix')) {
-			return;
-		}
-		$logfile = log::getPathToLog('market_zabbix_installation');
-		if (strpos(php_uname(), 'x86_64') !== false) {
-			if (file_exists('/etc/debian_version')) {
-				$deb_version = file_get_contents('/etc/debian_version');
-				if (version_compare($deb_version, '9', '>=')) {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bstretch_all.deb >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+stretch_all.deb  >> ' . $logfile . ' 2>&1');
-				} else {
-					shell_exec('cd /tmp/;' . system::getCmdSudo() . ' wget http://repo.zabbix.com/zabbix/4.0/debian/pool/main/z/zabbix-release/zabbix-release_4.0-2%2Bjessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' dpkg -i zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1;' . system::getCmdSudo() . ' rm zabbix-release_3.4-1+jessie_all.deb  >> ' . $logfile . ' 2>&1');
-				}
-			}
-		}
-		shell_exec(system::getCmdSudo() . ' apt-get update  >> ' . $logfile . ' 2>&1');
-		shell_exec(system::getCmdSudo() . ' apt-get -y install zabbix-agent  >> ' . $logfile . ' 2>&1');
-	}
-	
-	public static function monitoring_start() {
-		preg_match_all('/(\d\.\d\.\d)/m', shell_exec(system::getCmdSudo() . ' zabbix_agentd -V'), $matches);
-		self::monitoring_install();
-		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
-			return;
-		}
-		$cmd = system::getCmdSudo() . " chmod -R 777 /etc/zabbix;";
-		$cmd .= system::getCmdSudo() . " sed -i '/ServerActive=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . " sed -i '/Hostname=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . " sed -i '/TLSConnect=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . " sed -i '/TLSAccept=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKIdentity=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . " sed -i '/TLSPSKFile=/d' /etc/zabbix/zabbix_agentd.conf;";
-		$cmd .= system::getCmdSudo() . ' echo "ServerActive=' . config::byKey('market::monitoringServer') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-		$cmd .= system::getCmdSudo() . ' echo "Hostname=' . config::byKey('market::monitoringName') . '" >> /etc/zabbix/zabbix_agentd.conf;';
-		if (!file_exists('/var/log/zabbix')) {
-			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix;';
-		}
-		$cmd .= system::getCmdSudo() . ' chmod 777 -R /var/log/zabbix;';
-		if (!file_exists('/var/log/zabbix-agent')) {
-			$cmd .= system::getCmdSudo() . ' mkdir /var/log/zabbix-agent;';
-		}
-		$cmd .= system::getCmdSudo() . ' chmod 777 -R /var/log/zabbix-agent;';
-		if (!file_exists('/etc/zabbix/zabbix_agentd.conf.d')) {
-			$cmd .= system::getCmdSudo() . ' mkdir /etc/zabbix/zabbix_agentd.conf.d;';
-			$cmd .= system::getCmdSudo() . ' chmod 777 -R /etc/zabbix/zabbix_agentd.conf.d;';
-		}
-		$cmd .= system::getCmdSudo() . ' systemctl restart zabbix-agent;';
-		$cmd .= system::getCmdSudo() . ' systemctl enable zabbix-agent;';
-		shell_exec($cmd);
-	}
-	
-	public static function monitoring_status() {
-		if(!file_exists('/etc/zabbix/zabbix_agentd.conf')){
-			return false;
-		}
-		if(exec('grep "jeedom.com" /etc/zabbix/zabbix_agentd.conf | grep -v "zabbix.jeedom.com" | wc -l') == 0){
-			return false;
-		}
-		return (count(system::ps('zabbix')) > 0);
-	}
-	
-	public static function monitoring_stop() {
-		$cmd = system::getCmdSudo() . ' systemctl stop zabbix-agent;';
-		$cmd .= system::getCmdSudo() . ' systemctl disable zabbix-agent;';
-		shell_exec($cmd);
-	}
-	
 	public static function monitoring_allow() {
 		if (config::byKey('market::monitoringServer') == '') {
-			return false;
-		}
-		if (config::byKey('market::monitoringName') == '') {
 			return false;
 		}
 		return true;
@@ -558,20 +488,13 @@ class repo_market {
 	
 	public static function cron5() {
 		try {
-			$monitoring_state = self::monitoring_status();
-			if (self::monitoring_allow() && !$monitoring_state) {
-				self::monitoring_start();
-			}
-			if (!self::monitoring_allow() && $monitoring_state) {
-				self::monitoring_stop();
-			}
 			if(self::monitoring_allow()){
 				$data = array(
 					'health' => jeedom::health(),
 					'name' => config::byKey('name'),
 					'hwkey' => jeedom::getHardwareKey()
 				);
-				$url = 'https://dataservice.jeedom.com/service/monitoring';
+				$url = config::byKey('service_monitoring_url').'/service/monitoring';
 				$request_http = new com_http($url);
 				$request_http->setHeader(array(
 					'Content-Type: application/json',
@@ -587,34 +510,6 @@ class repo_market {
 		} catch (Exception $e) {
 			
 		}
-	}
-	
-	public static function cronDaily(){
-		try {
-			$monitoring_state = self::monitoring_status();
-			if (self::monitoring_allow() && $monitoring_state){
-				self::monitoring_stop();
-				self::monitoring_start();
-			}
-		} catch (\Exception $e) {
-			
-		}
-	}
-	
-	/*******************************health********************************/
-	
-	public static function health() {
-		$return = array();
-		if (config::byKey('market::monitoringServer') != '') {
-			$monitoring_state = self::monitoring_status();
-			$return[] = array(
-				'name' => __('Cloud monitoring actif', __FILE__),
-				'state' => $monitoring_state,
-				'result' => ($monitoring_state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'comment' => ($monitoring_state) ? '' : __('Attendez 10 minutes si le service ne redémarre pas contacter le support', __FILE__),
-			);
-		}
-		return $return;
 	}
 	
 	/*     * ***********************INFO*************************** */
