@@ -165,6 +165,7 @@ class history {
 			if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 				$values = array(
 					'cmd_id' => $cmd->getId(),
+					'archiveTime' => $archiveDatetime
 				);
 				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 				FROM history
@@ -173,6 +174,7 @@ class history {
 				AND `value` IS NOT NULL
 				ORDER BY `datetime` ASC';
 				$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				$countHistory = count($history);
 				if($countHistory > 0){
 					if($countHistory > 1){
 						for ($i = 1; $i < $countHistory; $i++) {
