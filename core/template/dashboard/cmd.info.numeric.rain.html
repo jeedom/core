@@ -5,6 +5,7 @@
         <span class="#hide_name#">#name_display#</span><br/>
         <span class="value"></span>
         <span class="unite">#unite#</span>
+        <span class="plage"></span>
       </div>
     </div>
     <div class="widget-rain-water" style=""></div>
@@ -15,11 +16,20 @@
     </div>
   </div>
   <script>
+    var scale#id# = (('#scale#' == '') ? 1 : parseFloat('#scale#'));
+    $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('max-height',(45*scale#id#)+'px')
     jeedom.cmd.update['#id#'] = function(_options){
+      var valMini = ('#valMini#' !='#'+'valMini#') ? parseFloat('#valMini#'):0;
+      var valMaxi = ('#valMaxi#' !='#'+'valMaxi#') ? parseFloat('#valMaxi#'):25;
+      var plage = valMaxi - valMini;
+      
+      var scaledValue = (_options.display_value-valMini)*35*scale#id#/plage;
+
       let cmd = $('.cmd[data-cmd_id=#id#]');
       cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
       cmd.find('.value').empty().append(_options.display_value);
-      cmd.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
+      cmd.find('.plage').empty().append('('+valMini +'/'+valMaxi+')');
+      cmd.find('.widget-rain-water').delay(0).animate({height:(scaledValue)+"pt"},1000)
     }
     if('#scale#' != '') {
       let el = $('.cmd[data-cmd_id=#id#] .widget-rain-main');
