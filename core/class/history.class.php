@@ -187,7 +187,6 @@ class history {
 					$history[0]->setTableName('historyArch');
 					$history[0]->save();
 				}
-				$values = array('cmd_id' => $sensors['cmd_id'],'archiveTime' => $archiveDatetime);
 				$sql = 'DELETE FROM history
 				WHERE `datetime` <= :archiveTime
 				AND cmd_id=:cmd_id';

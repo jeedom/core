@@ -151,12 +151,35 @@ try {
 	shell_exec('find "' . $backup_dir . '" -name "*.gz" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
 	
+	global $NO_CLOUD_BACKUP;
+	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
+		foreach (update::listRepo() as $key => $value) {
+			if ($value['scope']['backup'] === false) {
+				continue;
+			}
+			if (config::byKey($key . '::enable') == 0) {
+				continue;
+			}
+			if (config::byKey($key . '::cloudUpload') == 0) {
+				continue;
+			}
+			$class = 'repo_' . $key;
+			echo 'Send backup ' . $value['name'] . '...';
+			try {
+				$class::backup_send($backup_dir . '/' . $backup_name);
+			} catch (Exception $e) {
+				log::add('backup', 'error', $e->getMessage());
+				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
+			}
+			echo "OK" . "\n";
+		}
+	}
+	
 	echo 'Limitation de la taille des sauvegardes à ' . config::byKey('backup::maxSize') . " Mo...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
-		
 		foreach (ls($backup_dir, '*') as $file) {
 			if (count(ls($backup_dir, '*')) < 2) {
 				break (2);
@@ -199,29 +222,7 @@ try {
 		}
 	}
 	echo "OK" . "\n";
-	global $NO_CLOUD_BACKUP;
-	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
-		foreach (update::listRepo() as $key => $value) {
-			if ($value['scope']['backup'] === false) {
-				continue;
-			}
-			if (config::byKey($key . '::enable') == 0) {
-				continue;
-			}
-			if (config::byKey($key . '::cloudUpload') == 0) {
-				continue;
-			}
-			$class = 'repo_' . $key;
-			echo 'Send backup ' . $value['name'] . '...';
-			try {
-				$class::backup_send($backup_dir . '/' . $backup_name);
-			} catch (Exception $e) {
-				log::add('backup', 'error', $e->getMessage());
-				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
-			}
-			echo "OK" . "\n";
-		}
-	}
+	
 	echo "Nom de la sauvegarde : " . $backup_dir . '/' . $backup_name . "\n";
 	
 	try {
