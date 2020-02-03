@@ -856,14 +856,15 @@ jeedom.cmd.getDeadCmd = function(_params) {
 
 
 jeedom.cmd.displayDuration = function(_date,_el){
+  var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
   var arrDate = _date.split(/-|\s|:/);
   var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
   _el.attr('data-time',timeInMillis);
   if(_el.attr('data-interval') != undefined){
     clearInterval(_el.attr('data-interval'));
   }
-  if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+  if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
     var j = Math.floor(d / 86400);
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
@@ -879,7 +880,7 @@ jeedom.cmd.displayDuration = function(_date,_el){
       _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
     }
     var myinterval = setInterval(function(){
-      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
@@ -900,8 +901,8 @@ jeedom.cmd.displayDuration = function(_date,_el){
     _el.empty().append("0 s");
     var interval = 10000;
     var myinterval = setInterval(function(){
-      if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-        var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
+      if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+        var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
