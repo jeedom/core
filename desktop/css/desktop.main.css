@@ -1180,6 +1180,7 @@ pre {
   color: var(--txt-color);
 }
 .info,
+.info i,
 [data-coloredicons="1"] .icon_blue {
   color: var(--al-info-color) !important;
 }
