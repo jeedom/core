@@ -856,8 +856,7 @@ jeedom.cmd.getDeadCmd = function(_params) {
 
 
 jeedom.cmd.displayDuration = function(_date,_el){
-  //var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
-  var deltaDiff = clientServerDiffDatetime;
+  var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
   var arrDate = _date.split(/-|\s|:/);
   var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
   _el.attr('data-time',timeInMillis);
