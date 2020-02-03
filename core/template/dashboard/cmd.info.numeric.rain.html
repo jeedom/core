@@ -3,8 +3,9 @@
     <div class="widget-rain-container">
       <div class="widget-rain-title">
         <span class="#hide_name#">#name_display#</span><br/>
-        <span class="value"></span>
+        <span class="value widget-rain-title-value"></span>
         <span class="unite">#unite#</span>
+        <span class="plage"></span>
       </div>
     </div>
     <div class="widget-rain-water" style=""></div>
@@ -15,18 +16,39 @@
     </div>
   </div>
   <script>
+    var scale#id# = ('#scale#' !='#'+'scale#') ? parseFloat('#scale#') : 1;
+    $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('max-height',(45*scale#id#)+'px')
     jeedom.cmd.update['#id#'] = function(_options){
+      var value = parseFloat(_options.display_value);
+      var valMini,bMini;
+      if('#valMini#' !='#'+'valMini#') valMini = bMini = parseFloat('#valMini#');
+      else { valMini = 0; bMini = '-' }
+      var valMaxi,bMaxi;
+      if('#valMaxi#' !='#'+'valMaxi#') valMaxi =bMaxi = parseFloat('#valMaxi#');
+      else { valMaxi = 20; bMaxi = '-' }
+      var scaledValue = (value-valMini)*35*scale#id#/(valMaxi-valMini);
       let cmd = $('.cmd[data-cmd_id=#id#]');
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'mm')
-      cmd.find('.value').empty().append(_options.display_value);
-      cmd.find('.widget-rain-water').delay(0).animate({height:(_options.display_value*2)+"pt"},1000)
+      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+value+'#unite#')
+      cmd.find('.value').empty().append(value);
+      cmd.find('.plage').empty().append('('+bMini+'/'+bMaxi+')');
+      if(bMini != '-' || bMaxi != '-') cmd.find('.plage').empty().append('('+bMini+'/'+bMaxi+')');
+      else cmd.find('.plage').empty();
+      cmd.find('.widget-rain-water').delay(0).animate({height:(scaledValue)+"pt"},1000)
+      if(value > valMaxi)
+        $('.cmd[data-cmd_id=#id#] .widget-rain-title-value').css('color','red')
+      else if(value < valMini)
+        $('.cmd[data-cmd_id=#id#] .widget-rain-title-value').css('color','cyan')
+      else {
+        var col = $('.cmd[data-cmd_id=#id#] .plage').css('color')
+        $('.cmd[data-cmd_id=#id#] .widget-rain-title-value').css('color','var(--link-color)')
+      }
     }
-    if('#scale#' != '') {
+    if(scale#id# != 1) {
       let el = $('.cmd[data-cmd_id=#id#] .widget-rain-main');
-      el.width(el.width() * '#scale#');
-      el.height(el.height() * '#scale#')
+      el.width(el.width() * scale#id#);
+      el.height(el.height() * scale#id#)
     }
-    if('#animate#' == '0') {
+    if ('#animate#' == '0') {
       $('.cmd[data-cmd_id=#id#] .widget-rain-water').css('animation','none')
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
