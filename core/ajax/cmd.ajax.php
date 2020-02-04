@@ -275,7 +275,7 @@ try {
 						$dateStart = date('Y-m-d 00:00:00', strtotime('- 2 days ' . $dateEnd));
 					}else{
 						$dateEnd = date('Y-m-d H:i:s');
-						$dateStart = date('Y-m-d 00:00:00', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
+						$dateStart = date('Y-m-d H:i:s', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
 					}
 				}
 			}
