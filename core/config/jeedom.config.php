@@ -111,6 +111,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'timeDoor' => array('template' => 'tmplicon','replace' => array('#_time_widget_#' => '1','#_icon_on_#' => '<i class=\'icon_green icon jeedom-porte-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-porte-ouverte\'></i>')),
 					'timePresence' => array('template' => 'tmplicon','replace' => array('#_time_widget_#' => '1','#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-mouvement\'></i>')),
 					'timeWindow' => array('template' => 'tmplicon','replace' => array('#_time_widget_#' => '1','#_icon_on_#' => '<i class=\'icon_green icon jeedom-fenetre-ferme\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-fenetre-ouverte\'></i>')),
+					'timeAlert' => array('template' => 'tmplicon','replace' => array('#_time_widget_#' => '1','#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>','#_icon_off_#' => '<i class=\'icon_red icon jeedom-alerte2\'></i>')),
 				),
 				'numeric'=>array(
 					'heatPiloteWire' => array('template' => 'tmplmultistate',
