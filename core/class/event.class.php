@@ -30,7 +30,7 @@ class event {
 	public static function getFileDescriptorLock() {
 		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
-			chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
+			@chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
 		}
 		return self::$_fd;
 	}
