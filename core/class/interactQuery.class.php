@@ -106,7 +106,7 @@ class interactQuery {
 	}
 	
 	public static function recognize($_query) {
-		$_query = interactDef::sanitizeQuery($_query);
+		$_query = trim(interactDef::sanitizeQuery($_query));
 		if (trim($_query) == '') {
 			return null;
 		}
