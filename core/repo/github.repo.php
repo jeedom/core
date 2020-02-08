@@ -78,7 +78,7 @@ class repo_github {
 			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => jeedom::getTmpFolder('github') . '/cache'))
 		);
 		if (config::byKey('github::token') != '') {
-			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_URL_TOKEN);
+			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_HTTP_TOKEN);
 		}
 		return $client;
 	}
