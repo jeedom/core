@@ -65,12 +65,6 @@ else
 	fi
 fi
 
-echo 'All init complete'
-chmod 777 /dev/tty*
-chmod 777 -R /tmp
-chmod 755 -R /var/www/html
-chown -R www-data:www-data /var/www/html
-
 echo 'Start sshd'
 service ssh restart
 
@@ -96,7 +90,11 @@ if ! [ -f /.jeedom_backup_restore ]; then
 	fi
 fi
 
-
+echo 'All init complete'
+chmod 777 /dev/tty*
+chmod 777 -R /tmp
+chmod 755 -R /var/www/html
+chown -R www-data:www-data /var/www/html
 
 echo 'Start apache2'
 service apache2 restart
