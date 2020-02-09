@@ -1,14 +1,14 @@
 <div class="cmd cmd-widget #history#" data-type="action" data-subtype="slider" data-template="tmplimg" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
-    <span class="cursor iconCmd"></span>
+    <span class="cursor imgCmd"></span>
     <div class="slider full-width-slider ui-slider">
       <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
     </div>
     <span class="timeCmd#uid# timeCmd"></span>
   </center>
   <script>
-    $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
+    $('.cmd[data-cmd_id=#id#] .imgCmd').on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
         jeedom.cmd.execute({id: '#id#', value: {slider:value }});
@@ -31,10 +31,10 @@
       cmd.find('.slider input').value(_options.display_value);
       if (parseInt(_options.display_value) > 0) {
         cmd.attr('data-state','on')
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"));
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#","#_img_dark_on_#"));
       }else {
         cmd.attr('data-state','off')
-        cmd.find('.iconCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"));
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#","#_img_dark_off_#"));
       }
       var style = '';
       if(!isNaN('#_mobile_width_#')){
