@@ -419,20 +419,22 @@ pouvez utiliser les tags suivants :
 
 -   #trigger# : Peut être le nom de la commande qui a déclenché le scénario, 'api' si le lancement a été déclenché par l'API, 'schedule' si il a été lancé par une programmation, 'user' si il a été lancé manuellement
 
+- #trigger_value# : Pour la valeur de la commande ayant déclenché le scénario
+
 Vous avez aussi les tags suivants en plus si votre scénario a été
 déclenché par une interaction :
 
 -   #query# : interaction ayant déclenché le scénario,
 
 -   #profil# : profil de l’utilisateur ayant déclenché le scénario
-    (puede estar vacío).
+    (peut être vide).
 
 > **Important**
 >
 > Lorsqu’un scénario est déclenché par une interaction, celui-ci est
 > forcément exécuté en mode rapide.
 
-Las funciones de cálculo
+Les fonctions de calcul
 -----------------------
 
 Plusieurs fonctions sont disponibles pour les équipements :
@@ -440,25 +442,25 @@ Plusieurs fonctions sont disponibles pour les équipements :
 -   average(commande,période) et averageBetween(commande,start,end)
     : Donnent la moyenne de la commande sur la période
     (period=[month,day,hour,min] ou [expression
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   min(commande,période) et minBetween(commande,start,end) :
     Donnent le minimum de la commande sur la période
-    (period=[month,day,hour,min] o [expression
+    (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   max(commande,période) et maxBetween(commande,start,end) :
     Donnent le maximum de la commande sur la période
-    (period=[month,day,hour,min] o [expresión
+    (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   duration(commande, valeur, période) et
@@ -467,22 +469,22 @@ Plusieurs fonctions sont disponibles pour les équipements :
     période (period=[month,day,hour,min] ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
--   statistics(comando, cálculo, período) y
+-   statistics(commande,calcul,période) et
     statisticsBetween(commande,calcul,start,end) : Donnent le résultat
     de différents calculs statistiques (sum, count, std,
     variance, avg, min, max) sur la période
-    (period=[month,day,hour,min] o [expresión
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o
+    (period=[month,day,hour,min] ou [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   tendance(commande,période,seuil) : Donne la tendance de la
     commande sur la période (period=[month,day,hour,min] ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php)) :
 
 -   stateDuration(commande) : Donne la durée en secondes
@@ -492,28 +494,28 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   lastChangeStateDuration(commande,valeur) : Donne la durée en
     secondes depuis le dernier changement d’état à la valeur passée
-    en parámetro. Devuelve -1 si ningún
+    en paramètre. Retourne -1 si aucun
     historique n’existe ou si la valeur n’existe pas dans l’historique.
     Retourne -2 si la commande n’est pas historisée
 
 -   lastStateDuration(commande,valeur) : Donne la durée en secondes
     pendant laquelle l’équipement a dernièrement eu la valeur choisie.
     Retourne -1 si aucun historique n’existe ou si la valeur n’existe pas dans l’historique.
-    Devuelve -2 si el comando no está historizado
+    Retourne -2 si la commande n’est pas historisée
 
 -   stateChanges(commande,[valeur], période) et
     stateChangesBetween(commande, [valeur], start, end) : Donnent le
     nombre de changements d’état (vers une certaine valeur si indiquée,
     ou au total sinon) sur la période (period=[month,day,hour,min] ou
-    [expresión
-    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) o
+    [expression
+    PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou
     entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou
-    [expresión
+    [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php))
 
 -   lastBetween(commande,start,end) : Donne la dernière valeur
     enregistrée pour l’équipement entre les 2 bornes demandées (sous la
-    forma Y-m-d H:i:s o [expresión
+    forme Y-m-d H:i:s ou [expression
     PHP](http://php.net/manual/fr/datetime.formats.relative.php))
 
 -   variable(mavariable,valeur par défaut) : Récupère la valeur d’une
@@ -527,7 +529,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
     depuis le dernier lancement du scénario, renvoi 0 si le scénario n'existe pas
 
 -   collectDate(cmd,[format]) : Renvoie la date de la dernière donnée
-    para el comando dado en el parámetro, el segundo parámetro opcional
+    pour la commande donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
@@ -535,29 +537,29 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 -   valueDate(cmd,[format]) : Renvoie la date de la dernière donnée
     pour la commande donnée en paramètre, le 2ème paramètre optionnel
-    permite especificar el formato de retorno (detalles
+    permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
     signifie que la commande est introuvable et -2 que la commande n’est
-    sin tipo info
+    pas de type info
 
 -   eqEnable(equipement) : Renvoie l’état de l’équipement. -2 si
     l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il
-    esta inactivo
+    est inactif
 
 -   value(cmd) : Renvoie la valeur d'une commande si elle n'est pas donnée automatiquement par Jeedom (cas lors du stockage du nom de la commande dans une variable)    
 
 -   tag(montag,[defaut]) : Permet de récupérer la valeur d’un tag ou
-    el valor por defecto si no existe :
+    la valeur par défaut si il n’existe pas :
 
 -   name(type,commande) : Permet de récuperer le nom de la commande,
     de l’équipement ou de l’objet. Type vaut soit cmd, eqLogic ou
-    objeto.
+    object.
 
 -   lastCommunication(equipment,[format]) : Renvoie la date de la dernière communication
     pour l'équipement donnée en paramètre, le 2ème paramètre optionnel
     permet de spécifier le format de retour (détails
     [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1
-    significa que no se puede encontrar el equipo
+    signifie que l'équipment est introuvable
 
 -   color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur) : Renvoi une couleur calculé par rapport à valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit etre comprise entre valeur_min et valeur_max
 
@@ -566,54 +568,54 @@ s’utiliser avec [des expressions
 PHP](http://php.net/manual/fr/datetime.formats.relative.php) comme par
 exemple :
 
--   Now : ahora
+-   Now : maintenant
 
 -   Today : 00:00 aujourd’hui (permet par exemple d’obtenir des
-    resultados del día si entre 'Today' y 'Now')
+    résultats de la journée si entre 'Today' et 'Now')
 
--   Last Monday : último lunes a las 00:00
+-   Last Monday : lundi dernier à 00:00
 
--   5 days ago : hace 5 días
+-   5 days ago : il y a 5 jours
 
--   Yesterday noon : ayer mediodía
+-   Yesterday noon : hier midi
 
 -   Etc.
 
 Voici des exemples pratiques pour comprendre les valeurs retournées par
 ces différentes fonctions :
 
-| Enchufe teniendo como valores :            | 000 (durante 10 minutos) 11 (durante 1 hora) 000 (durante 10 minutos)    |
+| Prise ayant pour valeurs :           | 000 (pendant 10 minutes) 11 (pendant 1 heure) 000 (pendant 10 minutes)    |
 |--------------------------------------|--------------------------------------|
-| average(enchufe,periodo)             | Devuelve el promedio de 0 y 1 (puede  |
-|                                      | ser influenciado por el polling)      |
+| average(prise,période)             | Renvoie la moyenne des 0 et 1 (peut  |
+|                                      | être influencée par le polling)      |
 | averageBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie la moyenne de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
 | min(prise,période)                 | Renvoie 0 : la prise a bien été éteinte dans la période              |
 | minBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le minimum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| max(enchufe,período)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
+| max(prise,période)                 | Renvoie 1 : la prise a bien été allumée dans la période              |
 | maxBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,2015-01-01 00:00:00,2015-01-15 00:00:00) | Renvoie le maximum de la commande entre le 1 janvier 2015 et le 15 janvier 2015                         |
-| duración (enchufe,1,período)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
+| duration(prise,1,période)          | Renvoie 60 : la prise était allumée (à 1) pendant 60 minutes dans la période                              |
 | durationBetween(\#[Salon][Prise][Etat]\#,0,Last Monday,Now)   | Renvoie la durée en minutes pendant laquelle la prise était éteinte depuis lundi dernier.                |
-| statistics(enchufe,count,periodo)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
-| tendencia(enchufe,período,0.1)        | Devuelve -1 : tendencia bajista    |
-| stateDuration(enchufe)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
-| lastChangeStateDuration(enchufe,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
-| lastChangeStateDuration(enchufe,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
+| statistics(prise,count,période)    | Renvoie 8 : il y a eu 8 remontées d’état dans la période               |
+| tendance(prise,période,0.1)        | Renvoie -1 : tendance à la baisse    |
+| stateDuration(prise)               | Renvoie 600 : la prise est dans son état actuel depuis 600 secondes (10 minutes)                             |
+| lastChangeStateDuration(prise,0)   | Renvoie 600 : la prise s’est éteinte (passage à 0) pour la dernière fois il y a 600 secondes (10 minutes)     |
+| lastChangeStateDuration(prise,1)   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | lastStateDuration(prise,0)         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
-| lastStateDuration(enchufe,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
-| stateChanges(enchufe,periodo)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
+| lastStateDuration(prise,1)         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
+| stateChanges(prise,période)        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
 | stateChanges(prise,0,période)      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
 | stateChanges(prise,1,période)      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
-| lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Yesterday,Today) | Devuelve la última temperatura registrada ayer.                    |
+| lastBetween(\#[Salle de bain][Hydrometrie][Humidité]\#,Yesterday,Today) | Renvoie la dernière température enregistrée hier.                    |
 | variable(plop,10)                  | Renvoie la valeur de la variable plop ou 10 si elle est vide ou n’existe pas                         |
 | scenario(\#[Salle de bain][Lumière][Auto]\#) | Renvoie 1 en cours, 0 si arreté et -1 si desactivé, -2 si le scénario n’existe pas et -3 si l’état n’est pas cohérent                         |
 | lastScenarioExecution(\#[Salle de bain][Lumière][Auto]\#)   | Renvoie 300 si le scénario s’est lancé pour la dernière fois il y a 5 min                                  |
-| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devuelve 2015-01-01 17:45:12          |
-| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Devuelve 2015-01-01 17:50:12          |
+| collectDate(\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie 2015-01-01 17:45:12          |
+| valueDate(\#[Salle de bain][Hydrometrie][Humidité]\#) | Renvoie 2015-01-01 17:50:12          |
 | eqEnable(\#[Aucun][Basilique]\#)       | Renvoie -2 si l’équipement est introuvable, 1 si l’équipement est actif et 0 s’il est inactif          |
 | tag(montag,toto)                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
-| name(eqLogic,\#[Salle de bain][Hydrometrie][Humidité]\#)     | Devuelve Hidrometría                  |
+| name(eqLogic,\#[Salle de bain][Hydrometrie][Humidité]\#)     | Renvoie Hydrometrie                  |
 
-Las funciones matemáticas
+Les fonctions mathématiques
 ---------------------------
 
 Une boîte à outils de fonctions génériques peut également servir à
@@ -623,35 +625,35 @@ effectuer des conversions ou des calculs :
 
 -   randText(texte1;texte2;texte…​..) : Permet de retourner un des
     textes aléatoirement (séparer les texte par un ; ). Il n’y a pas
-    del límite en la cantidad de texto.
+    de limite dans le nombre de texte.
 
 -   randomColor(min,max) : Donne une couleur aléatoire compris entre 2
-    terminales ( 0 => rojo, 50 => verde, 100 => azul).
+    bornes ( 0 => rouge, 50 => vert, 100 => bleu).
 
 -   trigger(commande) : Permet de connaître le déclencheur du scénario
     ou de savoir si c’est bien la commande passée en paramètre qui a
-    desencadenó el escenario.
+    déclenché le scénario.
 
 -   triggerValue(commande) : Permet de connaître la valeur du
-    disparador del escenario.
+    déclencheur du scénario.
 
 -   round(valeur,[decimal]) : Donne un arrondi au-dessus, [decimal]
     nombre de décimales après la virgule.
 
 -   odd(valeur) : Permet de savoir si un nombre est impair ou non.
-    Devuelve 1 si es impar 0 de lo contrario.
+    Renvoie 1 si impair 0 sinon.
 
 -   median(commande1,commande2…​.commandeN) : Renvoie la médiane
-    de los valores.
+    des valeurs.
 
 -   avg(commande1,commande2…​.commandeN) : Renvoie la moyenne
-        unos valores.
+        des valeurs.
 
 -   time_op(time,value) : Permet de faire des opérations sur le temps,
     avec time=temps (ex : 1530) et value=valeur à ajouter ou à
-    restar en minutos.
+    soustraire en minutes.
 
--   `time_between(time,start,end)` : Permite probar si un tiempo es
+-   `time_between(time,start,end)` : Permet de tester si un temps est
     entre deux valeurs avec `time=temps` (ex : 1530), `start=temps`, `end=temps`.
     Les valeurs start et end peuvent être à cheval sur minuit.
 
@@ -663,101 +665,101 @@ effectuer des conversions ou des calculs :
 
 -   floor(time/60) : Permet de convertir des secondes en minutes, ou
     des minutes en heures (floor(time/3600) pour des secondes
-    en horas)
+    en heures)
 
 - convertDuration(secondes) : Permet de convertir des secondes en j/h/mn/s.
 
-Y ejemplos prácticos :
+Et les exemples pratiques :
 
 
-| Ejemplo de función                  | Resultado devuelto                    |
+| Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#) | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
 | randomColor(40,60)                 | Retourne une couleur aléatoire  proche du vert.   
 | trigger(#[Salle de bain][Hydrometrie][Humidité]#)   | 1 si c’est bien \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# qui a déclenché le scénario sinon 0  |
 | triggerValue(#[Salle de bain][Hydrometrie][Humidité]#) | 80 si l’hydrométrie de \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\# est de 80 %.                         |
-| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Devuelve 9 si el porcentaje de humedad es 85                     |
-| odd(3)                             | Devuelve 1                            |
-| mediana(15,25,20)                   | Devuelve 20
-| avg(10,15,18)                      | Devuelve 14.3                     |
-| time_op(#time#, -90)               | si son las 16h50, devuelve : 1650 - 0130 = 1520                          |
-| formatTime(1650)                   | Devuelve 16h50                        |
+| round(#[Salle de bain][Hydrometrie][Humidité]# / 10) | Renvoie 9 si le pourcentage d’humidité et 85                     |
+| odd(3)                             | Renvoie 1                            |
+| median(15,25,20)                   | Renvoie 20        
+| avg(10,15,18)                      | Renvoie 14.3                     |
+| time_op(#time#, -90)               | s’il est 16h50, renvoie : 1650 - 0130 = 1520                          |
+| formatTime(1650)                   | Renvoie 16h50                        |
 | floor(130/60)                      | Renvoie 2 (minutes si 130s, ou heures si 130m)                      |
-| convertDuration(3600)              | Devuelve 1h 0min 0s                      |
+| convertDuration(3600)              | Renvoie 1h 0min 0s                      |
 | convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60) | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
 
 
-Los comandos específicos
+Les commandes spécifiques
 =========================
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
--   **Pausa** (sleep) : Pausa de x segundo(s).
+-   **Pause** (sleep) : Pause de x seconde(s).
 
 -   **variable** (variable) : Création/modification d’une variable ou de la valeur
-    de una variable.
+    d’une variable.
 
 -   **Supprimer variable** (delete_variable) : Permet de supprimer une variable
 
 -   **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags
     permet d’envoyer des tags au scénario, ex : montag=2 (attention il
-    solo use letras de la a a la z. No letras mayúsculas, no
+    ne faut utiliser que des lettre de a à z. Pas de majuscules, pas
     d’accents et pas de caractères spéciaux). On récupère le tag dans le
     scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le status des "SI" (ce status est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans)
 
--   **Parar** (stop) : Para el escenario.
+-   **Stop** (stop) : Arrête le scénario.
 
 -   **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide
-    (máximo 2 h), el tiempo de espera es en segundo(s).
+    (maximum 2h), le timeout est en seconde(s).
 
 -   **Aller au design** (gotodesign) : Change le design affiché sur tous les
-    navegadores por el diseño solicitado.
+    navigateurs par le design demandé.
 
 -   **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 
--   **Crear un mensaje** (mensaje) : Permite de agregar un mensaje en el centro
-    de mensajes.
+-   **Créer un message** (message) : Permet d’ajouter un message dans le centre
+    de messages.
 
--   **Activar/ Desactivar Ocultar/Mostrar un equipo** (equipo): Permite
-    modificar las propiedades de un dispositivo
-    visible/invisible, activo/inactivo.
+-   **Activer/Désactiver Masquer/afficher un équipement** (equipement) : Permet de
+    modifier les propriétés d’un équipement
+    visible/invisible, actif/inactif.
 
--   **Hacer una solicitud** (ask) : Permite indicarle a Jeedom que hay que hacer
-    una pregunta al usuario. La respuesta se almacena en una
-    variable, luego simplemente pruebe su valor. Por el momento,
-    solos los plugins sms y slack son compatibles. Atención, esta
+-   **Faire une demande** (ask) : Permet d’indiquer à Jeedom qu’il faut poser
+    une question à l’utilisateur. La réponse est stockée dans une
+    variable, il suffit ensuite de tester sa valeur. Pour le moment,
+    seuls les plugins sms et slack sont compatibles. Attention, cette
     fonction est bloquante. Tant qu’il n’y a pas de réponse ou que le
-    timeout no esta alcanzando, el escenario espera.
+    timeout n’est pas atteint, le scénario attend.
 
--   **Parar Jeedom** (jeedom_poweroff) : Solicitud a Jeedom que se apague.
+-   **Arrêter Jeedom** (jeedom_poweroff) : Demande à Jeedom de s’éteindre.
 
 -   **Retourner un texte/une donnée** (scenario_return) : Retourne un texte ou une valeur
-    para una interacción por ejemplo.
+    pour une interaction par exemple.
 
--   **Icono** (icono) : Permite cambiar el icono de representación del escenario.
+-   **Icône** (icon) : Permet de changer l’icône de représentation du scénario.
 
--   **Alerta** (alert) : Permite mostrar un pequeño mensaje de alerta en todos
-    los navegadores que tienen una página abierta de Jeedom. Puede, en
-    además, elegir 4 niveles de alerta.
+-   **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous
+    les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en
+    plus, choisir 4 niveaux d’alerte.
 
 -   **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être
     validé sur tous les navigateurs qui ont une page jeedom ouverte.
 
 -   **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG
     ou SVG) et de l’envoyer par le biais d’une commande de type message.
-    Atención, si su acceso a Internet está en HTTPS sin firmar, esta
-    funcionalidad no funcionará. Debe ser HTTP o HTTPS con un certificado firmado.
+    Attention, si votre accès Internet est en HTTPS non-signé, cette
+    fonctionalité ne marchera pas. Il faut du HTTP ou HTTPS signé.
 
 -   **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la
     programmation de tous les blocs DANS et A du scénario.
 
--   **Evento** (event) : Permite insertar un valor en un comando de tipo información arbitrariamente
+-   **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de manière arbitraire
 
 -   **Tag** (tag) : Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'exécution en cours du scénario à la difference des variables qui survivent à la fin du scénario)
 
 - **Coloration des icones du dashboard** (setColoredIcon) : permet d'activer ou non la coloration des icones sur le dashboard
 
-Plantilla de escenario
+Template de scénario
 ====================
 
 Cette fonctionalité permet de transformer un scénario en template pour
@@ -767,37 +769,37 @@ du Market.
 
 ![scenario15](../images/scenario15.JPG)
 
-Entonces verá esta ventana :
+Vous verrez alors cette fenêtre :
 
 ![scenario16](../images/scenario16.JPG)
 
-Gracias a esta, tienes la posibilidad :
+A partir de celle-ci, vous avez la possibilité :
 
 -   D’envoyer un template à Jeedom (fichier JSON préalablement
-    recuperado),
+    récupéré),
 
--   Para consultar la lista de escenarios disponibles en el Market,
+-   De consulter la liste des scénarios disponibles sur le Market,
 
 -   De créer un template à partir du scénario courant (n’oubliez pas de
-    dar un nombre),
+    donner un nom),
 
--   De consultar las plantillas actualmente presentes en su Jeedom.
+-   De consulter les templates actuellement présents sur votre Jeedom.
 
-Al hacer clic en una plantilla, obtiene :
+Par un clic sur un template, vous obtenez :
 
 ![scenario17](../images/scenario17.JPG)
 
-Arriba, puede :
+En haut, vous pouvez :
 
--   **Compartir**: compartir la plantilla en el Market,
+-   **Partager** : partager le template sur le Market,
 
--   **Eliminar**: eliminar la plantilla,
+-   **Supprimer** : supprimer le template,
 
--   **Descargar**: obtenga la plantilla como un archivo JSON
-    para enviarlo a otro Jeedom por ejemplo.
+-   **Télécharger** : récupérer le template sous forme de fichier JSON
+    pour le renvoyer sur un autre Jeedom par exemple.
 
-Por debajo, tiene la parte para aplicar su plantilla al
-escenario actual.
+En-dessous, vous avez la partie pour appliquer votre template au
+scénario courant.
 
 Etant donné que d’un Jeedom à l’autre ou d’une installation à une autre,
 les commandes peuvent être différentes, Jeedom vous demande la
@@ -805,21 +807,21 @@ correspondance des commandes entre celles présentes lors de la création
 du template et celles présentes chez vous. Il vous suffit de remplir la
 correspondance des commandes puis de faire appliquer.
 
-Adición de función php
+Ajout de fonction php
 ====================
 
 > **IMPORTANT**
 >
 > L'ajout de fonction PHP est reservé aux utilisateurs avancés. La moindre erreur peut faire planter votre Jeedom
 
-## Establecimiento
+## Mise en place
 
-Vaya en la configuración de Jeedom, luego OS/DB e inicie el editor de archivos.
+Aller dans la configuration de Jeedom, puis OS/DB et lancer l'éditeur de fichier.
 
-Vaya en la carpeta data luego php y haga clic en el archivo user.function.class.php.
+Allez dans le dossier data puis php et cliquez sur le fichier user.function.class.php.
 
-Es en esta class que debe agregar sus funciones, encontrará un ejemplo de una función básica.
+C'est dans cette class que vous devez ajouter vos fonctions, vous y trouverez un exemple de fonction basique.
 
-> **IMPORTANTE**
+> **IMPORTANT**
 >
-> Si tiene un problema, siempre puede volver al archivo original copiando el contenido de user.function.class.sample.php en user.function.class.php
+> Si vous avez un soucis vous pouvez toujours revenir au fichier d'origine en copier le contenu de user.function.class.sample.php dans  user.function.class.php

@@ -460,6 +460,22 @@ Paramètres:
 
 -   string nbLine : nombre de ligne à recuperer
 
+log::add
+--------
+
+Permet d'écrire dans un log
+
+Paramètres:
+
+-   string log : nom du log à recuperer
+
+-   string type : type de log (debug, info, warning, error)
+
+-   string message : message text à écrire
+
+-   string logicalId : logicalId du message généré
+
+
 log::list
 ---------
 
@@ -529,6 +545,21 @@ message::all
 ------------
 
 Retourne la liste de tous les messages
+
+message::add
+--------
+
+Permet d'écrire dans un log
+
+Paramètres:
+
+-   string type : type de log (debug, info, warning, error)
+
+-   string message : message
+
+-   string action : action
+
+-   string logicalId : logicalId
 
 message::removeAll
 ------------------

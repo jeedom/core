@@ -1045,7 +1045,7 @@ class eqLogic {
 		}
 		if($_pourcent > 90 && $_pourcent > ($this->getStatus('battery',0)*1.5)){
 			$this->setConfiguration('batterytime',date('Y-m-d H:i:s'));
-			$this->save();
+			$this->save(true);
 		}
 		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
 		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
@@ -1531,7 +1531,7 @@ class eqLogic {
 	}
 
 	public function setName($_name) {
-		$_name = cleanComponanteName($_name);
+		$_name = substr(cleanComponanteName($_name),0,127);
 		if($_name != $this->name){
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;

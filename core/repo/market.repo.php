@@ -237,6 +237,10 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
+	public static function beckup_serverPath(){
+		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service_backup_url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
+	}
+	
 	public static function backup_install(){
 		if (exec('which duplicity | wc -l') == 0) {
 			try {
@@ -249,13 +253,13 @@ class repo_market {
 	
 	public static function backup_createFolderIsNotExist() {
 		$client = new Sabre\DAV\Client(array(
-			'baseUri' => 'https://' . config::byKey('market::backupServer'),
+			'baseUri' => config::byKey('service_backup_url'),
 			'userName' => config::byKey('market::username'),
-			'password' => config::byKey('market::backupPassword'),
+			'password' => config::byKey('market::password'),
 		));
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
 		$filesystem = new League\Flysystem\Filesystem($adapter);
-		$folders = $filesystem->listContents('/remote.php/webdav/');
+		$folders = $filesystem->listContents('/webdav/'.config::byKey('market::username'));
 		$found = false;
 		if (count($folders) > 0) {
 			foreach ($folders as $folder) {
@@ -266,7 +270,7 @@ class repo_market {
 			}
 		}
 		if (!$found) {
-			$filesystem->createDir('/remote.php/webdav/' . rawurldecode(config::byKey('market::cloud::backup::name')));
+			$filesystem->createDir('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
 		}
 	}
 	
@@ -308,8 +312,8 @@ class repo_market {
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --tempdir '.$base_dir . '/tmp';
-		$cmd .= ' ' . $base_dir . '  "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= ' ' . $base_dir;
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -322,6 +326,7 @@ class repo_market {
 			system::kill('duplicity');
 			shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir . '/tmp/duplicity*');
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
 			com_shell::execute($cmd);
 		}
 	}
@@ -347,8 +352,7 @@ class repo_market {
 		$cmd .= ' duplicity cleanup --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -369,8 +373,7 @@ class repo_market {
 		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
@@ -398,12 +401,12 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 2';
 		$cmd .= ' --timeout 60';
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		try {
 			$results = explode("\n", com_shell::execute($cmd));
 		} catch (\Exception $e) {
 			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
+			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
 			$results = explode("\n", com_shell::execute($cmd));
 		}
 		foreach ($results as $line) {
@@ -442,8 +445,7 @@ class repo_market {
 		$cmd .= ' --ssl-no-check-certificate';
 		$cmd .= ' --num-retries 3';
 		$cmd .= ' --tempdir '.$base_dir;
-		$cmd .= ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::backupPassword');
-		$cmd .= '@' . config::byKey('market::backupServer') . '/remote.php/webdav/' . config::byKey('market::cloud::backup::name').'"';
+		$cmd .= self::beckup_serverPath();
 		$cmd .= ' ' . $restore_dir;
 		try {
 			com_shell::execute($cmd);
@@ -569,6 +571,29 @@ class repo_market {
 			}
 			if (!self::monitoring_allow() && $monitoring_state) {
 				self::monitoring_stop();
+			}
+		} catch (Exception $e) {
+			
+		}
+		try {
+			if(self::monitoring_allow()){
+				$data = array(
+					'health' => jeedom::health(),
+					'name' => config::byKey('name'),
+					'hwkey' => jeedom::getHardwareKey()
+				);
+				$url = config::byKey('service_monitoring_url').'/service/monitoring';
+				$request_http = new com_http($url);
+				$request_http->setHeader(array(
+					'Content-Type: application/json',
+					'Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
+				));
+				$request_http->setPost(json_encode($data));
+				try {
+					$request_http->exec(10,1);
+				} catch (\Exception $e) {
+					
+				}
 			}
 		} catch (Exception $e) {
 			
@@ -826,7 +851,7 @@ class repo_market {
 				'hwkey' => jeedom::getHardwareKey(),
 				'localIp' => $internalIp,
 				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(true, false, false, true),
+				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
 				'information' => array(
 					'nbMessage' => message::nbMessage(),
 					'nbUpdate' => update::nbNeedUpdate(),
