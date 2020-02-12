@@ -133,7 +133,7 @@ sendVarToJS('market_display_info', $market_array);
 	</div>
 </div>
 <?php
-if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy'  && $market->getCertification() != 'Partenaire') {
+if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy' && $market->getCertification() != 'Partenaire') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
 $compatibilityHardware = $market->getHardwareCompatibility();
@@ -174,6 +174,9 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='col-sm-6'>
 		<legend>{{Compatibilité plateforme}}</legend>
 		<?php
+        if ($market->getHardwareCompatibility('v4') == 1) {
+			echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
+		}
 		if ($market->getHardwareCompatibility('diy') == 1) {
 			echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
 		}
@@ -223,7 +226,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-			
+
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -243,7 +246,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-			
+
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -275,7 +278,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 <style>
@@ -341,7 +344,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-	
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {

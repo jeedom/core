@@ -1016,22 +1016,22 @@ class scenarioExpression {
 				$return['#semaine#'] = date('W');
 				break;
 				case '#sjour#':
-				$return['#sjour#'] = '"' . date_fr(date('l')) . '"';
+				$return['#sjour#'] = date_fr(date('l'));
 				break;
 				case '#smois#':
-				$return['#smois#'] = '"' . date_fr(date('F')) . '"';
+				$return['#smois#'] = date_fr(date('F'));
 				break;
 				case '#njour#':
 				$return['#njour#'] = (int) date('w');
 				break;
 				case '#name#':
-				$return['#jeedom_name#'] = '"' . config::byKey('name') . '"';
+				$return['#jeedom_name#'] = config::byKey('name');
 				break;
 				case '#hostname#':
-				$return['#hostname#'] = '"' . gethostname() . '"';
+				$return['#hostname#'] = gethostname();
 				break;
 				case '#IP#':
-				$return['#IP#'] = '"' . network::getNetworkAccess('internal', 'ip', '', false) . '"';
+				$return['#IP#'] = network::getNetworkAccess('internal', 'ip', '', false);
 				break;
 				case '#trigger#':
 				$return['#trigger#'] = '';
@@ -1216,7 +1216,7 @@ class scenarioExpression {
 						continue;
 					}
 					if (is_string($value)) {
-						$options[$key] = str_replace('"', '', self::setTags($value, $scenario));
+						$options[$key] = self::setTags($value, $scenario);
 					}
 				}
 			}
@@ -1408,7 +1408,6 @@ class scenarioExpression {
 					}
 					return;
 				} elseif ($this->getExpression() == 'variable') {
-					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
 						$result = evaluate($options['value']);
 						if (!is_numeric($result)) {
@@ -1590,6 +1589,20 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Mise à jour du tag ', __FILE__) . '#' . $options['name'] . '#' . ' => ' . $result);
 					$scenario->setTags($tags);
 				} else {
+					//check user function:
+					if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
+						require_once __DIR__ . '/../../data/php/user.function.class.php';
+						$stringFunction = strval($this->getExpression());
+						$functionName = explode('(', $stringFunction)[0];
+						if (class_exists('userFunction') && method_exists('userFunction', $functionName)) {
+							$arguments = str_replace([$functionName, '(', ')'], '', $stringFunction);
+							$arguments = explode(',', $arguments);
+							$result = call_user_func_array('userFunction' . "::" . $functionName, $arguments);
+							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
+							return;
+						}
+					}
+					
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
 						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {

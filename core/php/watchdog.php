@@ -93,28 +93,6 @@ if ($enable) {
 	echo "NOT_ENABLED\n";
 }
 /******************************Web Server**************************************/
-/********************************Nginx****************************************/
-echo 'Check Nginx => ';
-$rc = 0;
-$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?nginx 2>/dev/null | wc -l') > 0);
-if ($enable) {
-	$rc = 0;
-	exec('systemctl status nginx', $output, $rc);
-	if ($rc == 0) {
-		echo "OK\n";
-	} else {
-		echo "NOK\n";
-		echo "Trying to restart Nginx\n";
-		shell_exec('systemctl restart nginx');
-		echo "Recheck Nginx => ";
-		exec('systemctl status nginx', $output, $rc);
-		if ($rc != 0) {
-			echo "NOK. Please check manually why...\n";
-		}
-	}
-} else {
-	echo "NOT_ENABLED\n";
-}
 /********************************Apache****************************************/
 echo 'Check Apache => ';
 $rc = 0;

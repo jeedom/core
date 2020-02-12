@@ -352,7 +352,9 @@ legend {
   overflow: hidden;
   z-index: 0;
 }
-
+.scenario-widget {
+  max-width: 75%;
+}
 .eqLogic-widget .btn,
 .eqLogic-widget .btn-default,
 .eqLogic-widget input[type=text],
@@ -1000,6 +1002,7 @@ pre {
   color: var(--txt-color);
 }
 .info,
+.info i,
 [data-coloredicons="1"] .icon_blue {
   color: var(--al-info-color) !important;
 }
@@ -1496,8 +1499,8 @@ body:not([data-page="plugin"]) .panel-title .pull-right {
 }
 
 input.inputPassword  {
-  font-size: 1px !important;
-  letter-spacing: 5px;
+  font-family: "text-security-disc" !important;
+  letter-spacing: 2px;
 }
 
 .form-actions {
@@ -1857,6 +1860,7 @@ ul.nav.nav-tabs li,
 .nav-tabs > li > a {
   padding: 10px 6px;
   z-index: 3;
+  border: 1px solid transparent !important;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
@@ -1865,6 +1869,7 @@ ul.nav.nav-tabs li,
   background-color: rgba(var(--panel-bg-color), var(--opacity)) !important;
   color: var(--link-color) !important;
   border-bottom : 1px var(--logo-primary-color) solid !important;
+  z-index: 4;
 }
 .nav-tabs,
 .nav-tabs * {

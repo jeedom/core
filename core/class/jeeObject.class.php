@@ -798,7 +798,7 @@ class jeeObject {
 	}
 	
 	public function setName($_name) {
-		$_name = cleanComponanteName($_name);
+		$_name = substr(cleanComponanteName($_name),0,127);
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;

@@ -314,6 +314,14 @@ class config {
 		return str_replace(array('\\','/',"'",'"'),'',$_value);
 	}
 	
+	public static function preConfig_info_latitude($_value){
+		return str_replace(',','.',$_value);
+	}
+	
+	public static function preConfig_info_longitude($_value){
+		return str_replace(',','.',$_value);
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	/*     * **********************Getteur Setteur*************************** */

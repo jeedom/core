@@ -144,6 +144,7 @@ function setTheme() {
 	<?php
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
+	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'css');
@@ -472,7 +473,7 @@ function setTheme() {
 					<?php
 					try {
 						if (!jeedom::isStarted()) {
-							echo '<div class="alert alert-danger">{{Jeedom est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
+							echo '<div class="alert alert-danger">'.config::byKey('product_name').'{{ est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
 						}
 						if (isset($plugin) && is_object($plugin)) {
 							include_file('desktop', $page, 'php', $plugin->getId());

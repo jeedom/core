@@ -1,13 +1,13 @@
-Jeedom nécessite-t-il un abonnement ?
-=====================================
+Does Jeedom requires a subscription?
+===
 
 No, Jeedom is fully usable without any need of
 subscription whatever. However, there are services offered for
 backups or calls / SMS but that actually stay
 optional.
 
-Jeedom utilise-t-il des serveurs extérieurs pour fonctionner ?
-==============================================================
+Does Jeedom require external servers to operate?
+===
 
 No, Jeedom does not use cloud infrastructure. Everything is done in
 local and you do not need our servers for your
@@ -15,60 +15,58 @@ installation works. Only services like the Market, the
 online backup or the Jeedom DNS require the use of our
 servers.
 
-Peut-on réordonner les commandes d’un équipement ?
-==================================================
+Can the order of the controls of a device be changed?
+===
 
 Yes it is possible, just drag and drop the commands of your
 object on its configuration.
 
-Peut-on éditer le style des widgets ?
-=====================================
+Can the style of the widgets be edited?
+===
 
 Yes it is possible, either through the widget plugin, or in
 using the General → Display page
 
-Peut-on mettre plusieurs fois le même équipement sur un design ?
-================================================================
+Can we put the same device more than once on a design? ==================
 
 No it is not possible, but you can duplicate it thanks to
 virtual plugin.
 
-Comment changer une donnée erronée de l’historique ?
-====================================================
+How to change an erroneous historical data? =============================
 
 It suffices, on a historical curve of the order, to click on the
 point in question. If you leave the field blank, then the value
 will be deleted.
 
-Combien de temps dure une sauvegarde ?
-======================================
+How long does a backup take?
+================
 
 There is no standard duration, it depends on the system and the volume of
 data to back up, but it can take more than 5 minutes, that's
 normal.
 
-Y a-t-il une application mobile dédiée ?
-========================================
+Is there a native mobile app?
+======================
 
 Jeedom has a mobile version suitable for use on mobile and
 Tablet. There is also a native app for Android and iOS.
 
-Quels sont les identifiants pour me connecter la première fois ?
-================================================================
+What are the credentials to log in the first time?
+==============================
 
 When you first connect to Jeedom (and even if you do not
 have not changed), the default username and password
 are admin / admin. At the first connection, it is strongly
 recommended to modify these identifiers for more security.
 
-Peut-on mettre Jeedom en https ?
-================================
+Can we put Jeedom in https?
+=============
 
 Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
 suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
 
-Comment se connecter en SSH ?
-=============================
+How to connect in SSH?
+===
 
 Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
 
@@ -76,12 +74,12 @@ Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-c
 - Username : "jeedom", password : "Mjeedom96"
 - Ou ce que vous avez mis à l'installation si vous êtes en DIY
 
-A noter que lorsque vous écrirez le mot de passe vous ne verrez rien s'écrire à l'écran, c'est normal.
+Note that when you type the password you will not see anything written on the screen, this is normal.
 
-Comment remettre à plat les droits ?
-====================================
+How can I reset the permissions ?
+===
 
-En SSH faites :
+In SSH do:
 
 ``` {.bash}
 sudo su -
@@ -89,15 +87,15 @@ chmod -R 775 /var/www/html
 chown -R www-data:www-data /var/www/html
 ```
 
-Où se trouvent les sauvegardes de Jeedom ?
-==========================================
+Where are Jeedom's backups located?
+=================
 
-Elles sont dans le dossier /var/www/html/backup
+They are in the /var/www/html/backup folder
 
-Comment mettre à jour Jeedom en SSH ?
-=====================================
+How to update Jeedom in SSH?
+===
 
-En SSH faites :
+In SSH do:
 
 ``` {.bash}
 sudo su -
@@ -106,24 +104,22 @@ chmod -R 775 /var/www/html
 chown -R www-data:www-data /var/www/html
 ```
 
-La Webapp est-elle compatible Symbian ?
-=======================================
+Is the Webapp compatible with Symbian
+===========================
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
+The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfortunately not compatible with Symbian.
 
-Sur quelles plateformes Jeedom peut-il fonctionner ?
-====================================================
+What platforms can Jeedom run on?
+=====
 
-Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
+For Jeedom to work, you need a linux platform with root rights or a docker type system. It therefore does not work on a pure android platform.
 
-Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ?
-====================================================
+I cannot update some plugin "Failed to download the file. Please try again later (size less than 100 bytes) ..."?
+===========================================
 
-Cela peut être dû à plusieurs choses, il faut :
+This can be caused be several things, you should:
 
-- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de Jeedom, partie mise à jour vous avez un bouton de test)
+- Check that your Jeedom is still connected to the market (in the Jeedom administration page, Updated tab, there is a button to test the connectivity)
 - Vérifier que le compte market a bien acheté le plugin en question
 - Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
 - Vérifier que votre version de Jeedom est bien compatible avec le plugin
@@ -227,8 +223,8 @@ mysqld --verbose
 
 Ou consulter le log : /var/log/mysql/error.log
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas
-===================================================
+The Shutdown/Restart buttons do not work
+===================================
 
 Sur une installation DIY c’est normal. En SSH, il faut faire la commande
 visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
@@ -307,10 +303,10 @@ yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache
 
 Il faut :
 
-- redemarrer Jeedom
+- restart Jeedom
 - aller dans l'administration de celui-ci (bouton roue cranté en haut a droite puis configuration en v3 ou Réglage -> Système -> Configuration en v4)
 - aller dans l'onglet OS/DB
 - lancer l'administration Système
 - cliquer sur Dpkg configure
-- attendre 10min
+- wait 10min
 - relancer les dépendances du plugins qui bloque

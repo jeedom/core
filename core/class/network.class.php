@@ -311,7 +311,7 @@ class network {
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
 		if(config::byKey('connection::4g') == 1){
-			$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu 1300');
+			$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu '.config::byKey('market::dns::mtu'));
 		}else{
 			$openvpn->setConfiguration('optionsAfterStart', '');
 		}
@@ -401,7 +401,7 @@ class network {
 			if (trim($value) == '') {
 				continue;
 			}
-			$return[] = $value;
+			$return[] = explode('@',$value)[0];
 		}
 		return $return;
 	}
