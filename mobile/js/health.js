@@ -29,7 +29,7 @@ function getHealth(){
         html += data[i].name
         html += '</td>'
         if(data[i].state){
-          html += '<td class="alert alert-sucess">'
+          html += '<td class="alert alert-success">'
         }else{
           html += '<td class="alert alert-danger">'
         }
