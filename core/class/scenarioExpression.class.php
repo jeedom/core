@@ -1065,13 +1065,13 @@ class scenarioExpression {
 	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
 		if ($_scenario == null) {
-			return '"' . $_default . '"';
+			return $_default;
 		}
 		$tags = $_scenario->getTags();
 		if (isset($tags['#' . $_name . '#'])) {
-			return $tags['#' . $_name . '#'];
+			return trim($tags['#' . $_name . '#'],'"';
 		}
-		return '"' . $_default . '"';
+		return $_default;
 	}
 	
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
