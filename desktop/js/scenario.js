@@ -1417,7 +1417,8 @@ function printScenario(_id) {
         modifyWithoutSave = false;
       }, 1000);
       setTimeout(function () {
-        updateTooltips();
+        checkNoMode()
+        updateTooltips()
       }, 500);
     }
   });
