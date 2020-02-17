@@ -89,7 +89,6 @@ class translate {
 				}
 			}
 		}
-		$modify = false;
 		$translate = self::getTranslation(self::getPluginFromName($_name));
 		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
@@ -105,7 +104,6 @@ class translate {
 			}
 			if (!isset($replace["{{" . $text . "}}"])) {
 				if (strpos($_name, '#') === false) {
-					$modify = true;
 					if (!isset($translate[$_name])) {
 						$translate[$_name] = array();
 					}
@@ -118,9 +116,6 @@ class translate {
 			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
 				$replace["{{" . $text . "}}"] = $text;
 			}
-		}
-		if ($language == 'fr_FR' && $modify) {
-			static::$translation[self::getLanguage()] = $translate;
 		}
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
