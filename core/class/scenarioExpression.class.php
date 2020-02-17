@@ -1050,7 +1050,7 @@ class scenarioExpression {
 		}
 		$tags = $_scenario->getTags();
 		if (isset($tags['#' . $_name . '#'])) {
-			return trim($tags['#' . $_name . '#'],'"');
+			return $tags['#' . $_name . '#'];
 		}
 		return $_default;
 	}
