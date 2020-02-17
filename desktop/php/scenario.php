@@ -158,6 +158,7 @@ if (is_array($scenarioListGroup)) {
 					<div class="col-sm-6">
 						<form class="form-horizontal">
 							<fieldset>
+								<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
 								<div class="form-group">
 									<label class="col-xs-5 control-label" >{{Nom du scénario}}</label>
 									<div class="col-xs-6">
@@ -256,48 +257,59 @@ if (is_array($scenarioListGroup)) {
 					</div>
 					<div class="col-sm-6">
 						<form class="form-horizontal">
-							<div class="form-group">
-								<div class="col-md-12">
-									<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
-								</div>
-							</div>
-							<br/>
-							<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
-							<div class="form-group">
-								<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
-								<div class="col-sm-9 col-xs-6">
-									<div class="input-group">
-										<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
-											<option value="provoke">{{Provoqué}}</option>
-											<option value="schedule">{{Programmé}}</option>
-											<option value="all">{{Les deux}}</option>
-										</select>
-										<span class="input-group-btn">
-											<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
-											</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
-										</span>
-									</div>
-								</div>
-								<label id="emptyModeWarning" class="warning col-xs-12" style="display: none;"><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
-							</div>
-							<div class="scheduleDisplay" style="display: none;">
+							<fieldset>
+								<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
 								<div class="form-group">
-									<label class="col-xs-3 control-label" >{{Précédent}}</label>
-									<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
-									<label class="col-xs-3 control-label" >{{Prochain}}</label>
-									<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+									<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
+									<div class="col-sm-9 col-xs-6">
+										<div class="input-group">
+											<select class="form-control roundedLeft scenarioAttr" data-l1key="mode">
+												<option value="provoke">{{Provoqué}}</option>
+												<option value="schedule">{{Programmé}}</option>
+												<option value="all">{{Les deux}}</option>
+											</select>
+											<span class="input-group-btn">
+												<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
+												</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+											</span>
+										</div>
+									</div>
+									<label id="emptyModeWarning" class="warning col-xs-12" style="display: none;"><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
 								</div>
-								<div class="scheduleMode"></div>
-							</div>
-							<div class="provokeMode provokeDisplay" style="display: none;">
-							</div>
-							<br>
-							<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
-							<div class="scenario_link"></div>
+								<div class="scheduleDisplay" style="display: none;">
+									<div class="form-group">
+										<label class="col-xs-3 control-label" >{{Précédent}}</label>
+										<div class="col-xs-3" ><span class="scenarioAttr label label-primary" data-l1key="forecast" data-l2key="prevDate" data-l3key="date"></span></div>
+										<label class="col-xs-3 control-label" >{{Prochain}}</label>
+										<div class="col-xs-3"><span class="scenarioAttr label label-success" data-l1key="forecast" data-l2key="nextDate" data-l3key="date"></span></div>
+									</div>
+									<div class="scheduleMode"></div>
+								</div>
+								<div class="provokeMode provokeDisplay" style="display: none;">
+								</div>
+								<br>
+								<hr class="hrPrimary">
+								<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
+								<div class="scenario_link"></div>
+							</fieldset>
 						</form>
 					</div>
 				</div>
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<div class="col-md-12">
+								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
 			</div>
