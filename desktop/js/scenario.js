@@ -1272,7 +1272,8 @@ function setAutocomplete() {
 
 function printScenario(_id) {
   $.hideAlert()
-  $.showLoading();
+  $.showLoading()
+  $('#emptyModeWarning').hide()
   jeedom.scenario.update[_id] =function(_options){
     if(_options.scenario_id =! $pageContainer.getValues('.scenarioAttr')[0]['id']){
       return;

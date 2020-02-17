@@ -278,7 +278,7 @@ if (is_array($scenarioListGroup)) {
 										</span>
 									</div>
 								</div>
-								<label id="emptyModeWarning" class="warning col-xs-12" ><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
+								<label id="emptyModeWarning" class="warning col-xs-12" style="display: none;"><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
 							</div>
 							<div class="scheduleDisplay" style="display: none;">
 								<div class="form-group">
