@@ -89,7 +89,7 @@ function createSummaryObserver() {
     subtree: true
   }
 
-  var targetNode = document.getElementById('objectPreviewContainer')
+  var targetNode = document.getElementById('objectOverviewContainer')
   _SummaryObserver_.observe(targetNode, observerConfig)
 }
 
