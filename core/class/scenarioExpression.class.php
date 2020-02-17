@@ -1069,7 +1069,7 @@ class scenarioExpression {
 		}
 		$tags = $_scenario->getTags();
 		if (isset($tags['#' . $_name . '#'])) {
-			return trim($tags['#' . $_name . '#'],'"');
+			return $tags['#' . $_name . '#'];
 		}
 		return $_default;
 	}
@@ -1376,7 +1376,7 @@ class scenarioExpression {
 							$tags = array();
 							$args = arg2array($this->getOptions('tags'));
 							foreach ($args as $key => $value) {
-								$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
+								$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario),'"');
 							}
 							$actionScenario->setTags($tags);
 						}
@@ -1395,7 +1395,7 @@ class scenarioExpression {
 							$tags = array();
 							$args = arg2array($this->getOptions('tags'));
 							foreach ($args as $key => $value) {
-								$tags['#' . trim(trim($key), '#') . '#'] = self::setTags(trim($value), $scenario);
+								$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario),'"');
 							}
 							$actionScenario->setTags($tags);
 						}
