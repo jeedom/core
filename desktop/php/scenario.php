@@ -261,6 +261,8 @@ if (is_array($scenarioListGroup)) {
 									<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
 								</div>
 							</div>
+							<br/>
+							<legend><i class="fas fa-play-circle"></i> {{Déclenchement}}</legend>
 							<div class="form-group">
 								<label class="col-sm-3 col-xs-6 control-label" >{{Mode du scénario}}</label>
 								<div class="col-sm-9 col-xs-6">
@@ -276,6 +278,7 @@ if (is_array($scenarioListGroup)) {
 										</span>
 									</div>
 								</div>
+								<label id="emptyModeWarning" class="warning col-xs-12" ><i class="warning fas fa-exclamation-circle"></i> {{Attention : aucun déclencheur paramétré !}}</label>
 							</div>
 							<div class="scheduleDisplay" style="display: none;">
 								<div class="form-group">
