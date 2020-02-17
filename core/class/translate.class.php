@@ -89,7 +89,6 @@ class translate {
 				}
 			}
 		}
-		$modify = false;
 		$translate = self::getTranslation(self::getPluginFromName($_name));
 		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
@@ -105,7 +104,6 @@ class translate {
 			}
 			if (!isset($replace["{{" . $text . "}}"])) {
 				if (strpos($_name, '#') === false) {
-					$modify = true;
 					if (!isset($translate[$_name])) {
 						$translate[$_name] = array();
 					}
