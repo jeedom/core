@@ -3342,10 +3342,10 @@
         "Le nom du l\\'objet ne peut pas être vide": "Le nom du l\\'objet ne peut pas être vide"
     },
     "core\/com\/http.com.php": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "Error de CURL:",
+        " sur la commande ": "en la orden",
+        " après ": "después",
+        " relance(s)": "holgura (s)",
         "Echec de la requête HTTP : ": "Error en solicitud HTTP:"
     },
     "core\/api\/tts.php": {
@@ -3573,10 +3573,10 @@
         "Alertes": "Alertas"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "Error de CURL:",
+        " sur la commande ": "en la orden",
+        " après ": "después",
+        " relance(s)": "holgura (s)",
         "Echec de la requête HTTP : ": "Error en solicitud HTTP:"
     }
 }

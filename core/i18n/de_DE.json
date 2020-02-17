@@ -2385,7 +2385,7 @@
         "Launch cron dependancy plugins": "Cron Plugin Abhängigkeiten starten ",
         "[END UPDATE SUCCESS]": "[UPDATE ENDE ERFOLGREICH]",
         "[END UPDATE ERROR]": "[END UPDATE ERROR]",
-        "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
+        "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 100Mo)": "Le fichier est trop gros (maximum 100Mo)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
@@ -2489,7 +2489,7 @@
         "La conversion suivante ne peut être vide : ": "La conversion suivante ne peut être vide : ",
         "Scénario ID inconnu": "Scénario ID inconnu",
         "Champs json invalide": "Champs json invalide",
-        "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
+        "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 10Mo)": "Le fichier est trop gros (maximum 10Mo)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
@@ -2511,7 +2511,7 @@
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - unberechtigter Zugriff",
-        "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",
+        "Impossible de trouver l\\'objet associé : ": "Das zugehörige Objekt konnte nicht gefunden werden:",
         "Aucune méthode correspondante à : ": "Aucune méthode correspondante à : "
     },
     "core\/ajax\/interact.ajax.php": {
@@ -2526,7 +2526,7 @@
         "401 - Accès non autorisé": "401 - unberechtigter Zugriff",
         "Aucune documentation trouvée": "Keine Dokumentation gefunden",
         "Commande non trouvée : ": "Commande non trouvée : ",
-        "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
+        "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
         "Le fichier est trop gros (maximum 1Go)": "Le fichier est trop gros (maximum 1Go)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
@@ -3342,10 +3342,10 @@
         "Le nom du l\\'objet ne peut pas être vide": "Le nom du l\\'objet ne peut pas être vide"
     },
     "core\/com\/http.com.php": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "CURL-Fehler:",
+        " sur la commande ": "auf die Bestellung",
+        " après ": "nach",
+        " relance(s)": "Clearance (s)",
         "Echec de la requête HTTP : ": "Fehler bei der HTTP Abfrage :"
     },
     "core\/api\/tts.php": {
@@ -3357,7 +3357,7 @@
         "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ": "Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : "
     },
     "core\/api\/jeeApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Vous n\\'êtes pas autorisé à effectuer cette action 1",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Sie sind nicht berechtigt, diese Aktion auszuführen 1",
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ' . $plugin . ')": "Vous n\\'êtes pas autorisé à effectuer cette action (API ' . $plugin . ')",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé)": "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé)",
         "Commande inconnue : ": "Commande inconnue : ",
@@ -3399,11 +3399,11 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "Vous n\\'êtes pas autorisé à faire cette action",
         "Scénario introuvable : ": "Scénario introuvable : ",
         "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
-        "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run",
-        "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",
+        "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run": "Der Parameter &quot;state&quot; darf nicht leer sein und muss den Wert [run",
+        "Impossible de trouver l\\'objet associé : ": "Das zugehörige Objekt konnte nicht gefunden werden:",
         "Impossible de trouver l\\'objet": "Impossible de trouver l\\'objet",
         "Demande pour le plugin : ": " Anfrage für das Plugin :",
-        "Aucune méthode correspondante : ": "Aucune méthode correspondante : "
+        "Aucune méthode correspondante : ": "Keine entsprechende Methode:"
     },
     "core\/api\/proApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Vous n\\'êtes pas autorisé à effectuer cette action",
@@ -3417,24 +3417,24 @@
         "Type incorrect (classe commande inexistante)": "Type incorrect (classe commande inexistante)",
         "Commande introuvable : ": "Commande introuvable : ",
         "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
-        "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run",
-        "Impossible d\\'ajouter une box Jeedom non esclave à un réseau Jeedom": "Impossible d\\'ajouter une box Jeedom non esclave à un réseau Jeedom",
-        "Seul un maître peut recevoir une sauvegarde": "Seul un maître peut recevoir une sauvegarde",
-        "Aucun esclave correspondant à l\\'ID : ": "Aucun esclave correspondant à l\\'ID : ",
-        "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
-        "Extension du fichier non valide (autorisé .tar.gz": "Extension du fichier non valide (autorisé .tar.gz",
-        "La taille du fichier est trop importante (maximum 50Mo)": "La taille du fichier est trop importante (maximum 50Mo)",
-        "Impossible de téléverser le fichier": "Impossible de téléverser le fichier",
-        "Seul un esclave peut restaurer une sauvegarde": "Seul un esclave peut restaurer une sauvegarde",
-        "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",
-        "Aucune méthode correspondante : ": "Aucune méthode correspondante : "
+        "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run": "Der Parameter &quot;state&quot; darf nicht leer sein und muss den Wert [run",
+        "Impossible d\\'ajouter une box Jeedom non esclave à un réseau Jeedom": "Es kann keine Jeedom-Box ohne Slave zu einem Jeedom-Netzwerk hinzugefügt werden",
+        "Seul un maître peut recevoir une sauvegarde": "Nur ein Master kann ein Backup erhalten",
+        "Aucun esclave correspondant à l\\'ID : ": "Kein Slave entsprechend der ID:",
+        "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
+        "Extension du fichier non valide (autorisé .tar.gz": "Ungültige Dateierweiterung (erlaubt .tar.gz",
+        "La taille du fichier est trop importante (maximum 50Mo)": "Die Dateigröße ist zu groß (maximal 50 MB)",
+        "Impossible de téléverser le fichier": "Datei kann nicht hochgeladen werden",
+        "Seul un esclave peut restaurer une sauvegarde": "Nur ein Slave kann ein Backup wiederherstellen",
+        "Impossible de trouver l\\'objet associé : ": "Das zugehörige Objekt konnte nicht gefunden werden:",
+        "Aucune méthode correspondante : ": "Keine entsprechende Methode:"
     },
     "core\/api\/marketApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Vous n\\'êtes pas autorisé à effectuer cette action 1",
+        "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Sie sind nicht berechtigt, diese Aktion auszuführen 1",
         "Tous les crons sont actuellement désactivés": "Alle Crons sind derzeit deaktiviert"
     },
     "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Erreur sur la fonction mobileManifest du plugin : "
+        "Erreur sur la fonction mobileManifest du plugin : ": "Fehler in der Plugin-Funktion mobileManifest:"
     },
     "mobile\/html\/equipment.html": {
         "Rechercher": "Suchen nach"
@@ -3539,18 +3539,18 @@
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
-        "Crons": "Crons",
+        "Crons": "cron",
         "Santé": "Gesundheit",
         "Alertes": "Warnungen"
     },
     "mobile\/js\/home.js": {
         "Version desktop": "Desktop Version",
         "Démons": "Daemon",
-        "Crons": "Crons",
+        "Crons": "cron",
         "Santé": "Gesundheit",
         "Analyse équipement": "Geräte Analyse",
         "Logs": "Protokolle",
-        "Forcer mise à jour": "Forcer mise à jour",
+        "Forcer mise à jour": "Update erzwingen",
         "Déconnexion": "Ausloggen",
         "Tout": "Alles"
     },
@@ -3569,14 +3569,14 @@
         "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
         "Démons": "Daemon",
-        "Crons": "Crons",
+        "Crons": "cron",
         "Alertes": "Warnungen"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "CURL-Fehler:",
+        " sur la commande ": "auf die Bestellung",
+        " après ": "nach",
+        " relance(s)": "Clearance (s)",
         "Echec de la requête HTTP : ": "Fehler bei der HTTP Abfrage :"
     }
 }
