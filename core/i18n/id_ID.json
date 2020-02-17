@@ -1831,7 +1831,7 @@
         "Chemin": "Chemin",
         "Id rapport": "Id rapport",
         "Extension": "Extension",
-        "Aperçu": "Aperçu"
+        "Aperçu": "penelitian"
     },
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -3604,10 +3604,10 @@
         ". Détails : ' ": ". Détails : ' "
     },
     "core\/com\/http.com.php": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "Kesalahan CURL:",
+        " sur la commande ": "atas pesanan",
+        " après ": "setelah",
+        " relance(s)": "izin (s)",
         "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     },
     "core\/api\/tts.php": {
@@ -3848,7 +3848,7 @@
     "mobile\/js\/equipment.js": {
         "Tout": "Semua",
         "Synthèse": "Synthèse",
-        "Aperçu": "Aperçu"
+        "Aperçu": "penelitian"
     },
     "mobile\/js\/health.js": {
         "Rafraichir": "menyegarkan",
@@ -3857,10 +3857,10 @@
         "Crons": "cron"
     },
     "mobile\/js\/cron.js": {
-        "Erreur cURL : ": "Erreur cURL : ",
-        " sur la commande ": " sur la commande ",
-        " après ": " après ",
-        " relance(s)": " relance(s)",
+        "Erreur cURL : ": "Kesalahan CURL:",
+        " sur la commande ": "atas pesanan",
+        " après ": "setelah",
+        " relance(s)": "izin (s)",
         "Echec de la requête HTTP : ": "Echec de la requête HTTP :"
     }
 }
