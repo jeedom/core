@@ -9,11 +9,11 @@ Un rapport est une capture d'écran de l'interface de Jeedom à un instant t.
 
 > **Note**
 >
-> Cette capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation.
+> Cette capture est adaptée pour ne pas prendre la barre de menu et autres éléments inutiles sur ce type d'utilisation.
 
-Vous pouvez le faire sur des vues, design, page de panel....
+Vous pouvez le faire sur des vues, designs, pages de panel....
 
-Elle se déclenche à partir d'un scénario avec la commande report.
+La génération se déclenche à partir d'un scénario avec la commande report.
 Vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram, etc).
 
 ## Utilisation
@@ -29,7 +29,7 @@ Ensuite, sélectionnez le nom du rapport en question. Vous verrez alors toutes l
 
 > **Important**
 >
-> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours. Vous pouvez configurer ce délai dans la configuration de Jeedom.
+> Une suppression automatique est faite par défaut pour les rapports vieux de plus de 30 jours. Vous pouvez configurer ce délai dans la configuration de Jeedom.
 
 Une fois le rapport sélectionné, vous pouvez le voir apparaître, le télécharger ou le supprimer.
 
