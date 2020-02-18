@@ -103,7 +103,7 @@ try {
 			if ( init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal']) ) {
 				$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
 				echo '<script>';
-				echo 'document.title = "' . $title . '"';
+				echo 'document.title = "' . secureXSS($title) . '"';
 				echo '</script>';
 			}
 		} catch (Exception $e) {
