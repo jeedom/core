@@ -236,6 +236,10 @@ class widgets {
     return $return;
   }
   
+  public function emptyTest(){
+    $this->test = null;
+  }
+  
   /*     * **********************Getteur Setteur*************************** */
   
   public function getId() {
