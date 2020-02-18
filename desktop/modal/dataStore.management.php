@@ -23,8 +23,9 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 
 <script>
 $(function() {
-	initTableSorter();
-	refreshDataStoreMangementTable();
+	initTableSorter()
+	refreshDataStoreMangementTable()
+	setTimeout(function(){$('#table_dataStore').find('th[data-column="0"]').trigger('sort')}, 100)
 	$('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
 		var tr = $(this).closest('tr');
 		if (tr.attr('data-datastore_id') == '') {
@@ -132,6 +133,7 @@ $(function() {
 				}
 				$('#table_dataStore tbody').append(tr);
 				$("#table_dataStore").trigger("update");
+
 			}
 		});
 	}

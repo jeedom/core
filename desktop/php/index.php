@@ -43,6 +43,7 @@ if (init('rescue', 0) == 0) {
 	$eventjs_plugin = array();
 	if (count($plugins_list) > 0) {
 		$categories = array();
+		$panelMenuArray = array();
 		foreach ($plugins_list as $category_name => $category) {
 			$icon = '';
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
@@ -74,7 +75,8 @@ if (init('rescue', 0) == 0) {
 				}
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
-					$panel_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+					$panelLi = '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
+					array_push($panelMenuArray, array('name' => $pluginObj->getName(), 'menu' => $panelLi));
 				}
 				if ($pluginObj->getEventjs() == 1) {
 					$eventjs_plugin[] = $pluginObj->getId();
@@ -83,6 +85,10 @@ if (init('rescue', 0) == 0) {
 			$plugin_menu .= '</ul>';
 			$plugin_menu .= '</li>';
 		}
+	}
+	array_multisort($panelMenuArray);
+	foreach ($panelMenuArray as $item) {
+		$panel_menu .= $item['menu'];
 	}
 }
 
@@ -268,7 +274,7 @@ function setTheme() {
 							<li class="dropdown cursor">
 								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-                          			<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
+									<li><a id="bt_gotoOverview" href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<li class="dropdown-submenu">
 										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard" href="index.php?v=d&p=dashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
 										<ul class="dropdown-menu scrollable-menu" role="menu" style="height: auto;max-height: 600px; overflow-x: hidden;">
