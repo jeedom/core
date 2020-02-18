@@ -275,7 +275,7 @@ class repo_market {
 	}
 	
 	public static function backup_send($_path) {
-		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
+		if (!config::byKey('service::backup::enable')) {
 			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
@@ -339,10 +339,7 @@ class repo_market {
 	}
 	
 	public static function backup_clean($_nb = null) {
-		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
-			return;
-		}
-		if (config::byKey('market::cloud::backup::password') == '') {
+		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
 		self::backup_install();
@@ -387,10 +384,7 @@ class repo_market {
 	}
 	
 	public static function backup_list() {
-		if (config::byKey('market::backupServer') == '' || config::byKey('market::backupPassword') == '') {
-			return array();
-		}
-		if (config::byKey('market::cloud::backup::password') == '') {
+		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
@@ -463,15 +457,6 @@ class repo_market {
 		jeedom::restore($backup_dir . '/' . $backup_name, true);
 	}
 	
-	/******************************MONITORING********************************/
-	
-	public static function monitoring_allow() {
-		if (config::byKey('market::monitoringServer') == '') {
-			return false;
-		}
-		return true;
-	}
-	
 	/*     * ***********************CRON*************************** */
 	
 	public static function cronHourly() {
@@ -488,7 +473,7 @@ class repo_market {
 	
 	public static function cron5() {
 		try {
-			if(self::monitoring_allow()){
+			if(config::byKey('service::monitoring::enable')){
 				$data = array(
 					'health' => jeedom::health(),
 					'name' => config::byKey('name'),
@@ -771,24 +756,11 @@ class repo_market {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
 			}
-			if (isset($_result['user::backupServer']) && config::byKey('market::backupServer') != $_result['user::backupServer']) {
-				config::save('market::backupServer', $_result['user::backupServer']);
-				$restart_monitoring = true;
+			if (isset($_result['service::monitoring::enable']) && config::byKey('service::monitoring::enable') != $_result['service::monitoring::enable']) {
+				config::save('service::monitoring::enable', $_result['service::monitoring::enable']);
 			}
-			if (isset($_result['user::backupPassword']) && config::byKey('market::backupPassword') != $_result['user::backupPassword']) {
-				config::save('market::backupPassword', $_result['user::backupPassword']);
-				$restart_monitoring = true;
-			}
-			if (isset($_result['user::monitoringServer']) && config::byKey('market::monitoringServer') != $_result['user::monitoringServer']) {
-				config::save('market::monitoringServer', $_result['user::monitoringServer']);
-				$restart_monitoring = true;
-			}
-			if (isset($_result['register::monitoringName']) && config::byKey('market::monitoringName') != $_result['register::monitoringName']) {
-				config::save('market::monitoringName', $_result['register::monitoringName']);
-				$restart_monitoring = true;
-			}
-			if ($restart_monitoring) {
-				self::monitoring_stop();
+			if (isset($_result['service::backup::enable']) && config::byKey('service::backup::enable') != $_result['service::backup::enable']) {
+				config::save('service::backup::enable', $_result['service::backup::enable']);
 			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
