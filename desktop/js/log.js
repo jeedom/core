@@ -32,6 +32,14 @@ $(".li_log").on('click', function() {
   });
 });
 
+$('#bt_resetLogFilterSearch').on('click', function () {
+  $('#in_searchLogFilter').val('').keyup()
+})
+
+$('#bt_resetGlobalLogSearch').on('click', function () {
+  $('#in_searchGlobalLog').val('').keyup()
+})
+
 $("#bt_clearLog").on('click', function(event) {
   jeedom.log.clear({
     log : $('.li_log.active').attr('data-log'),
