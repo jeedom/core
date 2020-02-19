@@ -29,57 +29,50 @@ $(function() {
   BACKGROUND_IMG = ''
   nbActiveAjaxRequest = 0
   utid = Date.now();
-  
+
   $(window).on('orientationchange', function(event) {
     //wait to get new width:
     window.setTimeout(function() {
       $('body').trigger('orientationChanged', [event.orientation])
     }, 200)
   })
-  
+
   initApplication()
-  
+
   $('body').delegate('.link', 'click', function () {
     modal(false)
     panel(false)
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   });
-  
+
   $('body').on('click','.objectSummaryParent',function() {
     modal(false)
     panel(false)
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
   })
-  
+
   $('body').on('click','.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
-    
+
     mainOpt.panel('open')
     $(document).scrollTop(PANEL_SCROLL)
-    
+
   });
-  
-  $('body').on('click','#bt_warnmeCmd',function() {
+
+  $('body').on('click','#bt_warnmeCmd', function() {
     page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')},null,true)
   });
-  
-  $('body').on('click','#bt_switchTheme',function() {
-    $('body').attr('data-theme',userProfils.mobile_theme_color_night)
-    var theme = 'core/themes/'+userProfils.mobile_theme_color_night+'/mobile/' + userProfils.mobile_theme_color_night + '.css'
-    if ($('#jQMnDColor').attr('href') == theme) {
-      $('body').attr('data-theme',userProfils.mobile_theme_color)
-      theme = 'core/themes/'+userProfils.mobile_theme_color+'/mobile/' + userProfils.mobile_theme_color + '.css'
-    }
-    $('#jQMnDColor').attr('href', theme).attr('data-nochange',1)
-    setBackgroundImage(BACKGROUND_IMG)
-    triggerThemechange()
+
+  $('body').on('click','#bt_switchTheme', function() {
+    switchTheme(jeedom.theme)
+    $('#bottompanel_otherActionList').panel("close")
   });
-  
+
   var webappCache = window.applicationCache
-  
+
   function updateCacheEvent(e) {
     if (webappCache.status == 3) {
       $('#div_updateInProgress').html('<p>Mise à jour de l\'application en cours<br/><span id="span_updateAdvancement">0</span>%</p>')
@@ -108,7 +101,7 @@ $(function() {
     try {
       webappCache.update()
     } catch(e) {
-      
+
     }
   }
 })
@@ -145,6 +138,35 @@ function setBackgroundImage(_path) {
     $backForJeedom.css('background-image','url("'+_path+'") !important')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
+}
+
+
+//theming:
+function switchTheme(themeConfig) {
+  var theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
+  var themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
+  var themeCook = 'alternate'
+
+  if ($('#jQMnDColor').attr('href') == theme) {
+    $('body').attr('data-theme', themeConfig.mobile_theme_color)
+    theme = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/' + themeConfig.mobile_theme_color + '.css'
+    themeShadows = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/shadows.css'
+    themeCook = 'default'
+    $('#jQMnDColor').attr('href', theme).attr('data-nochange',0)
+  } else {
+    $('#jQMnDColor').attr('href', theme).attr('data-nochange',1)
+    $('body').attr('data-theme', themeConfig.mobile_theme_color_night)
+  }
+
+  var now = new Date()
+  var time = now.getTime()
+  var expireTime = time + (8 * 3600)
+  now.setTime(expireTime)
+  document.cookie = "currentThemeMobile=" + themeCook + "; expires=" + now.toGMTString() +"; path=/"
+
+  if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
+  setBackgroundImage(BACKGROUND_IMG)
+  triggerThemechange()
 }
 
 function triggerThemechange() {
@@ -233,7 +255,9 @@ function changeThemeAuto(_ambiantLight){
   }
 }
 
-function insertHeader(rel, href, size = null, media = null) {
+
+
+function insertHeader(rel, href, size=null, media=null, id=null, type=null) {
   var link = document.createElement('link')
   link.rel = rel
   link.href = href
@@ -242,6 +266,12 @@ function insertHeader(rel, href, size = null, media = null) {
   }
   if (media != null) {
     link.media = media
+  }
+  if (id != null) {
+    link.id = id
+  }
+  if (type != null) {
+    link.type = type
   }
   document.head.appendChild(link)
 }
@@ -270,7 +300,7 @@ function initApplication(_reinit) {
       confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?')
     },
     success: function (data) {
-      jeedom.theme= data.result
+      jeedom.theme = data.result
       insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
       insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
       insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
@@ -324,13 +354,8 @@ function initApplication(_reinit) {
         if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
           $('body').attr('data-coloredIcons',1)
         }
-        $('body').attr('data-theme',jeedom.theme.current_mobile_theme)
-        $('#jQMnDColor').attr('href', 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.css')
-        changeThemeAuto()
-        if (isset(jeedom.theme.current_mobile_theme) && jeedom.theme.current_mobile_theme != '') {
-          include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + jeedom.theme.current_mobile_theme + '.js')
-        }
-        
+
+        //set theme
         var widget_shadow = true
         var useAdvance = 0
         if (typeof jeedom.theme != 'undefined') {
@@ -341,10 +366,30 @@ function initApplication(_reinit) {
             widget_shadow = false
           }
         }
-        if (widget_shadow) {
-          themePath = 'core/themes/' + jeedom.theme['mobile_theme_color'] + '/mobile'
-          include.push( 'core/themes/'+jeedom.theme.current_mobile_theme+'/mobile/' + 'shadows.css')
+        var themeWich = 'default'
+        if (getCookie('currentThemeMobile') == 'alternate') {
+          themeWich = 'alternate'
         }
+        var themeCSS = false
+        var themeShadowCSS = false
+        if (themeWich == 'default') {
+          themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+          themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/shadows.css'
+          $('body').attr('data-theme', jeedom.theme.mobile_theme_color)
+        } else {
+          themeCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+          themeShadowCSS = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/shadows.css'
+          $('body').attr('data-theme', jeedom.theme.mobile_theme_color_night)
+          $('#jQMnDColor').attr('href', themeCSS).attr('data-nochange',1)
+        }
+        $('#jQMnDColor').attr('href', themeCSS)
+
+        changeThemeAuto()
+        if (widget_shadow) {
+          insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
+        }
+
+        //custom:
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
             include.push('mobile/custom/custom.css')
@@ -353,13 +398,14 @@ function initApplication(_reinit) {
             include.push('mobile/custom/custom.js')
           }
         }
+
         triggerThemechange()
         for(var i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
         }
-        
+
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
           $.include(include, function () {
@@ -437,7 +483,7 @@ function page(_page, _title, _option, _plugin,_dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) {
-    
+
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
@@ -605,6 +651,17 @@ function init(_value, _default) {
 
 function normTextLower(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+}
+
+function getCookie(name) {
+  var cookies = document.cookie.split(';');
+  for(var i in cookies){
+    var csplit = cookies[i].split('=');
+    if(name.trim() == csplit[0].trim()){
+      return csplit[1];
+    }
+  }
+  return '';
 }
 
 function refreshUpdateNumber() {}
