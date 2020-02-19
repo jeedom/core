@@ -97,7 +97,7 @@ class translate {
 				$replace["{{" . $text . "}}"] = $text;
 			}
 			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
-				$replace["{{" . $text . "}}"] = $translate[$_name][$text];
+				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][$text],'##');
 			}
 			if (!isset($replace["{{" . $text . "}}"]) && isset($translate['common']) && isset($translate['common'][$text])) {
 				$replace["{{" . $text . "}}"] = $translate['common'][$text];
