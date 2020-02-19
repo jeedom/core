@@ -18,7 +18,6 @@ function initHome() {
    //set other actions:
   $bottomPanelOtherActions = $('#bottompanel_otherActionList')
   $bottomPanelOtherActions.empty()
-  //$bottomPanelOtherActions.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"><i class="fab fa-hubspot"></i> {{Synthèse}}</a>')
   if(jeedom.theme.mobile_theme_color != jeedom.theme.mobile_theme_color_night){
     $bottomPanelOtherActions.append('<a id="bt_switchTheme" class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button"><i class="fas fa-sync-alt"></i> {{Basculer le thème}}</a>')
   }
