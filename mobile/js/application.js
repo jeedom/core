@@ -160,7 +160,8 @@ function switchTheme(themeConfig) {
 
   var now = new Date()
   var time = now.getTime()
-  var expireTime = time + (8 * 3600)
+  //+8hours in milliseconds:
+  var expireTime = time + (8 * 3600 * 1000)
   now.setTime(expireTime)
   document.cookie = "currentThemeMobile=" + themeCook + "; expires=" + now.toGMTString() +"; path=/"
 
