@@ -62,6 +62,7 @@ try {
     if (!isset($widgets) || !is_object($widgets)) {
       $widgets = new widgets();
     }
+    $widgets->emptyTest();
     utils::a2o($widgets, $widgets_json);
     $widgets->save();
     ajax::success(utils::o2a($widgets));

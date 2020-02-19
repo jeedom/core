@@ -203,12 +203,6 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-5 control-label">{{Timeout en secondes (0 = illimité)}}</label>
-									<div class="col-xs-6">
-										<input class="form-control scenarioAttr" data-l1key="timeout">
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Log}}</label>
 									<div class="col-xs-6">
 										<select class="form-control scenarioAttr" data-l1key="configuration" data-l2key="logmode">
@@ -219,14 +213,23 @@ if (is_array($scenarioListGroup)) {
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-xs-5 control-label">{{Timeout}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Durée au delà de laquelle le scénario est coupé. 0 : pas de timeout.}}"></i></sup>
+										<sub>s</sub>
+									</label>
+									<div class="col-xs-6">
+										<input class="form-control scenarioAttr" data-l1key="timeout">
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Multi-lancement}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra tourner plusieurs fois en même temps}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario pourra s'éxécuter plusieurs fois en même temps.}}"></i></sup>
 									</label>
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">
 									</div>
 									<label class="col-xs-2 control-label">{{Synchrone}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.}}"></i></sup>
 									</label>
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">
@@ -287,12 +290,11 @@ if (is_array($scenarioListGroup)) {
 								</div>
 								<div class="provokeMode provokeDisplay" style="display: none;">
 								</div>
-								<br>
-								<hr class="hrPrimary">
-								<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
-								<div class="scenario_link"></div>
 							</fieldset>
 						</form>
+						<hr class="hrPrimary">
+						<legend><i class="fas fa-link"></i> {{Scénarios liés}}</legend>
+						<div class="scenario_link"></div>
 					</div>
 				</div>
 
