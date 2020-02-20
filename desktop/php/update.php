@@ -125,7 +125,7 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 			</div>
 		</fieldset>
 	</form>
-	<a class="btn btn-success pull-right" style="color:white;" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+	<a class="btn btn-success pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 </div>
 
 <?php include_file('desktop', 'update', 'js');?>
