@@ -197,8 +197,8 @@ function getJeedomLog(_autoUpdate, _log) {
             if(alertTimeout != null){
               clearTimeout(alertTimeout);
             }
-            $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés}}', level: 'success'});
-            _autoUpdate = 0;
+            _autoUpdate = 0
+            promptEndUpdate()
           }
           //update error:
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
@@ -225,6 +225,29 @@ function getJeedomLog(_autoUpdate, _log) {
     }
   });
 }
+
+function promptEndUpdate() {
+  bootbox.confirm({
+    title: '<h4><i class="success fas fa-check-circle"></i> {{Update terminée avec succès.}}</h4>',
+    message: '{{Voulez vous recharger la page maintenant ?}}',
+    buttons: {
+        confirm: {
+            label: '{{Recharger}}',
+            className: 'btn-success'
+        },
+        cancel: {
+            label: '{{Rester sur la page}}',
+            className: 'btn-info'
+        }
+    },
+    callback: function (result) {
+        if (result) {
+          window.location.reload(true)
+        }
+    }
+  })
+}
+
 
 function printUpdate() {
   jeedom.update.get({
@@ -494,5 +517,5 @@ function cleanUpdateLog() {
 function alertTimeout(){
   progress = -4;
   updateProgressBar();
-  $('#div_alert').showAlert({message: '{{La mise à jour semble etre bloquée (pas de changement depuis 10min. Vérifiez la log)}}', level: 'warning'});
+  $('#div_alert').showAlert({message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}', level: 'warning'});
 }
