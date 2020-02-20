@@ -625,61 +625,6 @@ $pageContainer.off('click','.bt_removeElement').on('click','.bt_removeElement', 
   PREV_FOCUS = null
 })
 
-$pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
-  clickedBloc = $(this).closest('.element')
-  //if element in an expression, copy the entire expression:
-  if (!clickedBloc.parent('#div_scenarioElement').length) {
-    SC_CLIPBOARD = clickedBloc.parent().parent().clone()
-  } else {
-    SC_CLIPBOARD = clickedBloc.clone()
-  }
-  SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
-  if(event.ctrlKey) {
-    setUndoStack()
-    clickedBloc.remove()
-  }
-  modifyWithoutSave = true;
-});
-
-$pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
-  if (!SC_CLIPBOARD) return
-  setUndoStack()
-  //clone clipboard and removes its id for later save:
-  newBloc = $(SC_CLIPBOARD).clone()
-  newBloc.find('input[data-l1key="id"]').attr("value", "")
-  newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
-  newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-
-  clickedBloc = $(this).closest('.element')
-  //Are we pasting inside an expresion:
-  if (clickedBloc.parent('#div_scenarioElement').length) {
-    //get the element if copied from an expression:
-    if (newBloc.hasClass('expression')) newBloc = newBloc.find('.element')
-    newBloc.insertAfter(clickedBloc)
-  } else {
-    //make it an expression if not yet:
-    if (newBloc.hasClass('expression')) {
-      newBloc.insertAfter(clickedBloc.parent().parent())
-    } else {
-      newDiv = '<div class="expression sortable col-xs-12">'
-      newDiv += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element">'
-      newDiv += '<div class="col-xs-12" id="insertHere">'
-      newDiv += '</div>'
-      newDiv += '</div>'
-      $(newDiv).insertAfter(clickedBloc.parent().parent())
-      newBloc.appendTo('#insertHere')
-      $('#insertHere').removeAttr('id')
-    }
-  }
-
-  if(event.ctrlKey) {
-    clickedBloc.remove()
-  }
-  updateSortable()
-  updateTooltips()
-  modifyWithoutSave = true
-});
-
 $pageContainer.off('click','.bt_addAction').on( 'click','.bt_addAction', function (event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}));
@@ -943,6 +888,75 @@ $pageContainer.off('focusout','.expression .expressionAttr[data-l1key=expression
     });
   }
 });
+
+/* COPY | PASTE */
+$pageContainer.off('click','.bt_copyElement').on('click','.bt_copyElement',  function (event) {
+  var clickedBloc = $(this).closest('.element')
+  //If element in an expression, copy the entire expression:
+  if (!clickedBloc.parent('#div_scenarioElement').length) {
+    SC_CLIPBOARD = clickedBloc.parent().parent()
+  } else {
+    SC_CLIPBOARD = clickedBloc
+  }
+  //Sync select options tags:
+  SC_CLIPBOARD.find('select').each(function() {
+    $(this).find('option[value='+$(this).val()+']').attr('selected','selected')
+  })
+  SC_CLIPBOARD = SC_CLIPBOARD.clone()
+  SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
+
+  localStorage.removeItem('jeedomScCopy')
+  localStorage.setItem('jeedomScCopy', $(SC_CLIPBOARD)[0].outerHTML)
+
+  if(event.ctrlKey) {
+    setUndoStack()
+    clickedBloc.remove()
+  }
+  modifyWithoutSave = true;
+})
+
+$pageContainer.off('click','.bt_pasteElement').on('click','.bt_pasteElement',  function (event) {
+  var clickedBloc = $(this).closest('.element')
+  if (localStorage.getItem('jeedomScCopy')) {
+    SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
+  }
+
+  setUndoStack()
+  //Removes its id for later save:
+  newBloc = $(SC_CLIPBOARD).clone()
+  newBloc.find('input[data-l1key="id"]').attr("value", "")
+  newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
+  newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
+
+  //Are we pasting inside an expresion:
+  if (clickedBloc.parent('#div_scenarioElement').length) {
+    //get the element if copied from an expression:
+    if (newBloc.hasClass('expression')) newBloc = newBloc.find('.element')
+    newBloc.insertAfter(clickedBloc)
+  } else {
+    //make it an expression if not yet:
+    if (newBloc.hasClass('expression')) {
+      newBloc.insertAfter(clickedBloc.parent().parent())
+    } else {
+      newDiv = '<div class="expression sortable col-xs-12">'
+      newDiv += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element">'
+      newDiv += '<div class="col-xs-12" id="insertHere">'
+      newDiv += '</div>'
+      newDiv += '</div>'
+      $(newDiv).insertAfter(clickedBloc.parent().parent())
+      newBloc.appendTo('#insertHere')
+      $('#insertHere').removeAttr('id')
+    }
+  }
+
+  if(event.ctrlKey) {
+    clickedBloc.remove()
+  }
+  updateSortable()
+  updateTooltips()
+  setAutocomplete()
+  modifyWithoutSave = true
+})
 
 
 /**************** Scheduler **********************/

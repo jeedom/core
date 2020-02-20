@@ -25,6 +25,8 @@ Changelog
 - Scénario : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - Scénario : Affichage d'un *warning* si aucun déclencheur n'est configuré.
+- Scénario : bugfix des select sur les copier/coller de bloc.
+- Scénario : copier/coller de bloc entre différents scénarios.
 - Fenêtre des variables de scénarios : tri alphabétique à l'ouverture.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
