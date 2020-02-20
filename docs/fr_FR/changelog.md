@@ -10,6 +10,8 @@ Changelog
 - Synthèse : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
 - Centre de mise à jour : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120 mins.
 - Centre de mise à jour : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
+- Centre de mise à jour : Si vous ouvrez un autre navigateur pendant une update, la barre de progression et le log le signalent.
+- Centre de mise à jour : Si l'update se finit correctement, affichage d'une fenêtre invitant à recharger la page.
 - Mises à jour du Core : Mise en place d'un système de nettoyage des anciens fichiers non utilisés du Core.
 - Pages Widgets / Objets / Scénarios / Interactions / Plugins :
 	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouvel onglet.
@@ -22,6 +24,8 @@ Changelog
 - Scénario : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
 - Scénario : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - Scénario : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
+- Scénario : Affichage d'un *warning* si aucun déclencheur n'est configuré.
+- Fenêtre des variables de scénarios : tri alphabétique à l'ouverture.
 - Analyse / Historique : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - Analyse / Historique : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - Analyse / Historique : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
@@ -127,6 +131,19 @@ Changelog
 >**IMPORTANT**
 >
 >Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+
+3.3.39
+=====
+
+- Changement du nom de la variable $key en $key2 dans la class event.
+- Nettoyage du code d'envoi de plugin/widget/scénario au market (permet de gagner plusieurs secondes sur l'affichage des plugins).
+- Correction d'un warning sur la fonction lastBetween.
+- Meilleure prise en compte des widgets des plugins.
+- Optimisation du calcul de la santé sur le swap.
+
+>**IMPORTANT**
+>
+>Cette mise à jour corrige un soucis qui pourra empêcher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée.
 
 3.3.38
 =====
