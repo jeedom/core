@@ -136,7 +136,7 @@ $('#bt_saveUpdate').on('click',function(){
 });
 
 $(function () {
-  if (isUpdating == 1) {
+  if (isUpdating == '1') {
     $.hideAlert()
     progress = 7
     $('.progressbarContainer').removeClass('hidden')
@@ -189,6 +189,7 @@ function getJeedomLog(_autoUpdate, _log) {
       if($.isArray(data.result)){
         for (var i in data.result.reverse()) {
           log += data.result[i]+"\n";
+          //Update end success:
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
             progress = 100;
             updateProgressBar();
@@ -199,6 +200,7 @@ function getJeedomLog(_autoUpdate, _log) {
             $('#div_alert').showAlert({message: '{{L\'opération est réussie. Merci de faire CTRL + F5 pour avoir les dernières nouveautés}}', level: 'success'});
             _autoUpdate = 0;
           }
+          //update error:
           if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
             progress = -3;
             updateProgressBar();
