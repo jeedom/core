@@ -136,6 +136,16 @@ $('#bt_saveUpdate').on('click',function(){
 });
 
 $(function () {
+  if (isUpdating == 1) {
+    $.hideAlert()
+    progress = 7
+    $('.progressbarContainer').removeClass('hidden')
+    updateProgressBar()
+
+    getJeedomLog(1, 'update')
+  }
+
+
   $('[data-l2key="doNotUpdate"]').on('click',function(){
     $(this).tooltipster('open')
   })
