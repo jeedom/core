@@ -9,8 +9,8 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 		echo '<div class="alert alert-danger">{{Erreur sur la verification des mies à jour : }}'.$e->getMessage().'</div>';
 	}
 }
-$logUpdate = log::get('update', 0, 5000);
-if (strpos($logUpdate[0], 'END UPDATE SUCCESS')) {
+$logUpdate = log::get('update', 0, -1);
+if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
   sendVarToJS('isUpdating', '0');
 } else {
   sendVarToJS('isUpdating', '1');
