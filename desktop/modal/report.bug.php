@@ -140,7 +140,7 @@ $('#bt_sendBugReport').on('click', function () {
 
 $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function(){
 	if($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration'){
-		$('#div_alertReportBug').showAlert({message: '{{ATTENTION cette demande sera public, il ne faut SURTOUT PAS mettre d\'informationd personnelles (mail, compte market, clef api...)}}', level: 'warning'});
+		$('#div_alertReportBug').showAlert({message: '{{ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\'information personnelle (mail, compte market, clé api...)}}', level: 'warning'});
 	}else{
 		$.hideAlert();
 	}
