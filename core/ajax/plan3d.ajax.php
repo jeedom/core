@@ -101,7 +101,7 @@ try {
 		unautorizedInDemo();
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
-			throw new Exception(__('Objet inconnu verifiez l\'id', __FILE__));
+			throw new Exception(__('Objet inconnu vérifiez l\'id', __FILE__));
 		}
 		$plan3dHeader->remove();
 		ajax::success();
@@ -121,10 +121,10 @@ try {
 	if (init('action') == 'getplan3dHeader') {
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
-			throw new Exception(__('plan3d header inconnu verifiez l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('plan3d header inconnu vérifiez l\'id : ', __FILE__) . init('id'));
 		}
 		if (trim($plan3dHeader->getConfiguration('accessCode', '')) != '' && $plan3dHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
-			throw new Exception(__('Code d\'acces invalide', __FILE__), -32005);
+			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
 		}
 		$return = utils::o2a($plan3dHeader);
 		ajax::success($return);
@@ -192,7 +192,7 @@ try {
 		}
 		$objfile = ls($cibDir, '*.obj', false, array('files'));
 		if (count($objfile) != 1) {
-			throw new Exception(__('Il faut 1 seul et unique fichier .obj', __FILE__));
+			throw new Exception(__('Il faut un seul et unique fichier .obj', __FILE__));
 		}
 		$plan3dHeader->setConfiguration('objfile', $objfile[0]);
 		$mtlfile = ls($cibDir, '*.mtl', false, array('files'));
@@ -203,7 +203,7 @@ try {
 		ajax::success();
 	}
 
-	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondant à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());
