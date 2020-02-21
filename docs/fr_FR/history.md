@@ -9,7 +9,7 @@ Ici est décrit le principe d’historisation de Jeedom. Il n’est nécessaire 
 
 ### Archivage
 
-L’archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toutes les mesures, cela fait d’autant plus de points à afficher et donc peut considérablement allonger les temps pour rendre un graphique. En cas d’un nombre trop important de points, cela peut même faire planter l’affichage du graphique.
+L’archivage de données permet à Jeedom de réduire la quantité de données conservées en mémoire. Cela permet de ne pas utiliser trop de place et de ne pas ralentir le système. En effet, si vous conservez toutes les mesures, cela fait d’autant plus de points à afficher et donc cela peut considérablement allonger les temps pour rendre un graphique. En cas d’un nombre trop important de points, cela peut même faire planter l’affichage du graphique.
 
 L’archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici deux paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d’ancienneté).
 

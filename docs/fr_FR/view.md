@@ -87,10 +87,10 @@ Vous avez ici les boutons :
 >
 > Il est possible de réorganiser les lignes par glisser/déposer mais pas les colonnes.
 
-Une fois que vous avez ajoutez vos lignes/colonnes vous pouvez ajouter des informations dans les cases :
+Une fois que vous avez ajouté vos lignes/colonnes vous pouvez ajouter des informations dans les cases :
 
 - **texte** : juste du texte à écrire.
-- **html** : n’importe quels code html (javascript possible mais fortement déconseillé).
+- **html** : n’importe quel code html (javascript possible mais fortement déconseillé).
 - **widget de commande** : le bouton à droite vous permet de choisir la commande à afficher (attention cela affiche le widget de la commande).
 
 

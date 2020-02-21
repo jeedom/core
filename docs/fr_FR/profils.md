@@ -28,15 +28,19 @@ Définit certains comportements de l’interface
 
 ## Onglet Sécurité
 
-- **Authentification en 2 étapes** : permet de configurer l’authentification en 2 étapes (pour rappel, c’est un code changeant toutes les X secondes qui s’affiche sur une application mobile, type *google authentificator*). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que Jeedom (voir sur la page santé) et votre téléphone sont bien à la même heure (1 min de différence suffit pour que ça ne marche pas).
+- **Authentification en 2 étapes** : permet de configurer l’authentification en 2 étapes (pour rappel, c’est un code changeant toutes les X secondes qui s’affiche sur une application mobile, type *google authentificator*). A noter que la double authentification ne sera demandée que pour les connexions externes Pour les connexions locaes,l le code ne sera donc pas demandé.
+
+  **Important** si lors de la configuration de la double authentification vous avez une erreur, il faut  vérifier que Jeedom (voir sur la page santé) et votre téléphone sont bien à la même heure (1 min de différence suffit pour que ça ne marche pas).
+
 - **Mot de passe** : Permet de changer votre mot de passe (ne pas oublier de le retaper en dessous).
+
 - **Hash de l’utilisateur** : Votre clef API d’utilisateur.
 
 ### Sessions actives
 
-Vous avez ici la liste de vos sessions actuellement connecté, leur ID, leur IP ainsi que la date de dernière communication. En cliquant sur "Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur un périphérique enregistré cela supprimera également l’enregistrement.
+Vous avez ici la liste de vos sessions actuellement connectées, leur ID, leur IP ainsi que la date de dernière communication. En cliquant sur "Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur un périphérique enregistré cela supprimera également l’enregistrement.
 
 ### Périphérique enregistrés
 
-Vous retrouvez ici la liste de tous les périphériques enregistré (qui se connecte sans authentification) à votre Jeedom ainsi que la date de dernière utilisation.
+Vous retrouvez ici la liste de tous les périphériques enregistrés (qui se connectent sans authentification) à votre Jeedom ainsi que la date de dernière utilisation.
 Vous pouvez ici supprimer l’enregistrement d’un périphérique. Attention cela ne le déconnecte pas mais empêchera juste sa reconnexion automatique.

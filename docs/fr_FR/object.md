@@ -2,7 +2,8 @@
 **Outils → Objets**
 
 Les **objets** permettent de définir l’arborescence de votre domotique.
-Tous les équipements que vous créerez devront appartenir à un objet et pourront ainsi être plus facilement repérables. On dit alors que l’objet est le **parent** de l’équipement.
+
+Tous les équipements que vous créez doivent appartenir à un objet et sont ainsi plus facilement repérables. On dit alors que l’objet est le **parent** de l’équipement.
 
 Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Usuellement, on y définira les différentes parties de sa maison, comme le nom des pièces (c’est d’ailleurs la configuration recommandée).
 
@@ -24,6 +25,7 @@ Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
 Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des objets. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom:
+
 - La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tout les panneaux et afficher touts les objets.
 - Le dossier fermé pour replier tout les panneaux.
@@ -33,7 +35,8 @@ Une fois sur la configuration d'un objet, vous disposez d'un menu contextuel au 
 ## Onglet Objet
 
 En cliquant sur un objet, vous accédez à sa page de configuration.
-Quels que soient les changements effectués, n’oubliez pas de le sauvegarder.
+
+Quels que soient les changements effectués, n’oubliez pas de sauvegarder vos modifications.
 
 Voici donc les différentes caractéristiques pour configurer un objet :
 
@@ -50,7 +53,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 
 > **Tip**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet à la souris et en glisser/déposer pour lui donner une nouvelle place.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble, sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >
