@@ -47,7 +47,7 @@ try {
   if (init('action') == 'remove') {
     $widgets = widgets::byId(init('id'));
     if(!is_object($widgets)){
-      throw new Exception(__('Widgets inconnue - Vérifiez l\'id', __FILE__).init('id'));
+      throw new Exception(__('Widgets inconnus - Vérifiez l\'id', __FILE__).init('id'));
     }
     $widgets->remove();
     ajax::success();
