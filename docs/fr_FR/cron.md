@@ -24,7 +24,7 @@ Dans ce tableau, on retrouve :
 - **\#** : ID de la tâche, utile pour faire le lien entre un processus qui tourne et ce qu’il fait vraiment.
 - **Actif** : Indique si la tâche est active (peut être lancée par Jeedom) ou non.
 - **PID** : Indique le process ID actuel.
-- **Démon** : Si cette case est à "oui" alors la tâche doit toujours être en cours. A côté, vous retrouvez la fréquence du démon, il est conseillé de ne jamais toucher cette valeur et surtout de ne jamais la diminuer.
+- **Démon** : Si cette case est à "oui" alors la tâche doit toujours être en cours. A côté, vous retrouvez la fréquence du démon, il est conseillé de ne jamais modifier cette valeur et surtout de ne jamais la diminuer.
 - **Unique** : Si c’est à "oui" alors la tâche se lancera une fois puis se supprimera.
 - **Classe** : Classe PHP appelée pour exécuter la tâche (peut être vide).
 - **Fonction** : Fonction PHP appelée dans la classe appelée (ou non si la classe est vide).
