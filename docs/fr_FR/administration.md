@@ -2,7 +2,7 @@
 **Réglages → Système → Configuration**
 
 C’est sur cette page que se trouvent la plupart des paramètres de configuration.
-Bien que nombreux, une majorité sont pré-configurés par défaut.
+Bien que nombreux, une majorité de paramètres est configurée par défaut.
 
 
 
