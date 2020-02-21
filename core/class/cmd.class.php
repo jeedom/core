@@ -149,7 +149,7 @@ class cmd {
 		}
 		if ($_type !== null) {
 			$values['type'] = $_type;
-			$sql .= ' AND `type`=:type';
+			$sql .= ' AND `eqType`=:type';
 		}
 		if ($_visible !== null) {
 			$sql .= ' AND `isVisible`=1';
