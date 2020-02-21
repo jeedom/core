@@ -14,15 +14,15 @@ Cette page permet de créer une vue 3D de votre habitation qui pourra réagir en
 >
 > Vous ne pouvez pas créer votre modèle 3D directement dans Jeedom, il faut le faire en passant par un logiciel tiers. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Une fois votre model 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
+Une fois votre modèle 3D créé il faut l'exporter au format OBJ. Si vous utilisez SweetHome3d cela se fait à partir du menu "Vue 3D" puis "Exporter au format OBJ". Il faut ensuite prendre tous les fichiers générés et les mettre dans un fichier zip (il peut y avoir beaucoup de fichiers dû aux textures).
 
 > **IMPORTANT**
 >
-> Les fichiers doivent etre à la racine du zip est pas dans un sous-dossier.
+> Les fichiers doivent être à la racine du zip et non dans un sous-dossier.
 
 > **ATTENTION**
 >
-> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est gros plus long sera le temps de rendu dans Jeedom.
+> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est volumineux, plus long sera le temps de rendu dans Jeedom.
 
 Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 3D. Pour cela il faut passer en mode édition en cliquant sur le petit crayon à droite, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
 
@@ -56,15 +56,15 @@ Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre
 >
 > La configuration ne peut se faire qu'en mode édition.
 
-Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va amener une fenêtre où vous pourrez :
+Pour configurer un élément sur le design 3D il vous faire un double clic sur l'élément que vous voulez configurer. Cela va afficher une fenêtre où vous pourrez :
 
 - Indiquer un type de lien (actuellement seul Equipement existe)
-- Le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaitre l'équipment
-- La spécitificité, là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
+- Renseigner le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaître l'équipement
+- Définir la spécificité: là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
 
 ### Lumière
 
-- Statut : Commande d'état de la lumiere peut être un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
+- Statut : Commande d'état de la lumière peut être un binaire (0 ou 1), un numérique (de 0 à 100%) ou une couleur
 - Puissance : puissance de l'ampoule (attention cela peut ne pas refléter la réalité)
 
 ### Texte
@@ -107,7 +107,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 
 ### Couleur conditionnelle
 
-Permet de donner la couleur choisie à l'élément si la condition est valide. Vous pouvez mettre autant de couleurs/conditions que vous voulez.
+Si la condition est valide, permet de donner la couleur choisie à l'élément. Vous pouvez mettre autant de couleurs/conditions que vous voulez.
 
 > **Tip**
 >
