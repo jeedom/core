@@ -304,7 +304,7 @@ class scenario {
 			$scenario->setLog(__('Tags : ', __FILE__) . json_encode($scenario->getTags()));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
-			$scenario->setLog(__('Eléments à lancer on trouvé', __FILE__));
+			$scenario->setLog(__('Eléments à lancer non trouvé', __FILE__));
 			$scenario->persistLog();
 			return;
 		}
@@ -649,8 +649,8 @@ class scenario {
 								}
 							}
 							if ($state == 'starting') {
-								log::add('scenario', 'error', __('Trop d\'appel simultané du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario', __FILE__)." \"".$this->getName()."\".");
-								$this->setLog(__('Trop d\'appel simultané du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels à ce scénario', __FILE__).".");
+								log::add('scenario', 'error', __('Trop d\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario', __FILE__)." \"".$this->getName()."\".");
+								$this->setLog(__('Trop d\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels à ce scénario', __FILE__).".");
 								$this->persistLog();
 								return false;
 							}
