@@ -5,6 +5,7 @@ C’est sur cette page que se trouvent la plupart des paramètres de configurati
 Bien que nombreux, une majorité sont pré-configurés par défaut.
 
 
+
 ## Onglet Général
 
 Dans cet onglet on retrouve des informations générales sur Jeedom :
