@@ -7,7 +7,7 @@ ENV APACHE_PORT 80
 ENV SSH_PORT 22
 ENV MODE_HOST 0
 
-RUN apt-get update && apt-get install -y wget openssh-server supervisor
+RUN apt-get update && apt-get install -y wget openssh-server supervisor mysql-client
 
 RUN echo "root:${SHELL_ROOT_PASSWORD}" | chpasswd && \
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
@@ -27,7 +27,9 @@ RUN /root/install_docker.sh -s 2;exit 0
 RUN /root/install_docker.sh -s 4;exit 0
 RUN /root/install_docker.sh -s 5;exit 0
 RUN /root/install_docker.sh -s 8;exit 0
+RUN /root/install_docker.sh -s 9;exit 0
 RUN /root/install_docker.sh -s 11;exit 0
+RUN /root/install_docker.sh -s 12;exit 0
 RUN systemctl disable apache2;exit 0
 RUN systemctl disable sshd;exit 0
 
